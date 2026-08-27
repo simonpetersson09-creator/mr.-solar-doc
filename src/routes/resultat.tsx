@@ -48,7 +48,6 @@ function ResultPage() {
   const [exportError, setExportError] = useState(false);
 
   const shortMonths = i18n.t("months.short", { returnObjects: true }) as string[];
-  const longMonths = i18n.t("months.long", { returnObjects: true }) as string[];
 
   if (!result) {
     return (
@@ -137,7 +136,7 @@ function ResultPage() {
           </div>
         </div>
 
-        {result.notes.includes("limited-by-fuse") ? (
+        {result.notes.includes("limited-by-main-fuse") ? (
           <p className="rounded-xl border border-border bg-secondary p-4 text-sm">
             {t("result.limitedByFuse")}
           </p>
@@ -238,8 +237,6 @@ function ResultPage() {
             </dl>
           ) : null}
         </div>
-
-        {longMonths.length === 0 ? null : null}
 
         {exportError ? <p className="text-sm text-destructive">{t("result.pdfError")}</p> : null}
       </main>
