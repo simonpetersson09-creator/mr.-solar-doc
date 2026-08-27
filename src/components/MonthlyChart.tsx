@@ -6,6 +6,14 @@ interface MonthlyChartProps {
   locale: string;
 }
 
+/** Compact chart label — no thousands grouping, so values fit narrow columns. */
+function compactNumber(value: number, locale: string): string {
+  return new Intl.NumberFormat(locale, {
+    maximumFractionDigits: 0,
+    useGrouping: false,
+  }).format(Number.isFinite(value) ? value : 0);
+}
+
 export function MonthlyChart({ values, labels, locale }: MonthlyChartProps) {
   const max = Math.max(...values, 1);
 
@@ -20,8 +28,8 @@ export function MonthlyChart({ values, labels, locale }: MonthlyChartProps) {
           key={labels[index]}
           className="flex min-w-0 flex-1 flex-col items-center gap-1.5"
         >
-          <span className="w-full truncate text-center text-[10px] tabular-nums text-muted-foreground">
-            {formatNumber(value, locale)}
+          <span className="w-full text-center text-[10px] tabular-nums text-muted-foreground">
+            {compactNumber(value, locale)}
           </span>
           <div className="flex h-32 w-full items-end">
             <div
