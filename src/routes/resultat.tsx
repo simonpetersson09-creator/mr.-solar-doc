@@ -115,6 +115,9 @@ function ResultPage() {
             <p className="mt-2 text-4xl font-bold">
               {formatDecimal(result.installedKwp, locale)} <span className="text-xl">kWp</span>
             </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {t("result.panelCount", { count: panelCount(result.installedKwp) })}
+            </p>
           </div>
           <div className="card-elevated p-5">
             <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
@@ -217,7 +220,7 @@ function ResultPage() {
           {showDetails ? (
             <dl className="divide-y divide-border border-t border-border text-sm">
               {[
-                [t("result.installedDc"), `${formatDecimal(result.installedKwp, locale)} kWp`],
+                [t("result.installedDc"), `${formatDecimal(result.installedKwp, locale)} kWp (${panelCount(result.installedKwp)} ${t("result.panelsUnit")})`],
                 [t("result.inverterPower"), `${formatNumber(result.inverterKw, locale)} kW`],
                 [t("result.dcAcRatio"), formatDecimal(result.dcAcRatio, locale, 2)],
                 [t("result.oversizing"), `${formatDecimal(result.oversizingPercent, locale)} %`],
