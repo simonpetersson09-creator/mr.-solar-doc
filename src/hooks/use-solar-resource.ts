@@ -3,11 +3,11 @@ import { getSolarResource } from "@/services/solar-resource-service";
 import type { Orientation, SolarResource } from "@/lib/calc/types";
 
 export interface UseSolarResourceParams {
-  latitude?: number;
-  longitude?: number;
+  latitude?: number | undefined;
+  longitude?: number | undefined;
   orientation: Orientation;
   tiltDegrees: number | null;
-  enabled?: boolean;
+  enabled?: boolean | undefined;
 }
 
 export function useSolarResource(params: UseSolarResourceParams) {

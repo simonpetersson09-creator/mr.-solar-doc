@@ -77,7 +77,7 @@ export async function shareFile(request: ShareFileRequest): Promise<"shared" | "
 
   if (navigatorWithShare.canShare?.({ files: [file] }) && navigatorWithShare.share) {
     try {
-      await navigatorWithShare.share({ files: [file], title: request.title });
+      await navigatorWithShare.share({ files: [file], ...(request.title ? { title: request.title } : {}) });
       return "shared";
     } catch {
       // Fall through to download.

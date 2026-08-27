@@ -227,7 +227,7 @@ function ResultPage() {
                 ],
                 [t("result.dataSource"), result.resource.dataSource],
                 [t("result.calculatedAt"), formatDate(result.calculatedAt, locale)],
-                [t("result.currency"), `${currency} · ${market.code}`],
+                [t("result.currency"), `${currency} · ${market.countryCode}`],
               ].map(([label, value]) => (
                 <div key={label} className="flex justify-between gap-4 px-5 py-3">
                   <dt className="text-muted-foreground">{label}</dt>

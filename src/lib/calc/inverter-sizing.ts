@@ -43,7 +43,7 @@ export function recommendInverter(params: {
     return ratio >= TARGET_MIN_DC_AC_RATIO && ratio <= TARGET_MAX_DC_AC_RATIO;
   });
   if (inTarget.length > 0) {
-    return { inverterKw: inTarget[inTarget.length - 1], withinTargetWindow: true };
+    return { inverterKw: inTarget[inTarget.length - 1]!, withinTargetWindow: true };
   }
 
   const withinCeiling = allowed.filter(
@@ -51,11 +51,11 @@ export function recommendInverter(params: {
   );
   if (withinCeiling.length > 0) {
     // Smallest inverter that still keeps the ratio under the ceiling.
-    return { inverterKw: withinCeiling[0], withinTargetWindow: false };
+    return { inverterKw: withinCeiling[0]!, withinTargetWindow: false };
   }
 
   // Array is larger than any allowed inverter can carry: use the largest allowed.
-  return { inverterKw: allowed[allowed.length - 1], withinTargetWindow: false };
+  return { inverterKw: allowed[allowed.length - 1]!, withinTargetWindow: false };
 }
 
 /** Largest array (kWp) the chosen inverter may carry under the ceiling. */

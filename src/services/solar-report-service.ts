@@ -8,6 +8,30 @@ import { shareFile } from "./native-service";
  * This module presents finished results only; it contains no sizing logic.
  */
 
+export type ReportFieldLabels = Record<string, string> & {
+  array: string;
+  inverter: string;
+  installedDc: string;
+  dcAcRatio: string;
+  oversizing: string;
+  mainFuse: string;
+  maxAc: string;
+  annualProduction: string;
+  specificYield: string;
+  dataSource: string;
+  address: string;
+  coordinates: string;
+  annualConsumption: string;
+  selfConsumption: string;
+  exported: string;
+  assumedPrice: string;
+  currency: string;
+  economicValue: string;
+  orientation: string;
+  tilt: string;
+  calculationVersion: string;
+};
+
 export interface ReportLabels {
   title: string;
   appName: string;
@@ -21,7 +45,7 @@ export interface ReportLabels {
   generated: string;
   months: string[];
   origin: Record<ValueOrigin, string>;
-  fields: Record<string, string>;
+  fields: ReportFieldLabels;
 }
 
 export interface ReportOptions {
@@ -153,7 +177,7 @@ class ReportDocument {
       this.doc.roundedRect(x, baseline - barHeight, barWidth, barHeight, 0.8, 0.8, "F");
       this.doc.setFontSize(6.5);
       this.doc.setTextColor(...MUTED);
-      this.doc.text(monthLabels[index], x + barWidth / 2, baseline + 4, { align: "center" });
+      this.doc.text(monthLabels[index] ?? "", x + barWidth / 2, baseline + 4, { align: "center" });
       this.doc.setFontSize(6);
       this.doc.text(
         formatNumber(value, locale),
@@ -296,7 +320,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
   if (result.consumption.monthlyKwh) {
     result.consumption.monthlyKwh.forEach((value, index) => {
       consumptionRows.push({
-        label: labels.months[index],
+        label: labels.months[index] ?? "",
         value: `${formatNumber(value, locale)} kWh`,
         origin: "user",
       });
