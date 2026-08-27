@@ -11,14 +11,16 @@ export interface WizardState {
   monthlyConsumptionKwh: number[] | null;
   mainFuseAmp: number | null;
   selfConsumptionShare: number;
-  electricityPricePerKwh: number | null;
+  selfConsumedValuePerKwh: number | null;
+  exportValuePerKwh: number | null;
   setLocation: (location: SiteLocation | null) => void;
   setRoof: (orientation: Orientation, tiltDegrees: number | null) => void;
   setResource: (resource: SolarResource | null) => void;
   setConsumption: (annualKwh: number, monthlyKwh: number[] | null) => void;
   setMainFuse: (amp: number) => void;
   setSelfConsumptionShare: (share: number) => void;
-  setElectricityPrice: (price: number) => void;
+  setSelfConsumedValue: (value: number) => void;
+  setExportValue: (value: number) => void;
   reset: () => void;
 }
 
@@ -31,7 +33,8 @@ const initialState = {
   monthlyConsumptionKwh: null,
   mainFuseAmp: null,
   selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
-  electricityPricePerKwh: null,
+  selfConsumedValuePerKwh: null,
+  exportValuePerKwh: null,
 };
 
 export const useWizardStore = create<WizardState>((set) => ({
@@ -43,6 +46,7 @@ export const useWizardStore = create<WizardState>((set) => ({
     set({ annualConsumptionKwh: annualKwh, monthlyConsumptionKwh: monthlyKwh }),
   setMainFuse: (amp) => set({ mainFuseAmp: amp }),
   setSelfConsumptionShare: (share) => set({ selfConsumptionShare: share }),
-  setElectricityPrice: (price) => set({ electricityPricePerKwh: price }),
+  setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
+  setExportValue: (value) => set({ exportValuePerKwh: value }),
   reset: () => set({ ...initialState }),
 }));

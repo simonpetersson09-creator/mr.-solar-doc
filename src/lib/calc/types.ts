@@ -45,8 +45,13 @@ export interface ElectricalInput {
 }
 
 export interface EconomicsInput {
-  electricityPricePerKwh: number;
+  /** Assumed value of one self-consumed kWh. */
+  selfConsumedValuePerKwh: number;
+  /** Assumed compensation for one exported kWh. */
+  exportValuePerKwh: number;
   currency: string;
+  /** True when the market has no verified default and the user has not entered one. */
+  valuesMissing?: boolean;
 }
 
 export interface CalculationInput {
@@ -81,7 +86,8 @@ export interface CalculationResult {
   };
   economics: {
     currency: string;
-    electricityPricePerKwh: number;
+    selfConsumedValuePerKwh: number;
+    exportValuePerKwh: number;
     selfConsumptionValue: number;
     exportValue: number;
     totalValue: number;
