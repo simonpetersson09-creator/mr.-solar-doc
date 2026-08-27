@@ -240,7 +240,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
 
   report.sectionTitle(labels.summary);
   report.highlights([
-    { label: f.array, value: `${formatDecimal(result.installedKwp, locale)} kWp (${panelCount(result.installedKwp)} ${f.panelsUnit ?? "panels"})` },
+    { label: f.array, value: `${formatDecimal(result.installedKwp, locale)} kWp (${panelCount(result.installedKwp)} ${f["panelsUnit"]})` },
     { label: f.inverter, value: `${formatNumber(result.inverterKw, locale)} kW` },
     {
       label: f.annualProduction,
@@ -264,7 +264,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     [
       {
         label: f.installedDc,
-        value: `${formatDecimal(result.installedKwp, locale)} kWp (${panelCount(result.installedKwp)} ${f.panelsUnit ?? "panels"})`,
+        value: `${formatDecimal(result.installedKwp, locale)} kWp (${panelCount(result.installedKwp)} ${f["panelsUnit"]})`,
         origin: "calculated",
       },
       {
