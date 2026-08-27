@@ -46,6 +46,13 @@ export default function MapPicker({ latitude, longitude, onPositionChange }: Map
     mapRef.current = map;
     markerRef.current = marker;
 
+    // Container is often sized after mount (lazy/Suspense); recalc so clicks map correctly.
+    const invalidate = () => map.invalidateSize();
+    const timer = setTimeout(invalidate, 0);
+    const observer =
+      typeof ResizeObserver !== "undefined" ? new ResizeObserver(invalidate) : null;
+    observer?.observe(containerRef.current);
+
     return () => {
       map.remove();
       mapRef.current = null;
