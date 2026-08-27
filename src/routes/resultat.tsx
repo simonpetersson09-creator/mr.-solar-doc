@@ -11,9 +11,15 @@ import { MonthlyChart } from "@/components/MonthlyChart";
 import { useCalculation } from "@/hooks/use-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useWizardStore } from "@/state/wizard-store";
+import { PANEL_WATTAGE_KWP } from "@/config/constants";
 import { formatCurrency, formatDate, formatDecimal, formatNumber, formatPercent } from "@/lib/format";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
+
+/** Estimated number of panels for a given installed DC power. */
+function panelCount(installedKwp: number): number {
+  return Math.max(1, Math.round(installedKwp / PANEL_WATTAGE_KWP));
+}
 
 export const Route = createFileRoute("/resultat")({
   head: () => ({
@@ -108,6 +114,9 @@ function ResultPage() {
             </div>
             <p className="mt-2 text-4xl font-bold">
               {formatDecimal(result.installedKwp, locale)} <span className="text-xl">kWp</span>
+            </p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {t("result.panelCount", { count: panelCount(result.installedKwp) })}
             </p>
           </div>
           <div className="card-elevated p-5">
@@ -211,7 +220,7 @@ function ResultPage() {
           {showDetails ? (
             <dl className="divide-y divide-border border-t border-border text-sm">
               {[
-                [t("result.installedDc"), `${formatDecimal(result.installedKwp, locale)} kWp`],
+                [t("result.installedDc"), `${formatDecimal(result.installedKwp, locale)} kWp (${panelCount(result.installedKwp)} ${t("result.panelsUnit")})`],
                 [t("result.inverterPower"), `${formatNumber(result.inverterKw, locale)} kW`],
                 [t("result.dcAcRatio"), formatDecimal(result.dcAcRatio, locale, 2)],
                 [t("result.oversizing"), `${formatDecimal(result.oversizingPercent, locale)} %`],
