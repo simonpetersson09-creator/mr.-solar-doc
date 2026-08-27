@@ -90,6 +90,8 @@ export const sv = {
     mainFuse: "Huvudsäkring",
     maxAc: "Maximal beräknad AC-effekt",
     installedDc: "Installerad DC-effekt",
+    panelsUnit: "paneler",
+    panelCount: "ca {{count}} paneler",
     inverterPower: "Växelriktareffekt",
     dcAcRatio: "DC/AC-ratio",
     oversizing: "Överdimensionering",

@@ -89,6 +89,8 @@ export const en = {
     mainFuse: "Main fuse",
     maxAc: "Maximum calculated AC power",
     installedDc: "Installed DC power",
+    panelsUnit: "panels",
+    panelCount: "approx. {{count}} panels",
     inverterPower: "Inverter power",
     dcAcRatio: "DC/AC ratio",
     oversizing: "Oversizing",
