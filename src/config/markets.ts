@@ -77,5 +77,5 @@ export const FALLBACK_MARKET_CODE = "SE";
 
 export function getMarketConfig(countryCode?: string | null): MarketConfig {
   const code = (countryCode ?? "").toUpperCase();
-  return MARKETS[code] ?? MARKETS[FALLBACK_MARKET_CODE];
+  return MARKETS[code] ?? MARKETS[FALLBACK_MARKET_CODE]!;
 }
