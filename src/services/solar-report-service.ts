@@ -263,7 +263,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     [
       {
         label: f.installedDc,
-        value: `${formatDecimal(result.installedKwp, locale)} kWp`,
+        value: `${formatDecimal(result.installedKwp, locale)} kWp (${panelCount(result.installedKwp)} ${f.panelsUnit ?? "panels"})`,
         origin: "calculated",
       },
       {
