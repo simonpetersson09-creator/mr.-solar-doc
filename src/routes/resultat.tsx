@@ -183,26 +183,76 @@ function ResultPage() {
             </dl>
           </div>
 
-          <div>
-            <Label htmlFor="price" className="text-sm">
-              {t("result.priceLabel", { currency })}
-            </Label>
-            <Input
-              id="price"
-              type="number"
-              step="0.01"
-              inputMode="decimal"
-              className="mt-2 h-11 w-40"
-              value={result.economics.electricityPricePerKwh}
-              onChange={(event) => setElectricityPrice(Number(event.target.value) || 0)}
-            />
-            <p className="mt-3 text-xs text-muted-foreground">{t("result.economicValue")}</p>
-            <p className="text-2xl font-bold">
-              {formatCurrency(result.economics.totalValue, locale, currency)}{" "}
-              <span className="text-sm font-normal text-muted-foreground">
-                {t("result.perYear")}
-              </span>
-            </p>
+          <div className="space-y-4">
+            {result.notes.includes("economic-values-missing") ? (
+              <p className="rounded-xl border border-border bg-secondary p-3 text-xs">
+                {t("result.missingMarketValues")}
+              </p>
+            ) : null}
+
+            <div>
+              <Label htmlFor="self-value" className="text-sm">
+                {t("result.selfConsumedValueLabel", { currency })}
+              </Label>
+              <Input
+                id="self-value"
+                type="number"
+                step="0.01"
+                min="0"
+                inputMode="decimal"
+                className="mt-2 h-11 w-40"
+                value={result.economics.selfConsumedValuePerKwh}
+                onChange={(event) => setSelfConsumedValue(Number(event.target.value) || 0)}
+              />
+              <p className="mt-2 text-xs text-muted-foreground">
+                {t("result.selfConsumedValueHelp")}
+              </p>
+            </div>
+
+            <div>
+              <Label htmlFor="export-value" className="text-sm">
+                {t("result.exportValueLabel", { currency })}
+              </Label>
+              <Input
+                id="export-value"
+                type="number"
+                step="0.01"
+                min="0"
+                inputMode="decimal"
+                className="mt-2 h-11 w-40"
+                value={result.economics.exportValuePerKwh}
+                onChange={(event) => setExportValue(Number(event.target.value) || 0)}
+              />
+              <p className="mt-2 text-xs text-muted-foreground">{t("result.exportValueHelp")}</p>
+            </div>
+
+            <dl className="grid gap-3 sm:grid-cols-2">
+              <div className="rounded-xl bg-secondary p-3">
+                <dt className="text-xs text-muted-foreground">
+                  {t("result.selfConsumptionValue")}
+                </dt>
+                <dd className="text-lg font-semibold">
+                  {formatCurrency(result.economics.selfConsumptionValue, locale, currency)}
+                </dd>
+              </div>
+              <div className="rounded-xl bg-secondary p-3">
+                <dt className="text-xs text-muted-foreground">{t("result.exportValue")}</dt>
+                <dd className="text-lg font-semibold">
+                  {formatCurrency(result.economics.exportValue, locale, currency)}
+                </dd>
+              </div>
+            </dl>
+
+            <div>
+              <p className="text-xs text-muted-foreground">{t("result.totalAnnualBenefit")}</p>
+              <p className="text-2xl font-bold">
+                {formatCurrency(result.economics.totalValue, locale, currency)}{" "}
+                <span className="text-sm font-normal text-muted-foreground">
+                  {t("result.perYear")}
+                </span>
+              </p>
+              <p className="mt-2 text-xs text-muted-foreground">{t("result.economicsDisclaimer")}</p>
+            </div>
           </div>
         </div>
 
