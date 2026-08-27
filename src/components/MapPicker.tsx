@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import L from "leaflet";
+import "leaflet/dist/leaflet.css";
 
 interface MapPickerProps {
   latitude: number;
@@ -45,7 +46,16 @@ export default function MapPicker({ latitude, longitude, onPositionChange }: Map
     mapRef.current = map;
     markerRef.current = marker;
 
+    // Container is often sized after mount (lazy/Suspense); recalc so clicks map correctly.
+    const invalidate = () => map.invalidateSize();
+    const timer = setTimeout(invalidate, 0);
+    const observer =
+      typeof ResizeObserver !== "undefined" ? new ResizeObserver(invalidate) : null;
+    observer?.observe(containerRef.current);
+
     return () => {
+      clearTimeout(timer);
+      observer?.disconnect();
       map.remove();
       mapRef.current = null;
       markerRef.current = null;
