@@ -47,7 +47,8 @@ function ResultPage() {
   const { locale } = useAppLocale();
   const { result, market } = useCalculation();
   const setSelfConsumptionShare = useWizardStore((s) => s.setSelfConsumptionShare);
-  const setElectricityPrice = useWizardStore((s) => s.setElectricityPrice);
+  const setSelfConsumedValue = useWizardStore((s) => s.setSelfConsumedValue);
+  const setExportValue = useWizardStore((s) => s.setExportValue);
   const reset = useWizardStore((s) => s.reset);
   const [showDetails, setShowDetails] = useState(false);
   const [exporting, setExporting] = useState(false);

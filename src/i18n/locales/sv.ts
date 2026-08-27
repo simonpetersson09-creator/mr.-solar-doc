@@ -99,6 +99,23 @@ export const sv = {
     selfConsumption: "Egenanvänd solel",
     exported: "Såld solel",
     assumedPrice: "Antaget framtida elpris",
+      selfConsumedValueRate: "Antaget värde egenanvänd solel",
+      exportValueRate: "Antagen ersättning såld solel",
+      selfConsumptionValue: "Värde egenanvänd solel",
+      exportValue: "Värde såld solel",
+      totalAnnualBenefit: "Total beräknad årlig nytta",
+    selfConsumedValueLabel: "Värde på egenanvänd solel ({{currency}}/kWh)",
+    selfConsumedValueHelp:
+      "Egenanvänd solel ersätter el som du annars hade behövt köpa från elnätet.",
+    exportValueLabel: "Ersättning för såld solel ({{currency}}/kWh)",
+    exportValueHelp: "Det uppskattade pris du får för el som matas ut på elnätet.",
+    selfConsumptionValue: "Värde egenanvänd solel",
+    exportValue: "Värde såld solel",
+    totalAnnualBenefit: "Total beräknad årlig nytta",
+    economicsDisclaimer:
+      "Beloppen är kalkylantaganden, inte garanterade framtida priser.",
+    missingMarketValues:
+      "Vi har inget verifierat standardvärde för det här landet. Ange värdena själv nedan.",
     currency: "Valuta",
     economicValue: "Grundläggande ekonomiskt värde",
     perYear: "per år",

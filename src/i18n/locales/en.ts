@@ -98,6 +98,23 @@ export const en = {
     selfConsumption: "Self-consumed solar",
     exported: "Exported solar",
     assumedPrice: "Assumed future electricity price",
+      selfConsumedValueRate: "Assumed value of self-consumed solar",
+      exportValueRate: "Assumed compensation for exported solar",
+      selfConsumptionValue: "Value of self-consumed solar",
+      exportValue: "Value of exported solar",
+      totalAnnualBenefit: "Total estimated annual benefit",
+    selfConsumedValueLabel: "Value of self-consumed solar ({{currency}}/kWh)",
+    selfConsumedValueHelp:
+      "Self-consumed solar replaces electricity you would otherwise have bought from the grid.",
+    exportValueLabel: "Compensation for exported solar ({{currency}}/kWh)",
+    exportValueHelp: "The estimated price you receive for electricity fed into the grid.",
+    selfConsumptionValue: "Value of self-consumed solar",
+    exportValue: "Value of exported solar",
+    totalAnnualBenefit: "Total estimated annual benefit",
+    economicsDisclaimer:
+      "These amounts are calculation assumptions, not guaranteed future prices.",
+    missingMarketValues:
+      "We have no verified default value for this country. Please enter the values yourself below.",
     currency: "Currency",
     economicValue: "Basic economic value",
     perYear: "per year",
