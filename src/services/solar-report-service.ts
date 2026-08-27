@@ -1,7 +1,13 @@
 import { jsPDF } from "jspdf";
 import type { CalculationResult, ValueOrigin } from "@/lib/calc/types";
+import { PANEL_WATTAGE_KWP } from "@/config/constants";
 import { formatCurrency, formatDecimal, formatNumber, formatPercent, isoDateOnly } from "@/lib/format";
 import { shareFile } from "./native-service";
+
+/** Estimated number of panels for a given installed DC power. */
+function panelCount(installedKwp: number): number {
+  return Math.max(1, Math.round(installedKwp / PANEL_WATTAGE_KWP));
+}
 
 /**
  * Calculation Engine -> Calculation Result -> Report Service -> PDF.
@@ -233,7 +239,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
 
   report.sectionTitle(labels.summary);
   report.highlights([
-    { label: f.array, value: `${formatDecimal(result.installedKwp, locale)} kWp` },
+    { label: f.array, value: `${formatDecimal(result.installedKwp, locale)} kWp (${panelCount(result.installedKwp)} ${f.panelsUnit ?? "panels"})` },
     { label: f.inverter, value: `${formatNumber(result.inverterKw, locale)} kW` },
     {
       label: f.annualProduction,
