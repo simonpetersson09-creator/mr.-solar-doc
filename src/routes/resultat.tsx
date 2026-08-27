@@ -11,9 +11,15 @@ import { MonthlyChart } from "@/components/MonthlyChart";
 import { useCalculation } from "@/hooks/use-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useWizardStore } from "@/state/wizard-store";
+import { PANEL_WATTAGE_KWP } from "@/config/constants";
 import { formatCurrency, formatDate, formatDecimal, formatNumber, formatPercent } from "@/lib/format";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
+
+/** Estimated number of panels for a given installed DC power. */
+function panelCount(installedKwp: number): number {
+  return Math.max(1, Math.round(installedKwp / PANEL_WATTAGE_KWP));
+}
 
 export const Route = createFileRoute("/resultat")({
   head: () => ({

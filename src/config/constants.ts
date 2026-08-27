@@ -23,4 +23,7 @@ export const MAX_RECOMMENDED_KWP = 100;
 /** Rounding step used when presenting a recommended array size (kWp). */
 export const KWP_ROUNDING_STEP = 0.5;
 
+/** Assumed nameplate wattage of a single solar panel (kWp), used to estimate panel count. */
+export const PANEL_WATTAGE_KWP = 0.43;
+
 export const CALCULATION_VERSION = "1.0.0";
