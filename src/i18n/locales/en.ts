@@ -138,6 +138,7 @@ export const en = {
       array: "Solar array",
       inverter: "Inverter",
       installedDc: "Installed DC power",
+      panelsUnit: "panels",
       dcAcRatio: "DC/AC-ratio",
       oversizing: "Oversizing",
       mainFuse: "Main fuse",

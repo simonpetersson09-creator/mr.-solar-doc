@@ -140,6 +140,7 @@ export const sv = {
       array: "Solcellsanläggning",
       inverter: "Växelriktare",
       installedDc: "Installerad DC-effekt",
+      panelsUnit: "paneler",
       dcAcRatio: "DC/AC-ratio",
       oversizing: "Överdimensionering",
       mainFuse: "Huvudsäkring",

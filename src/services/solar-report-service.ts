@@ -18,6 +18,7 @@ export type ReportFieldLabels = Record<string, string> & {
   array: string;
   inverter: string;
   installedDc: string;
+  panelsUnit: string;
   dcAcRatio: string;
   oversizing: string;
   mainFuse: string;
