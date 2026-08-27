@@ -1,24 +1,61 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState } from "react";
+import "@/i18n";
+import { AddressStep } from "@/components/steps/AddressStep";
+import { RoofStep } from "@/components/steps/RoofStep";
+import { ConsumptionStep } from "@/components/steps/ConsumptionStep";
+import { FuseStep } from "@/components/steps/FuseStep";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  head: () => ({
+    meta: [
+      { title: "Solenergikollen – dimensionera din solcellsanläggning" },
+      {
+        name: "description",
+        content:
+          "Räkna ut rekommenderad solcellseffekt, växelriktare och årsproduktion utifrån din adress, elförbrukning och huvudsäkring.",
+      },
+      { property: "og:title", content: "Solenergikollen – dimensionera din solcellsanläggning" },
+      {
+        property: "og:description",
+        content:
+          "Steg-för-steg-kalkyl med platsdata från PVGIS: kWp, växelriktare, månadsproduktion och ekonomi.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: WizardPage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
-  return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
+const TOTAL_STEPS = 4;
+
+function WizardPage() {
+  const navigate = useNavigate();
+  const [step, setStep] = useState(1);
+
+  if (step === 1) {
+    return <AddressStep totalSteps={TOTAL_STEPS} onNext={() => setStep(2)} />;
+  }
+  if (step === 2) {
+    return (
+      <RoofStep totalSteps={TOTAL_STEPS} onBack={() => setStep(1)} onNext={() => setStep(3)} />
+    );
+  }
+  if (step === 3) {
+    return (
+      <ConsumptionStep
+        totalSteps={TOTAL_STEPS}
+        onBack={() => setStep(2)}
+        onNext={() => setStep(4)}
       />
-    </div>
+    );
+  }
+  return (
+    <FuseStep
+      totalSteps={TOTAL_STEPS}
+      onBack={() => setStep(3)}
+      onSubmit={() => void navigate({ to: "/resultat" })}
+    />
   );
 }
