@@ -7,8 +7,16 @@ export interface MarketConfig {
   countryCode: string;
   locale: string;
   currency: string;
-  /** Assumed future electricity price, per kWh, in `currency`. */
-  defaultElectricityPricePerKwh: number;
+  /**
+   * Calculation assumption: value of one self-consumed kWh, in `currency`.
+   * `null` when no verified national default exists — the user must enter it.
+   */
+  selfConsumedElectricityValue: number | null;
+  /**
+   * Calculation assumption: compensation for one exported kWh, in `currency`.
+   * `null` when no verified national default exists — the user must enter it.
+   */
+  exportElectricityValue: number | null;
   gridConnectionType: GridConnectionType;
   /** kW allowed per ampere for this market's standard connection. */
   kwPerAmp: number;
@@ -34,42 +42,48 @@ export const MARKETS: Record<string, MarketConfig> = {
     countryCode: "SE",
     locale: "sv-SE",
     currency: "SEK",
-    defaultElectricityPricePerKwh: 0.6,
+    selfConsumedElectricityValue: 1.5,
+    exportElectricityValue: 0.6,
   },
   NO: {
     ...baseEuMarket,
     countryCode: "NO",
     locale: "nb-NO",
     currency: "NOK",
-    defaultElectricityPricePerKwh: 0.9,
+    selfConsumedElectricityValue: null,
+    exportElectricityValue: null,
   },
   FI: {
     ...baseEuMarket,
     countryCode: "FI",
     locale: "fi-FI",
     currency: "EUR",
-    defaultElectricityPricePerKwh: 0.12,
+    selfConsumedElectricityValue: null,
+    exportElectricityValue: null,
   },
   DK: {
     ...baseEuMarket,
     countryCode: "DK",
     locale: "da-DK",
     currency: "DKK",
-    defaultElectricityPricePerKwh: 1.5,
+    selfConsumedElectricityValue: null,
+    exportElectricityValue: null,
   },
   DE: {
     ...baseEuMarket,
     countryCode: "DE",
     locale: "de-DE",
     currency: "EUR",
-    defaultElectricityPricePerKwh: 0.3,
+    selfConsumedElectricityValue: null,
+    exportElectricityValue: null,
   },
   NL: {
     ...baseEuMarket,
     countryCode: "NL",
     locale: "nl-NL",
     currency: "EUR",
-    defaultElectricityPricePerKwh: 0.3,
+    selfConsumedElectricityValue: null,
+    exportElectricityValue: null,
   },
 };
 

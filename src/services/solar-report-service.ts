@@ -339,13 +339,28 @@ export function generateReportBlob(options: ReportOptions): Blob {
   report.rows(
     [
       {
-        label: f.assumedPrice,
-        value: `${formatDecimal(result.economics.electricityPricePerKwh, locale, 2)} ${currency}/kWh`,
+        label: f["selfConsumedValueRate"] ?? f.assumedPrice,
+        value: `${formatDecimal(result.economics.selfConsumedValuePerKwh, locale, 2)} ${currency}/kWh`,
+        origin: "assumed",
+      },
+      {
+        label: f["exportValueRate"] ?? f.assumedPrice,
+        value: `${formatDecimal(result.economics.exportValuePerKwh, locale, 2)} ${currency}/kWh`,
         origin: "assumed",
       },
       { label: f.currency, value: currency, origin: "assumed" },
       {
-        label: f.economicValue,
+        label: f["selfConsumptionValue"] ?? f.selfConsumption,
+        value: formatCurrency(result.economics.selfConsumptionValue, locale, currency),
+        origin: "calculated",
+      },
+      {
+        label: f["exportValue"] ?? f.exported,
+        value: formatCurrency(result.economics.exportValue, locale, currency),
+        origin: "calculated",
+      },
+      {
+        label: f["totalAnnualBenefit"] ?? f.economicValue,
         value: formatCurrency(result.economics.totalValue, locale, currency),
         origin: "calculated",
       },

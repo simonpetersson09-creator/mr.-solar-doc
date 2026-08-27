@@ -45,8 +45,10 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   const economics = calculateEconomicValue({
     selfConsumptionKwh: split.selfConsumptionKwh,
     exportedKwh: split.exportedKwh,
-    electricityPricePerKwh: input.economics.electricityPricePerKwh,
+    selfConsumedValuePerKwh: input.economics.selfConsumedValuePerKwh,
+    exportValuePerKwh: input.economics.exportValuePerKwh,
   });
+  if (input.economics.valuesMissing) notes.push("economic-values-missing");
 
   if (input.resource.orientationAssumed) notes.push("orientation-assumed");
   if (input.resource.tiltAssumed) notes.push("tilt-assumed");
@@ -67,7 +69,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     exported: { share: split.exportShare, kwh: split.exportedKwh },
     economics: {
       currency: input.economics.currency,
-      electricityPricePerKwh: input.economics.electricityPricePerKwh,
+      selfConsumedValuePerKwh: input.economics.selfConsumedValuePerKwh,
+      exportValuePerKwh: input.economics.exportValuePerKwh,
       ...economics,
     },
     mainFuseAmp: input.electrical.mainFuseAmp,

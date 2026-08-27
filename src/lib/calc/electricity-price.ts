@@ -5,19 +5,20 @@ export interface EconomicValue {
 }
 
 /**
- * Basic economic value. Export is currently valued at the same assumed price
- * as self-consumption; a market-specific export compensation model can be
- * added here later without touching the UI.
+ * Values self-consumed and exported solar separately, since they have
+ * different economic worth. Both rates are calculation assumptions supplied
+ * per market (or overridden by the user) — never global constants.
  */
 export function calculateEconomicValue(params: {
   selfConsumptionKwh: number;
   exportedKwh: number;
-  electricityPricePerKwh: number;
-  exportPricePerKwh?: number;
+  /** Value of avoided grid purchase, per kWh. */
+  selfConsumedValuePerKwh: number;
+  /** Compensation for energy fed to the grid, per kWh. */
+  exportValuePerKwh: number;
 }): EconomicValue {
-  const exportPrice = params.exportPricePerKwh ?? params.electricityPricePerKwh;
-  const selfConsumptionValue = params.selfConsumptionKwh * params.electricityPricePerKwh;
-  const exportValue = params.exportedKwh * exportPrice;
+  const selfConsumptionValue = params.selfConsumptionKwh * params.selfConsumedValuePerKwh;
+  const exportValue = params.exportedKwh * params.exportValuePerKwh;
   return {
     selfConsumptionValue,
     exportValue,

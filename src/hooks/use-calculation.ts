@@ -15,7 +15,8 @@ export function useCalculation(): {
   const monthlyConsumptionKwh = useWizardStore((s) => s.monthlyConsumptionKwh);
   const mainFuseAmp = useWizardStore((s) => s.mainFuseAmp);
   const selfConsumptionShare = useWizardStore((s) => s.selfConsumptionShare);
-  const electricityPricePerKwh = useWizardStore((s) => s.electricityPricePerKwh);
+  const selfConsumedValuePerKwh = useWizardStore((s) => s.selfConsumedValuePerKwh);
+  const exportValuePerKwh = useWizardStore((s) => s.exportValuePerKwh);
 
   const market = getMarketConfig(location?.countryCode);
 
@@ -30,9 +31,13 @@ export function useCalculation(): {
       },
       electrical: { mainFuseAmp, kwPerAmp: market.kwPerAmp },
       economics: {
-        electricityPricePerKwh:
-          electricityPricePerKwh ?? market.defaultElectricityPricePerKwh,
+        selfConsumedValuePerKwh:
+          selfConsumedValuePerKwh ?? market.selfConsumedElectricityValue ?? 0,
+        exportValuePerKwh: exportValuePerKwh ?? market.exportElectricityValue ?? 0,
         currency: market.currency,
+        valuesMissing:
+          (selfConsumedValuePerKwh ?? market.selfConsumedElectricityValue) === null ||
+          (exportValuePerKwh ?? market.exportElectricityValue) === null,
       },
       selfConsumptionShare,
       inverterSizesKw: market.inverterSizesKw,
@@ -44,7 +49,8 @@ export function useCalculation(): {
     monthlyConsumptionKwh,
     mainFuseAmp,
     selfConsumptionShare,
-    electricityPricePerKwh,
+    selfConsumedValuePerKwh,
+    exportValuePerKwh,
     market,
   ]);
 
