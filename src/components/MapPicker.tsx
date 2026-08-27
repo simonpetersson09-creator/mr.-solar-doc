@@ -54,6 +54,8 @@ export default function MapPicker({ latitude, longitude, onPositionChange }: Map
     observer?.observe(containerRef.current);
 
     return () => {
+      clearTimeout(timer);
+      observer?.disconnect();
       map.remove();
       mapRef.current = null;
       markerRef.current = null;
