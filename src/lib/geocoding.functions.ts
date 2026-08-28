@@ -41,7 +41,7 @@ function toSuggestion(place: NominatimPlace): GeocodeSuggestion {
   };
 }
 
-const USER_AGENT = "Solenergikollen/1.0 (solar sizing app)";
+const USER_AGENT = "MrSolarDoc/1.0 (solar sizing app)";
 
 export const searchAddress = createServerFn({ method: "GET" })
   .inputValidator((data: unknown) => searchInput.parse(data))

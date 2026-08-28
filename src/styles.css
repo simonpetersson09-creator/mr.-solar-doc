@@ -5,7 +5,7 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Solenergikollen design system.
+ * Mr. Solar Doc design system.
  * Warm daylight surfaces, deep pine ink, solar amber accent.
  * All colors are oklch tokens — never hardcode colors in components.
  */

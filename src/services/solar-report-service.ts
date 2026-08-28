@@ -40,6 +40,10 @@ export interface ReportLabels {
   title: string;
   appName: string;
   summary: string;
+  /** Section heading for the technical key figures cards. */
+  technical: string;
+  /** Section heading for the economic key figures cards. */
+  economicSummary: string;
   sizing: string;
   production: string;
   consumption: string;
@@ -120,6 +124,11 @@ class ReportDocument {
     const lines = this.doc.splitTextToSize(subtitle, PAGE.width - PAGE.margin * 2) as string[];
     this.doc.text(lines, PAGE.margin, this.y);
     this.y += lines.length * 5 + 6;
+  }
+
+  pageBreak() {
+    this.doc.addPage();
+    this.y = PAGE.margin;
   }
 
   sectionTitle(text: string) {
@@ -293,7 +302,12 @@ class ReportDocument {
 }
 
 export function buildReportFileName(result: CalculationResult): string {
-  return `solenergikollen-${isoDateOnly(result.calculatedAt)}.pdf`;
+  return `mr-solar-doc-${isoDateOnly(result.calculatedAt)}.pdf`;
+}
+
+/** 30-year value: full output through year 20, then 90 % efficiency for years 21-30. */
+function thirtyYearSavings(annualSavings: number): number {
+  return Math.round(annualSavings * (20 + 10 * 0.9));
 }
 
 export function generateReportBlob(options: ReportOptions): Blob {
@@ -322,6 +336,45 @@ export function generateReportBlob(options: ReportOptions): Blob {
       value: formatCurrency(result.presentation.annualSavings, locale, currency),
     },
   ]);
+
+  report.sectionTitle(labels.technical);
+  report.highlights([
+    {
+      label: f["panelPower"] ?? f.installedDc,
+      value: `${formatDecimal(result.installedKwp, locale)} kWp (${result.panelCount} ${f["panelsUnit"]})`,
+    },
+    { label: f.inverter, value: `${formatNumber(result.inverterKw, locale)} kW` },
+    {
+      label: f.annualProduction,
+      value: `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh`,
+    },
+  ]);
+
+  const investmentValue = result.investment.quotePrice ?? result.investment.maxInvestmentRounded;
+  const paybackValue =
+    result.investment.quotePaybackYears ?? result.investment.acceptedPaybackYears;
+  report.sectionTitle(labels.economicSummary);
+  report.highlights([
+    {
+      label: f["annualValue"] ?? f.savings,
+      value: formatCurrency(result.presentation.annualSavings, locale, currency),
+    },
+    {
+      label: f["savings30"] ?? f.savings,
+      value: formatCurrency(thirtyYearSavings(result.presentation.annualSavings), locale, currency),
+    },
+    {
+      label: f["investment"] ?? f["maxInvestment"] ?? "",
+      value: formatCurrency(investmentValue, locale, currency),
+    },
+    {
+      label: f["paybackTime"] ?? f["acceptedPayback"] ?? "",
+      value: `${formatDecimal(paybackValue, locale, 1)} ${f["yearsUnit"] ?? ""}`,
+    },
+  ]);
+
+  report.pageBreak();
+
   report.rows(
     [
       {

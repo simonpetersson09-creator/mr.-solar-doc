@@ -1,6 +1,6 @@
 export const sv = {
   app: {
-    name: "Solenergikollen",
+    name: "Mr. Solar Doc",
     tagline: "Dimensionera din solcellsanläggning på några minuter",
   },
   common: {
@@ -289,6 +289,11 @@ export const sv = {
   },
   report: {
     fields: {
+      panelPower: "Paneleffekt",
+      annualValue: "Årsvärde produktion",
+      savings30: "Besparing över 30 år",
+      investment: "Investering",
+      paybackTime: "Återbetalningstid",
       address: "Adress",
       coordinates: "Koordinater",
       array: "Beräknad anläggningsstorlek",
@@ -334,6 +339,8 @@ export const sv = {
       orientation_west: "Väst",
     },
     title: "Solcellsrapport",
+    technical: "Teknisk data",
+    economicSummary: "Ekonomiskt värde",
     summary: "Sammanfattning",
     sizing: "Beräknad dimensionering",
     production: "Produktion",
