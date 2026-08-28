@@ -41,3 +41,18 @@ export function formatDate(iso: string, locale: string): string {
 export function isoDateOnly(iso: string): string {
   return new Date(iso).toISOString().slice(0, 10);
 }
+
+/**
+ * Parses a number typed by a human. Accepts both "1.5" and "1,5" (comma is the
+ * decimal separator on most European keyboards) plus space/NBSP thousands
+ * separators. Returns `null` for empty or non-numeric input instead of 0, so
+ * callers can tell "nothing entered" apart from "zero".
+ */
+export function parseLocaleNumber(raw: string): number | null {
+  const cleaned = raw
+    .replace(/[\s\u00a0\u202f]/g, "")
+    .replace(/,/g, ".");
+  if (cleaned === "" || cleaned === "." || cleaned === "-") return null;
+  const parsed = Number(cleaned);
+  return Number.isFinite(parsed) ? parsed : null;
+}
