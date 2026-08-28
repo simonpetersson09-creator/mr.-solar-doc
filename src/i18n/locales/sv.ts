@@ -33,6 +33,7 @@ export const sv = {
     noResults: "Inga träffar. Prova en mer exakt adress.",
     selected: "Vald plats",
     adjustHint: "Dra markören om positionen inte stämmer.",
+    marketUnsupported: "Mr. Solar Doc stödjer inte det här landet ännu. Välj en adress i ett land som stöds för att gå vidare.",
     coordinates: "Koordinater",
     country: "Land",
     region: "Region",
@@ -274,6 +275,10 @@ export const sv = {
       "Faktisk egenanvändning beror på när elen produceras och när hushållet använder el.",
     selfConsumptionCappedNote:
       "Egenanvändningen har begränsats eftersom den beräknade mängden annars skulle överstiga din totala elanvändning. Effektiv egenanvändningsgrad: {{effective}} %.",
+    minimumSizeNote:
+      "Anläggningen har dimensionerats upp till minsta rimliga storlek, eftersom de minsta växelriktarna på marknaden sätter en nedre gräns.",
+    consumptionTooLowNote:
+      "Den angivna elanvändningen är mycket låg, så resultatet ska ses som vägledande.",
     priceLabel: "Antaget framtida elpris ({{currency}}/kWh)",
     downloadPdf: "Ladda ner rapport som PDF",
     generatingPdf: "Skapar rapport…",
