@@ -57,10 +57,10 @@ export function ConsumptionShapePicker({
             aria-pressed={active}
             onClick={() => onChange(shape)}
             className={cn(
-              "flex items-center gap-3 rounded-xl border p-2.5 text-left transition-colors",
+              "flex items-center gap-3 rounded-2xl border p-2.5 text-left transition-all",
               active
-                ? "border-accent bg-accent/10"
-                : "border-border bg-card hover:border-accent/50",
+                ? "border-primary/50 bg-primary/5 shadow-sm"
+                : "border-border bg-card hover:border-primary/30",
             )}
           >
             <MiniShape
