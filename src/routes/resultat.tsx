@@ -112,12 +112,6 @@ function ResultPage() {
   const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
 
-  /** Standard value from the market config vs. a value the user typed in. */
-  const priceSourceBadge = (source: "standard-value" | "user-override") => (
-    <span className="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
-      {source === "user-override" ? t("result.userValueBadge") : t("result.standardValueBadge")}
-    </span>
-  );
 
   const editableBadge = (
     <span className="inline-flex items-center gap-1 rounded-full bg-accent/20 px-2 py-0.5 text-[10px] font-medium text-accent-foreground">
