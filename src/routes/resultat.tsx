@@ -142,6 +142,9 @@ function ResultPage() {
               values={result.monthlyProductionKwh}
               labels={shortMonths}
               locale={locale}
+              comparison={result.consumption.monthlyKwh}
+              productionLabel={t("result.chartProduction")}
+              comparisonLabel={t("result.chartConsumption")}
             />
           </div>
         </div>

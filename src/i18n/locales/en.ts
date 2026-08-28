@@ -115,6 +115,8 @@ export const en = {
     dcAcRatio: "DC/AC ratio",
     oversizing: "Oversizing",
     monthlyProduction: "Production January–December",
+    chartProduction: "Solar production",
+    chartConsumption: "Consumption",
     selfConsumption: "Self-consumed solar",
     exported: "Exported solar",
     assumedPrice: "Assumed future electricity price",

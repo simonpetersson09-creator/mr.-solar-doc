@@ -116,6 +116,8 @@ export const sv = {
     dcAcRatio: "DC/AC-ratio",
     oversizing: "Överdimensionering",
     monthlyProduction: "Produktion januari–december",
+    chartProduction: "Solelproduktion",
+    chartConsumption: "Förbrukning",
     selfConsumption: "Egenanvänd solel",
     exported: "Såld solel",
     assumedPrice: "Antaget framtida elpris",
