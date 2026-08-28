@@ -11,6 +11,7 @@ import { selectRecommendedSystem } from "./candidate-selection";
 import { buildPresentationValues } from "./presentation";
 import { calculateEconomicValue } from "./electricity-price";
 import { calculateMaxInvestment } from "./payback";
+import { buildLifetimeProjection } from "./degradation";
 import { maxAcPowerFromFuse, dcAcRatio, oversizingPercent } from "./inverter-sizing";
 import { recommendArraySize } from "./solar-sizing";
 import { splitProduction } from "./self-consumption";
@@ -136,6 +137,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       ...economics,
     },
     mainFuseAmp: input.electrical.mainFuseAmp,
+    lifetime: buildLifetimeProjection({
+      firstYearProductionKwh: annualProductionKwh,
+      selfConsumptionShare: split.selfConsumptionShare,
+      selfConsumedValuePerKwh: input.economics.selfConsumedValuePerKwh,
+      exportValuePerKwh: input.economics.exportValuePerKwh,
+      annualDegradationRate: input.annualDegradationRate,
+    }),
     investment: calculateMaxInvestment(
       Math.round(economics.selfConsumptionValue) + Math.round(economics.exportValue),
       input.acceptedPaybackYears,
