@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { FileUp, Loader2 } from "lucide-react";
+import { CheckCircle2, FileUp, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -53,6 +53,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const [parsing, setParsing] = useState(false);
   const [parseStatus, setParseStatus] = useState<"monthly" | "annual" | "error" | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
+  const [dragging, setDragging] = useState(false);
 
   const handleFile = async (file: File) => {
     setParsing(true);
