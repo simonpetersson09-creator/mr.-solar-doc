@@ -137,9 +137,14 @@ class ReportDocument {
       this.doc.setTextColor(...MUTED);
       this.doc.setFont("helvetica", "normal");
       this.doc.text(this.doc.splitTextToSize(item.label, width - 6), x + 3, this.y + 6);
-      this.doc.setFontSize(14);
       this.doc.setTextColor(...INK);
       this.doc.setFont("helvetica", "bold");
+      let size = 14;
+      this.doc.setFontSize(size);
+      while (size > 7 && this.doc.getTextWidth(item.value) > width - 6) {
+        size -= 0.5;
+        this.doc.setFontSize(size);
+      }
       this.doc.text(item.value, x + 3, this.y + 18);
     });
     this.y += 32;
