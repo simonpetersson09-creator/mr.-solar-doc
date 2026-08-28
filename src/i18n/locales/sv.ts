@@ -291,8 +291,8 @@ export const sv = {
     fields: {
       savings30Short: "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade elvärden.",
       solarShareTitle: "Din solel",
-      selfConsumptionRate: "Egenanvändningsgrad",
-      selfSufficiencyRate: "Självförsörjningsgrad",
+      selfConsumptionRate: "Egenanvändningsgrad (andel av solelproduktionen)",
+      selfSufficiencyRate: "Självförsörjningsgrad (andel av elanvändningen)",
       selfConsumptionRateNote:
         "Egenanvändningsgrad visar hur stor del av den producerade solelen som används direkt i fastigheten.",
       selfSufficiencyRateNote:
@@ -306,6 +306,10 @@ export const sv = {
       keyAssumptions: "Viktigaste kalkylantaganden",
       priceChange: "Elprisförändring",
       calculationPeriod: "Kalkylperiod",
+      priceChangeNote:
+        "Elprisförändring {{priceChange}} % per år betyder att kalkylen räknar med oförändrade värden för egenanvänd och såld solel under hela perioden. Vi lägger alltså inte in någon antagen prisökning, eftersom framtida elpriser inte går att förutsäga. Blir elpriset högre än i dag blir värdet högre än i rapporten, blir det lägre blir värdet lägre.",
+      calculationPeriodNote:
+        "Kalkylperiod {{years}} år är den tid beräkningen sträcker sig över och motsvarar en normal teknisk livslängd för en solcellsanläggning. Alla långsiktiga belopp i rapporten är summan av år 1 till år {{years}}, där produktionen minskar med {{degradation}} % per år.",
       yearShort: "År",
       reportId: "Rapport-ID",
       uncertaintyTitle: "Vad kan påverka utfallet?",

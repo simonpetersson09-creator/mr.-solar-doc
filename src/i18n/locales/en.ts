@@ -288,8 +288,8 @@ export const en = {
     fields: {
       savings30Short: "Calculated with {{degradation}} % annual production degradation and unchanged electricity values.",
       solarShareTitle: "Your solar electricity",
-      selfConsumptionRate: "Self-consumption rate",
-      selfSufficiencyRate: "Self-sufficiency rate",
+      selfConsumptionRate: "Self-consumption rate (share of solar production)",
+      selfSufficiencyRate: "Self-sufficiency rate (share of electricity use)",
       selfConsumptionRateNote:
         "The self-consumption rate shows how much of the produced solar electricity is used directly in the property.",
       selfSufficiencyRateNote:
@@ -303,6 +303,10 @@ export const en = {
       keyAssumptions: "Key calculation assumptions",
       priceChange: "Electricity price change",
       calculationPeriod: "Calculation period",
+      priceChangeNote:
+        "An electricity price change of {{priceChange}} % per year means the calculation keeps the values of self-consumed and exported solar electricity unchanged for the whole period. No assumed price increase is added, since future electricity prices cannot be predicted. Higher future prices mean a higher value than shown, lower prices mean a lower value.",
+      calculationPeriodNote:
+        "The calculation period of {{years}} years is the time span covered and matches a normal technical lifetime for a solar system. All long-term amounts are the sum of year 1 to year {{years}}, with production declining by {{degradation}} % per year.",
       yearShort: "Year",
       reportId: "Report ID",
       uncertaintyTitle: "What can affect the outcome?",

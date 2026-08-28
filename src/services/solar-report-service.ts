@@ -788,6 +788,20 @@ export function generateReportBlob(options: ReportOptions): Blob {
     { label: f.dataSource, value: result.resource.dataSource, origin: "external" },
   ];
   report.rows(assumptionRows, labels.origin);
+  report.paragraph(
+    (f["priceChangeNote"] ?? "").replace(
+      "{{priceChange}}",
+      formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0),
+    ),
+  );
+  report.paragraph(
+    (f["calculationPeriodNote"] ?? "")
+      .replaceAll("{{years}}", String(result.lifetime.periodYears))
+      .replace(
+        "{{degradation}}",
+        formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
+      ),
+  );
   report.noteBox(
     f["uncertaintyTitle"] ?? "",
     `${f["uncertaintyText"] ?? ""} ${labels.disclaimer}`,
