@@ -8,11 +8,19 @@ interface MapPickerProps {
   zoom?: number;
   showMarker: boolean;
   onPositionChange: (latitude: number, longitude: number) => void;
+  /** Override container classes, e.g. fill a flex parent. */
+  className?: string;
+  /** Hide the default +/- zoom control (e.g. when rendered as a backdrop). */
+  hideZoomControl?: boolean;
 }
 
 const markerIcon = L.divIcon({
   className: "",
-  html: `<div style="width:22px;height:22px;border-radius:9999px;background:oklch(0.78 0.16 72);border:3px solid white;box-shadow:0 4px 12px rgba(0,0,0,.3)"></div>`,
+  html: `<div style="position:relative;width:22px;height:22px">
+    <div style="position:absolute;inset:-14px;border-radius:9999px;background:oklch(0.78 0.16 72 / 0.35);animation:marker-ping 1.8s cubic-bezier(0,0,.2,1) infinite"></div>
+    <div style="position:absolute;inset:0;border-radius:9999px;background:oklch(0.78 0.16 72);border:3px solid white;box-shadow:0 4px 12px rgba(0,0,0,.3)"></div>
+  </div>
+  <style>@keyframes marker-ping{0%{transform:scale(.6);opacity:1}75%,100%{transform:scale(1.6);opacity:0}}</style>`,
   iconSize: [22, 22],
   iconAnchor: [11, 11],
 });
@@ -23,6 +31,8 @@ export default function MapPicker({
   zoom = 18,
   showMarker,
   onPositionChange,
+  className = "h-64 w-full overflow-hidden rounded-xl",
+  hideZoomControl = false,
 }: MapPickerProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
@@ -32,10 +42,10 @@ export default function MapPicker({
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
-    const map = L.map(containerRef.current, { attributionControl: true }).setView(
-      [latitude, longitude],
-      zoom,
-    );
+    const map = L.map(containerRef.current, {
+      attributionControl: true,
+      zoomControl: !hideZoomControl,
+    }).setView([latitude, longitude], zoom);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "© OpenStreetMap",
@@ -100,5 +110,5 @@ export default function MapPicker({
     }
   }, [latitude, longitude, zoom, showMarker]);
 
-  return <div ref={containerRef} className="h-64 w-full overflow-hidden rounded-xl" />;
+  return <div ref={containerRef} className={className} />;
 }
