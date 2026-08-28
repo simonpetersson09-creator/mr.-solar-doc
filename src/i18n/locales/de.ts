@@ -33,6 +33,7 @@ export const de = {
     "noResults": "Keine Treffer. Versuchen Sie eine genauere Adresse.",
     "selected": "Ausgewählter Ort",
     "adjustHint": "Ziehen Sie den Marker, falls die Position nicht stimmt.",
+    "marketUnsupported": "Mr. Solar Doc unterstützt dieses Land noch nicht. Wählen Sie eine Adresse in einem unterstützten Land, um fortzufahren.",
     "coordinates": "Koordinaten",
     "country": "Land",
     "region": "Region",
@@ -67,6 +68,11 @@ export const de = {
     "error": "Wir konnten die Solarertragsdaten für diesen Standort derzeit nicht abrufen. Es werden keine Werte geschätzt."
   },
   "consumption": {
+    "validation": {
+      "required": "Geben Sie Ihren Stromverbrauch ein, um die Berechnung fortzusetzen.",
+      "tooLow": "Der Verbrauch scheint zu niedrig. Geben Sie mindestens {{min}} kWh pro Jahr an.",
+      "tooHigh": "Der Verbrauch scheint zu hoch. Geben Sie höchstens {{max}} kWh pro Jahr an."
+    },
     "shape": {
       "question": "Wie verteilt sich Ihr Stromverbrauch normalerweise über das Jahr?",
       "help": "Wir verwenden Ihre Antwort, um eine monatliche Verteilung Ihres Jahresverbrauchs zu schätzen.",
@@ -235,6 +241,11 @@ export const de = {
     "showCalculation": "Berechnung anzeigen",
     "hideCalculation": "Berechnung ausblenden",
     "adjustSplit": "Eigenverbrauch anpassen",
+    "selfConsumptionAssumption": "Der Eigenverbrauch ist eine Annahme auf Basis des gewählten Anteils und kann manuell angepasst werden.",
+    "selfConsumptionInfo": "Der tatsächliche Eigenverbrauch hängt davon ab, wann der Strom erzeugt wird und wann der Haushalt ihn nutzt.",
+    "selfConsumptionCappedNote": "Der Eigenverbrauch wurde begrenzt, da die berechnete Menge sonst Ihren gesamten Stromverbrauch übersteigen würde. Effektive Eigenverbrauchsquote: {{effective}} %.",
+    "minimumSizeNote": "Die Anlage wurde auf die kleinste sinnvolle Größe angehoben, da die kleinsten verfügbaren Wechselrichter eine Untergrenze setzen.",
+    "consumptionTooLowNote": "Der angegebene Stromverbrauch ist sehr niedrig, das Ergebnis ist daher nur als Richtwert zu verstehen.",
     "priceLabel": "Angenommener zukünftiger Strompreis ({{currency}}/kWh)",
     "downloadPdf": "Bericht als PDF herunterladen",
     "generatingPdf": "Bericht wird erstellt…",

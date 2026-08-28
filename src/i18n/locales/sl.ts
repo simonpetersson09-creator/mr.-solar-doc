@@ -33,6 +33,7 @@ export const sl = {
     "noResults": "Ni zadetkov. Poskusite z natančnejšim naslovom.",
     "selected": "Izbrana lokacija",
     "adjustHint": "Povlecite označevalec, če položaj ni pravilen.",
+    "marketUnsupported": "Mr. Solar Doc te države še ne podpira. Za nadaljevanje izberite naslov v podprti državi.",
     "coordinates": "Koordinate",
     "country": "Država",
     "region": "Regija",
@@ -67,6 +68,11 @@ export const sl = {
     "error": "Trenutno nismo mogli pridobiti podatkov o sončni proizvodnji za to lokacijo. Vrednosti niso ugibane."
   },
   "consumption": {
+    "validation": {
+      "required": "Vnesite svojo porabo elektrike, da lahko izračun nadaljuje.",
+      "tooLow": "Poraba se zdi prenizka. Vnesite vsaj {{min}} kWh na leto.",
+      "tooHigh": "Poraba se zdi previsoka. Vnesite največ {{max}} kWh na leto."
+    },
     "shape": {
       "question": "Kako je vaša poraba električne energije običajno porazdeljena skozi leto?",
       "help": "Vaš odgovor uporabimo za oceno mesečne porazdelitve vaše letne porabe.",
@@ -235,6 +241,11 @@ export const sl = {
     "showCalculation": "Prikaži izračun",
     "hideCalculation": "Skrij izračun",
     "adjustSplit": "Prilagodi lastno porabo",
+    "selfConsumptionAssumption": "Lastna raba je predpostavka na podlagi izbranega deleža in jo lahko ročno prilagodite.",
+    "selfConsumptionInfo": "Dejanska lastna raba je odvisna od tega, kdaj se elektrika proizvaja in kdaj jo gospodinjstvo porabi.",
+    "selfConsumptionCappedNote": "Lastna raba je bila omejena, ker bi izračunana količina sicer presegla vašo celotno porabo elektrike. Učinkovita stopnja lastne rabe: {{effective}} %.",
+    "minimumSizeNote": "Sistem je povečan na najmanjšo praktično velikost, saj najmanjši razpoložljivi razsmerniki določajo spodnjo mejo.",
+    "consumptionTooLowNote": "Vnesena poraba elektrike je zelo nizka, zato je rezultat le okviren.",
     "priceLabel": "Predpostavljena prihodnja cena električne energije ({{currency}}/kWh)",
     "downloadPdf": "Prenesi poročilo kot PDF",
     "generatingPdf": "Ustvarjanje poročila…",

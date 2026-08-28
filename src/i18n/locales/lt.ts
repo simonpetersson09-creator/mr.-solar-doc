@@ -33,6 +33,7 @@ export const lt = {
     "noResults": "Nieko nerasta. Pabandykite tikslesnį adresą.",
     "selected": "Pasirinkta vieta",
     "adjustHint": "Jei pozicija neteisinga, vilkite žymeklį.",
+    "marketUnsupported": "Mr. Solar Doc dar nepalaiko šios šalies. Norėdami tęsti, pasirinkite adresą palaikomoje šalyje.",
     "coordinates": "Koordinatės",
     "country": "Šalis",
     "region": "Regionas",
@@ -67,6 +68,11 @@ export const lt = {
     "error": "Šiuo metu negalėjome gauti saulės energijos gamybos duomenų šiai vietai. Jokios vertės neatspėjamos."
   },
   "consumption": {
+    "validation": {
+      "required": "Įveskite savo elektros suvartojimą, kad skaičiavimas galėtų tęstis.",
+      "tooLow": "Suvartojimas atrodo per mažas. Įveskite bent {{min}} kWh per metus.",
+      "tooHigh": "Suvartojimas atrodo per didelis. Įveskite ne daugiau kaip {{max}} kWh per metus."
+    },
     "shape": {
       "question": "Kaip paprastai pasiskirsto jūsų elektros suvartojimas per metus?",
       "help": "Naudojame jūsų atsakymą, kad įvertintume jūsų metinio suvartojimo pasiskirstymą mėnesiais.",
@@ -235,6 +241,11 @@ export const lt = {
     "showCalculation": "Rodyti skaičiavimą",
     "hideCalculation": "Slėpti skaičiavimą",
     "adjustSplit": "Reguliuoti savarankišką suvartojimą",
+    "selfConsumptionAssumption": "Savo reikmėms suvartojama dalis yra prielaida pagal pasirinktą dalį ir ją galima koreguoti rankiniu būdu.",
+    "selfConsumptionInfo": "Tikrasis suvartojimas savo reikmėms priklauso nuo to, kada elektra pagaminama ir kada namų ūkis ją naudoja.",
+    "selfConsumptionCappedNote": "Suvartojimas savo reikmėms buvo apribotas, nes apskaičiuotas kiekis kitaip viršytų visą jūsų elektros suvartojimą. Faktinė dalis: {{effective}} %.",
+    "minimumSizeNote": "Sistema padidinta iki mažiausio praktinio dydžio, nes mažiausi rinkoje esantys inverteriai nustato apatinę ribą.",
+    "consumptionTooLowNote": "Nurodytas elektros suvartojimas yra labai mažas, todėl rezultatas yra tik orientacinis.",
     "priceLabel": "Numatoma ateities elektros kaina ({{currency}}/kWh)",
     "downloadPdf": "Atsisiųsti ataskaitą PDF formatu",
     "generatingPdf": "Kuriama ataskaita…",

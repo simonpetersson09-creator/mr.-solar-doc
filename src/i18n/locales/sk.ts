@@ -33,6 +33,7 @@ export const sk = {
     "noResults": "Žiadne výsledky. Skúste presnejšiu adresu.",
     "selected": "Vybraná poloha",
     "adjustHint": "Posuňte značku, ak poloha nesedí.",
+    "marketUnsupported": "Mr. Solar Doc túto krajinu zatiaľ nepodporuje. Pokračujte výberom adresy v podporovanej krajine.",
     "coordinates": "Súradnice",
     "country": "Krajina",
     "region": "Kraj",
@@ -67,6 +68,11 @@ export const sk = {
     "error": "Momentálne sa nám nepodarilo načítať údaje o solárnej produkcii pre toto miesto. Žiadne hodnoty sa neodhadujú."
   },
   "consumption": {
+    "validation": {
+      "required": "Zadajte svoju spotrebu elektriny, aby výpočet mohol pokračovať.",
+      "tooLow": "Spotreba sa zdá príliš nízka. Zadajte aspoň {{min}} kWh za rok.",
+      "tooHigh": "Spotreba sa zdá príliš vysoká. Zadajte najviac {{max}} kWh za rok."
+    },
     "shape": {
       "question": "Ako sa zvyčajne rozdeľuje vaša spotreba elektriny počas roka?",
       "help": "Vašu odpoveď použijeme na odhad mesačného rozdelenia vašej ročnej spotreby.",
@@ -235,6 +241,11 @@ export const sk = {
     "showCalculation": "Zobraziť výpočet",
     "hideCalculation": "Skryť výpočet",
     "adjustSplit": "Upraviť vlastnú spotrebu",
+    "selfConsumptionAssumption": "Vlastná spotreba je predpoklad založený na zvolenom podiele a dá sa upraviť ručne.",
+    "selfConsumptionInfo": "Skutočná vlastná spotreba závisí od toho, kedy sa elektrina vyrába a kedy ju domácnosť používa.",
+    "selfConsumptionCappedNote": "Vlastná spotreba bola obmedzená, pretože vypočítané množstvo by inak prekročilo vašu celkovú spotrebu elektriny. Efektívna miera vlastnej spotreby: {{effective}} %.",
+    "minimumSizeNote": "Systém bol zväčšený na najmenšiu praktickú veľkosť, pretože najmenšie dostupné meniče určujú spodnú hranicu.",
+    "consumptionTooLowNote": "Zadaná spotreba elektriny je veľmi nízka, výsledok preto berte len ako orientačný.",
     "priceLabel": "Predpokladaná budúca cena elektriny ({{currency}}/kWh)",
     "downloadPdf": "Stiahnuť správu ako PDF",
     "generatingPdf": "Generuje sa správa…",

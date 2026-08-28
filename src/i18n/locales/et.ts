@@ -33,6 +33,7 @@ export const et = {
     "noResults": "Tulemusi ei leitud. Proovi täpsemat aadressi.",
     "selected": "Valitud asukoht",
     "adjustHint": "Liiguta markerit, kui asukoht ei klapi.",
+    "marketUnsupported": "Mr. Solar Doc ei toeta seda riiki veel. Jätkamiseks valige aadress toetatud riigis.",
     "coordinates": "Koordinaadid",
     "country": "Riik",
     "region": "Piirkond",
@@ -67,6 +68,11 @@ export const et = {
     "error": "Me ei saanud praegu selle asukoha päikeseenergia tootlikkuse andmeid tuua. Väärtusi ei pakuta."
   },
   "consumption": {
+    "validation": {
+      "required": "Sisestage oma elektritarbimine, et arvutust jätkata.",
+      "tooLow": "Tarbimine tundub liiga väike. Sisestage vähemalt {{min}} kWh aastas.",
+      "tooHigh": "Tarbimine tundub liiga suur. Sisestage kõige rohkem {{max}} kWh aastas."
+    },
     "shape": {
       "question": "Kuidas jaotub sinu elektritarbimine tavaliselt aasta lõikes?",
       "help": "Kasutame sinu vastust, et hinnata sinu aastatarbimise kuupõhist jaotust.",
@@ -235,6 +241,11 @@ export const et = {
     "showCalculation": "Näita arvutust",
     "hideCalculation": "Peida arvutus",
     "adjustSplit": "Kohanda omatarvet",
+    "selfConsumptionAssumption": "Omatarbimine on eeldus valitud osakaalu põhjal ja seda saab käsitsi muuta.",
+    "selfConsumptionInfo": "Tegelik omatarbimine sõltub sellest, millal elekter toodetakse ja millal leibkond seda kasutab.",
+    "selfConsumptionCappedNote": "Omatarbimist on piiratud, sest arvutatud kogus ületaks muidu teie kogu elektritarbimise. Tegelik omatarbimise määr: {{effective}} %.",
+    "minimumSizeNote": "Süsteem on suurendatud väikseima mõistliku suuruseni, kuna väikseimad saadaolevad inverterid seavad alampiiri.",
+    "consumptionTooLowNote": "Sisestatud elektritarbimine on väga väike, seega on tulemus üksnes orienteeruv.",
     "priceLabel": "Eeldatav tulevane elektrihind ({{currency}}/kWh)",
     "downloadPdf": "Laadi aruanne PDF-ina alla",
     "generatingPdf": "Aruande loomine…",

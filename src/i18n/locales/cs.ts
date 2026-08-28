@@ -33,6 +33,7 @@ export const cs = {
     "noResults": "Žádné výsledky. Zkuste zadat přesnější adresu.",
     "selected": "Vybraná lokalita",
     "adjustHint": "Pokud se poloha neshoduje, přetáhněte značku.",
+    "marketUnsupported": "Mr. Solar Doc tuto zemi zatím nepodporuje. Pokračujte výběrem adresy v podporované zemi.",
     "coordinates": "Souřadnice",
     "country": "Země",
     "region": "Region",
@@ -67,6 +68,11 @@ export const cs = {
     "error": "V tuto chvíli se nepodařilo načíst data o solární výrobě pro dané místo. Hodnoty nejsou odhadovány."
   },
   "consumption": {
+    "validation": {
+      "required": "Zadejte svou spotřebu elektřiny, aby výpočet mohl pokračovat.",
+      "tooLow": "Spotřeba vypadá příliš nízká. Zadejte alespoň {{min}} kWh za rok.",
+      "tooHigh": "Spotřeba vypadá příliš vysoká. Zadejte nejvýše {{max}} kWh za rok."
+    },
     "shape": {
       "question": "Jak je vaše spotřeba elektřiny obvykle rozdělena v průběhu roku?",
       "help": "Vaši odpověď použijeme k odhadu měsíčního rozdělení vaší roční spotřeby.",
@@ -235,6 +241,11 @@ export const cs = {
     "showCalculation": "Zobrazit výpočet",
     "hideCalculation": "Skrýt výpočet",
     "adjustSplit": "Upravit vlastní spotřebu",
+    "selfConsumptionAssumption": "Vlastní spotřeba je předpoklad založený na zvoleném podílu a lze ji upravit ručně.",
+    "selfConsumptionInfo": "Skutečná vlastní spotřeba závisí na tom, kdy se elektřina vyrábí a kdy ji domácnost používá.",
+    "selfConsumptionCappedNote": "Vlastní spotřeba byla omezena, protože vypočtené množství by jinak překročilo vaši celkovou spotřebu elektřiny. Efektivní míra vlastní spotřeby: {{effective}} %.",
+    "minimumSizeNote": "Systém byl zvětšen na nejmenší praktickou velikost, protože nejmenší dostupné střídače určují spodní hranici.",
+    "consumptionTooLowNote": "Zadaná spotřeba elektřiny je velmi nízká, výsledek proto berte pouze jako orientační.",
     "priceLabel": "Předpokládaná budoucí cena elektřiny ({{currency}}/kWh)",
     "downloadPdf": "Stáhnout zprávu jako PDF",
     "generatingPdf": "Vytvářím zprávu…",

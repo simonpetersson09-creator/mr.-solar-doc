@@ -33,6 +33,7 @@ export const hr = {
     "noResults": "Nema rezultata. Pokušajte precizniju adresu.",
     "selected": "Odabrana lokacija",
     "adjustHint": "Pomaknite marker ako pozicija nije točna.",
+    "marketUnsupported": "Mr. Solar Doc još ne podržava ovu zemlju. Za nastavak odaberite adresu u podržanoj zemlji.",
     "coordinates": "Koordinate",
     "country": "Država",
     "region": "Regija",
@@ -67,6 +68,11 @@ export const hr = {
     "error": "Trenutno nismo mogli dohvatiti podatke o solarnoj proizvodnji za ovu lokaciju. Vrijednosti se ne nagađaju."
   },
   "consumption": {
+    "validation": {
+      "required": "Unesite svoju potrošnju struje kako bi izračun mogao nastaviti.",
+      "tooLow": "Potrošnja se čini preniskom. Unesite najmanje {{min}} kWh godišnje.",
+      "tooHigh": "Potrošnja se čini previsokom. Unesite najviše {{max}} kWh godišnje."
+    },
     "shape": {
       "question": "Kako je vaša potrošnja električne energije obično raspoređena tijekom godine?",
       "help": "Vaš odgovor koristimo za procjenu mjesečne raspodjele vaše godišnje potrošnje.",
@@ -235,6 +241,11 @@ export const hr = {
     "showCalculation": "Prikaži izračun",
     "hideCalculation": "Sakrij izračun",
     "adjustSplit": "Prilagodi vlastitu potrošnju",
+    "selfConsumptionAssumption": "Vlastita potrošnja je pretpostavka na temelju odabranog udjela i može se ručno prilagoditi.",
+    "selfConsumptionInfo": "Stvarna vlastita potrošnja ovisi o tome kada se struja proizvodi i kada je kućanstvo troši.",
+    "selfConsumptionCappedNote": "Vlastita potrošnja je ograničena jer bi izračunata količina inače premašila vašu ukupnu potrošnju struje. Efektivni udio vlastite potrošnje: {{effective}} %.",
+    "minimumSizeNote": "Sustav je povećan na najmanju praktičnu veličinu jer najmanji dostupni pretvarači određuju donju granicu.",
+    "consumptionTooLowNote": "Unesena potrošnja struje vrlo je niska, pa rezultat treba shvatiti samo okvirno.",
     "priceLabel": "Pretpostavljena buduća cijena električne energije ({{currency}}/kWh)",
     "downloadPdf": "Preuzmi izvješće kao PDF",
     "generatingPdf": "Generiram izvješće…",

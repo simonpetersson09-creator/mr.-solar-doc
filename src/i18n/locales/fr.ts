@@ -33,6 +33,7 @@ export const fr = {
     "noResults": "Aucun résultat. Essayez une adresse plus précise.",
     "selected": "Emplacement sélectionné",
     "adjustHint": "Faites glisser le marqueur si la position est incorrecte.",
+    "marketUnsupported": "Mr. Solar Doc ne prend pas encore en charge ce pays. Choisissez une adresse dans un pays pris en charge pour continuer.",
     "coordinates": "Coordonnées",
     "country": "Pays",
     "region": "Région",
@@ -67,6 +68,11 @@ export const fr = {
     "error": "Nous n'avons pas pu récupérer les données de production solaire pour cet emplacement pour le moment. Aucune valeur n'est estimée."
   },
   "consumption": {
+    "validation": {
+      "required": "Saisissez votre consommation d'électricité pour poursuivre le calcul.",
+      "tooLow": "La consommation semble trop faible. Indiquez au moins {{min}} kWh par an.",
+      "tooHigh": "La consommation semble trop élevée. Indiquez au maximum {{max}} kWh par an."
+    },
     "shape": {
       "question": "Comment votre consommation électrique est-elle habituellement répartie sur l'année ?",
       "help": "Nous utilisons votre réponse pour estimer une répartition mensuelle de votre consommation annuelle.",
@@ -235,6 +241,11 @@ export const fr = {
     "showCalculation": "Afficher le calcul",
     "hideCalculation": "Masquer le calcul",
     "adjustSplit": "Ajuster l'autoconsommation",
+    "selfConsumptionAssumption": "L'autoconsommation est une hypothèse basée sur la part choisie et peut être ajustée manuellement.",
+    "selfConsumptionInfo": "L'autoconsommation réelle dépend du moment où l'électricité est produite et du moment où le ménage l'utilise.",
+    "selfConsumptionCappedNote": "L'autoconsommation a été limitée car la quantité calculée dépasserait sinon votre consommation totale d'électricité. Taux d'autoconsommation effectif : {{effective}} %.",
+    "minimumSizeNote": "L'installation a été augmentée jusqu'à la plus petite taille réaliste, car les onduleurs les plus petits disponibles imposent une limite inférieure.",
+    "consumptionTooLowNote": "La consommation saisie est très faible : le résultat n'est donc qu'indicatif.",
     "priceLabel": "Prix futur de l'électricité supposé ({{currency}}/kWh)",
     "downloadPdf": "Télécharger le rapport en PDF",
     "generatingPdf": "Génération du rapport…",

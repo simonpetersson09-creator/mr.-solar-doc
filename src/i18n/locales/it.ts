@@ -33,6 +33,7 @@ export const it = {
     "noResults": "Nessun risultato. Prova un indirizzo più preciso.",
     "selected": "Posizione selezionata",
     "adjustHint": "Trascina il marcatore se la posizione non è corretta.",
+    "marketUnsupported": "Mr. Solar Doc non supporta ancora questo paese. Scegli un indirizzo in un paese supportato per continuare.",
     "coordinates": "Coordinate",
     "country": "Paese",
     "region": "Regione",
@@ -67,6 +68,11 @@ export const it = {
     "error": "Non è stato possibile recuperare i dati di produzione solare per questo sito al momento. Nessun valore viene stimato."
   },
   "consumption": {
+    "validation": {
+      "required": "Inserisci il tuo consumo di elettricità per proseguire il calcolo.",
+      "tooLow": "Il consumo sembra troppo basso. Inserisci almeno {{min}} kWh all'anno.",
+      "tooHigh": "Il consumo sembra troppo alto. Inserisci al massimo {{max}} kWh all'anno."
+    },
     "shape": {
       "question": "Come si distribuisce solitamente il tuo consumo elettrico durante l'anno?",
       "help": "Utilizziamo la tua risposta per stimare una ripartizione mensile del tuo consumo annuo.",
@@ -235,6 +241,11 @@ export const it = {
     "showCalculation": "Mostra calcolo",
     "hideCalculation": "Nascondi calcolo",
     "adjustSplit": "Regola autoconsumo",
+    "selfConsumptionAssumption": "L'autoconsumo è un'ipotesi basata sulla quota scelta e può essere modificato manualmente.",
+    "selfConsumptionInfo": "L'autoconsumo effettivo dipende da quando l'elettricità viene prodotta e da quando la famiglia la utilizza.",
+    "selfConsumptionCappedNote": "L'autoconsumo è stato limitato perché la quantità calcolata supererebbe altrimenti il tuo consumo totale di elettricità. Quota di autoconsumo effettiva: {{effective}} %.",
+    "minimumSizeNote": "L'impianto è stato portato alla dimensione minima realistica, poiché gli inverter più piccoli disponibili impongono un limite inferiore.",
+    "consumptionTooLowNote": "Il consumo inserito è molto basso, quindi il risultato è solo indicativo.",
     "priceLabel": "Prezzo dell'elettricità futuro assunto ({{currency}}/kWh)",
     "downloadPdf": "Scarica rapporto come PDF",
     "generatingPdf": "Creazione rapporto…",

@@ -33,6 +33,7 @@ export const lv = {
     "noResults": "Nav rezultātu. Mēģiniet precīzāku adresi.",
     "selected": "Izvēlētā vieta",
     "adjustHint": "Velciet marķieri, ja pozīcija nav pareiza.",
+    "marketUnsupported": "Mr. Solar Doc šo valsti vēl neatbalsta. Lai turpinātu, izvēlieties adresi atbalstītā valstī.",
     "coordinates": "Koordinātes",
     "country": "Valsts",
     "region": "Reģions",
@@ -67,6 +68,11 @@ export const lv = {
     "error": "Pašlaik nevarējām iegūt saules enerģijas ražošanas datus šai vietai. Vērtības netiek minētas."
   },
   "consumption": {
+    "validation": {
+      "required": "Ievadiet savu elektroenerģijas patēriņu, lai turpinātu aprēķinu.",
+      "tooLow": "Patēriņš šķiet pārāk mazs. Ievadiet vismaz {{min}} kWh gadā.",
+      "tooHigh": "Patēriņš šķiet pārāk liels. Ievadiet ne vairāk kā {{max}} kWh gadā."
+    },
     "shape": {
       "question": "Kā parasti sadalās jūsu elektroenerģijas patēriņš visa gada garumā?",
       "help": "Mēs izmantojam jūsu atbildi, lai aplēstu gada patēriņa sadalījumu pa mēnešiem.",
@@ -235,6 +241,11 @@ export const lv = {
     "showCalculation": "Rādīt aprēķinu",
     "hideCalculation": "Slēpt aprēķinu",
     "adjustSplit": "Pielāgot pašpatēriņu",
+    "selfConsumptionAssumption": "Pašpatēriņš ir pieņēmums, kas balstīts uz izvēlēto daļu, un to var pielāgot manuāli.",
+    "selfConsumptionInfo": "Faktiskais pašpatēriņš ir atkarīgs no tā, kad elektroenerģija tiek ražota un kad mājsaimniecība to izmanto.",
+    "selfConsumptionCappedNote": "Pašpatēriņš ir ierobežots, jo aprēķinātais daudzums citādi pārsniegtu jūsu kopējo elektroenerģijas patēriņu. Faktiskā pašpatēriņa daļa: {{effective}} %.",
+    "minimumSizeNote": "Sistēma ir palielināta līdz mazākajam praktiskajam izmēram, jo mazākie pieejamie invertori nosaka apakšējo robežu.",
+    "consumptionTooLowNote": "Norādītais elektroenerģijas patēriņš ir ļoti mazs, tāpēc rezultāts uzskatāms tikai par orientējošu.",
     "priceLabel": "Pieņemtais nākotnes elektroenerģijas tarifs ({{currency}}/kWh)",
     "downloadPdf": "Lejupielādēt atskaiti kā PDF",
     "generatingPdf": "Ģenerē atskaiti…",
