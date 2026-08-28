@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronDown, Download, Info, Loader2, Sun, Zap } from "lucide-react";
+import { ChevronDown, Download, Info, Loader2, Pencil, Sun, Zap } from "lucide-react";
 import "@/i18n";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -115,60 +115,64 @@ function ResultPage() {
   const p = result.presentation;
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
 
+  const editableBadge = (
+    <span className="inline-flex items-center gap-1 rounded-full bg-accent/20 px-2 py-0.5 text-[10px] font-medium text-accent-foreground">
+      <Pencil className="size-2.5" /> {t("result.editable")}
+    </span>
+  );
+
   return (
-    <div className="min-h-screen surface-sun pb-32">
-      <header className="mx-auto max-w-2xl px-5 pt-8">
-        <h1 className="text-2xl font-bold text-foreground">{t("result.title")}</h1>
-        <p className="mt-1 text-xs text-muted-foreground">
+    <div className="min-h-screen surface-sun pb-28">
+      <header className="mx-auto max-w-2xl px-5 pt-6">
+        <h1 className="text-xl font-bold text-foreground">{t("result.title")}</h1>
+        <p className="mt-0.5 truncate text-xs text-muted-foreground">
           {t("result.forAddress", { address: result.location.address })}
         </p>
       </header>
 
-      <main className="mx-auto max-w-2xl space-y-6 px-5 pt-6">
+      <main className="mx-auto max-w-2xl space-y-3 px-5 pt-4">
         {/* 1. Recommendation */}
-        <section className="hero-metric rounded-2xl p-5">
-          <div className="flex items-center gap-2 text-sm font-medium">
-            <Sun className="size-4" /> {t("result.recommendedArray")}
+        <section className="hero-metric rounded-2xl p-4">
+          <div className="flex items-center gap-2 text-xs font-medium">
+            <Sun className="size-3.5" /> {t("result.recommendedArray")}
           </div>
-          <p className="mt-2 text-4xl font-bold">
-            {formatDecimal(result.installedKwp, locale)} <span className="text-xl">kWp</span>
-          </p>
-          <p className="mt-1 text-sm text-muted-foreground">
-            {t("result.panelCount", { count: result.panelCount })}
-          </p>
+          <div className="mt-1 flex items-baseline gap-2">
+            <p className="text-3xl font-bold">
+              {formatDecimal(result.installedKwp, locale)} <span className="text-base">kWp</span>
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {t("result.panelCount", { count: result.panelCount })}
+            </p>
+          </div>
 
-          <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <div className="rounded-xl bg-card/70 p-4">
-              <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                <Zap className="size-3.5" /> {t("result.recommendedInverter")}
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <div className="rounded-xl bg-card/70 p-3">
+              <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                <Zap className="size-3" /> {t("result.recommendedInverter")}
               </div>
-              <p className="mt-1 text-2xl font-bold">
+              <p className="mt-0.5 text-lg font-bold">
                 {t("result.inverterShort", { kw: formatNumber(result.inverterKw, locale) })}
               </p>
             </div>
-            <div className="rounded-xl bg-card/70 p-4">
-              <p className="text-xs text-muted-foreground">{t("result.annualProduction")}</p>
-              <p className="mt-1 text-2xl font-bold">
+            <div className="rounded-xl bg-card/70 p-3">
+              <p className="text-[11px] text-muted-foreground">{t("result.annualProduction")}</p>
+              <p className="mt-0.5 text-lg font-bold">
                 {formatNumber(p.annualProductionKwh, locale)}{" "}
-                <span className="text-base font-semibold">kWh{t("common.perYear")}</span>
+                <span className="text-xs font-semibold">kWh{t("common.perYear")}</span>
               </p>
             </div>
           </div>
 
-          <p className="mt-4 text-lg font-semibold">
+          <p className="mt-3 text-sm font-semibold">
             {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
           </p>
-          <p className="mt-1 text-xs text-muted-foreground">{t("result.coverageNote")}</p>
-          <p className="mt-3 text-sm">{rationale}</p>
-          {result.consumptionProfile.hasMonthlyData ? (
-            <p className="mt-2 text-xs text-muted-foreground">{t("result.monthlyDataNote")}</p>
-          ) : null}
+          <p className="mt-1 text-xs text-muted-foreground">{rationale}</p>
         </section>
 
         {/* 2. Production */}
-        <section className="card-elevated p-5">
-          <h2 className="text-base font-semibold">{t("result.sectionProduction")}</h2>
-          <p className="mt-1 mb-4 text-sm text-muted-foreground">
+        <section className="card-elevated p-4">
+          <h2 className="text-sm font-semibold">{t("result.sectionProduction")}</h2>
+          <p className="mt-0.5 mb-3 text-xs text-muted-foreground">
             {t("result.monthlyProduction")}
           </p>
           <MonthlyChart
@@ -182,33 +186,36 @@ function ResultPage() {
         </section>
 
         {/* 3. Your solar electricity */}
-        <section className="card-elevated space-y-4 p-5">
-          <h2 className="text-base font-semibold">{t("result.sectionYourSolar")}</h2>
-          <dl className="grid grid-cols-2 gap-3 text-sm">
-            <div className="rounded-xl bg-secondary p-3">
-              <dt className="text-xs text-muted-foreground">{t("result.selfConsumption")}</dt>
+        <section className="card-elevated space-y-3 p-4">
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="text-sm font-semibold">{t("result.sectionYourSolar")}</h2>
+            {editableBadge}
+          </div>
+          <dl className="grid grid-cols-2 gap-2 text-xs">
+            <div className="rounded-xl bg-secondary p-2.5">
+              <dt className="text-[11px] text-muted-foreground">{t("result.selfConsumption")}</dt>
               <dd className="font-semibold">
                 {formatNumber(p.selfConsumptionPercent, locale)} % ·{" "}
                 {formatNumber(p.selfConsumptionKwh, locale)} kWh
               </dd>
             </div>
-            <div className="rounded-xl bg-secondary p-3">
-              <dt className="text-xs text-muted-foreground">{t("result.exported")}</dt>
+            <div className="rounded-xl bg-secondary p-2.5">
+              <dt className="text-[11px] text-muted-foreground">{t("result.exported")}</dt>
               <dd className="font-semibold">
                 {formatNumber(p.exportPercent, locale)} % ·{" "}
                 {formatNumber(p.exportedKwh, locale)} kWh
               </dd>
             </div>
           </dl>
-          <div>
+          <div className="rounded-xl border border-dashed border-accent/50 p-3">
             <div className="flex items-center justify-between">
-              <Label className="text-sm">{t("result.adjustSplit")}</Label>
+              <Label className="text-xs">{t("result.adjustSplit")}</Label>
               <span className="text-sm font-semibold">
                 {formatNumber(p.selfConsumptionPercent, locale)} %
               </span>
             </div>
             <Slider
-              className="mt-3"
+              className="mt-2.5"
               min={0}
               max={100}
               step={5}
@@ -219,140 +226,142 @@ function ResultPage() {
         </section>
 
         {/* 4. Economics */}
-        <section className="card-elevated space-y-5 p-5">
-          <h2 className="text-base font-semibold">{t("result.sectionEconomy")}</h2>
+        <section className="card-elevated space-y-3 p-4">
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="text-sm font-semibold">{t("result.sectionEconomy")}</h2>
+            {editableBadge}
+          </div>
 
-          <div>
-            <p className="text-sm text-muted-foreground">{t("result.annualSavings")}</p>
-            <p className="text-3xl font-bold">
+          <div className="flex items-baseline justify-between gap-3">
+            <p className="text-xs text-muted-foreground">{t("result.annualSavings")}</p>
+            <p className="text-2xl font-bold">
               {formatCurrency(p.annualSavings, locale, currency)}{" "}
-              <span className="text-sm font-normal text-muted-foreground">
+              <span className="text-xs font-normal text-muted-foreground">
                 {t("result.perYear")}
               </span>
             </p>
           </div>
 
-          <dl className="grid gap-3 sm:grid-cols-2">
-            <div className="rounded-xl bg-secondary p-3">
-              <dt className="text-xs text-muted-foreground">
+          <dl className="grid grid-cols-2 gap-2">
+            <div className="rounded-xl bg-secondary p-2.5">
+              <dt className="text-[11px] text-muted-foreground">
                 {t("result.selfConsumptionValue")}
               </dt>
-              <dd className="text-lg font-semibold">
+              <dd className="text-sm font-semibold">
                 {formatCurrency(p.selfConsumptionValue, locale, currency)}
               </dd>
             </div>
-            <div className="rounded-xl bg-secondary p-3">
-              <dt className="text-xs text-muted-foreground">{t("result.exportValue")}</dt>
-              <dd className="text-lg font-semibold">
+            <div className="rounded-xl bg-secondary p-2.5">
+              <dt className="text-[11px] text-muted-foreground">{t("result.exportValue")}</dt>
+              <dd className="text-sm font-semibold">
                 {formatCurrency(p.exportValue, locale, currency)}
               </dd>
             </div>
           </dl>
 
           {result.notes.includes("economic-values-missing") ? (
-            <p className="rounded-xl border border-border bg-secondary p-3 text-xs">
+            <p className="rounded-xl border border-border bg-secondary p-2.5 text-[11px]">
               {t("result.missingMarketValues")}
             </p>
           ) : null}
 
-          <div className="space-y-4">
-            <p className="text-sm font-medium">{t("result.assumedPrices")}</p>
-            <div>
-              <Label htmlFor="self-value" className="text-sm">
-                {t("result.selfConsumedValueLabel", { currency })}
-              </Label>
-              <Input
-                id="self-value"
-                type="number"
-                step="0.01"
-                min="0"
-                inputMode="decimal"
-                className="mt-2 h-11 w-40"
-                value={result.economics.selfConsumedValuePerKwh}
-                onChange={(event) => setSelfConsumedValue(Number(event.target.value) || 0)}
-              />
-              <p className="mt-2 text-xs text-muted-foreground">
-                {t("result.selfConsumedValueHelp")}
-              </p>
+          <div className="space-y-2 rounded-xl border border-dashed border-accent/50 p-3">
+            <p className="text-xs font-medium">{t("result.assumedPrices")}</p>
+            <div className="grid gap-2 sm:grid-cols-2">
+              <div>
+                <Label htmlFor="self-value" className="text-[11px] text-muted-foreground">
+                  {t("result.selfConsumedValueLabel", { currency })}
+                </Label>
+                <Input
+                  id="self-value"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  inputMode="decimal"
+                  className="mt-1 h-9"
+                  value={result.economics.selfConsumedValuePerKwh}
+                  onChange={(event) => setSelfConsumedValue(Number(event.target.value) || 0)}
+                />
+              </div>
+              <div>
+                <Label htmlFor="export-value" className="text-[11px] text-muted-foreground">
+                  {t("result.exportValueLabel", { currency })}
+                </Label>
+                <Input
+                  id="export-value"
+                  type="number"
+                  step="0.01"
+                  min="0"
+                  inputMode="decimal"
+                  className="mt-1 h-9"
+                  value={result.economics.exportValuePerKwh}
+                  onChange={(event) => setExportValue(Number(event.target.value) || 0)}
+                />
+              </div>
             </div>
-
-            <div>
-              <Label htmlFor="export-value" className="text-sm">
-                {t("result.exportValueLabel", { currency })}
-              </Label>
-              <Input
-                id="export-value"
-                type="number"
-                step="0.01"
-                min="0"
-                inputMode="decimal"
-                className="mt-2 h-11 w-40"
-                value={result.economics.exportValuePerKwh}
-                onChange={(event) => setExportValue(Number(event.target.value) || 0)}
-              />
-              <p className="mt-2 text-xs text-muted-foreground">{t("result.exportValueHelp")}</p>
-            </div>
+            <p className="text-[11px] text-muted-foreground">
+              {t("result.selfConsumedValueHelp")}
+            </p>
           </div>
 
-          <p className="text-xs text-muted-foreground">{t("result.economicsDisclaimer")}</p>
+          <p className="text-[11px] text-muted-foreground">{t("result.economicsDisclaimer")}</p>
         </section>
 
         {/* 4b. Maximum motivated investment */}
-        <section className="card-elevated space-y-5 p-5">
-          <div className="flex items-start justify-between gap-3">
-            <h2 className="text-base font-semibold">{t("result.paybackTitle")}</h2>
-            <button
-              type="button"
-              aria-label={t("result.paybackInfo")}
-              onClick={() => setShowPaybackInfo((open) => !open)}
-              className="mt-0.5 text-muted-foreground transition-colors hover:text-foreground"
-            >
-              <Info className="size-4" />
-            </button>
+        <section className="card-elevated space-y-3 p-4">
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="text-sm font-semibold">{t("result.paybackTitle")}</h2>
+            <div className="flex items-center gap-2">
+              {editableBadge}
+              <button
+                type="button"
+                aria-label={t("result.paybackInfo")}
+                onClick={() => setShowPaybackInfo((open) => !open)}
+                className="text-muted-foreground transition-colors hover:text-foreground"
+              >
+                <Info className="size-4" />
+              </button>
+            </div>
           </div>
 
           {showPaybackInfo ? (
-            <p className="rounded-xl bg-secondary p-3 text-xs text-muted-foreground">
+            <p className="rounded-xl bg-secondary p-2.5 text-[11px] text-muted-foreground">
               {t("result.paybackInfo")}
             </p>
           ) : null}
 
-          <div>
-            <p className="text-2xl font-bold">
-              {t("result.paybackYears", { years: formatNumber(paybackYears, locale) })}
-            </p>
+          <div className="rounded-xl border border-dashed border-accent/50 p-3">
+            <div className="flex items-baseline justify-between">
+              <Label className="text-xs">{t("result.paybackTitle")}</Label>
+              <span className="text-base font-bold">
+                {t("result.paybackYears", { years: formatNumber(paybackYears, locale) })}
+              </span>
+            </div>
             <Slider
-              className="mt-3"
+              className="mt-2.5"
               min={MIN_PAYBACK_YEARS}
               max={MAX_PAYBACK_YEARS}
               step={1}
               value={[paybackYears]}
-              onValueChange={([value]) =>
-                setAcceptedPaybackYears(value ?? MIN_PAYBACK_YEARS)
-              }
+              onValueChange={([value]) => setAcceptedPaybackYears(value ?? MIN_PAYBACK_YEARS)}
             />
-            <div className="mt-2 flex justify-between text-xs text-muted-foreground">
+            <div className="mt-1.5 flex justify-between text-[10px] text-muted-foreground">
               <span>{t("result.paybackYears", { years: MIN_PAYBACK_YEARS })}</span>
               <span>{t("result.paybackYears", { years: MAX_PAYBACK_YEARS })}</span>
             </div>
           </div>
 
-          <div className="rounded-xl bg-secondary p-4">
-            <p className="text-xs text-muted-foreground">{t("result.maxInvestment")}</p>
-            <p className="mt-1 text-3xl font-bold">
+          <div className="rounded-xl bg-secondary p-3">
+            <p className="text-[11px] text-muted-foreground">{t("result.maxInvestment")}</p>
+            <p className="mt-0.5 text-2xl font-bold">
               {t("result.maxInvestmentApprox", {
                 amount: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
               })}
             </p>
-            <p className="mt-2 text-sm text-muted-foreground">
-              {t("result.maxInvestmentExplainer", {
-                years: formatNumber(paybackYears, locale),
-                amount: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
-              })}
+            <p className="mt-1 text-[11px] text-muted-foreground">
+              {t("result.maxInvestmentNote")}
             </p>
           </div>
-
-          <p className="text-xs text-muted-foreground">{t("result.maxInvestmentNote")}</p>
         </section>
 
         {/* 5. Technical details */}

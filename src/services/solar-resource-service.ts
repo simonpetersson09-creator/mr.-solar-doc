@@ -37,7 +37,7 @@ export async function getSolarResource(
   const tiltAssumed = request.tiltDegrees === null;
 
   const azimuth = orientationAssumed
-    ? null
+    ? 0
     : request.azimuthDegrees != null
       ? compassToPvgisAzimuth(request.azimuthDegrees)
       : ORIENTATION_AZIMUTH[request.orientation as Exclude<Orientation, "unknown">];
@@ -47,8 +47,8 @@ export async function getSolarResource(
       latitude: request.latitude,
       longitude: request.longitude,
       azimuth,
-      // Optimal angles are used whenever tilt or orientation is unknown.
-      tilt: orientationAssumed ? null : request.tiltDegrees,
+      // Optimal angles are only used when the user has no tilt at all.
+      tilt: request.tiltDegrees,
     },
   });
 
@@ -57,9 +57,10 @@ export async function getSolarResource(
     monthlyKwhPerKwp: pvgis.monthlyKwhPerKwp,
     orientation: request.orientation,
     azimuthDegrees: orientationAssumed ? null : (request.azimuthDegrees ?? null),
-    tiltDegrees: pvgis.tiltDegrees,
+    // Always report back exactly what the user chose; PVGIS only fills the gap.
+    tiltDegrees: request.tiltDegrees ?? pvgis.tiltDegrees,
     orientationAssumed,
-    tiltAssumed: tiltAssumed || pvgis.optimalTiltUsed,
+    tiltAssumed,
     dataSource: pvgis.dataSource,
     calculationDate: new Date().toISOString(),
   };

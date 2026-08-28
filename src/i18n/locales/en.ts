@@ -127,6 +127,7 @@ export const en = {
     productionCaption: "estimated annual production",
     annualSavings: "Estimated annual savings",
     assumedPrices: "Assumed electricity prices",
+    editable: "Edit yourself",
     fuseLimit: "Theoretical power limit from main fuse",
     fuseLimitInfo:
       "Derived from your main fuse and grid voltage. The actually permitted inverter or feed-in power may be limited by your grid operator and local grid rules.",

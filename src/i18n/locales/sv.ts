@@ -128,6 +128,7 @@ export const sv = {
     productionCaption: "beräknad årsproduktion",
     annualSavings: "Beräknad årlig besparing",
     assumedPrices: "Antagna elpriser",
+    editable: "Ändra själv",
     fuseLimit: "Teoretisk effektgräns från huvudsäkring",
     fuseLimitInfo:
       "Beräknas utifrån huvudsäkring och nätspänning. Faktisk tillåten växelriktar- eller inmatningseffekt kan begränsas av nätägaren och lokala nätregler.",
