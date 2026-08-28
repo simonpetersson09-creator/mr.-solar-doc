@@ -9,6 +9,8 @@ interface CompassDialProps {
   /** Second line under the degrees, e.g. nearest orientation name. */
   caption?: string | undefined;
   disabled?: boolean;
+  /** Rendered footprint. "sm" is used in compact layouts. */
+  size?: "sm" | "md";
 }
 
 const SIZE = 220;
@@ -25,7 +27,13 @@ function angleFromEvent(event: React.PointerEvent, element: SVGSVGElement): numb
   return Math.round((Math.atan2(x, -y) * 180) / Math.PI + 360) % 360;
 }
 
-export function CompassDial({ value, onChange, caption, disabled = false }: CompassDialProps) {
+export function CompassDial({
+  value,
+  onChange,
+  caption,
+  disabled = false,
+  size = "md",
+}: CompassDialProps) {
   const { t } = useTranslation();
   const svgRef = useRef<SVGSVGElement | null>(null);
   const lastHapticRef = useRef(0);
@@ -70,15 +78,16 @@ export function CompassDial({ value, onChange, caption, disabled = false }: Comp
   ];
 
   return (
-    <div className="flex flex-col items-center gap-3">
+    <div className="flex flex-col items-center gap-2">
       <svg
         ref={svgRef}
         viewBox={`0 0 ${SIZE} ${SIZE}`}
-        className={
+        className={[
+          size === "sm" ? "size-40" : "size-52",
           disabled
-            ? "size-52 select-none opacity-40"
-            : "size-52 cursor-grab touch-none select-none active:cursor-grabbing"
-        }
+            ? "select-none opacity-40"
+            : "cursor-grab touch-none select-none active:cursor-grabbing",
+        ].join(" ")}
         role="slider"
         aria-label={t("roof.manual")}
         aria-valuemin={0}
