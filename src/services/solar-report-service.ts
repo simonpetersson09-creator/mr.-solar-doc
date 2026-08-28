@@ -362,7 +362,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     },
     {
       label: f["returnRate"] ?? "",
-      value: `${formatDecimal(returnPercent, locale, 1)} %${f["perYearShort"] ? ` ${f["perYearShort"]}` : ""}`,
+      value: `${formatDecimal(returnPercent, locale, 1)} %`,
     },
   ]);
 

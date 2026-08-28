@@ -290,7 +290,7 @@ export const en = {
       annualValue: "Value per year",
       savings30: "Total value over 30 years",
       investment: "Investment",
-      returnRate: "Return",
+      returnRate: "Return per year",
       perYearShort: "per year",
       paybackTime: "Payback time",
       address: "Address",
