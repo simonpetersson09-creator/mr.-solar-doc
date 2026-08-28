@@ -1,6 +1,6 @@
 import { jsPDF } from "jspdf";
 import type { CalculationResult, ValueOrigin } from "@/lib/calc/types";
-import { formatCurrency, formatDecimal, formatNumber, formatPercent, isoDateOnly } from "@/lib/format";
+import { formatCurrency, formatDecimal, formatNumber, isoDateOnly } from "@/lib/format";
 import { shareFile } from "./native-service";
 
 /**
