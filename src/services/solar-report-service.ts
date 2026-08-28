@@ -337,20 +337,43 @@ export function generateReportBlob(options: ReportOptions): Blob {
     },
   ]);
 
+  // Annual balance: production vs consumption, from the same presentation values
+  // used by the results page and the monthly chart.
+  const consumptionKwh = result.presentation.annualConsumptionKwh;
+  const productionKwh = result.presentation.annualProductionKwh;
+  const balanceKwh = productionKwh - consumptionKwh;
+  const ratioPercent = result.presentation.productionCoveragePercent;
+  report.sectionTitle(f["balanceTitle"] ?? "");
+  report.highlights([
+    {
+      label: f["balanceConsumption"] ?? f.annualConsumption,
+      value: `${formatNumber(consumptionKwh, locale)} kWh`,
+    },
+    {
+      label: f["balanceProduction"] ?? f.annualProduction,
+      value: `${formatNumber(productionKwh, locale)} kWh`,
+    },
+    {
+      label: f["balanceDiff"] ?? "",
+      value: `${balanceKwh > 0 ? "+" : ""}${formatNumber(balanceKwh, locale)} kWh`,
+    },
+    {
+      label: f["balanceRatio"] ?? "",
+      value: `${formatNumber(ratioPercent, locale)} %`,
+    },
+  ]);
+  report.paragraph(
+    (f["balanceNote"] ?? "").replace("{{percent}}", formatNumber(ratioPercent, locale)),
+  );
+
   const investmentValue = result.investment.quotePrice ?? result.investment.maxInvestmentRounded;
   const paybackValue =
     result.investment.quotePaybackYears ?? result.investment.acceptedPaybackYears;
-  const returnPercent =
-    investmentValue > 0 ? (result.presentation.annualSavings / investmentValue) * 100 : 0;
   report.sectionTitle(labels.economicSummary);
   report.highlights([
     {
       label: f["annualValue"] ?? f.savings,
       value: formatCurrency(result.presentation.annualSavings, locale, currency),
-    },
-    {
-      label: f["savings30"] ?? f.savings,
-      value: formatCurrency(thirtyYearSavings(result.presentation.annualSavings), locale, currency),
     },
     {
       label: f["investment"] ?? f["maxInvestment"] ?? "",
@@ -361,22 +384,13 @@ export function generateReportBlob(options: ReportOptions): Blob {
       value: `${formatDecimal(paybackValue, locale, 1)} ${f["yearsUnit"] ?? ""}`,
     },
     {
-      label: f["returnRate"] ?? "",
-      value: `${formatDecimal(returnPercent, locale, 1)} %`,
+      label: f["savings30"] ?? f.savings,
+      value: formatCurrency(thirtyYearSavings(result.presentation.annualSavings), locale, currency),
     },
   ]);
 
-  report.rows(
-    [
-      {
-        label: f.coverage,
-        value: `${formatNumber(result.presentation.productionCoveragePercent, locale)} %`,
-        origin: "calculated",
-      },
-    ],
-    labels.origin,
-  );
-  report.paragraph(`${labels.rationale} ${labels.coverageNote}`);
+  report.paragraph(labels.rationale);
+
 
   report.pageBreak();
 
