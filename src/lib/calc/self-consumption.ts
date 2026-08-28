@@ -47,29 +47,59 @@ export function summariseSelfConsumption(params: {
   source: SelfConsumptionSource;
 }): SelfConsumptionSummary {
   const { split, annualProductionKwh, annualConsumptionKwh } = params;
+  // Both rates are physically bounded by 1. The energy amount is already
+  // capped in splitProduction; clamping here is a defensive second line.
+  const selfConsumptionRate =
+    annualProductionKwh > 0
+      ? Math.min(1, split.selfConsumptionKwh / annualProductionKwh)
+      : 0;
+  const selfSufficiencyRate =
+    annualConsumptionKwh > 0
+      ? Math.min(1, split.selfConsumptionKwh / annualConsumptionKwh)
+      : 0;
   return {
     selfConsumedKwh: split.selfConsumptionKwh,
     exportedKwh: split.exportedKwh,
-    selfConsumptionRate:
-      annualProductionKwh > 0 ? split.selfConsumptionKwh / annualProductionKwh : 0,
-    selfSufficiencyRate:
-      annualConsumptionKwh > 0 ? split.selfConsumptionKwh / annualConsumptionKwh : 0,
+    selfConsumptionRate,
+    selfSufficiencyRate,
     selfConsumptionSource: params.source,
   };
 }
 
 
-/** Shares always sum to 100 %. */
+/**
+ * Shares always sum to 100 %.
+ *
+ * Physical invariant: a household can never self-consume more energy than it
+ * actually uses, nor more than the array produces. When `annualConsumptionKwh`
+ * is supplied, the *energy amount* is capped and the effective share is
+ * recomputed from it — capping only the presented percentage would leave the
+ * economics and the lifetime projection wrong.
+ */
 export function splitProduction(
   annualProductionKwh: number,
   selfConsumptionShare: number = DEFAULT_SELF_CONSUMPTION_SHARE,
+  annualConsumptionKwh?: number | null,
 ): SelfConsumptionSplit {
+  const production = Number.isFinite(annualProductionKwh)
+    ? Math.max(0, annualProductionKwh)
+    : 0;
   const self = clampShare(selfConsumptionShare);
+
+  const consumptionCap =
+    annualConsumptionKwh != null && Number.isFinite(annualConsumptionKwh)
+      ? Math.max(0, annualConsumptionKwh)
+      : Number.POSITIVE_INFINITY;
+
+  const selfConsumptionKwh = Math.min(production * self, production, consumptionCap);
+  const exportedKwh = production - selfConsumptionKwh;
+  const effectiveShare = production > 0 ? selfConsumptionKwh / production : 0;
+
   return {
-    selfConsumptionShare: self,
-    exportShare: 1 - self,
-    selfConsumptionKwh: annualProductionKwh * self,
-    exportedKwh: annualProductionKwh * (1 - self),
+    selfConsumptionShare: effectiveShare,
+    exportShare: 1 - effectiveShare,
+    selfConsumptionKwh,
+    exportedKwh,
   };
 }
 

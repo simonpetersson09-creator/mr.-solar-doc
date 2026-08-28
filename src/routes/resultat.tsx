@@ -16,6 +16,13 @@ import { exportReport, type ReportLabels } from "@/services/solar-report-service
 import { haptic } from "@/services/native-service";
 import { MAX_PAYBACK_YEARS, MIN_PAYBACK_YEARS } from "@/config/constants";
 
+/** Negative energy prices are not accepted; `min="0"` alone does not block them. */
+function toNonNegativeInput(raw: string): number {
+  const parsed = Number(raw);
+  if (!Number.isFinite(parsed)) return 0;
+  return Math.max(0, parsed);
+}
+
 /** Maps the engine's recommendation reason to a consumer-friendly i18n key. */
 const REASON_KEY: Record<string, string> = {
   "profile-unknown": "result.reason.profileUnknown",
@@ -297,7 +304,7 @@ function ResultPage() {
                   inputMode="decimal"
                   className="mt-1 h-9"
                   value={result.economics.selfConsumedValuePerKwh}
-                  onChange={(event) => setSelfConsumedValue(Number(event.target.value) || 0)}
+                  onChange={(event) => setSelfConsumedValue(toNonNegativeInput(event.target.value))}
                 />
               </div>
               <div>
@@ -312,7 +319,7 @@ function ResultPage() {
                   inputMode="decimal"
                   className="mt-1 h-9"
                   value={result.economics.exportValuePerKwh}
-                  onChange={(event) => setExportValue(Number(event.target.value) || 0)}
+                  onChange={(event) => setExportValue(toNonNegativeInput(event.target.value))}
                 />
               </div>
             </div>

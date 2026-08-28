@@ -10,6 +10,9 @@ const pvgisInput = z.object({
   tilt: z.number().min(0).max(90).nullable(),
 });
 
+/** Hard request ceiling for the PVGIS API, in milliseconds. */
+const PVGIS_TIMEOUT_MS = 10_000;
+
 export interface PvgisResponse {
   annualKwhPerKwp: number;
   monthlyKwhPerKwp: number[];
@@ -43,7 +46,11 @@ substrings: "",
     }
 
     const url = `https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?${params.toString()}`;
-    const response = await fetch(url, { headers: { Accept: "application/json" } });
+    // Hard ceiling so a stalled upstream can never pin the user in loading.
+    const response = await fetch(url, {
+      headers: { Accept: "application/json" },
+      signal: AbortSignal.timeout(PVGIS_TIMEOUT_MS),
+    });
     if (!response.ok) {
       throw new Error(`PVGIS_REQUEST_FAILED_${response.status}`);
     }

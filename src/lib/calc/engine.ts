@@ -9,7 +9,7 @@ import {
 import { analyzeConsumptionProfile, determineTargetDcAcRange } from "./consumption-profile";
 import { selectRecommendedSystem } from "./candidate-selection";
 import { buildPresentationValues } from "./presentation";
-import { calculateEconomicValue } from "./electricity-price";
+import { calculateEconomicValue, nonNegative } from "./electricity-price";
 import { calculateMaxInvestment } from "./payback";
 import { buildLifetimeProjection } from "./degradation";
 import { maxAcPowerFromFuse, dcAcRatio, oversizingPercent } from "./inverter-sizing";
@@ -71,7 +71,11 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     solarSeasonProductionShare,
     kwpStep: KWP_ROUNDING_STEP,
   });
-  if (!selection.withinTargetRange) notes.push("dc-ac-ratio-outside-target-window");
+  if (!selection.withinTargetRange) {
+    notes.push(
+      selection.targetRangeMiss === "below" ? "dc-ac-below-target" : "dc-ac-above-target",
+    );
+  }
 
   const inverterKw = selection.best.inverterKw;
   const installedKwp = selection.best.installedKwp;
@@ -93,7 +97,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   const monthlyProductionKwh = selection.best.monthlyProductionKwh;
   const annualProductionKwh = selection.best.annualProductionKwh;
 
-  const split = splitProduction(annualProductionKwh, input.selfConsumptionShare);
+  // Self-consumption is capped by what the household actually uses, so the
+  // energy amount — not just the displayed percentage — stays physical.
+  const split = splitProduction(
+    annualProductionKwh,
+    input.selfConsumptionShare,
+    input.consumption.annualKwh,
+  );
 
   // No hourly model yet: anything other than the default share is a user override,
   // everything else is transparently labelled as a standard assumption.
@@ -101,17 +111,22 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     split,
     annualProductionKwh,
     annualConsumptionKwh: input.consumption.annualKwh,
+    // Based on the share the user asked for, not the capped effective share.
     source:
-      Math.abs(split.selfConsumptionShare - DEFAULT_SELF_CONSUMPTION_SHARE) > 1e-9
+      Math.abs(input.selfConsumptionShare - DEFAULT_SELF_CONSUMPTION_SHARE) > 1e-9
         ? "user-override"
         : "standard-assumption",
   });
 
+  // Negative prices are rejected at the calculation layer, not only in the UI.
+  const selfConsumedValuePerKwh = nonNegative(input.economics.selfConsumedValuePerKwh);
+  const exportValuePerKwh = nonNegative(input.economics.exportValuePerKwh);
+
   const economics = calculateEconomicValue({
     selfConsumptionKwh: split.selfConsumptionKwh,
     exportedKwh: split.exportedKwh,
-    selfConsumedValuePerKwh: input.economics.selfConsumedValuePerKwh,
-    exportValuePerKwh: input.economics.exportValuePerKwh,
+    selfConsumedValuePerKwh,
+    exportValuePerKwh,
   });
   if (input.economics.valuesMissing) notes.push("economic-values-missing");
 
@@ -124,6 +139,18 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
         : "monthly-consumption-provided",
     );
   }
+
+  // Single source of truth for every presented economic figure: UI, the
+  // investment level and the PDF all read these same rounded values.
+  const presentation = buildPresentationValues({
+    annualProductionKwh,
+    selfConsumptionKwh: split.selfConsumptionKwh,
+    selfConsumptionShare: split.selfConsumptionShare,
+    annualConsumptionKwh: input.consumption.annualKwh,
+    maxAcPowerKw,
+    selfConsumptionValue: economics.selfConsumptionValue,
+    exportValue: economics.exportValue,
+  });
 
   return {
     location: input.location,
@@ -146,32 +173,25 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     ...selfConsumptionSummary,
     economics: {
       currency: input.economics.currency,
-      selfConsumedValuePerKwh: input.economics.selfConsumedValuePerKwh,
-      exportValuePerKwh: input.economics.exportValuePerKwh,
+      selfConsumedValuePerKwh,
+      exportValuePerKwh,
       ...economics,
     },
     mainFuseAmp: input.electrical.mainFuseAmp,
     lifetime: buildLifetimeProjection({
       firstYearProductionKwh: annualProductionKwh,
-      selfConsumptionShare: split.selfConsumptionShare,
-      selfConsumedValuePerKwh: input.economics.selfConsumedValuePerKwh,
-      exportValuePerKwh: input.economics.exportValuePerKwh,
+      selfConsumptionShare: input.selfConsumptionShare,
+      annualConsumptionKwh: input.consumption.annualKwh,
+      selfConsumedValuePerKwh,
+      exportValuePerKwh,
       annualDegradationRate: input.annualDegradationRate,
     }),
     investment: calculateMaxInvestment(
-      Math.round(economics.selfConsumptionValue) + Math.round(economics.exportValue),
+      presentation.annualSavings,
       input.acceptedPaybackYears,
       input.quotePrice,
     ),
-    presentation: buildPresentationValues({
-      annualProductionKwh,
-      selfConsumptionKwh: split.selfConsumptionKwh,
-      selfConsumptionShare: split.selfConsumptionShare,
-      annualConsumptionKwh: input.consumption.annualKwh,
-      maxAcPowerKw,
-      selfConsumptionValue: economics.selfConsumptionValue,
-      exportValue: economics.exportValue,
-    }),
+    presentation,
     calculationVersion: CALCULATION_VERSION,
     calculatedAt: new Date().toISOString(),
     notes,

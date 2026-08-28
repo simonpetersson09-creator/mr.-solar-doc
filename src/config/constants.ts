@@ -38,6 +38,13 @@ export const DC_AC_TARGET_RANGES = {
 /** How many rounding steps below the motivated array size we test candidates. */
 export const CANDIDATE_KWP_STEPS_BELOW_TARGET = 6;
 
+/**
+ * How many rounding steps ABOVE the motivated array size we test candidates.
+ * Needed for small arrays, where the smallest available inverter would
+ * otherwise force a severely under-sized DC/AC ratio.
+ */
+export const CANDIDATE_KWP_STEPS_ABOVE_TARGET = 2;
+
 /** Relative weights used when scoring candidate systems (lower score wins). */
 export const SCORE_WEIGHTS = {
   ratioOutsideRange: 12,

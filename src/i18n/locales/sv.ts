@@ -69,6 +69,11 @@ export const sv = {
       "Vi kunde inte hämta solproduktionsdata för platsen just nu. Inga värden gissas fram.",
   },
   consumption: {
+    validation: {
+      required: "Ange din elförbrukning för att kunna räkna vidare.",
+      tooLow: "Förbrukningen verkar för låg. Ange minst {{min}} kWh per år.",
+      tooHigh: "Förbrukningen verkar för hög. Ange högst {{max}} kWh per år.",
+    },
     shape: {
       question: "Hur brukar din elanvändning vara fördelad över året?",
       help: "Vi använder ditt svar för att uppskatta en månadsfördelning av din årsförbrukning.",

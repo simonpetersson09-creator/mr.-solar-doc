@@ -1,3 +1,8 @@
+/** Clamps a numeric input to >= 0, mapping NaN/Infinity to 0. */
+export function nonNegative(value: number): number {
+  return Number.isFinite(value) ? Math.max(0, value) : 0;
+}
+
 export interface EconomicValue {
   selfConsumptionValue: number;
   exportValue: number;
@@ -17,8 +22,12 @@ export function calculateEconomicValue(params: {
   /** Compensation for energy fed to the grid, per kWh. */
   exportValuePerKwh: number;
 }): EconomicValue {
-  const selfConsumptionValue = params.selfConsumptionKwh * params.selfConsumedValuePerKwh;
-  const exportValue = params.exportedKwh * params.exportValuePerKwh;
+  // Negative energy values are not physically meaningful in this model and
+  // must never reach the economics, the investment level or the report.
+  const selfConsumedRate = nonNegative(params.selfConsumedValuePerKwh);
+  const exportRate = nonNegative(params.exportValuePerKwh);
+  const selfConsumptionValue = nonNegative(params.selfConsumptionKwh) * selfConsumedRate;
+  const exportValue = nonNegative(params.exportedKwh) * exportRate;
   return {
     selfConsumptionValue,
     exportValue,

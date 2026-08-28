@@ -31,7 +31,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
   const [map, setMap] = useState<L.Map | null>(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setDebounced(query), 350);
+    const timer = setTimeout(() => setDebounced(query), 500);
     return () => clearTimeout(timer);
   }, [query]);
 
