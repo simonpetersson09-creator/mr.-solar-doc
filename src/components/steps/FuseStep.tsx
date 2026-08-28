@@ -60,9 +60,9 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         </Button>
       }
     >
-      <div className="card-elevated p-4">
-        <Label className="text-sm">{t("fuse.label")}</Label>
-        <div className="mt-3 grid grid-cols-3 gap-2 sm:grid-cols-4">
+      <div className="card-elevated space-y-3 p-4">
+        <Label className="text-xs text-muted-foreground">{t("fuse.label")}</Label>
+        <div className="grid grid-cols-4 gap-2 sm:grid-cols-5">
           {market.mainFuseOptionsAmp.map((amp) => (
             <button
               key={amp}
@@ -74,8 +74,8 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
               }}
               className={
                 !custom && storedFuse === amp
-                  ? "rounded-xl bg-accent px-3 py-3 font-semibold text-accent-foreground"
-                  : "rounded-xl border border-border bg-card px-3 py-3 font-medium transition-colors hover:bg-secondary"
+                  ? "rounded-xl bg-accent px-2 py-2.5 text-sm font-semibold text-accent-foreground"
+                  : "rounded-xl border border-border bg-card px-2 py-2.5 text-sm font-medium transition-colors hover:bg-secondary"
               }
             >
               {amp} A
@@ -89,8 +89,8 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
             }}
             className={
               custom
-                ? "rounded-xl bg-accent px-3 py-3 font-semibold text-accent-foreground"
-                : "rounded-xl border border-border bg-card px-3 py-3 font-medium transition-colors hover:bg-secondary"
+                ? "rounded-xl bg-accent px-2 py-2.5 text-sm font-semibold text-accent-foreground"
+                : "rounded-xl border border-border bg-card px-2 py-2.5 text-sm font-medium transition-colors hover:bg-secondary"
             }
           >
             {t("fuse.other")}
@@ -98,7 +98,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         </div>
 
         {custom ? (
-          <div className="mt-4">
+          <div className="flex items-center gap-2 border-t border-border pt-3">
             <Label htmlFor="custom-fuse" className="text-xs text-muted-foreground">
               {t("fuse.otherLabel")}
             </Label>
@@ -108,28 +108,28 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
               inputMode="numeric"
               value={customValue}
               onChange={(event) => setCustomValue(event.target.value)}
-              className="mt-1 h-11 w-32"
+              className="h-9 w-24"
             />
-            {customValue !== "" && !valid ? (
-              <p className="mt-2 text-sm text-destructive">{t("fuse.invalid")}</p>
-            ) : null}
+            <span className="text-xs text-muted-foreground">A</span>
+          </div>
+        ) : null}
+
+        {custom && customValue !== "" && !valid ? (
+          <p className="text-xs text-destructive">{t("fuse.invalid")}</p>
+        ) : null}
+
+        {valid ? (
+          <div className="flex items-center justify-between gap-3 rounded-xl bg-secondary px-3 py-2.5">
+            <span className="flex items-center gap-2 text-xs text-muted-foreground">
+              <Zap className="size-3.5 text-accent" />
+              {t("fuse.maxAc")}
+            </span>
+            <span className="text-lg font-bold">
+              {formatDecimal(maxAc, locale, 2)} <span className="text-xs font-normal">kW</span>
+            </span>
           </div>
         ) : null}
       </div>
-
-      {valid ? (
-        <div className="card-elevated flex items-center gap-4 p-4">
-          <span className="flex size-10 items-center justify-center rounded-full bg-accent/20 text-accent-foreground">
-            <Zap className="size-5" />
-          </span>
-          <div>
-            <p className="text-xs text-muted-foreground">{t("fuse.maxAc")}</p>
-            <p className="text-2xl font-bold">
-              {formatDecimal(maxAc, locale, 2)} <span className="text-base">kW</span>
-            </p>
-          </div>
-        </div>
-      ) : null}
     </StepShell>
   );
 }
