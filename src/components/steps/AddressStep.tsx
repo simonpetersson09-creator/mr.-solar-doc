@@ -206,10 +206,15 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
           <p className="text-center text-xs text-muted-foreground italic">
             {location ? t("address.adjustHint") : t("address.mapHint")}
           </p>
+          {unsupportedMarket ? (
+            <p className="rounded-xl border border-border bg-card/90 p-3 text-center text-xs text-foreground">
+              {t("address.marketUnsupported")}
+            </p>
+          ) : null}
           <Button
             className="h-14 w-full rounded-2xl text-base font-bold"
             size="lg"
-            disabled={!location}
+            disabled={!location || unsupportedMarket}
             onClick={() => {
               void haptic("medium");
               onNext();
