@@ -4,7 +4,10 @@
  */
 
 export interface AppSettings {
+  /** UI language code (see src/i18n/languages.ts). Independent of currency. */
   language: string;
+  /** True once the user picked a language manually — country no longer overrides it. */
+  languageChosenManually: boolean;
   theme: "light" | "dark" | "system";
   notificationsEnabled: boolean;
   featureFlags: Record<string, boolean>;
@@ -12,6 +15,7 @@ export interface AppSettings {
 
 export const DEFAULT_SETTINGS: AppSettings = {
   language: "sv",
+  languageChosenManually: false,
   theme: "light",
   notificationsEnabled: false,
   featureFlags: {
@@ -42,4 +46,10 @@ export function saveSettings(settings: AppSettings): void {
   } catch {
     // Persisting settings is best-effort.
   }
+}
+
+export function updateSettings(patch: Partial<AppSettings>): AppSettings {
+  const next = { ...loadSettings(), ...patch };
+  saveSettings(next);
+  return next;
 }

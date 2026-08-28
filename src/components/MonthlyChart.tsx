@@ -45,7 +45,7 @@ export function MonthlyChart({
       <div
         className="flex w-full items-end justify-between gap-1 overflow-hidden"
         role="img"
-        aria-label={productionLabel ?? "Månadsproduktion"}
+        aria-label={productionLabel ?? ariaLabel}
       >
         {values.map((value, index) => (
           <div
