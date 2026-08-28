@@ -108,12 +108,21 @@ function normaliseQuery(query: string): string {
   return query.trim().replace(/\s+/g, " ").toLowerCase();
 }
 
-async function fetchNominatim(url: string, errorPrefix: string): Promise<unknown> {
+async function requestNominatim(url: string): Promise<Response> {
   await scheduleNominatimSlot();
-  const response = await fetch(url, {
+  return fetch(url, {
     headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
     signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
   });
+}
+
+async function fetchNominatim(url: string, errorPrefix: string): Promise<unknown> {
+  let response = await requestNominatim(url);
+  // Parallel isolates can still trip the shared rate limit: back off once.
+  if (response.status === RATE_LIMIT_STATUS) {
+    await new Promise((resolve) => setTimeout(resolve, RATE_LIMIT_RETRY_DELAY_MS));
+    response = await requestNominatim(url);
+  }
   if (!response.ok) throw new Error(`${errorPrefix}_${response.status}`);
   return response.json();
 }
