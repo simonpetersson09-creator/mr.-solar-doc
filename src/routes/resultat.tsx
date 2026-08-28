@@ -4,62 +4,14 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft, ChevronDown, Download, Info, Loader2, Pencil, Sun, Zap } from "lucide-react";
 import i18nInstance from "@/i18n";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Slider } from "@/components/ui/slider";
 import { MonthlyChart } from "@/components/MonthlyChart";
 import { useCalculation } from "@/hooks/use-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useWizardStore } from "@/state/wizard-store";
-import {
-  formatCurrency,
-  formatDate,
-  formatDecimal,
-  formatNumber,
-  parseLocaleNumber,
-} from "@/lib/format";
+import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
-import { MAX_PAYBACK_YEARS, MIN_PAYBACK_YEARS } from "@/config/constants";
 
-/**
- * Free-text price field. The value is kept as a string while the user types so
- * that half-finished input ("0," / "0.") and an emptied field survive instead
- * of snapping back to 0. `null` is committed as "use the standard value".
- * Negative prices are not accepted.
- */
-function PriceInput({
-  id,
-  value,
-  onCommit,
-}: {
-  id: string;
-  value: number;
-  onCommit: (next: number | null) => void;
-}) {
-  const [draft, setDraft] = useState<string | null>(null);
-
-  return (
-    <Input
-      id={id}
-      type="text"
-      inputMode="decimal"
-      className="mt-1 h-9"
-      value={draft ?? String(value)}
-      onChange={(event) => {
-        const raw = event.target.value;
-        setDraft(raw);
-        const parsed = parseLocaleNumber(raw);
-        if (parsed !== null) onCommit(Math.max(0, parsed));
-      }}
-      onBlur={() => {
-        const parsed = draft === null ? value : parseLocaleNumber(draft);
-        setDraft(null);
-        onCommit(parsed === null ? null : Math.max(0, parsed));
-      }}
-    />
-  );
-}
 
 /** Maps the engine's recommendation reason to a consumer-friendly i18n key. */
 const REASON_KEY: Record<string, string> = {
