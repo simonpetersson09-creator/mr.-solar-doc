@@ -444,6 +444,13 @@ function ResultPage() {
                     ]
                   : []),
                 [t("result.mainFuse"), `${result.mainFuseAmp} A`],
+                [
+                  t("result.gridConnection"),
+                  t("result.gridConnectionValue", {
+                    voltage: result.grid.voltageV,
+                    phases: result.grid.phases,
+                  }),
+                ],
                 [t("result.fuseLimit"), `${formatDecimal(p.maxAcPowerKw, locale)} kW`],
                 [
                   t("result.specificYield"),

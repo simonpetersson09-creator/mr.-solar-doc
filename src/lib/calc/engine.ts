@@ -1,5 +1,7 @@
 import {
   CALCULATION_VERSION,
+  EU_GRID_PHASES,
+  EU_GRID_VOLTAGE_V,
   KWP_ROUNDING_STEP,
   MAX_RECOMMENDED_KWP,
   MIN_RECOMMENDED_KWP,
@@ -178,6 +180,11 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       ...economics,
     },
     mainFuseAmp: input.electrical.mainFuseAmp,
+    grid: {
+      voltageV: input.electrical.gridVoltageV ?? EU_GRID_VOLTAGE_V,
+      phases: input.electrical.gridPhases ?? EU_GRID_PHASES,
+      kwPerAmp: input.electrical.kwPerAmp,
+    },
     lifetime: buildLifetimeProjection({
       firstYearProductionKwh: annualProductionKwh,
       selfConsumptionShare: input.selfConsumptionShare,

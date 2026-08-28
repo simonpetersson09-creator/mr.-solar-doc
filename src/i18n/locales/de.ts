@@ -111,6 +111,8 @@ export const de = {
     "invalid": "Geben Sie einen Jahresverbrauch zwischen 100 und 200.000 kWh ein."
   },
   "fuse": {
+    "gridAssumption": "Die Berechnung geht von 400 V Dreiphasenanschluss aus.",
+    "gridAssumptionInfo": "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
     "title": "Welche Hauptsicherung haben Sie?",
     "subtitle": "Sie bestimmt, wie viel Leistung Ihre Anlage einspeisen darf.",
     "label": "Hauptsicherung",
@@ -121,6 +123,8 @@ export const de = {
     "invalid": "Geben Sie eine Hauptsicherung zwischen 6 und 400 A ein."
   },
   "result": {
+    "gridConnection": "Netzanschluss",
+    "gridConnectionValue": "{{voltage}} V, {{phases}}-phasig",
     "title": "Ihre Berechnung",
     "consumptionSourceLabel": "Datenquelle Verbrauch",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const de = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Netzanschluss",
+      "gridConnectionValue": "{{voltage}} V, {{phases}}-phasig",
+      "gridMethodNote": "Die theoretische AC-Leistung geht von 400 V Dreiphasenanschluss aus und wird als √3 × 400 V × Hauptsicherung berechnet. Die tatsächlich zulässige Anschluss- oder Einspeiseleistung kann vom Netzbetreiber oder der konkreten Installation begrenzt werden.",
       "savings30Short": "Berechnet mit {{degradation}} % jährlicher Produktionsminderung und unveränderten Stromwerten.",
       "solarShareTitle": "Ihr Solarstrom",
       "selfConsumptionRate": "Eigenverbrauchsquote (Anteil der Solarstromproduktion)",

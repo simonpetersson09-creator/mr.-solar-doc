@@ -533,6 +533,13 @@ export function generateReportBlob(options: ReportOptions): Blob {
       },
       { label: f.mainFuse, value: `${result.mainFuseAmp} A`, origin: "user" },
       {
+        label: f["gridConnection"] ?? "",
+        value: (f["gridConnectionValue"] ?? "{{voltage}} V, {{phases}}")
+          .replace("{{voltage}}", formatNumber(result.grid.voltageV, locale))
+          .replace("{{phases}}", String(result.grid.phases)),
+        origin: "assumed",
+      },
+      {
         label: f.maxAc,
         value: `${formatDecimal(result.presentation.maxAcPowerKw, locale, 1)} kW`,
         origin: "calculated",
@@ -771,6 +778,13 @@ export function generateReportBlob(options: ReportOptions): Blob {
       origin: "assumed",
     },
     {
+      label: f["gridConnection"] ?? "",
+      value: (f["gridConnectionValue"] ?? "{{voltage}} V, {{phases}}")
+        .replace("{{voltage}}", formatNumber(result.grid.voltageV, locale))
+        .replace("{{phases}}", String(result.grid.phases)),
+      origin: "assumed",
+    },
+    {
       label: f["priceChange"] ?? "",
       value: `${formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0)} % ${f["perYearShort"] ?? ""}`,
       origin: "assumed",
@@ -788,6 +802,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     { label: f.dataSource, value: result.resource.dataSource, origin: "external" },
   ];
   report.rows(assumptionRows, labels.origin);
+  report.paragraph(f["gridMethodNote"] ?? "");
   report.paragraph(
     (f["priceChangeNote"] ?? "").replace(
       "{{priceChange}}",

@@ -111,6 +111,8 @@ export const sk = {
     "invalid": "Zadajte ročnú spotrebu medzi 100 a 200 000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Výpočet vychádza z trojfázovej prípojky 400 V.",
+    "gridAssumptionInfo": "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
     "title": "Aký máte hlavný istič?",
     "subtitle": "Určuje, koľko energie môže vaša sústava dodávať do siete.",
     "label": "Hlavný istič",
@@ -121,6 +123,8 @@ export const sk = {
     "invalid": "Zadajte hlavný istič medzi 6 a 400 A."
   },
   "result": {
+    "gridConnection": "Pripojenie do siete",
+    "gridConnectionValue": "{{voltage}} V, {{phases}} fázy",
     "title": "Váš výpočet",
     "consumptionSourceLabel": "Zdroj údajov o spotrebe",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const sk = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Pripojenie do siete",
+      "gridConnectionValue": "{{voltage}} V, {{phases}} fázy",
+      "gridMethodNote": "Teoretický AC výkon vychádza z trojfázovej prípojky 400 V a počíta sa ako √3 × 400 V × hlavný istič. Skutočný povolený pripojovací alebo dodávaný výkon môže obmedziť prevádzkovateľ siete alebo konkrétna inštalácia.",
       "savings30Short": "Vypočítané s {{degradation}} % ročným poklesom produkcie a nezmenenými hodnotami elektriny.",
       "solarShareTitle": "Vaša solárna elektrina",
       "selfConsumptionRate": "Miera vlastnej spotreby (podiel zo solárnej produkcie)",

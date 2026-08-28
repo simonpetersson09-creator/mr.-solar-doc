@@ -111,6 +111,8 @@ export const lt = {
     "invalid": "Įveskite metinį suvartojimą nuo 100 iki 200 000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Skaičiavimas remiasi 400 V trifaze jungtimi.",
+    "gridAssumptionInfo": "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
     "title": "Kokį pagrindinį automatinį jungiklį turite?",
     "subtitle": "Jis lemia, kiek galios jūsų sistema gali tiekti.",
     "label": "Pagrindinis automatinis jungiklis",
@@ -121,6 +123,8 @@ export const lt = {
     "invalid": "Įveskite pagrindinį automatinį jungiklį nuo 6 iki 400 A."
   },
   "result": {
+    "gridConnection": "Tinklo prijungimas",
+    "gridConnectionValue": "{{voltage}} V, {{phases}} fazės",
     "title": "Jūsų apskaičiavimas",
     "consumptionSourceLabel": "Suvartojimo duomenų šaltinis",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const lt = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Tinklo prijungimas",
+      "gridConnectionValue": "{{voltage}} V, {{phases}} fazės",
+      "gridMethodNote": "Teorinė AC galia remiasi 400 V trifaze jungtimi ir skaičiuojama kaip √3 × 400 V × pagrindinis saugiklis. Faktinę leistiną prijungimo ar atiduodamą galią gali riboti tinklo operatorius arba konkreti instaliacija.",
       "savings30Short": "Apskaičiuota su {{degradation}} % metiniu gamybos degradacija ir nepakitusia elektros verte.",
       "solarShareTitle": "Jūsų saulės energija",
       "selfConsumptionRate": "Savarankiško suvartojimo norma (saulės energijos gamybos dalis)",

@@ -3,7 +3,17 @@
  * No magic numbers may live in components or calculation functions.
  */
 
-/** European three-phase 400 V: kW allowed per ampere of main fuse. */
+/**
+ * Grid connection assumption shared by every supported market: 400 V three-phase.
+ * This is a calculation assumption, not a guarantee about a specific property.
+ */
+export const EU_GRID_VOLTAGE_V = 400;
+export const EU_GRID_PHASES = 3;
+
+/**
+ * European three-phase 400 V: kW allowed per ampere of main fuse.
+ * P(kW) = sqrt(3) x 400 x A / 1000 ~= 0.69 x A.
+ */
 export const EU_THREE_PHASE_KW_PER_AMP = 0.69;
 
 /** Default target DC/AC ratio window (used when no profile signal exists). */

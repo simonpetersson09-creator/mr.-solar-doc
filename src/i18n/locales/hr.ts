@@ -111,6 +111,8 @@ export const hr = {
     "invalid": "Unesite godišnju potrošnju između 100 i 200.000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Izračun pretpostavlja trofazni priključak 400 V.",
+    "gridAssumptionInfo": "Teorijska snaga glavnog osigurača računa se za trofazni priključak 400 V. Ako niste sigurni, provjerite svoj stvarni mrežni priključak.",
     "title": "Koji glavni osigurač imate?",
     "subtitle": "On određuje koliko snage vaš sustav smije isporučivati.",
     "label": "Glavni osigurač",
@@ -121,6 +123,8 @@ export const hr = {
     "invalid": "Unesite glavni osigurač između 6 i 400 A."
   },
   "result": {
+    "gridConnection": "Mrežni priključak",
+    "gridConnectionValue": "{{voltage}} V, {{phases}}-fazni",
     "title": "Vaš izračun",
     "consumptionSourceLabel": "Izvor podataka o potrošnji",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const hr = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Mrežni priključak",
+      "gridConnectionValue": "{{voltage}} V, {{phases}}-fazni",
+      "gridMethodNote": "Teorijska AC snaga pretpostavlja trofazni priključak 400 V i računa se kao √3 × 400 V × glavni osigurač. Stvarnu dopuštenu priključnu snagu ili snagu predaje može ograničiti operator mreže ili konkretna instalacija.",
       "savings30Short": "Izračunato s {{degradation}} % godišnje degradacije proizvodnje i nepromijenjenim vrijednostima električne energije.",
       "solarShareTitle": "Vaša solarna električna energija",
       "selfConsumptionRate": "Stopa vlastite potrošnje (udio solarne proizvodnje)",

@@ -111,6 +111,8 @@ export const fr = {
     "invalid": "Saisissez une consommation annuelle entre 100 et 200 000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Le calcul suppose un raccordement triphasé 400 V.",
+    "gridAssumptionInfo": "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute.",
     "title": "Quel fusible principal avez-vous ?",
     "subtitle": "Il détermine la puissance que votre installation peut injecter.",
     "label": "Fusible principal",
@@ -121,6 +123,8 @@ export const fr = {
     "invalid": "Saisissez un fusible principal entre 6 et 400 A."
   },
   "result": {
+    "gridConnection": "Raccordement au réseau",
+    "gridConnectionValue": "{{voltage}} V, {{phases}} phases",
     "title": "Votre calcul",
     "consumptionSourceLabel": "Source des données de consommation",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const fr = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Raccordement au réseau",
+      "gridConnectionValue": "{{voltage}} V, {{phases}} phases",
+      "gridMethodNote": "La puissance CA théorique suppose un raccordement triphasé 400 V et se calcule comme √3 × 400 V × fusible principal. La puissance de raccordement ou d'injection réellement autorisée peut être limitée par le gestionnaire de réseau ou par l'installation.",
       "savings30Short": "Calculé avec une dégradation de production annuelle de {{degradation}} % et des valeurs d'électricité inchangées.",
       "solarShareTitle": "Votre électricité solaire",
       "selfConsumptionRate": "Taux d'autoconsommation (part de la production solaire)",

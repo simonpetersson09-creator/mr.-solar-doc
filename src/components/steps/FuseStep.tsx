@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Zap } from "lucide-react";
+import { Info, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -23,6 +23,7 @@ const MAX_AMP = 400;
 
 export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   const { t } = useTranslation();
+  const [showGridInfo, setShowGridInfo] = useState(false);
   const { locale } = useAppLocale();
   const location = useWizardStore((s) => s.location);
   const storedFuse = useWizardStore((s) => s.mainFuseAmp);
@@ -129,6 +130,22 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
             </span>
           </div>
         ) : null}
+
+        <div className="border-t border-border pt-3">
+          <button
+            type="button"
+            onClick={() => setShowGridInfo((open) => !open)}
+            className="flex items-start gap-2 text-left text-xs text-muted-foreground"
+          >
+            <Info className="mt-0.5 size-3.5 shrink-0" />
+            <span>{t("fuse.gridAssumption")}</span>
+          </button>
+          {showGridInfo ? (
+            <p className="mt-2 pl-5 text-xs leading-relaxed text-muted-foreground">
+              {t("fuse.gridAssumptionInfo")}
+            </p>
+          ) : null}
+        </div>
       </div>
     </StepShell>
   );

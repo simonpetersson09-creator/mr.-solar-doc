@@ -111,6 +111,8 @@ export const et = {
     "invalid": "Sisesta aastatarbimine vahemikus 100 kuni 200 000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Arvutus eeldab 400 V kolmefaasilist liitumist.",
+    "gridAssumptionInfo": "Peakaitsme teoreetiline võimsus arvutatakse 400 V kolmefaasilise liitumise alusel. Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
     "title": "Milline peakaitse sul on?",
     "subtitle": "See määrab, kui palju energiat sinu süsteem tohib võrku anda.",
     "label": "Peakaitse",
@@ -121,6 +123,8 @@ export const et = {
     "invalid": "Sisesta peakaitse vahemikus 6 kuni 400 A."
   },
   "result": {
+    "gridConnection": "Võrguühendus",
+    "gridConnectionValue": "{{voltage}} V, {{phases}}-faasiline",
     "title": "Sinu arvutus",
     "consumptionSourceLabel": "Tarbimisandmete allikas",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const et = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Võrguühendus",
+      "gridConnectionValue": "{{voltage}} V, {{phases}}-faasiline",
+      "gridMethodNote": "Teoreetiline AC-võimsus eeldab 400 V kolmefaasilist liitumist ja arvutatakse valemiga √3 × 400 V × peakaitse. Tegelikku lubatud liitumis- või väljastusvõimsust võib piirata võrguettevõtja või konkreetne paigaldis.",
       "savings30Short": "Arvutatud {{degradation}} % aastase tootluse languse ja muutumatute elektriväärtustega.",
       "solarShareTitle": "Sinu päikeseenergia",
       "selfConsumptionRate": "Omatarvemäär (päikeseenergia tootmise osakaal)",
