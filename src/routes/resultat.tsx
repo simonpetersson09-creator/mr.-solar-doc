@@ -328,11 +328,11 @@ function ResultPage() {
         </section>
 
         {/* 4b. Investment level for the chosen payback time */}
-        <section className="card-elevated space-y-3 p-4">
-          <div className="flex items-start justify-between gap-2">
+        <section className="card-elevated space-y-2.5 p-3.5">
+          <div className="flex items-center justify-between gap-2">
             <div>
               <h2 className="text-sm font-semibold">{t("result.paybackTitle")}</h2>
-              <p className="mt-0.5 text-[11px] text-muted-foreground">
+              <p className="text-[11px] text-muted-foreground">
                 {t("result.paybackSubtitle")}
               </p>
             </div>
