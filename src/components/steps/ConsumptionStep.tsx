@@ -89,6 +89,18 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const effectiveAnnual = useMonthly ? monthlyTotal : Number(annual) || 0;
   const valid = effectiveAnnual >= MIN_ANNUAL_KWH && effectiveAnnual <= MAX_ANNUAL_KWH;
   const showEstimatedProfile = !useMonthly && valid;
+  /**
+   * Explain *why* the user cannot continue instead of only disabling the
+   * button. Stays hidden until something has actually been entered.
+   */
+  const touched = useMonthly ? monthly.some((value) => value !== "") : annual !== "";
+  const validationKey = !touched || valid
+    ? null
+    : effectiveAnnual <= 0
+      ? "consumption.validation.required"
+      : effectiveAnnual < MIN_ANNUAL_KWH
+        ? "consumption.validation.tooLow"
+        : "consumption.validation.tooHigh";
   const estimatedMonthly = showEstimatedProfile
     ? estimateMonthlyConsumption(effectiveAnnual, shape, market.defaultConsumptionWeights)
     : null;
@@ -197,6 +209,12 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
             </div>
             <span className="pb-3 text-xs text-muted-foreground">{t("units.kwhPerYear")}</span>
           </div>
+        ) : null}
+
+        {validationKey ? (
+          <p role="alert" className="text-xs text-destructive">
+            {t(validationKey, { min: MIN_ANNUAL_KWH, max: MAX_ANNUAL_KWH })}
+          </p>
         ) : null}
 
         <div className="flex items-center justify-between gap-4 border-t border-border pt-3 first:border-0 first:pt-0">

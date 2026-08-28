@@ -68,6 +68,11 @@ export const en = {
     error: "We couldn't fetch solar data for this location. No values are guessed.",
   },
   consumption: {
+    validation: {
+      required: "Enter your electricity use to continue the calculation.",
+      tooLow: "That looks too low. Enter at least {{min}} kWh per year.",
+      tooHigh: "That looks too high. Enter at most {{max}} kWh per year.",
+    },
     shape: {
       question: "How is your electricity use usually spread across the year?",
       help: "We use your answer to estimate a monthly split of your annual consumption.",
