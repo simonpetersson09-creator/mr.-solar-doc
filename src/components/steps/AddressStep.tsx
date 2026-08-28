@@ -10,6 +10,7 @@ import { useAddressSearch } from "@/hooks/use-address-search";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { resolvePosition } from "@/services/geocoding-service";
 import { useWizardStore } from "@/state/wizard-store";
+import { isActiveMarket } from "@/config/markets";
 import { haptic } from "@/services/native-service";
 
 const MapPicker = lazy(() => import("@/components/MapPicker"));
@@ -52,6 +53,11 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
       setShowResults(false);
     }
   };
+
+  // A resolved address outside the supported markets may not continue.
+  const unsupportedMarket = Boolean(
+    location?.countryCode && !isActiveMarket(location.countryCode),
+  );
 
   // Default view: Sweden overview until a position is chosen.
   const mapLatitude = location?.latitude ?? 62.0;
@@ -200,10 +206,15 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
           <p className="text-center text-xs text-muted-foreground italic">
             {location ? t("address.adjustHint") : t("address.mapHint")}
           </p>
+          {unsupportedMarket ? (
+            <p className="rounded-xl border border-border bg-card/90 p-3 text-center text-xs text-foreground">
+              {t("address.marketUnsupported")}
+            </p>
+          ) : null}
           <Button
             className="h-14 w-full rounded-2xl text-base font-bold"
             size="lg"
-            disabled={!location}
+            disabled={!location || unsupportedMarket}
             onClick={() => {
               void haptic("medium");
               onNext();

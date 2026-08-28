@@ -125,3 +125,27 @@ describe("calculateSolarSystem – inverter sizing for small arrays", () => {
     }
   });
 });
+
+describe("size and consumption guard notes", () => {
+  it("flags a minimum system size when the array exceeds the target", () => {
+    const result = calculateSolarSystem(
+      makeInput({ consumption: { annualKwh: 500, monthlyKwh: null } }),
+    );
+    expect(result.notes).toContain("minimum-system-size");
+  });
+
+  it("flags an implausibly low annual consumption", () => {
+    const result = calculateSolarSystem(
+      makeInput({ consumption: { annualKwh: 1, monthlyKwh: null } }),
+    );
+    expect(result.notes).toContain("consumption-below-minimum");
+  });
+
+  it("adds neither note for a normal household", () => {
+    const result = calculateSolarSystem(
+      makeInput({ consumption: { annualKwh: 12_000, monthlyKwh: null } }),
+    );
+    expect(result.notes).not.toContain("minimum-system-size");
+    expect(result.notes).not.toContain("consumption-below-minimum");
+  });
+});

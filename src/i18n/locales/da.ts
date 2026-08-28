@@ -33,6 +33,7 @@ export const da = {
     "noResults": "Ingen resultater. Prøv en mere præcis adresse.",
     "selected": "Valgt placering",
     "adjustHint": "Træk markøren, hvis positionen ikke stemmer.",
+    "marketUnsupported": "Mr. Solar Doc understøtter endnu ikke dette land. Vælg en adresse i et understøttet land for at fortsætte.",
     "coordinates": "Koordinater",
     "country": "Land",
     "region": "Region",
@@ -67,6 +68,11 @@ export const da = {
     "error": "Vi kunne ikke hente solproduktionsdata for placeringen lige nu. Der gættes ingen værdier."
   },
   "consumption": {
+    "validation": {
+      "required": "Angiv dit elforbrug for at fortsætte beregningen.",
+      "tooLow": "Forbruget ser for lavt ud. Angiv mindst {{min}} kWh om året.",
+      "tooHigh": "Forbruget ser for højt ud. Angiv højst {{max}} kWh om året."
+    },
     "shape": {
       "question": "Hvordan er dit elforbrug normalt fordelt over året?",
       "help": "Vi bruger dit svar til at estimere en månedsfordeling af dit årsforbrug.",
@@ -235,6 +241,11 @@ export const da = {
     "showCalculation": "Vis beregning",
     "hideCalculation": "Skjul beregning",
     "adjustSplit": "Justér egenanvendelse",
+    "selfConsumptionAssumption": "Egetforbruget er en antagelse baseret på den valgte andel og kan justeres manuelt.",
+    "selfConsumptionInfo": "Det faktiske egetforbrug afhænger af, hvornår strømmen produceres, og hvornår husstanden bruger den.",
+    "selfConsumptionCappedNote": "Egetforbruget er begrænset, fordi den beregnede mængde ellers ville overstige dit samlede elforbrug. Effektiv egetforbrugsgrad: {{effective}} %.",
+    "minimumSizeNote": "Anlægget er dimensioneret op til den mindste praktiske størrelse, fordi de mindste tilgængelige invertere sætter en nedre grænse.",
+    "consumptionTooLowNote": "Det angivne elforbrug er meget lavt, så resultatet bør kun ses som vejledende.",
     "priceLabel": "Antaget fremtidig elpris ({{currency}}/kWh)",
     "downloadPdf": "Download rapport som PDF",
     "generatingPdf": "Genererer rapport…",

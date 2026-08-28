@@ -33,6 +33,7 @@ export const en = {
     noResults: "No matches. Try a more precise address.",
     selected: "Selected location",
     adjustHint: "Drag the marker if the position is off.",
+    marketUnsupported: "Mr. Solar Doc does not support this country yet. Choose an address in a supported country to continue.",
     coordinates: "Coordinates",
     country: "Country",
     region: "Region",
@@ -272,6 +273,10 @@ export const en = {
       "Actual self-consumption depends on when the electricity is produced and when the household uses it.",
     selfConsumptionCappedNote:
       "Self-consumption has been limited because the calculated amount would otherwise exceed your total electricity use. Effective self-consumption rate: {{effective}} %.",
+    minimumSizeNote:
+      "The system has been sized up to the smallest practical size, because the smallest available inverters set a lower limit.",
+    consumptionTooLowNote:
+      "The electricity use you entered is very low, so the result should be treated as indicative only.",
     priceLabel: "Assumed future electricity price ({{currency}}/kWh)",
     downloadPdf: "Download report as PDF",
     generatingPdf: "Creating report…",

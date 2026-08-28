@@ -83,6 +83,15 @@ export const DEFAULT_SELF_CONSUMPTION_SHARE = 0.5;
 export const MIN_RECOMMENDED_KWP = 1;
 export const MAX_RECOMMENDED_KWP = 100;
 
+/** Lowest annual consumption the engine treats as a realistic household. */
+export const MIN_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH = 100;
+
+/**
+ * When the selected array exceeds the consumption-based target by more than
+ * this factor, the size is driven by the smallest available inverter.
+ */
+export const MINIMUM_SIZE_NOTE_FACTOR = 1.25;
+
 /** Rounding step used when presenting a recommended array size (kWp). */
 export const KWP_ROUNDING_STEP = 0.5;
 

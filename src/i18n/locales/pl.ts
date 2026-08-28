@@ -33,6 +33,7 @@ export const pl = {
     "noResults": "Brak wyników. Spróbuj bardziej precyzyjnego adresu.",
     "selected": "Wybrana lokalizacja",
     "adjustHint": "Przeciągnij znacznik, jeśli pozycja jest nieprawidłowa.",
+    "marketUnsupported": "Mr. Solar Doc nie obsługuje jeszcze tego kraju. Wybierz adres w obsługiwanym kraju, aby kontynuować.",
     "coordinates": "Współrzędne",
     "country": "Kraj",
     "region": "Region",
@@ -67,6 +68,11 @@ export const pl = {
     "error": "Nie udało nam się teraz pobrać danych o produkcji energii słonecznej dla tej lokalizacji. Nie zgadujemy żadnych wartości."
   },
   "consumption": {
+    "validation": {
+      "required": "Podaj swoje zużycie energii, aby kontynuować obliczenia.",
+      "tooLow": "Zużycie wydaje się zbyt niskie. Podaj co najmniej {{min}} kWh rocznie.",
+      "tooHigh": "Zużycie wydaje się zbyt wysokie. Podaj najwyżej {{max}} kWh rocznie."
+    },
     "shape": {
       "question": "Jak zazwyczaj rozkłada się Twoje zużycie energii elektrycznej w ciągu roku?",
       "help": "Wykorzystujemy Twoją odpowiedź do oszacowania miesięcznego rozkładu Twojego rocznego zużycia.",
@@ -235,6 +241,11 @@ export const pl = {
     "showCalculation": "Pokaż kalkulację",
     "hideCalculation": "Ukryj kalkulację",
     "adjustSplit": "Dostosuj autokonsumpcję",
+    "selfConsumptionAssumption": "Autokonsumpcja to założenie oparte na wybranym udziale i można ją zmienić ręcznie.",
+    "selfConsumptionInfo": "Rzeczywista autokonsumpcja zależy od tego, kiedy energia jest produkowana i kiedy gospodarstwo domowe jej używa.",
+    "selfConsumptionCappedNote": "Autokonsumpcja została ograniczona, ponieważ obliczona ilość przekroczyłaby całkowite zużycie energii. Efektywny wskaźnik autokonsumpcji: {{effective}} %.",
+    "minimumSizeNote": "Instalacja została powiększona do najmniejszego praktycznego rozmiaru, ponieważ najmniejsze dostępne falowniki wyznaczają dolną granicę.",
+    "consumptionTooLowNote": "Podane zużycie energii jest bardzo niskie, więc wynik należy traktować wyłącznie orientacyjnie.",
     "priceLabel": "Przyjęta przyszła cena energii elektrycznej ({{currency}}/kWh)",
     "downloadPdf": "Pobierz raport jako PDF",
     "generatingPdf": "Generuję raport…",

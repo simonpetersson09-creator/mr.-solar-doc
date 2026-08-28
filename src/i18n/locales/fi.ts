@@ -33,6 +33,7 @@ export const fi = {
     "noResults": "Ei tuloksia. Kokeile tarkempaa osoitetta.",
     "selected": "Valittu sijainti",
     "adjustHint": "Vedä merkkiä, jos sijainti on väärä.",
+    "marketUnsupported": "Mr. Solar Doc ei vielä tue tätä maata. Valitse osoite tuetusta maasta jatkaaksesi.",
     "coordinates": "Koordinaatit",
     "country": "Maa",
     "region": "Alue",
@@ -67,6 +68,11 @@ export const fi = {
     "error": "Emme voineet hakea aurinkotuotantotietoja tästä kohteesta. Arvoja ei arvailla."
   },
   "consumption": {
+    "validation": {
+      "required": "Anna sähkönkulutuksesi, jotta laskenta voi jatkua.",
+      "tooLow": "Kulutus vaikuttaa liian pieneltä. Anna vähintään {{min}} kWh vuodessa.",
+      "tooHigh": "Kulutus vaikuttaa liian suurelta. Anna enintään {{max}} kWh vuodessa."
+    },
     "shape": {
       "question": "Miten sähkönkulutuksesi jakaantuu yleensä vuoden aikana?",
       "help": "Käytämme vastaustasi arvioidaksemme vuotuisen kulutuksesi kuukausijakauman.",
@@ -235,6 +241,11 @@ export const fi = {
     "showCalculation": "Näytä laskelma",
     "hideCalculation": "Piilota laskelma",
     "adjustSplit": "Säädä omaa kulutusta",
+    "selfConsumptionAssumption": "Oma käyttö on oletus valitun osuuden perusteella ja sitä voi säätää käsin.",
+    "selfConsumptionInfo": "Todellinen oma käyttö riippuu siitä, milloin sähköä tuotetaan ja milloin taloudessa käytetään sähköä.",
+    "selfConsumptionCappedNote": "Omaa käyttöä on rajoitettu, koska laskettu määrä ylittäisi muuten koko sähkönkulutuksesi. Tehokas oman käytön aste: {{effective}} %.",
+    "minimumSizeNote": "Järjestelmä on mitoitettu pienimpään käytännölliseen kokoon, koska pienimmät saatavilla olevat invertterit asettavat alarajan.",
+    "consumptionTooLowNote": "Ilmoitettu sähkönkulutus on hyvin pieni, joten tulosta tulee pitää vain suuntaa antavana.",
     "priceLabel": "Oletettu tuleva sähköhinta ({{currency}}/kWh)",
     "downloadPdf": "Lataa raportti PDF-muodossa",
     "generatingPdf": "Luodaan raporttia…",

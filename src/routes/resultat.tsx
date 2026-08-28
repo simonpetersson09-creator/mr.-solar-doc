@@ -183,6 +183,14 @@ function ResultPage() {
             {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
           </p>
           <p className="mt-1 text-xs text-muted-foreground">{rationale}</p>
+          {result.notes.includes("minimum-system-size") ? (
+            <p className="mt-1.5 text-xs text-muted-foreground">{t("result.minimumSizeNote")}</p>
+          ) : null}
+          {result.notes.includes("consumption-below-minimum") ? (
+            <p className="mt-1.5 text-xs text-muted-foreground">
+              {t("result.consumptionTooLowNote")}
+            </p>
+          ) : null}
         </section>
 
         {/* 2. Production */}

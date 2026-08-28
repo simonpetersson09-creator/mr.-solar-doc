@@ -4,7 +4,9 @@ import {
   EU_GRID_VOLTAGE_V,
   KWP_ROUNDING_STEP,
   MAX_RECOMMENDED_KWP,
+  MIN_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH,
   MIN_RECOMMENDED_KWP,
+  MINIMUM_SIZE_NOTE_FACTOR,
   PANEL_WATTAGE_KWP,
   SOLAR_SEASON_MONTH_INDEXES,
 } from "@/config/constants";
@@ -88,6 +90,16 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     sizingBasis = "minimum-size";
   }
   if (installedKwp >= MAX_RECOMMENDED_KWP - 1e-9) sizingBasis = "maximum-size";
+
+  // The smallest commercially available inverters set a practical floor, so a
+  // very small target can only be met by a noticeably larger array.
+  if (installedKwp > sizing.recommendedKwp * MINIMUM_SIZE_NOTE_FACTOR + 1e-9) {
+    notes.push("minimum-system-size");
+  }
+  if (input.consumption.annualKwh < MIN_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH) {
+    notes.push("consumption-below-minimum");
+  }
+
 
   let recommendationReason: RecommendationReason = `profile-${consumptionProfile.category}` as RecommendationReason;
   if (consumptionProfile.category === "unknown") recommendationReason = "profile-unknown";
