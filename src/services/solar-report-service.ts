@@ -40,6 +40,10 @@ export interface ReportLabels {
   title: string;
   appName: string;
   summary: string;
+  /** Section heading for the technical key figures cards. */
+  technical: string;
+  /** Section heading for the economic key figures cards. */
+  economicSummary: string;
   sizing: string;
   production: string;
   consumption: string;
