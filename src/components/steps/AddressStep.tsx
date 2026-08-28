@@ -37,14 +37,24 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
 
   const handlePositionChange = async (latitude: number, longitude: number) => {
     const resolved = await resolvePosition(latitude, longitude, language).catch(() => null);
+    const address = resolved?.label ?? location?.address ?? "";
     setLocation({
-      address: resolved?.label ?? location?.address ?? "",
+      address,
       latitude,
       longitude,
       countryCode: resolved?.countryCode ?? location?.countryCode ?? "",
       region: resolved?.region ?? location?.region ?? "",
     });
+    if (resolved?.label) {
+      setQuery(resolved.label);
+      setShowResults(false);
+    }
   };
+
+  // Default view: Sweden overview until a position is chosen.
+  const mapLatitude = location?.latitude ?? 59.33;
+  const mapLongitude = location?.longitude ?? 18.07;
+  const mapZoom = location ? 17 : 4;
 
   return (
     <StepShell
