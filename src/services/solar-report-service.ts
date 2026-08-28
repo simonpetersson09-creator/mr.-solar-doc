@@ -29,6 +29,9 @@ export type ReportFieldLabels = Record<string, string> & {
   currency: string;
   economicValue: string;
   orientation: string;
+  exactOrientation: string;
+  coverage: string;
+  savings: string;
   tilt: string;
   calculationVersion: string;
 };
@@ -45,6 +48,11 @@ export interface ReportLabels {
   disclaimer: string;
   generated: string;
   months: string[];
+  /** Consumer-facing sentence explaining why the array ended up at this size. */
+  rationale: string;
+  coverageNote: string;
+  chartProduction: string;
+  chartConsumption: string;
   origin: Record<ValueOrigin, string>;
   fields: ReportFieldLabels;
 }
@@ -60,6 +68,7 @@ const INK: [number, number, number] = [28, 46, 40];
 const MUTED: [number, number, number] = [108, 122, 114];
 const ACCENT: [number, number, number] = [232, 158, 54];
 const LINE: [number, number, number] = [225, 226, 218];
+const GREY: [number, number, number] = [163, 172, 166];
 
 interface Row {
   label: string;
@@ -159,12 +168,20 @@ class ReportDocument {
     this.y += 4;
   }
 
-  monthlyChart(values: number[], monthLabels: string[], locale: string) {
+  monthlyChart(
+    values: number[],
+    monthLabels: string[],
+    locale: string,
+    comparison?: number[] | null,
+    legend?: { production: string; consumption: string },
+  ) {
     const height = 42;
-    this.ensureSpace(height + 14);
+    this.ensureSpace(height + 20);
     const chartWidth = PAGE.width - PAGE.margin * 2;
-    const max = Math.max(...values, 1);
-    const barWidth = chartWidth / 12 - 3;
+    const max = Math.max(...values, ...(comparison ?? []), 1);
+    const slot = chartWidth / 12;
+    const paired = Boolean(comparison && comparison.length === 12);
+    const barWidth = paired ? slot / 2 - 1.5 : slot - 3;
     const baseline = this.y + height;
 
     this.doc.setDrawColor(...LINE);
@@ -172,22 +189,47 @@ class ReportDocument {
     this.doc.line(PAGE.margin, baseline, PAGE.margin + chartWidth, baseline);
 
     values.forEach((value, index) => {
-      const barHeight = (value / max) * height;
-      const x = PAGE.margin + index * (chartWidth / 12) + 1.5;
-      this.doc.setFillColor(...ACCENT);
-      this.doc.roundedRect(x, baseline - barHeight, barWidth, barHeight, 0.8, 0.8, "F");
+      const slotX = PAGE.margin + index * slot + 1.5;
+      const draw = (amount: number, x: number, fill: [number, number, number]) => {
+        const barHeight = (amount / max) * height;
+        this.doc.setFillColor(...fill);
+        this.doc.roundedRect(x, baseline - barHeight, barWidth, barHeight, 0.8, 0.8, "F");
+        this.doc.setFontSize(5.5);
+        this.doc.setTextColor(...MUTED);
+        this.doc.text(
+          formatNumber(Math.round(amount), locale).replace(/\s|\u00a0/g, ""),
+          x + barWidth / 2,
+          baseline - barHeight - 1.5,
+          { align: "center" },
+        );
+      };
+      draw(value, slotX, ACCENT);
+      if (paired) draw(comparison![index] ?? 0, slotX + barWidth + 1.5, GREY);
       this.doc.setFontSize(6.5);
       this.doc.setTextColor(...MUTED);
-      this.doc.text(monthLabels[index] ?? "", x + barWidth / 2, baseline + 4, { align: "center" });
-      this.doc.setFontSize(6);
-      this.doc.text(
-        formatNumber(value, locale),
-        x + barWidth / 2,
-        baseline - barHeight - 1.5,
-        { align: "center" },
-      );
+      this.doc.text(monthLabels[index] ?? "", slotX + (paired ? slot / 2 - 1.5 : barWidth / 2), baseline + 4, {
+        align: "center",
+      });
     });
-    this.y = baseline + 12;
+    this.y = baseline + 9;
+
+    if (paired && legend) {
+      const entries: Array<[string, [number, number, number]]> = [
+        [legend.production, ACCENT],
+        [legend.consumption, GREY],
+      ];
+      let x = PAGE.margin;
+      this.doc.setFontSize(7.5);
+      entries.forEach(([label, color]) => {
+        this.doc.setFillColor(...color);
+        this.doc.roundedRect(x, this.y - 2.4, 3, 3, 0.6, 0.6, "F");
+        this.doc.setTextColor(...MUTED);
+        this.doc.text(label, x + 4.5, this.y);
+        x += 5 + this.doc.getTextWidth(label) + 8;
+      });
+      this.y += 6;
+    }
+    this.y += 4;
   }
 
   paragraph(text: string) {
@@ -240,7 +282,22 @@ export function generateReportBlob(options: ReportOptions): Blob {
       label: f.annualProduction,
       value: `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh`,
     },
+    {
+      label: f.savings,
+      value: formatCurrency(result.presentation.annualSavings, locale, currency),
+    },
   ]);
+  report.rows(
+    [
+      {
+        label: f.coverage,
+        value: `${formatNumber(result.presentation.productionCoveragePercent, locale)} %`,
+        origin: "calculated",
+      },
+    ],
+    labels.origin,
+  );
+  report.paragraph(`${labels.rationale} ${labels.coverageNote}`);
   report.rows(
     [
       { label: f.address, value: result.location.address, origin: "user" },
@@ -298,7 +355,13 @@ export function generateReportBlob(options: ReportOptions): Blob {
     ],
     labels.origin,
   );
-  report.monthlyChart(result.monthlyProductionKwh, labels.months, locale);
+  report.monthlyChart(
+    result.monthlyProductionKwh,
+    labels.months,
+    locale,
+    result.consumption.monthlyKwh,
+    { production: labels.chartProduction, consumption: labels.chartConsumption },
+  );
 
   report.sectionTitle(labels.consumption);
   const consumptionRows: Row[] = [
@@ -369,6 +432,15 @@ export function generateReportBlob(options: ReportOptions): Blob {
       value: f[`orientation_${result.resource.orientation}`] ?? result.resource.orientation,
       origin: result.resource.orientationAssumed ? "assumed" : "user",
     },
+    ...(result.resource.azimuthDegrees != null
+      ? [
+          {
+            label: f.exactOrientation,
+            value: `${formatNumber(result.resource.azimuthDegrees, locale)}°`,
+            origin: "user" as ValueOrigin,
+          },
+        ]
+      : []),
     {
       label: f.tilt,
       value:
