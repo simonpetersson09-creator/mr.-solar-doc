@@ -298,7 +298,6 @@ export const sv = {
       selfSufficiencyRateNote:
         "Självförsörjningsgrad visar hur stor del av fastighetens totala elanvändning som täcks direkt av solel.",
       selfConsumptionShare: "Egenanvändning",
-      selfConsumptionSource_standard: "standardantagande",
       "selfConsumptionSource_standard-assumption": "standardantagande",
       "selfConsumptionSource_user-override": "angivet av dig",
       "selfConsumptionSource_actual-data": "beräknad från faktisk mätdata",
