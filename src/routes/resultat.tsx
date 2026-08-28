@@ -115,7 +115,7 @@ function ResultPage() {
   return (
     <div className="min-h-screen surface-sun pb-28">
       <header className="mx-auto max-w-2xl px-5 pt-6">
-        <h1 className="text-xl font-bold text-foreground">{t("result.title")}</h1>
+        <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
       </header>
 
       <main className="mx-auto max-w-2xl space-y-2.5 px-5 pt-3">
@@ -204,7 +204,7 @@ function ResultPage() {
 
           <div className="flex items-baseline justify-between gap-3">
             <p className="text-xs text-muted-foreground">{t("result.annualSavings")}</p>
-            <p className="text-2xl font-bold">
+            <p className="text-3xl font-extrabold tracking-tight text-primary">
               {formatCurrency(p.annualSavings, locale, currency)}{" "}
               <span className="text-xs font-normal text-muted-foreground">
                 {t("result.perYear")}
@@ -241,7 +241,7 @@ function ResultPage() {
                   years: formatNumber(paybackYears, locale),
                 })}
               </p>
-              <p className="text-xl font-bold">
+              <p className="text-xl font-extrabold tracking-tight text-primary">
                 {t("result.maxInvestmentApprox", { amount: investmentAmount })}
               </p>
             </div>
