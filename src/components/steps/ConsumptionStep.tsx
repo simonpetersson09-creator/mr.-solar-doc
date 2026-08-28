@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { FileUp, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -35,6 +36,39 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
     storedMonthly ? storedMonthly.map(String) : Array.from({ length: 12 }, () => ""),
   );
 
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [parsing, setParsing] = useState(false);
+  const [parseStatus, setParseStatus] = useState<"monthly" | "annual" | "error" | null>(null);
+  const [fileName, setFileName] = useState<string | null>(null);
+
+  const handleFile = async (file: File) => {
+    setParsing(true);
+    setParseStatus(null);
+    setFileName(file.name);
+    try {
+      const { readConsumptionFile } = await import("@/lib/read-consumption-file");
+      const parsed = await readConsumptionFile(file);
+      if (parsed.monthly) {
+        setMonthly(parsed.monthly.map((value) => String(Math.round(value))));
+        setUseMonthly(true);
+        setAnnual(String(parsed.annual ?? Math.round(sumMonthly(parsed.monthly))));
+        setParseStatus("monthly");
+        void haptic("medium");
+      } else if (parsed.annual) {
+        setUseMonthly(false);
+        setAnnual(String(Math.round(parsed.annual)));
+        setParseStatus("annual");
+        void haptic("light");
+      } else {
+        setParseStatus("error");
+      }
+    } catch {
+      setParseStatus("error");
+    } finally {
+      setParsing(false);
+    }
+  };
+
   const monthlyNumbers = monthly.map((value) => Number(value) || 0);
   const monthlyTotal = sumMonthly(monthlyNumbers);
   const effectiveAnnual = useMonthly ? monthlyTotal : Number(annual) || 0;
@@ -62,6 +96,61 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
         </Button>
       }
     >
+      <div className="card-elevated space-y-3 p-4">
+        <div className="flex items-start gap-3">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary text-primary">
+            <FileUp className="h-5 w-5" />
+          </span>
+          <div className="min-w-0">
+            <p className="text-sm font-medium">{t("consumption.upload.title")}</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {t("consumption.upload.description")}
+            </p>
+          </div>
+        </div>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".pdf,.xlsx,.xls,.csv,.txt,application/pdf"
+          className="hidden"
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+            event.target.value = "";
+            if (file) void handleFile(file);
+          }}
+        />
+        <Button
+          variant="outline"
+          className="w-full"
+          disabled={parsing}
+          onClick={() => fileInputRef.current?.click()}
+        >
+          {parsing ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              {t("consumption.upload.loading")}
+            </>
+          ) : (
+            t("consumption.upload.button")
+          )}
+        </Button>
+        <p className="text-center text-xs text-muted-foreground">
+          {fileName ?? t("consumption.upload.fileTypes")}
+        </p>
+        {parseStatus === "monthly" || parseStatus === "annual" ? (
+          <p className="text-sm text-primary">
+            {t(
+              parseStatus === "monthly"
+                ? "consumption.upload.successMonthly"
+                : "consumption.upload.successAnnual",
+            )}
+          </p>
+        ) : null}
+        {parseStatus === "error" ? (
+          <p className="text-sm text-destructive">{t("consumption.upload.error")}</p>
+        ) : null}
+      </div>
+
       {!useMonthly ? (
         <div className="card-elevated p-4">
           <Label htmlFor="annual" className="text-sm">
