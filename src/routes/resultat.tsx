@@ -142,9 +142,9 @@ function ResultPage() {
         </p>
       </header>
 
-      <main className="mx-auto max-w-2xl space-y-3 px-5 pt-4">
+      <main className="mx-auto max-w-2xl space-y-2.5 px-5 pt-3">
         {/* 1. Recommendation */}
-        <section className="hero-metric rounded-2xl p-4">
+        <section className="hero-metric rounded-2xl p-3.5">
           <div className="flex items-center gap-2 text-xs font-medium">
             <Sun className="size-3.5" /> {t("result.recommendedArray")}
           </div>
@@ -182,7 +182,7 @@ function ResultPage() {
         </section>
 
         {/* 2. Production */}
-        <section className="card-elevated p-4">
+        <section className="card-elevated p-3.5">
           <h2 className="text-sm font-semibold">{t("result.sectionProduction")}</h2>
           <p className="mt-0.5 mb-3 text-xs text-muted-foreground">
             {t("result.monthlyProduction")}
@@ -206,7 +206,7 @@ function ResultPage() {
         </section>
 
         {/* 3. Your solar electricity */}
-        <section className="card-elevated space-y-3 p-4">
+        <section className="card-elevated space-y-2.5 p-3.5">
           <div className="flex items-center justify-between gap-2">
             <h2 className="text-sm font-semibold">{t("result.sectionYourSolar")}</h2>
             {editableBadge}
@@ -246,7 +246,7 @@ function ResultPage() {
         </section>
 
         {/* 4. Economics */}
-        <section className="card-elevated space-y-3 p-4">
+        <section className="card-elevated space-y-2.5 p-3.5">
           <div className="flex items-center justify-between gap-2">
             <h2 className="text-sm font-semibold">{t("result.sectionEconomy")}</h2>
             {editableBadge}
