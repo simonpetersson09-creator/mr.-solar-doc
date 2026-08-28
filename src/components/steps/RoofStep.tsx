@@ -136,12 +136,7 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
               <CompassDial
                 value={dialValue}
                 onChange={handleDialChange}
-                disabled={orientation === "unknown"}
-                caption={
-                  orientation === "unknown"
-                    ? undefined
-                    : t(`roof.orientations.${nearestOrientation(dialValue)}`)
-                }
+                caption={t(`roof.orientations.${nearestOrientation(dialValue)}`)}
               />
             </div>
           </div>
