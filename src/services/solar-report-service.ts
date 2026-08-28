@@ -537,6 +537,33 @@ export function generateReportBlob(options: ReportOptions): Blob {
         value: `${formatDecimal(result.presentation.maxAcPowerKw, locale, 1)} kW`,
         origin: "calculated",
       },
+      {
+        label: f.orientation,
+        value: f[`orientation_${result.resource.orientation}`] ?? result.resource.orientation,
+        origin: result.resource.orientationAssumed ? "assumed" : "user",
+      },
+      ...(result.resource.azimuthDegrees != null
+        ? [
+            {
+              label: f.exactOrientation,
+              value: `${formatNumber(result.resource.azimuthDegrees, locale)}°`,
+              origin: "user" as ValueOrigin,
+            },
+          ]
+        : []),
+      {
+        label: f.tilt,
+        value:
+          result.resource.tiltDegrees !== null
+            ? `${formatNumber(result.resource.tiltDegrees, locale)}°`
+            : "-",
+        origin: result.resource.tiltAssumed ? "assumed" : "user",
+      },
+      {
+        label: f.coordinates,
+        value: `${result.location.latitude.toFixed(5)}, ${result.location.longitude.toFixed(5)}`,
+        origin: "user",
+      },
     ],
     labels.origin,
   );
@@ -580,15 +607,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
       label: f["consumptionShape"] ?? f.dataSource,
       value: labels.consumptionShape,
       origin: "user",
-    });
-  }
-  if (result.consumption.monthlyKwh) {
-    result.consumption.monthlyKwh.forEach((value, index) => {
-      consumptionRows.push({
-        label: labels.months[index] ?? "",
-        value: `${formatNumber(value, locale)} kWh`,
-        origin: result.consumption.isEstimated ? "assumed" : "user",
-      });
     });
   }
   report.rows(consumptionRows, labels.origin);
@@ -645,7 +663,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
         value: `${formatDecimal(result.economics.exportValuePerKwh, locale, 2)} ${currency}/kWh`,
         origin: "assumed",
       },
-      { label: f.currency, value: currency, origin: "assumed" },
       {
         label: f["selfConsumptionValue"] ?? f.selfConsumption,
         value: formatCurrency(result.presentation.selfConsumptionValue, locale, currency),
@@ -772,33 +789,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
       label: f["calculationPeriod"] ?? "",
       value: `${result.lifetime.periodYears} ${f["yearsUnit"] ?? ""}`,
       origin: "assumed",
-    },
-    {
-      label: f.orientation,
-      value: f[`orientation_${result.resource.orientation}`] ?? result.resource.orientation,
-      origin: result.resource.orientationAssumed ? "assumed" : "user",
-    },
-    ...(result.resource.azimuthDegrees != null
-      ? [
-          {
-            label: f.exactOrientation,
-            value: `${formatNumber(result.resource.azimuthDegrees, locale)}°`,
-            origin: "user" as ValueOrigin,
-          },
-        ]
-      : []),
-    {
-      label: f.tilt,
-      value:
-        result.resource.tiltDegrees !== null
-          ? `${formatNumber(result.resource.tiltDegrees, locale)}°`
-          : "-",
-      origin: result.resource.tiltAssumed ? "assumed" : "user",
-    },
-    {
-      label: f.coordinates,
-      value: `${result.location.latitude.toFixed(5)}, ${result.location.longitude.toFixed(5)}`,
-      origin: "user",
     },
     {
       label: f["degradation"] ?? "",
