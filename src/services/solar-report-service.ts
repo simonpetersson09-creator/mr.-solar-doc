@@ -336,6 +336,45 @@ export function generateReportBlob(options: ReportOptions): Blob {
       value: formatCurrency(result.presentation.annualSavings, locale, currency),
     },
   ]);
+
+  report.sectionTitle(labels.technical);
+  report.highlights([
+    {
+      label: f["panelPower"] ?? f.installedDc,
+      value: `${formatDecimal(result.installedKwp, locale)} kWp (${result.panelCount} ${f["panelsUnit"]})`,
+    },
+    { label: f.inverter, value: `${formatNumber(result.inverterKw, locale)} kW` },
+    {
+      label: f.annualProduction,
+      value: `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh`,
+    },
+  ]);
+
+  const investmentValue = result.investment.quotePrice ?? result.investment.maxInvestmentRounded;
+  const paybackValue =
+    result.investment.quotePaybackYears ?? result.investment.acceptedPaybackYears;
+  report.sectionTitle(labels.economicSummary);
+  report.highlights([
+    {
+      label: f["annualValue"] ?? f.savings,
+      value: formatCurrency(result.presentation.annualSavings, locale, currency),
+    },
+    {
+      label: f["savings30"] ?? f.savings,
+      value: formatCurrency(thirtyYearSavings(result.presentation.annualSavings), locale, currency),
+    },
+    {
+      label: f["investment"] ?? f["maxInvestment"] ?? "",
+      value: formatCurrency(investmentValue, locale, currency),
+    },
+    {
+      label: f["paybackTime"] ?? f["acceptedPayback"] ?? "",
+      value: `${formatDecimal(paybackValue, locale, 1)} ${f["yearsUnit"] ?? ""}`,
+    },
+  ]);
+
+  report.pageBreak();
+
   report.rows(
     [
       {
