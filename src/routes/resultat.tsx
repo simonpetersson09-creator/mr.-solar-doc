@@ -11,16 +11,54 @@ import { MonthlyChart } from "@/components/MonthlyChart";
 import { useCalculation } from "@/hooks/use-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useWizardStore } from "@/state/wizard-store";
-import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";
+import {
+  formatCurrency,
+  formatDate,
+  formatDecimal,
+  formatNumber,
+  parseLocaleNumber,
+} from "@/lib/format";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
 import { MAX_PAYBACK_YEARS, MIN_PAYBACK_YEARS } from "@/config/constants";
 
-/** Negative energy prices are not accepted; `min="0"` alone does not block them. */
-function toNonNegativeInput(raw: string): number {
-  const parsed = Number(raw);
-  if (!Number.isFinite(parsed)) return 0;
-  return Math.max(0, parsed);
+/**
+ * Free-text price field. The value is kept as a string while the user types so
+ * that half-finished input ("0," / "0.") and an emptied field survive instead
+ * of snapping back to 0. `null` is committed as "use the standard value".
+ * Negative prices are not accepted.
+ */
+function PriceInput({
+  id,
+  value,
+  onCommit,
+}: {
+  id: string;
+  value: number;
+  onCommit: (next: number | null) => void;
+}) {
+  const [draft, setDraft] = useState<string | null>(null);
+
+  return (
+    <Input
+      id={id}
+      type="text"
+      inputMode="decimal"
+      className="mt-1 h-9"
+      value={draft ?? String(value)}
+      onChange={(event) => {
+        const raw = event.target.value;
+        setDraft(raw);
+        const parsed = parseLocaleNumber(raw);
+        if (parsed !== null) onCommit(Math.max(0, parsed));
+      }}
+      onBlur={() => {
+        const parsed = draft === null ? value : parseLocaleNumber(draft);
+        setDraft(null);
+        onCommit(parsed === null ? null : Math.max(0, parsed));
+      }}
+    />
+  );
 }
 
 /** Maps the engine's recommendation reason to a consumer-friendly i18n key. */
@@ -328,16 +366,20 @@ function ResultPage() {
                   </Label>
                   {priceSourceBadge(result.economics.selfConsumedValueSource)}
                 </div>
-                <Input
+                <PriceInput
                   id="self-value"
-                  type="number"
-                  step="0.01"
-                  min="0"
-                  inputMode="decimal"
-                  className="mt-1 h-9"
                   value={result.economics.selfConsumedValuePerKwh}
-                  onChange={(event) => setSelfConsumedValue(toNonNegativeInput(event.target.value))}
+                  onCommit={setSelfConsumedValue}
                 />
+                {result.economics.selfConsumedValueSource === "user-override" ? (
+                  <button
+                    type="button"
+                    className="mt-1 text-[11px] font-medium text-primary underline underline-offset-2"
+                    onClick={() => setSelfConsumedValue(null)}
+                  >
+                    {t("result.resetToStandard")}
+                  </button>
+                ) : null}
               </div>
               <div>
                 <div className="flex flex-wrap items-center gap-1.5">
@@ -346,16 +388,20 @@ function ResultPage() {
                   </Label>
                   {priceSourceBadge(result.economics.exportValueSource)}
                 </div>
-                <Input
+                <PriceInput
                   id="export-value"
-                  type="number"
-                  step="0.01"
-                  min="0"
-                  inputMode="decimal"
-                  className="mt-1 h-9"
                   value={result.economics.exportValuePerKwh}
-                  onChange={(event) => setExportValue(toNonNegativeInput(event.target.value))}
+                  onCommit={setExportValue}
                 />
+                {result.economics.exportValueSource === "user-override" ? (
+                  <button
+                    type="button"
+                    className="mt-1 text-[11px] font-medium text-primary underline underline-offset-2"
+                    onClick={() => setExportValue(null)}
+                  >
+                    {t("result.resetToStandard")}
+                  </button>
+                ) : null}
               </div>
             </div>
             <p className="text-[11px] text-muted-foreground">
