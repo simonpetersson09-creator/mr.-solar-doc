@@ -126,6 +126,11 @@ class ReportDocument {
     this.y += lines.length * 5 + 6;
   }
 
+  pageBreak() {
+    this.doc.addPage();
+    this.y = PAGE.margin;
+  }
+
   sectionTitle(text: string) {
     this.ensureSpace(16);
     this.doc.setFont("helvetica", "bold");
