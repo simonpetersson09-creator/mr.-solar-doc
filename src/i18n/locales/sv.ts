@@ -270,6 +270,34 @@ export const sv = {
     calculatedAt: "Beräkningsdatum",
     noCalculation: "Ingen beräkning hittades. Börja om från adressen.",
   },
+  units: {
+    kwhPerYear: "kWh/år",
+    kwhPerKwp: "kWh/kWp",
+  },
+  settings: {
+    title: "Inställningar",
+    language: "Språk",
+    languageHint: "Valutan styrs av landet i din adress, inte av språket.",
+  },
+  chart: {
+    productionAria: "Månadsproduktion",
+    consumptionAria: "Månadsförbrukning",
+  },
+  meta: {
+    home: {
+      title: "Mr. Solar Doc – dimensionera din solcellsanläggning",
+      description:
+        "Räkna ut rekommenderad solcellseffekt, växelriktare och årsproduktion utifrån din adress, elförbrukning och huvudsäkring.",
+      ogDescription:
+        "Steg-för-steg-kalkyl med platsdata från PVGIS: kWp, växelriktare, månadsproduktion och ekonomi.",
+    },
+    result: {
+      title: "Din solelberäkning – Mr. Solar Doc",
+      description:
+        "Se beräknad kWp, växelriktarstorlek, DC/AC-ratio, månadsproduktion och ekonomiskt värde – och ladda ner rapporten som PDF.",
+      ogDescription: "Beräknad dimensionering av din solcellsanläggning med PDF-rapport.",
+    },
+  },
   months: {
     short: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
     long: [

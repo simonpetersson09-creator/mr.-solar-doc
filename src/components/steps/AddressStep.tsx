@@ -2,6 +2,7 @@ import { Suspense, lazy, useEffect, useState } from "react";
 import { ClientOnly } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Loader2, MapPin, Minus, Plus, Search, Sun } from "lucide-react";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type L from "leaflet";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -95,9 +96,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
               />
             ))}
           </div>
-          <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
-            {t("steps.stepOf", { current: 1, total: totalSteps })}
-          </span>
+          <LanguageSwitcher className="h-9 w-auto gap-2 border-border bg-card/90 px-2.5 text-xs shadow-md backdrop-blur" />
         </div>
 
         <div className="rounded-3xl border border-border/60 bg-card/90 p-5 shadow-xl backdrop-blur-md">

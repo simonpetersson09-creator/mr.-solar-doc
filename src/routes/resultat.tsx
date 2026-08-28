@@ -2,7 +2,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, ChevronDown, Download, Info, Loader2, Pencil, Sun, Zap } from "lucide-react";
-import "@/i18n";
+import i18nInstance from "@/i18n";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -31,17 +31,10 @@ const REASON_KEY: Record<string, string> = {
 export const Route = createFileRoute("/resultat")({
   head: () => ({
     meta: [
-      { title: "Din solelberäkning – Mr. Solar Doc" },
-      {
-        name: "description",
-        content:
-          "Se beräknad kWp, växelriktarstorlek, DC/AC-ratio, månadsproduktion och ekonomiskt värde – och ladda ner rapporten som PDF.",
-      },
-      { property: "og:title", content: "Din solelberäkning – Mr. Solar Doc" },
-      {
-        property: "og:description",
-        content: "Beräknad dimensionering av din solcellsanläggning med PDF-rapport.",
-      },
+      { title: i18nInstance.t("meta.result.title") },
+      { name: "description", content: i18nInstance.t("meta.result.description") },
+      { property: "og:title", content: i18nInstance.t("meta.result.title") },
+      { property: "og:description", content: i18nInstance.t("meta.result.ogDescription") },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -447,7 +440,7 @@ function ResultPage() {
                 [t("result.fuseLimit"), `${formatDecimal(p.maxAcPowerKw, locale)} kW`],
                 [
                   t("result.specificYield"),
-                  `${formatNumber(result.resource.annualKwhPerKwp, locale)} kWh/kWp`,
+                  `${formatNumber(result.resource.annualKwhPerKwp, locale)} ${t("units.kwhPerKwp")}`,
                 ],
                 [
                   t("result.annualConsumption"),

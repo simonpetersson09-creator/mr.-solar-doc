@@ -267,6 +267,34 @@ export const en = {
     calculatedAt: "Calculation date",
     noCalculation: "No calculation found. Start again from the address.",
   },
+  units: {
+    kwhPerYear: "kWh/yr",
+    kwhPerKwp: "kWh/kWp",
+  },
+  settings: {
+    title: "Settings",
+    language: "Language",
+    languageHint: "The currency follows the country in your address, not the language.",
+  },
+  chart: {
+    productionAria: "Monthly production",
+    consumptionAria: "Monthly consumption",
+  },
+  meta: {
+    home: {
+      title: "Mr. Solar Doc - size your solar system",
+      description:
+        "Calculate recommended solar capacity, inverter size and annual production from your address, electricity use and main fuse.",
+      ogDescription:
+        "Step-by-step calculation with location data from PVGIS: kWp, inverter, monthly production and economics.",
+    },
+    result: {
+      title: "Your solar calculation - Mr. Solar Doc",
+      description:
+        "See calculated kWp, inverter size, DC/AC ratio, monthly production and economic value - and download the report as a PDF.",
+      ogDescription: "Calculated sizing of your solar system with a PDF report.",
+    },
+  },
   months: {
     short: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
     long: [

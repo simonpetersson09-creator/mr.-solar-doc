@@ -1,3 +1,5 @@
+import { useTranslation } from "react-i18next";
+
 interface MonthlyChartProps {
   values: number[];
   labels: string[];
@@ -24,6 +26,8 @@ export function MonthlyChart({
   productionLabel,
   comparisonLabel,
 }: MonthlyChartProps) {
+  const { t } = useTranslation();
+  const ariaLabel = t("chart.productionAria");
   const hasComparison = !!comparison && comparison.length === values.length;
   const max = Math.max(...values, ...(hasComparison ? comparison! : []), 1);
 
@@ -45,7 +49,7 @@ export function MonthlyChart({
       <div
         className="flex w-full items-end justify-between gap-1 overflow-hidden"
         role="img"
-        aria-label={productionLabel ?? "Månadsproduktion"}
+        aria-label={productionLabel ?? ariaLabel}
       >
         {values.map((value, index) => (
           <div

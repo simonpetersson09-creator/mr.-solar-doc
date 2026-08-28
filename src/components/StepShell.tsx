@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import { ArrowLeft, Sun } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { haptic } from "@/services/native-service";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 interface StepShellProps {
   step: number;
@@ -56,6 +57,7 @@ export function StepShell({
             />
           </div>
         </div>
+        <LanguageSwitcher />
       </header>
 
       <main className="mx-auto max-w-2xl px-5 pt-8 pb-32">

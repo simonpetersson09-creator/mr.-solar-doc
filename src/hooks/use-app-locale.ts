@@ -1,12 +1,30 @@
 import { useTranslation } from "react-i18next";
-import { LANGUAGE_LOCALE, type SupportedLanguage } from "@/i18n";
+import { normaliseLanguage, resolveLocale, type SupportedLanguage } from "@/i18n/languages";
+import { getMarketConfig } from "@/config/markets";
+import { useWizardStore } from "@/state/wizard-store";
 
-/** Single source of truth for the active locale used in all formatting. */
-export function useAppLocale(): { locale: string; language: SupportedLanguage } {
+export interface AppLocale {
+  /** UI language (user-selectable). */
+  language: SupportedLanguage;
+  /** Country from the chosen address (market rules, currency). */
+  countryCode: string;
+  /** BCP47 locale for Intl formatting: language + country. */
+  locale: string;
+  /** ISO 4217 currency — decided by country only, never by language. */
+  currency: string;
+}
+
+/** Single source of truth for language, locale and currency used everywhere. */
+export function useAppLocale(): AppLocale {
   const { i18n } = useTranslation();
-  const language = (i18n.language?.slice(0, 2) as SupportedLanguage) ?? "sv";
+  const countryCode = useWizardStore((s) => s.location?.countryCode ?? null);
+  const language = normaliseLanguage(i18n.language);
+  const market = getMarketConfig(countryCode);
+
   return {
     language,
-    locale: LANGUAGE_LOCALE[language] ?? LANGUAGE_LOCALE.sv,
+    countryCode: market.countryCode,
+    locale: resolveLocale(language, countryCode),
+    currency: market.currency,
   };
 }
