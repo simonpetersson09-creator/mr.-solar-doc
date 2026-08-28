@@ -42,8 +42,16 @@ export const sv = {
     title: "Ditt tak",
     subtitle: "Vet du inte? Då räknar vi med en optimal placering.",
     orientation: "Väderstreck",
+    manual: "Manuellt – exakt riktning",
+    manualHint: "Dra pilen så att den pekar i takets riktning. 180° = rakt söderut.",
     tilt: "Taklutning",
     tiltDegrees: "Grader",
+    compass: {
+      n: "N",
+      e: "Ö",
+      s: "S",
+      w: "V",
+    },
     orientations: {
       unknown: "Vet inte",
       south: "Syd",

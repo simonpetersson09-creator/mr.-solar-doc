@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { StepShell } from "@/components/StepShell";
+import { CompassDial } from "@/components/CompassDial";
 import { useSolarResource } from "@/hooks/use-solar-resource";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatNumber } from "@/lib/format";
@@ -13,6 +14,32 @@ import type { Orientation } from "@/lib/calc/types";
 import { useEffect } from "react";
 
 const ORIENTATIONS: Orientation[] = ["unknown", "south", "southeast", "southwest", "east", "west"];
+
+/** Compass azimuth (0=N, clockwise) for each preset orientation. */
+const ORIENTATION_COMPASS: Record<Exclude<Orientation, "unknown">, number> = {
+  south: 180,
+  southeast: 135,
+  southwest: 225,
+  east: 90,
+  west: 270,
+};
+
+/** Nearest preset orientation for a given compass azimuth. */
+function nearestOrientation(compass: number): Exclude<Orientation, "unknown"> {
+  let best: Exclude<Orientation, "unknown"> = "south";
+  let bestDiff = Infinity;
+  for (const [orientation, deg] of Object.entries(ORIENTATION_COMPASS) as [
+    Exclude<Orientation, "unknown">,
+    number,
+  ][]) {
+    const diff = Math.min(Math.abs(compass - deg), 360 - Math.abs(compass - deg));
+    if (diff < bestDiff) {
+      bestDiff = diff;
+      best = orientation;
+    }
+  }
+  return best;
+}
 
 interface RoofStepProps {
   totalSteps: number;
@@ -26,14 +53,20 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
   const location = useWizardStore((s) => s.location);
   const orientation = useWizardStore((s) => s.orientation);
   const tiltDegrees = useWizardStore((s) => s.tiltDegrees);
+  const azimuthDegrees = useWizardStore((s) => s.azimuthDegrees);
   const setRoof = useWizardStore((s) => s.setRoof);
   const setResource = useWizardStore((s) => s.setResource);
+
+  const dialValue =
+    azimuthDegrees ??
+    (orientation !== "unknown" ? ORIENTATION_COMPASS[orientation] : 180);
 
   const query = useSolarResource({
     latitude: location?.latitude,
     longitude: location?.longitude,
     orientation,
     tiltDegrees,
+    azimuthDegrees,
   });
 
   useEffect(() => {
@@ -41,6 +74,19 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
   }, [query.data, setResource]);
 
   const assumed = orientation === "unknown" || tiltDegrees === null;
+
+  const handleOrientationPreset = (option: Orientation) => {
+    void haptic("light");
+    setRoof(
+      option,
+      tiltDegrees,
+      option === "unknown" ? null : ORIENTATION_COMPASS[option],
+    );
+  };
+
+  const handleDialChange = (degrees: number) => {
+    setRoof(nearestOrientation(degrees), tiltDegrees, degrees);
+  };
 
   return (
     <StepShell
@@ -71,10 +117,7 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
               <button
                 key={option}
                 type="button"
-                onClick={() => {
-                  void haptic("light");
-                  setRoof(option, tiltDegrees);
-                }}
+                onClick={() => handleOrientationPreset(option)}
                 className={
                   option === orientation
                     ? "rounded-full bg-accent px-4 py-2 text-sm font-medium text-accent-foreground"
@@ -84,6 +127,18 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
                 {t(`roof.orientations.${option}`)}
               </button>
             ))}
+          </div>
+
+          <div className="mt-4 rounded-xl border border-border bg-card p-4">
+            <Label className="text-sm">{t("roof.manual")}</Label>
+            <p className="mt-1 text-xs text-muted-foreground">{t("roof.manualHint")}</p>
+            <div className="mt-3 flex justify-center">
+              <CompassDial
+                value={dialValue}
+                onChange={handleDialChange}
+                caption={t(`roof.orientations.${nearestOrientation(dialValue)}`)}
+              />
+            </div>
           </div>
         </div>
 

@@ -6,6 +6,8 @@ export interface WizardState {
   location: SiteLocation | null;
   orientation: Orientation;
   tiltDegrees: number | null;
+  /** Exact compass azimuth in degrees (0=N, 90=E, 180=S, 270=W), or null. */
+  azimuthDegrees: number | null;
   resource: SolarResource | null;
   annualConsumptionKwh: number | null;
   monthlyConsumptionKwh: number[] | null;
@@ -14,7 +16,11 @@ export interface WizardState {
   selfConsumedValuePerKwh: number | null;
   exportValuePerKwh: number | null;
   setLocation: (location: SiteLocation | null) => void;
-  setRoof: (orientation: Orientation, tiltDegrees: number | null) => void;
+  setRoof: (
+    orientation: Orientation,
+    tiltDegrees: number | null,
+    azimuthDegrees?: number | null,
+  ) => void;
   setResource: (resource: SolarResource | null) => void;
   setConsumption: (annualKwh: number, monthlyKwh: number[] | null) => void;
   setMainFuse: (amp: number) => void;
@@ -27,7 +33,8 @@ export interface WizardState {
 const initialState = {
   location: null,
   orientation: "unknown" as Orientation,
-  tiltDegrees: null,
+  tiltDegrees: 30,
+  azimuthDegrees: null,
   resource: null,
   annualConsumptionKwh: null,
   monthlyConsumptionKwh: null,
@@ -40,7 +47,13 @@ const initialState = {
 export const useWizardStore = create<WizardState>((set) => ({
   ...initialState,
   setLocation: (location) => set({ location, resource: null }),
-  setRoof: (orientation, tiltDegrees) => set({ orientation, tiltDegrees, resource: null }),
+  setRoof: (orientation, tiltDegrees, azimuthDegrees) =>
+    set((state) => ({
+      orientation,
+      tiltDegrees,
+      azimuthDegrees: azimuthDegrees === undefined ? state.azimuthDegrees : azimuthDegrees,
+      resource: null,
+    })),
   setResource: (resource) => set({ resource }),
   setConsumption: (annualKwh, monthlyKwh) =>
     set({ annualConsumptionKwh: annualKwh, monthlyConsumptionKwh: monthlyKwh }),

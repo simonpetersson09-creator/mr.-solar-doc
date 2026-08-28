@@ -42,8 +42,16 @@ export const en = {
     title: "Your roof",
     subtitle: "Not sure? We'll assume an optimal placement.",
     orientation: "Orientation",
+    manual: "Manual – exact direction",
+    manualHint: "Drag the arrow so it points in the roof's direction. 180° = due south.",
     tilt: "Roof tilt",
     tiltDegrees: "Degrees",
+    compass: {
+      n: "N",
+      e: "E",
+      s: "S",
+      w: "W",
+    },
     orientations: {
       unknown: "Don't know",
       south: "South",

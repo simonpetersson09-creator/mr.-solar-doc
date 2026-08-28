@@ -16,6 +16,14 @@ export interface SolarResourceRequest {
   orientation: Orientation;
   /** Tilt in degrees, or null for "don't know" -> optimal angles. */
   tiltDegrees: number | null;
+  /** Exact compass azimuth (0=N, 90=E, 180=S, 270=W); overrides preset orientation when set. */
+  azimuthDegrees?: number | null;
+}
+
+/** Convert compass azimuth (0=N, clockwise) to PVGIS azimuth (0=S, negative=east). */
+function compassToPvgisAzimuth(compass: number): number {
+  const pvgis = compass - 180;
+  return pvgis < -180 ? pvgis + 360 : pvgis;
 }
 
 /**
@@ -30,7 +38,9 @@ export async function getSolarResource(
 
   const azimuth = orientationAssumed
     ? null
-    : ORIENTATION_AZIMUTH[request.orientation as Exclude<Orientation, "unknown">];
+    : request.azimuthDegrees != null
+      ? compassToPvgisAzimuth(request.azimuthDegrees)
+      : ORIENTATION_AZIMUTH[request.orientation as Exclude<Orientation, "unknown">];
 
   const pvgis = await fetchPvgis({
     data: {
