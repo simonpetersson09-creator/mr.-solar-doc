@@ -235,7 +235,7 @@ function ResultPage() {
             <div className="flex items-center justify-between">
               <Label className="text-xs">{t("result.adjustSplit")}</Label>
               <span className="text-sm font-semibold">
-                {formatNumber(p.selfConsumptionPercent, locale)} %
+                {formatNumber(p.requestedSelfConsumptionPercent, locale)} %
               </span>
             </div>
             <Slider
@@ -243,10 +243,24 @@ function ResultPage() {
               min={0}
               max={100}
               step={5}
-              value={[p.selfConsumptionPercent]}
+              value={[p.requestedSelfConsumptionPercent]}
               onValueChange={([value]) => setSelfConsumptionShare((value ?? 0) / 100)}
             />
+            <p className="mt-2 text-[11px] leading-snug text-muted-foreground">
+              {t("result.selfConsumptionAssumption")}
+            </p>
+            <p className="mt-1 text-[11px] leading-snug text-muted-foreground">
+              {t("result.selfConsumptionInfo")}
+            </p>
+            {p.selfConsumptionCapped ? (
+              <p className="mt-2 text-[11px] font-medium leading-snug text-foreground">
+                {t("result.selfConsumptionCappedNote", {
+                  effective: formatNumber(p.selfConsumptionPercent, locale),
+                })}
+              </p>
+            ) : null}
           </div>
+
         </section>
 
         {/* 4. Economics */}

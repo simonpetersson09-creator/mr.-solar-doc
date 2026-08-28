@@ -17,6 +17,7 @@ export function useCalculation(): {
   const consumptionShape = useWizardStore((s) => s.consumptionShape);
   const mainFuseAmp = useWizardStore((s) => s.mainFuseAmp);
   const selfConsumptionShare = useWizardStore((s) => s.selfConsumptionShare);
+  const selfConsumptionShareIsUserSet = useWizardStore((s) => s.selfConsumptionShareIsUserSet);
   const selfConsumedValuePerKwh = useWizardStore((s) => s.selfConsumedValuePerKwh);
   const exportValuePerKwh = useWizardStore((s) => s.exportValuePerKwh);
   const acceptedPaybackYears = useWizardStore((s) => s.acceptedPaybackYears);
@@ -52,6 +53,7 @@ export function useCalculation(): {
           (exportValuePerKwh ?? market.exportElectricityValue) === null,
       },
       selfConsumptionShare,
+      selfConsumptionShareIsUserSet,
       acceptedPaybackYears,
       quotePrice,
       inverterSizesKw: market.inverterSizesKw,
@@ -65,6 +67,7 @@ export function useCalculation(): {
     consumptionShape,
     mainFuseAmp,
     selfConsumptionShare,
+    selfConsumptionShareIsUserSet,
     selfConsumedValuePerKwh,
     exportValuePerKwh,
     acceptedPaybackYears,

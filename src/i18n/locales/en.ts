@@ -266,6 +266,12 @@ export const en = {
     showCalculation: "Show calculation",
     hideCalculation: "Hide calculation",
     adjustSplit: "Adjust self-consumption",
+    selfConsumptionAssumption:
+      "Self-consumption is an assumption based on the selected share and can be adjusted manually.",
+    selfConsumptionInfo:
+      "Actual self-consumption depends on when the electricity is produced and when the household uses it.",
+    selfConsumptionCappedNote:
+      "Self-consumption has been limited because the calculated amount would otherwise exceed your total electricity use. Effective self-consumption rate: {{effective}} %.",
     priceLabel: "Assumed future electricity price ({{currency}}/kWh)",
     downloadPdf: "Download report as PDF",
     generatingPdf: "Creating report…",

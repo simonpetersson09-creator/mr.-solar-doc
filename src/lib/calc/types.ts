@@ -118,6 +118,8 @@ export interface CalculationInput {
   economics: EconomicsInput;
   /** 0..1 share of production consumed on site. */
   selfConsumptionShare: number;
+  /** True when the user actively set the share (even if it equals the default). */
+  selfConsumptionShareIsUserSet?: boolean;
   /** Simple payback time the user selected, in years. */
   acceptedPaybackYears: number;
   /** Overrides the default annual production degradation (e.g. 0.005). */
