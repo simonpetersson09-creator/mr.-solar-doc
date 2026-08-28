@@ -694,8 +694,73 @@ export function generateReportBlob(options: ReportOptions): Blob {
       : labels.paybackNote,
   );
 
-  report.sectionTitle(labels.assumptions);
+  // Cumulative economic value over the calculation period, straight from
+  // result.lifetime (0.5 %/year degradation, unchanged electricity values).
+  let running = 0;
+  const cumulative = result.lifetime.years.map((year) => {
+    running += year.economicValue;
+    return { year: year.year, value: running };
+  });
+  const markerYears = [1, 10, 20, result.lifetime.periodYears].filter(
+    (year, index, all) => year <= result.lifetime.periodYears && all.indexOf(year) === index,
+  );
+  report.sectionTitle(f["longTermChartTitle"] ?? "");
+  report.cumulativeChart(
+    cumulative,
+    markerYears,
+    (value) => formatCurrency(Math.round(value), locale, currency),
+    f["yearShort"] ?? "",
+  );
+  report.paragraph(
+    `${(f["savings30Note"] ?? "").replace(
+      "{{degradation}}",
+      formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
+    )} ${(f["savings30Method"] ?? "")
+      .replace("{{years}}", String(result.lifetime.periodYears))
+      .replace(
+        "{{degradation}}",
+        formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
+      )
+      .replace(
+        "{{priceChange}}",
+        formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0),
+      )}`,
+  );
+
+  report.sectionTitle(f["keyAssumptions"] ?? labels.assumptions);
+  const selfConsumptionSourceLabel =
+    f[`selfConsumptionSource_${result.selfConsumptionSource}`] ?? "";
   const assumptionRows: Row[] = [
+    {
+      label: f.specificYield,
+      value: `${formatNumber(result.resource.annualKwhPerKwp, locale)} kWh/kWp`,
+      origin: "external",
+    },
+    {
+      label: f["selfConsumptionShare"] ?? f.selfConsumption,
+      value: `${formatNumber(Math.round(result.selfConsumptionRate * 100), locale)} % – ${selfConsumptionSourceLabel}`,
+      origin: selfConsumptionOrigin,
+    },
+    {
+      label: f["selfConsumedValueRate"] ?? f.assumedPrice,
+      value: `${formatDecimal(result.economics.selfConsumedValuePerKwh, locale, 2)} ${currency}/kWh`,
+      origin: "assumed",
+    },
+    {
+      label: f["exportValueRate"] ?? f.assumedPrice,
+      value: `${formatDecimal(result.economics.exportValuePerKwh, locale, 2)} ${currency}/kWh`,
+      origin: "assumed",
+    },
+    {
+      label: f["priceChange"] ?? "",
+      value: `${formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0)} % ${f["perYearShort"] ?? ""}`,
+      origin: "assumed",
+    },
+    {
+      label: f["calculationPeriod"] ?? "",
+      value: `${result.lifetime.periodYears} ${f["yearsUnit"] ?? ""}`,
+      origin: "assumed",
+    },
     {
       label: f.orientation,
       value: f[`orientation_${result.resource.orientation}`] ?? result.resource.orientation,
@@ -738,8 +803,17 @@ export function generateReportBlob(options: ReportOptions): Blob {
       formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
     ),
   );
+
+  report.noteBox(f["uncertaintyTitle"] ?? "", f["uncertaintyText"] ?? "");
+
+  const reportId = buildReportId(result);
+  report.rows([
+    { label: f["reportId"] ?? "", value: reportId },
+    { label: labels.generated, value: isoDateOnly(result.calculatedAt) },
+    { label: f.calculationVersion, value: result.calculationVersion },
+  ]);
   report.paragraph(labels.disclaimer);
-  report.footer(labels.appName);
+  report.footer(labels.appName, reportId);
 
   return report.doc.output("blob");
 }
