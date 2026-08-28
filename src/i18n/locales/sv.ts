@@ -116,8 +116,31 @@ export const sv = {
     dcAcRatio: "DC/AC-ratio",
     oversizing: "Överdimensionering",
     monthlyProduction: "Produktion januari–december",
-    chartProduction: "Solelproduktion",
-    chartConsumption: "Förbrukning",
+    chartProduction: "Solproduktion",
+    chartConsumption: "Elförbrukning",
+    coverage: "≈ {{percent}} % av din årsförbrukning",
+    coverageNote:
+      "Siffran jämför total årsproduktion med total årsförbrukning. Det är inte en självförsörjningsgrad.",
+    sectionProduction: "Produktion",
+    sectionYourSolar: "Din solel",
+    sectionEconomy: "Ekonomi",
+    inverterShort: "{{kw}} kW växelriktare",
+    productionCaption: "beräknad årsproduktion",
+    annualSavings: "Beräknad årlig besparing",
+    assumedPrices: "Antagna elpriser",
+    fuseLimit: "Teoretisk effektgräns från huvudsäkring",
+    fuseLimitInfo:
+      "Beräknas utifrån huvudsäkring och nätspänning. Faktisk tillåten växelriktar- eller inmatningseffekt kan begränsas av nätägaren och lokala nätregler.",
+    rationale: {
+      consumption:
+        "Dimensionerad för att producera ungefär lika mycket el som din årliga elanvändning.",
+      gridLimit:
+        "Anläggningen är begränsad av din huvudsäkring – större effekt tillåts inte av din nätanslutning.",
+      inverterLimit:
+        "Storleken är anpassad efter största lämpliga växelriktare för din anslutning.",
+      minimumSize: "Din elanvändning är låg, så vi föreslår minsta rimliga anläggning.",
+      maximumSize: "Förslaget är begränsat till största storlek som appen dimensionerar för.",
+    },
     selfConsumption: "Egenanvänd solel",
     exported: "Såld solel",
     assumedPrice: "Antaget framtida elpris",

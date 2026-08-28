@@ -116,7 +116,30 @@ export const en = {
     oversizing: "Oversizing",
     monthlyProduction: "Production January–December",
     chartProduction: "Solar production",
-    chartConsumption: "Consumption",
+    chartConsumption: "Electricity use",
+    coverage: "≈ {{percent}} % of your annual electricity use",
+    coverageNote:
+      "This compares total annual production with total annual consumption. It is not a self-sufficiency figure.",
+    sectionProduction: "Production",
+    sectionYourSolar: "Your solar electricity",
+    sectionEconomy: "Economics",
+    inverterShort: "{{kw}} kW inverter",
+    productionCaption: "estimated annual production",
+    annualSavings: "Estimated annual savings",
+    assumedPrices: "Assumed electricity prices",
+    fuseLimit: "Theoretical power limit from main fuse",
+    fuseLimitInfo:
+      "Derived from your main fuse and grid voltage. The actually permitted inverter or feed-in power may be limited by your grid operator and local grid rules.",
+    rationale: {
+      consumption:
+        "Sized to produce roughly as much electricity as you use over a year.",
+      gridLimit:
+        "The system is limited by your main fuse — your grid connection does not allow more power.",
+      inverterLimit:
+        "The size is matched to the largest suitable inverter for your connection.",
+      minimumSize: "Your electricity use is low, so we suggest the smallest sensible system.",
+      maximumSize: "The suggestion is capped at the largest size this app sizes for.",
+    },
     selfConsumption: "Self-consumed solar",
     exported: "Exported solar",
     assumedPrice: "Assumed future electricity price",
