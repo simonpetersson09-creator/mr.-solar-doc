@@ -1,10 +1,16 @@
-import { CALCULATION_VERSION } from "@/config/constants";
+import {
+  CALCULATION_VERSION,
+  MAX_RECOMMENDED_KWP,
+  MIN_RECOMMENDED_KWP,
+  PANEL_WATTAGE_KWP,
+} from "@/config/constants";
+import { buildPresentationValues } from "./presentation";
 import { calculateEconomicValue } from "./electricity-price";
 import { annualProduction, monthlyProduction } from "./energy-production";
 import { maxAcPowerFromFuse, dcAcRatio, oversizingPercent, recommendInverter } from "./inverter-sizing";
 import { recommendArraySize, clampKwp, roundKwp } from "./solar-sizing";
 import { splitProduction } from "./self-consumption";
-import type { CalculationInput, CalculationResult } from "./types";
+import type { CalculationInput, CalculationResult, SizingBasis } from "./types";
 
 /**
  * Pure calculation entry point.
@@ -37,6 +43,14 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     roundKwp(Math.min(sizing.recommendedKwp, inverterKw * 1.3)),
   );
 
+  let sizingBasis: SizingBasis = "consumption";
+  if (sizing.limitedByGrid) sizingBasis = "grid-limit";
+  if (installedKwp < sizing.recommendedKwp - 1e-9) sizingBasis = "inverter-limit";
+  if (installedKwp <= MIN_RECOMMENDED_KWP + 1e-9 && sizing.referenceKwp < MIN_RECOMMENDED_KWP) {
+    sizingBasis = "minimum-size";
+  }
+  if (installedKwp >= MAX_RECOMMENDED_KWP - 1e-9) sizingBasis = "maximum-size";
+
   const monthlyProductionKwh = monthlyProduction(input.resource.monthlyKwhPerKwp, installedKwp);
   const annualProductionKwh = annualProduction(monthlyProductionKwh);
 
@@ -58,6 +72,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     location: input.location,
     resource: input.resource,
     installedKwp,
+    panelCount: Math.max(1, Math.round(installedKwp / PANEL_WATTAGE_KWP)),
+    sizingBasis,
     inverterKw,
     maxAcPowerKw,
     dcAcRatio: dcAcRatio(installedKwp, inverterKw),
@@ -74,6 +90,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       ...economics,
     },
     mainFuseAmp: input.electrical.mainFuseAmp,
+    presentation: buildPresentationValues({
+      annualProductionKwh,
+      selfConsumptionKwh: split.selfConsumptionKwh,
+      selfConsumptionShare: split.selfConsumptionShare,
+      annualConsumptionKwh: input.consumption.annualKwh,
+      maxAcPowerKw,
+    }),
     calculationVersion: CALCULATION_VERSION,
     calculatedAt: new Date().toISOString(),
     notes,
