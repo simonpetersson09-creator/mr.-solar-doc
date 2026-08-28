@@ -43,8 +43,15 @@ function toSuggestion(place: NominatimPlace): GeocodeSuggestion {
 
 const USER_AGENT = "MrSolarDoc/1.0 (solar sizing app)";
 
-/** Nominatim usage policy: at most one request per second, per application. */
-const MIN_REQUEST_INTERVAL_MS = 1000;
+/**
+ * Nominatim usage policy: at most one request per second, per application.
+ * The queue below is per server isolate, and several isolates may run in
+ * parallel, so we keep a safety margin above the documented one second.
+ */
+const MIN_REQUEST_INTERVAL_MS = 1200;
+/** Upstream throttling response: retried once after a short pause. */
+const RATE_LIMIT_STATUS = 429;
+const RATE_LIMIT_RETRY_DELAY_MS = 1500;
 /** Hard ceiling so a slow upstream can never pin the user in a loading state. */
 const REQUEST_TIMEOUT_MS = 10_000;
 const CACHE_TTL_MS = 1000 * 60 * 10;
