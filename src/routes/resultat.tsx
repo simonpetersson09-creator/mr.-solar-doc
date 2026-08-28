@@ -140,7 +140,6 @@ function ResultPage() {
                 {formatNumber(p.annualProductionKwh, locale)}{" "}
                 <span className="text-base font-semibold">kWh{t("common.perYear")}</span>
               </p>
-              <p className="text-xs text-muted-foreground">{t("result.productionCaption")}</p>
             </div>
           </div>
 
