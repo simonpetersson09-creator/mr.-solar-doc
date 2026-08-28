@@ -103,6 +103,8 @@ export const sv = {
     },
     upload: {
       title: "Bifoga förbrukningsdata för 12 månader",
+      sectionTitle: "Från dokument",
+      sectionHint: "Låt oss läsa av din elräkning eller förbrukningsdata automatiskt.",
       description:
         "Ladda upp en elfaktura eller egen förbrukningsdata (PDF, Excel, CSV eller bild som PNG/JPEG) så fyller vi i årsförbrukning och månadsvärden automatiskt.",
       button: "Välj fil",
@@ -121,6 +123,11 @@ export const sv = {
     },
     title: "Hur mycket el använder du?",
     subtitle: "Titta på din elräkning eller ditt elavtal.",
+    or: "eller",
+    manual: {
+      sectionTitle: "Fyll i själv",
+      sectionHint: "Ange din årsförbrukning – titta på din elräkning eller ditt elavtal.",
+    },
     annual: "Årsförbrukning",
     annualPlaceholder: "t.ex. 18 000",
     useMonthly: "Ange förbrukning per månad (12 månader)",
