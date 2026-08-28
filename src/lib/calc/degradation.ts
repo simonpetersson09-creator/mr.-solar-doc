@@ -64,8 +64,8 @@ export function buildLifetimeProjection(params: {
   selfConsumptionShare: number;
   selfConsumedValuePerKwh: number;
   exportValuePerKwh: number;
-  periodYears?: number;
-  annualDegradationRate?: number;
+  periodYears?: number | undefined;
+  annualDegradationRate?: number | undefined;
 }): LifetimeProjection {
   const periodYears = params.periodYears ?? LONG_TERM_CALCULATION_YEARS;
   const annualDegradationRate =
