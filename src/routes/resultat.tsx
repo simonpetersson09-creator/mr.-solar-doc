@@ -354,7 +354,7 @@ function ResultPage() {
         {exportError ? <p className="text-sm text-destructive">{t("result.pdfError")}</p> : null}
       </main>
 
-      <div className="fixed inset-x-0 bottom-0 border-t border-border bg-card/90 backdrop-blur">
+      <div className="fixed inset-x-0 bottom-0 border-t border-border bg-background/90 pb-[env(safe-area-inset-bottom)] backdrop-blur">
         <div
           className="mx-auto flex max-w-2xl flex-col gap-2 px-5 py-3"
           style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
