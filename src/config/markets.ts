@@ -26,13 +26,16 @@ export interface MarketConfig {
   /** Official languages the user may pick for this market (first = default). */
   languageOptions: SupportedLanguage[];
   /**
-   * Calculation assumption: value of one self-consumed kWh, in `currency`.
-   * `null` when no verified national default exists — the user must enter it.
+   * Standard calculation value ("schablonvärde") for one self-consumed kWh, in
+   * `currency`. Not a national electricity price, tariff or guaranteed level —
+   * it is a starting assumption the user can replace.
+   * `null` when no standard value exists — the user must enter it.
    */
   selfConsumedElectricityValue: number | null;
   /**
-   * Calculation assumption: compensation for one exported kWh, in `currency`.
-   * `null` when no verified national default exists — the user must enter it.
+   * Standard calculation value ("schablonvärde") for one exported kWh, in
+   * `currency`. Not a guaranteed compensation level.
+   * `null` when no standard value exists — the user must enter it.
    */
   exportElectricityValue: number | null;
   gridConnectionType: GridConnectionType;
