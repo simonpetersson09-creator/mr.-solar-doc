@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, ChevronDown, Download, Info, Loader2, Pencil, Sun, Zap } from "lucide-react";
+import { ArrowLeft, ChevronDown, Download, Info, Loader2, Sun, Zap } from "lucide-react";
 import i18nInstance from "@/i18n";
 import { Button } from "@/components/ui/button";
 import { MonthlyChart } from "@/components/MonthlyChart";
@@ -111,13 +111,6 @@ function ResultPage() {
   const p = result.presentation;
   const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
-
-
-  const editableBadge = (
-    <span className="inline-flex items-center gap-1 rounded-full bg-accent/20 px-2 py-0.5 text-[10px] font-medium text-accent-foreground">
-      <Pencil className="size-2.5" /> {t("result.editable")}
-    </span>
-  );
 
   return (
     <div className="min-h-screen surface-sun pb-28">
