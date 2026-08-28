@@ -1,5 +1,5 @@
 import { generateReportBlob } from "@/services/solar-report-service";
-import sv from "@/i18n/locales/sv";
+import { sv } from "@/i18n/locales/sv";
 const months=["Jan","Feb","Mar","Apr","Maj","Jun","Jul","Aug","Sep","Okt","Nov","Dec"];
 const prod=[120,320,700,1100,1500,1700,1650,1350,900,450,180,90];
 const cons=[520,480,430,360,300,260,250,270,330,420,500,560];
