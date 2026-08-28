@@ -142,7 +142,13 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
         </Button>
       }
     >
-      <div className="card-elevated space-y-2.5 p-3">
+      {/* ── Upload card ── separate from manual entry ── */}
+      <div className="card-elevated p-3.5">
+        <div className="mb-2.5">
+          <p className="text-sm font-semibold text-foreground">{t("consumption.upload.sectionTitle")}</p>
+          <p className="text-xs leading-snug text-muted-foreground">{t("consumption.upload.sectionHint")}</p>
+        </div>
+
         {parsing ? (
           <div className="flex items-center gap-2.5 rounded-xl border border-border bg-secondary/40 p-3">
             <Loader2 className="size-4 shrink-0 animate-spin text-primary" />
@@ -212,7 +218,23 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
             if (file) void handleFile(file);
           }}
         />
-        <div className="border-t border-border" />
+      </div>
+
+      {/* ── Divider ── */}
+      <div className="flex items-center gap-3 py-0.5">
+        <div className="h-px flex-1 bg-border" />
+        <span className="text-[11px] font-medium tracking-wide text-muted-foreground uppercase">
+          {t("consumption.or")}
+        </span>
+        <div className="h-px flex-1 bg-border" />
+      </div>
+
+      {/* ── Manual entry card ── */}
+      <div className="card-elevated space-y-2.5 p-3.5">
+        <div className="mb-1">
+          <p className="text-sm font-semibold text-foreground">{t("consumption.manual.sectionTitle")}</p>
+          <p className="text-xs leading-snug text-muted-foreground">{t("consumption.manual.sectionHint")}</p>
+        </div>
 
         {!useMonthly ? (
           <div className="flex items-end gap-2">
@@ -240,7 +262,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
           </p>
         ) : null}
 
-        <div className="flex items-center justify-between gap-4 border-t border-border pt-2.5 first:border-0 first:pt-0">
+        <div className="flex items-center justify-between gap-4 border-t border-border pt-2.5">
           <Label htmlFor="monthly-toggle" className="text-xs leading-snug">
             {t("consumption.useMonthly")}
           </Label>
