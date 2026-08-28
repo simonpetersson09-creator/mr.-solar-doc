@@ -43,16 +43,11 @@ function ResultPage() {
   const { t, i18n } = useTranslation();
   const { locale } = useAppLocale();
   const { result, market } = useCalculation();
-  const setSelfConsumptionShare = useWizardStore((s) => s.setSelfConsumptionShare);
-  const setSelfConsumedValue = useWizardStore((s) => s.setSelfConsumedValue);
-  const setExportValue = useWizardStore((s) => s.setExportValue);
   const reset = useWizardStore((s) => s.reset);
   const setCurrentStep = useWizardStore((s) => s.setCurrentStep);
   const navigate = useNavigate();
   const [showDetails, setShowDetails] = useState(false);
-  const [showAssumptions, setShowAssumptions] = useState(false);
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
-  const setAcceptedPaybackYears = useWizardStore((s) => s.setAcceptedPaybackYears);
   const [exporting, setExporting] = useState(false);
   const [exportError, setExportError] = useState(false);
 
