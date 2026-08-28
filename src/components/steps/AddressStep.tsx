@@ -2,6 +2,7 @@ import { Suspense, lazy, useEffect, useState } from "react";
 import { ClientOnly } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Loader2, MapPin, Minus, Plus, Search, Sun } from "lucide-react";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type L from "leaflet";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
