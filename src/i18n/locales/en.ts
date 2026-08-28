@@ -286,6 +286,28 @@ export const en = {
   },
   report: {
     fields: {
+      savings30Short: "Calculated with {{degradation}} % annual production degradation and unchanged electricity values.",
+      solarShareTitle: "Your solar electricity",
+      selfConsumptionRate: "Self-consumption rate",
+      selfSufficiencyRate: "Self-sufficiency rate",
+      selfConsumptionRateNote:
+        "The self-consumption rate shows how much of the produced solar electricity is used directly in the property.",
+      selfSufficiencyRateNote:
+        "The self-sufficiency rate shows how much of the property's total electricity use is covered directly by solar.",
+      selfConsumptionShare: "Self-consumption",
+      "selfConsumptionSource_standard-assumption": "standard assumption",
+      "selfConsumptionSource_user-override": "entered by you",
+      "selfConsumptionSource_actual-data": "calculated from metered data",
+      selfConsumptionSource_simulated: "estimated from consumption profile",
+      longTermChartTitle: "Economic value over time",
+      keyAssumptions: "Key calculation assumptions",
+      priceChange: "Electricity price change",
+      calculationPeriod: "Calculation period",
+      yearShort: "Year",
+      reportId: "Report ID",
+      uncertaintyTitle: "What can affect the outcome?",
+      uncertaintyText:
+        "Actual solar production and economic outcome may differ from the calculation. The result is affected by weather variation, shading, panel orientation and tilt, actual electricity use and when it occurs, electricity prices, export compensation and system performance over time.",
       panelPower: "Panel power",
       annualValue: "Estimated economic value",
       savings30: "Total economic value over {{years}} years",

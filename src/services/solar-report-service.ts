@@ -88,12 +88,24 @@ interface Row {
   origin?: ValueOrigin;
 }
 
+/** jsPDF's core fonts lack U+2212 and thin spaces; normalise before drawing. */
+function pdfText(value: string): string {
+  return value.replace(/\u2212/g, "-").replace(/[\u202f\u2009]/g, "\u00a0");
+}
+
 class ReportDocument {
   readonly doc: jsPDF;
   private y = PAGE.margin;
 
   constructor() {
     this.doc = new jsPDF({ unit: "mm", format: "a4" });
+    // Central text sanitation: core PDF fonts lack a few Unicode glyphs.
+    const drawText = this.doc.text.bind(this.doc);
+    (this.doc as unknown as { text: unknown }).text = ((value: unknown, ...rest: unknown[]) =>
+      (drawText as (...args: unknown[]) => unknown)(
+        Array.isArray(value) ? value.map((line) => pdfText(String(line))) : pdfText(String(value)),
+        ...rest,
+      )) as unknown as jsPDF["text"];
     this.doc.setFont("helvetica", "normal");
   }
 
@@ -287,7 +299,78 @@ class ReportDocument {
     this.y += lines.length * 4 + 4;
   }
 
-  footer(appName: string) {
+  /** Bordered note block, used for the closing "what can affect the outcome" text. */
+  noteBox(title: string, text: string) {
+    const width = PAGE.width - PAGE.margin * 2;
+    this.doc.setFontSize(8.5);
+    this.doc.setFont("helvetica", "normal");
+    const lines = this.doc.splitTextToSize(text, width - 8) as string[];
+    const height = 12 + lines.length * 4;
+    this.ensureSpace(height + 4);
+    this.doc.setFillColor(250, 246, 236);
+    this.doc.setDrawColor(...LINE);
+    this.doc.setLineWidth(0.2);
+    this.doc.roundedRect(PAGE.margin, this.y, width, height, 2.5, 2.5, "FD");
+    this.doc.setFont("helvetica", "bold");
+    this.doc.setFontSize(9);
+    this.doc.setTextColor(...INK);
+    this.doc.text(title, PAGE.margin + 4, this.y + 6);
+    this.doc.setFont("helvetica", "normal");
+    this.doc.setFontSize(8.5);
+    this.doc.setTextColor(...MUTED);
+    this.doc.text(lines, PAGE.margin + 4, this.y + 11);
+    this.y += height + 6;
+  }
+
+  /**
+   * Compact cumulative-value line chart for the calculation period.
+   * Presentation only — every point comes from the calculation result.
+   */
+  cumulativeChart(
+    points: Array<{ year: number; value: number }>,
+    markers: number[],
+    formatValue: (value: number) => string,
+    axisLabel: string,
+  ) {
+    const height = 32;
+    this.ensureSpace(height + 24);
+    const width = PAGE.width - PAGE.margin * 2;
+    const baseline = this.y + height;
+    const maxValue = Math.max(...points.map((p) => p.value), 1);
+    const maxYear = Math.max(...points.map((p) => p.year), 1);
+    const xFor = (year: number) => PAGE.margin + ((year - 1) / (maxYear - 1 || 1)) * width;
+    const yFor = (value: number) => baseline - (value / maxValue) * height;
+
+    this.doc.setDrawColor(...LINE);
+    this.doc.setLineWidth(0.2);
+    this.doc.line(PAGE.margin, baseline, PAGE.margin + width, baseline);
+
+    this.doc.setDrawColor(...ACCENT);
+    this.doc.setLineWidth(0.7);
+    points.forEach((point, index) => {
+      if (index === 0) return;
+      const previous = points[index - 1]!;
+      this.doc.line(xFor(previous.year), yFor(previous.value), xFor(point.year), yFor(point.value));
+    });
+
+    this.doc.setFontSize(6.5);
+    markers.forEach((year) => {
+      const point = points.find((p) => p.year === year);
+      if (!point) return;
+      const x = xFor(point.year);
+      const y = yFor(point.value);
+      this.doc.setFillColor(...ACCENT);
+      this.doc.circle(x, y, 0.9, "F");
+      this.doc.setTextColor(...INK);
+      const align = year === maxYear ? "right" : year === 1 ? "left" : "center";
+      this.doc.text(formatValue(point.value), x, y - 2.5, { align });
+      this.doc.setTextColor(...MUTED);
+      this.doc.text(`${axisLabel} ${year}`, x, baseline + 4, { align });
+    });
+    this.y = baseline + 10;
+  }
+
+  footer(appName: string, reportId?: string) {
     const pages = this.doc.getNumberOfPages();
     for (let page = 1; page <= pages; page += 1) {
       this.doc.setPage(page);
@@ -295,12 +378,23 @@ class ReportDocument {
       this.doc.setFontSize(8);
       this.doc.setTextColor(...MUTED);
       this.doc.text(appName, PAGE.margin, PAGE.height - 10);
+      if (reportId) {
+        this.doc.text(reportId, PAGE.width / 2, PAGE.height - 10, { align: "center" });
+      }
       this.doc.text(`${page} / ${pages}`, PAGE.width - PAGE.margin, PAGE.height - 10, {
         align: "right",
       });
     }
   }
 }
+
+/** Unique, human-readable identifier for one generated report. */
+export function buildReportId(result: CalculationResult): string {
+  const date = isoDateOnly(result.calculatedAt).replace(/-/g, "");
+  const random = Math.random().toString(36).slice(2, 7).toUpperCase().padEnd(5, "0");
+  return `MSD-${date}-${random}`;
+}
+
 
 export function buildReportFileName(result: CalculationResult): string {
   return `mr-solar-doc-${isoDateOnly(result.calculatedAt)}.pdf`;
@@ -391,24 +485,14 @@ export function generateReportBlob(options: ReportOptions): Blob {
     },
   ]);
 
+  // Page 1 keeps only the short method line; the full explanation lives on the
+  // economics page so the summary stays readable.
   report.paragraph(
-    `${(f["savings30Method"] ?? "")
-      .replace("{{years}}", String(result.lifetime.periodYears))
-      .replace(
-        "{{degradation}}",
-        formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
-      )
-      .replace(
-        "{{priceChange}}",
-        formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0),
-      )} ${(f["savings30Note"] ?? "").replace(
+    (f["savings30Short"] ?? "").replace(
       "{{degradation}}",
       formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
-    )}`,
+    ),
   );
-
-  report.paragraph(labels.rationale);
-
 
   report.pageBreak();
 
@@ -453,6 +537,33 @@ export function generateReportBlob(options: ReportOptions): Blob {
         value: `${formatDecimal(result.presentation.maxAcPowerKw, locale, 1)} kW`,
         origin: "calculated",
       },
+      {
+        label: f.orientation,
+        value: f[`orientation_${result.resource.orientation}`] ?? result.resource.orientation,
+        origin: result.resource.orientationAssumed ? "assumed" : "user",
+      },
+      ...(result.resource.azimuthDegrees != null
+        ? [
+            {
+              label: f.exactOrientation,
+              value: `${formatNumber(result.resource.azimuthDegrees, locale)}°`,
+              origin: "user" as ValueOrigin,
+            },
+          ]
+        : []),
+      {
+        label: f.tilt,
+        value:
+          result.resource.tiltDegrees !== null
+            ? `${formatNumber(result.resource.tiltDegrees, locale)}°`
+            : "-",
+        origin: result.resource.tiltAssumed ? "assumed" : "user",
+      },
+      {
+        label: f.coordinates,
+        value: `${result.location.latitude.toFixed(5)}, ${result.location.longitude.toFixed(5)}`,
+        origin: "user",
+      },
     ],
     labels.origin,
   );
@@ -485,16 +596,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
       value: `${formatNumber(result.presentation.annualConsumptionKwh, locale)} kWh`,
       origin: "user",
     },
-    {
-      label: f.selfConsumption,
-      value: `${formatNumber(result.presentation.selfConsumptionPercent, locale)} % · ${formatNumber(result.presentation.selfConsumptionKwh, locale)} kWh`,
-      origin: "assumed",
-    },
-    {
-      label: f.exported,
-      value: `${formatNumber(result.presentation.exportPercent, locale)} % · ${formatNumber(result.presentation.exportedKwh, locale)} kWh`,
-      origin: "assumed",
-    },
   ];
   consumptionRows.splice(1, 0, {
     label: f["consumptionSource"] ?? f.dataSource,
@@ -508,32 +609,50 @@ export function generateReportBlob(options: ReportOptions): Blob {
       origin: "user",
     });
   }
-  if (result.consumption.monthlyKwh) {
-    result.consumption.monthlyKwh.forEach((value, index) => {
-      consumptionRows.push({
-        label: labels.months[index] ?? "",
-        value: `${formatNumber(value, locale)} kWh`,
-        origin: result.consumption.isEstimated ? "assumed" : "user",
-      });
-    });
-  }
   report.rows(consumptionRows, labels.origin);
+
+  // "Your solar electricity": self-consumption rate vs self-sufficiency rate.
+  // Both come straight from the calculation result and are never mixed up.
+  const selfConsumptionOrigin: ValueOrigin =
+    result.selfConsumptionSource === "standard-assumption"
+      ? "assumed"
+      : result.selfConsumptionSource === "user-override"
+        ? "user"
+        : "calculated";
+  report.sectionTitle(f["solarShareTitle"] ?? f.selfConsumption);
+  report.rows(
+    [
+      {
+        label: f["selfConsumptionRate"] ?? f.selfConsumption,
+        value: `${formatNumber(Math.round(result.selfConsumptionRate * 100), locale)} %`,
+        origin: selfConsumptionOrigin,
+      },
+      {
+        label: f.selfConsumption,
+        value: `${formatNumber(result.presentation.selfConsumptionKwh, locale)} kWh`,
+        origin: selfConsumptionOrigin,
+      },
+      {
+        label: f.exported,
+        value: `${formatNumber(result.presentation.exportedKwh, locale)} kWh`,
+        origin: selfConsumptionOrigin,
+      },
+      {
+        label: f["selfSufficiencyRate"] ?? "",
+        value: `${formatNumber(Math.round(result.selfSufficiencyRate * 100), locale)} %`,
+        origin: selfConsumptionOrigin,
+      },
+    ],
+    labels.origin,
+  );
+  report.paragraph(
+    `${f["selfConsumptionRateNote"] ?? ""} ${f["selfSufficiencyRateNote"] ?? ""}`,
+  );
 
   report.pageBreak();
   report.sectionTitle(labels.economics);
   report.rows(
     [
-      {
-        label: f["selfConsumedValueRate"] ?? f.assumedPrice,
-        value: `${formatDecimal(result.economics.selfConsumedValuePerKwh, locale, 2)} ${currency}/kWh`,
-        origin: "assumed",
-      },
-      {
-        label: f["exportValueRate"] ?? f.assumedPrice,
-        value: `${formatDecimal(result.economics.exportValuePerKwh, locale, 2)} ${currency}/kWh`,
-        origin: "assumed",
-      },
-      { label: f.currency, value: currency, origin: "assumed" },
       {
         label: f["selfConsumptionValue"] ?? f.selfConsumption,
         value: formatCurrency(result.presentation.selfConsumptionValue, locale, currency),
@@ -594,34 +713,72 @@ export function generateReportBlob(options: ReportOptions): Blob {
       : labels.paybackNote,
   );
 
-  report.sectionTitle(labels.assumptions);
+  // Cumulative economic value over the calculation period, straight from
+  // result.lifetime (0.5 %/year degradation, unchanged electricity values).
+  let running = 0;
+  const cumulative = result.lifetime.years.map((year) => {
+    running += year.economicValue;
+    return { year: year.year, value: running };
+  });
+  const markerYears = [1, 10, 20, result.lifetime.periodYears].filter(
+    (year, index, all) => year <= result.lifetime.periodYears && all.indexOf(year) === index,
+  );
+  report.sectionTitle(f["longTermChartTitle"] ?? "");
+  report.cumulativeChart(
+    cumulative,
+    markerYears,
+    (value) => formatCurrency(Math.round(value), locale, currency),
+    f["yearShort"] ?? "",
+  );
+  report.paragraph(
+    `${(f["savings30Note"] ?? "").replace(
+      "{{degradation}}",
+      formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
+    )} ${(f["savings30Method"] ?? "")
+      .replace("{{years}}", String(result.lifetime.periodYears))
+      .replace(
+        "{{degradation}}",
+        formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
+      )
+      .replace(
+        "{{priceChange}}",
+        formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0),
+      )}`,
+  );
+
+  report.sectionTitle(f["keyAssumptions"] ?? labels.assumptions);
+  const selfConsumptionSourceLabel =
+    f[`selfConsumptionSource_${result.selfConsumptionSource}`] ?? "";
   const assumptionRows: Row[] = [
     {
-      label: f.orientation,
-      value: f[`orientation_${result.resource.orientation}`] ?? result.resource.orientation,
-      origin: result.resource.orientationAssumed ? "assumed" : "user",
-    },
-    ...(result.resource.azimuthDegrees != null
-      ? [
-          {
-            label: f.exactOrientation,
-            value: `${formatNumber(result.resource.azimuthDegrees, locale)}°`,
-            origin: "user" as ValueOrigin,
-          },
-        ]
-      : []),
-    {
-      label: f.tilt,
-      value:
-        result.resource.tiltDegrees !== null
-          ? `${formatNumber(result.resource.tiltDegrees, locale)}°`
-          : "-",
-      origin: result.resource.tiltAssumed ? "assumed" : "user",
+      label: f.specificYield,
+      value: `${formatNumber(result.resource.annualKwhPerKwp, locale)} kWh/kWp`,
+      origin: "external",
     },
     {
-      label: f.coordinates,
-      value: `${result.location.latitude.toFixed(5)}, ${result.location.longitude.toFixed(5)}`,
-      origin: "user",
+      label: f["selfConsumptionShare"] ?? f.selfConsumption,
+      value: `${formatNumber(Math.round(result.selfConsumptionRate * 100), locale)} % – ${selfConsumptionSourceLabel}`,
+      origin: selfConsumptionOrigin,
+    },
+    {
+      label: f["selfConsumedValueRate"] ?? f.assumedPrice,
+      value: `${formatDecimal(result.economics.selfConsumedValuePerKwh, locale, 2)} ${currency}/kWh`,
+      origin: "assumed",
+    },
+    {
+      label: f["exportValueRate"] ?? f.assumedPrice,
+      value: `${formatDecimal(result.economics.exportValuePerKwh, locale, 2)} ${currency}/kWh`,
+      origin: "assumed",
+    },
+    {
+      label: f["priceChange"] ?? "",
+      value: `${formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0)} % ${f["perYearShort"] ?? ""}`,
+      origin: "assumed",
+    },
+    {
+      label: f["calculationPeriod"] ?? "",
+      value: `${result.lifetime.periodYears} ${f["yearsUnit"] ?? ""}`,
+      origin: "assumed",
     },
     {
       label: f["degradation"] ?? "",
@@ -629,17 +786,22 @@ export function generateReportBlob(options: ReportOptions): Blob {
       origin: "assumed",
     },
     { label: f.dataSource, value: result.resource.dataSource, origin: "external" },
-    { label: f.calculationVersion, value: result.calculationVersion, origin: "calculated" },
   ];
   report.rows(assumptionRows, labels.origin);
-  report.paragraph(
-    (f["degradationNote"] ?? "").replace(
-      "{{degradation}}",
-      formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
-    ),
+  report.noteBox(
+    f["uncertaintyTitle"] ?? "",
+    `${f["uncertaintyText"] ?? ""} ${labels.disclaimer}`,
   );
-  report.paragraph(labels.disclaimer);
-  report.footer(labels.appName);
+
+  const reportId = buildReportId(result);
+  report.rows([
+    { label: f["reportId"] ?? "", value: reportId },
+    {
+      label: `${labels.generated} · ${f.calculationVersion}`,
+      value: `${isoDateOnly(result.calculatedAt)} · ${result.calculationVersion}`,
+    },
+  ]);
+  report.footer(labels.appName, reportId);
 
   return report.doc.output("blob");
 }
