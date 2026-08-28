@@ -102,6 +102,8 @@ export const en = {
     },
     upload: {
       title: "Attach 12 months of consumption data",
+      sectionTitle: "From a document",
+      sectionHint: "Let us read your electricity bill or consumption data automatically.",
       description:
         "Upload an electricity invoice or your own consumption data (PDF, Excel, CSV or an image like PNG/JPEG) and we fill in annual and monthly values automatically.",
       button: "Choose file",
@@ -120,6 +122,11 @@ export const en = {
     },
     title: "How much electricity do you use?",
     subtitle: "Check your electricity bill or contract.",
+    or: "or",
+    manual: {
+      sectionTitle: "Enter manually",
+      sectionHint: "Enter your annual consumption — check your electricity bill or contract.",
+    },
     annual: "Annual consumption",
     annualPlaceholder: "e.g. 18,000",
     useMonthly: "Enter consumption per month (12 months)",
