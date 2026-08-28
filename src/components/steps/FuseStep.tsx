@@ -61,9 +61,9 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         </Button>
       }
     >
-      <div className="card-elevated space-y-3 p-4">
+      <div className="card-elevated space-y-2.5 p-3.5">
         <Label className="text-xs text-muted-foreground">{t("fuse.label")}</Label>
-        <div className="grid grid-cols-4 gap-2 sm:grid-cols-5">
+        <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-5">
           {market.mainFuseOptionsAmp.map((amp) => (
             <button
               key={amp}
@@ -75,8 +75,8 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
               }}
               className={
                 !custom && storedFuse === amp
-                  ? "rounded-xl bg-accent px-2 py-2.5 text-sm font-semibold text-accent-foreground"
-                  : "rounded-xl border border-border bg-card px-2 py-2.5 text-sm font-medium transition-colors hover:bg-secondary"
+                  ? "rounded-lg bg-accent px-2 py-2 text-[13px] font-semibold text-accent-foreground"
+                  : "rounded-lg border border-border bg-card px-2 py-2 text-[13px] font-medium transition-colors hover:bg-secondary"
               }
             >
               {amp} A
@@ -90,8 +90,8 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
             }}
             className={
               custom
-                ? "rounded-xl bg-accent px-2 py-2.5 text-sm font-semibold text-accent-foreground"
-                : "rounded-xl border border-border bg-card px-2 py-2.5 text-sm font-medium transition-colors hover:bg-secondary"
+                ? "rounded-lg bg-accent px-2 py-2 text-[13px] font-semibold text-accent-foreground"
+                : "rounded-lg border border-border bg-card px-2 py-2 text-[13px] font-medium transition-colors hover:bg-secondary"
             }
           >
             {t("fuse.other")}
@@ -99,7 +99,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         </div>
 
         {custom ? (
-          <div className="flex items-center gap-2 border-t border-border pt-3">
+          <div className="flex items-center gap-2 border-t border-border pt-2.5">
             <Label htmlFor="custom-fuse" className="text-xs text-muted-foreground">
               {t("fuse.otherLabel")}
             </Label>
@@ -120,18 +120,18 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         ) : null}
 
         {valid ? (
-          <div className="flex items-center justify-between gap-3 rounded-xl bg-secondary px-3 py-2.5">
-            <span className="flex items-center gap-2 text-xs text-muted-foreground">
+          <div className="flex items-center justify-between gap-3 rounded-lg bg-secondary px-3 py-2">
+            <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Zap className="size-3.5 text-accent" />
               {t("fuse.maxAc")}
             </span>
-            <span className="text-lg font-bold">
-              {formatDecimal(maxAc, locale, 2)} <span className="text-xs font-normal">kW</span>
+            <span className="text-base font-bold">
+              {formatDecimal(maxAc, locale, 2)} <span className="text-[11px] font-normal">kW</span>
             </span>
           </div>
         ) : null}
 
-        <div className="border-t border-border pt-3">
+        <div className="border-t border-border pt-2.5">
           <button
             type="button"
             onClick={() => setShowGridInfo((open) => !open)}
