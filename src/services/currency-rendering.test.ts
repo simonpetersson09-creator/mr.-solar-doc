@@ -37,7 +37,8 @@ describe("currency across the app", () => {
     expect(pln).toContain("zl");
     expect(czk).toContain("Kc");
     for (const value of [pln, czk, pdfText(formatCurrency(1000, "de-DE", "EUR"))]) {
-      expect(/[^\u0000-\u00ff]/.test(value)).toBe(false);
+      // The euro sign is the one non-Latin-1 glyph jsPDF's WinAnsi fonts cover.
+      expect(/[^\u0000-\u00ff\u20ac]/.test(value)).toBe(false);
     }
   });
 });
