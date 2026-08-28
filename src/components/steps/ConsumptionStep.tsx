@@ -141,14 +141,14 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
         </Button>
       }
     >
-      <div className="card-elevated space-y-3 p-4">
-        <div className="flex items-center gap-3">
-          <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-secondary text-primary">
-            <FileUp className="size-4" />
+      <div className="card-elevated space-y-2 p-3.5">
+        <div className="flex items-center gap-2.5">
+          <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary">
+            <FileUp className="size-3.5" />
           </span>
           <div className="min-w-0 flex-1">
-            <p className="text-sm font-medium">{t("consumption.upload.title")}</p>
-            <p className="truncate text-xs text-muted-foreground">
+            <p className="text-[13px] leading-tight font-medium">{t("consumption.upload.title")}</p>
+            <p className="truncate text-[11px] text-muted-foreground">
               {fileName ?? t("consumption.upload.fileTypes")}
             </p>
           </div>
@@ -190,7 +190,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
         ) : null}
       </div>
 
-      <div className="card-elevated space-y-3 p-4">
+      <div className="card-elevated space-y-2.5 p-3.5">
         {!useMonthly ? (
           <div className="flex items-end gap-2">
             <div className="flex-1">
@@ -204,10 +204,10 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
                 value={annual}
                 placeholder={t("consumption.annualPlaceholder")}
                 onChange={(event) => setAnnual(event.target.value)}
-                className="mt-1 h-11 text-base"
+                className="mt-1 h-10 text-base"
               />
             </div>
-            <span className="pb-3 text-xs text-muted-foreground">{t("units.kwhPerYear")}</span>
+            <span className="pb-2.5 text-xs text-muted-foreground">{t("units.kwhPerYear")}</span>
           </div>
         ) : null}
 
@@ -217,7 +217,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
           </p>
         ) : null}
 
-        <div className="flex items-center justify-between gap-4 border-t border-border pt-3 first:border-0 first:pt-0">
+        <div className="flex items-center justify-between gap-4 border-t border-border pt-2.5 first:border-0 first:pt-0">
           <Label htmlFor="monthly-toggle" className="text-xs leading-snug">
             {t("consumption.useMonthly")}
           </Label>
@@ -232,8 +232,8 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
         </div>
 
         {useMonthly ? (
-          <div className="space-y-3 border-t border-border pt-3">
-            <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+          <div className="space-y-2.5 border-t border-border pt-2.5">
+            <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-6">
               {monthly.map((value, index) => (
                 <div key={monthLabels[index]}>
                   <Label className="text-[10px] text-muted-foreground">
@@ -248,16 +248,16 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
                       next[index] = event.target.value;
                       setMonthly(next);
                     }}
-                    className="mt-0.5 h-9 px-2 text-sm"
+                    className="mt-0.5 h-8 px-1.5 text-[13px]"
                   />
                 </div>
               ))}
             </div>
-            <div className="flex items-baseline justify-between rounded-xl bg-secondary px-3 py-2">
+            <div className="flex items-baseline justify-between rounded-lg bg-secondary px-3 py-1.5">
               <p className="text-xs text-muted-foreground">{t("consumption.total")}</p>
-              <p className="text-lg font-bold">
+              <p className="text-base font-bold">
                 {formatNumber(monthlyTotal, locale)}{" "}
-                <span className="text-xs font-normal">{t("units.kwhPerYear")}</span>
+                <span className="text-[11px] font-normal">{t("units.kwhPerYear")}</span>
               </p>
             </div>
           </div>
@@ -269,9 +269,9 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
       </div>
 
       {showEstimatedProfile && estimatedMonthly ? (
-        <div className="card-elevated space-y-3 p-4">
+        <div className="card-elevated space-y-2.5 p-3.5">
           <div>
-            <p className="text-sm font-medium">{t("consumption.shape.question")}</p>
+            <p className="text-[13px] font-medium">{t("consumption.shape.question")}</p>
             <p className="text-xs text-muted-foreground">{t("consumption.shape.help")}</p>
           </div>
 
@@ -284,8 +284,8 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
             marketDefaultWeights={market.defaultConsumptionWeights}
           />
 
-          <div className="border-t border-border pt-3">
-            <div className="mb-2 flex items-center justify-between gap-2">
+          <div className="border-t border-border pt-2.5">
+            <div className="mb-1.5 flex items-center justify-between gap-2">
               <p className="text-xs font-medium">{t("consumption.shape.previewTitle")}</p>
               <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
                 {t("consumption.shape.estimatedBadge")}

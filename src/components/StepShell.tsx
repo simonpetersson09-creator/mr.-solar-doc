@@ -28,7 +28,7 @@ export function StepShell({
 
   return (
     <div className="min-h-screen surface-sun">
-      <header className="mx-auto flex max-w-2xl items-center gap-3 px-5 pt-6">
+      <header className="mx-auto flex max-w-2xl items-center gap-3 px-5 pt-4">
         {onBack ? (
           <button
             type="button"
@@ -60,10 +60,10 @@ export function StepShell({
         <LanguageSwitcher />
       </header>
 
-      <main className="mx-auto max-w-2xl px-5 pt-8 pb-32">
-        <h1 className="text-2xl leading-tight font-bold text-foreground">{title}</h1>
-        {subtitle ? <p className="mt-1.5 text-sm text-muted-foreground">{subtitle}</p> : null}
-        <div className="mt-7 space-y-5">{children}</div>
+      <main className="mx-auto max-w-2xl px-5 pt-5 pb-28">
+        <h1 className="text-xl leading-tight font-bold text-foreground">{title}</h1>
+        {subtitle ? <p className="mt-1 text-[13px] text-muted-foreground">{subtitle}</p> : null}
+        <div className="mt-5 space-y-3.5">{children}</div>
       </main>
 
       {footer ? (
