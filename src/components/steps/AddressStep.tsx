@@ -10,6 +10,7 @@ import { useAddressSearch } from "@/hooks/use-address-search";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { resolvePosition } from "@/services/geocoding-service";
 import { useWizardStore } from "@/state/wizard-store";
+import { isActiveMarket } from "@/config/markets";
 import { haptic } from "@/services/native-service";
 
 const MapPicker = lazy(() => import("@/components/MapPicker"));
