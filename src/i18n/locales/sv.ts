@@ -121,6 +121,8 @@ export const sv = {
     invalid: "Ange en årsförbrukning mellan 100 och 200 000 kWh.",
   },
   fuse: {
+    gridAssumption: "Beräkningen utgår från 400 V trefas.",
+    gridAssumptionInfo: "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
     title: "Vilken huvudsäkring har du?",
     subtitle: "Den avgör hur mycket effekt din anläggning får mata ut.",
     label: "Huvudsäkring",
@@ -131,6 +133,8 @@ export const sv = {
     invalid: "Ange en huvudsäkring mellan 6 och 400 A.",
   },
   result: {
+    gridConnection: "Nätanslutning",
+    gridConnectionValue: "{{voltage}} V, {{phases}}-fas",
     title: "Din beräkning",
     consumptionSourceLabel: "Datakälla förbrukning",
     consumptionSource: {
@@ -322,6 +326,9 @@ export const sv = {
   },
   report: {
     fields: {
+      gridConnection: "Nätanslutning",
+      gridConnectionValue: "{{voltage}} V, {{phases}}-fas",
+      gridMethodNote: "Beräkningen av teoretisk AC-effekt utgår från 400 V trefas och beräknas enligt √3 × 400 V × huvudsäkring. Den faktiska tillåtna anslutnings- eller inmatningseffekten kan begränsas av nätägaren eller den specifika installationen.",
       savings30Short: "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade elvärden.",
       solarShareTitle: "Din solel",
       selfConsumptionRate: "Egenanvändningsgrad (andel av solelproduktionen)",

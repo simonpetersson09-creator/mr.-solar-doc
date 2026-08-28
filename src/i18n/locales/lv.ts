@@ -111,6 +111,8 @@ export const lv = {
     "invalid": "Ievadiet gada patēriņu no 100 līdz 200 000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Aprēķins balstās uz 400 V trīsfāžu pieslēgumu.",
+    "gridAssumptionInfo": "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     "title": "Kāds ir jūsu galvenais drošinātājs?",
     "subtitle": "Tas nosaka, cik daudz jaudas jūsu sistēma var ievadīt tīklā.",
     "label": "Galvenais drošinātājs",
@@ -121,6 +123,8 @@ export const lv = {
     "invalid": "Ievadiet galveno drošinātāju no 6 līdz 400 A."
   },
   "result": {
+    "gridConnection": "Tīkla pieslēgums",
+    "gridConnectionValue": "{{voltage}} V, {{phases}} fāzes",
     "title": "Jūsu aprēķins",
     "consumptionSourceLabel": "Patēriņa datu avots",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const lv = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Tīkla pieslēgums",
+      "gridConnectionValue": "{{voltage}} V, {{phases}} fāzes",
+      "gridMethodNote": "Teorētiskā AC jauda balstās uz 400 V trīsfāžu pieslēgumu un tiek aprēķināta kā √3 × 400 V × galvenais drošinātājs. Faktisko atļauto pieslēguma vai atdeves jaudu var ierobežot tīkla operators vai konkrētā instalācija.",
       "savings30Short": "Aprēķināts ar {{degradation}} % gada ražošanas degradāciju un nemainīgām elektroenerģijas vērtībām.",
       "solarShareTitle": "Jūsu saules elektroenerģija",
       "selfConsumptionRate": "Pašpatēriņa likme (saules enerģijas ražošanas daļa)",

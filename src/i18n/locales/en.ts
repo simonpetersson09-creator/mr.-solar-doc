@@ -120,6 +120,8 @@ export const en = {
     invalid: "Enter an annual consumption between 100 and 200,000 kWh.",
   },
   fuse: {
+    gridAssumption: "The calculation assumes a 400 V three-phase connection.",
+    gridAssumptionInfo: "The theoretical power of the main fuse is calculated from a 400 V three-phase connection. Check your actual grid connection if you are unsure.",
     title: "What main fuse do you have?",
     subtitle: "It determines how much power your system may feed out.",
     label: "Main fuse",
@@ -130,6 +132,8 @@ export const en = {
     invalid: "Enter a main fuse between 6 and 400 A.",
   },
   result: {
+    gridConnection: "Grid connection",
+    gridConnectionValue: "{{voltage}} V, {{phases}}-phase",
     title: "Your calculation",
     consumptionSourceLabel: "Consumption data source",
     consumptionSource: {
@@ -319,6 +323,9 @@ export const en = {
   },
   report: {
     fields: {
+      gridConnection: "Grid connection",
+      gridConnectionValue: "{{voltage}} V, {{phases}}-phase",
+      gridMethodNote: "Theoretical AC power assumes a 400 V three-phase connection and is calculated as √3 × 400 V × main fuse. The actual permitted connection or feed-in power may be limited by the grid operator or the specific installation.",
       savings30Short: "Calculated with {{degradation}} % annual production degradation and unchanged electricity values.",
       solarShareTitle: "Your solar electricity",
       selfConsumptionRate: "Self-consumption rate (share of solar production)",

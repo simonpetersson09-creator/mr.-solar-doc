@@ -111,6 +111,8 @@ export const it = {
     "invalid": "Inserisci un consumo annuo tra 100 e 200.000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Il calcolo presuppone un allacciamento trifase a 400 V.",
+    "gridAssumptionInfo": "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
     "title": "Qual è la potenza del tuo limitatore di potenza?",
     "subtitle": "Determina quanta potenza il tuo impianto può immettere in rete.",
     "label": "Limitatore di potenza",
@@ -121,6 +123,8 @@ export const it = {
     "invalid": "Inserisci un limitatore di potenza tra 6 e 400 A."
   },
   "result": {
+    "gridConnection": "Allacciamento alla rete",
+    "gridConnectionValue": "{{voltage}} V, {{phases}} fasi",
     "title": "Il tuo calcolo",
     "consumptionSourceLabel": "Fonte dati consumo",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const it = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Allacciamento alla rete",
+      "gridConnectionValue": "{{voltage}} V, {{phases}} fasi",
+      "gridMethodNote": "La potenza CA teorica presuppone un allacciamento trifase a 400 V ed è calcolata come √3 × 400 V × fusibile principale. La potenza di allacciamento o di immissione effettivamente consentita può essere limitata dal gestore di rete o dall'installazione specifica.",
       "savings30Short": "Calcolato con {{degradation}} % di degrado annuo della produzione e valori dell'elettricità invariati.",
       "solarShareTitle": "La tua energia solare",
       "selfConsumptionRate": "Tasso di autoconsumo (quota della produzione solare)",

@@ -111,6 +111,8 @@ export const sl = {
     "invalid": "Vnesite letno porabo med 100 in 200.000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Izračun predpostavlja trifazni priključek 400 V.",
+    "gridAssumptionInfo": "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
     "title": "Kakšno glavno varovalko imate?",
     "subtitle": "Določa, koliko moči lahko odda vaša elektrarna.",
     "label": "Glavna varovalka",
@@ -121,6 +123,8 @@ export const sl = {
     "invalid": "Vnesite glavno varovalko med 6 in 400 A."
   },
   "result": {
+    "gridConnection": "Omrežni priključek",
+    "gridConnectionValue": "{{voltage}} V, {{phases}}-fazni",
     "title": "Vaš izračun",
     "consumptionSourceLabel": "Vir podatkov o porabi",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const sl = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Omrežni priključek",
+      "gridConnectionValue": "{{voltage}} V, {{phases}}-fazni",
+      "gridMethodNote": "Teoretična moč AC predpostavlja trifazni priključek 400 V in se izračuna kot √3 × 400 V × glavna varovalka. Dejansko dovoljeno priključno moč ali moč oddaje lahko omeji upravljavec omrežja ali konkretna namestitev.",
       "savings30Short": "Izračunano z {{degradation}} % letne degradacije proizvodnje in nespremenjenimi vrednostmi električne energije.",
       "solarShareTitle": "Vaša sončna elektrika",
       "selfConsumptionRate": "Stopnja lastne porabe (delež sončne proizvodnje)",

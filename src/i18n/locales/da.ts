@@ -111,6 +111,8 @@ export const da = {
     "invalid": "Angiv et årsforbrug mellem 100 og 200.000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Beregningen tager udgangspunkt i 400 V trefaset.",
+    "gridAssumptionInfo": "Hovedsikringens teoretiske effekt beregnes ud fra en 400 V trefaset tilslutning. Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
     "title": "Hvilken hovedsikring har du?",
     "subtitle": "Den afgør, hvor meget effekt dit anlæg må levere til nettet.",
     "label": "Hovedsikring",
@@ -121,6 +123,8 @@ export const da = {
     "invalid": "Angiv en hovedsikring mellem 6 og 400 A."
   },
   "result": {
+    "gridConnection": "Nettilslutning",
+    "gridConnectionValue": "{{voltage}} V, {{phases}}-faset",
     "title": "Din beregning",
     "consumptionSourceLabel": "Datakilde forbrug",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const da = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Nettilslutning",
+      "gridConnectionValue": "{{voltage}} V, {{phases}}-faset",
+      "gridMethodNote": "Den teoretiske AC-effekt tager udgangspunkt i 400 V trefaset og beregnes som √3 × 400 V × hovedsikring. Den faktisk tilladte tilslutnings- eller indfødningseffekt kan være begrænset af netselskabet eller den konkrete installation.",
       "savings30Short": "Beregnet med {{degradation}} % årlig produktionsdegradering og uændrede elværdier.",
       "solarShareTitle": "Din solel",
       "selfConsumptionRate": "Egenforbrugsgrad (andel af solelproduktionen)",

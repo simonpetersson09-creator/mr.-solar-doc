@@ -111,6 +111,8 @@ export const fi = {
     "invalid": "Anna vuosikulutus väliltä 100 – 200 000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Laskenta perustuu 400 V:n kolmivaiheliittymään.",
+    "gridAssumptionInfo": "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     "title": "Mikä pääsulake sinulla on?",
     "subtitle": "Se määrittää, kuinka paljon tehoa järjestelmäsi saa syöttää verkkoon.",
     "label": "Pääsulake",
@@ -121,6 +123,8 @@ export const fi = {
     "invalid": "Anna pääsulake väliltä 6 – 400 A."
   },
   "result": {
+    "gridConnection": "Verkkoliittymä",
+    "gridConnectionValue": "{{voltage}} V, {{phases}}-vaihe",
     "title": "Laskelmasi",
     "consumptionSourceLabel": "Kulutustietojen lähde",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const fi = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Verkkoliittymä",
+      "gridConnectionValue": "{{voltage}} V, {{phases}}-vaihe",
+      "gridMethodNote": "Teoreettinen AC-teho perustuu 400 V:n kolmivaiheliittymään ja lasketaan kaavalla √3 × 400 V × pääsulake. Verkkoyhtiö tai itse asennus voi rajoittaa todellista sallittua liittymis- tai syöttötehoa.",
       "savings30Short": "Laskettu {{degradation}} %:n vuotuisella tuotannon heikkenemisellä ja muuttumattomilla sähköarvoilla.",
       "solarShareTitle": "Aurinkosähkösi",
       "selfConsumptionRate": "Omakäyttöaste (osuus aurinkosähköntuotannosta)",

@@ -111,6 +111,8 @@ export const cs = {
     "invalid": "Zadejte roční spotřebu mezi 100 a 200 000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Výpočet vychází z třífázové přípojky 400 V.",
+    "gridAssumptionInfo": "Teoretický výkon hlavního jističe se počítá z třífázové přípojky 400 V. Pokud si nejste jisti, ověřte si skutečnou přípojku.",
     "title": "Jaký máte hlavní jistič?",
     "subtitle": "Určuje, kolik energie smí vaše zařízení dodávat do sítě.",
     "label": "Hlavní jistič",
@@ -121,6 +123,8 @@ export const cs = {
     "invalid": "Zadejte hlavní jistič mezi 6 a 400 A."
   },
   "result": {
+    "gridConnection": "Připojení k síti",
+    "gridConnectionValue": "{{voltage}} V, {{phases}} fáze",
     "title": "Váš výpočet",
     "consumptionSourceLabel": "Zdroj dat spotřeby",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const cs = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Připojení k síti",
+      "gridConnectionValue": "{{voltage}} V, {{phases}} fáze",
+      "gridMethodNote": "Teoretický AC výkon vychází z třífázové přípojky 400 V a počítá se jako √3 × 400 V × hlavní jistič. Skutečný povolený připojovací nebo dodávaný výkon může být omezen provozovatelem sítě nebo konkrétní instalací.",
       "savings30Short": "Vypočítáno s {{degradation}} % roční degradací výroby a nezměněnými hodnotami elektřiny.",
       "solarShareTitle": "Vaše solární elektřina",
       "selfConsumptionRate": "Míra vlastní spotřeby (podíl solární výroby)",

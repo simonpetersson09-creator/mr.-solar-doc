@@ -111,6 +111,8 @@ export const pl = {
     "invalid": "Podaj roczne zużycie od 100 do 200 000 kWh."
   },
   "fuse": {
+    "gridAssumption": "Obliczenia zakładają przyłącze trójfazowe 400 V.",
+    "gridAssumptionInfo": "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
     "title": "Jakie masz zabezpieczenie główne?",
     "subtitle": "Decyduje ono o tym, jaką moc może oddawać Twoja instalacja.",
     "label": "Zabezpieczenie główne",
@@ -121,6 +123,8 @@ export const pl = {
     "invalid": "Podaj zabezpieczenie główne od 6 do 400 A."
   },
   "result": {
+    "gridConnection": "Przyłącze sieciowe",
+    "gridConnectionValue": "{{voltage}} V, {{phases}} fazy",
     "title": "Twoja kalkulacja",
     "consumptionSourceLabel": "Źródło danych o zużyciu",
     "consumptionSource": {
@@ -298,6 +302,9 @@ export const pl = {
   },
   "report": {
     "fields": {
+      "gridConnection": "Przyłącze sieciowe",
+      "gridConnectionValue": "{{voltage}} V, {{phases}} fazy",
+      "gridMethodNote": "Teoretyczna moc AC zakłada przyłącze trójfazowe 400 V i jest obliczana jako √3 × 400 V × zabezpieczenie główne. Rzeczywista dopuszczalna moc przyłączeniowa lub oddawana do sieci może być ograniczona przez operatora sieci lub konkretną instalację.",
       "savings30Short": "Obliczono z degradacją produkcji {{degradation}} % rocznie i niezmienionymi wartościami energii elektrycznej.",
       "solarShareTitle": "Twoja energia słoneczna",
       "selfConsumptionRate": "Współczynnik autokonsumpcji (udział w produkcji energii słonecznej)",
