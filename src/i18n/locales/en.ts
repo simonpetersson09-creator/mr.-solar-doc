@@ -124,6 +124,7 @@ export const en = {
     annualPlaceholder: "e.g. 18,000",
     useMonthly: "Enter monthly consumption for better precision",
     monthlyTitle: "Monthly consumption",
+    monthlyHint: "Enter consumption for all 12 months",
     total: "Total annual consumption",
     invalid: "Enter an annual consumption between 100 and 200,000 kWh.",
   },

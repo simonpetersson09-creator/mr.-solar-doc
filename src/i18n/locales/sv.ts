@@ -125,6 +125,7 @@ export const sv = {
     annualPlaceholder: "t.ex. 18 000",
     useMonthly: "Ange månadsförbrukning för bättre precision",
     monthlyTitle: "Månadsförbrukning",
+    monthlyHint: "Fyll i förbrukning för alla 12 månader",
     total: "Total årsförbrukning",
     invalid: "Ange en årsförbrukning mellan 100 och 200 000 kWh.",
   },
