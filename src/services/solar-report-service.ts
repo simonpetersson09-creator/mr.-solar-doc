@@ -504,6 +504,10 @@ export function generateReportBlob(options: ReportOptions): Blob {
       label: f.annualProduction,
       value: `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh`,
     },
+    {
+      label: `${f.specificYield} (${labels.origin.external})`,
+      value: `${formatNumber(result.resource.annualKwhPerKwp, locale)} kWh/kWp`,
+    },
   ]);
 
   // Annual balance: production vs consumption, from the same presentation values
@@ -575,18 +579,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
   );
 
   report.pageBreak();
-
-  report.rows(
-    [
-      { label: f.address, value: result.location.address, origin: "user" },
-      {
-        label: f.specificYield,
-        value: `${formatNumber(result.resource.annualKwhPerKwp, locale)} kWh/kWp`,
-        origin: "external",
-      },
-    ],
-    labels.origin,
-  );
 
   report.sectionTitle(labels.sizing);
   report.rows(
