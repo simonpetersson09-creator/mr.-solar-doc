@@ -425,6 +425,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     labels.origin,
   );
 
+  report.pageBreak();
   report.sectionTitle(labels.production);
   report.rows(
     [
@@ -486,6 +487,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
   }
   report.rows(consumptionRows, labels.origin);
 
+  report.pageBreak();
   report.sectionTitle(labels.economics);
   report.rows(
     [
