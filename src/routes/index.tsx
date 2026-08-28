@@ -21,7 +21,7 @@ export const Route = createFileRoute("/")({
   component: WizardPage,
 });
 
-const TOTAL_STEPS = 4;
+const TOTAL_STEPS = 5;
 
 function WizardPage() {
   const navigate = useNavigate();
@@ -46,10 +46,19 @@ function WizardPage() {
       />
     );
   }
+  if (step === 4) {
+    return (
+      <FuseStep
+        totalSteps={TOTAL_STEPS}
+        onBack={() => setStep(3)}
+        onSubmit={() => setStep(5)}
+      />
+    );
+  }
   return (
-    <FuseStep
+    <AssumptionsStep
       totalSteps={TOTAL_STEPS}
-      onBack={() => setStep(3)}
+      onBack={() => setStep(4)}
       onSubmit={() => void navigate({ to: "/resultat" })}
     />
   );
