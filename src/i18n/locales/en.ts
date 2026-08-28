@@ -122,7 +122,7 @@ export const en = {
     subtitle: "Check your electricity bill or contract.",
     annual: "Annual consumption",
     annualPlaceholder: "e.g. 18,000",
-    useMonthly: "Enter monthly consumption for better precision",
+    useMonthly: "Enter consumption per month (12 months)",
     monthlyTitle: "Monthly consumption",
     monthlyHint: "Enter consumption for all 12 months",
     total: "Total annual consumption",

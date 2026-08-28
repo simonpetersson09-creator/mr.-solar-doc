@@ -123,7 +123,7 @@ export const sv = {
     subtitle: "Titta på din elräkning eller ditt elavtal.",
     annual: "Årsförbrukning",
     annualPlaceholder: "t.ex. 18 000",
-    useMonthly: "Ange månadsförbrukning för bättre precision",
+    useMonthly: "Ange förbrukning per månad (12 månader)",
     monthlyTitle: "Månadsförbrukning",
     monthlyHint: "Fyll i förbrukning för alla 12 månader",
     total: "Total årsförbrukning",
