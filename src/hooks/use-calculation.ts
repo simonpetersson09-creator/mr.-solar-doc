@@ -51,6 +51,10 @@ export function useCalculation(): {
         valuesMissing:
           (selfConsumedValuePerKwh ?? market.selfConsumedElectricityValue) === null ||
           (exportValuePerKwh ?? market.exportElectricityValue) === null,
+        // The source follows how the value was set, never the number itself.
+        selfConsumedValueSource:
+          selfConsumedValuePerKwh === null ? "standard-value" : "user-override",
+        exportValueSource: exportValuePerKwh === null ? "standard-value" : "user-override",
       },
       selfConsumptionShare,
       selfConsumptionShareIsUserSet,

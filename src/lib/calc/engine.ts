@@ -187,6 +187,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       selfConsumedValuePerKwh,
       exportValuePerKwh,
       ...economics,
+      selfConsumedValueSource: input.economics.selfConsumedValueSource ?? "standard-value",
+      exportValueSource: input.economics.exportValueSource ?? "standard-value",
     },
     mainFuseAmp: input.electrical.mainFuseAmp,
     grid: {
