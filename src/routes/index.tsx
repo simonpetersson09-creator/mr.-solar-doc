@@ -9,13 +9,13 @@ import { FuseStep } from "@/components/steps/FuseStep";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Solenergikollen – dimensionera din solcellsanläggning" },
+      { title: "Mr. Solar Doc – dimensionera din solcellsanläggning" },
       {
         name: "description",
         content:
           "Räkna ut rekommenderad solcellseffekt, växelriktare och årsproduktion utifrån din adress, elförbrukning och huvudsäkring.",
       },
-      { property: "og:title", content: "Solenergikollen – dimensionera din solcellsanläggning" },
+      { property: "og:title", content: "Mr. Solar Doc – dimensionera din solcellsanläggning" },
       {
         property: "og:description",
         content:

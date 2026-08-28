@@ -1,6 +1,6 @@
 export const sv = {
   app: {
-    name: "Solenergikollen",
+    name: "Mr. Solar Doc",
     tagline: "Dimensionera din solcellsanläggning på några minuter",
   },
   common: {

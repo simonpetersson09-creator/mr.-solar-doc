@@ -31,13 +31,13 @@ const REASON_KEY: Record<string, string> = {
 export const Route = createFileRoute("/resultat")({
   head: () => ({
     meta: [
-      { title: "Din solelberäkning – Solenergikollen" },
+      { title: "Din solelberäkning – Mr. Solar Doc" },
       {
         name: "description",
         content:
           "Se beräknad kWp, växelriktarstorlek, DC/AC-ratio, månadsproduktion och ekonomiskt värde – och ladda ner rapporten som PDF.",
       },
-      { property: "og:title", content: "Din solelberäkning – Solenergikollen" },
+      { property: "og:title", content: "Din solelberäkning – Mr. Solar Doc" },
       {
         property: "og:description",
         content: "Beräknad dimensionering av din solcellsanläggning med PDF-rapport.",

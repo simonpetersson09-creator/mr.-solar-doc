@@ -1,6 +1,6 @@
 export const en = {
   app: {
-    name: "Solenergikollen",
+    name: "Mr. Solar Doc",
     tagline: "Size your solar system in a few minutes",
   },
   common: {
