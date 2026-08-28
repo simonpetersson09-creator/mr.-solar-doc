@@ -4,6 +4,7 @@ import { AddressStep } from "@/components/steps/AddressStep";
 import { RoofStep } from "@/components/steps/RoofStep";
 import { ConsumptionStep } from "@/components/steps/ConsumptionStep";
 import { FuseStep } from "@/components/steps/FuseStep";
+import { AssumptionsStep } from "@/components/steps/AssumptionsStep";
 import { useWizardStore } from "@/state/wizard-store";
 import { useCountryLanguage } from "@/hooks/use-country-language";
 
