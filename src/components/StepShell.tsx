@@ -68,7 +68,7 @@ export function StepShell({
         <LanguageSwitcher />
       </header>
 
-      <main className="mx-auto max-w-2xl px-5 pt-4 pb-24">
+      <main className="mx-auto w-full max-w-2xl flex-1 px-5 pt-4 pb-4">
         <h1 className="text-xl leading-tight font-bold tracking-tight text-foreground">{title}</h1>
         {subtitle ? <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p> : null}
         <div className="mt-4 space-y-3">{children}</div>
