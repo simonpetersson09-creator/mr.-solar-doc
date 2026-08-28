@@ -78,3 +78,12 @@ export const MIN_PAYBACK_YEARS = 8;
 export const MAX_PAYBACK_YEARS = 20;
 
 export const CALCULATION_VERSION = "1.0.0";
+
+/**
+ * Long-term production degradation, per year.
+ * Central calculation assumption — never duplicate this value elsewhere.
+ */
+export const DEFAULT_ANNUAL_SOLAR_DEGRADATION = 0.005;
+
+/** Length of the long-term economic calculation period, in years. */
+export const LONG_TERM_CALCULATION_YEARS = 30;
