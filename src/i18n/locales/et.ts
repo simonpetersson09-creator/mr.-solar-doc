@@ -241,6 +241,31 @@ export const et = {
     "calculatedAt": "Arvutuse kuupäev",
     "noCalculation": "Arvutust ei leitud. Alusta uuesti aadressist."
   },
+  "units": {
+    "kwhPerYear": "kWh/aastas",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Seaded",
+    "language": "Keel",
+    "languageHint": "Valuuta määratakse teie aadressi riigi, mitte keele järgi."
+  },
+  "chart": {
+    "productionAria": "Kuu tootmine",
+    "consumptionAria": "Kuu tarbimine"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – dimensionerige oma päikesesüsteem",
+      "description": "Arvutage soovituslik päikesepaneelide võimsus, inverteri suurus ja aastatoodang teie aadressi, elektritarbimise ja peakaitsme põhjal.",
+      "ogDescription": "Samm-sammult arvutus PVGIS-i andmete alusel: kWp, inverter, kuutoodang ja majanduslik tasuvus."
+    },
+    "result": {
+      "title": "Teie päikesepaneelide kalkulatsioon – Mr. Solar Doc",
+      "description": "Vaadake arvutatud kWp, inverteri suurust, DC/AC suhet, kuutoodangut ja majanduslikku väärtust – ning laadige aruanne PDF-ina alla.",
+      "ogDescription": "Teie päikesesüsteemi arvutatud dimensionering koos PDF-aruandega."
+    }
+  },
   "months": {
     "short": [
       "Jaan",

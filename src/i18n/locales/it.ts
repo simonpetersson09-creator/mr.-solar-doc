@@ -241,6 +241,31 @@ export const it = {
     "calculatedAt": "Data del calcolo",
     "noCalculation": "Nessun calcolo trovato. Ricomincia dall'indirizzo."
   },
+  "units": {
+    "kwhPerYear": "kWh/anno",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "language": "Lingua",
+    "languageHint": "La valuta è determinata dal paese del tuo indirizzo, non dalla lingua."
+  },
+  "chart": {
+    "productionAria": "Produzione mensile",
+    "consumptionAria": "Consumo mensile"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – dimensiona il tuo impianto fotovoltaico",
+      "description": "Calcola la potenza solare raccomandata, l'inverter e la produzione annuale in base al tuo indirizzo, consumo elettrico e fusibile principale.",
+      "ogDescription": "Calcolo passo dopo passo con dati di localizzazione da PVGIS: kWp, inverter, produzione mensile ed economia."
+    },
+    "result": {
+      "title": "Il tuo calcolo solare – Mr. Solar Doc",
+      "description": "Visualizza kWp calcolati, dimensioni dell'inverter, rapporto CC/CA, produzione mensile e valore economico – e scarica il rapporto in PDF.",
+      "ogDescription": "Dimensionamento calcolato del tuo impianto fotovoltaico con un rapporto PDF."
+    }
+  },
   "months": {
     "short": [
       "Gen",

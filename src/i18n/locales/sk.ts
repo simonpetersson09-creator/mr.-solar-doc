@@ -241,6 +241,31 @@ export const sk = {
     "calculatedAt": "Dátum výpočtu",
     "noCalculation": "Výpočet nebol nájdený. Začnite znova od adresy."
   },
+  "units": {
+    "kwhPerYear": "kWh/rok",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Nastavenia",
+    "language": "Jazyk",
+    "languageHint": "Mena sa riadi krajinou vo vašej adrese, nie jazykom."
+  },
+  "chart": {
+    "productionAria": "Mesačná výroba",
+    "consumptionAria": "Mesačná spotreba"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – dimenzujte si svoj solárny systém",
+      "description": "Vypočítajte odporúčaný výkon fotovoltiky, meniča a ročnú výrobu na základe vašej adresy, spotreby elektriny a hlavného ističa.",
+      "ogDescription": "Kalkulácia krok za krokom s údajmi o polohe z PVGIS: kWp, menič, mesačná výroba a ekonomika."
+    },
+    "result": {
+      "title": "Váš výpočet solárnej energie – Mr. Solar Doc",
+      "description": "Pozrite si vypočítané kWp, veľkosť meniča, pomer DC/AC, mesačnú výrobu a ekonomickú hodnotu – a stiahnite si správu ako PDF.",
+      "ogDescription": "Vypočítané dimenzovanie vášho fotovoltického systému so správou vo formáte PDF."
+    }
+  },
   "months": {
     "short": [
       "Jan",

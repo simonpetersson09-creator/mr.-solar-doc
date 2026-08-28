@@ -241,6 +241,31 @@ export const de = {
     "calculatedAt": "Berechnungsdatum",
     "noCalculation": "Keine Berechnung gefunden. Beginnen Sie erneut bei der Adresse."
   },
+  "units": {
+    "kwhPerYear": "kWh/Jahr",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "language": "Sprache",
+    "languageHint": "Die Währung richtet sich nach dem Land Ihrer Adresse, nicht nach der Sprache."
+  },
+  "chart": {
+    "productionAria": "Monatliche Produktion",
+    "consumptionAria": "Monatlicher Verbrauch"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – Dimensionieren Sie Ihre Solaranlage",
+      "description": "Berechnen Sie die empfohlene Solarkapazität, den Wechselrichter und die jährliche Produktion basierend auf Ihrer Adresse, Ihrem Stromverbrauch und Ihrer Hauptsicherung.",
+      "ogDescription": "Schritt-für-Schritt-Berechnung mit Standortdaten von PVGIS: kWp, Wechselrichter, monatliche Produktion und Wirtschaftlichkeit."
+    },
+    "result": {
+      "title": "Ihre Solarkalkulation – Mr. Solar Doc",
+      "description": "Sehen Sie die berechnete kWp, Wechselrichtergröße, DC/AC-Verhältnis, monatliche Produktion und den wirtschaftlichen Wert – und laden Sie den Bericht als PDF herunter.",
+      "ogDescription": "Berechnete Dimensionierung Ihrer Solaranlage mit PDF-Bericht."
+    }
+  },
   "months": {
     "short": [
       "Jan",

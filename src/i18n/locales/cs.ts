@@ -241,6 +241,31 @@ export const cs = {
     "calculatedAt": "Datum výpočtu",
     "noCalculation": "Nebyl nalezen žádný výpočet. Začněte znovu od adresy."
   },
+  "units": {
+    "kwhPerYear": "kWh/rok",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Nastavení",
+    "language": "Jazyk",
+    "languageHint": "Měna se řídí zemí ve vaší adrese, nikoli jazykem."
+  },
+  "chart": {
+    "productionAria": "Měsíční výroba",
+    "consumptionAria": "Měsíční spotřeba"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – dimenzujte svou fotovoltaickou elektrárnu",
+      "description": "Vypočítejte doporučený solární výkon, velikost střídače a roční výrobu na základě vaší adresy, spotřeby elektřiny a hlavního jističe.",
+      "ogDescription": "Krok za krokem výpočet s daty o poloze z PVGIS: kWp, střídač, měsíční výroba a ekonomika."
+    },
+    "result": {
+      "title": "Váš solární výpočet – Mr. Solar Doc",
+      "description": "Zobrazte vypočtený kWp, velikost střídače, poměr DC/AC, měsíční výrobu a ekonomickou hodnotu – a stáhněte si zprávu jako PDF.",
+      "ogDescription": "Vypočtené dimenzování vaší fotovoltaické elektrárny s PDF zprávou."
+    }
+  },
   "months": {
     "short": [
       "Led",

@@ -241,6 +241,31 @@ export const fi = {
     "calculatedAt": "Laskentapäivämäärä",
     "noCalculation": "Laskelmaa ei löytynyt. Aloita alusta osoitteesta."
   },
+  "units": {
+    "kwhPerYear": "kWh/vuosi",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Asetukset",
+    "language": "Kieli",
+    "languageHint": "Valuutta määräytyy osoitteesi maan, ei kielen, mukaan."
+  },
+  "chart": {
+    "productionAria": "Kuukausituotanto",
+    "consumptionAria": "Kuukausikulutus"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – mitoita aurinkosähköjärjestelmäsi",
+      "description": "Laske suositeltu aurinkopaneeliteho, invertteri ja vuosituotanto osoitteesi, sähkönkulutuksesi ja pääsulakkeesi perusteella.",
+      "ogDescription": "Vaiheittainen laskelma PVGIS-paikkatietojen avulla: kWp, invertteri, kuukausituotanto ja talous."
+    },
+    "result": {
+      "title": "Aurinkosähkölaskelmasi – Mr. Solar Doc",
+      "description": "Näe laskettu kWp, invertterin koko, DC/AC-suhde, kuukausituotanto ja taloudellinen arvo – ja lataa raportti PDF-muodossa.",
+      "ogDescription": "Aurinkosähköjärjestelmäsi laskettu mitoitus PDF-raportilla."
+    }
+  },
   "months": {
     "short": [
       "Tam",

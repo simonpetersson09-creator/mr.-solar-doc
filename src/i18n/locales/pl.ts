@@ -241,6 +241,31 @@ export const pl = {
     "calculatedAt": "Data obliczenia",
     "noCalculation": "Nie znaleziono obliczeń. Zacznij od adresu."
   },
+  "units": {
+    "kwhPerYear": "kWh/rok",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Ustawienia",
+    "language": "Język",
+    "languageHint": "Waluta jest zależna od kraju w Twoim adresie, nie od języka."
+  },
+  "chart": {
+    "productionAria": "Miesięczna produkcja",
+    "consumptionAria": "Miesięczne zużycie"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – dobierz swoją instalację fotowoltaiczną",
+      "description": "Oblicz zalecaną moc fotowoltaiki, inwerter i roczną produkcję na podstawie adresu, zużycia energii elektrycznej i bezpiecznika głównego.",
+      "ogDescription": "Kalkulacja krok po kroku z danymi lokalizacyjnymi z PVGIS: kWp, inwerter, miesięczna produkcja i ekonomia."
+    },
+    "result": {
+      "title": "Twoja kalkulacja fotowoltaiczna – Mr. Solar Doc",
+      "description": "Sprawdź obliczone kWp, rozmiar inwertera, współczynnik DC/AC, miesięczną produkcję i wartość ekonomiczną – i pobierz raport jako PDF.",
+      "ogDescription": "Obliczone wymiarowanie Twojej instalacji fotowoltaicznej z raportem PDF."
+    }
+  },
   "months": {
     "short": [
       "Sty",

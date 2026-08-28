@@ -241,6 +241,31 @@ export const lv = {
     "calculatedAt": "Aprēķina datums",
     "noCalculation": "Aprēķins nav atrasts. Sāciet no adreses."
   },
+  "units": {
+    "kwhPerYear": "kWh/gadā",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Iestatījumi",
+    "language": "Valoda",
+    "languageHint": "Valūta tiek noteikta pēc valsts jūsu adresē, nevis valodas."
+  },
+  "chart": {
+    "productionAria": "Mēneša ražošana",
+    "consumptionAria": "Mēneša patēriņš"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – dimensionējiet savu saules elektrostaciju",
+      "description": "Aprēķiniet ieteicamo saules paneļu jaudu, invertora izmēru un gada ražošanu, pamatojoties uz jūsu adresi, elektroenerģijas patēriņu un galveno drošinātāju.",
+      "ogDescription": "Soli pa solim aprēķins ar atrašanās vietas datiem no PVGIS: kWp, invertors, mēneša ražošana un ekonomika."
+    },
+    "result": {
+      "title": "Jūsu saules enerģijas aprēķins – Mr. Solar Doc",
+      "description": "Skatiet aprēķināto kWp, invertora izmēru, DC/AC attiecību, mēneša ražošanu un ekonomisko vērtību – un lejupielādējiet atskaiti PDF formātā.",
+      "ogDescription": "Aprēķināta jūsu saules elektrostacijas dimensionēšana ar PDF atskaiti."
+    }
+  },
   "months": {
     "short": [
       "Jan",

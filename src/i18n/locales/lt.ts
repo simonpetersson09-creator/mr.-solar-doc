@@ -241,6 +241,31 @@ export const lt = {
     "calculatedAt": "Skaičiavimo data",
     "noCalculation": "Skaičiavimas nerastas. Pradėkite iš naujo nuo adreso."
   },
+  "units": {
+    "kwhPerYear": "kWh/metus",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Nustatymai",
+    "language": "Kalba",
+    "languageHint": "Valiuta priklauso nuo jūsų adreso šalies, o ne nuo kalbos."
+  },
+  "chart": {
+    "productionAria": "Mėnesinė gamyba",
+    "consumptionAria": "Mėnesinis suvartojimas"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – apskaičiuokite savo saulės energijos sistemą",
+      "description": "Apskaičiuokite rekomenduojamą saulės energijos galią, keitiklio dydį ir metinę gamybą pagal jūsų adresą, elektros suvartojimą ir pagrindinį saugiklį.",
+      "ogDescription": "Žingsnis po žingsnio skaičiavimas su vietos duomenimis iš PVGIS: kWp, keitiklis, mėnesinė gamyba ir ekonomika."
+    },
+    "result": {
+      "title": "Jūsų saulės energijos skaičiavimas – Mr. Solar Doc",
+      "description": "Peržiūrėkite apskaičiuotą kWp, keitiklio dydį, nuolatinės srovės ir kintamosios srovės santykį, mėnesinę gamybą ir ekonominę vertę – ir atsisiųskite ataskaitą PDF formatu.",
+      "ogDescription": "Apskaičiuotas jūsų saulės energijos sistemos dydis su PDF ataskaita."
+    }
+  },
   "months": {
     "short": [
       "Sau",

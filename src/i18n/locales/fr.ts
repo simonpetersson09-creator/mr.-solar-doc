@@ -241,6 +241,31 @@ export const fr = {
     "calculatedAt": "Date de calcul",
     "noCalculation": "Aucun calcul trouvé. Recommencez à partir de l'adresse."
   },
+  "units": {
+    "kwhPerYear": "kWh/an",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "language": "Langue",
+    "languageHint": "La devise est déterminée par le pays de votre adresse, et non par la langue."
+  },
+  "chart": {
+    "productionAria": "Production mensuelle",
+    "consumptionAria": "Consommation mensuelle"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – dimensionnez votre installation solaire",
+      "description": "Calculez la puissance solaire recommandée, la taille de l'onduleur et la production annuelle en fonction de votre adresse, de votre consommation électrique et de votre disjoncteur principal.",
+      "ogDescription": "Calcul étape par étape avec les données de localisation de PVGIS : kWp, onduleur, production mensuelle et aspects économiques."
+    },
+    "result": {
+      "title": "Votre calcul solaire – Mr. Solar Doc",
+      "description": "Consultez le kWp calculé, la taille de l'onduleur, le ratio DC/AC, la production mensuelle et la valeur économique – et téléchargez le rapport au format PDF.",
+      "ogDescription": "Dimensionnement calculé de votre installation solaire avec un rapport PDF."
+    }
+  },
   "months": {
     "short": [
       "Jan",

@@ -241,6 +241,31 @@ export const sl = {
     "calculatedAt": "Datum izračuna",
     "noCalculation": "Izračuna ni bilo najdenega. Začnite znova z naslovom."
   },
+  "units": {
+    "kwhPerYear": "kWh/leto",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Nastavitve",
+    "language": "Jezik",
+    "languageHint": "Valuta je določena z državo v vašem naslovu, ne z jezikom."
+  },
+  "chart": {
+    "productionAria": "Mesečna proizvodnja",
+    "consumptionAria": "Mesečna poraba"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – dimenzionirajte vaš sončni sistem",
+      "description": "Izračunajte priporočeno sončno zmogljivost, velikost razsmernika in letno proizvodnjo na podlagi vašega naslova, porabe električne energije in glavne varovalke.",
+      "ogDescription": "Korak za korakom izračun z lokacijskimi podatki iz PVGIS: kWp, razsmernik, mesečna proizvodnja in ekonomika."
+    },
+    "result": {
+      "title": "Vaš sončni izračun – Mr. Solar Doc",
+      "description": "Oglejte si izračunani kWp, velikost razsmernika, razmerje DC/AC, mesečno proizvodnjo in ekonomsko vrednost – ter prenesite poročilo kot PDF.",
+      "ogDescription": "Izračunana dimenzioniranje vašega sončnega sistema s poročilom PDF."
+    }
+  },
   "months": {
     "short": [
       "Jan",

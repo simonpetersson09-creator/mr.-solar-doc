@@ -241,6 +241,31 @@ export const da = {
     "calculatedAt": "Beregningsdato",
     "noCalculation": "Ingen beregning fundet. Start forfra fra adressen."
   },
+  "units": {
+    "kwhPerYear": "kWh/år",
+    "kwhPerKwp": "kWh/kWp"
+  },
+  "settings": {
+    "title": "Indstillinger",
+    "language": "Sprog",
+    "languageHint": "Valutaen styres af landet i din adresse, ikke af sproget."
+  },
+  "chart": {
+    "productionAria": "Månedlig produktion",
+    "consumptionAria": "Månedligt forbrug"
+  },
+  "meta": {
+    "home": {
+      "title": "Mr. Solar Doc – dimensionér dit solcelleanlæg",
+      "description": "Beregn anbefalet solcelleeffekt, inverterstørrelse og årlig produktion ud fra din adresse, elforbrug og hovedsikring.",
+      "ogDescription": "Trin-for-trin-beregning med lokationsdata fra PVGIS: kWp, inverter, månedlig produktion og økonomi."
+    },
+    "result": {
+      "title": "Din solcelleberegning – Mr. Solar Doc",
+      "description": "Se beregnet kWp, inverterstørrelse, DC/AC-forhold, månedlig produktion og økonomisk værdi – og download rapporten som PDF.",
+      "ogDescription": "Beregnet dimensionering af dit solcelleanlæg med PDF-rapport."
+    }
+  },
   "months": {
     "short": [
       "Jan",
