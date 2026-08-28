@@ -37,14 +37,24 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
 
   const handlePositionChange = async (latitude: number, longitude: number) => {
     const resolved = await resolvePosition(latitude, longitude, language).catch(() => null);
+    const address = resolved?.label ?? location?.address ?? "";
     setLocation({
-      address: resolved?.label ?? location?.address ?? "",
+      address,
       latitude,
       longitude,
       countryCode: resolved?.countryCode ?? location?.countryCode ?? "",
       region: resolved?.region ?? location?.region ?? "",
     });
+    if (resolved?.label) {
+      setQuery(resolved.label);
+      setShowResults(false);
+    }
   };
+
+  // Default view: Sweden overview until a position is chosen.
+  const mapLatitude = location?.latitude ?? 59.33;
+  const mapLongitude = location?.longitude ?? 18.07;
+  const mapZoom = location ? 17 : 4;
 
   return (
     <StepShell
@@ -117,24 +127,30 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
         <p className="text-sm text-muted-foreground">{t("address.noResults")}</p>
       ) : null}
 
-      {location ? (
-        <div className="card-elevated space-y-3 p-4">
+      <div className="card-elevated space-y-3 p-4">
+        {location ? (
           <div>
             <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
               {t("address.selected")}
             </p>
             <p className="mt-1 text-sm font-medium">{location.address}</p>
           </div>
-          <ClientOnly fallback={<div className="h-64 w-full rounded-xl bg-muted" />}>
-            <Suspense fallback={<div className="h-64 w-full rounded-xl bg-muted" />}>
-              <MapPicker
-                latitude={location.latitude}
-                longitude={location.longitude}
-                onPositionChange={(lat, lon) => void handlePositionChange(lat, lon)}
-              />
-            </Suspense>
-          </ClientOnly>
-          <p className="text-xs text-muted-foreground">{t("address.adjustHint")}</p>
+        ) : null}
+        <ClientOnly fallback={<div className="h-64 w-full rounded-xl bg-muted" />}>
+          <Suspense fallback={<div className="h-64 w-full rounded-xl bg-muted" />}>
+            <MapPicker
+              latitude={mapLatitude}
+              longitude={mapLongitude}
+              zoom={mapZoom}
+              showMarker={!!location}
+              onPositionChange={(lat, lon) => void handlePositionChange(lat, lon)}
+            />
+          </Suspense>
+        </ClientOnly>
+        <p className="text-xs text-muted-foreground">
+          {location ? t("address.adjustHint") : t("address.mapHint")}
+        </p>
+        {location ? (
           <dl className="grid grid-cols-2 gap-2 text-xs">
             <div>
               <dt className="text-muted-foreground">{t("address.coordinates")}</dt>
@@ -150,8 +166,8 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
               </dd>
             </div>
           </dl>
-        </div>
-      ) : null}
+        ) : null}
+      </div>
     </StepShell>
   );
 }

@@ -5,6 +5,8 @@ import "leaflet/dist/leaflet.css";
 interface MapPickerProps {
   latitude: number;
   longitude: number;
+  zoom?: number;
+  showMarker: boolean;
   onPositionChange: (latitude: number, longitude: number) => void;
 }
 
@@ -15,7 +17,13 @@ const markerIcon = L.divIcon({
   iconAnchor: [11, 11],
 });
 
-export default function MapPicker({ latitude, longitude, onPositionChange }: MapPickerProps) {
+export default function MapPicker({
+  latitude,
+  longitude,
+  zoom = 18,
+  showMarker,
+  onPositionChange,
+}: MapPickerProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
   const markerRef = useRef<L.Marker | null>(null);
@@ -26,25 +34,30 @@ export default function MapPicker({ latitude, longitude, onPositionChange }: Map
     if (!containerRef.current || mapRef.current) return;
     const map = L.map(containerRef.current, { attributionControl: true }).setView(
       [latitude, longitude],
-      18,
+      zoom,
     );
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "© OpenStreetMap",
     }).addTo(map);
 
-    const marker = L.marker([latitude, longitude], { draggable: true, icon: markerIcon }).addTo(map);
-    marker.on("dragend", () => {
-      const position = marker.getLatLng();
-      changeRef.current(position.lat, position.lng);
-    });
     map.on("click", (event: L.LeafletMouseEvent) => {
-      marker.setLatLng(event.latlng);
+      if (markerRef.current) {
+        markerRef.current.setLatLng(event.latlng);
+      } else {
+        markerRef.current = L.marker(event.latlng, {
+          draggable: true,
+          icon: markerIcon,
+        }).addTo(map);
+        markerRef.current.on("dragend", () => {
+          const position = markerRef.current!.getLatLng();
+          changeRef.current(position.lat, position.lng);
+        });
+      }
       changeRef.current(event.latlng.lat, event.latlng.lng);
     });
 
     mapRef.current = map;
-    markerRef.current = marker;
 
     // Container is often sized after mount (lazy/Suspense); recalc so clicks map correctly.
     const invalidate = () => map.invalidateSize();
@@ -64,10 +77,28 @@ export default function MapPicker({ latitude, longitude, onPositionChange }: Map
   }, []);
 
   useEffect(() => {
-    if (!mapRef.current || !markerRef.current) return;
-    markerRef.current.setLatLng([latitude, longitude]);
-    mapRef.current.setView([latitude, longitude], mapRef.current.getZoom());
-  }, [latitude, longitude]);
+    const map = mapRef.current;
+    if (!map) return;
+
+    if (showMarker) {
+      if (!markerRef.current) {
+        markerRef.current = L.marker([latitude, longitude], {
+          draggable: true,
+          icon: markerIcon,
+        }).addTo(map);
+        markerRef.current.on("dragend", () => {
+          const position = markerRef.current!.getLatLng();
+          changeRef.current(position.lat, position.lng);
+        });
+      } else {
+        markerRef.current.setLatLng([latitude, longitude]);
+      }
+      map.setView([latitude, longitude], zoom);
+    } else if (markerRef.current) {
+      markerRef.current.remove();
+      markerRef.current = null;
+    }
+  }, [latitude, longitude, zoom, showMarker]);
 
   return <div ref={containerRef} className="h-64 w-full overflow-hidden rounded-xl" />;
 }
