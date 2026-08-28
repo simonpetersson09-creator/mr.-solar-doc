@@ -288,8 +288,8 @@ export const en = {
     fields: {
       savings30Short: "Calculated with {{degradation}} % annual production degradation and unchanged electricity values.",
       solarShareTitle: "Your solar electricity",
-      selfConsumptionRate: "Self-consumption rate",
-      selfSufficiencyRate: "Self-sufficiency rate",
+      selfConsumptionRate: "Self-consumption rate (share of solar production)",
+      selfSufficiencyRate: "Self-sufficiency rate (share of electricity use)",
       selfConsumptionRateNote:
         "The self-consumption rate shows how much of the produced solar electricity is used directly in the property.",
       selfSufficiencyRateNote:
