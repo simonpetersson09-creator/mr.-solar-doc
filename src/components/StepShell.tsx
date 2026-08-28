@@ -26,8 +26,8 @@ export function StepShell({
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen surface-sun">
-      <header className="mx-auto flex max-w-2xl items-center gap-3 px-5 pt-4">
+    <div className="flex min-h-dvh flex-col surface-sun">
+      <header className="pt-safe mx-auto flex w-full max-w-2xl items-center gap-3 px-5">
         {onBack ? (
           <button
             type="button"
