@@ -167,6 +167,34 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
         </div>
       </div>
 
+      {/* Custom zoom controls (Leaflet's own would hide behind the overlays) */}
+      {map ? (
+        <div className="absolute right-4 bottom-44 z-20 flex flex-col gap-2">
+          <button
+            type="button"
+            aria-label="Zooma in"
+            className="flex size-11 items-center justify-center rounded-full border border-border/60 bg-card/90 text-foreground shadow-lg backdrop-blur-md transition-colors hover:bg-secondary active:scale-95"
+            onClick={() => {
+              void haptic("light");
+              map.zoomIn();
+            }}
+          >
+            <Plus className="size-5" />
+          </button>
+          <button
+            type="button"
+            aria-label="Zooma ut"
+            className="flex size-11 items-center justify-center rounded-full border border-border/60 bg-card/90 text-foreground shadow-lg backdrop-blur-md transition-colors hover:bg-secondary active:scale-95"
+            onClick={() => {
+              void haptic("light");
+              map.zoomOut();
+            }}
+          >
+            <Minus className="size-5" />
+          </button>
+        </div>
+      ) : null}
+
       {/* Bottom overlay: hint + action over fading gradient */}
       <div className="pointer-events-none relative z-20 mt-auto bg-gradient-to-t from-background via-background/80 to-transparent pt-16">
         <div className="pointer-events-auto mx-auto w-full max-w-2xl space-y-4 p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
