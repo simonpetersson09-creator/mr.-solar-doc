@@ -26,8 +26,9 @@ export const sv = {
   },
   address: {
     title: "Var finns fastigheten?",
-    subtitle: "Sök din adress så hämtar vi solinstrålningen för just den platsen.",
+    subtitle: "Sök din adress eller tryck direkt på kartan.",
     placeholder: "Sök adress, t.ex. Storgatan 1, Uppsala",
+    mapHint: "Tryck på kartan för att markera fastigheten – adressen fylls i automatiskt.",
     searching: "Söker…",
     noResults: "Inga träffar. Prova en mer exakt adress.",
     selected: "Vald plats",

@@ -26,8 +26,9 @@ export const en = {
   },
   address: {
     title: "Where is the property?",
-    subtitle: "Search for your address and we'll fetch solar data for that exact spot.",
+    subtitle: "Search for your address or tap the map directly.",
     placeholder: "Search address, e.g. Main Street 1",
+    mapHint: "Tap the map to mark the property – the address is filled in automatically.",
     searching: "Searching…",
     noResults: "No matches. Try a more precise address.",
     selected: "Selected location",
