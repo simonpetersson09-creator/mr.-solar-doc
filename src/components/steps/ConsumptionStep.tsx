@@ -205,10 +205,10 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
                 value={annual}
                 placeholder={t("consumption.annualPlaceholder")}
                 onChange={(event) => setAnnual(event.target.value)}
-                className="mt-1 h-10 text-base"
+                className="mt-0.5 h-9 text-sm"
               />
             </div>
-            <span className="pb-2.5 text-xs text-muted-foreground">{t("units.kwhPerYear")}</span>
+            <span className="pb-2 text-[11px] text-muted-foreground">{t("units.kwhPerYear")}</span>
           </div>
         ) : null}
 
@@ -270,9 +270,9 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
       </div>
 
       {showEstimatedProfile && estimatedMonthly ? (
-        <div className="card-elevated space-y-2.5 p-3.5">
+        <div className="card-elevated space-y-2 p-3">
           <div>
-            <p className="text-[13px] font-medium">{t("consumption.shape.question")}</p>
+            <p className="text-xs font-medium">{t("consumption.shape.question")}</p>
             <p className="text-xs text-muted-foreground">{t("consumption.shape.help")}</p>
           </div>
 
