@@ -788,7 +788,10 @@ export function generateReportBlob(options: ReportOptions): Blob {
     { label: f.dataSource, value: result.resource.dataSource, origin: "external" },
   ];
   report.rows(assumptionRows, labels.origin);
-  report.noteBox(f["uncertaintyTitle"] ?? "", f["uncertaintyText"] ?? "");
+  report.noteBox(
+    f["uncertaintyTitle"] ?? "",
+    `${f["uncertaintyText"] ?? ""} ${labels.disclaimer}`,
+  );
 
   const reportId = buildReportId(result);
   report.rows([
@@ -798,7 +801,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
       value: `${isoDateOnly(result.calculatedAt)} · ${result.calculationVersion}`,
     },
   ]);
-  report.paragraph(labels.disclaimer);
   report.footer(labels.appName, reportId);
 
   return report.doc.output("blob");
