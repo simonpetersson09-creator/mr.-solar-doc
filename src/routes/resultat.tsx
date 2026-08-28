@@ -55,7 +55,7 @@ function ResultPage() {
 
   if (!result) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 surface-sun px-6 text-center">
+      <div className="flex min-h-dvh flex-col items-center justify-center gap-4 surface-sun px-6 text-center">
         <p className="text-muted-foreground">{t("result.noCalculation")}</p>
         <Button asChild>
           <Link to="/">{t("common.startOver")}</Link>
@@ -113,12 +113,12 @@ function ResultPage() {
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
 
   return (
-    <div className="min-h-screen surface-sun pb-28">
-      <header className="mx-auto max-w-2xl px-5 pt-6">
+    <div className="flex min-h-dvh flex-col surface-sun">
+      <header className="pt-safe mx-auto w-full max-w-2xl px-5">
         <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
       </header>
 
-      <main className="mx-auto max-w-2xl space-y-2.5 px-5 pt-3">
+      <main className="mx-auto w-full max-w-2xl flex-1 space-y-2.5 px-5 pt-3 pb-2">
         {/* 1. Recommendation */}
         <section className="hero-metric rounded-3xl p-5">
           <div className="glow-amber -top-16 -right-16 size-48" aria-hidden="true" />
@@ -354,11 +354,8 @@ function ResultPage() {
         {exportError ? <p className="text-sm text-destructive">{t("result.pdfError")}</p> : null}
       </main>
 
-      <div className="fixed inset-x-0 bottom-0 border-t border-border bg-background/90 pb-[env(safe-area-inset-bottom)] backdrop-blur">
-        <div
-          className="mx-auto flex max-w-2xl flex-col gap-2 px-5 py-3"
-          style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
-        >
+      <div className="sticky bottom-0 bg-gradient-to-t from-background via-background/85 to-transparent">
+        <div className="pb-safe mx-auto flex w-full max-w-2xl flex-col gap-2 px-5 pt-3">
           <div className="flex gap-2">
             <Button
               variant="outline"

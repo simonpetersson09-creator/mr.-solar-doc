@@ -150,17 +150,24 @@
 
   html {
     -webkit-text-size-adjust: 100%;
-    /* Match body so safe-area letterboxing (top/bottom notches) isn't white */
+    /* The daylight gradient lives on the root element so it covers the whole
+       viewport — including notch/home-indicator safe areas — with no seam. */
     background-color: var(--color-background);
+    background-image: radial-gradient(
+        120% 90% at 85% -10%,
+        oklch(0.9 0.11 82 / 0.55) 0%,
+        transparent 60%
+      ),
+      radial-gradient(90% 70% at 0% 0%, oklch(0.88 0.07 150 / 0.4) 0%, transparent 55%);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
   }
 
   body {
-    background-color: var(--color-background);
+    background-color: transparent;
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    /* Native safe areas (Capacitor iOS/Android) */
-    padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
+    min-height: 100dvh;
   }
 
   h1,
@@ -172,13 +179,19 @@
   }
 }
 
+/* The daylight gradient is painted on <html> so it spans safe areas seamlessly.
+   Pages stay transparent and simply let it show through. */
 @utility surface-sun {
-  background-image: radial-gradient(
-      120% 90% at 85% -10%,
-      oklch(0.9 0.11 82 / 0.55) 0%,
-      transparent 60%
-    ),
-    radial-gradient(90% 70% at 0% 0%, oklch(0.88 0.07 150 / 0.4) 0%, transparent 55%);
+  background-color: transparent;
+}
+
+/* Safe-area aware spacing for full-screen shells. */
+@utility pt-safe {
+  padding-top: calc(1rem + env(safe-area-inset-top));
+}
+
+@utility pb-safe {
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
 }
 
 @utility card-elevated {

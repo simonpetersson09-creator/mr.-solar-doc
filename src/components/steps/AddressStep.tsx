@@ -87,7 +87,10 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
       </div>
 
       {/* Top overlay: step indicator + floating search card */}
-      <div className="relative z-20 mx-auto w-full max-w-2xl space-y-4 p-5">
+      <div
+        className="relative z-20 mx-auto w-full max-w-2xl space-y-4 p-5"
+        style={{ paddingTop: "calc(1.25rem + env(safe-area-inset-top))" }}
+      >
         <div className="flex items-center gap-3">
           <span className="flex size-9 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-md">
             <Sun className="size-5" />

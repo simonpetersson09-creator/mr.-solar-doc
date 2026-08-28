@@ -26,8 +26,8 @@ export function StepShell({
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen surface-sun">
-      <header className="mx-auto flex max-w-2xl items-center gap-3 px-5 pt-4">
+    <div className="flex min-h-dvh flex-col surface-sun">
+      <header className="pt-safe mx-auto flex w-full max-w-2xl items-center gap-3 px-5">
         {onBack ? (
           <button
             type="button"
@@ -68,20 +68,15 @@ export function StepShell({
         <LanguageSwitcher />
       </header>
 
-      <main className="mx-auto max-w-2xl px-5 pt-4 pb-24">
+      <main className="mx-auto w-full max-w-2xl flex-1 px-5 pt-4 pb-4">
         <h1 className="text-xl leading-tight font-bold tracking-tight text-foreground">{title}</h1>
         {subtitle ? <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p> : null}
         <div className="mt-4 space-y-3">{children}</div>
       </main>
 
       {footer ? (
-        <div className="fixed inset-x-0 bottom-0 border-t border-border bg-background/90 pb-[env(safe-area-inset-bottom)] backdrop-blur">
-        <div
-            className="mx-auto max-w-2xl px-5 py-3"
-            style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
-          >
-            {footer}
-          </div>
+        <div className="sticky bottom-0 bg-gradient-to-t from-background via-background/85 to-transparent">
+          <div className="pb-safe mx-auto w-full max-w-2xl px-5 pt-3">{footer}</div>
         </div>
       ) : null}
     </div>

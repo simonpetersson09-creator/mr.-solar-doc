@@ -88,9 +88,16 @@ export async function shareFile(request: ShareFileRequest): Promise<"shared" | "
   const anchor = document.createElement("a");
   anchor.href = url;
   anchor.download = request.fileName;
+  // Opening in a new context keeps the file reachable when the app runs inside
+  // an iframe (Lovable preview) or a webview where inline downloads are blocked.
+  anchor.target = "_blank";
+  anchor.rel = "noopener";
   document.body.appendChild(anchor);
   anchor.click();
   anchor.remove();
-  URL.revokeObjectURL(url);
+
+  // Some engines (iOS WKWebView, Safari) abort the transfer if the object URL is
+  // revoked immediately, so keep it alive for a while.
+  window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
   return "downloaded";
 }
