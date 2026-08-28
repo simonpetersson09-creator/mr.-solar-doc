@@ -376,21 +376,17 @@ function ResultPage() {
             </div>
           </div>
 
-          <div className="rounded-xl bg-secondary p-3">
-            <p className="text-[11px] text-muted-foreground">
-              {t("result.investmentLevelTitle", {
-                years: formatNumber(paybackYears, locale),
-              })}
-            </p>
-            <p className="mt-0.5 text-2xl font-bold">
-              {t("result.maxInvestmentApprox", { amount: investmentAmount })}
-            </p>
-            <p className="mt-1 text-[11px] text-muted-foreground">
-              {t("result.investmentLevelNote", {
-                years: formatNumber(paybackYears, locale),
-                amount: investmentAmount,
-              })}
-            </p>
+          <div className="rounded-xl bg-secondary p-2.5">
+            <div className="flex items-baseline justify-between gap-3">
+              <p className="text-[11px] text-muted-foreground">
+                {t("result.investmentLevelTitle", {
+                  years: formatNumber(paybackYears, locale),
+                })}
+              </p>
+              <p className="text-xl font-bold">
+                {t("result.maxInvestmentApprox", { amount: investmentAmount })}
+              </p>
+            </div>
             <p className="mt-1 text-[10px] text-muted-foreground/80">
               {t("result.investmentFormula", {
                 value: formatCurrency(p.annualSavings, locale, currency),
@@ -404,6 +400,7 @@ function ResultPage() {
             </p>
           </div>
         </section>
+
 
 
         {/* 5. Technical details */}
