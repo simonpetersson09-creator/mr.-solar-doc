@@ -31,16 +31,16 @@ const REASON_KEY: Record<string, string> = {
 export const Route = createFileRoute("/resultat")({
   head: () => ({
     meta: [
-      { title: "Din solcellsrekommendation – Solenergikollen" },
+      { title: "Din solelberäkning – Solenergikollen" },
       {
         name: "description",
         content:
-          "Se rekommenderad kWp, växelriktarstorlek, DC/AC-ratio, månadsproduktion och ekonomiskt värde – och ladda ner rapporten som PDF.",
+          "Se beräknad kWp, växelriktarstorlek, DC/AC-ratio, månadsproduktion och ekonomiskt värde – och ladda ner rapporten som PDF.",
       },
-      { property: "og:title", content: "Din solcellsrekommendation – Solenergikollen" },
+      { property: "og:title", content: "Din solelberäkning – Solenergikollen" },
       {
         property: "og:description",
-        content: "Detaljerad dimensionering av din solcellsanläggning med PDF-rapport.",
+        content: "Beräknad dimensionering av din solcellsanläggning med PDF-rapport.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -59,6 +59,9 @@ function ResultPage() {
   const reset = useWizardStore((s) => s.reset);
   const [showDetails, setShowDetails] = useState(false);
   const [showPaybackInfo, setShowPaybackInfo] = useState(false);
+  const [showQuote, setShowQuote] = useState(false);
+  const quotePrice = useWizardStore((s) => s.quotePrice);
+  const setQuotePrice = useWizardStore((s) => s.setQuotePrice);
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
   const setAcceptedPaybackYears = useWizardStore((s) => s.setAcceptedPaybackYears);
   const [exporting, setExporting] = useState(false);
@@ -96,6 +99,7 @@ function ResultPage() {
         rationale,
         coverageNote: t("result.coverageNote"),
         paybackNote: `${t("result.paybackInfo")} ${t("result.maxInvestmentNote")}`,
+        quoteNote: t("result.quoteNote"),
         chartProduction: t("report.chartProduction"),
         chartConsumption: t("report.chartConsumption"),
         origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin"],
@@ -113,6 +117,11 @@ function ResultPage() {
 
   const currency = result.economics.currency;
   const p = result.presentation;
+  const investmentAmount = formatCurrency(
+    result.investment.maxInvestmentRounded,
+    locale,
+    currency,
+  );
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
 
   const editableBadge = (
@@ -300,7 +309,7 @@ function ResultPage() {
               </div>
             </div>
             <p className="text-[11px] text-muted-foreground">
-              {t("result.selfConsumedValueHelp")}
+              {t("result.priceExplainer")}
             </p>
           </div>
 
