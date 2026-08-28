@@ -141,25 +141,26 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
         </Button>
       }
     >
-      <div className="card-elevated space-y-2 p-3.5">
+      <div className="card-elevated space-y-2.5 p-3">
         <div className="flex items-center gap-2.5">
-          <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary">
+          <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary">
             <FileUp className="size-3.5" />
           </span>
           <div className="min-w-0 flex-1">
-            <p className="text-[13px] leading-tight font-medium">{t("consumption.upload.title")}</p>
-            <p className="truncate text-[11px] text-muted-foreground">
+            <p className="text-xs leading-tight font-medium">{t("consumption.upload.title")}</p>
+            <p className="truncate text-[10px] text-muted-foreground">
               {fileName ?? t("consumption.upload.fileTypes")}
             </p>
           </div>
           <Button
             variant="outline"
             size="sm"
+            className="h-7 px-2.5 text-xs"
             disabled={parsing}
             onClick={() => fileInputRef.current?.click()}
           >
             {parsing ? (
-              <Loader2 className="size-4 animate-spin" />
+              <Loader2 className="size-3.5 animate-spin" />
             ) : (
               t("consumption.upload.button")
             )}
@@ -177,7 +178,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
           }}
         />
         {parseStatus === "monthly" || parseStatus === "annual" ? (
-          <p className="text-xs text-primary">
+          <p className="text-[11px] text-primary">
             {t(
               parseStatus === "monthly"
                 ? "consumption.upload.successMonthly"
@@ -186,11 +187,11 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
           </p>
         ) : null}
         {parseStatus === "error" ? (
-          <p className="text-xs text-destructive">{t("consumption.upload.error")}</p>
+          <p className="text-[11px] text-destructive">{t("consumption.upload.error")}</p>
         ) : null}
-      </div>
 
-      <div className="card-elevated space-y-2.5 p-3.5">
+        <div className="border-t border-border" />
+
         {!useMonthly ? (
           <div className="flex items-end gap-2">
             <div className="flex-1">
