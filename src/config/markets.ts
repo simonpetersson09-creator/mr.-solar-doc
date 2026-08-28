@@ -1,4 +1,4 @@
-import { EU_THREE_PHASE_KW_PER_AMP } from "./constants";
+import { CONSUMPTION_SHAPE_WEIGHTS, EU_THREE_PHASE_KW_PER_AMP } from "./constants";
 
 export type GridConnectionType = "eu-three-phase-400v";
 
@@ -24,6 +24,11 @@ export interface MarketConfig {
   mainFuseOptionsAmp: number[];
   /** Commercially available inverter sizes (kW AC). */
   inverterSizesKw: number[];
+  /**
+   * Neutral monthly consumption weights (Jan..Dec) used when the user picks
+   * "I don't know". Normalised before use, so relative values are enough.
+   */
+  defaultConsumptionWeights: number[];
 }
 
 const EU_INVERTER_SIZES_KW = [3, 4, 5, 6, 8, 10, 12, 15, 17, 20, 25, 30];
@@ -34,6 +39,7 @@ const baseEuMarket = {
   kwPerAmp: EU_THREE_PHASE_KW_PER_AMP,
   mainFuseOptionsAmp: EU_MAIN_FUSE_OPTIONS_AMP,
   inverterSizesKw: EU_INVERTER_SIZES_KW,
+  defaultConsumptionWeights: [...CONSUMPTION_SHAPE_WEIGHTS.default],
 };
 
 export const MARKETS: Record<string, MarketConfig> = {
