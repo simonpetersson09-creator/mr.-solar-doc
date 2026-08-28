@@ -324,20 +324,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
     `${labels.generated}: ${isoDateOnly(result.calculatedAt)}`,
   );
 
-  report.sectionTitle(labels.summary);
-  report.highlights([
-    { label: f.array, value: `${formatDecimal(result.installedKwp, locale)} kWp (${result.panelCount} ${f["panelsUnit"]})` },
-    { label: f.inverter, value: `${formatNumber(result.inverterKw, locale)} kW` },
-    {
-      label: f.annualProduction,
-      value: `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh`,
-    },
-    {
-      label: f.savings,
-      value: formatCurrency(result.presentation.annualSavings, locale, currency),
-    },
-  ]);
-
   report.sectionTitle(labels.technical);
   report.highlights([
     {
@@ -354,6 +340,8 @@ export function generateReportBlob(options: ReportOptions): Blob {
   const investmentValue = result.investment.quotePrice ?? result.investment.maxInvestmentRounded;
   const paybackValue =
     result.investment.quotePaybackYears ?? result.investment.acceptedPaybackYears;
+  const returnPercent =
+    investmentValue > 0 ? (result.presentation.annualSavings / investmentValue) * 100 : 0;
   report.sectionTitle(labels.economicSummary);
   report.highlights([
     {
@@ -372,9 +360,14 @@ export function generateReportBlob(options: ReportOptions): Blob {
       label: f["paybackTime"] ?? f["acceptedPayback"] ?? "",
       value: `${formatDecimal(paybackValue, locale, 1)} ${f["yearsUnit"] ?? ""}`,
     },
+    {
+      label: f["returnRate"] ?? "",
+      value: `${formatDecimal(returnPercent, locale, 1)} %${f["perYearShort"] ? ` ${f["perYearShort"]}` : ""}`,
+    },
   ]);
 
   report.pageBreak();
+
 
   report.rows(
     [
