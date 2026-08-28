@@ -473,24 +473,14 @@ export function generateReportBlob(options: ReportOptions): Blob {
     },
   ]);
 
+  // Page 1 keeps only the short method line; the full explanation lives on the
+  // economics page so the summary stays readable.
   report.paragraph(
-    `${(f["savings30Method"] ?? "")
-      .replace("{{years}}", String(result.lifetime.periodYears))
-      .replace(
-        "{{degradation}}",
-        formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
-      )
-      .replace(
-        "{{priceChange}}",
-        formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0),
-      )} ${(f["savings30Note"] ?? "").replace(
+    (f["savings30Short"] ?? "").replace(
       "{{degradation}}",
       formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
-    )}`,
+    ),
   );
-
-  report.paragraph(labels.rationale);
-
 
   report.pageBreak();
 
