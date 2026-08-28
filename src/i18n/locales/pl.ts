@@ -242,6 +242,8 @@ export const pl = {
     "currency": "Waluta",
     "economicValue": "Podstawowa wartość ekonomiczna",
     "perYear": "rocznie",
+    "adjustAssumptions": "Dostosuj założenia",
+    "adjustAssumptionsHint": "Zmień autokonsumpcję, ceny energii i oczekiwany okres zwrotu.",
     "showCalculation": "Pokaż kalkulację",
     "hideCalculation": "Ukryj kalkulację",
     "adjustSplit": "Dostosuj autokonsumpcję",

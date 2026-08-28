@@ -242,6 +242,8 @@ export const lv = {
     "currency": "Valūta",
     "economicValue": "Pamata ekonomiskā vērtība",
     "perYear": "gadā",
+    "adjustAssumptions": "Pielāgot pieņēmumus",
+    "adjustAssumptionsHint": "Mainiet pašpatēriņu, elektrības cenas un vēlamo atmaksāšanās laiku.",
     "showCalculation": "Rādīt aprēķinu",
     "hideCalculation": "Slēpt aprēķinu",
     "adjustSplit": "Pielāgot pašpatēriņu",

@@ -242,6 +242,8 @@ export const lt = {
     "currency": "Valiuta",
     "economicValue": "Pagrindinė ekonominė vertė",
     "perYear": "per metus",
+    "adjustAssumptions": "Koreguoti prielaidas",
+    "adjustAssumptionsHint": "Keiskite savo suvartojimą, elektros kainas ir norimą atsipirkimo laiką.",
     "showCalculation": "Rodyti skaičiavimą",
     "hideCalculation": "Slėpti skaičiavimą",
     "adjustSplit": "Reguliuoti savarankišką suvartojimą",

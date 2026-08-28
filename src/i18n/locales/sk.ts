@@ -242,6 +242,8 @@ export const sk = {
     "currency": "Mena",
     "economicValue": "Základná ekonomická hodnota",
     "perYear": "za rok",
+    "adjustAssumptions": "Upraviť predpoklady",
+    "adjustAssumptionsHint": "Zmeňte vlastnú spotrebu, ceny elektriny a požadovanú dobu návratnosti.",
     "showCalculation": "Zobraziť výpočet",
     "hideCalculation": "Skryť výpočet",
     "adjustSplit": "Upraviť vlastnú spotrebu",

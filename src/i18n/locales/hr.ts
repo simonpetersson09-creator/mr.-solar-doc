@@ -242,6 +242,8 @@ export const hr = {
     "currency": "Valuta",
     "economicValue": "Osnovna ekonomska vrijednost",
     "perYear": "godišnje",
+    "adjustAssumptions": "Prilagodi pretpostavke",
+    "adjustAssumptionsHint": "Promijenite vlastitu potrošnju, cijene struje i željeni period povrata.",
     "showCalculation": "Prikaži izračun",
     "hideCalculation": "Sakrij izračun",
     "adjustSplit": "Prilagodi vlastitu potrošnju",

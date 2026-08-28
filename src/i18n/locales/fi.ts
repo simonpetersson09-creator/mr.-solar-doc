@@ -242,6 +242,8 @@ export const fi = {
     "currency": "Valuutta",
     "economicValue": "Perustava taloudellinen arvo",
     "perYear": "vuodessa",
+    "adjustAssumptions": "Muokkaa oletuksia",
+    "adjustAssumptionsHint": "Muuta omakäyttöä, sähkön hintoja ja haluttua takaisinmaksuaikaa.",
     "showCalculation": "Näytä laskelma",
     "hideCalculation": "Piilota laskelma",
     "adjustSplit": "Säädä omaa kulutusta",

@@ -242,6 +242,8 @@ export const de = {
     "currency": "Währung",
     "economicValue": "Grundlegender wirtschaftlicher Wert",
     "perYear": "pro Jahr",
+    "adjustAssumptions": "Annahmen anpassen",
+    "adjustAssumptionsHint": "Eigenverbrauch, Strompreise und gewünschte Amortisationszeit ändern.",
     "showCalculation": "Berechnung anzeigen",
     "hideCalculation": "Berechnung ausblenden",
     "adjustSplit": "Eigenverbrauch anpassen",

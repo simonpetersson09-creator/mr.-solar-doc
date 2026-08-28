@@ -242,6 +242,8 @@ export const cs = {
     "currency": "Měna",
     "economicValue": "Základní ekonomická hodnota",
     "perYear": "za rok",
+    "adjustAssumptions": "Upravit předpoklady",
+    "adjustAssumptionsHint": "Změňte vlastní spotřebu, ceny elektřiny a požadovanou dobu návratnosti.",
     "showCalculation": "Zobrazit výpočet",
     "hideCalculation": "Skrýt výpočet",
     "adjustSplit": "Upravit vlastní spotřebu",

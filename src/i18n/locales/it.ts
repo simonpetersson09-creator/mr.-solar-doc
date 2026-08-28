@@ -242,6 +242,8 @@ export const it = {
     "currency": "Valuta",
     "economicValue": "Valore economico di base",
     "perYear": "per anno",
+    "adjustAssumptions": "Modifica le ipotesi",
+    "adjustAssumptionsHint": "Cambia autoconsumo, prezzi dell'elettricità e tempo di ritorno desiderato.",
     "showCalculation": "Mostra calcolo",
     "hideCalculation": "Nascondi calcolo",
     "adjustSplit": "Regola autoconsumo",

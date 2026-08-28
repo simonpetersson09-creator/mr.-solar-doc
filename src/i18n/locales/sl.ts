@@ -242,6 +242,8 @@ export const sl = {
     "currency": "Valuta",
     "economicValue": "Osnovna ekonomska vrednost",
     "perYear": "na leto",
+    "adjustAssumptions": "Prilagodi predpostavke",
+    "adjustAssumptionsHint": "Spremenite lastno porabo, cene elektrike in želeno dobo vračila.",
     "showCalculation": "Prikaži izračun",
     "hideCalculation": "Skrij izračun",
     "adjustSplit": "Prilagodi lastno porabo",
