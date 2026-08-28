@@ -64,8 +64,10 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
   const mapLongitude = location?.longitude ?? 15.0;
   const mapZoom = location ? 17 : 4;
 
+  // Fixed to the viewport height: the map backdrop may never stretch the page
+  // below the primary action, not even on very tall screens.
   return (
-    <div className="surface-sun relative flex min-h-screen flex-col overflow-hidden">
+    <div className="surface-sun relative flex h-dvh max-h-dvh flex-col overflow-hidden">
       {/* Full-bleed map backdrop */}
       <div className="absolute inset-0 z-0">
         <ClientOnly fallback={<div className="h-full w-full bg-muted" />}>

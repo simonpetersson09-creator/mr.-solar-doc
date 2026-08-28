@@ -104,9 +104,16 @@ export function splitProduction(
 }
 
 /**
+ * NOT USED BY THE ENGINE TODAY — kept deliberately as future work.
+ *
  * Prepared for a future, smarter estimate: when monthly consumption is known,
  * self-consumption can be bounded month by month. Returns null when monthly
  * data is unavailable, so callers keep using the user/default share.
+ *
+ * Caveat before wiring it in: a monthly overlap systematically OVERESTIMATES
+ * self-consumption, because within a month production and consumption do not
+ * coincide hour by hour. An hourly model (or a monthly correction factor) is
+ * required first. Behaviour is pinned by self-consumption.test.ts.
  */
 export function estimateSelfConsumptionShareFromMonthlyData(
   monthlyProductionKwh: number[],

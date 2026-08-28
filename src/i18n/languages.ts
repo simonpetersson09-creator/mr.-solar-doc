@@ -1,6 +1,11 @@
 /**
  * Language catalogue. `language` (UI text), `locale` (formatting), `country`
  * (market rules) and `currency` are deliberately independent concepts.
+ *
+ * A language in this list does NOT imply a supported market. Croatian ("hr")
+ * is kept as a UI language for Croatian speakers living in supported markets,
+ * while Croatia itself is not an active market (see ACTIVE_MARKET_CODES in
+ * src/config/markets.ts, pinned by markets.test.ts).
  */
 
 export const SUPPORTED_LANGUAGES = [

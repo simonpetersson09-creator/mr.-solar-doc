@@ -43,8 +43,15 @@ function toSuggestion(place: NominatimPlace): GeocodeSuggestion {
 
 const USER_AGENT = "MrSolarDoc/1.0 (solar sizing app)";
 
-/** Nominatim usage policy: at most one request per second, per application. */
-const MIN_REQUEST_INTERVAL_MS = 1000;
+/**
+ * Nominatim usage policy: at most one request per second, per application.
+ * The queue below is per server isolate, and several isolates may run in
+ * parallel, so we keep a safety margin above the documented one second.
+ */
+const MIN_REQUEST_INTERVAL_MS = 1200;
+/** Upstream throttling response: retried once after a short pause. */
+const RATE_LIMIT_STATUS = 429;
+const RATE_LIMIT_RETRY_DELAY_MS = 1500;
 /** Hard ceiling so a slow upstream can never pin the user in a loading state. */
 const REQUEST_TIMEOUT_MS = 10_000;
 const CACHE_TTL_MS = 1000 * 60 * 10;
@@ -101,12 +108,21 @@ function normaliseQuery(query: string): string {
   return query.trim().replace(/\s+/g, " ").toLowerCase();
 }
 
-async function fetchNominatim(url: string, errorPrefix: string): Promise<unknown> {
+async function requestNominatim(url: string): Promise<Response> {
   await scheduleNominatimSlot();
-  const response = await fetch(url, {
+  return fetch(url, {
     headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
     signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
   });
+}
+
+async function fetchNominatim(url: string, errorPrefix: string): Promise<unknown> {
+  let response = await requestNominatim(url);
+  // Parallel isolates can still trip the shared rate limit: back off once.
+  if (response.status === RATE_LIMIT_STATUS) {
+    await new Promise((resolve) => setTimeout(resolve, RATE_LIMIT_RETRY_DELAY_MS));
+    response = await requestNominatim(url);
+  }
   if (!response.ok) throw new Error(`${errorPrefix}_${response.status}`);
   return response.json();
 }

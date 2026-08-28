@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { splitProduction, summariseSelfConsumption } from "./self-consumption";
+import {
+  estimateSelfConsumptionShareFromMonthlyData,
+  splitProduction,
+  summariseSelfConsumption,
+} from "./self-consumption";
 import { buildLifetimeProjection } from "./degradation";
 
 /**
@@ -138,3 +142,36 @@ describe("buildLifetimeProjection", () => {
 function split2fields(split: { selfConsumptionKwh: number; exportedKwh: number }) {
   return { selfConsumedKwh: split.selfConsumptionKwh, exportedKwh: split.exportedKwh };
 }
+
+describe("estimateSelfConsumptionShareFromMonthlyData (future work, unused)", () => {
+  it("returns null without monthly consumption data", () => {
+    expect(estimateSelfConsumptionShareFromMonthlyData(Array(12).fill(100), null)).toBeNull();
+    expect(
+      estimateSelfConsumptionShareFromMonthlyData(Array(12).fill(100), [1, 2, 3]),
+    ).toBeNull();
+  });
+
+  it("returns null when there is no production", () => {
+    expect(
+      estimateSelfConsumptionShareFromMonthlyData(Array(12).fill(0), Array(12).fill(500)),
+    ).toBeNull();
+  });
+
+  it("caps the monthly overlap at production and stays within 0..1", () => {
+    const share = estimateSelfConsumptionShareFromMonthlyData(
+      Array(12).fill(100),
+      Array(12).fill(1000),
+    );
+    expect(share).toBe(1);
+  });
+
+  it("overestimates compared with an hourly model, which is why it is unused", () => {
+    // Consumption exceeds production every month, so the monthly overlap says
+    // 100% self-consumption even though no hourly coincidence is modelled.
+    const monthlyProduction = [10, 30, 80, 120, 160, 180, 170, 140, 90, 45, 15, 8];
+    const monthlyConsumption = monthlyProduction.map((v) => v * 2);
+    expect(
+      estimateSelfConsumptionShareFromMonthlyData(monthlyProduction, monthlyConsumption),
+    ).toBe(1);
+  });
+});
