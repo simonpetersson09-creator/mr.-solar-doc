@@ -291,7 +291,11 @@ export const sv = {
     fields: {
       panelPower: "Paneleffekt",
       annualValue: "Beräknat ekonomiskt värde",
-      savings30: "Totalt värde över 30 år",
+      savings30: "Totalt ekonomiskt värde över {{years}} år",
+      savings30Method: "Kalkylperiod: {{years}} år. Produktionsdegradering: {{degradation}} %/år. Elprisförändring: {{priceChange}} %/år.",
+      savings30Note: "Det långsiktiga ekonomiska värdet beräknas år för år med {{degradation}} % årlig produktionsdegradering. Kalkylen antar oförändrade värden för egenanvänd och såld solel.",
+      degradation: "Produktionsdegradering",
+      degradationNote: "Solpanelernas produktion antas minska med {{degradation}} % per år. Det är ett kalkylantagande och faktisk degradering kan variera mellan paneltyper, fabrikat och driftförhållanden.",
       investment: "Investeringsnivå vid vald återbetalningstid",
       returnRate: "Avkastning %",
       balanceTitle: "Årsbalans",

@@ -288,7 +288,11 @@ export const en = {
     fields: {
       panelPower: "Panel power",
       annualValue: "Estimated economic value",
-      savings30: "Total value over 30 years",
+      savings30: "Total economic value over {{years}} years",
+      savings30Method: "Calculation period: {{years}} years. Production degradation: {{degradation}} %/year. Electricity price change: {{priceChange}} %/year.",
+      savings30Note: "The long-term economic value is calculated year by year using {{degradation}} % annual production degradation. The calculation assumes unchanged values for self-consumed and exported solar power.",
+      degradation: "Production degradation",
+      degradationNote: "Panel output is assumed to decline by {{degradation}} % per year. This is a calculation assumption; actual degradation varies between panel types, brands and operating conditions.",
       investment: "Investment level at chosen payback time",
       returnRate: "Return %",
       balanceTitle: "Annual balance",

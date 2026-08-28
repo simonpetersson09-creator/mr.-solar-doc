@@ -2,6 +2,7 @@
 
 import type { PresentationValues } from "./presentation";
 import type { MaxInvestmentResult } from "./payback";
+import type { LifetimeProjection } from "./degradation";
 import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
 import type {
   ConsumptionProfileAnalysis,
@@ -10,6 +11,8 @@ import type {
 } from "./consumption-profile";
 
 export type { ConsumptionInputType, ConsumptionShape };
+
+export type { LifetimeProjection };
 
 export type {
   PresentationValues,
@@ -102,6 +105,8 @@ export interface CalculationInput {
   selfConsumptionShare: number;
   /** Simple payback time the user selected, in years. */
   acceptedPaybackYears: number;
+  /** Overrides the default annual production degradation (e.g. 0.005). */
+  annualDegradationRate?: number;
   /** Optional quote price entered by the user, for the reverse calculation. */
   quotePrice?: number | null;
   inverterSizesKw: number[];
@@ -152,6 +157,8 @@ export interface CalculationResult {
     totalValue: number;
   };
   mainFuseAmp: number;
+  /** Year-by-year degraded production and economic value over the period. */
+  lifetime: LifetimeProjection;
   /** Maximum motivated investment given the accepted simple payback time. */
   investment: MaxInvestmentResult;
   /** Consumer-facing, rounding-consistent values derived from the above. */

@@ -306,11 +306,6 @@ export function buildReportFileName(result: CalculationResult): string {
   return `mr-solar-doc-${isoDateOnly(result.calculatedAt)}.pdf`;
 }
 
-/** 30-year value: full output through year 20, then 90 % efficiency for years 21-30. */
-function thirtyYearSavings(annualSavings: number): number {
-  return Math.round(annualSavings * (20 + 10 * 0.9));
-}
-
 export function generateReportBlob(options: ReportOptions): Blob {
   const { result, labels, locale } = options;
   const f = labels.fields;
@@ -384,10 +379,33 @@ export function generateReportBlob(options: ReportOptions): Blob {
       value: `${formatDecimal(paybackValue, locale, 1)} ${f["yearsUnit"] ?? ""}`,
     },
     {
-      label: f["savings30"] ?? f.savings,
-      value: formatCurrency(thirtyYearSavings(result.presentation.annualSavings), locale, currency),
+      label: (f["savings30"] ?? f.savings).replace(
+        "{{years}}",
+        String(result.lifetime.periodYears),
+      ),
+      value: formatCurrency(
+        Math.round(result.lifetime.totalEconomicValue),
+        locale,
+        currency,
+      ),
     },
   ]);
+
+  report.paragraph(
+    `${(f["savings30Method"] ?? "")
+      .replace("{{years}}", String(result.lifetime.periodYears))
+      .replace(
+        "{{degradation}}",
+        formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
+      )
+      .replace(
+        "{{priceChange}}",
+        formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0),
+      )} ${(f["savings30Note"] ?? "").replace(
+      "{{degradation}}",
+      formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
+    )}`,
+  );
 
   report.paragraph(labels.rationale);
 
@@ -605,10 +623,21 @@ export function generateReportBlob(options: ReportOptions): Blob {
       value: `${result.location.latitude.toFixed(5)}, ${result.location.longitude.toFixed(5)}`,
       origin: "user",
     },
+    {
+      label: f["degradation"] ?? "",
+      value: `${formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1)} % ${f["perYearShort"] ?? ""}`,
+      origin: "assumed",
+    },
     { label: f.dataSource, value: result.resource.dataSource, origin: "external" },
     { label: f.calculationVersion, value: result.calculationVersion, origin: "calculated" },
   ];
   report.rows(assumptionRows, labels.origin);
+  report.paragraph(
+    (f["degradationNote"] ?? "").replace(
+      "{{degradation}}",
+      formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
+    ),
+  );
   report.paragraph(labels.disclaimer);
   report.footer(labels.appName);
 
