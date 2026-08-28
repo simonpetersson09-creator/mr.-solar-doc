@@ -287,7 +287,78 @@ class ReportDocument {
     this.y += lines.length * 4 + 4;
   }
 
-  footer(appName: string) {
+  /** Bordered note block, used for the closing "what can affect the outcome" text. */
+  noteBox(title: string, text: string) {
+    const width = PAGE.width - PAGE.margin * 2;
+    this.doc.setFontSize(8.5);
+    this.doc.setFont("helvetica", "normal");
+    const lines = this.doc.splitTextToSize(text, width - 8) as string[];
+    const height = 12 + lines.length * 4;
+    this.ensureSpace(height + 4);
+    this.doc.setFillColor(250, 246, 236);
+    this.doc.setDrawColor(...LINE);
+    this.doc.setLineWidth(0.2);
+    this.doc.roundedRect(PAGE.margin, this.y, width, height, 2.5, 2.5, "FD");
+    this.doc.setFont("helvetica", "bold");
+    this.doc.setFontSize(9);
+    this.doc.setTextColor(...INK);
+    this.doc.text(title, PAGE.margin + 4, this.y + 6);
+    this.doc.setFont("helvetica", "normal");
+    this.doc.setFontSize(8.5);
+    this.doc.setTextColor(...MUTED);
+    this.doc.text(lines, PAGE.margin + 4, this.y + 11);
+    this.y += height + 6;
+  }
+
+  /**
+   * Compact cumulative-value line chart for the calculation period.
+   * Presentation only — every point comes from the calculation result.
+   */
+  cumulativeChart(
+    points: Array<{ year: number; value: number }>,
+    markers: number[],
+    formatValue: (value: number) => string,
+    axisLabel: string,
+  ) {
+    const height = 40;
+    this.ensureSpace(height + 24);
+    const width = PAGE.width - PAGE.margin * 2;
+    const baseline = this.y + height;
+    const maxValue = Math.max(...points.map((p) => p.value), 1);
+    const maxYear = Math.max(...points.map((p) => p.year), 1);
+    const xFor = (year: number) => PAGE.margin + ((year - 1) / (maxYear - 1 || 1)) * width;
+    const yFor = (value: number) => baseline - (value / maxValue) * height;
+
+    this.doc.setDrawColor(...LINE);
+    this.doc.setLineWidth(0.2);
+    this.doc.line(PAGE.margin, baseline, PAGE.margin + width, baseline);
+
+    this.doc.setDrawColor(...ACCENT);
+    this.doc.setLineWidth(0.7);
+    points.forEach((point, index) => {
+      if (index === 0) return;
+      const previous = points[index - 1]!;
+      this.doc.line(xFor(previous.year), yFor(previous.value), xFor(point.year), yFor(point.value));
+    });
+
+    this.doc.setFontSize(6.5);
+    markers.forEach((year) => {
+      const point = points.find((p) => p.year === year);
+      if (!point) return;
+      const x = xFor(point.year);
+      const y = yFor(point.value);
+      this.doc.setFillColor(...ACCENT);
+      this.doc.circle(x, y, 0.9, "F");
+      this.doc.setTextColor(...INK);
+      const align = year === maxYear ? "right" : year === 1 ? "left" : "center";
+      this.doc.text(formatValue(point.value), x, y - 2.5, { align });
+      this.doc.setTextColor(...MUTED);
+      this.doc.text(`${axisLabel} ${year}`, x, baseline + 4, { align });
+    });
+    this.y = baseline + 10;
+  }
+
+  footer(appName: string, reportId?: string) {
     const pages = this.doc.getNumberOfPages();
     for (let page = 1; page <= pages; page += 1) {
       this.doc.setPage(page);
@@ -295,12 +366,23 @@ class ReportDocument {
       this.doc.setFontSize(8);
       this.doc.setTextColor(...MUTED);
       this.doc.text(appName, PAGE.margin, PAGE.height - 10);
+      if (reportId) {
+        this.doc.text(reportId, PAGE.width / 2, PAGE.height - 10, { align: "center" });
+      }
       this.doc.text(`${page} / ${pages}`, PAGE.width - PAGE.margin, PAGE.height - 10, {
         align: "right",
       });
     }
   }
 }
+
+/** Unique, human-readable identifier for one generated report. */
+export function buildReportId(result: CalculationResult): string {
+  const date = isoDateOnly(result.calculatedAt).replace(/-/g, "");
+  const random = Math.random().toString(36).slice(2, 7).toUpperCase().padEnd(5, "0");
+  return `MSD-${date}-${random}`;
+}
+
 
 export function buildReportFileName(result: CalculationResult): string {
   return `mr-solar-doc-${isoDateOnly(result.calculatedAt)}.pdf`;
