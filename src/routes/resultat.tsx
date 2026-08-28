@@ -107,60 +107,85 @@ function ResultPage() {
         </p>
       </header>
 
-      <main className="mx-auto max-w-2xl space-y-5 px-5 pt-6">
-        <div className="grid gap-4 sm:grid-cols-2">
-          <div className="hero-metric rounded-2xl p-5">
-            <div className="flex items-center gap-2 text-sm font-medium">
-              <Sun className="size-4" /> {t("result.recommendedArray")}
-            </div>
-            <p className="mt-2 text-4xl font-bold">
-              {formatDecimal(result.installedKwp, locale)} <span className="text-xl">kWp</span>
-            </p>
-            <p className="mt-1 text-xs text-muted-foreground">
-              {t("result.panelCount", { count: panelCount(result.installedKwp) })}
-            </p>
+      <main className="mx-auto max-w-2xl space-y-6 px-5 pt-6">
+        {/* 1. Recommendation */}
+        <section className="hero-metric rounded-2xl p-5">
+          <div className="flex items-center gap-2 text-sm font-medium">
+            <Sun className="size-4" /> {t("result.recommendedArray")}
           </div>
-          <div className="card-elevated p-5">
-            <div className="flex items-center gap-2 text-sm font-medium text-muted-foreground">
-              <Zap className="size-4" /> {t("result.recommendedInverter")}
-            </div>
-            <p className="mt-2 text-4xl font-bold">
-              {formatNumber(result.inverterKw, locale)} <span className="text-xl">kW</span>
-            </p>
-          </div>
-        </div>
-
-        <div className="card-elevated p-5">
-          <p className="text-sm text-muted-foreground">{t("result.annualProduction")}</p>
-          <p className="mt-1 text-3xl font-bold">
-            {formatNumber(result.annualProductionKwh, locale)}{" "}
-            <span className="text-lg">kWh {t("result.perYear")}</span>
+          <p className="mt-2 text-4xl font-bold">
+            {formatDecimal(result.installedKwp, locale)} <span className="text-xl">kWp</span>
           </p>
-          <div className="mt-5">
-            <p className="mb-3 text-sm font-medium">{t("result.monthlyProduction")}</p>
-            <MonthlyChart
-              values={result.monthlyProductionKwh}
-              labels={shortMonths}
-              locale={locale}
-              comparison={result.consumption.monthlyKwh}
-              productionLabel={t("result.chartProduction")}
-              comparisonLabel={t("result.chartConsumption")}
-            />
-          </div>
-        </div>
-
-        {result.notes.includes("limited-by-main-fuse") ? (
-          <p className="rounded-xl border border-border bg-secondary p-4 text-sm">
-            {t("result.limitedByFuse")}
+          <p className="mt-1 text-sm text-muted-foreground">
+            {t("result.panelCount", { count: result.panelCount })}
           </p>
-        ) : null}
 
-        <div className="card-elevated space-y-5 p-5">
+          <div className="mt-5 grid gap-4 sm:grid-cols-2">
+            <div className="rounded-xl bg-card/70 p-4">
+              <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <Zap className="size-3.5" /> {t("result.recommendedInverter")}
+              </div>
+              <p className="mt-1 text-2xl font-bold">
+                {t("result.inverterShort", { kw: formatNumber(result.inverterKw, locale) })}
+              </p>
+            </div>
+            <div className="rounded-xl bg-card/70 p-4">
+              <p className="text-xs text-muted-foreground">{t("result.annualProduction")}</p>
+              <p className="mt-1 text-2xl font-bold">
+                {formatNumber(p.annualProductionKwh, locale)}{" "}
+                <span className="text-base font-semibold">kWh/{t("result.perYear").replace(/^per\s*/i, "")}</span>
+              </p>
+              <p className="text-xs text-muted-foreground">{t("result.productionCaption")}</p>
+            </div>
+          </div>
+
+          <p className="mt-4 text-lg font-semibold">
+            {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
+          </p>
+          <p className="mt-1 text-xs text-muted-foreground">{t("result.coverageNote")}</p>
+          <p className="mt-3 text-sm">{rationale}</p>
+        </section>
+
+        {/* 2. Production */}
+        <section className="card-elevated p-5">
+          <h2 className="text-lg font-semibold">{t("result.sectionProduction")}</h2>
+          <p className="mt-1 mb-4 text-sm text-muted-foreground">
+            {t("result.monthlyProduction")}
+          </p>
+          <MonthlyChart
+            values={result.monthlyProductionKwh}
+            labels={shortMonths}
+            locale={locale}
+            comparison={result.consumption.monthlyKwh}
+            productionLabel={t("result.chartProduction")}
+            comparisonLabel={t("result.chartConsumption")}
+          />
+        </section>
+
+        {/* 3. Your solar electricity */}
+        <section className="card-elevated space-y-4 p-5">
+          <h2 className="text-lg font-semibold">{t("result.sectionYourSolar")}</h2>
+          <dl className="grid grid-cols-2 gap-3 text-sm">
+            <div className="rounded-xl bg-secondary p-3">
+              <dt className="text-xs text-muted-foreground">{t("result.selfConsumption")}</dt>
+              <dd className="font-semibold">
+                {formatNumber(p.selfConsumptionPercent, locale)} % ·{" "}
+                {formatNumber(p.selfConsumptionKwh, locale)} kWh
+              </dd>
+            </div>
+            <div className="rounded-xl bg-secondary p-3">
+              <dt className="text-xs text-muted-foreground">{t("result.exported")}</dt>
+              <dd className="font-semibold">
+                {formatNumber(p.exportPercent, locale)} % ·{" "}
+                {formatNumber(p.exportedKwh, locale)} kWh
+              </dd>
+            </div>
+          </dl>
           <div>
             <div className="flex items-center justify-between">
               <Label className="text-sm">{t("result.adjustSplit")}</Label>
               <span className="text-sm font-semibold">
-                {formatPercent(result.selfConsumption.share, locale)}
+                {formatNumber(p.selfConsumptionPercent, locale)} %
               </span>
             </div>
             <Slider
@@ -168,32 +193,51 @@ function ResultPage() {
               min={0}
               max={100}
               step={5}
-              value={[Math.round(result.selfConsumption.share * 100)]}
+              value={[p.selfConsumptionPercent]}
               onValueChange={([value]) => setSelfConsumptionShare((value ?? 0) / 100)}
             />
-            <dl className="mt-4 grid grid-cols-2 gap-3 text-sm">
-              <div className="rounded-xl bg-secondary p-3">
-                <dt className="text-xs text-muted-foreground">{t("result.selfConsumption")}</dt>
-                <dd className="font-semibold">
-                  {formatNumber(result.selfConsumption.kwh, locale)} kWh
-                </dd>
-              </div>
-              <div className="rounded-xl bg-secondary p-3">
-                <dt className="text-xs text-muted-foreground">{t("result.exported")}</dt>
-                <dd className="font-semibold">
-                  {formatNumber(result.exported.kwh, locale)} kWh
-                </dd>
-              </div>
-            </dl>
+          </div>
+        </section>
+
+        {/* 4. Economics */}
+        <section className="card-elevated space-y-5 p-5">
+          <h2 className="text-lg font-semibold">{t("result.sectionEconomy")}</h2>
+
+          <div>
+            <p className="text-sm text-muted-foreground">{t("result.annualSavings")}</p>
+            <p className="text-3xl font-bold">
+              {formatCurrency(p.annualSavings, locale, currency)}{" "}
+              <span className="text-sm font-normal text-muted-foreground">
+                {t("result.perYear")}
+              </span>
+            </p>
           </div>
 
-          <div className="space-y-4">
-            {result.notes.includes("economic-values-missing") ? (
-              <p className="rounded-xl border border-border bg-secondary p-3 text-xs">
-                {t("result.missingMarketValues")}
-              </p>
-            ) : null}
+          <dl className="grid gap-3 sm:grid-cols-2">
+            <div className="rounded-xl bg-secondary p-3">
+              <dt className="text-xs text-muted-foreground">
+                {t("result.selfConsumptionValue")}
+              </dt>
+              <dd className="text-lg font-semibold">
+                {formatCurrency(p.selfConsumptionValue, locale, currency)}
+              </dd>
+            </div>
+            <div className="rounded-xl bg-secondary p-3">
+              <dt className="text-xs text-muted-foreground">{t("result.exportValue")}</dt>
+              <dd className="text-lg font-semibold">
+                {formatCurrency(p.exportValue, locale, currency)}
+              </dd>
+            </div>
+          </dl>
 
+          {result.notes.includes("economic-values-missing") ? (
+            <p className="rounded-xl border border-border bg-secondary p-3 text-xs">
+              {t("result.missingMarketValues")}
+            </p>
+          ) : null}
+
+          <div className="space-y-4">
+            <p className="text-sm font-medium">{t("result.assumedPrices")}</p>
             <div>
               <Label htmlFor="self-value" className="text-sm">
                 {t("result.selfConsumedValueLabel", { currency })}
@@ -229,37 +273,12 @@ function ResultPage() {
               />
               <p className="mt-2 text-xs text-muted-foreground">{t("result.exportValueHelp")}</p>
             </div>
-
-            <dl className="grid gap-3 sm:grid-cols-2">
-              <div className="rounded-xl bg-secondary p-3">
-                <dt className="text-xs text-muted-foreground">
-                  {t("result.selfConsumptionValue")}
-                </dt>
-                <dd className="text-lg font-semibold">
-                  {formatCurrency(result.economics.selfConsumptionValue, locale, currency)}
-                </dd>
-              </div>
-              <div className="rounded-xl bg-secondary p-3">
-                <dt className="text-xs text-muted-foreground">{t("result.exportValue")}</dt>
-                <dd className="text-lg font-semibold">
-                  {formatCurrency(result.economics.exportValue, locale, currency)}
-                </dd>
-              </div>
-            </dl>
-
-            <div>
-              <p className="text-xs text-muted-foreground">{t("result.totalAnnualBenefit")}</p>
-              <p className="text-2xl font-bold">
-                {formatCurrency(result.economics.totalValue, locale, currency)}{" "}
-                <span className="text-sm font-normal text-muted-foreground">
-                  {t("result.perYear")}
-                </span>
-              </p>
-              <p className="mt-2 text-xs text-muted-foreground">{t("result.economicsDisclaimer")}</p>
-            </div>
           </div>
-        </div>
 
+          <p className="text-xs text-muted-foreground">{t("result.economicsDisclaimer")}</p>
+        </section>
+
+        {/* 5. Technical details */}
         <div className="card-elevated overflow-hidden">
           <button
             type="button"
@@ -274,19 +293,20 @@ function ResultPage() {
           {showDetails ? (
             <dl className="divide-y divide-border border-t border-border text-sm">
               {[
-                [t("result.installedDc"), `${formatDecimal(result.installedKwp, locale)} kWp (${panelCount(result.installedKwp)} ${t("result.panelsUnit")})`],
+                [t("result.installedDc"), `${formatDecimal(result.installedKwp, locale)} kWp`],
+                [t("result.panelsUnit"), formatNumber(result.panelCount, locale)],
                 [t("result.inverterPower"), `${formatNumber(result.inverterKw, locale)} kW`],
                 [t("result.dcAcRatio"), formatDecimal(result.dcAcRatio, locale, 2)],
                 [t("result.oversizing"), `${formatDecimal(result.oversizingPercent, locale)} %`],
                 [t("result.mainFuse"), `${result.mainFuseAmp} A`],
-                [t("result.maxAc"), `${formatDecimal(result.maxAcPowerKw, locale, 2)} kW`],
+                [t("result.fuseLimit"), `${formatDecimal(p.maxAcPowerKw, locale)} kW`],
                 [
                   t("result.specificYield"),
                   `${formatNumber(result.resource.annualKwhPerKwp, locale)} kWh/kWp`,
                 ],
                 [
                   t("result.annualConsumption"),
-                  `${formatNumber(result.consumption.annualKwh, locale)} kWh`,
+                  `${formatNumber(p.annualConsumptionKwh, locale)} kWh`,
                 ],
                 [t("result.dataSource"), result.resource.dataSource],
                 [t("result.calculatedAt"), formatDate(result.calculatedAt, locale)],
@@ -297,6 +317,10 @@ function ResultPage() {
                   <dd className="text-right font-medium">{value}</dd>
                 </div>
               ))}
+              <div className="flex items-start gap-2 px-5 py-3 text-xs text-muted-foreground">
+                <Info className="mt-0.5 size-3.5 shrink-0" />
+                <span>{t("result.fuseLimitInfo")}</span>
+              </div>
             </dl>
           ) : null}
         </div>
