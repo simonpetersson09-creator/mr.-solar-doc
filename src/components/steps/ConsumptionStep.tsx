@@ -12,7 +12,7 @@ import { getMarketConfig } from "@/config/markets";
 import type { ConsumptionShape } from "@/lib/calc/consumption-shape";
 import { estimateMonthlyConsumption } from "@/lib/calc/consumption-shape";
 import { useAppLocale } from "@/hooks/use-app-locale";
-import { formatNumber } from "@/lib/format";
+import { formatNumber, parseLocaleNumber } from "@/lib/format";
 import { sumMonthly } from "@/lib/calc/energy-production";
 import { useWizardStore } from "@/state/wizard-store";
 import { haptic } from "@/services/native-service";
@@ -84,9 +84,9 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
     }
   };
 
-  const monthlyNumbers = monthly.map((value) => Number(value) || 0);
+  const monthlyNumbers = monthly.map((value) => parseLocaleNumber(value) ?? 0);
   const monthlyTotal = sumMonthly(monthlyNumbers);
-  const effectiveAnnual = useMonthly ? monthlyTotal : Number(annual) || 0;
+  const effectiveAnnual = useMonthly ? monthlyTotal : (parseLocaleNumber(annual) ?? 0);
   const valid = effectiveAnnual >= MIN_ANNUAL_KWH && effectiveAnnual <= MAX_ANNUAL_KWH;
   const showEstimatedProfile = !useMonthly && valid;
   /**
@@ -199,8 +199,8 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
               </Label>
               <Input
                 id="annual"
-                type="number"
-                inputMode="numeric"
+                type="text"
+                inputMode="decimal"
                 value={annual}
                 placeholder={t("consumption.annualPlaceholder")}
                 onChange={(event) => setAnnual(event.target.value)}
@@ -240,8 +240,8 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
                     {monthLabels[index]}
                   </Label>
                   <Input
-                    type="number"
-                    inputMode="numeric"
+                    type="text"
+                    inputMode="decimal"
                     value={value}
                     onChange={(event) => {
                       const next = [...monthly];
