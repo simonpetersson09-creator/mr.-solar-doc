@@ -1,26 +1,19 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import "@/i18n";
+import i18n from "@/i18n";
 import { AddressStep } from "@/components/steps/AddressStep";
 import { RoofStep } from "@/components/steps/RoofStep";
 import { ConsumptionStep } from "@/components/steps/ConsumptionStep";
 import { FuseStep } from "@/components/steps/FuseStep";
 import { useWizardStore } from "@/state/wizard-store";
+import { useCountryLanguage } from "@/hooks/use-country-language";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Mr. Solar Doc – dimensionera din solcellsanläggning" },
-      {
-        name: "description",
-        content:
-          "Räkna ut rekommenderad solcellseffekt, växelriktare och årsproduktion utifrån din adress, elförbrukning och huvudsäkring.",
-      },
-      { property: "og:title", content: "Mr. Solar Doc – dimensionera din solcellsanläggning" },
-      {
-        property: "og:description",
-        content:
-          "Steg-för-steg-kalkyl med platsdata från PVGIS: kWp, växelriktare, månadsproduktion och ekonomi.",
-      },
+      { title: i18n.t("meta.home.title") },
+      { name: "description", content: i18n.t("meta.home.description") },
+      { property: "og:title", content: i18n.t("meta.home.title") },
+      { property: "og:description", content: i18n.t("meta.home.ogDescription") },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -32,6 +25,7 @@ const TOTAL_STEPS = 4;
 
 function WizardPage() {
   const navigate = useNavigate();
+  useCountryLanguage();
   const step = useWizardStore((s) => s.currentStep);
   const setStep = useWizardStore((s) => s.setCurrentStep);
 
