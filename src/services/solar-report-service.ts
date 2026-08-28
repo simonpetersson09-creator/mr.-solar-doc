@@ -99,6 +99,13 @@ class ReportDocument {
 
   constructor() {
     this.doc = new jsPDF({ unit: "mm", format: "a4" });
+    // Central text sanitation: core PDF fonts lack a few Unicode glyphs.
+    const drawText = this.doc.text.bind(this.doc);
+    (this.doc as unknown as { text: unknown }).text = ((value: unknown, ...rest: unknown[]) =>
+      (drawText as (...args: unknown[]) => unknown)(
+        Array.isArray(value) ? value.map((line) => pdfText(String(line))) : pdfText(String(value)),
+        ...rest,
+      )) as unknown as jsPDF["text"];
     this.doc.setFont("helvetica", "normal");
   }
 
@@ -115,11 +122,11 @@ class ReportDocument {
     this.doc.setTextColor(...INK);
     this.doc.setFont("helvetica", "bold");
     this.doc.setFontSize(18);
-    this.doc.text(pdfText(title, PAGE.margin, 15);
+    this.doc.text(title, PAGE.margin, 15);
     this.doc.setFont("helvetica", "normal");
     this.doc.setFontSize(9);
-    this.doc.text(pdfText(appName, PAGE.margin, 22);
-    this.doc.text(pdfText(generated, PAGE.width - PAGE.margin, 22, { align: "right" });
+    this.doc.text(appName, PAGE.margin, 22);
+    this.doc.text(generated, PAGE.width - PAGE.margin, 22, { align: "right" });
 
     // Address block sits below the band so it can never overlap the header text.
     this.y = 40;
@@ -127,7 +134,7 @@ class ReportDocument {
     this.doc.setFontSize(11);
     this.doc.setTextColor(...INK);
     const lines = this.doc.splitTextToSize(subtitle, PAGE.width - PAGE.margin * 2) as string[];
-    this.doc.text(pdfText(lines, PAGE.margin, this.y);
+    this.doc.text(lines, PAGE.margin, this.y);
     this.y += lines.length * 5 + 10;
   }
 
@@ -142,7 +149,7 @@ class ReportDocument {
     this.doc.setFont("helvetica", "bold");
     this.doc.setFontSize(12);
     this.doc.setTextColor(...INK);
-    this.doc.text(pdfText(text, PAGE.margin, this.y);
+    this.doc.text(text, PAGE.margin, this.y);
     this.y += 2.5;
     this.doc.setDrawColor(...ACCENT);
     this.doc.setLineWidth(0.8);
@@ -162,7 +169,7 @@ class ReportDocument {
       this.doc.setFontSize(8);
       this.doc.setTextColor(...MUTED);
       this.doc.setFont("helvetica", "normal");
-      this.doc.text(pdfText(this.doc.splitTextToSize(item.label, width - 6), x + 3, this.y + 6);
+      this.doc.text(this.doc.splitTextToSize(item.label, width - 6), x + 3, this.y + 6);
       this.doc.setTextColor(...INK);
       this.doc.setFont("helvetica", "bold");
       let size = 14;
@@ -171,7 +178,7 @@ class ReportDocument {
         size -= 0.5;
         this.doc.setFontSize(size);
       }
-      this.doc.text(pdfText(item.value, x + 3, this.y + 18);
+      this.doc.text(item.value, x + 3, this.y + 18);
     });
     this.y += 32;
   }
@@ -201,17 +208,17 @@ class ReportDocument {
       }
       this.doc.setFont("helvetica", "normal");
       this.doc.setTextColor(...MUTED);
-      this.doc.text(pdfText(row.label, PAGE.margin + 2, this.y);
+      this.doc.text(row.label, PAGE.margin + 2, this.y);
       this.doc.setFont("helvetica", "bold");
       this.doc.setTextColor(...INK);
       if (stacked) {
         valueLines.forEach((line, lineIndex) => {
-          this.doc.text(pdfText(line, PAGE.width - PAGE.margin - 2, this.y + 5 + lineIndex * 5, {
+          this.doc.text(line, PAGE.width - PAGE.margin - 2, this.y + 5 + lineIndex * 5, {
             align: "right",
           });
         });
       } else {
-        this.doc.text(pdfText(text, PAGE.width - PAGE.margin - 2, this.y, { align: "right" });
+        this.doc.text(text, PAGE.width - PAGE.margin - 2, this.y, { align: "right" });
       }
       this.y += height;
     });
@@ -246,7 +253,7 @@ class ReportDocument {
         this.doc.roundedRect(x, baseline - barHeight, barWidth, barHeight, 0.8, 0.8, "F");
         this.doc.setFontSize(5.5);
         this.doc.setTextColor(...MUTED);
-        this.doc.text(pdfText(
+        this.doc.text(
           formatNumber(Math.round(amount), locale).replace(/\s|\u00a0/g, ""),
           x + barWidth / 2,
           baseline - barHeight - 1.5,
@@ -257,7 +264,7 @@ class ReportDocument {
       if (paired) draw(comparison![index] ?? 0, slotX + barWidth + 1.5, GREY);
       this.doc.setFontSize(6.5);
       this.doc.setTextColor(...MUTED);
-      this.doc.text(pdfText(monthLabels[index] ?? "", slotX + (paired ? slot / 2 - 1.5 : barWidth / 2), baseline + 4, {
+      this.doc.text(monthLabels[index] ?? "", slotX + (paired ? slot / 2 - 1.5 : barWidth / 2), baseline + 4, {
         align: "center",
       });
     });
@@ -274,7 +281,7 @@ class ReportDocument {
         this.doc.setFillColor(...color);
         this.doc.roundedRect(x, this.y - 2.4, 3, 3, 0.6, 0.6, "F");
         this.doc.setTextColor(...MUTED);
-        this.doc.text(pdfText(label, x + 4.5, this.y);
+        this.doc.text(label, x + 4.5, this.y);
         x += 5 + this.doc.getTextWidth(label) + 8;
       });
       this.y += 6;
@@ -288,7 +295,7 @@ class ReportDocument {
     this.doc.setFontSize(8.5);
     this.doc.setTextColor(...MUTED);
     const lines = this.doc.splitTextToSize(text, PAGE.width - PAGE.margin * 2);
-    this.doc.text(pdfText(lines, PAGE.margin, this.y);
+    this.doc.text(lines, PAGE.margin, this.y);
     this.y += lines.length * 4 + 4;
   }
 
@@ -307,11 +314,11 @@ class ReportDocument {
     this.doc.setFont("helvetica", "bold");
     this.doc.setFontSize(9);
     this.doc.setTextColor(...INK);
-    this.doc.text(pdfText(title, PAGE.margin + 4, this.y + 6);
+    this.doc.text(title, PAGE.margin + 4, this.y + 6);
     this.doc.setFont("helvetica", "normal");
     this.doc.setFontSize(8.5);
     this.doc.setTextColor(...MUTED);
-    this.doc.text(pdfText(lines, PAGE.margin + 4, this.y + 11);
+    this.doc.text(lines, PAGE.margin + 4, this.y + 11);
     this.y += height + 6;
   }
 
@@ -356,9 +363,9 @@ class ReportDocument {
       this.doc.circle(x, y, 0.9, "F");
       this.doc.setTextColor(...INK);
       const align = year === maxYear ? "right" : year === 1 ? "left" : "center";
-      this.doc.text(pdfText(formatValue(point.value), x, y - 2.5, { align });
+      this.doc.text(formatValue(point.value), x, y - 2.5, { align });
       this.doc.setTextColor(...MUTED);
-      this.doc.text(pdfText(`${axisLabel} ${year}`, x, baseline + 4, { align });
+      this.doc.text(`${axisLabel} ${year}`, x, baseline + 4, { align });
     });
     this.y = baseline + 10;
   }
@@ -370,11 +377,11 @@ class ReportDocument {
       this.doc.setFont("helvetica", "normal");
       this.doc.setFontSize(8);
       this.doc.setTextColor(...MUTED);
-      this.doc.text(pdfText(appName, PAGE.margin, PAGE.height - 10);
+      this.doc.text(appName, PAGE.margin, PAGE.height - 10);
       if (reportId) {
-        this.doc.text(pdfText(reportId, PAGE.width / 2, PAGE.height - 10, { align: "center" });
+        this.doc.text(reportId, PAGE.width / 2, PAGE.height - 10, { align: "center" });
       }
-      this.doc.text(pdfText(`${page} / ${pages}`, PAGE.width - PAGE.margin, PAGE.height - 10, {
+      this.doc.text(`${page} / ${pages}`, PAGE.width - PAGE.margin, PAGE.height - 10, {
         align: "right",
       });
     }
