@@ -268,6 +268,12 @@ export const sv = {
     showCalculation: "Visa beräkning",
     hideCalculation: "Dölj beräkning",
     adjustSplit: "Justera egenanvändning",
+    selfConsumptionAssumption:
+      "Egenanvändningen är ett antagande baserat på vald andel och kan justeras manuellt.",
+    selfConsumptionInfo:
+      "Faktisk egenanvändning beror på när elen produceras och när hushållet använder el.",
+    selfConsumptionCappedNote:
+      "Egenanvändningen har begränsats eftersom den beräknade mängden annars skulle överstiga din totala elanvändning. Effektiv egenanvändningsgrad: {{effective}} %.",
     priceLabel: "Antaget framtida elpris ({{currency}}/kWh)",
     downloadPdf: "Ladda ner rapport som PDF",
     generatingPdf: "Skapar rapport…",
