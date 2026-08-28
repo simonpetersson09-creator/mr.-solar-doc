@@ -123,7 +123,7 @@ class ReportDocument {
     this.doc.setTextColor(...INK);
     const lines = this.doc.splitTextToSize(subtitle, PAGE.width - PAGE.margin * 2) as string[];
     this.doc.text(lines, PAGE.margin, this.y);
-    this.y += lines.length * 5 + 6;
+    this.y += lines.length * 5 + 10;
   }
 
   pageBreak() {
