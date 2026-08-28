@@ -293,6 +293,8 @@ export const sv = {
       annualValue: "Värde per år",
       savings30: "Totalt värde över 30 år",
       investment: "Investering",
+      returnRate: "Avkastning per år",
+      perYearShort: "per år",
       paybackTime: "Återbetalningstid",
       address: "Adress",
       coordinates: "Koordinater",
