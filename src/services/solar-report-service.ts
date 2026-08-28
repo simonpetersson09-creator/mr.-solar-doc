@@ -332,7 +332,7 @@ class ReportDocument {
     formatValue: (value: number) => string,
     axisLabel: string,
   ) {
-    const height = 40;
+    const height = 32;
     this.ensureSpace(height + 24);
     const width = PAGE.width - PAGE.margin * 2;
     const baseline = this.y + height;
@@ -654,16 +654,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
   report.rows(
     [
       {
-        label: f["selfConsumedValueRate"] ?? f.assumedPrice,
-        value: `${formatDecimal(result.economics.selfConsumedValuePerKwh, locale, 2)} ${currency}/kWh`,
-        origin: "assumed",
-      },
-      {
-        label: f["exportValueRate"] ?? f.assumedPrice,
-        value: `${formatDecimal(result.economics.exportValuePerKwh, locale, 2)} ${currency}/kWh`,
-        origin: "assumed",
-      },
-      {
         label: f["selfConsumptionValue"] ?? f.selfConsumption,
         value: formatCurrency(result.presentation.selfConsumptionValue, locale, currency),
         origin: "calculated",
@@ -798,13 +788,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
     { label: f.dataSource, value: result.resource.dataSource, origin: "external" },
   ];
   report.rows(assumptionRows, labels.origin);
-  report.paragraph(
-    (f["degradationNote"] ?? "").replace(
-      "{{degradation}}",
-      formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
-    ),
-  );
-
   report.noteBox(f["uncertaintyTitle"] ?? "", f["uncertaintyText"] ?? "");
 
   const reportId = buildReportId(result);
