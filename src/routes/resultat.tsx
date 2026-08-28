@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, ChevronDown, Download, Info, Loader2, Pencil, Sun, Zap } from "lucide-react";
+import { ArrowLeft, ChevronDown, Download, Info, Loader2, Sun, Zap } from "lucide-react";
 import i18nInstance from "@/i18n";
 import { Button } from "@/components/ui/button";
 import { MonthlyChart } from "@/components/MonthlyChart";
@@ -111,13 +111,6 @@ function ResultPage() {
   const p = result.presentation;
   const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
-
-
-  const editableBadge = (
-    <span className="inline-flex items-center gap-1 rounded-full bg-accent/20 px-2 py-0.5 text-[10px] font-medium text-accent-foreground">
-      <Pencil className="size-2.5" /> {t("result.editable")}
-    </span>
-  );
 
   return (
     <div className="min-h-screen surface-sun pb-28">
@@ -255,26 +248,6 @@ function ResultPage() {
           <p className="text-[11px] text-muted-foreground">{t("result.economicsDisclaimer")}</p>
         </section>
 
-        {/* 4. Assumptions are edited in the previous wizard step */}
-        <button
-          type="button"
-          onClick={() => {
-            void haptic("light");
-            setCurrentStep(5);
-            void navigate({ to: "/" });
-          }}
-          className="card-elevated flex w-full items-center justify-between gap-3 px-3.5 py-3 text-left"
-        >
-          <span>
-            <span className="flex items-center gap-2 text-sm font-medium">
-              {t("result.adjustAssumptions")} {editableBadge}
-            </span>
-            <span className="mt-0.5 block text-[11px] text-muted-foreground">
-              {t("result.adjustAssumptionsHint")}
-            </span>
-          </span>
-          <ArrowLeft className="size-4 shrink-0" />
-        </button>
 
 
         {/* 5. Technical details */}
