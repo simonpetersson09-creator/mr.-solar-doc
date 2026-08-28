@@ -490,6 +490,17 @@ function ResultPage() {
           className="mx-auto flex max-w-2xl gap-3 px-5 py-4"
           style={{ paddingBottom: "calc(1rem + env(safe-area-inset-bottom))" }}
         >
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={() => {
+              void haptic("light");
+              setCurrentStep(4);
+              void navigate({ to: "/" });
+            }}
+          >
+            <ArrowLeft className="size-4" /> {t("common.back")}
+          </Button>
           <Button variant="outline" asChild onClick={() => reset()}>
             <Link to="/">{t("common.startOver")}</Link>
           </Button>
