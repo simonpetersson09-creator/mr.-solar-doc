@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronDown, Download, Info, Loader2, Sun, Zap } from "lucide-react";
+import { ChevronDown, Download, Info, Loader2, Pencil, Sun, Zap } from "lucide-react";
 import "@/i18n";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
