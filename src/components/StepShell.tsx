@@ -24,11 +24,10 @@ export function StepShell({
   footer,
 }: StepShellProps) {
   const { t } = useTranslation();
-  const progress = (step / totalSteps) * 100;
 
   return (
     <div className="min-h-screen surface-sun">
-      <header className="mx-auto flex max-w-2xl items-center gap-3 px-5 pt-3">
+      <header className="mx-auto flex max-w-2xl items-center gap-3 px-5 pt-4">
         {onBack ? (
           <button
             type="button"
@@ -37,33 +36,42 @@ export function StepShell({
               onBack();
             }}
             aria-label={t("common.back")}
-            className="flex size-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-secondary"
+            className="flex size-9 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors hover:bg-secondary"
           >
             <ArrowLeft className="size-4" />
           </button>
         ) : (
-          <span className="flex size-9 items-center justify-center rounded-full bg-accent text-accent-foreground">
+          <span className="flex size-9 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-sm">
             <Sun className="size-5" />
           </span>
         )}
         <div className="flex-1">
-          <p className="text-[10px] font-medium tracking-wide text-muted-foreground uppercase">
+          <p className="text-[10px] font-bold tracking-widest text-primary/60 uppercase">
             {t("steps.stepOf", { current: step, total: totalSteps })}
           </p>
-          <div className="mt-1 h-1 w-full overflow-hidden rounded-full bg-secondary">
-            <div
-              className="h-full rounded-full bg-accent transition-all duration-500"
-              style={{ width: `${progress}%` }}
-            />
+          {/* Segmented progress: completed steps deep green, current step amber. */}
+          <div className="mt-1.5 flex gap-1">
+            {Array.from({ length: totalSteps }, (_, i) => i + 1).map((n) => (
+              <span
+                key={n}
+                className={
+                  n < step
+                    ? "h-1.5 flex-1 rounded-full bg-primary transition-colors duration-500"
+                    : n === step
+                      ? "h-1.5 flex-1 rounded-full bg-accent transition-colors duration-500"
+                      : "h-1.5 flex-1 rounded-full bg-secondary transition-colors duration-500"
+                }
+              />
+            ))}
           </div>
         </div>
         <LanguageSwitcher />
       </header>
 
       <main className="mx-auto max-w-2xl px-5 pt-4 pb-24">
-        <h1 className="text-lg leading-tight font-bold text-foreground">{title}</h1>
+        <h1 className="text-xl leading-tight font-bold tracking-tight text-foreground">{title}</h1>
         {subtitle ? <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p> : null}
-        <div className="mt-4 space-y-2.5">{children}</div>
+        <div className="mt-4 space-y-3">{children}</div>
       </main>
 
       {footer ? (

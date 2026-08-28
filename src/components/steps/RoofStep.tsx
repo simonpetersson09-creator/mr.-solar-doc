@@ -135,8 +135,8 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
                   onClick={() => handleOrientationPreset(option)}
                   className={
                     option === orientation
-                      ? "rounded-full bg-accent px-2.5 py-1 text-[11px] font-medium text-accent-foreground"
-                      : "rounded-full border border-border bg-card px-2.5 py-1 text-[11px] transition-colors hover:bg-secondary"
+                      ? "rounded-full bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground shadow-sm"
+                      : "rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
                   }
                 >
                   {t(`roof.orientations.${option}`)}
@@ -158,8 +158,8 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
               }}
               className={
                 tiltDegrees === preset
-                  ? "rounded-full bg-accent px-2.5 py-1 text-[11px] font-medium text-accent-foreground"
-                  : "rounded-full border border-border bg-card px-2.5 py-1 text-[11px] transition-colors hover:bg-secondary"
+                  ? "rounded-full bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground shadow-sm"
+                  : "rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
               }
             >
               {preset}°
@@ -186,8 +186,8 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
             }}
             className={
               tiltDegrees === null
-                ? "rounded-full bg-accent px-2.5 py-1 text-[11px] font-medium text-accent-foreground"
-                : "rounded-full border border-border bg-card px-2.5 py-1 text-[11px] transition-colors hover:bg-secondary"
+                ? "rounded-full bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground shadow-sm"
+                : "rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
             }
           >
             {t("common.dontKnow")}
@@ -219,19 +219,21 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
       ) : null}
 
       {query.data ? (
-        <div className="hero-metric flex items-center justify-between gap-4 rounded-xl px-4 py-3">
+        <div className="hero-metric flex items-center justify-between gap-4 rounded-2xl px-4 py-3.5">
+          <div className="glow-amber -top-10 -right-10 size-32" aria-hidden="true" />
           <div>
-            <div className="flex items-center gap-1.5 text-xs font-medium">
+            <div className="flex items-center gap-1.5 text-xs font-semibold">
+              <span className="size-1.5 animate-pulse rounded-full bg-accent" />
               <Sun className="size-3.5" />
               {t("roof.result")}
             </div>
-            <p className="mt-0.5 text-[11px] opacity-80">{query.data.dataSource}</p>
+            <p className="mt-0.5 text-[11px] text-white/70">{query.data.dataSource}</p>
           </div>
           <div className="text-right">
-            <p className="text-2xl leading-none font-bold">
+            <p className="text-3xl leading-none font-extrabold tracking-tight">
               {formatNumber(query.data.annualKwhPerKwp, locale)}
             </p>
-            <p className="mt-1 text-[11px]">{t("roof.unit")}</p>
+            <p className="mt-1 text-[11px] text-white/70">{t("roof.unit")}</p>
           </div>
         </div>
       ) : null}

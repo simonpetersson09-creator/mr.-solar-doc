@@ -11,8 +11,8 @@
  */
 
 @theme inline {
-  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -58,12 +58,12 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --shadow-card: 0 1px 2px oklch(0.25 0.04 160 / 0.05), 0 12px 32px oklch(0.25 0.04 160 / 0.07);
-  --shadow-hero: 0 18px 48px oklch(0.62 0.16 62 / 0.28);
+  --shadow-card: 0 1px 2px oklch(0.25 0.04 160 / 0.04), 0 16px 40px -12px oklch(0.3 0.05 160 / 0.12);
+  --shadow-hero: 0 24px 56px -16px oklch(0.3 0.06 160 / 0.4);
 }
 
 :root {
-  --radius: 0.9rem;
+  --radius: 1.1rem;
 
   --background: oklch(0.985 0.012 95);
   --foreground: oklch(0.245 0.035 158);
@@ -187,13 +187,31 @@
 }
 
 @utility hero-metric {
+  position: relative;
+  overflow: hidden;
   background-image: linear-gradient(
     135deg,
-    oklch(0.82 0.15 78) 0%,
-    oklch(0.74 0.16 55) 100%
+    oklch(0.32 0.055 162) 0%,
+    oklch(0.42 0.075 158) 100%
   );
-  color: oklch(0.22 0.04 60);
+  color: oklch(0.985 0.012 95);
   box-shadow: var(--shadow-hero);
+}
+
+/* Frosted panel that sits on top of hero-metric and other dark surfaces. */
+@utility glass-panel {
+  background-color: oklch(1 0 0 / 0.1);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid oklch(1 0 0 / 0.18);
+}
+
+/* Soft amber glow blob used as decoration inside dark hero cards. */
+@utility glow-amber {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 9999px;
+  background-color: oklch(0.78 0.16 72 / 0.25);
+  filter: blur(56px);
 }
 
 /* Leaflet map container inherits the design system radius */

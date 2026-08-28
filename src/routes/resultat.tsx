@@ -115,54 +115,63 @@ function ResultPage() {
   return (
     <div className="min-h-screen surface-sun pb-28">
       <header className="mx-auto max-w-2xl px-5 pt-6">
-        <h1 className="text-xl font-bold text-foreground">{t("result.title")}</h1>
+        <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
       </header>
 
       <main className="mx-auto max-w-2xl space-y-2.5 px-5 pt-3">
         {/* 1. Recommendation */}
-        <section className="hero-metric rounded-2xl p-3.5">
-          <div className="flex items-center gap-2 text-xs font-medium">
-            <Sun className="size-3.5" /> {t("result.recommendedArray")}
-          </div>
-          <div className="mt-1 flex items-baseline gap-2">
-            <p className="text-3xl font-bold">
-              {formatDecimal(result.installedKwp, locale)} <span className="text-base">kWp</span>
-            </p>
-            <p className="text-xs text-muted-foreground">
-              {t("result.panelCount", { count: result.panelCount })}
-            </p>
-          </div>
+        <section className="hero-metric rounded-3xl p-5">
+          <div className="glow-amber -top-16 -right-16 size-48" aria-hidden="true" />
+          <div className="relative">
+            <div className="glass-panel inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold">
+              <span className="size-1.5 animate-pulse rounded-full bg-accent" />
+              <Sun className="size-3.5" /> {t("result.recommendedArray")}
+            </div>
+            <div className="mt-3 flex items-baseline gap-2">
+              <p className="text-5xl font-extrabold tracking-tight">
+                {formatDecimal(result.installedKwp, locale)}{" "}
+                <span className="text-xl font-semibold text-white/80">kWp</span>
+              </p>
+              <p className="text-xs text-white/70">
+                {t("result.panelCount", { count: result.panelCount })}
+              </p>
+            </div>
 
-          <div className="mt-3 grid grid-cols-2 gap-2">
-            <div className="rounded-xl bg-card/70 p-3">
-              <div className="flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                <Zap className="size-3" /> {t("result.recommendedInverter")}
+            <div className="mt-4 grid grid-cols-2 gap-2.5">
+              <div className="glass-panel rounded-2xl p-3">
+                <div className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+                  <Zap className="size-3" /> {t("result.recommendedInverter")}
+                </div>
+                <p className="mt-1 text-xl font-bold">
+                  {t("result.inverterShort", { kw: formatNumber(result.inverterKw, locale) })}
+                </p>
               </div>
-              <p className="mt-0.5 text-lg font-bold">
-                {t("result.inverterShort", { kw: formatNumber(result.inverterKw, locale) })}
-              </p>
+              <div className="glass-panel rounded-2xl p-3">
+                <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+                  {t("result.annualProduction")}
+                </p>
+                <p className="mt-1 text-xl font-bold text-accent">
+                  {formatNumber(p.annualProductionKwh, locale)}{" "}
+                  <span className="text-xs font-semibold text-white/70">
+                    kWh{t("common.perYear")}
+                  </span>
+                </p>
+              </div>
             </div>
-            <div className="rounded-xl bg-card/70 p-3">
-              <p className="text-[11px] text-muted-foreground">{t("result.annualProduction")}</p>
-              <p className="mt-0.5 text-lg font-bold">
-                {formatNumber(p.annualProductionKwh, locale)}{" "}
-                <span className="text-xs font-semibold">kWh{t("common.perYear")}</span>
-              </p>
-            </div>
-          </div>
 
-          <p className="mt-3 text-sm font-semibold">
-            {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
-          </p>
-          <p className="mt-1 text-xs text-muted-foreground">{rationale}</p>
-          {result.notes.includes("minimum-system-size") ? (
-            <p className="mt-1.5 text-xs text-muted-foreground">{t("result.minimumSizeNote")}</p>
-          ) : null}
-          {result.notes.includes("consumption-below-minimum") ? (
-            <p className="mt-1.5 text-xs text-muted-foreground">
-              {t("result.consumptionTooLowNote")}
+            <p className="mt-4 text-sm font-bold">
+              {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
             </p>
-          ) : null}
+            <p className="mt-1 text-xs text-white/70">{rationale}</p>
+            {result.notes.includes("minimum-system-size") ? (
+              <p className="mt-1.5 text-xs text-white/70">{t("result.minimumSizeNote")}</p>
+            ) : null}
+            {result.notes.includes("consumption-below-minimum") ? (
+              <p className="mt-1.5 text-xs text-white/70">
+                {t("result.consumptionTooLowNote")}
+              </p>
+            ) : null}
+          </div>
         </section>
 
         {/* 2. Production */}
@@ -195,7 +204,7 @@ function ResultPage() {
 
           <div className="flex items-baseline justify-between gap-3">
             <p className="text-xs text-muted-foreground">{t("result.annualSavings")}</p>
-            <p className="text-2xl font-bold">
+            <p className="text-3xl font-extrabold tracking-tight text-primary">
               {formatCurrency(p.annualSavings, locale, currency)}{" "}
               <span className="text-xs font-normal text-muted-foreground">
                 {t("result.perYear")}
@@ -232,7 +241,7 @@ function ResultPage() {
                   years: formatNumber(paybackYears, locale),
                 })}
               </p>
-              <p className="text-xl font-bold">
+              <p className="text-xl font-extrabold tracking-tight text-primary">
                 {t("result.maxInvestmentApprox", { amount: investmentAmount })}
               </p>
             </div>

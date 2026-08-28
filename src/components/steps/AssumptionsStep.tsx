@@ -198,7 +198,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
                 {t("result.paybackSubtitle")}
               </p>
             </div>
-            <span className="whitespace-nowrap text-2xl font-bold leading-none">
+            <span className="whitespace-nowrap text-3xl font-extrabold leading-none tracking-tight text-primary">
               {formatNumber(paybackYears, locale)}
               <span className="ml-1 text-sm font-semibold text-muted-foreground">
                 {t("result.paybackYearsUnit")}
@@ -220,18 +220,20 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
         </div>
 
         {/* connector: you set → we calculate */}
-        <div className="flex items-center gap-1.5 border-y border-border bg-secondary/50 px-3 py-1.5">
-          <ArrowDown className="size-3 text-primary" />
-          <span className="text-[11px] font-medium text-muted-foreground">
+        <div className="flex items-center gap-1.5 border-y border-border bg-secondary/60 px-3 py-2">
+          <span className="flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
+            <ArrowDown className="size-3" />
+          </span>
+          <span className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
             {t("result.paybackResultLabel")}
           </span>
         </div>
 
         {/* result */}
-        <div className="p-3">
+        <div className="bg-primary/5 p-3.5">
           {result ? (
             <>
-              <p className="text-2xl font-bold text-primary">
+              <p className="text-3xl font-extrabold tracking-tight text-primary">
                 {t("result.maxInvestmentApprox", {
                   amount: formatCurrency(
                     result.investment.maxInvestmentRounded,
