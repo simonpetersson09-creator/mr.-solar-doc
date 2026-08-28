@@ -36,7 +36,12 @@ export function useCalculation(): {
         shape: consumptionShape,
         isEstimated: consumptionInputType === "annual-profile",
       },
-      electrical: { mainFuseAmp, kwPerAmp: market.kwPerAmp },
+      electrical: {
+        mainFuseAmp,
+        kwPerAmp: market.kwPerAmp,
+        gridVoltageV: market.gridVoltageV,
+        gridPhases: market.gridPhases,
+      },
       economics: {
         selfConsumedValuePerKwh:
           selfConsumedValuePerKwh ?? market.selfConsumedElectricityValue ?? 0,

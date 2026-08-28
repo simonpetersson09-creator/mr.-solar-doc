@@ -87,6 +87,17 @@ export interface ConsumptionInput {
 export interface ElectricalInput {
   mainFuseAmp: number;
   kwPerAmp: number;
+  /** Assumed grid voltage (V). Defaults to the European 400 V assumption. */
+  gridVoltageV?: number;
+  /** Assumed number of phases. Defaults to 3. */
+  gridPhases?: number;
+}
+
+/** The grid connection assumption behind the theoretical AC power. */
+export interface GridAssumption {
+  voltageV: number;
+  phases: number;
+  kwPerAmp: number;
 }
 
 export interface EconomicsInput {
@@ -167,6 +178,8 @@ export interface CalculationResult {
     totalValue: number;
   };
   mainFuseAmp: number;
+  /** Grid assumption used to derive `maxAcPowerKw`. Read by UI and PDF. */
+  grid: GridAssumption;
   /** Year-by-year degraded production and economic value over the period. */
   lifetime: LifetimeProjection;
   /** Maximum motivated investment given the accepted simple payback time. */
