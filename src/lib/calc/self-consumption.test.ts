@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vitest";
 
-import { splitProduction, summariseSelfConsumption } from "./self-consumption";
+import {
+  estimateSelfConsumptionShareFromMonthlyData,
+  splitProduction,
+  summariseSelfConsumption,
+} from "./self-consumption";
 import { buildLifetimeProjection } from "./degradation";
 
 /**
