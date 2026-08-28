@@ -86,6 +86,10 @@ function ResultPage() {
         disclaimer: t("report.disclaimer"),
         generated: t("report.generated"),
         months: shortMonths,
+        rationale,
+        coverageNote: t("result.coverageNote"),
+        chartProduction: t("report.chartProduction"),
+        chartConsumption: t("report.chartConsumption"),
         origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin"],
         fields: i18n.t("report.fields", { returnObjects: true }) as ReportLabels["fields"],
       };

@@ -23,6 +23,8 @@ export interface SolarResource {
   orientation: Orientation;
   /** Tilt in degrees, or null when optimal tilt was assumed. */
   tiltDegrees: number | null;
+  /** Exact compass azimuth chosen on the dial (0=N, 90=E, 180=S), when set. */
+  azimuthDegrees?: number | null;
   orientationAssumed: boolean;
   tiltAssumed: boolean;
   dataSource: string;
