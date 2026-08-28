@@ -64,6 +64,7 @@ const initialState = {
   exportValuePerKwh: null,
   acceptedPaybackYears: DEFAULT_PAYBACK_YEARS,
   quotePrice: null,
+  currentStep: 1,
 };
 
 export const useWizardStore = create<WizardState>((set) => ({
