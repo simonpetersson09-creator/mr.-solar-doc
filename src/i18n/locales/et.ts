@@ -242,6 +242,8 @@ export const et = {
     "currency": "Valuuta",
     "economicValue": "Põhiline majanduslik väärtus",
     "perYear": "aastas",
+    "adjustAssumptions": "Muuda eeldusi",
+    "adjustAssumptionsHint": "Muutke omatarbimist, elektri hindu ja soovitud tasuvusaega.",
     "showCalculation": "Näita arvutust",
     "hideCalculation": "Peida arvutus",
     "adjustSplit": "Kohanda omatarvet",

@@ -242,6 +242,8 @@ export const da = {
     "currency": "Valuta",
     "economicValue": "Grundlæggende økonomisk værdi",
     "perYear": "per år",
+    "adjustAssumptions": "Juster antagelser",
+    "adjustAssumptionsHint": "Ret egetforbrug, elpriser og ønsket tilbagebetalingstid.",
     "showCalculation": "Vis beregning",
     "hideCalculation": "Skjul beregning",
     "adjustSplit": "Justér egenanvendelse",

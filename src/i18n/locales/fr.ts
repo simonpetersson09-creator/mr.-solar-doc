@@ -242,6 +242,8 @@ export const fr = {
     "currency": "Devise",
     "economicValue": "Valeur économique de base",
     "perYear": "par an",
+    "adjustAssumptions": "Ajuster les hypothèses",
+    "adjustAssumptionsHint": "Modifiez l'autoconsommation, les prix de l'électricité et la durée d'amortissement souhaitée.",
     "showCalculation": "Afficher le calcul",
     "hideCalculation": "Masquer le calcul",
     "adjustSplit": "Ajuster l'autoconsommation",
