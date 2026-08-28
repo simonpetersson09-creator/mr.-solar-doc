@@ -101,10 +101,10 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
         </div>
 
         <div className="rounded-3xl border border-border/60 bg-card/90 p-5 shadow-xl backdrop-blur-md">
-          <h1 className="text-2xl leading-tight font-extrabold tracking-tight text-foreground">
+          <h1 className="text-xl leading-tight font-bold tracking-tight text-foreground">
             {t("address.title")}
           </h1>
-          <p className="mt-1 text-sm text-muted-foreground">{t("address.subtitle")}</p>
+          <p className="mt-1 text-xs text-muted-foreground">{t("address.subtitle")}</p>
 
           <div className="relative mt-4">
             <Search className="pointer-events-none absolute top-1/2 left-3.5 z-10 size-4 -translate-y-1/2 text-muted-foreground" />

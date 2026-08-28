@@ -118,8 +118,8 @@ function ResultPage() {
   return (
     <div className="min-h-screen surface-sun pb-32">
       <header className="mx-auto max-w-2xl px-5 pt-8">
-        <h1 className="text-3xl font-bold text-foreground">{t("result.title")}</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
+        <h1 className="text-2xl font-bold text-foreground">{t("result.title")}</h1>
+        <p className="mt-1 text-xs text-muted-foreground">
           {t("result.forAddress", { address: result.location.address })}
         </p>
       </header>
@@ -167,7 +167,7 @@ function ResultPage() {
 
         {/* 2. Production */}
         <section className="card-elevated p-5">
-          <h2 className="text-lg font-semibold">{t("result.sectionProduction")}</h2>
+          <h2 className="text-base font-semibold">{t("result.sectionProduction")}</h2>
           <p className="mt-1 mb-4 text-sm text-muted-foreground">
             {t("result.monthlyProduction")}
           </p>
@@ -183,7 +183,7 @@ function ResultPage() {
 
         {/* 3. Your solar electricity */}
         <section className="card-elevated space-y-4 p-5">
-          <h2 className="text-lg font-semibold">{t("result.sectionYourSolar")}</h2>
+          <h2 className="text-base font-semibold">{t("result.sectionYourSolar")}</h2>
           <dl className="grid grid-cols-2 gap-3 text-sm">
             <div className="rounded-xl bg-secondary p-3">
               <dt className="text-xs text-muted-foreground">{t("result.selfConsumption")}</dt>
@@ -220,7 +220,7 @@ function ResultPage() {
 
         {/* 4. Economics */}
         <section className="card-elevated space-y-5 p-5">
-          <h2 className="text-lg font-semibold">{t("result.sectionEconomy")}</h2>
+          <h2 className="text-base font-semibold">{t("result.sectionEconomy")}</h2>
 
           <div>
             <p className="text-sm text-muted-foreground">{t("result.annualSavings")}</p>
@@ -300,7 +300,7 @@ function ResultPage() {
         {/* 4b. Maximum motivated investment */}
         <section className="card-elevated space-y-5 p-5">
           <div className="flex items-start justify-between gap-3">
-            <h2 className="text-lg font-semibold">{t("result.paybackTitle")}</h2>
+            <h2 className="text-base font-semibold">{t("result.paybackTitle")}</h2>
             <button
               type="button"
               aria-label={t("result.paybackInfo")}

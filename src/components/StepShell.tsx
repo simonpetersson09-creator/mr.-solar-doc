@@ -59,8 +59,8 @@ export function StepShell({
       </header>
 
       <main className="mx-auto max-w-2xl px-5 pt-8 pb-32">
-        <h1 className="text-3xl leading-tight font-bold text-foreground">{title}</h1>
-        {subtitle ? <p className="mt-2 text-muted-foreground">{subtitle}</p> : null}
+        <h1 className="text-2xl leading-tight font-bold text-foreground">{title}</h1>
+        {subtitle ? <p className="mt-1.5 text-sm text-muted-foreground">{subtitle}</p> : null}
         <div className="mt-7 space-y-5">{children}</div>
       </main>
 
