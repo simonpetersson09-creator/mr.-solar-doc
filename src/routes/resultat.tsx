@@ -59,9 +59,6 @@ function ResultPage() {
   const reset = useWizardStore((s) => s.reset);
   const [showDetails, setShowDetails] = useState(false);
   const [showPaybackInfo, setShowPaybackInfo] = useState(false);
-  const [showQuote, setShowQuote] = useState(false);
-  const quotePrice = useWizardStore((s) => s.quotePrice);
-  const setQuotePrice = useWizardStore((s) => s.setQuotePrice);
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
   const setAcceptedPaybackYears = useWizardStore((s) => s.setAcceptedPaybackYears);
   const [exporting, setExporting] = useState(false);
