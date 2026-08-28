@@ -107,18 +107,15 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     input.consumption.annualKwh,
   );
 
-  // No hourly model yet: anything other than the default share is a user override,
-  // everything else is transparently labelled as a standard assumption.
+  // No hourly model yet. The source follows how the value was set, never the
+  // number itself: picking exactly the default share manually is still an override.
   const selfConsumptionSummary = summariseSelfConsumption({
     split,
     annualProductionKwh,
     annualConsumptionKwh: input.consumption.annualKwh,
-    // Based on the share the user asked for, not the capped effective share.
-    source:
-      Math.abs(input.selfConsumptionShare - DEFAULT_SELF_CONSUMPTION_SHARE) > 1e-9
-        ? "user-override"
-        : "standard-assumption",
+    source: input.selfConsumptionShareIsUserSet ? "user-override" : "standard-assumption",
   });
+
 
   // Negative prices are rejected at the calculation layer, not only in the UI.
   const selfConsumedValuePerKwh = nonNegative(input.economics.selfConsumedValuePerKwh);
