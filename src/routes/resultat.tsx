@@ -487,24 +487,27 @@ function ResultPage() {
 
       <div className="fixed inset-x-0 bottom-0 border-t border-border bg-card/90 backdrop-blur">
         <div
-          className="mx-auto flex max-w-2xl gap-3 px-5 py-4"
-          style={{ paddingBottom: "calc(1rem + env(safe-area-inset-bottom))" }}
+          className="mx-auto flex max-w-2xl flex-col gap-2 px-5 py-3"
+          style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
         >
-          <Button
-            variant="outline"
-            size="lg"
-            onClick={() => {
-              void haptic("light");
-              setCurrentStep(4);
-              void navigate({ to: "/" });
-            }}
-          >
-            <ArrowLeft className="size-4" /> {t("common.back")}
-          </Button>
-          <Button variant="outline" asChild onClick={() => reset()}>
-            <Link to="/">{t("common.startOver")}</Link>
-          </Button>
-          <Button className="flex-1" size="lg" disabled={exporting} onClick={() => void handleExport()}>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              size="lg"
+              className="flex-1"
+              onClick={() => {
+                void haptic("light");
+                setCurrentStep(4);
+                void navigate({ to: "/" });
+              }}
+            >
+              <ArrowLeft className="size-4" /> {t("common.back")}
+            </Button>
+            <Button variant="outline" size="lg" className="flex-1" asChild onClick={() => reset()}>
+              <Link to="/">{t("common.startOver")}</Link>
+            </Button>
+          </div>
+          <Button className="w-full" size="lg" disabled={exporting} onClick={() => void handleExport()}>
             {exporting ? (
               <>
                 <Loader2 className="size-4 animate-spin" /> {t("result.generatingPdf")}
