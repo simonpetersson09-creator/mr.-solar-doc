@@ -18,6 +18,8 @@ export interface WizardState {
   consumptionShape: ConsumptionShape | null;
   mainFuseAmp: number | null;
   selfConsumptionShare: number;
+  /** True once the user actively adjusted the share, regardless of its value. */
+  selfConsumptionShareIsUserSet: boolean;
   selfConsumedValuePerKwh: number | null;
   exportValuePerKwh: number | null;
   acceptedPaybackYears: number;
@@ -60,6 +62,7 @@ const initialState = {
   consumptionShape: null as ConsumptionShape | null,
   mainFuseAmp: null,
   selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
+  selfConsumptionShareIsUserSet: false,
   selfConsumedValuePerKwh: null,
   exportValuePerKwh: null,
   acceptedPaybackYears: DEFAULT_PAYBACK_YEARS,
@@ -86,7 +89,8 @@ export const useWizardStore = create<WizardState>((set) => ({
       consumptionShape: shape ?? null,
     }),
   setMainFuse: (amp) => set({ mainFuseAmp: amp }),
-  setSelfConsumptionShare: (share) => set({ selfConsumptionShare: share }),
+  setSelfConsumptionShare: (share) =>
+    set({ selfConsumptionShare: share, selfConsumptionShareIsUserSet: true }),
   setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
   setExportValue: (value) => set({ exportValuePerKwh: value }),
   setAcceptedPaybackYears: (years) => set({ acceptedPaybackYears: years }),

@@ -631,7 +631,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     [
       {
         label: f["selfConsumptionRate"] ?? f.selfConsumption,
-        value: `${formatNumber(Math.round(result.selfConsumptionRate * 100), locale)} %`,
+        value: `${formatNumber(result.presentation.selfConsumptionPercent, locale)} %`,
         origin: selfConsumptionOrigin,
       },
       {
@@ -764,7 +764,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     },
     {
       label: f["selfConsumptionShare"] ?? f.selfConsumption,
-      value: `${formatNumber(Math.round(result.selfConsumptionRate * 100), locale)} % – ${selfConsumptionSourceLabel}`,
+      value: `${formatNumber(result.presentation.selfConsumptionPercent, locale)} % – ${selfConsumptionSourceLabel}`,
       origin: selfConsumptionOrigin,
     },
     {

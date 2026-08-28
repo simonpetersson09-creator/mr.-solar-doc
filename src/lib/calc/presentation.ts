@@ -11,9 +11,13 @@ export interface PresentationValues {
   selfConsumptionKwh: number;
   /** Remainder so that the two parts sum exactly to annualProductionKwh. */
   exportedKwh: number;
-  /** Whole percent, sums to 100 with exportPercent. */
+  /** Whole percent, sums to 100 with exportPercent. Effective, after the physical cap. */
   selfConsumptionPercent: number;
   exportPercent: number;
+  /** Whole percent the user (or the default) asked for, before the physical cap. */
+  requestedSelfConsumptionPercent: number;
+  /** True when the physical consumption cap lowered the effective share. */
+  selfConsumptionCapped: boolean;
   /** Annual consumption, kWh (rounded). */
   annualConsumptionKwh: number;
   /**
@@ -33,6 +37,8 @@ export function buildPresentationValues(params: {
   annualProductionKwh: number;
   selfConsumptionKwh: number;
   selfConsumptionShare: number;
+  /** Share asked for before the physical cap. Defaults to the effective share. */
+  requestedSelfConsumptionShare?: number;
   annualConsumptionKwh: number;
   maxAcPowerKw: number;
   selfConsumptionValue: number;
@@ -46,6 +52,13 @@ export function buildPresentationValues(params: {
     Math.round(params.selfConsumptionKwh),
   );
   const selfConsumptionPercent = Math.min(100, Math.max(0, Math.round(params.selfConsumptionShare * 100)));
+  const requestedSelfConsumptionPercent = Math.min(
+    100,
+    Math.max(
+      0,
+      Math.round((params.requestedSelfConsumptionShare ?? params.selfConsumptionShare) * 100),
+    ),
+  );
 
   return {
     annualProductionKwh,
@@ -53,6 +66,8 @@ export function buildPresentationValues(params: {
     exportedKwh: annualProductionKwh - selfConsumptionKwh,
     selfConsumptionPercent,
     exportPercent: 100 - selfConsumptionPercent,
+    requestedSelfConsumptionPercent,
+    selfConsumptionCapped: requestedSelfConsumptionPercent > selfConsumptionPercent,
     annualConsumptionKwh: Math.round(params.annualConsumptionKwh),
     productionCoveragePercent:
       params.annualConsumptionKwh > 0
