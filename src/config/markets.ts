@@ -1,4 +1,9 @@
-import { CONSUMPTION_SHAPE_WEIGHTS, EU_THREE_PHASE_KW_PER_AMP } from "./constants";
+import {
+  CONSUMPTION_SHAPE_WEIGHTS,
+  EU_GRID_PHASES,
+  EU_GRID_VOLTAGE_V,
+  EU_THREE_PHASE_KW_PER_AMP,
+} from "./constants";
 import type { SupportedLanguage } from "@/i18n/languages";
 
 export type GridConnectionType = "eu-three-phase-400v";
@@ -31,6 +36,10 @@ export interface MarketConfig {
    */
   exportElectricityValue: number | null;
   gridConnectionType: GridConnectionType;
+  /** Assumed grid voltage (V) behind the fuse calculation. */
+  gridVoltageV: number;
+  /** Assumed number of phases behind the fuse calculation. */
+  gridPhases: number;
   /** kW allowed per ampere for this market's standard connection. */
   kwPerAmp: number;
   /** Selectable main fuse sizes (A). */
@@ -51,6 +60,8 @@ const EU_MAIN_FUSE_OPTIONS_AMP = [16, 20, 25, 32, 35, 40, 50, 63];
 
 const baseEuMarket = {
   gridConnectionType: "eu-three-phase-400v" as const,
+  gridVoltageV: EU_GRID_VOLTAGE_V,
+  gridPhases: EU_GRID_PHASES,
   kwPerAmp: EU_THREE_PHASE_KW_PER_AMP,
   mainFuseOptionsAmp: EU_MAIN_FUSE_OPTIONS_AMP,
   inverterSizesKw: EU_INVERTER_SIZES_KW,
@@ -90,7 +101,6 @@ export const MARKETS: Record<string, MarketConfig> = {
   PL: market("PL", "PLN", ["pl"]),
   SK: market("SK", "EUR", ["sk"]),
   SI: market("SI", "EUR", ["sl"]),
-  HR: market("HR", "EUR", ["hr"]),
   EE: market("EE", "EUR", ["et"]),
   LV: market("LV", "EUR", ["lv"]),
   LT: market("LT", "EUR", ["lt"]),
@@ -101,7 +111,29 @@ export const MARKETS: Record<string, MarketConfig> = {
   NL: market("NL", "EUR", ["en"]),
 };
 
+/** The 13 countries Mr. Solar Doc actively supports. */
+export const ACTIVE_MARKET_CODES = [
+  "SE",
+  "FI",
+  "DK",
+  "DE",
+  "AT",
+  "CZ",
+  "PL",
+  "SK",
+  "SI",
+  "EE",
+  "LV",
+  "LT",
+  "CH",
+] as const;
+
 export const FALLBACK_MARKET_CODE = "SE";
+
+export function isActiveMarket(countryCode?: string | null): boolean {
+  const code = (countryCode ?? "").toUpperCase();
+  return (ACTIVE_MARKET_CODES as readonly string[]).includes(code);
+}
 
 export function getMarketConfig(countryCode?: string | null): MarketConfig {
   const code = (countryCode ?? "").toUpperCase();
