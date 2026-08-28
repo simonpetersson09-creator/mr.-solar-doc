@@ -18,6 +18,7 @@ export function useCalculation(): {
   const selfConsumedValuePerKwh = useWizardStore((s) => s.selfConsumedValuePerKwh);
   const exportValuePerKwh = useWizardStore((s) => s.exportValuePerKwh);
   const acceptedPaybackYears = useWizardStore((s) => s.acceptedPaybackYears);
+  const quotePrice = useWizardStore((s) => s.quotePrice);
 
   const market = getMarketConfig(location?.countryCode);
 
@@ -42,6 +43,7 @@ export function useCalculation(): {
       },
       selfConsumptionShare,
       acceptedPaybackYears,
+      quotePrice,
       inverterSizesKw: market.inverterSizesKw,
     });
   }, [
@@ -54,6 +56,7 @@ export function useCalculation(): {
     selfConsumedValuePerKwh,
     exportValuePerKwh,
     acceptedPaybackYears,
+    quotePrice,
     market,
   ]);
 

@@ -133,6 +133,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     investment: calculateMaxInvestment(
       Math.round(economics.selfConsumptionValue) + Math.round(economics.exportValue),
       input.acceptedPaybackYears,
+      input.quotePrice,
     ),
     presentation: buildPresentationValues({
       annualProductionKwh,

@@ -16,6 +16,7 @@ export interface WizardState {
   selfConsumedValuePerKwh: number | null;
   exportValuePerKwh: number | null;
   acceptedPaybackYears: number;
+  quotePrice: number | null;
   setLocation: (location: SiteLocation | null) => void;
   setRoof: (
     orientation: Orientation,
@@ -29,6 +30,7 @@ export interface WizardState {
   setSelfConsumedValue: (value: number) => void;
   setExportValue: (value: number) => void;
   setAcceptedPaybackYears: (years: number) => void;
+  setQuotePrice: (price: number | null) => void;
   reset: () => void;
 }
 
@@ -45,6 +47,7 @@ const initialState = {
   selfConsumedValuePerKwh: null,
   exportValuePerKwh: null,
   acceptedPaybackYears: DEFAULT_PAYBACK_YEARS,
+  quotePrice: null,
 };
 
 export const useWizardStore = create<WizardState>((set) => ({
@@ -65,5 +68,6 @@ export const useWizardStore = create<WizardState>((set) => ({
   setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
   setExportValue: (value) => set({ exportValuePerKwh: value }),
   setAcceptedPaybackYears: (years) => set({ acceptedPaybackYears: years }),
+  setQuotePrice: (price) => set({ quotePrice: price }),
   reset: () => set({ ...initialState }),
 }));

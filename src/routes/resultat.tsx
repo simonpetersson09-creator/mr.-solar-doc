@@ -31,16 +31,16 @@ const REASON_KEY: Record<string, string> = {
 export const Route = createFileRoute("/resultat")({
   head: () => ({
     meta: [
-      { title: "Din solcellsrekommendation – Solenergikollen" },
+      { title: "Din solelberäkning – Solenergikollen" },
       {
         name: "description",
         content:
-          "Se rekommenderad kWp, växelriktarstorlek, DC/AC-ratio, månadsproduktion och ekonomiskt värde – och ladda ner rapporten som PDF.",
+          "Se beräknad kWp, växelriktarstorlek, DC/AC-ratio, månadsproduktion och ekonomiskt värde – och ladda ner rapporten som PDF.",
       },
-      { property: "og:title", content: "Din solcellsrekommendation – Solenergikollen" },
+      { property: "og:title", content: "Din solelberäkning – Solenergikollen" },
       {
         property: "og:description",
-        content: "Detaljerad dimensionering av din solcellsanläggning med PDF-rapport.",
+        content: "Beräknad dimensionering av din solcellsanläggning med PDF-rapport.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -59,6 +59,9 @@ function ResultPage() {
   const reset = useWizardStore((s) => s.reset);
   const [showDetails, setShowDetails] = useState(false);
   const [showPaybackInfo, setShowPaybackInfo] = useState(false);
+  const [showQuote, setShowQuote] = useState(false);
+  const quotePrice = useWizardStore((s) => s.quotePrice);
+  const setQuotePrice = useWizardStore((s) => s.setQuotePrice);
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
   const setAcceptedPaybackYears = useWizardStore((s) => s.setAcceptedPaybackYears);
   const [exporting, setExporting] = useState(false);
@@ -96,6 +99,7 @@ function ResultPage() {
         rationale,
         coverageNote: t("result.coverageNote"),
         paybackNote: `${t("result.paybackInfo")} ${t("result.maxInvestmentNote")}`,
+        quoteNote: t("result.quoteNote"),
         chartProduction: t("report.chartProduction"),
         chartConsumption: t("report.chartConsumption"),
         origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin"],
@@ -113,6 +117,11 @@ function ResultPage() {
 
   const currency = result.economics.currency;
   const p = result.presentation;
+  const investmentAmount = formatCurrency(
+    result.investment.maxInvestmentRounded,
+    locale,
+    currency,
+  );
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
 
   const editableBadge = (
@@ -300,17 +309,22 @@ function ResultPage() {
               </div>
             </div>
             <p className="text-[11px] text-muted-foreground">
-              {t("result.selfConsumedValueHelp")}
+              {t("result.priceExplainer")}
             </p>
           </div>
 
           <p className="text-[11px] text-muted-foreground">{t("result.economicsDisclaimer")}</p>
         </section>
 
-        {/* 4b. Maximum motivated investment */}
+        {/* 4b. Investment level for the chosen payback time */}
         <section className="card-elevated space-y-3 p-4">
-          <div className="flex items-center justify-between gap-2">
-            <h2 className="text-sm font-semibold">{t("result.paybackTitle")}</h2>
+          <div className="flex items-start justify-between gap-2">
+            <div>
+              <h2 className="text-sm font-semibold">{t("result.paybackTitle")}</h2>
+              <p className="mt-0.5 text-[11px] text-muted-foreground">
+                {t("result.paybackSubtitle")}
+              </p>
+            </div>
             <div className="flex items-center gap-2">
               {editableBadge}
               <button
@@ -352,17 +366,77 @@ function ResultPage() {
           </div>
 
           <div className="rounded-xl bg-secondary p-3">
-            <p className="text-[11px] text-muted-foreground">{t("result.maxInvestment")}</p>
+            <p className="text-[11px] text-muted-foreground">
+              {t("result.investmentLevelTitle", {
+                years: formatNumber(paybackYears, locale),
+              })}
+            </p>
             <p className="mt-0.5 text-2xl font-bold">
-              {t("result.maxInvestmentApprox", {
-                amount: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
+              {t("result.maxInvestmentApprox", { amount: investmentAmount })}
+            </p>
+            <p className="mt-1 text-[11px] text-muted-foreground">
+              {t("result.investmentLevelNote", {
+                years: formatNumber(paybackYears, locale),
+                amount: investmentAmount,
+              })}
+            </p>
+            <p className="mt-1 text-[10px] text-muted-foreground/80">
+              {t("result.investmentFormula", {
+                value: formatCurrency(p.annualSavings, locale, currency),
+                perYear: t("common.perYear"),
+                years: formatNumber(paybackYears, locale),
+                amount: investmentAmount,
               })}
             </p>
             <p className="mt-1 text-[11px] text-muted-foreground">
               {t("result.maxInvestmentNote")}
             </p>
           </div>
+
+          <div className="rounded-xl border border-border">
+            <button
+              type="button"
+              onClick={() => setShowQuote((open) => !open)}
+              className="flex w-full items-center justify-between px-3 py-2.5 text-xs font-medium"
+            >
+              {t("result.quoteToggle")}
+              <ChevronDown
+                className={`size-4 transition-transform ${showQuote ? "rotate-180" : ""}`}
+              />
+            </button>
+            {showQuote ? (
+              <div className="space-y-2 border-t border-border p-3">
+                <Label htmlFor="quote-price" className="text-[11px] text-muted-foreground">
+                  {t("result.quoteLabel", { currency })}
+                </Label>
+                <Input
+                  id="quote-price"
+                  type="number"
+                  min="0"
+                  step="1000"
+                  inputMode="numeric"
+                  className="h-9"
+                  placeholder={t("result.quotePlaceholder")}
+                  value={quotePrice ?? ""}
+                  onChange={(event) =>
+                    setQuotePrice(event.target.value === "" ? null : Number(event.target.value))
+                  }
+                />
+                {result.investment.quotePaybackYears != null ? (
+                  <>
+                    <p className="text-sm font-semibold">
+                      {t("result.quoteResult", {
+                        years: formatDecimal(result.investment.quotePaybackYears, locale, 1),
+                      })}
+                    </p>
+                    <p className="text-[11px] text-muted-foreground">{t("result.quoteNote")}</p>
+                  </>
+                ) : null}
+              </div>
+            ) : null}
+          </div>
         </section>
+
 
         {/* 5. Technical details */}
         <div className="card-elevated overflow-hidden">

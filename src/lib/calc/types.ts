@@ -91,8 +91,10 @@ export interface CalculationInput {
   economics: EconomicsInput;
   /** 0..1 share of production consumed on site. */
   selfConsumptionShare: number;
-  /** Simple payback time the user accepts, in years. */
+  /** Simple payback time the user selected, in years. */
   acceptedPaybackYears: number;
+  /** Optional quote price entered by the user, for the reverse calculation. */
+  quotePrice?: number | null;
   inverterSizesKw: number[];
 }
 

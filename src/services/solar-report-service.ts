@@ -51,8 +51,10 @@ export interface ReportLabels {
   /** Consumer-facing sentence explaining why the array ended up at this size. */
   rationale: string;
   coverageNote: string;
-  /** Explains that the max-investment figure uses simple payback and is not a quote. */
+  /** Explains that the investment-level figure uses simple payback and is not a quote. */
   paybackNote: string;
+  /** Explains that the quote comparison uses the same calculation assumptions. */
+  quoteNote: string;
   chartProduction: string;
   chartConsumption: string;
   origin: Record<ValueOrigin, string>;
@@ -469,7 +471,31 @@ export function generateReportBlob(options: ReportOptions): Blob {
     ],
     labels.origin,
   );
-  report.paragraph(labels.paybackNote);
+  if (result.investment.quotePrice != null) {
+    report.rows(
+      [
+        {
+          label: f["quotePrice"] ?? "",
+          value: formatCurrency(result.investment.quotePrice, locale, currency),
+          origin: "user",
+        },
+        {
+          label: f["quotePayback"] ?? "",
+          value:
+            result.investment.quotePaybackYears != null
+              ? `${formatDecimal(result.investment.quotePaybackYears, locale, 1)} ${f["yearsUnit"] ?? ""}`
+              : "-",
+          origin: "calculated",
+        },
+      ],
+      labels.origin,
+    );
+  }
+  report.paragraph(
+    result.investment.quotePrice != null
+      ? `${labels.paybackNote} ${labels.quoteNote}`
+      : labels.paybackNote,
+  );
 
   report.sectionTitle(labels.assumptions);
   const assumptionRows: Row[] = [
