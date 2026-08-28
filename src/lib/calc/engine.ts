@@ -91,6 +91,16 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   }
   if (installedKwp >= MAX_RECOMMENDED_KWP - 1e-9) sizingBasis = "maximum-size";
 
+  // The smallest commercially available inverters set a practical floor, so a
+  // very small target can only be met by a noticeably larger array.
+  if (installedKwp > sizing.recommendedKwp * MINIMUM_SIZE_NOTE_FACTOR + 1e-9) {
+    notes.push("minimum-system-size");
+  }
+  if (input.consumption.annualKwh < MIN_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH) {
+    notes.push("consumption-below-minimum");
+  }
+
+
   let recommendationReason: RecommendationReason = `profile-${consumptionProfile.category}` as RecommendationReason;
   if (consumptionProfile.category === "unknown") recommendationReason = "profile-unknown";
   if (sizingBasis === "grid-limit") recommendationReason = "grid-limit";
