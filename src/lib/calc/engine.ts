@@ -1,17 +1,25 @@
 import {
   CALCULATION_VERSION,
+  KWP_ROUNDING_STEP,
   MAX_RECOMMENDED_KWP,
   MIN_RECOMMENDED_KWP,
   PANEL_WATTAGE_KWP,
+  SOLAR_SEASON_MONTH_INDEXES,
 } from "@/config/constants";
+import { analyzeConsumptionProfile, determineTargetDcAcRange } from "./consumption-profile";
+import { selectRecommendedSystem } from "./candidate-selection";
 import { buildPresentationValues } from "./presentation";
 import { calculateEconomicValue } from "./electricity-price";
 import { calculateMaxInvestment } from "./payback";
-import { annualProduction, monthlyProduction } from "./energy-production";
-import { maxAcPowerFromFuse, dcAcRatio, oversizingPercent, recommendInverter } from "./inverter-sizing";
-import { recommendArraySize, clampKwp, roundKwp } from "./solar-sizing";
+import { maxAcPowerFromFuse, dcAcRatio, oversizingPercent } from "./inverter-sizing";
+import { recommendArraySize } from "./solar-sizing";
 import { splitProduction } from "./self-consumption";
-import type { CalculationInput, CalculationResult, SizingBasis } from "./types";
+import type {
+  CalculationInput,
+  CalculationResult,
+  RecommendationReason,
+  SizingBasis,
+} from "./types";
 
 /**
  * Pure calculation entry point.
@@ -32,17 +40,39 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   });
   if (sizing.limitedByGrid) notes.push("limited-by-main-fuse");
 
-  const { inverterKw, withinTargetWindow } = recommendInverter({
-    installedKwp: sizing.recommendedKwp,
+  // Consumption + PVGIS -> profile analysis -> dynamic DC/AC target window.
+  const consumptionProfile = analyzeConsumptionProfile({
+    monthlyConsumptionKwh: input.consumption.monthlyKwh,
+    annualConsumptionKwh: input.consumption.annualKwh,
+    monthlyKwhPerKwp: input.resource.monthlyKwhPerKwp,
+  });
+  const targetDcAcRange = determineTargetDcAcRange(consumptionProfile.category);
+
+  const monthlyYieldTotal = input.resource.monthlyKwhPerKwp.reduce((a, b) => a + b, 0);
+  const solarSeasonProductionShare =
+    monthlyYieldTotal > 0
+      ? SOLAR_SEASON_MONTH_INDEXES.reduce(
+          (sum, i) => sum + (input.resource.monthlyKwhPerKwp[i] ?? 0),
+          0,
+        ) / monthlyYieldTotal
+      : 0;
+
+  // Candidate systems -> technical constraints -> recommended system.
+  const selection = selectRecommendedSystem({
+    targetKwp: sizing.recommendedKwp,
     maxAcPowerKw,
     inverterSizesKw: input.inverterSizesKw,
+    targetRange: targetDcAcRange,
+    monthlyKwhPerKwp: input.resource.monthlyKwhPerKwp,
+    annualConsumptionKwh: input.consumption.annualKwh,
+    monthlyConsumptionKwh: input.consumption.monthlyKwh,
+    solarSeasonProductionShare,
+    kwpStep: KWP_ROUNDING_STEP,
   });
-  if (!withinTargetWindow) notes.push("dc-ac-ratio-outside-target-window");
+  if (!selection.withinTargetRange) notes.push("dc-ac-ratio-outside-target-window");
 
-  // Never let the array exceed what the chosen inverter may carry.
-  const installedKwp = clampKwp(
-    roundKwp(Math.min(sizing.recommendedKwp, inverterKw * 1.3)),
-  );
+  const inverterKw = selection.best.inverterKw;
+  const installedKwp = selection.best.installedKwp;
 
   let sizingBasis: SizingBasis = "consumption";
   if (sizing.limitedByGrid) sizingBasis = "grid-limit";
@@ -52,8 +82,14 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   }
   if (installedKwp >= MAX_RECOMMENDED_KWP - 1e-9) sizingBasis = "maximum-size";
 
-  const monthlyProductionKwh = monthlyProduction(input.resource.monthlyKwhPerKwp, installedKwp);
-  const annualProductionKwh = annualProduction(monthlyProductionKwh);
+  let recommendationReason: RecommendationReason = `profile-${consumptionProfile.category}` as RecommendationReason;
+  if (consumptionProfile.category === "unknown") recommendationReason = "profile-unknown";
+  if (sizingBasis === "grid-limit") recommendationReason = "grid-limit";
+  if (sizingBasis === "minimum-size") recommendationReason = "minimum-size";
+  if (sizingBasis === "maximum-size") recommendationReason = "maximum-size";
+
+  const monthlyProductionKwh = selection.best.monthlyProductionKwh;
+  const annualProductionKwh = selection.best.annualProductionKwh;
 
   const split = splitProduction(annualProductionKwh, input.selfConsumptionShare);
 
@@ -79,6 +115,9 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     maxAcPowerKw,
     dcAcRatio: dcAcRatio(installedKwp, inverterKw),
     oversizingPercent: oversizingPercent(installedKwp, inverterKw),
+    targetDcAcRange,
+    consumptionProfile,
+    recommendationReason,
     monthlyProductionKwh,
     annualProductionKwh,
     consumption: input.consumption,
