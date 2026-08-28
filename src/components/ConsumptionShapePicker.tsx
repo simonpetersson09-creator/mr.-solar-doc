@@ -13,7 +13,7 @@ function MiniShape({
 }: {
   shape: ConsumptionShape;
   active: boolean;
-  marketDefaultWeights?: number[] | null;
+  marketDefaultWeights?: number[] | null | undefined;
 }) {
   const weights = getShapeWeights(shape, marketDefaultWeights);
   const max = Math.max(...weights, 0.0001);
@@ -36,7 +36,7 @@ function MiniShape({
 interface ConsumptionShapePickerProps {
   value: ConsumptionShape;
   onChange: (shape: ConsumptionShape) => void;
-  marketDefaultWeights?: number[] | null;
+  marketDefaultWeights?: number[] | null | undefined;
 }
 
 export function ConsumptionShapePicker({

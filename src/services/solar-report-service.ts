@@ -417,13 +417,13 @@ export function generateReportBlob(options: ReportOptions): Blob {
     },
   ];
   consumptionRows.splice(1, 0, {
-    label: f.consumptionSource,
+    label: f["consumptionSource"] ?? f.dataSource,
     value: labels.consumptionSource,
     origin: result.consumption.isEstimated ? "assumed" : "user",
   });
   if (labels.consumptionShape) {
     consumptionRows.splice(2, 0, {
-      label: f.consumptionShape,
+      label: f["consumptionShape"] ?? f.dataSource,
       value: labels.consumptionShape,
       origin: "user",
     });
