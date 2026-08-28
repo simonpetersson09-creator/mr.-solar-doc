@@ -64,6 +64,8 @@ export function buildLifetimeProjection(params: {
   selfConsumptionShare: number;
   selfConsumedValuePerKwh: number;
   exportValuePerKwh: number;
+  /** Physical cap: self-consumption can never exceed what the site uses. */
+  annualConsumptionKwh?: number | null | undefined;
   periodYears?: number | undefined;
   annualDegradationRate?: number | undefined;
 }): LifetimeProjection {
@@ -75,7 +77,11 @@ export function buildLifetimeProjection(params: {
   for (let year = 1; year <= periodYears; year += 1) {
     const performanceFactor = performanceFactorForYear(year, annualDegradationRate);
     const productionKwh = params.firstYearProductionKwh * performanceFactor;
-    const split = splitProduction(productionKwh, params.selfConsumptionShare);
+    const split = splitProduction(
+      productionKwh,
+      params.selfConsumptionShare,
+      params.annualConsumptionKwh,
+    );
     const economics = calculateEconomicValue({
       selfConsumptionKwh: split.selfConsumptionKwh,
       exportedKwh: split.exportedKwh,
