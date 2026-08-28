@@ -1,10 +1,9 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { ClientOnly } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { Loader2, MapPin, Search } from "lucide-react";
+import { ArrowRight, Loader2, MapPin, Search, Sun } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { StepShell } from "@/components/StepShell";
 import { useAddressSearch } from "@/hooks/use-address-search";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { resolvePosition } from "@/services/geocoding-service";
@@ -52,122 +51,138 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
   };
 
   // Default view: Sweden overview until a position is chosen.
-  const mapLatitude = location?.latitude ?? 59.33;
-  const mapLongitude = location?.longitude ?? 18.07;
+  const mapLatitude = location?.latitude ?? 62.0;
+  const mapLongitude = location?.longitude ?? 15.0;
   const mapZoom = location ? 17 : 4;
 
   return (
-    <StepShell
-      step={1}
-      totalSteps={totalSteps}
-      title={t("address.title")}
-      subtitle={t("address.subtitle")}
-      footer={
-        <Button
-          className="w-full"
-          size="lg"
-          disabled={!location}
-          onClick={() => {
-            void haptic("medium");
-            onNext();
-          }}
-        >
-          {t("common.next")}
-        </Button>
-      }
-    >
-      <div className="relative">
-        <Search className="pointer-events-none absolute top-1/2 left-3 size-4 -translate-y-1/2 text-muted-foreground" />
-        <Input
-          value={query}
-          onChange={(event) => {
-            setQuery(event.target.value);
-            setShowResults(true);
-          }}
-          placeholder={t("address.placeholder")}
-          className="h-12 pl-9"
-          autoComplete="off"
-        />
-        {isFetching ? (
-          <Loader2 className="absolute top-1/2 right-3 size-4 -translate-y-1/2 animate-spin text-muted-foreground" />
-        ) : null}
-      </div>
-
-      {isError ? <p className="text-sm text-destructive">{t("address.error")}</p> : null}
-
-      {showResults && suggestions && suggestions.length > 0 ? (
-        <ul className="card-elevated divide-y divide-border overflow-hidden">
-          {suggestions.map((suggestion) => (
-            <li key={suggestion.id}>
-              <button
-                type="button"
-                className="flex w-full items-start gap-3 px-4 py-3 text-left transition-colors hover:bg-secondary"
-                onClick={() => {
-                  void haptic("light");
-                  setLocation({
-                    address: suggestion.label,
-                    latitude: suggestion.latitude,
-                    longitude: suggestion.longitude,
-                    countryCode: suggestion.countryCode,
-                    region: suggestion.region,
-                  });
-                  setQuery(suggestion.label);
-                  setShowResults(false);
-                }}
-              >
-                <MapPin className="mt-0.5 size-4 shrink-0 text-accent" />
-                <span className="text-sm">{suggestion.label}</span>
-              </button>
-            </li>
-          ))}
-        </ul>
-      ) : null}
-
-      {showResults && !isFetching && debounced.length >= 3 && suggestions?.length === 0 ? (
-        <p className="text-sm text-muted-foreground">{t("address.noResults")}</p>
-      ) : null}
-
-      <div className="card-elevated space-y-3 p-4">
-        {location ? (
-          <div>
-            <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
-              {t("address.selected")}
-            </p>
-            <p className="mt-1 text-sm font-medium">{location.address}</p>
-          </div>
-        ) : null}
-        <ClientOnly fallback={<div className="h-64 w-full rounded-xl bg-muted" />}>
-          <Suspense fallback={<div className="h-64 w-full rounded-xl bg-muted" />}>
+    <div className="surface-sun relative flex min-h-screen flex-col overflow-hidden">
+      {/* Full-bleed map backdrop */}
+      <div className="absolute inset-0 z-0">
+        <ClientOnly fallback={<div className="h-full w-full bg-muted" />}>
+          <Suspense fallback={<div className="h-full w-full bg-muted" />}>
             <MapPicker
               latitude={mapLatitude}
               longitude={mapLongitude}
               zoom={mapZoom}
               showMarker={!!location}
+              className="h-full w-full"
               onPositionChange={(lat, lon) => void handlePositionChange(lat, lon)}
             />
           </Suspense>
         </ClientOnly>
-        <p className="text-xs text-muted-foreground">
-          {location ? t("address.adjustHint") : t("address.mapHint")}
-        </p>
-        {location ? (
-          <dl className="grid grid-cols-2 gap-2 text-xs">
-            <div>
-              <dt className="text-muted-foreground">{t("address.coordinates")}</dt>
-              <dd className="font-medium">
-                {location.latitude.toFixed(5)}, {location.longitude.toFixed(5)}
-              </dd>
-            </div>
-            <div>
-              <dt className="text-muted-foreground">{t("address.country")}</dt>
-              <dd className="font-medium">
-                {location.countryCode || "—"}
-                {location.region ? ` · ${location.region}` : ""}
-              </dd>
-            </div>
-          </dl>
-        ) : null}
       </div>
-    </StepShell>
+
+      {/* Top overlay: step indicator + floating search card */}
+      <div className="relative z-20 mx-auto w-full max-w-2xl space-y-4 p-5">
+        <div className="flex items-center gap-3">
+          <span className="flex size-9 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-md">
+            <Sun className="size-5" />
+          </span>
+          <div className="flex flex-1 gap-1.5" aria-hidden>
+            {Array.from({ length: totalSteps }, (_, index) => (
+              <div
+                key={index}
+                className={
+                  index === 0
+                    ? "h-1.5 w-8 rounded-full bg-accent"
+                    : "h-1.5 w-4 rounded-full bg-foreground/15"
+                }
+              />
+            ))}
+          </div>
+          <span className="text-[10px] font-bold tracking-widest text-muted-foreground uppercase">
+            {t("steps.stepOf", { current: 1, total: totalSteps })}
+          </span>
+        </div>
+
+        <div className="rounded-3xl border border-border/60 bg-card/90 p-5 shadow-xl backdrop-blur-md">
+          <h1 className="text-2xl leading-tight font-extrabold tracking-tight text-foreground">
+            {t("address.title")}
+          </h1>
+          <p className="mt-1 text-sm text-muted-foreground">{t("address.subtitle")}</p>
+
+          <div className="relative mt-4">
+            <Search className="pointer-events-none absolute top-1/2 left-3.5 z-10 size-4 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={query}
+              onChange={(event) => {
+                setQuery(event.target.value);
+                setShowResults(true);
+              }}
+              placeholder={t("address.placeholder")}
+              className="h-12 rounded-xl pl-10"
+              autoComplete="off"
+            />
+            {isFetching ? (
+              <Loader2 className="absolute top-1/2 right-3.5 size-4 -translate-y-1/2 animate-spin text-muted-foreground" />
+            ) : null}
+
+            {showResults && suggestions && suggestions.length > 0 ? (
+              <ul className="absolute inset-x-0 top-full z-30 mt-2 divide-y divide-border overflow-hidden rounded-xl border border-border bg-card shadow-xl">
+                {suggestions.map((suggestion) => (
+                  <li key={suggestion.id}>
+                    <button
+                      type="button"
+                      className="flex w-full items-start gap-3 px-4 py-3 text-left transition-colors hover:bg-secondary"
+                      onClick={() => {
+                        void haptic("light");
+                        setLocation({
+                          address: suggestion.label,
+                          latitude: suggestion.latitude,
+                          longitude: suggestion.longitude,
+                          countryCode: suggestion.countryCode,
+                          region: suggestion.region,
+                        });
+                        setQuery(suggestion.label);
+                        setShowResults(false);
+                      }}
+                    >
+                      <MapPin className="mt-0.5 size-4 shrink-0 text-accent" />
+                      <span className="text-sm">{suggestion.label}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+
+          {isError ? (
+            <p className="mt-2 text-sm text-destructive">{t("address.error")}</p>
+          ) : null}
+          {showResults && !isFetching && debounced.length >= 3 && suggestions?.length === 0 ? (
+            <p className="mt-2 text-sm text-muted-foreground">{t("address.noResults")}</p>
+          ) : null}
+
+          {location ? (
+            <div className="mt-4 flex items-center gap-2 rounded-xl bg-secondary/70 px-3 py-2.5">
+              <MapPin className="size-4 shrink-0 text-accent" />
+              <p className="truncate text-sm font-medium">{location.address}</p>
+            </div>
+          ) : null}
+        </div>
+      </div>
+
+      {/* Bottom overlay: hint + action over fading gradient */}
+      <div className="pointer-events-none relative z-20 mt-auto bg-gradient-to-t from-background via-background/80 to-transparent pt-16">
+        <div className="pointer-events-auto mx-auto w-full max-w-2xl space-y-4 p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
+          <p className="text-center text-xs text-muted-foreground italic">
+            {location ? t("address.adjustHint") : t("address.mapHint")}
+          </p>
+          <Button
+            className="h-14 w-full rounded-2xl text-base font-bold"
+            size="lg"
+            disabled={!location}
+            onClick={() => {
+              void haptic("medium");
+              onNext();
+            }}
+          >
+            {t("common.next")}
+            <ArrowRight className="size-5" />
+          </Button>
+        </div>
+      </div>
+    </div>
   );
 }
