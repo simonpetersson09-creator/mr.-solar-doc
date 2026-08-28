@@ -102,7 +102,7 @@ export const sv = {
       },
     },
     upload: {
-      title: "Bifoga dokument",
+      title: "Bifoga förbrukningsdata för 12 månader",
       description:
         "Ladda upp en elfaktura eller egen förbrukningsdata (PDF, Excel, CSV eller bild som PNG/JPEG) så fyller vi i årsförbrukning och månadsvärden automatiskt.",
       button: "Välj fil",
