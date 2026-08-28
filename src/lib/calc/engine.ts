@@ -16,8 +16,7 @@ import { calculateMaxInvestment } from "./payback";
 import { buildLifetimeProjection } from "./degradation";
 import { maxAcPowerFromFuse, dcAcRatio, oversizingPercent } from "./inverter-sizing";
 import { recommendArraySize } from "./solar-sizing";
-import { splitProduction, summariseSelfConsumption } from "./self-consumption";
-import { DEFAULT_SELF_CONSUMPTION_SHARE } from "@/config/constants";
+import { clampShare, splitProduction, summariseSelfConsumption } from "./self-consumption";
 import type {
   CalculationInput,
   CalculationResult,
@@ -145,6 +144,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     annualProductionKwh,
     selfConsumptionKwh: split.selfConsumptionKwh,
     selfConsumptionShare: split.selfConsumptionShare,
+    requestedSelfConsumptionShare: clampShare(input.selfConsumptionShare),
     annualConsumptionKwh: input.consumption.annualKwh,
     maxAcPowerKw,
     selfConsumptionValue: economics.selfConsumptionValue,
