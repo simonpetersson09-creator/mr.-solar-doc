@@ -43,28 +43,106 @@ function toSuggestion(place: NominatimPlace): GeocodeSuggestion {
 
 const USER_AGENT = "MrSolarDoc/1.0 (solar sizing app)";
 
+/** Nominatim usage policy: at most one request per second, per application. */
+const MIN_REQUEST_INTERVAL_MS = 1000;
+/** Hard ceiling so a slow upstream can never pin the user in a loading state. */
+const REQUEST_TIMEOUT_MS = 10_000;
+const CACHE_TTL_MS = 1000 * 60 * 10;
+const CACHE_MAX_ENTRIES = 300;
+
+interface CacheEntry {
+  expiresAt: number;
+  value: unknown;
+}
+
+const responseCache = new Map<string, CacheEntry>();
+
+/**
+ * Serialises every outgoing Nominatim call across all concurrent users of this
+ * server instance, spacing them at least one second apart.
+ */
+let requestChain: Promise<void> = Promise.resolve();
+let lastRequestAt = 0;
+
+function scheduleNominatimSlot(): Promise<void> {
+  const slot = requestChain.then(async () => {
+    const wait = lastRequestAt + MIN_REQUEST_INTERVAL_MS - Date.now();
+    if (wait > 0) await new Promise((resolve) => setTimeout(resolve, wait));
+    lastRequestAt = Date.now();
+  });
+  requestChain = slot.catch(() => undefined);
+  return slot;
+}
+
+function readCache<T>(key: string): T | undefined {
+  const entry = responseCache.get(key);
+  if (!entry) return undefined;
+  if (entry.expiresAt < Date.now()) {
+    responseCache.delete(key);
+    return undefined;
+  }
+  // Refresh recency so the map behaves like a small LRU.
+  responseCache.delete(key);
+  responseCache.set(key, entry);
+  return entry.value as T;
+}
+
+function writeCache(key: string, value: unknown): void {
+  responseCache.set(key, { expiresAt: Date.now() + CACHE_TTL_MS, value });
+  while (responseCache.size > CACHE_MAX_ENTRIES) {
+    const oldest = responseCache.keys().next().value;
+    if (oldest === undefined) break;
+    responseCache.delete(oldest);
+  }
+}
+
+/** Collapses whitespace and case so "  Storgatan 1 " and "storgatan 1" share a slot. */
+function normaliseQuery(query: string): string {
+  return query.trim().replace(/\s+/g, " ").toLowerCase();
+}
+
+async function fetchNominatim(url: string, errorPrefix: string): Promise<unknown> {
+  await scheduleNominatimSlot();
+  const response = await fetch(url, {
+    headers: { "User-Agent": USER_AGENT, Accept: "application/json" },
+    signal: AbortSignal.timeout(REQUEST_TIMEOUT_MS),
+  });
+  if (!response.ok) throw new Error(`${errorPrefix}_${response.status}`);
+  return response.json();
+}
+
 export const searchAddress = createServerFn({ method: "GET" })
   .inputValidator((data: unknown) => searchInput.parse(data))
   .handler(async ({ data }): Promise<GeocodeSuggestion[]> => {
+    const normalised = normaliseQuery(data.query);
+    const cacheKey = `search:${data.language}:${normalised}`;
+    const cached = readCache<GeocodeSuggestion[]>(cacheKey);
+    if (cached) return cached;
+
     const params = new URLSearchParams({
-      q: data.query,
+      q: normalised,
       format: "jsonv2",
       addressdetails: "1",
       limit: "6",
       "accept-language": data.language,
     });
-    const response = await fetch(
+    const json = (await fetchNominatim(
       `https://nominatim.openstreetmap.org/search?${params.toString()}`,
-      { headers: { "User-Agent": USER_AGENT, Accept: "application/json" } },
-    );
-    if (!response.ok) throw new Error(`GEOCODING_FAILED_${response.status}`);
-    const json = (await response.json()) as NominatimPlace[];
-    return json.map(toSuggestion);
+      "GEOCODING_FAILED",
+    )) as NominatimPlace[];
+    const suggestions = json.map(toSuggestion);
+    writeCache(cacheKey, suggestions);
+    return suggestions;
   });
 
 export const reverseGeocode = createServerFn({ method: "GET" })
   .inputValidator((data: unknown) => reverseInput.parse(data))
   .handler(async ({ data }): Promise<GeocodeSuggestion | null> => {
+    // ~11 m grid: repeated map nudges reuse one upstream call.
+    const cacheKey = `reverse:${data.language}:${data.latitude.toFixed(4)}:${data.longitude.toFixed(4)}`;
+    const cached = readCache<GeocodeSuggestion | null>(cacheKey);
+    if (cached !== undefined) return cached;
+
     const params = new URLSearchParams({
       lat: String(data.latitude),
       lon: String(data.longitude),
@@ -72,12 +150,11 @@ export const reverseGeocode = createServerFn({ method: "GET" })
       addressdetails: "1",
       "accept-language": data.language,
     });
-    const response = await fetch(
+    const json = (await fetchNominatim(
       `https://nominatim.openstreetmap.org/reverse?${params.toString()}`,
-      { headers: { "User-Agent": USER_AGENT, Accept: "application/json" } },
-    );
-    if (!response.ok) throw new Error(`REVERSE_GEOCODING_FAILED_${response.status}`);
-    const json = (await response.json()) as NominatimPlace & { error?: string };
-    if (json.error || !json.lat) return null;
-    return toSuggestion(json);
+      "REVERSE_GEOCODING_FAILED",
+    )) as NominatimPlace & { error?: string };
+    const result = json.error || !json.lat ? null : toSuggestion(json);
+    writeCache(cacheKey, result);
+    return result;
   });
