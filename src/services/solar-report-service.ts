@@ -802,6 +802,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     { label: f.dataSource, value: result.resource.dataSource, origin: "external" },
   ];
   report.rows(assumptionRows, labels.origin);
+  report.paragraph(f["priceMethodNote"] ?? "");
   report.paragraph(f["gridMethodNote"] ?? "");
   report.paragraph(
     (f["priceChangeNote"] ?? "").replace(
