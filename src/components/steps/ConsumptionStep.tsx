@@ -111,7 +111,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
         <input
           ref={fileInputRef}
           type="file"
-          accept=".pdf,.xlsx,.xls,.csv,.txt,application/pdf"
+          accept=".pdf,.xlsx,.xls,.csv,.txt,application/pdf,image/*,.png,.jpg,.jpeg,.webp,.heic"
           className="hidden"
           onChange={(event) => {
             const file = event.target.files?.[0];
