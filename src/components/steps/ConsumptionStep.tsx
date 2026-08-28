@@ -6,6 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import { StepShell } from "@/components/StepShell";
+import { ConsumptionShapePicker } from "@/components/ConsumptionShapePicker";
+import { MonthlyChart } from "@/components/MonthlyChart";
+import { getMarketConfig } from "@/config/markets";
+import type { ConsumptionShape } from "@/lib/calc/consumption-shape";
+import { estimateMonthlyConsumption } from "@/lib/calc/consumption-shape";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatNumber } from "@/lib/format";
 import { sumMonthly } from "@/lib/calc/energy-production";
@@ -27,14 +32,22 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const storedAnnual = useWizardStore((s) => s.annualConsumptionKwh);
   const storedMonthly = useWizardStore((s) => s.monthlyConsumptionKwh);
   const setConsumption = useWizardStore((s) => s.setConsumption);
+  const storedShape = useWizardStore((s) => s.consumptionShape);
+  const storedInputType = useWizardStore((s) => s.consumptionInputType);
+  const location = useWizardStore((s) => s.location);
+  const market = getMarketConfig(location?.countryCode);
 
   const monthLabels = i18n.t("months.long", { returnObjects: true }) as string[];
+  const shortMonths = i18n.t("months.short", { returnObjects: true }) as string[];
 
   const [annual, setAnnual] = useState<string>(storedAnnual ? String(storedAnnual) : "");
   const [useMonthly, setUseMonthly] = useState(Boolean(storedMonthly));
   const [monthly, setMonthly] = useState<string[]>(
     storedMonthly ? storedMonthly.map(String) : Array.from({ length: 12 }, () => ""),
   );
+
+  const [shape, setShape] = useState<ConsumptionShape>(storedShape ?? "default");
+  const [imported, setImported] = useState(storedInputType === "imported");
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [parsing, setParsing] = useState(false);
@@ -51,11 +64,13 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
       if (parsed.monthly) {
         setMonthly(parsed.monthly.map((value) => String(Math.round(value))));
         setUseMonthly(true);
+        setImported(true);
         setAnnual(String(parsed.annual ?? Math.round(sumMonthly(parsed.monthly))));
         setParseStatus("monthly");
         void haptic("medium");
       } else if (parsed.annual) {
         setUseMonthly(false);
+        setImported(false);
         setAnnual(String(Math.round(parsed.annual)));
         setParseStatus("annual");
         void haptic("light");
@@ -73,6 +88,10 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const monthlyTotal = sumMonthly(monthlyNumbers);
   const effectiveAnnual = useMonthly ? monthlyTotal : Number(annual) || 0;
   const valid = effectiveAnnual >= MIN_ANNUAL_KWH && effectiveAnnual <= MAX_ANNUAL_KWH;
+  const showEstimatedProfile = !useMonthly && valid;
+  const estimatedMonthly = showEstimatedProfile
+    ? estimateMonthlyConsumption(effectiveAnnual, shape, market.defaultConsumptionWeights)
+    : null;
 
   return (
     <StepShell
@@ -88,7 +107,21 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
           disabled={!valid}
           onClick={() => {
             void haptic("medium");
-            setConsumption(effectiveAnnual, useMonthly ? monthlyNumbers : null);
+            if (useMonthly) {
+              setConsumption(
+                effectiveAnnual,
+                monthlyNumbers,
+                imported ? "imported" : "monthly-manual",
+                null,
+              );
+            } else {
+              setConsumption(
+                effectiveAnnual,
+                estimatedMonthly,
+                estimatedMonthly ? "annual-profile" : "annual-only",
+                estimatedMonthly ? shape : null,
+              );
+            }
             onNext();
           }}
         >
@@ -216,6 +249,43 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
           <p className="text-xs text-destructive">{t("consumption.invalid")}</p>
         ) : null}
       </div>
+
+      {showEstimatedProfile && estimatedMonthly ? (
+        <div className="card-elevated space-y-3 p-4">
+          <div>
+            <p className="text-sm font-medium">{t("consumption.shape.question")}</p>
+            <p className="text-xs text-muted-foreground">{t("consumption.shape.help")}</p>
+          </div>
+
+          <ConsumptionShapePicker
+            value={shape}
+            onChange={(next) => {
+              void haptic("light");
+              setShape(next);
+            }}
+            marketDefaultWeights={market.defaultConsumptionWeights}
+          />
+
+          <div className="border-t border-border pt-3">
+            <div className="mb-2 flex items-center justify-between gap-2">
+              <p className="text-xs font-medium">{t("consumption.shape.previewTitle")}</p>
+              <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                {t("consumption.shape.estimatedBadge")}
+              </span>
+            </div>
+            <MonthlyChart
+              values={estimatedMonthly}
+              labels={shortMonths}
+              locale={locale}
+            />
+            <p className="mt-2 text-[11px] leading-snug text-muted-foreground">
+              {shape === "default"
+                ? t("consumption.shape.defaultNote")
+                : t("consumption.shape.estimatedNote")}
+            </p>
+          </div>
+        </div>
+      ) : null}
     </StepShell>
   );
 }

@@ -69,6 +69,32 @@ export const sv = {
       "Vi kunde inte hämta solproduktionsdata för platsen just nu. Inga värden gissas fram.",
   },
   consumption: {
+    shape: {
+      question: "Hur brukar din elanvändning vara fördelad över året?",
+      help: "Vi använder ditt svar för att uppskatta en månadsfördelning av din årsförbrukning.",
+      previewTitle: "Din uppskattade förbrukningsprofil",
+      estimatedBadge: "Uppskattad",
+      estimatedNote:
+        "Detta är en uppskattad fördelning baserad på ditt val – inte din faktiska förbrukning. Fyller du i månadsvärden eller laddar upp data ersätts den.",
+      defaultNote:
+        "Vi använder en normal uppskattad fördelning av din årsförbrukning. Du kan ändra detta senare.",
+      even: {
+        title: "Jämn över året",
+        description: "Ungefär samma elanvändning under hela året.",
+      },
+      "winter-heavy": {
+        title: "Högre på vintern",
+        description: "Du använder mer el under årets kalla månader, exempelvis för uppvärmning.",
+      },
+      "summer-heavy": {
+        title: "Högre på sommaren",
+        description: "Du använder mer el på sommaren, exempelvis för pool eller kyla.",
+      },
+      default: {
+        title: "Jag vet inte",
+        description: "Använd en normal uppskattad profil.",
+      },
+    },
     upload: {
       title: "Klistra in eller bifoga dokument",
       description:
@@ -101,6 +127,23 @@ export const sv = {
   },
   result: {
     title: "Din beräkning",
+    consumptionSourceLabel: "Datakälla förbrukning",
+    consumptionSource: {
+      imported: "Importerad förbrukningsdata",
+      "monthly-manual": "Angivna månadsvärden",
+      "annual-profile": "Uppskattad från angiven årsförbrukning",
+      "annual-only": "Angiven årsförbrukning",
+    },
+    consumptionShapeLabel: "Förbrukningsprofil",
+    consumptionShape: {
+      even: "Jämn över året",
+      "winter-heavy": "Högre vinterförbrukning",
+      "summer-heavy": "Högre sommarförbrukning",
+      default: "Normal uppskattad profil",
+    },
+    estimatedBadge: "Uppskattad",
+    estimatedConsumptionNote:
+      "Månadsförbrukningen är uppskattad från din årsförbrukning och din valda profil.",
     forAddress: "För {{address}}",
     recommendedArray: "Beräknad anläggningsstorlek",
     recommendedInverter: "Beräknad växelriktarstorlek",
@@ -259,6 +302,8 @@ export const sv = {
       annualProduction: "Beräknad årsproduktion",
       specificYield: "Solproduktion på platsen",
       dataSource: "Datakälla",
+      consumptionSource: "Datakälla förbrukning",
+      consumptionShape: "Förbrukningsprofil",
       annualConsumption: "Årsförbrukning",
       selfConsumption: "Egenanvänd solel",
       exported: "Såld solel",

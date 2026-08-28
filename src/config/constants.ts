@@ -46,8 +46,21 @@ export const SCORE_WEIGHTS = {
 } as const;
 
 
+/**
+ * Relative monthly weights (Jan..Dec) used to estimate a monthly consumption
+ * profile from an annual figure. Always normalised before use.
+ */
+export const CONSUMPTION_SHAPE_WEIGHTS = {
+  even: [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  "winter-heavy": [13, 11, 10, 8, 6, 5, 5, 5, 7, 9, 10, 11],
+  "summer-heavy": [6, 6, 7, 8, 10, 11, 12, 11, 9, 7, 6, 7],
+  /** Neutral fallback used for "I don't know". Overridable per market. */
+  default: [11, 10, 9.5, 8, 6.5, 5.5, 5.5, 5.5, 7, 9, 10, 12],
+} as const satisfies Record<string, readonly number[]>;
+
 /** Default split between self-consumed and exported solar electricity. */
 export const DEFAULT_SELF_CONSUMPTION_SHARE = 0.5;
+
 
 /** Smallest / largest plausible residential array (kWp). */
 export const MIN_RECOMMENDED_KWP = 1;

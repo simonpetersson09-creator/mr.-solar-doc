@@ -68,6 +68,32 @@ export const en = {
     error: "We couldn't fetch solar data for this location. No values are guessed.",
   },
   consumption: {
+    shape: {
+      question: "How is your electricity use usually spread across the year?",
+      help: "We use your answer to estimate a monthly split of your annual consumption.",
+      previewTitle: "Your estimated consumption profile",
+      estimatedBadge: "Estimated",
+      estimatedNote:
+        "This is an estimated split based on your choice – not your actual consumption. It is replaced if you enter monthly values or upload data.",
+      defaultNote:
+        "We use a normal estimated split of your annual consumption. You can change this later.",
+      even: {
+        title: "Even across the year",
+        description: "Roughly the same electricity use all year round.",
+      },
+      "winter-heavy": {
+        title: "Higher in winter",
+        description: "You use more electricity in the cold months, for example for heating.",
+      },
+      "summer-heavy": {
+        title: "Higher in summer",
+        description: "You use more electricity in summer, for example for a pool or cooling.",
+      },
+      default: {
+        title: "I don't know",
+        description: "Use a normal estimated profile.",
+      },
+    },
     upload: {
       title: "Paste or attach a document",
       description:
@@ -100,6 +126,23 @@ export const en = {
   },
   result: {
     title: "Your calculation",
+    consumptionSourceLabel: "Consumption data source",
+    consumptionSource: {
+      imported: "Imported consumption data",
+      "monthly-manual": "Entered monthly values",
+      "annual-profile": "Estimated from the stated annual consumption",
+      "annual-only": "Stated annual consumption",
+    },
+    consumptionShapeLabel: "Consumption profile",
+    consumptionShape: {
+      even: "Even across the year",
+      "winter-heavy": "Higher winter consumption",
+      "summer-heavy": "Higher summer consumption",
+      default: "Normal estimated profile",
+    },
+    estimatedBadge: "Estimated",
+    estimatedConsumptionNote:
+      "Monthly consumption is estimated from your annual figure and the profile you picked.",
     forAddress: "For {{address}}",
     recommendedArray: "Calculated system size",
     recommendedInverter: "Calculated inverter size",
@@ -256,6 +299,8 @@ export const en = {
       annualProduction: "Estimated annual production",
       specificYield: "Site specific yield",
       dataSource: "Data source",
+      consumptionSource: "Consumption data source",
+      consumptionShape: "Consumption profile",
       annualConsumption: "Annual consumption",
       selfConsumption: "Self-consumed solar",
       exported: "Exported solar",

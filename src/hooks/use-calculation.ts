@@ -13,6 +13,8 @@ export function useCalculation(): {
   const resource = useWizardStore((s) => s.resource);
   const annualConsumptionKwh = useWizardStore((s) => s.annualConsumptionKwh);
   const monthlyConsumptionKwh = useWizardStore((s) => s.monthlyConsumptionKwh);
+  const consumptionInputType = useWizardStore((s) => s.consumptionInputType);
+  const consumptionShape = useWizardStore((s) => s.consumptionShape);
   const mainFuseAmp = useWizardStore((s) => s.mainFuseAmp);
   const selfConsumptionShare = useWizardStore((s) => s.selfConsumptionShare);
   const selfConsumedValuePerKwh = useWizardStore((s) => s.selfConsumedValuePerKwh);
@@ -30,6 +32,9 @@ export function useCalculation(): {
       consumption: {
         annualKwh: annualConsumptionKwh,
         monthlyKwh: monthlyConsumptionKwh,
+        inputType: consumptionInputType,
+        shape: consumptionShape,
+        isEstimated: consumptionInputType === "annual-profile",
       },
       electrical: { mainFuseAmp, kwPerAmp: market.kwPerAmp },
       economics: {
@@ -51,6 +56,8 @@ export function useCalculation(): {
     resource,
     annualConsumptionKwh,
     monthlyConsumptionKwh,
+    consumptionInputType,
+    consumptionShape,
     mainFuseAmp,
     selfConsumptionShare,
     selfConsumedValuePerKwh,

@@ -57,6 +57,10 @@ export interface ReportLabels {
   quoteNote: string;
   chartProduction: string;
   chartConsumption: string;
+  /** Where the consumption data came from (imported / entered / estimated). */
+  consumptionSource: string;
+  /** Chosen estimated profile, when the monthly data is estimated. */
+  consumptionShape?: string | null;
   origin: Record<ValueOrigin, string>;
   fields: ReportFieldLabels;
 }
@@ -412,12 +416,24 @@ export function generateReportBlob(options: ReportOptions): Blob {
       origin: "assumed",
     },
   ];
+  consumptionRows.splice(1, 0, {
+    label: f["consumptionSource"] ?? f.dataSource,
+    value: labels.consumptionSource,
+    origin: result.consumption.isEstimated ? "assumed" : "user",
+  });
+  if (labels.consumptionShape) {
+    consumptionRows.splice(2, 0, {
+      label: f["consumptionShape"] ?? f.dataSource,
+      value: labels.consumptionShape,
+      origin: "user",
+    });
+  }
   if (result.consumption.monthlyKwh) {
     result.consumption.monthlyKwh.forEach((value, index) => {
       consumptionRows.push({
         label: labels.months[index] ?? "",
         value: `${formatNumber(value, locale)} kWh`,
-        origin: "user",
+        origin: result.consumption.isEstimated ? "assumed" : "user",
       });
     });
   }

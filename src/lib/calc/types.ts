@@ -2,11 +2,14 @@
 
 import type { PresentationValues } from "./presentation";
 import type { MaxInvestmentResult } from "./payback";
+import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
 import type {
   ConsumptionProfileAnalysis,
   ConsumptionProfileCategory,
   DcAcTargetRange,
 } from "./consumption-profile";
+
+export type { ConsumptionInputType, ConsumptionShape };
 
 export type {
   PresentationValues,
@@ -64,8 +67,14 @@ export interface SiteLocation {
 
 export interface ConsumptionInput {
   annualKwh: number;
-  /** 12 values Jan..Dec when the user provided monthly detail. */
+  /** 12 values Jan..Dec — actual data or an estimated profile. */
   monthlyKwh: number[] | null;
+  /** Priority: imported > monthly-manual > annual-profile > annual-only. */
+  inputType?: ConsumptionInputType;
+  /** Which estimated shape produced `monthlyKwh`, when estimated. */
+  shape?: ConsumptionShape | null;
+  /** True when `monthlyKwh` is estimated from the annual figure. */
+  isEstimated?: boolean;
 }
 
 export interface ElectricalInput {

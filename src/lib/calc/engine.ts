@@ -103,7 +103,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
 
   if (input.resource.orientationAssumed) notes.push("orientation-assumed");
   if (input.resource.tiltAssumed) notes.push("tilt-assumed");
-  if (input.consumption.monthlyKwh) notes.push("monthly-consumption-provided");
+  if (input.consumption.monthlyKwh) {
+    notes.push(
+      input.consumption.isEstimated
+        ? "monthly-consumption-estimated"
+        : "monthly-consumption-provided",
+    );
+  }
 
   return {
     location: input.location,
