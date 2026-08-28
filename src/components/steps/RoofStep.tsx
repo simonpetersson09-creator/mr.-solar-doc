@@ -111,8 +111,8 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
         </Button>
       }
     >
-      <div className="card-elevated space-y-4 p-4">
-        <div className="grid gap-4 sm:grid-cols-[auto_1fr] sm:items-start">
+      <div className="card-elevated space-y-3 p-3.5">
+        <div className="grid gap-3 sm:grid-cols-[auto_1fr] sm:items-start">
           <div className="flex justify-center sm:justify-start">
             <CompassDial
               value={dialValue}
@@ -146,7 +146,7 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 border-t border-border pt-4">
+        <div className="flex flex-wrap items-center gap-1.5 border-t border-border pt-3">
           <Label className="mr-1 text-sm">{t("roof.tilt")}</Label>
           {TILT_PRESETS.map((preset) => (
             <button
@@ -196,42 +196,42 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
       </div>
 
       {assumed ? (
-        <div className="flex gap-2.5 rounded-xl border border-border bg-secondary p-3 text-xs text-secondary-foreground">
+        <div className="flex gap-2 rounded-xl border border-border bg-secondary px-3 py-2 text-xs text-secondary-foreground">
           <AlertTriangle className="mt-0.5 size-3.5 shrink-0 text-accent" />
           <p>{t("roof.assumptionNotice")}</p>
         </div>
       ) : null}
 
       {query.isPending ? (
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card p-3 text-sm text-muted-foreground">
+        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2 text-xs text-muted-foreground">
           <Loader2 className="size-4 animate-spin" />
           {t("roof.fetching")}
         </div>
       ) : null}
 
       {query.isError ? (
-        <div className="space-y-3 rounded-xl border border-destructive/40 bg-destructive/5 p-4">
-          <p className="text-sm text-destructive">{t("roof.error")}</p>
-          <Button variant="outline" onClick={() => void query.refetch()}>
+        <div className="flex items-center justify-between gap-3 rounded-xl border border-destructive/40 bg-destructive/5 px-3 py-2.5">
+          <p className="text-xs text-destructive">{t("roof.error")}</p>
+          <Button variant="outline" size="sm" onClick={() => void query.refetch()}>
             {t("common.retry")}
           </Button>
         </div>
       ) : null}
 
       {query.data ? (
-        <div className="hero-metric flex items-center justify-between gap-4 rounded-2xl p-4">
+        <div className="hero-metric flex items-center justify-between gap-4 rounded-xl px-4 py-3">
           <div>
-            <div className="flex items-center gap-2 text-xs font-medium">
+            <div className="flex items-center gap-1.5 text-xs font-medium">
               <Sun className="size-3.5" />
               {t("roof.result")}
             </div>
-            <p className="mt-1 text-xs opacity-80">{query.data.dataSource}</p>
+            <p className="mt-0.5 text-[11px] opacity-80">{query.data.dataSource}</p>
           </div>
           <div className="text-right">
-            <p className="text-3xl leading-none font-bold">
+            <p className="text-2xl leading-none font-bold">
               {formatNumber(query.data.annualKwhPerKwp, locale)}
             </p>
-            <p className="mt-1 text-xs">{t("roof.unit")}</p>
+            <p className="mt-1 text-[11px]">{t("roof.unit")}</p>
           </div>
         </div>
       ) : null}
