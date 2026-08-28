@@ -769,13 +769,13 @@ export function generateReportBlob(options: ReportOptions): Blob {
     },
     {
       label: f["selfConsumedValueRate"] ?? f.assumedPrice,
-      value: `${formatDecimal(result.economics.selfConsumedValuePerKwh, locale, 2)} ${currency}/kWh`,
-      origin: "assumed",
+      value: `${formatDecimal(result.economics.selfConsumedValuePerKwh, locale, 2)} ${currency}/kWh – ${f[`valueSource_${result.economics.selfConsumedValueSource}`] ?? ""}`,
+      origin: result.economics.selfConsumedValueSource === "user-override" ? "user" : "assumed",
     },
     {
       label: f["exportValueRate"] ?? f.assumedPrice,
-      value: `${formatDecimal(result.economics.exportValuePerKwh, locale, 2)} ${currency}/kWh`,
-      origin: "assumed",
+      value: `${formatDecimal(result.economics.exportValuePerKwh, locale, 2)} ${currency}/kWh – ${f[`valueSource_${result.economics.exportValueSource}`] ?? ""}`,
+      origin: result.economics.exportValueSource === "user-override" ? "user" : "assumed",
     },
     {
       label: f["gridConnection"] ?? "",
