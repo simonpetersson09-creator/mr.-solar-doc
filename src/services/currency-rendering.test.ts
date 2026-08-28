@@ -31,11 +31,15 @@ describe("currency across the app", () => {
     expect(formatCurrency(1000, "de-DE", getCurrencyForCountry("CH"))).toContain("CHF");
   });
 
-  it("renders PDF-safe currency text for Central European locales", () => {
+  it("renders ISO codes, never locale symbols, and stays PDF-safe", () => {
     const pln = pdfText(formatCurrency(1000, "pl-PL", "PLN"));
     const czk = pdfText(formatCurrency(1000, "cs-CZ", "CZK"));
-    expect(pln).toContain("zl");
-    expect(czk).toContain("Kc");
+    const sekInEnglish = formatCurrency(1000, "en-SE", "SEK");
+    expect(pln).toContain("PLN");
+    expect(czk).toContain("CZK");
+    expect(sekInEnglish).toContain("SEK");
+    expect(sekInEnglish).not.toContain("kr");
+    expect(formatCurrency(1000, "sv-SE", "SEK")).not.toContain("kr");
     for (const value of [pln, czk, pdfText(formatCurrency(1000, "de-DE", "EUR"))]) {
       // The euro sign is the one non-Latin-1 glyph jsPDF's WinAnsi fonts cover.
       expect(/[^\u0000-\u00ff\u20ac]/.test(value)).toBe(false);
