@@ -59,9 +59,6 @@ function ResultPage() {
   const reset = useWizardStore((s) => s.reset);
   const [showDetails, setShowDetails] = useState(false);
   const [showPaybackInfo, setShowPaybackInfo] = useState(false);
-  const [showQuote, setShowQuote] = useState(false);
-  const quotePrice = useWizardStore((s) => s.quotePrice);
-  const setQuotePrice = useWizardStore((s) => s.setQuotePrice);
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
   const setAcceptedPaybackYears = useWizardStore((s) => s.setAcceptedPaybackYears);
   const [exporting, setExporting] = useState(false);
@@ -145,9 +142,9 @@ function ResultPage() {
         </p>
       </header>
 
-      <main className="mx-auto max-w-2xl space-y-3 px-5 pt-4">
+      <main className="mx-auto max-w-2xl space-y-2.5 px-5 pt-3">
         {/* 1. Recommendation */}
-        <section className="hero-metric rounded-2xl p-4">
+        <section className="hero-metric rounded-2xl p-3.5">
           <div className="flex items-center gap-2 text-xs font-medium">
             <Sun className="size-3.5" /> {t("result.recommendedArray")}
           </div>
@@ -185,7 +182,7 @@ function ResultPage() {
         </section>
 
         {/* 2. Production */}
-        <section className="card-elevated p-4">
+        <section className="card-elevated p-3.5">
           <h2 className="text-sm font-semibold">{t("result.sectionProduction")}</h2>
           <p className="mt-0.5 mb-3 text-xs text-muted-foreground">
             {t("result.monthlyProduction")}
@@ -209,7 +206,7 @@ function ResultPage() {
         </section>
 
         {/* 3. Your solar electricity */}
-        <section className="card-elevated space-y-3 p-4">
+        <section className="card-elevated space-y-2.5 p-3.5">
           <div className="flex items-center justify-between gap-2">
             <h2 className="text-sm font-semibold">{t("result.sectionYourSolar")}</h2>
             {editableBadge}
@@ -249,7 +246,7 @@ function ResultPage() {
         </section>
 
         {/* 4. Economics */}
-        <section className="card-elevated space-y-3 p-4">
+        <section className="card-elevated space-y-2.5 p-3.5">
           <div className="flex items-center justify-between gap-2">
             <h2 className="text-sm font-semibold">{t("result.sectionEconomy")}</h2>
             {editableBadge}
@@ -331,11 +328,11 @@ function ResultPage() {
         </section>
 
         {/* 4b. Investment level for the chosen payback time */}
-        <section className="card-elevated space-y-3 p-4">
-          <div className="flex items-start justify-between gap-2">
+        <section className="card-elevated space-y-2.5 p-3.5">
+          <div className="flex items-center justify-between gap-2">
             <div>
               <h2 className="text-sm font-semibold">{t("result.paybackTitle")}</h2>
-              <p className="mt-0.5 text-[11px] text-muted-foreground">
+              <p className="text-[11px] text-muted-foreground">
                 {t("result.paybackSubtitle")}
               </p>
             </div>
@@ -379,21 +376,17 @@ function ResultPage() {
             </div>
           </div>
 
-          <div className="rounded-xl bg-secondary p-3">
-            <p className="text-[11px] text-muted-foreground">
-              {t("result.investmentLevelTitle", {
-                years: formatNumber(paybackYears, locale),
-              })}
-            </p>
-            <p className="mt-0.5 text-2xl font-bold">
-              {t("result.maxInvestmentApprox", { amount: investmentAmount })}
-            </p>
-            <p className="mt-1 text-[11px] text-muted-foreground">
-              {t("result.investmentLevelNote", {
-                years: formatNumber(paybackYears, locale),
-                amount: investmentAmount,
-              })}
-            </p>
+          <div className="rounded-xl bg-secondary p-2.5">
+            <div className="flex items-baseline justify-between gap-3">
+              <p className="text-[11px] text-muted-foreground">
+                {t("result.investmentLevelTitle", {
+                  years: formatNumber(paybackYears, locale),
+                })}
+              </p>
+              <p className="text-xl font-bold">
+                {t("result.maxInvestmentApprox", { amount: investmentAmount })}
+              </p>
+            </div>
             <p className="mt-1 text-[10px] text-muted-foreground/80">
               {t("result.investmentFormula", {
                 value: formatCurrency(p.annualSavings, locale, currency),
@@ -406,50 +399,8 @@ function ResultPage() {
               {t("result.maxInvestmentNote")}
             </p>
           </div>
-
-          <div className="rounded-xl border border-border">
-            <button
-              type="button"
-              onClick={() => setShowQuote((open) => !open)}
-              className="flex w-full items-center justify-between px-3 py-2.5 text-xs font-medium"
-            >
-              {t("result.quoteToggle")}
-              <ChevronDown
-                className={`size-4 transition-transform ${showQuote ? "rotate-180" : ""}`}
-              />
-            </button>
-            {showQuote ? (
-              <div className="space-y-2 border-t border-border p-3">
-                <Label htmlFor="quote-price" className="text-[11px] text-muted-foreground">
-                  {t("result.quoteLabel", { currency })}
-                </Label>
-                <Input
-                  id="quote-price"
-                  type="number"
-                  min="0"
-                  step="1000"
-                  inputMode="numeric"
-                  className="h-9"
-                  placeholder={t("result.quotePlaceholder")}
-                  value={quotePrice ?? ""}
-                  onChange={(event) =>
-                    setQuotePrice(event.target.value === "" ? null : Number(event.target.value))
-                  }
-                />
-                {result.investment.quotePaybackYears != null ? (
-                  <>
-                    <p className="text-sm font-semibold">
-                      {t("result.quoteResult", {
-                        years: formatDecimal(result.investment.quotePaybackYears, locale, 1),
-                      })}
-                    </p>
-                    <p className="text-[11px] text-muted-foreground">{t("result.quoteNote")}</p>
-                  </>
-                ) : null}
-              </div>
-            ) : null}
-          </div>
         </section>
+
 
 
         {/* 5. Technical details */}
