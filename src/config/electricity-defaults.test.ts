@@ -119,7 +119,7 @@ describe("price values in the calculation", () => {
     // Economy, investment level and the 30-year value all follow the change.
     expect(custom.economics.totalValue).toBeGreaterThan(standard.economics.totalValue);
     expect(custom.investment.maxInvestment).toBeGreaterThan(standard.investment.maxInvestment);
-    expect(custom.lifetime.totalValue).toBeGreaterThan(standard.lifetime.totalValue);
+    expect(custom.lifetime.totalEconomicValue).toBeGreaterThan(standard.lifetime.totalEconomicValue);
   });
 
   it("rejects negative prices but accepts 0 as a manual value", () => {
