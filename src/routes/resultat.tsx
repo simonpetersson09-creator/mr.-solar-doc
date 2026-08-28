@@ -57,6 +57,8 @@ function ResultPage() {
   const setSelfConsumedValue = useWizardStore((s) => s.setSelfConsumedValue);
   const setExportValue = useWizardStore((s) => s.setExportValue);
   const reset = useWizardStore((s) => s.reset);
+  const setCurrentStep = useWizardStore((s) => s.setCurrentStep);
+  const navigate = useNavigate();
   const [showDetails, setShowDetails] = useState(false);
   const [showPaybackInfo, setShowPaybackInfo] = useState(false);
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
