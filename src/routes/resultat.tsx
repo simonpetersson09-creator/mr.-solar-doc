@@ -403,49 +403,6 @@ function ResultPage() {
               {t("result.maxInvestmentNote")}
             </p>
           </div>
-
-          <div className="rounded-xl border border-border">
-            <button
-              type="button"
-              onClick={() => setShowQuote((open) => !open)}
-              className="flex w-full items-center justify-between px-3 py-2.5 text-xs font-medium"
-            >
-              {t("result.quoteToggle")}
-              <ChevronDown
-                className={`size-4 transition-transform ${showQuote ? "rotate-180" : ""}`}
-              />
-            </button>
-            {showQuote ? (
-              <div className="space-y-2 border-t border-border p-3">
-                <Label htmlFor="quote-price" className="text-[11px] text-muted-foreground">
-                  {t("result.quoteLabel", { currency })}
-                </Label>
-                <Input
-                  id="quote-price"
-                  type="number"
-                  min="0"
-                  step="1000"
-                  inputMode="numeric"
-                  className="h-9"
-                  placeholder={t("result.quotePlaceholder")}
-                  value={quotePrice ?? ""}
-                  onChange={(event) =>
-                    setQuotePrice(event.target.value === "" ? null : Number(event.target.value))
-                  }
-                />
-                {result.investment.quotePaybackYears != null ? (
-                  <>
-                    <p className="text-sm font-semibold">
-                      {t("result.quoteResult", {
-                        years: formatDecimal(result.investment.quotePaybackYears, locale, 1),
-                      })}
-                    </p>
-                    <p className="text-[11px] text-muted-foreground">{t("result.quoteNote")}</p>
-                  </>
-                ) : null}
-              </div>
-            ) : null}
-          </div>
         </section>
 
 
