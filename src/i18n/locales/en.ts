@@ -243,7 +243,7 @@ export const en = {
     paybackYears: "{{years}} years",
     paybackInfo:
       "Simple payback shows how many years the estimated annual economic value corresponds to the investment. It does not account for future electricity price changes, financing cost, inflation, maintenance or discounting.",
-    maxInvestment: "Max investment at payback time",
+    maxInvestment: "Investment level at chosen payback time",
     maxInvestmentApprox: "approx. {{amount}}",
     maxInvestmentExplainer:
       "To reach roughly {{years}} years of simple payback, the installation should cost at most about {{amount}}.",
@@ -333,7 +333,7 @@ export const en = {
       tilt: "Roof tilt",
       yearsUnit: "years",
       acceptedPayback: "Chosen payback time",
-      maxInvestment: "Max investment at payback time",
+      maxInvestment: "Investment level at chosen payback time",
       quotePrice: "Quoted price provided",
       quotePayback: "Simple payback based on the quoted price",
       calculationVersion: "Calculation version",
