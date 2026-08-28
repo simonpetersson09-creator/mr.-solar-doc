@@ -256,6 +256,13 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
 
         {useMonthly ? (
           <div className="space-y-2.5 border-t border-border pt-2.5">
+            <div className="flex items-baseline justify-between gap-2">
+              <p className="text-xs font-medium">{t("consumption.monthlyTitle")}</p>
+              <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+                {t("months.short", { returnObjects: true })[0]}–{t("months.short", { returnObjects: true })[11]}
+              </span>
+            </div>
+            <p className="text-[11px] leading-snug text-muted-foreground">{t("consumption.monthlyHint")}</p>
             <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-6">
               {monthly.map((value, index) => (
                 <div key={monthLabels[index]}>
