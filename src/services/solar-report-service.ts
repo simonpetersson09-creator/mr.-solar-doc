@@ -96,30 +96,33 @@ class ReportDocument {
 
   header(title: string, appName: string, subtitle: string, generated: string) {
     this.doc.setFillColor(...ACCENT);
-    this.doc.rect(0, 0, PAGE.width, 34, "F");
+    this.doc.rect(0, 0, PAGE.width, 30, "F");
     this.doc.setTextColor(...INK);
     this.doc.setFont("helvetica", "bold");
-    this.doc.setFontSize(20);
-    this.doc.text(title, PAGE.margin, 16);
+    this.doc.setFontSize(18);
+    this.doc.text(title, PAGE.margin, 15);
     this.doc.setFont("helvetica", "normal");
-    this.doc.setFontSize(10);
-    this.doc.text(appName, PAGE.margin, 23);
-    this.doc.text(generated, PAGE.width - PAGE.margin, 23, { align: "right" });
-    this.y = 44;
+    this.doc.setFontSize(9);
+    this.doc.text(appName, PAGE.margin, 22);
+    this.doc.text(generated, PAGE.width - PAGE.margin, 22, { align: "right" });
+
+    // Address block sits below the band so it can never overlap the header text.
+    this.y = 40;
+    this.doc.setFont("helvetica", "bold");
     this.doc.setFontSize(11);
-    this.doc.setTextColor(...MUTED);
-    const lines = this.doc.splitTextToSize(subtitle, PAGE.width - PAGE.margin * 2);
+    this.doc.setTextColor(...INK);
+    const lines = this.doc.splitTextToSize(subtitle, PAGE.width - PAGE.margin * 2) as string[];
     this.doc.text(lines, PAGE.margin, this.y);
-    this.y += lines.length * 5 + 4;
+    this.y += lines.length * 5 + 6;
   }
 
   sectionTitle(text: string) {
     this.ensureSpace(16);
     this.doc.setFont("helvetica", "bold");
-    this.doc.setFontSize(13);
+    this.doc.setFontSize(12);
     this.doc.setTextColor(...INK);
     this.doc.text(text, PAGE.margin, this.y);
-    this.y += 3;
+    this.y += 2.5;
     this.doc.setDrawColor(...ACCENT);
     this.doc.setLineWidth(0.8);
     this.doc.line(PAGE.margin, this.y, PAGE.margin + 22, this.y);
@@ -153,24 +156,43 @@ class ReportDocument {
   }
 
   rows(rows: Row[], originLabels?: Record<ValueOrigin, string>) {
-    this.doc.setFontSize(10);
+    const full = PAGE.width - PAGE.margin * 2;
     rows.forEach((row, index) => {
-      this.ensureSpace(9);
+      this.doc.setFontSize(9.5);
+      this.doc.setFont("helvetica", "normal");
+      const suffix = row.origin && originLabels ? `  (${originLabels[row.origin]})` : "";
+      const labelWidth = this.doc.getTextWidth(row.label);
+      this.doc.setFont("helvetica", "bold");
+      const text = `${row.value}${suffix}`;
+      const valueWidth = this.doc.getTextWidth(text);
+
+      // Wrap onto a second line when label and value would collide.
+      const stacked = labelWidth + valueWidth + 10 > full;
+      const valueLines = stacked
+        ? (this.doc.splitTextToSize(text, full - 4) as string[])
+        : [text];
+      const height = stacked ? 6 + valueLines.length * 5 : 8;
+      this.ensureSpace(height + 1);
+
       if (index % 2 === 0) {
         this.doc.setFillColor(249, 249, 245);
-        this.doc.rect(PAGE.margin, this.y - 4.5, PAGE.width - PAGE.margin * 2, 8, "F");
+        this.doc.rect(PAGE.margin, this.y - 4.5, full, height, "F");
       }
       this.doc.setFont("helvetica", "normal");
       this.doc.setTextColor(...MUTED);
       this.doc.text(row.label, PAGE.margin + 2, this.y);
       this.doc.setFont("helvetica", "bold");
       this.doc.setTextColor(...INK);
-      const suffix =
-        row.origin && originLabels ? `   (${originLabels[row.origin]})` : "";
-      this.doc.text(`${row.value}${suffix}`, PAGE.width - PAGE.margin - 2, this.y, {
-        align: "right",
-      });
-      this.y += 8;
+      if (stacked) {
+        valueLines.forEach((line, lineIndex) => {
+          this.doc.text(line, PAGE.width - PAGE.margin - 2, this.y + 5 + lineIndex * 5, {
+            align: "right",
+          });
+        });
+      } else {
+        this.doc.text(text, PAGE.width - PAGE.margin - 2, this.y, { align: "right" });
+      }
+      this.y += height;
     });
     this.y += 4;
   }
