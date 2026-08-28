@@ -18,10 +18,16 @@ export function formatDecimal(value: number, locale: string, digits = 1): string
   });
 }
 
+/**
+ * Money is always shown with the ISO 4217 code (e.g. "12 345 SEK"). Locale
+ * symbols are avoided on purpose: `en-SE` would otherwise render SEK as "kr",
+ * which is wrong for a non-Swedish reader. Digits stay locale-aware.
+ */
 export function formatCurrency(value: number, locale: string, currency: string): string {
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
+    currencyDisplay: "code",
     maximumFractionDigits: 0,
   }).format(Number.isFinite(value) ? value : 0);
 }
