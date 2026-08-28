@@ -75,7 +75,7 @@ export function StepShell({
       </main>
 
       {footer ? (
-        <div className="fixed inset-x-0 bottom-0 border-t border-border bg-card/90 backdrop-blur">
+        <div className="fixed inset-x-0 bottom-0 border-t border-border bg-background/90 pb-[env(safe-area-inset-bottom)] backdrop-blur">
         <div
             className="mx-auto max-w-2xl px-5 py-3"
             style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
