@@ -78,7 +78,7 @@ export const sv = {
       successMonthly: "Vi hittade 12 månadsvärden och fyllde i dem åt dig.",
       successAnnual: "Vi hittade en årsförbrukning i dokumentet.",
       error: "Vi kunde inte hitta någon förbrukning i dokumentet. Fyll i värdena manuellt.",
-      fileTypes: "PDF, XLSX, XLS, CSV eller TXT",
+      fileTypes: "PDF, XLSX, XLS, CSV, TXT eller bild (PNG, JPEG)",
     },
     title: "Hur mycket el använder du?",
     subtitle: "Titta på din elräkning eller ditt elavtal.",

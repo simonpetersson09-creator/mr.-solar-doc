@@ -77,7 +77,7 @@ export const en = {
       successMonthly: "We found 12 monthly values and filled them in for you.",
       successAnnual: "We found an annual consumption in the document.",
       error: "We could not find any consumption in the document. Please enter the values manually.",
-      fileTypes: "PDF, XLSX, XLS, CSV or TXT",
+      fileTypes: "PDF, XLSX, XLS, CSV, TXT or image (PNG, JPEG)",
     },
     title: "How much electricity do you use?",
     subtitle: "Check your electricity bill or contract.",
