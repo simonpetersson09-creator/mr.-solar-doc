@@ -26,4 +26,9 @@ export const KWP_ROUNDING_STEP = 0.5;
 /** Assumed nameplate wattage of a single solar panel (kWp), used to estimate panel count. */
 export const PANEL_WATTAGE_KWP = 0.43;
 
+/** Accepted simple payback time (years) used for the max-investment guide. */
+export const DEFAULT_PAYBACK_YEARS = 12;
+export const MIN_PAYBACK_YEARS = 8;
+export const MAX_PAYBACK_YEARS = 20;
+
 export const CALCULATION_VERSION = "1.0.0";

@@ -1,6 +1,6 @@
 import { create } from "zustand";
 import type { Orientation, SiteLocation, SolarResource } from "@/lib/calc/types";
-import { DEFAULT_SELF_CONSUMPTION_SHARE } from "@/config/constants";
+import { DEFAULT_PAYBACK_YEARS, DEFAULT_SELF_CONSUMPTION_SHARE } from "@/config/constants";
 
 export interface WizardState {
   location: SiteLocation | null;
@@ -15,6 +15,7 @@ export interface WizardState {
   selfConsumptionShare: number;
   selfConsumedValuePerKwh: number | null;
   exportValuePerKwh: number | null;
+  acceptedPaybackYears: number;
   setLocation: (location: SiteLocation | null) => void;
   setRoof: (
     orientation: Orientation,
@@ -27,6 +28,7 @@ export interface WizardState {
   setSelfConsumptionShare: (share: number) => void;
   setSelfConsumedValue: (value: number) => void;
   setExportValue: (value: number) => void;
+  setAcceptedPaybackYears: (years: number) => void;
   reset: () => void;
 }
 
@@ -42,6 +44,7 @@ const initialState = {
   selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
   selfConsumedValuePerKwh: null,
   exportValuePerKwh: null,
+  acceptedPaybackYears: DEFAULT_PAYBACK_YEARS,
 };
 
 export const useWizardStore = create<WizardState>((set) => ({
@@ -61,5 +64,6 @@ export const useWizardStore = create<WizardState>((set) => ({
   setSelfConsumptionShare: (share) => set({ selfConsumptionShare: share }),
   setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
   setExportValue: (value) => set({ exportValuePerKwh: value }),
+  setAcceptedPaybackYears: (years) => set({ acceptedPaybackYears: years }),
   reset: () => set({ ...initialState }),
 }));
