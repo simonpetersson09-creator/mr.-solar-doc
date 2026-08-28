@@ -317,142 +317,27 @@ function ResultPage() {
           <p className="text-[11px] text-muted-foreground">{t("result.economicsDisclaimer")}</p>
         </section>
 
-        {/* 4. Everything adjustable, collapsed by default */}
-        <div className="card-elevated overflow-hidden">
-          <button
-            type="button"
-            onClick={() => setShowAssumptions((open) => !open)}
-            className="flex w-full items-center justify-between gap-3 px-3.5 py-3 text-left"
-          >
-            <span>
-              <span className="flex items-center gap-2 text-sm font-medium">
-                {t("result.adjustAssumptions")} {editableBadge}
-              </span>
-              <span className="mt-0.5 block text-[11px] text-muted-foreground">
-                {t("result.adjustAssumptionsHint")}
-              </span>
+        {/* 4. Assumptions are edited in the previous wizard step */}
+        <button
+          type="button"
+          onClick={() => {
+            void haptic("light");
+            setCurrentStep(5);
+            void navigate({ to: "/" });
+          }}
+          className="card-elevated flex w-full items-center justify-between gap-3 px-3.5 py-3 text-left"
+        >
+          <span>
+            <span className="flex items-center gap-2 text-sm font-medium">
+              {t("result.adjustAssumptions")} {editableBadge}
             </span>
-            <ChevronDown
-              className={`size-4 shrink-0 transition-transform ${showAssumptions ? "rotate-180" : ""}`}
-            />
-          </button>
+            <span className="mt-0.5 block text-[11px] text-muted-foreground">
+              {t("result.adjustAssumptionsHint")}
+            </span>
+          </span>
+          <ArrowLeft className="size-4 shrink-0" />
+        </button>
 
-          {showAssumptions ? (
-            <div className="space-y-3 border-t border-border p-3.5">
-              {/* Self-consumption split */}
-              <div className="rounded-xl border border-dashed border-accent/50 p-3">
-                <div className="flex items-center justify-between">
-                  <Label className="text-xs">{t("result.adjustSplit")}</Label>
-                  <span className="text-sm font-semibold">
-                    {formatNumber(p.requestedSelfConsumptionPercent, locale)} %
-                  </span>
-                </div>
-                <Slider
-                  className="mt-2.5"
-                  min={0}
-                  max={100}
-                  step={5}
-                  value={[p.requestedSelfConsumptionPercent]}
-                  onValueChange={([value]) => setSelfConsumptionShare((value ?? 0) / 100)}
-                />
-                <p className="mt-2 text-[11px] leading-snug text-muted-foreground">
-                  {t("result.selfConsumptionAssumption")}
-                </p>
-                {p.selfConsumptionCapped ? (
-                  <p className="mt-2 text-[11px] font-medium leading-snug text-foreground">
-                    {t("result.selfConsumptionCappedNote", {
-                      effective: formatNumber(p.selfConsumptionPercent, locale),
-                    })}
-                  </p>
-                ) : null}
-              </div>
-
-              {/* Prices */}
-              <div className="space-y-2 rounded-xl border border-dashed border-accent/50 p-3">
-                <p className="text-xs font-medium">{t("result.assumedPrices")}</p>
-                <div className="grid gap-2 sm:grid-cols-2">
-                  <div>
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      <Label htmlFor="self-value" className="text-[11px] text-muted-foreground">
-                        {t("result.selfConsumedValueLabel", { currency })}
-                      </Label>
-                      {priceSourceBadge(result.economics.selfConsumedValueSource)}
-                    </div>
-                    <PriceInput
-                      id="self-value"
-                      value={result.economics.selfConsumedValuePerKwh}
-                      onCommit={setSelfConsumedValue}
-                    />
-                    {result.economics.selfConsumedValueSource === "user-override" ? (
-                      <button
-                        type="button"
-                        className="mt-1 text-[11px] font-medium text-primary underline underline-offset-2"
-                        onClick={() => setSelfConsumedValue(null)}
-                      >
-                        {t("result.resetToStandard")}
-                      </button>
-                    ) : null}
-                  </div>
-                  <div>
-                    <div className="flex flex-wrap items-center gap-1.5">
-                      <Label htmlFor="export-value" className="text-[11px] text-muted-foreground">
-                        {t("result.exportValueLabel", { currency })}
-                      </Label>
-                      {priceSourceBadge(result.economics.exportValueSource)}
-                    </div>
-                    <PriceInput
-                      id="export-value"
-                      value={result.economics.exportValuePerKwh}
-                      onCommit={setExportValue}
-                    />
-                    {result.economics.exportValueSource === "user-override" ? (
-                      <button
-                        type="button"
-                        className="mt-1 text-[11px] font-medium text-primary underline underline-offset-2"
-                        onClick={() => setExportValue(null)}
-                      >
-                        {t("result.resetToStandard")}
-                      </button>
-                    ) : null}
-                  </div>
-                </div>
-                <p className="text-[11px] text-muted-foreground">
-                  {t("result.standardValueHint")}
-                </p>
-              </div>
-
-              {/* Payback time */}
-              <div className="rounded-xl border border-dashed border-accent/50 p-3">
-                <div className="flex items-baseline justify-between gap-2">
-                  <Label className="text-xs">{t("result.paybackTitle")}</Label>
-                  <span className="text-base font-bold">
-                    {t("result.paybackYears", { years: formatNumber(paybackYears, locale) })}
-                  </span>
-                </div>
-                <Slider
-                  className="mt-2.5"
-                  min={MIN_PAYBACK_YEARS}
-                  max={MAX_PAYBACK_YEARS}
-                  step={1}
-                  value={[paybackYears]}
-                  onValueChange={([value]) => setAcceptedPaybackYears(value ?? MIN_PAYBACK_YEARS)}
-                />
-                <div className="mt-1.5 flex justify-between text-[10px] text-muted-foreground">
-                  <span>{t("result.paybackYears", { years: MIN_PAYBACK_YEARS })}</span>
-                  <span>{t("result.paybackYears", { years: MAX_PAYBACK_YEARS })}</span>
-                </div>
-                <p className="mt-2 text-[11px] text-muted-foreground">
-                  {t("result.investmentFormula", {
-                    value: formatCurrency(p.annualSavings, locale, currency),
-                    perYear: t("common.perYear"),
-                    years: formatNumber(paybackYears, locale),
-                    amount: investmentAmount,
-                  })}
-                </p>
-              </div>
-            </div>
-          ) : null}
-        </div>
 
         {/* 5. Technical details */}
         <div className="card-elevated overflow-hidden">
