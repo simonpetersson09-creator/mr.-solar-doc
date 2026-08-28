@@ -793,8 +793,10 @@ export function generateReportBlob(options: ReportOptions): Blob {
   const reportId = buildReportId(result);
   report.rows([
     { label: f["reportId"] ?? "", value: reportId },
-    { label: labels.generated, value: isoDateOnly(result.calculatedAt) },
-    { label: f.calculationVersion, value: result.calculationVersion },
+    {
+      label: `${labels.generated} · ${f.calculationVersion}`,
+      value: `${isoDateOnly(result.calculatedAt)} · ${result.calculationVersion}`,
+    },
   ]);
   report.paragraph(labels.disclaimer);
   report.footer(labels.appName, reportId);
