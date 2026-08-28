@@ -1,13 +1,7 @@
 import { jsPDF } from "jspdf";
 import type { CalculationResult, ValueOrigin } from "@/lib/calc/types";
-import { PANEL_WATTAGE_KWP } from "@/config/constants";
-import { formatCurrency, formatDecimal, formatNumber, formatPercent, isoDateOnly } from "@/lib/format";
+import { formatCurrency, formatDecimal, formatNumber, isoDateOnly } from "@/lib/format";
 import { shareFile } from "./native-service";
-
-/** Estimated number of panels for a given installed DC power. */
-function panelCount(installedKwp: number): number {
-  return Math.max(1, Math.round(installedKwp / PANEL_WATTAGE_KWP));
-}
 
 /**
  * Calculation Engine -> Calculation Result -> Report Service -> PDF.
@@ -240,11 +234,11 @@ export function generateReportBlob(options: ReportOptions): Blob {
 
   report.sectionTitle(labels.summary);
   report.highlights([
-    { label: f.array, value: `${formatDecimal(result.installedKwp, locale)} kWp (${panelCount(result.installedKwp)} ${f["panelsUnit"]})` },
+    { label: f.array, value: `${formatDecimal(result.installedKwp, locale)} kWp (${result.panelCount} ${f["panelsUnit"]})` },
     { label: f.inverter, value: `${formatNumber(result.inverterKw, locale)} kW` },
     {
       label: f.annualProduction,
-      value: `${formatNumber(result.annualProductionKwh, locale)} kWh`,
+      value: `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh`,
     },
   ]);
   report.rows(
@@ -264,7 +258,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     [
       {
         label: f.installedDc,
-        value: `${formatDecimal(result.installedKwp, locale)} kWp (${panelCount(result.installedKwp)} ${f["panelsUnit"]})`,
+        value: `${formatDecimal(result.installedKwp, locale)} kWp (${result.panelCount} ${f["panelsUnit"]})`,
         origin: "calculated",
       },
       {
@@ -285,7 +279,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
       { label: f.mainFuse, value: `${result.mainFuseAmp} A`, origin: "user" },
       {
         label: f.maxAc,
-        value: `${formatDecimal(result.maxAcPowerKw, locale, 2)} kW`,
+        value: `${formatDecimal(result.presentation.maxAcPowerKw, locale, 1)} kW`,
         origin: "calculated",
       },
     ],
@@ -297,7 +291,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     [
       {
         label: f.annualProduction,
-        value: `${formatNumber(result.annualProductionKwh, locale)} kWh`,
+        value: `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh`,
         origin: "calculated",
       },
       { label: f.dataSource, value: result.resource.dataSource, origin: "external" },
@@ -310,17 +304,17 @@ export function generateReportBlob(options: ReportOptions): Blob {
   const consumptionRows: Row[] = [
     {
       label: f.annualConsumption,
-      value: `${formatNumber(result.consumption.annualKwh, locale)} kWh`,
+      value: `${formatNumber(result.presentation.annualConsumptionKwh, locale)} kWh`,
       origin: "user",
     },
     {
       label: f.selfConsumption,
-      value: `${formatPercent(result.selfConsumption.share, locale)} · ${formatNumber(result.selfConsumption.kwh, locale)} kWh`,
+      value: `${formatNumber(result.presentation.selfConsumptionPercent, locale)} % · ${formatNumber(result.presentation.selfConsumptionKwh, locale)} kWh`,
       origin: "assumed",
     },
     {
       label: f.exported,
-      value: `${formatPercent(result.exported.share, locale)} · ${formatNumber(result.exported.kwh, locale)} kWh`,
+      value: `${formatNumber(result.presentation.exportPercent, locale)} % · ${formatNumber(result.presentation.exportedKwh, locale)} kWh`,
       origin: "assumed",
     },
   ];
@@ -351,17 +345,17 @@ export function generateReportBlob(options: ReportOptions): Blob {
       { label: f.currency, value: currency, origin: "assumed" },
       {
         label: f["selfConsumptionValue"] ?? f.selfConsumption,
-        value: formatCurrency(result.economics.selfConsumptionValue, locale, currency),
+        value: formatCurrency(result.presentation.selfConsumptionValue, locale, currency),
         origin: "calculated",
       },
       {
         label: f["exportValue"] ?? f.exported,
-        value: formatCurrency(result.economics.exportValue, locale, currency),
+        value: formatCurrency(result.presentation.exportValue, locale, currency),
         origin: "calculated",
       },
       {
         label: f["totalAnnualBenefit"] ?? f.economicValue,
-        value: formatCurrency(result.economics.totalValue, locale, currency),
+        value: formatCurrency(result.presentation.annualSavings, locale, currency),
         origin: "calculated",
       },
     ],

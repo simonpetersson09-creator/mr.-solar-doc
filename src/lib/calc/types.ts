@@ -1,5 +1,9 @@
 /** Shared calculation types. Pure data — no UI or framework imports. */
 
+import type { PresentationValues } from "./presentation";
+
+export type { PresentationValues };
+
 export type ValueOrigin = "user" | "calculated" | "assumed" | "external";
 
 export interface Traced<T> {
@@ -65,10 +69,21 @@ export interface CalculationInput {
   inverterSizesKw: number[];
 }
 
+/** Why the recommended array ended up at this size. */
+export type SizingBasis =
+  | "consumption"
+  | "grid-limit"
+  | "inverter-limit"
+  | "minimum-size"
+  | "maximum-size";
+
 export interface CalculationResult {
   location: SiteLocation;
   resource: SolarResource;
   installedKwp: number;
+  /** Estimated number of modules for the recommended array. */
+  panelCount: number;
+  sizingBasis: SizingBasis;
   inverterKw: number;
   maxAcPowerKw: number;
   dcAcRatio: number;
@@ -93,6 +108,8 @@ export interface CalculationResult {
     totalValue: number;
   };
   mainFuseAmp: number;
+  /** Consumer-facing, rounding-consistent values derived from the above. */
+  presentation: PresentationValues;
   calculationVersion: string;
   calculatedAt: string;
   notes: string[];
