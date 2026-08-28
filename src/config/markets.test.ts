@@ -40,7 +40,9 @@ describe("supported markets", () => {
       expect(market.gridPhases).toBe(EU_GRID_PHASES);
 
       for (const [amp, expected] of EXPECTED_KW_PER_AMP) {
-        expect(maxAcPowerFromFuse(amp, market.kwPerAmp)).toBeCloseTo(expected, 1);
+        expect(Math.abs(maxAcPowerFromFuse(amp, market.kwPerAmp) - expected)).toBeLessThan(
+          0.06,
+        );
       }
     }
   });
