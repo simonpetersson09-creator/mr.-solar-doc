@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import type { Orientation, SiteLocation, SolarResource } from "@/lib/calc/types";
+import type { ConsumptionInputType, ConsumptionShape } from "@/lib/calc/consumption-shape";
 import { DEFAULT_PAYBACK_YEARS, DEFAULT_SELF_CONSUMPTION_SHARE } from "@/config/constants";
 
 export interface WizardState {
@@ -11,6 +12,10 @@ export interface WizardState {
   resource: SolarResource | null;
   annualConsumptionKwh: number | null;
   monthlyConsumptionKwh: number[] | null;
+  /** Where the monthly consumption came from. */
+  consumptionInputType: ConsumptionInputType;
+  /** Which estimated shape the user picked (only for "annual-profile"). */
+  consumptionShape: ConsumptionShape | null;
   mainFuseAmp: number | null;
   selfConsumptionShare: number;
   selfConsumedValuePerKwh: number | null;
@@ -24,7 +29,12 @@ export interface WizardState {
     azimuthDegrees?: number | null,
   ) => void;
   setResource: (resource: SolarResource | null) => void;
-  setConsumption: (annualKwh: number, monthlyKwh: number[] | null) => void;
+  setConsumption: (
+    annualKwh: number,
+    monthlyKwh: number[] | null,
+    inputType?: ConsumptionInputType,
+    shape?: ConsumptionShape | null,
+  ) => void;
   setMainFuse: (amp: number) => void;
   setSelfConsumptionShare: (share: number) => void;
   setSelfConsumedValue: (value: number) => void;
@@ -42,6 +52,8 @@ const initialState = {
   resource: null,
   annualConsumptionKwh: null,
   monthlyConsumptionKwh: null,
+  consumptionInputType: "annual-only" as ConsumptionInputType,
+  consumptionShape: null as ConsumptionShape | null,
   mainFuseAmp: null,
   selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
   selfConsumedValuePerKwh: null,
@@ -61,8 +73,13 @@ export const useWizardStore = create<WizardState>((set) => ({
       resource: null,
     })),
   setResource: (resource) => set({ resource }),
-  setConsumption: (annualKwh, monthlyKwh) =>
-    set({ annualConsumptionKwh: annualKwh, monthlyConsumptionKwh: monthlyKwh }),
+  setConsumption: (annualKwh, monthlyKwh, inputType, shape) =>
+    set({
+      annualConsumptionKwh: annualKwh,
+      monthlyConsumptionKwh: monthlyKwh,
+      consumptionInputType: inputType ?? (monthlyKwh ? "monthly-manual" : "annual-only"),
+      consumptionShape: shape ?? null,
+    }),
   setMainFuse: (amp) => set({ mainFuseAmp: amp }),
   setSelfConsumptionShare: (share) => set({ selfConsumptionShare: share }),
   setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
