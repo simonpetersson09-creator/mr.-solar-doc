@@ -54,6 +54,11 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
     }
   };
 
+  // A resolved address outside the supported markets may not continue.
+  const unsupportedMarket = Boolean(
+    location?.countryCode && !isActiveMarket(location.countryCode),
+  );
+
   // Default view: Sweden overview until a position is chosen.
   const mapLatitude = location?.latitude ?? 62.0;
   const mapLongitude = location?.longitude ?? 15.0;
