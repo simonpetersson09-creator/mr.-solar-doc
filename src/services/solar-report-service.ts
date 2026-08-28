@@ -794,7 +794,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
       origin: "assumed",
     },
     { label: f.dataSource, value: result.resource.dataSource, origin: "external" },
-    { label: f.calculationVersion, value: result.calculationVersion, origin: "calculated" },
   ];
   report.rows(assumptionRows, labels.origin);
   report.paragraph(

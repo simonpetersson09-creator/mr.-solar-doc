@@ -289,6 +289,29 @@ export const sv = {
   },
   report: {
     fields: {
+      savings30Short: "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade elvärden.",
+      solarShareTitle: "Din solel",
+      selfConsumptionRate: "Egenanvändningsgrad",
+      selfSufficiencyRate: "Självförsörjningsgrad",
+      selfConsumptionRateNote:
+        "Egenanvändningsgrad visar hur stor del av den producerade solelen som används direkt i fastigheten.",
+      selfSufficiencyRateNote:
+        "Självförsörjningsgrad visar hur stor del av fastighetens totala elanvändning som täcks direkt av solel.",
+      selfConsumptionShare: "Egenanvändning",
+      selfConsumptionSource_standard: "standardantagande",
+      "selfConsumptionSource_standard-assumption": "standardantagande",
+      "selfConsumptionSource_user-override": "angivet av dig",
+      "selfConsumptionSource_actual-data": "beräknad från faktisk mätdata",
+      selfConsumptionSource_simulated: "uppskattad från förbrukningsprofil",
+      longTermChartTitle: "Ekonomiskt värde över tid",
+      keyAssumptions: "Viktigaste kalkylantaganden",
+      priceChange: "Elprisförändring",
+      calculationPeriod: "Kalkylperiod",
+      yearShort: "År",
+      reportId: "Rapport-ID",
+      uncertaintyTitle: "Vad kan påverka utfallet?",
+      uncertaintyText:
+        "Faktisk solelproduktion och ekonomiskt utfall kan avvika från beräkningen. Resultatet påverkas bland annat av vädervariationer, skuggning, panelernas orientering och lutning, faktisk elanvändning och när den sker, elpriser, ersättning för såld el samt anläggningens prestanda över tid.",
       panelPower: "Paneleffekt",
       annualValue: "Beräknat ekonomiskt värde",
       savings30: "Totalt ekonomiskt värde över {{years}} år",
