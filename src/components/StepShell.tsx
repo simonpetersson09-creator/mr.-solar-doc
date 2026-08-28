@@ -75,13 +75,8 @@ export function StepShell({
       </main>
 
       {footer ? (
-        <div className="fixed inset-x-0 bottom-0 border-t border-border bg-background/90 pb-[env(safe-area-inset-bottom)] backdrop-blur">
-        <div
-            className="mx-auto max-w-2xl px-5 py-3"
-            style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
-          >
-            {footer}
-          </div>
+        <div className="sticky bottom-0 bg-gradient-to-t from-background via-background/85 to-transparent">
+          <div className="pb-safe mx-auto w-full max-w-2xl px-5 pt-3">{footer}</div>
         </div>
       ) : null}
     </div>
