@@ -1,7 +1,8 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { ClientOnly } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Loader2, MapPin, Search, Sun } from "lucide-react";
+import { ArrowRight, Loader2, MapPin, Minus, Plus, Search, Sun } from "lucide-react";
+import type L from "leaflet";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useAddressSearch } from "@/hooks/use-address-search";
@@ -26,6 +27,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
   const [query, setQuery] = useState(location?.address ?? "");
   const [debounced, setDebounced] = useState(query);
   const [showResults, setShowResults] = useState(false);
+  const [map, setMap] = useState<L.Map | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setDebounced(query), 350);
