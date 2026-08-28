@@ -61,7 +61,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         </Button>
       }
     >
-      <div className="card-elevated space-y-2.5 p-3.5">
+      <div className="card-elevated space-y-2 p-3">
         <Label className="text-xs text-muted-foreground">{t("fuse.label")}</Label>
         <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-5">
           {market.mainFuseOptionsAmp.map((amp) => (
@@ -75,8 +75,8 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
               }}
               className={
                 !custom && storedFuse === amp
-                  ? "rounded-lg bg-accent px-2 py-2 text-[13px] font-semibold text-accent-foreground"
-                  : "rounded-lg border border-border bg-card px-2 py-2 text-[13px] font-medium transition-colors hover:bg-secondary"
+                  ? "rounded-lg bg-accent px-2 py-1.5 text-xs font-semibold text-accent-foreground"
+                  : "rounded-lg border border-border bg-card px-2 py-1.5 text-xs font-medium transition-colors hover:bg-secondary"
               }
             >
               {amp} A
@@ -90,8 +90,8 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
             }}
             className={
               custom
-                ? "rounded-lg bg-accent px-2 py-2 text-[13px] font-semibold text-accent-foreground"
-                : "rounded-lg border border-border bg-card px-2 py-2 text-[13px] font-medium transition-colors hover:bg-secondary"
+                ? "rounded-lg bg-accent px-2 py-1.5 text-xs font-semibold text-accent-foreground"
+                : "rounded-lg border border-border bg-card px-2 py-1.5 text-xs font-medium transition-colors hover:bg-secondary"
             }
           >
             {t("fuse.other")}
@@ -109,7 +109,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
               inputMode="decimal"
               value={customValue}
               onChange={(event) => setCustomValue(event.target.value)}
-              className="h-9 w-24"
+              className="h-8 w-20 text-xs"
             />
             <span className="text-xs text-muted-foreground">A</span>
           </div>
