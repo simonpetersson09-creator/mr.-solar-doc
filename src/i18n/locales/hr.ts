@@ -175,6 +175,7 @@ export const hr = {
     "annualSavings": "Ekonomska vrijednost godišnje",
     "assumedPrices": "Pretpostavljene cijene električne energije",
     standardValueBadge: "Standardna vrijednost",
+    resetToStandard: "Vrati na standardnu vrijednost",
     userValueBadge: "Unijeli ste sami",
     standardValueHint: "Standardne vrijednosti za izračun. Promijenite ih u vrijednosti iz vlastitog ugovora o opskrbi strujom za individualniji rezultat.",
     "editable": "Može se uređivati",

@@ -175,6 +175,7 @@ export const et = {
     "annualSavings": "Majanduslik väärtus aastas",
     "assumedPrices": "Eeldatavad elektrihinnad",
     standardValueBadge: "Standardväärtus",
+    resetToStandard: "Taasta standardväärtus",
     userValueBadge: "Sinu sisestatud",
     standardValueHint: "Arvutuse standardväärtused. Muuda need oma elektrilepingu väärtusteks, et saada individuaalsem tulemus.",
     "editable": "Muudetav",

@@ -175,6 +175,7 @@ export const fi = {
     "annualSavings": "Taloudellinen arvo vuodessa",
     "assumedPrices": "Oletetut sähköhinnat",
     standardValueBadge: "Vakioarvo",
+    resetToStandard: "Palauta vakioarvoon",
     userValueBadge: "Itse syöttämäsi",
     standardValueHint: "Laskennan vakioarvot. Vaihda ne oman sähkösopimuksesi arvoihin saadaksesi yksilöllisemmän tuloksen.",
     "editable": "Muokattavissa",
