@@ -212,21 +212,6 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
             if (file) void handleFile(file);
           }}
         />
-        {parseStatus === "error" ? (
-          <div className="flex items-center justify-between gap-2">
-            <p className="text-[11px] text-destructive">{t("consumption.upload.error")}</p>
-            <Button
-              variant="outline"
-              size="sm"
-              className="h-7 shrink-0 px-2.5 text-xs"
-              onClick={() => fileInputRef.current?.click()}
-            >
-              {t("consumption.upload.retry")}
-            </Button>
-          </div>
-        ) : null}
-
-
         <div className="border-t border-border" />
 
         {!useMonthly ? (
