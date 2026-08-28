@@ -36,6 +36,39 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
     storedMonthly ? storedMonthly.map(String) : Array.from({ length: 12 }, () => ""),
   );
 
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [parsing, setParsing] = useState(false);
+  const [parseStatus, setParseStatus] = useState<"monthly" | "annual" | "error" | null>(null);
+  const [fileName, setFileName] = useState<string | null>(null);
+
+  const handleFile = async (file: File) => {
+    setParsing(true);
+    setParseStatus(null);
+    setFileName(file.name);
+    try {
+      const { readConsumptionFile } = await import("@/lib/read-consumption-file");
+      const parsed = await readConsumptionFile(file);
+      if (parsed.monthly) {
+        setMonthly(parsed.monthly.map((value) => String(Math.round(value))));
+        setUseMonthly(true);
+        setAnnual(String(parsed.annual ?? Math.round(sumMonthly(parsed.monthly))));
+        setParseStatus("monthly");
+        void haptic("medium");
+      } else if (parsed.annual) {
+        setUseMonthly(false);
+        setAnnual(String(Math.round(parsed.annual)));
+        setParseStatus("annual");
+        void haptic("light");
+      } else {
+        setParseStatus("error");
+      }
+    } catch {
+      setParseStatus("error");
+    } finally {
+      setParsing(false);
+    }
+  };
+
   const monthlyNumbers = monthly.map((value) => Number(value) || 0);
   const monthlyTotal = sumMonthly(monthlyNumbers);
   const effectiveAnnual = useMonthly ? monthlyTotal : Number(annual) || 0;
