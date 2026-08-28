@@ -153,6 +153,16 @@ export const en = {
     totalAnnualBenefit: "Total estimated annual benefit",
     economicsDisclaimer:
       "These amounts are calculation assumptions, not guaranteed future prices.",
+    paybackTitle: "What payback time do you accept?",
+    paybackYears: "{{years}} years",
+    paybackInfo:
+      "The calculation uses simple payback and today's assumptions. Future changes in electricity prices, production, maintenance and financing costs are not included.",
+    maxInvestment: "Maximum investment",
+    maxInvestmentApprox: "approx. {{amount}}",
+    maxInvestmentExplainer:
+      "To reach roughly {{years}} years of simple payback, the installation should cost at most about {{amount}}.",
+    maxInvestmentNote:
+      "This is an economic guideline — not a quote or an estimate of the market price of an installation.",
     missingMarketValues:
       "We have no verified default value for this country. Please enter the values yourself below.",
     currency: "Currency",
@@ -219,6 +229,9 @@ export const en = {
       coverage: "Coverage of annual consumption",
       savings: "Estimated annual savings",
       tilt: "Roof tilt",
+      yearsUnit: "years",
+      acceptedPayback: "Accepted payback time",
+      maxInvestment: "Maximum investment for the chosen payback time",
       calculationVersion: "Calculation version",
       orientation_unknown: "Assumed optimal",
       orientation_south: "South",

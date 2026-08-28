@@ -51,6 +51,8 @@ export interface ReportLabels {
   /** Consumer-facing sentence explaining why the array ended up at this size. */
   rationale: string;
   coverageNote: string;
+  /** Explains that the max-investment figure uses simple payback and is not a quote. */
+  paybackNote: string;
   chartProduction: string;
   chartConsumption: string;
   origin: Record<ValueOrigin, string>;
@@ -429,6 +431,23 @@ export function generateReportBlob(options: ReportOptions): Blob {
     ],
     labels.origin,
   );
+
+  report.rows(
+    [
+      {
+        label: f["acceptedPayback"] ?? "",
+        value: `${formatNumber(result.investment.acceptedPaybackYears, locale)} ${f["yearsUnit"] ?? ""}`,
+        origin: "user",
+      },
+      {
+        label: f["maxInvestment"] ?? "",
+        value: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
+        origin: "calculated",
+      },
+    ],
+    labels.origin,
+  );
+  report.paragraph(labels.paybackNote);
 
   report.sectionTitle(labels.assumptions);
   const assumptionRows: Row[] = [

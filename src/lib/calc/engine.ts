@@ -6,6 +6,7 @@ import {
 } from "@/config/constants";
 import { buildPresentationValues } from "./presentation";
 import { calculateEconomicValue } from "./electricity-price";
+import { calculateMaxInvestment } from "./payback";
 import { annualProduction, monthlyProduction } from "./energy-production";
 import { maxAcPowerFromFuse, dcAcRatio, oversizingPercent, recommendInverter } from "./inverter-sizing";
 import { recommendArraySize, clampKwp, roundKwp } from "./solar-sizing";
@@ -90,6 +91,10 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       ...economics,
     },
     mainFuseAmp: input.electrical.mainFuseAmp,
+    investment: calculateMaxInvestment(
+      Math.round(economics.selfConsumptionValue) + Math.round(economics.exportValue),
+      input.acceptedPaybackYears,
+    ),
     presentation: buildPresentationValues({
       annualProductionKwh,
       selfConsumptionKwh: split.selfConsumptionKwh,

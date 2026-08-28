@@ -1,8 +1,9 @@
 /** Shared calculation types. Pure data — no UI or framework imports. */
 
 import type { PresentationValues } from "./presentation";
+import type { MaxInvestmentResult } from "./payback";
 
-export type { PresentationValues };
+export type { PresentationValues, MaxInvestmentResult };
 
 export type ValueOrigin = "user" | "calculated" | "assumed" | "external";
 
@@ -68,6 +69,8 @@ export interface CalculationInput {
   economics: EconomicsInput;
   /** 0..1 share of production consumed on site. */
   selfConsumptionShare: number;
+  /** Simple payback time the user accepts, in years. */
+  acceptedPaybackYears: number;
   inverterSizesKw: number[];
 }
 
@@ -110,6 +113,8 @@ export interface CalculationResult {
     totalValue: number;
   };
   mainFuseAmp: number;
+  /** Maximum motivated investment given the accepted simple payback time. */
+  investment: MaxInvestmentResult;
   /** Consumer-facing, rounding-consistent values derived from the above. */
   presentation: PresentationValues;
   calculationVersion: string;

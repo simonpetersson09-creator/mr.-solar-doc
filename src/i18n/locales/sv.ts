@@ -154,6 +154,16 @@ export const sv = {
     totalAnnualBenefit: "Total beräknad årlig nytta",
     economicsDisclaimer:
       "Beloppen är kalkylantaganden, inte garanterade framtida priser.",
+    paybackTitle: "Hur lång återbetalningstid accepterar du?",
+    paybackYears: "{{years}} år",
+    paybackInfo:
+      "Beräkningen använder enkel återbetalningstid och utgår från dagens kalkylantaganden. Framtida förändringar i elpris, produktion, underhåll och finansieringskostnader ingår inte.",
+    maxInvestment: "Maximal investering",
+    maxInvestmentApprox: "ca {{amount}}",
+    maxInvestmentExplainer:
+      "För att nå cirka {{years}} års enkel återbetalningstid bör installationen kosta högst omkring {{amount}}.",
+    maxInvestmentNote:
+      "Detta är ett ekonomiskt riktvärde – inte en offert eller en uppskattning av installationens marknadspris.",
     missingMarketValues:
       "Vi har inget verifierat standardvärde för det här landet. Ange värdena själv nedan.",
     currency: "Valuta",
@@ -221,6 +231,9 @@ export const sv = {
       coverage: "Täckningsgrad av årsförbrukning",
       savings: "Beräknad årlig besparing",
       tilt: "Taklutning",
+      yearsUnit: "år",
+      acceptedPayback: "Accepterad återbetalningstid",
+      maxInvestment: "Maximal investering för vald återbetalningstid",
       calculationVersion: "Beräkningsversion",
       orientation_unknown: "Antagen optimal",
       orientation_south: "Syd",
