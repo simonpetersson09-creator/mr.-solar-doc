@@ -75,8 +75,8 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
               }}
               className={
                 !custom && storedFuse === amp
-                  ? "rounded-lg bg-accent px-2 py-1.5 text-xs font-semibold text-accent-foreground"
-                  : "rounded-lg border border-border bg-card px-2 py-1.5 text-xs font-medium transition-colors hover:bg-secondary"
+                  ? "rounded-xl bg-primary px-2 py-2 text-xs font-bold text-primary-foreground shadow-sm"
+                  : "rounded-xl border border-border bg-card px-2 py-2 text-xs font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
               }
             >
               {amp} A
@@ -90,8 +90,8 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
             }}
             className={
               custom
-                ? "rounded-lg bg-accent px-2 py-1.5 text-xs font-semibold text-accent-foreground"
-                : "rounded-lg border border-border bg-card px-2 py-1.5 text-xs font-medium transition-colors hover:bg-secondary"
+                ? "rounded-xl bg-primary px-2 py-2 text-xs font-bold text-primary-foreground shadow-sm"
+                : "rounded-xl border border-border bg-card px-2 py-2 text-xs font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
             }
           >
             {t("fuse.other")}
@@ -120,7 +120,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         ) : null}
 
         {valid ? (
-          <div className="flex items-center justify-between gap-3 rounded-lg bg-secondary px-3 py-2">
+          <div className="flex items-center justify-between gap-3 rounded-xl bg-secondary px-3.5 py-2.5">
             <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
               <Zap className="size-3.5 text-accent" />
               {t("fuse.maxAc")}
