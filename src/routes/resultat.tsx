@@ -561,7 +561,7 @@ function ResultPage() {
               className="flex-1"
               onClick={() => {
                 void haptic("light");
-                setCurrentStep(4);
+                setCurrentStep(5);
                 void navigate({ to: "/" });
               }}
             >
