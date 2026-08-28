@@ -113,8 +113,8 @@ function ResultPage() {
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
 
   return (
-    <div className="min-h-screen surface-sun pb-28">
-      <header className="mx-auto max-w-2xl px-5 pt-6">
+    <div className="flex min-h-dvh flex-col surface-sun">
+      <header className="pt-safe mx-auto w-full max-w-2xl px-5">
         <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
       </header>
 
