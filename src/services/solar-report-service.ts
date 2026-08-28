@@ -557,16 +557,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
       value: `${formatNumber(result.presentation.annualConsumptionKwh, locale)} kWh`,
       origin: "user",
     },
-    {
-      label: f.selfConsumption,
-      value: `${formatNumber(result.presentation.selfConsumptionPercent, locale)} % · ${formatNumber(result.presentation.selfConsumptionKwh, locale)} kWh`,
-      origin: "assumed",
-    },
-    {
-      label: f.exported,
-      value: `${formatNumber(result.presentation.exportPercent, locale)} % · ${formatNumber(result.presentation.exportedKwh, locale)} kWh`,
-      origin: "assumed",
-    },
   ];
   consumptionRows.splice(1, 0, {
     label: f["consumptionSource"] ?? f.dataSource,
@@ -590,6 +580,44 @@ export function generateReportBlob(options: ReportOptions): Blob {
     });
   }
   report.rows(consumptionRows, labels.origin);
+
+  // "Your solar electricity": self-consumption rate vs self-sufficiency rate.
+  // Both come straight from the calculation result and are never mixed up.
+  const selfConsumptionOrigin: ValueOrigin =
+    result.selfConsumptionSource === "standard-assumption"
+      ? "assumed"
+      : result.selfConsumptionSource === "user-override"
+        ? "user"
+        : "calculated";
+  report.sectionTitle(f["solarShareTitle"] ?? f.selfConsumption);
+  report.rows(
+    [
+      {
+        label: f["selfConsumptionRate"] ?? f.selfConsumption,
+        value: `${formatNumber(Math.round(result.selfConsumptionRate * 100), locale)} %`,
+        origin: selfConsumptionOrigin,
+      },
+      {
+        label: f.selfConsumption,
+        value: `${formatNumber(result.presentation.selfConsumptionKwh, locale)} kWh`,
+        origin: selfConsumptionOrigin,
+      },
+      {
+        label: f.exported,
+        value: `${formatNumber(result.presentation.exportedKwh, locale)} kWh`,
+        origin: selfConsumptionOrigin,
+      },
+      {
+        label: f["selfSufficiencyRate"] ?? "",
+        value: `${formatNumber(Math.round(result.selfSufficiencyRate * 100), locale)} %`,
+        origin: selfConsumptionOrigin,
+      },
+    ],
+    labels.origin,
+  );
+  report.paragraph(
+    `${f["selfConsumptionRateNote"] ?? ""} ${f["selfSufficiencyRateNote"] ?? ""}`,
+  );
 
   report.pageBreak();
   report.sectionTitle(labels.economics);
