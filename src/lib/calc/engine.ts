@@ -96,6 +96,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       selfConsumptionShare: split.selfConsumptionShare,
       annualConsumptionKwh: input.consumption.annualKwh,
       maxAcPowerKw,
+      selfConsumptionValue: economics.selfConsumptionValue,
+      exportValue: economics.exportValue,
     }),
     calculationVersion: CALCULATION_VERSION,
     calculatedAt: new Date().toISOString(),

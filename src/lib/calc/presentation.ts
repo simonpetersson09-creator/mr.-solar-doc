@@ -23,6 +23,10 @@ export interface PresentationValues {
   productionCoveragePercent: number;
   /** Theoretical AC power limit from the main fuse, one decimal. */
   maxAcPowerKw: number;
+  /** Rounded money values; the parts always sum to annualSavings. */
+  selfConsumptionValue: number;
+  exportValue: number;
+  annualSavings: number;
 }
 
 export function buildPresentationValues(params: {
@@ -31,7 +35,11 @@ export function buildPresentationValues(params: {
   selfConsumptionShare: number;
   annualConsumptionKwh: number;
   maxAcPowerKw: number;
+  selfConsumptionValue: number;
+  exportValue: number;
 }): PresentationValues {
+  const selfConsumptionValue = Math.round(params.selfConsumptionValue);
+  const exportValue = Math.round(params.exportValue);
   const annualProductionKwh = Math.round(params.annualProductionKwh);
   const selfConsumptionKwh = Math.min(
     annualProductionKwh,
@@ -51,5 +59,8 @@ export function buildPresentationValues(params: {
         ? Math.round((params.annualProductionKwh / params.annualConsumptionKwh) * 100)
         : 0,
     maxAcPowerKw: Math.round(params.maxAcPowerKw * 10) / 10,
+    selfConsumptionValue,
+    exportValue,
+    annualSavings: selfConsumptionValue + exportValue,
   };
 }
