@@ -366,9 +366,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
     },
   ]);
 
-  report.pageBreak();
-
-
   report.rows(
     [
       {
@@ -380,6 +377,9 @@ export function generateReportBlob(options: ReportOptions): Blob {
     labels.origin,
   );
   report.paragraph(`${labels.rationale} ${labels.coverageNote}`);
+
+  report.pageBreak();
+
   report.rows(
     [
       { label: f.address, value: result.location.address, origin: "user" },
