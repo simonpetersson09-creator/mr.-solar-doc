@@ -97,16 +97,28 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
       }
     >
       <div className="card-elevated space-y-3 p-4">
-        <div className="flex items-start gap-3">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary text-primary">
-            <FileUp className="h-5 w-5" />
+        <div className="flex items-center gap-3">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-secondary text-primary">
+            <FileUp className="size-4" />
           </span>
-          <div className="min-w-0">
+          <div className="min-w-0 flex-1">
             <p className="text-sm font-medium">{t("consumption.upload.title")}</p>
-            <p className="mt-1 text-xs text-muted-foreground">
-              {t("consumption.upload.description")}
+            <p className="truncate text-xs text-muted-foreground">
+              {fileName ?? t("consumption.upload.fileTypes")}
             </p>
           </div>
+          <Button
+            variant="outline"
+            size="sm"
+            disabled={parsing}
+            onClick={() => fileInputRef.current?.click()}
+          >
+            {parsing ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              t("consumption.upload.button")
+            )}
+          </Button>
         </div>
         <input
           ref={fileInputRef}
@@ -119,26 +131,8 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
             if (file) void handleFile(file);
           }}
         />
-        <Button
-          variant="outline"
-          className="w-full"
-          disabled={parsing}
-          onClick={() => fileInputRef.current?.click()}
-        >
-          {parsing ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              {t("consumption.upload.loading")}
-            </>
-          ) : (
-            t("consumption.upload.button")
-          )}
-        </Button>
-        <p className="text-center text-xs text-muted-foreground">
-          {fileName ?? t("consumption.upload.fileTypes")}
-        </p>
         {parseStatus === "monthly" || parseStatus === "annual" ? (
-          <p className="text-sm text-primary">
+          <p className="text-xs text-primary">
             {t(
               parseStatus === "monthly"
                 ? "consumption.upload.successMonthly"
@@ -147,79 +141,81 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
           </p>
         ) : null}
         {parseStatus === "error" ? (
-          <p className="text-sm text-destructive">{t("consumption.upload.error")}</p>
+          <p className="text-xs text-destructive">{t("consumption.upload.error")}</p>
         ) : null}
       </div>
 
-      {!useMonthly ? (
-        <div className="card-elevated p-4">
-          <Label htmlFor="annual" className="text-sm">
-            {t("consumption.annual")}
+      <div className="card-elevated space-y-3 p-4">
+        {!useMonthly ? (
+          <div className="flex items-end gap-2">
+            <div className="flex-1">
+              <Label htmlFor="annual" className="text-xs text-muted-foreground">
+                {t("consumption.annual")}
+              </Label>
+              <Input
+                id="annual"
+                type="number"
+                inputMode="numeric"
+                value={annual}
+                placeholder={t("consumption.annualPlaceholder")}
+                onChange={(event) => setAnnual(event.target.value)}
+                className="mt-1 h-11 text-base"
+              />
+            </div>
+            <span className="pb-3 text-xs text-muted-foreground">kWh/år</span>
+          </div>
+        ) : null}
+
+        <div className="flex items-center justify-between gap-4 border-t border-border pt-3 first:border-0 first:pt-0">
+          <Label htmlFor="monthly-toggle" className="text-xs leading-snug">
+            {t("consumption.useMonthly")}
           </Label>
-          <div className="mt-2 flex items-center gap-2">
-            <Input
-              id="annual"
-              type="number"
-              inputMode="numeric"
-              value={annual}
-              placeholder={t("consumption.annualPlaceholder")}
-              onChange={(event) => setAnnual(event.target.value)}
-              className="h-12 text-lg"
-            />
-            <span className="text-sm text-muted-foreground">kWh/år</span>
-          </div>
-          {annual !== "" && !valid ? (
-            <p className="mt-2 text-sm text-destructive">{t("consumption.invalid")}</p>
-          ) : null}
+          <Switch
+            id="monthly-toggle"
+            checked={useMonthly}
+            onCheckedChange={(checked) => {
+              void haptic("light");
+              setUseMonthly(checked);
+            }}
+          />
         </div>
-      ) : null}
 
-      <div className="card-elevated flex items-center justify-between gap-4 p-4">
-        <Label htmlFor="monthly-toggle" className="text-sm leading-snug">
-          {t("consumption.useMonthly")}
-        </Label>
-        <Switch
-          id="monthly-toggle"
-          checked={useMonthly}
-          onCheckedChange={(checked) => {
-            void haptic("light");
-            setUseMonthly(checked);
-          }}
-        />
+        {useMonthly ? (
+          <div className="space-y-3 border-t border-border pt-3">
+            <div className="grid grid-cols-3 gap-2 sm:grid-cols-4">
+              {monthly.map((value, index) => (
+                <div key={monthLabels[index]}>
+                  <Label className="text-[10px] text-muted-foreground">
+                    {monthLabels[index]}
+                  </Label>
+                  <Input
+                    type="number"
+                    inputMode="numeric"
+                    value={value}
+                    onChange={(event) => {
+                      const next = [...monthly];
+                      next[index] = event.target.value;
+                      setMonthly(next);
+                    }}
+                    className="mt-0.5 h-9 px-2 text-sm"
+                  />
+                </div>
+              ))}
+            </div>
+            <div className="flex items-baseline justify-between rounded-xl bg-secondary px-3 py-2">
+              <p className="text-xs text-muted-foreground">{t("consumption.total")}</p>
+              <p className="text-lg font-bold">
+                {formatNumber(monthlyTotal, locale)}{" "}
+                <span className="text-xs font-normal">kWh/år</span>
+              </p>
+            </div>
+          </div>
+        ) : null}
+
+        {((useMonthly && monthlyTotal > 0) || (!useMonthly && annual !== "")) && !valid ? (
+          <p className="text-xs text-destructive">{t("consumption.invalid")}</p>
+        ) : null}
       </div>
-
-      {useMonthly ? (
-        <div className="card-elevated space-y-4 p-4">
-          <p className="text-sm font-medium">{t("consumption.monthlyTitle")}</p>
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-            {monthly.map((value, index) => (
-              <div key={monthLabels[index]}>
-                <Label className="text-xs text-muted-foreground">{monthLabels[index]}</Label>
-                <Input
-                  type="number"
-                  inputMode="numeric"
-                  value={value}
-                  onChange={(event) => {
-                    const next = [...monthly];
-                    next[index] = event.target.value;
-                    setMonthly(next);
-                  }}
-                  className="mt-1 h-10"
-                />
-              </div>
-            ))}
-          </div>
-          <div className="rounded-xl bg-secondary p-4">
-            <p className="text-xs text-muted-foreground">{t("consumption.total")}</p>
-            <p className="text-2xl font-bold">
-              {formatNumber(monthlyTotal, locale)} <span className="text-base">kWh/år</span>
-            </p>
-          </div>
-          {monthlyTotal > 0 && !valid ? (
-            <p className="text-sm text-destructive">{t("consumption.invalid")}</p>
-          ) : null}
-        </div>
-      ) : null}
     </StepShell>
   );
 }
