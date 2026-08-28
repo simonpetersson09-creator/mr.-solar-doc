@@ -162,11 +162,7 @@ function ResultPage() {
 
   const currency = result.economics.currency;
   const p = result.presentation;
-  const investmentAmount = formatCurrency(
-    result.investment.maxInvestmentRounded,
-    locale,
-    currency,
-  );
+  const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
 
   /** Standard value from the market config vs. a value the user typed in. */
@@ -279,8 +275,8 @@ function ResultPage() {
             <div className="rounded-xl bg-secondary p-2.5">
               <dt className="text-[11px] text-muted-foreground">{t("result.exported")}</dt>
               <dd className="font-semibold">
-                {formatNumber(p.exportPercent, locale)} % ·{" "}
-                {formatNumber(p.exportedKwh, locale)} kWh
+                {formatNumber(p.exportPercent, locale)} % · {formatNumber(p.exportedKwh, locale)}{" "}
+                kWh
               </dd>
             </div>
           </dl>
@@ -313,7 +309,6 @@ function ResultPage() {
               </p>
             ) : null}
           </div>
-
         </section>
 
         {/* 4. Economics */}
@@ -404,12 +399,8 @@ function ResultPage() {
                 ) : null}
               </div>
             </div>
-            <p className="text-[11px] text-muted-foreground">
-              {t("result.standardValueHint")}
-            </p>
-            <p className="text-[11px] text-muted-foreground">
-              {t("result.priceExplainer")}
-            </p>
+            <p className="text-[11px] text-muted-foreground">{t("result.standardValueHint")}</p>
+            <p className="text-[11px] text-muted-foreground">{t("result.priceExplainer")}</p>
           </div>
 
           <p className="text-[11px] text-muted-foreground">{t("result.economicsDisclaimer")}</p>
@@ -420,9 +411,7 @@ function ResultPage() {
           <div className="flex items-center justify-between gap-2">
             <div>
               <h2 className="text-sm font-semibold">{t("result.paybackTitle")}</h2>
-              <p className="text-[11px] text-muted-foreground">
-                {t("result.paybackSubtitle")}
-              </p>
+              <p className="text-[11px] text-muted-foreground">{t("result.paybackSubtitle")}</p>
             </div>
             <div className="flex items-center gap-2">
               {editableBadge}
@@ -488,8 +477,6 @@ function ResultPage() {
             </p>
           </div>
         </section>
-
-
 
         {/* 5. Technical details */}
         <div className="card-elevated overflow-hidden">
@@ -598,7 +585,12 @@ function ResultPage() {
               <Link to="/">{t("common.startOver")}</Link>
             </Button>
           </div>
-          <Button className="w-full" size="lg" disabled={exporting} onClick={() => void handleExport()}>
+          <Button
+            className="w-full"
+            size="lg"
+            disabled={exporting}
+            onClick={() => void handleExport()}
+          >
             {exporting ? (
               <>
                 <Loader2 className="size-4 animate-spin" /> {t("result.generatingPdf")}

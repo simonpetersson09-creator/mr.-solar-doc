@@ -49,9 +49,7 @@ export function isoDateOnly(iso: string): string {
  * callers can tell "nothing entered" apart from "zero".
  */
 export function parseLocaleNumber(raw: string): number | null {
-  const cleaned = raw
-    .replace(/[\s\u00a0\u202f]/g, "")
-    .replace(/,/g, ".");
+  const cleaned = raw.replace(/[\s\u00a0\u202f]/g, "").replace(/,/g, ".");
   if (cleaned === "" || cleaned === "." || cleaned === "-") return null;
   const parsed = Number(cleaned);
   return Number.isFinite(parsed) ? parsed : null;

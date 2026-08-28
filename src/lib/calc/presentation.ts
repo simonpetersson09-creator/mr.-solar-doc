@@ -47,11 +47,11 @@ export function buildPresentationValues(params: {
   const selfConsumptionValue = Math.round(params.selfConsumptionValue);
   const exportValue = Math.round(params.exportValue);
   const annualProductionKwh = Math.round(params.annualProductionKwh);
-  const selfConsumptionKwh = Math.min(
-    annualProductionKwh,
-    Math.round(params.selfConsumptionKwh),
+  const selfConsumptionKwh = Math.min(annualProductionKwh, Math.round(params.selfConsumptionKwh));
+  const selfConsumptionPercent = Math.min(
+    100,
+    Math.max(0, Math.round(params.selfConsumptionShare * 100)),
   );
-  const selfConsumptionPercent = Math.min(100, Math.max(0, Math.round(params.selfConsumptionShare * 100)));
   const requestedSelfConsumptionPercent = Math.min(
     100,
     Math.max(

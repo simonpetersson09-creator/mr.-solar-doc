@@ -74,38 +74,55 @@ const initialState = {
 export const useWizardStore = create<WizardState>()(
   persist(
     (set) => ({
-  ...initialState,
-  setLocation: (location) => set({ location, resource: null }),
-  setRoof: (orientation, tiltDegrees, azimuthDegrees) =>
-    set((state) => ({
-      orientation,
-      tiltDegrees,
-      azimuthDegrees: azimuthDegrees === undefined ? state.azimuthDegrees : azimuthDegrees,
-      resource: null,
-    })),
-  setResource: (resource) => set({ resource }),
-  setConsumption: (annualKwh, monthlyKwh, inputType, shape) =>
-    set({
-      annualConsumptionKwh: annualKwh,
-      monthlyConsumptionKwh: monthlyKwh,
-      consumptionInputType: inputType ?? (monthlyKwh ? "monthly-manual" : "annual-only"),
-      consumptionShape: shape ?? null,
-    }),
-  setMainFuse: (amp) => set({ mainFuseAmp: amp }),
-  setSelfConsumptionShare: (share) =>
-    set({ selfConsumptionShare: share, selfConsumptionShareIsUserSet: true }),
-  setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
-  setExportValue: (value) => set({ exportValuePerKwh: value }),
-  setAcceptedPaybackYears: (years) => set({ acceptedPaybackYears: years }),
-  setQuotePrice: (price) => set({ quotePrice: price }),
-  setCurrentStep: (step) => set({ currentStep: step }),
+      ...initialState,
+      setLocation: (location) => set({ location, resource: null }),
+      setRoof: (orientation, tiltDegrees, azimuthDegrees) =>
+        set((state) => ({
+          orientation,
+          tiltDegrees,
+          azimuthDegrees: azimuthDegrees === undefined ? state.azimuthDegrees : azimuthDegrees,
+          resource: null,
+        })),
+      setResource: (resource) => set({ resource }),
+      setConsumption: (annualKwh, monthlyKwh, inputType, shape) =>
+        set({
+          annualConsumptionKwh: annualKwh,
+          monthlyConsumptionKwh: monthlyKwh,
+          consumptionInputType: inputType ?? (monthlyKwh ? "monthly-manual" : "annual-only"),
+          consumptionShape: shape ?? null,
+        }),
+      setMainFuse: (amp) => set({ mainFuseAmp: amp }),
+      setSelfConsumptionShare: (share) =>
+        set({ selfConsumptionShare: share, selfConsumptionShareIsUserSet: true }),
+      setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
+      setExportValue: (value) => set({ exportValuePerKwh: value }),
+      setAcceptedPaybackYears: (years) => set({ acceptedPaybackYears: years }),
+      setQuotePrice: (price) => set({ quotePrice: price }),
+      setCurrentStep: (step) => set({ currentStep: step }),
       reset: () => set({ ...initialState }),
     }),
     {
       name: "mr-solar-doc-wizard",
       version: 1,
       storage: createJSONStorage(() => localStorage),
-      partialize: ({ location, orientation, tiltDegrees, azimuthDegrees, resource, annualConsumptionKwh, monthlyConsumptionKwh, consumptionInputType, consumptionShape, mainFuseAmp, selfConsumptionShare, selfConsumptionShareIsUserSet, selfConsumedValuePerKwh, exportValuePerKwh, acceptedPaybackYears, currentStep }) => ({
+      partialize: ({
+        location,
+        orientation,
+        tiltDegrees,
+        azimuthDegrees,
+        resource,
+        annualConsumptionKwh,
+        monthlyConsumptionKwh,
+        consumptionInputType,
+        consumptionShape,
+        mainFuseAmp,
+        selfConsumptionShare,
+        selfConsumptionShareIsUserSet,
+        selfConsumedValuePerKwh,
+        exportValuePerKwh,
+        acceptedPaybackYears,
+        currentStep,
+      }) => ({
         location,
         orientation,
         tiltDegrees,
