@@ -14,7 +14,8 @@ import { calculateMaxInvestment } from "./payback";
 import { buildLifetimeProjection } from "./degradation";
 import { maxAcPowerFromFuse, dcAcRatio, oversizingPercent } from "./inverter-sizing";
 import { recommendArraySize } from "./solar-sizing";
-import { splitProduction } from "./self-consumption";
+import { splitProduction, summariseSelfConsumption } from "./self-consumption";
+import { DEFAULT_SELF_CONSUMPTION_SHARE } from "@/config/constants";
 import type {
   CalculationInput,
   CalculationResult,
@@ -94,6 +95,18 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
 
   const split = splitProduction(annualProductionKwh, input.selfConsumptionShare);
 
+  // No hourly model yet: anything other than the default share is a user override,
+  // everything else is transparently labelled as a standard assumption.
+  const selfConsumptionSummary = summariseSelfConsumption({
+    split,
+    annualProductionKwh,
+    annualConsumptionKwh: input.consumption.annualKwh,
+    source:
+      Math.abs(split.selfConsumptionShare - DEFAULT_SELF_CONSUMPTION_SHARE) > 1e-9
+        ? "user-override"
+        : "standard-assumption",
+  });
+
   const economics = calculateEconomicValue({
     selfConsumptionKwh: split.selfConsumptionKwh,
     exportedKwh: split.exportedKwh,
@@ -130,6 +143,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     consumption: input.consumption,
     selfConsumption: { share: split.selfConsumptionShare, kwh: split.selfConsumptionKwh },
     exported: { share: split.exportShare, kwh: split.exportedKwh },
+    ...selfConsumptionSummary,
     economics: {
       currency: input.economics.currency,
       selfConsumedValuePerKwh: input.economics.selfConsumedValuePerKwh,

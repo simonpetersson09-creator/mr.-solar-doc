@@ -16,6 +16,8 @@ export type { ConsumptionInputType, ConsumptionShape };
 
 export type { LifetimeProjection };
 
+export type { SelfConsumptionSource, SelfConsumptionSummary };
+
 export type {
   PresentationValues,
   MaxInvestmentResult,
@@ -150,6 +152,12 @@ export interface CalculationResult {
     share: number;
     kwh: number;
   };
+  /** Self-consumption summary incl. data-quality source. */
+  selfConsumedKwh: number;
+  exportedKwh: number;
+  selfConsumptionRate: number;
+  selfSufficiencyRate: number;
+  selfConsumptionSource: SelfConsumptionSource;
   economics: {
     currency: string;
     selfConsumedValuePerKwh: number;
