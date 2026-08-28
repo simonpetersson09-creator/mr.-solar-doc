@@ -243,7 +243,9 @@ export const sv = {
       "Beloppen är kalkylantaganden, inte garanterade framtida priser.",
     paybackTitle: "Välj återbetalningstid",
     paybackSubtitle:
-      "Se vilken investeringsnivå som motsvarar olika enkla återbetalningstider.",
+      "Du bestämmer hur snabbt du vill ha investeringen tillbaka. Vi räknar ut vad det motsvarar i installationskostnad.",
+    paybackYearsUnit: "år",
+    paybackResultLabel: "Motsvarar en installation på",
     investmentLevelTitle: "Investeringsnivå vid {{years}} års återbetalning",
     investmentLevelNote:
       "Med dagens kalkylantaganden motsvarar {{years}} års enkel återbetalningstid en investering på cirka {{amount}}.",

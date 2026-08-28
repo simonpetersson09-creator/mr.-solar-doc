@@ -241,7 +241,10 @@ export const en = {
     economicsDisclaimer:
       "These amounts are calculation assumptions, not guaranteed future prices.",
     paybackTitle: "Choose payback time",
-    paybackSubtitle: "See which investment level matches different simple payback times.",
+    paybackSubtitle:
+      "You decide how quickly you want the investment paid back. We calculate what it corresponds to in installation cost.",
+    paybackYearsUnit: "years",
+    paybackResultLabel: "Corresponds to an installation of",
     investmentLevelTitle: "Investment level at {{years}} years payback",
     investmentLevelNote:
       "With today's calculation assumptions, {{years}} years of simple payback corresponds to an investment of about {{amount}}.",

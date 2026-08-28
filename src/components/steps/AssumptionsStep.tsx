@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { ArrowDown } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -186,36 +187,73 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
         <p className="text-[11px] text-muted-foreground">{t("result.standardValueHint")}</p>
       </div>
 
-      {/* Payback time */}
-      <div className="card-elevated p-3">
-        <div className="flex items-baseline justify-between gap-2">
-          <Label className="text-xs">{t("result.paybackTitle")}</Label>
-          <span className="text-base font-bold">
-            {t("result.paybackYears", { years: formatNumber(paybackYears, locale) })}
+      {/* Payback time — you set, we calculate */}
+      <div className="card-elevated overflow-hidden">
+        {/* You control */}
+        <div className="p-3">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <Label className="text-xs">{t("result.paybackTitle")}</Label>
+              <p className="mt-0.5 text-[11px] leading-snug text-muted-foreground">
+                {t("result.paybackSubtitle")}
+              </p>
+            </div>
+            <span className="whitespace-nowrap text-2xl font-bold leading-none">
+              {formatNumber(paybackYears, locale)}
+              <span className="ml-1 text-sm font-semibold text-muted-foreground">
+                {t("result.paybackYearsUnit")}
+              </span>
+            </span>
+          </div>
+          <Slider
+            className="mt-3"
+            min={MIN_PAYBACK_YEARS}
+            max={MAX_PAYBACK_YEARS}
+            step={1}
+            value={[paybackYears]}
+            onValueChange={([value]) => setAcceptedPaybackYears(value ?? MIN_PAYBACK_YEARS)}
+          />
+          <div className="mt-1.5 flex justify-between text-[10px] text-muted-foreground">
+            <span>{t("result.paybackYears", { years: MIN_PAYBACK_YEARS })}</span>
+            <span>{t("result.paybackYears", { years: MAX_PAYBACK_YEARS })}</span>
+          </div>
+        </div>
+
+        {/* connector: you set → we calculate */}
+        <div className="flex items-center gap-1.5 border-y border-border bg-secondary/50 px-3 py-1.5">
+          <ArrowDown className="size-3 text-primary" />
+          <span className="text-[11px] font-medium text-muted-foreground">
+            {t("result.paybackResultLabel")}
           </span>
         </div>
-        <Slider
-          className="mt-2.5"
-          min={MIN_PAYBACK_YEARS}
-          max={MAX_PAYBACK_YEARS}
-          step={1}
-          value={[paybackYears]}
-          onValueChange={([value]) => setAcceptedPaybackYears(value ?? MIN_PAYBACK_YEARS)}
-        />
-        <div className="mt-1.5 flex justify-between text-[10px] text-muted-foreground">
-          <span>{t("result.paybackYears", { years: MIN_PAYBACK_YEARS })}</span>
-          <span>{t("result.paybackYears", { years: MAX_PAYBACK_YEARS })}</span>
+
+        {/* result */}
+        <div className="p-3">
+          {result ? (
+            <>
+              <p className="text-2xl font-bold text-primary">
+                {t("result.maxInvestmentApprox", {
+                  amount: formatCurrency(
+                    result.investment.maxInvestmentRounded,
+                    locale,
+                    currency,
+                  ),
+                })}
+              </p>
+              <p className="mt-1 text-[11px] leading-snug text-muted-foreground">
+                {t("result.investmentFormula", {
+                  value: formatCurrency(result.presentation.annualSavings, locale, currency),
+                  perYear: t("common.perYear"),
+                  years: formatNumber(paybackYears, locale),
+                  amount: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
+                })}
+              </p>
+              <p className="mt-1.5 text-[11px] leading-snug text-muted-foreground">
+                {t("result.maxInvestmentNote")}
+              </p>
+            </>
+          ) : null}
         </div>
-        {result ? (
-          <p className="mt-2 text-[11px] text-muted-foreground">
-            {t("result.investmentFormula", {
-              value: formatCurrency(result.presentation.annualSavings, locale, currency),
-              perYear: t("common.perYear"),
-              years: formatNumber(paybackYears, locale),
-              amount: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
-            })}
-          </p>
-        ) : null}
       </div>
     </StepShell>
   );
