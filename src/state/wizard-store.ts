@@ -22,6 +22,9 @@ export interface WizardState {
   exportValuePerKwh: number | null;
   acceptedPaybackYears: number;
   quotePrice: number | null;
+  /** Current wizard step (1–4). Persists across navigation so the user can
+   *  return from the result page to the exact step they want to edit. */
+  currentStep: number;
   setLocation: (location: SiteLocation | null) => void;
   setRoof: (
     orientation: Orientation,
@@ -41,6 +44,7 @@ export interface WizardState {
   setExportValue: (value: number) => void;
   setAcceptedPaybackYears: (years: number) => void;
   setQuotePrice: (price: number | null) => void;
+  setCurrentStep: (step: number) => void;
   reset: () => void;
 }
 
@@ -60,6 +64,7 @@ const initialState = {
   exportValuePerKwh: null,
   acceptedPaybackYears: DEFAULT_PAYBACK_YEARS,
   quotePrice: null,
+  currentStep: 1,
 };
 
 export const useWizardStore = create<WizardState>((set) => ({
@@ -86,5 +91,6 @@ export const useWizardStore = create<WizardState>((set) => ({
   setExportValue: (value) => set({ exportValuePerKwh: value }),
   setAcceptedPaybackYears: (years) => set({ acceptedPaybackYears: years }),
   setQuotePrice: (price) => set({ quotePrice: price }),
+  setCurrentStep: (step) => set({ currentStep: step }),
   reset: () => set({ ...initialState }),
 }));

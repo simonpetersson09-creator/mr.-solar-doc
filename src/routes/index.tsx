@@ -1,10 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
 import "@/i18n";
 import { AddressStep } from "@/components/steps/AddressStep";
 import { RoofStep } from "@/components/steps/RoofStep";
 import { ConsumptionStep } from "@/components/steps/ConsumptionStep";
 import { FuseStep } from "@/components/steps/FuseStep";
+import { useWizardStore } from "@/state/wizard-store";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,7 +32,8 @@ const TOTAL_STEPS = 4;
 
 function WizardPage() {
   const navigate = useNavigate();
-  const [step, setStep] = useState(1);
+  const step = useWizardStore((s) => s.currentStep);
+  const setStep = useWizardStore((s) => s.setCurrentStep);
 
   if (step === 1) {
     return <AddressStep totalSteps={TOTAL_STEPS} onNext={() => setStep(2)} />;

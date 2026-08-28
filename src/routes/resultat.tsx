@@ -1,7 +1,7 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronDown, Download, Info, Loader2, Pencil, Sun, Zap } from "lucide-react";
+import { ArrowLeft, ChevronDown, Download, Info, Loader2, Pencil, Sun, Zap } from "lucide-react";
 import "@/i18n";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -57,6 +57,8 @@ function ResultPage() {
   const setSelfConsumedValue = useWizardStore((s) => s.setSelfConsumedValue);
   const setExportValue = useWizardStore((s) => s.setExportValue);
   const reset = useWizardStore((s) => s.reset);
+  const setCurrentStep = useWizardStore((s) => s.setCurrentStep);
+  const navigate = useNavigate();
   const [showDetails, setShowDetails] = useState(false);
   const [showPaybackInfo, setShowPaybackInfo] = useState(false);
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
@@ -488,6 +490,17 @@ function ResultPage() {
           className="mx-auto flex max-w-2xl gap-3 px-5 py-4"
           style={{ paddingBottom: "calc(1rem + env(safe-area-inset-bottom))" }}
         >
+          <Button
+            variant="outline"
+            size="lg"
+            onClick={() => {
+              void haptic("light");
+              setCurrentStep(4);
+              void navigate({ to: "/" });
+            }}
+          >
+            <ArrowLeft className="size-4" /> {t("common.back")}
+          </Button>
           <Button variant="outline" asChild onClick={() => reset()}>
             <Link to="/">{t("common.startOver")}</Link>
           </Button>
