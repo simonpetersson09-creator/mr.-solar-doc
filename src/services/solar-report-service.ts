@@ -88,10 +88,90 @@ interface Row {
   origin?: ValueOrigin;
 }
 
-/** jsPDF's core fonts lack U+2212 and thin spaces; normalise before drawing. */
-function pdfText(value: string): string {
-  return value.replace(/\u2212/g, "-").replace(/[\u202f\u2009]/g, "\u00a0");
+/**
+ * jsPDF's core fonts are WinAnsi-encoded: they lack U+2212, thin spaces and the
+ * Central/Eastern European letters used by currency symbols ("zł") and by the
+ * Polish/Czech/Slovak/Slovenian/Baltic translations. Normalise before drawing so
+ * the right currency and text always render instead of stray glyphs.
+ */
+const WINANSI_FALLBACK: Record<string, string> = {
+  ł: "l",
+  Ł: "L",
+  č: "c",
+  Č: "C",
+  ć: "c",
+  Ć: "C",
+  ě: "e",
+  Ě: "E",
+  ę: "e",
+  Ę: "E",
+  ą: "a",
+  Ą: "A",
+  ś: "s",
+  Ś: "S",
+  š: "s",
+  Š: "S",
+  ż: "z",
+  Ż: "Z",
+  ź: "z",
+  Ź: "Z",
+  ž: "z",
+  Ž: "Z",
+  ń: "n",
+  Ń: "N",
+  ň: "n",
+  Ň: "N",
+  ř: "r",
+  Ř: "R",
+  ť: "t",
+  Ť: "T",
+  ď: "d",
+  Ď: "D",
+  ů: "u",
+  Ů: "U",
+  ű: "u",
+  Ű: "U",
+  ő: "o",
+  Ő: "O",
+  ā: "a",
+  Ā: "A",
+  ē: "e",
+  Ē: "E",
+  ī: "i",
+  Ī: "I",
+  ū: "u",
+  Ū: "U",
+  ģ: "g",
+  Ģ: "G",
+  ķ: "k",
+  Ķ: "K",
+  ļ: "l",
+  Ļ: "L",
+  ņ: "n",
+  Ņ: "N",
+  ė: "e",
+  Ė: "E",
+  į: "i",
+  Į: "I",
+  ų: "u",
+  Ų: "U",
+  đ: "d",
+  Đ: "D",
+  ŕ: "r",
+  Ŕ: "R",
+  ĺ: "l",
+  Ĺ: "L",
+  ľ: "l",
+  Ľ: "L",
+};
+
+export function pdfText(value: string): string {
+  return value
+    .replace(/\u2212/g, "-")
+    .replace(/[\u202f\u2009]/g, "\u00a0")
+    .replace(/[^\u0000-\u00ff]/g, (char) => WINANSI_FALLBACK[char] ?? char);
 }
+
 
 class ReportDocument {
   readonly doc: jsPDF;
