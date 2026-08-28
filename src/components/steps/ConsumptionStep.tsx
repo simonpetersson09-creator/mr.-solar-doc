@@ -53,7 +53,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const [parsing, setParsing] = useState(false);
   const [parseStatus, setParseStatus] = useState<"monthly" | "annual" | "error" | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
-  const [dragging, setDragging] = useState(false);
+  
 
   const handleFile = async (file: File) => {
     setParsing(true);
