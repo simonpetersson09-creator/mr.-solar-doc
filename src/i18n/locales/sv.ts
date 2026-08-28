@@ -72,13 +72,13 @@ export const sv = {
     upload: {
       title: "Klistra in eller bifoga dokument",
       description:
-        "Ladda upp en elfaktura eller egen förbrukningsdata (PDF, Excel eller CSV) så fyller vi i årsförbrukning och månadsvärden automatiskt.",
+        "Ladda upp en elfaktura eller egen förbrukningsdata (PDF, Excel, CSV eller bild som PNG/JPEG) så fyller vi i årsförbrukning och månadsvärden automatiskt.",
       button: "Välj fil",
       loading: "Läser dokumentet…",
       successMonthly: "Vi hittade 12 månadsvärden och fyllde i dem åt dig.",
       successAnnual: "Vi hittade en årsförbrukning i dokumentet.",
       error: "Vi kunde inte hitta någon förbrukning i dokumentet. Fyll i värdena manuellt.",
-      fileTypes: "PDF, XLSX, XLS, CSV eller TXT",
+      fileTypes: "PDF, XLSX, XLS, CSV, TXT eller bild (PNG, JPEG)",
     },
     title: "Hur mycket el använder du?",
     subtitle: "Titta på din elräkning eller ditt elavtal.",

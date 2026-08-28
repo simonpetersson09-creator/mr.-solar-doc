@@ -71,13 +71,13 @@ export const en = {
     upload: {
       title: "Paste or attach a document",
       description:
-        "Upload an electricity invoice or your own consumption data (PDF, Excel or CSV) and we fill in annual and monthly values automatically.",
+        "Upload an electricity invoice or your own consumption data (PDF, Excel, CSV or an image like PNG/JPEG) and we fill in annual and monthly values automatically.",
       button: "Choose file",
       loading: "Reading the document…",
       successMonthly: "We found 12 monthly values and filled them in for you.",
       successAnnual: "We found an annual consumption in the document.",
       error: "We could not find any consumption in the document. Please enter the values manually.",
-      fileTypes: "PDF, XLSX, XLS, CSV or TXT",
+      fileTypes: "PDF, XLSX, XLS, CSV, TXT or image (PNG, JPEG)",
     },
     title: "How much electricity do you use?",
     subtitle: "Check your electricity bill or contract.",
