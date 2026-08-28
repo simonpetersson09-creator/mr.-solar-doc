@@ -123,9 +123,6 @@ function ResultPage() {
     <div className="min-h-screen surface-sun pb-28">
       <header className="mx-auto max-w-2xl px-5 pt-6">
         <h1 className="text-xl font-bold text-foreground">{t("result.title")}</h1>
-        <p className="mt-0.5 truncate text-xs text-muted-foreground">
-          {t("result.forAddress", { address: result.location.address })}
-        </p>
       </header>
 
       <main className="mx-auto max-w-2xl space-y-2.5 px-5 pt-3">
