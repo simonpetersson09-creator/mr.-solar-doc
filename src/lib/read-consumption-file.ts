@@ -51,6 +51,19 @@ async function readSpreadsheetText(file: File): Promise<string> {
   return sheets.join("\n");
 }
 
+async function readImageText(file: File): Promise<string> {
+  const { createWorker } = await import("tesseract.js");
+  const worker = await createWorker(["swe", "eng"]);
+  try {
+    const { data } = await worker.recognize(file);
+    return data.text;
+  } finally {
+    await worker.terminate();
+  }
+}
+
+const IMAGE_EXTENSIONS = /\.(png|jpe?g|webp|gif|bmp|tiff?|heic)$/;
+
 export async function readConsumptionFile(file: File): Promise<ParsedConsumption> {
   const name = file.name.toLowerCase();
   let text: string;
@@ -59,6 +72,8 @@ export async function readConsumptionFile(file: File): Promise<ParsedConsumption
     text = await readPdfText(file);
   } else if (/\.(xlsx|xls|ods)$/.test(name)) {
     text = await readSpreadsheetText(file);
+  } else if (file.type.startsWith("image/") || IMAGE_EXTENSIONS.test(name)) {
+    text = await readImageText(file);
   } else {
     text = await file.text();
   }
