@@ -100,6 +100,12 @@ function ResultPage() {
         coverageNote: t("result.coverageNote"),
         paybackNote: `${t("result.paybackInfo")} ${t("result.maxInvestmentNote")}`,
         quoteNote: t("result.quoteNote"),
+        consumptionSource: t(
+          `result.consumptionSource.${result.consumption.inputType ?? "annual-only"}`,
+        ),
+        consumptionShape: result.consumption.shape
+          ? t(`result.consumptionShape.${result.consumption.shape}`)
+          : null,
         chartProduction: t("report.chartProduction"),
         chartConsumption: t("report.chartConsumption"),
         origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin"],
@@ -184,6 +190,14 @@ function ResultPage() {
           <p className="mt-0.5 mb-3 text-xs text-muted-foreground">
             {t("result.monthlyProduction")}
           </p>
+          {result.consumption.isEstimated ? (
+            <p className="mb-2 flex flex-wrap items-center gap-2 text-[11px] text-muted-foreground">
+              <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide">
+                {t("result.estimatedBadge")}
+              </span>
+              {t("result.estimatedConsumptionNote")}
+            </p>
+          ) : null}
           <MonthlyChart
             values={result.monthlyProductionKwh}
             labels={shortMonths}
@@ -484,6 +498,18 @@ function ResultPage() {
                   t("result.annualConsumption"),
                   `${formatNumber(p.annualConsumptionKwh, locale)} kWh`,
                 ],
+                [
+                  t("result.consumptionSourceLabel"),
+                  t(`result.consumptionSource.${result.consumption.inputType ?? "annual-only"}`),
+                ],
+                ...(result.consumption.shape
+                  ? [
+                      [
+                        t("result.consumptionShapeLabel"),
+                        t(`result.consumptionShape.${result.consumption.shape}`),
+                      ] as [string, string],
+                    ]
+                  : []),
                 [t("result.dataSource"), result.resource.dataSource],
                 [t("result.calculatedAt"), formatDate(result.calculatedAt, locale)],
                 [t("result.currency"), `${currency} · ${market.countryCode}`],
