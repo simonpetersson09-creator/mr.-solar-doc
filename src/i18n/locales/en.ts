@@ -268,6 +268,8 @@ export const en = {
     currency: "Currency",
     economicValue: "Basic economic value",
     perYear: "per year",
+    adjustAssumptions: "Adjust assumptions",
+    adjustAssumptionsHint: "Change self-consumption, electricity prices and desired payback time.",
     showCalculation: "Show calculation",
     hideCalculation: "Hide calculation",
     adjustSplit: "Adjust self-consumption",

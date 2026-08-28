@@ -270,6 +270,8 @@ export const sv = {
     currency: "Valuta",
     economicValue: "Grundläggande ekonomiskt värde",
     perYear: "per år",
+    adjustAssumptions: "Justera antaganden",
+    adjustAssumptionsHint: "Ändra egenanvändning, elpriser och önskad återbetalningstid.",
     showCalculation: "Visa beräkning",
     hideCalculation: "Dölj beräkning",
     adjustSplit: "Justera egenanvändning",
