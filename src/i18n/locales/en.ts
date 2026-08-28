@@ -243,7 +243,7 @@ export const en = {
     paybackYears: "{{years}} years",
     paybackInfo:
       "Simple payback shows how many years the estimated annual economic value corresponds to the investment. It does not account for future electricity price changes, financing cost, inflation, maintenance or discounting.",
-    maxInvestment: "Max investment at payback time",
+    maxInvestment: "Investment level at chosen payback time",
     maxInvestmentApprox: "approx. {{amount}}",
     maxInvestmentExplainer:
       "To reach roughly {{years}} years of simple payback, the installation should cost at most about {{amount}}.",
@@ -287,12 +287,19 @@ export const en = {
   report: {
     fields: {
       panelPower: "Panel power",
-      annualValue: "Value per year",
+      annualValue: "Estimated economic value",
       savings30: "Total value over 30 years",
-      investment: "Investment",
+      investment: "Investment level at chosen payback time",
       returnRate: "Return %",
+      balanceTitle: "Annual balance",
+      balanceConsumption: "Annual consumption",
+      balanceProduction: "Solar production",
+      balanceDiff: "Difference",
+      balanceRatio: "Production / consumption",
+      balanceNote:
+        "Annual production corresponds to about {{percent}} % of your annual electricity use. It does not mean all produced electricity can be used directly in the property, since production and consumption occur at different times.",
       perYearShort: "per year",
-      paybackTime: "Payback time",
+      paybackTime: "Chosen simple payback time",
       address: "Address",
       coordinates: "Coordinates",
       array: "System size",
@@ -326,7 +333,7 @@ export const en = {
       tilt: "Roof tilt",
       yearsUnit: "years",
       acceptedPayback: "Chosen payback time",
-      maxInvestment: "Max investment at payback time",
+      maxInvestment: "Investment level at chosen payback time",
       quotePrice: "Quoted price provided",
       quotePayback: "Simple payback based on the quoted price",
       calculationVersion: "Calculation version",

@@ -245,7 +245,7 @@ export const sv = {
     paybackYears: "{{years}} år",
     paybackInfo:
       "Enkel återbetalningstid visar hur många år det beräknade årliga ekonomiska värdet motsvarar investeringen. Beräkningen tar inte hänsyn till exempelvis framtida elprisförändringar, finansieringskostnad, inflation, underhåll eller diskontering.",
-    maxInvestment: "Max investering vid vald återbetalningstid",
+    maxInvestment: "Investeringsnivå vid vald återbetalningstid",
     maxInvestmentApprox: "ca {{amount}}",
     maxInvestmentExplainer:
       "För att nå cirka {{years}} års enkel återbetalningstid bör installationen kosta högst omkring {{amount}}.",
@@ -290,12 +290,19 @@ export const sv = {
   report: {
     fields: {
       panelPower: "Paneleffekt",
-      annualValue: "Värde per år",
+      annualValue: "Beräknat ekonomiskt värde",
       savings30: "Totalt värde över 30 år",
-      investment: "Investering",
+      investment: "Investeringsnivå vid vald återbetalningstid",
       returnRate: "Avkastning %",
+      balanceTitle: "Årsbalans",
+      balanceConsumption: "Årsförbrukning",
+      balanceProduction: "Solelproduktion",
+      balanceDiff: "Skillnad",
+      balanceRatio: "Produktion / förbrukning",
+      balanceNote:
+        "Årsproduktionen motsvarar cirka {{percent}} % av din årsförbrukning. Det betyder inte att all producerad el kan användas direkt i fastigheten, eftersom produktion och elanvändning sker vid olika tidpunkter.",
       perYearShort: "per år",
-      paybackTime: "Återbetalningstid",
+      paybackTime: "Vald enkel återbetalningstid",
       address: "Adress",
       coordinates: "Koordinater",
       array: "Storlek på anläggning",
@@ -329,7 +336,7 @@ export const sv = {
       tilt: "Taklutning",
       yearsUnit: "år",
       acceptedPayback: "Vald återbetalningstid",
-      maxInvestment: "Max investering vid vald återbetalningstid",
+      maxInvestment: "Investeringsnivå vid vald återbetalningstid",
       quotePrice: "Angivet offertpris",
       quotePayback: "Enkel återbetalningstid utifrån offertpriset",
       calculationVersion: "Beräkningsversion",
