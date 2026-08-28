@@ -100,14 +100,21 @@ export interface GridAssumption {
   kwPerAmp: number;
 }
 
+/** Where a price used in the calculation came from. */
+export type PriceValueSource = "standard-value" | "user-override";
+
 export interface EconomicsInput {
   /** Assumed value of one self-consumed kWh. */
   selfConsumedValuePerKwh: number;
   /** Assumed compensation for one exported kWh. */
   exportValuePerKwh: number;
   currency: string;
-  /** True when the market has no verified default and the user has not entered one. */
+  /** True when the market has no standard value and the user has not entered one. */
   valuesMissing?: boolean;
+  /** How the self-consumed value was set. Defaults to the market standard value. */
+  selfConsumedValueSource?: PriceValueSource;
+  /** How the export value was set. Defaults to the market standard value. */
+  exportValueSource?: PriceValueSource;
 }
 
 export interface CalculationInput {
@@ -178,6 +185,9 @@ export interface CalculationResult {
     selfConsumptionValue: number;
     exportValue: number;
     totalValue: number;
+    /** Standard value from the market config, or a value entered by the user. */
+    selfConsumedValueSource: PriceValueSource;
+    exportValueSource: PriceValueSource;
   };
   mainFuseAmp: number;
   /** Grid assumption used to derive `maxAcPowerKw`. Read by UI and PDF. */

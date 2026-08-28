@@ -26,13 +26,16 @@ export interface MarketConfig {
   /** Official languages the user may pick for this market (first = default). */
   languageOptions: SupportedLanguage[];
   /**
-   * Calculation assumption: value of one self-consumed kWh, in `currency`.
-   * `null` when no verified national default exists — the user must enter it.
+   * Standard calculation value ("schablonvärde") for one self-consumed kWh, in
+   * `currency`. Not a national electricity price, tariff or guaranteed level —
+   * it is a starting assumption the user can replace.
+   * `null` when no standard value exists — the user must enter it.
    */
   selfConsumedElectricityValue: number | null;
   /**
-   * Calculation assumption: compensation for one exported kWh, in `currency`.
-   * `null` when no verified national default exists — the user must enter it.
+   * Standard calculation value ("schablonvärde") for one exported kWh, in
+   * `currency`. Not a guaranteed compensation level.
+   * `null` when no standard value exists — the user must enter it.
    */
   exportElectricityValue: number | null;
   gridConnectionType: GridConnectionType;
@@ -88,24 +91,35 @@ function market(
   };
 }
 
+/**
+ * Version of the standard electricity values below. Bump when the schablon
+ * values are revised. Internal only — not shown to the user.
+ */
+export const ELECTRICITY_PRICE_DEFAULTS_VERSION = "2026-08";
+
+/** Standard values per market: [self-consumed, exported] in market currency. */
+function prices(selfConsumed: number, exported: number): Partial<MarketConfig> {
+  return {
+    selfConsumedElectricityValue: selfConsumed,
+    exportElectricityValue: exported,
+  };
+}
+
 export const MARKETS: Record<string, MarketConfig> = {
-  SE: market("SE", "SEK", ["sv"], {
-    selfConsumedElectricityValue: 1.5,
-    exportElectricityValue: 0.6,
-  }),
-  FI: market("FI", "EUR", ["fi"]),
-  DK: market("DK", "DKK", ["da"]),
-  DE: market("DE", "EUR", ["de"]),
-  AT: market("AT", "EUR", ["de"]),
-  CZ: market("CZ", "CZK", ["cs"]),
-  PL: market("PL", "PLN", ["pl"]),
-  SK: market("SK", "EUR", ["sk"]),
-  SI: market("SI", "EUR", ["sl"]),
-  EE: market("EE", "EUR", ["et"]),
-  LV: market("LV", "EUR", ["lv"]),
-  LT: market("LT", "EUR", ["lt"]),
+  SE: market("SE", "SEK", ["sv"], prices(1.5, 0.5)),
+  FI: market("FI", "EUR", ["fi"], prices(0.15, 0.045)),
+  DK: market("DK", "DKK", ["da"], prices(2.0, 0.35)),
+  DE: market("DE", "EUR", ["de"], prices(0.3, 0.08)),
+  AT: market("AT", "EUR", ["de"], prices(0.22, 0.055)),
+  CZ: market("CZ", "CZK", ["cs"], prices(5.0, 1.3)),
+  PL: market("PL", "PLN", ["pl"], prices(0.8, 0.25)),
+  SK: market("SK", "EUR", ["sk"], prices(0.17, 0.05)),
+  SI: market("SI", "EUR", ["sl"], prices(0.18, 0.05)),
+  EE: market("EE", "EUR", ["et"], prices(0.18, 0.05)),
+  LV: market("LV", "EUR", ["lv"], prices(0.18, 0.05)),
+  LT: market("LT", "EUR", ["lt"], prices(0.19, 0.05)),
   /** Switzerland: the user picks the language separately; currency stays CHF. */
-  CH: market("CH", "CHF", ["de", "fr", "it"]),
+  CH: market("CH", "CHF", ["de", "fr", "it"], prices(0.22, 0.07)),
   /** Neighbouring markets kept for address results outside the launch list. */
   NO: market("NO", "NOK", ["en"]),
   NL: market("NL", "EUR", ["en"]),

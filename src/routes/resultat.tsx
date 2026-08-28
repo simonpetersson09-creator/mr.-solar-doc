@@ -131,6 +131,13 @@ function ResultPage() {
   );
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
 
+  /** Standard value from the market config vs. a value the user typed in. */
+  const priceSourceBadge = (source: "standard-value" | "user-override") => (
+    <span className="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+      {source === "user-override" ? t("result.userValueBadge") : t("result.standardValueBadge")}
+    </span>
+  );
+
   const editableBadge = (
     <span className="inline-flex items-center gap-1 rounded-full bg-accent/20 px-2 py-0.5 text-[10px] font-medium text-accent-foreground">
       <Pencil className="size-2.5" /> {t("result.editable")}
@@ -315,9 +322,12 @@ function ResultPage() {
             <p className="text-xs font-medium">{t("result.assumedPrices")}</p>
             <div className="grid gap-2 sm:grid-cols-2">
               <div>
-                <Label htmlFor="self-value" className="text-[11px] text-muted-foreground">
-                  {t("result.selfConsumedValueLabel", { currency })}
-                </Label>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <Label htmlFor="self-value" className="text-[11px] text-muted-foreground">
+                    {t("result.selfConsumedValueLabel", { currency })}
+                  </Label>
+                  {priceSourceBadge(result.economics.selfConsumedValueSource)}
+                </div>
                 <Input
                   id="self-value"
                   type="number"
@@ -330,9 +340,12 @@ function ResultPage() {
                 />
               </div>
               <div>
-                <Label htmlFor="export-value" className="text-[11px] text-muted-foreground">
-                  {t("result.exportValueLabel", { currency })}
-                </Label>
+                <div className="flex flex-wrap items-center gap-1.5">
+                  <Label htmlFor="export-value" className="text-[11px] text-muted-foreground">
+                    {t("result.exportValueLabel", { currency })}
+                  </Label>
+                  {priceSourceBadge(result.economics.exportValueSource)}
+                </div>
                 <Input
                   id="export-value"
                   type="number"
@@ -345,6 +358,9 @@ function ResultPage() {
                 />
               </div>
             </div>
+            <p className="text-[11px] text-muted-foreground">
+              {t("result.standardValueHint")}
+            </p>
             <p className="text-[11px] text-muted-foreground">
               {t("result.priceExplainer")}
             </p>
