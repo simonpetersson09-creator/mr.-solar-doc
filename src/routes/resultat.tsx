@@ -16,13 +16,16 @@ import { exportReport, type ReportLabels } from "@/services/solar-report-service
 import { haptic } from "@/services/native-service";
 import { MAX_PAYBACK_YEARS, MIN_PAYBACK_YEARS } from "@/config/constants";
 
-/** Maps the engine's sizing rationale to a consumer-friendly i18n key. */
-const RATIONALE_KEY: Record<string, string> = {
-  consumption: "result.rationale.consumption",
-  "grid-limit": "result.rationale.gridLimit",
-  "inverter-limit": "result.rationale.inverterLimit",
-  "minimum-size": "result.rationale.minimumSize",
-  "maximum-size": "result.rationale.maximumSize",
+/** Maps the engine's recommendation reason to a consumer-friendly i18n key. */
+const REASON_KEY: Record<string, string> = {
+  "profile-unknown": "result.reason.profileUnknown",
+  "profile-normal": "result.reason.profileNormal",
+  "profile-low-solar-season": "result.reason.profileLowSolarSeason",
+  "profile-high-solar-season": "result.reason.profileHighSolarSeason",
+  "profile-very-high-solar-season": "result.reason.profileVeryHighSolarSeason",
+  "grid-limit": "result.reason.gridLimit",
+  "minimum-size": "result.reason.minimumSize",
+  "maximum-size": "result.reason.maximumSize",
 };
 
 export const Route = createFileRoute("/resultat")({
@@ -110,7 +113,7 @@ function ResultPage() {
 
   const currency = result.economics.currency;
   const p = result.presentation;
-  const rationale = t(RATIONALE_KEY[result.sizingBasis] ?? "result.rationale.consumption");
+  const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
 
   return (
     <div className="min-h-screen surface-sun pb-32">
@@ -157,6 +160,9 @@ function ResultPage() {
           </p>
           <p className="mt-1 text-xs text-muted-foreground">{t("result.coverageNote")}</p>
           <p className="mt-3 text-sm">{rationale}</p>
+          {result.consumptionProfile.hasMonthlyData ? (
+            <p className="mt-2 text-xs text-muted-foreground">{t("result.monthlyDataNote")}</p>
+          ) : null}
         </section>
 
         {/* 2. Production */}
@@ -369,6 +375,22 @@ function ResultPage() {
                 [t("result.inverterPower"), `${formatNumber(result.inverterKw, locale)} kW`],
                 [t("result.dcAcRatio"), formatDecimal(result.dcAcRatio, locale, 2)],
                 [t("result.oversizing"), `${formatDecimal(result.oversizingPercent, locale)} %`],
+                [
+                  t("result.targetDcAcRange"),
+                  `${formatDecimal(result.targetDcAcRange.min, locale, 2)} – ${formatDecimal(result.targetDcAcRange.max, locale, 2)}`,
+                ],
+                [
+                  t("result.profileLabel"),
+                  t(`result.profileCategory.${result.consumptionProfile.category}`),
+                ],
+                ...(result.consumptionProfile.hasMonthlyData
+                  ? [
+                      [
+                        t("result.summerShare"),
+                        `${formatNumber(result.consumptionProfile.summerConsumptionShare * 100, locale)} %`,
+                      ] as [string, string],
+                    ]
+                  : []),
                 [t("result.mainFuse"), `${result.mainFuseAmp} A`],
                 [t("result.fuseLimit"), `${formatDecimal(p.maxAcPowerKw, locale)} kW`],
                 [
