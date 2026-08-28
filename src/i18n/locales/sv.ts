@@ -291,8 +291,8 @@ export const sv = {
     fields: {
       savings30Short: "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade elvärden.",
       solarShareTitle: "Din solel",
-      selfConsumptionRate: "Egenanvändningsgrad",
-      selfSufficiencyRate: "Självförsörjningsgrad",
+      selfConsumptionRate: "Egenanvändningsgrad (andel av solelproduktionen)",
+      selfSufficiencyRate: "Självförsörjningsgrad (andel av elanvändningen)",
       selfConsumptionRateNote:
         "Egenanvändningsgrad visar hur stor del av den producerade solelen som används direkt i fastigheten.",
       selfSufficiencyRateNote:
