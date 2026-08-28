@@ -55,7 +55,7 @@ function ResultPage() {
 
   if (!result) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center gap-4 surface-sun px-6 text-center">
+      <div className="flex min-h-dvh flex-col items-center justify-center gap-4 surface-sun px-6 text-center">
         <p className="text-muted-foreground">{t("result.noCalculation")}</p>
         <Button asChild>
           <Link to="/">{t("common.startOver")}</Link>
