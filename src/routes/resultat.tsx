@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ChevronDown, Download, Loader2, Sun, Zap } from "lucide-react";
+import { ChevronDown, Download, Info, Loader2, Sun, Zap } from "lucide-react";
 import "@/i18n";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,15 +11,18 @@ import { MonthlyChart } from "@/components/MonthlyChart";
 import { useCalculation } from "@/hooks/use-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useWizardStore } from "@/state/wizard-store";
-import { PANEL_WATTAGE_KWP } from "@/config/constants";
-import { formatCurrency, formatDate, formatDecimal, formatNumber, formatPercent } from "@/lib/format";
+import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
 
-/** Estimated number of panels for a given installed DC power. */
-function panelCount(installedKwp: number): number {
-  return Math.max(1, Math.round(installedKwp / PANEL_WATTAGE_KWP));
-}
+/** Maps the engine's sizing rationale to a consumer-friendly i18n key. */
+const RATIONALE_KEY: Record<string, string> = {
+  consumption: "result.rationale.consumption",
+  "grid-limit": "result.rationale.gridLimit",
+  "inverter-limit": "result.rationale.inverterLimit",
+  "minimum-size": "result.rationale.minimumSize",
+  "maximum-size": "result.rationale.maximumSize",
+};
 
 export const Route = createFileRoute("/resultat")({
   head: () => ({
@@ -97,6 +100,8 @@ function ResultPage() {
   };
 
   const currency = result.economics.currency;
+  const p = result.presentation;
+  const rationale = t(RATIONALE_KEY[result.sizingBasis] ?? "result.rationale.consumption");
 
   return (
     <div className="min-h-screen surface-sun pb-32">
