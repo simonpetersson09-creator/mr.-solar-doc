@@ -69,6 +69,8 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
               zoom={mapZoom}
               showMarker={!!location}
               className="h-full w-full"
+              hideZoomControl
+              onMapReady={setMap}
               onPositionChange={(lat, lon) => void handlePositionChange(lat, lon)}
             />
           </Suspense>
