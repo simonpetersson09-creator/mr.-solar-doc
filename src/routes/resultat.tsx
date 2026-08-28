@@ -447,7 +447,7 @@ function ResultPage() {
                 [t("result.fuseLimit"), `${formatDecimal(p.maxAcPowerKw, locale)} kW`],
                 [
                   t("result.specificYield"),
-                  `${formatNumber(result.resource.annualKwhPerKwp, locale)} kWh/kWp`,
+                  `${formatNumber(result.resource.annualKwhPerKwp, locale)} ${t("units.kwhPerKwp")}`,
                 ],
                 [
                   t("result.annualConsumption"),

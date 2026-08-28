@@ -195,7 +195,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
                 className="mt-1 h-11 text-base"
               />
             </div>
-            <span className="pb-3 text-xs text-muted-foreground">kWh/år</span>
+            <span className="pb-3 text-xs text-muted-foreground">{t("units.kwhPerYear")}</span>
           </div>
         ) : null}
 
@@ -239,7 +239,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
               <p className="text-xs text-muted-foreground">{t("consumption.total")}</p>
               <p className="text-lg font-bold">
                 {formatNumber(monthlyTotal, locale)}{" "}
-                <span className="text-xs font-normal">kWh/år</span>
+                <span className="text-xs font-normal">{t("units.kwhPerYear")}</span>
               </p>
             </div>
           </div>
