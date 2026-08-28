@@ -8,6 +8,7 @@
 
 import {
   ABSOLUTE_MAX_DC_AC_RATIO,
+  CANDIDATE_KWP_STEPS_ABOVE_TARGET,
   CANDIDATE_KWP_STEPS_BELOW_TARGET,
   SCORE_WEIGHTS,
 } from "@/config/constants";
@@ -94,6 +95,8 @@ export interface SelectionResult {
   candidates: SystemCandidate[];
   /** True when the winning candidate landed inside the desired DC/AC window. */
   withinTargetRange: boolean;
+  /** Set when the winner missed the window; says on which side it missed. */
+  targetRangeMiss: "below" | "above" | null;
 }
 
 export function selectRecommendedSystem(params: {
@@ -118,6 +121,12 @@ export function selectRecommendedSystem(params: {
   const kwpOptions: number[] = [];
   for (let step = 0; step <= CANDIDATE_KWP_STEPS_BELOW_TARGET; step += 1) {
     const kwp = clampKwp(roundKwp(params.targetKwp - step * params.kwpStep));
+    if (kwp > 0 && !kwpOptions.includes(kwp)) kwpOptions.push(kwp);
+  }
+  // Small arrays can only reach a sane DC/AC ratio by growing slightly, since
+  // the smallest commercially available inverter sets a floor on AC power.
+  for (let step = 1; step <= CANDIDATE_KWP_STEPS_ABOVE_TARGET; step += 1) {
+    const kwp = clampKwp(roundKwp(params.targetKwp + step * params.kwpStep));
     if (kwp > 0 && !kwpOptions.includes(kwp)) kwpOptions.push(kwp);
   }
 
@@ -158,7 +167,12 @@ export function selectRecommendedSystem(params: {
       solarSeasonCoverage: null,
       score: Number.POSITIVE_INFINITY,
     };
-    return { best: fallback, candidates: [fallback], withinTargetRange: false };
+    return {
+      best: fallback,
+      candidates: [fallback],
+      withinTargetRange: false,
+      targetRangeMiss: fallback.dcAcRatio < params.targetRange.min ? "below" : "above",
+    };
   }
 
   candidates.sort((a, b) => a.score - b.score || b.installedKwp - a.installedKwp);
@@ -167,5 +181,11 @@ export function selectRecommendedSystem(params: {
     best.dcAcRatio >= params.targetRange.min - 1e-9 &&
     best.dcAcRatio <= params.targetRange.max + 1e-9;
 
-  return { best, candidates, withinTargetRange };
+  const targetRangeMiss: "below" | "above" | null = withinTargetRange
+    ? null
+    : best.dcAcRatio < params.targetRange.min
+      ? "below"
+      : "above";
+
+  return { best, candidates, withinTargetRange, targetRangeMiss };
 }
