@@ -142,29 +142,89 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
       }
     >
       <div className="card-elevated space-y-2.5 p-3">
-        <div className="flex items-center gap-2.5">
-          <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-secondary text-primary">
-            <FileUp className="size-3.5" />
-          </span>
-          <div className="min-w-0 flex-1">
-            <p className="text-xs leading-tight font-medium">{t("consumption.upload.title")}</p>
-            <p className="truncate text-[10px] text-muted-foreground">
-              {fileName ?? t("consumption.upload.fileTypes")}
-            </p>
-          </div>
-          <Button
-            variant="outline"
-            size="sm"
-            className="h-7 px-2.5 text-xs"
-            disabled={parsing}
-            onClick={() => fileInputRef.current?.click()}
-          >
-            {parsing ? (
-              <Loader2 className="size-3.5 animate-spin" />
-            ) : (
-              t("consumption.upload.button")
-            )}
-          </Button>
+        <div
+          onDragOver={(event) => {
+            event.preventDefault();
+            if (!dragging) setDragging(true);
+          }}
+          onDragLeave={() => setDragging(false)}
+          onDrop={(event) => {
+            event.preventDefault();
+            setDragging(false);
+            const file = event.dataTransfer.files?.[0];
+            if (file) void handleFile(file);
+          }}
+          className={`rounded-xl border border-dashed transition-colors ${
+            dragging
+              ? "border-primary bg-secondary"
+              : parseStatus === "error"
+                ? "border-destructive/50 bg-destructive/5"
+                : "border-border bg-secondary/40"
+          }`}
+        >
+          {parsing ? (
+            <div className="flex items-center gap-2.5 p-3">
+              <Loader2 className="size-4 shrink-0 animate-spin text-primary" />
+              <p className="min-w-0 truncate text-xs font-medium">
+                {t("consumption.upload.readingFile", { name: fileName ?? "" })}
+              </p>
+            </div>
+          ) : parseStatus === "monthly" || parseStatus === "annual" ? (
+            <div className="flex items-center gap-2.5 p-3">
+              <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <CheckCircle2 className="size-4" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-xs font-medium">{fileName}</p>
+                <p className="text-[11px] leading-tight text-primary">
+                  {t(
+                    parseStatus === "monthly"
+                      ? "consumption.upload.successMonthly"
+                      : "consumption.upload.successAnnual",
+                  )}
+                </p>
+              </div>
+              <Button
+                variant="ghost"
+                size="sm"
+                className="h-7 shrink-0 px-2 text-xs text-muted-foreground"
+                onClick={() => {
+                  setFileName(null);
+                  setParseStatus(null);
+                  setImported(false);
+                }}
+              >
+                <X className="size-3.5" />
+                <span className="sr-only">{t("consumption.upload.remove")}</span>
+              </Button>
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              className="flex w-full flex-col items-center gap-1 px-3 py-4 text-center"
+            >
+              <span className="flex size-8 items-center justify-center rounded-full bg-secondary text-primary">
+                <FileUp className="size-4" />
+              </span>
+              <span className="text-xs font-medium">{t("consumption.upload.title")}</span>
+              <span className="text-[11px] leading-tight text-muted-foreground">
+                {dragging ? (
+                  t("consumption.upload.dropActive")
+                ) : (
+                  <>
+                    {t("consumption.upload.dropHint")}{" "}
+                    <span className="font-medium text-primary underline underline-offset-2">
+                      {t("consumption.upload.browse")}
+                    </span>
+                  </>
+                )}
+              </span>
+              <span className="text-[10px] text-muted-foreground/80">
+                {t("consumption.upload.fileTypes")}
+              </span>
+            </button>
+          )}
         </div>
         <input
           ref={fileInputRef}
@@ -177,18 +237,20 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
             if (file) void handleFile(file);
           }}
         />
-        {parseStatus === "monthly" || parseStatus === "annual" ? (
-          <p className="text-[11px] text-primary">
-            {t(
-              parseStatus === "monthly"
-                ? "consumption.upload.successMonthly"
-                : "consumption.upload.successAnnual",
-            )}
-          </p>
-        ) : null}
         {parseStatus === "error" ? (
-          <p className="text-[11px] text-destructive">{t("consumption.upload.error")}</p>
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-[11px] text-destructive">{t("consumption.upload.error")}</p>
+            <Button
+              variant="outline"
+              size="sm"
+              className="h-7 shrink-0 px-2.5 text-xs"
+              onClick={() => fileInputRef.current?.click()}
+            >
+              {t("consumption.upload.retry")}
+            </Button>
+          </div>
         ) : null}
+
 
         <div className="border-t border-border" />
 
