@@ -111,7 +111,7 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
         </Button>
       }
     >
-      <div className="card-elevated space-y-3 p-3.5">
+      <div className="card-elevated space-y-2.5 p-3">
         <div className="grid gap-3 sm:grid-cols-[auto_1fr] sm:items-start">
           <div className="flex justify-center sm:justify-start">
             <CompassDial
@@ -122,12 +122,12 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
             />
           </div>
 
-          <div className="space-y-2">
+          <div className="space-y-1.5">
             <div>
-              <Label className="text-sm">{t("roof.orientation")}</Label>
-              <p className="mt-0.5 text-xs text-muted-foreground">{t("roof.manualHint")}</p>
+              <Label className="text-xs">{t("roof.orientation")}</Label>
+              <p className="text-[11px] text-muted-foreground">{t("roof.manualHint")}</p>
             </div>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-1">
               {ORIENTATIONS.map((option) => (
                 <button
                   key={option}
@@ -135,8 +135,8 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
                   onClick={() => handleOrientationPreset(option)}
                   className={
                     option === orientation
-                      ? "rounded-full bg-accent px-3 py-1.5 text-xs font-medium text-accent-foreground"
-                      : "rounded-full border border-border bg-card px-3 py-1.5 text-xs transition-colors hover:bg-secondary"
+                      ? "rounded-full bg-accent px-2.5 py-1 text-[11px] font-medium text-accent-foreground"
+                      : "rounded-full border border-border bg-card px-2.5 py-1 text-[11px] transition-colors hover:bg-secondary"
                   }
                 >
                   {t(`roof.orientations.${option}`)}
@@ -146,8 +146,8 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-1.5 border-t border-border pt-3">
-          <Label className="mr-1 text-sm">{t("roof.tilt")}</Label>
+        <div className="flex flex-wrap items-center gap-1 border-t border-border pt-2.5">
+          <Label className="mr-1 text-xs">{t("roof.tilt")}</Label>
           {TILT_PRESETS.map((preset) => (
             <button
               key={preset}
@@ -158,8 +158,8 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
               }}
               className={
                 tiltDegrees === preset
-                  ? "rounded-full bg-accent px-3 py-1.5 text-xs font-medium text-accent-foreground"
-                  : "rounded-full border border-border bg-card px-3 py-1.5 text-xs transition-colors hover:bg-secondary"
+                  ? "rounded-full bg-accent px-2.5 py-1 text-[11px] font-medium text-accent-foreground"
+                  : "rounded-full border border-border bg-card px-2.5 py-1 text-[11px] transition-colors hover:bg-secondary"
               }
             >
               {preset}°
@@ -176,7 +176,7 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
               const value = event.target.value;
               setRoof(orientation, value === "" ? null : Number(value), azimuthDegrees);
             }}
-            className="h-9 w-20"
+            className="h-7 w-16 px-2 text-xs"
           />
           <button
             type="button"
@@ -186,8 +186,8 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
             }}
             className={
               tiltDegrees === null
-                ? "rounded-full bg-accent px-3 py-1.5 text-xs font-medium text-accent-foreground"
-                : "rounded-full border border-border bg-card px-3 py-1.5 text-xs transition-colors hover:bg-secondary"
+                ? "rounded-full bg-accent px-2.5 py-1 text-[11px] font-medium text-accent-foreground"
+                : "rounded-full border border-border bg-card px-2.5 py-1 text-[11px] transition-colors hover:bg-secondary"
             }
           >
             {t("common.dontKnow")}
