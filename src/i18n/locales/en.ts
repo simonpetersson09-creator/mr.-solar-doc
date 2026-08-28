@@ -130,6 +130,34 @@ export const en = {
     fuseLimit: "Theoretical power limit from main fuse",
     fuseLimitInfo:
       "Derived from your main fuse and grid voltage. The actually permitted inverter or feed-in power may be limited by your grid operator and local grid rules.",
+    reason: {
+      profileUnknown:
+        "The system is matched to your electricity use and the estimated solar production.",
+      profileNormal:
+        "The system is matched to your electricity use and the estimated solar production.",
+      profileLowSolarSeason:
+        "A large share of your electricity use happens when solar production is lower, so the system has not been oversized further.",
+      profileHighSolarSeason:
+        "You use relatively much electricity during the sunny months, so a slightly higher panel power relative to the inverter can be suitable.",
+      profileVeryHighSolarSeason:
+        "Your electricity use is clearly concentrated to the sunny months, so a higher panel power relative to the inverter is suggested.",
+      gridLimit:
+        "The system is limited by your main fuse — your grid connection does not allow more power.",
+      minimumSize: "Your electricity use is low, so we suggest the smallest sensible system.",
+      maximumSize: "The suggestion is capped at the largest size this app sizes for.",
+    },
+    monthlyDataNote:
+      "Monthly values do not show whether electricity is used during the day or at night. They are used as a sizing signal, not as proof of how much solar you can use yourself.",
+    profileLabel: "Consumption profile",
+    profileCategory: {
+      unknown: "Annual consumption only",
+      normal: "Normal during sunny months",
+      "low-solar-season": "Low during sunny months",
+      "high-solar-season": "High during sunny months",
+      "very-high-solar-season": "Very high during sunny months",
+    },
+    targetDcAcRange: "Target DC/AC range",
+    summerShare: "Share of use Apr-Sep",
     rationale: {
       consumption:
         "Sized to produce roughly as much electricity as you use over a year.",

@@ -131,6 +131,34 @@ export const sv = {
     fuseLimit: "Teoretisk effektgräns från huvudsäkring",
     fuseLimitInfo:
       "Beräknas utifrån huvudsäkring och nätspänning. Faktisk tillåten växelriktar- eller inmatningseffekt kan begränsas av nätägaren och lokala nätregler.",
+    reason: {
+      profileUnknown:
+        "Dimensioneringen är anpassad efter din elanvändning och beräknade solelproduktion.",
+      profileNormal:
+        "Dimensioneringen är anpassad efter din elanvändning och beräknade solelproduktion.",
+      profileLowSolarSeason:
+        "En stor del av din elanvändning sker när solproduktionen är lägre. Därför har anläggningen inte överdimensionerats ytterligare.",
+      profileHighSolarSeason:
+        "Du använder relativt mycket el under årets solrika månader. Därför kan en något högre paneleffekt i förhållande till växelriktaren vara lämplig.",
+      profileVeryHighSolarSeason:
+        "Din elanvändning är tydligt koncentrerad till årets solrika månader. Därför föreslås en högre paneleffekt i förhållande till växelriktaren.",
+      gridLimit:
+        "Anläggningen är begränsad av din huvudsäkring – större effekt tillåts inte av din nätanslutning.",
+      minimumSize: "Din elanvändning är låg, så vi föreslår minsta rimliga anläggning.",
+      maximumSize: "Förslaget är begränsat till största storlek som appen dimensionerar för.",
+    },
+    monthlyDataNote:
+      "Månadsvärden visar inte om elen används på dagen eller natten. De används därför som en vägledning för dimensioneringen, inte som bevis på hur mycket solel du kan använda själv.",
+    profileLabel: "Förbrukningsprofil",
+    profileCategory: {
+      unknown: "Endast årsförbrukning",
+      normal: "Normal under solrika månader",
+      "low-solar-season": "Låg under solrika månader",
+      "high-solar-season": "Hög under solrika månader",
+      "very-high-solar-season": "Mycket hög under solrika månader",
+    },
+    targetDcAcRange: "Målintervall DC/AC",
+    summerShare: "Andel förbrukning apr–sep",
     rationale: {
       consumption:
         "Dimensionerad för att producera ungefär lika mycket el som din årliga elanvändning.",

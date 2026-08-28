@@ -2,8 +2,30 @@
 
 import type { PresentationValues } from "./presentation";
 import type { MaxInvestmentResult } from "./payback";
+import type {
+  ConsumptionProfileAnalysis,
+  ConsumptionProfileCategory,
+  DcAcTargetRange,
+} from "./consumption-profile";
 
-export type { PresentationValues, MaxInvestmentResult };
+export type {
+  PresentationValues,
+  MaxInvestmentResult,
+  ConsumptionProfileAnalysis,
+  ConsumptionProfileCategory,
+  DcAcTargetRange,
+};
+
+/** Why the engine landed on this particular kWp / inverter combination. */
+export type RecommendationReason =
+  | "profile-normal"
+  | "profile-unknown"
+  | "profile-low-solar-season"
+  | "profile-high-solar-season"
+  | "profile-very-high-solar-season"
+  | "grid-limit"
+  | "minimum-size"
+  | "maximum-size";
 
 export type ValueOrigin = "user" | "calculated" | "assumed" | "external";
 
@@ -93,6 +115,12 @@ export interface CalculationResult {
   maxAcPowerKw: number;
   dcAcRatio: number;
   oversizingPercent: number;
+  /** Desired DC/AC window that drove the selection. */
+  targetDcAcRange: DcAcTargetRange;
+  /** Consumption profile signal derived from monthly data + PVGIS. */
+  consumptionProfile: ConsumptionProfileAnalysis;
+  /** Consumer-facing explanation key for the chosen dimensioning. */
+  recommendationReason: RecommendationReason;
   monthlyProductionKwh: number[];
   annualProductionKwh: number;
   consumption: ConsumptionInput;
