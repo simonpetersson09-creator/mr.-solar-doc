@@ -91,5 +91,6 @@ export const useWizardStore = create<WizardState>((set) => ({
   setExportValue: (value) => set({ exportValuePerKwh: value }),
   setAcceptedPaybackYears: (years) => set({ acceptedPaybackYears: years }),
   setQuotePrice: (price) => set({ quotePrice: price }),
+  setCurrentStep: (step) => set({ currentStep: step }),
   reset: () => set({ ...initialState }),
 }));
