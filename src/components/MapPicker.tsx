@@ -42,6 +42,8 @@ export default function MapPicker({
   const markerRef = useRef<L.Marker | null>(null);
   const changeRef = useRef(onPositionChange);
   changeRef.current = onPositionChange;
+  const readyRef = useRef(onMapReady);
+  readyRef.current = onMapReady;
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -71,6 +73,7 @@ export default function MapPicker({
     });
 
     mapRef.current = map;
+    readyRef.current?.(map);
 
     // Container is often sized after mount (lazy/Suspense); recalc so clicks map correctly.
     const invalidate = () => map.invalidateSize();
