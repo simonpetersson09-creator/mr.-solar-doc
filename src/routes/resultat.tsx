@@ -14,6 +14,7 @@ import { useWizardStore } from "@/state/wizard-store";
 import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
+import { MAX_PAYBACK_YEARS, MIN_PAYBACK_YEARS } from "@/config/constants";
 
 /** Maps the engine's sizing rationale to a consumer-friendly i18n key. */
 const RATIONALE_KEY: Record<string, string> = {
@@ -54,6 +55,9 @@ function ResultPage() {
   const setExportValue = useWizardStore((s) => s.setExportValue);
   const reset = useWizardStore((s) => s.reset);
   const [showDetails, setShowDetails] = useState(false);
+  const [showPaybackInfo, setShowPaybackInfo] = useState(false);
+  const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
+  const setAcceptedPaybackYears = useWizardStore((s) => s.setAcceptedPaybackYears);
   const [exporting, setExporting] = useState(false);
   const [exportError, setExportError] = useState(false);
 
@@ -88,6 +92,7 @@ function ResultPage() {
         months: shortMonths,
         rationale,
         coverageNote: t("result.coverageNote"),
+        paybackNote: `${t("result.paybackInfo")} ${t("result.maxInvestmentNote")}`,
         chartProduction: t("report.chartProduction"),
         chartConsumption: t("report.chartConsumption"),
         origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin"],
@@ -284,6 +289,64 @@ function ResultPage() {
           </div>
 
           <p className="text-xs text-muted-foreground">{t("result.economicsDisclaimer")}</p>
+        </section>
+
+        {/* 4b. Maximum motivated investment */}
+        <section className="card-elevated space-y-5 p-5">
+          <div className="flex items-start justify-between gap-3">
+            <h2 className="text-lg font-semibold">{t("result.paybackTitle")}</h2>
+            <button
+              type="button"
+              aria-label={t("result.paybackInfo")}
+              onClick={() => setShowPaybackInfo((open) => !open)}
+              className="mt-0.5 text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <Info className="size-4" />
+            </button>
+          </div>
+
+          {showPaybackInfo ? (
+            <p className="rounded-xl bg-secondary p-3 text-xs text-muted-foreground">
+              {t("result.paybackInfo")}
+            </p>
+          ) : null}
+
+          <div>
+            <p className="text-2xl font-bold">
+              {t("result.paybackYears", { years: formatNumber(paybackYears, locale) })}
+            </p>
+            <Slider
+              className="mt-3"
+              min={MIN_PAYBACK_YEARS}
+              max={MAX_PAYBACK_YEARS}
+              step={1}
+              value={[paybackYears]}
+              onValueChange={([value]) =>
+                setAcceptedPaybackYears(value ?? MIN_PAYBACK_YEARS)
+              }
+            />
+            <div className="mt-2 flex justify-between text-xs text-muted-foreground">
+              <span>{t("result.paybackYears", { years: MIN_PAYBACK_YEARS })}</span>
+              <span>{t("result.paybackYears", { years: MAX_PAYBACK_YEARS })}</span>
+            </div>
+          </div>
+
+          <div className="rounded-xl bg-secondary p-4">
+            <p className="text-xs text-muted-foreground">{t("result.maxInvestment")}</p>
+            <p className="mt-1 text-3xl font-bold">
+              {t("result.maxInvestmentApprox", {
+                amount: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
+              })}
+            </p>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {t("result.maxInvestmentExplainer", {
+                years: formatNumber(paybackYears, locale),
+                amount: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
+              })}
+            </p>
+          </div>
+
+          <p className="text-xs text-muted-foreground">{t("result.maxInvestmentNote")}</p>
         </section>
 
         {/* 5. Technical details */}
