@@ -96,6 +96,61 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
         </Button>
       }
     >
+      <div className="card-elevated space-y-3 p-4">
+        <div className="flex items-start gap-3">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-secondary text-primary">
+            <FileUp className="h-5 w-5" />
+          </span>
+          <div className="min-w-0">
+            <p className="text-sm font-medium">{t("consumption.upload.title")}</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              {t("consumption.upload.description")}
+            </p>
+          </div>
+        </div>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept=".pdf,.xlsx,.xls,.csv,.txt,application/pdf"
+          className="hidden"
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+            event.target.value = "";
+            if (file) void handleFile(file);
+          }}
+        />
+        <Button
+          variant="outline"
+          className="w-full"
+          disabled={parsing}
+          onClick={() => fileInputRef.current?.click()}
+        >
+          {parsing ? (
+            <>
+              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+              {t("consumption.upload.loading")}
+            </>
+          ) : (
+            t("consumption.upload.button")
+          )}
+        </Button>
+        <p className="text-center text-xs text-muted-foreground">
+          {fileName ?? t("consumption.upload.fileTypes")}
+        </p>
+        {parseStatus === "monthly" || parseStatus === "annual" ? (
+          <p className="text-sm text-primary">
+            {t(
+              parseStatus === "monthly"
+                ? "consumption.upload.successMonthly"
+                : "consumption.upload.successAnnual",
+            )}
+          </p>
+        ) : null}
+        {parseStatus === "error" ? (
+          <p className="text-sm text-destructive">{t("consumption.upload.error")}</p>
+        ) : null}
+      </div>
+
       {!useMonthly ? (
         <div className="card-elevated p-4">
           <Label htmlFor="annual" className="text-sm">
