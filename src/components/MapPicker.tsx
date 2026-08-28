@@ -12,6 +12,8 @@ interface MapPickerProps {
   className?: string;
   /** Hide the default +/- zoom control (e.g. when rendered as a backdrop). */
   hideZoomControl?: boolean;
+  /** Called once the Leaflet map instance is ready. */
+  onMapReady?: (map: L.Map) => void;
 }
 
 const markerIcon = L.divIcon({
@@ -33,12 +35,15 @@ export default function MapPicker({
   onPositionChange,
   className = "h-64 w-full overflow-hidden rounded-xl",
   hideZoomControl = false,
+  onMapReady,
 }: MapPickerProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
   const markerRef = useRef<L.Marker | null>(null);
   const changeRef = useRef(onPositionChange);
   changeRef.current = onPositionChange;
+  const readyRef = useRef(onMapReady);
+  readyRef.current = onMapReady;
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
@@ -68,6 +73,7 @@ export default function MapPicker({
     });
 
     mapRef.current = map;
+    readyRef.current?.(map);
 
     // Container is often sized after mount (lazy/Suspense); recalc so clicks map correctly.
     const invalidate = () => map.invalidateSize();

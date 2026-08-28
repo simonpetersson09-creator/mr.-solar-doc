@@ -1,7 +1,8 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { ClientOnly } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Loader2, MapPin, Search, Sun } from "lucide-react";
+import { ArrowRight, Loader2, MapPin, Minus, Plus, Search, Sun } from "lucide-react";
+import type L from "leaflet";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useAddressSearch } from "@/hooks/use-address-search";
@@ -26,6 +27,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
   const [query, setQuery] = useState(location?.address ?? "");
   const [debounced, setDebounced] = useState(query);
   const [showResults, setShowResults] = useState(false);
+  const [map, setMap] = useState<L.Map | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setDebounced(query), 350);
@@ -67,6 +69,8 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
               zoom={mapZoom}
               showMarker={!!location}
               className="h-full w-full"
+              hideZoomControl
+              onMapReady={setMap}
               onPositionChange={(lat, lon) => void handlePositionChange(lat, lon)}
             />
           </Suspense>
@@ -162,6 +166,34 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
           ) : null}
         </div>
       </div>
+
+      {/* Custom zoom controls (Leaflet's own would hide behind the overlays) */}
+      {map ? (
+        <div className="absolute right-4 bottom-44 z-20 flex flex-col gap-2">
+          <button
+            type="button"
+            aria-label="Zooma in"
+            className="flex size-11 items-center justify-center rounded-full border border-border/60 bg-card/90 text-foreground shadow-lg backdrop-blur-md transition-colors hover:bg-secondary active:scale-95"
+            onClick={() => {
+              void haptic("light");
+              map.zoomIn();
+            }}
+          >
+            <Plus className="size-5" />
+          </button>
+          <button
+            type="button"
+            aria-label="Zooma ut"
+            className="flex size-11 items-center justify-center rounded-full border border-border/60 bg-card/90 text-foreground shadow-lg backdrop-blur-md transition-colors hover:bg-secondary active:scale-95"
+            onClick={() => {
+              void haptic("light");
+              map.zoomOut();
+            }}
+          >
+            <Minus className="size-5" />
+          </button>
+        </div>
+      ) : null}
 
       {/* Bottom overlay: hint + action over fading gradient */}
       <div className="pointer-events-none relative z-20 mt-auto bg-gradient-to-t from-background via-background/80 to-transparent pt-16">
