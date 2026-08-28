@@ -56,6 +56,7 @@ export async function getSolarResource(
     annualKwhPerKwp: pvgis.annualKwhPerKwp,
     monthlyKwhPerKwp: pvgis.monthlyKwhPerKwp,
     orientation: request.orientation,
+    azimuthDegrees: orientationAssumed ? null : (request.azimuthDegrees ?? null),
     tiltDegrees: pvgis.tiltDegrees,
     orientationAssumed,
     tiltAssumed: tiltAssumed || pvgis.optimalTiltUsed,
