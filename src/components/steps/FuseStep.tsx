@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { StepShell } from "@/components/StepShell";
 import { useAppLocale } from "@/hooks/use-app-locale";
-import { formatDecimal } from "@/lib/format";
+import { formatDecimal, parseLocaleNumber } from "@/lib/format";
 import { getMarketConfig } from "@/config/markets";
 import { maxAcPowerFromFuse } from "@/lib/calc/inverter-sizing";
 import { useWizardStore } from "@/state/wizard-store";
@@ -35,7 +35,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   );
   const [customValue, setCustomValue] = useState(custom && storedFuse ? String(storedFuse) : "");
 
-  const selected = custom ? Number(customValue) || 0 : (storedFuse ?? 0);
+  const selected = custom ? (parseLocaleNumber(customValue) ?? 0) : (storedFuse ?? 0);
   const valid = selected >= MIN_AMP && selected <= MAX_AMP;
   const maxAc = maxAcPowerFromFuse(selected, market.kwPerAmp);
 
@@ -105,8 +105,8 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
             </Label>
             <Input
               id="custom-fuse"
-              type="number"
-              inputMode="numeric"
+              type="text"
+              inputMode="decimal"
               value={customValue}
               onChange={(event) => setCustomValue(event.target.value)}
               className="h-9 w-24"

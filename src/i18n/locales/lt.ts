@@ -175,6 +175,7 @@ export const lt = {
     "annualSavings": "Ekonominė vertė per metus",
     "assumedPrices": "Numatomos elektros kainos",
     standardValueBadge: "Standartinė vertė",
+    resetToStandard: "Atkurti standartinę reikšmę",
     userValueBadge: "Jūsų įvesta",
     standardValueHint: "Skaičiavimo standartinės vertės. Pakeiskite jas savo elektros sutarties vertėmis, kad rezultatas būtų individualesnis.",
     "editable": "Redaguojama",

@@ -175,6 +175,7 @@ export const de = {
     "annualSavings": "Jährlicher wirtschaftlicher Wert",
     "assumedPrices": "Angenommene Strompreise",
     standardValueBadge: "Standardwert",
+    resetToStandard: "Auf Standardwert zurücksetzen",
     userValueBadge: "Von Ihnen angegeben",
     standardValueHint: "Standardwerte für die Berechnung. Passen Sie sie an die Werte Ihres eigenen Stromvertrags an, um ein individuelleres Ergebnis zu erhalten.",
     "editable": "Anpassbar",

@@ -175,6 +175,7 @@ export const pl = {
     "annualSavings": "Wartość ekonomiczna rocznie",
     "assumedPrices": "Przyjęte ceny energii elektrycznej",
     standardValueBadge: "Wartość standardowa",
+    resetToStandard: "Przywróć wartość standardową",
     userValueBadge: "Podane przez Ciebie",
     standardValueHint: "Wartości standardowe do obliczeń. Zmień je na wartości z własnej umowy na energię, aby uzyskać bardziej indywidualny wynik.",
     "editable": "Możliwe do edycji",

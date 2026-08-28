@@ -182,6 +182,7 @@ export const sv = {
     annualSavings: "Ekonomiskt värde per år",
     assumedPrices: "Antagna elpriser",
     standardValueBadge: "Schablonvärde",
+    resetToStandard: "Återställ till schablonvärde",
     userValueBadge: "Angivet av dig",
     standardValueHint: "Schablonvärden för beräkningen. Ändra till värden från ditt eget elavtal för ett mer individuellt resultat.",
     editable: "Kan ändras",

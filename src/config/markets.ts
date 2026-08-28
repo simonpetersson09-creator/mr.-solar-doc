@@ -56,9 +56,7 @@ export interface MarketConfig {
   defaultConsumptionWeights: number[];
 }
 
-const EU_INVERTER_SIZES_KW = [
-  1.5, 2, 2.5, 3, 3.6, 4, 4.6, 5, 6, 8, 10, 12, 15, 17, 20, 25, 30,
-];
+const EU_INVERTER_SIZES_KW = [1.5, 2, 2.5, 3, 3.6, 4, 4.6, 5, 6, 8, 10, 12, 15, 17, 20, 25, 30];
 const EU_MAIN_FUSE_OPTIONS_AMP = [16, 20, 25, 32, 35, 40, 50, 63];
 
 const baseEuMarket = {
@@ -149,9 +147,26 @@ export function isActiveMarket(countryCode?: string | null): boolean {
   return (ACTIVE_MARKET_CODES as readonly string[]).includes(code);
 }
 
+/**
+ * True when the given country has no market configuration of its own and would
+ * silently fall back to the Swedish one (SEK + Swedish standard values).
+ */
+export function isFallbackMarket(countryCode?: string | null): boolean {
+  const code = (countryCode ?? "").toUpperCase();
+  return MARKETS[code] === undefined;
+}
+
 export function getMarketConfig(countryCode?: string | null): MarketConfig {
   const code = (countryCode ?? "").toUpperCase();
-  return MARKETS[code] ?? MARKETS[FALLBACK_MARKET_CODE]!;
+  const config = MARKETS[code];
+  if (config) return config;
+  if (import.meta.env.DEV && code !== "") {
+    console.warn(
+      `[markets] No configuration for "${code}" - falling back to ${FALLBACK_MARKET_CODE}. ` +
+        "Currency and standard values shown will not match this country.",
+    );
+  }
+  return MARKETS[FALLBACK_MARKET_CODE]!;
 }
 
 /** Country -> currency. Never derived from the chosen language. */

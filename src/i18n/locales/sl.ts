@@ -175,6 +175,7 @@ export const sl = {
     "annualSavings": "Ekonomska vrednost na leto",
     "assumedPrices": "Predpostavljene cene električne energije",
     standardValueBadge: "Standardna vrednost",
+    resetToStandard: "Ponastavi na standardno vrednost",
     userValueBadge: "Vnesli ste sami",
     standardValueHint: "Standardne vrednosti za izračun. Zamenjajte jih z vrednostmi iz svoje pogodbe o dobavi elektrike za bolj individualen rezultat.",
     "editable": "Nastavljivo",

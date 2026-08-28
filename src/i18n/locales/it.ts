@@ -175,6 +175,7 @@ export const it = {
     "annualSavings": "Valore economico per anno",
     "assumedPrices": "Prezzi dell'elettricità assunti",
     standardValueBadge: "Valore standard",
+    resetToStandard: "Ripristina il valore standard",
     userValueBadge: "Inserito da te",
     standardValueHint: "Valori standard per il calcolo. Modificali con i valori del tuo contratto di fornitura elettrica per un risultato più individuale.",
     "editable": "Modificabile",

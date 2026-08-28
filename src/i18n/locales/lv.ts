@@ -175,6 +175,7 @@ export const lv = {
     "annualSavings": "Ekonomiskā vērtība gadā",
     "assumedPrices": "Pieņemtie elektroenerģijas tarifi",
     standardValueBadge: "Standarta vērtība",
+    resetToStandard: "Atjaunot standarta vērtību",
     userValueBadge: "Jūsu ievadīts",
     standardValueHint: "Aprēķina standarta vērtības. Nomainiet tās pret savā elektroenerģijas līgumā norādītajām vērtībām, lai iegūtu individuālāku rezultātu.",
     "editable": "Rediģējams",

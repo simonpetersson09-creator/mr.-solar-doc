@@ -175,6 +175,7 @@ export const cs = {
     "annualSavings": "Roční ekonomická hodnota",
     "assumedPrices": "Předpokládané ceny elektřiny",
     standardValueBadge: "Standardní hodnota",
+    resetToStandard: "Obnovit standardní hodnotu",
     userValueBadge: "Zadáno vámi",
     standardValueHint: "Standardní hodnoty pro výpočet. Změňte je na hodnoty z vlastní smlouvy o dodávce elektřiny pro individuálnější výsledek.",
     "editable": "Upravitelné",

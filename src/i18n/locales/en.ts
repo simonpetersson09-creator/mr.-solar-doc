@@ -181,6 +181,7 @@ export const en = {
     annualSavings: "Economic value per year",
     assumedPrices: "Assumed electricity prices",
     standardValueBadge: "Standard value",
+    resetToStandard: "Reset to standard value",
     userValueBadge: "Entered by you",
     standardValueHint: "Standard values for the calculation. Change them to the values in your own electricity contract for a more individual result.",
     editable: "Adjustable",

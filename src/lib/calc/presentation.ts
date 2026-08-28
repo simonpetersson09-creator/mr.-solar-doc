@@ -47,11 +47,11 @@ export function buildPresentationValues(params: {
   const selfConsumptionValue = Math.round(params.selfConsumptionValue);
   const exportValue = Math.round(params.exportValue);
   const annualProductionKwh = Math.round(params.annualProductionKwh);
-  const selfConsumptionKwh = Math.min(
-    annualProductionKwh,
-    Math.round(params.selfConsumptionKwh),
+  const selfConsumptionKwh = Math.min(annualProductionKwh, Math.round(params.selfConsumptionKwh));
+  const selfConsumptionPercent = Math.min(
+    100,
+    Math.max(0, Math.round(params.selfConsumptionShare * 100)),
   );
-  const selfConsumptionPercent = Math.min(100, Math.max(0, Math.round(params.selfConsumptionShare * 100)));
   const requestedSelfConsumptionPercent = Math.min(
     100,
     Math.max(
@@ -60,12 +60,22 @@ export function buildPresentationValues(params: {
     ),
   );
 
+  const exportedKwh = annualProductionKwh - selfConsumptionKwh;
+  /**
+   * Derive the displayed percentages from the SAME rounded kWh figures shown
+   * next to them, so "% of kWh" never contradicts the kWh split.
+   */
+  const displayedSelfConsumptionPercent =
+    annualProductionKwh > 0
+      ? Math.min(100, Math.max(0, Math.round((selfConsumptionKwh / annualProductionKwh) * 100)))
+      : selfConsumptionPercent;
+
   return {
     annualProductionKwh,
     selfConsumptionKwh,
-    exportedKwh: annualProductionKwh - selfConsumptionKwh,
-    selfConsumptionPercent,
-    exportPercent: 100 - selfConsumptionPercent,
+    exportedKwh,
+    selfConsumptionPercent: displayedSelfConsumptionPercent,
+    exportPercent: 100 - displayedSelfConsumptionPercent,
     requestedSelfConsumptionPercent,
     selfConsumptionCapped: requestedSelfConsumptionPercent > selfConsumptionPercent,
     annualConsumptionKwh: Math.round(params.annualConsumptionKwh),
