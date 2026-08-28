@@ -98,7 +98,7 @@ function ResultPage() {
   const setCurrentStep = useWizardStore((s) => s.setCurrentStep);
   const navigate = useNavigate();
   const [showDetails, setShowDetails] = useState(false);
-  const [showPaybackInfo, setShowPaybackInfo] = useState(false);
+  const [showAssumptions, setShowAssumptions] = useState(false);
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
   const setAcceptedPaybackYears = useWizardStore((s) => s.setAcceptedPaybackYears);
   const [exporting, setExporting] = useState(false);
