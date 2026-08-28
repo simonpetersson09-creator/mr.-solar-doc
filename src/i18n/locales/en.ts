@@ -286,6 +286,11 @@ export const en = {
   },
   report: {
     fields: {
+      panelPower: "Panel power",
+      annualValue: "Annual production value",
+      savings30: "Savings over 30 years",
+      investment: "Investment",
+      paybackTime: "Payback time",
       address: "Address",
       coordinates: "Coordinates",
       array: "Calculated system size",
@@ -331,6 +336,8 @@ export const en = {
       orientation_west: "West",
     },
     title: "Solar report",
+    technical: "Technical data",
+    economicSummary: "Economic value",
     summary: "Summary",
     sizing: "Calculated sizing",
     production: "Production",
