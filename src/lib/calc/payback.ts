@@ -14,12 +14,16 @@
 export interface MaxInvestmentResult {
   /** Annual economic value used for the calculation (currency/yr). */
   annualEconomicValue: number;
-  /** Payback time the user accepts, in years. */
+  /** Payback time the user selected, in years. */
   acceptedPaybackYears: number;
   /** Exact value × years. */
   maxInvestment: number;
   /** Consumer-friendly rounded figure ("ca 57 000"). */
   maxInvestmentRounded: number;
+  /** Price from a quote the user entered, if any. */
+  quotePrice: number | null;
+  /** Simple payback implied by that quote price, in years. */
+  quotePaybackYears: number | null;
   /** "simple" today; future models may add "npv". */
   method: "simple";
 }
@@ -33,16 +37,21 @@ function roundForConsumer(value: number): number {
 export function calculateMaxInvestment(
   annualEconomicValue: number,
   acceptedPaybackYears: number,
+  quotePrice?: number | null,
 ): MaxInvestmentResult {
   const safeValue = Number.isFinite(annualEconomicValue) ? Math.max(0, annualEconomicValue) : 0;
   const safeYears = Number.isFinite(acceptedPaybackYears) ? Math.max(0, acceptedPaybackYears) : 0;
   const maxInvestment = safeValue * safeYears;
+  const safeQuote =
+    quotePrice != null && Number.isFinite(quotePrice) && quotePrice > 0 ? quotePrice : null;
 
   return {
     annualEconomicValue: safeValue,
     acceptedPaybackYears: safeYears,
     maxInvestment,
     maxInvestmentRounded: roundForConsumer(maxInvestment),
+    quotePrice: safeQuote,
+    quotePaybackYears: safeQuote !== null && safeValue > 0 ? safeQuote / safeValue : null,
     method: "simple",
   };
 }
