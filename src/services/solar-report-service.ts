@@ -132,7 +132,8 @@ class ReportDocument {
   }
 
   sectionTitle(text: string) {
-    this.ensureSpace(16);
+    this.ensureSpace(18);
+    this.y += 2;
     this.doc.setFont("helvetica", "bold");
     this.doc.setFontSize(12);
     this.doc.setTextColor(...INK);
