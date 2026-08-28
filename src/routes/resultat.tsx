@@ -85,6 +85,8 @@ function ResultPage() {
         title: t("report.title"),
         appName: t("app.name"),
         summary: t("report.summary"),
+        technical: t("report.technical"),
+        economicSummary: t("report.economicSummary"),
         sizing: t("report.sizing"),
         production: t("report.production"),
         consumption: t("report.consumption"),
