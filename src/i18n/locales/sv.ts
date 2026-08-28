@@ -231,6 +231,7 @@ export const sv = {
       coverage: "Täckningsgrad av årsförbrukning",
       savings: "Beräknad årlig besparing",
       tilt: "Taklutning",
+      yearsUnit: "år",
       acceptedPayback: "Accepterad återbetalningstid",
       maxInvestment: "Maximal investering för vald återbetalningstid",
       calculationVersion: "Beräkningsversion",

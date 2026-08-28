@@ -229,6 +229,7 @@ export const en = {
       coverage: "Coverage of annual consumption",
       savings: "Estimated annual savings",
       tilt: "Roof tilt",
+      yearsUnit: "years",
       acceptedPayback: "Accepted payback time",
       maxInvestment: "Maximum investment for the chosen payback time",
       calculationVersion: "Calculation version",

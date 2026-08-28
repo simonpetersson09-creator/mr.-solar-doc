@@ -436,7 +436,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     [
       {
         label: f["acceptedPayback"] ?? "",
-        value: `${formatNumber(result.investment.acceptedPaybackYears, locale)} ${"\u00e5r"}`,
+        value: `${formatNumber(result.investment.acceptedPaybackYears, locale)} ${f["yearsUnit"] ?? ""}`,
         origin: "user",
       },
       {
