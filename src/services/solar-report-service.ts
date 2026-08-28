@@ -302,7 +302,12 @@ class ReportDocument {
 }
 
 export function buildReportFileName(result: CalculationResult): string {
-  return `solenergikollen-${isoDateOnly(result.calculatedAt)}.pdf`;
+  return `mr-solar-doc-${isoDateOnly(result.calculatedAt)}.pdf`;
+}
+
+/** 30-year value: full output through year 20, then 90 % efficiency for years 21-30. */
+function thirtyYearSavings(annualSavings: number): number {
+  return Math.round(annualSavings * (20 + 10 * 0.9));
 }
 
 export function generateReportBlob(options: ReportOptions): Blob {
