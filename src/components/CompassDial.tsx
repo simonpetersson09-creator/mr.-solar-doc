@@ -102,11 +102,11 @@ const rad = (value * Math.PI) / 180;
         onPointerMove={handlePointerMove}
       >
 {/* Outer ring */}
-        <circle
+<circle
           cx={CENTER}
           cy={CENTER}
           r={DIAL_RADIUS}
-          className="fill-secondary/60 stroke-border"
+          className="fill-white/10 stroke-white/25"
           strokeWidth={1.5}
         />
         {/* Faint dashed rotation path — hints the arrow can be dragged around */}
@@ -115,7 +115,7 @@ const rad = (value * Math.PI) / 180;
           cy={CENTER}
           r={70}
           fill="none"
-          className="stroke-muted-foreground/25"
+          className="stroke-white/25"
           strokeWidth={1}
           strokeDasharray="2 5"
           strokeLinecap="round"
@@ -133,7 +133,7 @@ const rad = (value * Math.PI) / 180;
               y1={CENTER - inner * Math.cos(rad)}
               x2={CENTER + outer * Math.sin(rad)}
               y2={CENTER - outer * Math.cos(rad)}
-              className="stroke-muted-foreground/60"
+className="stroke-white/50"
               strokeWidth={major ? 2 : 1}
             />
           );
@@ -149,7 +149,7 @@ const rad = (value * Math.PI) / 180;
               y={CENTER - r * Math.cos(rad)}
               textAnchor="middle"
               dominantBaseline="central"
-              className="fill-muted-foreground text-[11px] font-semibold"
+className="fill-white/80 text-[11px] font-semibold"
             >
               {label}
             </text>
@@ -173,11 +173,11 @@ const rad = (value * Math.PI) / 180;
           className="animate-pulse fill-accent/25"
         />
         {/* Grip ball — the draggable handle at the arrow tip */}
-        <circle
+<circle
           cx={gripX}
           cy={gripY}
           r={GRIP_RADIUS}
-          className="fill-card stroke-accent drop-shadow-md"
+          className="fill-white stroke-accent drop-shadow-md"
           strokeWidth={3}
         />
         {/* Drag chevrons inside the grip ball, aligned with the arrow */}
@@ -195,9 +195,9 @@ const rad = (value * Math.PI) / 180;
         <circle cx={CENTER} cy={CENTER} r={14} className="fill-accent" />
         <circle cx={CENTER} cy={CENTER} r={6} className="fill-accent-foreground" />
       </svg>
-      <div className="text-center">
-        <p className="text-lg font-semibold tabular-nums">{value}°</p>
-        {caption ? <p className="text-sm text-muted-foreground">{caption}</p> : null}
+<div className="text-center">
+        <p className="text-lg font-semibold tabular-nums text-white">{value}°</p>
+        {caption ? <p className="text-sm text-white/70">{caption}</p> : null}
       </div>
     </div>
   );
