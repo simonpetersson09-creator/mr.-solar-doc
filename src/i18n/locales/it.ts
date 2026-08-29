@@ -47,7 +47,7 @@ export const it = {
     "manualHint": "Trascina la freccia in modo che punti nella direzione del tetto. 180° = esattamente a sud.",
     "tilt": "Inclinazione del tetto",
     "tiltDegrees": ".*",
-    "tiltHint": "La maggior parte dei tetti ha un0027inclinazione di 30–35°.",
+    "tiltHint": "La maggior parte dei tetti ha un'inclinazione di 30–35°.",
     "compass": {
       "n": "N",
       "e": "E",
