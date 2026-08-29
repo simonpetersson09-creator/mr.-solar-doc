@@ -104,8 +104,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
     <StepShell
       step={5}
       totalSteps={totalSteps}
-      title={t("result.adjustAssumptions")}
-      subtitle={t("result.adjustAssumptionsHint")}
+title={t("result.adjustAssumptions")}
       onBack={onBack}
       footer={
         <Button
