@@ -101,11 +101,11 @@ footer={
       }
     >
       <div className="space-y-5">
-        {/* Compass — one card */}
-        <div className="card-elevated px-4 py-5">
+{/* Compass — one card */}
+        <div className="glass-primary rounded-[28px] px-4 py-5">
           <div className="mb-1 text-center">
-            <Label className="text-xs">{t("roof.orientation")}</Label>
-            <p className="text-[11px] text-muted-foreground">{t("roof.manualHint")}</p>
+            <Label className="text-xs text-white">{t("roof.orientation")}</Label>
+            <p className="text-[11px] text-white/70">{t("roof.manualHint")}</p>
           </div>
           <div className="flex justify-center">
             <CompassDial
@@ -117,11 +117,11 @@ footer={
           </div>
         </div>
 
-        {/* Tilt — one card */}
-        <div className="card-elevated px-4 py-4">
+{/* Tilt — one card */}
+        <div className="glass-primary rounded-[28px] px-4 py-4">
           <div className="mb-2">
-            <Label className="text-xs">{t("roof.tilt")}</Label>
-            <p className="text-[11px] text-muted-foreground">{t("roof.tiltHint")}</p>
+            <Label className="text-xs text-white">{t("roof.tilt")}</Label>
+            <p className="text-[11px] text-white/70">{t("roof.tiltHint")}</p>
           </div>
           <div className="flex flex-wrap items-center gap-1.5">
             {TILT_PRESETS.map((preset) => (
@@ -134,8 +134,8 @@ footer={
                 }}
                 className={
                   tiltDegrees === preset
-                    ? "rounded-full bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground shadow-sm"
-                    : "rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
+                    ? "rounded-full bg-accent px-3 py-1.5 text-[11px] font-semibold text-accent-foreground shadow-md shadow-accent/30"
+                    : "rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-medium text-white transition-colors hover:bg-white/25"
                 }
               >
                 {preset}°
@@ -152,7 +152,7 @@ footer={
                 const value = event.target.value;
                 setRoof(orientation, value === "" ? null : Number(value), azimuthDegrees);
               }}
-              className="h-7 w-16 px-2 text-xs"
+              className="h-7 w-16 rounded-full border-white/25 bg-white/15 px-2 text-xs text-white placeholder:text-white/50"
             />
             <button
               type="button"
@@ -162,8 +162,8 @@ footer={
               }}
               className={
                 tiltDegrees === null
-                  ? "rounded-full bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground shadow-sm"
-                  : "rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
+                  ? "rounded-full bg-accent px-3 py-1.5 text-[11px] font-semibold text-accent-foreground shadow-md shadow-accent/30"
+                  : "rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-medium text-white transition-colors hover:bg-white/25"
               }
             >
               {t("common.dontKnow")}
