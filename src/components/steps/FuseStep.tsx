@@ -61,7 +61,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         </Button>
       }
     >
-      <div className="card-elevated space-y-2 p-3">
+      <div className="space-y-4">
         <Label className="text-xs text-muted-foreground">{t("fuse.label")}</Label>
         <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-5">
           {market.mainFuseOptionsAmp.map((amp) => (
@@ -99,7 +99,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         </div>
 
         {custom ? (
-          <div className="flex items-center gap-2 border-t border-border pt-2.5">
+          <div className="flex items-center gap-2">
             <Label htmlFor="custom-fuse" className="text-xs text-muted-foreground">
               {t("fuse.otherLabel")}
             </Label>
@@ -131,7 +131,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
           </div>
         ) : null}
 
-        <div className="border-t border-border pt-2.5">
+        <div>
           <button
             type="button"
             onClick={() => setShowGridInfo((open) => !open)}
