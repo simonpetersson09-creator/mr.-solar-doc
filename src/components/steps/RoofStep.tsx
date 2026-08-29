@@ -94,8 +94,7 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
     <StepShell
       step={2}
       totalSteps={totalSteps}
-      title={t("roof.title")}
-      subtitle={t("roof.subtitle")}
+title={t("roof.title")}
       onBack={onBack}
 footer={
         <Button
