@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDown } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -104,9 +104,9 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
       title={t("result.adjustAssumptions")}
       subtitle={t("result.adjustAssumptionsHint")}
       onBack={onBack}
-      footer={
+footer={
         <Button
-          className="w-full"
+          className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           size="lg"
           onClick={() => {
             void haptic("success");
@@ -114,6 +114,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
           }}
         >
           {t("fuse.calculate")}
+          <ArrowRight className="size-4 text-accent" />
         </Button>
       }
     >

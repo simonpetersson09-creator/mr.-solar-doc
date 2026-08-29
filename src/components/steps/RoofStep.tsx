@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { AlertTriangle, Loader2, Sun } from "lucide-react";
+import { AlertTriangle, ArrowRight, Loader2, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -97,9 +97,9 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
       title={t("roof.title")}
       subtitle={t("roof.subtitle")}
       onBack={onBack}
-      footer={
+footer={
         <Button
-          className="w-full"
+          className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           size="lg"
           disabled={!query.data}
           onClick={() => {
@@ -108,6 +108,7 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
           }}
         >
           {t("common.next")}
+          <ArrowRight className="size-4 text-accent" />
         </Button>
       }
     >

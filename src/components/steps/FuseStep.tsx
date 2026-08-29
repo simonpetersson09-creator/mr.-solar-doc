@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Info, Zap } from "lucide-react";
+import { ArrowRight, Info, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -46,9 +46,9 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
       title={t("fuse.title")}
       subtitle={t("fuse.subtitle")}
       onBack={onBack}
-      footer={
+footer={
         <Button
-          className="w-full"
+          className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           size="lg"
           disabled={!valid}
           onClick={() => {
@@ -58,6 +58,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
           }}
         >
           {t("fuse.calculate")}
+          <ArrowRight className="size-4 text-accent" />
         </Button>
       }
     >

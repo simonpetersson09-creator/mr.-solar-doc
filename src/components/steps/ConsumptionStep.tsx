@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { CheckCircle2, FileUp, Loader2, X } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileUp, Loader2, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -113,9 +113,9 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
       title={t("consumption.title")}
       subtitle={t("consumption.subtitle")}
       onBack={onBack}
-      footer={
+footer={
         <Button
-          className="w-full"
+          className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           size="lg"
           disabled={!valid}
           onClick={() => {
@@ -139,6 +139,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
           }}
         >
           {t("common.next")}
+          <ArrowRight className="size-4 text-accent" />
         </Button>
       }
     >
