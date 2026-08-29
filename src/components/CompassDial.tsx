@@ -139,9 +139,9 @@ const rad = (value * Math.PI) / 180;
           );
         })}
         {/* Cardinal labels */}
-        {directions.map(({ label, deg }) => {
+{directions.map(({ label, deg }) => {
           const rad = (deg * Math.PI) / 180;
-          const r = DIAL_RADIUS - 28;
+          const r = DIAL_RADIUS - 38;
           return (
             <text
               key={deg}
