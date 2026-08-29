@@ -188,13 +188,13 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
 {/* Custom zoom controls (Leaflet's own would hide behind the overlays) */}
       {map ? (
         <div
-          className="absolute left-4 z-20 flex flex-col gap-2"
-          style={{ bottom: "calc(1.25rem + env(safe-area-inset-bottom))" }}
+          className="absolute right-4 z-20 flex flex-col gap-2"
+          style={{ bottom: "calc(5.5rem + env(safe-area-inset-bottom))" }}
         >
           <button
             type="button"
             aria-label="Zooma in"
-            className="flex size-12 items-center justify-center rounded-2xl border border-border/50 bg-card/90 text-foreground shadow-lg backdrop-blur transition-transform active:scale-90"
+            className="flex size-12 items-center justify-center rounded-2xl border border-primary/50 bg-primary text-primary-foreground shadow-lg shadow-primary/40 transition-transform active:scale-90"
             onClick={() => {
               void haptic("light");
               map.zoomIn();
@@ -205,7 +205,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
           <button
             type="button"
             aria-label="Zooma ut"
-            className="flex size-12 items-center justify-center rounded-2xl border border-border/50 bg-card/90 text-foreground shadow-lg backdrop-blur transition-transform active:scale-90"
+            className="flex size-12 items-center justify-center rounded-2xl border border-primary/50 bg-primary text-primary-foreground shadow-lg shadow-primary/40 transition-transform active:scale-90"
             onClick={() => {
               void haptic("light");
               map.zoomOut();
