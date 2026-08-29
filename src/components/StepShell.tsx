@@ -72,9 +72,11 @@ export function StepShell({
         <div className="mt-4 space-y-3">{children}</div>
       </main>
 
-      {footer ? (
-        <div className="sticky bottom-0 bg-gradient-to-t from-background via-background/85 to-transparent">
-          <div className="pb-safe mx-auto w-full max-w-2xl px-5 pt-3">{footer}</div>
+{footer ? (
+        <div className="sticky bottom-0 bg-gradient-to-t from-background/90 to-transparent">
+          <div className="mx-auto w-full max-w-2xl px-6 pt-4 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
+            {footer}
+          </div>
         </div>
       ) : null}
     </div>
