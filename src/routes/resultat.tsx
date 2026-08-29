@@ -119,7 +119,7 @@ function ResultPage() {
         <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
       </header>
 
-      <main className="mx-auto w-full max-w-2xl flex-1 space-y-2.5 px-5 pt-3 pb-2">
+      <main className="mx-auto w-full max-w-2xl flex-1 space-y-2.5 overflow-y-auto overscroll-contain px-5 pt-3 pb-2">
         {/* 1. Recommendation */}
         <section className="hero-metric rounded-3xl p-5">
           <div className="glow-amber -top-16 -right-16 size-48" aria-hidden="true" />
