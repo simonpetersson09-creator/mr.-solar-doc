@@ -222,7 +222,7 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
       ) : null}
 
       {query.data ? (
-        <div className="hero-metric flex items-center justify-between gap-4 rounded-2xl px-4 py-3.5">
+        <div className="hero-metric flex items-center justify-between gap-4 rounded-2xl px-4 py-3">
           <div className="glow-amber -top-10 -right-10 size-32" aria-hidden="true" />
           <div>
             <div className="flex items-center gap-1.5 text-xs font-semibold">
