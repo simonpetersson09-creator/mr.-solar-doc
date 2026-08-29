@@ -152,22 +152,8 @@ footer={
                 const value = event.target.value;
                 setRoof(orientation, value === "" ? null : Number(value), azimuthDegrees);
               }}
-              className="h-7 w-16 rounded-full border-white/25 bg-white/15 px-2 text-xs text-white placeholder:text-white/50"
+className="h-7 w-16 rounded-full border-white/25 bg-white/15 px-2 text-xs text-white placeholder:text-white/50"
             />
-            <button
-              type="button"
-              onClick={() => {
-                void haptic("light");
-                setRoof(orientation, null, azimuthDegrees);
-              }}
-              className={
-                tiltDegrees === null
-                  ? "rounded-full bg-accent px-3 py-1.5 text-[11px] font-semibold text-accent-foreground shadow-md shadow-accent/30"
-                  : "rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-medium text-white transition-colors hover:bg-white/25"
-              }
-            >
-              {t("common.dontKnow")}
-            </button>
           </div>
         </div>
       </div>
