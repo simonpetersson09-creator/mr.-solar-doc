@@ -64,6 +64,8 @@ function ResultPage() {
     );
   }
 
+  const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
+
   const handleExport = async () => {
     setExporting(true);
     setExportError(false);
