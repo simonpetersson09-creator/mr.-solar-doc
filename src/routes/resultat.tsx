@@ -112,7 +112,8 @@ function ResultPage() {
   const currency = result.economics.currency;
   const p = result.presentation;
   const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
-  const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
+  const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
+
 
   return (
     <div className="flex h-dvh max-h-dvh flex-col overflow-hidden surface-sun">
