@@ -48,8 +48,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
     <StepShell
       step={4}
       totalSteps={totalSteps}
-      title={t("fuse.title")}
-      subtitle={t("fuse.subtitle")}
+title={t("fuse.title")}
       onBack={onBack}
       footer={
         <Button
