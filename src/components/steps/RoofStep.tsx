@@ -15,8 +15,6 @@ import { useEffect } from "react";
 
 const TILT_PRESETS = [15, 27, 30, 45];
 
-const ORIENTATIONS: Orientation[] = ["unknown", "south", "southeast", "southwest", "east", "west"];
-
 /** Compass azimuth (0=N, clockwise) for each preset orientation. */
 const ORIENTATION_COMPASS: Record<Exclude<Orientation, "unknown">, number> = {
   south: 180,
