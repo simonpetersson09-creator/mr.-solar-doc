@@ -17,6 +17,7 @@ const SIZE = 220;
 const CENTER = SIZE / 2;
 const DIAL_RADIUS = 88;
 const ARROW_LENGTH = 72;
+const GRIP_RADIUS = 14;
 const TICKS = Array.from({ length: 36 }, (_, i) => i * 10);
 
 function angleFromEvent(event: React.PointerEvent, element: SVGSVGElement): number {
@@ -96,13 +97,24 @@ export function CompassDial({
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
       >
-        {/* Outer ring */}
+{/* Outer ring */}
         <circle
           cx={CENTER}
           cy={CENTER}
           r={DIAL_RADIUS}
           className="fill-secondary/60 stroke-border"
           strokeWidth={1.5}
+        />
+        {/* Faint dashed rotation path — hints the arrow can be dragged around */}
+        <circle
+          cx={CENTER}
+          cy={CENTER}
+          r={70}
+          fill="none"
+          className="stroke-muted-foreground/25"
+          strokeWidth={1}
+          strokeDasharray="2 5"
+          strokeLinecap="round"
         />
         {/* Ticks */}
         {TICKS.map((deg) => {
