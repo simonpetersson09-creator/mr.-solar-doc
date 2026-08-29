@@ -27,7 +27,7 @@ export function StepShell({
   return (
     <div className="flex h-dvh max-h-dvh flex-col overflow-hidden surface-sun">
       <main className="mx-auto w-full max-w-2xl flex-1 overflow-y-auto overscroll-contain px-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
-        <header className="pt-safe mx-auto flex w-full items-center gap-3">
+        <header className="pt-safe mx-auto flex w-full items-start gap-3">
         {onBack ? (
           <button
             type="button"
@@ -50,7 +50,7 @@ export function StepShell({
             {t("steps.stepOf", { current: step, total: totalSteps })}
           </p>
           {/* Segmented progress: completed steps deep green, current step amber. */}
-          <div className="mt-1.5 flex gap-1">
+          <div className="mt-1 flex gap-1">
             {Array.from({ length: totalSteps }, (_, i) => i + 1).map((n) => (
               <span
                 key={n}
@@ -67,9 +67,9 @@ export function StepShell({
         </div>
         </header>
 
-        <h1 className="mt-2 text-xl leading-tight font-bold tracking-tight text-foreground">{title}</h1>
+        <h1 className="mt-1 text-xl leading-tight font-bold tracking-tight text-foreground">{title}</h1>
         {subtitle ? <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p> : null}
-        <div className="mt-4 space-y-3">{children}</div>
+        <div className="mt-3 space-y-3">{children}</div>
 
         {footer ? <div className="mt-6">{footer}</div> : null}
       </main>
