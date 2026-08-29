@@ -102,16 +102,16 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
         </div>
       ) : null}
 
-      {/* Floating glass sheet: progress + search */}
+{/* Floating glass sheet: progress + search */}
       <div
         className="relative z-20 mx-auto w-full max-w-2xl px-5"
-        style={{ paddingTop: "calc(1.25rem + env(safe-area-inset-top))" }}
+        style={{ paddingTop: "calc(0.5rem + env(safe-area-inset-top))" }}
       >
-        <div className="glass-sheet rounded-[32px] p-5">
-          <div className="mb-6 flex items-center justify-between">
+        <div className="glass-sheet rounded-[28px] p-4">
+          <div className="mb-3.5 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="flex size-9 rotate-3 items-center justify-center rounded-2xl bg-accent text-accent-foreground shadow-lg shadow-accent/30">
-                <Sun className="size-5" />
+              <span className="flex size-8 rotate-3 items-center justify-center rounded-xl bg-accent text-accent-foreground shadow-lg shadow-accent/30">
+                <Sun className="size-4" />
               </span>
               <div className="flex gap-1.5" aria-hidden>
                 {Array.from({ length: totalSteps }, (_, index) => (
@@ -126,13 +126,13 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
                 ))}
               </div>
             </div>
-            <LanguageSwitcher className="h-9 w-auto gap-2 rounded-full border-border/50 bg-card/80 px-3.5 text-xs font-bold shadow-sm" />
+            <LanguageSwitcher className="h-8 w-auto gap-2 rounded-full border-border/50 bg-card/80 px-3 text-xs font-bold shadow-sm" />
           </div>
 
-          <h1 className="mb-5 text-[26px] leading-[1.1] font-bold">{t("address.title")}</h1>
+          <h1 className="mb-4 text-[22px] leading-[1.1] font-bold">{t("address.title")}</h1>
 
           <div className="relative">
-            <Search className="pointer-events-none absolute top-1/2 left-4 z-10 size-5 -translate-y-1/2 text-accent" />
+            <Search className="pointer-events-none absolute top-1/2 left-3.5 z-10 size-4.5 -translate-y-1/2 text-accent" />
             <Input
               value={query}
               onChange={(event) => {
@@ -140,7 +140,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
                 setShowResults(true);
               }}
               placeholder={t("address.placeholder")}
-              className="h-14 rounded-[20px] border-border/60 bg-card pl-12 pr-10 text-[15px] font-medium shadow-sm focus:border-accent focus:ring-4 focus:ring-accent/10 focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent/10"
+              className="h-12 rounded-[18px] border-border/60 bg-card pl-11 pr-10 text-[15px] font-medium shadow-sm focus:border-accent focus:ring-4 focus:ring-accent/10 focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent/10"
               autoComplete="off"
             />
             {isFetching ? (
