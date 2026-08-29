@@ -65,21 +65,14 @@ export function StepShell({
             ))}
           </div>
         </div>
-</header>
+        </header>
 
-      <main className="mx-auto w-full max-w-2xl flex-1 overflow-y-auto overscroll-contain px-5 pt-4 pb-4">
-        <h1 className="text-xl leading-tight font-bold tracking-tight text-foreground">{title}</h1>
+        <h1 className="mt-4 text-xl leading-tight font-bold tracking-tight text-foreground">{title}</h1>
         {subtitle ? <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p> : null}
         <div className="mt-4 space-y-3">{children}</div>
-      </main>
 
-{footer ? (
-        <div className="sticky bottom-0 bg-gradient-to-t from-background/90 to-transparent">
-          <div className="mx-auto w-full max-w-2xl px-6 pt-4 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
-            {footer}
-          </div>
-        </div>
-      ) : null}
+        {footer ? <div className="mt-6">{footer}</div> : null}
+      </main>
     </div>
   );
 }
