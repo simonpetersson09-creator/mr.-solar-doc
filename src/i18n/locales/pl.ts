@@ -46,7 +46,8 @@ export const pl = {
     "manual": "Ręcznie – dokładny kierunek",
     "manualHint": "Przeciągnij strzałkę tak, aby wskazywała kierunek dachu. 180° = prosto na południe.",
     "tilt": "Kąt nachylenia dachu",
-    "tiltDegrees": "Stopnie",
+    "tiltDegrees": ".*",
+    "tiltHint": "Większość dachów ma nachylenie 30–35°.",
     "compass": {
       "n": "N",
       "e": "E",

@@ -46,7 +46,8 @@ export const fr = {
     "manual": "Manuelle – direction exacte",
     "manualHint": "Faites glisser la flèche pour qu'elle pointe dans la direction du toit. 180° = plein sud.",
     "tilt": "Inclinaison du toit",
-    "tiltDegrees": "Degrés",
+    "tiltDegrees": ".*",
+    "tiltHint": "La plupart des toits ont une inclinaison de 30 à 35°.",
     "compass": {
       "n": "N",
       "e": "E",

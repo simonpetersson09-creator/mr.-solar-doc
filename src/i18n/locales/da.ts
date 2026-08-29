@@ -46,7 +46,8 @@ export const da = {
     "manual": "Manuelt – præcis retning",
     "manualHint": "Træk pilen, så den peger i tagets retning. 180° = stik syd.",
     "tilt": "Taghældning",
-    "tiltDegrees": "Grader",
+    "tiltDegrees": ".*",
+    "tiltHint": "De fleste tage har en hældning på 30–35°.",
     "compass": {
       "n": "N",
       "e": "Ø",
