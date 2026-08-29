@@ -75,16 +75,7 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
 
   const assumed = orientation === "unknown" || tiltDegrees === null;
 
-  const handleOrientationPreset = (option: Orientation) => {
-    void haptic("light");
-    setRoof(
-      option,
-      tiltDegrees,
-      option === "unknown" ? null : ORIENTATION_COMPASS[option],
-    );
-  };
-
-  const handleDialChange = (degrees: number) => {
+const handleDialChange = (degrees: number) => {
     setRoof(nearestOrientation(degrees), tiltDegrees, degrees);
   };
 
@@ -110,43 +101,28 @@ footer={
       }
     >
       <div className="space-y-5">
-        {/* Compass — lives directly on the page background, fully visible */}
-        <div className="flex justify-center pt-1">
-          <CompassDial
-            value={dialValue}
-            onChange={handleDialChange}
-            size="sm"
-            caption={t(`roof.orientations.${nearestOrientation(dialValue)}`)}
-          />
-        </div>
-
-        {/* Orientation */}
-        <div className="space-y-2">
-          <div>
+        {/* Compass — one card */}
+        <div className="card-elevated px-4 py-5">
+          <div className="mb-1 text-center">
             <Label className="text-xs">{t("roof.orientation")}</Label>
             <p className="text-[11px] text-muted-foreground">{t("roof.manualHint")}</p>
           </div>
-          <div className="flex flex-wrap gap-1.5">
-            {ORIENTATIONS.map((option) => (
-              <button
-                key={option}
-                type="button"
-                onClick={() => handleOrientationPreset(option)}
-                className={
-                  option === orientation
-                    ? "rounded-full bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground shadow-sm"
-                    : "rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
-                }
-              >
-                {t(`roof.orientations.${option}`)}
-              </button>
-            ))}
+          <div className="flex justify-center">
+            <CompassDial
+              value={dialValue}
+              onChange={handleDialChange}
+              size="sm"
+              caption={t(`roof.orientations.${nearestOrientation(dialValue)}`)}
+            />
           </div>
         </div>
 
-        {/* Tilt */}
-        <div className="space-y-2">
-          <Label className="text-xs">{t("roof.tilt")}</Label>
+        {/* Tilt — one card */}
+        <div className="card-elevated px-4 py-4">
+          <div className="mb-2">
+            <Label className="text-xs">{t("roof.tilt")}</Label>
+            <p className="text-[11px] text-muted-foreground">{t("roof.tiltHint")}</p>
+          </div>
           <div className="flex flex-wrap items-center gap-1.5">
             {TILT_PRESETS.map((preset) => (
               <button
