@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,6 +10,7 @@ import { useAppLocale } from "@/hooks/use-app-locale";
 import { useCalculation } from "@/hooks/use-calculation";
 import { useWizardStore } from "@/state/wizard-store";
 import { formatCurrency, formatNumber, parseLocaleNumber } from "@/lib/format";
+import { cn } from "@/lib/utils";
 import { MAX_PAYBACK_YEARS, MIN_PAYBACK_YEARS } from "@/config/constants";
 import { haptic } from "@/services/native-service";
 
@@ -28,10 +29,12 @@ function PriceInput({
   id,
   value,
   onCommit,
+  className,
 }: {
   id: string;
   value: number;
   onCommit: (next: number | null) => void;
+  className?: string;
 }) {
   const [draft, setDraft] = useState<string | null>(null);
 
@@ -40,7 +43,7 @@ function PriceInput({
       id={id}
       type="text"
       inputMode="decimal"
-      className="mt-1 h-9"
+      className={cn("mt-1 h-9", className)}
       value={draft ?? String(value)}
       onChange={(event) => {
         const raw = event.target.value;
@@ -92,7 +95,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
     (storedExportValue === null ? "standard-value" : "user-override");
 
   const priceSourceBadge = (source: "standard-value" | "user-override") => (
-    <span className="inline-flex items-center rounded-full bg-secondary px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
+    <span className="inline-flex items-center rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-medium text-white/70">
       {source === "user-override" ? t("result.userValueBadge") : t("result.standardValueBadge")}
     </span>
   );
@@ -104,7 +107,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
       title={t("result.adjustAssumptions")}
       subtitle={t("result.adjustAssumptionsHint")}
       onBack={onBack}
-footer={
+      footer={
         <Button
           className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           size="lg"
@@ -118,25 +121,30 @@ footer={
         </Button>
       }
     >
-      {/* Self-consumption split — flows on the page background */}
-      <div className="space-y-1">
-        <div className="flex items-center justify-between">
-          <Label className="text-xs">{t("result.adjustSplit")}</Label>
-          <span className="text-sm font-semibold">{formatNumber(sharePercent, locale)} %</span>
+      {/* ── Card 1: self-consumption split ── */}
+      <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">
+        <div className="flex items-center justify-between gap-3">
+          <Label className="text-xs font-semibold text-white">{t("result.adjustSplit")}</Label>
+          <span className="rounded-full bg-white/15 px-2.5 py-1 text-xs font-bold text-white">
+            {formatNumber(sharePercent, locale)} %
+          </span>
         </div>
         <Slider
-          className="mt-2.5"
+          className="py-1.5"
           min={0}
           max={100}
           step={5}
           value={[sharePercent]}
           onValueChange={([value]) => setSelfConsumptionShare((value ?? 0) / 100)}
+          trackClassName="bg-white/25"
+          rangeClassName="bg-accent"
+          thumbClassName="border-accent bg-white"
         />
-        <p className="mt-2 text-[11px] leading-snug text-muted-foreground">
+        <p className="text-[11px] leading-snug text-white/60">
           {t("result.selfConsumptionAssumption")}
         </p>
         {result?.presentation.selfConsumptionCapped ? (
-          <p className="mt-2 text-[11px] font-medium leading-snug text-foreground">
+          <p className="text-[11px] font-medium leading-snug text-white/85">
             {t("result.selfConsumptionCappedNote", {
               effective: formatNumber(result.presentation.selfConsumptionPercent, locale),
             })}
@@ -144,22 +152,27 @@ footer={
         ) : null}
       </div>
 
-      {/* Prices */}
-      <div className="space-y-2">
-        <p className="text-xs font-medium">{t("result.assumedPrices")}</p>
-        <div className="grid gap-2 sm:grid-cols-2">
+      {/* ── Card 2: assumed prices ── */}
+      <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
+        <p className="text-xs font-semibold text-white">{t("result.assumedPrices")}</p>
+        <div className="grid gap-2.5 sm:grid-cols-2">
           <div>
             <div className="flex flex-wrap items-center gap-1.5">
-              <Label htmlFor="self-value" className="text-[11px] text-muted-foreground">
+              <Label htmlFor="self-value" className="text-[11px] text-white/70">
                 {t("result.selfConsumedValueLabel", { currency })}
               </Label>
               {priceSourceBadge(selfConsumedSource)}
             </div>
-            <PriceInput id="self-value" value={selfConsumedValue} onCommit={setSelfConsumedValue} />
+            <PriceInput
+              id="self-value"
+              value={selfConsumedValue}
+              onCommit={setSelfConsumedValue}
+              className="rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
+            />
             {selfConsumedSource === "user-override" ? (
               <button
                 type="button"
-                className="mt-1 text-[11px] font-medium text-primary underline underline-offset-2"
+                className="mt-1 text-[11px] font-medium text-accent underline underline-offset-2"
                 onClick={() => setSelfConsumedValue(null)}
               >
                 {t("result.resetToStandard")}
@@ -168,16 +181,21 @@ footer={
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-1.5">
-              <Label htmlFor="export-value" className="text-[11px] text-muted-foreground">
+              <Label htmlFor="export-value" className="text-[11px] text-white/70">
                 {t("result.exportValueLabel", { currency })}
               </Label>
               {priceSourceBadge(exportSource)}
             </div>
-            <PriceInput id="export-value" value={exportValue} onCommit={setExportValue} />
+            <PriceInput
+              id="export-value"
+              value={exportValue}
+              onCommit={setExportValue}
+              className="rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
+            />
             {exportSource === "user-override" ? (
               <button
                 type="button"
-                className="mt-1 text-[11px] font-medium text-primary underline underline-offset-2"
+                className="mt-1 text-[11px] font-medium text-accent underline underline-offset-2"
                 onClick={() => setExportValue(null)}
               >
                 {t("result.resetToStandard")}
@@ -185,78 +203,71 @@ footer={
             ) : null}
           </div>
         </div>
-        <p className="text-[11px] text-muted-foreground">{t("result.standardValueHint")}</p>
+        <p className="text-[11px] leading-snug text-white/60">{t("result.standardValueHint")}</p>
       </div>
 
-      {/* Payback time — you set, we calculate */}
-      <div className="card-elevated overflow-hidden">
-        {/* You control */}
-        <div className="p-3">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <Label className="text-xs">{t("result.paybackTitle")}</Label>
-              <p className="mt-0.5 text-[11px] leading-snug text-muted-foreground">
-                {t("result.paybackSubtitle")}
-              </p>
-            </div>
-            <span className="whitespace-nowrap text-3xl font-extrabold leading-none tracking-tight text-primary">
-              {formatNumber(paybackYears, locale)}
-              <span className="ml-1 text-sm font-semibold text-muted-foreground">
-                {t("result.paybackYearsUnit")}
-              </span>
+      {/* ── Card 3: payback time ── */}
+      <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <Label className="text-xs font-semibold text-white">{t("result.paybackTitle")}</Label>
+            <p className="mt-0.5 text-[11px] leading-snug text-white/70">
+              {t("result.paybackSubtitle")}
+            </p>
+          </div>
+          <span className="whitespace-nowrap text-3xl font-extrabold leading-none tracking-tight text-white">
+            {formatNumber(paybackYears, locale)}
+            <span className="ml-1 text-sm font-semibold text-white/60">
+              {t("result.paybackYearsUnit")}
             </span>
-          </div>
-          <Slider
-            className="mt-3"
-            min={MIN_PAYBACK_YEARS}
-            max={MAX_PAYBACK_YEARS}
-            step={1}
-            value={[paybackYears]}
-            onValueChange={([value]) => setAcceptedPaybackYears(value ?? MIN_PAYBACK_YEARS)}
-          />
-          <div className="mt-1.5 flex justify-between text-[10px] text-muted-foreground">
-            <span>{t("result.paybackYears", { years: MIN_PAYBACK_YEARS })}</span>
-            <span>{t("result.paybackYears", { years: MAX_PAYBACK_YEARS })}</span>
-          </div>
-        </div>
-
-        {/* connector: you set → we calculate */}
-        <div className="flex items-center gap-1.5 border-y border-border bg-secondary/60 px-3 py-2">
-          <span className="flex size-5 items-center justify-center rounded-full bg-primary text-primary-foreground">
-            <ArrowDown className="size-3" />
-          </span>
-          <span className="text-[11px] font-semibold tracking-wide text-muted-foreground uppercase">
-            {t("result.paybackResultLabel")}
           </span>
         </div>
-
-        {/* result */}
-        <div className="bg-primary/5 p-3.5">
-          {result ? (
-            <>
-              <p className="text-3xl font-extrabold tracking-tight text-primary">
-                {t("result.maxInvestmentApprox", {
-                  amount: formatCurrency(
-                    result.investment.maxInvestmentRounded,
-                    locale,
-                    currency,
-                  ),
-                })}
-              </p>
-              <p className="mt-1 text-[11px] leading-snug text-muted-foreground">
-                {t("result.investmentFormula", {
-                  value: formatCurrency(result.presentation.annualSavings, locale, currency),
-                  perYear: t("common.perYear"),
-                  years: formatNumber(paybackYears, locale),
-                  amount: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
-                })}
-              </p>
-              <p className="mt-1.5 text-[11px] leading-snug text-muted-foreground">
-                {t("result.maxInvestmentNote")}
-              </p>
-            </>
-          ) : null}
+        <Slider
+          className="py-1.5"
+          min={MIN_PAYBACK_YEARS}
+          max={MAX_PAYBACK_YEARS}
+          step={1}
+          value={[paybackYears]}
+          onValueChange={([value]) => setAcceptedPaybackYears(value ?? MIN_PAYBACK_YEARS)}
+          trackClassName="bg-white/25"
+          rangeClassName="bg-accent"
+          thumbClassName="border-accent bg-white"
+        />
+        <div className="flex justify-between text-[10px] text-white/60">
+          <span>{t("result.paybackYears", { years: MIN_PAYBACK_YEARS })}</span>
+          <span>{t("result.paybackYears", { years: MAX_PAYBACK_YEARS })}</span>
         </div>
+      </div>
+
+      {/* ── Card 4: what the price corresponds to ── */}
+      <div className="glass-primary rounded-[28px] px-4 py-4">
+        <p className="text-[10px] font-bold tracking-widest text-white/70 uppercase">
+          {t("result.paybackResultLabel")}
+        </p>
+        {result ? (
+          <>
+            <p className="mt-1.5 text-3xl font-extrabold tracking-tight text-accent">
+              {t("result.maxInvestmentApprox", {
+                amount: formatCurrency(
+                  result.investment.maxInvestmentRounded,
+                  locale,
+                  currency,
+                ),
+              })}
+            </p>
+            <p className="mt-1.5 text-[11px] leading-snug text-white/70">
+              {t("result.investmentFormula", {
+                value: formatCurrency(result.presentation.annualSavings, locale, currency),
+                perYear: t("common.perYear"),
+                years: formatNumber(paybackYears, locale),
+                amount: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
+              })}
+            </p>
+            <p className="mt-1.5 text-[11px] leading-snug text-white/60">
+              {t("result.maxInvestmentNote")}
+            </p>
+          </>
+        ) : null}
       </div>
     </StepShell>
   );
