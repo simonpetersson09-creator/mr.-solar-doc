@@ -111,87 +111,90 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
         </Button>
       }
     >
-      <div className="card-elevated space-y-2.5 p-3">
-        <div className="grid gap-3 sm:grid-cols-[auto_1fr] sm:items-start">
-          <div className="flex justify-center sm:justify-start">
-            <CompassDial
-              value={dialValue}
-              onChange={handleDialChange}
-              size="sm"
-              caption={t(`roof.orientations.${nearestOrientation(dialValue)}`)}
-            />
-          </div>
+      <div className="space-y-5">
+        {/* Compass — lives directly on the page background, fully visible */}
+        <div className="flex justify-center pt-1">
+          <CompassDial
+            value={dialValue}
+            onChange={handleDialChange}
+            size="sm"
+            caption={t(`roof.orientations.${nearestOrientation(dialValue)}`)}
+          />
+        </div>
 
-          <div className="space-y-1.5">
-            <div>
-              <Label className="text-xs">{t("roof.orientation")}</Label>
-              <p className="text-[11px] text-muted-foreground">{t("roof.manualHint")}</p>
-            </div>
-            <div className="flex flex-wrap gap-1">
-              {ORIENTATIONS.map((option) => (
-                <button
-                  key={option}
-                  type="button"
-                  onClick={() => handleOrientationPreset(option)}
-                  className={
-                    option === orientation
-                      ? "rounded-full bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground shadow-sm"
-                      : "rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
-                  }
-                >
-                  {t(`roof.orientations.${option}`)}
-                </button>
-              ))}
-            </div>
+        {/* Orientation */}
+        <div className="space-y-2">
+          <div>
+            <Label className="text-xs">{t("roof.orientation")}</Label>
+            <p className="text-[11px] text-muted-foreground">{t("roof.manualHint")}</p>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
+            {ORIENTATIONS.map((option) => (
+              <button
+                key={option}
+                type="button"
+                onClick={() => handleOrientationPreset(option)}
+                className={
+                  option === orientation
+                    ? "rounded-full bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground shadow-sm"
+                    : "rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
+                }
+              >
+                {t(`roof.orientations.${option}`)}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center gap-1 border-t border-border pt-2.5">
-          <Label className="mr-1 text-xs">{t("roof.tilt")}</Label>
-          {TILT_PRESETS.map((preset) => (
+        {/* Tilt */}
+        <div className="space-y-2">
+          <Label className="text-xs">{t("roof.tilt")}</Label>
+          <div className="flex flex-wrap items-center gap-1.5">
+            {TILT_PRESETS.map((preset) => (
+              <button
+                key={preset}
+                type="button"
+                onClick={() => {
+                  void haptic("light");
+                  setRoof(orientation, preset, azimuthDegrees);
+                }}
+                className={
+                  tiltDegrees === preset
+                    ? "rounded-full bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground shadow-sm"
+                    : "rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
+                }
+              >
+                {preset}°
+              </button>
+            ))}
+            <Input
+              type="number"
+              inputMode="numeric"
+              min={0}
+              max={90}
+              value={tiltDegrees ?? ""}
+              placeholder={t("roof.tiltDegrees")}
+              onChange={(event) => {
+                const value = event.target.value;
+                setRoof(orientation, value === "" ? null : Number(value), azimuthDegrees);
+              }}
+              className="h-7 w-16 px-2 text-xs"
+            />
             <button
-              key={preset}
               type="button"
               onClick={() => {
                 void haptic("light");
-                setRoof(orientation, preset, azimuthDegrees);
+                setRoof(orientation, null, azimuthDegrees);
               }}
               className={
-                tiltDegrees === preset
+                tiltDegrees === null
                   ? "rounded-full bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground shadow-sm"
                   : "rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
               }
             >
-              {preset}°
+              {t("common.dontKnow")}
             </button>
-          ))}
-          <Input
-            type="number"
-            inputMode="numeric"
-            min={0}
-            max={90}
-            value={tiltDegrees ?? ""}
-            placeholder={t("roof.tiltDegrees")}
-            onChange={(event) => {
-              const value = event.target.value;
-              setRoof(orientation, value === "" ? null : Number(value), azimuthDegrees);
-            }}
-            className="h-7 w-16 px-2 text-xs"
-          />
-          <button
-            type="button"
-            onClick={() => {
-              void haptic("light");
-              setRoof(orientation, null, azimuthDegrees);
-            }}
-            className={
-              tiltDegrees === null
-                ? "rounded-full bg-primary px-3 py-1.5 text-[11px] font-semibold text-primary-foreground shadow-sm"
-                : "rounded-full border border-border bg-card px-3 py-1.5 text-[11px] font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
-            }
-          >
-            {t("common.dontKnow")}
-          </button>
+          </div>
         </div>
       </div>
 

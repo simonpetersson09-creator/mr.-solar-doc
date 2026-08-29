@@ -61,7 +61,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         </Button>
       }
     >
-      <div className="card-elevated space-y-2 p-3">
+      <div className="space-y-4">
         <Label className="text-xs text-muted-foreground">{t("fuse.label")}</Label>
         <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-5">
           {market.mainFuseOptionsAmp.map((amp) => (
