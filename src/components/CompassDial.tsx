@@ -66,9 +66,7 @@ export function CompassDial({
   };
 
 // SVG rotation: 0deg points up; CSS rotate is clockwise — same as compass.
-  const rad = (value * Math.PI) / 180;
-  const arrowTipX = CENTER + ARROW_LENGTH * Math.sin(rad);
-  const arrowTipY = CENTER - ARROW_LENGTH * Math.cos(rad);
+const rad = (value * Math.PI) / 180;
   const arrowBaseX = CENTER - 24 * Math.sin(rad);
   const arrowBaseY = CENTER + 24 * Math.cos(rad);
   // Grip ball sits just beyond the arrow tip; stem ends right before it.
