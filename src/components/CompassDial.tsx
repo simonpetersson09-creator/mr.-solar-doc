@@ -65,11 +65,17 @@ export function CompassDial({
     update(event);
   };
 
-  // SVG rotation: 0deg points up; CSS rotate is clockwise — same as compass.
-  const arrowTipX = CENTER + ARROW_LENGTH * Math.sin((value * Math.PI) / 180);
-  const arrowTipY = CENTER - ARROW_LENGTH * Math.cos((value * Math.PI) / 180);
-  const arrowBaseX = CENTER - 24 * Math.sin((value * Math.PI) / 180);
-  const arrowBaseY = CENTER + 24 * Math.cos((value * Math.PI) / 180);
+// SVG rotation: 0deg points up; CSS rotate is clockwise — same as compass.
+  const rad = (value * Math.PI) / 180;
+  const arrowTipX = CENTER + ARROW_LENGTH * Math.sin(rad);
+  const arrowTipY = CENTER - ARROW_LENGTH * Math.cos(rad);
+  const arrowBaseX = CENTER - 24 * Math.sin(rad);
+  const arrowBaseY = CENTER + 24 * Math.cos(rad);
+  // Grip ball sits just beyond the arrow tip; stem ends right before it.
+  const gripX = CENTER + (ARROW_LENGTH + 6) * Math.sin(rad);
+  const gripY = CENTER - (ARROW_LENGTH + 6) * Math.cos(rad);
+  const stemEndX = CENTER + (ARROW_LENGTH - 2) * Math.sin(rad);
+  const stemEndY = CENTER - (ARROW_LENGTH - 2) * Math.cos(rad);
 
   const directions = [
     { label: t("roof.compass.n"), deg: 0 },
