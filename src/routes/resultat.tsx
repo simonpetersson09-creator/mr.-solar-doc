@@ -238,20 +238,6 @@ function ResultPage() {
             </div>
           </dl>
 
-          <div className="rounded-xl bg-white/10 p-2.5">
-            <div className="flex items-baseline justify-between gap-3">
-              <p className="text-[11px] text-white/60">
-                {t("result.investmentLevelTitle", {
-                  years: formatNumber(paybackYears, locale),
-                })}
-              </p>
-              <p className="text-xl font-extrabold tracking-tight text-accent">
-                {t("result.maxInvestmentApprox", { amount: investmentAmount })}
-              </p>
-            </div>
-            <p className="mt-1 text-[11px] text-white/60">{t("result.maxInvestmentNote")}</p>
-          </div>
-
           {result.notes.includes("economic-values-missing") ? (
             <p className="rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] text-white/70">
               {t("result.missingMarketValues")}
