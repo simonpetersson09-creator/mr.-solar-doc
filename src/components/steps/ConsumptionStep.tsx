@@ -43,7 +43,9 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const [annual, setAnnual] = useState<string>(storedAnnual ? String(storedAnnual) : "");
   const [useMonthly, setUseMonthly] = useState(Boolean(storedMonthly));
   const [monthly, setMonthly] = useState<string[]>(
-    storedMonthly ? storedMonthly.map(String) : Array.from({ length: 12 }, () => ""),
+    storedMonthly
+      ? storedMonthly.map((value) => String(Math.round(value)))
+      : Array.from({ length: 12 }, () => ""),
   );
 
   const [shape, setShape] = useState<ConsumptionShape>(storedShape ?? "default");
@@ -53,7 +55,6 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const [parsing, setParsing] = useState(false);
   const [parseStatus, setParseStatus] = useState<"monthly" | "annual" | "error" | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
-  
 
   const handleFile = async (file: File) => {
     setParsing(true);
@@ -113,7 +114,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
       title={t("consumption.title")}
       subtitle={t("consumption.subtitle")}
       onBack={onBack}
-footer={
+      footer={
         <Button
           className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           size="lg"
@@ -128,11 +129,14 @@ footer={
                 null,
               );
             } else {
+              // Store whole kWh per month — the estimate is a rough split of
+              // the annual figure, so keep it integer and avoid decimal noise.
+              const roundedEstimated = estimatedMonthly?.map((value) => Math.round(value)) ?? null;
               setConsumption(
                 effectiveAnnual,
-                estimatedMonthly,
-                estimatedMonthly ? "annual-profile" : "annual-only",
-                estimatedMonthly ? shape : null,
+                roundedEstimated,
+                roundedEstimated ? "annual-profile" : "annual-only",
+                roundedEstimated ? shape : null,
               );
             }
             onNext();
@@ -144,27 +148,27 @@ footer={
       }
     >
       {/* ── Upload card ── separate from manual entry ── */}
-      <div className="card-elevated p-3.5">
-        <div className="mb-2.5">
-          <p className="text-sm font-semibold text-foreground">{t("consumption.upload.sectionTitle")}</p>
-          <p className="text-xs leading-snug text-muted-foreground">{t("consumption.upload.sectionHint")}</p>
+      <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
+        <div>
+          <p className="text-sm font-semibold text-white">{t("consumption.upload.sectionTitle")}</p>
+          <p className="text-xs leading-snug text-white/70">{t("consumption.upload.sectionHint")}</p>
         </div>
 
         {parsing ? (
-          <div className="flex items-center gap-2.5 rounded-xl border border-border bg-secondary/40 p-3">
-            <Loader2 className="size-4 shrink-0 animate-spin text-primary" />
-            <p className="min-w-0 truncate text-xs font-medium">
+          <div className="flex items-center gap-2.5 rounded-2xl border border-white/25 bg-white/15 p-3">
+            <Loader2 className="size-4 shrink-0 animate-spin text-accent" />
+            <p className="min-w-0 truncate text-xs font-medium text-white">
               {t("consumption.upload.readingFile", { name: fileName ?? "" })}
             </p>
           </div>
         ) : parseStatus === "monthly" || parseStatus === "annual" ? (
-          <div className="flex items-center gap-2.5 rounded-xl border border-primary/30 bg-primary/5 p-3">
-            <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+          <div className="flex items-center gap-2.5 rounded-2xl border border-accent/40 bg-white/15 p-3">
+            <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-white/15 text-accent">
               <CheckCircle2 className="size-4" />
             </span>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-xs font-medium">{fileName}</p>
-              <p className="text-[11px] leading-tight text-primary">
+              <p className="truncate text-xs font-medium text-white">{fileName}</p>
+              <p className="text-[11px] leading-tight text-white/70">
                 {t(
                   parseStatus === "monthly"
                     ? "consumption.upload.successMonthly"
@@ -175,7 +179,7 @@ footer={
             <Button
               variant="ghost"
               size="sm"
-              className="h-7 shrink-0 px-2 text-xs text-muted-foreground"
+              className="h-7 shrink-0 px-2 text-xs text-white/70 hover:bg-white/10 hover:text-white"
               onClick={() => {
                 setFileName(null);
                 setParseStatus(null);
@@ -187,12 +191,12 @@ footer={
             </Button>
           </div>
         ) : parseStatus === "error" ? (
-          <div className="flex items-center justify-between gap-2 rounded-xl border border-destructive/50 bg-destructive/5 p-3">
-            <p className="text-[11px] text-destructive">{t("consumption.upload.error")}</p>
+          <div className="flex items-center justify-between gap-2 rounded-2xl border border-red-400/50 bg-red-500/15 p-3">
+            <p className="text-[11px] text-red-100">{t("consumption.upload.error")}</p>
             <Button
               variant="outline"
               size="sm"
-              className="h-7 shrink-0 px-2.5 text-xs"
+              className="h-7 shrink-0 border-red-300/40 bg-white/10 px-2.5 text-xs text-red-50 hover:bg-white/20 hover:text-white"
               onClick={() => fileInputRef.current?.click()}
             >
               {t("consumption.upload.retry")}
@@ -201,10 +205,10 @@ footer={
         ) : (
           <Button
             variant="outline"
-            className="w-full gap-2"
+            className="h-auto w-full gap-2 rounded-2xl border-white/25 bg-white/15 py-3 text-sm font-semibold text-white shadow-inner transition-colors hover:bg-white/25 hover:text-white"
             onClick={() => fileInputRef.current?.click()}
           >
-            <FileUp className="size-4 text-primary" />
+            <FileUp className="size-4 text-accent" />
             {t("consumption.upload.title")}
           </Button>
         )}
@@ -231,16 +235,16 @@ footer={
       </div>
 
       {/* ── Manual entry card ── */}
-      <div className="card-elevated space-y-2.5 p-3.5">
-        <div className="mb-1">
-          <p className="text-sm font-semibold text-foreground">{t("consumption.manual.sectionTitle")}</p>
-          <p className="text-xs leading-snug text-muted-foreground">{t("consumption.manual.sectionHint")}</p>
+      <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
+        <div>
+          <p className="text-sm font-semibold text-white">{t("consumption.manual.sectionTitle")}</p>
+          <p className="text-xs leading-snug text-white/70">{t("consumption.manual.sectionHint")}</p>
         </div>
 
         {!useMonthly ? (
           <div className="flex items-end gap-2">
             <div className="flex-1">
-              <Label htmlFor="annual" className="text-xs text-muted-foreground">
+              <Label htmlFor="annual" className="text-xs text-white/70">
                 {t("consumption.annual")}
               </Label>
               <Input
@@ -250,21 +254,21 @@ footer={
                 value={annual}
                 placeholder={t("consumption.annualPlaceholder")}
                 onChange={(event) => setAnnual(event.target.value)}
-                className="mt-0.5 h-9 text-sm"
+                className="mt-0.5 h-9 rounded-full border-white/25 bg-white/15 text-sm text-white placeholder:text-white/50"
               />
             </div>
-            <span className="pb-2 text-[11px] text-muted-foreground">{t("units.kwhPerYear")}</span>
+            <span className="pb-2 text-[11px] text-white/70">{t("units.kwhPerYear")}</span>
           </div>
         ) : null}
 
         {validationKey ? (
-          <p role="alert" className="text-xs text-destructive">
+          <p role="alert" className="text-xs text-red-200">
             {t(validationKey, { min: MIN_ANNUAL_KWH, max: MAX_ANNUAL_KWH })}
           </p>
         ) : null}
 
-        <div className="flex items-center justify-between gap-4 border-t border-border pt-2.5">
-          <Label htmlFor="monthly-toggle" className="text-xs leading-snug">
+        <div className="flex items-center justify-between gap-4 border-t border-white/15 pt-3">
+          <Label htmlFor="monthly-toggle" className="text-xs leading-snug text-white/85">
             {t("consumption.useMonthly")}
           </Label>
           <Switch
@@ -274,22 +278,23 @@ footer={
               void haptic("light");
               setUseMonthly(checked);
             }}
+            className="data-[state=checked]:bg-accent data-[state=unchecked]:bg-white/25"
           />
         </div>
 
         {useMonthly ? (
-          <div className="space-y-2.5 border-t border-border pt-2.5">
+          <div className="space-y-2.5 border-t border-white/15 pt-3">
             <div className="flex items-baseline justify-between gap-2">
-              <p className="text-xs font-medium">{t("consumption.monthlyTitle")}</p>
-              <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+              <p className="text-xs font-medium text-white">{t("consumption.monthlyTitle")}</p>
+              <span className="rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white/70">
                 {shortMonths[0]}–{shortMonths[11]}
               </span>
             </div>
-            <p className="text-[11px] leading-snug text-muted-foreground">{t("consumption.monthlyHint")}</p>
+            <p className="text-[11px] leading-snug text-white/60">{t("consumption.monthlyHint")}</p>
             <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-6">
               {monthly.map((value, index) => (
                 <div key={monthLabels[index]}>
-                  <Label className="text-[10px] text-muted-foreground">
+                  <Label className="text-[10px] text-white/60">
                     {monthLabels[index]}
                   </Label>
                   <Input
@@ -301,31 +306,31 @@ footer={
                       next[index] = event.target.value;
                       setMonthly(next);
                     }}
-                    className="mt-0.5 h-8 px-1.5 text-[13px]"
+                    className="mt-0.5 h-8 rounded-lg border-white/25 bg-white/15 px-1.5 text-[13px] text-white placeholder:text-white/50"
                   />
                 </div>
               ))}
             </div>
-            <div className="flex items-baseline justify-between rounded-lg bg-secondary px-3 py-1.5">
-              <p className="text-xs text-muted-foreground">{t("consumption.total")}</p>
-              <p className="text-base font-bold">
+            <div className="flex items-baseline justify-between rounded-xl bg-white/10 px-3 py-2">
+              <p className="text-xs text-white/60">{t("consumption.total")}</p>
+              <p className="text-base font-bold text-white">
                 {formatNumber(monthlyTotal, locale)}{" "}
-                <span className="text-[11px] font-normal">{t("units.kwhPerYear")}</span>
+                <span className="text-[11px] font-normal text-white/60">{t("units.kwhPerYear")}</span>
               </p>
             </div>
           </div>
         ) : null}
 
         {((useMonthly && monthlyTotal > 0) || (!useMonthly && annual !== "")) && !valid ? (
-          <p className="text-xs text-destructive">{t("consumption.invalid")}</p>
+          <p className="text-xs text-red-200">{t("consumption.invalid")}</p>
         ) : null}
       </div>
 
       {showEstimatedProfile && estimatedMonthly ? (
-        <div className="card-elevated space-y-2 p-3">
+        <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">
           <div>
-            <p className="text-xs font-medium">{t("consumption.shape.question")}</p>
-            <p className="text-xs text-muted-foreground">{t("consumption.shape.help")}</p>
+            <p className="text-xs font-medium text-white">{t("consumption.shape.question")}</p>
+            <p className="text-xs text-white/70">{t("consumption.shape.help")}</p>
           </div>
 
           <ConsumptionShapePicker
@@ -335,12 +340,13 @@ footer={
               setShape(next);
             }}
             marketDefaultWeights={market.defaultConsumptionWeights}
+            onDark
           />
 
-          <div className="border-t border-border pt-2.5">
+          <div className="border-t border-white/15 pt-2.5">
             <div className="mb-1.5 flex items-center justify-between gap-2">
-              <p className="text-xs font-medium">{t("consumption.shape.previewTitle")}</p>
-              <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
+              <p className="text-xs font-medium text-white">{t("consumption.shape.previewTitle")}</p>
+              <span className="rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white/70">
                 {t("consumption.shape.estimatedBadge")}
               </span>
             </div>
@@ -348,8 +354,9 @@ footer={
               values={estimatedMonthly}
               labels={shortMonths}
               locale={locale}
+              onDark
             />
-            <p className="mt-2 text-[11px] leading-snug text-muted-foreground">
+            <p className="mt-2 text-[11px] leading-snug text-white/60">
               {shape === "default"
                 ? t("consumption.shape.defaultNote")
                 : t("consumption.shape.estimatedNote")}
