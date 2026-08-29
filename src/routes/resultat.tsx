@@ -177,15 +177,15 @@ function ResultPage() {
           </div>
         </section>
 
-        {/* 2. Production */}
-        <section className="card-elevated p-3.5">
-          <h2 className="text-sm font-semibold">{t("result.sectionProduction")}</h2>
-          <p className="mt-0.5 mb-3 text-xs text-muted-foreground">
+{/* 2. Production */}
+        <section className="glass-primary rounded-[28px] p-3.5">
+          <h2 className="text-sm font-semibold text-white">{t("result.sectionProduction")}</h2>
+          <p className="mt-0.5 mb-3 text-xs text-white/60">
             {t("result.monthlyProduction")}
           </p>
           {result.consumption.isEstimated ? (
-            <p className="mb-2 flex flex-wrap items-center gap-2 text-[11px] text-muted-foreground">
-              <span className="rounded-full bg-secondary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide">
+            <p className="mb-2 flex flex-wrap items-center gap-2 text-[11px] text-white/60">
+              <span className="rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white/80">
                 {t("result.estimatedBadge")}
               </span>
               {t("result.estimatedConsumptionNote")}
@@ -198,76 +198,77 @@ function ResultPage() {
             comparison={result.consumption.monthlyKwh}
             productionLabel={t("result.chartProduction")}
             comparisonLabel={t("result.chartConsumption")}
+            onDark
           />
         </section>
 
-        {/* 3. What you get out of it — plain numbers, no controls */}
-        <section className="card-elevated space-y-2.5 p-3.5">
-          <h2 className="text-sm font-semibold">{t("result.sectionEconomy")}</h2>
+{/* 3. What you get out of it — plain numbers, no controls */}
+        <section className="glass-primary space-y-2.5 rounded-[28px] p-3.5">
+          <h2 className="text-sm font-semibold text-white">{t("result.sectionEconomy")}</h2>
 
           <div className="flex items-baseline justify-between gap-3">
-            <p className="text-xs text-muted-foreground">{t("result.annualSavings")}</p>
-            <p className="text-3xl font-extrabold tracking-tight text-primary">
+            <p className="text-xs text-white/60">{t("result.annualSavings")}</p>
+            <p className="text-3xl font-extrabold tracking-tight text-white">
               {formatCurrency(p.annualSavings, locale, currency)}{" "}
-              <span className="text-xs font-normal text-muted-foreground">
+              <span className="text-xs font-normal text-white/60">
                 {t("result.perYear")}
               </span>
             </p>
           </div>
 
           <dl className="grid grid-cols-2 gap-2 text-xs">
-            <div className="rounded-xl bg-secondary p-2.5">
-              <dt className="text-[11px] text-muted-foreground">{t("result.selfConsumption")}</dt>
-              <dd className="font-semibold">
+            <div className="rounded-xl bg-white/10 p-2.5">
+              <dt className="text-[11px] text-white/60">{t("result.selfConsumption")}</dt>
+              <dd className="font-semibold text-white">
                 {formatCurrency(p.selfConsumptionValue, locale, currency)}
               </dd>
-              <dd className="text-[11px] text-muted-foreground">
+              <dd className="text-[11px] text-white/60">
                 {formatNumber(p.selfConsumptionPercent, locale)} % ·{" "}
                 {formatNumber(p.selfConsumptionKwh, locale)} kWh
               </dd>
             </div>
-            <div className="rounded-xl bg-secondary p-2.5">
-              <dt className="text-[11px] text-muted-foreground">{t("result.exported")}</dt>
-              <dd className="font-semibold">
+            <div className="rounded-xl bg-white/10 p-2.5">
+              <dt className="text-[11px] text-white/60">{t("result.exported")}</dt>
+              <dd className="font-semibold text-white">
                 {formatCurrency(p.exportValue, locale, currency)}
               </dd>
-              <dd className="text-[11px] text-muted-foreground">
+              <dd className="text-[11px] text-white/60">
                 {formatNumber(p.exportPercent, locale)} % · {formatNumber(p.exportedKwh, locale)} kWh
               </dd>
             </div>
           </dl>
 
-          <div className="rounded-xl bg-secondary p-2.5">
+          <div className="rounded-xl bg-white/10 p-2.5">
             <div className="flex items-baseline justify-between gap-3">
-              <p className="text-[11px] text-muted-foreground">
+              <p className="text-[11px] text-white/60">
                 {t("result.investmentLevelTitle", {
                   years: formatNumber(paybackYears, locale),
                 })}
               </p>
-              <p className="text-xl font-extrabold tracking-tight text-primary">
+              <p className="text-xl font-extrabold tracking-tight text-accent">
                 {t("result.maxInvestmentApprox", { amount: investmentAmount })}
               </p>
             </div>
-            <p className="mt-1 text-[11px] text-muted-foreground">{t("result.maxInvestmentNote")}</p>
+            <p className="mt-1 text-[11px] text-white/60">{t("result.maxInvestmentNote")}</p>
           </div>
 
           {result.notes.includes("economic-values-missing") ? (
-            <p className="rounded-xl border border-border bg-secondary p-2.5 text-[11px]">
+            <p className="rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] text-white/70">
               {t("result.missingMarketValues")}
             </p>
           ) : null}
 
-          <p className="text-[11px] text-muted-foreground">{t("result.economicsDisclaimer")}</p>
+          <p className="text-[11px] text-white/60">{t("result.economicsDisclaimer")}</p>
         </section>
 
 
 
-        {/* 5. Technical details */}
-        <div className="card-elevated overflow-hidden">
+{/* 5. Technical details */}
+        <div className="glass-primary overflow-hidden rounded-[28px]">
           <button
             type="button"
             onClick={() => setShowDetails((open) => !open)}
-            className="flex w-full items-center justify-between px-3.5 py-3 text-sm font-medium"
+            className="flex w-full items-center justify-between px-3.5 py-3 text-sm font-medium text-white"
           >
             {showDetails ? t("result.hideCalculation") : t("result.showCalculation")}
             <ChevronDown
@@ -275,7 +276,7 @@ function ResultPage() {
             />
           </button>
           {showDetails ? (
-            <dl className="divide-y divide-border border-t border-border text-sm">
+            <dl className="divide-y divide-white/10 border-t border-white/10 text-sm">
               {[
                 [t("result.installedDc"), `${formatDecimal(result.installedKwp, locale)} kWp`],
                 [t("result.panelsUnit"), formatNumber(result.panelCount, locale)],
@@ -332,21 +333,21 @@ function ResultPage() {
                 [t("result.currency"), `${currency} · ${market.countryCode}`],
               ].map(([label, value]) => (
                 <div key={label} className="flex justify-between gap-4 px-3.5 py-2.5">
-                  <dt className="text-muted-foreground">{label}</dt>
-                  <dd className="text-right font-medium">{value}</dd>
+                  <dt className="text-white/60">{label}</dt>
+                  <dd className="text-right font-medium text-white">{value}</dd>
                 </div>
               ))}
-              <div className="flex items-start gap-2 px-3.5 py-2.5 text-xs text-muted-foreground">
+              <div className="flex items-start gap-2 px-3.5 py-2.5 text-xs text-white/60">
                 <Info className="mt-0.5 size-3.5 shrink-0" />
                 <span>{t("result.fuseLimitInfo")}</span>
               </div>
-              <div className="px-3.5 py-2.5 text-[11px] text-muted-foreground">
+              <div className="px-3.5 py-2.5 text-[11px] text-white/60">
                 {t("result.selfConsumptionInfo")}
               </div>
-              <div className="px-3.5 py-2.5 text-[11px] text-muted-foreground">
+              <div className="px-3.5 py-2.5 text-[11px] text-white/60">
                 {t("result.priceExplainer")}
               </div>
-              <div className="px-3.5 py-2.5 text-[11px] text-muted-foreground">
+              <div className="px-3.5 py-2.5 text-[11px] text-white/60">
                 {t("result.paybackInfo")}
               </div>
             </dl>
