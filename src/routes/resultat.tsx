@@ -247,6 +247,20 @@ function ResultPage() {
           <p className="text-[11px] text-white/60">{t("result.economicsDisclaimer")}</p>
         </section>
 
+{/* 4. Max justifiable investment — its own hero card */}
+        <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
+          <p className="text-xs text-white/60">
+            {t("result.investmentLevelTitle", {
+              years: formatNumber(paybackYears, locale),
+            })}
+          </p>
+          <p className="mt-1 text-3xl font-extrabold tracking-tight text-accent">
+            {t("result.maxInvestmentApprox", { amount: investmentAmount })}
+          </p>
+          <p className="mt-1.5 text-[11px] text-white/60">{t("result.maxInvestmentNote")}</p>
+        </section>
+
+
 
 
 {/* 5. Technical details */}
