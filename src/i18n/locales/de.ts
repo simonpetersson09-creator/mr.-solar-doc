@@ -46,7 +46,8 @@ export const de = {
     "manual": "Manuell – exakte Richtung",
     "manualHint": "Ziehen Sie den Pfeil, sodass er in Dachrichtung zeigt. 180° = exakt Süden.",
     "tilt": "Dachneigung",
-    "tiltDegrees": "Grad",
+    "tiltDegrees": ".*",
+    "tiltHint": "Die meisten Dächer haben eine Neigung von 30–35°.",
     "compass": {
       "n": "N",
       "e": "O",

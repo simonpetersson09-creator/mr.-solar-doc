@@ -46,7 +46,8 @@ export const en = {
     manual: "Manual – exact direction",
     manualHint: "Drag the arrow so it points in the roof's direction. 180° = due south.",
     tilt: "Roof tilt",
-    tiltDegrees: "Degrees",
+    tiltDegrees: ".*",
+    tiltHint: "Most roofs have a tilt of 30–35°.",
     compass: {
       n: "N",
       e: "E",
