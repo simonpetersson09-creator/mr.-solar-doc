@@ -112,7 +112,6 @@ function ResultPage() {
   const currency = result.economics.currency;
   const p = result.presentation;
   const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
-  const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
 
 
   return (
