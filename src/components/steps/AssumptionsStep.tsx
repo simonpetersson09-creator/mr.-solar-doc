@@ -117,8 +117,8 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
         </Button>
       }
     >
-      {/* Self-consumption split */}
-      <div className="card-elevated p-3">
+      {/* Self-consumption split — flows on the page background */}
+      <div className="space-y-1">
         <div className="flex items-center justify-between">
           <Label className="text-xs">{t("result.adjustSplit")}</Label>
           <span className="text-sm font-semibold">{formatNumber(sharePercent, locale)} %</span>
@@ -144,7 +144,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
       </div>
 
       {/* Prices */}
-      <div className="card-elevated space-y-2 p-3">
+      <div className="space-y-2">
         <p className="text-xs font-medium">{t("result.assumedPrices")}</p>
         <div className="grid gap-2 sm:grid-cols-2">
           <div>
