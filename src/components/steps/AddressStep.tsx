@@ -105,7 +105,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
 {/* Floating glass sheet: progress + search */}
       <div
         className="relative z-20 mx-auto w-full max-w-2xl px-5"
-        style={{ paddingTop: "calc(0.5rem + env(safe-area-inset-top))" }}
+        style={{ paddingTop: "calc(0.25rem + env(safe-area-inset-top))" }}
       >
         <div className="glass-sheet rounded-[28px] p-4">
           <div className="mb-3.5 flex items-center justify-between">
