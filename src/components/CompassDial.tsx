@@ -17,6 +17,7 @@ const SIZE = 220;
 const CENTER = SIZE / 2;
 const DIAL_RADIUS = 88;
 const ARROW_LENGTH = 72;
+const GRIP_RADIUS = 14;
 const TICKS = Array.from({ length: 36 }, (_, i) => i * 10);
 
 function angleFromEvent(event: React.PointerEvent, element: SVGSVGElement): number {
@@ -64,11 +65,15 @@ export function CompassDial({
     update(event);
   };
 
-  // SVG rotation: 0deg points up; CSS rotate is clockwise — same as compass.
-  const arrowTipX = CENTER + ARROW_LENGTH * Math.sin((value * Math.PI) / 180);
-  const arrowTipY = CENTER - ARROW_LENGTH * Math.cos((value * Math.PI) / 180);
-  const arrowBaseX = CENTER - 24 * Math.sin((value * Math.PI) / 180);
-  const arrowBaseY = CENTER + 24 * Math.cos((value * Math.PI) / 180);
+// SVG rotation: 0deg points up; CSS rotate is clockwise — same as compass.
+const rad = (value * Math.PI) / 180;
+  const arrowBaseX = CENTER - 24 * Math.sin(rad);
+  const arrowBaseY = CENTER + 24 * Math.cos(rad);
+  // Grip ball sits just beyond the arrow tip; stem ends right before it.
+  const gripX = CENTER + (ARROW_LENGTH + 6) * Math.sin(rad);
+  const gripY = CENTER - (ARROW_LENGTH + 6) * Math.cos(rad);
+  const stemEndX = CENTER + (ARROW_LENGTH - 2) * Math.sin(rad);
+  const stemEndY = CENTER - (ARROW_LENGTH - 2) * Math.cos(rad);
 
   const directions = [
     { label: t("roof.compass.n"), deg: 0 },
@@ -96,13 +101,24 @@ export function CompassDial({
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
       >
-        {/* Outer ring */}
+{/* Outer ring */}
         <circle
           cx={CENTER}
           cy={CENTER}
           r={DIAL_RADIUS}
           className="fill-secondary/60 stroke-border"
           strokeWidth={1.5}
+        />
+        {/* Faint dashed rotation path — hints the arrow can be dragged around */}
+        <circle
+          cx={CENTER}
+          cy={CENTER}
+          r={70}
+          fill="none"
+          className="stroke-muted-foreground/25"
+          strokeWidth={1}
+          strokeDasharray="2 5"
+          strokeLinecap="round"
         />
         {/* Ticks */}
         {TICKS.map((deg) => {
@@ -123,9 +139,9 @@ export function CompassDial({
           );
         })}
         {/* Cardinal labels */}
-        {directions.map(({ label, deg }) => {
+{directions.map(({ label, deg }) => {
           const rad = (deg * Math.PI) / 180;
-          const r = DIAL_RADIUS - 28;
+          const r = DIAL_RADIUS - 38;
           return (
             <text
               key={deg}
@@ -139,38 +155,42 @@ export function CompassDial({
             </text>
           );
         })}
-        {/* Arrow */}
+{/* Arrow */}
         <line
           x1={arrowBaseX}
           y1={arrowBaseY}
-          x2={arrowTipX}
-          y2={arrowTipY}
+          x2={stemEndX}
+          y2={stemEndY}
           className="stroke-accent"
           strokeWidth={4}
           strokeLinecap="round"
         />
-        <polygon
-          points={(() => {
-            const rad = (value * Math.PI) / 180;
-            const tipR = ARROW_LENGTH + 2;
-            const wingR = ARROW_LENGTH - 14;
-            const wingSpread = 10;
-            const tip = [
-              CENTER + tipR * Math.sin(rad),
-              CENTER - tipR * Math.cos(rad),
-            ];
-            const left = [
-              CENTER + wingR * Math.sin(rad) - wingSpread * Math.cos(rad),
-              CENTER - wingR * Math.cos(rad) - wingSpread * Math.sin(rad),
-            ];
-            const right = [
-              CENTER + wingR * Math.sin(rad) + wingSpread * Math.cos(rad),
-              CENTER - wingR * Math.cos(rad) + wingSpread * Math.sin(rad),
-            ];
-            return `${tip[0]},${tip[1]} ${left[0]},${left[1]} ${right[0]},${right[1]}`;
-          })()}
-          className="fill-accent"
+{/* Pulsing halo behind the grip ball — signals it can be dragged */}
+        <circle
+          cx={gripX}
+          cy={gripY}
+          r={GRIP_RADIUS + 5}
+          className="animate-pulse fill-accent/25"
         />
+        {/* Grip ball — the draggable handle at the arrow tip */}
+        <circle
+          cx={gripX}
+          cy={gripY}
+          r={GRIP_RADIUS}
+          className="fill-card stroke-accent drop-shadow-md"
+          strokeWidth={3}
+        />
+        {/* Drag chevrons inside the grip ball, aligned with the arrow */}
+        <g transform={`rotate(${value} ${gripX} ${gripY})`}>
+          <path
+            d={`M ${gripX - 4} ${gripY - 3} L ${gripX} ${gripY - 7} L ${gripX + 4} ${gripY - 3} M ${gripX - 4} ${gripY + 3} L ${gripX} ${gripY + 7} L ${gripX + 4} ${gripY + 3}`}
+            className="stroke-accent"
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+        </g>
         {/* Center hub */}
         <circle cx={CENTER} cy={CENTER} r={14} className="fill-accent" />
         <circle cx={CENTER} cy={CENTER} r={6} className="fill-accent-foreground" />
