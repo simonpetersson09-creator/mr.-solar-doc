@@ -157,38 +157,42 @@ export function CompassDial({
             </text>
           );
         })}
-        {/* Arrow */}
+{/* Arrow */}
         <line
           x1={arrowBaseX}
           y1={arrowBaseY}
-          x2={arrowTipX}
-          y2={arrowTipY}
+          x2={stemEndX}
+          y2={stemEndY}
           className="stroke-accent"
           strokeWidth={4}
           strokeLinecap="round"
         />
-        <polygon
-          points={(() => {
-            const rad = (value * Math.PI) / 180;
-            const tipR = ARROW_LENGTH + 2;
-            const wingR = ARROW_LENGTH - 14;
-            const wingSpread = 10;
-            const tip = [
-              CENTER + tipR * Math.sin(rad),
-              CENTER - tipR * Math.cos(rad),
-            ];
-            const left = [
-              CENTER + wingR * Math.sin(rad) - wingSpread * Math.cos(rad),
-              CENTER - wingR * Math.cos(rad) - wingSpread * Math.sin(rad),
-            ];
-            const right = [
-              CENTER + wingR * Math.sin(rad) + wingSpread * Math.cos(rad),
-              CENTER - wingR * Math.cos(rad) + wingSpread * Math.sin(rad),
-            ];
-            return `${tip[0]},${tip[1]} ${left[0]},${left[1]} ${right[0]},${right[1]}`;
-          })()}
-          className="fill-accent"
+        {/* Pulsing halo behind the grip ball — signals it can be dragged */}
+        <circle
+          cx={gripX}
+          cy={gripY}
+          r={GRIP_RADIUS + 7}
+          className="animate-pulse fill-accent/25"
         />
+        {/* Grip ball — the draggable handle at the arrow tip */}
+        <circle
+          cx={gripX}
+          cy={gripY}
+          r={GRIP_RADIUS}
+          className="fill-card stroke-accent drop-shadow-md"
+          strokeWidth={3}
+        />
+        {/* Drag chevrons inside the grip ball, aligned with the arrow */}
+        <g transform={`rotate(${value} ${gripX} ${gripY})`}>
+          <path
+            d={`M ${gripX - 4} ${gripY - 3} L ${gripX} ${gripY - 7} L ${gripX + 4} ${gripY - 3} M ${gripX - 4} ${gripY + 3} L ${gripX} ${gripY + 7} L ${gripX + 4} ${gripY + 3}`}
+            className="stroke-accent"
+            strokeWidth={2.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+        </g>
         {/* Center hub */}
         <circle cx={CENTER} cy={CENTER} r={14} className="fill-accent" />
         <circle cx={CENTER} cy={CENTER} r={6} className="fill-accent-foreground" />
