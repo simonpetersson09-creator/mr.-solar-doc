@@ -85,7 +85,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
       </div>
 
       {/* Soft scrim so the frosted UI stays legible over map labels */}
-      <div className="pointer-events-none absolute inset-0 z-[5] bg-foreground/10" />
+      <div className="pointer-events-none absolute inset-0 z-[5] bg-foreground/15" />
 
       {/* Center reticle: hints where the marker lands until a location is picked */}
       {!location ? (
