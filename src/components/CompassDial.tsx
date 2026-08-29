@@ -165,11 +165,11 @@ const rad = (value * Math.PI) / 180;
           strokeWidth={4}
           strokeLinecap="round"
         />
-        {/* Pulsing halo behind the grip ball — signals it can be dragged */}
+{/* Pulsing halo behind the grip ball — signals it can be dragged */}
         <circle
           cx={gripX}
           cy={gripY}
-          r={GRIP_RADIUS + 7}
+          r={GRIP_RADIUS + 5}
           className="animate-pulse fill-accent/25"
         />
         {/* Grip ball — the draggable handle at the arrow tip */}
