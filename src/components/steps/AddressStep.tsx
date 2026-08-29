@@ -257,7 +257,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
               void haptic("medium");
               onNext();
             }}
-            className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-cta transition-transform focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-95 disabled:opacity-40"
+            className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/40 transition-transform focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-95 disabled:opacity-40"
           >
             <ArrowRight className="size-7 text-accent" />
           </button>
