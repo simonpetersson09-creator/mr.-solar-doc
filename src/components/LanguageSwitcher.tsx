@@ -43,7 +43,7 @@ export function LanguageSwitcher({ className }: { className?: string }) {
         aria-label={t("settings.language")}
         className={className ?? "h-9 w-auto gap-2 border-border bg-card px-3 text-xs"}
       >
-        <Languages className="size-4 shrink-0 text-muted-foreground" />
+        <Languages className="size-4 shrink-0" />
         <SelectValue />
       </SelectTrigger>
       <SelectContent className="max-h-72">

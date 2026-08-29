@@ -107,10 +107,10 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
         className="relative z-20 mx-auto w-full max-w-2xl px-5"
         style={{ paddingTop: "calc(0.25rem + env(safe-area-inset-top))" }}
       >
-        <div className="glass-sheet rounded-[28px] p-4">
+<div className="glass-primary rounded-[28px] p-4">
           <div className="mb-3.5 flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <span className="flex size-8 rotate-3 items-center justify-center rounded-xl bg-accent text-accent-foreground shadow-lg shadow-accent/30">
+              <span className="flex size-8 rotate-3 items-center justify-center rounded-xl bg-accent text-accent-foreground shadow-lg shadow-accent/40">
                 <Sun className="size-4" />
               </span>
               <div className="flex gap-1.5" aria-hidden>
@@ -120,16 +120,16 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
                     className={
                       index === 0
                         ? "h-1.5 w-2.5 rounded-full bg-accent"
-                        : "size-1.5 rounded-full bg-foreground/10"
+                        : "size-1.5 rounded-full bg-white/25"
                     }
                   />
                 ))}
               </div>
             </div>
-            <LanguageSwitcher className="h-8 w-auto gap-2 rounded-full border-border/50 bg-card/80 px-3 text-xs font-bold shadow-sm" />
+            <LanguageSwitcher className="h-8 w-auto gap-2 rounded-full border-white/25 bg-white/15 px-3 text-xs font-bold text-white shadow-sm" />
           </div>
 
-          <h1 className="mb-4 text-[22px] leading-[1.1] font-bold">{t("address.title")}</h1>
+          <h1 className="mb-4 text-[22px] leading-[1.1] font-bold text-white">{t("address.title")}</h1>
 
           <div className="relative">
             <Search className="pointer-events-none absolute top-1/2 left-3.5 z-10 size-4.5 -translate-y-1/2 text-accent" />
@@ -140,7 +140,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
                 setShowResults(true);
               }}
               placeholder={t("address.placeholder")}
-              className="h-12 rounded-[18px] border-border/60 bg-card pl-11 pr-10 text-[15px] font-medium shadow-sm focus:border-accent focus:ring-4 focus:ring-accent/10 focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent/10"
+              className="h-12 rounded-[18px] border-white/25 bg-white/10 pl-11 pr-10 text-[15px] font-medium text-white shadow-sm placeholder:text-white/60 focus:border-accent focus:ring-4 focus:ring-accent/25 focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent/25"
               autoComplete="off"
             />
             {isFetching ? (
@@ -177,10 +177,10 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
           </div>
 
           {isError ? (
-            <p className="mt-2 text-sm text-destructive">{t("address.error")}</p>
+<p className="mt-2 text-sm font-semibold text-accent">{t("address.error")}</p>
           ) : null}
           {showResults && !isFetching && debounced.length >= 3 && suggestions?.length === 0 ? (
-            <p className="mt-2 text-sm text-muted-foreground">{t("address.noResults")}</p>
+            <p className="mt-2 text-sm text-white/70">{t("address.noResults")}</p>
           ) : null}
         </div>
       </div>
