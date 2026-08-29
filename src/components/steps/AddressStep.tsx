@@ -140,7 +140,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
                 setShowResults(true);
               }}
               placeholder={t("address.placeholder")}
-              className="h-12 rounded-[18px] border-white/25 bg-white/10 pl-11 pr-10 text-[15px] font-medium text-white shadow-sm placeholder:text-white/60 focus:border-accent focus:ring-4 focus:ring-accent/25 focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent/25"
+              className="h-12 rounded-[18px] border-white/40 bg-card pl-11 pr-10 text-[15px] font-medium text-foreground shadow-sm placeholder:text-muted-foreground focus:border-accent focus:ring-4 focus:ring-accent/30 focus-visible:border-accent focus-visible:ring-4 focus-visible:ring-accent/30"
               autoComplete="off"
             />
             {isFetching ? (
