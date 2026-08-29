@@ -26,7 +26,7 @@ export function StepShell({
   const { t } = useTranslation();
 
   return (
-    <div className="flex min-h-dvh flex-col surface-sun">
+    <div className="flex h-dvh max-h-dvh flex-col overflow-hidden surface-sun">
       <header className="pt-safe mx-auto flex w-full max-w-2xl items-center gap-3 px-5">
         {onBack ? (
           <button
@@ -68,7 +68,7 @@ export function StepShell({
         <LanguageSwitcher />
       </header>
 
-      <main className="mx-auto w-full max-w-2xl flex-1 px-5 pt-4 pb-4">
+      <main className="mx-auto w-full max-w-2xl flex-1 overflow-y-auto overscroll-contain px-5 pt-4 pb-4">
         <h1 className="text-xl leading-tight font-bold tracking-tight text-foreground">{title}</h1>
         {subtitle ? <p className="mt-0.5 text-xs text-muted-foreground">{subtitle}</p> : null}
         <div className="mt-4 space-y-3">{children}</div>
