@@ -213,10 +213,10 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
         </div>
       ) : null}
 
-      {/* Bottom sheet: hint/address + CTA over a fading gradient */}
+{/* Bottom sheet: floating hint/address + CTA over the map */}
       <div className="pointer-events-none relative z-20 mt-auto">
-        <div className="absolute inset-x-0 bottom-0 h-64 bg-gradient-to-t from-background via-background to-transparent" />
-        <div className="pointer-events-auto relative mx-auto w-full max-w-2xl px-6 pt-8 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+        <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background/90 to-transparent" />
+        <div className="pointer-events-auto relative mx-auto w-full max-w-2xl px-6 pt-6 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
           {unsupportedMarket ? (
             <p className="mb-3 rounded-2xl border border-border bg-card/90 p-3 text-center text-xs text-foreground">
               {t("address.marketUnsupported")}
@@ -224,14 +224,14 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
           ) : null}
 
           {location ? (
-            <div className="mb-8 flex items-center gap-2 rounded-full bg-foreground/5 px-4 py-2">
+            <div className="mb-4 flex items-center gap-2 rounded-full bg-card/80 px-4 py-2 shadow-sm backdrop-blur">
               <MapPin className="size-3.5 shrink-0 text-accent" />
               <p className="truncate text-xs font-semibold text-foreground/80">
                 {location.address}
               </p>
             </div>
           ) : (
-            <div className="mb-8 flex items-center gap-2 rounded-full bg-foreground/5 px-4 py-2">
+            <div className="mb-4 flex items-center gap-2 rounded-full bg-card/80 px-4 py-2 shadow-sm backdrop-blur">
               <span className="size-2 shrink-0 animate-pulse rounded-full bg-accent" />
               <p className="text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
                 {t("address.mapHint")}
@@ -240,7 +240,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
           )}
 
           <Button
-            className="h-auto w-full rounded-[28px] py-5.5 text-lg font-bold shadow-cta"
+            className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             size="lg"
             disabled={!location || unsupportedMarket}
             onClick={() => {
@@ -249,7 +249,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
             }}
           >
             {t("common.next")}
-            <ArrowRight className="size-5 text-accent" />
+            <ArrowRight className="size-4 text-accent" />
           </Button>
         </div>
       </div>
