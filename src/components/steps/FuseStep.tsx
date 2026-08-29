@@ -39,6 +39,11 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   const valid = selected >= MIN_AMP && selected <= MAX_AMP;
   const maxAc = maxAcPowerFromFuse(selected, market.kwPerAmp);
 
+  const chipClass = (active: boolean) =>
+    active
+      ? "rounded-xl bg-accent px-2 py-2 text-xs font-bold text-accent-foreground shadow-md shadow-accent/30"
+      : "rounded-xl border border-white/25 bg-white/15 px-2 py-2 text-xs font-medium text-white transition-colors hover:bg-white/25";
+
   return (
     <StepShell
       step={4}
@@ -46,7 +51,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
       title={t("fuse.title")}
       subtitle={t("fuse.subtitle")}
       onBack={onBack}
-footer={
+      footer={
         <Button
           className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           size="lg"
@@ -62,8 +67,12 @@ footer={
         </Button>
       }
     >
-      <div className="space-y-4">
-        <Label className="text-xs text-muted-foreground">{t("fuse.label")}</Label>
+      <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
+        <div>
+          <Label className="text-xs text-white">{t("fuse.label")}</Label>
+          <p className="text-[11px] text-white/70">{t("fuse.subtitle")}</p>
+        </div>
+
         <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-5">
           {market.mainFuseOptionsAmp.map((amp) => (
             <button
@@ -74,11 +83,7 @@ footer={
                 setCustom(false);
                 setMainFuse(amp);
               }}
-              className={
-                !custom && storedFuse === amp
-                  ? "rounded-xl bg-primary px-2 py-2 text-xs font-bold text-primary-foreground shadow-sm"
-                  : "rounded-xl border border-border bg-card px-2 py-2 text-xs font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
-              }
+              className={chipClass(!custom && storedFuse === amp)}
             >
               {amp} A
             </button>
@@ -89,11 +94,7 @@ footer={
               void haptic("light");
               setCustom(true);
             }}
-            className={
-              custom
-                ? "rounded-xl bg-primary px-2 py-2 text-xs font-bold text-primary-foreground shadow-sm"
-                : "rounded-xl border border-border bg-card px-2 py-2 text-xs font-medium transition-colors hover:border-primary/40 hover:bg-secondary"
-            }
+            className={chipClass(custom)}
           >
             {t("fuse.other")}
           </button>
@@ -101,7 +102,7 @@ footer={
 
         {custom ? (
           <div className="flex items-center gap-2">
-            <Label htmlFor="custom-fuse" className="text-xs text-muted-foreground">
+            <Label htmlFor="custom-fuse" className="text-xs text-white/70">
               {t("fuse.otherLabel")}
             </Label>
             <Input
@@ -110,39 +111,40 @@ footer={
               inputMode="decimal"
               value={customValue}
               onChange={(event) => setCustomValue(event.target.value)}
-              className="h-8 w-20 text-xs"
+              className="h-8 w-20 rounded-full border-white/25 bg-white/15 text-xs text-white placeholder:text-white/50"
             />
-            <span className="text-xs text-muted-foreground">A</span>
+            <span className="text-xs text-white/60">A</span>
           </div>
         ) : null}
 
         {custom && customValue !== "" && !valid ? (
-          <p className="text-xs text-destructive">{t("fuse.invalid")}</p>
+          <p className="text-xs text-red-200">{t("fuse.invalid")}</p>
         ) : null}
 
         {valid ? (
-          <div className="flex items-center justify-between gap-3 rounded-xl bg-secondary px-3.5 py-2.5">
-            <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
+          <div className="flex items-center justify-between gap-3 rounded-xl bg-white/10 px-3.5 py-2.5">
+            <span className="flex items-center gap-1.5 text-xs text-white/60">
               <Zap className="size-3.5 text-accent" />
               {t("fuse.maxAc")}
             </span>
-            <span className="text-base font-bold">
-              {formatDecimal(maxAc, locale, 2)} <span className="text-[11px] font-normal">kW</span>
+            <span className="text-base font-bold text-white">
+              {formatDecimal(maxAc, locale, 2)}{" "}
+              <span className="text-[11px] font-normal text-white/60">kW</span>
             </span>
           </div>
         ) : null}
 
-        <div>
+        <div className="border-t border-white/15 pt-3">
           <button
             type="button"
             onClick={() => setShowGridInfo((open) => !open)}
-            className="flex items-start gap-2 text-left text-xs text-muted-foreground"
+            className="flex items-start gap-2 text-left text-xs text-white/60"
           >
             <Info className="mt-0.5 size-3.5 shrink-0" />
             <span>{t("fuse.gridAssumption")}</span>
           </button>
           {showGridInfo ? (
-            <p className="mt-2 pl-5 text-xs leading-relaxed text-muted-foreground">
+            <p className="mt-2 pl-5 text-[11px] leading-relaxed text-white/60">
               {t("fuse.gridAssumptionInfo")}
             </p>
           ) : null}
