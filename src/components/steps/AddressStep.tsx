@@ -1,7 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { ClientOnly } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Loader2, MapPin, Minus, Plus, Search, Sun } from "lucide-react";
+import { Loader2, MapPin, Minus, Plus, Search, Sun } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type L from "leaflet";
 import { Input } from "@/components/ui/input";
@@ -216,35 +216,18 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
         </div>
       ) : null}
 
-{/* Bottom sheet: floating hint/address + CTA over the map */}
+{/* Bottom sheet: CTA over the map */}
       <div className="pointer-events-none relative z-20 mt-auto">
         <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background/90 to-transparent" />
-        <div className="pointer-events-auto relative mx-auto w-full max-w-2xl px-6 pt-6 pr-24 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
+        <div className="pointer-events-auto relative mx-auto w-full max-w-2xl px-6 pt-6 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
           {unsupportedMarket ? (
-            <p className="mb-3 rounded-2xl border border-border bg-card/90 p-3 text-center text-xs text-foreground">
+            <p className="rounded-2xl border border-border bg-card/90 p-3 text-center text-xs text-foreground">
               {t("address.marketUnsupported")}
             </p>
           ) : null}
+        </div>
 
-          {location ? (
-            <div className="mb-4 flex items-center gap-2 rounded-full bg-card/80 px-4 py-2 shadow-sm backdrop-blur">
-              <MapPin className="size-3.5 shrink-0 text-accent" />
-              <p className="truncate text-xs font-semibold text-foreground/80">
-                {location.address}
-              </p>
-            </div>
-          ) : (
-            <div className="mb-4 flex items-center gap-2 rounded-full bg-card/80 px-4 py-2 shadow-sm backdrop-blur">
-              <span className="size-2 shrink-0 animate-pulse rounded-full bg-accent" />
-              <p className="text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
-                {t("address.mapHint")}
-              </p>
-            </div>
-          )}
-
-</div>
-
-        {/* Round thumb CTA pinned to the bottom-right corner */}
+{/* Thumb CTA pinned to the bottom-right corner */}
         <div
           className="pointer-events-auto absolute right-4 z-10"
           style={{ bottom: "calc(1.25rem + env(safe-area-inset-bottom))" }}
@@ -257,9 +240,9 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
               void haptic("medium");
               onNext();
             }}
-            className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/40 transition-transform focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-95 disabled:opacity-40"
+            className="flex h-14 items-center justify-center rounded-full bg-primary px-7 text-[15px] font-bold text-primary-foreground shadow-lg shadow-primary/40 transition-transform focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-95 disabled:opacity-40"
           >
-            <ArrowRight className="size-7 text-accent" />
+            {t("common.next")}
           </button>
         </div>
       </div>
