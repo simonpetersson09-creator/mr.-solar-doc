@@ -198,8 +198,9 @@
 
 /* Safe-area aware spacing for full-screen shells. */
 @utility pt-safe {
-  /* Header content sits as high as possible: only the notch safe-area inset. */
-  padding-top: calc(env(safe-area-inset-top) + 0.125rem);
+  /* Header content sits flush under the status bar: exactly the safe-area inset,
+     no extra gap, nothing overlapped. */
+  padding-top: env(safe-area-inset-top);
 }
 
 @utility pb-safe {
