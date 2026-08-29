@@ -178,7 +178,7 @@ function ResultPage() {
         </section>
 
 {/* 2. Production */}
-        <section className="glass-primary rounded-[28px] p-3.5">
+        <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
           <h2 className="text-sm font-semibold text-white">{t("result.sectionProduction")}</h2>
           <p className="mt-0.5 mb-3 text-xs text-white/60">
             {t("result.monthlyProduction")}
@@ -203,7 +203,7 @@ function ResultPage() {
         </section>
 
 {/* 3. What you get out of it — plain numbers, no controls */}
-        <section className="glass-primary space-y-2.5 rounded-[28px] p-3.5">
+        <section className="space-y-2.5 rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
           <h2 className="text-sm font-semibold text-white">{t("result.sectionEconomy")}</h2>
 
           <div className="flex items-baseline justify-between gap-3">
@@ -264,7 +264,7 @@ function ResultPage() {
 
 
 {/* 5. Technical details */}
-        <div className="glass-primary overflow-hidden rounded-[28px]">
+        <div className="overflow-hidden rounded-[28px] border border-primary-foreground/20 bg-primary text-primary-foreground shadow-hero">
           <button
             type="button"
             onClick={() => setShowDetails((open) => !open)}
