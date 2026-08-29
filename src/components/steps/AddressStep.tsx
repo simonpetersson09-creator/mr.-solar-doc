@@ -5,7 +5,7 @@ import { ArrowRight, Loader2, MapPin, Minus, Plus, Search, Sun } from "lucide-re
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type L from "leaflet";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+
 import { useAddressSearch } from "@/hooks/use-address-search";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { resolvePosition } from "@/services/geocoding-service";
@@ -219,7 +219,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
 {/* Bottom sheet: floating hint/address + CTA over the map */}
       <div className="pointer-events-none relative z-20 mt-auto">
         <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background/90 to-transparent" />
-        <div className="pointer-events-auto relative mx-auto w-full max-w-2xl px-6 pt-6 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
+        <div className="pointer-events-auto relative mx-auto w-full max-w-2xl px-6 pt-6 pr-24 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
           {unsupportedMarket ? (
             <p className="mb-3 rounded-2xl border border-border bg-card/90 p-3 text-center text-xs text-foreground">
               {t("address.marketUnsupported")}
@@ -242,18 +242,25 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
             </div>
           )}
 
-          <Button
-            className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
-            size="lg"
+</div>
+
+        {/* Round thumb CTA pinned to the bottom-right corner */}
+        <div
+          className="pointer-events-auto absolute right-4 z-10"
+          style={{ bottom: "calc(1.25rem + env(safe-area-inset-bottom))" }}
+        >
+          <button
+            type="button"
+            aria-label={t("common.next")}
             disabled={!location || unsupportedMarket}
             onClick={() => {
               void haptic("medium");
               onNext();
             }}
+            className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-cta transition-transform focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 active:scale-95 disabled:opacity-40"
           >
-            {t("common.next")}
-            <ArrowRight className="size-4 text-accent" />
-          </Button>
+            <ArrowRight className="size-7 text-accent" />
+          </button>
         </div>
       </div>
     </div>
