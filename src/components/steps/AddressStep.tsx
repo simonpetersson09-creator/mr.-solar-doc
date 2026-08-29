@@ -185,9 +185,12 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
         </div>
       </div>
 
-      {/* Custom zoom controls (Leaflet's own would hide behind the overlays) */}
+{/* Custom zoom controls (Leaflet's own would hide behind the overlays) */}
       {map ? (
-        <div className="absolute top-1/2 right-4 z-20 flex -translate-y-12 flex-col gap-3">
+        <div
+          className="absolute right-4 z-20 flex flex-col gap-3"
+          style={{ bottom: "calc(9.75rem + env(safe-area-inset-bottom))" }}
+        >
           <button
             type="button"
             aria-label="Zooma in"
