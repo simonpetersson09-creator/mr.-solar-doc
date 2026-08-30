@@ -39,6 +39,12 @@ export const sv = {
     region: "Region",
     error: "Adressökningen misslyckades.",
   },
+  premium: {
+    title: "Premium",
+    start: "Starta premium",
+    restore: "Återställ köp",
+    manage: "Hantera abonnemang",
+  },
   roof: {
     title: "Ditt tak",
     subtitle: "Vet du inte? Då räknar vi med en optimal placering.",
