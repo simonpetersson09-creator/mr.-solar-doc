@@ -27,8 +27,25 @@ const TOTAL_STEPS = 5;
 function WizardPage() {
   const navigate = useNavigate();
   useCountryLanguage();
-  const step = useWizardStore((s) => s.currentStep);
+  const persistedStep = useWizardStore((s) => s.currentStep);
   const setStep = useWizardStore((s) => s.setCurrentStep);
+  const location = useWizardStore((s) => s.location);
+  const tiltDegrees = useWizardStore((s) => s.tiltDegrees);
+  const annualConsumptionKwh = useWizardStore((s) => s.annualConsumptionKwh);
+  const mainFuseAmp = useWizardStore((s) => s.mainFuseAmp);
+
+  // Never resume past the first step that still lacks data — otherwise a
+  // returning user lands on step 5 and gets an empty result page.
+  const maxReachableStep = !location
+    ? 1
+    : tiltDegrees === null
+      ? 2
+      : !annualConsumptionKwh
+        ? 3
+        : !mainFuseAmp
+          ? 4
+          : 5;
+  const step = Math.min(persistedStep, maxReachableStep);
 
   if (step === 1) {
     return <AddressStep totalSteps={TOTAL_STEPS} onNext={() => setStep(2)} />;

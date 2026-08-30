@@ -28,7 +28,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
   const setLocation = useWizardStore((s) => s.setLocation);
 
   const [query, setQuery] = useState(location?.address ?? "");
-  const [debounced, setDebounced] = useState(query);
+  const [debounced, setDebounced] = useState("");
   const [showResults, setShowResults] = useState(false);
   const [map, setMap] = useState<L.Map | null>(null);
 
@@ -37,17 +37,21 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
     return () => clearTimeout(timer);
   }, [query]);
 
-  const { data: suggestions, isFetching, isError } = useAddressSearch(debounced, language);
+  // Skip searching for the already-resolved address (avoids a call on load).
+  const searchQuery = debounced && debounced === location?.address ? "" : debounced;
+  const { data: suggestions, isFetching, isError } = useAddressSearch(searchQuery, language);
 
   const handlePositionChange = async (latitude: number, longitude: number) => {
     const resolved = await resolvePosition(latitude, longitude, language).catch(() => null);
-    const address = resolved?.label ?? location?.address ?? "";
+    // Read the freshest store value: rapid clicks would otherwise mix data
+    // from a stale render.
+    const current = useWizardStore.getState().location;
     setLocation({
-      address,
+      address: resolved?.label ?? current?.address ?? "",
       latitude,
       longitude,
-      countryCode: resolved?.countryCode ?? location?.countryCode ?? "",
-      region: resolved?.region ?? location?.region ?? "",
+      countryCode: resolved?.countryCode ?? current?.countryCode ?? "",
+      region: resolved?.region ?? current?.region ?? "",
     });
     if (resolved?.label) {
       setQuery(resolved.label);
