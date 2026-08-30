@@ -287,6 +287,15 @@ export const en = {
     paybackInfo:
       "Simple payback shows how many years the estimated annual economic value corresponds to the investment. It does not account for future electricity price changes, financing cost, inflation, maintenance or discounting.",
     maxInvestment: "Investment level at chosen payback time",
+    productionCostTitle: "What does solar power from your roof cost?",
+    productionCostExplainer: "We divide the cost of the system by the estimated production over the whole calculation period.",
+    productionCostLabel: "Cost to produce",
+    productionCostValueLabel: "Value to you",
+    productionCostDifference: "Difference",
+    productionCostBasis: "Based on {{investment}} and {{production}} kWh over {{years}} years.",
+    productionCostHigherValue: "In this calculation, each kWh is worth more than it costs to produce.",
+    productionCostUnavailable: "We cannot calculate the production cost with the current data.",
+    perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "approx. {{amount}}",
     maxInvestmentExplainer:
       "To reach roughly {{years}} years of simple payback, the installation should cost at most about {{amount}}.",
