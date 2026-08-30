@@ -356,10 +356,9 @@ function ResultPage() {
 
 
         {exportError ? <p className="text-sm text-destructive">{t("result.pdfError")}</p> : null}
-      </main>
 
-      <div className="sticky bottom-0 bg-gradient-to-t from-background via-background/85 to-transparent">
-        <div className="pb-safe mx-auto flex w-full max-w-2xl flex-col gap-2 px-5 pt-3">
+        {/* Actions — in the scroll flow at the very bottom */}
+        <div className="pb-safe flex flex-col gap-2 pt-2">
           <div className="flex gap-2">
             <Button
               variant="outline"

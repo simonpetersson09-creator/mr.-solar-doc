@@ -67,8 +67,8 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
 
 return (
     <div className="surface-sun relative flex min-h-dvh flex-col">
-      {/* Map hero — fixed height; the action buttons live below in the page scroll */}
-      <div className="relative h-[60dvh] min-h-[440px] max-h-[540px] shrink-0">
+      {/* Map hero — fills all space above the in-flow CTA */}
+      <div className="relative min-h-[380px] flex-1 shrink-0">
         {/* Full-bleed map backdrop */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <ClientOnly fallback={<div className="h-full w-full bg-muted" />}>
