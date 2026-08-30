@@ -233,7 +233,6 @@ export const fi = {
     "paybackSubtitle": "Katso, mikä investointitaso vastaa erilaisia yksinkertaisia takaisinmaksuaikoja.",
     "investmentLevelTitle": "Investointitaso {{years}} vuoden takaisinmaksuajalla",
     "investmentLevelNote": "Nykyisillä laskentaoletuksilla {{years}} vuoden yksinkertainen takaisinmaksuaika vastaa noin {{amount}} investointia.",
-    "investmentFormula": "{{value}}{{perYear}} × {{years}} vuotta ≈ {{amount}}",
     "quoteToggle": "Vertaa tarjoushintoihin",
     "quoteLabel": "Tarjoushinta ({{currency}})",
     "quotePlaceholder": "89000",

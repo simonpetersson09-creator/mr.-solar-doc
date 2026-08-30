@@ -233,7 +233,6 @@ export const it = {
     "paybackSubtitle": "Vedi quale livello di investimento corrisponde a diversi tempi di ritorno semplici.",
     "investmentLevelTitle": "Livello di investimento a {{years}} anni di ritorno",
     "investmentLevelNote": "Con le ipotesi di calcolo odierne, {{years}} anni di tempo di ritorno semplice corrispondono a un investimento di circa {{amount}}.",
-    "investmentFormula": "{{value}}{{perYear}} × {{years}} anni ≈ {{amount}}",
     "quoteToggle": "Confronta con un prezzo di offerta",
     "quoteLabel": "Prezzo da offerta ({{currency}})",
     "quotePlaceholder": "89000",

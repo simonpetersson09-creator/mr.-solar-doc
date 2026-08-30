@@ -233,7 +233,6 @@ export const cs = {
     "paybackSubtitle": "Podívejte se, jaká úroveň investice odpovídá různým jednoduchým dobám návratnosti.",
     "investmentLevelTitle": "Úroveň investice při {{years}} letech návratnosti",
     "investmentLevelNote": "S dnešními předpoklady výpočtu odpovídá {{years}} let jednoduché doby návratnosti investici přibližně {{amount}}.",
-    "investmentFormula": "{{value}}{{perYear}} × {{years}} let ≈ {{amount}}",
     "quoteToggle": "Porovnat s nabízenou cenou",
     "quoteLabel": "Nabídková cena ({{currency}})",
     "quotePlaceholder": "89000",

@@ -272,11 +272,9 @@ export const en = {
     paybackSubtitle:
       "You decide how quickly you want the investment paid back. We calculate what it corresponds to in installation cost.",
     paybackYearsUnit: "years",
-    paybackResultLabel: "Corresponds to an installation of",
     investmentLevelTitle: "Investment level at {{years}} years payback",
     investmentLevelNote:
       "With today's calculation assumptions, {{years}} years of simple payback corresponds to an investment of about {{amount}}.",
-    investmentFormula: "{{value}}{{perYear}} × {{years}} years ≈ {{amount}}",
     quoteToggle: "Compare with a quoted price",
     quoteLabel: "Quoted price ({{currency}})",
     quotePlaceholder: "89000",
