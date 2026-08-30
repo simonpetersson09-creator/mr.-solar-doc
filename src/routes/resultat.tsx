@@ -134,6 +134,10 @@ const cost = result.productionCost;
           </button>
           <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
         </header>
+        {/* Group: the system */}
+        <p className="px-1 pt-1 text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+          {t("result.groupSystem")}
+        </p>
         {/* 1. Recommendation */}
         <section className="hero-metric rounded-3xl p-5">
           <div className="glow-amber -top-16 -right-16 size-48" aria-hidden="true" />
@@ -214,6 +218,10 @@ const cost = result.productionCost;
           />
         </section>
 
+{/* Group: economics */}
+        <p className="px-1 pt-1 text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+          {t("result.groupEconomy")}
+        </p>
 {/* 3. What you get out of it — plain numbers, no controls */}
         <section className="space-y-2.5 rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
           <h2 className="text-sm font-semibold text-white">{t("result.sectionEconomy")}</h2>
@@ -345,6 +353,10 @@ const cost = result.productionCost;
 
 
 
+        {/* Group: details */}
+        <p className="px-1 pt-1 text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+          {t("result.groupDetails")}
+        </p>
         {/* 6. Technical details */}
         <div className="overflow-hidden rounded-[28px] border border-primary-foreground/20 bg-primary text-primary-foreground shadow-hero">
           <button
