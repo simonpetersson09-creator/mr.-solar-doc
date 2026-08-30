@@ -10,11 +10,17 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as InstallningarRouteImport } from './routes/installningar'
 import { Route as ResultatRouteImport } from './routes/resultat'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InstallningarRoute = InstallningarRouteImport.update({
+  id: '/installningar',
+  path: '/installningar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResultatRoute = ResultatRouteImport.update({
@@ -25,27 +31,31 @@ const ResultatRoute = ResultatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/installningar': typeof InstallningarRoute
   '/resultat': typeof ResultatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/installningar': typeof InstallningarRoute
   '/resultat': typeof ResultatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/installningar': typeof InstallningarRoute
   '/resultat': typeof ResultatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/resultat'
+  fullPaths: '/' | '/installningar' | '/resultat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/resultat'
-  id: '__root__' | '/' | '/resultat'
+  to: '/' | '/installningar' | '/resultat'
+  id: '__root__' | '/' | '/installningar' | '/resultat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  InstallningarRoute: typeof InstallningarRoute
   ResultatRoute: typeof ResultatRoute
 }
 
@@ -56,6 +66,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/installningar': {
+      id: '/installningar'
+      path: '/installningar'
+      fullPath: '/installningar'
+      preLoaderRoute: typeof InstallningarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resultat': {
@@ -70,6 +87,7 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  InstallningarRoute: InstallningarRoute,
   ResultatRoute: ResultatRoute,
 }
 export const routeTree = rootRouteImport

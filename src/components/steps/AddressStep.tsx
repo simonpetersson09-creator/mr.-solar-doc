@@ -1,7 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from "react";
-import { ClientOnly } from "@tanstack/react-router";
+import { ClientOnly, useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Loader2, MapPin, Minus, Plus, Search, Sun } from "lucide-react";
+import { ArrowRight, Loader2, MapPin, Minus, Plus, Search, Settings, Sun } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type L from "leaflet";
 import { Button } from "@/components/ui/button";
@@ -24,13 +24,13 @@ interface AddressStepProps {
 export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
   const { t } = useTranslation();
   const { language } = useAppLocale();
+  const navigate = useNavigate();
   const location = useWizardStore((s) => s.location);
   const setLocation = useWizardStore((s) => s.setLocation);
 
   const [query, setQuery] = useState(location?.address ?? "");
   const [debounced, setDebounced] = useState("");
   const [showResults, setShowResults] = useState(false);
-  const [showPremium, setShowPremium] = useState(false);
   const [map, setMap] = useState<L.Map | null>(null);
 
   useEffect(() => {
@@ -240,11 +240,11 @@ return (
               aria-label={t("premium.title")}
               onClick={() => {
                 void haptic("light");
-                setShowPremium((v) => !v);
+                void navigate({ to: "/installningar" });
               }}
-              className="flex size-14 shrink-0 items-center justify-center rounded-full border border-primary/50 bg-primary text-lg font-bold text-primary-foreground shadow-lg shadow-primary/40 transition-transform active:scale-90"
+              className="flex size-14 shrink-0 items-center justify-center rounded-full border border-primary/50 bg-primary text-primary-foreground shadow-lg shadow-primary/40 transition-transform active:scale-90"
             >
-              {totalSteps}
+              <Settings className="size-6" />
             </button>
             <Button
               type="button"
@@ -261,33 +261,6 @@ return (
               <ArrowRight className="size-4 text-accent" />
             </Button>
           </div>
-          {showPremium ? (
-            <div className="mx-auto mt-3 grid w-full max-w-2xl gap-2">
-              <button
-                type="button"
-                onClick={() => void haptic("light")}
-                className="rounded-2xl border border-primary/50 bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 transition-transform active:scale-[0.98]"
-              >
-                {t("premium.start")}
-              </button>
-              <div className="grid grid-cols-2 gap-2">
-                <button
-                  type="button"
-                  onClick={() => void haptic("light")}
-                  className="rounded-2xl border border-primary/50 bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 transition-transform active:scale-[0.98]"
-                >
-                  {t("premium.restore")}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => void haptic("light")}
-                  className="rounded-2xl border border-primary/50 bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 transition-transform active:scale-[0.98]"
-                >
-                  {t("premium.manage")}
-                </button>
-              </div>
-            </div>
-          ) : null}
         </div>
       </div>
     </div>
