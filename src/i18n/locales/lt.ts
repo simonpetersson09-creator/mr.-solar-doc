@@ -233,7 +233,6 @@ export const lt = {
     "paybackSubtitle": "Pažiūrėkite, koks investicijos lygis atitinka skirtingus paprastus atsipirkimo terminus.",
     "investmentLevelTitle": "Investicijos lygis prie {{years}} metų atsipirkimo",
     "investmentLevelNote": "Remiantis šiandienos skaičiavimo prielaidomis, {{years}} metų paprastas atsipirkimas atitinka maždaug {{amount}} investiciją.",
-    "investmentFormula": "{{value}}{{perYear}} × {{years}} metai ≈ {{amount}}",
     "quoteToggle": "Palyginti su pasiūlymo kaina",
     "quoteLabel": "Pasiūlymo kaina ({{currency}})",
     "quotePlaceholder": "89000",

@@ -273,11 +273,9 @@ export const sv = {
     paybackSubtitle:
       "Du bestämmer hur snabbt du vill ha investeringen tillbaka. Vi räknar ut vad det motsvarar i installationskostnad.",
     paybackYearsUnit: "år",
-    paybackResultLabel: "Motsvarar en installation på",
     investmentLevelTitle: "Investeringsnivå vid {{years}} års återbetalning",
     investmentLevelNote:
       "Med dagens kalkylantaganden motsvarar {{years}} års enkel återbetalningstid en investering på cirka {{amount}}.",
-    investmentFormula: "{{value}}{{perYear}} × {{years}} år ≈ {{amount}}",
     quoteToggle: "Jämför med offertpris",
     quoteLabel: "Pris enligt offert ({{currency}})",
     quotePlaceholder: "89000",

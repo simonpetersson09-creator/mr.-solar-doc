@@ -233,7 +233,6 @@ export const da = {
     "paybackSubtitle": "Se hvilket investeringsniveau, der svarer til forskellige simple tilbagebetalingstider.",
     "investmentLevelTitle": "Investeringsniveau ved {{years}} års tilbagebetaling",
     "investmentLevelNote": "Med dagens kalkulationsantagelser svarer {{years}} års simpel tilbagebetalingstid til en investering på cirka {{amount}}.",
-    "investmentFormula": "{{value}}{{perYear}} × {{years}} år ≈ {{amount}}",
     "quoteToggle": "Sammenlign med tilbudspris",
     "quoteLabel": "Pris ifølge tilbud ({{currency}})",
     "quotePlaceholder": "89000",

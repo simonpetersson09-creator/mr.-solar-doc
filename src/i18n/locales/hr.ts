@@ -233,7 +233,6 @@ export const hr = {
     "paybackSubtitle": "Pogledajte koja razina ulaganja odgovara različitim jednostavnim razdobljima povrata.",
     "investmentLevelTitle": "Razina ulaganja pri povratu od {{years}} godina",
     "investmentLevelNote": "Prema današnjim pretpostavkama izračuna, {{years}} godina jednostavnog povrata odgovara ulaganju od približno {{amount}}.",
-    "investmentFormula": "{{value}}{{perYear}} × {{years}} godina ≈ {{amount}}",
     "quoteToggle": "Usporedi s cijenom ponude",
     "quoteLabel": "Cijena prema ponudi ({{currency}})",
     "quotePlaceholder": "89000",

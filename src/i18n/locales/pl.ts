@@ -233,7 +233,6 @@ export const pl = {
     "paybackSubtitle": "Sprawdź, jaki poziom inwestycji odpowiada różnym prostym czasom zwrotu.",
     "investmentLevelTitle": "Poziom inwestycji przy {{years}} latach zwrotu",
     "investmentLevelNote": "Przy dzisiejszych założeniach kalkulacyjnych, {{years}} lat prostego zwrotu odpowiada inwestycji w wysokości około {{amount}}.",
-    "investmentFormula": "{{value}}{{perYear}} × {{years}} lat ≈ {{amount}}",
     "quoteToggle": "Porównaj z ceną ofertową",
     "quoteLabel": "Cena według oferty ({{currency}})",
     "quotePlaceholder": "89000",

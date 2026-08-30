@@ -233,7 +233,6 @@ export const de = {
     "paybackSubtitle": "Sehen Sie, welches Investitionsniveau zu verschiedenen einfachen Amortisationszeiten passt.",
     "investmentLevelTitle": "Investitionsniveau bei {{years}} Jahren Amortisation",
     "investmentLevelNote": "Mit den heutigen Kalkulationsannahmen entspricht eine einfache Amortisationszeit von {{years}} Jahren einer Investition von etwa {{amount}}.",
-    "investmentFormula": "{{value}}{{perYear}} × {{years}} Jahre ≈ {{amount}}",
     "quoteToggle": "Mit Angebotspreis vergleichen",
     "quoteLabel": "Preis laut Angebot ({{currency}})",
     "quotePlaceholder": "89000",

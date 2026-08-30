@@ -233,7 +233,6 @@ export const fr = {
     "paybackSubtitle": "Voyez quel niveau d'investissement correspond à différents temps de retour sur investissement simples.",
     "investmentLevelTitle": "Niveau d'investissement pour {{years}} ans de retour sur investissement",
     "investmentLevelNote": "Avec les hypothèses de calcul actuelles, {{years}} ans de retour sur investissement simple correspondent à un investissement d'environ {{amount}}.",
-    "investmentFormula": "{{value}}{{perYear}} × {{years}} ans ≈ {{amount}}",
     "quoteToggle": "Comparer avec un prix de devis",
     "quoteLabel": "Prix selon devis ({{currency}})",
     "quotePlaceholder": "89000",

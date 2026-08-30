@@ -9,7 +9,7 @@ import { StepShell } from "@/components/StepShell";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useCalculation } from "@/hooks/use-calculation";
 import { useWizardStore } from "@/state/wizard-store";
-import { formatCurrency, formatNumber, parseLocaleNumber } from "@/lib/format";
+import { formatNumber, parseLocaleNumber } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import {
   MAX_PAYBACK_YEARS,
@@ -304,36 +304,6 @@ title={t("result.adjustAssumptions")}
         </div>
       </div>
 
-      {/* ── Card 5: what the price corresponds to ── */}
-      <div className="glass-primary rounded-[28px] px-4 py-4">
-        <p className="text-[10px] font-bold tracking-widest text-white/70 uppercase">
-          {t("result.paybackResultLabel")}
-        </p>
-        {result ? (
-          <>
-            <p className="mt-1.5 text-3xl font-extrabold tracking-tight text-accent">
-              {t("result.maxInvestmentApprox", {
-                amount: formatCurrency(
-                  result.investment.maxInvestmentRounded,
-                  locale,
-                  currency,
-                ),
-              })}
-            </p>
-            <p className="mt-1.5 text-[11px] leading-snug text-white/70">
-              {t("result.investmentFormula", {
-                value: formatCurrency(result.presentation.annualSavings, locale, currency),
-                perYear: t("common.perYear"),
-                years: formatNumber(paybackYears, locale),
-                amount: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
-              })}
-            </p>
-            <p className="mt-1.5 text-[11px] leading-snug text-white/60">
-              {t("result.maxInvestmentNote")}
-            </p>
-          </>
-        ) : null}
-      </div>
-    </StepShell>
+</StepShell>
   );
 }

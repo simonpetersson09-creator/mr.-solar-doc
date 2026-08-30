@@ -233,7 +233,6 @@ export const lv = {
     "paybackSubtitle": "Skatiet, kāds investīciju līmenis atbilst dažādiem vienkāršiem atmaksas periodiem.",
     "investmentLevelTitle": "Investīciju līmenis pie {{years}} gadu atmaksas",
     "investmentLevelNote": "Ar šodienas aprēķinu pieņēmumiem {{years}} gadu vienkāršs atmaksas periods atbilst investīcijai aptuveni {{amount}} apmērā.",
-    "investmentFormula": "{{value}}{{perYear}} × {{years}} gadi ≈ {{amount}}",
     "quoteToggle": "Salīdzināt ar piedāvājuma cenu",
     "quoteLabel": "Piedāvājuma cena ({{currency}})",
     "quotePlaceholder": "89000",

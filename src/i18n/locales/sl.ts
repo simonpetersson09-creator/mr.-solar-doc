@@ -233,7 +233,6 @@ export const sl = {
     "paybackSubtitle": "Poglejte, katera raven investicije ustreza različnim enostavnim dobam vračila.",
     "investmentLevelTitle": "Raven investicije pri dobi vračila {{years}} let",
     "investmentLevelNote": "Z današnjimi kalkulacijskimi predpostavkami dobi vračila {{years}} let ustreza investiciji približno {{amount}}.",
-    "investmentFormula": "{{value}}{{perYear}} × {{years}} let ≈ {{amount}}",
     "quoteToggle": "Primerjaj s ponudbeno ceno",
     "quoteLabel": "Cena po ponudbi ({{currency}})",
     "quotePlaceholder": "89000",
