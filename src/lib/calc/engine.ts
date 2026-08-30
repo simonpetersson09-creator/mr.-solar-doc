@@ -163,6 +163,24 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     exportValue: economics.exportValue,
   });
 
+  // Year-by-year economics (degradation + electricity price scenario).
+  const lifetime = buildLifetimeProjection({
+    firstYearProductionKwh: annualProductionKwh,
+    selfConsumptionShare: input.selfConsumptionShare,
+    annualConsumptionKwh: input.consumption.annualKwh,
+    selfConsumedValuePerKwh,
+    exportValuePerKwh,
+    annualDegradationRate: input.annualDegradationRate,
+    annualPriceChangeRate: input.annualPriceChangeRate,
+  });
+
+  // Keep the investment level consistent with the presented year-1 savings.
+  const firstYearValue = lifetime.years[0]?.economicValue ?? 0;
+  const valueScale = firstYearValue > 0 ? presentation.annualSavings / firstYearValue : 1;
+  const lifetimeValuesScaledToPresentation = lifetime.years.map(
+    (year) => year.economicValue * valueScale,
+  );
+
   return {
     location: input.location,
     resource: input.resource,
@@ -196,18 +214,12 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       phases: input.electrical.gridPhases ?? EU_GRID_PHASES,
       kwPerAmp: input.electrical.kwPerAmp,
     },
-    lifetime: buildLifetimeProjection({
-      firstYearProductionKwh: annualProductionKwh,
-      selfConsumptionShare: input.selfConsumptionShare,
-      annualConsumptionKwh: input.consumption.annualKwh,
-      selfConsumedValuePerKwh,
-      exportValuePerKwh,
-      annualDegradationRate: input.annualDegradationRate,
-    }),
+    lifetime,
     investment: calculateMaxInvestment(
       presentation.annualSavings,
       input.acceptedPaybackYears,
       input.quotePrice,
+      lifetimeValuesScaledToPresentation,
     ),
     presentation,
     calculationVersion: CALCULATION_VERSION,
