@@ -21,6 +21,8 @@ export interface LifetimeYear {
   productionKwh: number;
   selfConsumptionKwh: number;
   exportedKwh: number;
+  /** Price escalation factor applied this year, (1 + rate)^(year-1). */
+  priceFactor: number;
   economicValue: number;
 }
 
@@ -30,7 +32,7 @@ export interface LifetimeProjection {
   periodYears: number;
   /** Annual degradation rate used, e.g. 0.005 = 0.5 %/year. */
   annualDegradationRate: number;
-  /** Assumed annual change of electricity value. Always 0 in the base scenario. */
+  /** Assumed annual change of electricity value (scenario), e.g. 0.02. */
   annualPriceChangeRate: number;
   totalProductionKwh: number;
   totalEconomicValue: number;
@@ -57,7 +59,7 @@ export function productionForYear(
 
 /**
  * Year-by-year production and economic value over the calculation period.
- * Electricity values are held constant — no inflation, no price escalation.
+ * Electricity values follow the selected price development scenario.
  */
 export function buildLifetimeProjection(params: {
   firstYearProductionKwh: number;
@@ -68,10 +70,15 @@ export function buildLifetimeProjection(params: {
   annualConsumptionKwh?: number | null | undefined;
   periodYears?: number | undefined;
   annualDegradationRate?: number | undefined;
+  /** Assumed annual electricity price change, e.g. 0.02 = +2 %/year. */
+  annualPriceChangeRate?: number | undefined;
 }): LifetimeProjection {
   const periodYears = params.periodYears ?? LONG_TERM_CALCULATION_YEARS;
   const annualDegradationRate =
     params.annualDegradationRate ?? DEFAULT_ANNUAL_SOLAR_DEGRADATION;
+  const annualPriceChangeRate = Number.isFinite(params.annualPriceChangeRate ?? 0)
+    ? (params.annualPriceChangeRate ?? 0)
+    : 0;
 
   const years: LifetimeYear[] = [];
   for (let year = 1; year <= periodYears; year += 1) {
@@ -82,11 +89,13 @@ export function buildLifetimeProjection(params: {
       params.selfConsumptionShare,
       params.annualConsumptionKwh,
     );
+    // Compound electricity price development: year 1 uses today's price.
+    const priceFactor = Math.pow(1 + annualPriceChangeRate, year - 1);
     const economics = calculateEconomicValue({
       selfConsumptionKwh: split.selfConsumptionKwh,
       exportedKwh: split.exportedKwh,
-      selfConsumedValuePerKwh: params.selfConsumedValuePerKwh,
-      exportValuePerKwh: params.exportValuePerKwh,
+      selfConsumedValuePerKwh: params.selfConsumedValuePerKwh * priceFactor,
+      exportValuePerKwh: params.exportValuePerKwh * priceFactor,
     });
     years.push({
       year,
@@ -94,6 +103,7 @@ export function buildLifetimeProjection(params: {
       productionKwh,
       selfConsumptionKwh: split.selfConsumptionKwh,
       exportedKwh: split.exportedKwh,
+      priceFactor,
       economicValue: economics.totalValue,
     });
   }
@@ -102,7 +112,7 @@ export function buildLifetimeProjection(params: {
     years,
     periodYears,
     annualDegradationRate,
-    annualPriceChangeRate: 0,
+    annualPriceChangeRate,
     totalProductionKwh: years.reduce((sum, y) => sum + y.productionKwh, 0),
     totalEconomicValue: years.reduce((sum, y) => sum + y.economicValue, 0),
     finalYearPerformanceFactor: performanceFactorForYear(periodYears, annualDegradationRate),
