@@ -15,6 +15,7 @@ import { selectRecommendedSystem } from "./candidate-selection";
 import { buildPresentationValues } from "./presentation";
 import { calculateEconomicValue, nonNegative } from "./electricity-price";
 import { calculateMaxInvestment } from "./payback";
+import { calculateProductionCost } from "./production-cost";
 import { buildLifetimeProjection } from "./degradation";
 import { maxAcPowerFromFuse, dcAcRatio, oversizingPercent } from "./inverter-sizing";
 import { recommendArraySize } from "./solar-sizing";
@@ -181,6 +182,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     (year) => year.economicValue * valueScale,
   );
 
+  const investmentResult = calculateMaxInvestment(
+    presentation.annualSavings,
+    input.acceptedPaybackYears,
+    input.quotePrice,
+    lifetimeValuesScaledToPresentation,
+  );
+
   return {
     location: input.location,
     resource: input.resource,
@@ -215,12 +223,16 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       kwPerAmp: input.electrical.kwPerAmp,
     },
     lifetime,
-    investment: calculateMaxInvestment(
-      presentation.annualSavings,
-      input.acceptedPaybackYears,
-      input.quotePrice,
-      lifetimeValuesScaledToPresentation,
-    ),
+    investment: investmentResult,
+    productionCost: calculateProductionCost({
+      investment: investmentResult.quotePrice ?? investmentResult.maxInvestmentRounded,
+      investmentFromQuote: investmentResult.quotePrice != null,
+      totalProductionKwh: lifetime.totalProductionKwh,
+      periodYears: lifetime.periodYears,
+      selfConsumptionShare: split.selfConsumptionShare,
+      selfConsumedValuePerKwh,
+      exportValuePerKwh,
+    }),
     presentation,
     calculationVersion: CALCULATION_VERSION,
     calculatedAt: new Date().toISOString(),

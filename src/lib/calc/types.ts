@@ -2,6 +2,7 @@
 
 import type { PresentationValues } from "./presentation";
 import type { MaxInvestmentResult } from "./payback";
+import type { ProductionCostResult } from "./production-cost";
 import type { LifetimeProjection } from "./degradation";
 import type { SelfConsumptionSource, SelfConsumptionSummary } from "./self-consumption";
 import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
@@ -15,6 +16,8 @@ import type {
 export type { ConsumptionInputType, ConsumptionShape };
 
 export type { LifetimeProjection };
+
+export type { ProductionCostResult };
 
 export type { SelfConsumptionSource, SelfConsumptionSummary };
 
