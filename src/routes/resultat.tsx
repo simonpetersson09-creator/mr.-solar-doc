@@ -8,7 +8,7 @@ import { MonthlyChart } from "@/components/MonthlyChart";
 import { useCalculation } from "@/hooks/use-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useWizardStore } from "@/state/wizard-store";
-import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";
+import { formatCurrency, formatCurrencyPrecise, formatDate, formatDecimal, formatNumber } from "@/lib/format";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
 
@@ -113,6 +113,9 @@ function ResultPage() {
   const p = result.presentation;
   const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
   const economicValuesMissing = result.notes.includes("economic-values-missing");
+  const cost = result.productionCost;
+  const perKwh = (value: number) =>
+    t("result.perKwh", { amount: formatCurrencyPrecise(value, locale, currency) });
 
 
   return (
@@ -371,6 +374,64 @@ function ResultPage() {
           ) : null}
         </div>
 
+
+
+        {/* 6. Production cost per kWh — secondary information */}
+        <section className="rounded-[28px] border border-border bg-card/70 p-4">
+          <h2 className="text-sm font-semibold text-foreground">
+            {t("result.productionCostTitle")}
+          </h2>
+          <p className="mt-1 text-[11px] text-muted-foreground">
+            {t("result.productionCostExplainer")}
+          </p>
+          {cost.costPerKwh === null ? (
+            <p className="mt-3 text-xs text-muted-foreground">
+              {t("result.productionCostUnavailable")}
+            </p>
+          ) : (
+            <>
+              <dl className="mt-3 grid grid-cols-3 gap-2 text-center">
+                <div className="rounded-2xl bg-secondary/60 px-2 py-2.5">
+                  <dt className="text-[10px] text-muted-foreground">
+                    {t("result.productionCostLabel")}
+                  </dt>
+                  <dd className="mt-0.5 text-sm font-bold text-foreground">
+                    {perKwh(cost.costPerKwh)}
+                  </dd>
+                </div>
+                <div className="rounded-2xl bg-secondary/60 px-2 py-2.5">
+                  <dt className="text-[10px] text-muted-foreground">
+                    {t("result.productionCostValueLabel")}
+                  </dt>
+                  <dd className="mt-0.5 text-sm font-bold text-foreground">
+                    {perKwh(cost.valuePerKwh)}
+                  </dd>
+                </div>
+                <div className="rounded-2xl bg-secondary/60 px-2 py-2.5">
+                  <dt className="text-[10px] text-muted-foreground">
+                    {t("result.productionCostDifference")}
+                  </dt>
+                  <dd className="mt-0.5 text-sm font-bold text-foreground">
+                    {(cost.differencePerKwh ?? 0) >= 0 ? "+" : "−"}
+                    {perKwh(Math.abs(cost.differencePerKwh ?? 0))}
+                  </dd>
+                </div>
+              </dl>
+              <p className="mt-2 text-[11px] text-muted-foreground">
+                {t("result.productionCostBasis", {
+                  investment: formatCurrency(cost.investment, locale, currency),
+                  production: formatNumber(cost.totalProductionKwh, locale),
+                  years: formatNumber(cost.periodYears, locale),
+                })}
+              </p>
+              {(cost.differencePerKwh ?? 0) > 0 ? (
+                <p className="mt-1 text-[11px] text-muted-foreground">
+                  {t("result.productionCostHigherValue")}
+                </p>
+              ) : null}
+            </>
+          )}
+        </section>
 
         {exportError ? <p className="text-sm text-destructive">{t("result.pdfError")}</p> : null}
 

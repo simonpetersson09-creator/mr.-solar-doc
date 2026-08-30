@@ -288,6 +288,15 @@ export const sv = {
     paybackInfo:
       "Enkel återbetalningstid visar hur många år det beräknade årliga ekonomiska värdet motsvarar investeringen. Beräkningen tar inte hänsyn till exempelvis framtida elprisförändringar, finansieringskostnad, inflation, underhåll eller diskontering.",
     maxInvestment: "Investeringsnivå vid vald återbetalningstid",
+    productionCostTitle: "Hur mycket kostar solelen från ditt tak?",
+    productionCostExplainer: "Vi delar anläggningens kostnad med den beräknade produktionen under hela kalkylperioden.",
+    productionCostLabel: "Kostar att producera",
+    productionCostValueLabel: "Värde för dig",
+    productionCostDifference: "Skillnad",
+    productionCostBasis: "Baserat på {{investment}} och {{production}} kWh under {{years}} år.",
+    productionCostHigherValue: "Solelen är värd mer per kWh än vad den kostar att producera i den här kalkylen.",
+    productionCostUnavailable: "Vi kan inte beräkna produktionskostnaden med nuvarande uppgifter.",
+    perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "ca {{amount}}",
     maxInvestmentExplainer:
       "För att nå cirka {{years}} års enkel återbetalningstid bör installationen kosta högst omkring {{amount}}.",

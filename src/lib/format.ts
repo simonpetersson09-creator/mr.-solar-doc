@@ -32,6 +32,22 @@ export function formatCurrency(value: number, locale: string, currency: string):
   }).format(Number.isFinite(value) ? value : 0);
 }
 
+/** Money with decimals, for per-kWh prices ("0,37 SEK"). */
+export function formatCurrencyPrecise(
+  value: number,
+  locale: string,
+  currency: string,
+  digits = 2,
+): string {
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    currencyDisplay: "code",
+    minimumFractionDigits: digits,
+    maximumFractionDigits: digits,
+  }).format(Number.isFinite(value) ? value : 0);
+}
+
 export function formatPercent(share: number, locale: string, digits = 0): string {
   return new Intl.NumberFormat(locale, {
     style: "percent",

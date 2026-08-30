@@ -2,6 +2,7 @@
 
 import type { PresentationValues } from "./presentation";
 import type { MaxInvestmentResult } from "./payback";
+import type { ProductionCostResult } from "./production-cost";
 import type { LifetimeProjection } from "./degradation";
 import type { SelfConsumptionSource, SelfConsumptionSummary } from "./self-consumption";
 import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
@@ -15,6 +16,8 @@ import type {
 export type { ConsumptionInputType, ConsumptionShape };
 
 export type { LifetimeProjection };
+
+export type { ProductionCostResult };
 
 export type { SelfConsumptionSource, SelfConsumptionSummary };
 
@@ -198,6 +201,9 @@ export interface CalculationResult {
   lifetime: LifetimeProjection;
   /** Maximum motivated investment given the accepted simple payback time. */
   investment: MaxInvestmentResult;
+  /** Cost per produced kWh over the period, and what a kWh is worth. */
+  productionCost: ProductionCostResult;
+
   /** Consumer-facing, rounding-consistent values derived from the above. */
   presentation: PresentationValues;
   calculationVersion: string;
