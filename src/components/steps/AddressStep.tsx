@@ -233,7 +233,18 @@ return (
               {t("address.marketUnsupported")}
             </p>
           ) : null}
-          <div className="mx-auto w-full max-w-2xl">
+          <div className="mx-auto flex w-full max-w-2xl items-center gap-3">
+            <button
+              type="button"
+              aria-label={t("premium.title")}
+              onClick={() => {
+                void haptic("light");
+                setShowPremium((v) => !v);
+              }}
+              className="flex size-14 shrink-0 items-center justify-center rounded-full border border-primary/50 bg-primary text-lg font-bold text-primary-foreground shadow-lg shadow-primary/40 transition-transform active:scale-90"
+            >
+              {totalSteps}
+            </button>
             <Button
               type="button"
               aria-label={t("common.next")}
@@ -242,13 +253,40 @@ return (
                 void haptic("medium");
                 onNext();
               }}
-              className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
+              className="h-auto flex-1 rounded-[24px] py-4 text-base font-bold shadow-cta"
               size="lg"
             >
               {t("common.next")}
               <ArrowRight className="size-4 text-accent" />
             </Button>
           </div>
+          {showPremium ? (
+            <div className="mx-auto mt-3 grid w-full max-w-2xl gap-2">
+              <button
+                type="button"
+                onClick={() => void haptic("light")}
+                className="rounded-2xl border border-primary/50 bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 transition-transform active:scale-[0.98]"
+              >
+                {t("premium.start")}
+              </button>
+              <div className="grid grid-cols-2 gap-2">
+                <button
+                  type="button"
+                  onClick={() => void haptic("light")}
+                  className="rounded-2xl border border-primary/50 bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 transition-transform active:scale-[0.98]"
+                >
+                  {t("premium.restore")}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => void haptic("light")}
+                  className="rounded-2xl border border-primary/50 bg-primary px-4 py-3 text-sm font-bold text-primary-foreground shadow-lg shadow-primary/30 transition-transform active:scale-[0.98]"
+                >
+                  {t("premium.manage")}
+                </button>
+              </div>
+            </div>
+          ) : null}
         </div>
       </div>
     </div>
