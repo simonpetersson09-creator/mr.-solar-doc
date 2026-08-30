@@ -196,6 +196,15 @@
   background-color: transparent;
 }
 
+/* Hide the scrollbar but keep scrolling — used for compact settings pages. */
+@utility scrollbar-hidden {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
 /* Safe-area aware spacing for full-screen shells. */
 @utility pt-safe {
   /* Header content sits flush under the status bar: exactly the safe-area inset,
