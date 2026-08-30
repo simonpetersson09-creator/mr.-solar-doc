@@ -304,7 +304,7 @@ title={t("result.adjustAssumptions")}
         </div>
       </div>
 
-      {/* ── Card 4: what the price corresponds to ── */}
+      {/* ── Card 5: what the price corresponds to ── */}
       <div className="glass-primary rounded-[28px] px-4 py-4">
         <p className="text-[10px] font-bold tracking-widest text-white/70 uppercase">
           {t("result.paybackResultLabel")}
