@@ -115,25 +115,23 @@ function ResultPage() {
 
 
   return (
-    <div className="flex h-dvh max-h-dvh flex-col overflow-hidden surface-sun">
-
-<header className="pt-safe mx-auto flex w-full max-w-2xl items-center gap-3 px-5">
-        <button
-          type="button"
-          onClick={() => {
-            void haptic("light");
-            setCurrentStep(5);
-            void navigate({ to: "/" });
-          }}
-          aria-label={t("common.back")}
-          className="flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors hover:bg-secondary"
-        >
-          <ArrowLeft className="size-4" />
-        </button>
-        <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
-      </header>
-
-      <main className="mx-auto w-full max-w-2xl flex-1 space-y-2.5 overflow-y-auto overscroll-contain px-5 pt-3 pb-2">
+<div className="flex h-dvh max-h-dvh flex-col overflow-hidden surface-sun">
+      <main className="mx-auto w-full max-w-2xl flex-1 space-y-2.5 overflow-y-auto overscroll-contain px-5 pt-safe pb-2">
+        <header className="flex items-center gap-3 pt-3">
+          <button
+            type="button"
+            onClick={() => {
+              void haptic("light");
+              setCurrentStep(5);
+              void navigate({ to: "/" });
+            }}
+            aria-label={t("common.back")}
+            className="flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors hover:bg-secondary"
+          >
+            <ArrowLeft className="size-4" />
+          </button>
+          <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
+        </header>
         {/* 1. Recommendation */}
         <section className="hero-metric rounded-3xl p-5">
           <div className="glow-amber -top-16 -right-16 size-48" aria-hidden="true" />
