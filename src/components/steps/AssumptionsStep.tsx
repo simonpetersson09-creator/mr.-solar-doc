@@ -14,7 +14,6 @@ import { cn } from "@/lib/utils";
 import {
   MAX_PAYBACK_YEARS,
   MIN_PAYBACK_YEARS,
-  PRICE_SCENARIO_RATES,
   type PriceScenarioId,
 } from "@/config/constants";
 import { haptic } from "@/services/native-service";
@@ -89,7 +88,6 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
     { id: "high", label: t("result.priceScenarioHigh"), rateLabel: "+3 %/\u00e5r" },
     { id: "custom", label: t("result.priceScenarioCustom"), rateLabel: null },
   ];
-  void PRICE_SCENARIO_RATES;
 
   const currency = result?.economics.currency ?? market.currency;
   const sharePercent = result
