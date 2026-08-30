@@ -39,11 +39,6 @@ export const sv = {
     region: "Region",
     error: "Adressökningen misslyckades.",
   },
-  settings: {
-    history: "Historik",
-    terms: "Användarvillkor",
-    privacy: "Integritetspolicy",
-  },
   premium: {
     title: "Premium",
     start: "Starta premium",
@@ -330,6 +325,9 @@ export const sv = {
     title: "Inställningar",
     language: "Språk",
     languageHint: "Valutan styrs av landet i din adress, inte av språket.",
+    history: "Historik",
+    terms: "Användarvillkor",
+    privacy: "Integritetspolicy",
   },
   chart: {
     productionAria: "Månadsproduktion",
