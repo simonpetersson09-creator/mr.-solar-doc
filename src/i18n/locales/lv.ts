@@ -62,7 +62,6 @@ export const lv = {
       "east": "Austrumi",
       "west": "Rietumi"
     },
-    "assumptionNotice": "Tā kā nav norādītas debespuses un slīpums, tiek pieņemts optimizēts izvietojums.",
     "fetching": "Iegūst saules ražošanas datus no PVGIS…",
     "result": "Aprēķinātā saules enerģijas ražošana objektā",
     "unit": "kWh/kWp/gadā",

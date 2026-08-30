@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { AlertTriangle, ArrowRight, Loader2, Sun } from "lucide-react";
+import { ArrowRight, Loader2, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -73,7 +73,7 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
     setResource(query.data ?? null);
   }, [query.data, setResource]);
 
-  const assumed = orientation === "unknown" || tiltDegrees === null;
+  
 
 const handleDialChange = (degrees: number) => {
     setRoof(nearestOrientation(degrees), tiltDegrees, degrees);
@@ -158,12 +158,6 @@ className="h-7 w-16 rounded-full border-white/25 bg-white/15 px-2 text-xs text-w
         </div>
       </div>
 
-      {assumed ? (
-        <div className="flex gap-2 rounded-xl border border-border bg-secondary px-3 py-2 text-xs text-secondary-foreground">
-          <AlertTriangle className="mt-0.5 size-3.5 shrink-0 text-accent" />
-          <p>{t("roof.assumptionNotice")}</p>
-        </div>
-      ) : null}
 
       {query.isPending ? (
         <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2 text-xs text-muted-foreground">

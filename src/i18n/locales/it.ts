@@ -62,7 +62,6 @@ export const it = {
       "east": "Est",
       "west": "Ovest"
     },
-    "assumptionNotice": "Poiché non hai specificato l'orientamento e l'inclinazione, viene assunta una disposizione ottimizzata.",
     "fetching": "Recupero dati di produzione solare da PVGIS…",
     "result": "Produzione solare stimata per il sito",
     "unit": "kWh/kWp/anno",

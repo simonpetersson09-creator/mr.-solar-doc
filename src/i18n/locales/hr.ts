@@ -62,7 +62,6 @@ export const hr = {
       "east": "Istok",
       "west": "Zapad"
     },
-    "assumptionNotice": "Budući da niste naveli orijentaciju i nagib, koristi se optimizirani položaj kao pretpostavka.",
     "fetching": "Dohvaćam podatke o solarnoj proizvodnji s PVGIS-a…",
     "result": "Procijenjena solarna proizvodnja na lokaciji",
     "unit": "kWh/kWp/god.",

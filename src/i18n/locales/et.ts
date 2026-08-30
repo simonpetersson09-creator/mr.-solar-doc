@@ -62,7 +62,6 @@ export const et = {
       "east": "Ida",
       "west": "Lääs"
     },
-    "assumptionNotice": "Kuna ilmakaart ja kallet ei sisestatud, kasutatakse optimeeritud paigutust.",
     "fetching": "Andmete toomine PVGIS-ist…",
     "result": "Hinnanguline päikeseenergia tootlikkus selles asukohas",
     "unit": "kWh/kWp/a",

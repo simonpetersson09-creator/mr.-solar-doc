@@ -62,7 +62,6 @@ export const sk = {
       "east": "Východ",
       "west": "Západ"
     },
-    "assumptionNotice": "Keďže ste neuviedli orientáciu a sklon, ako predpoklad sa použije optimalizované umiestnenie.",
     "fetching": "Načítavanie údajov o solárnej produkcii z PVGIS…",
     "result": "Odhadovaná solárna produkcia na mieste",
     "unit": "kWh/kWp/rok",

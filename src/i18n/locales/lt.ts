@@ -62,7 +62,6 @@ export const lt = {
       "east": "Rytai",
       "west": "Vakarai"
     },
-    "assumptionNotice": "Kadangi nenurodėte pasaulio šalių krypties ir nuolydžio, naudojama optimizuota padėtis.",
     "fetching": "Gaunami saulės energijos gamybos duomenys iš PVGIS…",
     "result": "Apskaičiuota saulės energijos gamyba vietoje",
     "unit": "kWh/kWp/metus",
