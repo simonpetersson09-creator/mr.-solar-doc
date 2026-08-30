@@ -47,7 +47,6 @@ export const hr = {
     "manualHint": "Povucite strelicu tako da pokazuje u smjeru krova. 180° = ravno prema jugu.",
     "tilt": "Nagib krova",
     "tiltDegrees": ".*",
-    "tiltHint": "Većina krovova ima nagib od 30–35°.",
     "compass": {
       "n": "S",
       "e": "I",

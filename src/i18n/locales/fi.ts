@@ -47,7 +47,6 @@ export const fi = {
     "manualHint": "Vedä nuolta niin, että se osoittaa katon suuntaan. 180° = suoraan etelään.",
     "tilt": "Kattokaltevuus",
     "tiltDegrees": ".*",
-    "tiltHint": "Useimpien kattojen kaltevuus on 30–35°.",
     "compass": {
       "n": "P",
       "e": "I",

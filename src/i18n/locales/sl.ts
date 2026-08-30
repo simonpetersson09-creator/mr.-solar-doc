@@ -47,7 +47,6 @@ export const sl = {
     "manualHint": "Povlecite puščico tako, da kaže v smer strehe. 180° = točno jug.",
     "tilt": "Naklon strehe",
     "tiltDegrees": ".*",
-    "tiltHint": "Večina streh ima naklon 30–35°.",
     "compass": {
       "n": "S",
       "e": "V",

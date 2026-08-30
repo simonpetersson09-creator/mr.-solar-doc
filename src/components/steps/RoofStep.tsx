@@ -119,11 +119,10 @@ footer={
 
 {/* Tilt — one card */}
         <div className="glass-primary rounded-[28px] px-4 py-4">
-          <div className="mb-2">
+<div className="mb-2 text-center">
             <Label className="text-xs text-white">{t("roof.tilt")}</Label>
-            <p className="text-[11px] text-white/70">{t("roof.tiltHint")}</p>
           </div>
-          <div className="flex flex-wrap items-center gap-1.5">
+          <div className="flex flex-wrap items-center justify-center gap-1.5">
             {TILT_PRESETS.map((preset) => (
               <button
                 key={preset}
