@@ -8,7 +8,7 @@ import { MonthlyChart } from "@/components/MonthlyChart";
 import { useCalculation } from "@/hooks/use-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useWizardStore } from "@/state/wizard-store";
-import { formatCurrency, formatCurrencyPrecise, formatDate, formatDecimal, formatNumber } from "@/lib/format";
+import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
 
@@ -113,9 +113,7 @@ function ResultPage() {
   const p = result.presentation;
   const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
   const economicValuesMissing = result.notes.includes("economic-values-missing");
-  const cost = result.productionCost;
-  const perKwh = (value: number) =>
-    t("result.perKwh", { amount: formatCurrencyPrecise(value, locale, currency) });
+const cost = result.productionCost;
 
 
   return (
@@ -287,23 +285,48 @@ function ResultPage() {
             <p className="mt-3 text-xs text-white/60">{t("result.productionCostUnavailable")}</p>
           ) : (
             <>
-              <dl className="mt-3 grid grid-cols-3 gap-2 text-center">
-                <div className="rounded-2xl bg-white/10 px-2 py-2.5">
-                  <dt className="text-[10px] text-white/60">{t("result.productionCostLabel")}</dt>
-                  <dd className="mt-0.5 text-sm font-bold text-white">{perKwh(cost.costPerKwh)}</dd>
+<div className="mt-3 grid grid-cols-3 gap-1.5 text-center">
+                <div className="flex min-w-0 flex-col items-center justify-center rounded-2xl bg-white/10 px-1.5 py-2.5">
+                  <p className="flex min-h-[26px] items-center justify-center text-[10px] leading-tight text-white/60">
+                    {t("result.productionCostLabel")}
+                  </p>
+                  <p className="mt-0.5 text-sm leading-tight font-bold text-white">
+                    <span className="block whitespace-nowrap tabular-nums">
+                      {formatDecimal(cost.costPerKwh, locale, 2)}
+                    </span>
+                    <span className="block text-[9px] font-semibold text-white/60">
+                      {currency}/kWh
+                    </span>
+                  </p>
                 </div>
-                <div className="rounded-2xl bg-white/10 px-2 py-2.5">
-                  <dt className="text-[10px] text-white/60">{t("result.productionCostValueLabel")}</dt>
-                  <dd className="mt-0.5 text-sm font-bold text-white">{perKwh(cost.valuePerKwh)}</dd>
+                <div className="flex min-w-0 flex-col items-center justify-center rounded-2xl bg-white/10 px-1.5 py-2.5">
+                  <p className="flex min-h-[26px] items-center justify-center text-[10px] leading-tight text-white/60">
+                    {t("result.productionCostValueLabel")}
+                  </p>
+                  <p className="mt-0.5 text-sm leading-tight font-bold text-white">
+                    <span className="block whitespace-nowrap tabular-nums">
+                      {formatDecimal(cost.valuePerKwh, locale, 2)}
+                    </span>
+                    <span className="block text-[9px] font-semibold text-white/60">
+                      {currency}/kWh
+                    </span>
+                  </p>
                 </div>
-                <div className="rounded-2xl bg-white/10 px-2 py-2.5">
-                  <dt className="text-[10px] text-white/60">{t("result.productionCostDifference")}</dt>
-                  <dd className="mt-0.5 text-sm font-bold text-accent">
-                    {(cost.differencePerKwh ?? 0) >= 0 ? "+" : "−"}
-                    {perKwh(Math.abs(cost.differencePerKwh ?? 0))}
-                  </dd>
+                <div className="flex min-w-0 flex-col items-center justify-center rounded-2xl bg-white/10 px-1.5 py-2.5">
+                  <p className="flex min-h-[26px] items-center justify-center text-[10px] leading-tight text-white/60">
+                    {t("result.productionCostDifference")}
+                  </p>
+                  <p className="mt-0.5 text-sm leading-tight font-bold text-accent">
+                    <span className="block whitespace-nowrap tabular-nums">
+                      {(cost.differencePerKwh ?? 0) >= 0 ? "+" : "−"}
+                      {formatDecimal(Math.abs(cost.differencePerKwh ?? 0), locale, 2)}
+                    </span>
+                    <span className="block text-[9px] font-semibold text-white/60">
+                      {currency}/kWh
+                    </span>
+                  </p>
                 </div>
-              </dl>
+              </div>
               <p className="mt-2 text-[11px] text-white/60">
                 {t("result.productionCostBasis", {
                   investment: formatCurrency(cost.investment, locale, currency),
