@@ -393,7 +393,7 @@ function ResultPage() {
             )}
           </Button>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
