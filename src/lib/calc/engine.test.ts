@@ -74,9 +74,16 @@ describe("calculateSolarSystem – rounding consistency", () => {
         makeInput({ consumption: { annualKwh, monthlyKwh: null } }),
       );
       expect(result.investment.annualEconomicValue).toBe(result.presentation.annualSavings);
-      expect(result.investment.maxInvestment).toBe(
-        result.presentation.annualSavings * result.investment.acceptedPaybackYears,
-      );
+      // Accumulated value over the accepted payback time (degradation +
+      // electricity price scenario), scaled so year 1 equals the presented value.
+      const years = result.investment.acceptedPaybackYears;
+      const scale =
+        result.presentation.annualSavings / (result.lifetime.years[0]?.economicValue ?? 1);
+      const expected = result.lifetime.years
+        .slice(0, years)
+        .reduce((sum, y) => sum + y.economicValue * scale, 0);
+      expect(result.investment.maxInvestment).toBeCloseTo(expected, 6);
+
     }
   });
 });
