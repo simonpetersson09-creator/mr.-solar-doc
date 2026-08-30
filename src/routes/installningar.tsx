@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Crown, RefreshCw, Settings2 } from "lucide-react";
+import { ArrowLeft, Crown, FileText, History, RefreshCw, Settings2, ShieldCheck } from "lucide-react";
 import { haptic } from "@/services/native-service";
 
 export const Route = createFileRoute("/installningar")({
@@ -47,6 +47,20 @@ function SettingsPage() {
         <div className="glass-primary flex flex-col gap-3 rounded-[28px] p-4">
           <button
             type="button"
+            onClick={() => void haptic("light")}
+            className="flex items-center gap-3 rounded-2xl bg-card px-4 py-4 text-left shadow-sm transition-transform active:scale-[0.98]"
+          >
+            <span className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-md shadow-primary/40">
+              <History className="size-5" />
+            </span>
+            <span className="text-base font-bold text-foreground">{t("settings.history")}</span>
+          </button>
+        </div>
+
+
+        <div className="glass-primary flex flex-col gap-3 rounded-[28px] p-4">
+          <button
+            type="button"
             onClick={() => void haptic("medium")}
             className="flex items-center gap-3 rounded-2xl bg-card px-4 py-4 text-left shadow-sm transition-transform active:scale-[0.98]"
           >
@@ -77,6 +91,35 @@ function SettingsPage() {
               <Settings2 className="size-5" />
             </span>
             <span className="text-base font-bold text-foreground">{t("premium.manage")}</span>
+          </button>
+        </div>
+
+        <div className="glass-primary flex flex-col gap-3 rounded-[28px] p-4">
+          <button
+            type="button"
+            onClick={() => {
+              void haptic("light");
+              void navigate({ to: "/anvandarvillkor" });
+            }}
+            className="flex items-center gap-3 rounded-2xl bg-card px-4 py-4 text-left shadow-sm transition-transform active:scale-[0.98]"
+          >
+            <span className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-md shadow-primary/40">
+              <FileText className="size-5" />
+            </span>
+            <span className="text-base font-bold text-foreground">{t("settings.terms")}</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => {
+              void haptic("light");
+              void navigate({ to: "/integritetspolicy" });
+            }}
+            className="flex items-center gap-3 rounded-2xl bg-card px-4 py-4 text-left shadow-sm transition-transform active:scale-[0.98]"
+          >
+            <span className="flex size-10 items-center justify-center rounded-xl bg-primary text-primary-foreground shadow-md shadow-primary/40">
+              <ShieldCheck className="size-5" />
+            </span>
+            <span className="text-base font-bold text-foreground">{t("settings.privacy")}</span>
           </button>
         </div>
       </main>
