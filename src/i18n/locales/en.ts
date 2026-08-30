@@ -323,6 +323,9 @@ export const en = {
     title: "Settings",
     language: "Language",
     languageHint: "The currency follows the country in your address, not the language.",
+    history: "History",
+    terms: "Terms of use",
+    privacy: "Privacy policy",
   },
   chart: {
     productionAria: "Monthly production",

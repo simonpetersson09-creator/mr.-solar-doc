@@ -10,7 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnvandarvillkorRouteImport } from './routes/anvandarvillkor'
 import { Route as InstallningarRouteImport } from './routes/installningar'
+import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
 import { Route as ResultatRouteImport } from './routes/resultat'
 
 const IndexRoute = IndexRouteImport.update({
@@ -18,9 +20,19 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnvandarvillkorRoute = AnvandarvillkorRouteImport.update({
+  id: '/anvandarvillkor',
+  path: '/anvandarvillkor',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const InstallningarRoute = InstallningarRouteImport.update({
   id: '/installningar',
   path: '/installningar',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IntegritetspolicyRoute = IntegritetspolicyRouteImport.update({
+  id: '/integritetspolicy',
+  path: '/integritetspolicy',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ResultatRoute = ResultatRouteImport.update({
@@ -31,31 +43,55 @@ const ResultatRoute = ResultatRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/anvandarvillkor': typeof AnvandarvillkorRoute
   '/installningar': typeof InstallningarRoute
+  '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/anvandarvillkor': typeof AnvandarvillkorRoute
   '/installningar': typeof InstallningarRoute
+  '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/anvandarvillkor': typeof AnvandarvillkorRoute
   '/installningar': typeof InstallningarRoute
+  '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/installningar' | '/resultat'
+  fullPaths:
+    | '/'
+    | '/anvandarvillkor'
+    | '/installningar'
+    | '/integritetspolicy'
+    | '/resultat'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/installningar' | '/resultat'
-  id: '__root__' | '/' | '/installningar' | '/resultat'
+  to:
+    | '/'
+    | '/anvandarvillkor'
+    | '/installningar'
+    | '/integritetspolicy'
+    | '/resultat'
+  id:
+    | '__root__'
+    | '/'
+    | '/anvandarvillkor'
+    | '/installningar'
+    | '/integritetspolicy'
+    | '/resultat'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnvandarvillkorRoute: typeof AnvandarvillkorRoute
   InstallningarRoute: typeof InstallningarRoute
+  IntegritetspolicyRoute: typeof IntegritetspolicyRoute
   ResultatRoute: typeof ResultatRoute
 }
 
@@ -68,11 +104,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anvandarvillkor': {
+      id: '/anvandarvillkor'
+      path: '/anvandarvillkor'
+      fullPath: '/anvandarvillkor'
+      preLoaderRoute: typeof AnvandarvillkorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/installningar': {
       id: '/installningar'
       path: '/installningar'
       fullPath: '/installningar'
       preLoaderRoute: typeof InstallningarRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integritetspolicy': {
+      id: '/integritetspolicy'
+      path: '/integritetspolicy'
+      fullPath: '/integritetspolicy'
+      preLoaderRoute: typeof IntegritetspolicyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/resultat': {
@@ -87,7 +137,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnvandarvillkorRoute: AnvandarvillkorRoute,
   InstallningarRoute: InstallningarRoute,
+  IntegritetspolicyRoute: IntegritetspolicyRoute,
   ResultatRoute: ResultatRoute,
 }
 export const routeTree = rootRouteImport

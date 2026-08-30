@@ -325,6 +325,9 @@ export const sv = {
     title: "Inställningar",
     language: "Språk",
     languageHint: "Valutan styrs av landet i din adress, inte av språket.",
+    history: "Historik",
+    terms: "Användarvillkor",
+    privacy: "Integritetspolicy",
   },
   chart: {
     productionAria: "Månadsproduktion",
