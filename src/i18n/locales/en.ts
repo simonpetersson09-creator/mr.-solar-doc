@@ -39,6 +39,12 @@ export const en = {
     region: "Region",
     error: "Address search failed.",
   },
+  premium: {
+    title: "Premium",
+    start: "Start premium",
+    restore: "Restore purchase",
+    manage: "Manage subscription",
+  },
   roof: {
     title: "Your roof",
     subtitle: "Not sure? We'll assume an optimal placement.",
