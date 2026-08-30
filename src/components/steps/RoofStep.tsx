@@ -185,7 +185,7 @@ className="h-7 w-16 rounded-full border-white/25 bg-white/15 px-2 text-xs text-w
             </div>
             <p className="mt-0.5 text-[11px] text-white/70">{query.data.dataSource}</p>
           </div>
-          <div className="text-right">
+<div className="text-center">
             <p className="text-3xl leading-none font-extrabold tracking-tight">
               {formatNumber(query.data.annualKwhPerKwp, locale)}
             </p>
