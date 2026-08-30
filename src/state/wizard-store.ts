@@ -79,7 +79,10 @@ export const useWizardStore = create<WizardState>()(
       setRoof: (orientation, tiltDegrees, azimuthDegrees) =>
         set((state) => ({
           orientation,
-          tiltDegrees,
+          tiltDegrees:
+            tiltDegrees === null || Number.isNaN(tiltDegrees)
+              ? null
+              : Math.min(90, Math.max(0, Math.round(tiltDegrees))),
           azimuthDegrees: azimuthDegrees === undefined ? state.azimuthDegrees : azimuthDegrees,
           resource: null,
         })),
@@ -103,7 +106,13 @@ export const useWizardStore = create<WizardState>()(
     }),
     {
       name: "mr-solar-doc-wizard",
-      version: 1,
+      // Bump whenever cached solar/economics data may be stale.
+      version: 2,
+      migrate: (persisted) => ({
+        ...(persisted as object),
+        // Drop cached PVGIS data so it is re-fetched with current logic.
+        resource: null,
+      }),
       storage: createJSONStorage(() => localStorage),
       partialize: ({
         location,

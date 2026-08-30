@@ -271,3 +271,13 @@
   font-family: var(--font-sans);
   z-index: 0;
 }
+
+/* Prevent iOS from auto-zooming when focusing a small input. Touch devices
+   need a computed font-size of at least 16px on form fields. */
+@media (pointer: coarse) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}

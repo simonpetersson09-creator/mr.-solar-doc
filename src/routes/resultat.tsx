@@ -112,6 +112,7 @@ function ResultPage() {
   const currency = result.economics.currency;
   const p = result.presentation;
   const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
+  const economicValuesMissing = result.notes.includes("economic-values-missing");
 
 
   return (
@@ -219,7 +220,7 @@ function ResultPage() {
           <div className="flex items-baseline justify-between gap-3">
             <p className="text-xs text-white/60">{t("result.annualSavings")}</p>
             <p className="text-3xl font-extrabold tracking-tight text-white">
-              {formatCurrency(p.annualSavings, locale, currency)}{" "}
+              {economicValuesMissing ? "–" : formatCurrency(p.annualSavings, locale, currency)}{" "}
               <span className="text-xs font-normal text-white/60">
                 {t("result.perYear")}
               </span>
@@ -230,7 +231,9 @@ function ResultPage() {
             <div className="rounded-xl bg-white/10 p-2.5">
               <dt className="text-[11px] text-white/60">{t("result.selfConsumption")}</dt>
               <dd className="font-semibold text-white">
-                {formatCurrency(p.selfConsumptionValue, locale, currency)}
+                {economicValuesMissing
+                  ? "–"
+                  : formatCurrency(p.selfConsumptionValue, locale, currency)}
               </dd>
               <dd className="text-[11px] text-white/60">
                 {formatNumber(p.selfConsumptionPercent, locale)} % ·{" "}
@@ -240,7 +243,7 @@ function ResultPage() {
             <div className="rounded-xl bg-white/10 p-2.5">
               <dt className="text-[11px] text-white/60">{t("result.exported")}</dt>
               <dd className="font-semibold text-white">
-                {formatCurrency(p.exportValue, locale, currency)}
+                {economicValuesMissing ? "–" : formatCurrency(p.exportValue, locale, currency)}
               </dd>
               <dd className="text-[11px] text-white/60">
                 {formatNumber(p.exportPercent, locale)} % · {formatNumber(p.exportedKwh, locale)} kWh
@@ -248,7 +251,7 @@ function ResultPage() {
             </div>
           </dl>
 
-          {result.notes.includes("economic-values-missing") ? (
+          {economicValuesMissing ? (
             <p className="rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] text-white/70">
               {t("result.missingMarketValues")}
             </p>
