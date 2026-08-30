@@ -62,8 +62,6 @@ export const sv = {
       east: "Öst",
       west: "Väst",
     },
-    assumptionNotice:
-      "Eftersom du inte angett väderstreck och lutning används en optimerad placering som antagande.",
     fetching: "Hämtar solproduktionsdata från PVGIS…",
     result: "Beräknad solproduktion på platsen",
     unit: "kWh/kWp/år",

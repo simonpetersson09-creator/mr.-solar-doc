@@ -62,7 +62,6 @@ export const de = {
       "east": "Ost",
       "west": "West"
     },
-    "assumptionNotice": "Da Sie Himmelsrichtung und Neigung nicht angegeben haben, wird eine optimierte Platzierung angenommen.",
     "fetching": "Ruft Solarertragsdaten von PVGIS ab…",
     "result": "Berechneter Solarertrag am Standort",
     "unit": "kWh/kWp/Jahr",

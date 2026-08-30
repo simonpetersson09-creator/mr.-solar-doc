@@ -62,7 +62,6 @@ export const sl = {
       "east": "Vzhod",
       "west": "Zahod"
     },
-    "assumptionNotice": "Ker niste navedli orientacije in naklona, se uporablja optimizirana postavitev kot predpostavka.",
     "fetching": "Pridobivanje podatkov o sončni proizvodnji iz PVGIS…",
     "result": "Ocenjena sončna proizvodnja na lokaciji",
     "unit": "kWh/kWp/leto",

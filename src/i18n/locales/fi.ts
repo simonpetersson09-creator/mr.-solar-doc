@@ -62,7 +62,6 @@ export const fi = {
       "east": "Itä",
       "west": "Länsi"
     },
-    "assumptionNotice": "Koska et ole ilmoittanut ilmansuuntaa ja kaltevuutta, käytetään oletuksena optimoitua sijoittelua.",
     "fetching": "Haetaan aurinkotuotantotietoja PVGIS-palvelusta…",
     "result": "Arvioitu aurinkosähkön tuotto kohteessa",
     "unit": "kWh/kWp/vuosi",

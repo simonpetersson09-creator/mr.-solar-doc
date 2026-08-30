@@ -62,7 +62,6 @@ export const cs = {
       "east": "Východ",
       "west": "Západ"
     },
-    "assumptionNotice": "Protože jste nezadali orientaci a sklon, je jako předpoklad použito optimalizované umístění.",
     "fetching": "Načítám data o solární výrobě z PVGIS…",
     "result": "Odhadovaná solární výroba v daném místě",
     "unit": "kWh/kWp/rok",

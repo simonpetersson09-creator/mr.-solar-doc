@@ -62,7 +62,6 @@ export const pl = {
       "east": "Wschód",
       "west": "Zachód"
     },
-    "assumptionNotice": "Ponieważ nie podano kierunku i nachylenia, przyjęto optymalne umiejscowienie jako założenie.",
     "fetching": "Pobieranie danych o produkcji energii słonecznej z PVGIS…",
     "result": "Szacowana produkcja energii słonecznej w tej lokalizacji",
     "unit": "kWh/kWp/rok",

@@ -62,7 +62,6 @@ export const da = {
       "east": "Øst",
       "west": "Vest"
     },
-    "assumptionNotice": "Da du ikke har angivet verdenshjørne og hældning, bruges en optimeret placering som antagelse.",
     "fetching": "Henter solproduktionsdata fra PVGIS…",
     "result": "Beregnet solproduktion på stedet",
     "unit": "kWh/kWp/år",

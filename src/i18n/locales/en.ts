@@ -62,8 +62,6 @@ export const en = {
       east: "East",
       west: "West",
     },
-    assumptionNotice:
-      "Since orientation and tilt were not provided, an optimised placement is assumed.",
     fetching: "Fetching solar data from PVGIS…",
     result: "Estimated solar yield at this location",
     unit: "kWh/kWp/yr",
