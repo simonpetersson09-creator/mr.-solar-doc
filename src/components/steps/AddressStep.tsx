@@ -218,7 +218,7 @@ return (
       </div>
 
       {/* In-flow content: note + CTA at the bottom of the page scroll */}
-      <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-1 flex-col px-5 pt-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+      <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-col px-5 pt-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
         {unsupportedMarket ? (
           <p className="mb-4 rounded-2xl border border-border bg-card/90 p-3 text-center text-xs text-foreground">
             {t("address.marketUnsupported")}
