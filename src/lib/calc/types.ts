@@ -131,6 +131,8 @@ export interface CalculationInput {
   acceptedPaybackYears: number;
   /** Overrides the default annual production degradation (e.g. 0.005). */
   annualDegradationRate?: number;
+  /** Assumed annual electricity price change scenario, e.g. 0.02 = +2 %/year. */
+  annualPriceChangeRate?: number;
   /** Optional quote price entered by the user, for the reverse calculation. */
   quotePrice?: number | null;
   inverterSizesKw: number[];

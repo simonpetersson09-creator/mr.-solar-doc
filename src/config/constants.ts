@@ -113,3 +113,23 @@ export const DEFAULT_ANNUAL_SOLAR_DEGRADATION = 0.005;
 
 /** Length of the long-term economic calculation period, in years. */
 export const LONG_TERM_CALCULATION_YEARS = 30;
+
+/**
+ * Electricity price development scenarios (annual compound change).
+ * Scenarios/assumptions — never presented as forecasts.
+ */
+export const PRICE_SCENARIO_RATES = {
+  flat: 0,
+  cautious: 0.01,
+  normal: 0.02,
+  high: 0.03,
+  custom: 0.02,
+} as const;
+
+export type PriceScenarioId = keyof typeof PRICE_SCENARIO_RATES;
+
+export const DEFAULT_PRICE_SCENARIO: PriceScenarioId = "normal";
+
+/** Bounds for a user-entered annual price change, in percent. */
+export const MIN_CUSTOM_PRICE_CHANGE_PERCENT = -10;
+export const MAX_CUSTOM_PRICE_CHANGE_PERCENT = 20;
