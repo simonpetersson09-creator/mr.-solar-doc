@@ -198,6 +198,9 @@ export interface CalculationResult {
   lifetime: LifetimeProjection;
   /** Maximum motivated investment given the accepted simple payback time. */
   investment: MaxInvestmentResult;
+  /** Cost per produced kWh over the period, and what a kWh is worth. */
+  productionCost: ProductionCostResult;
+
   /** Consumer-facing, rounding-consistent values derived from the above. */
   presentation: PresentationValues;
   calculationVersion: string;
