@@ -117,7 +117,19 @@ function ResultPage() {
   return (
     <div className="flex h-dvh max-h-dvh flex-col overflow-hidden surface-sun">
 
-      <header className="pt-safe mx-auto w-full max-w-2xl px-5">
+<header className="pt-safe mx-auto flex w-full max-w-2xl items-center gap-3 px-5">
+        <button
+          type="button"
+          onClick={() => {
+            void haptic("light");
+            setCurrentStep(5);
+            void navigate({ to: "/" });
+          }}
+          aria-label={t("common.back")}
+          className="flex size-9 shrink-0 items-center justify-center rounded-full border border-border bg-card text-foreground shadow-sm transition-colors hover:bg-secondary"
+        >
+          <ArrowLeft className="size-4" />
+        </button>
         <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
       </header>
 
@@ -357,25 +369,11 @@ function ResultPage() {
 
         {exportError ? <p className="text-sm text-destructive">{t("result.pdfError")}</p> : null}
 
-        {/* Actions — in the scroll flow at the very bottom */}
+{/* Actions — in the scroll flow at the very bottom */}
         <div className="pb-safe flex flex-col gap-2 pt-2">
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="lg"
-              className="flex-1"
-              onClick={() => {
-                void haptic("light");
-                setCurrentStep(5);
-                void navigate({ to: "/" });
-              }}
-            >
-              <ArrowLeft className="size-4" /> {t("common.back")}
-            </Button>
-            <Button variant="outline" size="lg" className="flex-1" asChild onClick={() => reset()}>
-              <Link to="/">{t("common.startOver")}</Link>
-            </Button>
-          </div>
+          <Button variant="outline" size="lg" className="w-full" asChild onClick={() => reset()}>
+            <Link to="/">{t("common.startOver")}</Link>
+          </Button>
           <Button
             className="w-full"
             size="lg"
