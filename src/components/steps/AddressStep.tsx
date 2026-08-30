@@ -188,9 +188,12 @@ return (
           </div>
         </div>
 
-        {/* Custom zoom controls pinned to the map hero */}
+{/* Custom zoom controls pinned above the floating CTA */}
         {map ? (
-          <div className="absolute right-4 bottom-4 z-20 flex flex-col gap-2">
+          <div
+            className="absolute right-4 z-20 flex flex-col gap-2"
+            style={{ bottom: "calc(6.75rem + env(safe-area-inset-bottom))" }}
+          >
             <button
               type="button"
               aria-label="Zooma in"
@@ -215,31 +218,33 @@ return (
             </button>
           </div>
         ) : null}
-      </div>
 
-      {/* In-flow content: note + CTA at the bottom of the page scroll */}
-      <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-col px-5 pt-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
-        {unsupportedMarket ? (
-          <p className="mb-4 rounded-2xl border border-border bg-card/90 p-3 text-center text-xs text-foreground">
-            {t("address.marketUnsupported")}
-          </p>
-        ) : null}
-
-        <div className="mt-auto">
-          <Button
-            type="button"
-            aria-label={t("common.next")}
-            disabled={!location || unsupportedMarket}
-            onClick={() => {
-              void haptic("medium");
-              onNext();
-            }}
-            className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
-            size="lg"
-          >
-            {t("common.next")}
-            <ArrowRight className="size-4 text-accent" />
-          </Button>
+        {/* Floating CTA over the map — the map's bottom edge stays visible below it */}
+        <div
+          className="absolute inset-x-0 z-20 px-5"
+          style={{ bottom: "calc(1.5rem + env(safe-area-inset-bottom))" }}
+        >
+          {unsupportedMarket ? (
+            <p className="mx-auto mb-4 w-full max-w-2xl rounded-2xl border border-border bg-card/90 p-3 text-center text-xs text-foreground">
+              {t("address.marketUnsupported")}
+            </p>
+          ) : null}
+          <div className="mx-auto w-full max-w-2xl">
+            <Button
+              type="button"
+              aria-label={t("common.next")}
+              disabled={!location || unsupportedMarket}
+              onClick={() => {
+                void haptic("medium");
+                onNext();
+              }}
+              className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
+              size="lg"
+            >
+              {t("common.next")}
+              <ArrowRight className="size-4 text-accent" />
+            </Button>
+          </div>
         </div>
       </div>
     </div>
