@@ -218,60 +218,60 @@ title={t("result.adjustAssumptions")}
             ) : null}
           </div>
         </div>
-        <p className="text-[11px] leading-snug text-white/60">{t("result.standardValueHint")}</p>
-
-        {/* Electricity price development scenario */}
-        <div className="space-y-2 border-t border-white/15 pt-3">
-          <p className="text-xs font-semibold text-white">{t("result.priceScenarioTitle")}</p>
-          <div className="flex flex-wrap gap-1.5">
-            {scenarios.map((scenario) => {
-              const active = priceScenario === scenario.id;
-              return (
-                <button
-                  key={scenario.id}
-                  type="button"
-                  onClick={() => setPriceScenario(scenario.id)}
-                  aria-pressed={active}
-                  className={cn(
-                    "rounded-full border px-3 py-1.5 text-[11px] font-semibold transition-colors",
-                    active
-                      ? "border-accent bg-accent text-accent-foreground"
-                      : "border-white/25 bg-white/10 text-white/80",
-                  )}
-                >
-                  {scenario.label}
-                  {scenario.rateLabel ? (
-                    <span className={cn("ml-1 font-normal", active ? "" : "text-white/60")}>
-                      {scenario.rateLabel}
-                    </span>
-                  ) : null}
-                </button>
-              );
-            })}
-          </div>
-          {priceScenario === "custom" ? (
-            <div>
-              <Label htmlFor="custom-price-change" className="text-[11px] text-white/70">
-                {t("result.priceScenarioCustomLabel")}
-              </Label>
-              <Input
-                id="custom-price-change"
-                type="text"
-                inputMode="decimal"
-                className="mt-1 h-9 rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
-                value={String(customPriceChangePercent)}
-                onChange={(event) => {
-                  const parsed = parseLocaleNumber(event.target.value);
-                  if (parsed !== null) setCustomPriceChangePercent(parsed);
-                }}
-              />
-            </div>
-          ) : null}
-          <p className="text-[11px] leading-snug text-white/60">{t("result.priceScenarioHint")}</p>
-        </div>
+<p className="text-[11px] leading-snug text-white/60">{t("result.standardValueHint")}</p>
       </div>
 
-      {/* ── Card 3: payback time ── */}
+      {/* ── Card 3: electricity price development scenario ── */}
+      <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">
+        <p className="text-xs font-semibold text-white">{t("result.priceScenarioTitle")}</p>
+        <div className="flex flex-wrap gap-1.5">
+          {scenarios.map((scenario) => {
+            const active = priceScenario === scenario.id;
+            return (
+              <button
+                key={scenario.id}
+                type="button"
+                onClick={() => setPriceScenario(scenario.id)}
+                aria-pressed={active}
+                className={cn(
+                  "rounded-full border px-3 py-1.5 text-[11px] font-semibold transition-colors",
+                  active
+                    ? "border-accent bg-accent text-accent-foreground"
+                    : "border-white/25 bg-white/10 text-white/80",
+                )}
+              >
+                {scenario.label}
+                {scenario.rateLabel ? (
+                  <span className={cn("ml-1 font-normal", active ? "" : "text-white/60")}>
+                    {scenario.rateLabel}
+                  </span>
+                ) : null}
+              </button>
+            );
+          })}
+        </div>
+        {priceScenario === "custom" ? (
+          <div>
+            <Label htmlFor="custom-price-change" className="text-[11px] text-white/70">
+              {t("result.priceScenarioCustomLabel")}
+            </Label>
+            <Input
+              id="custom-price-change"
+              type="text"
+              inputMode="decimal"
+              className="mt-1 h-9 rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
+              value={String(customPriceChangePercent)}
+              onChange={(event) => {
+                const parsed = parseLocaleNumber(event.target.value);
+                if (parsed !== null) setCustomPriceChangePercent(parsed);
+              }}
+            />
+          </div>
+        ) : null}
+        <p className="text-[11px] leading-snug text-white/60">{t("result.priceScenarioHint")}</p>
+      </div>
+
+      {/* ── Card 4: payback time ── */}
       <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">
         <div className="flex items-start justify-between gap-3">
           <div>
@@ -304,7 +304,7 @@ title={t("result.adjustAssumptions")}
         </div>
       </div>
 
-      {/* ── Card 4: what the price corresponds to ── */}
+      {/* ── Card 5: what the price corresponds to ── */}
       <div className="glass-primary rounded-[28px] px-4 py-4">
         <p className="text-[10px] font-bold tracking-widest text-white/70 uppercase">
           {t("result.paybackResultLabel")}
