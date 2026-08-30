@@ -1,7 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from "react";
-import { ClientOnly } from "@tanstack/react-router";
+import { ClientOnly, useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Loader2, MapPin, Minus, Plus, Search, Sun } from "lucide-react";
+import { ArrowRight, Loader2, MapPin, Minus, Plus, Search, Settings, Sun } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type L from "leaflet";
 import { Button } from "@/components/ui/button";
@@ -24,13 +24,13 @@ interface AddressStepProps {
 export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
   const { t } = useTranslation();
   const { language } = useAppLocale();
+  const navigate = useNavigate();
   const location = useWizardStore((s) => s.location);
   const setLocation = useWizardStore((s) => s.setLocation);
 
   const [query, setQuery] = useState(location?.address ?? "");
   const [debounced, setDebounced] = useState("");
   const [showResults, setShowResults] = useState(false);
-  const [showPremium, setShowPremium] = useState(false);
   const [map, setMap] = useState<L.Map | null>(null);
 
   useEffect(() => {
