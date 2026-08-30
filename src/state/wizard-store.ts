@@ -2,7 +2,14 @@ import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
 import type { Orientation, SiteLocation, SolarResource } from "@/lib/calc/types";
 import type { ConsumptionInputType, ConsumptionShape } from "@/lib/calc/consumption-shape";
-import { DEFAULT_PAYBACK_YEARS, DEFAULT_SELF_CONSUMPTION_SHARE } from "@/config/constants";
+import {
+  DEFAULT_PAYBACK_YEARS,
+  DEFAULT_PRICE_SCENARIO,
+  DEFAULT_SELF_CONSUMPTION_SHARE,
+  MAX_CUSTOM_PRICE_CHANGE_PERCENT,
+  MIN_CUSTOM_PRICE_CHANGE_PERCENT,
+  type PriceScenarioId,
+} from "@/config/constants";
 
 export interface WizardState {
   location: SiteLocation | null;
@@ -24,6 +31,10 @@ export interface WizardState {
   selfConsumedValuePerKwh: number | null;
   exportValuePerKwh: number | null;
   acceptedPaybackYears: number;
+  /** Assumed electricity price development scenario. */
+  priceScenario: PriceScenarioId;
+  /** Annual change in percent used when the scenario is "custom". */
+  customPriceChangePercent: number;
   quotePrice: number | null;
   /** Current wizard step (1–4). Persists across navigation so the user can
    *  return from the result page to the exact step they want to edit. */
@@ -46,6 +57,8 @@ export interface WizardState {
   setSelfConsumedValue: (value: number | null) => void;
   setExportValue: (value: number | null) => void;
   setAcceptedPaybackYears: (years: number) => void;
+  setPriceScenario: (scenario: PriceScenarioId) => void;
+  setCustomPriceChangePercent: (percent: number) => void;
   setQuotePrice: (price: number | null) => void;
   setCurrentStep: (step: number) => void;
   reset: () => void;
@@ -67,6 +80,8 @@ const initialState = {
   selfConsumedValuePerKwh: null,
   exportValuePerKwh: null,
   acceptedPaybackYears: DEFAULT_PAYBACK_YEARS,
+  priceScenario: DEFAULT_PRICE_SCENARIO,
+  customPriceChangePercent: 2,
   quotePrice: null,
   currentStep: 1,
 };
@@ -100,6 +115,14 @@ export const useWizardStore = create<WizardState>()(
       setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
       setExportValue: (value) => set({ exportValuePerKwh: value }),
       setAcceptedPaybackYears: (years) => set({ acceptedPaybackYears: years }),
+      setPriceScenario: (scenario) => set({ priceScenario: scenario }),
+      setCustomPriceChangePercent: (percent) =>
+        set({
+          customPriceChangePercent: Math.min(
+            MAX_CUSTOM_PRICE_CHANGE_PERCENT,
+            Math.max(MIN_CUSTOM_PRICE_CHANGE_PERCENT, percent),
+          ),
+        }),
       setQuotePrice: (price) => set({ quotePrice: price }),
       setCurrentStep: (step) => set({ currentStep: step }),
       reset: () => set({ ...initialState }),
@@ -130,6 +153,8 @@ export const useWizardStore = create<WizardState>()(
         selfConsumedValuePerKwh,
         exportValuePerKwh,
         acceptedPaybackYears,
+        priceScenario,
+        customPriceChangePercent,
         currentStep,
       }) => ({
         location,
@@ -147,6 +172,8 @@ export const useWizardStore = create<WizardState>()(
         selfConsumedValuePerKwh,
         exportValuePerKwh,
         acceptedPaybackYears,
+        priceScenario,
+        customPriceChangePercent,
         currentStep,
       }),
     },

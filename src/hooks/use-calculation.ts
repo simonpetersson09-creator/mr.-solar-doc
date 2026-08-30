@@ -3,6 +3,7 @@ import { calculateSolarSystem } from "@/lib/calc/engine";
 import type { CalculationResult } from "@/lib/calc/types";
 import { getMarketConfig } from "@/config/markets";
 import { useWizardStore } from "@/state/wizard-store";
+import { PRICE_SCENARIO_RATES } from "@/config/constants";
 
 /** UI -> Hook -> Calculation engine -> Result. No logic lives in components. */
 export function useCalculation(): {
@@ -22,6 +23,13 @@ export function useCalculation(): {
   const exportValuePerKwh = useWizardStore((s) => s.exportValuePerKwh);
   const acceptedPaybackYears = useWizardStore((s) => s.acceptedPaybackYears);
   const quotePrice = useWizardStore((s) => s.quotePrice);
+  const priceScenario = useWizardStore((s) => s.priceScenario);
+  const customPriceChangePercent = useWizardStore((s) => s.customPriceChangePercent);
+
+  const annualPriceChangeRate =
+    priceScenario === "custom"
+      ? customPriceChangePercent / 100
+      : PRICE_SCENARIO_RATES[priceScenario];
 
   const market = getMarketConfig(location?.countryCode);
 
@@ -59,6 +67,7 @@ export function useCalculation(): {
       selfConsumptionShare,
       selfConsumptionShareIsUserSet,
       acceptedPaybackYears,
+      annualPriceChangeRate,
       quotePrice,
       inverterSizesKw: market.inverterSizesKw,
     });
@@ -75,6 +84,7 @@ export function useCalculation(): {
     selfConsumedValuePerKwh,
     exportValuePerKwh,
     acceptedPaybackYears,
+    annualPriceChangeRate,
     quotePrice,
     market,
   ]);
