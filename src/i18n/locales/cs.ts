@@ -47,7 +47,6 @@ export const cs = {
     "manualHint": "Přetáhněte šipku tak, aby ukazovala směr střechy. 180° = přesně na jih.",
     "tilt": "Sklon střechy",
     "tiltDegrees": ".*",
-    "tiltHint": "Většina střech má sklon 30–35°.",
     "compass": {
       "n": "S",
       "e": "V",

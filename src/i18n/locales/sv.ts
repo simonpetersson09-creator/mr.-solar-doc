@@ -47,7 +47,6 @@ export const sv = {
     manualHint: "Dra pilen så att den pekar i takets riktning. 180° = rakt söderut.",
     tilt: "Taklutning",
     tiltDegrees: ".*",
-    tiltHint: "De flesta tak har en lutning på 30–35°.",
     compass: {
       n: "N",
       e: "Ö",

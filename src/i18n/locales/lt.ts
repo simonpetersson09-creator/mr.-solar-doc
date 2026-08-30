@@ -47,7 +47,6 @@ export const lt = {
     "manualHint": "Vilkite rodyklę, kad ji rodytų stogo kryptį. 180° = tiesiai į pietus.",
     "tilt": "Stogo nuolydis",
     "tiltDegrees": ".*",
-    "tiltHint": "Daugumos stogų nuolydis yra 30–35°.",
     "compass": {
       "n": "Š",
       "e": "R",

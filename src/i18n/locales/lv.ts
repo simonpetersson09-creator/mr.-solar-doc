@@ -47,7 +47,6 @@ export const lv = {
     "manualHint": "Velciet bultiņu tā, lai tā rāda jumta virzienā. 180° = tieši uz dienvidiem.",
     "tilt": "Jumta slīpums",
     "tiltDegrees": ".*",
-    "tiltHint": "Lielākajai daļai jumtu slīpums ir 30–35°.",
     "compass": {
       "n": "Z",
       "e": "A",

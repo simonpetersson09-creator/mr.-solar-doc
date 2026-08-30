@@ -47,7 +47,6 @@ export const sk = {
     "manualHint": "Potiahnite šípku tak, aby ukazovala smer strechy. 180° = priamo na juh.",
     "tilt": "Sklon strechy",
     "tiltDegrees": ".*",
-    "tiltHint": "Väčšina striech má sklon 30–35°.",
     "compass": {
       "n": "S",
       "e": "V",
