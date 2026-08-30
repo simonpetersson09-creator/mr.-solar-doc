@@ -11,7 +11,12 @@ import { useCalculation } from "@/hooks/use-calculation";
 import { useWizardStore } from "@/state/wizard-store";
 import { formatCurrency, formatNumber, parseLocaleNumber } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import { MAX_PAYBACK_YEARS, MIN_PAYBACK_YEARS } from "@/config/constants";
+import {
+  MAX_PAYBACK_YEARS,
+  MIN_PAYBACK_YEARS,
+  PRICE_SCENARIO_RATES,
+  type PriceScenarioId,
+} from "@/config/constants";
 import { haptic } from "@/services/native-service";
 
 interface AssumptionsStepProps {
@@ -72,6 +77,19 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   const storedSelfConsumptionShare = useWizardStore((s) => s.selfConsumptionShare);
   const storedSelfConsumedValue = useWizardStore((s) => s.selfConsumedValuePerKwh);
   const storedExportValue = useWizardStore((s) => s.exportValuePerKwh);
+  const priceScenario = useWizardStore((s) => s.priceScenario);
+  const setPriceScenario = useWizardStore((s) => s.setPriceScenario);
+  const customPriceChangePercent = useWizardStore((s) => s.customPriceChangePercent);
+  const setCustomPriceChangePercent = useWizardStore((s) => s.setCustomPriceChangePercent);
+
+  const scenarios: { id: PriceScenarioId; label: string; rateLabel: string | null }[] = [
+    { id: "flat", label: t("result.priceScenarioFlat"), rateLabel: "0 %/\u00e5r" },
+    { id: "cautious", label: t("result.priceScenarioCautious"), rateLabel: "+1 %/\u00e5r" },
+    { id: "normal", label: t("result.priceScenarioNormal"), rateLabel: "+2 %/\u00e5r" },
+    { id: "high", label: t("result.priceScenarioHigh"), rateLabel: "+3 %/\u00e5r" },
+    { id: "custom", label: t("result.priceScenarioCustom"), rateLabel: null },
+  ];
+  void PRICE_SCENARIO_RATES;
 
   const currency = result?.economics.currency ?? market.currency;
   const sharePercent = result
@@ -203,6 +221,56 @@ title={t("result.adjustAssumptions")}
           </div>
         </div>
         <p className="text-[11px] leading-snug text-white/60">{t("result.standardValueHint")}</p>
+
+        {/* Electricity price development scenario */}
+        <div className="space-y-2 border-t border-white/15 pt-3">
+          <p className="text-xs font-semibold text-white">{t("result.priceScenarioTitle")}</p>
+          <div className="flex flex-wrap gap-1.5">
+            {scenarios.map((scenario) => {
+              const active = priceScenario === scenario.id;
+              return (
+                <button
+                  key={scenario.id}
+                  type="button"
+                  onClick={() => setPriceScenario(scenario.id)}
+                  aria-pressed={active}
+                  className={cn(
+                    "rounded-full border px-3 py-1.5 text-[11px] font-semibold transition-colors",
+                    active
+                      ? "border-accent bg-accent text-accent-foreground"
+                      : "border-white/25 bg-white/10 text-white/80",
+                  )}
+                >
+                  {scenario.label}
+                  {scenario.rateLabel ? (
+                    <span className={cn("ml-1 font-normal", active ? "" : "text-white/60")}>
+                      {scenario.rateLabel}
+                    </span>
+                  ) : null}
+                </button>
+              );
+            })}
+          </div>
+          {priceScenario === "custom" ? (
+            <div>
+              <Label htmlFor="custom-price-change" className="text-[11px] text-white/70">
+                {t("result.priceScenarioCustomLabel")}
+              </Label>
+              <Input
+                id="custom-price-change"
+                type="text"
+                inputMode="decimal"
+                className="mt-1 h-9 rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
+                value={String(customPriceChangePercent)}
+                onChange={(event) => {
+                  const parsed = parseLocaleNumber(event.target.value);
+                  if (parsed !== null) setCustomPriceChangePercent(parsed);
+                }}
+              />
+            </div>
+          ) : null}
+          <p className="text-[11px] leading-snug text-white/60">{t("result.priceScenarioHint")}</p>
+        </div>
       </div>
 
       {/* ── Card 3: payback time ── */}
