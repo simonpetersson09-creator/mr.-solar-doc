@@ -67,8 +67,8 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
 
 return (
     <div className="surface-sun relative flex min-h-dvh flex-col">
-      {/* Map hero — fixed height; the action buttons live below in the page scroll */}
-      <div className="relative h-[60dvh] min-h-[440px] max-h-[540px] shrink-0">
+      {/* Map hero — fills all space above the in-flow CTA */}
+      <div className="relative min-h-[380px] flex-1 shrink-0">
         {/* Full-bleed map backdrop */}
         <div className="absolute inset-0 z-0 overflow-hidden">
           <ClientOnly fallback={<div className="h-full w-full bg-muted" />}>
@@ -218,7 +218,7 @@ return (
       </div>
 
       {/* In-flow content: note + CTA at the bottom of the page scroll */}
-      <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-1 flex-col px-5 pt-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+      <div className="relative z-10 mx-auto flex w-full max-w-2xl flex-col px-5 pt-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
         {unsupportedMarket ? (
           <p className="mb-4 rounded-2xl border border-border bg-card/90 p-3 text-center text-xs text-foreground">
             {t("address.marketUnsupported")}
