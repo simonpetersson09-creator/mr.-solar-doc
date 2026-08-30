@@ -39,6 +39,11 @@ export const en = {
     region: "Region",
     error: "Address search failed.",
   },
+  settings: {
+    history: "History",
+    terms: "Terms of use",
+    privacy: "Privacy policy",
+  },
   premium: {
     title: "Premium",
     start: "Start premium",

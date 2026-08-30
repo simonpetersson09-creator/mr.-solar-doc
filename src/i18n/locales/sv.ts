@@ -39,6 +39,11 @@ export const sv = {
     region: "Region",
     error: "Adressökningen misslyckades.",
   },
+  settings: {
+    history: "Historik",
+    terms: "Användarvillkor",
+    privacy: "Integritetspolicy",
+  },
   premium: {
     title: "Premium",
     start: "Starta premium",
