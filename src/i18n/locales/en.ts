@@ -39,11 +39,6 @@ export const en = {
     region: "Region",
     error: "Address search failed.",
   },
-  settings: {
-    history: "History",
-    terms: "Terms of use",
-    privacy: "Privacy policy",
-  },
   premium: {
     title: "Premium",
     start: "Start premium",
@@ -328,6 +323,9 @@ export const en = {
     title: "Settings",
     language: "Language",
     languageHint: "The currency follows the country in your address, not the language.",
+    history: "History",
+    terms: "Terms of use",
+    privacy: "Privacy policy",
   },
   chart: {
     productionAria: "Monthly production",
