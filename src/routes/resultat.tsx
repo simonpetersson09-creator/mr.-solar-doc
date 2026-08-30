@@ -369,25 +369,11 @@ function ResultPage() {
 
         {exportError ? <p className="text-sm text-destructive">{t("result.pdfError")}</p> : null}
 
-        {/* Actions — in the scroll flow at the very bottom */}
+{/* Actions — in the scroll flow at the very bottom */}
         <div className="pb-safe flex flex-col gap-2 pt-2">
-          <div className="flex gap-2">
-            <Button
-              variant="outline"
-              size="lg"
-              className="flex-1"
-              onClick={() => {
-                void haptic("light");
-                setCurrentStep(5);
-                void navigate({ to: "/" });
-              }}
-            >
-              <ArrowLeft className="size-4" /> {t("common.back")}
-            </Button>
-            <Button variant="outline" size="lg" className="flex-1" asChild onClick={() => reset()}>
-              <Link to="/">{t("common.startOver")}</Link>
-            </Button>
-          </div>
+          <Button variant="outline" size="lg" className="w-full" asChild onClick={() => reset()}>
+            <Link to="/">{t("common.startOver")}</Link>
+          </Button>
           <Button
             className="w-full"
             size="lg"
