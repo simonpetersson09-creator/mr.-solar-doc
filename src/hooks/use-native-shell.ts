@@ -9,9 +9,18 @@ export function useNativeShell() {
   useEffect(() => {
     let cancelled = false;
 
+    // Standalone/native shells draw under the status bar (clock, battery), so we
+    // flag the document and let CSS reserve a minimum top inset.
+    const standalone =
+      typeof window !== "undefined" &&
+      window.matchMedia?.("(display-mode: standalone)").matches === true;
+    if (standalone) document.documentElement.dataset["native"] = "true";
+
     (async () => {
       const { Capacitor } = await import("@capacitor/core");
       if (cancelled || !Capacitor.isNativePlatform()) return;
+      document.documentElement.dataset["native"] = "true";
+
 
       try {
         const { StatusBar, Style } = await import("@capacitor/status-bar");
