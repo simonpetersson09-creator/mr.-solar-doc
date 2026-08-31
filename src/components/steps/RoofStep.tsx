@@ -168,7 +168,20 @@ className="h-7 w-16 rounded-full border-white/25 bg-white/15 px-2 text-xs text-w
 
       {query.isError ? (
         <div className="flex items-center justify-between gap-3 rounded-xl border border-destructive/40 bg-destructive/5 px-3 py-2.5">
-          <p className="text-xs text-destructive">{t("roof.error")}</p>
+          <div className="min-w-0">
+            <p className="text-xs text-destructive">
+              {pvgisError.kind === "over-sea"
+                ? t("roof.errorOverSea")
+                : pvgisError.kind === "outside-coverage"
+                  ? t("roof.errorOutsideCoverage")
+                  : t("roof.error")}
+            </p>
+            {pvgisError.message ? (
+              <p className="mt-0.5 text-[10px] text-destructive/70">
+                {t("roof.errorSource", { message: pvgisError.message })}
+              </p>
+            ) : null}
+          </div>
           <Button variant="outline" size="sm" onClick={() => void query.refetch()}>
             {t("common.retry")}
           </Button>
