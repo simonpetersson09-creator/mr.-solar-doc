@@ -13,6 +13,7 @@ import type { ConsumptionShape } from "@/lib/calc/consumption-shape";
 import { estimateMonthlyConsumption } from "@/lib/calc/consumption-shape";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatNumber, parseLocaleNumber } from "@/lib/format";
+import { sanitizeNumericInput } from "@/lib/numeric-input";
 import { sumMonthly } from "@/lib/calc/energy-production";
 import { useWizardStore } from "@/state/wizard-store";
 import { haptic } from "@/services/native-service";
@@ -86,9 +87,9 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
     }
   };
 
-  const monthlyNumbers = monthly.map((value) => parseLocaleNumber(value) ?? 0);
+  const monthlyNumbers = monthly.map((value) => parseLocaleNumber(value, locale) ?? 0);
   const monthlyTotal = sumMonthly(monthlyNumbers);
-  const effectiveAnnual = useMonthly ? monthlyTotal : (parseLocaleNumber(annual) ?? 0);
+  const effectiveAnnual = useMonthly ? monthlyTotal : (parseLocaleNumber(annual, locale) ?? 0);
   const valid = effectiveAnnual >= MIN_ANNUAL_KWH && effectiveAnnual <= MAX_ANNUAL_KWH;
   const showEstimatedProfile = !useMonthly && valid;
   /**
@@ -254,7 +255,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
                 inputMode="decimal"
                 value={annual}
                 placeholder={t("consumption.annualPlaceholder")}
-                onChange={(event) => setAnnual(event.target.value)}
+                onChange={(event) => setAnnual(sanitizeNumericInput(event.target.value))}
                 className="mt-0.5 h-9 rounded-full border-white/25 bg-white/15 text-sm text-white placeholder:text-white/50"
               />
             </div>
@@ -304,7 +305,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
                     value={value}
                     onChange={(event) => {
                       const next = [...monthly];
-                      next[index] = event.target.value;
+                      next[index] = sanitizeNumericInput(event.target.value);
                       setMonthly(next);
                     }}
                     className="mt-0.5 h-8 rounded-lg border-white/25 bg-white/15 px-1.5 text-[13px] text-white placeholder:text-white/50"
