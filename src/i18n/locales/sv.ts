@@ -559,6 +559,10 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       { q: 'Vad betyder pris för vald återbetalningstid?', a: 'Det visar ungefär hur mycket anläggningen kan kosta för att motsvara den återbetalningstid du valt, baserat på kalkylens antaganden. Det är inte ett uppskattat marknadspris.' },
       { q: 'Varför kan installatörens beräkning skilja sig?', a: 'Olika antaganden om produktion, egenanvändning, elpriser, systemförluster och framtida prisutveckling kan ge olika resultat.' },
       { q: 'Är beräkningen en offert?', a: 'Nej. Resultatet är en uppskattning och ska användas som beslutsunderlag. Faktiskt pris, produktion och ekonomiskt utfall kan avvika.' },
+            { q: 'Varför minskar produktionen över tid?', a: 'Solpanelers effekt minskar normalt något med åren. Beräkningen utgår från en årlig degradering på 0,5 %, vilket innebär att den beräknade produktionen gradvis minskar under kalkylperioden.' },
+      { q: 'Hur beräknas värdet på min solel?', a: 'Egenanvänd solel värderas utifrån kostnaden för el som du annars hade behövt köpa. Såld solel värderas utifrån den antagna ersättningen för el som matas ut på elnätet.' },
+      { q: 'Vad betyder produktionskostnad per kWh?', a: 'Produktionskostnaden visar den beräknade genomsnittliga kostnaden för varje producerad kilowattimme över anläggningens livslängd. Den kan jämföras med det beräknade ekonomiska värdet av solelen.' },
+      { q: 'Varför rekommenderas just den här storleken på anläggningen?', a: 'Anläggningens storlek beräknas utifrån bland annat din elanvändning, solinstrålningen på platsen och tekniska begränsningar. Målet är att dimensionera anläggningen efter dina förutsättningar, inte att installera största möjliga anläggning.' },
     ],
 
   },
