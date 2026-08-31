@@ -66,7 +66,7 @@
   --radius: 1.1rem;
   /* Minimum gap above headers. Native/standalone shells draw under the status
      bar, so they reserve more. */
-  --safe-top-min: 0.75rem;
+  --safe-top-min: 1rem;
 
   --background: oklch(0.985 0.012 95);
   --foreground: oklch(0.245 0.035 158);
