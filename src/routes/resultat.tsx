@@ -235,7 +235,7 @@ const cost = result.productionCost;
                 <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   {t("result.annualProduction")}
                 </p>
-                <p className="mt-0.5 text-lg font-bold text-accent tabular-nums">
+                <p className="mt-0.5 text-lg font-bold text-white tabular-nums">
                   {formatNumber(p.annualProductionKwh, locale)}{" "}
                   <span className="text-[11px] font-semibold text-white/60">
                     kWh{t("common.perYear")}
