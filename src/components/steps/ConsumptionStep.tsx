@@ -63,7 +63,7 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
     setFileName(file.name);
     try {
       const { readConsumptionFile } = await import("@/lib/read-consumption-file");
-      const parsed = await readConsumptionFile(file);
+      const parsed = await readConsumptionFile(file, i18n.language);
       if (parsed.monthly) {
         setMonthly(parsed.monthly.map((value) => String(Math.round(value))));
         setUseMonthly(true);

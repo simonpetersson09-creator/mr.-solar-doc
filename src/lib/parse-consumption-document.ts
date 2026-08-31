@@ -45,8 +45,55 @@ export function parseLocaleNumber(raw: string): number | null {
   return Number.isFinite(value) ? value : null;
 }
 
+/** Matches "2025-01", "2025/01", "01/2025" or "01.2025" near the line start. */
+const NUMERIC_MONTH_PATTERNS: RegExp[] = [
+  /^\D{0,3}(19|20)\d{2}\s*[-/.]\s*(0?[1-9]|1[0-2])\b/,
+  /^\D{0,3}(0?[1-9]|1[0-2])\s*[-/.]\s*(19|20)\d{2}\b/,
+];
+
+/**
+ * Detects the month a line refers to and returns the line with any leading
+ * date token removed, so "2025-01" is not mistaken for a value.
+ */
+function monthForLine(line: string): { index: number; rest: string } {
+  const yearFirst = NUMERIC_MONTH_PATTERNS[0]!.exec(line);
+  if (yearFirst) {
+    return { index: Number(yearFirst[2]) - 1, rest: line.slice(yearFirst[0].length) };
+  }
+  const monthFirst = NUMERIC_MONTH_PATTERNS[1]!.exec(line);
+  if (monthFirst) {
+    return { index: Number(monthFirst[1]) - 1, rest: line.slice(monthFirst[0].length) };
+  }
+  const byName = MONTH_PATTERNS.findIndex((pattern) => pattern.test(line));
+  return { index: byName, rest: line };
+}
+
+// Grouped digits ("1 234,5", "1.234,5") or a plain number — never merging two
+// separate numbers such as "2025 336,45" into one.
+const NUMBER_SOURCE =
+  "(?<![\\d.,])\\d{1,3}(?:[\\s\\u00a0\\u202f.,']\\d{3})+(?:[.,]\\d{1,2})?(?![\\d])" +
+  "|(?<![\\d.,])\\d+(?:[.,]\\d+)?(?![\\d])";
+
+/**
+ * Picks the number that is attached to an energy unit (kWh/MWh/Wh) on the line.
+ * MWh is converted to kWh. Returns null when no unit-bound number exists.
+ */
+function energyValueInLine(line: string): number | null {
+  const pattern = new RegExp(`(${NUMBER_SOURCE})\\s*(kwh|mwh|wh|kw h)\\b`, "gi");
+  let match: RegExpExecArray | null;
+  let best: number | null = null;
+  while ((match = pattern.exec(line)) !== null) {
+    const value = parseLocaleNumber(match[1] ?? "");
+    if (value === null) continue;
+    const unit = (match[2] ?? "").toLowerCase();
+    const scaled = unit === "mwh" ? value * 1000 : unit === "wh" ? value / 1000 : value;
+    if (best === null) best = scaled;
+  }
+  return best;
+}
+
 function numbersInLine(line: string): number[] {
-  const matches = line.match(/-?[\d][\d\s\u00a0\u202f.,']*\d|\d/g) ?? [];
+  const matches = line.match(new RegExp(NUMBER_SOURCE, "g")) ?? [];
   return matches
     .map((match) => parseLocaleNumber(match))
     .filter((value): value is number => value !== null);
@@ -67,24 +114,26 @@ export function parseConsumptionText(text: string): ParsedConsumption {
   let annual: number | null = null;
 
   for (const line of lines) {
-    const values = numbersInLine(line);
+    const { index: monthIndex, rest } = monthForLine(line);
+    const values = numbersInLine(rest);
     if (values.length === 0) continue;
+    const energy = energyValueInLine(rest);
 
     if (annual === null && ANNUAL_PATTERNS.some((pattern) => pattern.test(line))) {
-      const candidate = values[values.length - 1];
+      const candidate = energy ?? values[values.length - 1];
       if (candidate !== undefined && candidate >= 100 && candidate <= 200000) {
         annual = candidate;
         continue;
       }
     }
 
-    const monthIndex = MONTH_PATTERNS.findIndex((pattern) => pattern.test(line));
     if (monthIndex === -1) continue;
     if (monthly[monthIndex] !== null) continue;
 
-    // Ignore a leading year like "2025" in "Jan 2025 336,45 kWh".
+    // Prefer a number bound to a kWh unit; otherwise ignore a leading year
+    // like "2025" in "Jan 2025 336,45".
     const candidates = values.filter((value) => !(Number.isInteger(value) && value >= 1900 && value <= 2100));
-    const picked = candidates.length > 0 ? candidates[candidates.length - 1] : undefined;
+    const picked = energy ?? (candidates.length > 0 ? candidates[candidates.length - 1] : undefined);
     if (picked !== undefined && picked >= 0) {
       monthly[monthIndex] = picked;
     }

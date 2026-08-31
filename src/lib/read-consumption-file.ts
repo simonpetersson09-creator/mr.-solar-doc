@@ -1,12 +1,15 @@
 import { parseConsumptionText, type ParsedConsumption } from "@/lib/parse-consumption-document";
 
-async function readPdfText(file: File): Promise<string> {
+async function loadPdf(file: File) {
   const pdfjs = await import("pdfjs-dist");
   const workerSrc = (await import("pdfjs-dist/build/pdf.worker.min.mjs?url")).default;
   pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
-
   const data = new Uint8Array(await file.arrayBuffer());
-  const doc = await pdfjs.getDocument({ data }).promise;
+  return pdfjs.getDocument({ data }).promise;
+}
+
+async function readPdfText(file: File, langs: string[]): Promise<string> {
+  const doc = await loadPdf(file);
   const pages: string[] = [];
 
   for (let pageNumber = 1; pageNumber <= doc.numPages; pageNumber += 1) {
@@ -35,8 +38,44 @@ async function readPdfText(file: File): Promise<string> {
     pages.push(lines.join("\n"));
   }
 
+  const text = pages.join("\n");
+  // Scanned / image-only PDFs have no text layer — fall back to OCR.
+  if (text.replace(/\s/g, "").length >= 40) return text;
+  return readPdfViaOcr(doc, langs);
+}
+
+type PdfDocument = Awaited<ReturnType<typeof loadPdf>>;
+
+/** Rasterises up to the first 4 pages and OCRs them. */
+async function readPdfViaOcr(doc: PdfDocument, langs: string[]): Promise<string> {
+  if (typeof document === "undefined") return "";
+  const { createWorker } = await import("tesseract.js");
+  const worker = await createWorker(langs);
+  const pages: string[] = [];
+  try {
+    const pageCount = Math.min(doc.numPages, 4);
+    for (let pageNumber = 1; pageNumber <= pageCount; pageNumber += 1) {
+      const page = await doc.getPage(pageNumber);
+      const viewport = page.getViewport({ scale: 2 });
+      const canvas = document.createElement("canvas");
+      canvas.width = Math.ceil(viewport.width);
+      canvas.height = Math.ceil(viewport.height);
+      const context = canvas.getContext("2d");
+      if (!context) continue;
+      await page.render({ canvas, canvasContext: context, viewport }).promise;
+      const { data } = await worker.recognize(canvas);
+      pages.push(data.text);
+      canvas.width = 0;
+      canvas.height = 0;
+    }
+  } catch {
+    return pages.join("\n");
+  } finally {
+    await worker.terminate();
+  }
   return pages.join("\n");
 }
+
 
 async function readSpreadsheetText(file: File): Promise<string> {
   const XLSX = await import("xlsx");
@@ -51,9 +90,9 @@ async function readSpreadsheetText(file: File): Promise<string> {
   return sheets.join("\n");
 }
 
-async function readImageText(file: File): Promise<string> {
+async function readImageText(file: File, langs: string[]): Promise<string> {
   const { createWorker } = await import("tesseract.js");
-  const worker = await createWorker(["swe", "eng"]);
+  const worker = await createWorker(langs);
   try {
     const { data } = await worker.recognize(file);
     return data.text;
@@ -64,16 +103,56 @@ async function readImageText(file: File): Promise<string> {
 
 const IMAGE_EXTENSIONS = /\.(png|jpe?g|webp|gif|bmp|tiff?|heic)$/;
 
-export async function readConsumptionFile(file: File): Promise<ParsedConsumption> {
+/** Maps an app language code to Tesseract traineddata languages. */
+const OCR_LANGUAGES: Record<string, string> = {
+  sv: "swe",
+  no: "nor",
+  nb: "nor",
+  da: "dan",
+  fi: "fin",
+  de: "deu",
+  nl: "nld",
+  fr: "fra",
+  es: "spa",
+  pt: "por",
+  it: "ita",
+  pl: "pol",
+  cs: "ces",
+  sk: "slk",
+  sl: "slv",
+  et: "est",
+  lv: "lav",
+  lt: "lit",
+  hu: "hun",
+  ro: "ron",
+  hr: "hrv",
+  sr: "srp",
+  bg: "bul",
+  uk: "ukr",
+  el: "ell",
+  tr: "tur",
+  hi: "hin",
+  he: "heb",
+  id: "ind",
+};
+
+export function ocrLanguagesFor(language?: string): string[] {
+  const base = (language ?? "").split("-")[0]?.toLowerCase() ?? "";
+  const mapped = OCR_LANGUAGES[base];
+  return mapped && mapped !== "eng" ? [mapped, "eng"] : ["eng"];
+}
+
+export async function readConsumptionFile(file: File, language?: string): Promise<ParsedConsumption> {
   const name = file.name.toLowerCase();
+  const langs = ocrLanguagesFor(language);
   let text: string;
 
   if (name.endsWith(".pdf") || file.type === "application/pdf") {
-    text = await readPdfText(file);
+    text = await readPdfText(file, langs);
   } else if (/\.(xlsx|xls|ods)$/.test(name)) {
     text = await readSpreadsheetText(file);
   } else if (file.type.startsWith("image/") || IMAGE_EXTENSIONS.test(name)) {
-    text = await readImageText(file);
+    text = await readImageText(file, langs);
   } else {
     text = await file.text();
   }
