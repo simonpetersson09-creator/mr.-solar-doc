@@ -467,6 +467,10 @@ systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre in
       { "q": "Que signifie le prix pour la durée de retour choisie ?", "a": "Il indique approximativement combien l'installation peut coûter pour correspondre à la durée de retour que vous avez choisie, sur la base des hypothèses du calcul. Il ne s'agit pas d'un prix de marché estimé." },
       { "q": "Pourquoi le calcul de l'installateur peut-il différer ?", "a": "Des hypothèses différentes sur la production, l'autoconsommation, les prix de l'électricité, les pertes du système et l'évolution future des prix peuvent donner des résultats différents." },
       { "q": "Le calcul est-il un devis ?", "a": "Non. Le résultat est une estimation et doit servir de base à la décision. Le prix, la production et le résultat économique réels peuvent différer." },
+      { q: 'Pourquoi la production diminue-t-elle au fil du temps ?', a: 'La puissance des panneaux solaires diminue normalement légèrement avec les années. Le calcul repose sur une dégradation annuelle de 0,5 %, ce qui signifie que la production estimée diminue progressivement au cours de la période de calcul.' },
+      { q: 'Comment la valeur de mon électricité solaire est-elle calculée ?', a: 'L\'électricité solaire autoconsommée est valorisée sur la base du coût de l\'électricité que vous auriez dû acheter autrement. L\'électricité solaire vendue est valorisée sur la base de la rémunération supposée pour l\'électricité injectée dans le réseau.' },
+      { q: 'Que signifie le coût de production par kWh ?', a: 'Le coût de production indique le coût moyen estimé de chaque kilowattheure produit sur la durée de vie de l\'installation. Il peut être comparé à la valeur économique estimée de l\'électricité solaire.' },
+      { q: 'Pourquoi cette taille d\'installation est-elle recommandée ?', a: 'La taille de l\'installation est calculée notamment en fonction de votre consommation d\'électricité, de l\'ensoleillement du site et des limitations techniques. L\'objectif est de dimensionner l\'installation selon vos conditions, et non d\'installer la plus grande installation possible.' },
     ],
 
   }

@@ -467,6 +467,10 @@ systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dej
       { "q": "Kaj pomeni cena za izbrano dobo vračila?", "a": "Približno prikazuje, koliko lahko stane naprava, da ustreza izbrani dobi vračila na podlagi predpostavk izračuna. To ni ocenjena tržna cena." },
       { "q": "Zakaj se izračun monterja lahko razlikuje?", "a": "Različne predpostavke o proizvodnji, lastni porabi, cenah elektrike, izgubah sistema in prihodnjem gibanju cen lahko dajo različne rezultate." },
       { "q": "Ali je izračun ponudba?", "a": "Ne. Rezultat je ocena in naj se uporabi kot podlaga za odločanje. Dejanska cena, proizvodnja in ekonomski izid se lahko razlikujejo." },
+      { q: 'Zakaj se proizvodnja sčasoma zmanjšuje?', a: 'Učinkovitost sončnih panelov se z leti običajno nekoliko zmanjša. Izračun temelji na letni degradaciji 0,5 %, kar pomeni, da se izračunana proizvodnja v obdobju izračuna postopoma zmanjšuje.' },
+      { q: 'Kako se izračuna vrednost moje sončne energije?', a: 'Sončna energija, porabljena za lastne potrebe, se vrednoti glede na stroške električne energije, ki bi jo sicer morali kupiti. Prodana sončna energija se vrednoti glede na predvideno nadomestilo za električno energijo, oddano v omrežje.' },
+      { q: 'Kaj pomeni strošek proizvodnje na kWh?', a: 'Strošek proizvodnje prikazuje izračunani povprečni strošek vsake proizvedene kilovatne ure v življenjski dobi naprave. Primerjamo ga lahko z izračunano ekonomsko vrednostjo sončne energije.' },
+      { q: 'Zakaj se priporoča ravno ta velikost naprave?', a: 'Velikost naprave se izračuna na podlagi med drugim vaše porabe električne energije, sončnega sevanja na lokaciji in tehničnih omejitev. Cilj je dimenzionirati napravo glede na vaše razmere, ne pa namestiti čim večjo napravo.' },
     ],
 
   }

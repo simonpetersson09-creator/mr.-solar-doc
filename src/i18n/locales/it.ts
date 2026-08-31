@@ -467,6 +467,10 @@ systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produ
       { "q": "Cosa significa prezzo per il periodo di ammortamento scelto?", "a": "Indica approssimativamente quanto può costare l'impianto per corrispondere al periodo di ammortamento da te scelto, sulla base delle ipotesi del calcolo. Non è un prezzo di mercato stimato." },
       { "q": "Perché il calcolo dell'installatore può differire?", "a": "Ipotesi diverse su produzione, autoconsumo, prezzi dell'elettricità, perdite di sistema e andamento futuro dei prezzi possono dare risultati diversi." },
       { "q": "Il calcolo è un preventivo?", "a": "No. Il risultato è una stima e deve essere utilizzato come base per le decisioni. Prezzo, produzione e risultato economico effettivi possono differire." },
+      { q: 'Perché la produzione diminuisce nel tempo?', a: 'La potenza dei pannelli solari diminuisce normalmente leggermente con gli anni. Il calcolo si basa su un degrado annuo dello 0,5 %, il che significa che la produzione stimata diminuisce gradualmente nel corso del periodo di calcolo.' },
+      { q: 'Come viene calcolato il valore del mio solare?', a: 'L\'energia solare autoconsumata viene valutata in base al costo dell\'elettricità che avresti dovuto acquistare. L\'energia solare venduta viene valutata in base alla compensazione prevista per l\'energia immessa in rete.' },
+      { q: 'Cosa significa costo di produzione per kWh?', a: 'Il costo di produzione mostra il costo medio stimato per ogni chilowattora prodotto durante la vita utile dell\'installazione. Può essere confrontato con il valore economico stimato dell\'energia solare.' },
+      { q: 'Perché viene consigliata proprio questa dimensione dell\'impianto?', a: 'La dimensione dell\'impianto viene calcolata in base, tra l\'altro, al tuo consumo di elettricità, all\'irraggiamento solare del sito e ai limiti tecnici. L\'obiettivo è dimensionare l\'impianto in base alle tue condizioni, non installare il più grande impianto possibile.' },
     ],
 
   }

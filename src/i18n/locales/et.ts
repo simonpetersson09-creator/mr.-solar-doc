@@ -467,6 +467,10 @@ systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tege
       { "q": "Mida tähendab hind valitud tasuvusaja kohta?", "a": "See näitab ligikaudu, kui palju võib paigaldus maksma minna, et see vastaks teie valitud tasuvusajale arvutuse eelduste põhjal. See ei ole hinnanguline turuhind." },
       { "q": "Miks võib paigaldaja arvutus erineda?", "a": "Erinevad eeldused toodangu, oma tarbeks tarbimise, elektrihindade, süsteemikadude ja tulevase hinnamuutuse kohta võivad anda erinevaid tulemusi." },
       { "q": "Kas arvutus on pakkumine?", "a": "Ei. Tulemus on hinnang ja seda tuleks kasutada otsuste tegemise alusena. Tegelik hind, toodang ja majanduslik tulemus võivad erineda." },
+      { q: 'Miks tootmine aja jooksul väheneb?', a: 'Päikesepaneelide võimsus väheneb aastate jooksul tavaliselt veidi. Arvutus lähtub aastasest 0,5 %-lisest degradeerumisest, mis tähendab, et arvutuslik tootmine väheneb kalkulatsiooniperioodi jooksul järk-järgult.' },
+      { q: 'Kuidas arvutatakse minu päikeseenergia väärtus?', a: 'Omatarbitud päikeseenergiat hinnatakse elektri hinna järgi, mida muidu oleksite pidanud ostma. Müüdud päikeseenergiat hinnatakse eeldatava tasu järgi võrku antud elektri eest.' },
+      { q: 'Mida tähendab tootmiskulu kWh kohta?', a: 'Tootmiskulu näitab arvutuslikku keskmist kulu iga toodetud kilovatt-tunni kohta seadme eluea jooksul. Seda saab võrrelda päikeseenergia arvutusliku majandusliku väärtusega.' },
+      { q: 'Miks soovitatakse just seda seadme suurust?', a: 'Seadme suurus arvutatakse muu hulgas teie elektritarbimise, asukoha päikesekiirguse ja tehniliste piirangute alusel. Eesmärk on mõõtu anda seade vastavalt teie oludele, mitte paigaldada võimalikult suurt seadet.' },
     ],
 
   }

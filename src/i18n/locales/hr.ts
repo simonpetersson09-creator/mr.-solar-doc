@@ -467,6 +467,10 @@ systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarn
       { "q": "Što znači cijena za odabrano razdoblje povrata?", "a": "Okvirno pokazuje koliko postrojenje može stajati da bi odgovaralo odabranom razdoblju povrata, na temelju pretpostavki izračuna. To nije procijenjena tržišna cijena." },
       { "q": "Zašto se izračun instalatera može razlikovati?", "a": "Različite pretpostavke o proizvodnji, vlastitoj potrošnji, cijenama struje, gubicima sustava i budućem kretanju cijena mogu dati različite rezultate." },
       { "q": "Je li izračun ponuda?", "a": "Ne. Rezultat je procjena i treba ga koristiti kao podlogu za odlučivanje. Stvarna cijena, proizvodnja i ekonomski ishod mogu se razlikovati." },
+      { q: 'Zašto se proizvodnja s vremenom smanjuje?', a: 'Učinak solarnih panela normalno se s godinama lagano smanjuje. Izračun polazi od godišnje degradacije od 0,5 %, što znači da se izračunata proizvodnja postupno smanjuje tijekom razdoblja izračuna.' },
+      { q: 'Kako se izračunava vrijednost moje solarne energije?', a: 'Solarna energija koju sami potrošite vrednuje se prema trošku električne energije koju biste inače morali kupiti. Prodana solarna energija vrednuje se prema pretpostavljenoj naknadi za električnu energiju predanu u mrežu.' },
+      { q: 'Što znači trošak proizvodnje po kWh?', a: 'Trošak proizvodnje prikazuje izračunati prosječni trošak svake proizvedene kilovat-sat tijekom životnog vijeka postrojenja. Može se usporediti s izračunatom ekonomskom vrijednošću solarne energije.' },
+      { q: 'Zašto se preporučuje upravo ova veličina postrojenja?', a: 'Veličina postrojenja izračunava se na temelju, između ostalog, vaše potrošnje električne energije, sunčevog zračenja na lokaciji i tehničkih ograničenja. Cilj je dimenzionirati postrojenje prema vašim uvjetima, a ne instalirati najveće moguće postrojenje.' },
     ],
 
   }
