@@ -467,6 +467,10 @@ systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskaz
       { "q": "Co oznacza cena dla wybranego okresu zwrotu?", "a": "Pokazuje w przybliżeniu, ile może kosztować instalacja, aby odpowiadać wybranemu przez Ciebie okresowi zwrotu, na podstawie założeń kalkulacji. Nie jest to szacunkowa cena rynkowa." },
       { "q": "Dlaczego obliczenia instalatora mogą się różnić?", "a": "Różne założenia dotyczące produkcji, autokonsumpcji, cen energii, strat systemowych i przyszłego rozwoju cen mogą dawać różne wyniki." },
       { "q": "Czy obliczenie jest ofertą?", "a": "Nie. Wynik jest szacunkiem i ma służyć jako podstawa decyzji. Rzeczywista cena, produkcja i wynik ekonomiczny mogą się różnić." },
+      { q: 'Dlaczego produkcja zmniejsza się z czasem?', a: 'Wydajność paneli słonecznych normalnie nieznacznie spada z upływem lat. Obliczenia zakładają roczną degradację na poziomie 0,5 %, co oznacza, że obliczona produkcja stopniowo maleje w okresie kalkulacji.' },
+      { q: 'Jak obliczana jest wartość mojej energii słonecznej?', a: 'Energia słoneczna zużywana na własne potrzeby jest wyceniana na podstawie kosztu energii, którą w innym przypadku musiałbyś kupić. Sprzedana energia słoneczna jest wyceniana na podstawie zakładanego wynagrodzenia za energię wprowadzoną do sieci.' },
+      { q: 'Co oznacza koszt produkcji za kWh?', a: 'Koszt produkcji pokazuje obliczony średni koszt każdej wyprodukowanej kilowatogodziny w okresie eksploatacji instalacji. Można go porównać z obliczoną wartością ekonomiczną energii słonecznej.' },
+      { q: 'Dlaczego zalecany jest właśnie taki rozmiar instalacji?', a: 'Wielkość instalacji jest obliczana między innymi na podstawie zużycia energii elektrycznej, nasłonecznienia w danym miejscu i ograniczeń technicznych. Celem jest dobranie instalacji do Twoich warunków, a nie montaż jak największej instalacji.' },
     ],
 
   }

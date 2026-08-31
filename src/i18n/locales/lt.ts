@@ -467,6 +467,10 @@ systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kai
       { "q": "Ką reiškia kaina pasirinktam atsipirkimo laikotarpiui?", "a": "Apytiksliai parodo, kiek įrenginys gali kainuoti, kad atitiktų jūsų pasirinktą atsipirkimo laikotarpį, remiantis skaičiavimo prielaidomis. Tai nėra numatoma rinkos kaina." },
       { "q": "Kodėl rangovo skaičiavimas gali skirtis?", "a": "Skirtingos prielaidos dėl gamybos, savųjų poreikių vartojimo, elektros kainų, sistemos nuostolių ir būsimos kainų kaitos gali duoti skirtingus rezultatus." },
       { "q": "Ar skaičiavimas yra pasiūlymas?", "a": "Ne. Rezultatas yra įvertinimas ir turėtų būti naudojamas kaip sprendimų pagrindas. Faktinė kaina, gamyba ir ekonominis rezultatas gali skirtis." },
+      { q: 'Kodėl gamyba laikui bėgant mažėja?', a: 'Saulės modulių galia per metus paprastai šiek tiek mažėja. Skaičiavimas grindžiamas 0,5 % metine degradacija, o tai reiškia, kad apskaičiuota gamyba per skaičiavimo laikotarpį palaipsniui mažėja.' },
+      { q: 'Kaip apskaičiuojama mano saulės elektros vertė?', a: 'Savoms reikmėms suvartota saulės elektra vertinama pagal elektros, kurią kitaip tektų pirkti, kainą. Parduota saulės elektra vertinama pagal numanomą kompensaciją už į tinklą tiekiamą elektrą.' },
+      { q: 'Ką reiškia gamybos sąnaudos už kWh?', a: 'Gamybos sąnaudos parodo apskaičiuotas vidutines kiekvienos pagamintos kilovatvalandės sąnaudas per įrenginio eksploatavimo laikotarpį. Jas galima palyginti su apskaičiuota saulės elektros ekonomine verte.' },
+      { q: 'Kodėl rekomenduojamas būtent toks įrenginio dydis?', a: 'Įrenginio dydis apskaičiuojamas atsižvelgiant į jūsų elektros suvartojimą, saulės spinduliuotę vietoje ir techninius apribojimus. Tikslas – suprojektuoti įrenginį pagal jūsų sąlygas, o ne įrengti kuo didesnį įrenginį.' },
     ],
 
   }

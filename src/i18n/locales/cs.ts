@@ -467,6 +467,10 @@ systemSizeInfo: "Výpočet je odhadem a měl by sloužit jako orientace. Skuteč
       { "q": "Co znamená cena pro zvolenou dobu návratnosti?", "a": "Přibližně ukazuje, kolik může zařízení stát, aby odpovídalo vámi zvolené době návratnosti na základě předpokladů kalkulace. Nejedná se o odhad tržní ceny." },
       { "q": "Proč se může výpočet instalatéra lišit?", "a": "Různé předpoklady ohledně výroby, vlastní spotřeby, cen elektřiny, ztrát systému a budoucího cenového vývoje mohou vést k různým výsledkům." },
       { "q": "Je výpočet nabídkou?", "a": "Ne. Výsledek je odhad a má sloužit jako podklad pro rozhodování. Skutečná cena, výroba a ekonomický výsledek se mohou lišit." },
+      { q: 'Proč se výroba v průběhu času snižuje?', a: 'Výkon solárních panelů se v průběhu let obvykle mírně snižuje. Výpočet vychází z roční degradace 0,5 %, což znamená, že se vypočtená výroba během kalkulačního období postupně snižuje.' },
+      { q: 'Jak se vypočítá hodnota mé solární elektřiny?', a: 'Vlastní spotřebovaná solární elektřina se oceňuje podle nákladů na elektřinu, kterou byste jinak museli koupit. Prodaná solární elektřina se oceňuje podle předpokládané náhrady za elektřinu dodanou do sítě.' },
+      { q: 'Co znamená výrobní náklad na kWh?', a: 'Výrobní náklad ukazuje vypočtené průměrné náklady na každou vyrobenou kilowatthodinu za dobu životnosti zařízení. Lze jej porovnat s vypočtenou ekonomickou hodnotou solární elektřiny.' },
+      { q: 'Proč se doporučuje právě tato velikost zařízení?', a: 'Velikost zařízení se vypočítává mimo jiné na základě vaší spotřeby elektřiny, slunečního záření v daném místě a technických omezení. Cílem je dimenzovat zařízení podle vašich podmínek, nikoli instalovat co největší zařízení.' },
     ],
 
   }

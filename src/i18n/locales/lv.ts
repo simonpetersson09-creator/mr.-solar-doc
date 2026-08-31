@@ -467,6 +467,10 @@ systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā
       { "q": "Ko nozīmē cena izvēlētajam atmaksāšanās periodam?", "a": "Tas aptuveni parāda, cik sistēma var maksāt, lai atbilstu izvēlētajam atmaksāšanās periodam, pamatojoties uz aprēķina pieņēmumiem. Tā nav aptuvena tirgus cena." },
       { "q": "Kāpēc uzstādītāja aprēķins var atšķirties?", "a": "Dažādi pieņēmumi par ražošanu, pašpatēriņu, elektrības cenām, sistēmas zudumiem un nākotnes cenu izmaiņām var radīt atšķirīgus rezultātus." },
       { "q": "Vai aprēķins ir piedāvājums?", "a": "Nē. Rezultāts ir aplēse, un tas jāizmanto kā lēmumu pieņemšanas pamats. Faktiskā cena, ražošana un ekonomiskais iznākums var atšķirties." },
+      { q: 'Kāpēc ražošana laika gaitā samazinās?', a: 'Saules paneļu jauda gados parasti nedaudz samazinās. Aprēķins balstās uz 0,5 % gada degradāciju, kas nozīmē, ka aprēķinātā ražošana aprēķina periodā pakāpeniski samazinās.' },
+      { q: 'Kā tiek aprēķināta manas saules enerģijas vērtība?', a: 'Pašpatērētā saules enerģija tiek novērtēta, pamatojoties uz elektrības izmaksām, kas citādi būtu jāiegādājas. Pārdotā saules enerģija tiek novērtēta, pamatojoties uz pieņemto atlīdzību par tīklā nodoto elektrību.' },
+      { q: 'Ko nozīmē ražošanas izmaksas par kWh?', a: 'Ražošanas izmaksas parāda aprēķinātās vidējās izmaksas par katru saražoto kilovatstundu iekārtas kalpošanas laikā. Tās var salīdzināt ar aprēķināto saules enerģijas ekonomisko vērtību.' },
+      { q: 'Kāpēc tiek ieteikts tieši šāds iekārtas lielums?', a: 'Iekārtas lielums tiek aprēķināts, ņemot vērā jūsu elektroenerģijas patēriņu, saules starojumu vietā un tehniskos ierobežojumus. Mērķis ir pielāgot iekārtu jūsu apstākļiem, nevis uzstādīt pēc iespējas lielāku iekārtu.' },
     ],
 
   }
