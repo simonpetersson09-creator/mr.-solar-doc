@@ -25,7 +25,7 @@ function SettingsPage() {
     <div className="surface-sun flex h-dvh max-h-dvh flex-col overflow-hidden">
       <main
         className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-3 overflow-y-auto overscroll-contain px-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]"
-        style={{ paddingTop: "calc(0.75rem + env(safe-area-inset-top))" }}
+        style={{ paddingTop: "max(var(--safe-top-min), calc(0.25rem + env(safe-area-inset-top)))" }}
       >
         <header className="flex items-center gap-3">
           <button

@@ -64,6 +64,9 @@
 
 :root {
   --radius: 1.1rem;
+  /* Minimum gap above headers. Native/standalone shells draw under the status
+     bar, so they reserve more. */
+  --safe-top-min: 0.75rem;
 
   --background: oklch(0.985 0.012 95);
   --foreground: oklch(0.245 0.035 158);
@@ -143,6 +146,10 @@
   --sidebar-ring: oklch(0.78 0.16 72);
 }
 
+html[data-native="true"] {
+  --safe-top-min: 3rem;
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -207,9 +214,9 @@
 
 /* Safe-area aware spacing for full-screen shells. */
 @utility pt-safe {
-  /* Header content sits flush under the status bar: exactly the safe-area inset,
-     no extra gap, nothing overlapped. */
-  padding-top: env(safe-area-inset-top);
+  /* Header content clears the status bar (clock/battery/notch). A minimum gap is
+     kept so nothing is hidden even when the device reports no safe-area inset. */
+  padding-top: max(var(--safe-top-min), calc(env(safe-area-inset-top) + 0.25rem));
 }
 
 @utility pb-safe {
