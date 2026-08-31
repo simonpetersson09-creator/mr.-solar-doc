@@ -91,8 +91,8 @@ describe("global end-to-end chain", () => {
       serviceType,
       frequencyHz: voltage === 240 ? 60 : 50,
     });
-    expect(outcome.ok).toBe(true);
-    if (!outcome.ok) return;
+    expect(outcome.status).toBe("success");
+    if (outcome.status !== "success") return;
     const r = outcome.result;
 
     // No silent NaN anywhere in the headline numbers.
@@ -125,7 +125,7 @@ describe("global end-to-end chain", () => {
       kva: 12,
     });
     expect(maxAcPowerKw).toBeCloseTo(12, 6);
-    expect(outcome.ok).toBe(true);
+    expect(outcome.status).toBe("success");
   });
 });
 
@@ -138,8 +138,8 @@ describe("economics completeness (unknown is not zero)", () => {
       serviceType: "three-phase",
       frequencyHz: 50,
     });
-    expect(outcome.ok).toBe(true);
-    if (!outcome.ok) return;
+    expect(outcome.status).toBe("success");
+    if (outcome.status !== "success") return;
     const r = outcome.result;
     expect(r.economicsStatus).toBe("incomplete");
     expect(r.economics.availability.totalsComplete).toBe(false);
@@ -156,8 +156,8 @@ describe("economics completeness (unknown is not zero)", () => {
       serviceType: "three-phase",
       frequencyHz: 50,
     });
-    expect(outcome.ok).toBe(true);
-    if (!outcome.ok) return;
+    expect(outcome.status).toBe("success");
+    if (outcome.status !== "success") return;
     expect(outcome.result.economicsStatus).toBe("complete");
     expect(outcome.result.economics.availability.selfConsumedValue).toBe("available");
   });
