@@ -50,28 +50,11 @@ export default function MapPicker({
     const map = L.map(containerRef.current, {
       attributionControl: true,
       zoomControl: !hideZoomControl,
-      fadeAnimation: false,
-      markerZoomAnimation: false,
-      zoomSnap: 1,
-      wheelDebounceTime: 60,
-      preferCanvas: true,
     }).setView([latitude, longitude], zoom);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "© OpenStreetMap",
-      updateWhenIdle: true,
-      updateWhenZooming: false,
-      keepBuffer: 1,
     }).addTo(map);
-
-    // Frosted overlays repaint on every map frame; flag interaction so CSS can
-    // drop the expensive blur while panning/zooming.
-    const body = typeof document !== "undefined" ? document.body : null;
-    const startInteract = () => body?.classList.add("map-interacting");
-    const endInteract = () => body?.classList.remove("map-interacting");
-    map.on("movestart zoomstart", startInteract);
-    map.on("moveend zoomend", endInteract);
-
 
     map.on("click", (event: L.LeafletMouseEvent) => {
       if (markerRef.current) {
@@ -102,7 +85,6 @@ export default function MapPicker({
     return () => {
       clearTimeout(timer);
       observer?.disconnect();
-      endInteract();
       map.remove();
       mapRef.current = null;
       markerRef.current = null;

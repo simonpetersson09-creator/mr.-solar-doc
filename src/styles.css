@@ -303,20 +303,3 @@ html[data-native="true"] {
     font-size: 16px;
   }
 }
-
-/* Map performance: backdrop-filter over a panning map is very expensive on
-   mobile, so drop the blur while the user drags/zooms the map. */
-body.map-interacting .glass-primary,
-body.map-interacting .glass-sheet,
-body.map-interacting .glass-panel {
-  backdrop-filter: none;
-}
-body.map-interacting .glass-primary {
-  background-color: oklch(0.34 0.06 160 / 0.97);
-}
-body.map-interacting .glass-sheet {
-  background-color: oklch(1 0 0 / 0.95);
-}
-body.map-interacting .animate-ping {
-  animation: none;
-}
