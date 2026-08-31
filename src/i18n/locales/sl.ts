@@ -68,6 +68,11 @@ export const sl = {
     "unit": "kWh/kWp/leto",
     "disclaimer": "Izračunana sončna proizvodnja temelji na lokaciji, orientaciji in naklonu strehe. Na dejansko proizvodnjo lahko vplivajo senčenje, vreme, temperatura in sistemske izgube.",
     "error": "Trenutno nismo mogli pridobiti podatkov o sončni proizvodnji za to lokacijo. Vrednosti niso ugibane."
+    errorOverSea:
+      "Lokacija je videti nad vodo. Premaknite oznako na stavbo na kopnem in poskusite znova.",
+    errorOutsideCoverage:
+      "Za to lokacijo nimamo sončnih podatkov. Poskusite bližnji naslov.",
+    errorSource: "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {

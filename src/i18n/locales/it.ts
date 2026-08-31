@@ -68,6 +68,11 @@ export const it = {
     "unit": "kWh/kWp/anno",
     "disclaimer": "La produzione solare calcolata si basa su posizione, orientamento e inclinazione del tetto. La produzione effettiva può essere influenzata da ombreggiamento, meteo, temperatura e perdite di sistema.",
     "error": "Non è stato possibile recuperare i dati di produzione solare per questo sito al momento. Nessun valore viene stimato."
+    errorOverSea:
+      "La posizione sembra trovarsi sull'acqua. Sposta il segnaposto sull'edificio sulla terraferma e riprova.",
+    errorOutsideCoverage:
+      "Non abbiamo dati solari per questa posizione. Prova un indirizzo vicino.",
+    errorSource: "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {

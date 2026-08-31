@@ -68,6 +68,11 @@ export const pl = {
     "unit": "kWh/kWp/rok",
     "disclaimer": "Szacowana produkcja energii słonecznej opiera się na lokalizacji, orientacji i nachyleniu dachu. Na rzeczywistą produkcję mogą wpływać m.in. zacienienie, pogoda, temperatura i straty systemowe.",
     "error": "Nie udało nam się teraz pobrać danych o produkcji energii słonecznej dla tej lokalizacji. Nie zgadujemy żadnych wartości."
+    errorOverSea:
+      "Lokalizacja wydaje się znajdować na wodzie. Przesuń znacznik na budynek na lądzie i spróbuj ponownie.",
+    errorOutsideCoverage:
+      "Nie mamy danych słonecznych dla tej lokalizacji. Spróbuj pobliskiego adresu.",
+    errorSource: "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {

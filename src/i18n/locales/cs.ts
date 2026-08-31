@@ -68,6 +68,11 @@ export const cs = {
     "unit": "kWh/kWp/rok",
     "disclaimer": "Vypočítaná solární výroba je založena na poloze, orientaci a sklonu střechy. Skutečnou výrobu může ovlivnit mimo jiné zastínění, počasí, teplota a systémové ztráty.",
     "error": "V tuto chvíli se nepodařilo načíst data o solární výrobě pro dané místo. Hodnoty nejsou odhadovány."
+    errorOverSea:
+      "Místo se zřejmě nachází nad vodou. Přesuňte značku na budovu na pevnině a zkuste to znovu.",
+    errorOutsideCoverage:
+      "Pro toto místo nemáme solární data. Zkuste adresu v okolí.",
+    errorSource: "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
