@@ -342,11 +342,6 @@ const cost = result.productionCost;
                   years: formatNumber(cost.periodYears, locale),
                 })}
               </p>
-              {(cost.differencePerKwh ?? 0) > 0 ? (
-                <p className="mt-1 text-[11px] text-white/60">
-                  {t("result.productionCostHigherValue")}
-                </p>
-              ) : null}
             </>
           )}
         </section>
