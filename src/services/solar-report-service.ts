@@ -1006,6 +1006,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
   );
 
 
+  report.pageBreak();
   report.sectionTitle(f["keyAssumptions"] ?? labels.assumptions);
   const selfConsumptionSourceLabel =
     f[`selfConsumptionSource_${result.selfConsumptionSource}`] ?? "";
