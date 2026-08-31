@@ -672,10 +672,7 @@ export const hr = {
       { q: 'Što znači cijena za odabrano razdoblje povrata?', a: "Pokazuje otprilike koliko instalacija smije koštati da odgovara odabranom razdoblju povrata, na temelju pretpostavki izračuna. Nije procijenjena tržišna cijena." },
       { q: "Zašto se izračun instalatera može razlikovati?", a: 'Različite pretpostavke o proizvodnji, samopotrošnji, cijenama struje, gubicima sustava i budućem razvoju cijena mogu dati različite rezultate.' },
       { q: 'Je li izračun ponuda?', a: 'Ne. Rezultat je procjena i namijenjen je kao osnova za donošenje odluke. Stvarna cijena, proizvodnja i ekonomski ishod mogu se razlikovati.' },
-      { q: 'Zašto se proizvodnja smanjuje tijekom vremena?', a: 'Učinkovitost solarnih panela obično se s godinama malo smanjuje. Izračun pretpostavlja godišnju degradaciju od 0,5 %, što znači da se procijenjena proizvodnja postupno smanjuje tijekom razdoblja izračuna.' },
-      { q: 'Kako se izračunava vrijednost moje solarne energije?', a: 'Samopotrošena solarna energija vrednuje se prema trošku struje koju biste inače morali kupiti. Prodana solarna energija vrednuje se prema pretpostavljenoj naknadi za struju predanu u mrežu.' },
-      { q: 'Što znači trošak proizvodnje po kWh?', a: 'Trošak proizvodnje pokazuje procijenjeni prosječni trošak svakog proizvedenog kilovatsata tijekom vijeka trajanja instalacije. Može se usporediti s procijenjenom ekonomskom vrijednošću solarne energije.' },
-      { q: 'Zašto se preporučuje upravo ova veličina instalacije?', a: 'Veličina instalacije izračunava se na temelju, između ostalog, vaše potrošnje struje, sunčevog zračenja na lokaciji i tehničkih ograničenja. Cilj je dimenzionirati instalaciju prema vašim uvjetima, a ne instalirati najveću moguću instalaciju.' },
+      { q: 'Zašto se proizvodnja smanjuje tijekom vremena?', a: 'Učinkovitost solarnih panela obično se s godinama malo smanjuje. Izračun pretpostavlja godišnju degradaciju od 0,5 %, što znači da se procijenjena proizvodnja postupno smanjuje tijekom razdoblja izračuna.' }
     ],
 
   },

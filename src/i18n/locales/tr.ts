@@ -624,10 +624,7 @@ export const tr = {
       { "q": "Seçilen geri ödeme süresi için fiyat ne anlama gelir?", "a": "Hesaplamanın varsayımlarına dayanarak, seçtiğiniz geri ödeme süresine karşılık gelmesi için kurulumun yaklaşık ne kadara mal olabileceğini gösterir. Tahmini bir piyasa fiyatı değildir." },
       { "q": "Kurulumcunun hesaplaması neden farklılık gösterebilir?", "a": "Üretim, öz tüketim, elektrik fiyatları, sistem kayıpları ve gelecekteki fiyat gelişimi hakkındaki farklı varsayımlar farklı sonuçlar verebilir." },
       { "q": "Bu hesaplama bir teklif mi?", "a": "Hayır. Sonuç bir tahmindir ve karar verme temeli olarak amaçlanmıştır. Gerçek fiyat, üretim ve ekonomik sonuç farklılık gösterebilir." },
-      { "q": "Üretim neden zamanla azalır?", "a": "Güneş panellerinin verimliliği normalde yıllar içinde biraz azalır. Hesaplama, yıllık %0,5 verim kaybı varsayar; bu da tahmini üretimin hesaplama dönemi boyunca kademeli olarak azaldığı anlamına gelir." },
-      { "q": "Güneş enerjimin değeri nasıl hesaplanır?", "a": "Öz tüketilen güneş enerjisi, aksi takdirde satın almak zorunda kalacağınız elektriğin maliyeti üzerinden değerlendirilir. Satılan güneş enerjisi ise şebekeye verilen elektrik için varsayılan tazminat üzerinden değerlendirilir." },
-      { "q": "kWh başına üretim maliyeti ne anlama gelir?", "a": "Üretim maliyeti, kurulumun ömrü boyunca üretilen her kilovat-saatin tahmini ortalama maliyetini gösterir. Güneş enerjisinin tahmini ekonomik değeriyle karşılaştırılabilir." },
-      { "q": "Bu kurulum boyutu neden özellikle önerildi?", "a": "Kurulumun boyutu, diğerlerinin yanı sıra elektrik tüketiminize, konumdaki güneş ışınımına ve teknik sınırlamalara göre hesaplanır. Amaç, mümkün olan en büyük kurulumu yapmak değil, kurulumu koşullarınıza göre boyutlandırmaktır." }
+      { "q": "Üretim neden zamanla azalır?", "a": "Güneş panellerinin verimliliği normalde yıllar içinde biraz azalır. Hesaplama, yıllık %0,5 verim kaybı varsayar; bu da tahmini üretimin hesaplama dönemi boyunca kademeli olarak azaldığı anlamına gelir." }
     ]
   }
 } as const;

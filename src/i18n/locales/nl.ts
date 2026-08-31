@@ -674,10 +674,7 @@ export const nl = {
       { q: 'Wat betekent de prijs bij de gekozen terugverdientijd?', a: "Het laat ongeveer zien hoeveel de installatie mag kosten om overeen te komen met de door jou gekozen terugverdientijd, op basis van de aannames van de berekening. Het is geen geschatte marktprijs." },
       { q: 'Waarom kan de berekening van de installateur afwijken?', a: 'Verschillende aannames over productie, zelfverbruik, elektriciteitsprijzen, systeemverliezen en toekomstige prijsontwikkeling kunnen tot andere resultaten leiden.' },
       { q: 'Is de berekening een offerte?', a: 'Nee. Het resultaat is een schatting en dient als basis voor besluitvorming. De werkelijke prijs, productie en het economisch resultaat kunnen afwijken.' },
-      { q: 'Waarom neemt de productie af na verloop van tijd?', a: 'Het rendement van zonnepanelen neemt normaal gesproken elk jaar iets af. De berekening gaat uit van een jaarlijkse degradatie van 0,5 %, waardoor de geschatte productie geleidelijk afneemt over de berekeningsperiode.' },
-      { q: 'Hoe wordt de waarde van mijn zonne-energie berekend?', a: 'Zelf verbruikte zonne-energie wordt gewaardeerd tegen de kosten van de stroom die je anders had moeten kopen. Verkochte zonne-energie wordt gewaardeerd tegen de aangenomen vergoeding voor teruggeleverde stroom.' },
-      { q: 'Wat betekenen de productiekosten per kWh?', a: 'De productiekosten laten de geschatte gemiddelde kosten zien van elke geproduceerde kilowattuur over de levensduur van de installatie. Dit kan worden vergeleken met de geschatte economische waarde van de zonne-energie.' },
-      { q: 'Waarom wordt precies deze installatiegrootte aanbevolen?', a: 'De grootte van de installatie wordt onder andere berekend op basis van je stroomverbruik, de zoninstraling op de locatie en technische beperkingen. Het doel is de installatie af te stemmen op jouw omstandigheden, niet om de grootst mogelijke installatie te plaatsen.' },
+      { q: 'Waarom neemt de productie af na verloop van tijd?', a: 'Het rendement van zonnepanelen neemt normaal gesproken elk jaar iets af. De berekening gaat uit van een jaarlijkse degradatie van 0,5 %, waardoor de geschatte productie geleidelijk afneemt over de berekeningsperiode.' }
     ],
 
   },

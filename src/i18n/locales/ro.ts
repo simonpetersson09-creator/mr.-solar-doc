@@ -624,10 +624,7 @@ export const ro = {
       { "q": "Ce înseamnă prețul pentru perioada de amortizare aleasă?", "a": "Arată aproximativ cât ar putea costa instalația pentru a corespunde perioadei de amortizare pe care ai ales-o, pe baza presupunerilor calculului. Nu este un preț de piață estimat." },
       { "q": "De ce poate diferi calculul instalatorului?", "a": "Presupuneri diferite despre producție, autoconsum, prețuri de energie, pierderi ale sistemului și evoluția viitoare a prețurilor pot da rezultate diferite." },
       { "q": "Calculul este o ofertă?", "a": "Nu. Rezultatul este o estimare și este menit ca bază de decizie. Prețul real, producția și rezultatul economic pot diferi." },
-      { "q": "De ce scade producția în timp?", "a": "Eficiența panourilor solare scade de obicei ușor de-a lungul anilor. Calculul presupune o degradare anuală de 0,5 %, ceea ce înseamnă că producția estimată scade treptat pe parcursul perioadei de calcul." },
-      { "q": "Cum este calculată valoarea energiei mele solare?", "a": "Energia solară consumată propriu este evaluată la costul energiei pe care altfel ar fi trebuit să o cumperi. Energia solară vândută este evaluată la compensația presupusă pentru energia injectată în rețea." },
-      { "q": "Ce înseamnă costul de producție pe kWh?", "a": "Costul de producție arată costul mediu estimat pentru fiecare kilowatt-oră produs pe durata de viață a instalației. Poate fi comparat cu valoarea economică estimată a energiei solare." },
-      { "q": "De ce este recomandată exact această dimensiune a instalației?", "a": "Dimensiunea instalației se calculează pe baza, printre altele, a consumului tău de energie, a radiației solare la fața locului și a limitărilor tehnice. Scopul este dimensionarea instalației după condițiile tale, nu instalarea celei mai mari instalații posibile." }
+      { "q": "De ce scade producția în timp?", "a": "Eficiența panourilor solare scade de obicei ușor de-a lungul anilor. Calculul presupune o degradare anuală de 0,5 %, ceea ce înseamnă că producția estimată scade treptat pe parcursul perioadei de calcul." }
     ]
   }
 } as const;

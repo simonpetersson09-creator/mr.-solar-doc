@@ -600,18 +600,6 @@ export const de = {
       {
         "q": "Warum sinkt die Produktion im Laufe der Zeit?",
         "a": "Die Leistung von Solarmodulen nimmt mit den Jahren normalerweise etwas ab. Die Berechnung geht von einer jährlichen Degradation von 0,5 % aus, was bedeutet, dass die berechnete Produktion im Laufe des Kalkulationszeitraums allmählich abnimmt."
-      },
-      {
-        "q": "Wie wird der Wert meines Solarstroms berechnet?",
-        "a": "Selbst genutzter Solarstrom wird anhand der Kosten für den Strom bewertet, den Sie andernfalls hätten kaufen müssen. Verkaufter Solarstrom wird anhand der angenommenen Vergütung für den ins Netz eingespeisten Strom bewertet."
-      },
-      {
-        "q": "Was bedeutet Produktionskosten pro kWh?",
-        "a": "Die Produktionskosten zeigen die berechneten durchschnittlichen Kosten für jede erzeugte Kilowattstunde über die Lebensdauer der Anlage. Sie können mit dem berechneten wirtschaftlichen Wert des Solarstroms verglichen werden."
-      },
-      {
-        "q": "Warum wird gerade diese Anlagengröße empfohlen?",
-        "a": "Die Anlagengröße wird unter anderem auf Basis Ihres Stromverbrauchs, der Sonneneinstrahlung am Standort und technischer Begrenzungen berechnet. Ziel ist es, die Anlage nach Ihren Gegebenheiten zu dimensionieren, nicht die größtmögliche Anlage zu installieren."
       }
     ]
   },

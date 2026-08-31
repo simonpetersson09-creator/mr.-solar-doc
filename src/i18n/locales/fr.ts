@@ -600,18 +600,6 @@ export const fr = {
       {
         "q": "Pourquoi la production diminue-t-elle au fil du temps ?",
         "a": "La puissance des panneaux solaires diminue normalement légèrement avec les années. Le calcul repose sur une dégradation annuelle de 0,5 %, ce qui signifie que la production estimée diminue progressivement au cours de la période de calcul."
-      },
-      {
-        "q": "Comment la valeur de mon électricité solaire est-elle calculée ?",
-        "a": "L'électricité solaire autoconsommée est valorisée sur la base du coût de l'électricité que vous auriez dû acheter autrement. L'électricité solaire vendue est valorisée sur la base de la rémunération supposée pour l'électricité injectée dans le réseau."
-      },
-      {
-        "q": "Que signifie le coût de production par kWh ?",
-        "a": "Le coût de production indique le coût moyen estimé de chaque kilowattheure produit sur la durée de vie de l'installation. Il peut être comparé à la valeur économique estimée de l'électricité solaire."
-      },
-      {
-        "q": "Pourquoi cette taille d'installation est-elle recommandée ?",
-        "a": "La taille de l'installation est calculée notamment en fonction de votre consommation d'électricité, de l'ensoleillement du site et des limitations techniques. L'objectif est de dimensionner l'installation selon vos conditions, et non d'installer la plus grande installation possible."
       }
     ]
   },

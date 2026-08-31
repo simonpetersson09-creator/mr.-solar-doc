@@ -674,10 +674,7 @@ export const es = {
       { q: '¿Qué significa el precio para el plazo de amortización elegido?', a: "Indica aproximadamente cuánto puede costar la instalación para ajustarse al plazo de amortización que has elegido, según los supuestos del cálculo. No es un precio de mercado estimado." },
       { q: '¿Por qué puede diferir el cálculo del instalador?', a: 'Diferentes supuestos sobre producción, autoconsumo, precios eléctricos, pérdidas del sistema y evolución futura de precios pueden dar resultados distintos.' },
       { q: '¿Es el cálculo un presupuesto?', a: 'No. El resultado es una estimación y sirve como base para la decisión. El precio real, la producción y el resultado económico pueden diferir.' },
-      { q: '¿Por qué disminuye la producción con el tiempo?', a: 'La eficiencia de los paneles solares normalmente disminuye ligeramente con los años. El cálculo asume una degradación anual del 0,5 %, por lo que la producción estimada disminuye gradualmente durante el periodo de cálculo.' },
-      { q: '¿Cómo se calcula el valor de mi electricidad solar?', a: 'La electricidad solar autoconsumida se valora al coste de la electricidad que de otro modo habrías tenido que comprar. La electricidad solar vendida se valora según la compensación asumida por la electricidad vertida a la red.' },
-      { q: '¿Qué significa el coste de producción por kWh?', a: 'El coste de producción muestra el coste medio estimado de cada kilovatio-hora producido durante la vida útil de la instalación. Puede compararse con el valor económico estimado de la electricidad solar.' },
-      { q: '¿Por qué se recomienda este tamaño concreto de instalación?', a: 'El tamaño de la instalación se calcula en función, entre otros factores, de tu consumo eléctrico, la irradiación solar del emplazamiento y las limitaciones técnicas. El objetivo es dimensionar la instalación según tus condiciones, no instalar la mayor instalación posible.' },
+      { q: '¿Por qué disminuye la producción con el tiempo?', a: 'La eficiencia de los paneles solares normalmente disminuye ligeramente con los años. El cálculo asume una degradación anual del 0,5 %, por lo que la producción estimada disminuye gradualmente durante el periodo de cálculo.' }
     ],
 
   },

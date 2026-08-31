@@ -600,18 +600,6 @@ export const fi = {
       {
         "q": "Miksi tuotanto vähenee ajan myötä?",
         "a": "Aurinkopaneelien teho laskee normaalisti hieman vuosien myötä. Laskenta perustuu 0,5 %:n vuotuiseen degradaatioon, mikä tarkoittaa, että laskettu tuotanto vähenee vähitellen laskentajakson aikana."
-      },
-      {
-        "q": "Miten aurinkosähköni arvo lasketaan?",
-        "a": "Omaan käyttöön menevä aurinkosähkö arvostetaan sen sähkön hinnan mukaan, jonka olisit muuten joutunut ostamaan. Myyty aurinkosähkö arvostetaan oletetun korvauksen mukaan sähköverkkoon syötetystä sähköstä."
-      },
-      {
-        "q": "Mitä tuotantokustannus per kWh tarkoittaa?",
-        "a": "Tuotantokustannus osoittaa laskennallisen keskimääräisen kustannuksen jokaista tuotettua kilowattituntia kohden laitoksen käyttöiän aikana. Sitä voidaan verrata aurinkosähkön laskennalliseen taloudelliseen arvoon."
-      },
-      {
-        "q": "Miksi juuri tätä laitoksen kokoa suositellaan?",
-        "a": "Laitoksen koko lasketaan muun muassa sähkönkulutuksesi, paikan auringonsäteilyn ja teknisten rajoitusten perusteella. Tavoitteena on mitoittaa laitos olosuhteidesi mukaan, ei asentaa suurinta mahdollista laitosta."
       }
     ]
   },

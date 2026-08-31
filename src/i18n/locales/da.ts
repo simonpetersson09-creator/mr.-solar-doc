@@ -600,18 +600,6 @@ export const da = {
       {
         "q": "Hvorfor falder produktionen over tid?",
         "a": "Solpaneleffekten falder normalt en smule med årene. Beregningen tager udgangspunkt i en årlig degradering på 0,5 %, hvilket betyder, at den beregnede produktion gradvist falder i løbet af kalkulationsperioden."
-      },
-      {
-        "q": "Hvordan beregnes værdien af min solenergi?",
-        "a": "Egenforbrugt solenergi værdisættes ud fra prisen på den el, du ellers skulle have købt. Solgt solenergi værdisættes ud fra den antagne godtgørelse for el, der leveres til elnettet."
-      },
-      {
-        "q": "Hvad betyder produktionsomkostning per kWh?",
-        "a": "Produktionsomkostningen viser den beregnede gennemsnitlige omkostning for hver produceret kilowatt-time over anlæggets levetid. Den kan sammenlignes med den beregnede økonomiske værdi af solenergien."
-      },
-      {
-        "q": "Hvorfor anbefales netop denne størrelse på anlægget?",
-        "a": "Anlæggets størrelse beregnes ud fra blandt andet dit elforbrug, solindstrålingen på stedet og tekniske begrænsninger. Målet er at dimensionere anlægget efter dine forhold, ikke at installere det størst mulige anlæg."
       }
     ]
   },

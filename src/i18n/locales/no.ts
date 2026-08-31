@@ -624,10 +624,7 @@ export const no = {
       { "q": "Hva betyr prisen for den valgte nedbetalingstiden?", "a": "Den viser omtrent hvor mye installasjonen kan koste for å matche nedbetalingstiden du har valgt, basert på beregningens forutsetninger. Det er ikke et anslått markedspris." },
       { "q": "Hvorfor kan installatørens beregning avvike?", "a": "Ulike forutsetninger om produksjon, egenforbruk, strømpriser, anleggstap og fremtidig prisutvikling kan gi ulike resultater." },
       { "q": "Er beregningen et tilbud?", "a": "Nei. Resultatet er et estimat og er ment som beslutningsgrunnlag. Faktisk pris, produksjon og økonomisk resultat kan avvike." },
-      { "q": "Hvorfor synker produksjonen over tid?", "a": "Effektiviteten til solcellepaneler synker vanligvis noe over årene. Beregningen forutsetter en årlig degradering på 0,5 %, som betyr at estimert produksjon gradvis synker over beregningsperioden." },
-      { "q": "Hvordan beregnes verdien av solstrømmen min?", "a": "Selvbrukt solstrøm verdsettes til kostnaden av strømmen du ellers måtte ha kjøpt. Solgt solstrøm verdsettes til den antatte kompensasjonen for strøm matet inn i nettet." },
-      { "q": "Hva betyr produksjonskostnad per kWh?", "a": "Produksjonskostnaden viser den estimerte gjennomsnittskostnaden for hver produserte kilowattime over installasjonens levetid. Den kan sammenlignes med den estimerte økonomiske verdien av solstrømmen." },
-      { "q": "Hvorfor anbefales akkurat denne størrelsen på anlegget?", "a": "Størrelsen på anlegget beregnes blant annet ut fra strømforbruket ditt, solinnstrålingen på stedet og tekniske begrensninger. Målet er å dimensjonere anlegget etter dine forhold, ikke å installere størst mulig anlegg." }
+      { "q": "Hvorfor synker produksjonen over tid?", "a": "Effektiviteten til solcellepaneler synker vanligvis noe over årene. Beregningen forutsetter en årlig degradering på 0,5 %, som betyr at estimert produksjon gradvis synker over beregningsperioden." }
     ]
   }
 } as const;

@@ -198,10 +198,7 @@ export const id = {
       { "q": "Apa arti harga untuk periode pengembalian modal yang dipilih?", "a": "Ini menunjukkan perkiraan berapa biaya instalasi agar sesuai dengan periode pengembalian modal yang Anda pilih, berdasarkan asumsi perhitungan. Ini bukan perkiraan harga pasar." },
       { "q": "Mengapa perhitungan instalator bisa berbeda?", "a": "Asumsi yang berbeda tentang produksi, konsumsi sendiri, harga listrik, kehilangan sistem, dan perkembangan harga masa depan dapat memberikan hasil yang berbeda." },
       { "q": "Apakah perhitungan ini adalah penawaran?", "a": "Tidak. Hasil ini adalah perkiraan dan dimaksudkan sebagai dasar pengambilan keputusan. Harga, produksi, dan hasil ekonomi aktual mungkin berbeda." },
-      { "q": "Mengapa produksi menurun seiring waktu?", "a": "Efisiensi panel solar biasanya menurun sedikit dari tahun ke tahun. Perhitungan mengasumsikan degradasi tahunan sebesar 0,5 %, yang berarti produksi yang diperkirakan menurun secara bertahap selama periode perhitungan." },
-      { "q": "Bagaimana nilai listrik solar saya dihitung?", "a": "Listrik solar yang dipakai sendiri dinilai sebesar biaya listrik yang seharusnya Anda beli. Listrik solar yang dijual dinilai sebesar kompensasi yang diasumsikan untuk listrik yang dialirkan ke jaringan." },
-      { "q": "Apa arti biaya produksi per kWh?", "a": "Biaya produksi menunjukkan perkiraan biaya rata-rata setiap kilowatt-jam yang diproduksi selama masa pakai instalasi. Ini dapat dibandingkan dengan estimasi nilai ekonomi listrik solar." },
-      { "q": "Mengapa ukuran instalasi ini disarankan?", "a": "Ukuran instalasi dihitung berdasarkan, antara lain, konsumsi listrik Anda, radiasi matahari di lokasi, dan batasan teknis. Tujuannya adalah untuk mengukur instalasi sesuai kondisi Anda, bukan memasang instalasi sebesar mungkin." }
+      { "q": "Mengapa produksi menurun seiring waktu?", "a": "Efisiensi panel solar biasanya menurun sedikit dari tahun ke tahun. Perhitungan mengasumsikan degradasi tahunan sebesar 0,5 %, yang berarti produksi yang diperkirakan menurun secara bertahap selama periode perhitungan." }
     ]
   }
 } as const;

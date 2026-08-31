@@ -672,10 +672,7 @@ export const hu = {
       { q: 'Mit jelent a választott megtérülési időhöz tartozó ár?', a: "Megközelítőleg megmutatja, mennyibe kerülhet a telepítés ahhoz, hogy megfeleljen a kiválasztott megtérülési időnek, a számítás feltételezései alapján. Nem becsült piaci ár." },
       { q: "Miért térhet el a kivitelező számítása?", a: 'A termelésre, a saját fogyasztásra, a villamosenergia-árakra, a rendszerveszteségekre és a jövőbeli áralakulásra vonatkozó eltérő feltételezések eltérő eredményt adhatnak.' },
       { q: 'A számítás árajánlat?', a: 'Nem. Az eredmény egy becslés, és döntéshozatali alapként szolgál. A tényleges ár, termelés és gazdasági eredmény eltérhet.' },
-      { q: 'Miért csökken a termelés idővel?', a: 'A napelemek hatásfoka az évek során általában kismértékben csökken. A számítás évi 0,5 %-os degradációt feltételez, ami azt jelenti, hogy a becsült termelés fokozatosan csökken a számítási időszak alatt.' },
-      { q: 'Hogyan számítjuk ki napenergiája értékét?', a: 'A saját fogyasztású napenergiát azon áram költségén értékeljük, amelyet egyébként meg kellett volna vásárolnia. Az eladott napenergiát a hálózatba táplált áramra vonatkozó feltételezett kompenzáció alapján értékeljük.' },
-      { q: 'Mit jelent a kWh-nkénti termelési költség?', a: 'A termelési költség a telepítés élettartama alatt megtermelt minden kilowattóra becsült átlagköltségét mutatja. Összehasonlítható a napenergia becsült gazdasági értékével.' },
-      { q: 'Miért éppen ekkora rendszert javasolunk?', a: 'A telepítés méretét többek között az Ön villamosenergia-fogyasztása, a helyszín napsugárzása és a műszaki korlátok alapján számítjuk ki. A cél az, hogy a telepítést az Ön adottságaihoz igazítsuk, ne a lehető legnagyobb rendszert telepítsük.' },
+      { q: 'Miért csökken a termelés idővel?', a: 'A napelemek hatásfoka az évek során általában kismértékben csökken. A számítás évi 0,5 %-os degradációt feltételez, ami azt jelenti, hogy a becsült termelés fokozatosan csökken a számítási időszak alatt.' }
     ],
 
   },
