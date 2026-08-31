@@ -2,6 +2,7 @@ import { useMemo } from "react";
 import { calculateSolarSystem } from "@/lib/calc/engine";
 import type { CalculationResult } from "@/lib/calc/types";
 import { getMarketConfig } from "@/config/markets";
+import { resolveEconomicsDefaults } from "@/config/countries";
 import { useWizardStore } from "@/state/wizard-store";
 import { PRICE_SCENARIO_RATES } from "@/config/constants";
 import { kwPerAmpFor } from "@/config/grid";
@@ -36,6 +37,10 @@ export function useCalculation(): {
       : PRICE_SCENARIO_RATES[priceScenario];
 
   const market = getMarketConfig(location?.countryCode);
+  const economicsDefaults = resolveEconomicsDefaults(location?.countryCode, {
+    selfConsumedValuePerKwh,
+    exportValuePerKwh,
+  });
 
   const result = useMemo(() => {
     if (!location || !resource || !annualConsumptionKwh || !mainFuseAmp) return null;
@@ -57,13 +62,11 @@ export function useCalculation(): {
         gridFrequencyHz,
       },
       economics: {
-        selfConsumedValuePerKwh:
-          selfConsumedValuePerKwh ?? market.selfConsumedElectricityValue ?? 0,
-        exportValuePerKwh: exportValuePerKwh ?? market.exportElectricityValue ?? 0,
-        currency: market.currency,
-        valuesMissing:
-          (selfConsumedValuePerKwh ?? market.selfConsumedElectricityValue) === null ||
-          (exportValuePerKwh ?? market.exportElectricityValue) === null,
+        // Country decides the standard values; the user's own values always win.
+        selfConsumedValuePerKwh: economicsDefaults.selfConsumedValuePerKwh ?? 0,
+        exportValuePerKwh: economicsDefaults.exportValuePerKwh ?? 0,
+        currency: economicsDefaults.currencyCode,
+        valuesMissing: economicsDefaults.valuesMissing,
         // The source follows how the value was set, never the number itself.
         selfConsumedValueSource:
           selfConsumedValuePerKwh === null ? "standard-value" : "user-override",
@@ -95,6 +98,7 @@ export function useCalculation(): {
     annualPriceChangeRate,
     quotePrice,
     market,
+    economicsDefaults,
   ]);
 
   return { result, market };
