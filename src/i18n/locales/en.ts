@@ -350,18 +350,18 @@ priceScenarioHigh: "High",
     panelPowerLabel: "Panel power",
     investmentLevelBasis: "Based on your selected payback period of {{years}} years",
     investmentLevelNote:
-      "With today's calculation assumptions, {{years}} years of simple payback corresponds to an investment of about {{amount}}.",
+      "With the calculation assumptions, {{years}} years of payback corresponds to an investment of about {{amount}}.",
     quoteToggle: "Compare with a quoted price",
     quoteLabel: "Quoted price ({{currency}})",
     quotePlaceholder: "89000",
-    quoteResult: "The quoted price corresponds to about {{years}} years of simple payback",
+    quoteResult: "The quoted price corresponds to about {{years}} years of payback",
     quoteNote:
       "The calculation uses the same production, self-consumption and electricity prices as your current calculation.",
     priceExplainer:
       "Self-consumed solar replaces electricity that would otherwise have been bought from the grid. Exported solar instead earns compensation for electricity fed into the grid.",
     paybackYears: "{{years}} years",
     paybackInfo:
-      "Simple payback shows how many years the estimated annual economic value corresponds to the investment. It does not account for future electricity price changes, financing cost, inflation, maintenance or discounting.",
+      "The investment level shows roughly what investment matches the chosen payback time, based on the economic values the calculation projects over that period. It is not an estimated market price or a quote.",
     maxInvestment: "Investment level at chosen payback time",
     productionCostTitle: "What does solar power from your roof cost?",
     investmentLevelInfoLabel: "More information",
@@ -382,7 +382,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "approx. {{amount}}",
     maxInvestmentExplainer:
-      "To reach roughly {{years}} years of simple payback, the installation should cost at most about {{amount}}.",
+      "To reach roughly {{years}} years of payback, the installation should cost at most about {{amount}}.",
     maxInvestmentNote:
       "The amount is calculated from your inputs and calculation assumptions — not a quote or a market price estimate.",
     missingSelfConsumedValue: "Electricity price missing. Enter what you pay per kWh to see the value of self-consumed solar.",
@@ -592,7 +592,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       balanceNote:
         "Annual production corresponds to about {{percent}} % of your annual electricity use. It does not mean all produced electricity can be used directly in the property, since production and consumption occur at different times.",
       perYearShort: "per year",
-      paybackTime: "Chosen simple payback time",
+      paybackTime: "Chosen payback time",
       address: "Address",
       coordinates: "Coordinates",
       array: "System size",
