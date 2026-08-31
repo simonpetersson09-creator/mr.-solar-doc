@@ -87,9 +87,9 @@ function WizardPage() {
         void (async () => {
           const created = await createPending();
           if (!created) return;
-          // Premium skips the paywall: the calculation is opened directly.
+          // Premium (and dev bypass) skip the paywall: the calculation is opened directly.
           const pending = usePurchaseStore.getState().pending;
-          if (premium.active && pending) {
+          if ((premium.active || isDevUnlock()) && pending) {
             usePurchaseStore.getState().rememberToken(pending);
             void navigate({ to: "/resultat" });
             return;
