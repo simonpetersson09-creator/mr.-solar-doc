@@ -89,14 +89,24 @@ export interface ConsumptionInput {
 
 export interface ElectricalInput {
   mainFuseAmp: number;
-  kwPerAmp: number;
-  /** Assumed grid voltage (V). Defaults to the European 400 V assumption. */
+  /**
+   * kW per ampere. Optional legacy input: when `gridVoltageV` is provided the
+   * engine derives the factor centrally from the service type instead.
+   */
+  kwPerAmp?: number;
+  /**
+   * Grid voltage (V). Line-to-line for three-phase services, line-to-neutral
+   * for single-phase services. Never mix the two.
+   */
   gridVoltageV?: number;
-  /** Assumed number of phases. Defaults to 3. */
+  /** Number of phases (1 or 3). Defaults to 3. */
   gridPhases?: number;
+  /** Explicit service type; derived from `gridPhases` when omitted. */
+  serviceType?: ServiceType;
   /** Grid frequency (Hz). Stored only; does not affect the power calculation. */
   gridFrequencyHz?: number;
 }
+
 
 /** The grid connection assumption behind the theoretical AC power. */
 export interface GridAssumption {
