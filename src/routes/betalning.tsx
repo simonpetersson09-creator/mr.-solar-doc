@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Check, Loader2, Lock, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Check, Crown, Loader2, Lock, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { haptic } from "@/services/native-service";
 import { usePurchaseStore } from "@/state/purchase-store";
@@ -9,10 +10,23 @@ import {
   PurchaseError,
   getStorePrice,
   isPurchaseAvailable,
+  purchasePremium,
   purchaseUnlock,
 } from "@/services/iap-service";
-import { markPurchaseOutcome, verifyApplePurchase } from "@/lib/purchase.functions";
-import { UNLOCK_PRICE_AMOUNT, UNLOCK_PRICE_CURRENCY } from "@/config/purchase";
+import {
+  markPurchaseOutcome,
+  verifyApplePremium,
+  verifyApplePurchase,
+} from "@/lib/purchase.functions";
+import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
+import {
+  PREMIUM_PRICE_AMOUNT,
+  PREMIUM_PRICE_CURRENCY,
+  PREMIUM_PRODUCT_ID,
+  UNLOCK_PRICE_AMOUNT,
+  UNLOCK_PRICE_CURRENCY,
+  UNLOCK_PRODUCT_ID,
+} from "@/config/purchase";
 
 export const Route = createFileRoute("/betalning")({
   head: () => ({
@@ -20,12 +34,14 @@ export const Route = createFileRoute("/betalning")({
       { title: "Lås upp din beräkning — Mr. Solar Doc" },
       {
         name: "description",
-        content: "Lås upp din solcellsberäkning med ett engångsköp i appen.",
+        content:
+          "Lås upp din solcellsberäkning med ett engångsköp eller bli Premium med obegränsade beräkningar.",
       },
       { property: "og:title", content: "Lås upp din beräkning — Mr. Solar Doc" },
       {
         property: "og:description",
-        content: "Lås upp din solcellsberäkning med ett engångsköp i appen.",
+        content:
+          "Lås upp din solcellsberäkning med ett engångsköp eller bli Premium med obegränsade beräkningar.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -35,18 +51,28 @@ export const Route = createFileRoute("/betalning")({
 });
 
 type Phase = "idle" | "purchasing" | "verifying" | "failed" | "cancelled" | "retry";
+type Choice = "unlock" | "premium";
 
 function PaywallPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const pending = usePurchaseStore((s) => s.pending);
   const rememberToken = usePurchaseStore((s) => s.rememberToken);
+  const premium = usePremium();
   const [phase, setPhase] = useState<Phase>("idle");
+  const [choice, setChoice] = useState<Choice | null>(null);
   const available = useMemo(() => isPurchaseAvailable(), []);
-  const [price, setPrice] = useState<string | null>(null);
+  const [prices, setPrices] = useState<{ unlock: string | null; premium: string | null }>({
+    unlock: null,
+    premium: null,
+  });
 
   useEffect(() => {
-    setPrice(getStorePrice());
+    setPrices({
+      unlock: getStorePrice(UNLOCK_PRODUCT_ID),
+      premium: getStorePrice(PREMIUM_PRODUCT_ID),
+    });
   }, []);
 
   // No calculation to unlock — send the user back to the wizard.
@@ -54,11 +80,22 @@ function PaywallPage() {
     if (!pending) void navigate({ to: "/" });
   }, [pending, navigate]);
 
-  const displayPrice = price ?? `${UNLOCK_PRICE_AMOUNT} ${UNLOCK_PRICE_CURRENCY}`;
+  // Premium already active: the calculation is unlocked, no paywall needed.
+  useEffect(() => {
+    if (premium.active && pending) {
+      rememberToken(pending);
+      void navigate({ to: "/resultat" });
+    }
+  }, [premium.active, pending, rememberToken, navigate]);
 
-  async function handlePurchase() {
-    if (!pending || phase === "purchasing" || phase === "verifying") return;
+  const unlockPrice = prices.unlock ?? `${UNLOCK_PRICE_AMOUNT} ${UNLOCK_PRICE_CURRENCY}`;
+  const premiumPrice = prices.premium ?? `${PREMIUM_PRICE_AMOUNT} ${PREMIUM_PRICE_CURRENCY}`;
+  const busy = phase === "purchasing" || phase === "verifying";
+
+  async function handleUnlock() {
+    if (!pending || busy) return;
     void haptic("medium");
+    setChoice("unlock");
     setPhase("purchasing");
     try {
       const { transactionId, finish } = await purchaseUnlock();
@@ -66,17 +103,16 @@ function PaywallPage() {
       const verified = await verifyApplePurchase({
         data: { id: pending.id, accessToken: pending.accessToken, transactionId },
       });
-      if (verified.status !== "paid") {
-        // Pending means verification could not be completed — the transaction is
-        // deliberately left unfinished so Apple redelivers it and the recovery
-        // listener can unlock it later.
-        setPhase(verified.status === "pending" ? "retry" : "failed");
+      if (verified.status === "paid") {
+        await finish();
+        rememberToken(pending);
+        void haptic("success");
+        void navigate({ to: "/resultat" });
         return;
       }
-      await finish();
-      rememberToken(pending);
-      void haptic("success");
-      void navigate({ to: "/resultat" });
+      // Pending: leave the transaction unfinished so StoreKit redelivers it and
+      // the recovery hook can verify it again.
+      setPhase(verified.status === "pending" ? "retry" : "failed");
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
       if (reason !== "unavailable") {
@@ -92,8 +128,43 @@ function PaywallPage() {
     }
   }
 
+  async function handlePremium() {
+    if (!pending || busy) return;
+    void haptic("medium");
+    setChoice("premium");
+    setPhase("purchasing");
+    try {
+      const { transactionId, finish } = await purchasePremium();
+      setPhase("verifying");
+      const verified = await verifyApplePremium({
+        data: {
+          deviceId: usePurchaseStore.getState().ensureDeviceId(),
+          transactionId,
+        },
+      });
+      if (verified.status === "active") {
+        await finish();
+        await queryClient.invalidateQueries({ queryKey: PREMIUM_QUERY_KEY });
+        rememberToken(pending);
+        void haptic("success");
+        void navigate({ to: "/resultat" });
+        return;
+      }
+      if (verified.status === "inactive" || verified.status === "failed") {
+        await finish();
+        setPhase("failed");
+        return;
+      }
+      setPhase("retry");
+    } catch (error) {
+      const reason = error instanceof PurchaseError ? error.reason : "failed";
+      setPhase(reason === "cancelled" ? "cancelled" : "failed");
+    }
+  }
 
-  const busy = phase === "purchasing" || phase === "verifying";
+  function busyLabel() {
+    return phase === "verifying" ? t("paywall.verifying") : t("paywall.purchasing");
+  }
 
   return (
     <div className="surface-sun flex h-dvh max-h-dvh flex-col overflow-hidden">
@@ -118,27 +189,73 @@ function PaywallPage() {
           </h1>
         </header>
 
-        <section className="cta-primary flex flex-col items-center gap-2 rounded-3xl px-5 py-6 text-center text-primary-foreground">
-          <span className="flex size-11 items-center justify-center rounded-2xl bg-accent text-accent-foreground shadow-md shadow-accent/40">
-            <Lock className="size-5" />
-          </span>
-          <p className="text-[11px] font-semibold tracking-wide uppercase text-primary-foreground/70">
-            {t("paywall.eyebrow")}
-          </p>
-          <p className="text-3xl font-bold tabular-nums">{displayPrice}</p>
-          <p className="text-sm text-primary-foreground/80">{t("paywall.oneTime")}</p>
+        {/* Option 1 — one calculation */}
+        <section className="cta-primary flex flex-col gap-3 rounded-3xl p-4 text-primary-foreground">
+          <div className="flex items-start gap-3">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-accent text-accent-foreground shadow-md shadow-accent/40">
+              <Lock className="size-5" />
+            </span>
+            <div className="flex flex-1 flex-col">
+              <p className="text-sm font-bold">{t("paywall.single.title")}</p>
+              <p className="text-2xl font-bold tabular-nums">{unlockPrice}</p>
+              <p className="text-sm text-primary-foreground/80">{t("paywall.single.body")}</p>
+            </div>
+          </div>
+          <Button
+            size="lg"
+            className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+            disabled={!available || busy}
+            onClick={() => void handleUnlock()}
+          >
+            {busy && choice === "unlock" ? (
+              <>
+                <Loader2 className="size-4 animate-spin" />
+                {busyLabel()}
+              </>
+            ) : (
+              t("paywall.single.cta", { price: unlockPrice })
+            )}
+          </Button>
         </section>
 
-        <section className="cta-primary flex flex-col gap-2 rounded-3xl p-4 text-primary-foreground">
-          <h2 className="text-sm font-bold">{t("paywall.includesTitle")}</h2>
-          <ul className="flex flex-col gap-2">
-            {["result", "pdf", "history"].map((key) => (
+        {/* Option 2 — Premium */}
+        <section className="cta-primary flex flex-col gap-3 rounded-3xl border-2 border-accent/70 p-4 text-primary-foreground">
+          <div className="flex items-start gap-3">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-accent text-accent-foreground shadow-md shadow-accent/40">
+              <Crown className="size-5" />
+            </span>
+            <div className="flex flex-1 flex-col">
+              <p className="text-sm font-bold">{t("paywall.premium.title")}</p>
+              <p className="text-2xl font-bold tabular-nums">
+                {t("paywall.premium.price", { price: premiumPrice })}
+              </p>
+              <p className="text-sm text-primary-foreground/80">{t("paywall.premium.body")}</p>
+            </div>
+          </div>
+          <ul className="flex flex-col gap-1.5">
+            {["calculations", "pdf", "result"].map((key) => (
               <li key={key} className="flex items-start gap-2 text-sm text-primary-foreground/90">
                 <Check className="mt-0.5 size-4 shrink-0 text-accent" />
-                <span>{t(`paywall.includes.${key}`)}</span>
+                <span>{t(`paywall.premium.includes.${key}`)}</span>
               </li>
             ))}
           </ul>
+          <Button
+            size="lg"
+            className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+            disabled={!available || busy}
+            onClick={() => void handlePremium()}
+          >
+            {busy && choice === "premium" ? (
+              <>
+                <Loader2 className="size-4 animate-spin" />
+                {busyLabel()}
+              </>
+            ) : (
+              t("paywall.premium.cta")
+            )}
+          </Button>
+          <p className="text-[11px] text-primary-foreground/70">{t("paywall.premium.renewal")}</p>
         </section>
 
         {!available ? (
@@ -157,29 +274,9 @@ function PaywallPage() {
           <p className="text-sm text-foreground">{t("paywall.retry")}</p>
         ) : null}
 
-
-        <div className="flex flex-col gap-2 pt-1">
-          <Button
-            size="lg"
-            className="cta-primary w-full"
-            disabled={!available || busy}
-            onClick={() => void handlePurchase()}
-          >
-            {busy ? (
-              <>
-                <Loader2 className="size-4 animate-spin" />
-                {phase === "verifying" ? t("paywall.verifying") : t("paywall.purchasing")}
-              </>
-            ) : (
-              <>
-                <Lock className="size-4" /> {t("paywall.cta", { price: displayPrice })}
-              </>
-            )}
-          </Button>
-          <p className="flex items-center justify-center gap-1.5 text-center text-[11px] text-muted-foreground">
-            <ShieldCheck className="size-3.5" /> {t("paywall.appleNote")}
-          </p>
-        </div>
+        <p className="flex items-center justify-center gap-1.5 pb-1 text-center text-[11px] text-muted-foreground">
+          <ShieldCheck className="size-3.5" /> {t("paywall.appleNote")}
+        </p>
       </main>
     </div>
   );
