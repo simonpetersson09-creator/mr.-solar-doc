@@ -484,7 +484,7 @@ const cost = result.productionCost;
                 ],
                 [
                   t("result.degradationAssumption"),
-                  `−${formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1)} %${t("common.perYear")} · ${result.lifetime.periodYears} ${t("units.years")}`,
+                  `−${formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1)} %${t("common.perYear")} · ${t("units.years", { count: result.lifetime.periodYears })}`,
                 ],
                 [t("result.dataSource"), result.resource.dataSource],
                 [t("result.calculatedAt"), formatDate(result.calculatedAt, locale)],
