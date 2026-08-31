@@ -312,53 +312,47 @@ const cost = result.productionCost;
             <>
 <div className="mt-3 grid grid-cols-3 gap-1.5 text-center">
                 <div className="flex min-w-0 flex-col items-center justify-center rounded-2xl bg-white/10 px-1.5 py-2.5">
-                  <p className="flex min-h-[26px] items-center justify-center text-[10px] leading-tight text-white/60">
+                  <p className="flex min-h-[28px] items-center justify-center text-[11px] leading-tight text-white/60">
                     {t("result.productionCostLabel")}
                   </p>
-                  <p className="mt-0.5 text-sm leading-tight font-bold text-white">
+                  <p className="mt-0.5 text-lg leading-tight font-bold text-white">
                     <span className="block whitespace-nowrap tabular-nums">
                       {formatDecimal(cost.costPerKwh, locale, 2)}
                     </span>
-                    <span className="block text-[9px] font-semibold text-white/60">
+                    <span className="block text-[11px] font-semibold text-white/60">
                       {currency}/kWh
                     </span>
                   </p>
                 </div>
                 <div className="flex min-w-0 flex-col items-center justify-center rounded-2xl bg-white/10 px-1.5 py-2.5">
-                  <p className="flex min-h-[26px] items-center justify-center text-[10px] leading-tight text-white/60">
+                  <p className="flex min-h-[28px] items-center justify-center text-[11px] leading-tight text-white/60">
                     {t("result.productionCostValueLabel")}
                   </p>
-                  <p className="mt-0.5 text-sm leading-tight font-bold text-white">
+                  <p className="mt-0.5 text-lg leading-tight font-bold text-white">
                     <span className="block whitespace-nowrap tabular-nums">
                       {formatDecimal(cost.valuePerKwh, locale, 2)}
                     </span>
-                    <span className="block text-[9px] font-semibold text-white/60">
+                    <span className="block text-[11px] font-semibold text-white/60">
                       {currency}/kWh
                     </span>
                   </p>
                 </div>
                 <div className="flex min-w-0 flex-col items-center justify-center rounded-2xl bg-white/10 px-1.5 py-2.5">
-                  <p className="flex min-h-[26px] items-center justify-center text-[10px] leading-tight text-white/60">
+                  <p className="flex min-h-[28px] items-center justify-center text-[11px] leading-tight text-white/60">
                     {t("result.productionCostDifference")}
                   </p>
-                  <p className="mt-0.5 text-sm leading-tight font-bold text-accent">
+                  <p className="mt-0.5 text-lg leading-tight font-bold text-accent">
                     <span className="block whitespace-nowrap tabular-nums">
                       {(cost.differencePerKwh ?? 0) >= 0 ? "+" : "−"}
                       {formatDecimal(Math.abs(cost.differencePerKwh ?? 0), locale, 2)}
                     </span>
-                    <span className="block text-[9px] font-semibold text-white/60">
+                    <span className="block text-[11px] font-semibold text-white/60">
                       {currency}/kWh
                     </span>
                   </p>
                 </div>
               </div>
-              <p className="mt-2 text-center text-[11px] text-white/60">
-                {t("result.productionCostBasis", {
-                  investment: formatCurrency(cost.investment, locale, currency),
-                  production: formatNumber(cost.totalProductionKwh, locale),
-                  years: formatNumber(cost.periodYears, locale),
-                })}
-              </p>
+
             </>
           )}
         </section>
