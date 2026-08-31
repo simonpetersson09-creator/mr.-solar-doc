@@ -226,13 +226,13 @@ const cost = result.productionCost;
             {t("result.sectionEconomy")}
           </h2>
 
-          <div className="flex items-baseline justify-between gap-3">
-            <p className="text-xs text-white/60">{t("result.annualSavings")}</p>
-            <p className="text-3xl font-extrabold tracking-tight text-white">
+          <div className="rounded-2xl bg-white/10 p-3 text-center">
+            <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+              {t("result.annualSavings")}
+            </p>
+            <p className="mt-1 text-3xl font-extrabold tracking-tight text-white">
               {economicValuesMissing ? "–" : formatCurrency(p.annualSavings, locale, currency)}{" "}
-              <span className="text-xs font-normal text-white/60">
-                {t("result.perYear")}
-              </span>
+              <span className="text-xs font-normal text-white/60">{t("result.perYear")}</span>
             </p>
           </div>
 
