@@ -343,34 +343,34 @@ export const et = {
     }
   },
   "months": {
-    "short": {
-      "0": "Jaan",
-      "1": "Veebr",
-      "2": "Märts",
-      "3": "Apr",
-      "4": "Mai",
-      "5": "Juuni",
-      "6": "Juuli",
-      "7": "Aug",
-      "8": "Sept",
-      "9": "Okt",
-      "10": "Nov",
-      "11": "Dets"
-    },
-    "long": {
-      "0": "Jaanuar",
-      "1": "Veebruar",
-      "2": "Märts",
-      "3": "Aprill",
-      "4": "Mai",
-      "5": "Juuni",
-      "6": "Juuli",
-      "7": "August",
-      "8": "September",
-      "9": "Oktoober",
-      "10": "November",
-      "11": "Detsember"
-    }
+    "short": [
+      "Jaan",
+      "Veebr",
+      "Märts",
+      "Apr",
+      "Mai",
+      "Juuni",
+      "Juuli",
+      "Aug",
+      "Sept",
+      "Okt",
+      "Nov",
+      "Dets"
+    ],
+    "long": [
+      "Jaanuar",
+      "Veebruar",
+      "Märts",
+      "Aprill",
+      "Mai",
+      "Juuni",
+      "Juuli",
+      "August",
+      "September",
+      "Oktoober",
+      "November",
+      "Detsember"
+    ]
   },
   "report": {
     "fields": {
@@ -492,48 +492,48 @@ export const et = {
     "disclaimer": "See aruanne on arvutuse hetkepilt ja põhineb eelnevalt nimetatud eeldustel. See ei ole pakkumine.",
     "generated": "Loodud",
     "faqTitle": "Korduma kippuvad küsimused",
-    "faqItems": {
-      "0": {
+    "faqItems": [
+      {
         "q": "Kui usaldusväärne on arvutatud päikesetoodang?",
         "a": "Arvutus põhineb asukoha päikesekiirgusel ning katuse suunal ja kaldenurgal. Tegelikku toodangut mõjutavad muu hulgas ilm, varjutus ja paigaldise tehnilised tingimused."
       },
-      "1": {
+      {
         "q": "Mida tähendab oma tarbeks tarbimine?",
         "a": "Osa päikeseenergiast, mida kasutatakse otse kodus. Ülejäänud toodang suunatakse elektrivõrku."
       },
-      "2": {
+      {
         "q": "Miks on oma tarbeks tarbitud päikeseenergia väärtuslikum kui müüdud päikeseenergia?",
         "a": "Oma tarbeks tarbitud päikeseenergia asendab elektrit, mis muidu ostetaks võrgust, samas kui müüdud päikeseenergia hüvitatakse võrku antud energia tingimuste kohaselt."
       },
-      "3": {
+      {
         "q": "Mida tähendab hind valitud tasuvusaja kohta?",
         "a": "See näitab ligikaudu, kui palju võib paigaldus maksma minna, et see vastaks teie valitud tasuvusajale arvutuse eelduste põhjal. See ei ole hinnanguline turuhind."
       },
-      "4": {
+      {
         "q": "Miks võib paigaldaja arvutus erineda?",
         "a": "Erinevad eeldused toodangu, oma tarbeks tarbimise, elektrihindade, süsteemikadude ja tulevase hinnamuutuse kohta võivad anda erinevaid tulemusi."
       },
-      "5": {
+      {
         "q": "Kas arvutus on pakkumine?",
         "a": "Ei. Tulemus on hinnang ja seda tuleks kasutada otsuste tegemise alusena. Tegelik hind, toodang ja majanduslik tulemus võivad erineda."
       },
-      "6": {
+      {
         "q": "Miks tootmine aja jooksul väheneb?",
         "a": "Päikesepaneelide võimsus väheneb aastate jooksul tavaliselt veidi. Arvutus lähtub aastasest 0,5 %-lisest degradeerumisest, mis tähendab, et arvutuslik tootmine väheneb kalkulatsiooniperioodi jooksul järk-järgult."
       },
-      "7": {
+      {
         "q": "Kuidas arvutatakse minu päikeseenergia väärtus?",
         "a": "Omatarbitud päikeseenergiat hinnatakse elektri hinna järgi, mida muidu oleksite pidanud ostma. Müüdud päikeseenergiat hinnatakse eeldatava tasu järgi võrku antud elektri eest."
       },
-      "8": {
+      {
         "q": "Mida tähendab tootmiskulu kWh kohta?",
         "a": "Tootmiskulu näitab arvutuslikku keskmist kulu iga toodetud kilovatt-tunni kohta seadme eluea jooksul. Seda saab võrrelda päikeseenergia arvutusliku majandusliku väärtusega."
       },
-      "9": {
+      {
         "q": "Miks soovitatakse just seda seadme suurust?",
         "a": "Seadme suurus arvutatakse muu hulgas teie elektritarbimise, asukoha päikesekiirguse ja tehniliste piirangute alusel. Eesmärk on mõõtu anda seade vastavalt teie oludele, mitte paigaldada võimalikult suurt seadet."
       }
-    }
+    ]
   },
   "premium": {
     "title": "Premium",

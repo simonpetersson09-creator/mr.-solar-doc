@@ -343,34 +343,34 @@ export const cs = {
     }
   },
   "months": {
-    "short": {
-      "0": "Led",
-      "1": "Úno",
-      "2": "Bře",
-      "3": "Dub",
-      "4": "Kvě",
-      "5": "Čvn",
-      "6": "Čvc",
-      "7": "Srp",
-      "8": "Zář",
-      "9": "Říj",
-      "10": "Lis",
-      "11": "Pro"
-    },
-    "long": {
-      "0": "Leden",
-      "1": "Únor",
-      "2": "Březen",
-      "3": "Duben",
-      "4": "Květen",
-      "5": "Červen",
-      "6": "Červenec",
-      "7": "Srpen",
-      "8": "Září",
-      "9": "Říjen",
-      "10": "Listopad",
-      "11": "Prosinec"
-    }
+    "short": [
+      "Led",
+      "Úno",
+      "Bře",
+      "Dub",
+      "Kvě",
+      "Čvn",
+      "Čvc",
+      "Srp",
+      "Zář",
+      "Říj",
+      "Lis",
+      "Pro"
+    ],
+    "long": [
+      "Leden",
+      "Únor",
+      "Březen",
+      "Duben",
+      "Květen",
+      "Červen",
+      "Červenec",
+      "Srpen",
+      "Září",
+      "Říjen",
+      "Listopad",
+      "Prosinec"
+    ]
   },
   "report": {
     "fields": {
@@ -492,48 +492,48 @@ export const cs = {
     "disclaimer": "Tato zpráva je snímkem výpočtu a je založena na výše uvedených předpokladech. Nejedná se o nabídku.",
     "generated": "Vygenerováno",
     "faqTitle": "Často kladené dotazy",
-    "faqItems": {
-      "0": {
+    "faqItems": [
+      {
         "q": "Jak spolehlivý je vypočítaný solární výkon?",
         "a": "Výpočet vychází ze slunečního záření v dané lokalitě a ze směru a sklonu střechy. Skutečnou výrobu ovlivňují mimo jiné počasí, stínění a technické podmínky zařízení."
       },
-      "1": {
+      {
         "q": "Co znamená vlastní spotřeba?",
         "a": "Podíl solární energie využívané přímo v domácnosti. Zbývající výroba je dodávána do elektrické sítě."
       },
-      "2": {
+      {
         "q": "Proč má vlastní spotřebovaná solární energie větší hodnotu než prodaná?",
         "a": "Vlastní spotřebovaná solární energie nahrazuje elektřinu, kterou by jinak bylo nutné koupit ze sítě, zatímco prodaná solární energie je kompenzována podle podmínek pro dodávku do sítě."
       },
-      "3": {
+      {
         "q": "Co znamená cena pro zvolenou dobu návratnosti?",
         "a": "Přibližně ukazuje, kolik může zařízení stát, aby odpovídalo vámi zvolené době návratnosti na základě předpokladů kalkulace. Nejedná se o odhad tržní ceny."
       },
-      "4": {
+      {
         "q": "Proč se může výpočet instalatéra lišit?",
         "a": "Různé předpoklady ohledně výroby, vlastní spotřeby, cen elektřiny, ztrát systému a budoucího cenového vývoje mohou vést k různým výsledkům."
       },
-      "5": {
+      {
         "q": "Je výpočet nabídkou?",
         "a": "Ne. Výsledek je odhad a má sloužit jako podklad pro rozhodování. Skutečná cena, výroba a ekonomický výsledek se mohou lišit."
       },
-      "6": {
+      {
         "q": "Proč se výroba v průběhu času snižuje?",
         "a": "Výkon solárních panelů se v průběhu let obvykle mírně snižuje. Výpočet vychází z roční degradace 0,5 %, což znamená, že se vypočtená výroba během kalkulačního období postupně snižuje."
       },
-      "7": {
+      {
         "q": "Jak se vypočítá hodnota mé solární elektřiny?",
         "a": "Vlastní spotřebovaná solární elektřina se oceňuje podle nákladů na elektřinu, kterou byste jinak museli koupit. Prodaná solární elektřina se oceňuje podle předpokládané náhrady za elektřinu dodanou do sítě."
       },
-      "8": {
+      {
         "q": "Co znamená výrobní náklad na kWh?",
         "a": "Výrobní náklad ukazuje vypočtené průměrné náklady na každou vyrobenou kilowatthodinu za dobu životnosti zařízení. Lze jej porovnat s vypočtenou ekonomickou hodnotou solární elektřiny."
       },
-      "9": {
+      {
         "q": "Proč se doporučuje právě tato velikost zařízení?",
         "a": "Velikost zařízení se vypočítává mimo jiné na základě vaší spotřeby elektřiny, slunečního záření v daném místě a technických omezení. Cílem je dimenzovat zařízení podle vašich podmínek, nikoli instalovat co největší zařízení."
       }
-    }
+    ]
   },
   "premium": {
     "title": "Premium",

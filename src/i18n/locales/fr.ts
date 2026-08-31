@@ -343,34 +343,34 @@ export const fr = {
     }
   },
   "months": {
-    "short": {
-      "0": "Jan",
-      "1": "Fév",
-      "2": "Mar",
-      "3": "Avr",
-      "4": "Mai",
-      "5": "Juin",
-      "6": "Juil",
-      "7": "Août",
-      "8": "Sep",
-      "9": "Oct",
-      "10": "Nov",
-      "11": "Déc"
-    },
-    "long": {
-      "0": "Janvier",
-      "1": "Février",
-      "2": "Mars",
-      "3": "Avril",
-      "4": "Mai",
-      "5": "Juin",
-      "6": "Juillet",
-      "7": "Août",
-      "8": "Septembre",
-      "9": "Octobre",
-      "10": "Novembre",
-      "11": "Décembre"
-    }
+    "short": [
+      "Jan",
+      "Fév",
+      "Mar",
+      "Avr",
+      "Mai",
+      "Juin",
+      "Juil",
+      "Août",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Déc"
+    ],
+    "long": [
+      "Janvier",
+      "Février",
+      "Mars",
+      "Avril",
+      "Mai",
+      "Juin",
+      "Juillet",
+      "Août",
+      "Septembre",
+      "Octobre",
+      "Novembre",
+      "Décembre"
+    ]
   },
   "report": {
     "fields": {
@@ -492,48 +492,48 @@ export const fr = {
     "disclaimer": "Ce rapport est un aperçu du calcul et est basé sur les hypothèses énumérées ci-dessus. Ce n'est pas un devis.",
     "generated": "Généré",
     "faqTitle": "Questions fréquentes",
-    "faqItems": {
-      "0": {
+    "faqItems": [
+      {
         "q": "Quelle est la fiabilité de la production solaire estimée ?",
         "a": "Le calcul s'appuie sur l'ensoleillement du lieu ainsi que sur l'orientation et l'inclinaison de la toiture. La production réelle est notamment influencée par la météo, l'ombrage et les conditions techniques de l'installation."
       },
-      "1": {
+      {
         "q": "Que signifie l'autoconsommation ?",
         "a": "La part de l'électricité solaire utilisée directement dans le logement. Le reste de la production est injecté sur le réseau électrique."
       },
-      "2": {
+      {
         "q": "Pourquoi l'électricité solaire autoconsommée vaut-elle plus que l'électricité solaire vendue ?",
         "a": "L'électricité solaire autoconsommée remplace de l'électricité qui aurait sinon été achetée sur le réseau, tandis que l'électricité solaire vendue est rémunérée selon les conditions de l'électricité injectée."
       },
-      "3": {
+      {
         "q": "Que signifie le prix pour la durée de retour choisie ?",
         "a": "Il indique approximativement combien l'installation peut coûter pour correspondre à la durée de retour que vous avez choisie, sur la base des hypothèses du calcul. Il ne s'agit pas d'un prix de marché estimé."
       },
-      "4": {
+      {
         "q": "Pourquoi le calcul de l'installateur peut-il différer ?",
         "a": "Des hypothèses différentes sur la production, l'autoconsommation, les prix de l'électricité, les pertes du système et l'évolution future des prix peuvent donner des résultats différents."
       },
-      "5": {
+      {
         "q": "Le calcul est-il un devis ?",
         "a": "Non. Le résultat est une estimation et doit servir de base à la décision. Le prix, la production et le résultat économique réels peuvent différer."
       },
-      "6": {
+      {
         "q": "Pourquoi la production diminue-t-elle au fil du temps ?",
         "a": "La puissance des panneaux solaires diminue normalement légèrement avec les années. Le calcul repose sur une dégradation annuelle de 0,5 %, ce qui signifie que la production estimée diminue progressivement au cours de la période de calcul."
       },
-      "7": {
+      {
         "q": "Comment la valeur de mon électricité solaire est-elle calculée ?",
         "a": "L'électricité solaire autoconsommée est valorisée sur la base du coût de l'électricité que vous auriez dû acheter autrement. L'électricité solaire vendue est valorisée sur la base de la rémunération supposée pour l'électricité injectée dans le réseau."
       },
-      "8": {
+      {
         "q": "Que signifie le coût de production par kWh ?",
         "a": "Le coût de production indique le coût moyen estimé de chaque kilowattheure produit sur la durée de vie de l'installation. Il peut être comparé à la valeur économique estimée de l'électricité solaire."
       },
-      "9": {
+      {
         "q": "Pourquoi cette taille d'installation est-elle recommandée ?",
         "a": "La taille de l'installation est calculée notamment en fonction de votre consommation d'électricité, de l'ensoleillement du site et des limitations techniques. L'objectif est de dimensionner l'installation selon vos conditions, et non d'installer la plus grande installation possible."
       }
-    }
+    ]
   },
   "premium": {
     "title": "Premium",

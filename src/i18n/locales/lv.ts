@@ -343,34 +343,34 @@ export const lv = {
     }
   },
   "months": {
-    "short": {
-      "0": "Jan",
-      "1": "Feb",
-      "2": "Mar",
-      "3": "Apr",
-      "4": "Mai",
-      "5": "Jūn",
-      "6": "Jūl",
-      "7": "Aug",
-      "8": "Sep",
-      "9": "Okt",
-      "10": "Nov",
-      "11": "Dec"
-    },
-    "long": {
-      "0": "Janvāris",
-      "1": "Februāris",
-      "2": "Marts",
-      "3": "Aprīlis",
-      "4": "Maijs",
-      "5": "Jūnijs",
-      "6": "Jūlijs",
-      "7": "Augusts",
-      "8": "Septembris",
-      "9": "Oktobris",
-      "10": "Novembris",
-      "11": "Decembris"
-    }
+    "short": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mai",
+      "Jūn",
+      "Jūl",
+      "Aug",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Dec"
+    ],
+    "long": [
+      "Janvāris",
+      "Februāris",
+      "Marts",
+      "Aprīlis",
+      "Maijs",
+      "Jūnijs",
+      "Jūlijs",
+      "Augusts",
+      "Septembris",
+      "Oktobris",
+      "Novembris",
+      "Decembris"
+    ]
   },
   "report": {
     "fields": {
@@ -492,48 +492,48 @@ export const lv = {
     "disclaimer": "Šī atskaite ir aprēķina momentuzņēmums un balstās uz iepriekš minētajiem pieņēmumiem. Tas nav piedāvājums.",
     "generated": "Ģenerēts",
     "faqTitle": "Biežāk uzdotie jautājumi",
-    "faqItems": {
-      "0": {
+    "faqItems": [
+      {
         "q": "Cik drošs ir aprēķinātais saules enerģijas ražošanas apjoms?",
         "a": "Aprēķins balstās uz saules starojumu konkrētajā vietā un jumta virzienu un slīpumu. Faktisko ražošanu ietekmē, piemēram, laikapstākļi, noēnojums un sistēmas tehniskie apstākļi."
       },
-      "1": {
+      {
         "q": "Ko nozīmē pašpatēriņš?",
         "a": "Daļa saules elektroenerģijas, kas tiek izmantota tieši mājoklī. Pārējā saražotā enerģija tiek nodota elektrotīklā."
       },
-      "2": {
+      {
         "q": "Kāpēc pašpatēriņā izmantotā saules enerģija ir vērtīgāka par pārdoto?",
         "a": "Pašpatēriņā izmantotā saules enerģija aizstāj elektrību, kas citādi būtu jāpērk no tīkla, savukārt pārdotā saules enerģija tiek kompensēta saskaņā ar tīklā nodotās enerģijas noteikumiem."
       },
-      "3": {
+      {
         "q": "Ko nozīmē cena izvēlētajam atmaksāšanās periodam?",
         "a": "Tas aptuveni parāda, cik sistēma var maksāt, lai atbilstu izvēlētajam atmaksāšanās periodam, pamatojoties uz aprēķina pieņēmumiem. Tā nav aptuvena tirgus cena."
       },
-      "4": {
+      {
         "q": "Kāpēc uzstādītāja aprēķins var atšķirties?",
         "a": "Dažādi pieņēmumi par ražošanu, pašpatēriņu, elektrības cenām, sistēmas zudumiem un nākotnes cenu izmaiņām var radīt atšķirīgus rezultātus."
       },
-      "5": {
+      {
         "q": "Vai aprēķins ir piedāvājums?",
         "a": "Nē. Rezultāts ir aplēse, un tas jāizmanto kā lēmumu pieņemšanas pamats. Faktiskā cena, ražošana un ekonomiskais iznākums var atšķirties."
       },
-      "6": {
+      {
         "q": "Kāpēc ražošana laika gaitā samazinās?",
         "a": "Saules paneļu jauda gados parasti nedaudz samazinās. Aprēķins balstās uz 0,5 % gada degradāciju, kas nozīmē, ka aprēķinātā ražošana aprēķina periodā pakāpeniski samazinās."
       },
-      "7": {
+      {
         "q": "Kā tiek aprēķināta manas saules enerģijas vērtība?",
         "a": "Pašpatērētā saules enerģija tiek novērtēta, pamatojoties uz elektrības izmaksām, kas citādi būtu jāiegādājas. Pārdotā saules enerģija tiek novērtēta, pamatojoties uz pieņemto atlīdzību par tīklā nodoto elektrību."
       },
-      "8": {
+      {
         "q": "Ko nozīmē ražošanas izmaksas par kWh?",
         "a": "Ražošanas izmaksas parāda aprēķinātās vidējās izmaksas par katru saražoto kilovatstundu iekārtas kalpošanas laikā. Tās var salīdzināt ar aprēķināto saules enerģijas ekonomisko vērtību."
       },
-      "9": {
+      {
         "q": "Kāpēc tiek ieteikts tieši šāds iekārtas lielums?",
         "a": "Iekārtas lielums tiek aprēķināts, ņemot vērā jūsu elektroenerģijas patēriņu, saules starojumu vietā un tehniskos ierobežojumus. Mērķis ir pielāgot iekārtu jūsu apstākļiem, nevis uzstādīt pēc iespējas lielāku iekārtu."
       }
-    }
+    ]
   },
   "premium": {
     "title": "Premium",

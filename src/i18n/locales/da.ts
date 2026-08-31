@@ -343,34 +343,34 @@ export const da = {
     }
   },
   "months": {
-    "short": {
-      "0": "Jan",
-      "1": "Feb",
-      "2": "Mar",
-      "3": "Apr",
-      "4": "Maj",
-      "5": "Jun",
-      "6": "Jul",
-      "7": "Aug",
-      "8": "Sep",
-      "9": "Okt",
-      "10": "Nov",
-      "11": "Dec"
-    },
-    "long": {
-      "0": "Januar",
-      "1": "Februar",
-      "2": "Marts",
-      "3": "April",
-      "4": "Maj",
-      "5": "Juni",
-      "6": "Juli",
-      "7": "August",
-      "8": "September",
-      "9": "Oktober",
-      "10": "November",
-      "11": "December"
-    }
+    "short": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Maj",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Dec"
+    ],
+    "long": [
+      "Januar",
+      "Februar",
+      "Marts",
+      "April",
+      "Maj",
+      "Juni",
+      "Juli",
+      "August",
+      "September",
+      "Oktober",
+      "November",
+      "December"
+    ]
   },
   "report": {
     "fields": {
@@ -492,48 +492,48 @@ export const da = {
     "disclaimer": "Rapporten er et øjebliksbillede af beregningen og er baseret på de antagelser, der er angivet ovenfor. Den er ikke et tilbud.",
     "generated": "Genereret",
     "faqTitle": "Ofte stillede spørgsmål",
-    "faqItems": {
-      "0": {
+    "faqItems": [
+      {
         "q": "Hvor sikker er den beregnede solproduktion?",
         "a": "Beregningen bygger på solindstråling for stedet samt tagets retning og hældning. Den faktiske produktion påvirkes blandt andet af vejr, skygge og anlæggets tekniske forudsætninger."
       },
-      "1": {
+      {
         "q": "Hvad betyder egenforbrug?",
         "a": "Den del af solstrømmen, der bruges direkte i boligen. Resten af produktionen sendes ud på elnettet."
       },
-      "2": {
+      {
         "q": "Hvorfor er egenforbrugt solstrøm mere værd end solgt solstrøm?",
         "a": "Egenforbrugt solstrøm erstatter strøm, der ellers skulle købes fra nettet, mens solgt solstrøm betales efter vilkårene for leveret strøm."
       },
-      "3": {
+      {
         "q": "Hvad betyder pris for valgt tilbagebetalingstid?",
         "a": "Det viser cirka, hvor meget anlægget kan koste for at svare til den tilbagebetalingstid, du har valgt, baseret på kalkulens antagelser. Det er ikke en estimeret markedspris."
       },
-      "4": {
+      {
         "q": "Hvorfor kan installatørens beregning afvige?",
         "a": "Forskellige antagelser om produktion, egenforbrug, elpriser, systemtab og fremtidig prisudvikling kan give forskellige resultater."
       },
-      "5": {
+      {
         "q": "Er beregningen et tilbud?",
         "a": "Nej. Resultatet er et skøn og skal bruges som beslutningsgrundlag. Faktisk pris, produktion og økonomisk udfald kan afvige."
       },
-      "6": {
+      {
         "q": "Hvorfor falder produktionen over tid?",
         "a": "Solpaneleffekten falder normalt en smule med årene. Beregningen tager udgangspunkt i en årlig degradering på 0,5 %, hvilket betyder, at den beregnede produktion gradvist falder i løbet af kalkulationsperioden."
       },
-      "7": {
+      {
         "q": "Hvordan beregnes værdien af min solenergi?",
         "a": "Egenforbrugt solenergi værdisættes ud fra prisen på den el, du ellers skulle have købt. Solgt solenergi værdisættes ud fra den antagne godtgørelse for el, der leveres til elnettet."
       },
-      "8": {
+      {
         "q": "Hvad betyder produktionsomkostning per kWh?",
         "a": "Produktionsomkostningen viser den beregnede gennemsnitlige omkostning for hver produceret kilowatt-time over anlæggets levetid. Den kan sammenlignes med den beregnede økonomiske værdi af solenergien."
       },
-      "9": {
+      {
         "q": "Hvorfor anbefales netop denne størrelse på anlægget?",
         "a": "Anlæggets størrelse beregnes ud fra blandt andet dit elforbrug, solindstrålingen på stedet og tekniske begrænsninger. Målet er at dimensionere anlægget efter dine forhold, ikke at installere det størst mulige anlæg."
       }
-    }
+    ]
   },
   "premium": {
     "title": "Premium",

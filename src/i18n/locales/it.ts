@@ -343,34 +343,34 @@ export const it = {
     }
   },
   "months": {
-    "short": {
-      "0": "Gen",
-      "1": "Feb",
-      "2": "Mar",
-      "3": "Apr",
-      "4": "Mag",
-      "5": "Giu",
-      "6": "Lug",
-      "7": "Ago",
-      "8": "Set",
-      "9": "Ott",
-      "10": "Nov",
-      "11": "Dic"
-    },
-    "long": {
-      "0": "Gennaio",
-      "1": "Febbraio",
-      "2": "Marzo",
-      "3": "Aprile",
-      "4": "Maggio",
-      "5": "Giugno",
-      "6": "Luglio",
-      "7": "Agosto",
-      "8": "Settembre",
-      "9": "Ottobre",
-      "10": "Novembre",
-      "11": "Dicembre"
-    }
+    "short": [
+      "Gen",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Mag",
+      "Giu",
+      "Lug",
+      "Ago",
+      "Set",
+      "Ott",
+      "Nov",
+      "Dic"
+    ],
+    "long": [
+      "Gennaio",
+      "Febbraio",
+      "Marzo",
+      "Aprile",
+      "Maggio",
+      "Giugno",
+      "Luglio",
+      "Agosto",
+      "Settembre",
+      "Ottobre",
+      "Novembre",
+      "Dicembre"
+    ]
   },
   "report": {
     "fields": {
@@ -492,48 +492,48 @@ export const it = {
     "disclaimer": "Questo rapporto è un'istantanea del calcolo e si basa sulle ipotesi sopra indicate. Non è un'offerta.",
     "generated": "Generato",
     "faqTitle": "Domande frequenti",
-    "faqItems": {
-      "0": {
+    "faqItems": [
+      {
         "q": "Quanto è affidabile la produzione solare calcolata?",
         "a": "Il calcolo si basa sull'irraggiamento solare del luogo e sull'orientamento e inclinazione del tetto. La produzione effettiva è influenzata, tra l'altro, dal meteo, dall'ombreggiamento e dalle condizioni tecniche dell'impianto."
       },
-      "1": {
+      {
         "q": "Cosa significa autoconsumo?",
         "a": "La parte di energia solare utilizzata direttamente nell'abitazione. Il resto della produzione viene immesso nella rete elettrica."
       },
-      "2": {
+      {
         "q": "Perché l'energia solare autoconsumata vale più di quella venduta?",
         "a": "L'energia solare autoconsumata sostituisce elettricità che altrimenti sarebbe stata acquistata dalla rete, mentre l'energia solare venduta è compensata secondo le condizioni per l'energia immessa."
       },
-      "3": {
+      {
         "q": "Cosa significa prezzo per il periodo di ammortamento scelto?",
         "a": "Indica approssimativamente quanto può costare l'impianto per corrispondere al periodo di ammortamento da te scelto, sulla base delle ipotesi del calcolo. Non è un prezzo di mercato stimato."
       },
-      "4": {
+      {
         "q": "Perché il calcolo dell'installatore può differire?",
         "a": "Ipotesi diverse su produzione, autoconsumo, prezzi dell'elettricità, perdite di sistema e andamento futuro dei prezzi possono dare risultati diversi."
       },
-      "5": {
+      {
         "q": "Il calcolo è un preventivo?",
         "a": "No. Il risultato è una stima e deve essere utilizzato come base per le decisioni. Prezzo, produzione e risultato economico effettivi possono differire."
       },
-      "6": {
+      {
         "q": "Perché la produzione diminuisce nel tempo?",
         "a": "La potenza dei pannelli solari diminuisce normalmente leggermente con gli anni. Il calcolo si basa su un degrado annuo dello 0,5 %, il che significa che la produzione stimata diminuisce gradualmente nel corso del periodo di calcolo."
       },
-      "7": {
+      {
         "q": "Come viene calcolato il valore del mio solare?",
         "a": "L'energia solare autoconsumata viene valutata in base al costo dell'elettricità che avresti dovuto acquistare. L'energia solare venduta viene valutata in base alla compensazione prevista per l'energia immessa in rete."
       },
-      "8": {
+      {
         "q": "Cosa significa costo di produzione per kWh?",
         "a": "Il costo di produzione mostra il costo medio stimato per ogni chilowattora prodotto durante la vita utile dell'installazione. Può essere confrontato con il valore economico stimato dell'energia solare."
       },
-      "9": {
+      {
         "q": "Perché viene consigliata proprio questa dimensione dell'impianto?",
         "a": "La dimensione dell'impianto viene calcolata in base, tra l'altro, al tuo consumo di elettricità, all'irraggiamento solare del sito e ai limiti tecnici. L'obiettivo è dimensionare l'impianto in base alle tue condizioni, non installare il più grande impianto possibile."
       }
-    }
+    ]
   },
   "premium": {
     "title": "Premium",

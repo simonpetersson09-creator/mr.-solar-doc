@@ -343,34 +343,34 @@ export const lt = {
     }
   },
   "months": {
-    "short": {
-      "0": "Sau",
-      "1": "Vas",
-      "2": "Kov",
-      "3": "Bal",
-      "4": "Geg",
-      "5": "Bir",
-      "6": "Lie",
-      "7": "Rgp",
-      "8": "Rgs",
-      "9": "Spa",
-      "10": "Lap",
-      "11": "Gru"
-    },
-    "long": {
-      "0": "Sausis",
-      "1": "Vasaris",
-      "2": "Kovas",
-      "3": "Balandis",
-      "4": "Gegužė",
-      "5": "Birželis",
-      "6": "Liepa",
-      "7": "Rugpjūtis",
-      "8": "Rugsėjis",
-      "9": "Spalis",
-      "10": "Lapkritis",
-      "11": "Gruodis"
-    }
+    "short": [
+      "Sau",
+      "Vas",
+      "Kov",
+      "Bal",
+      "Geg",
+      "Bir",
+      "Lie",
+      "Rgp",
+      "Rgs",
+      "Spa",
+      "Lap",
+      "Gru"
+    ],
+    "long": [
+      "Sausis",
+      "Vasaris",
+      "Kovas",
+      "Balandis",
+      "Gegužė",
+      "Birželis",
+      "Liepa",
+      "Rugpjūtis",
+      "Rugsėjis",
+      "Spalis",
+      "Lapkritis",
+      "Gruodis"
+    ]
   },
   "report": {
     "fields": {
@@ -492,48 +492,48 @@ export const lt = {
     "disclaimer": "Ši ataskaita yra skaičiavimo momentinė nuotrauka ir pagrįsta aukščiau nurodytomis prielaidomis. Tai nėra pasiūlymas.",
     "generated": "Sukurta",
     "faqTitle": "Dažniausiai užduodami klausimai",
-    "faqItems": {
-      "0": {
+    "faqItems": [
+      {
         "q": "Kiek patikimas apskaičiuotas saulės energijos gamybos kiekis?",
         "a": "Skaičiavimas pagrįstas saulės spinduliuote konkrečioje vietoje bei stogo kryptimi ir nuolydžiu. Faktinę gamybą įtakoja, be kita ko, orai, šešėliavimas ir įrenginio techninės sąlygos."
       },
-      "1": {
+      {
         "q": "Ką reiškia savųjų poreikių vartojimas?",
         "a": "Saulės energijos dalis, kuri tiesiogiai naudojama būste. Likusi gamyba tiekiama į elektros tinklą."
       },
-      "2": {
+      {
         "q": "Kodėl savo reikmėms suvartota saulės energija vertingesnė nei parduota?",
         "a": "Savo reikmėms suvartota saulės energija pakeičia elektrą, kurią kitaip tektų pirkti iš tinklo, o parduota saulės energija kompensuojama pagal į tinklą tiekiamos energijos sąlygas."
       },
-      "3": {
+      {
         "q": "Ką reiškia kaina pasirinktam atsipirkimo laikotarpiui?",
         "a": "Apytiksliai parodo, kiek įrenginys gali kainuoti, kad atitiktų jūsų pasirinktą atsipirkimo laikotarpį, remiantis skaičiavimo prielaidomis. Tai nėra numatoma rinkos kaina."
       },
-      "4": {
+      {
         "q": "Kodėl rangovo skaičiavimas gali skirtis?",
         "a": "Skirtingos prielaidos dėl gamybos, savųjų poreikių vartojimo, elektros kainų, sistemos nuostolių ir būsimos kainų kaitos gali duoti skirtingus rezultatus."
       },
-      "5": {
+      {
         "q": "Ar skaičiavimas yra pasiūlymas?",
         "a": "Ne. Rezultatas yra įvertinimas ir turėtų būti naudojamas kaip sprendimų pagrindas. Faktinė kaina, gamyba ir ekonominis rezultatas gali skirtis."
       },
-      "6": {
+      {
         "q": "Kodėl gamyba laikui bėgant mažėja?",
         "a": "Saulės modulių galia per metus paprastai šiek tiek mažėja. Skaičiavimas grindžiamas 0,5 % metine degradacija, o tai reiškia, kad apskaičiuota gamyba per skaičiavimo laikotarpį palaipsniui mažėja."
       },
-      "7": {
+      {
         "q": "Kaip apskaičiuojama mano saulės elektros vertė?",
         "a": "Savoms reikmėms suvartota saulės elektra vertinama pagal elektros, kurią kitaip tektų pirkti, kainą. Parduota saulės elektra vertinama pagal numanomą kompensaciją už į tinklą tiekiamą elektrą."
       },
-      "8": {
+      {
         "q": "Ką reiškia gamybos sąnaudos už kWh?",
         "a": "Gamybos sąnaudos parodo apskaičiuotas vidutines kiekvienos pagamintos kilovatvalandės sąnaudas per įrenginio eksploatavimo laikotarpį. Jas galima palyginti su apskaičiuota saulės elektros ekonomine verte."
       },
-      "9": {
+      {
         "q": "Kodėl rekomenduojamas būtent toks įrenginio dydis?",
         "a": "Įrenginio dydis apskaičiuojamas atsižvelgiant į jūsų elektros suvartojimą, saulės spinduliuotę vietoje ir techninius apribojimus. Tikslas – suprojektuoti įrenginį pagal jūsų sąlygas, o ne įrengti kuo didesnį įrenginį."
       }
-    }
+    ]
   },
   "premium": {
     "title": "Premium",

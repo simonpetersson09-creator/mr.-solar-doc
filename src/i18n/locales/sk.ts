@@ -343,34 +343,34 @@ export const sk = {
     }
   },
   "months": {
-    "short": {
-      "0": "Jan",
-      "1": "Feb",
-      "2": "Mar",
-      "3": "Apr",
-      "4": "Máj",
-      "5": "Jún",
-      "6": "Júl",
-      "7": "Aug",
-      "8": "Sep",
-      "9": "Okt",
-      "10": "Nov",
-      "11": "Dec"
-    },
-    "long": {
-      "0": "Január",
-      "1": "Február",
-      "2": "Marec",
-      "3": "Apríl",
-      "4": "Máj",
-      "5": "Jún",
-      "6": "Júl",
-      "7": "August",
-      "8": "September",
-      "9": "Október",
-      "10": "November",
-      "11": "December"
-    }
+    "short": [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "Máj",
+      "Jún",
+      "Júl",
+      "Aug",
+      "Sep",
+      "Okt",
+      "Nov",
+      "Dec"
+    ],
+    "long": [
+      "Január",
+      "Február",
+      "Marec",
+      "Apríl",
+      "Máj",
+      "Jún",
+      "Júl",
+      "August",
+      "September",
+      "Október",
+      "November",
+      "December"
+    ]
   },
   "report": {
     "fields": {
@@ -492,48 +492,48 @@ export const sk = {
     "disclaimer": "Táto správa je momentálnym stavom výpočtu a je založená na vyššie uvedených predpokladoch. Nie je to ponuka.",
     "generated": "Vygenerované",
     "faqTitle": "Často kladené otázky",
-    "faqItems": {
-      "0": {
+    "faqItems": [
+      {
         "q": "Ako spoľahlivá je vypočítaná solárna výroba?",
         "a": "Výpočet vychádza zo slnečného žiarenia v danej lokalite a zo smeru a sklonu strechy. Skutočnú výrobu ovplyvňujú okrem iného počasie, tienenie a technické podmienky zariadenia."
       },
-      "1": {
+      {
         "q": "Čo znamená vlastná spotreba?",
         "a": "Podiel solárnej energie využitej priamo v domácnosti. Zvyšná výroba sa dodáva do elektrickej siete."
       },
-      "2": {
+      {
         "q": "Prečo má vlastná spotrebovaná solárna energia väčšiu hodnotu ako predaná?",
         "a": "Vlastná spotrebovaná solárna energia nahrádza elektrinu, ktorú by inak bolo potrebné kúpiť zo siete, zatiaľ čo predaná solárna energia sa kompenzuje podľa podmienok pre dodávku do siete."
       },
-      "3": {
+      {
         "q": "Čo znamená cena pre zvolenú dobu návratnosti?",
         "a": "Približne ukazuje, koľko môže zariadenie stáť, aby zodpovedalo vami zvolenej dobe návratnosti na základe predpokladov kalkulácie. Nejde o odhad trhovej ceny."
       },
-      "4": {
+      {
         "q": "Prečo sa môže výpočet inštalatéra líšiť?",
         "a": "Rôzne predpoklady o výrobe, vlastnej spotrebe, cenách elektriny, stratách systému a budúcom cenovom vývoji môžu viesť k rôznym výsledkom."
       },
-      "5": {
+      {
         "q": "Je výpočet ponukou?",
         "a": "Nie. Výsledok je odhad a má slúžiť ako podklad na rozhodovanie. Skutočná cena, výroba och ekonomický výsledok sa môžu líšiť."
       },
-      "6": {
+      {
         "q": "Prečo sa výroba v priebehu času znižuje?",
         "a": "Výkon solárnych panelov sa v priebehu rokov zvyčajne mierne znižuje. Výpočet vychádza z ročnej degradácie 0,5 %, čo znamená, že vypočítaná výroba sa počas kalkulačného obdobia postupne znižuje."
       },
-      "7": {
+      {
         "q": "Ako sa vypočíta hodnota mojej solárnej elektriny?",
         "a": "Vlastná spotrebovaná solárna elektrina sa oceňuje podľa nákladov na elektrinu, ktorú by ste inak museli kúpiť. Predaná solárna elektrina sa oceňuje podľa predpokladanej náhrady za elektrinu dodanú do siete."
       },
-      "8": {
+      {
         "q": "Čo znamená výrobný náklad na kWh?",
         "a": "Výrobný náklad ukazuje vypočítané priemerné náklady na každú vyrobenú kilowatthodinu počas životnosti zariadenia. Dá sa porovnať s vypočítanou ekonomickou hodnotou solárnej elektriny."
       },
-      "9": {
+      {
         "q": "Prečo sa odporúča práve táto veľkosť zariadenia?",
         "a": "Veľkosť zariadenia sa vypočítava okrem iného na základe vašej spotreby elektriny, slnečného žiarenia v lokalite a technických obmedzení. Cieľom je dimenzovať zariadenie podľa vašich podmienok, nie inštalovať čo najväčšie zariadenie."
       }
-    }
+    ]
   },
   "premium": {
     "title": "Premium",

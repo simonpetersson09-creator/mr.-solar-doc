@@ -343,34 +343,34 @@ export const pl = {
     }
   },
   "months": {
-    "short": {
-      "0": "Sty",
-      "1": "Lut",
-      "2": "Mar",
-      "3": "Kwi",
-      "4": "Maj",
-      "5": "Cze",
-      "6": "Lip",
-      "7": "Sie",
-      "8": "Wrz",
-      "9": "Paź",
-      "10": "Lis",
-      "11": "Gru"
-    },
-    "long": {
-      "0": "Styczeń",
-      "1": "Luty",
-      "2": "Marzec",
-      "3": "Kwiecień",
-      "4": "Maj",
-      "5": "Czerwiec",
-      "6": "Lipiec",
-      "7": "Sierpień",
-      "8": "Wrzesień",
-      "9": "Październik",
-      "10": "Listopad",
-      "11": "Grudzień"
-    }
+    "short": [
+      "Sty",
+      "Lut",
+      "Mar",
+      "Kwi",
+      "Maj",
+      "Cze",
+      "Lip",
+      "Sie",
+      "Wrz",
+      "Paź",
+      "Lis",
+      "Gru"
+    ],
+    "long": [
+      "Styczeń",
+      "Luty",
+      "Marzec",
+      "Kwiecień",
+      "Maj",
+      "Czerwiec",
+      "Lipiec",
+      "Sierpień",
+      "Wrzesień",
+      "Październik",
+      "Listopad",
+      "Grudzień"
+    ]
   },
   "report": {
     "fields": {
@@ -492,48 +492,48 @@ export const pl = {
     "disclaimer": "Raport jest migawką kalkulacji i opiera się na powyższych założeniach. Nie jest to oferta.",
     "generated": "Wygenerowano",
     "faqTitle": "Często zadawane pytania",
-    "faqItems": {
-      "0": {
+    "faqItems": [
+      {
         "q": "Jak pewna jest obliczona produkcja energii słonecznej?",
         "a": "Obliczenie opiera się na nasłonecznieniu w danej lokalizacji oraz kierunku i nachyleniu dachu. Na rzeczywistą produkcję wpływają m.in. pogoda, zacienienie i warunki techniczne instalacji."
       },
-      "1": {
+      {
         "q": "Co oznacza autokonsumpcja?",
         "a": "Część energii słonecznej wykorzystywana bezpośrednio w domu. Pozostała produkcja jest wprowadzana do sieci elektroenergetycznej."
       },
-      "2": {
+      {
         "q": "Dlaczego energia zużywana na własne potrzeby jest cenniejsza niż sprzedawana?",
         "a": "Energia zużywana na własne potrzeby zastępuje prąd, który w innym przypadku trzeba by kupić z sieci, podczas gdy sprzedawana energia jest rozliczana według warunków dla energii wprowadzanej do sieci."
       },
-      "3": {
+      {
         "q": "Co oznacza cena dla wybranego okresu zwrotu?",
         "a": "Pokazuje w przybliżeniu, ile może kosztować instalacja, aby odpowiadać wybranemu przez Ciebie okresowi zwrotu, na podstawie założeń kalkulacji. Nie jest to szacunkowa cena rynkowa."
       },
-      "4": {
+      {
         "q": "Dlaczego obliczenia instalatora mogą się różnić?",
         "a": "Różne założenia dotyczące produkcji, autokonsumpcji, cen energii, strat systemowych i przyszłego rozwoju cen mogą dawać różne wyniki."
       },
-      "5": {
+      {
         "q": "Czy obliczenie jest ofertą?",
         "a": "Nie. Wynik jest szacunkiem i ma służyć jako podstawa decyzji. Rzeczywista cena, produkcja i wynik ekonomiczny mogą się różnić."
       },
-      "6": {
+      {
         "q": "Dlaczego produkcja zmniejsza się z czasem?",
         "a": "Wydajność paneli słonecznych normalnie nieznacznie spada z upływem lat. Obliczenia zakładają roczną degradację na poziomie 0,5 %, co oznacza, że obliczona produkcja stopniowo maleje w okresie kalkulacji."
       },
-      "7": {
+      {
         "q": "Jak obliczana jest wartość mojej energii słonecznej?",
         "a": "Energia słoneczna zużywana na własne potrzeby jest wyceniana na podstawie kosztu energii, którą w innym przypadku musiałbyś kupić. Sprzedana energia słoneczna jest wyceniana na podstawie zakładanego wynagrodzenia za energię wprowadzoną do sieci."
       },
-      "8": {
+      {
         "q": "Co oznacza koszt produkcji za kWh?",
         "a": "Koszt produkcji pokazuje obliczony średni koszt każdej wyprodukowanej kilowatogodziny w okresie eksploatacji instalacji. Można go porównać z obliczoną wartością ekonomiczną energii słonecznej."
       },
-      "9": {
+      {
         "q": "Dlaczego zalecany jest właśnie taki rozmiar instalacji?",
         "a": "Wielkość instalacji jest obliczana między innymi na podstawie zużycia energii elektrycznej, nasłonecznienia w danym miejscu i ograniczeń technicznych. Celem jest dobranie instalacji do Twoich warunków, a nie montaż jak największej instalacji."
       }
-    }
+    ]
   },
   "premium": {
     "title": "Premium",

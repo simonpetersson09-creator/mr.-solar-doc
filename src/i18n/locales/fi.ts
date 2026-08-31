@@ -343,34 +343,34 @@ export const fi = {
     }
   },
   "months": {
-    "short": {
-      "0": "Tam",
-      "1": "Hel",
-      "2": "Maa",
-      "3": "Huh",
-      "4": "Tou",
-      "5": "Kes",
-      "6": "Hei",
-      "7": "Elo",
-      "8": "Syy",
-      "9": "Lok",
-      "10": "Mar",
-      "11": "Jou"
-    },
-    "long": {
-      "0": "Tammikuu",
-      "1": "Helmikuu",
-      "2": "Maaliskuu",
-      "3": "Huhtikuu",
-      "4": "Toukokuu",
-      "5": "Kesäkuu",
-      "6": "Heinäkuu",
-      "7": "Elokuu",
-      "8": "Syyskuu",
-      "9": "Lokakuu",
-      "10": "Marraskuu",
-      "11": "Joulukuu"
-    }
+    "short": [
+      "Tam",
+      "Hel",
+      "Maa",
+      "Huh",
+      "Tou",
+      "Kes",
+      "Hei",
+      "Elo",
+      "Syy",
+      "Lok",
+      "Mar",
+      "Jou"
+    ],
+    "long": [
+      "Tammikuu",
+      "Helmikuu",
+      "Maaliskuu",
+      "Huhtikuu",
+      "Toukokuu",
+      "Kesäkuu",
+      "Heinäkuu",
+      "Elokuu",
+      "Syyskuu",
+      "Lokakuu",
+      "Marraskuu",
+      "Joulukuu"
+    ]
   },
   "report": {
     "fields": {
@@ -492,48 +492,48 @@ export const fi = {
     "disclaimer": "Tämä raportti on otos laskelmasta ja perustuu yllä lueteltuihin oletuksiin. Se ei ole tarjous.",
     "generated": "Luotu",
     "faqTitle": "Usein kysytyt kysymykset",
-    "faqItems": {
-      "0": {
+    "faqItems": [
+      {
         "q": "Kuinka luotettava laskettu aurinkotuotanto on?",
         "a": "Laskelma perustuu paikan auringonsäteilyyn sekä katon suuntaukseen ja kaltevuuteen. Todelliseen tuotantoon vaikuttavat muun muassa sää, varjostus ja järjestelmän tekniset olosuhteet."
       },
-      "1": {
+      {
         "q": "Mitä omakäyttö tarkoittaa?",
         "a": "Se osa aurinkosähköstä, joka käytetään suoraan asunnossa. Loput tuotannosta syötetään sähköverkkoon."
       },
-      "2": {
+      {
         "q": "Miksi omakäyttöinen aurinkosähkö on arvokkaampaa kuin myyty aurinkosähkö?",
         "a": "Omakäyttöinen aurinkosähkö korvaa sähköä, joka muuten olisi ostettu verkosta, kun taas myydystä aurinkosähköstä maksetaan verkkoon syötetyn sähkön ehtojen mukaan."
       },
-      "3": {
+      {
         "q": "Mitä tarkoittaa hinta valitulle takaisinmaksuajalle?",
         "a": "Se kertoo suunnilleen, kuinka paljon järjestelmä voi maksaa vastatakseen valitsemaasi takaisinmaksuaikaa laskelman oletusten perusteella. Se ei ole arvioitu markkinahinta."
       },
-      "4": {
+      {
         "q": "Miksi asentajan laskelma voi poiketa?",
         "a": "Erilaiset oletukset tuotannosta, omakäytöstä, sähkön hinnoista, järjestelmähäviöistä ja tulevasta hintakehityksestä voivat johtaa erilaisiin tuloksiin."
       },
-      "5": {
+      {
         "q": "Onko laskelma tarjous?",
         "a": "Ei. Tulos on arvio, jonka on tarkoitus toimia päätöksenteon tukena. Todellinen hinta, tuotanto ja taloudellinen lopputulos voivat poiketa."
       },
-      "6": {
+      {
         "q": "Miksi tuotanto vähenee ajan myötä?",
         "a": "Aurinkopaneelien teho laskee normaalisti hieman vuosien myötä. Laskenta perustuu 0,5 %:n vuotuiseen degradaatioon, mikä tarkoittaa, että laskettu tuotanto vähenee vähitellen laskentajakson aikana."
       },
-      "7": {
+      {
         "q": "Miten aurinkosähköni arvo lasketaan?",
         "a": "Omaan käyttöön menevä aurinkosähkö arvostetaan sen sähkön hinnan mukaan, jonka olisit muuten joutunut ostamaan. Myyty aurinkosähkö arvostetaan oletetun korvauksen mukaan sähköverkkoon syötetystä sähköstä."
       },
-      "8": {
+      {
         "q": "Mitä tuotantokustannus per kWh tarkoittaa?",
         "a": "Tuotantokustannus osoittaa laskennallisen keskimääräisen kustannuksen jokaista tuotettua kilowattituntia kohden laitoksen käyttöiän aikana. Sitä voidaan verrata aurinkosähkön laskennalliseen taloudelliseen arvoon."
       },
-      "9": {
+      {
         "q": "Miksi juuri tätä laitoksen kokoa suositellaan?",
         "a": "Laitoksen koko lasketaan muun muassa sähkönkulutuksesi, paikan auringonsäteilyn ja teknisten rajoitusten perusteella. Tavoitteena on mitoittaa laitos olosuhteidesi mukaan, ei asentaa suurinta mahdollista laitosta."
       }
-    }
+    ]
   },
   "premium": {
     "title": "Premium",
