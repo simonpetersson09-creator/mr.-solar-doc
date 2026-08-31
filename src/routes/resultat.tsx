@@ -5,7 +5,7 @@ import { ArrowLeft, ChevronDown, CircleAlert, Download, Info, Loader2, Sun, Zap 
 import i18nInstance from "@/i18n";
 import { Button } from "@/components/ui/button";
 import { MonthlyChart } from "@/components/MonthlyChart";
-import { useCalculation } from "@/hooks/use-calculation";
+import { useUnlockedCalculation } from "@/hooks/use-unlocked-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useWizardStore } from "@/state/wizard-store";
 import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";

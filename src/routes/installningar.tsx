@@ -47,7 +47,10 @@ function SettingsPage() {
         <div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
           <button
             type="button"
-            onClick={() => void haptic("light")}
+            onClick={() => {
+              void haptic("light");
+              void navigate({ to: "/historik" });
+            }}
             className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
           >
             <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
