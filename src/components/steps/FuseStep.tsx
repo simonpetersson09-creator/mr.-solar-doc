@@ -12,6 +12,8 @@ import {
   GRID_FREQUENCY_OPTIONS,
   GRID_PHASE_OPTIONS,
   GRID_VOLTAGE_OPTIONS,
+  isPresetVoltage,
+  isValidCustomVoltage,
   kwPerAmpFor,
 } from "@/config/grid";
 import { maxAcPowerFromFuse } from "@/lib/calc/inverter-sizing";
@@ -50,8 +52,18 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   );
   const [customValue, setCustomValue] = useState(custom && storedFuse ? String(storedFuse) : "");
 
+  // Custom voltage: an extra option after the presets, using the same
+  // voltage value in the existing power formula.
+  const [customVoltage, setCustomVoltage] = useState(!isPresetVoltage(voltageV));
+  const [customVoltageValue, setCustomVoltageValue] = useState(
+    isPresetVoltage(voltageV) ? "" : String(voltageV),
+  );
+  const parsedCustomVoltage = parseLocaleNumber(customVoltageValue);
+  const customVoltageValid = isValidCustomVoltage(parsedCustomVoltage);
+  const voltageValid = !customVoltage || customVoltageValid;
+
   const selected = custom ? (parseLocaleNumber(customValue) ?? 0) : (storedFuse ?? 0);
-  const valid = selected >= MIN_AMP && selected <= MAX_AMP;
+  const valid = selected >= MIN_AMP && selected <= MAX_AMP && voltageValid;
   const maxAc = maxAcPowerFromFuse(selected, kwPerAmpFor(phaseCount, voltageV));
   const phaseLabel = t(phaseCount === 1 ? "fuse.grid.phase1" : "fuse.grid.phase3");
 
@@ -232,13 +244,53 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
                   <button
                     key={option}
                     type="button"
-                    onClick={() => setGridProfile({ voltageV: option })}
-                    className={chipClass(voltageV === option)}
+                    onClick={() => {
+                      setCustomVoltage(false);
+                      setGridProfile({ voltageV: option });
+                    }}
+                    className={chipClass(!customVoltage && voltageV === option)}
                   >
                     {option} V
                   </button>
                 ))}
+                <button
+                  type="button"
+                  onClick={() => {
+                    setCustomVoltage(true);
+                    if (customVoltageValid) setGridProfile({ voltageV: parsedCustomVoltage! });
+                  }}
+                  className={chipClass(customVoltage)}
+                >
+                  {t("fuse.grid.voltageOther")}
+                </button>
               </div>
+
+              {customVoltage ? (
+                <div className="space-y-1">
+                  <div className="flex items-center gap-2">
+                    <Label htmlFor="custom-voltage" className="text-[11px] text-white/70">
+                      {t("fuse.grid.voltageOtherLabel")}
+                    </Label>
+                    <Input
+                      id="custom-voltage"
+                      type="text"
+                      inputMode="decimal"
+                      value={customVoltageValue}
+                      onChange={(event) => {
+                        const raw = event.target.value;
+                        setCustomVoltageValue(raw);
+                        const parsed = parseLocaleNumber(raw);
+                        if (isValidCustomVoltage(parsed)) setGridProfile({ voltageV: parsed! });
+                      }}
+                      className="h-8 w-20 rounded-full border-white/25 bg-white/15 text-xs text-white placeholder:text-white/50"
+                    />
+                    <span className="text-xs text-white/60">V</span>
+                  </div>
+                  {!customVoltageValid ? (
+                    <p className="text-[11px] text-red-200">{t("fuse.grid.voltageInvalid")}</p>
+                  ) : null}
+                </div>
+              ) : null}
             </div>
 
             <div className="space-y-1.5">

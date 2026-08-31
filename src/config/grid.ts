@@ -37,6 +37,28 @@ export const GRID_PHASE_OPTIONS: readonly PhaseCount[] = [1, 3];
 /** Selectable nominal voltages (V), in display order. Extend freely. */
 export const GRID_VOLTAGE_OPTIONS: readonly number[] = [220, 230, 240, 380, 400, 415];
 
+/** Bounds for a user-entered custom voltage (V). */
+export const MIN_CUSTOM_VOLTAGE_V = 50;
+export const MAX_CUSTOM_VOLTAGE_V = 1000;
+
+/** True when the voltage is one of the predefined options. */
+export function isPresetVoltage(voltageV: number): boolean {
+  return GRID_VOLTAGE_OPTIONS.includes(voltageV);
+}
+
+/**
+ * A custom voltage must be a positive number inside plausible LV bounds.
+ * Custom voltages feed the exact same `kwPerAmpFor` calculation as presets.
+ */
+export function isValidCustomVoltage(voltageV: number | null): boolean {
+  return (
+    voltageV !== null &&
+    Number.isFinite(voltageV) &&
+    voltageV >= MIN_CUSTOM_VOLTAGE_V &&
+    voltageV <= MAX_CUSTOM_VOLTAGE_V
+  );
+}
+
 /** Selectable grid frequencies (Hz). */
 export const GRID_FREQUENCY_OPTIONS: readonly number[] = [50, 60];
 
