@@ -171,20 +171,78 @@ describe("verified country profiles match the connection audit", () => {
     }
   });
 
-  it("France offers both single-phase and three-phase kVA steps", () => {
+  it("France lists total subscribed kVA steps, never per phase", () => {
     const config = getConnectionConfig("FR");
-    const single = config.connectionOptions.filter(
-      (o) => o.capacity.serviceType === "single-phase",
-    );
-    const three = config.connectionOptions.filter(
-      (o) => o.capacity.serviceType === "three-phase",
-    );
-    expect(single.map((o) => connectionCapacityAmount(o.capacity))).toEqual([3, 6, 9, 12]);
-    expect(three.map((o) => connectionCapacityAmount(o.capacity))).toEqual([
-      9, 12, 15, 18, 24, 30, 36,
-    ]);
+    expect(amountsOf("FR")).toEqual([3, 6, 9, 12, 15, 18, 24, 30, 36]);
+    // A kVA option carries no pinned grid profile and no "3 x " prefix: the
+    // subscribed power is a total, independent of the number of phases.
+    for (const option of config.connectionOptions) {
+      expect(option.phasePrefix).toBeUndefined();
+      expect(option.capacity.serviceType).toBeUndefined();
+    }
     expect(config.defaultServiceType).toBe("single-phase");
   });
+
+  it("no contracted kVA/kW option may carry a per-phase prefix", () => {
+    for (const country of ["FR", "PT", "ES", "IT"]) {
+      for (const option of getConnectionConfig(country).connectionOptions) {
+        expect(option.capacity.type).not.toBe("amperage");
+        expect(option.phasePrefix).toBeUndefined();
+      }
+    }
+  });
+
+  it.each([
+    ["single-phase", 230, 6, 6],
+    ["single-phase", 230, 9, 9],
+    ["three-phase", 400, 9, 9],
+    ["three-phase", 400, 18, 18],
+  ] as const)(
+    "FR %s %s V / %s kVA -> %s kW (never multiplied by the phase count)",
+    (serviceType, voltageV, kva, expected) => {
+      const capacity: ConnectionCapacity = {
+        type: "contracted-kva",
+        kva,
+        serviceType,
+        voltageV,
+        frequencyHz: 50,
+      };
+      expect(acPowerOf(capacity)).toBeCloseTo(expected, 6);
+    },
+  );
+
+  it("ampere markets keep U x I (1-phase) and sqrt(3) x U x I (3-phase)", () => {
+    const single: ConnectionCapacity = {
+      type: "amperage",
+      amperageA: 80,
+      serviceType: "single-phase",
+      voltageV: 230,
+      frequencyHz: 50,
+    };
+    expect(acPowerOf(single)).toBeCloseTo((230 * 80) / 1000, 6);
+    const three: ConnectionCapacity = {
+      type: "amperage",
+      amperageA: 25,
+      serviceType: "three-phase",
+      voltageV: 400,
+      frequencyHz: 50,
+    };
+    expect(acPowerOf(three)).toBeCloseTo((Math.sqrt(3) * 400 * 25) / 1000, 6);
+  });
+
+  it("kW markets use the contracted value directly, regardless of phases", () => {
+    for (const serviceType of ["single-phase", "three-phase"] as const) {
+      const capacity: ConnectionCapacity = {
+        type: "contracted-kw",
+        kw: 6,
+        serviceType,
+        voltageV: serviceType === "three-phase" ? 400 : 230,
+        frequencyHz: 50,
+      };
+      expect(acPowerOf(capacity)).toBeCloseTo(6, 6);
+    }
+  });
+
 
   it("US and CA split-phase use 240 V line-to-line and no sqrt(3)", () => {
     for (const country of ["US", "CA"]) {

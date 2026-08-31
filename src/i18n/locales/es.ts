@@ -176,6 +176,7 @@ export const es = {
     },
     gridAssumption: "El cálculo asume una conexión trifásica de 400 V.",
     gridAssumptionInfo: "La potencia teórica del interruptor general se calcula a partir de una conexión trifásica de 400 V. Comprueba tu conexión real a la red si tienes dudas.",
+    gridCheckHint: "Comprueba tu conexión real a la red si tienes dudas.",
     disclaimerTitle: "Importante saber",
     disclaimer: "El cálculo es orientativo y no puede sustituir una evaluación técnica. Verifica siempre la tensión, la capacidad de conexión, la potencia permitida y otros requisitos locales de la red con un electricista cualificado y, si es necesario, con tu distribuidora antes de la instalación.\n\nMr Solar Doc no se responsabiliza de instalaciones o decisiones tomadas únicamente en base a los cálculos de la app.",
     grid: {
@@ -531,6 +532,7 @@ export const es = {
         "La potencia AC teórica se basa en tu conexión de red seleccionada: {{phases}} fases, {{voltage}} V, calculada como {{factor}} × {{voltage}} V × interruptor general. La potencia de conexión o inyección realmente permitida puede estar limitada por la distribuidora o por la instalación concreta.",
       gridMethodNote:
         "La potencia AC teórica se basa en trifásica de 400 V, calculada como 1,73 × 400 V × interruptor general. La potencia de conexión o inyección realmente permitida puede estar limitada por la distribuidora o por la instalación concreta.",
+      gridMethodNoteContracted: "La potencia de conexión o inyección realmente permitida puede estar limitada por la distribuidora o por la instalación concreta.",
       savings30Short: "Calculado con una degradación anual de producción del {{degradation}} % y valores eléctricos sin cambios.",
       solarShareTitle: "Tu electricidad solar",
       selfConsumptionRate: "Tasa de autoconsumo (cuota de la producción solar)",

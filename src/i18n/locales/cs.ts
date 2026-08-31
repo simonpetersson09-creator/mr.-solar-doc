@@ -156,6 +156,7 @@ export const cs = {
     },
     "gridAssumption": "Výpočet vychází z třífázové přípojky 400 V.",
     "gridAssumptionInfo": "Teoretický výkon hlavního jističe se počítá z třífázové přípojky 400 V. Pokud si nejste jisti, ověřte si skutečnou přípojku.",
+    gridCheckHint: "Pokud si nejste jisti, ověřte si skutečnou přípojku.",
     "disclaimerTitle": "Důležité vědět",
     "disclaimer": "Výpočet je orientační a nenahrazuje technické posouzení. Před instalací vždy ověřte napětí, přípojný výkon, povolený výkon a další místní požadavky sítě u kvalifikovaného elektrikáře a případně u vašeho provozovatele distribuční sítě.\n\nSpolečnost Mr Solar Doc neodpovídá za instalace ani rozhodnutí učiněná výhradně na základě výpočtů aplikace.",
     "grid": {
@@ -444,6 +445,7 @@ export const cs = {
       "gridConnection": "Připojení k síti",
       "gridConnectionValue": "{{voltage}} V, {{phases}} fáze",
       "gridMethodNote": "Teoretický AC výkon vychází z třífázové přípojky 400 V a počítá se jako 1,73 × 400 V × hlavní jistič. Skutečný povolený připojovací nebo dodávaný výkon může být omezen provozovatelem sítě nebo konkrétní instalací.",
+      gridMethodNoteContracted: "Skutečný povolený připojovací nebo dodávaný výkon může být omezen provozovatelem sítě nebo konkrétní instalací.",
       "savings30Short": "Vypočítáno s {{degradation}} % roční degradací výroby a nezměněnými hodnotami elektřiny.",
       "solarShareTitle": "Vaše solární elektřina",
       "selfConsumptionRate": "Míra vlastní spotřeby (podíl solární výroby)",

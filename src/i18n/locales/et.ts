@@ -156,6 +156,7 @@ export const et = {
     },
     "gridAssumption": "Arvutus eeldab 400 V kolmefaasilist liitumist.",
     "gridAssumptionInfo": "Peakaitsme teoreetiline võimsus arvutatakse 400 V kolmefaasilise liitumise alusel. Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
+    gridCheckHint: "Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
     "disclaimerTitle": "Oluline teada",
     "disclaimer": "Arvutus on suunav ega asenda tehnilist hinnangut. Enne paigaldust kontrollige alati pinget, liitumisvõimsust, lubatud võimsust ja muid kohalikke võrgunõudeid kvalifitseeritud elektrikuga ning vajadusel oma võrguettevõtjaga.\n\nMr Solar Doc ei vastuta paigaldiste ega otsuste eest, mis on tehtud üksnes rakenduse arvutuste põhjal.",
     "grid": {
@@ -444,6 +445,7 @@ export const et = {
       "gridConnection": "Võrguühendus",
       "gridConnectionValue": "{{voltage}} V, {{phases}}-faasiline",
       "gridMethodNote": "Teoreetiline AC-võimsus eeldab 400 V kolmefaasilist liitumist ja arvutatakse valemiga 1,73 × 400 V × peakaitse. Tegelikku lubatud liitumis- või väljastusvõimsust võib piirata võrguettevõtja või konkreetne paigaldis.",
+      gridMethodNoteContracted: "Tegelikku lubatud liitumis- või väljastusvõimsust võib piirata võrguettevõtja või konkreetne paigaldis.",
       "savings30Short": "Arvutatud {{degradation}} % aastase tootluse languse ja muutumatute elektriväärtustega.",
       "solarShareTitle": "Sinu päikeseenergia",
       "selfConsumptionRate": "Omatarvemäär (päikeseenergia tootmise osakaal)",

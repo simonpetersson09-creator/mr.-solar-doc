@@ -176,6 +176,7 @@ export const hu = {
     },
     gridAssumption: "A számítás 400 V-os háromfázisú csatlakozást feltételez.",
     gridAssumptionInfo: "A fő biztosíték elméleti teljesítménye 400 V-os háromfázisú csatlakozásból számítódik. Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
+    gridCheckHint: "Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
     disclaimerTitle: "Fontos tudnivaló",
     disclaimer: "A számítás tájékoztató jellegű, és nem helyettesíti a szakértői felmérést. Telepítés előtt mindig ellenőrizze a feszültséget, a csatlakozási kapacitást, az engedélyezett teljesítményt és egyéb helyi hálózati előírásokat szakképzett villanyszerelővel, illetve szükség esetén az áramszolgáltatóval.\n\nA Mr. Solar Doc nem vállal felelősséget kizárólag az alkalmazás számításai alapján hozott telepítési vagy egyéb döntésekért.",
     grid: {
@@ -529,6 +530,7 @@ export const hu = {
         "Az elméleti AC-teljesítmény az Ön kiválasztott hálózati csatlakozásán alapul: {{phases}} fázis, {{voltage}} V, számítás: {{factor}} × {{voltage}} V × fő biztosíték. A ténylegesen engedélyezett csatlakozási vagy visszatáplálási teljesítményt az áramszolgáltató vagy az adott telepítés korlátozhatja.",
       gridMethodNote:
         "Az elméleti AC-teljesítmény 400 V-os háromfázisú alapon számított: 1,73 × 400 V × fő biztosíték. A ténylegesen engedélyezett csatlakozási vagy visszatáplálási teljesítményt az áramszolgáltató vagy az adott telepítés korlátozhatja.",
+      gridMethodNoteContracted: "A ténylegesen engedélyezett csatlakozási vagy visszatáplálási teljesítményt az áramszolgáltató vagy az adott telepítés korlátozhatja.",
       savings30Short: "{{degradation}} %-os éves termelési degradációval és változatlan villamosenergia-értékekkel számítva.",
       solarShareTitle: "Az Ön napenergiája",
       selfConsumptionRate: "Saját fogyasztási arány (a napelemes termelés aránya)",

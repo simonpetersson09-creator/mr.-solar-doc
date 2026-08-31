@@ -156,6 +156,7 @@ export const pl = {
     },
     "gridAssumption": "Obliczenia zakładają przyłącze trójfazowe 400 V.",
     "gridAssumptionInfo": "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
+    gridCheckHint: "W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
     "disclaimerTitle": "Ważne informacje",
     "disclaimer": "Obliczenia mają charakter orientacyjny i nie zastępują oceny technicznej. Przed instalacją zawsze zweryfikuj napięcie, moc przyłączeniową, dopuszczalną moc oraz inne lokalne wymagania sieciowe z wykwalifikowanym elektrykiem, a w razie potrzeby z operatorem sieci.\n\nFirma Mr Solar Doc nie ponosi odpowiedzialności za instalacje ani decyzje podjęte wyłącznie na podstawie obliczeń aplikacji.",
     "grid": {
@@ -444,6 +445,7 @@ export const pl = {
       "gridConnection": "Przyłącze sieciowe",
       "gridConnectionValue": "{{voltage}} V, {{phases}} fazy",
       "gridMethodNote": "Teoretyczna moc AC zakłada przyłącze trójfazowe 400 V i jest obliczana jako 1,73 × 400 V × zabezpieczenie główne. Rzeczywista dopuszczalna moc przyłączeniowa lub oddawana do sieci może być ograniczona przez operatora sieci lub konkretną instalację.",
+      gridMethodNoteContracted: "Rzeczywista dopuszczalna moc przyłączeniowa lub oddawana do sieci może być ograniczona przez operatora sieci lub konkretną instalację.",
       "savings30Short": "Obliczono z degradacją produkcji {{degradation}} % rocznie i niezmienionymi wartościami energii elektrycznej.",
       "solarShareTitle": "Twoja energia słoneczna",
       "selfConsumptionRate": "Współczynnik autokonsumpcji (udział w produkcji energii słonecznej)",

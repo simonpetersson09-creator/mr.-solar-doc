@@ -176,6 +176,7 @@ export const pt = {
     },
     gridAssumption: "O cálculo assume uma ligação trifásica de 400 V.",
     gridAssumptionInfo: "A potência teórica do disjuntor geral é calculada a partir de uma ligação trifásica de 400 V. Verifique a sua ligação real à rede em caso de dúvida.",
+    gridCheckHint: "Verifique a sua ligação real à rede em caso de dúvida.",
     disclaimerTitle: "Importante saber",
     disclaimer: "O cálculo é indicativo e não substitui uma avaliação técnica. Verifique sempre a tensão, a capacidade de ligação, a potência permitida e outros requisitos locais da rede junto de um eletricista qualificado e, se necessário, do seu operador de rede antes da instalação.\n\nA Mr Solar Doc não se responsabiliza por instalações ou decisões tomadas apenas com base nos cálculos da app.",
     grid: {
@@ -531,6 +532,7 @@ export const pt = {
         "A potência AC teórica baseia-se na ligação de rede selecionada: {{phases}} fases, {{voltage}} V, calculada como {{factor}} × {{voltage}} V × disjuntor geral. A potência de ligação ou de injeção realmente permitida pode ser limitada pelo operador de rede ou pela instalação específica.",
       gridMethodNote:
         "A potência AC teórica baseia-se numa ligação trifásica de 400 V, calculada como 1,73 × 400 V × disjuntor geral. A potência de ligação ou de injeção realmente permitida pode ser limitada pelo operador de rede ou pela instalação específica.",
+      gridMethodNoteContracted: "A potência de ligação ou de injeção realmente permitida pode ser limitada pelo operador de rede ou pela instalação específica.",
       savings30Short: "Calculado com uma degradação anual de produção de {{degradation}} % e valores elétricos sem alteração.",
       solarShareTitle: "A sua eletricidade solar",
       selfConsumptionRate: "Taxa de autoconsumo (quota da produção solar)",

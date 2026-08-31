@@ -29,15 +29,20 @@ import type {
 
 /**
  * One selectable connection. The technical content lives entirely in
- * `capacity`; `phasePrefix` is only a display affordance for markets that
- * write their connection as "3 x 25 A" (FI, NL).
+ * `capacity`; `phasePrefix` is only a display affordance for AMPERE markets
+ * that write their connection per phase, e.g. "3 x 25 A" (FI, NL).
+ *
+ * It must never be used for contracted kVA/kW options: those values are always
+ * totals, and a "3 x 9 kVA" label would imply 27 kVA while the engine uses 9.
+ * `connections.test.ts` asserts this.
  */
 export interface ConnectionOption {
   id: string;
   capacity: ConnectionCapacity;
-  /** e.g. "3 x " — prepended to the formatted amount in the UI. */
+  /** e.g. "3 x " — amperage options only; prepended to the formatted amount. */
   phasePrefix?: string;
 }
+
 
 /**
  * How much we actually know about a country's residential connection.
@@ -140,25 +145,22 @@ function ampOption(
   };
 }
 
-function kvaOption(
-  kva: number,
-  profile?: Partial<ConnectionGridProfile>,
-  phasePrefix?: string,
-): ConnectionOption {
-  // The service type is part of the id: a market can offer the same kVA level
-  // on both a single-phase and a three-phase connection (FR 9/12 kVA).
-  const suffix = profile?.serviceType === "three-phase" ? "-3p" : "";
-  return {
-    id: `kva${kva}${suffix}`,
-    ...(phasePrefix ? { phasePrefix } : {}),
-    capacity: { type: "contracted-kva", kva, ...profile },
-  };
+/**
+ * A contracted apparent power (kVA) is ALWAYS the total for the connection,
+ * never a per-phase figure. Therefore a kVA option carries no phase prefix and
+ * no pinned grid profile: the number is the same on 1-phase 230 V and on
+ * 3-phase 400 V. Phases/voltage live in the grid settings.
+ */
+function kvaOption(kva: number): ConnectionOption {
+  return { id: `kva${kva}`, capacity: { type: "contracted-kva", kva } };
 }
 
-function kwOption(kw: number, profile?: Partial<ConnectionGridProfile>): ConnectionOption {
-  const suffix = profile?.serviceType === "three-phase" ? "-3p" : "";
-  return { id: `kw${kw}${suffix}`, capacity: { type: "contracted-kw", kw, ...profile } };
+
+/** Contracted active power (kW) is likewise a total, never per phase. */
+function kwOption(kw: number): ConnectionOption {
+  return { id: `kw${kw}`, capacity: { type: "contracted-kw", kw } };
 }
+
 
 
 function config(
@@ -288,22 +290,23 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   ),
 
   /* --- contracted kVA markets --- */
-  /** France: "puissance souscrite" in kVA. */
+  /**
+   * France: "puissance souscrite" in kVA — always the TOTAL subscribed
+   * apparent power. 9 kVA is 9 kVA whether the supply is monophasé 230 V or
+   * triphasé 400 V; it is never 3 x 9 kVA.
+   */
   FR: config(
     "FR",
     "contracted-kva",
-    [
-      ...[3, 6, 9, 12].map((kva) => kvaOption(kva, SINGLE_PHASE_230)),
-      ...[9, 12, 15, 18, 24, 30, 36].map((kva) => kvaOption(kva, EU_THREE_PHASE_400, "3 × ")),
-    ],
+    [3, 6, 9, 12, 15, 18, 24, 30, 36].map((kva) => kvaOption(kva)),
     SINGLE_PHASE_230,
     { localTerm: "Puissance souscrite" },
   ),
-  /** Portugal: regulated "potência contratada" steps in kVA. */
+  /** Portugal: regulated "potência contratada" steps in kVA (total). */
   PT: config(
     "PT",
     "contracted-kva",
-    [1.15, 2.3, 3.45, 4.6, 5.75, 6.9, 10.35].map((kva) => kvaOption(kva, SINGLE_PHASE_230)),
+    [1.15, 2.3, 3.45, 4.6, 5.75, 6.9, 10.35].map((kva) => kvaOption(kva)),
     SINGLE_PHASE_230,
     { localTerm: "Potência contratada" },
   ),
@@ -313,7 +316,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   ES: config(
     "ES",
     "contracted-kw",
-    [3.45, 4.6, 5.75, 6.9].map((kw) => kwOption(kw, SINGLE_PHASE_230)),
+    [3.45, 4.6, 5.75, 6.9].map((kw) => kwOption(kw)),
     SINGLE_PHASE_230,
     { localTerm: "Potencia contratada" },
   ),
@@ -321,8 +324,9 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   IT: config(
     "IT",
     "contracted-kw",
-    [3, 4.5, 6, 10, 15].map((kw) => kwOption(kw, SINGLE_PHASE_230)),
+    [3, 4.5, 6, 10, 15].map((kw) => kwOption(kw)),
     SINGLE_PHASE_230,
+
     { localTerm: "Potenza impegnata" },
   ),
 };

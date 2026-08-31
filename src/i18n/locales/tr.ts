@@ -171,6 +171,7 @@ export const tr = {
     },
     "gridAssumption": "Hesaplama, 400 V üç fazlı bir bağlantı varsayar.",
     "gridAssumptionInfo": "Ana sigortanın teorik gücü, 400 V üç fazlı bir bağlantıdan hesaplanır. Emin değilseniz gerçek şebeke bağlantınızı kontrol edin.",
+    gridCheckHint: "Emin değilseniz gerçek şebeke bağlantınızı kontrol edin.",
     "disclaimerTitle": "Bilinmesi gerekenler",
     "disclaimer": "Bu hesaplama bilgilendirme amaçlıdır ve teknik bir değerlendirmenin yerini tutamaz. Kurulumdan önce gerilim, bağlantı kapasitesi, izin verilen güç ve diğer yerel şebeke gereksinimlerini mutlaka kalifiye bir elektrikçi ile ve gerekirse şebeke operatörünüzle doğrulayın.\n\nMr Solar Doc, yalnızca uygulamanın hesaplamalarına dayanılarak yapılan kurulumlardan veya alınan kararlardan sorumlu değildir.",
     "grid": {
@@ -490,6 +491,7 @@ export const tr = {
       "gridConnectionValue": "{{voltage}} V, {{phases}} faz",
       "gridMethodNoteDynamic": "Teorik AC gücü, seçtiğiniz şebeke bağlantısına dayanır: {{phases}} faz, {{voltage}} V, {{factor}} × {{voltage}} V × ana sigorta olarak hesaplanır. Fiilen izin verilen bağlantı veya şebekeye satış gücü şebeke operatörü veya belirli kurulum tarafından sınırlanabilir.",
       "gridMethodNote": "Teorik AC gücü 400 V üç faz esas alınarak 1,73 × 400 V × ana sigorta olarak hesaplanır. Fiilen izin verilen bağlantı veya şebekeye satış gücü şebeke operatörü veya belirli kurulum tarafından sınırlanabilir.",
+      gridMethodNoteContracted: "Fiilen izin verilen bağlantı veya şebekeye satış gücü şebeke operatörü veya belirli kurulum tarafından sınırlanabilir.",
       "savings30Short": "%{{degradation}} yıllık üretim verim kaybı ve değişmeyen elektrik değerleriyle hesaplanmıştır.",
       "solarShareTitle": "Güneş enerjiniz",
       "selfConsumptionRate": "Öz tüketim oranı (güneş enerjisi üretiminin payı)",

@@ -91,8 +91,13 @@ const [showGridInfo, setShowGridInfo] = useState(false);
         option.capacity.type === storedCapacity.type &&
         connectionCapacityAmount(option.capacity) ===
           connectionCapacityAmount(storedCapacity) &&
-        (option.capacity.voltageV ?? null) === (storedCapacity.voltageV ?? null),
+        // Voltage identifies an ampere option (BE 3x230 vs 3N400). Contracted
+        // kVA/kW options are grid-independent totals, so voltage is ignored —
+        // otherwise a persisted value from an older build would look "custom".
+        (option.capacity.type !== "amperage" ||
+          (option.capacity.voltageV ?? null) === (storedCapacity.voltageV ?? null)),
     );
+
     return match?.id ?? null;
   });
   const [custom, setCustom] = useState(
@@ -157,8 +162,12 @@ const [showGridInfo, setShowGridInfo] = useState(false);
   const optionLabel = (option: ConnectionOption) => {
     const amount = connectionCapacityAmount(option.capacity);
     const decimals = Number.isInteger(amount) ? 0 : 2;
-    return `${option.phasePrefix ?? ""}${formatDecimal(amount, locale, decimals)} ${connectionCapacityUnit(option.capacity.type)}`;
+    // A per-phase prefix ("3 x ") is only meaningful for amperes. Contracted
+    // kVA/kW are totals and must never be rendered as a per-phase product.
+    const prefix = option.capacity.type === "amperage" ? (option.phasePrefix ?? "") : "";
+    return `${prefix}${formatDecimal(amount, locale, decimals)} ${connectionCapacityUnit(option.capacity.type)}`;
   };
+
 
   const serviceLabel = (type: ServiceType) =>
     t(
@@ -321,9 +330,15 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           </button>
           {showGridInfo ? (
             <p className="mt-2 pl-5 text-[11px] leading-relaxed text-white/60">
-              {t("fuse.gridAssumptionInfo")}
+              {/* Always describes the CURRENT grid settings — never a fixed
+                  400 V three-phase assumption. */}
+              {`${t("fuse.gridAssumptionDynamic", {
+                service: serviceLabel(serviceType),
+                voltage: voltageLabel(voltageV),
+              })} ${t("fuse.gridCheckHint")}`}
             </p>
           ) : null}
+
         </div>
 
         <div className="border-t border-white/15 pt-3">
