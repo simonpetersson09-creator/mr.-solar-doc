@@ -126,6 +126,13 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
 <div className="mb-2 text-center">
             <Label className="text-xs text-white">{t("roof.tilt")}</Label>
           </div>
+          {/* Drag the roof line to set the tilt; presets stay as shortcuts. */}
+          <div className="mb-3 flex justify-center">
+            <TiltDial
+              value={tiltDegrees}
+              onChange={(degrees) => setRoof(orientation, degrees, azimuthDegrees)}
+            />
+          </div>
           <div className="flex flex-wrap items-center justify-center gap-1.5">
             {TILT_PRESETS.map((preset) => (
               <button
