@@ -1,17 +1,18 @@
-import { useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { StepShell } from "@/components/StepShell";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useCalculation } from "@/hooks/use-calculation";
 import { useWizardStore } from "@/state/wizard-store";
-import { formatNumber, parseLocaleNumber } from "@/lib/format";
+import { formatNumber } from "@/lib/format";
+import { NumericField } from "@/components/NumericField";
 import { cn } from "@/lib/utils";
 import {
+  MAX_CUSTOM_PRICE_CHANGE_PERCENT,
+  MIN_CUSTOM_PRICE_CHANGE_PERCENT,
   MAX_PAYBACK_YEARS,
   MIN_PAYBACK_YEARS,
   type PriceScenarioId,
@@ -22,46 +23,6 @@ interface AssumptionsStepProps {
   totalSteps: number;
   onBack: () => void;
   onSubmit: () => void;
-}
-
-/**
- * Free-text price field. The value is kept as a string while the user types so
- * that half-finished input ("0," / "0.") and an emptied field survive instead
- * of snapping back to 0. `null` is committed as "use the standard value".
- */
-function PriceInput({
-  id,
-  value,
-  onCommit,
-  className,
-}: {
-  id: string;
-  value: number;
-  onCommit: (next: number | null) => void;
-  className?: string;
-}) {
-  const [draft, setDraft] = useState<string | null>(null);
-
-  return (
-    <Input
-      id={id}
-      type="text"
-      inputMode="decimal"
-      className={cn("mt-1 h-9", className)}
-      value={draft ?? String(value)}
-      onChange={(event) => {
-        const raw = event.target.value;
-        setDraft(raw);
-        const parsed = parseLocaleNumber(raw);
-        if (parsed !== null) onCommit(Math.max(0, parsed));
-      }}
-      onBlur={() => {
-        const parsed = draft === null ? value : parseLocaleNumber(draft);
-        setDraft(null);
-        onCommit(parsed === null ? null : Math.max(0, parsed));
-      }}
-    />
-  );
 }
 
 export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsStepProps) {
@@ -258,16 +219,16 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             <Label htmlFor="custom-price-change" className="text-[11px] text-white/70">
               {t("result.priceScenarioCustomLabel")}
             </Label>
-            <Input
+            <NumericField
               id="custom-price-change"
-              type="text"
-              inputMode="decimal"
+              locale={locale}
               className="mt-1 h-9 rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
-              value={String(customPriceChangePercent)}
-              onChange={(event) => {
-                const parsed = parseLocaleNumber(event.target.value);
-                if (parsed !== null) setCustomPriceChangePercent(parsed);
-              }}
+              value={customPriceChangePercent}
+              allowNegative
+              min={MIN_CUSTOM_PRICE_CHANGE_PERCENT}
+              max={MAX_CUSTOM_PRICE_CHANGE_PERCENT}
+              decimals={2}
+              onCommit={(next) => setCustomPriceChangePercent(next ?? 0)}
             />
           </div>
         ) : null}
