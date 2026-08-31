@@ -380,7 +380,7 @@ const cost = result.productionCost;
               {t("result.productionCostInfo")}
             </p>
           ) : null}
-          {cost.costPerKwh === null ? (
+          {cost.costPerKwh === null || economicValuesMissing ? (
             <p className="mt-3 text-center text-[11px] text-white/60">
               {t("result.productionCostUnavailable")}
             </p>
