@@ -160,41 +160,41 @@ const cost = result.productionCost;
             </div>
 
             <div className="mt-2.5 grid grid-cols-2 gap-2.5">
-              <div className="glass-panel rounded-2xl p-2.5">
-                <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+              <div className="glass-panel rounded-2xl p-2.5 text-center">
+                <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   <Zap className="size-3" /> {t("result.recommendedInverter")}
                 </p>
-                <p className="mt-0.5 text-lg font-bold">
+                <p className="mt-0.5 text-lg font-bold tabular-nums">
                   {formatNumber(result.inverterKw, locale)}{" "}
-                  <span className="text-xs font-semibold text-white/70">kW</span>
+                  <span className="text-[11px] font-semibold text-white/60">kW</span>
                 </p>
               </div>
-              <div className="glass-panel rounded-2xl p-2.5">
+              <div className="glass-panel rounded-2xl p-2.5 text-center">
                 <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   {t("result.annualProduction")}
                 </p>
-                <p className="mt-0.5 text-lg font-bold text-accent">
+                <p className="mt-0.5 text-lg font-bold text-accent tabular-nums">
                   {formatNumber(p.annualProductionKwh, locale)}{" "}
-                  <span className="text-xs font-semibold text-white/70">
+                  <span className="text-[11px] font-semibold text-white/60">
                     kWh{t("common.perYear")}
                   </span>
                 </p>
               </div>
             </div>
 
-
-            <p className="mt-4 text-sm font-bold">
+            <p className="mt-3 text-center text-sm font-bold">
               {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
             </p>
-            
+
             {result.notes.includes("minimum-system-size") ? (
-              <p className="mt-1.5 text-xs text-white/70">{t("result.minimumSizeNote")}</p>
+              <p className="mt-1.5 text-center text-[11px] text-white/60">{t("result.minimumSizeNote")}</p>
             ) : null}
             {result.notes.includes("consumption-below-minimum") ? (
-              <p className="mt-1.5 text-xs text-white/70">
+              <p className="mt-1.5 text-center text-[11px] text-white/60">
                 {t("result.consumptionTooLowNote")}
               </p>
             ) : null}
+
           </div>
         </section>
 
