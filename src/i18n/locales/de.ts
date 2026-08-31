@@ -235,6 +235,7 @@ export const de = {
     "paybackTitle": "Wählen Sie die Amortisationszeit",
     "paybackSubtitle": "Sehen Sie, welches Investitionsniveau zu verschiedenen einfachen Amortisationszeiten passt.",
     "investmentLevelTitle": "Investitionsniveau bei {{years}} Jahren Amortisation",
+    "panelPowerLabel": "Modulleistung",
     "investmentLevelBasis": "Basierend auf der gewählten Amortisationszeit von {{years}} Jahren",
     "investmentLevelNote": "Mit den heutigen Kalkulationsannahmen entspricht eine einfache Amortisationszeit von {{years}} Jahren einer Investition von etwa {{amount}}.",
     "quoteToggle": "Mit Angebotspreis vergleichen",

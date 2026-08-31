@@ -235,6 +235,7 @@ export const pl = {
     "paybackTitle": "Wybierz czas zwrotu",
     "paybackSubtitle": "Sprawdź, jaki poziom inwestycji odpowiada różnym prostym czasom zwrotu.",
     "investmentLevelTitle": "Poziom inwestycji przy {{years}} latach zwrotu",
+    "panelPowerLabel": "Moc paneli",
     "investmentLevelBasis": "Na podstawie wybranego okresu zwrotu {{years}} lat",
     "investmentLevelNote": "Przy dzisiejszych założeniach kalkulacyjnych, {{years}} lat prostego zwrotu odpowiada inwestycji w wysokości około {{amount}}.",
     "quoteToggle": "Porównaj z ceną ofertową",

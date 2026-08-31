@@ -235,6 +235,7 @@ export const fi = {
     "paybackTitle": "Valitse takaisinmaksuaika",
     "paybackSubtitle": "Katso, mikä investointitaso vastaa erilaisia yksinkertaisia takaisinmaksuaikoja.",
     "investmentLevelTitle": "Investointitaso {{years}} vuoden takaisinmaksuajalla",
+    "panelPowerLabel": "Paneelien teho",
     "investmentLevelBasis": "Perustuu valittuun {{years}} vuoden takaisinmaksuaikaan",
     "investmentLevelNote": "Nykyisillä laskentaoletuksilla {{years}} vuoden yksinkertainen takaisinmaksuaika vastaa noin {{amount}} investointia.",
     "quoteToggle": "Vertaa tarjoushintoihin",

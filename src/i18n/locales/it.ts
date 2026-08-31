@@ -235,6 +235,7 @@ export const it = {
     "paybackTitle": "Scegli il tempo di ritorno",
     "paybackSubtitle": "Vedi quale livello di investimento corrisponde a diversi tempi di ritorno semplici.",
     "investmentLevelTitle": "Livello di investimento a {{years}} anni di ritorno",
+    "panelPowerLabel": "Potenza dei pannelli",
     "investmentLevelBasis": "In base al periodo di ritorno scelto di {{years}} anni",
     "investmentLevelNote": "Con le ipotesi di calcolo odierne, {{years}} anni di tempo di ritorno semplice corrispondono a un investimento di circa {{amount}}.",
     "quoteToggle": "Confronta con un prezzo di offerta",

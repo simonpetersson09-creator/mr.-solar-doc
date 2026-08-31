@@ -235,6 +235,7 @@ export const fr = {
     "paybackTitle": "Choisir le temps de retour sur investissement",
     "paybackSubtitle": "Voyez quel niveau d'investissement correspond à différents temps de retour sur investissement simples.",
     "investmentLevelTitle": "Niveau d'investissement pour {{years}} ans de retour sur investissement",
+    "panelPowerLabel": "Puissance des panneaux",
     "investmentLevelBasis": "Basé sur la période de retour choisie de {{years}} ans",
     "investmentLevelNote": "Avec les hypothèses de calcul actuelles, {{years}} ans de retour sur investissement simple correspondent à un investissement d'environ {{amount}}.",
     "quoteToggle": "Comparer avec un prix de devis",

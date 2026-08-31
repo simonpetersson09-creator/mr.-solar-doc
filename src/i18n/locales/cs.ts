@@ -235,6 +235,7 @@ export const cs = {
     "paybackTitle": "Zvolte dobu návratnosti",
     "paybackSubtitle": "Podívejte se, jaká úroveň investice odpovídá různým jednoduchým dobám návratnosti.",
     "investmentLevelTitle": "Úroveň investice při {{years}} letech návratnosti",
+    "panelPowerLabel": "Výkon panelů",
     "investmentLevelBasis": "Na základě zvolené doby návratnosti {{years}} let",
     "investmentLevelNote": "S dnešními předpoklady výpočtu odpovídá {{years}} let jednoduché doby návratnosti investici přibližně {{amount}}.",
     "quoteToggle": "Porovnat s nabízenou cenou",

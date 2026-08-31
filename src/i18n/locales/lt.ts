@@ -235,6 +235,7 @@ export const lt = {
     "paybackTitle": "Pasirinkite atsipirkimo laiką",
     "paybackSubtitle": "Pažiūrėkite, koks investicijos lygis atitinka skirtingus paprastus atsipirkimo terminus.",
     "investmentLevelTitle": "Investicijos lygis prie {{years}} metų atsipirkimo",
+    "panelPowerLabel": "Plokščių galia",
     "investmentLevelBasis": "Pagal pasirinktą {{years}} metų atsipirkimo laikotarpį",
     "investmentLevelNote": "Remiantis šiandienos skaičiavimo prielaidomis, {{years}} metų paprastas atsipirkimas atitinka maždaug {{amount}} investiciją.",
     "quoteToggle": "Palyginti su pasiūlymo kaina",
