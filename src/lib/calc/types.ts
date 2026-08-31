@@ -111,8 +111,10 @@ export interface ElectricalInput {
 
 /** The grid connection assumption behind the theoretical AC power. */
 export interface GridAssumption {
+  /** Line-to-line for three-phase, line-to-neutral for single-phase. */
   voltageV: number;
   phases: number;
+  serviceType: ServiceType;
   kwPerAmp: number;
   frequencyHz: number;
 }
