@@ -1,7 +1,12 @@
+import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, Crown, FileText, History, RefreshCw, Settings2, ShieldCheck } from "lucide-react";
+import { toast } from "sonner";
+import { ArrowLeft, Crown, FileText, History, Loader2, RefreshCw, Settings2, ShieldCheck } from "lucide-react";
 import { haptic } from "@/services/native-service";
+import { isPurchaseAvailable, restorePurchases } from "@/services/iap-service";
+import { usePurchaseStore } from "@/state/purchase-store";
 
 export const Route = createFileRoute("/installningar")({
   head: () => ({
@@ -19,10 +24,46 @@ export const Route = createFileRoute("/installningar")({
 
 const LEGAL_URL = "https://solar-doc-terms.lovable.app";
 const PRIVACY_URL = "https://solar-doc-terms.lovable.app/integritetspolicy";
+const MANAGE_SUBSCRIPTION_URL = "https://apps.apple.com/account/subscriptions";
 
 function SettingsPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const pending = usePurchaseStore((s) => s.pending);
+  const [restoring, setRestoring] = useState(false);
+
+  // The unlock is bought per calculation, so "start premium" continues an
+  // unfinished purchase or sends the user into a new calculation.
+  function handleStartPremium() {
+    void haptic("medium");
+    if (pending) {
+      void navigate({ to: "/betalning" });
+      return;
+    }
+    toast.info(t("premium.noPending"));
+    void navigate({ to: "/" });
+  }
+
+  async function handleRestore() {
+    if (restoring) return;
+    void haptic("light");
+    if (!isPurchaseAvailable()) {
+      toast.info(t("premium.unavailable"));
+      return;
+    }
+    setRestoring(true);
+    try {
+      await restorePurchases();
+      await queryClient.invalidateQueries({ queryKey: ["purchased-calculations"] });
+      toast.success(t("premium.restored"));
+    } catch {
+      toast.error(t("premium.restoreFailed"));
+    } finally {
+      setRestoring(false);
+    }
+  }
+
 
   return (
     <div className="surface-sun flex h-dvh max-h-dvh flex-col overflow-hidden">
