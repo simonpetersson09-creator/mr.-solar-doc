@@ -219,7 +219,7 @@ const cost = result.productionCost;
         </section>
 
 {/* Group: economics */}
-        <p className="px-1 pt-1 text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+        <p className="px-1 pt-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
           {t("result.groupEconomy")}
         </p>
 {/* 3. What you get out of it — plain numbers, no controls */}
