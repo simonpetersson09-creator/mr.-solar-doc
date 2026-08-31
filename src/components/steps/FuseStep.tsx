@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Info, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -7,7 +7,11 @@ import { Label } from "@/components/ui/label";
 import { StepShell } from "@/components/StepShell";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatDecimal, parseLocaleNumber } from "@/lib/format";
-import { getConnectionConfig, type ConnectionOption } from "@/config/connections";
+import {
+  defaultGridProfileFor,
+  getConnectionConfig,
+  type ConnectionOption,
+} from "@/config/connections";
 import {
   CAPACITY_BOUNDS,
   connectionCapacityAmount,
@@ -49,8 +53,14 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   const frequencyHz = useWizardStore((s) => s.gridFrequencyHz);
   const gridProfileIsUserSet = useWizardStore((s) => s.gridProfileIsUserSet);
   const setGridProfile = useWizardStore((s) => s.setGridProfile);
+  const setGridDefaults = useWizardStore((s) => s.setGridDefaults);
 
   const connection = getConnectionConfig(location?.countryCode);
+
+  // The country decides the initial grid profile; a manual override wins.
+  useEffect(() => {
+    setGridDefaults(defaultGridProfileFor(connection));
+  }, [connection.countryCode, setGridDefaults]); // eslint-disable-line react-hooks/exhaustive-deps
   const inputType = connection.capacityInputType;
   const unit = connectionCapacityUnit(inputType);
   const bounds = CAPACITY_BOUNDS[inputType];
