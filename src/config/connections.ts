@@ -16,9 +16,6 @@
 
 import {
   DEFAULT_GRID_FREQUENCY_HZ,
-  DEFAULT_GRID_PHASE_COUNT,
-  DEFAULT_GRID_VOLTAGE_V,
-  SERVICE_TYPE_FOR_PHASE_COUNT,
   SPLIT_PHASE_FREQUENCY_HZ,
   SPLIT_PHASE_LINE_TO_LINE_V,
   SPLIT_PHASE_LINE_TO_NEUTRAL_V,
@@ -127,11 +124,19 @@ function ampOption(
   };
 }
 
-function kvaOption(kva: number, profile?: Partial<ConnectionGridProfile>): ConnectionOption {
-  // The voltage is part of the id: a market can offer the same kVA level on
-  // both a single-phase and a three-phase connection (FR 9/12 kVA).
+function kvaOption(
+  kva: number,
+  profile?: Partial<ConnectionGridProfile>,
+  phasePrefix?: string,
+): ConnectionOption {
+  // The service type is part of the id: a market can offer the same kVA level
+  // on both a single-phase and a three-phase connection (FR 9/12 kVA).
   const suffix = profile?.serviceType === "three-phase" ? "-3p" : "";
-  return { id: `kva${kva}${suffix}`, capacity: { type: "contracted-kva", kva, ...profile } };
+  return {
+    id: `kva${kva}${suffix}`,
+    ...(phasePrefix ? { phasePrefix } : {}),
+    capacity: { type: "contracted-kva", kva, ...profile },
+  };
 }
 
 function kwOption(kw: number, profile?: Partial<ConnectionGridProfile>): ConnectionOption {
@@ -269,7 +274,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     "contracted-kva",
     [
       ...[3, 6, 9, 12].map((kva) => kvaOption(kva, SINGLE_PHASE_230)),
-      ...[9, 12, 15, 18, 24, 30, 36].map((kva) => kvaOption(kva, EU_THREE_PHASE_400)),
+      ...[9, 12, 15, 18, 24, 30, 36].map((kva) => kvaOption(kva, EU_THREE_PHASE_400, "3 × ")),
     ],
     SINGLE_PHASE_230,
     { localTerm: "Puissance souscrite" },
@@ -316,8 +321,12 @@ export function fallbackConnectionConfig(countryCode = ""): CountryConnectionCon
     helpTextKey: "fuse.capacity.amperage.help",
     connectionOptions: [],
     defaultConnection: null,
-    defaultServiceType: SERVICE_TYPE_FOR_PHASE_COUNT[DEFAULT_GRID_PHASE_COUNT],
-    defaultVoltage: DEFAULT_GRID_VOLTAGE_V,
+    // Unverified countries must NOT inherit the Swedish 3-phase 400 V profile
+    // as if it were verified. The most common residential service worldwide
+    // (single-phase 230 V) is the neutral starting point, clearly marked
+    // unverified, and the user can change every value manually.
+    defaultServiceType: "single-phase",
+    defaultVoltage: 230,
     defaultLineToNeutralVoltage: null,
     defaultFrequencyHz: DEFAULT_GRID_FREQUENCY_HZ,
     verified: false,
