@@ -261,7 +261,7 @@ const cost = result.productionCost;
         </section>
 
 {/* 2. Production */}
-        <section className="rounded-[28px] border border-primary-foreground/20 cta-primary p-3.5 text-primary-foreground shadow-hero">
+        <section className="rounded-[28px] border border-primary-foreground/20 glass-primary p-3.5 text-primary-foreground shadow-hero">
           <h2 className="mb-3 text-center text-sm font-semibold text-white">
             {t("result.sectionProduction")}
           </h2>
