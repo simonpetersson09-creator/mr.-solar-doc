@@ -14,63 +14,26 @@ import { getMarketConfig, MARKETS, type MarketConfig } from "./markets";
 import { PHASE_COUNT_FOR_SERVICE_TYPE } from "./grid";
 import { getConnectionConfig, type CountryConnectionConfig } from "./connections";
 
-/** ISO 4217 currency code, e.g. "SEK", "EUR". */
-export type CurrencyCode = string;
+export type { CurrencyCode } from "./currencies";
+import {
+  AMBIGUOUS_CURRENCY_COUNTRIES,
+  CURRENCY_BY_COUNTRY,
+  currencyForCountryCode,
+  NEUTRAL_CURRENCY_CODE,
+  type CurrencyCode,
+} from "./currencies";
+
+export { AMBIGUOUS_CURRENCY_COUNTRIES, CURRENCY_BY_COUNTRY, NEUTRAL_CURRENCY_CODE };
 
 /**
- * ISO 4217 "no currency" code. Used when we cannot determine the country's
- * currency — never guess SEK (or any other real currency) for an unknown
- * country; showing a neutral code is honest and cannot mislead.
+ * Currency for a country, or the neutral code when it cannot be determined.
+ * Currency metadata only — it never implies economic defaults.
  */
-export const NEUTRAL_CURRENCY_CODE = "XXX";
-
-/**
- * Currencies for countries we may see from the address but that have no
- * verified market config. Currency is a fact, not an economic assumption, so
- * it is safe to know it without claiming to know prices.
- */
-export const CURRENCY_BY_COUNTRY: Record<string, CurrencyCode> = {
-  US: "USD",
-  CA: "CAD",
-  GB: "GBP",
-  AU: "AUD",
-  NZ: "NZD",
-  NO: "NOK",
-  IS: "ISK",
-  JP: "JPY",
-  CH: "CHF",
-  SE: "SEK",
-  DK: "DKK",
-  CZ: "CZK",
-  PL: "PLN",
-  HU: "HUF",
-  RO: "RON",
-  BG: "BGN",
-  IE: "EUR",
-  NL: "EUR",
-  BE: "EUR",
-  ES: "EUR",
-  PT: "EUR",
-  FR: "EUR",
-  IT: "EUR",
-  GR: "EUR",
-  BR: "BRL",
-  IN: "INR",
-  ZA: "ZAR",
-  MX: "MXN",
-  CL: "CLP",
-  TH: "THB",
-  KE: "KES",
-  TR: "TRY",
-  ID: "IDR",
-  AR: "ARS",
-};
-
-/** Currency for a country, or the neutral code when it cannot be determined. */
 export function currencyForCountry(countryCode?: string | null): CurrencyCode {
   const code = (countryCode ?? "").toUpperCase();
-  return MARKETS[code]?.currency ?? CURRENCY_BY_COUNTRY[code] ?? NEUTRAL_CURRENCY_CODE;
+  return MARKETS[code]?.currency ?? currencyForCountryCode(code);
 }
+
 
 /** How a monetary default was obtained. Never hidden from the UI. */
 export type EconomicValueOrigin = "verified" | "missing";
