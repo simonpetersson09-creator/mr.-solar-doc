@@ -9,7 +9,7 @@ const location = (countryCode: string) => ({
   latitude: 59,
   longitude: 18,
   address: "Test",
-  region: null,
+  region: "SE1",
   countryCode,
 });
 
