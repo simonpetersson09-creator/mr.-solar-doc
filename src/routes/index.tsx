@@ -10,7 +10,6 @@ import { usePremium } from "@/hooks/use-premium";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { useWizardStore } from "@/state/wizard-store";
 import { isValidConnectionCapacity } from "@/config/connection-capacity";
-import { useCountryLanguage } from "@/hooks/use-country-language";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,7 +31,7 @@ function WizardPage() {
   const navigate = useNavigate();
   const createPending = useCreatePendingCalculation();
   const premium = usePremium();
-  useCountryLanguage();
+  // Country never drives the UI language; only technical/economic profiles.
   const persistedStep = useWizardStore((s) => s.currentStep);
   const setStep = useWizardStore((s) => s.setCurrentStep);
   const location = useWizardStore((s) => s.location);
