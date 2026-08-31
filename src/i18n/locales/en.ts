@@ -676,14 +676,11 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       { q: 'How reliable is the estimated solar production?', a: "The calculation is based on solar irradiation for the location and the roof's orientation and tilt. Actual production is affected by factors such as weather, shading and the technical conditions of the installation." },
       { q: 'What does self-consumption mean?', a: 'The share of solar electricity used directly in the home. The remaining production is fed into the electricity grid.' },
       { q: 'Why is self-consumed solar electricity worth more than sold solar electricity?', a: 'Self-consumed solar electricity replaces electricity that would otherwise have been bought from the grid, while sold solar electricity is compensated according to the terms for exported electricity.' },
-      { q: 'What does the price for the chosen payback period mean?', a: "It shows approximately how much the installation may cost in order to match the payback period you have chosen, based on the calculation's assumptions. It is not an estimated market price." },
+      { q: 'What does the investment level for the chosen payback time mean?', a: "It shows roughly what investment matches the payback time you chose, based on the accumulated economic value in the calculation. It is not an estimated market price or a quote." },
       { q: "Why can the installer's calculation differ?", a: 'Different assumptions about production, self-consumption, electricity prices, system losses and future price development can give different results.' },
       { q: 'Is the calculation a quote?', a: 'No. The result is an estimate and is intended as a basis for decision-making. The actual price, production and economic outcome may differ.' },
-      { q: 'Why does production decrease over time?', a: 'The efficiency of solar panels normally decreases slightly over the years. The calculation assumes an annual degradation of 0.5 %, which means that the estimated production gradually decreases over the calculation period.' },
-      { q: 'How is the value of my solar electricity calculated?', a: 'Self-consumed solar electricity is valued at the cost of the electricity you would otherwise have had to buy. Sold solar electricity is valued at the assumed compensation for electricity fed into the grid.' },
-      { q: 'What does production cost per kWh mean?', a: 'The production cost shows the estimated average cost of each produced kilowatt-hour over the lifetime of the installation. It can be compared with the estimated economic value of the solar electricity.' },
-      { q: 'Why is this particular size of installation recommended?', a: 'The size of the installation is calculated based on, among other things, your electricity consumption, the solar irradiation at the site and technical limitations. The goal is to size the installation according to your conditions, not to install the largest possible installation.' },
-    ],
+      { q: 'Why does production decrease over time?', a: 'The efficiency of solar panels normally decreases slightly over the years. The calculation applies the annual degradation stated in the assumptions, so the estimated production gradually decreases over the calculation period.' },
+                      ],
 
   },
 } as const;

@@ -678,10 +678,10 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       { q: 'Hur säker är den beräknade solproduktionen?', a: 'Beräkningen bygger på solinstrålning för platsen, takets riktning och lutning. Faktisk produktion påverkas bland annat av väder, skuggning och anläggningens tekniska förutsättningar.' },
       { q: 'Vad betyder egenanvändning?', a: 'Den del av solelen som används direkt i bostaden. Resterande produktion matas ut på elnätet.' },
       { q: 'Varför är egenanvänd solel mer värd än såld solel?', a: 'Egenanvänd solel ersätter el som annars hade köpts från nätet, medan såld solel ersätts enligt villkoren för inmatad el.' },
-      { q: 'Vad betyder pris för vald återbetalningstid?', a: 'Det visar ungefär hur mycket anläggningen kan kosta för att motsvara den återbetalningstid du valt, baserat på kalkylens antaganden. Det är inte ett uppskattat marknadspris.' },
+      { q: 'Vad betyder investeringsnivå för vald återbetalningstid?', a: 'Det visar ungefär vilken investering som motsvarar den återbetalningstid du valt, utifrån det ackumulerade ekonomiska värdet i kalkylen. Det är inte ett uppskattat marknadspris eller en offert.' },
       { q: 'Varför kan installatörens beräkning skilja sig?', a: 'Olika antaganden om produktion, egenanvändning, elpriser, systemförluster och framtida prisutveckling kan ge olika resultat.' },
       { q: 'Är beräkningen en offert?', a: 'Nej. Resultatet är en uppskattning och ska användas som beslutsunderlag. Faktiskt pris, produktion och ekonomiskt utfall kan avvika.' },
-      { q: 'Varför minskar produktionen över tid?', a: 'Solpanelers effekt minskar normalt något med åren. Beräkningen utgår från en årlig degradering på 0,5 %, vilket innebär att den beräknade produktionen gradvis minskar under kalkylperioden.' },
+      { q: 'Varför minskar produktionen över tid?', a: 'Solpanelers effekt minskar normalt något med åren. Beräkningen använder den årliga degradering som anges under kalkylantaganden, vilket innebär att den beräknade produktionen gradvis minskar under kalkylperioden.' },
                       ],
 
   },
