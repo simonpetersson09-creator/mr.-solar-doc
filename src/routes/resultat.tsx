@@ -266,7 +266,7 @@ const cost = result.productionCost;
             </p>
           ) : null}
 
-          <p className="text-[11px] text-white/60">{t("result.economicsDisclaimer")}</p>
+          
         </section>
 
 {/* 4. Max justifiable investment — its own hero card */}
