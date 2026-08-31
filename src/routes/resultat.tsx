@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, ChevronDown, Download, Info, Loader2, Sun, Zap } from "lucide-react";
+import { ArrowLeft, ChevronDown, CircleAlert, Download, Info, Loader2, Sun, Zap } from "lucide-react";
 import i18nInstance from "@/i18n";
 import { Button } from "@/components/ui/button";
 import { MonthlyChart } from "@/components/MonthlyChart";
@@ -48,8 +48,9 @@ function ResultPage() {
   const navigate = useNavigate();
   const [showDetails, setShowDetails] = useState(false);
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
-  const [exporting, setExporting] = useState(false);
+const [exporting, setExporting] = useState(false);
   const [exportError, setExportError] = useState(false);
+  const [showProdCostInfo, setShowProdCostInfo] = useState(false);
 
   const shortMonths = i18n.t("months.short", { returnObjects: true }) as string[];
 
@@ -305,9 +306,25 @@ const cost = result.productionCost;
 
 {/* 5. Cost per produced kWh — own green card */}
         <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
-          <h2 className="text-center text-sm font-semibold text-white">
-            {t("result.productionCostTitle")}
-          </h2>
+          <div className="flex items-center justify-center gap-1.5">
+            <button
+              type="button"
+              onClick={() => setShowProdCostInfo((open) => !open)}
+              aria-label={t("result.productionCostInfoLabel")}
+              aria-expanded={showProdCostInfo}
+              className="flex size-5 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white/80 transition-colors hover:bg-white/20"
+            >
+              <CircleAlert className="size-3.5" />
+            </button>
+            <h2 className="text-center text-sm font-semibold text-white">
+              {t("result.productionCostTitle")}
+            </h2>
+          </div>
+          {showProdCostInfo ? (
+            <p className="mt-2 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
+              {t("result.productionCostInfo")}
+            </p>
+          ) : null}
           {cost.costPerKwh === null ? (
             <p className="mt-3 text-center text-[11px] text-white/60">
               {t("result.productionCostUnavailable")}

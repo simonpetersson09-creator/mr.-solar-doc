@@ -249,6 +249,9 @@ export const it = {
     "paybackInfo": "Il tempo di ritorno semplice mostra quanti anni il valore economico annuo stimato corrisponde all'investimento. Il calcolo non tiene conto, ad esempio, delle future variazioni dei prezzi dell'elettricità, dei costi di finanziamento, dell'inflazione, della manutenzione o dello sconto.",
     "maxInvestment": "Livello di investimento al tempo di ritorno scelto",
     "maxInvestmentApprox": "circa {{amount}}",
+    productionCostInfoLabel: "Maggiori informazioni",
+    productionCostInfo: "Mostra approssimativamente quale costo di investimento corrisponde al periodo di ammortamento scelto. Non è una stima del costo reale dell'impianto.",
+
     "maxInvestmentExplainer": "Per raggiungere circa {{years}} anni di tempo di ritorno semplice, l'installazione dovrebbe costare al massimo circa {{amount}}.",
     "maxInvestmentNote": "L'importo è un calcolo basato sui tuoi input e sulle ipotesi di calcolo – non un'offerta o una stima del prezzo di mercato.",
     "missingMarketValues": "Non abbiamo un valore predefinito verificato per questo paese. Inserisci tu stesso i valori di seguito.",

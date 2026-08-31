@@ -249,6 +249,9 @@ export const sk = {
     "paybackInfo": "Jednoduchá doba návratnosti ukazuje, za koľko rokov odhadovaná ročná ekonomická hodnota zodpovedá investícii. Neberie do úvahy napríklad budúce zmeny cien elektriny, náklady na financovanie, infláciu, údržbu ani diskontovanie.",
     "maxInvestment": "Úroveň investície pri zvolenej dobe návratnosti",
     "maxInvestmentApprox": "cca {{amount}}",
+    productionCostInfoLabel: "Viac informácií",
+    productionCostInfo: "Približne ukazuje, aká investičná suma zodpovedá vami zvolenej dobe návratnosti. Nejde o odhad skutočných nákladov na inštaláciu.",
+
     "maxInvestmentExplainer": "Na dosiahnutie približne {{years}} rokov jednoduchej návratnosti by inštalácia mala stáť najviac približne {{amount}}.",
     "maxInvestmentNote": "Táto suma je vypočítaná z vašich vstupov a výpočtových predpokladov – nie je to ponuka ani odhad trhovej ceny.",
     "missingMarketValues": "Nemáme overenú štandardnú hodnotu pre túto krajinu. Zadajte prosím hodnoty sami nižšie.",

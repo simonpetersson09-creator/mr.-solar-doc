@@ -249,6 +249,9 @@ export const fi = {
     "paybackInfo": "Yksinkertainen takaisinmaksuaika osoittaa, kuinka monta vuotta arvioitu vuotuinen taloudellinen arvo vastaa investointia. Laskelma ei huomioi esimerkiksi tulevia sähkön hinnanmuutoksia, rahoituskustannuksia, inflaatiota, huoltoa tai diskonttausta.",
     "maxInvestment": "Investointitaso valitulla takaisinmaksuajalla",
     "maxInvestmentApprox": "n. {{amount}}",
+    productionCostInfoLabel: "Lisätietoja",
+    productionCostInfo: "Näyttää suunnilleen, minkä suuruista investointia valitsemasi takaisinmaksuaika vastaa. Se ei ole arvio siitä, mitä asennus todellisuudessa maksaa.",
+
     "maxInvestmentExplainer": "Noin {{years}} vuoden yksinkertaisen takaisinmaksuajan saavuttamiseksi asennuksen tulisi maksaa enintään noin {{amount}}.",
     "maxInvestmentNote": "Summa on laskelma tietojesi ja laskentaoletusten perusteella – ei tarjous tai arvio markkinahinnasta.",
     "missingMarketValues": "Meillä ei ole vahvistettua oletusarvoa tälle maalle. Syötä arvot itse alle.",

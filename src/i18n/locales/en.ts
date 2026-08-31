@@ -294,6 +294,9 @@ export const en = {
       "Simple payback shows how many years the estimated annual economic value corresponds to the investment. It does not account for future electricity price changes, financing cost, inflation, maintenance or discounting.",
     maxInvestment: "Investment level at chosen payback time",
     productionCostTitle: "What does solar power from your roof cost?",
+    productionCostInfoLabel: "More information",
+    productionCostInfo: "Shows approximately what investment cost corresponds to the payback period you selected. It is not an estimate of what the installation actually costs.",
+
     productionCostExplainer: "We divide the cost of the system by the estimated production over the whole calculation period.",
     productionCostLabel: "Cost to produce",
     productionCostValueLabel: "Value to you",

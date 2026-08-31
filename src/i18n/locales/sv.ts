@@ -295,6 +295,9 @@ export const sv = {
       "Enkel återbetalningstid visar hur många år det beräknade årliga ekonomiska värdet motsvarar investeringen. Beräkningen tar inte hänsyn till exempelvis framtida elprisförändringar, finansieringskostnad, inflation, underhåll eller diskontering.",
     maxInvestment: "Investeringsnivå vid vald återbetalningstid",
     productionCostTitle: "Produktionskostnad",
+    productionCostInfoLabel: "Mer information",
+    productionCostInfo: "Visar ungefär vilken investeringskostnad som motsvarar den återbetalningstid du valt. Det är inte en uppskattning av vad installationen faktiskt kostar.",
+
     productionCostExplainer: "Vi delar anläggningens kostnad med den beräknade produktionen under hela kalkylperioden.",
     productionCostLabel: "Kostar att producera",
     productionCostValueLabel: "Värde för dig",
