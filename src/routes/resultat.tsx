@@ -287,12 +287,10 @@ const cost = result.productionCost;
             })}
           </p>
 
-          <p className="mt-1 text-center text-3xl font-extrabold tracking-tight text-accent">
+          <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-accent">
             {t("result.maxInvestmentApprox", { amount: investmentAmount })}
           </p>
-          <p className="mt-1.5 text-center text-[11px] text-white/60">
-            {t("result.maxInvestmentNote")}
-          </p>
+
         </section>
 
 
