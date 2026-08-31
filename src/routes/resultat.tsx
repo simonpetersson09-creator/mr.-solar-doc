@@ -470,9 +470,15 @@ const cost = result.productionCost;
 
 {/* Actions — in the scroll flow at the very bottom */}
         <div className="pb-safe flex flex-col gap-2 pt-2">
-          <Button variant="outline" size="lg" className="w-full" asChild onClick={() => reset()}>
+          <Button
+            size="lg"
+            className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+            asChild
+            onClick={() => reset()}
+          >
             <Link to="/">{t("common.startOver")}</Link>
           </Button>
+
           <Button
             className="w-full"
             size="lg"
