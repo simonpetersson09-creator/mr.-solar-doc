@@ -252,7 +252,7 @@ export const hr = {
     "maxInvestment": "Razina ulaganja pri odabranom razdoblju povrata",
     "maxInvestmentApprox": "cca {{amount}}",
     investmentLevelInfoLabel: "Više informacija",
-    productionCostInfo: "Približno prikazuje koliki trošak ulaganja odgovara odabranom razdoblju povrata. To nije procjena stvarnog troška instalacije.",
+    investmentLevelInfo: "Približno prikazuje koliki trošak ulaganja odgovara odabranom razdoblju povrata. To nije procjena stvarnog troška instalacije.",
     systemSizeInfoLabel: "Više informacija",
     systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarna proizvodnja, vlastita potrošnja, cijena električne energije, naknada, trošak instalacije i ekonomski rezultat mogu odstupati. Rezultat ne predstavlja ponudu ni jamstvo.",
 

@@ -252,7 +252,7 @@ export const et = {
     "maxInvestment": "Investeeringu tase valitud tasuvusajal",
     "maxInvestmentApprox": "umbes {{amount}}",
     investmentLevelInfoLabel: "Rohkem teavet",
-    productionCostInfo: "Näitab ligikaudu, milline investeeringukulu vastab teie valitud tasuvusajale. See ei ole hinnang selle kohta, mida paigaldus tegelikult maksab.",
+    investmentLevelInfo: "Näitab ligikaudu, milline investeeringukulu vastab teie valitud tasuvusajale. See ei ole hinnang selle kohta, mida paigaldus tegelikult maksab.",
     systemSizeInfoLabel: "Rohkem teavet",
     systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tegelik tootlus, oma tarve, elektrihind, hüvitis, paigalduskulu ja majanduslik tulemus võivad erineda. Tulemus ei ole pakkumine ega garantii.",
 

@@ -252,7 +252,7 @@ export const de = {
     "maxInvestment": "Investitionsniveau bei gewählter Amortisationszeit",
     "maxInvestmentApprox": "ca. {{amount}}",
     investmentLevelInfoLabel: "Weitere Informationen",
-    productionCostInfo: "Zeigt ungefähr, welche Investitionskosten der von Ihnen gewählten Amortisationszeit entsprechen. Es handelt sich nicht um eine Schätzung der tatsächlichen Installationskosten.",
+    investmentLevelInfo: "Zeigt ungefähr, welche Investitionskosten der von Ihnen gewählten Amortisationszeit entsprechen. Es handelt sich nicht um eine Schätzung der tatsächlichen Installationskosten.",
     systemSizeInfoLabel: "Weitere Informationen",
     systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. Tatsächliche Produktion, Eigenverbrauch, Strompreis, Vergütung, Installationskosten und wirtschaftliches Ergebnis können abweichen. Das Ergebnis stellt kein Angebot und keine Garantie dar.",
 

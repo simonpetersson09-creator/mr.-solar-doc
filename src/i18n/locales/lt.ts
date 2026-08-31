@@ -252,7 +252,7 @@ export const lt = {
     "maxInvestment": "Investicijos lygis pasirinktu atsipirkimo laiku",
     "maxInvestmentApprox": "apie {{amount}}",
     investmentLevelInfoLabel: "Daugiau informacijos",
-    productionCostInfo: "Apytiksliai parodo, kokia investicijų suma atitinka jūsų pasirinktą atsipirkimo laikotarpį. Tai nėra įvertinimas, kiek įrengimas iš tikrųjų kainuoja.",
+    investmentLevelInfo: "Apytiksliai parodo, kokia investicijų suma atitinka jūsų pasirinktą atsipirkimo laikotarpį. Tai nėra įvertinimas, kiek įrengimas iš tikrųjų kainuoja.",
     systemSizeInfoLabel: "Daugiau informacijos",
     systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kaip orientyras. Faktinė gamyba, savas suvartojimas, elektros kaina, atlygis, įrengimo kaina ir ekonominis rezultatas gali skirtis. Rezultatas nėra pasiūlymas ar garantija.",
 
