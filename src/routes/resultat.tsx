@@ -351,7 +351,7 @@ const cost = result.productionCost;
         </section>
 
 {/* 4. Max justifiable investment — its own hero card */}
-<section className="relative rounded-[28px] border border-primary-foreground/20 cta-primary p-3.5 text-primary-foreground shadow-hero">
+<section className="relative rounded-[28px] border border-primary-foreground/20 glass-primary p-3.5 text-primary-foreground shadow-hero">
           <button
             type="button"
             onClick={() => setShowInvestmentInfo((open) => !open)}
