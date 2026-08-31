@@ -447,7 +447,7 @@ const cost = result.productionCost;
                   <p className="flex min-h-[28px] items-center justify-center text-[11px] leading-tight text-white/60">
                     {t("result.productionCostDifference")}
                   </p>
-                  <p className="mt-0.5 text-lg leading-tight font-bold text-accent">
+                  <p className="mt-0.5 text-lg leading-tight font-bold text-white">
                     <span className="block whitespace-nowrap tabular-nums">
                       {(cost.differencePerKwh ?? 0) >= 0 ? "+" : "−"}
                       {formatDecimal(Math.abs(cost.differencePerKwh ?? 0), locale, 2)}
