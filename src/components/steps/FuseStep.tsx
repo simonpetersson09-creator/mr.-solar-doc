@@ -56,6 +56,21 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   const setGridDefaults = useWizardStore((s) => s.setGridDefaults);
 
   const connection = getConnectionConfig(location?.countryCode);
+  const countryCode = location?.countryCode?.toUpperCase();
+  const countryFlag = countryCode
+    ? String.fromCodePoint(...[...countryCode].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65))
+    : "";
+  const countryName = (() => {
+    if (!countryCode) return "";
+    try {
+      return (
+        new Intl.DisplayNames([locale], { type: "region" }).of(countryCode) ?? countryCode
+      );
+    } catch {
+      return countryCode;
+    }
+  })();
+
 
   // The country decides the initial grid profile; a manual override wins.
   useEffect(() => {
