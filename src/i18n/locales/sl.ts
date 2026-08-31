@@ -251,6 +251,9 @@ export const sl = {
     "maxInvestmentApprox": "pribl. {{amount}}",
     productionCostInfoLabel: "Več informacij",
     productionCostInfo: "Približno prikazuje, kakšen strošek naložbe ustreza izbranemu obdobju vračila. To ni ocena dejanskih stroškov namestitve.",
+    systemSizeInfoLabel: "Več informacij",
+    systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dejanska proizvodnja, lastna poraba, cena elektrike, nadomestilo, stroški namestitve in gospodarski izid se lahko razlikujejo. Rezultat ni ponudba niti garancija.",
+
 
     "maxInvestmentExplainer": "Za dosego približno {{years}} let enostavne dobe vračila naj inštalacija stane največ okoli {{amount}}.",
     "maxInvestmentNote": "Znesek je izračunan na podlagi vaših vnosov in kalkulacijskih predpostavk – ni ponudba ali ocena tržne cene.",

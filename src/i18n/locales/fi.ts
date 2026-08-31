@@ -251,6 +251,9 @@ export const fi = {
     "maxInvestmentApprox": "n. {{amount}}",
     productionCostInfoLabel: "Lisätietoja",
     productionCostInfo: "Näyttää suunnilleen, minkä suuruista investointia valitsemasi takaisinmaksuaika vastaa. Se ei ole arvio siitä, mitä asennus todellisuudessa maksaa.",
+    systemSizeInfoLabel: "Lisätietoja",
+    systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. Todellinen tuotanto, omaan käyttöön jäävä osuus, sähkön hinta, korvaus, asennuskustannus ja taloudellinen lopputulos voivat poiketa. Tulos ei ole tarjous eikä takuu.",
+
 
     "maxInvestmentExplainer": "Noin {{years}} vuoden yksinkertaisen takaisinmaksuajan saavuttamiseksi asennuksen tulisi maksaa enintään noin {{amount}}.",
     "maxInvestmentNote": "Summa on laskelma tietojesi ja laskentaoletusten perusteella – ei tarjous tai arvio markkinahinnasta.",

@@ -251,6 +251,9 @@ export const sk = {
     "maxInvestmentApprox": "cca {{amount}}",
     productionCostInfoLabel: "Viac informácií",
     productionCostInfo: "Približne ukazuje, aká investičná suma zodpovedá vami zvolenej dobe návratnosti. Nejde o odhad skutočných nákladov na inštaláciu.",
+    systemSizeInfoLabel: "Viac informácií",
+    systemSizeInfo: "Výpočet je odhadom a mal by slúžiť ako orientácia. Skutočná výroba, vlastná spotreba, cena elektriny, kompenzácia, náklady na inštaláciu a ekonomický výsledok sa môžu líšiť. Výsledok nepredstavuje ponuku ani záruku.",
+
 
     "maxInvestmentExplainer": "Na dosiahnutie približne {{years}} rokov jednoduchej návratnosti by inštalácia mala stáť najviac približne {{amount}}.",
     "maxInvestmentNote": "Táto suma je vypočítaná z vašich vstupov a výpočtových predpokladov – nie je to ponuka ani odhad trhovej ceny.",

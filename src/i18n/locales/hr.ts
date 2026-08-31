@@ -251,6 +251,9 @@ export const hr = {
     "maxInvestmentApprox": "cca {{amount}}",
     productionCostInfoLabel: "Više informacija",
     productionCostInfo: "Približno prikazuje koliki trošak ulaganja odgovara odabranom razdoblju povrata. To nije procjena stvarnog troška instalacije.",
+    systemSizeInfoLabel: "Više informacija",
+    systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarna proizvodnja, vlastita potrošnja, cijena električne energije, naknada, trošak instalacije i ekonomski rezultat mogu odstupati. Rezultat ne predstavlja ponudu ni jamstvo.",
+
 
     "maxInvestmentExplainer": "Da bi se postigao približno {{years}} godina jednostavnog povrata, instalacija bi trebala koštati najviše oko {{amount}}.",
     "maxInvestmentNote": "Iznos je izračun na temelju vaših podataka i pretpostavki izračuna – nije ponuda ili procjena tržišne cijene.",
