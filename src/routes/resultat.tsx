@@ -211,7 +211,7 @@ const cost = result.productionCost;
               <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                 {t("result.panelPowerLabel")}
               </p>
-              <p className="mt-0.5 text-3xl font-extrabold tracking-tight tabular-nums">
+              <p className="mt-0.5 text-3xl font-extrabold tracking-tight text-white tabular-nums">
                 {formatDecimal(result.installedKwp, locale)}{" "}
                 <span className="text-base font-semibold text-white/80">kWp</span>
               </p>
