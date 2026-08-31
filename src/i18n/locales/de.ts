@@ -67,12 +67,12 @@ export const de = {
     "result": "Berechneter Solarertrag am Standort",
     "unit": "kWh/kWp/Jahr",
     "disclaimer": "Die berechnete Solarproduktion basiert auf Standort, Ausrichtung und Dachneigung. Die tatsächliche Produktion kann u. a. durch Verschattung, Wetter, Temperatur und Systemverluste beeinflusst werden.",
-    "error": "Wir konnten die Solarertragsdaten für diesen Standort derzeit nicht abrufen. Es werden keine Werte geschätzt."
-    errorOverSea:
+    "error": "Wir konnten die Solarertragsdaten für diesen Standort derzeit nicht abrufen. Es werden keine Werte geschätzt.",
+    "errorOverSea":
       "Der Standort liegt offenbar über Wasser. Verschieben Sie die Markierung auf das Gebäude an Land und versuchen Sie es erneut.",
-    errorOutsideCoverage:
+    "errorOutsideCoverage":
       "Für diesen Standort liegen keine Solardaten vor. Versuchen Sie eine Adresse in der Nähe.",
-    errorSource: "PVGIS: {{message}}",
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {

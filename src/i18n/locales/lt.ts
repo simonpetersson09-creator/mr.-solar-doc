@@ -67,12 +67,12 @@ export const lt = {
     "result": "Apskaičiuota saulės energijos gamyba vietoje",
     "unit": "kWh/kWp/metus",
     "disclaimer": "Apskaičiuota saulės energijos gamyba pagrįsta vieta, kryptimi ir stogo nuolydžiu. Faktinę gamybą gali paveikti šešėliavimas, orai, temperatūra ir sistemos nuostoliai.",
-    "error": "Šiuo metu negalėjome gauti saulės energijos gamybos duomenų šiai vietai. Jokios vertės neatspėjamos."
-    errorOverSea:
+    "error": "Šiuo metu negalėjome gauti saulės energijos gamybos duomenų šiai vietai. Jokios vertės neatspėjamos.",
+    "errorOverSea":
       "Atrodo, kad vieta yra virš vandens. Perkelkite žymeklį ant pastato sausumoje ir bandykite dar kartą.",
-    errorOutsideCoverage:
+    "errorOutsideCoverage":
       "Šiai vietai saulės duomenų neturime. Pabandykite netoliese esantį adresą.",
-    errorSource: "PVGIS: {{message}}",
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {

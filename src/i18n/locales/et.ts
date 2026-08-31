@@ -67,12 +67,12 @@ export const et = {
     "result": "Hinnanguline päikeseenergia tootlikkus selles asukohas",
     "unit": "kWh/kWp/a",
     "disclaimer": "Arvutatud päikesetoodang põhineb asukohal, suunal ja katuse kaldenurgal. Tegelikku toodangut võivad mõjutada näiteks varjutus, ilm, temperatuur ja süsteemikaod.",
-    "error": "Me ei saanud praegu selle asukoha päikeseenergia tootlikkuse andmeid tuua. Väärtusi ei pakuta."
-    errorOverSea:
+    "error": "Me ei saanud praegu selle asukoha päikeseenergia tootlikkuse andmeid tuua. Väärtusi ei pakuta.",
+    "errorOverSea":
       "Asukoht paistab olevat vee kohal. Liigutage marker maismaal asuvale hoonele ja proovige uuesti.",
-    errorOutsideCoverage:
+    "errorOutsideCoverage":
       "Selle asukoha kohta puuduvad päikeseandmed. Proovige lähedal asuvat aadressi.",
-    errorSource: "PVGIS: {{message}}",
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {

@@ -67,12 +67,12 @@ export const lv = {
     "result": "Aprēķinātā saules enerģijas ražošana objektā",
     "unit": "kWh/kWp/gadā",
     "disclaimer": "Aprēķinātā saules enerģijas ražošana balstās uz atrašanās vietu, orientāciju un jumta slīpumu. Faktisko ražošanu var ietekmēt, piemēram, ēnojums, laikapstākļi, temperatūra un sistēmas zudumi.",
-    "error": "Pašlaik nevarējām iegūt saules enerģijas ražošanas datus šai vietai. Vērtības netiek minētas."
-    errorOverSea:
+    "error": "Pašlaik nevarējām iegūt saules enerģijas ražošanas datus šai vietai. Vērtības netiek minētas.",
+    "errorOverSea":
       "Šķiet, ka atrašanās vieta ir virs ūdens. Pārvietojiet marķieri uz ēku uz sauszemes un mēģiniet vēlreiz.",
-    errorOutsideCoverage:
+    "errorOutsideCoverage":
       "Šai vietai nav saules datu. Izmēģiniet tuvumā esošu adresi.",
-    errorSource: "PVGIS: {{message}}",
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {

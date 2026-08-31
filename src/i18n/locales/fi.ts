@@ -67,12 +67,12 @@ export const fi = {
     "result": "Arvioitu aurinkosähkön tuotto kohteessa",
     "unit": "kWh/kWp/vuosi",
     "disclaimer": "Laskettu aurinkotuotanto perustuu sijaintiin, ilmansuuntaan ja katon kaltevuuteen. Todelliseen tuotantoon voivat vaikuttaa muun muassa varjostus, sää, lämpötila ja järjestelmähäviöt.",
-    "error": "Emme voineet hakea aurinkotuotantotietoja tästä kohteesta. Arvoja ei arvailla."
-    errorOverSea:
+    "error": "Emme voineet hakea aurinkotuotantotietoja tästä kohteesta. Arvoja ei arvailla.",
+    "errorOverSea":
       "Sijainti näyttää olevan veden päällä. Siirrä merkki rakennuksen kohdalle maalle ja yritä uudelleen.",
-    errorOutsideCoverage:
+    "errorOutsideCoverage":
       "Tälle sijainnille ei ole aurinkodataa. Kokeile lähellä olevaa osoitetta.",
-    errorSource: "PVGIS: {{message}}",
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
