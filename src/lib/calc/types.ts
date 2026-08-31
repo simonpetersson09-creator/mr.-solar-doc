@@ -120,6 +120,13 @@ export interface ElectricalInput {
   serviceType?: ServiceType;
   /** Grid frequency (Hz). Stored only; does not affect the power calculation. */
   gridFrequencyHz?: number;
+  /**
+   * How well the country's grid data is known. Travels with the calculation so
+   * the result and the PDF can state it — never re-derived in the UI.
+   */
+  gridProfileStatus?: ConnectionProfileStatus;
+  /** True when the user confirmed unverified grid data (required in step 4). */
+  gridProfileConfirmed?: boolean;
 }
 
 
@@ -131,6 +138,10 @@ export interface GridAssumption {
   serviceType: ServiceType;
   kwPerAmp: number;
   frequencyHz: number;
+  /** Knowledge level of the country's grid profile behind these assumptions. */
+  profileStatus: ConnectionProfileStatus;
+  /** True when the user explicitly confirmed unverified grid data. */
+  profileConfirmed: boolean;
 }
 
 /**
