@@ -57,6 +57,16 @@ const swedish = flat["sv"]!;
 const englishKeys = Object.keys(english);
 
 describe("i18n completeness", () => {
+  it("every supported language has a translation bundle", () => {
+    const missing = SUPPORTED_LANGUAGES.filter((lang) => !(lang in LOCALES));
+    expect(missing, "languages without a locale file").toEqual([]);
+    const unregistered = Object.keys(LOCALES).filter(
+      (lang) => !(SUPPORTED_LANGUAGES as readonly string[]).includes(lang),
+    );
+    expect(unregistered, "locale files not registered in SUPPORTED_LANGUAGES").toEqual([]);
+  });
+
+
   it("every language has every English key", () => {
     for (const [lang, entries] of Object.entries(flat)) {
       const missing = englishKeys.filter((key) => !(key in entries));
