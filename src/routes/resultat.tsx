@@ -157,12 +157,11 @@ const cost = result.productionCost;
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-2.5">
-              <div className="glass-panel rounded-2xl p-3">
-                <div className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
-                  <Zap className="size-3" /> {t("result.recommendedInverter")}
-                </div>
-                <p className="mt-1 text-xl font-bold">
-                  {t("result.inverterShort", { kw: formatNumber(result.inverterKw, locale) })}
+              <div className="glass-panel flex items-center gap-1.5 rounded-2xl p-3">
+                <Zap className="size-4 shrink-0 text-white/70" />
+                <p className="text-xl font-bold">
+                  {formatNumber(result.inverterKw, locale)}{" "}
+                  <span className="text-xs font-semibold text-white/70">kW</span>
                 </p>
               </div>
               <div className="glass-panel rounded-2xl p-3">
