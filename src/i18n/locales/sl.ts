@@ -160,7 +160,9 @@ export const sl = {
       }
     },
     "gridAssumption": "Izračun predpostavlja trifazni priključek 400 V.",
-    "gridAssumptionInfo": "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
+"gridAssumptionInfo": "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
+    "disclaimerTitle": "Pomembno je vedeti",
+    "disclaimer": "Izračun je okviren in ne more nadomestiti tehnične ocene. Pred namestitvijo vedno preverite napetost, priključno moč, dovoljeno moč in druge lokalne zahteve omrežja pri usposobljenem električarju ter po potrebi pri vašem operaterju omrežja.\n\nMr Solar Doc ne odgovarja za namestitve ali odločitve, sprejete izključno na podlagi izračunov aplikacije.",
     "grid": {
       "advanced": "Napredne nastavitve",
       "section": "Nastavitve omrežja",

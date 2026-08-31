@@ -160,7 +160,9 @@ export const de = {
       }
     },
     "gridAssumption": "Die Berechnung geht von 400 V Dreiphasenanschluss aus.",
-    "gridAssumptionInfo": "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
+"gridAssumptionInfo": "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
+    "disclaimerTitle": "Wichtig zu wissen",
+    "disclaimer": "Die Berechnung ist richtungsweisend und ersetzt keine technische Bewertung. Prüfen Sie vor der Installation immer Spannung, Anschlussleistung, zulässige Leistung und weitere lokale Netzanforderungen mit einem qualifizierten Elektroinstallateur und, falls erforderlich, mit Ihrem Netzbetreiber.\n\nMr Solar Doc übernimmt keine Verantwortung für Installationen oder Entscheidungen, die ausschließlich auf Grundlage der Berechnungen der App getroffen werden.",
     "grid": {
       "advanced": "Erweiterte Einstellungen",
       "section": "Netzeinstellungen",

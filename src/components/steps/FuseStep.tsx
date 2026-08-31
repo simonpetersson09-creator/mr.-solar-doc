@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Info, Zap } from "lucide-react";
+import { ArrowRight, CircleAlert, Info, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -41,7 +41,8 @@ interface FuseStepProps {
 
 export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   const { t } = useTranslation();
-  const [showGridInfo, setShowGridInfo] = useState(false);
+const [showGridInfo, setShowGridInfo] = useState(false);
+  const [showDisclaimer, setShowDisclaimer] = useState(false);
   const [editGrid, setEditGrid] = useState(false);
   const { locale } = useAppLocale();
   const location = useWizardStore((s) => s.location);
@@ -274,7 +275,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
           </div>
         ) : null}
 
-        <div className="border-t border-white/15 pt-3">
+<div className="border-t border-white/15 pt-3">
           <button
             type="button"
             onClick={() => setShowGridInfo((open) => !open)}
@@ -291,6 +292,22 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
           {showGridInfo ? (
             <p className="mt-2 pl-5 text-[11px] leading-relaxed text-white/60">
               {t("fuse.gridAssumptionInfo")}
+            </p>
+          ) : null}
+        </div>
+
+        <div className="border-t border-white/15 pt-3">
+          <button
+            type="button"
+            onClick={() => setShowDisclaimer((open) => !open)}
+            className="flex items-start gap-2 text-left text-xs text-white/60"
+          >
+            <CircleAlert className="mt-0.5 size-3.5 shrink-0 text-accent" />
+            <span>{t("fuse.disclaimerTitle")}</span>
+          </button>
+          {showDisclaimer ? (
+            <p className="mt-2 pl-5 text-[11px] leading-relaxed whitespace-pre-line text-white/60">
+              {t("fuse.disclaimer")}
             </p>
           ) : null}
         </div>

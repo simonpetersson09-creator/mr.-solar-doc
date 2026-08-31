@@ -160,7 +160,9 @@ export const lv = {
       }
     },
     "gridAssumption": "Aprēķins balstās uz 400 V trīsfāžu pieslēgumu.",
-    "gridAssumptionInfo": "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
+"gridAssumptionInfo": "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
+    "disclaimerTitle": "Svarīgi zināt",
+    "disclaimer": "Aprēķins ir orientējošs un neaizstāj tehnisko novērtējumu. Pirms uzstādīšanas vienmēr pārbaudiet spriegumu, pieslēguma jaudu, atļauto jaudu un citas vietējās tīkla prasības pie kvalificēta elektriķa un nepieciešamības gadījumā pie sava tīkla operatora.\n\nMr Solar Doc nav atbildīgs par instalācijām vai lēmumiem, kas pieņemti tikai, pamatojoties uz lietotnes aprēķiniem.",
     "grid": {
       "advanced": "Papildu iestatījumi",
       "section": "Tīkla iestatījumi",

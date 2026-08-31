@@ -160,7 +160,9 @@ export const fr = {
       }
     },
     "gridAssumption": "Le calcul suppose un raccordement triphasé 400 V.",
-    "gridAssumptionInfo": "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute.",
+"gridAssumptionInfo": "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute.",
+    "disclaimerTitle": "Bon à savoir",
+    "disclaimer": "Le calcul est indicatif et ne remplace pas une évaluation technique. Vérifiez toujours la tension, la capacité de raccordement, la puissance autorisée et les autres exigences locales du réseau auprès d'un électricien qualifié et, si nécessaire, de votre gestionnaire de réseau avant l'installation.\n\nMr Solar Doc n'est pas responsable des installations ou des décisions prises uniquement sur la base des calculs de l'application.",
     "grid": {
       "advanced": "Réglages avancés",
       "section": "Réglages du réseau",
