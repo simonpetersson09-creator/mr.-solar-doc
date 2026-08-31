@@ -5,7 +5,8 @@ import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { ArrowLeft, Crown, FileText, History, Loader2, RefreshCw, Settings2, ShieldCheck } from "lucide-react";
 import { haptic } from "@/services/native-service";
-import { isPurchaseAvailable, restorePurchases } from "@/services/iap-service";
+import { refreshPurchases } from "@/services/iap-service";
+import { listPurchasedCalculations } from "@/lib/purchase.functions";
 import { usePurchaseStore } from "@/state/purchase-store";
 
 export const Route = createFileRoute("/installningar")({
@@ -45,18 +46,25 @@ function SettingsPage() {
     void navigate({ to: "/" });
   }
 
+  // The unlock is a consumable, so the App Store has nothing to "restore".
+  // Recovery means re-reading the verified receipts the server holds for this
+  // device and letting StoreKit redeliver any unfinished transaction.
   async function handleRestore() {
     if (restoring) return;
     void haptic("light");
-    if (!isPurchaseAvailable()) {
-      toast.info(t("premium.unavailable"));
-      return;
-    }
     setRestoring(true);
     try {
-      await restorePurchases();
+      await refreshPurchases();
+      const { items } = await listPurchasedCalculations({
+        data: { deviceId: usePurchaseStore.getState().ensureDeviceId() },
+      });
       await queryClient.invalidateQueries({ queryKey: ["purchased-calculations"] });
-      toast.success(t("premium.restored"));
+      await queryClient.invalidateQueries({ queryKey: ["purchase-status"] });
+      if (items.length > 0) {
+        toast.success(t("premium.restored", { count: items.length }));
+      } else {
+        toast.info(t("premium.nothingToRestore"));
+      }
     } catch {
       toast.error(t("premium.restoreFailed"));
     } finally {
