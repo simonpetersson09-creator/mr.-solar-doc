@@ -37,7 +37,7 @@ export const lt = {
     "coordinates": "Koordinatės",
     "country": "Šalis",
     "region": "Regionas",
-"error": "Adreso paieška nepavyko.",
+    "error": "Adreso paieška nepavyko.",
     "info": "Adresas naudojamas tik saulės spinduliuotei jūsų vietovėje apskaičiuoti.",
     "infoLabel": "Daugiau informacijos apie adresą"
   },
@@ -66,7 +66,7 @@ export const lt = {
     "fetching": "Gaunami saulės energijos gamybos duomenys iš PVGIS…",
     "result": "Apskaičiuota saulės energijos gamyba vietoje",
     "unit": "kWh/kWp/metus",
-    disclaimer: "Apskaičiuota saulės energijos gamyba pagrįsta vieta, kryptimi ir stogo nuolydžiu. Faktinę gamybą gali paveikti šešėliavimas, orai, temperatūra ir sistemos nuostoliai.",
+    "disclaimer": "Apskaičiuota saulės energijos gamyba pagrįsta vieta, kryptimi ir stogo nuolydžiu. Faktinę gamybą gali paveikti šešėliavimas, orai, temperatūra ir sistemos nuostoliai.",
     "error": "Šiuo metu negalėjome gauti saulės energijos gamybos duomenų šiai vietai. Jokios vertės neatspėjamos."
   },
   "consumption": {
@@ -107,7 +107,16 @@ export const lt = {
       "successMonthly": "Radome 12 mėnesio verčių ir jas užpildėme už jus.",
       "successAnnual": "Dokumente radome metinį suvartojimą.",
       "error": "Dokumente neradome jokio suvartojimo. Įveskite vertes rankiniu būdu.",
-      "fileTypes": "PDF, XLSX, XLS, CSV, TXT arba paveikslėlis (PNG, JPEG)"
+      "fileTypes": "PDF, XLSX, XLS, CSV, TXT arba paveikslėlis (PNG, JPEG)",
+      "sectionTitle": "Iš dokumento",
+      "sectionHint": "Leiskite mums automatiškai nuskaityti jūsų elektros sąskaitą ar suvartojimo duomenis.",
+      "dropHint": "Nutempkite failą čia arba",
+      "dropActive": "Atleiskite failą, kad jį nuskaitytumėte",
+      "browse": "naršyti failus",
+      "remove": "Pašalinti",
+      "retry": "Bandyti kitą failą",
+      "readingFile": "Skaitoma {{name}}…",
+      "ready": "Importuota"
     },
     "title": "Kiek elektros sunaudojate?",
     "subtitle": "Pažiūrėkite į savo elektros sąskaitą ar elektros sutartį.",
@@ -116,7 +125,13 @@ export const lt = {
     "useMonthly": "Įveskite mėnesio suvartojimą, kad būtų didesnis tikslumas",
     "monthlyTitle": "Mėnesio suvartojimas",
     "total": "Bendras metinis suvartojimas",
-    "invalid": "Įveskite metinį suvartojimą nuo 100 iki 200 000 kWh."
+    "invalid": "Įveskite metinį suvartojimą nuo 100 iki 200 000 kWh.",
+    "or": "arba",
+    "manual": {
+      "sectionTitle": "Įvesti rankiniu būdu",
+      "sectionHint": "Įveskite metinį suvartojimą — patikrinkite elektros sąskaitą ar sutartį."
+    },
+    "monthlyHint": "Įveskite suvartojimą visiems 12 mėnesių"
   },
   "fuse": {
     "gridAssumption": "Skaičiavimas remiasi 400 V trifaze jungtimi.",
@@ -179,20 +194,20 @@ export const lt = {
     "productionCaption": "apskaičiuota metinė gamyba",
     "annualSavings": "Ekonominė vertė per metus",
     "assumedPrices": "Numatomos elektros kainos",
-    standardValueBadge: "Standartinė vertė",
-    resetToStandard: "Atkurti standartinę reikšmę",
-    userValueBadge: "Jūsų įvesta",
-    priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
-    priceScenarioFlat: "Unchanged",
-    priceScenarioCautious: "Cautious",
-    priceScenarioNormal: "Normal",
-    priceScenarioHigh: "High",
-    priceScenarioCustom: "Own assumption",
-    priceScenarioCustomLabel: "Own change (%/year)",
-    degradationAssumption: "Techninė degradacija",
-    priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Skaičiavimo standartinės vertės. Pakeiskite jas savo elektros sutarties vertėmis, kad rezultatas būtų individualesnis.",
+    "standardValueBadge": "Standartinė vertė",
+    "resetToStandard": "Atkurti standartinę reikšmę",
+    "userValueBadge": "Jūsų įvesta",
+    "priceScenarioTitle": "Kaip, jūsų manymu, keisis elektros kainos?",
+    "priceScenarioHint": "Tai prielaida apie metinį pokytį, o ne prognozė. Kaina didinama kasmet visą skaičiavimo laikotarpį.",
+    "priceScenarioFlat": "Nekinta",
+    "priceScenarioCautious": "Atsargus",
+    "priceScenarioNormal": "Normal",
+    "priceScenarioHigh": "Aukštas",
+    "priceScenarioCustom": "Sava prielaida",
+    "priceScenarioCustomLabel": "Savas pokytis (%/metus)",
+    "degradationAssumption": "Techninė degradacija",
+    "priceScenarioAssumption": "Numatoma elektros kainos raida",
+    "standardValueHint": "Skaičiavimo standartinės vertės. Pakeiskite jas savo elektros sutarties vertėmis, kad rezultatas būtų individualesnis.",
     "editable": "Redaguojama",
     "editableTooltip": "Keisti prielaidą",
     "fuseLimit": "Teorinė galios riba nuo pagrindinio automatinio jungiklio",
@@ -252,14 +267,12 @@ export const lt = {
     "paybackInfo": "Paprastas atsipirkimas rodo, kiek metų numatoma metinė ekonominė vertė atitinka investiciją. Atsipirkimas neatsižvelgia į tokius veiksnius kaip būsimi elektros kainų pokyčiai, finansavimo išlaidos, infliacija, priežiūra ar diskontavimas.",
     "maxInvestment": "Investicijos lygis pasirinktu atsipirkimo laiku",
     "maxInvestmentApprox": "apie {{amount}}",
-    investmentLevelInfoLabel: "Daugiau informacijos",
-    investmentLevelInfo: "Apytiksliai parodo, kokia investicijų suma atitinka jūsų pasirinktą atsipirkimo laikotarpį. Tai nėra įvertinimas, kiek įrengimas iš tikrųjų kainuoja. Faktinė kaina priklauso, be kita ko, nuo stogo, įrengimo, komponentų ir tiekėjo.",
-    systemSizeInfoLabel: "Daugiau informacijos",
-systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kaip orientyras. Faktinė gamyba, savas suvartojimas, elektros kaina, atlygis, įrengimo kaina ir ekonominis rezultatas gali skirtis. Rezultatas nėra pasiūlymas ar garantija.",
-    productionCostInfoLabel: "Daugiau informacijos",
-    productionCostInfo: "Gamybos sąnaudos yra apskaičiuotos vidutinės sąnaudos už pagamintą kWh per įrenginio eksploatavimo laikotarpį. Faktinėms sąnaudoms įtakos gali turėti gamyba, degradacija, priežiūra ir kitos būsimos išlaidos.",
-
-
+    "investmentLevelInfoLabel": "Daugiau informacijos",
+    "investmentLevelInfo": "Apytiksliai parodo, kokia investicijų suma atitinka jūsų pasirinktą atsipirkimo laikotarpį. Tai nėra įvertinimas, kiek įrengimas iš tikrųjų kainuoja. Faktinė kaina priklauso, be kita ko, nuo stogo, įrengimo, komponentų ir tiekėjo.",
+    "systemSizeInfoLabel": "Daugiau informacijos",
+    "systemSizeInfo": "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kaip orientyras. Faktinė gamyba, savas suvartojimas, elektros kaina, atlygis, įrengimo kaina ir ekonominis rezultatas gali skirtis. Rezultatas nėra pasiūlymas ar garantija.",
+    "productionCostInfoLabel": "Daugiau informacijos",
+    "productionCostInfo": "Gamybos sąnaudos yra apskaičiuotos vidutinės sąnaudos už pagamintą kWh per įrenginio eksploatavimo laikotarpį. Faktinėms sąnaudoms įtakos gali turėti gamyba, degradacija, priežiūra ir kitos būsimos išlaidos.",
     "maxInvestmentExplainer": "Norint pasiekti maždaug {{years}} metų paprastą atsipirkimą, įrengimas turėtų kainuoti ne daugiau kaip apie {{amount}}.",
     "maxInvestmentNote": "Suma apskaičiuojama pagal jūsų įvestis ir skaičiavimo prielaidas – tai nėra pasiūlymas ar rinkos kainos įvertinimas.",
     "missingMarketValues": "Šiai šaliai neturime patvirtintos standartinės vertės. Įveskite vertes patys žemiau.",
@@ -284,7 +297,18 @@ systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kai
     "limitedByFuse": "Sistemą riboja jūsų pagrindinis automatinis jungiklis, o ne jūsų suvartojimas.",
     "dataSource": "Saulės duomenų šaltinis",
     "calculatedAt": "Skaičiavimo data",
-    "noCalculation": "Skaičiavimas nerastas. Pradėkite iš naujo nuo adreso."
+    "noCalculation": "Skaičiavimas nerastas. Pradėkite iš naujo nuo adreso.",
+    "paybackYearsUnit": "metai",
+    "productionCostTitle": "Kiek kainuoja saulės energija nuo jūsų stogo?",
+    "productionCostExplainer": "Mes padaliname sistemos kainą iš numatomos gamybos visą skaičiavimo laikotarpį.",
+    "productionCostLabel": "Gamybos kaina",
+    "productionCostValueLabel": "Vertė jums",
+    "productionCostDifference": "Skirtumas",
+    "productionCostBasis": "Remiantis {{investment}} ir {{production}} kWh per {{years}} metų.",
+    "productionCostHigherValue": "Šiame skaičiavime kiekvienas kWh vertas daugiau, nei kainuoja jį pagaminti.",
+    "productionCostUnavailable": "Su dabartiniais duomenimis negalime apskaičiuoti gamybos kainos.",
+    "perKwh": "{{amount}}/kWh",
+    "locked": "Šis skaičiavimas užrakintas. Užbaikite pirkimą, kad pamatytumėte rezultatą."
   },
   "units": {
     "kwhPerYear": "kWh/metus",
@@ -294,7 +318,13 @@ systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kai
   "settings": {
     "title": "Nustatymai",
     "language": "Kalba",
-    "languageHint": "Valiuta priklauso nuo jūsų adreso šalies, o ne nuo kalbos."
+    "languageHint": "Valiuta priklauso nuo jūsų adreso šalies, o ne nuo kalbos.",
+    "history": "Istorija",
+    "plansTitle": "Pirkiniai ir prenumerata",
+    "singleCta": "Perkama su kitu skaičiavimu",
+    "singleNote": "Vienkartinis pirkimas atliekamas pradedant naują skaičiavimą — ne čia.",
+    "terms": "Naudojimo sąlygos",
+    "privacy": "Privatumo politika"
   },
   "chart": {
     "productionAria": "Mėnesinė gamyba",
@@ -360,7 +390,7 @@ systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kai
       "selfConsumptionSource_simulated": "įvertinta pagal suvartojimo profilį",
       "longTermChartTitle": "Ekonominė vertė per laiką",
       "keyAssumptions": "Svarbiausios skaičiavimo prielaidos",
-      priceMethodNote: "Elektros vertės yra skaičiavimo prielaidos. Tikroji suvartotos ir parduotos saulės elektros vertė priklauso nuo sutarties, mokesčių, taisyklių ir rinkos sąlygų.",
+      "priceMethodNote": "Elektros vertės yra skaičiavimo prielaidos. Tikroji suvartotos ir parduotos saulės elektros vertė priklauso nuo sutarties, mokesčių, taisyklių ir rinkos sąlygų.",
       "valueSource_standard-value": "Standartinė vertė",
       "valueSource_user-override": "Jūsų įvesta",
       "priceChange": "Elektros kainos pokytis",
@@ -438,7 +468,9 @@ systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kai
       "orientation_southeast": "Pietryčiai",
       "orientation_southwest": "Pietvakariai",
       "orientation_east": "Rytai",
-      "orientation_west": "Vakarai"
+      "orientation_west": "Vakarai",
+      "priceChangeNoteFlat": "Skaičiavime visą laikotarpį naudojamos nekintančios pačių suvartojamos ir eksportuojamos saulės energijos vertės. Kainų augimas neprognozuojamas, nes būsimų elektros kainų numatyti negalima. Jei kainos kils, vertė bus didesnė nei šioje ataskaitoje; jei kris — mažesnė.",
+      "priceChangeNoteTrend": "Skaičiavime daroma prielaida, kad pačių suvartojamos ir eksportuojamos saulės energijos vertė kinta {{priceChange}} % per metus visą laikotarpį. Tai prielaida, nes būsimų elektros kainų numatyti negalima. Kitoks pokytis reiškia didesnį arba mažesnį rezultatą nei šioje ataskaitoje."
     },
     "title": "Saulės elektrinės ataskaita",
     "technical": "Techniniai duomenys",
@@ -461,17 +493,102 @@ systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kai
     "generated": "Sukurta",
     "faqTitle": "Dažniausiai užduodami klausimai",
     "faqItems": [
-      { "q": "Kiek patikimas apskaičiuotas saulės energijos gamybos kiekis?", "a": "Skaičiavimas pagrįstas saulės spinduliuote konkrečioje vietoje bei stogo kryptimi ir nuolydžiu. Faktinę gamybą įtakoja, be kita ko, orai, šešėliavimas ir įrenginio techninės sąlygos." },
-      { "q": "Ką reiškia savųjų poreikių vartojimas?", "a": "Saulės energijos dalis, kuri tiesiogiai naudojama būste. Likusi gamyba tiekiama į elektros tinklą." },
-      { "q": "Kodėl savo reikmėms suvartota saulės energija vertingesnė nei parduota?", "a": "Savo reikmėms suvartota saulės energija pakeičia elektrą, kurią kitaip tektų pirkti iš tinklo, o parduota saulės energija kompensuojama pagal į tinklą tiekiamos energijos sąlygas." },
-      { "q": "Ką reiškia kaina pasirinktam atsipirkimo laikotarpiui?", "a": "Apytiksliai parodo, kiek įrenginys gali kainuoti, kad atitiktų jūsų pasirinktą atsipirkimo laikotarpį, remiantis skaičiavimo prielaidomis. Tai nėra numatoma rinkos kaina." },
-      { "q": "Kodėl rangovo skaičiavimas gali skirtis?", "a": "Skirtingos prielaidos dėl gamybos, savųjų poreikių vartojimo, elektros kainų, sistemos nuostolių ir būsimos kainų kaitos gali duoti skirtingus rezultatus." },
-      { "q": "Ar skaičiavimas yra pasiūlymas?", "a": "Ne. Rezultatas yra įvertinimas ir turėtų būti naudojamas kaip sprendimų pagrindas. Faktinė kaina, gamyba ir ekonominis rezultatas gali skirtis." },
-      { q: 'Kodėl gamyba laikui bėgant mažėja?', a: 'Saulės modulių galia per metus paprastai šiek tiek mažėja. Skaičiavimas grindžiamas 0,5 % metine degradacija, o tai reiškia, kad apskaičiuota gamyba per skaičiavimo laikotarpį palaipsniui mažėja.' },
-      { q: 'Kaip apskaičiuojama mano saulės elektros vertė?', a: 'Savoms reikmėms suvartota saulės elektra vertinama pagal elektros, kurią kitaip tektų pirkti, kainą. Parduota saulės elektra vertinama pagal numanomą kompensaciją už į tinklą tiekiamą elektrą.' },
-      { q: 'Ką reiškia gamybos sąnaudos už kWh?', a: 'Gamybos sąnaudos parodo apskaičiuotas vidutines kiekvienos pagamintos kilovatvalandės sąnaudas per įrenginio eksploatavimo laikotarpį. Jas galima palyginti su apskaičiuota saulės elektros ekonomine verte.' },
-      { q: 'Kodėl rekomenduojamas būtent toks įrenginio dydis?', a: 'Įrenginio dydis apskaičiuojamas atsižvelgiant į jūsų elektros suvartojimą, saulės spinduliuotę vietoje ir techninius apribojimus. Tikslas – suprojektuoti įrenginį pagal jūsų sąlygas, o ne įrengti kuo didesnį įrenginį.' },
-    ],
-
+      {
+        "q": "Kiek patikimas apskaičiuotas saulės energijos gamybos kiekis?",
+        "a": "Skaičiavimas pagrįstas saulės spinduliuote konkrečioje vietoje bei stogo kryptimi ir nuolydžiu. Faktinę gamybą įtakoja, be kita ko, orai, šešėliavimas ir įrenginio techninės sąlygos."
+      },
+      {
+        "q": "Ką reiškia savųjų poreikių vartojimas?",
+        "a": "Saulės energijos dalis, kuri tiesiogiai naudojama būste. Likusi gamyba tiekiama į elektros tinklą."
+      },
+      {
+        "q": "Kodėl savo reikmėms suvartota saulės energija vertingesnė nei parduota?",
+        "a": "Savo reikmėms suvartota saulės energija pakeičia elektrą, kurią kitaip tektų pirkti iš tinklo, o parduota saulės energija kompensuojama pagal į tinklą tiekiamos energijos sąlygas."
+      },
+      {
+        "q": "Ką reiškia kaina pasirinktam atsipirkimo laikotarpiui?",
+        "a": "Apytiksliai parodo, kiek įrenginys gali kainuoti, kad atitiktų jūsų pasirinktą atsipirkimo laikotarpį, remiantis skaičiavimo prielaidomis. Tai nėra numatoma rinkos kaina."
+      },
+      {
+        "q": "Kodėl rangovo skaičiavimas gali skirtis?",
+        "a": "Skirtingos prielaidos dėl gamybos, savųjų poreikių vartojimo, elektros kainų, sistemos nuostolių ir būsimos kainų kaitos gali duoti skirtingus rezultatus."
+      },
+      {
+        "q": "Ar skaičiavimas yra pasiūlymas?",
+        "a": "Ne. Rezultatas yra įvertinimas ir turėtų būti naudojamas kaip sprendimų pagrindas. Faktinė kaina, gamyba ir ekonominis rezultatas gali skirtis."
+      },
+      {
+        "q": "Kodėl gamyba laikui bėgant mažėja?",
+        "a": "Saulės modulių galia per metus paprastai šiek tiek mažėja. Skaičiavimas grindžiamas 0,5 % metine degradacija, o tai reiškia, kad apskaičiuota gamyba per skaičiavimo laikotarpį palaipsniui mažėja."
+      },
+      {
+        "q": "Kaip apskaičiuojama mano saulės elektros vertė?",
+        "a": "Savoms reikmėms suvartota saulės elektra vertinama pagal elektros, kurią kitaip tektų pirkti, kainą. Parduota saulės elektra vertinama pagal numanomą kompensaciją už į tinklą tiekiamą elektrą."
+      },
+      {
+        "q": "Ką reiškia gamybos sąnaudos už kWh?",
+        "a": "Gamybos sąnaudos parodo apskaičiuotas vidutines kiekvienos pagamintos kilovatvalandės sąnaudas per įrenginio eksploatavimo laikotarpį. Jas galima palyginti su apskaičiuota saulės elektros ekonomine verte."
+      },
+      {
+        "q": "Kodėl rekomenduojamas būtent toks įrenginio dydis?",
+        "a": "Įrenginio dydis apskaičiuojamas atsižvelgiant į jūsų elektros suvartojimą, saulės spinduliuotę vietoje ir techninius apribojimus. Tikslas – suprojektuoti įrenginį pagal jūsų sąlygas, o ne įrengti kuo didesnį įrenginį."
+      }
+    ]
+  },
+  "premium": {
+    "title": "Premium",
+    "restore": "Atkurti pirkinį",
+    "manage": "Tvarkyti prenumeratą",
+    "unavailable": "Pirkiniai atliekami iOS programėlėje per App Store.",
+    "restored": "Jūsų pirkiniai atkurti ({{count}}).",
+    "active": "Premium aktyvus",
+    "activeHint": "Neribotas skaičiavimų ir ataskaitų kiekis",
+    "become": "Įsigyti Premium",
+    "becomeHint": "Neriboti skaičiavimai – {{price}}/metus",
+    "activated": "Premium dabar aktyvus.",
+    "restoredPremium": "Jūsų Premium atkurtas.",
+    "nothingToRestore": "Šiame įrenginyje pirkinių nerasta.",
+    "restoreFailed": "Šiuo metu nepavyko atkurti pirkinių."
+  },
+  "paywall": {
+    "single": {
+      "title": "Vienas skaičiavimas",
+      "body": "Atrakinkite pilną rezultatą ir PDF ataskaitą šiam skaičiavimui.",
+      "cta": "Atrakinti už {{price}}"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{{price}}/metus",
+      "body": "Neriboti skaičiavimai ir PDF ataskaitos.",
+      "includes": {
+        "calculations": "Neriboti skaičiavimai",
+        "pdf": "Neriboti PDF ataskaitos",
+        "result": "Pilna prieiga prie rezultato"
+      },
+      "cta": "Įsigyti Premium",
+      "renewal": "Automatiškai atsinaujina kasmet. Bet kada galite atšaukti."
+    },
+    "title": "Atrakinkite savo skaičiavimą",
+    "eyebrow": "Vienkartinis pirkimas",
+    "oneTime": "Apmokama vieną kartą — be prenumeratos.",
+    "includesTitle": "Kas įtraukta",
+    "includes": {
+      "result": "Jūsų pilnas skaičiavimas su ekonomika ir gamyba",
+      "pdf": "PDF ataskaita išsaugoti ar dalintis",
+      "history": "Skaičiavimas išsaugomas jūsų istorijoje"
+    },
+    "cta": "Atrakinti už {{price}}",
+    "purchasing": "Atidaroma App Store…",
+    "verifying": "Patvirtinamas jūsų pirkinys…",
+    "cancelled": "Pirkimas atšauktas. Galite bandyti dar kartą.",
+    "failed": "Pirkimo nepavyko užbaigti. Iš jūsų nebuvo nuskaičiuota jokia suma.",
+    "retry": "Šiuo metu nepavyko patvirtinti pirkimo. Niekas nedingo — jis atsirakins automatiškai, kai tik atsistatys ryšys.",
+    "appOnly": "Pirkimas atliekamas programėlėje su jūsų Apple paskyra ir naršyklėje neprieinamas.",
+    "appleNote": "Tvarko App Store."
+  },
+  "history": {
+    "empty": "Kol kas neturite išsaugotų skaičiavimų.",
+    "unknownAddress": "Skaičiavimas",
+    "error": "Nepavyko įkelti jūsų istorijos."
   }
 } as const;

@@ -37,7 +37,7 @@ export const et = {
     "coordinates": "Koordinaadid",
     "country": "Riik",
     "region": "Piirkond",
-"error": "Aadressi otsing ebaõnnestus.",
+    "error": "Aadressi otsing ebaõnnestus.",
     "info": "Aadressi kasutatakse ainult päikesekiirguse arvutamiseks teie asukohas.",
     "infoLabel": "Rohkem teavet aadressi kohta"
   },
@@ -66,7 +66,7 @@ export const et = {
     "fetching": "Andmete toomine PVGIS-ist…",
     "result": "Hinnanguline päikeseenergia tootlikkus selles asukohas",
     "unit": "kWh/kWp/a",
-    disclaimer: "Arvutatud päikesetoodang põhineb asukohal, suunal ja katuse kaldenurgal. Tegelikku toodangut võivad mõjutada näiteks varjutus, ilm, temperatuur ja süsteemikaod.",
+    "disclaimer": "Arvutatud päikesetoodang põhineb asukohal, suunal ja katuse kaldenurgal. Tegelikku toodangut võivad mõjutada näiteks varjutus, ilm, temperatuur ja süsteemikaod.",
     "error": "Me ei saanud praegu selle asukoha päikeseenergia tootlikkuse andmeid tuua. Väärtusi ei pakuta."
   },
   "consumption": {
@@ -107,7 +107,16 @@ export const et = {
       "successMonthly": "Leidsime 12 kuu väärtust ja täitsime need sinu eest.",
       "successAnnual": "Leidsime dokumendist aastatarbimise.",
       "error": "Me ei leidnud dokumendist ühtegi tarbimist. Palun sisestage väärtused käsitsi.",
-      "fileTypes": "PDF, XLSX, XLS, CSV, TXT või pilt (PNG, JPEG)"
+      "fileTypes": "PDF, XLSX, XLS, CSV, TXT või pilt (PNG, JPEG)",
+      "sectionTitle": "Dokumendist",
+      "sectionHint": "Laske meil automaatselt lugeda teie elektriarvet või tarbimisandmeid.",
+      "dropHint": "Lohistage fail siia või",
+      "dropActive": "Laske failil siia kukkuda, et see loetaks",
+      "browse": "sirvi faile",
+      "remove": "Eemalda",
+      "retry": "Proovi teist faili",
+      "readingFile": "Loeme faili {{name}}…",
+      "ready": "Imporditud"
     },
     "title": "Kui palju elektrit sa kasutad?",
     "subtitle": "Vaata oma elektriarvet või elektrilepingut.",
@@ -116,7 +125,13 @@ export const et = {
     "useMonthly": "Sisesta kuutarbimine parema täpsuse saavutamiseks",
     "monthlyTitle": "Kuutarbimine",
     "total": "Aastane kogutarbimine",
-    "invalid": "Sisesta aastatarbimine vahemikus 100 kuni 200 000 kWh."
+    "invalid": "Sisesta aastatarbimine vahemikus 100 kuni 200 000 kWh.",
+    "or": "või",
+    "manual": {
+      "sectionTitle": "Sisesta käsitsi",
+      "sectionHint": "Sisestage oma aastane tarbimine — vaadake elektriarvet või lepingut."
+    },
+    "monthlyHint": "Sisestage tarbimine kõigi 12 kuu kohta"
   },
   "fuse": {
     "gridAssumption": "Arvutus eeldab 400 V kolmefaasilist liitumist.",
@@ -179,20 +194,20 @@ export const et = {
     "productionCaption": "hinnanguline aastatootmine",
     "annualSavings": "Majanduslik väärtus aastas",
     "assumedPrices": "Eeldatavad elektrihinnad",
-    standardValueBadge: "Standardväärtus",
-    resetToStandard: "Taasta standardväärtus",
-    userValueBadge: "Sinu sisestatud",
-    priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
-    priceScenarioFlat: "Unchanged",
-    priceScenarioCautious: "Cautious",
-    priceScenarioNormal: "Normal",
-    priceScenarioHigh: "High",
-    priceScenarioCustom: "Own assumption",
-    priceScenarioCustomLabel: "Own change (%/year)",
-    degradationAssumption: "Tehniline degradatsioon",
-    priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Arvutuse standardväärtused. Muuda need oma elektrilepingu väärtusteks, et saada individuaalsem tulemus.",
+    "standardValueBadge": "Standardväärtus",
+    "resetToStandard": "Taasta standardväärtus",
+    "userValueBadge": "Sinu sisestatud",
+    "priceScenarioTitle": "Kuidas arvate, et elektri hinnad arenevad?",
+    "priceScenarioHint": "Eeldus aastase muutuse kohta, mitte prognoos. Hinda tõstetakse aasta-aastalt kogu arvutusperioodi jooksul.",
+    "priceScenarioFlat": "Muutumatu",
+    "priceScenarioCautious": "Ettevaatlik",
+    "priceScenarioNormal": "Normal",
+    "priceScenarioHigh": "Kõrge",
+    "priceScenarioCustom": "Oma eeldus",
+    "priceScenarioCustomLabel": "Oma muutus (%/aastas)",
+    "degradationAssumption": "Tehniline degradatsioon",
+    "priceScenarioAssumption": "Eeldatav elektrihinna areng",
+    "standardValueHint": "Arvutuse standardväärtused. Muuda need oma elektrilepingu väärtusteks, et saada individuaalsem tulemus.",
     "editable": "Muudetav",
     "editableTooltip": "Muuda eeldust",
     "fuseLimit": "Teoreetiline võimsuspiir peakaitsest",
@@ -252,14 +267,12 @@ export const et = {
     "paybackInfo": "Lihtne tasuvusaeg näitab, mitu aastat kulub investeeringu tagasiteenimiseks hinnangulise aastase majandusliku väärtusega. Arvutus ei arvesta näiteks tulevaste elektrihinnamuutuste, finantseerimiskulude, inflatsiooni, hoolduse ega diskonteerimisega.",
     "maxInvestment": "Investeeringu tase valitud tasuvusajal",
     "maxInvestmentApprox": "umbes {{amount}}",
-    investmentLevelInfoLabel: "Rohkem teavet",
-    investmentLevelInfo: "Näitab ligikaudu, milline investeeringukulu vastab teie valitud tasuvusajale. See ei ole hinnang selle kohta, mida paigaldus tegelikult maksab. Tegelik hind sõltub muu hulgas katusest, paigaldusest, komponentidest ja tarnijast.",
-    systemSizeInfoLabel: "Rohkem teavet",
-systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tegelik tootlus, oma tarve, elektrihind, hüvitis, paigalduskulu ja majanduslik tulemus võivad erineda. Tulemus ei ole pakkumine ega garantii.",
-    productionCostInfoLabel: "Rohkem teavet",
-    productionCostInfo: "Tootmiskulu on arvutatud keskmine kulu toodetud kWh kohta süsteemi eluea jooksul. Tegelikku kulu võivad mõjutada tootmine, degradatsioon, hooldus ja muud tulevased kulud.",
-
-
+    "investmentLevelInfoLabel": "Rohkem teavet",
+    "investmentLevelInfo": "Näitab ligikaudu, milline investeeringukulu vastab teie valitud tasuvusajale. See ei ole hinnang selle kohta, mida paigaldus tegelikult maksab. Tegelik hind sõltub muu hulgas katusest, paigaldusest, komponentidest ja tarnijast.",
+    "systemSizeInfoLabel": "Rohkem teavet",
+    "systemSizeInfo": "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tegelik tootlus, oma tarve, elektrihind, hüvitis, paigalduskulu ja majanduslik tulemus võivad erineda. Tulemus ei ole pakkumine ega garantii.",
+    "productionCostInfoLabel": "Rohkem teavet",
+    "productionCostInfo": "Tootmiskulu on arvutatud keskmine kulu toodetud kWh kohta süsteemi eluea jooksul. Tegelikku kulu võivad mõjutada tootmine, degradatsioon, hooldus ja muud tulevased kulud.",
     "maxInvestmentExplainer": "Ligikaudu {{years}} aasta lihtsa tasuvusaja saavutamiseks peaks paigalduse maksumus olema maksimaalselt umbes {{amount}}.",
     "maxInvestmentNote": "Summa on arvutatud sinu sisendite ja arvutuseelduste põhjal – see ei ole pakkumine ega turuhinna hinnang.",
     "missingMarketValues": "Selle riigi kohta pole meil kontrollitud standardväärtusi. Palun sisestage väärtused ise allpool.",
@@ -284,7 +297,18 @@ systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tege
     "limitedByFuse": "Süsteem on piiratud sinu peakaitsmega, mitte sinu tarbimisega.",
     "dataSource": "Päikeseenergia andmete allikas",
     "calculatedAt": "Arvutuse kuupäev",
-    "noCalculation": "Arvutust ei leitud. Alusta uuesti aadressist."
+    "noCalculation": "Arvutust ei leitud. Alusta uuesti aadressist.",
+    "paybackYearsUnit": "aastat",
+    "productionCostTitle": "Kui palju maksab päikeseenergia teie katuselt?",
+    "productionCostExplainer": "Jagame süsteemi maksumuse hinnangulise tootmisega kogu arvutusperioodi jooksul.",
+    "productionCostLabel": "Tootmiskulu",
+    "productionCostValueLabel": "Väärtus teile",
+    "productionCostDifference": "Erinevus",
+    "productionCostBasis": "Aluseks {{investment}} ja {{production}} kWh {{years}} aasta jooksul.",
+    "productionCostHigherValue": "Selles arvutuses on iga kWh väärtus suurem kui selle tootmise maksumus.",
+    "productionCostUnavailable": "Praeguste andmete alusel ei saa tootmiskulu arvutada.",
+    "perKwh": "{{amount}}/kWh",
+    "locked": "See arvutus on lukustatud. Ostu lõpuleviimiseks tuleb tulemuse nägemiseks maksta."
   },
   "units": {
     "kwhPerYear": "kWh/aastas",
@@ -294,7 +318,13 @@ systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tege
   "settings": {
     "title": "Seaded",
     "language": "Keel",
-    "languageHint": "Valuuta määratakse teie aadressi riigi, mitte keele järgi."
+    "languageHint": "Valuuta määratakse teie aadressi riigi, mitte keele järgi.",
+    "history": "Ajalugu",
+    "plansTitle": "Ostud ja tellimus",
+    "singleCta": "Ostetud järgmise arvutuse käigus",
+    "singleNote": "Ühekordne ost tehakse siis, kui alustate uut arvutust — mitte siit.",
+    "terms": "Kasutustingimused",
+    "privacy": "Privaatsuspoliitika"
   },
   "chart": {
     "productionAria": "Kuu tootmine",
@@ -360,7 +390,7 @@ systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tege
       "selfConsumptionSource_simulated": "hinnanguline tarbimisprofiili põhjal",
       "longTermChartTitle": "Majanduslik väärtus ajas",
       "keyAssumptions": "Peamised arvutuseeldused",
-      priceMethodNote: "Elektri väärtused on arvutuseeldused. Omatarbitud ja müüdud päikeseelektri tegelik väärtus sõltub elektrilepingust, tasudest, maksudest, reeglitest ja turuolukorrast.",
+      "priceMethodNote": "Elektri väärtused on arvutuseeldused. Omatarbitud ja müüdud päikeseelektri tegelik väärtus sõltub elektrilepingust, tasudest, maksudest, reeglitest ja turuolukorrast.",
       "valueSource_standard-value": "Standardväärtus",
       "valueSource_user-override": "Sinu sisestatud",
       "priceChange": "Elektrihinna muutus",
@@ -438,7 +468,9 @@ systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tege
       "orientation_southeast": "Kagu",
       "orientation_southwest": "Edela",
       "orientation_east": "Ida",
-      "orientation_west": "Lääs"
+      "orientation_west": "Lääs",
+      "priceChangeNoteFlat": "Arvutuses kasutatakse kogu perioodi jooksul muutumatuid väärtusi omatarbitud ja eksporditud päikeseenergia kohta. Hinnatõusu ei eeldata, kuna tulevasi elektrihindu ei saa ennustada. Kui hinnad tõusevad, on väärtus selles aruandes toodust kõrgem; kui langevad, on see madalam.",
+      "priceChangeNoteTrend": "Arvutus eeldab, et omatarbitud ja eksporditud päikeseenergia väärtus muutub kogu perioodi jooksul {{priceChange}} % aastas. See on eeldus, kuna tulevasi elektrihindu ei saa ennustada. Teistsugune areng tähendab selles aruandes toodust kõrgemat või madalamat tulemust."
     },
     "title": "Päikesepaneelide aruanne",
     "technical": "Tehnilised andmed",
@@ -461,17 +493,102 @@ systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tege
     "generated": "Loodud",
     "faqTitle": "Korduma kippuvad küsimused",
     "faqItems": [
-      { "q": "Kui usaldusväärne on arvutatud päikesetoodang?", "a": "Arvutus põhineb asukoha päikesekiirgusel ning katuse suunal ja kaldenurgal. Tegelikku toodangut mõjutavad muu hulgas ilm, varjutus ja paigaldise tehnilised tingimused." },
-      { "q": "Mida tähendab oma tarbeks tarbimine?", "a": "Osa päikeseenergiast, mida kasutatakse otse kodus. Ülejäänud toodang suunatakse elektrivõrku." },
-      { "q": "Miks on oma tarbeks tarbitud päikeseenergia väärtuslikum kui müüdud päikeseenergia?", "a": "Oma tarbeks tarbitud päikeseenergia asendab elektrit, mis muidu ostetaks võrgust, samas kui müüdud päikeseenergia hüvitatakse võrku antud energia tingimuste kohaselt." },
-      { "q": "Mida tähendab hind valitud tasuvusaja kohta?", "a": "See näitab ligikaudu, kui palju võib paigaldus maksma minna, et see vastaks teie valitud tasuvusajale arvutuse eelduste põhjal. See ei ole hinnanguline turuhind." },
-      { "q": "Miks võib paigaldaja arvutus erineda?", "a": "Erinevad eeldused toodangu, oma tarbeks tarbimise, elektrihindade, süsteemikadude ja tulevase hinnamuutuse kohta võivad anda erinevaid tulemusi." },
-      { "q": "Kas arvutus on pakkumine?", "a": "Ei. Tulemus on hinnang ja seda tuleks kasutada otsuste tegemise alusena. Tegelik hind, toodang ja majanduslik tulemus võivad erineda." },
-      { q: 'Miks tootmine aja jooksul väheneb?', a: 'Päikesepaneelide võimsus väheneb aastate jooksul tavaliselt veidi. Arvutus lähtub aastasest 0,5 %-lisest degradeerumisest, mis tähendab, et arvutuslik tootmine väheneb kalkulatsiooniperioodi jooksul järk-järgult.' },
-      { q: 'Kuidas arvutatakse minu päikeseenergia väärtus?', a: 'Omatarbitud päikeseenergiat hinnatakse elektri hinna järgi, mida muidu oleksite pidanud ostma. Müüdud päikeseenergiat hinnatakse eeldatava tasu järgi võrku antud elektri eest.' },
-      { q: 'Mida tähendab tootmiskulu kWh kohta?', a: 'Tootmiskulu näitab arvutuslikku keskmist kulu iga toodetud kilovatt-tunni kohta seadme eluea jooksul. Seda saab võrrelda päikeseenergia arvutusliku majandusliku väärtusega.' },
-      { q: 'Miks soovitatakse just seda seadme suurust?', a: 'Seadme suurus arvutatakse muu hulgas teie elektritarbimise, asukoha päikesekiirguse ja tehniliste piirangute alusel. Eesmärk on mõõtu anda seade vastavalt teie oludele, mitte paigaldada võimalikult suurt seadet.' },
-    ],
-
+      {
+        "q": "Kui usaldusväärne on arvutatud päikesetoodang?",
+        "a": "Arvutus põhineb asukoha päikesekiirgusel ning katuse suunal ja kaldenurgal. Tegelikku toodangut mõjutavad muu hulgas ilm, varjutus ja paigaldise tehnilised tingimused."
+      },
+      {
+        "q": "Mida tähendab oma tarbeks tarbimine?",
+        "a": "Osa päikeseenergiast, mida kasutatakse otse kodus. Ülejäänud toodang suunatakse elektrivõrku."
+      },
+      {
+        "q": "Miks on oma tarbeks tarbitud päikeseenergia väärtuslikum kui müüdud päikeseenergia?",
+        "a": "Oma tarbeks tarbitud päikeseenergia asendab elektrit, mis muidu ostetaks võrgust, samas kui müüdud päikeseenergia hüvitatakse võrku antud energia tingimuste kohaselt."
+      },
+      {
+        "q": "Mida tähendab hind valitud tasuvusaja kohta?",
+        "a": "See näitab ligikaudu, kui palju võib paigaldus maksma minna, et see vastaks teie valitud tasuvusajale arvutuse eelduste põhjal. See ei ole hinnanguline turuhind."
+      },
+      {
+        "q": "Miks võib paigaldaja arvutus erineda?",
+        "a": "Erinevad eeldused toodangu, oma tarbeks tarbimise, elektrihindade, süsteemikadude ja tulevase hinnamuutuse kohta võivad anda erinevaid tulemusi."
+      },
+      {
+        "q": "Kas arvutus on pakkumine?",
+        "a": "Ei. Tulemus on hinnang ja seda tuleks kasutada otsuste tegemise alusena. Tegelik hind, toodang ja majanduslik tulemus võivad erineda."
+      },
+      {
+        "q": "Miks tootmine aja jooksul väheneb?",
+        "a": "Päikesepaneelide võimsus väheneb aastate jooksul tavaliselt veidi. Arvutus lähtub aastasest 0,5 %-lisest degradeerumisest, mis tähendab, et arvutuslik tootmine väheneb kalkulatsiooniperioodi jooksul järk-järgult."
+      },
+      {
+        "q": "Kuidas arvutatakse minu päikeseenergia väärtus?",
+        "a": "Omatarbitud päikeseenergiat hinnatakse elektri hinna järgi, mida muidu oleksite pidanud ostma. Müüdud päikeseenergiat hinnatakse eeldatava tasu järgi võrku antud elektri eest."
+      },
+      {
+        "q": "Mida tähendab tootmiskulu kWh kohta?",
+        "a": "Tootmiskulu näitab arvutuslikku keskmist kulu iga toodetud kilovatt-tunni kohta seadme eluea jooksul. Seda saab võrrelda päikeseenergia arvutusliku majandusliku väärtusega."
+      },
+      {
+        "q": "Miks soovitatakse just seda seadme suurust?",
+        "a": "Seadme suurus arvutatakse muu hulgas teie elektritarbimise, asukoha päikesekiirguse ja tehniliste piirangute alusel. Eesmärk on mõõtu anda seade vastavalt teie oludele, mitte paigaldada võimalikult suurt seadet."
+      }
+    ]
+  },
+  "premium": {
+    "title": "Premium",
+    "restore": "Taasta ost",
+    "manage": "Halda tellimust",
+    "unavailable": "Ostud tehakse iOS-i rakenduses App Store'i kaudu.",
+    "restored": "Teie ostud on taastatud ({{count}}).",
+    "active": "Premium aktiivne",
+    "activeHint": "Piiramatud arvutused ja aruanded",
+    "become": "Hangi Premium",
+    "becomeHint": "Piiramatud arvutused – {{price}}/aastas",
+    "activated": "Premium on nüüd aktiivne.",
+    "restoredPremium": "Teie Premium on taastatud.",
+    "nothingToRestore": "Sellest seadmest ei leitud ühtegi ostu.",
+    "restoreFailed": "Oste ei õnnestunud praegu taastada."
+  },
+  "paywall": {
+    "single": {
+      "title": "Üks arvutus",
+      "body": "Avage selle arvutuse täielik tulemus ja PDF-aruanne.",
+      "cta": "Ava hinnaga {{price}}"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{{price}}/aastas",
+      "body": "Piiramatud arvutused ja PDF-aruanded.",
+      "includes": {
+        "calculations": "Piiramatud arvutused",
+        "pdf": "Piiramatud PDF-aruanded",
+        "result": "Täielik juurdepääs tulemusele"
+      },
+      "cta": "Hangi Premium",
+      "renewal": "Uueneb automaatselt igal aastal. Tühistage igal ajal."
+    },
+    "title": "Avage oma arvutus",
+    "eyebrow": "Ühekordne ost",
+    "oneTime": "Makstud üks kord — ilma tellimuseta.",
+    "includesTitle": "Mis sisaldub",
+    "includes": {
+      "result": "Teie täielik arvutus koos majanduse ja tootmisega",
+      "pdf": "PDF-aruanne salvestamiseks või jagamiseks",
+      "history": "Arvutus salvestatakse teie ajalukku"
+    },
+    "cta": "Ava hinnaga {{price}}",
+    "purchasing": "App Store'i avamine…",
+    "verifying": "Ostu kinnitamine…",
+    "cancelled": "Ost tühistati. Võite uuesti proovida.",
+    "failed": "Ostu ei õnnestunud lõpule viia. Teilt ei võetud tasu.",
+    "retry": "Praegu ei õnnestunud ostu kinnitada. Miski pole kadunud — see avaneb automaatselt, kui ühendus taastub.",
+    "appOnly": "Ost tehakse rakenduses teie Apple kontoga ega ole brauseris saadaval.",
+    "appleNote": "Käsitleb App Store."
+  },
+  "history": {
+    "empty": "Teil pole veel salvestatud arvutusi.",
+    "unknownAddress": "Arvutus",
+    "error": "Teie ajalugu ei õnnestunud laadida."
   }
 } as const;

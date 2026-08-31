@@ -37,7 +37,7 @@ export const de = {
     "coordinates": "Koordinaten",
     "country": "Land",
     "region": "Region",
-"error": "Die Adresssuche ist fehlgeschlagen.",
+    "error": "Die Adresssuche ist fehlgeschlagen.",
     "info": "Die Adresse wird ausschließlich verwendet, um die Sonneneinstrahlung an Ihrem Standort zu berechnen.",
     "infoLabel": "Weitere Informationen zur Adresse"
   },
@@ -66,7 +66,7 @@ export const de = {
     "fetching": "Ruft Solarertragsdaten von PVGIS ab…",
     "result": "Berechneter Solarertrag am Standort",
     "unit": "kWh/kWp/Jahr",
-    disclaimer: "Die berechnete Solarproduktion basiert auf Standort, Ausrichtung und Dachneigung. Die tatsächliche Produktion kann u. a. durch Verschattung, Wetter, Temperatur und Systemverluste beeinflusst werden.",
+    "disclaimer": "Die berechnete Solarproduktion basiert auf Standort, Ausrichtung und Dachneigung. Die tatsächliche Produktion kann u. a. durch Verschattung, Wetter, Temperatur und Systemverluste beeinflusst werden.",
     "error": "Wir konnten die Solarertragsdaten für diesen Standort derzeit nicht abrufen. Es werden keine Werte geschätzt."
   },
   "consumption": {
@@ -107,7 +107,16 @@ export const de = {
       "successMonthly": "Wir haben 12 Monatswerte gefunden und für Sie eingetragen.",
       "successAnnual": "Wir haben einen Jahresverbrauch im Dokument gefunden.",
       "error": "Wir konnten keinen Verbrauch im Dokument finden. Bitte geben Sie die Werte manuell ein.",
-      "fileTypes": "PDF, XLSX, XLS, CSV, TXT oder Bild (PNG, JPEG)"
+      "fileTypes": "PDF, XLSX, XLS, CSV, TXT oder Bild (PNG, JPEG)",
+      "sectionTitle": "Aus einem Dokument",
+      "sectionHint": "Lass uns deine Stromrechnung oder Verbrauchsdaten automatisch auslesen.",
+      "dropHint": "Ziehe deine Datei hierher, oder",
+      "dropActive": "Lass die Datei los, um sie zu lesen",
+      "browse": "Dateien durchsuchen",
+      "remove": "Entfernen",
+      "retry": "Andere Datei versuchen",
+      "readingFile": "Lese {{name}}…",
+      "ready": "Importiert"
     },
     "title": "Wie viel Strom verbrauchen Sie?",
     "subtitle": "Schauen Sie auf Ihre Stromrechnung oder Ihren Stromvertrag.",
@@ -116,7 +125,13 @@ export const de = {
     "useMonthly": "Monatsverbrauch für bessere Präzision angeben",
     "monthlyTitle": "Monatsverbrauch",
     "total": "Gesamter Jahresverbrauch",
-    "invalid": "Geben Sie einen Jahresverbrauch zwischen 100 und 200.000 kWh ein."
+    "invalid": "Geben Sie einen Jahresverbrauch zwischen 100 und 200.000 kWh ein.",
+    "or": "oder",
+    "manual": {
+      "sectionTitle": "Manuell eingeben",
+      "sectionHint": "Gib deinen Jahresverbrauch ein — prüfe deine Stromrechnung oder deinen Vertrag."
+    },
+    "monthlyHint": "Gib den Verbrauch für alle 12 Monate ein"
   },
   "fuse": {
     "gridAssumption": "Die Berechnung geht von 400 V Dreiphasenanschluss aus.",
@@ -179,20 +194,20 @@ export const de = {
     "productionCaption": "geschätzte Jahresproduktion",
     "annualSavings": "Jährlicher wirtschaftlicher Wert",
     "assumedPrices": "Angenommene Strompreise",
-    standardValueBadge: "Standardwert",
-    resetToStandard: "Auf Standardwert zurücksetzen",
-    userValueBadge: "Von Ihnen angegeben",
-    priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
-    priceScenarioFlat: "Unchanged",
-    priceScenarioCautious: "Cautious",
-    priceScenarioNormal: "Normal",
-    priceScenarioHigh: "High",
-    priceScenarioCustom: "Own assumption",
-    priceScenarioCustomLabel: "Own change (%/year)",
-    degradationAssumption: "Technische Degradation",
-    priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Standardwerte für die Berechnung. Passen Sie sie an die Werte Ihres eigenen Stromvertrags an, um ein individuelleres Ergebnis zu erhalten.",
+    "standardValueBadge": "Standardwert",
+    "resetToStandard": "Auf Standardwert zurücksetzen",
+    "userValueBadge": "Von Ihnen angegeben",
+    "priceScenarioTitle": "Wie werden sich deiner Meinung nach die Strompreise entwickeln?",
+    "priceScenarioHint": "Eine Annahme über die jährliche Änderung, keine Prognose. Der Preis wird über den Berechnungszeitraum Jahr für Jahr angehoben.",
+    "priceScenarioFlat": "Unverändert",
+    "priceScenarioCautious": "Vorsichtig",
+    "priceScenarioNormal": "Normal",
+    "priceScenarioHigh": "Hoch",
+    "priceScenarioCustom": "Eigene Annahme",
+    "priceScenarioCustomLabel": "Eigene Änderung (%/Jahr)",
+    "degradationAssumption": "Technische Degradation",
+    "priceScenarioAssumption": "Angenommene Strompreisentwicklung",
+    "standardValueHint": "Standardwerte für die Berechnung. Passen Sie sie an die Werte Ihres eigenen Stromvertrags an, um ein individuelleres Ergebnis zu erhalten.",
     "editable": "Anpassbar",
     "editableTooltip": "Annahme ändern",
     "fuseLimit": "Theoretische Leistungsgrenze durch Hauptsicherung",
@@ -252,14 +267,12 @@ export const de = {
     "paybackInfo": "Die einfache Amortisationszeit zeigt, wie viele Jahre der geschätzte jährliche wirtschaftliche Wert der Investition entspricht. Die Berechnung berücksichtigt keine zukünftigen Strompreisänderungen, Finanzierungskosten, Inflation, Wartung oder Diskontierung.",
     "maxInvestment": "Investitionsniveau bei gewählter Amortisationszeit",
     "maxInvestmentApprox": "ca. {{amount}}",
-    investmentLevelInfoLabel: "Weitere Informationen",
-    investmentLevelInfo: "Zeigt ungefähr, welche Investitionskosten der von Ihnen gewählten Amortisationszeit entsprechen. Es handelt sich nicht um eine Schätzung der tatsächlichen Installationskosten. Der tatsächliche Preis hängt unter anderem vom Dach, der Installation, den Komponenten und dem Anbieter ab.",
-    systemSizeInfoLabel: "Weitere Informationen",
-systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. Tatsächliche Produktion, Eigenverbrauch, Strompreis, Vergütung, Installationskosten und wirtschaftliches Ergebnis können abweichen. Das Ergebnis stellt kein Angebot und keine Garantie dar.",
-    productionCostInfoLabel: "Weitere Informationen",
-    productionCostInfo: "Die Produktionskosten sind ein berechneter durchschnittlicher Preis pro erzeugter kWh über die Lebensdauer der Anlage. Die tatsächlichen Kosten können durch Produktion, Degradation, Wartung und andere zukünftige Kosten beeinflusst werden.",
-
-
+    "investmentLevelInfoLabel": "Weitere Informationen",
+    "investmentLevelInfo": "Zeigt ungefähr, welche Investitionskosten der von Ihnen gewählten Amortisationszeit entsprechen. Es handelt sich nicht um eine Schätzung der tatsächlichen Installationskosten. Der tatsächliche Preis hängt unter anderem vom Dach, der Installation, den Komponenten und dem Anbieter ab.",
+    "systemSizeInfoLabel": "Weitere Informationen",
+    "systemSizeInfo": "Die Berechnung ist eine Schätzung und dient als Orientierung. Tatsächliche Produktion, Eigenverbrauch, Strompreis, Vergütung, Installationskosten und wirtschaftliches Ergebnis können abweichen. Das Ergebnis stellt kein Angebot und keine Garantie dar.",
+    "productionCostInfoLabel": "Weitere Informationen",
+    "productionCostInfo": "Die Produktionskosten sind ein berechneter durchschnittlicher Preis pro erzeugter kWh über die Lebensdauer der Anlage. Die tatsächlichen Kosten können durch Produktion, Degradation, Wartung und andere zukünftige Kosten beeinflusst werden.",
     "maxInvestmentExplainer": "Um eine einfache Amortisationszeit von etwa {{years}} Jahren zu erreichen, sollten die Installationskosten höchstens etwa {{amount}} betragen.",
     "maxInvestmentNote": "Der Betrag ist eine Berechnung basierend auf Ihren Eingaben und Kalkulationsannahmen – kein Angebot oder eine Schätzung des Marktpreises.",
     "missingMarketValues": "Wir haben keinen verifizierten Standardwert für dieses Land. Bitte geben Sie die Werte unten selbst ein.",
@@ -284,7 +297,18 @@ systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. 
     "limitedByFuse": "Die Anlage wird durch Ihre Hauptsicherung begrenzt, nicht durch Ihren Verbrauch.",
     "dataSource": "Datenquelle Solarstromproduktion",
     "calculatedAt": "Berechnungsdatum",
-    "noCalculation": "Keine Berechnung gefunden. Beginnen Sie erneut bei der Adresse."
+    "noCalculation": "Keine Berechnung gefunden. Beginnen Sie erneut bei der Adresse.",
+    "paybackYearsUnit": "Jahre",
+    "productionCostTitle": "Was kostet Solarstrom von deinem Dach?",
+    "productionCostExplainer": "Wir teilen die Kosten der Anlage durch die geschätzte Produktion über den gesamten Berechnungszeitraum.",
+    "productionCostLabel": "Erzeugungskosten",
+    "productionCostValueLabel": "Wert für dich",
+    "productionCostDifference": "Differenz",
+    "productionCostBasis": "Basierend auf {{investment}} und {{production}} kWh über {{years}} Jahre.",
+    "productionCostHigherValue": "In dieser Berechnung ist jede kWh mehr wert, als sie zu erzeugen kostet.",
+    "productionCostUnavailable": "Wir können die Erzeugungskosten mit den aktuellen Daten nicht berechnen.",
+    "perKwh": "{{amount}}/kWh",
+    "locked": "Diese Berechnung ist gesperrt. Schließe den Kauf ab, um das Ergebnis zu sehen."
   },
   "units": {
     "kwhPerYear": "kWh/Jahr",
@@ -294,7 +318,13 @@ systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. 
   "settings": {
     "title": "Einstellungen",
     "language": "Sprache",
-    "languageHint": "Die Währung richtet sich nach dem Land Ihrer Adresse, nicht nach der Sprache."
+    "languageHint": "Die Währung richtet sich nach dem Land Ihrer Adresse, nicht nach der Sprache.",
+    "history": "Verlauf",
+    "plansTitle": "Käufe und Abo",
+    "singleCta": "Wird bei deiner nächsten Berechnung gekauft",
+    "singleNote": "Der Einmalkauf erfolgt, wenn du eine neue Berechnung startest — nicht von hier aus.",
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutzerklärung"
   },
   "chart": {
     "productionAria": "Monatliche Produktion",
@@ -360,7 +390,7 @@ systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. 
       "selfConsumptionSource_simulated": "Aus Verbrauchsprofil geschätzt",
       "longTermChartTitle": "Wirtschaftlicher Wert im Zeitverlauf",
       "keyAssumptions": "Wichtigste Kalkulationsannahmen",
-      priceMethodNote: "Die Stromwerte sind Kalkulationsannahmen. Der tatsächliche Wert von eigenverbrauchtem und eingespeistem Solarstrom hängt von Stromvertrag, Entgelten, Steuern, Regeln und Marktbedingungen ab.",
+      "priceMethodNote": "Die Stromwerte sind Kalkulationsannahmen. Der tatsächliche Wert von eigenverbrauchtem und eingespeistem Solarstrom hängt von Stromvertrag, Entgelten, Steuern, Regeln und Marktbedingungen ab.",
       "valueSource_standard-value": "Standardwert",
       "valueSource_user-override": "Von Ihnen angegeben",
       "priceChange": "Strompreisänderung",
@@ -438,7 +468,9 @@ systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. 
       "orientation_southeast": "Südost",
       "orientation_southwest": "Südwest",
       "orientation_east": "Ost",
-      "orientation_west": "West"
+      "orientation_west": "West",
+      "priceChangeNoteFlat": "Die Berechnung verwendet über den gesamten Zeitraum unveränderte Werte für selbst verbrauchten und eingespeisten Solarstrom. Es wird keine Preissteigerung angenommen, da zukünftige Strompreise nicht vorhersehbar sind. Steigen die Preise, ist der Wert höher als in diesem Bericht; fallen sie, ist er niedriger.",
+      "priceChangeNoteTrend": "Die Berechnung geht davon aus, dass sich der Wert von selbst verbrauchtem und eingespeistem Solarstrom über den gesamten Zeitraum jährlich um {{priceChange}} % ändert. Dies ist eine Annahme, da zukünftige Strompreise nicht vorhersehbar sind. Eine andere Entwicklung führt zu einem höheren oder niedrigeren Ergebnis als in diesem Bericht."
     },
     "title": "Solarbericht",
     "technical": "Technische Daten",
@@ -461,17 +493,102 @@ systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. 
     "generated": "Erstellt",
     "faqTitle": "Häufig gestellte Fragen",
     "faqItems": [
-      { "q": "Wie sicher ist die berechnete Solarproduktion?", "a": "Die Berechnung basiert auf der Sonneneinstrahlung am Standort sowie der Ausrichtung und Neigung des Dachs. Die tatsächliche Produktion wird unter anderem durch Wetter, Verschattung und die technischen Gegebenheiten der Anlage beeinflusst." },
-      { "q": "Was bedeutet Eigenverbrauch?", "a": "Der Anteil des Solarstroms, der direkt im Haushalt verbraucht wird. Die übrige Produktion wird ins Stromnetz eingespeist." },
-      { "q": "Warum ist selbst verbrauchter Solarstrom mehr wert als verkaufter Solarstrom?", "a": "Selbst verbrauchter Solarstrom ersetzt Strom, der sonst aus dem Netz gekauft werden müsste, während verkaufter Solarstrom nach den Bedingungen für eingespeisten Strom vergütet wird." },
-      { "q": "Was bedeutet der Preis für die gewählte Amortisationszeit?", "a": "Er zeigt ungefähr, wie viel die Anlage kosten darf, um der von Ihnen gewählten Amortisationszeit zu entsprechen, basierend auf den Annahmen der Kalkulation. Es ist kein geschätzter Marktpreis." },
-      { "q": "Warum kann die Berechnung des Installateurs abweichen?", "a": "Unterschiedliche Annahmen zu Produktion, Eigenverbrauch, Strompreisen, Systemverlusten und zukünftiger Preisentwicklung können zu unterschiedlichen Ergebnissen führen." },
-      { "q": "Ist die Berechnung ein Angebot?", "a": "Nein. Das Ergebnis ist eine Schätzung und dient als Entscheidungsgrundlage. Tatsächlicher Preis, Produktion und wirtschaftliches Ergebnis können abweichen." },
-      { q: 'Warum sinkt die Produktion im Laufe der Zeit?', a: 'Die Leistung von Solarmodulen nimmt mit den Jahren normalerweise etwas ab. Die Berechnung geht von einer jährlichen Degradation von 0,5 % aus, was bedeutet, dass die berechnete Produktion im Laufe des Kalkulationszeitraums allmählich abnimmt.' },
-      { q: 'Wie wird der Wert meines Solarstroms berechnet?', a: 'Selbst genutzter Solarstrom wird anhand der Kosten für den Strom bewertet, den Sie andernfalls hätten kaufen müssen. Verkaufter Solarstrom wird anhand der angenommenen Vergütung für den ins Netz eingespeisten Strom bewertet.' },
-      { q: 'Was bedeutet Produktionskosten pro kWh?', a: 'Die Produktionskosten zeigen die berechneten durchschnittlichen Kosten für jede erzeugte Kilowattstunde über die Lebensdauer der Anlage. Sie können mit dem berechneten wirtschaftlichen Wert des Solarstroms verglichen werden.' },
-      { q: 'Warum wird gerade diese Anlagengröße empfohlen?', a: 'Die Anlagengröße wird unter anderem auf Basis Ihres Stromverbrauchs, der Sonneneinstrahlung am Standort und technischer Begrenzungen berechnet. Ziel ist es, die Anlage nach Ihren Gegebenheiten zu dimensionieren, nicht die größtmögliche Anlage zu installieren.' },
-    ],
-
+      {
+        "q": "Wie sicher ist die berechnete Solarproduktion?",
+        "a": "Die Berechnung basiert auf der Sonneneinstrahlung am Standort sowie der Ausrichtung und Neigung des Dachs. Die tatsächliche Produktion wird unter anderem durch Wetter, Verschattung und die technischen Gegebenheiten der Anlage beeinflusst."
+      },
+      {
+        "q": "Was bedeutet Eigenverbrauch?",
+        "a": "Der Anteil des Solarstroms, der direkt im Haushalt verbraucht wird. Die übrige Produktion wird ins Stromnetz eingespeist."
+      },
+      {
+        "q": "Warum ist selbst verbrauchter Solarstrom mehr wert als verkaufter Solarstrom?",
+        "a": "Selbst verbrauchter Solarstrom ersetzt Strom, der sonst aus dem Netz gekauft werden müsste, während verkaufter Solarstrom nach den Bedingungen für eingespeisten Strom vergütet wird."
+      },
+      {
+        "q": "Was bedeutet der Preis für die gewählte Amortisationszeit?",
+        "a": "Er zeigt ungefähr, wie viel die Anlage kosten darf, um der von Ihnen gewählten Amortisationszeit zu entsprechen, basierend auf den Annahmen der Kalkulation. Es ist kein geschätzter Marktpreis."
+      },
+      {
+        "q": "Warum kann die Berechnung des Installateurs abweichen?",
+        "a": "Unterschiedliche Annahmen zu Produktion, Eigenverbrauch, Strompreisen, Systemverlusten und zukünftiger Preisentwicklung können zu unterschiedlichen Ergebnissen führen."
+      },
+      {
+        "q": "Ist die Berechnung ein Angebot?",
+        "a": "Nein. Das Ergebnis ist eine Schätzung und dient als Entscheidungsgrundlage. Tatsächlicher Preis, Produktion und wirtschaftliches Ergebnis können abweichen."
+      },
+      {
+        "q": "Warum sinkt die Produktion im Laufe der Zeit?",
+        "a": "Die Leistung von Solarmodulen nimmt mit den Jahren normalerweise etwas ab. Die Berechnung geht von einer jährlichen Degradation von 0,5 % aus, was bedeutet, dass die berechnete Produktion im Laufe des Kalkulationszeitraums allmählich abnimmt."
+      },
+      {
+        "q": "Wie wird der Wert meines Solarstroms berechnet?",
+        "a": "Selbst genutzter Solarstrom wird anhand der Kosten für den Strom bewertet, den Sie andernfalls hätten kaufen müssen. Verkaufter Solarstrom wird anhand der angenommenen Vergütung für den ins Netz eingespeisten Strom bewertet."
+      },
+      {
+        "q": "Was bedeutet Produktionskosten pro kWh?",
+        "a": "Die Produktionskosten zeigen die berechneten durchschnittlichen Kosten für jede erzeugte Kilowattstunde über die Lebensdauer der Anlage. Sie können mit dem berechneten wirtschaftlichen Wert des Solarstroms verglichen werden."
+      },
+      {
+        "q": "Warum wird gerade diese Anlagengröße empfohlen?",
+        "a": "Die Anlagengröße wird unter anderem auf Basis Ihres Stromverbrauchs, der Sonneneinstrahlung am Standort und technischer Begrenzungen berechnet. Ziel ist es, die Anlage nach Ihren Gegebenheiten zu dimensionieren, nicht die größtmögliche Anlage zu installieren."
+      }
+    ]
+  },
+  "premium": {
+    "title": "Premium",
+    "restore": "Kauf wiederherstellen",
+    "manage": "Abo verwalten",
+    "unavailable": "Käufe werden in der iOS-App über den App Store abgewickelt.",
+    "restored": "Deine Käufe wurden wiederhergestellt ({{count}}).",
+    "active": "Premium aktiv",
+    "activeHint": "Unbegrenzte Berechnungen und Berichte",
+    "become": "Premium holen",
+    "becomeHint": "Unbegrenzte Berechnungen – {{price}}/Jahr",
+    "activated": "Premium ist jetzt aktiv.",
+    "restoredPremium": "Dein Premium wurde wiederhergestellt.",
+    "nothingToRestore": "Wir haben keine Käufe auf diesem Gerät gefunden.",
+    "restoreFailed": "Käufe konnten gerade nicht wiederhergestellt werden."
+  },
+  "paywall": {
+    "single": {
+      "title": "Eine Berechnung",
+      "body": "Schalte das vollständige Ergebnis und den PDF-Bericht für diese Berechnung frei.",
+      "cta": "Für {{price}} freischalten"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{{price}}/Jahr",
+      "body": "Unbegrenzte Berechnungen und PDF-Berichte.",
+      "includes": {
+        "calculations": "Unbegrenzte Berechnungen",
+        "pdf": "Unbegrenzte PDF-Berichte",
+        "result": "Voller Zugriff auf das Ergebnis"
+      },
+      "cta": "Premium holen",
+      "renewal": "Verlängert sich automatisch jährlich. Jederzeit kündbar."
+    },
+    "title": "Schalte deine Berechnung frei",
+    "eyebrow": "Einmalkauf",
+    "oneTime": "Einmalig bezahlt — kein Abo.",
+    "includesTitle": "Was enthalten ist",
+    "includes": {
+      "result": "Deine vollständige Berechnung mit Wirtschaftlichkeit und Produktion",
+      "pdf": "PDF-Bericht zum Speichern oder Teilen",
+      "history": "Die Berechnung wird in deinem Verlauf gespeichert"
+    },
+    "cta": "Für {{price}} freischalten",
+    "purchasing": "App Store wird geöffnet…",
+    "verifying": "Kauf wird bestätigt…",
+    "cancelled": "Der Kauf wurde abgebrochen. Du kannst es erneut versuchen.",
+    "failed": "Der Kauf konnte nicht abgeschlossen werden. Es wurde dir nichts berechnet.",
+    "retry": "Wir konnten den Kauf gerade nicht bestätigen. Es geht nichts verloren — er wird automatisch freigeschaltet, sobald die Verbindung wieder funktioniert.",
+    "appOnly": "Der Kauf erfolgt in der App mit deinem Apple-Konto und ist im Browser nicht verfügbar.",
+    "appleNote": "Wird vom App Store abgewickelt."
+  },
+  "history": {
+    "empty": "Du hast noch keine gespeicherten Berechnungen.",
+    "unknownAddress": "Berechnung",
+    "error": "Dein Verlauf konnte nicht geladen werden."
   }
 } as const;

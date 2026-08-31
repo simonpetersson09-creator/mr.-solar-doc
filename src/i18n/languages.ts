@@ -85,3 +85,15 @@ export function resolveLocale(
   const region = (countryCode ?? "").toUpperCase() || LANGUAGE_DEFAULT_REGION[language];
   return `${language}-${region}`;
 }
+
+/** Regional-indicator flag emoji for an ISO 3166-1 alpha-2 country code. */
+export function countryFlagEmoji(countryCode: string): string {
+  const code = countryCode.trim().toUpperCase();
+  if (!/^[A-Z]{2}$/.test(code)) return "";
+  return String.fromCodePoint(...[...code].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65));
+}
+
+/** Flag shown next to a language in the picker. */
+export function languageFlagEmoji(language: SupportedLanguage): string {
+  return countryFlagEmoji(LANGUAGE_DEFAULT_REGION[language]);
+}

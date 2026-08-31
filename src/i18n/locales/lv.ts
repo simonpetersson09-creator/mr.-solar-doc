@@ -37,7 +37,7 @@ export const lv = {
     "coordinates": "Koordinātes",
     "country": "Valsts",
     "region": "Reģions",
-"error": "Adreses meklēšana neizdevās.",
+    "error": "Adreses meklēšana neizdevās.",
     "info": "Adrese tiek izmantota tikai saules starojuma aprēķināšanai jūsu atrašanās vietā.",
     "infoLabel": "Vairāk informācijas par adresi"
   },
@@ -66,7 +66,7 @@ export const lv = {
     "fetching": "Iegūst saules ražošanas datus no PVGIS…",
     "result": "Aprēķinātā saules enerģijas ražošana objektā",
     "unit": "kWh/kWp/gadā",
-    disclaimer: "Aprēķinātā saules enerģijas ražošana balstās uz atrašanās vietu, orientāciju un jumta slīpumu. Faktisko ražošanu var ietekmēt, piemēram, ēnojums, laikapstākļi, temperatūra un sistēmas zudumi.",
+    "disclaimer": "Aprēķinātā saules enerģijas ražošana balstās uz atrašanās vietu, orientāciju un jumta slīpumu. Faktisko ražošanu var ietekmēt, piemēram, ēnojums, laikapstākļi, temperatūra un sistēmas zudumi.",
     "error": "Pašlaik nevarējām iegūt saules enerģijas ražošanas datus šai vietai. Vērtības netiek minētas."
   },
   "consumption": {
@@ -107,7 +107,16 @@ export const lv = {
       "successMonthly": "Mēs atradām 12 mēnešu vērtības un aizpildījām tās jūsu vietā.",
       "successAnnual": "Mēs atradām gada patēriņu dokumentā.",
       "error": "Mēs nevarējām atrast patēriņu dokumentā. Lūdzu, ievadiet vērtības manuāli.",
-      "fileTypes": "PDF, XLSX, XLS, CSV, TXT vai attēls (PNG, JPEG)"
+      "fileTypes": "PDF, XLSX, XLS, CSV, TXT vai attēls (PNG, JPEG)",
+      "sectionTitle": "No dokumenta",
+      "sectionHint": "Ļaujiet mums automātiski nolasīt jūsu elektrības rēķinu vai patēriņa datus.",
+      "dropHint": "Ievelciet failu šeit vai",
+      "dropActive": "Atlaidiet failu, lai to nolasītu",
+      "browse": "pārlūkot failus",
+      "remove": "Noņemt",
+      "retry": "Mēģināt citu failu",
+      "readingFile": "Nolasa {{name}}…",
+      "ready": "Importēts"
     },
     "title": "Cik daudz elektroenerģijas jūs patērējat?",
     "subtitle": "Pārbaudiet savu elektrības rēķinu vai līgumu.",
@@ -116,7 +125,13 @@ export const lv = {
     "useMonthly": "Ievadiet mēneša patēriņu precīzākam rezultātam",
     "monthlyTitle": "Mēneša patēriņš",
     "total": "Kopējais gada patēriņš",
-    "invalid": "Ievadiet gada patēriņu no 100 līdz 200 000 kWh."
+    "invalid": "Ievadiet gada patēriņu no 100 līdz 200 000 kWh.",
+    "or": "vai",
+    "manual": {
+      "sectionTitle": "Ievadīt manuāli",
+      "sectionHint": "Ievadiet savu gada patēriņu — pārbaudiet elektrības rēķinu vai līgumu."
+    },
+    "monthlyHint": "Ievadiet patēriņu visiem 12 mēnešiem"
   },
   "fuse": {
     "gridAssumption": "Aprēķins balstās uz 400 V trīsfāžu pieslēgumu.",
@@ -179,20 +194,20 @@ export const lv = {
     "productionCaption": "aplēstā gada ražošana",
     "annualSavings": "Ekonomiskā vērtība gadā",
     "assumedPrices": "Pieņemtie elektroenerģijas tarifi",
-    standardValueBadge: "Standarta vērtība",
-    resetToStandard: "Atjaunot standarta vērtību",
-    userValueBadge: "Jūsu ievadīts",
-    priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
-    priceScenarioFlat: "Unchanged",
-    priceScenarioCautious: "Cautious",
-    priceScenarioNormal: "Normal",
-    priceScenarioHigh: "High",
-    priceScenarioCustom: "Own assumption",
-    priceScenarioCustomLabel: "Own change (%/year)",
-    degradationAssumption: "Tehniskā degradācija",
-    priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Aprēķina standarta vērtības. Nomainiet tās pret savā elektroenerģijas līgumā norādītajām vērtībām, lai iegūtu individuālāku rezultātu.",
+    "standardValueBadge": "Standarta vērtība",
+    "resetToStandard": "Atjaunot standarta vērtību",
+    "userValueBadge": "Jūsu ievadīts",
+    "priceScenarioTitle": "Kā, jūsuprāt, mainīsies elektrības cenas?",
+    "priceScenarioHint": "Pieņēmums par gada izmaiņām, nevis prognoze. Cena tiek palielināta gadu no gada visā aprēķina periodā.",
+    "priceScenarioFlat": "Nemainīgs",
+    "priceScenarioCautious": "Piesardzīgs",
+    "priceScenarioNormal": "Normal",
+    "priceScenarioHigh": "Augsts",
+    "priceScenarioCustom": "Savs pieņēmums",
+    "priceScenarioCustomLabel": "Sava izmaiņa (%/gadā)",
+    "degradationAssumption": "Tehniskā degradācija",
+    "priceScenarioAssumption": "Pieņemtā elektrības cenas attīstība",
+    "standardValueHint": "Aprēķina standarta vērtības. Nomainiet tās pret savā elektroenerģijas līgumā norādītajām vērtībām, lai iegūtu individuālāku rezultātu.",
     "editable": "Rediģējams",
     "editableTooltip": "Mainīt pieņēmumu",
     "fuseLimit": "Teorētiskā jaudas robeža no galvenā drošinātāja",
@@ -252,14 +267,12 @@ export const lv = {
     "paybackInfo": "Vienkāršs atmaksas periods parāda, cik gados aprēķinātā gada ekonomiskā vērtība atbilst investīcijai. Aprēķins neņem vērā, piemēram, nākotnes elektroenerģijas cenu izmaiņas, finansēšanas izmaksas, inflāciju, uzturēšanu vai diskontēšanu.",
     "maxInvestment": "Investīciju līmenis izvēlētajā atmaksas periodā",
     "maxInvestmentApprox": "apmēram {{amount}}",
-    investmentLevelInfoLabel: "Vairāk informācijas",
-    investmentLevelInfo: "Aptuveni parāda, kādas investīciju izmaksas atbilst jūsu izvēlētajam atmaksāšanās periodam. Tas nav aprēķins par to, cik instalācija patiesībā maksā. Faktiskā cena cita starpā ir atkarīga no jumta, uzstādīšanas, komponentiem un piegādātāja.",
-    systemSizeInfoLabel: "Vairāk informācijas",
-systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā ražošana, pašpatēriņš, elektroenerģijas cena, atlīdzība, uzstādīšanas izmaksas un ekonomiskais rezultāts var atšķirties. Rezultāts nav piedāvājums vai garantija.",
-    productionCostInfoLabel: "Vairāk informācijas",
-    productionCostInfo: "Ražošanas izmaksas ir aprēķinātās vidējās izmaksas par saražoto kWh visā sistēmas kalpošanas laikā. Faktiskās izmaksas var ietekmēt ražošana, degradācija, apkope un citas nākotnes izmaksas.",
-
-
+    "investmentLevelInfoLabel": "Vairāk informācijas",
+    "investmentLevelInfo": "Aptuveni parāda, kādas investīciju izmaksas atbilst jūsu izvēlētajam atmaksāšanās periodam. Tas nav aprēķins par to, cik instalācija patiesībā maksā. Faktiskā cena cita starpā ir atkarīga no jumta, uzstādīšanas, komponentiem un piegādātāja.",
+    "systemSizeInfoLabel": "Vairāk informācijas",
+    "systemSizeInfo": "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā ražošana, pašpatēriņš, elektroenerģijas cena, atlīdzība, uzstādīšanas izmaksas un ekonomiskais rezultāts var atšķirties. Rezultāts nav piedāvājums vai garantija.",
+    "productionCostInfoLabel": "Vairāk informācijas",
+    "productionCostInfo": "Ražošanas izmaksas ir aprēķinātās vidējās izmaksas par saražoto kWh visā sistēmas kalpošanas laikā. Faktiskās izmaksas var ietekmēt ražošana, degradācija, apkope un citas nākotnes izmaksas.",
     "maxInvestmentExplainer": "Lai sasniegtu aptuveni {{years}} gadu vienkāršu atmaksas periodu, instalācijai vajadzētu maksāt ne vairāk kā aptuveni {{amount}}.",
     "maxInvestmentNote": "Šī summa ir aprēķināta no jūsu ievadītajiem datiem un aprēķinu pieņēmumiem – tas nav piedāvājums vai tirgus cenas aplēse.",
     "missingMarketValues": "Mums nav pārbaudītas standarta vērtības šai valstij. Lūdzu, ievadiet vērtības pats zemāk.",
@@ -284,7 +297,18 @@ systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā
     "limitedByFuse": "Sistēmu ierobežo jūsu galvenais drošinātājs, nevis jūsu patēriņš.",
     "dataSource": "Saules datu avots",
     "calculatedAt": "Aprēķina datums",
-    "noCalculation": "Aprēķins nav atrasts. Sāciet no adreses."
+    "noCalculation": "Aprēķins nav atrasts. Sāciet no adreses.",
+    "paybackYearsUnit": "gadi",
+    "productionCostTitle": "Cik maksā saules enerģija no jūsu jumta?",
+    "productionCostExplainer": "Mēs dalām sistēmas izmaksas ar aprēķināto saražoto enerģiju visā aprēķina periodā.",
+    "productionCostLabel": "Ražošanas izmaksas",
+    "productionCostValueLabel": "Vērtība jums",
+    "productionCostDifference": "Starpība",
+    "productionCostBasis": "Balstīts uz {{investment}} un {{production}} kWh {{years}} gadu laikā.",
+    "productionCostHigherValue": "Šajā aprēķinā katrs kWh ir vērtīgāks, nekā tā ražošana maksā.",
+    "productionCostUnavailable": "Ar pašreizējiem datiem nevaram aprēķināt ražošanas izmaksas.",
+    "perKwh": "{{amount}}/kWh",
+    "locked": "Šis aprēķins ir bloķēts. Pabeidziet pirkumu, lai redzētu rezultātu."
   },
   "units": {
     "kwhPerYear": "kWh/gadā",
@@ -294,7 +318,13 @@ systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā
   "settings": {
     "title": "Iestatījumi",
     "language": "Valoda",
-    "languageHint": "Valūta tiek noteikta pēc valsts jūsu adresē, nevis valodas."
+    "languageHint": "Valūta tiek noteikta pēc valsts jūsu adresē, nevis valodas.",
+    "history": "Vēsture",
+    "plansTitle": "Pirkumi un abonements",
+    "singleCta": "Nopērkams ar nākamo aprēķinu",
+    "singleNote": "Vienreizējais pirkums tiek veikts, sākot jaunu aprēķinu, — nevis šeit.",
+    "terms": "Lietošanas noteikumi",
+    "privacy": "Privātuma politika"
   },
   "chart": {
     "productionAria": "Mēneša ražošana",
@@ -360,7 +390,7 @@ systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā
       "selfConsumptionSource_simulated": "aplēsts no patēriņa profila",
       "longTermChartTitle": "Ekonomiskā vērtība laika gaitā",
       "keyAssumptions": "Galvenie aprēķina pieņēmumi",
-      priceMethodNote: "Elektroenerģijas vērtības ir aprēķina pieņēmumi. Patiesā pašpatērētās un pārdotās saules elektroenerģijas vērtība ir atkarīga no līguma, maksām, nodokļiem, noteikumiem un tirgus apstākļiem.",
+      "priceMethodNote": "Elektroenerģijas vērtības ir aprēķina pieņēmumi. Patiesā pašpatērētās un pārdotās saules elektroenerģijas vērtība ir atkarīga no līguma, maksām, nodokļiem, noteikumiem un tirgus apstākļiem.",
       "valueSource_standard-value": "Standarta vērtība",
       "valueSource_user-override": "Jūsu ievadīts",
       "priceChange": "Elektroenerģijas cenu izmaiņas",
@@ -438,7 +468,9 @@ systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā
       "orientation_southeast": "Dienvidaustrumi",
       "orientation_southwest": "Dienvidrietumi",
       "orientation_east": "Austrumi",
-      "orientation_west": "Rietumi"
+      "orientation_west": "Rietumi",
+      "priceChangeNoteFlat": "Aprēķinā visā periodā tiek izmantotas nemainīgas vērtības pašpatēriņam un eksportētajai saules enerģijai. Cenu pieaugums netiek pieņemts, jo nākotnes elektrības cenas nevar paredzēt. Ja cenas pieaugs, vērtība būs augstāka nekā šajā pārskatā; ja samazināsies — zemāka.",
+      "priceChangeNoteTrend": "Aprēķinā tiek pieņemts, ka pašpatēriņa un eksportētās saules enerģijas vērtība mainās par {{priceChange}} % gadā visā periodā. Tas ir pieņēmums, jo nākotnes elektrības cenas nevar paredzēt. Cita attīstība nozīmē augstāku vai zemāku rezultātu nekā šajā pārskatā."
     },
     "title": "Saules enerģijas atskaite",
     "technical": "Tehniskie dati",
@@ -461,17 +493,102 @@ systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā
     "generated": "Ģenerēts",
     "faqTitle": "Biežāk uzdotie jautājumi",
     "faqItems": [
-      { "q": "Cik drošs ir aprēķinātais saules enerģijas ražošanas apjoms?", "a": "Aprēķins balstās uz saules starojumu konkrētajā vietā un jumta virzienu un slīpumu. Faktisko ražošanu ietekmē, piemēram, laikapstākļi, noēnojums un sistēmas tehniskie apstākļi." },
-      { "q": "Ko nozīmē pašpatēriņš?", "a": "Daļa saules elektroenerģijas, kas tiek izmantota tieši mājoklī. Pārējā saražotā enerģija tiek nodota elektrotīklā." },
-      { "q": "Kāpēc pašpatēriņā izmantotā saules enerģija ir vērtīgāka par pārdoto?", "a": "Pašpatēriņā izmantotā saules enerģija aizstāj elektrību, kas citādi būtu jāpērk no tīkla, savukārt pārdotā saules enerģija tiek kompensēta saskaņā ar tīklā nodotās enerģijas noteikumiem." },
-      { "q": "Ko nozīmē cena izvēlētajam atmaksāšanās periodam?", "a": "Tas aptuveni parāda, cik sistēma var maksāt, lai atbilstu izvēlētajam atmaksāšanās periodam, pamatojoties uz aprēķina pieņēmumiem. Tā nav aptuvena tirgus cena." },
-      { "q": "Kāpēc uzstādītāja aprēķins var atšķirties?", "a": "Dažādi pieņēmumi par ražošanu, pašpatēriņu, elektrības cenām, sistēmas zudumiem un nākotnes cenu izmaiņām var radīt atšķirīgus rezultātus." },
-      { "q": "Vai aprēķins ir piedāvājums?", "a": "Nē. Rezultāts ir aplēse, un tas jāizmanto kā lēmumu pieņemšanas pamats. Faktiskā cena, ražošana un ekonomiskais iznākums var atšķirties." },
-      { q: 'Kāpēc ražošana laika gaitā samazinās?', a: 'Saules paneļu jauda gados parasti nedaudz samazinās. Aprēķins balstās uz 0,5 % gada degradāciju, kas nozīmē, ka aprēķinātā ražošana aprēķina periodā pakāpeniski samazinās.' },
-      { q: 'Kā tiek aprēķināta manas saules enerģijas vērtība?', a: 'Pašpatērētā saules enerģija tiek novērtēta, pamatojoties uz elektrības izmaksām, kas citādi būtu jāiegādājas. Pārdotā saules enerģija tiek novērtēta, pamatojoties uz pieņemto atlīdzību par tīklā nodoto elektrību.' },
-      { q: 'Ko nozīmē ražošanas izmaksas par kWh?', a: 'Ražošanas izmaksas parāda aprēķinātās vidējās izmaksas par katru saražoto kilovatstundu iekārtas kalpošanas laikā. Tās var salīdzināt ar aprēķināto saules enerģijas ekonomisko vērtību.' },
-      { q: 'Kāpēc tiek ieteikts tieši šāds iekārtas lielums?', a: 'Iekārtas lielums tiek aprēķināts, ņemot vērā jūsu elektroenerģijas patēriņu, saules starojumu vietā un tehniskos ierobežojumus. Mērķis ir pielāgot iekārtu jūsu apstākļiem, nevis uzstādīt pēc iespējas lielāku iekārtu.' },
-    ],
-
+      {
+        "q": "Cik drošs ir aprēķinātais saules enerģijas ražošanas apjoms?",
+        "a": "Aprēķins balstās uz saules starojumu konkrētajā vietā un jumta virzienu un slīpumu. Faktisko ražošanu ietekmē, piemēram, laikapstākļi, noēnojums un sistēmas tehniskie apstākļi."
+      },
+      {
+        "q": "Ko nozīmē pašpatēriņš?",
+        "a": "Daļa saules elektroenerģijas, kas tiek izmantota tieši mājoklī. Pārējā saražotā enerģija tiek nodota elektrotīklā."
+      },
+      {
+        "q": "Kāpēc pašpatēriņā izmantotā saules enerģija ir vērtīgāka par pārdoto?",
+        "a": "Pašpatēriņā izmantotā saules enerģija aizstāj elektrību, kas citādi būtu jāpērk no tīkla, savukārt pārdotā saules enerģija tiek kompensēta saskaņā ar tīklā nodotās enerģijas noteikumiem."
+      },
+      {
+        "q": "Ko nozīmē cena izvēlētajam atmaksāšanās periodam?",
+        "a": "Tas aptuveni parāda, cik sistēma var maksāt, lai atbilstu izvēlētajam atmaksāšanās periodam, pamatojoties uz aprēķina pieņēmumiem. Tā nav aptuvena tirgus cena."
+      },
+      {
+        "q": "Kāpēc uzstādītāja aprēķins var atšķirties?",
+        "a": "Dažādi pieņēmumi par ražošanu, pašpatēriņu, elektrības cenām, sistēmas zudumiem un nākotnes cenu izmaiņām var radīt atšķirīgus rezultātus."
+      },
+      {
+        "q": "Vai aprēķins ir piedāvājums?",
+        "a": "Nē. Rezultāts ir aplēse, un tas jāizmanto kā lēmumu pieņemšanas pamats. Faktiskā cena, ražošana un ekonomiskais iznākums var atšķirties."
+      },
+      {
+        "q": "Kāpēc ražošana laika gaitā samazinās?",
+        "a": "Saules paneļu jauda gados parasti nedaudz samazinās. Aprēķins balstās uz 0,5 % gada degradāciju, kas nozīmē, ka aprēķinātā ražošana aprēķina periodā pakāpeniski samazinās."
+      },
+      {
+        "q": "Kā tiek aprēķināta manas saules enerģijas vērtība?",
+        "a": "Pašpatērētā saules enerģija tiek novērtēta, pamatojoties uz elektrības izmaksām, kas citādi būtu jāiegādājas. Pārdotā saules enerģija tiek novērtēta, pamatojoties uz pieņemto atlīdzību par tīklā nodoto elektrību."
+      },
+      {
+        "q": "Ko nozīmē ražošanas izmaksas par kWh?",
+        "a": "Ražošanas izmaksas parāda aprēķinātās vidējās izmaksas par katru saražoto kilovatstundu iekārtas kalpošanas laikā. Tās var salīdzināt ar aprēķināto saules enerģijas ekonomisko vērtību."
+      },
+      {
+        "q": "Kāpēc tiek ieteikts tieši šāds iekārtas lielums?",
+        "a": "Iekārtas lielums tiek aprēķināts, ņemot vērā jūsu elektroenerģijas patēriņu, saules starojumu vietā un tehniskos ierobežojumus. Mērķis ir pielāgot iekārtu jūsu apstākļiem, nevis uzstādīt pēc iespējas lielāku iekārtu."
+      }
+    ]
+  },
+  "premium": {
+    "title": "Premium",
+    "restore": "Atjaunot pirkumu",
+    "manage": "Pārvaldīt abonementu",
+    "unavailable": "Pirkumi tiek veikti iOS lietotnē caur App Store.",
+    "restored": "Jūsu pirkumi ir atjaunoti ({{count}}).",
+    "active": "Premium ir aktīvs",
+    "activeHint": "Neierobežoti aprēķini un pārskati",
+    "become": "Iegūt Premium",
+    "becomeHint": "Neierobežoti aprēķini – {{price}}/gadā",
+    "activated": "Premium tagad ir aktīvs.",
+    "restoredPremium": "Jūsu Premium ir atjaunots.",
+    "nothingToRestore": "Šajā ierīcē pirkumi netika atrasti.",
+    "restoreFailed": "Pašlaik neizdevās atjaunot pirkumus."
+  },
+  "paywall": {
+    "single": {
+      "title": "Viens aprēķins",
+      "body": "Atbloķējiet pilnu rezultātu un PDF pārskatu šim aprēķinam.",
+      "cta": "Atbloķēt par {{price}}"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{{price}}/gadā",
+      "body": "Neierobežoti aprēķini un PDF pārskati.",
+      "includes": {
+        "calculations": "Neierobežoti aprēķini",
+        "pdf": "Neierobežoti PDF pārskati",
+        "result": "Pilna piekļuve rezultātam"
+      },
+      "cta": "Iegūt Premium",
+      "renewal": "Tiek atjaunots automātiski katru gadu. Atcelt var jebkurā laikā."
+    },
+    "title": "Atbloķējiet savu aprēķinu",
+    "eyebrow": "Vienreizējs pirkums",
+    "oneTime": "Apmaksāts vienreiz — bez abonementa.",
+    "includesTitle": "Kas ir iekļauts",
+    "includes": {
+      "result": "Jūsu pilnais aprēķins ar ekonomiku un ražošanu",
+      "pdf": "PDF pārskats saglabāšanai vai kopīgošanai",
+      "history": "Aprēķins tiek saglabāts jūsu vēsturē"
+    },
+    "cta": "Atbloķēt par {{price}}",
+    "purchasing": "Tiek atvērts App Store…",
+    "verifying": "Apstiprina jūsu pirkumu…",
+    "cancelled": "Pirkums tika atcelts. Varat mēģināt vēlreiz.",
+    "failed": "Pirkumu nevarēja pabeigt. No jums nekas nav iekasēts.",
+    "retry": "Pašlaik neizdevās apstiprināt pirkumu. Nekas nav pazaudēts — tas atbloķēsies automātiski, tiklīdz savienojums atjaunosies.",
+    "appOnly": "Pirkums tiek veikts lietotnē ar jūsu Apple kontu un nav pieejams pārlūkā.",
+    "appleNote": "To nodrošina App Store."
+  },
+  "history": {
+    "empty": "Jums vēl nav saglabātu aprēķinu.",
+    "unknownAddress": "Aprēķins",
+    "error": "Neizdevās ielādēt jūsu vēsturi."
   }
 } as const;

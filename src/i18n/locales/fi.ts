@@ -37,7 +37,7 @@ export const fi = {
     "coordinates": "Koordinaatit",
     "country": "Maa",
     "region": "Alue",
-"error": "Osoitehaku epäonnistui.",
+    "error": "Osoitehaku epäonnistui.",
     "info": "Osoitetta käytetään vain auringon säteilyn laskemiseen sijainnissasi.",
     "infoLabel": "Lisätietoja osoitteesta"
   },
@@ -66,7 +66,7 @@ export const fi = {
     "fetching": "Haetaan aurinkotuotantotietoja PVGIS-palvelusta…",
     "result": "Arvioitu aurinkosähkön tuotto kohteessa",
     "unit": "kWh/kWp/vuosi",
-    disclaimer: "Laskettu aurinkotuotanto perustuu sijaintiin, ilmansuuntaan ja katon kaltevuuteen. Todelliseen tuotantoon voivat vaikuttaa muun muassa varjostus, sää, lämpötila ja järjestelmähäviöt.",
+    "disclaimer": "Laskettu aurinkotuotanto perustuu sijaintiin, ilmansuuntaan ja katon kaltevuuteen. Todelliseen tuotantoon voivat vaikuttaa muun muassa varjostus, sää, lämpötila ja järjestelmähäviöt.",
     "error": "Emme voineet hakea aurinkotuotantotietoja tästä kohteesta. Arvoja ei arvailla."
   },
   "consumption": {
@@ -107,7 +107,16 @@ export const fi = {
       "successMonthly": "Löysimme 12 kuukausiarvoa ja täytimme ne puolestasi.",
       "successAnnual": "Löysimme vuotuisen kulutuksen asiakirjasta.",
       "error": "Emme löytäneet kulutustietoja asiakirjasta. Syötä arvot manuaalisesti.",
-      "fileTypes": "PDF, XLSX, XLS, CSV, TXT tai kuva (PNG, JPEG)"
+      "fileTypes": "PDF, XLSX, XLS, CSV, TXT tai kuva (PNG, JPEG)",
+      "sectionTitle": "Asiakirjasta",
+      "sectionHint": "Anna meidän lukea sähkölaskusi tai kulutustietosi automaattisesti.",
+      "dropHint": "Vedä ja pudota tiedosto tähän, tai",
+      "dropActive": "Pudota tiedosto lukeaksesi sen",
+      "browse": "selaa tiedostoja",
+      "remove": "Poista",
+      "retry": "Kokeile toista tiedostoa",
+      "readingFile": "Luetaan {{name}}…",
+      "ready": "Tuotu"
     },
     "title": "Kuinka paljon sähköä käytät?",
     "subtitle": "Tarkista sähkölaskustasi tai sähkösopimuksestasi.",
@@ -116,7 +125,13 @@ export const fi = {
     "useMonthly": "Syötä kuukausikulutus tarkempaa laskentaa varten",
     "monthlyTitle": "Kuukausikulutus",
     "total": "Vuosikulutus yhteensä",
-    "invalid": "Anna vuosikulutus väliltä 100 – 200 000 kWh."
+    "invalid": "Anna vuosikulutus väliltä 100 – 200 000 kWh.",
+    "or": "tai",
+    "manual": {
+      "sectionTitle": "Syötä manuaalisesti",
+      "sectionHint": "Syötä vuosikulutuksesi — tarkista sähkölaskustasi tai sopimuksestasi."
+    },
+    "monthlyHint": "Syötä kulutus kaikille 12 kuukaudelle"
   },
   "fuse": {
     "gridAssumption": "Laskenta perustuu 400 V:n kolmivaiheliittymään.",
@@ -179,20 +194,20 @@ export const fi = {
     "productionCaption": "arvioitu vuosituotanto",
     "annualSavings": "Taloudellinen arvo vuodessa",
     "assumedPrices": "Oletetut sähköhinnat",
-    standardValueBadge: "Vakioarvo",
-    resetToStandard: "Palauta vakioarvoon",
-    userValueBadge: "Itse syöttämäsi",
-    priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
-    priceScenarioFlat: "Unchanged",
-    priceScenarioCautious: "Cautious",
-    priceScenarioNormal: "Normal",
-    priceScenarioHigh: "High",
-    priceScenarioCustom: "Own assumption",
-    priceScenarioCustomLabel: "Own change (%/year)",
-    degradationAssumption: "Tekninen degradaatio",
-    priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Laskennan vakioarvot. Vaihda ne oman sähkösopimuksesi arvoihin saadaksesi yksilöllisemmän tuloksen.",
+    "standardValueBadge": "Vakioarvo",
+    "resetToStandard": "Palauta vakioarvoon",
+    "userValueBadge": "Itse syöttämäsi",
+    "priceScenarioTitle": "Miten uskot sähkön hinnan kehittyvän?",
+    "priceScenarioHint": "Oletus vuosittaisesta muutoksesta, ei ennuste. Hintaa nostetaan vuosi vuodelta koko laskentajakson ajan.",
+    "priceScenarioFlat": "Muuttumaton",
+    "priceScenarioCautious": "Varovainen",
+    "priceScenarioNormal": "Normal",
+    "priceScenarioHigh": "Korkea",
+    "priceScenarioCustom": "Oma oletus",
+    "priceScenarioCustomLabel": "Oma muutos (%/vuosi)",
+    "degradationAssumption": "Tekninen degradaatio",
+    "priceScenarioAssumption": "Oletettu sähkön hinnan kehitys",
+    "standardValueHint": "Laskennan vakioarvot. Vaihda ne oman sähkösopimuksesi arvoihin saadaksesi yksilöllisemmän tuloksen.",
     "editable": "Muokattavissa",
     "editableTooltip": "Muuta oletusta",
     "fuseLimit": "Teoreettinen tehoraja pääsulakkeesta",
@@ -252,14 +267,12 @@ export const fi = {
     "paybackInfo": "Yksinkertainen takaisinmaksuaika osoittaa, kuinka monta vuotta arvioitu vuotuinen taloudellinen arvo vastaa investointia. Laskelma ei huomioi esimerkiksi tulevia sähkön hinnanmuutoksia, rahoituskustannuksia, inflaatiota, huoltoa tai diskonttausta.",
     "maxInvestment": "Investointitaso valitulla takaisinmaksuajalla",
     "maxInvestmentApprox": "n. {{amount}}",
-    investmentLevelInfoLabel: "Lisätietoja",
-    investmentLevelInfo: "Näyttää suunnilleen, minkä suuruista investointia valitsemasi takaisinmaksuaika vastaa. Se ei ole arvio siitä, mitä asennus todellisuudessa maksaa. Todellinen hinta riippuu muun muassa katosta, asennuksesta, komponenteista ja toimittajasta.",
-    systemSizeInfoLabel: "Lisätietoja",
-systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. Todellinen tuotanto, omaan käyttöön jäävä osuus, sähkön hinta, korvaus, asennuskustannus ja taloudellinen lopputulos voivat poiketa. Tulos ei ole tarjous eikä takuu.",
-    productionCostInfoLabel: "Lisätietoja",
-    productionCostInfo: "Tuotantokustannus on laskettu keskimääräinen kustannus tuotettua kWh:ta kohti järjestelmän elinkaaren aikana. Todelliseen kustannukseen voivat vaikuttaa tuotanto, tehon heikkeneminen, huolto ja muut tulevat kustannukset.",
-
-
+    "investmentLevelInfoLabel": "Lisätietoja",
+    "investmentLevelInfo": "Näyttää suunnilleen, minkä suuruista investointia valitsemasi takaisinmaksuaika vastaa. Se ei ole arvio siitä, mitä asennus todellisuudessa maksaa. Todellinen hinta riippuu muun muassa katosta, asennuksesta, komponenteista ja toimittajasta.",
+    "systemSizeInfoLabel": "Lisätietoja",
+    "systemSizeInfo": "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. Todellinen tuotanto, omaan käyttöön jäävä osuus, sähkön hinta, korvaus, asennuskustannus ja taloudellinen lopputulos voivat poiketa. Tulos ei ole tarjous eikä takuu.",
+    "productionCostInfoLabel": "Lisätietoja",
+    "productionCostInfo": "Tuotantokustannus on laskettu keskimääräinen kustannus tuotettua kWh:ta kohti järjestelmän elinkaaren aikana. Todelliseen kustannukseen voivat vaikuttaa tuotanto, tehon heikkeneminen, huolto ja muut tulevat kustannukset.",
     "maxInvestmentExplainer": "Noin {{years}} vuoden yksinkertaisen takaisinmaksuajan saavuttamiseksi asennuksen tulisi maksaa enintään noin {{amount}}.",
     "maxInvestmentNote": "Summa on laskelma tietojesi ja laskentaoletusten perusteella – ei tarjous tai arvio markkinahinnasta.",
     "missingMarketValues": "Meillä ei ole vahvistettua oletusarvoa tälle maalle. Syötä arvot itse alle.",
@@ -284,7 +297,18 @@ systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. 
     "limitedByFuse": "Järjestelmää rajoittaa pääsulakkeesi, ei sähkönkulutuksesi.",
     "dataSource": "Aurinkosähkötietojen lähde",
     "calculatedAt": "Laskentapäivämäärä",
-    "noCalculation": "Laskelmaa ei löytynyt. Aloita alusta osoitteesta."
+    "noCalculation": "Laskelmaa ei löytynyt. Aloita alusta osoitteesta.",
+    "paybackYearsUnit": "vuotta",
+    "productionCostTitle": "Mitä katollasi tuotettu aurinkosähkö maksaa?",
+    "productionCostExplainer": "Jaamme järjestelmän kustannuksen arvioidulla tuotannolla koko laskentajakson ajalta.",
+    "productionCostLabel": "Tuotantokustannus",
+    "productionCostValueLabel": "Arvo sinulle",
+    "productionCostDifference": "Ero",
+    "productionCostBasis": "Perustuu {{investment}} ja {{production}} kWh {{years}} vuoden ajalta.",
+    "productionCostHigherValue": "Tässä laskelmassa jokainen kWh on arvokkaampi kuin sen tuottaminen maksaa.",
+    "productionCostUnavailable": "Emme voi laskea tuotantokustannusta nykyisillä tiedoilla.",
+    "perKwh": "{{amount}}/kWh",
+    "locked": "Tämä laskelma on lukittu. Suorita osto nähdäksesi tuloksen."
   },
   "units": {
     "kwhPerYear": "kWh/vuosi",
@@ -294,7 +318,13 @@ systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. 
   "settings": {
     "title": "Asetukset",
     "language": "Kieli",
-    "languageHint": "Valuutta määräytyy osoitteesi maan, ei kielen, mukaan."
+    "languageHint": "Valuutta määräytyy osoitteesi maan, ei kielen, mukaan.",
+    "history": "Historia",
+    "plansTitle": "Ostot ja tilaus",
+    "singleCta": "Ostetaan seuraavan laskelman yhteydessä",
+    "singleNote": "Kertaosto tehdään, kun aloitat uuden laskelman — ei täältä.",
+    "terms": "Käyttöehdot",
+    "privacy": "Tietosuojakäytäntö"
   },
   "chart": {
     "productionAria": "Kuukausituotanto",
@@ -360,7 +390,7 @@ systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. 
       "selfConsumptionSource_simulated": "arvioitu kulutusprofiilista",
       "longTermChartTitle": "Taloudellinen arvo ajan mittaan",
       "keyAssumptions": "Tärkeimmät laskentaoletukset",
-      priceMethodNote: "Sähkön arvot ovat laskenta-oletuksia. Itse käytetyn ja myydyn aurinkosähkön todellinen arvo riippuu sähkösopimuksesta, maksuista, veroista, säännöistä ja markkinatilanteesta.",
+      "priceMethodNote": "Sähkön arvot ovat laskenta-oletuksia. Itse käytetyn ja myydyn aurinkosähkön todellinen arvo riippuu sähkösopimuksesta, maksuista, veroista, säännöistä ja markkinatilanteesta.",
       "valueSource_standard-value": "Vakioarvo",
       "valueSource_user-override": "Itse syöttämäsi",
       "priceChange": "Sähkön hinnan muutos",
@@ -438,7 +468,9 @@ systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. 
       "orientation_southeast": "Kaakko",
       "orientation_southwest": "Lounas",
       "orientation_east": "Itä",
-      "orientation_west": "Länsi"
+      "orientation_west": "Länsi",
+      "priceChangeNoteFlat": "Laskelmassa käytetään muuttumattomia arvoja itse kulutetulle ja verkkoon myydylle aurinkosähkölle koko jakson ajan. Hinnannousua ei oleteta, koska tulevaa sähkön hintaa ei voida ennustaa. Jos hinnat nousevat, arvo on tässä raportissa esitettyä korkeampi; jos ne laskevat, se on matalampi.",
+      "priceChangeNoteTrend": "Laskelmassa oletetaan, että itse kulutetun ja verkkoon myydyn aurinkosähkön arvo muuttuu {{priceChange}} % vuodessa koko jakson ajan. Tämä on oletus, koska tulevaa sähkön hintaa ei voida ennustaa. Erilainen kehitys tarkoittaa tässä raportissa esitettyä korkeampaa tai matalampaa lopputulosta."
     },
     "title": "Aurinkosähköraportti",
     "technical": "Tekniset tiedot",
@@ -461,17 +493,102 @@ systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. 
     "generated": "Luotu",
     "faqTitle": "Usein kysytyt kysymykset",
     "faqItems": [
-      { "q": "Kuinka luotettava laskettu aurinkotuotanto on?", "a": "Laskelma perustuu paikan auringonsäteilyyn sekä katon suuntaukseen ja kaltevuuteen. Todelliseen tuotantoon vaikuttavat muun muassa sää, varjostus ja järjestelmän tekniset olosuhteet." },
-      { "q": "Mitä omakäyttö tarkoittaa?", "a": "Se osa aurinkosähköstä, joka käytetään suoraan asunnossa. Loput tuotannosta syötetään sähköverkkoon." },
-      { "q": "Miksi omakäyttöinen aurinkosähkö on arvokkaampaa kuin myyty aurinkosähkö?", "a": "Omakäyttöinen aurinkosähkö korvaa sähköä, joka muuten olisi ostettu verkosta, kun taas myydystä aurinkosähköstä maksetaan verkkoon syötetyn sähkön ehtojen mukaan." },
-      { "q": "Mitä tarkoittaa hinta valitulle takaisinmaksuajalle?", "a": "Se kertoo suunnilleen, kuinka paljon järjestelmä voi maksaa vastatakseen valitsemaasi takaisinmaksuaikaa laskelman oletusten perusteella. Se ei ole arvioitu markkinahinta." },
-      { "q": "Miksi asentajan laskelma voi poiketa?", "a": "Erilaiset oletukset tuotannosta, omakäytöstä, sähkön hinnoista, järjestelmähäviöistä ja tulevasta hintakehityksestä voivat johtaa erilaisiin tuloksiin." },
-      { "q": "Onko laskelma tarjous?", "a": "Ei. Tulos on arvio, jonka on tarkoitus toimia päätöksenteon tukena. Todellinen hinta, tuotanto ja taloudellinen lopputulos voivat poiketa." },
-      { q: 'Miksi tuotanto vähenee ajan myötä?', a: 'Aurinkopaneelien teho laskee normaalisti hieman vuosien myötä. Laskenta perustuu 0,5 %:n vuotuiseen degradaatioon, mikä tarkoittaa, että laskettu tuotanto vähenee vähitellen laskentajakson aikana.' },
-      { q: 'Miten aurinkosähköni arvo lasketaan?', a: 'Omaan käyttöön menevä aurinkosähkö arvostetaan sen sähkön hinnan mukaan, jonka olisit muuten joutunut ostamaan. Myyty aurinkosähkö arvostetaan oletetun korvauksen mukaan sähköverkkoon syötetystä sähköstä.' },
-      { q: 'Mitä tuotantokustannus per kWh tarkoittaa?', a: 'Tuotantokustannus osoittaa laskennallisen keskimääräisen kustannuksen jokaista tuotettua kilowattituntia kohden laitoksen käyttöiän aikana. Sitä voidaan verrata aurinkosähkön laskennalliseen taloudelliseen arvoon.' },
-      { q: 'Miksi juuri tätä laitoksen kokoa suositellaan?', a: 'Laitoksen koko lasketaan muun muassa sähkönkulutuksesi, paikan auringonsäteilyn ja teknisten rajoitusten perusteella. Tavoitteena on mitoittaa laitos olosuhteidesi mukaan, ei asentaa suurinta mahdollista laitosta.' },
-    ],
-
+      {
+        "q": "Kuinka luotettava laskettu aurinkotuotanto on?",
+        "a": "Laskelma perustuu paikan auringonsäteilyyn sekä katon suuntaukseen ja kaltevuuteen. Todelliseen tuotantoon vaikuttavat muun muassa sää, varjostus ja järjestelmän tekniset olosuhteet."
+      },
+      {
+        "q": "Mitä omakäyttö tarkoittaa?",
+        "a": "Se osa aurinkosähköstä, joka käytetään suoraan asunnossa. Loput tuotannosta syötetään sähköverkkoon."
+      },
+      {
+        "q": "Miksi omakäyttöinen aurinkosähkö on arvokkaampaa kuin myyty aurinkosähkö?",
+        "a": "Omakäyttöinen aurinkosähkö korvaa sähköä, joka muuten olisi ostettu verkosta, kun taas myydystä aurinkosähköstä maksetaan verkkoon syötetyn sähkön ehtojen mukaan."
+      },
+      {
+        "q": "Mitä tarkoittaa hinta valitulle takaisinmaksuajalle?",
+        "a": "Se kertoo suunnilleen, kuinka paljon järjestelmä voi maksaa vastatakseen valitsemaasi takaisinmaksuaikaa laskelman oletusten perusteella. Se ei ole arvioitu markkinahinta."
+      },
+      {
+        "q": "Miksi asentajan laskelma voi poiketa?",
+        "a": "Erilaiset oletukset tuotannosta, omakäytöstä, sähkön hinnoista, järjestelmähäviöistä ja tulevasta hintakehityksestä voivat johtaa erilaisiin tuloksiin."
+      },
+      {
+        "q": "Onko laskelma tarjous?",
+        "a": "Ei. Tulos on arvio, jonka on tarkoitus toimia päätöksenteon tukena. Todellinen hinta, tuotanto ja taloudellinen lopputulos voivat poiketa."
+      },
+      {
+        "q": "Miksi tuotanto vähenee ajan myötä?",
+        "a": "Aurinkopaneelien teho laskee normaalisti hieman vuosien myötä. Laskenta perustuu 0,5 %:n vuotuiseen degradaatioon, mikä tarkoittaa, että laskettu tuotanto vähenee vähitellen laskentajakson aikana."
+      },
+      {
+        "q": "Miten aurinkosähköni arvo lasketaan?",
+        "a": "Omaan käyttöön menevä aurinkosähkö arvostetaan sen sähkön hinnan mukaan, jonka olisit muuten joutunut ostamaan. Myyty aurinkosähkö arvostetaan oletetun korvauksen mukaan sähköverkkoon syötetystä sähköstä."
+      },
+      {
+        "q": "Mitä tuotantokustannus per kWh tarkoittaa?",
+        "a": "Tuotantokustannus osoittaa laskennallisen keskimääräisen kustannuksen jokaista tuotettua kilowattituntia kohden laitoksen käyttöiän aikana. Sitä voidaan verrata aurinkosähkön laskennalliseen taloudelliseen arvoon."
+      },
+      {
+        "q": "Miksi juuri tätä laitoksen kokoa suositellaan?",
+        "a": "Laitoksen koko lasketaan muun muassa sähkönkulutuksesi, paikan auringonsäteilyn ja teknisten rajoitusten perusteella. Tavoitteena on mitoittaa laitos olosuhteidesi mukaan, ei asentaa suurinta mahdollista laitosta."
+      }
+    ]
+  },
+  "premium": {
+    "title": "Premium",
+    "restore": "Palauta ostos",
+    "manage": "Hallinnoi tilausta",
+    "unavailable": "Ostot hoidetaan iOS-sovelluksessa App Storen kautta.",
+    "restored": "Ostoksesi on palautettu ({{count}}).",
+    "active": "Premium käytössä",
+    "activeHint": "Rajattomasti laskelmia ja raportteja",
+    "become": "Hanki Premium",
+    "becomeHint": "Rajattomasti laskelmia – {{price}}/vuosi",
+    "activated": "Premium on nyt käytössä.",
+    "restoredPremium": "Premium-tilauksesi on palautettu.",
+    "nothingToRestore": "Emme löytäneet ostoksia tältä laitteelta.",
+    "restoreFailed": "Ostoksia ei voitu palauttaa juuri nyt."
+  },
+  "paywall": {
+    "single": {
+      "title": "Yksi laskelma",
+      "body": "Avaa koko tulos ja PDF-raportti tälle laskelmalle.",
+      "cta": "Avaa hintaan {{price}}"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{{price}}/vuosi",
+      "body": "Rajattomasti laskelmia ja PDF-raportteja.",
+      "includes": {
+        "calculations": "Rajattomasti laskelmia",
+        "pdf": "Rajattomasti PDF-raportteja",
+        "result": "Täysi pääsy tulokseen"
+      },
+      "cta": "Hanki Premium",
+      "renewal": "Uusiutuu automaattisesti vuosittain. Peruuta milloin tahansa."
+    },
+    "title": "Avaa laskelmasi",
+    "eyebrow": "Kertaosto",
+    "oneTime": "Maksetaan kerran — ei tilausta.",
+    "includesTitle": "Mitä sisältyy",
+    "includes": {
+      "result": "Koko laskelmasi taloudellisine tietoineen ja tuotannolla",
+      "pdf": "PDF-raportti tallennettavaksi tai jaettavaksi",
+      "history": "Laskelma tallennetaan historiaasi"
+    },
+    "cta": "Avaa hintaan {{price}}",
+    "purchasing": "Avataan App Storea…",
+    "verifying": "Vahvistetaan ostostasi…",
+    "cancelled": "Osto peruutettiin. Voit yrittää uudelleen.",
+    "failed": "Ostoa ei voitu suorittaa loppuun. Sinulta ei ole veloitettu.",
+    "retry": "Emme voineet vahvistaa ostosta juuri nyt. Mikään ei ole hukassa — se avautuu automaattisesti, kun yhteys toimii jälleen.",
+    "appOnly": "Ostos tehdään sovelluksessa Apple-tunnuksellasi eikä se ole käytettävissä selaimessa.",
+    "appleNote": "App Storen hoitama."
+  },
+  "history": {
+    "empty": "Sinulla ei ole vielä tallennettuja laskelmia.",
+    "unknownAddress": "Laskelma",
+    "error": "Historiaa ei voitu ladata."
   }
 } as const;

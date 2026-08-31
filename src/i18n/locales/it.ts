@@ -37,7 +37,7 @@ export const it = {
     "coordinates": "Coordinate",
     "country": "Paese",
     "region": "Regione",
-"error": "La ricerca dell'indirizzo è fallita.",
+    "error": "La ricerca dell'indirizzo è fallita.",
     "info": "L'indirizzo viene utilizzato solo per calcolare l'irraggiamento solare nella tua posizione.",
     "infoLabel": "Maggiori informazioni sull'indirizzo"
   },
@@ -66,7 +66,7 @@ export const it = {
     "fetching": "Recupero dati di produzione solare da PVGIS…",
     "result": "Produzione solare stimata per il sito",
     "unit": "kWh/kWp/anno",
-    disclaimer: "La produzione solare calcolata si basa su posizione, orientamento e inclinazione del tetto. La produzione effettiva può essere influenzata da ombreggiamento, meteo, temperatura e perdite di sistema.",
+    "disclaimer": "La produzione solare calcolata si basa su posizione, orientamento e inclinazione del tetto. La produzione effettiva può essere influenzata da ombreggiamento, meteo, temperatura e perdite di sistema.",
     "error": "Non è stato possibile recuperare i dati di produzione solare per questo sito al momento. Nessun valore viene stimato."
   },
   "consumption": {
@@ -107,7 +107,16 @@ export const it = {
       "successMonthly": "Abbiamo trovato 12 valori mensili e li abbiamo compilati per te.",
       "successAnnual": "Abbiamo trovato un consumo annuo nel documento.",
       "error": "Non siamo riusciti a trovare alcun consumo nel documento. Inserisci i valori manualmente.",
-      "fileTypes": "PDF, XLSX, XLS, CSV, TXT o immagine (PNG, JPEG)"
+      "fileTypes": "PDF, XLSX, XLS, CSV, TXT o immagine (PNG, JPEG)",
+      "sectionTitle": "Da un documento",
+      "sectionHint": "Lasciaci leggere automaticamente la tua bolletta o i dati di consumo.",
+      "dropHint": "Trascina qui il tuo file, oppure",
+      "dropActive": "Rilascia il file per leggerlo",
+      "browse": "sfoglia i file",
+      "remove": "Rimuovi",
+      "retry": "Prova un altro file",
+      "readingFile": "Lettura di {{name}}…",
+      "ready": "Importato"
     },
     "title": "Quanta elettricità consumi?",
     "subtitle": "Controlla la tua bolletta elettrica o il tuo contratto.",
@@ -116,7 +125,13 @@ export const it = {
     "useMonthly": "Inserisci il consumo mensile per una maggiore precisione",
     "monthlyTitle": "Consumo mensile",
     "total": "Consumo annuo totale",
-    "invalid": "Inserisci un consumo annuo tra 100 e 200.000 kWh."
+    "invalid": "Inserisci un consumo annuo tra 100 e 200.000 kWh.",
+    "or": "oppure",
+    "manual": {
+      "sectionTitle": "Inserisci manualmente",
+      "sectionHint": "Inserisci il tuo consumo annuo — controlla la bolletta o il contratto elettrico."
+    },
+    "monthlyHint": "Inserisci il consumo per tutti i 12 mesi"
   },
   "fuse": {
     "gridAssumption": "Il calcolo presuppone un allacciamento trifase a 400 V.",
@@ -179,20 +194,20 @@ export const it = {
     "productionCaption": "produzione annua stimata",
     "annualSavings": "Valore economico per anno",
     "assumedPrices": "Prezzi dell'elettricità assunti",
-    standardValueBadge: "Valore standard",
-    resetToStandard: "Ripristina il valore standard",
-    userValueBadge: "Inserito da te",
-    priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
-    priceScenarioFlat: "Unchanged",
-    priceScenarioCautious: "Cautious",
-    priceScenarioNormal: "Normal",
-    priceScenarioHigh: "High",
-    priceScenarioCustom: "Own assumption",
-    priceScenarioCustomLabel: "Own change (%/year)",
-    degradationAssumption: "Degrado tecnico",
-    priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Valori standard per il calcolo. Modificali con i valori del tuo contratto di fornitura elettrica per un risultato più individuale.",
+    "standardValueBadge": "Valore standard",
+    "resetToStandard": "Ripristina il valore standard",
+    "userValueBadge": "Inserito da te",
+    "priceScenarioTitle": "Come pensi che evolveranno i prezzi dell'elettricità?",
+    "priceScenarioHint": "Un'ipotesi sulla variazione annua, non una previsione. Il prezzo viene aumentato anno dopo anno per tutto il periodo di calcolo.",
+    "priceScenarioFlat": "Invariato",
+    "priceScenarioCautious": "Prudente",
+    "priceScenarioNormal": "Normal",
+    "priceScenarioHigh": "Alto",
+    "priceScenarioCustom": "Ipotesi personalizzata",
+    "priceScenarioCustomLabel": "Variazione personalizzata (%/anno)",
+    "degradationAssumption": "Degrado tecnico",
+    "priceScenarioAssumption": "Evoluzione ipotizzata del prezzo dell'elettricità",
+    "standardValueHint": "Valori standard per il calcolo. Modificali con i valori del tuo contratto di fornitura elettrica per un risultato più individuale.",
     "editable": "Modificabile",
     "editableTooltip": "Modifica ipotesi",
     "fuseLimit": "Limite di potenza teorico dal limitatore di potenza",
@@ -252,14 +267,12 @@ export const it = {
     "paybackInfo": "Il tempo di ritorno semplice mostra quanti anni il valore economico annuo stimato corrisponde all'investimento. Il calcolo non tiene conto, ad esempio, delle future variazioni dei prezzi dell'elettricità, dei costi di finanziamento, dell'inflazione, della manutenzione o dello sconto.",
     "maxInvestment": "Livello di investimento al tempo di ritorno scelto",
     "maxInvestmentApprox": "circa {{amount}}",
-    investmentLevelInfoLabel: "Maggiori informazioni",
-    investmentLevelInfo: "Mostra approssimativamente quale costo di investimento corrisponde al periodo di ammortamento scelto. Non è una stima del costo reale dell'impianto. Il prezzo effettivo dipende, tra l'altro, dal tetto, dall'installazione, dai componenti e dal fornitore.",
-    systemSizeInfoLabel: "Maggiori informazioni",
-systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produzione effettiva, autoconsumo, prezzo dell'energia, compensazione, costo di installazione e risultato economico possono variare. Il risultato non costituisce un'offerta né una garanzia.",
-    productionCostInfoLabel: "Maggiori informazioni",
-    productionCostInfo: "Il costo di produzione è un costo medio calcolato per kWh prodotto durante la vita dell'impianto. Il costo effettivo può essere influenzato da produzione, degrado, manutenzione e altri costi futuri.",
-
-
+    "investmentLevelInfoLabel": "Maggiori informazioni",
+    "investmentLevelInfo": "Mostra approssimativamente quale costo di investimento corrisponde al periodo di ammortamento scelto. Non è una stima del costo reale dell'impianto. Il prezzo effettivo dipende, tra l'altro, dal tetto, dall'installazione, dai componenti e dal fornitore.",
+    "systemSizeInfoLabel": "Maggiori informazioni",
+    "systemSizeInfo": "Il calcolo è una stima e va utilizzato come indicazione. Produzione effettiva, autoconsumo, prezzo dell'energia, compensazione, costo di installazione e risultato economico possono variare. Il risultato non costituisce un'offerta né una garanzia.",
+    "productionCostInfoLabel": "Maggiori informazioni",
+    "productionCostInfo": "Il costo di produzione è un costo medio calcolato per kWh prodotto durante la vita dell'impianto. Il costo effettivo può essere influenzato da produzione, degrado, manutenzione e altri costi futuri.",
     "maxInvestmentExplainer": "Per raggiungere circa {{years}} anni di tempo di ritorno semplice, l'installazione dovrebbe costare al massimo circa {{amount}}.",
     "maxInvestmentNote": "L'importo è un calcolo basato sui tuoi input e sulle ipotesi di calcolo – non un'offerta o una stima del prezzo di mercato.",
     "missingMarketValues": "Non abbiamo un valore predefinito verificato per questo paese. Inserisci tu stesso i valori di seguito.",
@@ -284,7 +297,18 @@ systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produ
     "limitedByFuse": "L'impianto è limitato dal tuo limitatore di potenza, non dal tuo consumo elettrico.",
     "dataSource": "Fonte dati solari",
     "calculatedAt": "Data del calcolo",
-    "noCalculation": "Nessun calcolo trovato. Ricomincia dall'indirizzo."
+    "noCalculation": "Nessun calcolo trovato. Ricomincia dall'indirizzo.",
+    "paybackYearsUnit": "anni",
+    "productionCostTitle": "Quanto costa l'energia solare dal tuo tetto?",
+    "productionCostExplainer": "Dividiamo il costo dell'impianto per la produzione stimata durante l'intero periodo di calcolo.",
+    "productionCostLabel": "Costo di produzione",
+    "productionCostValueLabel": "Valore per te",
+    "productionCostDifference": "Differenza",
+    "productionCostBasis": "Basato su {{investment}} e {{production}} kWh in {{years}} anni.",
+    "productionCostHigherValue": "In questo calcolo, ogni kWh vale più di quanto costi produrlo.",
+    "productionCostUnavailable": "Non possiamo calcolare il costo di produzione con i dati attuali.",
+    "perKwh": "{{amount}}/kWh",
+    "locked": "Questo calcolo è bloccato. Completa l'acquisto per vedere il risultato."
   },
   "units": {
     "kwhPerYear": "kWh/anno",
@@ -294,7 +318,13 @@ systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produ
   "settings": {
     "title": "Impostazioni",
     "language": "Lingua",
-    "languageHint": "La valuta è determinata dal paese del tuo indirizzo, non dalla lingua."
+    "languageHint": "La valuta è determinata dal paese del tuo indirizzo, non dalla lingua.",
+    "history": "Cronologia",
+    "plansTitle": "Acquisti e abbonamento",
+    "singleCta": "Acquistato con il tuo prossimo calcolo",
+    "singleNote": "L'acquisto singolo viene effettuato quando avvii un nuovo calcolo — non da qui.",
+    "terms": "Termini di utilizzo",
+    "privacy": "Informativa sulla privacy"
   },
   "chart": {
     "productionAria": "Produzione mensile",
@@ -360,7 +390,7 @@ systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produ
       "selfConsumptionSource_simulated": "stimato dal profilo di consumo",
       "longTermChartTitle": "Valore economico nel tempo",
       "keyAssumptions": "Principali ipotesi di calcolo",
-      priceMethodNote: "I valori dell'energia sono ipotesi di calcolo. Il valore effettivo dell'energia solare autoconsumata e venduta dipende dal contratto, dagli oneri, dalle tasse, dalle regole e dalle condizioni di mercato.",
+      "priceMethodNote": "I valori dell'energia sono ipotesi di calcolo. Il valore effettivo dell'energia solare autoconsumata e venduta dipende dal contratto, dagli oneri, dalle tasse, dalle regole e dalle condizioni di mercato.",
       "valueSource_standard-value": "Valore standard",
       "valueSource_user-override": "Inserito da te",
       "priceChange": "Variazione del prezzo dell'elettricità",
@@ -438,7 +468,9 @@ systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produ
       "orientation_southeast": "Sud-est",
       "orientation_southwest": "Sud-ovest",
       "orientation_east": "Est",
-      "orientation_west": "Ovest"
+      "orientation_west": "Ovest",
+      "priceChangeNoteFlat": "Il calcolo utilizza valori invariati per l'energia solare autoconsumata ed esportata per tutto il periodo. Non si ipotizza alcun aumento dei prezzi, poiché i prezzi futuri dell'elettricità non possono essere previsti. Se i prezzi aumentano, il valore sarà superiore a quello indicato in questo report; se diminuiscono, sarà inferiore.",
+      "priceChangeNoteTrend": "Il calcolo presuppone che il valore dell'energia solare autoconsumata ed esportata cambi del {{priceChange}} % all'anno per tutto il periodo. Si tratta di un'ipotesi, poiché i prezzi futuri dell'elettricità non possono essere previsti. Un'evoluzione diversa comporta un risultato più alto o più basso rispetto a quello di questo report."
     },
     "title": "Rapporto solare",
     "technical": "Dati tecnici",
@@ -461,17 +493,102 @@ systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produ
     "generated": "Generato",
     "faqTitle": "Domande frequenti",
     "faqItems": [
-      { "q": "Quanto è affidabile la produzione solare calcolata?", "a": "Il calcolo si basa sull'irraggiamento solare del luogo e sull'orientamento e inclinazione del tetto. La produzione effettiva è influenzata, tra l'altro, dal meteo, dall'ombreggiamento e dalle condizioni tecniche dell'impianto." },
-      { "q": "Cosa significa autoconsumo?", "a": "La parte di energia solare utilizzata direttamente nell'abitazione. Il resto della produzione viene immesso nella rete elettrica." },
-      { "q": "Perché l'energia solare autoconsumata vale più di quella venduta?", "a": "L'energia solare autoconsumata sostituisce elettricità che altrimenti sarebbe stata acquistata dalla rete, mentre l'energia solare venduta è compensata secondo le condizioni per l'energia immessa." },
-      { "q": "Cosa significa prezzo per il periodo di ammortamento scelto?", "a": "Indica approssimativamente quanto può costare l'impianto per corrispondere al periodo di ammortamento da te scelto, sulla base delle ipotesi del calcolo. Non è un prezzo di mercato stimato." },
-      { "q": "Perché il calcolo dell'installatore può differire?", "a": "Ipotesi diverse su produzione, autoconsumo, prezzi dell'elettricità, perdite di sistema e andamento futuro dei prezzi possono dare risultati diversi." },
-      { "q": "Il calcolo è un preventivo?", "a": "No. Il risultato è una stima e deve essere utilizzato come base per le decisioni. Prezzo, produzione e risultato economico effettivi possono differire." },
-      { q: 'Perché la produzione diminuisce nel tempo?', a: 'La potenza dei pannelli solari diminuisce normalmente leggermente con gli anni. Il calcolo si basa su un degrado annuo dello 0,5 %, il che significa che la produzione stimata diminuisce gradualmente nel corso del periodo di calcolo.' },
-      { q: 'Come viene calcolato il valore del mio solare?', a: 'L\'energia solare autoconsumata viene valutata in base al costo dell\'elettricità che avresti dovuto acquistare. L\'energia solare venduta viene valutata in base alla compensazione prevista per l\'energia immessa in rete.' },
-      { q: 'Cosa significa costo di produzione per kWh?', a: 'Il costo di produzione mostra il costo medio stimato per ogni chilowattora prodotto durante la vita utile dell\'installazione. Può essere confrontato con il valore economico stimato dell\'energia solare.' },
-      { q: 'Perché viene consigliata proprio questa dimensione dell\'impianto?', a: 'La dimensione dell\'impianto viene calcolata in base, tra l\'altro, al tuo consumo di elettricità, all\'irraggiamento solare del sito e ai limiti tecnici. L\'obiettivo è dimensionare l\'impianto in base alle tue condizioni, non installare il più grande impianto possibile.' },
-    ],
-
+      {
+        "q": "Quanto è affidabile la produzione solare calcolata?",
+        "a": "Il calcolo si basa sull'irraggiamento solare del luogo e sull'orientamento e inclinazione del tetto. La produzione effettiva è influenzata, tra l'altro, dal meteo, dall'ombreggiamento e dalle condizioni tecniche dell'impianto."
+      },
+      {
+        "q": "Cosa significa autoconsumo?",
+        "a": "La parte di energia solare utilizzata direttamente nell'abitazione. Il resto della produzione viene immesso nella rete elettrica."
+      },
+      {
+        "q": "Perché l'energia solare autoconsumata vale più di quella venduta?",
+        "a": "L'energia solare autoconsumata sostituisce elettricità che altrimenti sarebbe stata acquistata dalla rete, mentre l'energia solare venduta è compensata secondo le condizioni per l'energia immessa."
+      },
+      {
+        "q": "Cosa significa prezzo per il periodo di ammortamento scelto?",
+        "a": "Indica approssimativamente quanto può costare l'impianto per corrispondere al periodo di ammortamento da te scelto, sulla base delle ipotesi del calcolo. Non è un prezzo di mercato stimato."
+      },
+      {
+        "q": "Perché il calcolo dell'installatore può differire?",
+        "a": "Ipotesi diverse su produzione, autoconsumo, prezzi dell'elettricità, perdite di sistema e andamento futuro dei prezzi possono dare risultati diversi."
+      },
+      {
+        "q": "Il calcolo è un preventivo?",
+        "a": "No. Il risultato è una stima e deve essere utilizzato come base per le decisioni. Prezzo, produzione e risultato economico effettivi possono differire."
+      },
+      {
+        "q": "Perché la produzione diminuisce nel tempo?",
+        "a": "La potenza dei pannelli solari diminuisce normalmente leggermente con gli anni. Il calcolo si basa su un degrado annuo dello 0,5 %, il che significa che la produzione stimata diminuisce gradualmente nel corso del periodo di calcolo."
+      },
+      {
+        "q": "Come viene calcolato il valore del mio solare?",
+        "a": "L'energia solare autoconsumata viene valutata in base al costo dell'elettricità che avresti dovuto acquistare. L'energia solare venduta viene valutata in base alla compensazione prevista per l'energia immessa in rete."
+      },
+      {
+        "q": "Cosa significa costo di produzione per kWh?",
+        "a": "Il costo di produzione mostra il costo medio stimato per ogni chilowattora prodotto durante la vita utile dell'installazione. Può essere confrontato con il valore economico stimato dell'energia solare."
+      },
+      {
+        "q": "Perché viene consigliata proprio questa dimensione dell'impianto?",
+        "a": "La dimensione dell'impianto viene calcolata in base, tra l'altro, al tuo consumo di elettricità, all'irraggiamento solare del sito e ai limiti tecnici. L'obiettivo è dimensionare l'impianto in base alle tue condizioni, non installare il più grande impianto possibile."
+      }
+    ]
+  },
+  "premium": {
+    "title": "Premium",
+    "restore": "Ripristina acquisto",
+    "manage": "Gestisci abbonamento",
+    "unavailable": "Gli acquisti vengono gestiti nell'app iOS tramite l'App Store.",
+    "restored": "I tuoi acquisti sono stati ripristinati ({{count}}).",
+    "active": "Premium attivo",
+    "activeHint": "Calcoli e report illimitati",
+    "become": "Ottieni Premium",
+    "becomeHint": "Calcoli illimitati – {{price}}/anno",
+    "activated": "Premium è ora attivo.",
+    "restoredPremium": "Il tuo Premium è stato ripristinato.",
+    "nothingToRestore": "Non abbiamo trovato acquisti su questo dispositivo.",
+    "restoreFailed": "Al momento non è possibile ripristinare gli acquisti."
+  },
+  "paywall": {
+    "single": {
+      "title": "Un calcolo",
+      "body": "Sblocca il risultato completo e il report PDF per questo calcolo.",
+      "cta": "Sblocca per {{price}}"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{{price}}/anno",
+      "body": "Calcoli e report PDF illimitati.",
+      "includes": {
+        "calculations": "Calcoli illimitati",
+        "pdf": "Report PDF illimitati",
+        "result": "Accesso completo al risultato"
+      },
+      "cta": "Ottieni Premium",
+      "renewal": "Si rinnova automaticamente ogni anno. Annullabile in qualsiasi momento."
+    },
+    "title": "Sblocca il tuo calcolo",
+    "eyebrow": "Acquisto unico",
+    "oneTime": "Pagato una sola volta — senza abbonamento.",
+    "includesTitle": "Cosa è incluso",
+    "includes": {
+      "result": "Il tuo calcolo completo con economia e produzione",
+      "pdf": "Report PDF da salvare o condividere",
+      "history": "Il calcolo viene salvato nella tua cronologia"
+    },
+    "cta": "Sblocca per {{price}}",
+    "purchasing": "Apertura dell'App Store…",
+    "verifying": "Conferma del tuo acquisto…",
+    "cancelled": "L'acquisto è stato annullato. Puoi riprovare.",
+    "failed": "Non è stato possibile completare l'acquisto. Non ti è stato addebitato nulla.",
+    "retry": "Al momento non siamo riusciti a confermare l'acquisto. Non hai perso nulla — si sbloccherà automaticamente non appena la connessione tornerà disponibile.",
+    "appOnly": "L'acquisto viene effettuato nell'app con il tuo account Apple e non è disponibile nel browser.",
+    "appleNote": "Gestito dall'App Store."
+  },
+  "history": {
+    "empty": "Non hai ancora calcoli salvati.",
+    "unknownAddress": "Calcolo",
+    "error": "Impossibile caricare la tua cronologia."
   }
 } as const;

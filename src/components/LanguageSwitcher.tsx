@@ -1,4 +1,3 @@
-import { Languages } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
   Select,
@@ -7,7 +6,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { LANGUAGE_NAMES, SUPPORTED_LANGUAGES, normaliseLanguage } from "@/i18n/languages";
+import {
+  LANGUAGE_NAMES,
+  SUPPORTED_LANGUAGES,
+  languageFlagEmoji,
+  normaliseLanguage,
+} from "@/i18n/languages";
 import { updateSettings } from "@/services/settings-service";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { getMarketConfig } from "@/config/markets";
@@ -43,13 +47,17 @@ export function LanguageSwitcher({ className }: { className?: string }) {
         aria-label={t("settings.language")}
         className={className ?? "h-9 w-auto gap-2 border-border bg-card px-3 text-xs"}
       >
-        <Languages className="size-4 shrink-0" />
         <SelectValue />
       </SelectTrigger>
       <SelectContent className="max-h-72">
         {options.map((lang) => (
           <SelectItem key={lang} value={lang} className="text-sm">
-            {LANGUAGE_NAMES[lang]}
+            <span className="flex items-center gap-2">
+              <span aria-hidden className="text-base leading-none">
+                {languageFlagEmoji(lang)}
+              </span>
+              {LANGUAGE_NAMES[lang]}
+            </span>
           </SelectItem>
         ))}
       </SelectContent>

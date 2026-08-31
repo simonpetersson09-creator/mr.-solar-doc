@@ -37,7 +37,7 @@ export const pl = {
     "coordinates": "Współrzędne",
     "country": "Kraj",
     "region": "Region",
-"error": "Wyszukiwanie adresu nie powiodło się.",
+    "error": "Wyszukiwanie adresu nie powiodło się.",
     "info": "Adres jest używany wyłącznie do obliczenia nasłonecznienia w Twojej lokalizacji.",
     "infoLabel": "Więcej informacji o adresie"
   },
@@ -66,7 +66,7 @@ export const pl = {
     "fetching": "Pobieranie danych o produkcji energii słonecznej z PVGIS…",
     "result": "Szacowana produkcja energii słonecznej w tej lokalizacji",
     "unit": "kWh/kWp/rok",
-    disclaimer: "Szacowana produkcja energii słonecznej opiera się na lokalizacji, orientacji i nachyleniu dachu. Na rzeczywistą produkcję mogą wpływać m.in. zacienienie, pogoda, temperatura i straty systemowe.",
+    "disclaimer": "Szacowana produkcja energii słonecznej opiera się na lokalizacji, orientacji i nachyleniu dachu. Na rzeczywistą produkcję mogą wpływać m.in. zacienienie, pogoda, temperatura i straty systemowe.",
     "error": "Nie udało nam się teraz pobrać danych o produkcji energii słonecznej dla tej lokalizacji. Nie zgadujemy żadnych wartości."
   },
   "consumption": {
@@ -107,7 +107,16 @@ export const pl = {
       "successMonthly": "Znaleźliśmy 12 wartości miesięcznych i uzupełniliśmy je za Ciebie.",
       "successAnnual": "W dokumencie znaleźliśmy roczne zużycie.",
       "error": "Nie udało nam się znaleźć zużycia w dokumencie. Wprowadź wartości ręcznie.",
-      "fileTypes": "PDF, XLSX, XLS, CSV, TXT lub obraz (PNG, JPEG)"
+      "fileTypes": "PDF, XLSX, XLS, CSV, TXT lub obraz (PNG, JPEG)",
+      "sectionTitle": "Z dokumentu",
+      "sectionHint": "Pozwól nam automatycznie odczytać Twój rachunek za prąd lub dane o zużyciu.",
+      "dropHint": "Przeciągnij i upuść plik tutaj, lub",
+      "dropActive": "Upuść plik, aby go odczytać",
+      "browse": "przeglądaj pliki",
+      "remove": "Usuń",
+      "retry": "Spróbuj inny plik",
+      "readingFile": "Odczytywanie {{name}}…",
+      "ready": "Zaimportowano"
     },
     "title": "Ile energii elektrycznej zużywasz?",
     "subtitle": "Sprawdź swoją fakturę za prąd lub umowę.",
@@ -116,7 +125,13 @@ export const pl = {
     "useMonthly": "Wprowadź miesięczne zużycie dla większej precyzji",
     "monthlyTitle": "Miesięczne zużycie",
     "total": "Całkowite roczne zużycie",
-    "invalid": "Podaj roczne zużycie od 100 do 200 000 kWh."
+    "invalid": "Podaj roczne zużycie od 100 do 200 000 kWh.",
+    "or": "lub",
+    "manual": {
+      "sectionTitle": "Wprowadź ręcznie",
+      "sectionHint": "Wprowadź swoje roczne zużycie — sprawdź rachunek za prąd lub umowę."
+    },
+    "monthlyHint": "Wprowadź zużycie dla wszystkich 12 miesięcy"
   },
   "fuse": {
     "gridAssumption": "Obliczenia zakładają przyłącze trójfazowe 400 V.",
@@ -179,20 +194,20 @@ export const pl = {
     "productionCaption": "szacowana roczna produkcja",
     "annualSavings": "Wartość ekonomiczna rocznie",
     "assumedPrices": "Przyjęte ceny energii elektrycznej",
-    standardValueBadge: "Wartość standardowa",
-    resetToStandard: "Przywróć wartość standardową",
-    userValueBadge: "Podane przez Ciebie",
-    priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
-    priceScenarioFlat: "Unchanged",
-    priceScenarioCautious: "Cautious",
-    priceScenarioNormal: "Normal",
-    priceScenarioHigh: "High",
-    priceScenarioCustom: "Own assumption",
-    priceScenarioCustomLabel: "Own change (%/year)",
-    degradationAssumption: "Degradacja techniczna",
-    priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Wartości standardowe do obliczeń. Zmień je na wartości z własnej umowy na energię, aby uzyskać bardziej indywidualny wynik.",
+    "standardValueBadge": "Wartość standardowa",
+    "resetToStandard": "Przywróć wartość standardową",
+    "userValueBadge": "Podane przez Ciebie",
+    "priceScenarioTitle": "Jak myślisz, jak będą się zmieniać ceny energii?",
+    "priceScenarioHint": "Założenie dotyczące rocznej zmiany, a nie prognoza. Cena jest podwyższana rok po roku w okresie obliczeniowym.",
+    "priceScenarioFlat": "Bez zmian",
+    "priceScenarioCautious": "Ostrożne",
+    "priceScenarioNormal": "Normal",
+    "priceScenarioHigh": "Wysokie",
+    "priceScenarioCustom": "Własne założenie",
+    "priceScenarioCustomLabel": "Własna zmiana (%/rok)",
+    "degradationAssumption": "Degradacja techniczna",
+    "priceScenarioAssumption": "Założony rozwój cen energii",
+    "standardValueHint": "Wartości standardowe do obliczeń. Zmień je na wartości z własnej umowy na energię, aby uzyskać bardziej indywidualny wynik.",
     "editable": "Możliwe do edycji",
     "editableTooltip": "Zmień założenie",
     "fuseLimit": "Teoretyczny limit mocy z zabezpieczenia głównego",
@@ -252,14 +267,12 @@ export const pl = {
     "paybackInfo": "Prosty czas zwrotu pokazuje, ile lat szacowana roczna wartość ekonomiczna odpowiada inwestycji. Kalkulacja nie uwzględnia np. przyszłych zmian cen energii elektrycznej, kosztów finansowania, inflacji, konserwacji ani dyskontowania.",
     "maxInvestment": "Poziom inwestycji przy wybranym czasie zwrotu",
     "maxInvestmentApprox": "ok. {{amount}}",
-    investmentLevelInfoLabel: "Więcej informacji",
-    investmentLevelInfo: "Pokazuje w przybliżeniu, jaki koszt inwestycji odpowiada wybranemu okresowi zwrotu. Nie jest to szacunek rzeczywistego kosztu instalacji. Rzeczywista cena zależy między innymi od dachu, instalacji, komponentów i dostawcy.",
-    systemSizeInfoLabel: "Więcej informacji",
-systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskazówka. Rzeczywista produkcja, zużycie własne, cena energii, wynagrodzenie, koszt instalacji i wynik finansowy mogą się różnić. Wynik nie stanowi oferty ani gwarancji.",
-    productionCostInfoLabel: "Więcej informacji",
-    productionCostInfo: "Koszt produkcji to obliczony średni koszt za wyprodukowaną kWh przez cały okres eksploatacji instalacji. Na rzeczywisty koszt mogą wpływać produkcja, degradacja, konserwacja i inne przyszłe koszty.",
-
-
+    "investmentLevelInfoLabel": "Więcej informacji",
+    "investmentLevelInfo": "Pokazuje w przybliżeniu, jaki koszt inwestycji odpowiada wybranemu okresowi zwrotu. Nie jest to szacunek rzeczywistego kosztu instalacji. Rzeczywista cena zależy między innymi od dachu, instalacji, komponentów i dostawcy.",
+    "systemSizeInfoLabel": "Więcej informacji",
+    "systemSizeInfo": "Obliczenie jest szacunkiem i powinno być traktowane jako wskazówka. Rzeczywista produkcja, zużycie własne, cena energii, wynagrodzenie, koszt instalacji i wynik finansowy mogą się różnić. Wynik nie stanowi oferty ani gwarancji.",
+    "productionCostInfoLabel": "Więcej informacji",
+    "productionCostInfo": "Koszt produkcji to obliczony średni koszt za wyprodukowaną kWh przez cały okres eksploatacji instalacji. Na rzeczywisty koszt mogą wpływać produkcja, degradacja, konserwacja i inne przyszłe koszty.",
     "maxInvestmentExplainer": "Aby osiągnąć około {{years}} lat prostego zwrotu, instalacja powinna kosztować maksymalnie około {{amount}}.",
     "maxInvestmentNote": "Kwota jest obliczana na podstawie Twoich danych i założeń kalkulacyjnych – nie jest to oferta ani oszacowanie ceny rynkowej.",
     "missingMarketValues": "Nie mamy zweryfikowanej wartości domyślnej dla tego kraju. Wprowadź wartości samodzielnie poniżej.",
@@ -284,7 +297,18 @@ systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskaz
     "limitedByFuse": "Instalacja jest ograniczona przez Twoje zabezpieczenie główne, a nie przez Twoje zużycie.",
     "dataSource": "Źródło danych słonecznych",
     "calculatedAt": "Data obliczenia",
-    "noCalculation": "Nie znaleziono obliczeń. Zacznij od adresu."
+    "noCalculation": "Nie znaleziono obliczeń. Zacznij od adresu.",
+    "paybackYearsUnit": "lat",
+    "productionCostTitle": "Ile kosztuje energia słoneczna z Twojego dachu?",
+    "productionCostExplainer": "Dzielimy koszt instalacji przez szacowaną produkcję w całym okresie obliczeniowym.",
+    "productionCostLabel": "Koszt produkcji",
+    "productionCostValueLabel": "Wartość dla Ciebie",
+    "productionCostDifference": "Różnica",
+    "productionCostBasis": "Na podstawie {{investment}} i {{production}} kWh w ciągu {{years}} lat.",
+    "productionCostHigherValue": "W tym obliczeniu każda kWh jest warta więcej niż koszt jej wytworzenia.",
+    "productionCostUnavailable": "Nie możemy obliczyć kosztu produkcji przy obecnych danych.",
+    "perKwh": "{{amount}}/kWh",
+    "locked": "To obliczenie jest zablokowane. Dokończ zakup, aby zobaczyć wynik."
   },
   "units": {
     "kwhPerYear": "kWh/rok",
@@ -294,7 +318,13 @@ systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskaz
   "settings": {
     "title": "Ustawienia",
     "language": "Język",
-    "languageHint": "Waluta jest zależna od kraju w Twoim adresie, nie od języka."
+    "languageHint": "Waluta jest zależna od kraju w Twoim adresie, nie od języka.",
+    "history": "Historia",
+    "plansTitle": "Zakupy i subskrypcja",
+    "singleCta": "Zakupione przy następnym obliczeniu",
+    "singleNote": "Zakup jednorazowy jest realizowany, gdy rozpoczynasz nowe obliczenie — nie stąd.",
+    "terms": "Warunki użytkowania",
+    "privacy": "Polityka prywatności"
   },
   "chart": {
     "productionAria": "Miesięczna produkcja",
@@ -360,7 +390,7 @@ systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskaz
       "selfConsumptionSource_simulated": "oszacowano na podstawie profilu zużycia",
       "longTermChartTitle": "Wartość ekonomiczna w czasie",
       "keyAssumptions": "Kluczowe założenia kalkulacyjne",
-      priceMethodNote: "Wartości energii są założeniami obliczeniowymi. Rzeczywista wartość energii zużytej na miejscu i sprzedanej zależy od umowy, opłat, podatków, przepisów i warunków rynkowych.",
+      "priceMethodNote": "Wartości energii są założeniami obliczeniowymi. Rzeczywista wartość energii zużytej na miejscu i sprzedanej zależy od umowy, opłat, podatków, przepisów i warunków rynkowych.",
       "valueSource_standard-value": "Wartość standardowa",
       "valueSource_user-override": "Podane przez Ciebie",
       "priceChange": "Zmiana ceny energii elektrycznej",
@@ -438,7 +468,9 @@ systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskaz
       "orientation_southeast": "Południowy wschód",
       "orientation_southwest": "Południowy zachód",
       "orientation_east": "Wschód",
-      "orientation_west": "Zachód"
+      "orientation_west": "Zachód",
+      "priceChangeNoteFlat": "Obliczenie wykorzystuje niezmienione wartości energii słonecznej zużytej na własne potrzeby i eksportowanej przez cały okres. Nie zakłada się wzrostu cen, ponieważ przyszłych cen energii nie da się przewidzieć. Jeśli ceny wzrosną, wartość będzie wyższa niż w tym raporcie; jeśli spadną, będzie niższa.",
+      "priceChangeNoteTrend": "Obliczenie zakłada, że wartość energii słonecznej zużytej na własne potrzeby i eksportowanej zmienia się o {{priceChange}} % rocznie przez cały okres. To jest założenie, ponieważ przyszłych cen energii nie da się przewidzieć. Inny rozwój sytuacji oznacza wyższy lub niższy wynik niż w tym raporcie."
     },
     "title": "Raport fotowoltaiczny",
     "technical": "Dane techniczne",
@@ -461,17 +493,102 @@ systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskaz
     "generated": "Wygenerowano",
     "faqTitle": "Często zadawane pytania",
     "faqItems": [
-      { "q": "Jak pewna jest obliczona produkcja energii słonecznej?", "a": "Obliczenie opiera się na nasłonecznieniu w danej lokalizacji oraz kierunku i nachyleniu dachu. Na rzeczywistą produkcję wpływają m.in. pogoda, zacienienie i warunki techniczne instalacji." },
-      { "q": "Co oznacza autokonsumpcja?", "a": "Część energii słonecznej wykorzystywana bezpośrednio w domu. Pozostała produkcja jest wprowadzana do sieci elektroenergetycznej." },
-      { "q": "Dlaczego energia zużywana na własne potrzeby jest cenniejsza niż sprzedawana?", "a": "Energia zużywana na własne potrzeby zastępuje prąd, który w innym przypadku trzeba by kupić z sieci, podczas gdy sprzedawana energia jest rozliczana według warunków dla energii wprowadzanej do sieci." },
-      { "q": "Co oznacza cena dla wybranego okresu zwrotu?", "a": "Pokazuje w przybliżeniu, ile może kosztować instalacja, aby odpowiadać wybranemu przez Ciebie okresowi zwrotu, na podstawie założeń kalkulacji. Nie jest to szacunkowa cena rynkowa." },
-      { "q": "Dlaczego obliczenia instalatora mogą się różnić?", "a": "Różne założenia dotyczące produkcji, autokonsumpcji, cen energii, strat systemowych i przyszłego rozwoju cen mogą dawać różne wyniki." },
-      { "q": "Czy obliczenie jest ofertą?", "a": "Nie. Wynik jest szacunkiem i ma służyć jako podstawa decyzji. Rzeczywista cena, produkcja i wynik ekonomiczny mogą się różnić." },
-      { q: 'Dlaczego produkcja zmniejsza się z czasem?', a: 'Wydajność paneli słonecznych normalnie nieznacznie spada z upływem lat. Obliczenia zakładają roczną degradację na poziomie 0,5 %, co oznacza, że obliczona produkcja stopniowo maleje w okresie kalkulacji.' },
-      { q: 'Jak obliczana jest wartość mojej energii słonecznej?', a: 'Energia słoneczna zużywana na własne potrzeby jest wyceniana na podstawie kosztu energii, którą w innym przypadku musiałbyś kupić. Sprzedana energia słoneczna jest wyceniana na podstawie zakładanego wynagrodzenia za energię wprowadzoną do sieci.' },
-      { q: 'Co oznacza koszt produkcji za kWh?', a: 'Koszt produkcji pokazuje obliczony średni koszt każdej wyprodukowanej kilowatogodziny w okresie eksploatacji instalacji. Można go porównać z obliczoną wartością ekonomiczną energii słonecznej.' },
-      { q: 'Dlaczego zalecany jest właśnie taki rozmiar instalacji?', a: 'Wielkość instalacji jest obliczana między innymi na podstawie zużycia energii elektrycznej, nasłonecznienia w danym miejscu i ograniczeń technicznych. Celem jest dobranie instalacji do Twoich warunków, a nie montaż jak największej instalacji.' },
-    ],
-
+      {
+        "q": "Jak pewna jest obliczona produkcja energii słonecznej?",
+        "a": "Obliczenie opiera się na nasłonecznieniu w danej lokalizacji oraz kierunku i nachyleniu dachu. Na rzeczywistą produkcję wpływają m.in. pogoda, zacienienie i warunki techniczne instalacji."
+      },
+      {
+        "q": "Co oznacza autokonsumpcja?",
+        "a": "Część energii słonecznej wykorzystywana bezpośrednio w domu. Pozostała produkcja jest wprowadzana do sieci elektroenergetycznej."
+      },
+      {
+        "q": "Dlaczego energia zużywana na własne potrzeby jest cenniejsza niż sprzedawana?",
+        "a": "Energia zużywana na własne potrzeby zastępuje prąd, który w innym przypadku trzeba by kupić z sieci, podczas gdy sprzedawana energia jest rozliczana według warunków dla energii wprowadzanej do sieci."
+      },
+      {
+        "q": "Co oznacza cena dla wybranego okresu zwrotu?",
+        "a": "Pokazuje w przybliżeniu, ile może kosztować instalacja, aby odpowiadać wybranemu przez Ciebie okresowi zwrotu, na podstawie założeń kalkulacji. Nie jest to szacunkowa cena rynkowa."
+      },
+      {
+        "q": "Dlaczego obliczenia instalatora mogą się różnić?",
+        "a": "Różne założenia dotyczące produkcji, autokonsumpcji, cen energii, strat systemowych i przyszłego rozwoju cen mogą dawać różne wyniki."
+      },
+      {
+        "q": "Czy obliczenie jest ofertą?",
+        "a": "Nie. Wynik jest szacunkiem i ma służyć jako podstawa decyzji. Rzeczywista cena, produkcja i wynik ekonomiczny mogą się różnić."
+      },
+      {
+        "q": "Dlaczego produkcja zmniejsza się z czasem?",
+        "a": "Wydajność paneli słonecznych normalnie nieznacznie spada z upływem lat. Obliczenia zakładają roczną degradację na poziomie 0,5 %, co oznacza, że obliczona produkcja stopniowo maleje w okresie kalkulacji."
+      },
+      {
+        "q": "Jak obliczana jest wartość mojej energii słonecznej?",
+        "a": "Energia słoneczna zużywana na własne potrzeby jest wyceniana na podstawie kosztu energii, którą w innym przypadku musiałbyś kupić. Sprzedana energia słoneczna jest wyceniana na podstawie zakładanego wynagrodzenia za energię wprowadzoną do sieci."
+      },
+      {
+        "q": "Co oznacza koszt produkcji za kWh?",
+        "a": "Koszt produkcji pokazuje obliczony średni koszt każdej wyprodukowanej kilowatogodziny w okresie eksploatacji instalacji. Można go porównać z obliczoną wartością ekonomiczną energii słonecznej."
+      },
+      {
+        "q": "Dlaczego zalecany jest właśnie taki rozmiar instalacji?",
+        "a": "Wielkość instalacji jest obliczana między innymi na podstawie zużycia energii elektrycznej, nasłonecznienia w danym miejscu i ograniczeń technicznych. Celem jest dobranie instalacji do Twoich warunków, a nie montaż jak największej instalacji."
+      }
+    ]
+  },
+  "premium": {
+    "title": "Premium",
+    "restore": "Przywróć zakup",
+    "manage": "Zarządzaj subskrypcją",
+    "unavailable": "Zakupy są obsługiwane w aplikacji iOS przez App Store.",
+    "restored": "Twoje zakupy zostały przywrócone ({{count}}).",
+    "active": "Premium aktywne",
+    "activeHint": "Nieograniczone obliczenia i raporty",
+    "become": "Uzyskaj Premium",
+    "becomeHint": "Nieograniczone obliczenia – {{price}}/rok",
+    "activated": "Premium jest teraz aktywne.",
+    "restoredPremium": "Twoje Premium zostało przywrócone.",
+    "nothingToRestore": "Nie znaleźliśmy żadnych zakupów na tym urządzeniu.",
+    "restoreFailed": "Nie można teraz przywrócić zakupów."
+  },
+  "paywall": {
+    "single": {
+      "title": "Jedno obliczenie",
+      "body": "Odblokuj pełny wynik i raport PDF dla tego obliczenia.",
+      "cta": "Odblokuj za {{price}}"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{{price}}/rok",
+      "body": "Nieograniczone obliczenia i raporty PDF.",
+      "includes": {
+        "calculations": "Nieograniczone obliczenia",
+        "pdf": "Nieograniczone raporty PDF",
+        "result": "Pełny dostęp do wyniku"
+      },
+      "cta": "Uzyskaj Premium",
+      "renewal": "Odnawia się automatycznie co roku. Możesz anulować w każdej chwili."
+    },
+    "title": "Odblokuj swoje obliczenie",
+    "eyebrow": "Zakup jednorazowy",
+    "oneTime": "Płatność jednorazowa — bez subskrypcji.",
+    "includesTitle": "Co jest wliczone",
+    "includes": {
+      "result": "Pełne obliczenie z ekonomią i produkcją",
+      "pdf": "Raport PDF do zapisania lub udostępnienia",
+      "history": "Obliczenie jest zapisywane w Twojej historii"
+    },
+    "cta": "Odblokuj za {{price}}",
+    "purchasing": "Otwieranie App Store…",
+    "verifying": "Potwierdzanie zakupu…",
+    "cancelled": "Zakup został anulowany. Możesz spróbować ponownie.",
+    "failed": "Nie udało się zrealizować zakupu. Nie zostałeś obciążony opłatą.",
+    "retry": "Nie mogliśmy teraz potwierdzić zakupu. Nic nie zostało utracone — odblokuje się automatycznie, gdy połączenie znów zadziała.",
+    "appOnly": "Zakup jest realizowany w aplikacji za pomocą Twojego konta Apple i nie jest dostępny w przeglądarce.",
+    "appleNote": "Obsługiwane przez App Store."
+  },
+  "history": {
+    "empty": "Nie masz jeszcze żadnych zapisanych obliczeń.",
+    "unknownAddress": "Obliczenie",
+    "error": "Nie udało się wczytać Twojej historii."
   }
 } as const;
