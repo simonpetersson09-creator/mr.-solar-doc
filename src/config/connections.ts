@@ -39,6 +39,16 @@ export interface ConnectionOption {
   phasePrefix?: string;
 }
 
+/**
+ * How much we actually know about a country's residential connection.
+ *  - "verified":  confirmed national data. May be presented as the local standard.
+ *  - "generic":   a plausible regional profile that is NOT confirmed for this
+ *                 country. Must be presented as unverified and the user has to
+ *                 confirm the grid data before the result may be trusted.
+ *  - "unsupported": nothing is known. Manual entry only, always unverified.
+ */
+export type ConnectionProfileStatus = "verified" | "generic" | "unsupported";
+
 export interface CountryConnectionConfig {
   countryCode: string;
   /** Which unit the consumer states their connection in. */
@@ -63,10 +73,13 @@ export interface CountryConnectionConfig {
   defaultFrequencyHz: number;
   /** Override of the documented kVA -> kW assumption, when verified locally. */
   contractedKvaPowerFactor?: number;
-  /** False when the profile is a neutral fallback, not verified market data. */
+  /** Explicit knowledge level. Drives the UI, never the maths. */
+  status: ConnectionProfileStatus;
+  /** Convenience mirror of `status === "verified"`. Never set by hand. */
   verified: boolean;
-  source: "verified" | "fallback";
+  source: "verified" | "generic" | "fallback";
 }
+
 
 /* ---------------------------------------------------------------- profiles */
 
@@ -155,6 +168,7 @@ function config(
   defaults: ConnectionGridProfile,
   extra: Partial<CountryConnectionConfig> = {},
 ): CountryConnectionConfig {
+  const status: ConnectionProfileStatus = extra.status ?? "verified";
   return {
     countryCode,
     capacityInputType,
@@ -166,13 +180,16 @@ function config(
     defaultVoltage: defaults.voltageV,
     defaultLineToNeutralVoltage: defaults.lineToNeutralVoltageV ?? null,
     defaultFrequencyHz: defaults.frequencyHz,
-    verified: true,
-    source: "verified",
     ...extra,
+    status,
+    // Derived, never hand-set: only "verified" may claim national data.
+    verified: status === "verified",
+    source: status === "verified" ? "verified" : status === "generic" ? "generic" : "fallback",
   };
 }
 
 const NORTH_AMERICAN_RATINGS = [60, 100, 125, 150, 200, 400];
+
 
 /** Verified country profiles. Add a country only when its data is confirmed. */
 export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig> = {
@@ -311,10 +328,44 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
 };
 
 /**
- * Neutral fallback for countries without a verified profile: no country
- * specific options, only manual entry. The grid values below are initial UI
- * values classified as fallback (`verified: false`) — they are never presented
- * as the local standard.
+ * GENERIC (unverified) continental-European profile.
+ *
+ * These markets are in the launch list, but their national connection data is
+ * not confirmed at the same level as the verified profiles above. They are
+ * NOT given the Swedish profile as if it were their own, and they are NOT left
+ * on a single-phase 230 V fallback either — that would be an equally
+ * unverified claim, only a worse one for a region where 3N~400 V is the
+ * dominant residential service.
+ *
+ * The profile is explicitly flagged `status: "generic"`, so the UI must
+ * present it as unverified and require the user to confirm the grid data
+ * before the recommendation is shown as reliable. Upgrading a country later
+ * means moving its code from this list into a verified `config(...)` entry —
+ * no other code changes.
+ */
+const GENERIC_EU_AMPERE_LEVELS = [16, 20, 25, 32, 35, 40, 50, 63];
+
+const GENERIC_EU_MARKET_CODES = ["AT", "CZ", "PL", "SK", "SI", "EE", "LV", "LT", "CH"] as const;
+
+function genericEuConfig(countryCode: string): CountryConnectionConfig {
+  return config(
+    countryCode,
+    "amperage",
+    [
+      ...GENERIC_EU_AMPERE_LEVELS.map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+      ...[16, 20, 25, 32, 35, 40].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+    ],
+    EU_THREE_PHASE_400,
+    { status: "generic", questionKey: "fuse.genericTitle" },
+  );
+}
+
+export const GENERIC_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig> =
+  Object.fromEntries(GENERIC_EU_MARKET_CODES.map((code) => [code, genericEuConfig(code)]));
+
+/**
+ * Last-resort profile for countries we know nothing about: no options, manual
+ * entry only, `status: "unsupported"`. Never presented as a local standard.
  */
 export function fallbackConnectionConfig(countryCode = ""): CountryConnectionConfig {
   return {
@@ -324,14 +375,13 @@ export function fallbackConnectionConfig(countryCode = ""): CountryConnectionCon
     helpTextKey: "fuse.capacity.amperage.help",
     connectionOptions: [],
     defaultConnection: null,
-    // Unverified countries must NOT inherit the Swedish 3-phase 400 V profile
-    // as if it were verified. The most common residential service worldwide
-    // (single-phase 230 V) is the neutral starting point, clearly marked
-    // unverified, and the user can change every value manually.
+    // Nothing is claimed here. Single-phase 230 V is only the starting value
+    // in the input fields; the user must confirm or change every value.
     defaultServiceType: "single-phase",
     defaultVoltage: 230,
     defaultLineToNeutralVoltage: null,
     defaultFrequencyHz: DEFAULT_GRID_FREQUENCY_HZ,
+    status: "unsupported",
     verified: false,
     source: "fallback",
   };
@@ -340,12 +390,22 @@ export function fallbackConnectionConfig(countryCode = ""): CountryConnectionCon
 /** Country (never the app language) decides the connection input. */
 export function getConnectionConfig(countryCode?: string | null): CountryConnectionConfig {
   const code = (countryCode ?? "").toUpperCase();
-  return COUNTRY_CONNECTION_CONFIGS[code] ?? fallbackConnectionConfig(code);
+  return (
+    COUNTRY_CONNECTION_CONFIGS[code] ??
+    GENERIC_CONNECTION_CONFIGS[code] ??
+    fallbackConnectionConfig(code)
+  );
 }
 
 export function hasVerifiedConnectionConfig(countryCode?: string | null): boolean {
-  return getConnectionConfig(countryCode).verified;
+  return getConnectionConfig(countryCode).status === "verified";
 }
+
+/** True when the user must actively confirm the grid data before trusting it. */
+export function requiresGridConfirmation(config: CountryConnectionConfig): boolean {
+  return config.status !== "verified";
+}
+
 
 export function findConnectionOption(
   config: CountryConnectionConfig,

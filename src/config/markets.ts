@@ -169,7 +169,10 @@ export function getMarketConfig(countryCode?: string | null): MarketConfig {
   return MARKETS[FALLBACK_MARKET_CODE]!;
 }
 
-/** Country -> currency. Never derived from the chosen language. */
-export function getCurrencyForCountry(countryCode?: string | null): string {
-  return getMarketConfig(countryCode).currency;
-}
+/**
+ * Currency is NOT resolved here on purpose. `getMarketConfig` falls back to
+ * the Swedish market for unknown countries, so deriving currency from it would
+ * silently label a US or Japanese result as SEK. The single source of truth is
+ * `currencyForCountry` / `getCurrencyCode` in `@/config/countries`.
+ */
+

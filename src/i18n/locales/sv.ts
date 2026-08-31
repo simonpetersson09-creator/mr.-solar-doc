@@ -206,6 +206,10 @@ gridAssumptionInfo: "Säkringens teoretiska effekt beräknas utifrån 400 V tref
     subtitle: "Huvudsäkringen används för att uppskatta hur stor växelriktare som normalt kan anslutas. Faktisk tillåten effekt bestäms av nätägaren.",
     label: "Huvudsäkring",
     noCountryOptions: "Vi har inga verifierade anslutningsalternativ för det här landet ännu. Ange din huvudsäkring i ampere och justera vid behov nätinställningarna nedan.",
+    unverifiedCountryNotice:
+      "Vi har inte verifierat nätstandarden för det här landet. Kontrollera spänning, antal faser och anslutningsstorlek på din elfaktura eller hos din nätägare och bekräfta sedan nedan.",
+    confirmGrid: "Jag har kontrollerat nätuppgifterna",
+    confirmedGrid: "Nätuppgifter bekräftade",
     other: "Annan",
     otherLabel: "Ampere",
     maxAc: "Maximal beräknad AC-effekt",

@@ -23,6 +23,8 @@ import {
   isValidConnectionCapacity,
   type ConnectionCapacity,
 } from "@/config/connection-capacity";
+import { countryDefaults, isSameCountry } from "@/state/country-transition";
+
 
 export interface WizardState {
   location: SiteLocation | null;
@@ -42,6 +44,14 @@ export interface WizardState {
    * country uses. Source of truth for the AC ceiling.
    */
   connectionCapacity: ConnectionCapacity | null;
+  /** Id of the selected country option, when the capacity came from one. */
+  connectionOptionId: string | null;
+  /**
+   * Where the capacity came from. A country option carries the country's own
+   * verified grid profile; "custom" means the user stated it manually and the
+   * manual grid profile applies.
+   */
+  connectionSource: "country-option" | "custom" | null;
   /** Amperes when the connection is stated in amperes, otherwise null. */
   mainFuseAmp: number | null;
   /** Grid profile: phases, voltage and frequency of the connection. */
@@ -55,6 +65,12 @@ export interface WizardState {
   gridFrequencyHz: number;
   /** True once the user actively changed the grid profile in the UI. */
   gridProfileIsUserSet: boolean;
+  /**
+   * True when the grid data may be used without further confirmation. Verified
+   * countries start true; generic/unsupported ones require the user to confirm.
+   */
+  gridConfirmed: boolean;
+
   selfConsumptionShare: number;
   /** True once the user actively adjusted the share, regardless of its value. */
   selfConsumptionShareIsUserSet: boolean;
@@ -83,7 +99,16 @@ export interface WizardState {
     shape?: ConsumptionShape | null,
   ) => void;
   setMainFuse: (amp: number) => void;
+  /**
+   * Selects one of the country's own connection options. The option's grid
+   * profile is authoritative and is applied together with the capacity, so a
+   * "63 A" choice always means what the country says it means.
+   */
+  selectConnectionOption: (optionId: string, capacity: ConnectionCapacity) => void;
+  /** Manually stated capacity (custom mode); uses the manual grid profile. */
   setConnectionCapacity: (capacity: ConnectionCapacity | null) => void;
+  setGridConfirmed: (confirmed: boolean) => void;
+
   setGridProfile: (profile: {
     phaseCount?: PhaseCount;
     serviceType?: ServiceType;
@@ -121,6 +146,8 @@ const initialState = {
   consumptionInputType: "annual-only" as ConsumptionInputType,
   consumptionShape: null as ConsumptionShape | null,
   connectionCapacity: null as ConnectionCapacity | null,
+  connectionOptionId: null as string | null,
+  connectionSource: null as "country-option" | "custom" | null,
   mainFuseAmp: null,
   gridPhaseCount: DEFAULT_GRID_PROFILE.phaseCount,
   gridServiceType: SERVICE_TYPE_FOR_PHASE_COUNT[DEFAULT_GRID_PROFILE.phaseCount] as ServiceType,
@@ -128,6 +155,8 @@ const initialState = {
   gridLineToNeutralVoltageV: null as number | null,
   gridFrequencyHz: DEFAULT_GRID_PROFILE.frequencyHz,
   gridProfileIsUserSet: false,
+  gridConfirmed: false,
+
   selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
   selfConsumptionShareIsUserSet: false,
   selfConsumedValuePerKwh: null,
@@ -176,7 +205,25 @@ export const useWizardStore = create<WizardState>()(
   persist(
     (set) => ({
       ...initialState,
-      setLocation: (location) => set({ location, resource: null }),
+      /**
+       * The ONE country transition. When the country changes, every
+       * country-dependent value is revalidated centrally (see
+       * `@/state/country-transition`); UI components never reset it themselves.
+       */
+      setLocation: (location) =>
+        set((state) => {
+          const changedCountry = !isSameCountry(
+            state.location?.countryCode,
+            location?.countryCode,
+          );
+          if (!changedCountry) return { location, resource: null };
+          return {
+            location,
+            resource: null,
+            ...countryDefaults(location?.countryCode ?? null),
+          };
+        }),
+
       setRoof: (orientation, tiltDegrees, azimuthDegrees) =>
         set((state) => ({
           orientation,
@@ -198,6 +245,8 @@ export const useWizardStore = create<WizardState>()(
       setMainFuse: (amp) =>
         set((state) => ({
           mainFuseAmp: amp,
+          connectionSource: "custom" as const,
+          connectionOptionId: null,
           connectionCapacity: amperageCapacity(amp, {
             serviceType: state.gridServiceType,
             voltageV: state.gridVoltageV,
@@ -206,12 +255,36 @@ export const useWizardStore = create<WizardState>()(
           }),
         })),
       /**
-       * Capacity is the source of truth. `mainFuseAmp` is kept in sync only
-       * for ampere markets; kVA/kW markets intentionally leave it null.
+       * A country option defines its own technical meaning. Selecting it
+       * applies the option's grid profile as well, so "63 A" in Sweden is
+       * always 3 x 400 V — never whatever the user last tried in the
+       * advanced settings.
+       */
+      selectConnectionOption: (optionId, capacity) =>
+        set((state) => ({
+          connectionCapacity: capacity,
+          connectionOptionId: optionId,
+          connectionSource: "country-option" as const,
+          mainFuseAmp: capacity.type === "amperage" ? capacity.amperageA : null,
+          gridProfileIsUserSet: false,
+          ...(capacity.serviceType && capacity.voltageV
+            ? mergeGrid(state, {
+                serviceType: capacity.serviceType,
+                voltageV: capacity.voltageV,
+                lineToNeutralVoltageV: capacity.lineToNeutralVoltageV ?? null,
+                frequencyHz: capacity.frequencyHz ?? state.gridFrequencyHz,
+              })
+            : {}),
+        })),
+      /**
+       * Manually stated capacity (custom mode). `mainFuseAmp` is kept in sync
+       * only for ampere markets; kVA/kW markets intentionally leave it null.
        */
       setConnectionCapacity: (capacity) =>
         set((state) => ({
           connectionCapacity: capacity,
+          connectionOptionId: null,
+          connectionSource: capacity ? ("custom" as const) : null,
           mainFuseAmp: capacity?.type === "amperage" ? capacity.amperageA : null,
           ...(capacity && capacity.serviceType && capacity.voltageV
             ? mergeGrid(state, {
@@ -222,9 +295,35 @@ export const useWizardStore = create<WizardState>()(
               })
             : {}),
         })),
+      setGridConfirmed: (confirmed) => set({ gridConfirmed: confirmed }),
+      /**
+       * Manual expert settings. A country option's technical meaning may never
+       * change silently underneath the user, so changing the grid profile
+       * INVALIDATES a country-option selection: the capacity is cleared and a
+       * new, explicit choice is required. A custom capacity keeps its amount
+       * and is simply re-derived from the new profile.
+       */
       setGridProfile: (profile) =>
         set((state) => {
           const grid = mergeGrid(state, profile);
+          const unchanged =
+            grid.gridServiceType === state.gridServiceType &&
+            grid.gridVoltageV === state.gridVoltageV &&
+            grid.gridLineToNeutralVoltageV === state.gridLineToNeutralVoltageV &&
+            grid.gridFrequencyHz === state.gridFrequencyHz;
+          if (unchanged) return { ...grid, gridProfileIsUserSet: true };
+
+          if (state.connectionSource === "country-option") {
+            return {
+              ...grid,
+              gridProfileIsUserSet: true,
+              connectionCapacity: null,
+              connectionOptionId: null,
+              connectionSource: null,
+              mainFuseAmp: null,
+            };
+          }
+
           return {
             ...grid,
             gridProfileIsUserSet: true,
@@ -241,6 +340,7 @@ export const useWizardStore = create<WizardState>()(
         }),
       setGridDefaults: (profile) =>
         set((state) => (state.gridProfileIsUserSet ? {} : mergeGrid(state, profile))),
+
       setSelfConsumptionShare: (share) =>
         set({ selfConsumptionShare: share, selfConsumptionShareIsUserSet: true }),
       setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
@@ -302,6 +402,8 @@ export const useWizardStore = create<WizardState>()(
         consumptionInputType,
         consumptionShape,
         connectionCapacity,
+        connectionOptionId,
+        connectionSource,
         mainFuseAmp,
         gridPhaseCount,
         gridServiceType,
@@ -309,6 +411,7 @@ export const useWizardStore = create<WizardState>()(
         gridLineToNeutralVoltageV,
         gridFrequencyHz,
         gridProfileIsUserSet,
+        gridConfirmed,
         selfConsumptionShare,
         selfConsumptionShareIsUserSet,
         selfConsumedValuePerKwh,
@@ -328,6 +431,8 @@ export const useWizardStore = create<WizardState>()(
         consumptionInputType,
         consumptionShape,
         connectionCapacity,
+        connectionOptionId,
+        connectionSource,
         mainFuseAmp,
         gridPhaseCount,
         gridServiceType,
@@ -335,6 +440,7 @@ export const useWizardStore = create<WizardState>()(
         gridLineToNeutralVoltageV,
         gridFrequencyHz,
         gridProfileIsUserSet,
+        gridConfirmed,
         selfConsumptionShare,
         selfConsumptionShareIsUserSet,
         selfConsumedValuePerKwh,

@@ -212,8 +212,16 @@ export interface CalculationResult {
   /** Estimated number of modules for the recommended array. */
   panelCount: number;
   sizingBasis: SizingBasis;
+  /** Chosen inverter's rated AC power. */
   inverterKw: number;
+  /** The grid connection's AC ceiling (from the connection capacity). */
   maxAcPowerKw: number;
+  /**
+   * Same value as `maxAcPowerKw`, named for what it is so UI and PDF never
+   * present a grid limit as an inverter limitation.
+   */
+  gridConnectionLimitKw: number;
+
   dcAcRatio: number;
   oversizingPercent: number;
   /** Desired DC/AC window that drove the selection. */
