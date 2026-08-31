@@ -32,11 +32,15 @@ function runForCountry(countryCode: string, capacity: ConnectionCapacity) {
     exportValuePerKwh: null,
   });
   const outcome: CalculationOutcome = runCalculation({
-    location: { latitude: 55, longitude: 12, countryCode },
+    location: { latitude: 55, longitude: 12, countryCode, address: "Test", region: null } as never,
     resource: {
       annualKwhPerKwp: MONTHLY_YIELD.reduce((a, b) => a + b, 0),
       monthlyKwhPerKwp: MONTHLY_YIELD,
-    },
+      orientation: "south",
+      tiltDegrees: 30,
+      orientationAssumed: false,
+      tiltAssumed: false,
+    } as never,
     consumption: {
       annualKwh: 18000,
       monthlyKwh: Array.from({ length: 12 }, () => 1500),
