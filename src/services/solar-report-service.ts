@@ -1015,11 +1015,9 @@ export function generateReportBlob(options: ReportOptions): Blob {
       labels.origin,
     );
   }
-  report.paragraph(
-    result.investment.quotePrice != null
-      ? `${labels.paybackNote} ${labels.quoteNote}`
-      : labels.paybackNote,
-  );
+  report.paragraph(f["investmentNote"] ?? "");
+  if (result.investment.quotePrice != null) report.paragraph(labels.quoteNote);
+
 
   // ── Long-term development page ───────────────────────────────────────────
   // Everything below is read straight from result.lifetime (the same projection
