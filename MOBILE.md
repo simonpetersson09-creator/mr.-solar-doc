@@ -37,3 +37,21 @@ npx cap open android   # Android Studio → Run
 - Signera med ditt Apple Developer-konto (99 USD/år) och ladda upp via Xcode/Transporter.
 - Apple kan avvisa appar som endast är en webbvy. Motivera med native-värde (offline-splash,
   hemskärmsikon, PDF-delning) eller bygg vidare med native-plugins.
+
+## In-App Purchase (TestFlight-checklista)
+
+1. `cordova-plugin-purchase` finns i `package.json`. Kör:
+   ```bash
+   npx cap add ios          # om ios/ saknas
+   CAP_SERVER_URL=https://<publicerad-url> npx cap sync ios
+   ```
+2. I Xcode-targetet (`se.shiningdays.mrsolardoc`):
+   - Signing & Capabilities → **+ Capability → In-App Purchase**.
+   - Kontrollera att Bundle Identifier är `se.shiningdays.mrsolardoc`.
+3. App Store Connect: produkten `com.mrsolardoc.calculation.unlock`
+   (Consumable, 49 SEK) måste vara i minst "Ready to Submit".
+4. Verifiera på riktig enhet att `window.CdvPurchase` finns när appen laddas
+   från remote `server.url` — annars är köpknappen disabled.
+5. Oavslutade transaktioner återupptas automatiskt vid appstart
+   (`src/hooks/use-purchase-recovery.ts`). Testa genom att döda appen mitt i
+   ett sandbox-köp och starta om.

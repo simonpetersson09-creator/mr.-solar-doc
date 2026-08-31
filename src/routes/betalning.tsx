@@ -34,7 +34,7 @@ export const Route = createFileRoute("/betalning")({
   component: PaywallPage,
 });
 
-type Phase = "idle" | "purchasing" | "verifying" | "failed" | "cancelled";
+type Phase = "idle" | "purchasing" | "verifying" | "failed" | "cancelled" | "retry";
 
 function PaywallPage() {
   const { t } = useTranslation();
@@ -67,7 +67,10 @@ function PaywallPage() {
         data: { id: pending.id, accessToken: pending.accessToken, transactionId },
       });
       if (verified.status !== "paid") {
-        setPhase("failed");
+        // Pending means verification could not be completed — the transaction is
+        // deliberately left unfinished so Apple redelivers it and the recovery
+        // listener can unlock it later.
+        setPhase(verified.status === "pending" ? "retry" : "failed");
         return;
       }
       await finish();
@@ -88,6 +91,7 @@ function PaywallPage() {
       setPhase(reason === "cancelled" ? "cancelled" : "failed");
     }
   }
+
 
   const busy = phase === "purchasing" || phase === "verifying";
 
@@ -149,6 +153,10 @@ function PaywallPage() {
         {phase === "failed" ? (
           <p className="text-sm text-destructive">{t("paywall.failed")}</p>
         ) : null}
+        {phase === "retry" ? (
+          <p className="text-sm text-foreground">{t("paywall.retry")}</p>
+        ) : null}
+
 
         <div className="flex flex-col gap-2 pt-1">
           <Button
