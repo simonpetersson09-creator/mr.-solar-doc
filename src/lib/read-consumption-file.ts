@@ -152,7 +152,7 @@ export async function readConsumptionFile(file: File, language?: string): Promis
   } else if (/\.(xlsx|xls|ods)$/.test(name)) {
     text = await readSpreadsheetText(file);
   } else if (file.type.startsWith("image/") || IMAGE_EXTENSIONS.test(name)) {
-    text = await readImageText(file);
+    text = await readImageText(file, langs);
   } else {
     text = await file.text();
   }
