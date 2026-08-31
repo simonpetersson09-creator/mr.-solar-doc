@@ -76,11 +76,14 @@ export interface ReportOptions {
 }
 
 const PAGE = { width: 210, height: 297, margin: 18 };
-const INK: [number, number, number] = [28, 46, 40];
+/** Palette mirrors the app design tokens: forest green primary, solar orange accent, cream surfaces. */
+const INK: [number, number, number] = [17, 38, 26];
 const MUTED: [number, number, number] = [108, 122, 114];
-const ACCENT: [number, number, number] = [232, 158, 54];
+const PRIMARY: [number, number, number] = [22, 65, 45];
+const ACCENT: [number, number, number] = [245, 164, 32];
+const CREAM: [number, number, number] = [252, 250, 241];
 const LINE: [number, number, number] = [225, 226, 218];
-const GREY: [number, number, number] = [163, 172, 166];
+
 
 interface Row {
   label: string;
@@ -197,9 +200,11 @@ class ReportDocument {
   }
 
   header(title: string, appName: string, subtitle: string, generated: string) {
-    this.doc.setFillColor(...ACCENT);
+    this.doc.setFillColor(...PRIMARY);
     this.doc.rect(0, 0, PAGE.width, 30, "F");
-    this.doc.setTextColor(...INK);
+    this.doc.setFillColor(...ACCENT);
+    this.doc.rect(0, 30, PAGE.width, 1.6, "F");
+    this.doc.setTextColor(...CREAM);
     this.doc.setFont("helvetica", "bold");
     this.doc.setFontSize(18);
     this.doc.text(title, PAGE.margin, 15);
@@ -228,7 +233,7 @@ class ReportDocument {
     this.y += 2;
     this.doc.setFont("helvetica", "bold");
     this.doc.setFontSize(12);
-    this.doc.setTextColor(...INK);
+    this.doc.setTextColor(...PRIMARY);
     this.doc.text(text, PAGE.margin, this.y);
     this.y += 2.5;
     this.doc.setDrawColor(...ACCENT);
@@ -242,15 +247,15 @@ class ReportDocument {
     this.ensureSpace(30);
     items.forEach((item, index) => {
       const x = PAGE.margin + index * (width + 4);
-      this.doc.setFillColor(250, 246, 236);
-      this.doc.setDrawColor(...LINE);
+      this.doc.setFillColor(...PRIMARY);
+      this.doc.setDrawColor(...PRIMARY);
       this.doc.setLineWidth(0.2);
       this.doc.roundedRect(x, this.y, width, 24, 2.5, 2.5, "FD");
       this.doc.setFontSize(8);
-      this.doc.setTextColor(...MUTED);
+      this.doc.setTextColor(232, 238, 232);
       this.doc.setFont("helvetica", "normal");
       this.doc.text(this.doc.splitTextToSize(item.label, width - 6), x + 3, this.y + 6);
-      this.doc.setTextColor(...INK);
+      this.doc.setTextColor(...ACCENT);
       this.doc.setFont("helvetica", "bold");
       let size = 14;
       this.doc.setFontSize(size);
@@ -283,7 +288,7 @@ class ReportDocument {
       this.ensureSpace(height + 1);
 
       if (index % 2 === 0) {
-        this.doc.setFillColor(249, 249, 245);
+        this.doc.setFillColor(...CREAM);
         this.doc.rect(PAGE.margin, this.y - 4.5, full, height, "F");
       }
       this.doc.setFont("helvetica", "normal");
@@ -341,7 +346,7 @@ class ReportDocument {
         );
       };
       draw(value, slotX, ACCENT);
-      if (paired) draw(comparison![index] ?? 0, slotX + barWidth + 1.5, GREY);
+      if (paired) draw(comparison![index] ?? 0, slotX + barWidth + 1.5, PRIMARY);
       this.doc.setFontSize(6.5);
       this.doc.setTextColor(...MUTED);
       this.doc.text(monthLabels[index] ?? "", slotX + (paired ? slot / 2 - 1.5 : barWidth / 2), baseline + 4, {
@@ -353,7 +358,7 @@ class ReportDocument {
     if (paired && legend) {
       const entries: Array<[string, [number, number, number]]> = [
         [legend.production, ACCENT],
-        [legend.consumption, GREY],
+        [legend.consumption, PRIMARY],
       ];
       let x = PAGE.margin;
       this.doc.setFontSize(7.5);
@@ -387,13 +392,13 @@ class ReportDocument {
     const lines = this.doc.splitTextToSize(text, width - 8) as string[];
     const height = 12 + lines.length * 4;
     this.ensureSpace(height + 4);
-    this.doc.setFillColor(250, 246, 236);
-    this.doc.setDrawColor(...LINE);
-    this.doc.setLineWidth(0.2);
+    this.doc.setFillColor(...CREAM);
+    this.doc.setDrawColor(...PRIMARY);
+    this.doc.setLineWidth(0.3);
     this.doc.roundedRect(PAGE.margin, this.y, width, height, 2.5, 2.5, "FD");
     this.doc.setFont("helvetica", "bold");
     this.doc.setFontSize(9);
-    this.doc.setTextColor(...INK);
+    this.doc.setTextColor(...PRIMARY);
     this.doc.text(title, PAGE.margin + 4, this.y + 6);
     this.doc.setFont("helvetica", "normal");
     this.doc.setFontSize(8.5);
@@ -441,7 +446,7 @@ class ReportDocument {
       const y = yFor(point.value);
       this.doc.setFillColor(...ACCENT);
       this.doc.circle(x, y, 0.9, "F");
-      this.doc.setTextColor(...INK);
+      this.doc.setTextColor(...PRIMARY);
       const align = year === maxYear ? "right" : year === 1 ? "left" : "center";
       this.doc.text(formatValue(point.value), x, y - 2.5, { align });
       this.doc.setTextColor(...MUTED);
