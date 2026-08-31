@@ -157,7 +157,7 @@ const cost = result.productionCost;
 
   return (
 <div className="flex h-dvh max-h-dvh flex-col overflow-hidden surface-sun">
-      <main className="scrollbar-hidden mx-auto w-full max-w-2xl flex-1 space-y-2.5 overflow-y-auto overscroll-contain px-5 pt-safe pb-2">
+      <main className="scrollbar-hidden mx-auto w-full max-w-2xl flex-1 space-y-2.5 overflow-y-auto overflow-x-hidden overscroll-contain px-5 pt-safe pb-2">
         <header className="flex items-center gap-3 pt-3">
           <button
             type="button"
