@@ -1257,7 +1257,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
   );
 
   // FAQ closes the report; the metadata is a discreet closing line, not a page.
-  report.pageBreak();
+  report.softBreak(60);
   report.faq(labels.faqTitle, labels.faqItems);
 
   const reportId = buildReportId(result);
