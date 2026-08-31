@@ -33,7 +33,7 @@ export function useUnlockedCalculation(): {
   });
 
   const premium = usePremium();
-  // Unlocked when the calculation itself is paid (49 kr consumable) OR the
+  // Unlocked when the calculation itself is paid (one-off consumable) OR the
   // device has an active, server-verified Premium subscription.
   const paid = query.data?.status === "paid" || premium.active;
   const snapshot = paid ? (stored?.snapshot ?? null) : null;

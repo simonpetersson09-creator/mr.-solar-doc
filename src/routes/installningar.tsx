@@ -87,7 +87,7 @@ function SettingsPage() {
   /**
    * Restore syncs the App Store account with StoreKit so the current
    * subscription entitlement is redelivered and re-verified server-side.
-   * The 49 kr unlock is a consumable and is never restorable.
+   * The one-off unlock is a consumable and is never restorable.
    */
   async function handleRestore() {
     if (restoring) return;
