@@ -170,30 +170,29 @@ function SettingsPage() {
           <p className="text-[11px] text-primary-foreground/70">{t("settings.singleNote")}</p>
         </section>
 
-        {/* Option 2 — Premium */}
-        <section className="cta-primary flex flex-col gap-3 rounded-3xl border-2 border-accent/70 p-4 text-primary-foreground">
-          <div className="flex items-start gap-3">
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-accent text-accent-foreground shadow-md shadow-accent/40">
-              <Crown className="size-5" />
+{/* Option 2 — Premium */}
+        <section className="cta-primary flex flex-col gap-2 rounded-2xl border-2 border-accent/70 p-3 text-primary-foreground">
+          <div className="flex items-center gap-3">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent text-accent-foreground shadow-md shadow-accent/40">
+              <Crown className="size-4" />
             </span>
             <div className="flex flex-1 flex-col">
               <p className="text-sm font-bold">{t("paywall.premium.title")}</p>
-              <p className="text-2xl font-bold tabular-nums">
+              <p className="text-lg font-bold tabular-nums">
                 {t("paywall.premium.price", { price: premiumPrice })}
               </p>
-              <p className="text-sm text-primary-foreground/80">{t("paywall.premium.body")}</p>
             </div>
           </div>
-          <ul className="flex flex-col gap-1.5">
+          <ul className="flex flex-col gap-1">
             {["calculations", "pdf", "result"].map((key) => (
-              <li key={key} className="flex items-start gap-2 text-sm text-primary-foreground/90">
-                <Check className="mt-0.5 size-4 shrink-0 text-accent" />
+              <li key={key} className="flex items-start gap-2 text-xs text-primary-foreground/90">
+                <Check className="mt-0.5 size-3.5 shrink-0 text-accent" />
                 <span>{t(`paywall.premium.includes.${key}`)}</span>
               </li>
             ))}
           </ul>
           {premium.active ? (
-            <div className="flex items-center gap-2 rounded-xl bg-primary-foreground/15 px-3 py-2.5">
+            <div className="flex items-center gap-2 rounded-lg bg-primary-foreground/15 px-3 py-1.5">
               <Crown className="size-4 text-accent" />
               <span className="flex flex-col">
                 <span className="text-sm font-bold">{t("premium.active")}</span>
@@ -202,7 +201,6 @@ function SettingsPage() {
             </div>
           ) : (
             <Button
-              size="lg"
               disabled={buying}
               className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
               onClick={() => void handleBuyPremium()}
