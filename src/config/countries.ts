@@ -16,6 +16,51 @@ import { getConnectionConfig, type CountryConnectionConfig } from "./connections
 /** ISO 4217 currency code, e.g. "SEK", "EUR". */
 export type CurrencyCode = string;
 
+/**
+ * ISO 4217 "no currency" code. Used when we cannot determine the country's
+ * currency — never guess SEK (or any other real currency) for an unknown
+ * country; showing a neutral code is honest and cannot mislead.
+ */
+export const NEUTRAL_CURRENCY_CODE = "XXX";
+
+/**
+ * Currencies for countries we may see from the address but that have no
+ * verified market config. Currency is a fact, not an economic assumption, so
+ * it is safe to know it without claiming to know prices.
+ */
+export const CURRENCY_BY_COUNTRY: Record<string, CurrencyCode> = {
+  US: "USD",
+  CA: "CAD",
+  GB: "GBP",
+  AU: "AUD",
+  NZ: "NZD",
+  NO: "NOK",
+  IS: "ISK",
+  JP: "JPY",
+  CH: "CHF",
+  SE: "SEK",
+  DK: "DKK",
+  CZ: "CZK",
+  PL: "PLN",
+  HU: "HUF",
+  RO: "RON",
+  BG: "BGN",
+  IE: "EUR",
+  NL: "EUR",
+  BE: "EUR",
+  ES: "EUR",
+  PT: "EUR",
+  FR: "EUR",
+  IT: "EUR",
+  GR: "EUR",
+};
+
+/** Currency for a country, or the neutral code when it cannot be determined. */
+export function currencyForCountry(countryCode?: string | null): CurrencyCode {
+  const code = (countryCode ?? "").toUpperCase();
+  return MARKETS[code]?.currency ?? CURRENCY_BY_COUNTRY[code] ?? NEUTRAL_CURRENCY_CODE;
+}
+
 /** How a monetary default was obtained. Never hidden from the UI. */
 export type EconomicValueOrigin = "verified" | "missing";
 
@@ -173,11 +218,21 @@ export function getCountryConfig(countryCode?: string | null): CountryConfig {
   if (known) return known;
 
   const fallback = buildCountry(getMarketConfig(code));
+  const connection = getConnectionConfig(code);
   return {
     ...fallback,
     countryCode: code || fallback.countryCode,
+    connection,
+    grid: {
+      ...fallback.grid,
+      gridVoltageV: connection.defaultVoltage,
+      gridPhases: connection.connectionOptions[0]?.phaseCount ?? fallback.grid.gridPhases,
+      mainFuseOptionsAmp: connection.connectionOptions.map((option) => option.amperage),
+    },
     economics: {
       ...fallback.economics,
+      // Currency is a verifiable fact; prices are not. Never assume SEK.
+      currencyCode: currencyForCountry(code),
       electricity: {
         selfConsumedValuePerKwh: money(null),
         exportPricePerKwh: money(null),

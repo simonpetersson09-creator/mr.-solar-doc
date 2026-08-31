@@ -10,11 +10,14 @@ import { formatDecimal, parseLocaleNumber } from "@/lib/format";
 import { getConnectionConfig } from "@/config/connections";
 import {
   GRID_FREQUENCY_OPTIONS,
-  GRID_PHASE_OPTIONS,
-  GRID_VOLTAGE_OPTIONS,
+  SERVICE_TYPE_OPTIONS,
+  SPLIT_PHASE_LINE_TO_LINE_V,
   isPresetVoltage,
   isValidCustomVoltage,
   maxAcPowerKwFor,
+  splitPhaseLineToNeutral,
+  voltageOptionsForService,
+  type ServiceType,
 } from "@/config/grid";
 import { useWizardStore } from "@/state/wizard-store";
 import { haptic } from "@/services/native-service";
@@ -36,7 +39,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   const location = useWizardStore((s) => s.location);
   const storedFuse = useWizardStore((s) => s.mainFuseAmp);
   const setMainFuse = useWizardStore((s) => s.setMainFuse);
-  const phaseCount = useWizardStore((s) => s.gridPhaseCount);
+  const serviceType = useWizardStore((s) => s.gridServiceType);
   const voltageV = useWizardStore((s) => s.gridVoltageV);
   const frequencyHz = useWizardStore((s) => s.gridFrequencyHz);
   const setGridProfile = useWizardStore((s) => s.setGridProfile);
@@ -53,9 +56,9 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
 
   // Custom voltage: an extra option after the presets, using the same
   // voltage value in the existing power formula.
-  const [customVoltage, setCustomVoltage] = useState(!isPresetVoltage(voltageV));
+  const [customVoltage, setCustomVoltage] = useState(!isPresetVoltage(voltageV, serviceType));
   const [customVoltageValue, setCustomVoltageValue] = useState(
-    isPresetVoltage(voltageV) ? "" : String(voltageV),
+    isPresetVoltage(voltageV, serviceType) ? "" : String(voltageV),
   );
   const parsedCustomVoltage = parseLocaleNumber(customVoltageValue);
   const customVoltageValid = isValidCustomVoltage(parsedCustomVoltage);
@@ -63,8 +66,22 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
 
   const selected = custom ? (parseLocaleNumber(customValue) ?? 0) : (storedFuse ?? 0);
   const valid = selected >= MIN_AMP && selected <= MAX_AMP && voltageValid;
-  const maxAc = maxAcPowerKwFor({ mainFuseAmp: selected, voltageV, phaseCount });
-  const phaseLabel = t(phaseCount === 1 ? "fuse.grid.phase1" : "fuse.grid.phase3");
+  // Same single source of truth as the calculation engine.
+  const maxAc = maxAcPowerKwFor({ mainFuseAmp: selected, voltageV, serviceType });
+
+  const serviceLabel = (type: ServiceType) =>
+    t(
+      type === "single-phase"
+        ? "fuse.grid.phase1"
+        : type === "three-phase"
+          ? "fuse.grid.phase3"
+          : "fuse.grid.splitPhase",
+    );
+  /** Split-phase is displayed as "120/240 V" — the 240 V drives the power. */
+  const voltageLabel = (value: number) =>
+    serviceType === "split-phase"
+      ? `${splitPhaseLineToNeutral(value)}/${value} V`
+      : `${value} V`;
 
   const chipClass = (active: boolean) =>
     active
@@ -75,7 +92,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
     <StepShell
       step={4}
       totalSteps={totalSteps}
-      title={t(connection.questionKey)}
+      title={connection.verified ? t(connection.questionKey) : t("fuse.genericTitle")}
       onBack={onBack}
       footer={
         <Button
@@ -110,8 +127,10 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
                 setCustom(false);
                 setMainFuse(option.amperage);
                 setGridDefaults({
+                  serviceType: option.serviceType,
                   phaseCount: option.phaseCount,
                   voltageV: option.voltage,
+                  lineToNeutralVoltageV: option.lineToNeutralVoltage ?? null,
                   frequencyHz: option.frequencyHz,
                 });
               }}
@@ -172,7 +191,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
 
         <div
           className="border-t border-white/15 pt-3"
-          hidden={phaseCount !== 3 || voltageV !== 400}
+          hidden={serviceType !== "three-phase" || voltageV !== 400}
         >
           <button
             type="button"
@@ -199,11 +218,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
           <div className="min-w-0">
             <p className="text-xs font-semibold text-white">{t("fuse.grid.section")}</p>
             <p className="truncate text-[11px] text-white/70">
-              {t("fuse.grid.summary", {
-                phases: phaseLabel,
-                voltage: voltageV,
-                frequency: frequencyHz,
-              })}
+              {`${serviceLabel(serviceType)} · ${voltageLabel(voltageV)} · ${frequencyHz} Hz`}
             </p>
           </div>
           <button
@@ -221,16 +236,23 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         {editGrid ? (
           <div className="space-y-3 rounded-2xl bg-white/10 px-3 py-3">
             <div className="space-y-1.5">
-              <Label className="text-[11px] text-white/70">{t("fuse.grid.phases")}</Label>
-              <div className="grid grid-cols-2 gap-1.5">
-                {GRID_PHASE_OPTIONS.map((option) => (
+              <Label className="text-[11px] text-white/70">{t("fuse.grid.serviceType")}</Label>
+              <div className="grid grid-cols-3 gap-1.5">
+                {SERVICE_TYPE_OPTIONS.map((option) => (
                   <button
                     key={option}
                     type="button"
-                    onClick={() => setGridProfile({ phaseCount: option })}
-                    className={chipClass(phaseCount === option)}
+                    onClick={() => {
+                      setCustomVoltage(false);
+                      setGridProfile(
+                        option === "split-phase"
+                          ? { serviceType: option, voltageV: SPLIT_PHASE_LINE_TO_LINE_V }
+                          : { serviceType: option },
+                      );
+                    }}
+                    className={chipClass(serviceType === option)}
                   >
-                    {t(option === 1 ? "fuse.grid.phase1" : "fuse.grid.phase3")}
+                    {serviceLabel(option)}
                   </button>
                 ))}
               </div>
@@ -239,7 +261,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
             <div className="space-y-1.5">
               <Label className="text-[11px] text-white/70">{t("fuse.grid.voltage")}</Label>
               <div className="grid grid-cols-3 gap-1.5">
-                {GRID_VOLTAGE_OPTIONS.map((option) => (
+                {voltageOptionsForService(serviceType).map((option) => (
                   <button
                     key={option}
                     type="button"
@@ -249,7 +271,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
                     }}
                     className={chipClass(!customVoltage && voltageV === option)}
                   >
-                    {option} V
+                    {voltageLabel(option)}
                   </button>
                 ))}
                 <button
@@ -308,7 +330,9 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
               </div>
             </div>
 
-            <p className="text-[11px] leading-relaxed text-white/60">{t("fuse.grid.hint")}</p>
+            <p className="text-[11px] leading-relaxed text-white/60">
+              {connection.verified ? t("fuse.grid.hint") : t("fuse.grid.unverifiedHint")}
+            </p>
           </div>
         ) : null}
 

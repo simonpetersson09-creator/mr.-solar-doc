@@ -54,13 +54,13 @@ describe("country connection config", () => {
   });
 
   it("a country without its own config falls back without Swedish fuse options", () => {
-    const config = getConnectionConfig("US");
+    const config = getConnectionConfig("ZZ");
     expect(config.verified).toBe(false);
     expect(config.connectionOptions).toEqual([]);
     expect(config.defaultVoltage).toBe(400);
     expect(config.defaultFrequencyHz).toBe(50);
     expect(config.defaultServiceType).toBe("three-phase");
-    expect(hasVerifiedConnectionConfig("US")).toBe(false);
+    expect(hasVerifiedConnectionConfig("ZZ")).toBe(false);
     expect(hasVerifiedConnectionConfig("SE")).toBe(true);
   });
 

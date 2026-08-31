@@ -11,6 +11,10 @@
  */
 
 import {
+  PHASE_COUNT_FOR_SERVICE_TYPE,
+  SPLIT_PHASE_FREQUENCY_HZ,
+  SPLIT_PHASE_LINE_TO_LINE_V,
+  SPLIT_PHASE_LINE_TO_NEUTRAL_V,
   DEFAULT_GRID_FREQUENCY_HZ,
   DEFAULT_GRID_PHASE_COUNT,
   DEFAULT_GRID_VOLTAGE_V,
@@ -32,7 +36,10 @@ export interface ConnectionOption {
   amperage: number;
   serviceType: ServiceType;
   phaseCount: PhaseCount;
+  /** Reference voltage: line-to-line, except single-phase (line-to-neutral). */
   voltage: number;
+  /** Line-to-neutral voltage where it differs (split-phase 120 of 120/240 V). */
+  lineToNeutralVoltage?: number | null;
   frequencyHz: number;
 }
 
@@ -45,6 +52,8 @@ export interface CountryConnectionConfig {
   defaultConnection: string | null;
   defaultServiceType: ServiceType;
   defaultVoltage: number;
+  /** Line-to-neutral default (split-phase). Null when not applicable. */
+  defaultLineToNeutralVoltage?: number | null;
   defaultFrequencyHz: number;
   /**
    * False when the option list is a neutral fallback rather than verified
@@ -52,6 +61,8 @@ export interface CountryConnectionConfig {
    * they were country-specific.
    */
   verified: boolean;
+  /** Provenance of the profile. "fallback" must never be shown as local data. */
+  source: ConnectionDataSource;
   /**
    * Future: regional profiles inside one country (e.g. different grid
    * operators). Empty today; consumers must tolerate it being undefined.
@@ -59,8 +70,13 @@ export interface CountryConnectionConfig {
   regions?: Record<string, Partial<CountryConnectionConfig>>;
 }
 
+/** Where a connection profile's data comes from. User input always wins. */
+export type ConnectionDataSource = "verified" | "fallback" | "userProvided";
+
 interface OptionSpec {
   amperage: number;
+  serviceType?: ServiceType;
+  lineToNeutralVoltage?: number | null;
   label?: string;
   phaseCount?: PhaseCount;
   voltage?: number;
@@ -69,16 +85,22 @@ interface OptionSpec {
 }
 
 function buildOption(spec: OptionSpec, defaults: Omit<OptionSpec, "amperage">): ConnectionOption {
-  const phaseCount = spec.phaseCount ?? defaults.phaseCount ?? DEFAULT_GRID_PHASE_COUNT;
+  const serviceType = spec.serviceType ?? defaults.serviceType ?? null;
+  const phaseCount =
+    spec.phaseCount ??
+    defaults.phaseCount ??
+    (serviceType ? PHASE_COUNT_FOR_SERVICE_TYPE[serviceType] : DEFAULT_GRID_PHASE_COUNT);
   const voltage = spec.voltage ?? defaults.voltage ?? DEFAULT_GRID_VOLTAGE_V;
   const frequencyHz = spec.frequencyHz ?? defaults.frequencyHz ?? DEFAULT_GRID_FREQUENCY_HZ;
   return {
     id: spec.id ?? `${phaseCount}x${spec.amperage}`,
     label: spec.label ?? `${spec.amperage} A`,
     amperage: spec.amperage,
-    serviceType: SERVICE_TYPE_FOR_PHASE_COUNT[phaseCount],
+    serviceType: serviceType ?? SERVICE_TYPE_FOR_PHASE_COUNT[phaseCount],
     phaseCount,
     voltage,
+    lineToNeutralVoltage:
+      spec.lineToNeutralVoltage ?? defaults.lineToNeutralVoltage ?? null,
     frequencyHz,
   };
 }
@@ -98,13 +120,28 @@ function connectionConfig(
     connectionOptions,
     defaultConnection: null,
     defaultServiceType:
+      optionDefaults.serviceType ??
       SERVICE_TYPE_FOR_PHASE_COUNT[optionDefaults.phaseCount ?? DEFAULT_GRID_PHASE_COUNT],
     defaultVoltage: optionDefaults.voltage ?? DEFAULT_GRID_VOLTAGE_V,
+    defaultLineToNeutralVoltage: optionDefaults.lineToNeutralVoltage ?? null,
     defaultFrequencyHz: optionDefaults.frequencyHz ?? DEFAULT_GRID_FREQUENCY_HZ,
     verified: true,
+    source: "verified",
     ...rest,
   };
 }
+
+const SPLIT_PHASE_OPTION_DEFAULTS: Omit<OptionSpec, "amperage"> = {
+  serviceType: "split-phase",
+  voltage: SPLIT_PHASE_LINE_TO_LINE_V,
+  lineToNeutralVoltage: SPLIT_PHASE_LINE_TO_NEUTRAL_V,
+  frequencyHz: SPLIT_PHASE_FREQUENCY_HZ,
+};
+
+/** Common North American residential service ratings (A). */
+const NORTH_AMERICAN_SERVICE_RATINGS: OptionSpec[] = [60, 100, 125, 150, 200, 400].map(
+  (amperage) => ({ amperage }),
+);
 
 /** Verified country profiles. Add a country only when its data is confirmed. */
 export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig> = {
@@ -116,6 +153,17 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     { amperage: 50 },
     { amperage: 63 },
   ]),
+  /**
+   * North America: residential services are split-phase 120/240 V, 60 Hz.
+   * The service rating list is standard panel sizing; no rating is preselected
+   * because we cannot know the user's panel.
+   */
+  US: connectionConfig("US", NORTH_AMERICAN_SERVICE_RATINGS, {
+    optionDefaults: SPLIT_PHASE_OPTION_DEFAULTS,
+  }),
+  CA: connectionConfig("CA", NORTH_AMERICAN_SERVICE_RATINGS, {
+    optionDefaults: SPLIT_PHASE_OPTION_DEFAULTS,
+  }),
 };
 
 /**
@@ -131,8 +179,10 @@ export function fallbackConnectionConfig(countryCode = ""): CountryConnectionCon
     defaultConnection: null,
     defaultServiceType: SERVICE_TYPE_FOR_PHASE_COUNT[DEFAULT_GRID_PHASE_COUNT],
     defaultVoltage: DEFAULT_GRID_VOLTAGE_V,
+    defaultLineToNeutralVoltage: null,
     defaultFrequencyHz: DEFAULT_GRID_FREQUENCY_HZ,
     verified: false,
+    source: "fallback",
   };
 }
 
