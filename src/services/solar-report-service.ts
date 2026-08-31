@@ -1242,14 +1242,20 @@ export function generateReportBlob(options: ReportOptions): Blob {
     labels.origin,
   );
   // The method note must describe the user's actual grid profile, never a
-  // fixed 400 V three-phase assumption.
+  // fixed 400 V three-phase assumption — and the fuse formula only applies to
+  // ampere markets. Contracted kVA/kW is a total that is used directly.
+  const isContracted =
+    result.connection?.type === "contracted-kva" || result.connection?.type === "contracted-kw";
   const isDefaultGrid = result.grid.serviceType === "three-phase" && result.grid.voltageV === 400;
-  const gridNote = isDefaultGrid
-    ? (f["gridMethodNote"] ?? "")
-    : (f["gridMethodNoteDynamic"] ?? f["gridMethodNote"] ?? "")
-        .replaceAll("{{voltage}}", formatNumber(result.grid.voltageV, locale))
-        .replaceAll("{{phases}}", String(result.grid.phases))
-        .replaceAll("{{factor}}", formatDecimal(result.grid.serviceType === "three-phase" ? 1.73 : 1, locale, 2));
+  const gridNote = isContracted
+    ? (f["gridMethodNoteContracted"] ?? "")
+    : isDefaultGrid
+      ? (f["gridMethodNote"] ?? "")
+      : (f["gridMethodNoteDynamic"] ?? f["gridMethodNote"] ?? "")
+          .replaceAll("{{voltage}}", formatNumber(result.grid.voltageV, locale))
+          .replaceAll("{{phases}}", String(result.grid.phases))
+          .replaceAll("{{factor}}", formatDecimal(result.grid.serviceType === "three-phase" ? 1.73 : 1, locale, 2));
+
   report.paragraph(gridNote);
   report.noteBox(
     f["uncertaintyTitle"] ?? "",
