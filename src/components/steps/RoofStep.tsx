@@ -5,6 +5,7 @@ import { NumericField } from "@/components/NumericField";
 import { Label } from "@/components/ui/label";
 import { StepShell } from "@/components/StepShell";
 import { CompassDial } from "@/components/CompassDial";
+import { TiltDial } from "@/components/TiltDial";
 import { useSolarResource } from "@/hooks/use-solar-resource";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatNumber } from "@/lib/format";
