@@ -158,6 +158,26 @@ error: "Adressökningen misslyckades.",
     invalid: "Ange en årsförbrukning mellan 100 och 200 000 kWh.",
   },
   fuse: {
+    gridAssumptionDynamic: "Beräkningen utgår från {{service}} {{voltage}}.",
+    capacity: {
+      otherLabel: "Ange värde",
+      invalid: "Ange ett värde mellan {{min}} och {{max}} {{unit}}.",
+      amperage: {
+        title: "Vilken huvudsäkring har du?",
+        label: "Huvudsäkring",
+        help: "Ampere per fas, står på huvudbrytaren eller elräkningen.",
+      },
+      "contracted-kva": {
+        title: "Vilken abonnerad effekt har du?",
+        label: "Abonnerad effekt",
+        help: "Anges i kVA på din elräkning.",
+      },
+      "contracted-kw": {
+        title: "Vilken avtalad effekt har du?",
+        label: "Avtalad effekt",
+        help: "Anges i kW på din elräkning.",
+      },
+    },
     gridAssumption: "Beräkningen utgår från 400 V trefas.",
     gridAssumptionInfo: "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
     grid: {
@@ -191,6 +211,10 @@ error: "Adressökningen misslyckades.",
     invalid: "Ange en huvudsäkring mellan 6 och 400 A.",
   },
   result: {
+    connection: {
+      contractedKva: "Abonnerad effekt (kVA)",
+      contractedKw: "Avtalad effekt (kW)",
+    },
     gridConnection: "Nätanslutning",
     gridConnectionValue: "{{voltage}} V, {{phases}}-fas",
     title: "Din beräkning",
