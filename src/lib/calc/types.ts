@@ -103,7 +103,7 @@ export interface GridAssumption {
   voltageV: number;
   phases: number;
   kwPerAmp: number;
-  frequencyHz?: number;
+  frequencyHz: number;
 }
 
 /** Where a price used in the calculation came from. */

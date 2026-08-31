@@ -18,6 +18,7 @@ import { calculateMaxInvestment } from "./payback";
 import { calculateProductionCost } from "./production-cost";
 import { buildLifetimeProjection } from "./degradation";
 import { maxAcPowerFromFuse, dcAcRatio, oversizingPercent } from "./inverter-sizing";
+import { DEFAULT_GRID_FREQUENCY_HZ } from "@/config/grid";
 import { recommendArraySize } from "./solar-sizing";
 import { clampShare, splitProduction, summariseSelfConsumption } from "./self-consumption";
 import type {
@@ -221,7 +222,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       voltageV: input.electrical.gridVoltageV ?? EU_GRID_VOLTAGE_V,
       phases: input.electrical.gridPhases ?? EU_GRID_PHASES,
       kwPerAmp: input.electrical.kwPerAmp,
-      frequencyHz: input.electrical.gridFrequencyHz,
+      frequencyHz: input.electrical.gridFrequencyHz ?? DEFAULT_GRID_FREQUENCY_HZ,
     },
     lifetime,
     investment: investmentResult,
