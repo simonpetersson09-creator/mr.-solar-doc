@@ -72,7 +72,23 @@ const resources = {
   lt: { translation: lt },
   fr: { translation: fr },
   it: { translation: it },
+  es: { translation: es },
+  pt: { translation: pt },
+  nl: { translation: nl },
+  no: { translation: no },
+  ro: { translation: ro },
+  el: { translation: el },
+  hu: { translation: hu },
+  hr: { translation: hr },
+  sr: { translation: sr },
+  bg: { translation: bg },
+  uk: { translation: uk },
+  tr: { translation: tr },
+  hi: { translation: hi },
+  id: { translation: id },
+  he: { translation: he },
 };
+
 
 if (!i18n.isInitialized) {
   void i18n.use(initReactI18next).init({
