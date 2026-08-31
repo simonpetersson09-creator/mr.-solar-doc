@@ -72,3 +72,36 @@ describe("dynamic grid profile", () => {
     expect(threePhase.inverterKw).toBeLessThanOrEqual(17.32);
   });
 });
+describe("custom voltage", () => {
+  it("accepts positive voltages inside plausible bounds", () => {
+    for (const v of [100, 110, 120, 127, 208, 277, 480]) {
+      expect(isValidCustomVoltage(v)).toBe(true);
+      expect(isPresetVoltage(v)).toBe(false);
+    }
+  });
+
+  it("rejects missing, zero and negative voltages", () => {
+    expect(isValidCustomVoltage(null)).toBe(false);
+    expect(isValidCustomVoltage(0)).toBe(false);
+    expect(isValidCustomVoltage(-230)).toBe(false);
+    expect(isValidCustomVoltage(Number.NaN)).toBe(false);
+    expect(isValidCustomVoltage(5000)).toBe(false);
+  });
+
+  it("still recognises the predefined options", () => {
+    for (const v of GRID_VOLTAGE_OPTIONS) expect(isPresetVoltage(v)).toBe(true);
+  });
+
+  it("feeds a custom voltage through the existing power formula", () => {
+    // 3-phase 480 V: sqrt(3) x 480 / 1000
+    expect(kwPerAmpFor(3, 480)).toBeCloseTo(0.8314, 4);
+    expect(maxAcPowerFromFuse(25, kwPerAmpFor(3, 480))).toBeCloseTo(20.78, 2);
+    // 1-phase 120 V: 120 / 1000
+    expect(kwPerAmpFor(1, 120)).toBeCloseTo(0.12, 4);
+    expect(maxAcPowerFromFuse(20, kwPerAmpFor(1, 120))).toBeCloseTo(2.4, 2);
+  });
+
+  it("returns to the preset value when switching back to 400 V", () => {
+    expect(kwPerAmpFor(3, 400)).toBeCloseTo(0.6928, 4);
+  });
+});
