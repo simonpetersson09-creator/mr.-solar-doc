@@ -14,6 +14,22 @@ import { lv } from "./locales/lv";
 import { lt } from "./locales/lt";
 import { fr } from "./locales/fr";
 import { it } from "./locales/it";
+import { es } from "./locales/es";
+import { pt } from "./locales/pt";
+import { nl } from "./locales/nl";
+import { no } from "./locales/no";
+import { ro } from "./locales/ro";
+import { el } from "./locales/el";
+import { hu } from "./locales/hu";
+import { hr } from "./locales/hr";
+import { sr } from "./locales/sr";
+import { bg } from "./locales/bg";
+import { uk } from "./locales/uk";
+import { tr } from "./locales/tr";
+import { hi } from "./locales/hi";
+import { id } from "./locales/id";
+import { he } from "./locales/he";
+
 import {
   FALLBACK_LANGUAGE,
   LANGUAGE_DEFAULT_REGION,
