@@ -69,6 +69,14 @@ export interface ReportLabels {
   consumptionShape?: string | null;
 origin: Record<ValueOrigin, string>;
   fields: ReportFieldLabels;
+  /** Shown instead of money when the market has no verified price data. */
+  economicsRequiresPrice: string;
+  /** Short inline placeholder for a money value that cannot be calculated. */
+  economicsRequiresPriceShort: string;
+  /** Warning shown when the grid profile is generic/unverified. */
+  gridUnverifiedWarning: string;
+  /** Heading for the unverified grid warning. */
+  gridUnverifiedTitle: string;
   /** Heading for the FAQ page. */
   faqTitle: string;
   /** FAQ entries rendered on their own page at the end of the report. */
@@ -638,6 +646,17 @@ export function buildReportFileName(result: CalculationResult): string {
 export function generateReportBlob(options: ReportOptions): Blob {
   const { result, labels, locale } = options;
   const f = labels.fields;
+  /**
+   * S5: a missing electricity price is NOT zero. When the economic inputs are
+   * incomplete the report states that instead of printing a credible "0".
+   */
+  const economicsIncomplete = result.economicsStatus === "incomplete";
+  const money = (value: number) =>
+    economicsIncomplete
+      ? labels.economicsRequiresPriceShort
+      : formatCurrency(value, locale, options.result.economics.currency);
+  /** S6: unverified grid assumptions follow the result into the PDF. */
+  const gridUnverified = result.grid.profileStatus !== "verified";
   const currency = result.economics.currency;
   const report = new ReportDocument();
 
@@ -698,29 +717,28 @@ export function generateReportBlob(options: ReportOptions): Blob {
   const paybackValue =
     result.investment.quotePaybackYears ?? result.investment.acceptedPaybackYears;
   report.sectionTitle(labels.economicSummary);
+  if (economicsIncomplete) report.paragraph(labels.economicsRequiresPrice);
   report.highlights([
     {
       label: f["annualValue"] ?? f.savings,
-      value: formatCurrency(result.presentation.annualSavings, locale, currency),
+      value: money(result.presentation.annualSavings),
     },
     {
       label: f["investment"] ?? f["maxInvestment"] ?? "",
-      value: formatCurrency(investmentValue, locale, currency),
+      value: money(investmentValue),
     },
     {
       label: f["paybackTime"] ?? f["acceptedPayback"] ?? "",
-      value: `${formatDecimal(paybackValue, locale, 1)} ${f["yearsUnit"] ?? ""}`,
+      value: economicsIncomplete
+        ? labels.economicsRequiresPriceShort
+        : `${formatDecimal(paybackValue, locale, 1)} ${f["yearsUnit"] ?? ""}`,
     },
     {
       label: (f["savings30"] ?? f.savings).replace(
         "{{years}}",
         String(result.lifetime.periodYears),
       ),
-      value: formatCurrency(
-        Math.round(result.lifetime.totalEconomicValue),
-        locale,
-        currency,
-      ),
+      value: money(Math.round(result.lifetime.totalEconomicValue)),
     },
   ]);
 
@@ -735,6 +753,9 @@ export function generateReportBlob(options: ReportOptions): Blob {
 
   report.pageBreak();
 
+  if (gridUnverified) {
+    report.paragraph(`${labels.gridUnverifiedTitle}: ${labels.gridUnverifiedWarning}`);
+  }
   report.sectionTitle(labels.sizing);
   report.rows(
     [
@@ -900,17 +921,17 @@ export function generateReportBlob(options: ReportOptions): Blob {
     [
       {
         label: f["selfConsumptionValue"] ?? f.selfConsumption,
-        value: formatCurrency(result.presentation.selfConsumptionValue, locale, currency),
+        value: money(result.presentation.selfConsumptionValue),
         origin: "calculated",
       },
       {
         label: f["exportValue"] ?? f.exported,
-        value: formatCurrency(result.presentation.exportValue, locale, currency),
+        value: money(result.presentation.exportValue),
         origin: "calculated",
       },
       {
         label: f["totalAnnualBenefit"] ?? f.economicValue,
-        value: formatCurrency(result.presentation.annualSavings, locale, currency),
+        value: money(result.presentation.annualSavings),
         origin: "calculated",
       },
     ],
@@ -926,7 +947,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
       },
       {
         label: f["maxInvestment"] ?? "",
-        value: formatCurrency(result.investment.maxInvestmentRounded, locale, currency),
+        value: money(result.investment.maxInvestmentRounded),
         origin: "calculated",
       },
     ],
@@ -985,6 +1006,9 @@ export function generateReportBlob(options: ReportOptions): Blob {
       String(periodYears),
     ),
   );
+  if (economicsIncomplete) {
+    report.paragraph(labels.economicsRequiresPrice);
+  } else
   report.cumulativeChart(
     cumulative,
     markerYears,
@@ -1005,7 +1029,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
       .filter((year, index, all) => year <= periodYears && all.indexOf(year) === index)
       .map((year) => ({
         label: (f["lifetimeAfterYears"] ?? "").replace("{{years}}", String(year)),
-        value: formatCurrency(Math.round(cumulativeAt(year)), locale, currency),
+        value: money(Math.round(cumulativeAt(year))),
       })),
   );
   report.highlights(
@@ -1020,8 +1044,8 @@ export function generateReportBlob(options: ReportOptions): Blob {
     result.lifetime.years.map((entry) => ({
       year: entry.year,
       production: `${formatNumber(Math.round(entry.productionKwh), locale)}`,
-      value: formatCurrency(Math.round(entry.economicValue), locale, currency),
-      cumulative: formatCurrency(Math.round(cumulativeAt(entry.year)), locale, currency),
+      value: money(Math.round(entry.economicValue)),
+      cumulative: money(Math.round(cumulativeAt(entry.year))),
       highlighted: entry.year === paybackYear,
     })),
     {
@@ -1047,6 +1071,9 @@ export function generateReportBlob(options: ReportOptions): Blob {
 
   report.pageBreak();
   report.sectionTitle(f["keyAssumptions"] ?? labels.assumptions);
+  if (gridUnverified) {
+    report.paragraph(`${labels.gridUnverifiedTitle}: ${labels.gridUnverifiedWarning}`);
+  }
   const selfConsumptionSourceLabel =
     f[`selfConsumptionSource_${result.selfConsumptionSource}`] ?? "";
   const assumptionRows: Row[] = [

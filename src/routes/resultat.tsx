@@ -115,6 +115,10 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
         chartConsumption: t("report.chartConsumption"),
 origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin"],
         fields: i18n.t("report.fields", { returnObjects: true }) as ReportLabels["fields"],
+        economicsRequiresPrice: t("result.economicsRequiresPrice"),
+        economicsRequiresPriceShort: t("result.economicsRequiresPriceShort"),
+        gridUnverifiedTitle: t("result.gridUnverifiedTitle"),
+        gridUnverifiedWarning: t("result.gridUnverifiedWarning"),
         faqTitle: t("report.faqTitle"),
         faqItems: i18n.t("report.faqItems", { returnObjects: true }) as ReportLabels["faqItems"],
       };
@@ -137,7 +141,17 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
   const exportMissing = availability.exportValue === "missing";
   const installationCostMissing =
     availability.installationCost === "missing" && result.investment.quotePrice == null;
-  const economicValuesMissing = !availability.totalsComplete;
+  // S5: the engine decides; the UI never re-derives economic completeness.
+  const economicValuesMissing = result.economicsStatus === "incomplete";
+  // S6: grid knowledge level travels with the result, from step 4 to the PDF.
+  const gridUnverified = result.grid.profileStatus !== "verified";
+  const gridStatusLabel = t(
+    result.grid.profileStatus === "verified"
+      ? "result.gridProfileStatusVerified"
+      : result.grid.profileStatus === "generic"
+        ? "result.gridProfileStatusGeneric"
+        : "result.gridProfileStatusUnsupported",
+  );
 const cost = result.productionCost;
 
 
@@ -159,6 +173,15 @@ const cost = result.productionCost;
           </button>
           <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
         </header>
+        {gridUnverified ? (
+          <div className="flex items-start gap-2 rounded-2xl border border-accent/40 bg-accent/10 p-3 text-[11px] leading-relaxed text-foreground/80">
+            <CircleAlert className="mt-0.5 size-3.5 shrink-0 text-accent" />
+            <span>
+              <span className="font-semibold">{t("result.gridUnverifiedTitle")}. </span>
+              {t("result.gridUnverifiedWarning")}
+            </span>
+          </div>
+        ) : null}
         {/* Group: the system */}
         <p className="px-1 pt-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
           {t("result.groupSystem")}
@@ -311,6 +334,11 @@ const cost = result.productionCost;
           </dl>
 
 
+          {economicValuesMissing ? (
+            <p className="rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
+              {t("result.economicsRequiresPrice")}
+            </p>
+          ) : null}
           {selfConsumedMissing || exportMissing || installationCostMissing ? (
             <div className="space-y-1.5 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] text-white/70">
               {selfConsumedMissing ? <p>{t("result.missingSelfConsumedValue")}</p> : null}
@@ -489,6 +517,7 @@ const cost = result.productionCost;
                     phases: result.grid.phases,
                   }),
                 ],
+                [t("result.gridProfileStatusLabel"), gridStatusLabel],
                 [t("result.fuseLimit"), `${formatDecimal(p.maxAcPowerKw, locale)} kW`],
                 [
                   t("result.specificYield"),

@@ -1,6 +1,7 @@
 import { useMemo } from "react";
-import { calculateSolarSystem } from "@/lib/calc/engine";
-import type { CalculationResult } from "@/lib/calc/types";
+import { runCalculation } from "@/lib/calc/engine";
+import type { CalculationOutcome, CalculationResult } from "@/lib/calc/types";
+import type { CalculationIssue } from "@/lib/calc/validation";
 import { getMarketConfig } from "@/config/markets";
 import { resolveEconomicsDefaults } from "@/config/countries";
 import { useWizardStore } from "@/state/wizard-store";
@@ -16,6 +17,10 @@ import { getCountryConfig } from "@/config/countries";
 /** UI -> Hook -> Calculation engine -> Result. No logic lives in components. */
 export function useCalculation(): {
   result: CalculationResult | null;
+  /** Explicit outcome. Null while the wizard has not been answered yet. */
+  outcome: CalculationOutcome | null;
+  /** Broken invariants, when the engine refused to produce a result. */
+  issues: CalculationIssue[];
   market: ReturnType<typeof getMarketConfig>;
 } {
   const location = useWizardStore((s) => s.location);
@@ -50,7 +55,9 @@ export function useCalculation(): {
     exportValuePerKwh,
   });
 
-  const result = useMemo(() => {
+  const gridConfirmed = useWizardStore((s) => s.gridConfirmed);
+
+  const outcome = useMemo<CalculationOutcome | null>(() => {
     if (!location || !resource || !annualConsumptionKwh) return null;
     if (!isValidConnectionCapacity(connectionCapacity)) return null;
     // Country config only supplies the documented kVA assumption; the
@@ -59,7 +66,7 @@ export function useCalculation(): {
     const maxAcPowerKw = connectionCapacityToMaxAcPowerKw(connectionCapacity!, {
       ...(kvaPowerFactor === undefined ? {} : { contractedKvaPowerFactor: kvaPowerFactor }),
     });
-    return calculateSolarSystem({
+    return runCalculation({
       location,
       resource,
       consumption: {
@@ -77,6 +84,8 @@ export function useCalculation(): {
         gridVoltageV,
         gridPhases: gridPhaseCount,
         gridFrequencyHz,
+        gridProfileStatus: getConnectionConfig(location.countryCode).status,
+        gridProfileConfirmed: gridConfirmed,
       },
       economics: {
         // Country decides the standard values; the user's own values always win.
@@ -114,6 +123,7 @@ export function useCalculation(): {
     gridServiceType,
     gridVoltageV,
     gridFrequencyHz,
+    gridConfirmed,
     selfConsumptionShare,
     selfConsumptionShareIsUserSet,
     selfConsumedValuePerKwh,
@@ -125,5 +135,10 @@ export function useCalculation(): {
     economicsDefaults,
   ]);
 
-  return { result, market };
+  return {
+    result: outcome?.status === "success" ? outcome.result : null,
+    outcome,
+    issues: outcome?.status === "validation-error" ? outcome.issues : [],
+    market,
+  };
 }

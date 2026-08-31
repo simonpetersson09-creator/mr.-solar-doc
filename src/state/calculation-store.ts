@@ -9,6 +9,7 @@
 
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { createSafeStorage } from "@/state/safe-storage";
 import type { CalculationSnapshot } from "@/lib/calculation-snapshot";
 
 export interface StoredCalculation {
@@ -43,7 +44,8 @@ export const useCalculationStore = create<CalculationState>()(
     {
       name: "mr-solar-doc-calculations",
       version: 1,
-      storage: createJSONStorage(() => localStorage),
+      // Storage may be unavailable or corrupt; reads/writes must never throw.
+      storage: createJSONStorage(() => createSafeStorage("calculation")),
     },
   ),
 );

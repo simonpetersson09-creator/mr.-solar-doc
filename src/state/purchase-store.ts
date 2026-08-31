@@ -6,6 +6,7 @@
 
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { createSafeStorage } from "@/state/safe-storage";
 
 export interface PendingCalculationRef {
   id: string;
@@ -56,7 +57,8 @@ export const usePurchaseStore = create<PurchaseState>()(
     {
       name: "mr-solar-doc-purchases",
       version: 1,
-      storage: createJSONStorage(() => localStorage),
+      // Storage may be unavailable or corrupt; reads/writes must never throw.
+      storage: createJSONStorage(() => createSafeStorage("purchase")),
     },
   ),
 );

@@ -27,7 +27,13 @@ import {
 } from "@/config/grid";
 import { recommendArraySize } from "./solar-sizing";
 import { clampShare, splitProduction, summariseSelfConsumption } from "./self-consumption";
+import {
+  CalculationValidationError,
+  validateCalculationInput,
+  validateCalculationResult,
+} from "./validation";
 import type {
+  CalculationOutcome,
   EconomicsAvailability,
   CalculationInput,
   CalculationResult,
@@ -40,6 +46,10 @@ import type {
  * Calculation Engine -> Calculation Result -> UI / Report Service
  */
 export function calculateSolarSystem(input: CalculationInput): CalculationResult {
+  // Mandatory gate 1: nothing is computed from invalid or impossible input.
+  const inputIssues = validateCalculationInput(input);
+  if (inputIssues.length > 0) throw new CalculationValidationError(inputIssues, "input");
+
   const notes: string[] = [];
 
   // The engine consumes ONE normalised ceiling. Whether the user answered in
@@ -260,7 +270,10 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
         ? "installation-cost"
         : "none";
 
-  return {
+  const gridProfileStatus = input.electrical.gridProfileStatus ?? "verified";
+  if (gridProfileStatus !== "verified") notes.push(`grid-profile-${gridProfileStatus}`);
+
+  const result: CalculationResult = {
     location: input.location,
     resource: input.resource,
     installedKwp,
@@ -306,6 +319,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       serviceType,
       kwPerAmp,
       frequencyHz: input.electrical.gridFrequencyHz ?? DEFAULT_GRID_FREQUENCY_HZ,
+      profileStatus: gridProfileStatus,
+      profileConfirmed: input.electrical.gridProfileConfirmed ?? gridProfileStatus === "verified",
     },
     lifetime,
     investment: investmentResult,
@@ -323,9 +338,32 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       selfConsumedValuePerKwh,
       exportValuePerKwh,
     }),
+    economicsStatus: availability.totalsComplete ? "complete" : "incomplete",
     presentation,
     calculationVersion: CALCULATION_VERSION,
     calculatedAt: new Date().toISOString(),
     notes,
   };
+
+  // Mandatory gate 2: a broken invariant must surface, never ship as a result.
+  const resultIssues = validateCalculationResult(result);
+  if (resultIssues.length > 0) throw new CalculationValidationError(resultIssues, "result");
+
+  return result;
+}
+
+/**
+ * Explicit, non-throwing entry point. Callers that render UI use this so an
+ * invalid state produces a visible error instead of a credible-looking result.
+ */
+export function runCalculation(input: CalculationInput): CalculationOutcome {
+  try {
+    return { status: "success", result: calculateSolarSystem(input) };
+  } catch (error) {
+    if (error instanceof CalculationValidationError) {
+      const phase = error.message.startsWith("Calculation input") ? "input" : "result";
+      return { status: "validation-error", phase, issues: error.issues };
+    }
+    throw error;
+  }
 }
