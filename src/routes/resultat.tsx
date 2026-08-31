@@ -241,10 +241,12 @@ const cost = result.productionCost;
             </p>
           </div>
 
-          <dl className="grid grid-cols-2 gap-2 text-xs">
-            <div className="rounded-xl bg-white/10 p-2.5">
-              <dt className="text-[11px] text-white/60">{t("result.selfConsumption")}</dt>
-              <dd className="font-semibold text-white">
+          <dl className="grid grid-cols-2 gap-2">
+            <div className="rounded-2xl bg-white/10 p-2.5 text-center">
+              <dt className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+                {t("result.selfConsumption")}
+              </dt>
+              <dd className="mt-0.5 text-lg font-bold text-white tabular-nums">
                 {economicValuesMissing
                   ? "–"
                   : formatCurrency(p.selfConsumptionValue, locale, currency)}
@@ -254,9 +256,11 @@ const cost = result.productionCost;
                 {formatNumber(p.selfConsumptionKwh, locale)} kWh
               </dd>
             </div>
-            <div className="rounded-xl bg-white/10 p-2.5">
-              <dt className="text-[11px] text-white/60">{t("result.exported")}</dt>
-              <dd className="font-semibold text-white">
+            <div className="rounded-2xl bg-white/10 p-2.5 text-center">
+              <dt className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+                {t("result.exported")}
+              </dt>
+              <dd className="mt-0.5 text-lg font-bold text-white tabular-nums">
                 {economicValuesMissing ? "–" : formatCurrency(p.exportValue, locale, currency)}
               </dd>
               <dd className="text-[11px] text-white/60">
@@ -264,6 +268,7 @@ const cost = result.productionCost;
               </dd>
             </div>
           </dl>
+
 
           {economicValuesMissing ? (
             <p className="rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] text-white/70">
