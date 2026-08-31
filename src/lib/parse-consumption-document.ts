@@ -45,6 +45,23 @@ export function parseLocaleNumber(raw: string): number | null {
   return Number.isFinite(value) ? value : null;
 }
 
+/** Matches "2025-01", "2025/01", "01/2025" or "01.2025" near the line start. */
+const NUMERIC_MONTH_PATTERNS: RegExp[] = [
+  /^\D{0,3}(19|20)\d{2}\s*[-/.]\s*(0?[1-9]|1[0-2])\b/,
+  /^\D{0,3}(0?[1-9]|1[0-2])\s*[-/.]\s*(19|20)\d{2}\b/,
+];
+
+function monthIndexForLine(line: string): number {
+  const byName = MONTH_PATTERNS.findIndex((pattern) => pattern.test(line));
+  if (byName !== -1) return byName;
+
+  const yearFirst = NUMERIC_MONTH_PATTERNS[0]!.exec(line);
+  if (yearFirst) return Number(yearFirst[2]) - 1;
+  const monthFirst = NUMERIC_MONTH_PATTERNS[1]!.exec(line);
+  if (monthFirst) return Number(monthFirst[1]) - 1;
+  return -1;
+}
+
 const NUMBER_SOURCE = "-?[\\d][\\d\\s\\u00a0\\u202f.,']*\\d|\\d";
 
 /**
