@@ -276,7 +276,7 @@ export const sv = {
     paybackSubtitle:
       "Du bestämmer hur snabbt du vill ha investeringen tillbaka. Vi räknar ut vad det motsvarar i installationskostnad.",
     paybackYearsUnit: "år",
-    investmentLevelTitle: "Investeringsnivå vid {{years}} års återbetalning",
+    investmentLevelTitle: "Rimlig investeringsnivå",
     investmentLevelNote:
       "Med dagens kalkylantaganden motsvarar {{years}} års enkel återbetalningstid en investering på cirka {{amount}}.",
     quoteToggle: "Jämför med offertpris",
@@ -291,7 +291,7 @@ export const sv = {
     paybackInfo:
       "Enkel återbetalningstid visar hur många år det beräknade årliga ekonomiska värdet motsvarar investeringen. Beräkningen tar inte hänsyn till exempelvis framtida elprisförändringar, finansieringskostnad, inflation, underhåll eller diskontering.",
     maxInvestment: "Investeringsnivå vid vald återbetalningstid",
-    productionCostTitle: "Hur mycket kostar solelen från ditt tak?",
+    productionCostTitle: "Produktionskostnad",
     productionCostExplainer: "Vi delar anläggningens kostnad med den beräknade produktionen under hela kalkylperioden.",
     productionCostLabel: "Kostar att producera",
     productionCostValueLabel: "Värde för dig",

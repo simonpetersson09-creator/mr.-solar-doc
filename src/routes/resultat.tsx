@@ -142,24 +142,25 @@ const cost = result.productionCost;
         <section className="hero-metric rounded-3xl p-5">
           <div className="glow-amber -top-16 -right-16 size-48" aria-hidden="true" />
           <div className="relative">
-            <div className="glass-panel inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold">
-              <span className="size-1.5 animate-pulse rounded-full bg-accent" />
-              <Sun className="size-3.5" /> {t("result.recommendedArray")}
-            </div>
-            <div className="mt-3 flex items-baseline gap-2">
+            <h2 className="flex items-center justify-center gap-2 text-center text-sm font-semibold text-white">
+              <Sun className="size-4" /> {t("result.recommendedArray")}
+            </h2>
+            <div className="mt-2 text-center">
               <p className="text-5xl font-extrabold tracking-tight">
                 {formatDecimal(result.installedKwp, locale)}{" "}
                 <span className="text-xl font-semibold text-white/80">kWp</span>
               </p>
-              <p className="text-xs text-white/70">
+              <p className="mt-1 text-xs text-white/70">
                 {t("result.panelCount", { count: result.panelCount })}
               </p>
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-2.5">
-              <div className="glass-panel flex items-center gap-1.5 rounded-2xl p-3">
-                <Zap className="size-4 shrink-0 text-white/70" />
-                <p className="text-xl font-bold">
+              <div className="glass-panel rounded-2xl p-3">
+                <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+                  <Zap className="size-3" /> {t("result.recommendedInverter")}
+                </p>
+                <p className="mt-1 text-xl font-bold">
                   {formatNumber(result.inverterKw, locale)}{" "}
                   <span className="text-xs font-semibold text-white/70">kW</span>
                 </p>
@@ -226,13 +227,13 @@ const cost = result.productionCost;
             {t("result.sectionEconomy")}
           </h2>
 
-          <div className="flex items-baseline justify-between gap-3">
-            <p className="text-xs text-white/60">{t("result.annualSavings")}</p>
-            <p className="text-3xl font-extrabold tracking-tight text-white">
+          <div className="rounded-2xl bg-white/10 p-3 text-center">
+            <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+              {t("result.annualSavings")}
+            </p>
+            <p className="mt-1 text-3xl font-extrabold tracking-tight text-white">
               {economicValuesMissing ? "–" : formatCurrency(p.annualSavings, locale, currency)}{" "}
-              <span className="text-xs font-normal text-white/60">
-                {t("result.perYear")}
-              </span>
+              <span className="text-xs font-normal text-white/60">{t("result.perYear")}</span>
             </p>
           </div>
 
@@ -271,15 +272,17 @@ const cost = result.productionCost;
 
 {/* 4. Max justifiable investment — its own hero card */}
         <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
-          <p className="text-xs text-white/60">
+          <h2 className="text-center text-sm font-semibold text-white">
             {t("result.investmentLevelTitle", {
               years: formatNumber(paybackYears, locale),
             })}
-          </p>
-          <p className="mt-1 text-3xl font-extrabold tracking-tight text-accent">
+          </h2>
+          <p className="mt-1 text-center text-3xl font-extrabold tracking-tight text-accent">
             {t("result.maxInvestmentApprox", { amount: investmentAmount })}
           </p>
-          <p className="mt-1.5 text-[11px] text-white/60">{t("result.maxInvestmentNote")}</p>
+          <p className="mt-1.5 text-center text-[11px] text-white/60">
+            {t("result.maxInvestmentNote")}
+          </p>
         </section>
 
 
@@ -339,7 +342,7 @@ const cost = result.productionCost;
                   </p>
                 </div>
               </div>
-              <p className="mt-2 text-[11px] text-white/60">
+              <p className="mt-2 text-center text-[11px] text-white/60">
                 {t("result.productionCostBasis", {
                   investment: formatCurrency(cost.investment, locale, currency),
                   production: formatNumber(cost.totalProductionKwh, locale),
