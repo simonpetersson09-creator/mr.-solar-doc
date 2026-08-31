@@ -157,7 +157,7 @@ const cost = result.productionCost;
 
   return (
 <div className="flex h-dvh max-h-dvh flex-col overflow-hidden surface-sun">
-      <main className="scrollbar-hidden mx-auto w-full max-w-2xl flex-1 space-y-2.5 overflow-y-auto overscroll-contain px-5 pt-safe pb-2">
+      <main className="scrollbar-hidden mx-auto w-full max-w-2xl flex-1 space-y-2.5 overflow-y-auto overflow-x-hidden overscroll-contain px-5 pt-safe pb-2">
         <header className="flex items-center gap-3 pt-3">
           <button
             type="button"
@@ -211,7 +211,7 @@ const cost = result.productionCost;
               <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                 {t("result.panelPowerLabel")}
               </p>
-              <p className="mt-0.5 text-3xl font-extrabold tracking-tight tabular-nums">
+              <p className="mt-0.5 text-3xl font-extrabold tracking-tight text-white tabular-nums">
                 {formatDecimal(result.installedKwp, locale)}{" "}
                 <span className="text-base font-semibold text-white/80">kWp</span>
               </p>
@@ -226,7 +226,7 @@ const cost = result.productionCost;
                 <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   <Zap className="size-3" /> {t("result.recommendedInverter")}
                 </p>
-                <p className="mt-0.5 text-lg font-bold tabular-nums">
+                <p className="mt-0.5 text-lg font-bold text-white tabular-nums">
                   {formatNumber(result.inverterKw, locale)}{" "}
                   <span className="text-[11px] font-semibold text-white/60">kW</span>
                 </p>
@@ -244,7 +244,7 @@ const cost = result.productionCost;
               </div>
             </div>
 
-            <p className="mt-3 text-center text-sm font-bold">
+            <p className="mt-3 text-center text-sm font-bold text-white">
               {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
             </p>
 
