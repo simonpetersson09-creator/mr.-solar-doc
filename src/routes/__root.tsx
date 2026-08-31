@@ -124,6 +124,12 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+/** Runs inside the query provider so purchase recovery can use it. */
+function PurchaseRecovery() {
+  usePurchaseRecovery();
+  return null;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   useNativeShell();
@@ -131,9 +137,11 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <PurchaseRecovery />
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
       <Toaster position="top-center" />
     </QueryClientProvider>
   );
 }
+
