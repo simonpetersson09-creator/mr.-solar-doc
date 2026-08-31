@@ -177,10 +177,10 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
         </g>
 
         {/* Pivot hub */}
-        <circle cx={PIVOT_X} cy={PIVOT_Y} r={9} className="fill-accent" />
-        <circle cx={PIVOT_X} cy={PIVOT_Y} r={4} className="fill-accent-foreground" />
+        <circle cx={PIVOT_X} cy={PIVOT_Y} r={7} className="fill-accent" />
+        <circle cx={PIVOT_X} cy={PIVOT_Y} r={3} className="fill-accent-foreground" />
       </svg>
-      <p className="text-lg font-semibold tabular-nums text-white">{safeValue}°</p>
+      <p className="text-base font-semibold tabular-nums text-white">{safeValue}°</p>
     </div>
   );
 }
