@@ -218,14 +218,14 @@ function SettingsPage() {
           <p className="text-[11px] text-primary-foreground/70">{t("paywall.premium.renewal")}</p>
         </section>
 
-        <div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
+<div className="glass-primary flex flex-col gap-1.5 rounded-2xl p-2">
           <button
             type="button"
             disabled={restoring}
             onClick={() => void handleRestore()}
-            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98] disabled:opacity-60"
+            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2 text-left shadow-sm transition-transform active:scale-[0.98] disabled:opacity-60"
           >
-            <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
               {restoring ? (
                 <Loader2 className="size-4 animate-spin" />
               ) : (
@@ -239,52 +239,52 @@ function SettingsPage() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => void haptic("light")}
-            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
+            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2 text-left shadow-sm transition-transform active:scale-[0.98]"
           >
-            <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
               <Settings2 className="size-4" />
             </span>
             <span className="text-sm font-bold text-foreground">{t("premium.manage")}</span>
           </a>
         </div>
 
-        <div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
+        <div className="glass-primary flex flex-col gap-1.5 rounded-2xl p-2">
           <button
             type="button"
             onClick={() => {
               void haptic("light");
               void navigate({ to: "/historik" });
             }}
-            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
+            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2 text-left shadow-sm transition-transform active:scale-[0.98]"
           >
-            <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
               <History className="size-4" />
             </span>
             <span className="text-sm font-bold text-foreground">{t("settings.history")}</span>
           </button>
         </div>
 
-<div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
+        <div className="glass-primary flex flex-col gap-1.5 rounded-2xl p-2">
           <a
             href={LEGAL_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => void haptic("light")}
-            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
+            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2 text-left shadow-sm transition-transform active:scale-[0.98]"
           >
-            <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
               <FileText className="size-4" />
             </span>
             <span className="text-sm font-bold text-foreground">{t("settings.terms")}</span>
           </a>
-<a
+          <a
             href={PRIVACY_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => void haptic("light")}
-            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
+            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2 text-left shadow-sm transition-transform active:scale-[0.98]"
           >
-            <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
+            <span className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
               <ShieldCheck className="size-4" />
             </span>
             <span className="text-sm font-bold text-foreground">{t("settings.privacy")}</span>
