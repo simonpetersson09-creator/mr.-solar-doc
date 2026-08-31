@@ -130,7 +130,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           {/* Drag the roof line to set the tilt; presets stay as shortcuts. */}
           <div className="mb-3 flex justify-center">
             <TiltDial
-              value={tiltDegrees}
+              value={tiltDegrees ?? 30}
               onChange={(degrees) => setRoof(orientation, degrees, azimuthDegrees)}
             />
           </div>
