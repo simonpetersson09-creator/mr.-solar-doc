@@ -55,3 +55,13 @@ npx cap open android   # Android Studio → Run
 5. Oavslutade transaktioner återupptas automatiskt vid appstart
    (`src/hooks/use-purchase-recovery.ts`). Testa genom att döda appen mitt i
    ett sandbox-köp och starta om.
+
+### Produkter i App Store Connect
+
+| Produkt | Typ | Pris |
+| --- | --- | --- |
+| `com.mrsolardoc.calculation.unlock` | Consumable | 49 SEK |
+| `com.mrsolardoc.premium.yearly` | Auto-Renewable Subscription, 1 år | 199 SEK/år |
+
+Abonnemanget behöver en subscription group och lokaliserad beskrivning innan
+det kan testas i sandbox/TestFlight.
