@@ -212,7 +212,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   DE: config(
     "DE",
     "amperage",
-    [35, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+    [35, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
     EU_THREE_PHASE_400,
     { localTerm: "Hausanschlusssicherung" },
   ),
@@ -269,7 +269,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     "contracted-kva",
     [
       ...[3, 6, 9, 12].map((kva) => kvaOption(kva, SINGLE_PHASE_230)),
-      ...[18, 24, 36].map((kva) => kvaOption(kva, EU_THREE_PHASE_400)),
+      ...[9, 12, 15, 18, 24, 30, 36].map((kva) => kvaOption(kva, EU_THREE_PHASE_400)),
     ],
     SINGLE_PHASE_230,
     { localTerm: "Puissance souscrite" },
