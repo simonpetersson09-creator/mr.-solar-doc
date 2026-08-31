@@ -249,7 +249,7 @@ export const et = {
     "paybackInfo": "Lihtne tasuvusaeg näitab, mitu aastat kulub investeeringu tagasiteenimiseks hinnangulise aastase majandusliku väärtusega. Arvutus ei arvesta näiteks tulevaste elektrihinnamuutuste, finantseerimiskulude, inflatsiooni, hoolduse ega diskonteerimisega.",
     "maxInvestment": "Investeeringu tase valitud tasuvusajal",
     "maxInvestmentApprox": "umbes {{amount}}",
-    productionCostInfoLabel: "Rohkem teavet",
+    investmentLevelInfoLabel: "Rohkem teavet",
     productionCostInfo: "Näitab ligikaudu, milline investeeringukulu vastab teie valitud tasuvusajale. See ei ole hinnang selle kohta, mida paigaldus tegelikult maksab.",
     systemSizeInfoLabel: "Rohkem teavet",
     systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tegelik tootlus, oma tarve, elektrihind, hüvitis, paigalduskulu ja majanduslik tulemus võivad erineda. Tulemus ei ole pakkumine ega garantii.",

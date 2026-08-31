@@ -249,7 +249,7 @@ export const lv = {
     "paybackInfo": "Vienkāršs atmaksas periods parāda, cik gados aprēķinātā gada ekonomiskā vērtība atbilst investīcijai. Aprēķins neņem vērā, piemēram, nākotnes elektroenerģijas cenu izmaiņas, finansēšanas izmaksas, inflāciju, uzturēšanu vai diskontēšanu.",
     "maxInvestment": "Investīciju līmenis izvēlētajā atmaksas periodā",
     "maxInvestmentApprox": "apmēram {{amount}}",
-    productionCostInfoLabel: "Vairāk informācijas",
+    investmentLevelInfoLabel: "Vairāk informācijas",
     productionCostInfo: "Aptuveni parāda, kādas investīciju izmaksas atbilst jūsu izvēlētajam atmaksāšanās periodam. Tas nav aprēķins par to, cik instalācija patiesībā maksā.",
     systemSizeInfoLabel: "Vairāk informācijas",
     systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā ražošana, pašpatēriņš, elektroenerģijas cena, atlīdzība, uzstādīšanas izmaksas un ekonomiskais rezultāts var atšķirties. Rezultāts nav piedāvājums vai garantija.",

@@ -249,7 +249,7 @@ export const hr = {
     "paybackInfo": "Jednostavni povrat pokazuje koliko godina procijenjena godišnja ekonomska vrijednost odgovara ulaganju. Ne uzima u obzir, na primjer, buduće promjene cijena električne energije, troškove financiranja, inflaciju, održavanje ili diskontiranje.",
     "maxInvestment": "Razina ulaganja pri odabranom razdoblju povrata",
     "maxInvestmentApprox": "cca {{amount}}",
-    productionCostInfoLabel: "Više informacija",
+    investmentLevelInfoLabel: "Više informacija",
     productionCostInfo: "Približno prikazuje koliki trošak ulaganja odgovara odabranom razdoblju povrata. To nije procjena stvarnog troška instalacije.",
     systemSizeInfoLabel: "Više informacija",
     systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarna proizvodnja, vlastita potrošnja, cijena električne energije, naknada, trošak instalacije i ekonomski rezultat mogu odstupati. Rezultat ne predstavlja ponudu ni jamstvo.",

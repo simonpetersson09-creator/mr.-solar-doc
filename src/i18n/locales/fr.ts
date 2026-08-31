@@ -249,7 +249,7 @@ export const fr = {
     "paybackInfo": "Le temps de retour sur investissement simple indique le nombre d'années pendant lesquelles la valeur économique annuelle estimée correspond à l'investissement. Il ne prend pas en compte les changements futurs de prix de l'électricité, les coûts de financement, l'inflation, la maintenance ou l'actualisation.",
     "maxInvestment": "Niveau d'investissement pour le temps de retour sur investissement choisi",
     "maxInvestmentApprox": "environ {{amount}}",
-    productionCostInfoLabel: "Plus d'informations",
+    investmentLevelInfoLabel: "Plus d'informations",
     productionCostInfo: "Indique approximativement le coût d'investissement correspondant à la période de remboursement que vous avez choisie. Il ne s'agit pas d'une estimation du coût réel de l'installation.",
     systemSizeInfoLabel: "Plus d'informations",
     systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre indicatif. La production réelle, l'autoconsommation, le prix de l'électricité, la rémunération, le coût d'installation et le résultat économique peuvent varier. Le résultat ne constitue ni une offre ni une garantie.",

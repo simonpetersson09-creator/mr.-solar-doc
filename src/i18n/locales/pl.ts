@@ -249,7 +249,7 @@ export const pl = {
     "paybackInfo": "Prosty czas zwrotu pokazuje, ile lat szacowana roczna wartość ekonomiczna odpowiada inwestycji. Kalkulacja nie uwzględnia np. przyszłych zmian cen energii elektrycznej, kosztów finansowania, inflacji, konserwacji ani dyskontowania.",
     "maxInvestment": "Poziom inwestycji przy wybranym czasie zwrotu",
     "maxInvestmentApprox": "ok. {{amount}}",
-    productionCostInfoLabel: "Więcej informacji",
+    investmentLevelInfoLabel: "Więcej informacji",
     productionCostInfo: "Pokazuje w przybliżeniu, jaki koszt inwestycji odpowiada wybranemu okresowi zwrotu. Nie jest to szacunek rzeczywistego kosztu instalacji.",
     systemSizeInfoLabel: "Więcej informacji",
     systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskazówka. Rzeczywista produkcja, zużycie własne, cena energii, wynagrodzenie, koszt instalacji i wynik finansowy mogą się różnić. Wynik nie stanowi oferty ani gwarancji.",

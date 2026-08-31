@@ -249,7 +249,7 @@ export const cs = {
     "paybackInfo": "Jednoduchá doba návratnosti ukazuje, za kolik let se odhadovaná roční ekonomická hodnota rovná investici. Nepočítá s budoucími změnami cen elektřiny, náklady na financování, inflací, údržbou ani diskontováním.",
     "maxInvestment": "Úroveň investice při zvolené době návratnosti",
     "maxInvestmentApprox": "cca {{amount}}",
-    productionCostInfoLabel: "Více informací",
+    investmentLevelInfoLabel: "Více informací",
     productionCostInfo: "Přibližně ukazuje, jaká investiční částka odpovídá vámi zvolené době návratnosti. Nejde o odhad skutečných nákladů na instalaci.",
     systemSizeInfoLabel: "Více informací",
     systemSizeInfo: "Výpočet je odhadem a měl by sloužit jako orientace. Skutečná výroba, vlastní spotřeba, cena elektřiny, kompenzace, náklady na instalaci a ekonomický výsledek se mohou lišit. Výsledek nepředstavuje nabídku ani záruku.",
