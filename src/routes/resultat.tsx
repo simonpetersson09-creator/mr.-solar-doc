@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { MonthlyChart } from "@/components/MonthlyChart";
 import { useUnlockedCalculation } from "@/hooks/use-unlocked-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
+import { connectionLabelKey, formatConnectionCapacity } from "@/lib/connection-display";
 import { useWizardStore } from "@/state/wizard-store";
 import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
@@ -476,7 +477,11 @@ const cost = result.productionCost;
                       ] as [string, string],
                     ]
                   : []),
-                [t("result.mainFuse"), `${result.mainFuseAmp} A`],
+                [
+                  t(connectionLabelKey(result.connection)),
+                  formatConnectionCapacity(result.connection, locale) ??
+                    `${result.mainFuseAmp ?? "-"} A`,
+                ],
                 [
                   t("result.gridConnection"),
                   t("result.gridConnectionValue", {

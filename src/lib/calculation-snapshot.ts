@@ -3,6 +3,7 @@
 import type { CalculationResult, Orientation } from "@/lib/calc/types";
 import type { ConsumptionInputType, ConsumptionShape } from "@/lib/calc/consumption-shape";
 import type { PriceScenarioId } from "@/config/constants";
+import type { ConnectionCapacity } from "@/config/connection-capacity";
 
 export const SNAPSHOT_VERSION = 1;
 
@@ -15,6 +16,8 @@ export interface CalculationAssumptions {
   consumptionInputType: ConsumptionInputType;
   consumptionShape: ConsumptionShape | null;
   mainFuseAmp: number | null;
+  /** What the user stated as their connection (A / kVA / kW). */
+  connectionCapacity?: ConnectionCapacity | null;
   selfConsumptionShare: number;
   selfConsumptionShareIsUserSet: boolean;
   selfConsumedValuePerKwh: number | null;

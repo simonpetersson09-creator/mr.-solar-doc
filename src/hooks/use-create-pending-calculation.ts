@@ -48,6 +48,7 @@ export function useCreatePendingCalculation(): () => Promise<boolean> {
         consumptionInputType: wizard.consumptionInputType,
         consumptionShape: wizard.consumptionShape,
         mainFuseAmp: wizard.mainFuseAmp,
+        connectionCapacity: wizard.connectionCapacity,
         selfConsumptionShare: wizard.selfConsumptionShare,
         selfConsumptionShareIsUserSet: wizard.selfConsumptionShareIsUserSet,
         selfConsumedValuePerKwh: wizard.selfConsumedValuePerKwh,

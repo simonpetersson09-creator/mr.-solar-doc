@@ -7,14 +7,21 @@ import { Label } from "@/components/ui/label";
 import { StepShell } from "@/components/StepShell";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatDecimal, parseLocaleNumber } from "@/lib/format";
-import { getConnectionConfig } from "@/config/connections";
+import { getConnectionConfig, type ConnectionOption } from "@/config/connections";
+import {
+  CAPACITY_BOUNDS,
+  connectionCapacityAmount,
+  connectionCapacityToMaxAcPowerKw,
+  connectionCapacityUnit,
+  isValidConnectionCapacity,
+  type ConnectionCapacity,
+} from "@/config/connection-capacity";
 import {
   GRID_FREQUENCY_OPTIONS,
   SERVICE_TYPE_OPTIONS,
   SPLIT_PHASE_LINE_TO_LINE_V,
   isPresetVoltage,
   isValidCustomVoltage,
-  maxAcPowerKwFor,
   splitPhaseLineToNeutral,
   voltageOptionsForService,
   type ServiceType,
@@ -28,31 +35,43 @@ interface FuseStepProps {
   onSubmit: () => void;
 }
 
-const MIN_AMP = 6;
-const MAX_AMP = 400;
-
 export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   const { t } = useTranslation();
   const [showGridInfo, setShowGridInfo] = useState(false);
   const [editGrid, setEditGrid] = useState(false);
   const { locale } = useAppLocale();
   const location = useWizardStore((s) => s.location);
-  const storedFuse = useWizardStore((s) => s.mainFuseAmp);
-  const setMainFuse = useWizardStore((s) => s.setMainFuse);
+  const storedCapacity = useWizardStore((s) => s.connectionCapacity);
+  const setConnectionCapacity = useWizardStore((s) => s.setConnectionCapacity);
   const serviceType = useWizardStore((s) => s.gridServiceType);
   const voltageV = useWizardStore((s) => s.gridVoltageV);
+  const lineToNeutralVoltageV = useWizardStore((s) => s.gridLineToNeutralVoltageV);
   const frequencyHz = useWizardStore((s) => s.gridFrequencyHz);
+  const gridProfileIsUserSet = useWizardStore((s) => s.gridProfileIsUserSet);
   const setGridProfile = useWizardStore((s) => s.setGridProfile);
 
-  const setGridDefaults = useWizardStore((s) => s.setGridDefaults);
-
   const connection = getConnectionConfig(location?.countryCode);
+  const inputType = connection.capacityInputType;
+  const unit = connectionCapacityUnit(inputType);
+  const bounds = CAPACITY_BOUNDS[inputType];
+
+  const [selectedId, setSelectedId] = useState<string | null>(() => {
+    if (!storedCapacity) return connection.defaultConnection;
+    const match = connection.connectionOptions.find(
+      (option) =>
+        option.capacity.type === storedCapacity.type &&
+        connectionCapacityAmount(option.capacity) ===
+          connectionCapacityAmount(storedCapacity) &&
+        (option.capacity.voltageV ?? null) === (storedCapacity.voltageV ?? null),
+    );
+    return match?.id ?? null;
+  });
   const [custom, setCustom] = useState(
-    !connection.verified ||
-      (storedFuse !== null &&
-        !connection.connectionOptions.some((option) => option.amperage === storedFuse)),
+    connection.connectionOptions.length === 0 || (storedCapacity !== null && selectedId === null),
   );
-  const [customValue, setCustomValue] = useState(custom && storedFuse ? String(storedFuse) : "");
+  const [customValue, setCustomValue] = useState(
+    custom && storedCapacity ? String(connectionCapacityAmount(storedCapacity)) : "",
+  );
 
   // Custom voltage: an extra option after the presets, using the same
   // voltage value in the existing power formula.
@@ -64,10 +83,43 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   const customVoltageValid = isValidCustomVoltage(parsedCustomVoltage);
   const voltageValid = !customVoltage || customVoltageValid;
 
-  const selected = custom ? (parseLocaleNumber(customValue) ?? 0) : (storedFuse ?? 0);
-  const valid = selected >= MIN_AMP && selected <= MAX_AMP && voltageValid;
-  // Same single source of truth as the calculation engine.
-  const maxAc = maxAcPowerKwFor({ mainFuseAmp: selected, voltageV, serviceType });
+  /** Builds the capacity for a given amount in the country's own unit. */
+  const capacityFor = (amount: number, option?: ConnectionOption): ConnectionCapacity => {
+    // The user's own grid settings always win over the country profile.
+    const profile =
+      gridProfileIsUserSet || !option
+        ? { serviceType, voltageV, lineToNeutralVoltageV, frequencyHz }
+        : {
+            serviceType: option.capacity.serviceType ?? serviceType,
+            voltageV: option.capacity.voltageV ?? voltageV,
+            lineToNeutralVoltageV: option.capacity.lineToNeutralVoltageV ?? null,
+            frequencyHz: option.capacity.frequencyHz ?? frequencyHz,
+          };
+    if (inputType === "contracted-kva") return { type: "contracted-kva", kva: amount, ...profile };
+    if (inputType === "contracted-kw") return { type: "contracted-kw", kw: amount, ...profile };
+    return { type: "amperage", amperageA: amount, ...profile };
+  };
+
+  const selectedOption = connection.connectionOptions.find((o) => o.id === selectedId) ?? null;
+  const customAmount = parseLocaleNumber(customValue) ?? 0;
+  const capacity: ConnectionCapacity | null = custom
+    ? capacityFor(customAmount)
+    : selectedOption
+      ? capacityFor(connectionCapacityAmount(selectedOption.capacity), selectedOption)
+      : storedCapacity;
+
+  const capacityValid = isValidConnectionCapacity(capacity) && voltageValid;
+  const maxAc = capacity
+    ? connectionCapacityToMaxAcPowerKw(capacity, {
+        contractedKvaPowerFactor: connection.contractedKvaPowerFactor,
+      })
+    : 0;
+
+  const optionLabel = (option: ConnectionOption) => {
+    const amount = connectionCapacityAmount(option.capacity);
+    const decimals = Number.isInteger(amount) ? 0 : 2;
+    return `${option.phasePrefix ?? ""}${formatDecimal(amount, locale, decimals)} ${connectionCapacityUnit(option.capacity.type)}`;
+  };
 
   const serviceLabel = (type: ServiceType) =>
     t(
@@ -99,10 +151,10 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
           className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           variant="cta"
           size="lg"
-          disabled={!valid}
+          disabled={!capacityValid}
           onClick={() => {
             void haptic("success");
-            setMainFuse(selected);
+            setConnectionCapacity(capacity);
             onSubmit();
           }}
         >
@@ -113,11 +165,15 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
     >
       <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
         <div>
-          <Label className="text-xs text-white">{t("fuse.label")}</Label>
-          <p className="text-[11px] text-white/70">{t("fuse.subtitle")}</p>
+          <Label className="text-xs text-white">
+            {connection.localTerm && connection.verified
+              ? connection.localTerm
+              : t(`fuse.capacity.${inputType}.label`)}
+          </Label>
+          <p className="text-[11px] text-white/70">{t(connection.helpTextKey)}</p>
         </div>
 
-        <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-5">
+        <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-4">
           {connection.connectionOptions.map((option) => (
             <button
               key={option.id}
@@ -125,18 +181,14 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
               onClick={() => {
                 void haptic("light");
                 setCustom(false);
-                setMainFuse(option.amperage);
-                setGridDefaults({
-                  serviceType: option.serviceType,
-                  phaseCount: option.phaseCount,
-                  voltageV: option.voltage,
-                  lineToNeutralVoltageV: option.lineToNeutralVoltage ?? null,
-                  frequencyHz: option.frequencyHz,
-                });
+                setSelectedId(option.id);
+                setConnectionCapacity(
+                  capacityFor(connectionCapacityAmount(option.capacity), option),
+                );
               }}
-              className={chipClass(!custom && storedFuse === option.amperage)}
+              className={chipClass(!custom && selectedId === option.id)}
             >
-              {option.label}
+              {optionLabel(option)}
             </button>
           ))}
           <button
@@ -157,26 +209,28 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
 
         {custom ? (
           <div className="flex items-center gap-2">
-            <Label htmlFor="custom-fuse" className="text-xs text-white/70">
-              {t("fuse.otherLabel")}
+            <Label htmlFor="custom-capacity" className="text-xs text-white/70">
+              {t("fuse.capacity.otherLabel")}
             </Label>
             <Input
-              id="custom-fuse"
+              id="custom-capacity"
               type="text"
               inputMode="decimal"
               value={customValue}
               onChange={(event) => setCustomValue(event.target.value)}
               className="h-8 w-20 rounded-full border-white/25 bg-white/15 text-xs text-white placeholder:text-white/50"
             />
-            <span className="text-xs text-white/60">A</span>
+            <span className="text-xs text-white/60">{unit}</span>
           </div>
         ) : null}
 
-        {custom && customValue !== "" && !valid ? (
-          <p className="text-xs text-red-200">{t("fuse.invalid")}</p>
+        {custom && customValue !== "" && !capacityValid ? (
+          <p className="text-xs text-red-200">
+            {t("fuse.capacity.invalid", { min: bounds.min, max: bounds.max, unit })}
+          </p>
         ) : null}
 
-        {valid ? (
+        {capacityValid ? (
           <div className="flex items-center justify-between gap-3 rounded-xl bg-white/10 px-3.5 py-2.5">
             <span className="flex items-center gap-1.5 text-xs text-white/60">
               <Zap className="size-3.5 text-accent" />
@@ -189,17 +243,19 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
           </div>
         ) : null}
 
-        <div
-          className="border-t border-white/15 pt-3"
-          hidden={serviceType !== "three-phase" || voltageV !== 400}
-        >
+        <div className="border-t border-white/15 pt-3">
           <button
             type="button"
             onClick={() => setShowGridInfo((open) => !open)}
             className="flex items-start gap-2 text-left text-xs text-white/60"
           >
             <Info className="mt-0.5 size-3.5 shrink-0" />
-            <span>{t("fuse.gridAssumption")}</span>
+            <span>
+              {t("fuse.gridAssumptionDynamic", {
+                service: serviceLabel(serviceType),
+                voltage: voltageLabel(voltageV),
+              })}
+            </span>
           </button>
           {showGridInfo ? (
             <p className="mt-2 pl-5 text-[11px] leading-relaxed text-white/60">
@@ -335,7 +391,6 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
             </p>
           </div>
         ) : null}
-
       </div>
     </StepShell>
   );

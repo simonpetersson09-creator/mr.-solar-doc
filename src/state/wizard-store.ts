@@ -18,6 +18,11 @@ import {
   type PhaseCount,
   type ServiceType,
 } from "@/config/grid";
+import {
+  amperageCapacity,
+  isValidConnectionCapacity,
+  type ConnectionCapacity,
+} from "@/config/connection-capacity";
 
 export interface WizardState {
   location: SiteLocation | null;
@@ -32,6 +37,12 @@ export interface WizardState {
   consumptionInputType: ConsumptionInputType;
   /** Which estimated shape the user picked (only for "annual-profile"). */
   consumptionShape: ConsumptionShape | null;
+  /**
+   * What the user stated as their electrical connection, in the unit their
+   * country uses. Source of truth for the AC ceiling.
+   */
+  connectionCapacity: ConnectionCapacity | null;
+  /** Amperes when the connection is stated in amperes, otherwise null. */
   mainFuseAmp: number | null;
   /** Grid profile: phases, voltage and frequency of the connection. */
   gridPhaseCount: PhaseCount;
@@ -72,6 +83,7 @@ export interface WizardState {
     shape?: ConsumptionShape | null,
   ) => void;
   setMainFuse: (amp: number) => void;
+  setConnectionCapacity: (capacity: ConnectionCapacity | null) => void;
   setGridProfile: (profile: {
     phaseCount?: PhaseCount;
     serviceType?: ServiceType;
@@ -108,6 +120,7 @@ const initialState = {
   monthlyConsumptionKwh: null,
   consumptionInputType: "annual-only" as ConsumptionInputType,
   consumptionShape: null as ConsumptionShape | null,
+  connectionCapacity: null as ConnectionCapacity | null,
   mainFuseAmp: null,
   gridPhaseCount: DEFAULT_GRID_PROFILE.phaseCount,
   gridServiceType: SERVICE_TYPE_FOR_PHASE_COUNT[DEFAULT_GRID_PROFILE.phaseCount] as ServiceType,
@@ -182,9 +195,50 @@ export const useWizardStore = create<WizardState>()(
           consumptionInputType: inputType ?? (monthlyKwh ? "monthly-manual" : "annual-only"),
           consumptionShape: shape ?? null,
         }),
-      setMainFuse: (amp) => set({ mainFuseAmp: amp }),
+      setMainFuse: (amp) =>
+        set((state) => ({
+          mainFuseAmp: amp,
+          connectionCapacity: amperageCapacity(amp, {
+            serviceType: state.gridServiceType,
+            voltageV: state.gridVoltageV,
+            lineToNeutralVoltageV: state.gridLineToNeutralVoltageV,
+            frequencyHz: state.gridFrequencyHz,
+          }),
+        })),
+      /**
+       * Capacity is the source of truth. `mainFuseAmp` is kept in sync only
+       * for ampere markets; kVA/kW markets intentionally leave it null.
+       */
+      setConnectionCapacity: (capacity) =>
+        set((state) => ({
+          connectionCapacity: capacity,
+          mainFuseAmp: capacity?.type === "amperage" ? capacity.amperageA : null,
+          ...(capacity && capacity.serviceType
+            ? mergeGrid(state, {
+                serviceType: capacity.serviceType,
+                voltageV: capacity.voltageV,
+                lineToNeutralVoltageV: capacity.lineToNeutralVoltageV ?? null,
+                frequencyHz: capacity.frequencyHz,
+              })
+            : {}),
+        })),
       setGridProfile: (profile) =>
-        set((state) => ({ ...mergeGrid(state, profile), gridProfileIsUserSet: true })),
+        set((state) => {
+          const grid = mergeGrid(state, profile);
+          return {
+            ...grid,
+            gridProfileIsUserSet: true,
+            connectionCapacity:
+              state.connectionCapacity?.type === "amperage"
+                ? amperageCapacity(state.connectionCapacity.amperageA, {
+                    serviceType: grid.gridServiceType,
+                    voltageV: grid.gridVoltageV,
+                    lineToNeutralVoltageV: grid.gridLineToNeutralVoltageV,
+                    frequencyHz: grid.gridFrequencyHz,
+                  })
+                : state.connectionCapacity,
+          };
+        }),
       setGridDefaults: (profile) =>
         set((state) => (state.gridProfileIsUserSet ? {} : mergeGrid(state, profile))),
       setSelfConsumptionShare: (share) =>
@@ -207,12 +261,35 @@ export const useWizardStore = create<WizardState>()(
     {
       name: "mr-solar-doc-wizard",
       // Bump whenever cached solar/economics data may be stale.
-      version: 2,
-      migrate: (persisted) => ({
-        ...(persisted as object),
-        // Drop cached PVGIS data so it is re-fetched with current logic.
-        resource: null,
-      }),
+      version: 3,
+      /**
+       * v2 -> v3: sessions saved before the ConnectionCapacity layer only have
+       * `mainFuseAmp` plus the grid profile. They are rebuilt into an
+       * equivalent amperage capacity, so an existing Swedish session keeps
+       * exactly the same grid profile, ceiling and result.
+       */
+      migrate: (persisted) => {
+        const state = (persisted ?? {}) as Partial<WizardState>;
+        let connectionCapacity = state.connectionCapacity ?? null;
+        if (!isValidConnectionCapacity(connectionCapacity) && state.mainFuseAmp) {
+          connectionCapacity = amperageCapacity(state.mainFuseAmp, {
+            serviceType:
+              state.gridServiceType ??
+              SERVICE_TYPE_FOR_PHASE_COUNT[
+                state.gridPhaseCount ?? DEFAULT_GRID_PROFILE.phaseCount
+              ],
+            voltageV: state.gridVoltageV ?? DEFAULT_GRID_PROFILE.voltageV,
+            lineToNeutralVoltageV: state.gridLineToNeutralVoltageV ?? null,
+            frequencyHz: state.gridFrequencyHz ?? DEFAULT_GRID_PROFILE.frequencyHz,
+          });
+        }
+        return {
+          ...state,
+          connectionCapacity,
+          // Drop cached PVGIS data so it is re-fetched with current logic.
+          resource: null,
+        };
+      },
       storage: createJSONStorage(() => localStorage),
       partialize: ({
         location,
@@ -224,6 +301,7 @@ export const useWizardStore = create<WizardState>()(
         monthlyConsumptionKwh,
         consumptionInputType,
         consumptionShape,
+        connectionCapacity,
         mainFuseAmp,
         gridPhaseCount,
         gridServiceType,
@@ -249,6 +327,7 @@ export const useWizardStore = create<WizardState>()(
         monthlyConsumptionKwh,
         consumptionInputType,
         consumptionShape,
+        connectionCapacity,
         mainFuseAmp,
         gridPhaseCount,
         gridServiceType,

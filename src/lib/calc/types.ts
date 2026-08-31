@@ -7,6 +7,7 @@ import type { LifetimeProjection } from "./degradation";
 import type { SelfConsumptionSource, SelfConsumptionSummary } from "./self-consumption";
 import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
 import type { ServiceType } from "@/config/grid";
+import type { ConnectionCapacity } from "@/config/connection-capacity";
 
 import type {
   ConsumptionProfileAnalysis,
@@ -89,7 +90,20 @@ export interface ConsumptionInput {
 }
 
 export interface ElectricalInput {
-  mainFuseAmp: number;
+  /**
+   * Main fuse / service rating in amperes. OPTIONAL: markets that state their
+   * connection in kVA or kW never provide it. The engine never requires it.
+   */
+  mainFuseAmp?: number | null;
+  /**
+   * The normalised AC ceiling of the connection. When present the engine uses
+   * it directly — it is the only value the sizing logic needs, regardless of
+   * how the user stated their connection.
+   */
+  maxAcPowerKw?: number | null;
+  /** What the user actually stated, kept for presentation only. */
+  connection?: ConnectionCapacity | null;
+
   /**
    * kW per ampere. Optional legacy input: when `gridVoltageV` is provided the
    * engine derives the factor centrally from the service type instead.
@@ -242,7 +256,10 @@ export interface CalculationResult {
     /** Installation cost per kWp when known. */
     installationCostPerKwp: number | null;
   };
-  mainFuseAmp: number;
+  /** Amperes when the market states amperes, otherwise null. */
+  mainFuseAmp: number | null;
+  /** What the user stated (amperes / kVA / kW). Presentation only. */
+  connection: ConnectionCapacity | null;
   /** Grid assumption used to derive `maxAcPowerKw`. Read by UI and PDF. */
   grid: GridAssumption;
   /** Year-by-year degraded production and economic value over the period. */
