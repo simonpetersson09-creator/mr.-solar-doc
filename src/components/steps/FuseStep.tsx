@@ -229,24 +229,6 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
           </div>
         ) : null}
 
-        <div
-          className="border-t border-white/15 pt-3"
-          hidden={phaseCount !== 3 || voltageV !== 400}
-        >
-          <button
-            type="button"
-            onClick={() => setShowGridInfo((open) => !open)}
-            className="flex items-start gap-2 text-left text-xs text-white/60"
-          >
-            <Info className="mt-0.5 size-3.5 shrink-0" />
-            <span>{t("fuse.gridAssumption")}</span>
-          </button>
-          {showGridInfo ? (
-            <p className="mt-2 pl-5 text-[11px] leading-relaxed text-white/60">
-              {t("fuse.gridAssumptionInfo")}
-            </p>
-          ) : null}
-        </div>
       </div>
     </StepShell>
   );
