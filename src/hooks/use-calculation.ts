@@ -4,6 +4,7 @@ import type { CalculationResult } from "@/lib/calc/types";
 import { getMarketConfig } from "@/config/markets";
 import { useWizardStore } from "@/state/wizard-store";
 import { PRICE_SCENARIO_RATES } from "@/config/constants";
+import { kwPerAmpFor } from "@/config/grid";
 
 /** UI -> Hook -> Calculation engine -> Result. No logic lives in components. */
 export function useCalculation(): {
@@ -17,6 +18,9 @@ export function useCalculation(): {
   const consumptionInputType = useWizardStore((s) => s.consumptionInputType);
   const consumptionShape = useWizardStore((s) => s.consumptionShape);
   const mainFuseAmp = useWizardStore((s) => s.mainFuseAmp);
+  const gridPhaseCount = useWizardStore((s) => s.gridPhaseCount);
+  const gridVoltageV = useWizardStore((s) => s.gridVoltageV);
+  const gridFrequencyHz = useWizardStore((s) => s.gridFrequencyHz);
   const selfConsumptionShare = useWizardStore((s) => s.selfConsumptionShare);
   const selfConsumptionShareIsUserSet = useWizardStore((s) => s.selfConsumptionShareIsUserSet);
   const selfConsumedValuePerKwh = useWizardStore((s) => s.selfConsumedValuePerKwh);
@@ -47,9 +51,10 @@ export function useCalculation(): {
       },
       electrical: {
         mainFuseAmp,
-        kwPerAmp: market.kwPerAmp,
-        gridVoltageV: market.gridVoltageV,
-        gridPhases: market.gridPhases,
+        kwPerAmp: kwPerAmpFor(gridPhaseCount, gridVoltageV),
+        gridVoltageV,
+        gridPhases: gridPhaseCount,
+        gridFrequencyHz,
       },
       economics: {
         selfConsumedValuePerKwh:
@@ -79,6 +84,9 @@ export function useCalculation(): {
     consumptionInputType,
     consumptionShape,
     mainFuseAmp,
+    gridPhaseCount,
+    gridVoltageV,
+    gridFrequencyHz,
     selfConsumptionShare,
     selfConsumptionShareIsUserSet,
     selfConsumedValuePerKwh,
