@@ -135,7 +135,7 @@ const cost = result.productionCost;
           <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
         </header>
         {/* Group: the system */}
-        <p className="px-1 pt-1 text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+        <p className="px-1 pt-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
           {t("result.groupSystem")}
         </p>
         {/* 1. Recommendation */}
@@ -157,12 +157,11 @@ const cost = result.productionCost;
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-2.5">
-              <div className="glass-panel rounded-2xl p-3">
-                <div className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
-                  <Zap className="size-3" /> {t("result.recommendedInverter")}
-                </div>
-                <p className="mt-1 text-xl font-bold">
-                  {t("result.inverterShort", { kw: formatNumber(result.inverterKw, locale) })}
+              <div className="glass-panel flex items-center gap-1.5 rounded-2xl p-3">
+                <Zap className="size-4 shrink-0 text-white/70" />
+                <p className="text-xl font-bold">
+                  {formatNumber(result.inverterKw, locale)}{" "}
+                  <span className="text-xs font-semibold text-white/70">kW</span>
                 </p>
               </div>
               <div className="glass-panel rounded-2xl p-3">
@@ -181,7 +180,7 @@ const cost = result.productionCost;
             <p className="mt-4 text-sm font-bold">
               {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
             </p>
-            <p className="mt-1 text-xs text-white/70">{rationale}</p>
+            
             {result.notes.includes("minimum-system-size") ? (
               <p className="mt-1.5 text-xs text-white/70">{t("result.minimumSizeNote")}</p>
             ) : null}
@@ -195,10 +194,9 @@ const cost = result.productionCost;
 
 {/* 2. Production */}
         <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
-          <h2 className="text-sm font-semibold text-white">{t("result.sectionProduction")}</h2>
-          <p className="mt-0.5 mb-3 text-xs text-white/60">
-            {t("result.monthlyProduction")}
-          </p>
+          <h2 className="mb-3 text-center text-sm font-semibold text-white">
+            {t("result.sectionProduction")}
+          </h2>
           {result.consumption.isEstimated ? (
             <p className="mb-2 flex flex-wrap items-center gap-2 text-[11px] text-white/60">
               <span className="rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white/80">
@@ -219,12 +217,14 @@ const cost = result.productionCost;
         </section>
 
 {/* Group: economics */}
-        <p className="px-1 pt-1 text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+        <p className="px-1 pt-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
           {t("result.groupEconomy")}
         </p>
 {/* 3. What you get out of it — plain numbers, no controls */}
         <section className="space-y-2.5 rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
-          <h2 className="text-sm font-semibold text-white">{t("result.sectionEconomy")}</h2>
+          <h2 className="text-center text-sm font-semibold text-white">
+            {t("result.sectionEconomy")}
+          </h2>
 
           <div className="flex items-baseline justify-between gap-3">
             <p className="text-xs text-white/60">{t("result.annualSavings")}</p>
@@ -266,7 +266,7 @@ const cost = result.productionCost;
             </p>
           ) : null}
 
-          <p className="text-[11px] text-white/60">{t("result.economicsDisclaimer")}</p>
+          
         </section>
 
 {/* 4. Max justifiable investment — its own hero card */}
@@ -287,8 +287,12 @@ const cost = result.productionCost;
 
 {/* 5. Cost per produced kWh — own green card */}
         <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
-          <h2 className="text-sm font-semibold text-white">{t("result.productionCostTitle")}</h2>
-          <p className="mt-0.5 text-xs text-white/60">{t("result.productionCostExplainer")}</p>
+          <h2 className="text-center text-sm font-semibold text-white">
+            {t("result.productionCostTitle")}
+          </h2>
+          <p className="mt-0.5 text-center text-xs text-white/60">
+            {t("result.productionCostExplainer")}
+          </p>
           {cost.costPerKwh === null ? (
             <p className="mt-3 text-xs text-white/60">{t("result.productionCostUnavailable")}</p>
           ) : (
@@ -342,11 +346,6 @@ const cost = result.productionCost;
                   years: formatNumber(cost.periodYears, locale),
                 })}
               </p>
-              {(cost.differencePerKwh ?? 0) > 0 ? (
-                <p className="mt-1 text-[11px] text-white/60">
-                  {t("result.productionCostHigherValue")}
-                </p>
-              ) : null}
             </>
           )}
         </section>
@@ -354,7 +353,7 @@ const cost = result.productionCost;
 
 
         {/* Group: details */}
-        <p className="px-1 pt-1 text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+        <p className="px-1 pt-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
           {t("result.groupDetails")}
         </p>
         {/* 6. Technical details */}

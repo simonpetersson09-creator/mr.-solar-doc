@@ -176,7 +176,7 @@ export const sv = {
     forAddress: "För {{address}}",
     recommendedArray: "Storlek på anläggning",
     recommendedInverter: "Växelriktare",
-    annualProduction: "Elproduktion per år",
+    annualProduction: "Elproduktion/år",
     specificYield: "Solproduktion på platsen",
     annualConsumption: "Årsförbrukning",
     mainFuse: "Huvudsäkring",

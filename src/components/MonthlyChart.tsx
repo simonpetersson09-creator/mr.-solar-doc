@@ -38,19 +38,6 @@ export function MonthlyChart({
 
   return (
     <div className="w-full">
-      {hasComparison ? (
-        <div className={`mb-3 flex flex-wrap items-center gap-4 text-xs ${legendClass}`}>
-          <span className="inline-flex items-center gap-1.5">
-            <span className="size-2.5 rounded-sm bg-accent" />
-            {productionLabel}
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <span className={`size-2.5 rounded-sm ${onDark ? "bg-white/40" : "bg-muted-foreground/60"}`} />
-            {comparisonLabel}
-          </span>
-        </div>
-      ) : null}
-
       <div
         className="flex w-full items-end justify-between gap-1 overflow-hidden"
         role="img"
@@ -84,6 +71,23 @@ export function MonthlyChart({
           </div>
         ))}
       </div>
+
+      {hasComparison ? (
+        <div
+          className={`mt-3 flex flex-wrap items-center justify-center gap-4 text-xs ${legendClass}`}
+        >
+          <span className="inline-flex items-center gap-1.5">
+            <span className="size-2.5 rounded-sm bg-accent" />
+            {productionLabel}
+          </span>
+          <span className="inline-flex items-center gap-1.5">
+            <span
+              className={`size-2.5 rounded-sm ${onDark ? "bg-white/40" : "bg-muted-foreground/60"}`}
+            />
+            {comparisonLabel}
+          </span>
+        </div>
+      ) : null}
     </div>
   );
 }
