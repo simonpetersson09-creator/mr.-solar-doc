@@ -34,14 +34,16 @@ export function useUnlockedCalculation(): {
   });
 
   const premium = usePremium();
-  // Unlocked when the calculation itself is paid (one-off consumable) OR the
-  // device has an active, server-verified Premium subscription.
-  const paid = query.data?.status === "paid" || premium.active;
+  const devUnlock = isDevUnlock();
+  // Unlocked when the calculation itself is paid (one-off consumable), the
+  // device has an active, server-verified Premium subscription, or the dev
+  // bypass is active (local development only).
+  const paid = devUnlock || query.data?.status === "paid" || premium.active;
   const snapshot = paid ? (stored?.snapshot ?? null) : null;
   const result = snapshot?.result ?? null;
 
   return {
-    isLoading: Boolean(active) && (query.isLoading || premium.isLoading),
+    isLoading: !devUnlock && Boolean(active) && (query.isLoading || premium.isLoading),
     unlocked: Boolean(snapshot),
     result,
     snapshot,
