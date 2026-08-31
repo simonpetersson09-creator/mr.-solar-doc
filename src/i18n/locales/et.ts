@@ -448,6 +448,16 @@ systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tege
       "external": "Väline andmeallikas"
     },
     "disclaimer": "See aruanne on arvutuse hetkepilt ja põhineb eelnevalt nimetatud eeldustel. See ei ole pakkumine.",
-    "generated": "Loodud"
+    "generated": "Loodud",
+    "faqTitle": "Korduma kippuvad küsimused",
+    "faqItems": [
+      { "q": "Kui usaldusväärne on arvutatud päikesetoodang?", "a": "Arvutus põhineb asukoha päikesekiirgusel ning katuse suunal ja kaldenurgal. Tegelikku toodangut mõjutavad muu hulgas ilm, varjutus ja paigaldise tehnilised tingimused." },
+      { "q": "Mida tähendab oma tarbeks tarbimine?", "a": "Osa päikeseenergiast, mida kasutatakse otse kodus. Ülejäänud toodang suunatakse elektrivõrku." },
+      { "q": "Miks on oma tarbeks tarbitud päikeseenergia väärtuslikum kui müüdud päikeseenergia?", "a": "Oma tarbeks tarbitud päikeseenergia asendab elektrit, mis muidu ostetaks võrgust, samas kui müüdud päikeseenergia hüvitatakse võrku antud energia tingimuste kohaselt." },
+      { "q": "Mida tähendab hind valitud tasuvusaja kohta?", "a": "See näitab ligikaudu, kui palju võib paigaldus maksma minna, et see vastaks teie valitud tasuvusajale arvutuse eelduste põhjal. See ei ole hinnanguline turuhind." },
+      { "q": "Miks võib paigaldaja arvutus erineda?", "a": "Erinevad eeldused toodangu, oma tarbeks tarbimise, elektrihindade, süsteemikadude ja tulevase hinnamuutuse kohta võivad anda erinevaid tulemusi." },
+      { "q": "Kas arvutus on pakkumine?", "a": "Ei. Tulemus on hinnang ja seda tuleks kasutada otsuste tegemise alusena. Tegelik hind, toodang ja majanduslik tulemus võivad erineda." },
+    ],
+
   }
 } as const;

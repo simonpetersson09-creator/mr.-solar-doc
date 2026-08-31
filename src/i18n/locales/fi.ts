@@ -448,6 +448,16 @@ systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. 
       "external": "Ulkoinen tietolähde"
     },
     "disclaimer": "Tämä raportti on otos laskelmasta ja perustuu yllä lueteltuihin oletuksiin. Se ei ole tarjous.",
-    "generated": "Luotu"
+    "generated": "Luotu",
+    "faqTitle": "Usein kysytyt kysymykset",
+    "faqItems": [
+      { "q": "Kuinka luotettava laskettu aurinkotuotanto on?", "a": "Laskelma perustuu paikan auringonsäteilyyn sekä katon suuntaukseen ja kaltevuuteen. Todelliseen tuotantoon vaikuttavat muun muassa sää, varjostus ja järjestelmän tekniset olosuhteet." },
+      { "q": "Mitä omakäyttö tarkoittaa?", "a": "Se osa aurinkosähköstä, joka käytetään suoraan asunnossa. Loput tuotannosta syötetään sähköverkkoon." },
+      { "q": "Miksi omakäyttöinen aurinkosähkö on arvokkaampaa kuin myyty aurinkosähkö?", "a": "Omakäyttöinen aurinkosähkö korvaa sähköä, joka muuten olisi ostettu verkosta, kun taas myydystä aurinkosähköstä maksetaan verkkoon syötetyn sähkön ehtojen mukaan." },
+      { "q": "Mitä tarkoittaa hinta valitulle takaisinmaksuajalle?", "a": "Se kertoo suunnilleen, kuinka paljon järjestelmä voi maksaa vastatakseen valitsemaasi takaisinmaksuaikaa laskelman oletusten perusteella. Se ei ole arvioitu markkinahinta." },
+      { "q": "Miksi asentajan laskelma voi poiketa?", "a": "Erilaiset oletukset tuotannosta, omakäytöstä, sähkön hinnoista, järjestelmähäviöistä ja tulevasta hintakehityksestä voivat johtaa erilaisiin tuloksiin." },
+      { "q": "Onko laskelma tarjous?", "a": "Ei. Tulos on arvio, jonka on tarkoitus toimia päätöksenteon tukena. Todellinen hinta, tuotanto ja taloudellinen lopputulos voivat poiketa." },
+    ],
+
   }
 } as const;

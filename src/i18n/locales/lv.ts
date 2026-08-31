@@ -448,6 +448,16 @@ systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā
       "external": "Ārējs datu avots"
     },
     "disclaimer": "Šī atskaite ir aprēķina momentuzņēmums un balstās uz iepriekš minētajiem pieņēmumiem. Tas nav piedāvājums.",
-    "generated": "Ģenerēts"
+    "generated": "Ģenerēts",
+    "faqTitle": "Biežāk uzdotie jautājumi",
+    "faqItems": [
+      { "q": "Cik drošs ir aprēķinātais saules enerģijas ražošanas apjoms?", "a": "Aprēķins balstās uz saules starojumu konkrētajā vietā un jumta virzienu un slīpumu. Faktisko ražošanu ietekmē, piemēram, laikapstākļi, noēnojums un sistēmas tehniskie apstākļi." },
+      { "q": "Ko nozīmē pašpatēriņš?", "a": "Daļa saules elektroenerģijas, kas tiek izmantota tieši mājoklī. Pārējā saražotā enerģija tiek nodota elektrotīklā." },
+      { "q": "Kāpēc pašpatēriņā izmantotā saules enerģija ir vērtīgāka par pārdoto?", "a": "Pašpatēriņā izmantotā saules enerģija aizstāj elektrību, kas citādi būtu jāpērk no tīkla, savukārt pārdotā saules enerģija tiek kompensēta saskaņā ar tīklā nodotās enerģijas noteikumiem." },
+      { "q": "Ko nozīmē cena izvēlētajam atmaksāšanās periodam?", "a": "Tas aptuveni parāda, cik sistēma var maksāt, lai atbilstu izvēlētajam atmaksāšanās periodam, pamatojoties uz aprēķina pieņēmumiem. Tā nav aptuvena tirgus cena." },
+      { "q": "Kāpēc uzstādītāja aprēķins var atšķirties?", "a": "Dažādi pieņēmumi par ražošanu, pašpatēriņu, elektrības cenām, sistēmas zudumiem un nākotnes cenu izmaiņām var radīt atšķirīgus rezultātus." },
+      { "q": "Vai aprēķins ir piedāvājums?", "a": "Nē. Rezultāts ir aplēse, un tas jāizmanto kā lēmumu pieņemšanas pamats. Faktiskā cena, ražošana un ekonomiskais iznākums var atšķirties." },
+    ],
+
   }
 } as const;

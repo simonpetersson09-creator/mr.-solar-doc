@@ -99,8 +99,10 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
           : null,
         chartProduction: t("report.chartProduction"),
         chartConsumption: t("report.chartConsumption"),
-        origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin"],
+origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin"],
         fields: i18n.t("report.fields", { returnObjects: true }) as ReportLabels["fields"],
+        faqTitle: t("report.faqTitle"),
+        faqItems: i18n.t("report.faqItems", { returnObjects: true }) as ReportLabels["faqItems"],
       };
       await exportReport({ result, labels, locale });
       void haptic("success");

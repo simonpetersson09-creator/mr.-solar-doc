@@ -448,6 +448,16 @@ systemSizeInfo: "Výpočet je odhadem a měl by sloužit jako orientace. Skuteč
       "external": "Externí zdroj dat"
     },
     "disclaimer": "Tato zpráva je snímkem výpočtu a je založena na výše uvedených předpokladech. Nejedná se o nabídku.",
-    "generated": "Vygenerováno"
+    "generated": "Vygenerováno",
+    "faqTitle": "Často kladené dotazy",
+    "faqItems": [
+      { "q": "Jak spolehlivý je vypočítaný solární výkon?", "a": "Výpočet vychází ze slunečního záření v dané lokalitě a ze směru a sklonu střechy. Skutečnou výrobu ovlivňují mimo jiné počasí, stínění a technické podmínky zařízení." },
+      { "q": "Co znamená vlastní spotřeba?", "a": "Podíl solární energie využívané přímo v domácnosti. Zbývající výroba je dodávána do elektrické sítě." },
+      { "q": "Proč má vlastní spotřebovaná solární energie větší hodnotu než prodaná?", "a": "Vlastní spotřebovaná solární energie nahrazuje elektřinu, kterou by jinak bylo nutné koupit ze sítě, zatímco prodaná solární energie je kompenzována podle podmínek pro dodávku do sítě." },
+      { "q": "Co znamená cena pro zvolenou dobu návratnosti?", "a": "Přibližně ukazuje, kolik může zařízení stát, aby odpovídalo vámi zvolené době návratnosti na základě předpokladů kalkulace. Nejedná se o odhad tržní ceny." },
+      { "q": "Proč se může výpočet instalatéra lišit?", "a": "Různé předpoklady ohledně výroby, vlastní spotřeby, cen elektřiny, ztrát systému a budoucího cenového vývoje mohou vést k různým výsledkům." },
+      { "q": "Je výpočet nabídkou?", "a": "Ne. Výsledek je odhad a má sloužit jako podklad pro rozhodování. Skutečná cena, výroba a ekonomický výsledek se mohou lišit." },
+    ],
+
   }
 } as const;

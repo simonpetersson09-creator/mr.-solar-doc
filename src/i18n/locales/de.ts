@@ -448,6 +448,16 @@ systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. 
       "external": "Externe Datenquelle"
     },
     "disclaimer": "Dieser Bericht ist eine Momentaufnahme der Berechnung und basiert auf den oben genannten Annahmen. Es handelt sich nicht um ein Angebot.",
-    "generated": "Erstellt"
+    "generated": "Erstellt",
+    "faqTitle": "Häufig gestellte Fragen",
+    "faqItems": [
+      { "q": "Wie sicher ist die berechnete Solarproduktion?", "a": "Die Berechnung basiert auf der Sonneneinstrahlung am Standort sowie der Ausrichtung und Neigung des Dachs. Die tatsächliche Produktion wird unter anderem durch Wetter, Verschattung und die technischen Gegebenheiten der Anlage beeinflusst." },
+      { "q": "Was bedeutet Eigenverbrauch?", "a": "Der Anteil des Solarstroms, der direkt im Haushalt verbraucht wird. Die übrige Produktion wird ins Stromnetz eingespeist." },
+      { "q": "Warum ist selbst verbrauchter Solarstrom mehr wert als verkaufter Solarstrom?", "a": "Selbst verbrauchter Solarstrom ersetzt Strom, der sonst aus dem Netz gekauft werden müsste, während verkaufter Solarstrom nach den Bedingungen für eingespeisten Strom vergütet wird." },
+      { "q": "Was bedeutet der Preis für die gewählte Amortisationszeit?", "a": "Er zeigt ungefähr, wie viel die Anlage kosten darf, um der von Ihnen gewählten Amortisationszeit zu entsprechen, basierend auf den Annahmen der Kalkulation. Es ist kein geschätzter Marktpreis." },
+      { "q": "Warum kann die Berechnung des Installateurs abweichen?", "a": "Unterschiedliche Annahmen zu Produktion, Eigenverbrauch, Strompreisen, Systemverlusten und zukünftiger Preisentwicklung können zu unterschiedlichen Ergebnissen führen." },
+      { "q": "Ist die Berechnung ein Angebot?", "a": "Nein. Das Ergebnis ist eine Schätzung und dient als Entscheidungsgrundlage. Tatsächlicher Preis, Produktion und wirtschaftliches Ergebnis können abweichen." },
+    ],
+
   }
 } as const;

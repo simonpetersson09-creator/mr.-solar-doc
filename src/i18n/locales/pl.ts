@@ -448,6 +448,16 @@ systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskaz
       "external": "Zewnętrzne źródło danych"
     },
     "disclaimer": "Raport jest migawką kalkulacji i opiera się na powyższych założeniach. Nie jest to oferta.",
-    "generated": "Wygenerowano"
+    "generated": "Wygenerowano",
+    "faqTitle": "Często zadawane pytania",
+    "faqItems": [
+      { "q": "Jak pewna jest obliczona produkcja energii słonecznej?", "a": "Obliczenie opiera się na nasłonecznieniu w danej lokalizacji oraz kierunku i nachyleniu dachu. Na rzeczywistą produkcję wpływają m.in. pogoda, zacienienie i warunki techniczne instalacji." },
+      { "q": "Co oznacza autokonsumpcja?", "a": "Część energii słonecznej wykorzystywana bezpośrednio w domu. Pozostała produkcja jest wprowadzana do sieci elektroenergetycznej." },
+      { "q": "Dlaczego energia zużywana na własne potrzeby jest cenniejsza niż sprzedawana?", "a": "Energia zużywana na własne potrzeby zastępuje prąd, który w innym przypadku trzeba by kupić z sieci, podczas gdy sprzedawana energia jest rozliczana według warunków dla energii wprowadzanej do sieci." },
+      { "q": "Co oznacza cena dla wybranego okresu zwrotu?", "a": "Pokazuje w przybliżeniu, ile może kosztować instalacja, aby odpowiadać wybranemu przez Ciebie okresowi zwrotu, na podstawie założeń kalkulacji. Nie jest to szacunkowa cena rynkowa." },
+      { "q": "Dlaczego obliczenia instalatora mogą się różnić?", "a": "Różne założenia dotyczące produkcji, autokonsumpcji, cen energii, strat systemowych i przyszłego rozwoju cen mogą dawać różne wyniki." },
+      { "q": "Czy obliczenie jest ofertą?", "a": "Nie. Wynik jest szacunkiem i ma służyć jako podstawa decyzji. Rzeczywista cena, produkcja i wynik ekonomiczny mogą się różnić." },
+    ],
+
   }
 } as const;

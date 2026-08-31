@@ -448,6 +448,16 @@ systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre in
       "external": "Source de données externe"
     },
     "disclaimer": "Ce rapport est un aperçu du calcul et est basé sur les hypothèses énumérées ci-dessus. Ce n'est pas un devis.",
-    "generated": "Généré"
+    "generated": "Généré",
+    "faqTitle": "Questions fréquentes",
+    "faqItems": [
+      { "q": "Quelle est la fiabilité de la production solaire estimée ?", "a": "Le calcul s'appuie sur l'ensoleillement du lieu ainsi que sur l'orientation et l'inclinaison de la toiture. La production réelle est notamment influencée par la météo, l'ombrage et les conditions techniques de l'installation." },
+      { "q": "Que signifie l'autoconsommation ?", "a": "La part de l'électricité solaire utilisée directement dans le logement. Le reste de la production est injecté sur le réseau électrique." },
+      { "q": "Pourquoi l'électricité solaire autoconsommée vaut-elle plus que l'électricité solaire vendue ?", "a": "L'électricité solaire autoconsommée remplace de l'électricité qui aurait sinon été achetée sur le réseau, tandis que l'électricité solaire vendue est rémunérée selon les conditions de l'électricité injectée." },
+      { "q": "Que signifie le prix pour la durée de retour choisie ?", "a": "Il indique approximativement combien l'installation peut coûter pour correspondre à la durée de retour que vous avez choisie, sur la base des hypothèses du calcul. Il ne s'agit pas d'un prix de marché estimé." },
+      { "q": "Pourquoi le calcul de l'installateur peut-il différer ?", "a": "Des hypothèses différentes sur la production, l'autoconsommation, les prix de l'électricité, les pertes du système et l'évolution future des prix peuvent donner des résultats différents." },
+      { "q": "Le calcul est-il un devis ?", "a": "Non. Le résultat est une estimation et doit servir de base à la décision. Le prix, la production et le résultat économique réels peuvent différer." },
+    ],
+
   }
 } as const;

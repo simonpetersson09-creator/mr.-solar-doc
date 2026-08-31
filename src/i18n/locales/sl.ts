@@ -448,6 +448,16 @@ systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dej
       "external": "Zunanji vir podatkov"
     },
     "disclaimer": "To poročilo je posnetek izračuna in temelji na zgoraj navedenih predpostavkah. Ni ponudba.",
-    "generated": "Ustvarjeno"
+    "generated": "Ustvarjeno",
+    "faqTitle": "Pogosta vprašanja",
+    "faqItems": [
+      { "q": "Kako zanesljiva je izračunana sončna proizvodnja?", "a": "Izračun temelji na sončnem obsevanju lokacije ter usmerjenosti in naklonu strehe. Na dejansko proizvodnjo med drugim vplivajo vreme, senčenje in tehnične značilnosti naprave." },
+      { "q": "Kaj pomeni lastna poraba?", "a": "Delež sončne energije, ki se porabi neposredno v domu. Preostala proizvodnja se oddaja v električno omrežje." },
+      { "q": "Zakaj je lastno porabljena sončna energija vrednejša od prodane?", "a": "Lastno porabljena sončna energija nadomešča elektriko, ki bi jo sicer kupili iz omrežja, medtem ko se prodana sončna energija nadomesti v skladu s pogoji za oddajo v omrežje." },
+      { "q": "Kaj pomeni cena za izbrano dobo vračila?", "a": "Približno prikazuje, koliko lahko stane naprava, da ustreza izbrani dobi vračila na podlagi predpostavk izračuna. To ni ocenjena tržna cena." },
+      { "q": "Zakaj se izračun monterja lahko razlikuje?", "a": "Različne predpostavke o proizvodnji, lastni porabi, cenah elektrike, izgubah sistema in prihodnjem gibanju cen lahko dajo različne rezultate." },
+      { "q": "Ali je izračun ponudba?", "a": "Ne. Rezultat je ocena in naj se uporabi kot podlaga za odločanje. Dejanska cena, proizvodnja in ekonomski izid se lahko razlikujejo." },
+    ],
+
   }
 } as const;
