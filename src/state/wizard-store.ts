@@ -1,5 +1,14 @@
 import { create } from "zustand";
 import { createJSONStorage, persist } from "zustand/middleware";
+import { createSafeStorage } from "@/state/safe-storage";
+import {
+  initialWizardState,
+  WIZARD_STORAGE_VERSION,
+} from "@/state/wizard-initial-state";
+import {
+  migrateWizardState,
+  revalidateCountryDependentState,
+} from "@/state/wizard-migrations";
 import type { Orientation, SiteLocation, SolarResource } from "@/lib/calc/types";
 import type { ConsumptionInputType, ConsumptionShape } from "@/lib/calc/consumption-shape";
 import {
@@ -135,38 +144,8 @@ export interface WizardState {
   reset: () => void;
 }
 
-const initialState = {
-  location: null,
-  orientation: "unknown" as Orientation,
-  tiltDegrees: 30,
-  azimuthDegrees: null,
-  resource: null,
-  annualConsumptionKwh: null,
-  monthlyConsumptionKwh: null,
-  consumptionInputType: "annual-only" as ConsumptionInputType,
-  consumptionShape: null as ConsumptionShape | null,
-  connectionCapacity: null as ConnectionCapacity | null,
-  connectionOptionId: null as string | null,
-  connectionSource: null as "country-option" | "custom" | null,
-  mainFuseAmp: null,
-  gridPhaseCount: DEFAULT_GRID_PROFILE.phaseCount,
-  gridServiceType: SERVICE_TYPE_FOR_PHASE_COUNT[DEFAULT_GRID_PROFILE.phaseCount] as ServiceType,
-  gridVoltageV: DEFAULT_GRID_PROFILE.voltageV,
-  gridLineToNeutralVoltageV: null as number | null,
-  gridFrequencyHz: DEFAULT_GRID_PROFILE.frequencyHz,
-  gridProfileIsUserSet: false,
-  gridConfirmed: false,
-
-  selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
-  selfConsumptionShareIsUserSet: false,
-  selfConsumedValuePerKwh: null,
-  exportValuePerKwh: null,
-  acceptedPaybackYears: DEFAULT_PAYBACK_YEARS,
-  priceScenario: DEFAULT_PRICE_SCENARIO,
-  customPriceChangePercent: 2,
-  quotePrice: null,
-  currentStep: 1,
-};
+/** The fresh session lives in wizard-initial-state so migrations can reuse it. */
+const initialState = initialWizardState;
 
 interface GridPatch {
   phaseCount?: PhaseCount;
@@ -360,37 +339,23 @@ export const useWizardStore = create<WizardState>()(
     }),
     {
       name: "mr-solar-doc-wizard",
-      // Bump whenever cached solar/economics data may be stale.
-      version: 3,
       /**
-       * v2 -> v3: sessions saved before the ConnectionCapacity layer only have
-       * `mainFuseAmp` plus the grid profile. They are rebuilt into an
-       * equivalent amperage capacity, so an existing Swedish session keeps
-       * exactly the same grid profile, ceiling and result.
+       * Persisted schema version. Every step is implemented in
+       * `wizard-migrations`, which also normalises and revalidates the result
+       * so a rehydrated session can never be structurally invalid.
        */
-      migrate: (persisted) => {
-        const state = (persisted ?? {}) as Partial<WizardState>;
-        let connectionCapacity = state.connectionCapacity ?? null;
-        if (!isValidConnectionCapacity(connectionCapacity) && state.mainFuseAmp) {
-          connectionCapacity = amperageCapacity(state.mainFuseAmp, {
-            serviceType:
-              state.gridServiceType ??
-              SERVICE_TYPE_FOR_PHASE_COUNT[
-                state.gridPhaseCount ?? DEFAULT_GRID_PROFILE.phaseCount
-              ],
-            voltageV: state.gridVoltageV ?? DEFAULT_GRID_PROFILE.voltageV,
-            lineToNeutralVoltageV: state.gridLineToNeutralVoltageV ?? null,
-            frequencyHz: state.gridFrequencyHz ?? DEFAULT_GRID_PROFILE.frequencyHz,
-          });
-        }
-        return {
-          ...state,
-          connectionCapacity,
-          // Drop cached PVGIS data so it is re-fetched with current logic.
-          resource: null,
-        };
+      version: WIZARD_STORAGE_VERSION,
+      migrate: (persisted, version) => migrateWizardState(persisted, version).state,
+      /**
+       * Storage is untrusted and may be unavailable: reads/writes never throw,
+       * and a rehydrated session is revalidated against the current country
+       * rules before it can reach the calculation engine.
+       */
+      onRehydrateStorage: () => (state) => {
+        if (!state) return;
+        Object.assign(state, revalidateCountryDependentState(state));
       },
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => createSafeStorage("wizard")),
       partialize: ({
         location,
         orientation,
