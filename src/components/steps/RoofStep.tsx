@@ -173,9 +173,9 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         <div className="glow-amber -top-10 -right-10 size-32" aria-hidden="true" />
         <div className="flex items-center justify-between gap-4">
           <div className="text-center">
-            <div className="flex items-center justify-center gap-1.5 text-xs font-semibold">
+            <div className="flex items-center justify-center gap-1.5 text-xs font-semibold text-accent">
               <span className="size-1.5 animate-pulse rounded-full bg-accent" />
-              <Sun className="size-3.5" />
+              <Sun className="size-3.5 text-accent" />
               {t("roof.result")}
             </div>
             <p className="mt-0.5 min-h-4 text-[11px] text-white/70">
@@ -190,7 +190,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             ) : query.data ? (
               <>
                 <p
-                  className={`text-3xl leading-none font-extrabold tracking-tight transition-opacity ${
+                  className={`text-3xl leading-none font-extrabold tracking-tight text-accent transition-opacity ${
                     query.isFetching ? "opacity-40" : "opacity-100"
                   }`}
                 >
