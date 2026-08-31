@@ -16,7 +16,7 @@ const serverUrl =
   "https://id-preview--68a192c2-c6ae-462b-8fcb-cc89c8e860cc.lovable.app";
 
 const config: CapacitorConfig = {
-  appId: "app.lovable.mrsolardoc",
+  appId: "se.shiningdays.mrsolardoc",
   appName: "Mr. Solar Doc",
   webDir: "capacitor-shell",
   server: {
