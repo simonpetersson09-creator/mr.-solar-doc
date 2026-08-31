@@ -206,7 +206,7 @@ export function purchasePremium() {
 }
 
 /**
- * Restore. The 49 kr unlock is a consumable and can never be restored, so this
+ * Restore. The one-off unlock is a consumable and can never be restored, so this
  * targets the subscription: StoreKit syncs with the App Store account and
  * redelivers the current subscription entitlement as an approved transaction,
  * which the recovery hook then verifies server-side.

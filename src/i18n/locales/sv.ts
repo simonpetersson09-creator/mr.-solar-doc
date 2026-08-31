@@ -443,7 +443,9 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       title: "En beräkning",
       body: "Lås upp hela resultatet och PDF-rapporten för den här beräkningen.",
       cta: "Lås upp för {{price}}",
+      ctaNoPrice: "Lås upp",
     },
+    priceLoading: "Hämtar pris…",
     premium: {
       title: "Premium",
       price: "{{price}}/år",

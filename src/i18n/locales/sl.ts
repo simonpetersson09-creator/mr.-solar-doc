@@ -68,11 +68,9 @@ export const sl = {
     "unit": "kWh/kWp/leto",
     "disclaimer": "Izračunana sončna proizvodnja temelji na lokaciji, orientaciji in naklonu strehe. Na dejansko proizvodnjo lahko vplivajo senčenje, vreme, temperatura in sistemske izgube.",
     "error": "Trenutno nismo mogli pridobiti podatkov o sončni proizvodnji za to lokacijo. Vrednosti niso ugibane.",
-    "errorOverSea":
-      "Lokacija je videti nad vodo. Premaknite oznako na stavbo na kopnem in poskusite znova.",
-    "errorOutsideCoverage":
-      "Za to lokacijo nimamo sončnih podatkov. Poskusite bližnji naslov.",
-    "errorSource": "PVGIS: {{message}}",
+    "errorOverSea": "Lokacija je videti nad vodo. Premaknite oznako na stavbo na kopnem in poskusite znova.",
+    "errorOutsideCoverage": "Za to lokacijo nimamo sončnih podatkov. Poskusite bližnji naslov.",
+    "errorSource": "PVGIS: {{message}}"
   },
   "consumption": {
     "validation": {
@@ -160,7 +158,7 @@ export const sl = {
       }
     },
     "gridAssumption": "Izračun predpostavlja trifazni priključek 400 V.",
-"gridAssumptionInfo": "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
+    "gridAssumptionInfo": "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
     "disclaimerTitle": "Pomembno je vedeti",
     "disclaimer": "Izračun je okviren in ne more nadomestiti tehnične ocene. Pred namestitvijo vedno preverite napetost, priključno moč, dovoljeno moč in druge lokalne zahteve omrežja pri usposobljenem električarju ter po potrebi pri vašem operaterju omrežja.\n\nMr Solar Doc ne odgovarja za namestitve ali odločitve, sprejete izključno na podlagi izračunov aplikacije.",
     "grid": {
@@ -178,6 +176,9 @@ export const sl = {
       "frequency": "Frekvenca",
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Spremenite le, če privzete vrednosti ne ustrezajo vašemu priključku.",
+      "serviceType": "Vrsta priključka",
+      "splitPhase": "Dvofazni (split-phase)",
+      "unverifiedHint": "Za to državo nimamo preverjenih omrežnih vrednosti. Preverite podatke na števcu ali v elektroomarici."
     },
     "title": "Kakšno glavno varovalko imate?",
     "subtitle": "Glavna varovalka se uporablja za oceno, kako velik razsmernik je običajno mogoče priključiti. Dejansko dovoljeno moč določi operater omrežja.",
@@ -186,7 +187,12 @@ export const sl = {
     "otherLabel": "Amperi",
     "maxAc": "Največja izračunana AC moč",
     "calculate": "Izračunaj",
-    "invalid": "Vnesite glavno varovalko med 6 in 400 A."
+    "invalid": "Vnesite glavno varovalko med 6 in 400 A.",
+    "genericTitle": "Kakšen električni priključek imate?",
+    "noCountryOptions": "Za to državo še nimamo preverjenih možnosti priključka. Vnesite glavno varovalko v amperih in po potrebi spodaj prilagodite nastavitve omrežja.",
+    "unverifiedCountryNotice": "Omrežnega standarda te države nismo preverili. Preverite napetost, število faz in velikost priključka na računu za elektriko ali pri distributerju, nato potrdite spodaj.",
+    "confirmGrid": "Preveril(a) sem omrežne podatke",
+    "confirmedGrid": "Omrežni podatki potrjeni"
   },
   "result": {
     "connection": {
@@ -249,7 +255,7 @@ export const sl = {
     "priceScenarioFlat": "Nespremenjeno",
     "priceScenarioCautious": "Previdno",
     "priceScenarioNormal": "Normal",
-"priceScenarioHigh": "Visoko",
+    "priceScenarioHigh": "Visoko",
     "priceScenarioVeryHigh": "Zelo visoko",
     "priceScenarioExtreme": "Ekstremno",
     "priceScenarioCustom": "Lastna predpostavka",
@@ -357,7 +363,22 @@ export const sl = {
     "productionCostHigherValue": "V tem izračunu je vsaka kWh vredna več, kot stane njena proizvodnja.",
     "productionCostUnavailable": "S trenutnimi podatki ne moremo izračunati stroška proizvodnje.",
     "perKwh": "{{amount}}/kWh",
-    "locked": "Ta izračun je zaklenjen. Dokončajte nakup, da vidite rezultat."
+    "locked": "Ta izračun je zaklenjen. Dokončajte nakup, da vidite rezultat.",
+    "missingSelfConsumedValue": "Manjka cena elektrike. Vnesite, koliko plačate za kWh, da vidite vrednost lastne porabe sončne energije.",
+    "missingExportValue": "Manjka odkupna cena. Vnesite, koliko prejmete za oddano kWh, da izračunamo prihodek od prodaje.",
+    "missingInstallationCost": "Manjka cena namestitve. Vnesite svojo ponudbo ali ocenjeno naložbo.",
+    "economicsIncomplete": "Nepopolna osnova",
+    "enterValues": "Vnesite vrednosti",
+    "economicsRequiresPrice": "Ekonomski izračun zahteva ceno elektrike. Vnesite svoje cene, da vidite prihranek, vračilno dobo in stroške proizvodnje.",
+    "economicsRequiresPriceShort": "Zahteva ceno elektrike",
+    "gridUnverifiedTitle": "Omrežni podatki niso preverjeni",
+    "gridUnverifiedWarning": "Predpostavke o omrežju temeljijo na splošnih vrednostih in jih je treba pred namestitvijo preveriti lokalno.",
+    "gridProfileStatusLabel": "Omrežni profil",
+    "gridProfileStatusVerified": "Preverjeno",
+    "gridProfileStatusGeneric": "Splošno (nepreverjeno)",
+    "gridProfileStatusUnsupported": "Ročno (nepreverjeno)",
+    "calcErrorTitle": "Izračuna ni mogoče dokončati",
+    "calcErrorBody": "Z nekaterimi vnosi ni mogoče računati. Vrnite se nazaj in preverite porabo, priključek in predpostavke."
   },
   "units": {
     "kwhPerYear": "kWh/leto",
@@ -519,7 +540,8 @@ export const sl = {
       "orientation_east": "Vzhod",
       "orientation_west": "Zahod",
       "priceChangeNoteFlat": "Izračun uporablja nespremenjene vrednosti za lastno porabljeno in izvoženo sončno energijo skozi celotno obdobje. Ni predvidenega dviga cen, ker prihodnjih cen elektrike ni mogoče napovedati. Če cene narastejo, bo vrednost višja kot v tem poročilu; če padejo, bo nižja.",
-      "priceChangeNoteTrend": "Izračun predpostavlja, da se vrednost lastno porabljene in izvožene sončne energije spreminja za {{priceChange}} % na leto skozi celotno obdobje. To je predpostavka, ker prihodnjih cen elektrike ni mogoče napovedati. Drugačen razvoj pomeni višji ali nižji rezultat kot v tem poročilu."
+      "priceChangeNoteTrend": "Izračun predpostavlja, da se vrednost lastno porabljene in izvožene sončne energije spreminja za {{priceChange}} % na leto skozi celotno obdobje. To je predpostavka, ker prihodnjih cen elektrike ni mogoče napovedati. Drugačen razvoj pomeni višji ali nižji rezultat kot v tem poročilu.",
+      "gridMethodNoteDynamic": "Teoretična moč AC temelji na izbranem priključku: {{phases}}-fazni, {{voltage}} V, izračunano kot {{factor}} × {{voltage}} V × glavna varovalka. Dejansko dovoljeno priključno moč ali moč oddaje lahko omeji distributer ali konkretna namestitev."
     },
     "title": "Poročilo o sončni elektrarni",
     "technical": "Tehnični podatki",
@@ -603,7 +625,8 @@ export const sl = {
     "single": {
       "title": "En izračun",
       "body": "Odklenite celoten rezultat in PDF poročilo za ta izračun.",
-      "cta": "Odkleni za {{price}}"
+      "cta": "Odkleni za {{price}}",
+      "ctaNoPrice": "Odkleni"
     },
     "premium": {
       "title": "Premium",
@@ -633,7 +656,8 @@ export const sl = {
     "failed": "Nakupa ni bilo mogoče dokončati. Ni vam bilo nič zaračunano.",
     "retry": "Trenutno nismo mogli potrditi nakupa. Nič ni izgubljeno — samodejno se bo odklenil, ko bo povezava spet delovala.",
     "appOnly": "Nakup se izvede v aplikaciji z vašim Apple računom in ni na voljo v brskalniku.",
-    "appleNote": "Obravnava App Store."
+    "appleNote": "Obravnava App Store.",
+    "priceLoading": "Pridobivanje cene…"
   },
   "history": {
     "empty": "Nimate še shranjenih izračunov.",

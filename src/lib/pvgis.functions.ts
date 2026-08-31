@@ -3,6 +3,7 @@ import { z } from "zod";
 import {
   buildPvgisOrientationFallbackRequest,
   buildPvgisRequest,
+  isImplausibleOptimalTilt,
   type PvgisRequestPlan,
 } from "@/lib/pvgis-params";
 import { encodePvgisError, extractPvgisMessage } from "@/lib/pvgis-error";
@@ -55,7 +56,29 @@ export const fetchPvgis = createServerFn({ method: "GET" })
       throw new Error(encodePvgisError(response.status, extractPvgisMessage(body)));
     }
 
-    const json = (await response.json()) as PvgisJson;
+    let json = (await response.json()) as PvgisJson;
+
+    // Case D again: PVGIS sometimes returns an implausible "optimal" tilt
+    // (flat / sentinel slope), which is systematically low for a real roof —
+    // observed on the southern hemisphere. One controlled retry replaces only
+    // the orientation parameters with the documented geographic defaults.
+    if (
+      plan.mode === "optimal-angles" &&
+      isImplausibleOptimalTilt(
+        json.inputs?.mounting_system?.fixed?.slope?.value ?? null,
+        data.latitude,
+      )
+    ) {
+      const fallbackPlan = buildPvgisOrientationFallbackRequest(data);
+      const fallbackResponse = await requestPvgis(fallbackPlan);
+      if (fallbackResponse.ok) {
+        const fallbackJson = (await fallbackResponse.json()) as PvgisJson;
+        if (fallbackJson.outputs?.monthly?.fixed?.length === 12) {
+          plan = fallbackPlan;
+          json = fallbackJson;
+        }
+      }
+    }
 
     const monthly = json.outputs?.monthly?.fixed;
     const annual = json.outputs?.totals?.fixed?.E_y;

@@ -68,11 +68,9 @@ export const fr = {
     "unit": "kWh/kWc/an",
     "disclaimer": "La production solaire calculée repose sur l'emplacement, l'orientation et l'inclinaison du toit. La production réelle peut être affectée par l'ombrage, la météo, la température et les pertes du système.",
     "error": "Nous n'avons pas pu récupérer les données de production solaire pour cet emplacement pour le moment. Aucune valeur n'est estimée.",
-    "errorOverSea":
-      "Cet emplacement semble se situer sur l'eau. Déplacez le repère sur le bâtiment à terre et réessayez.",
-    "errorOutsideCoverage":
-      "Nous n'avons pas de données solaires pour cet emplacement. Essayez une adresse à proximité.",
-    "errorSource": "PVGIS : {{message}}",
+    "errorOverSea": "Cet emplacement semble se situer sur l'eau. Déplacez le repère sur le bâtiment à terre et réessayez.",
+    "errorOutsideCoverage": "Nous n'avons pas de données solaires pour cet emplacement. Essayez une adresse à proximité.",
+    "errorSource": "PVGIS : {{message}}"
   },
   "consumption": {
     "validation": {
@@ -160,7 +158,7 @@ export const fr = {
       }
     },
     "gridAssumption": "Le calcul suppose un raccordement triphasé 400 V.",
-"gridAssumptionInfo": "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute.",
+    "gridAssumptionInfo": "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute.",
     "disclaimerTitle": "Bon à savoir",
     "disclaimer": "Le calcul est indicatif et ne remplace pas une évaluation technique. Vérifiez toujours la tension, la capacité de raccordement, la puissance autorisée et les autres exigences locales du réseau auprès d'un électricien qualifié et, si nécessaire, de votre gestionnaire de réseau avant l'installation.\n\nMr Solar Doc n'est pas responsable des installations ou des décisions prises uniquement sur la base des calculs de l'application.",
     "grid": {
@@ -178,6 +176,9 @@ export const fr = {
       "frequency": "Fréquence",
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Ne modifiez que si les valeurs par défaut ne correspondent pas à votre raccordement.",
+      "serviceType": "Type de raccordement",
+      "splitPhase": "Biphasé (split-phase)",
+      "unverifiedHint": "Nous n'avons pas de valeurs réseau vérifiées pour ce pays. Vérifiez vos informations sur votre compteur ou votre tableau électrique."
     },
     "title": "Quel fusible principal avez-vous ?",
     "subtitle": "Le fusible principal permet d'estimer la taille d'onduleur pouvant normalement être raccordée. La puissance réellement autorisée est déterminée par le gestionnaire de réseau.",
@@ -186,7 +187,12 @@ export const fr = {
     "otherLabel": "Ampères",
     "maxAc": "Puissance CA maximale calculée",
     "calculate": "Calculer",
-    "invalid": "Saisissez un fusible principal entre 6 et 400 A."
+    "invalid": "Saisissez un fusible principal entre 6 et 400 A.",
+    "genericTitle": "Quel raccordement électrique avez-vous ?",
+    "noCountryOptions": "Nous n'avons pas encore d'options de raccordement vérifiées pour ce pays. Saisissez votre disjoncteur principal en ampères et ajustez les paramètres réseau ci-dessous si nécessaire.",
+    "unverifiedCountryNotice": "Nous n'avons pas vérifié la norme réseau de ce pays. Vérifiez la tension, les phases et la puissance de raccordement sur votre facture d'électricité ou auprès de votre gestionnaire de réseau, puis confirmez ci-dessous.",
+    "confirmGrid": "J'ai vérifié les données réseau",
+    "confirmedGrid": "Données réseau confirmées"
   },
   "result": {
     "connection": {
@@ -249,7 +255,7 @@ export const fr = {
     "priceScenarioFlat": "Inchangé",
     "priceScenarioCautious": "Prudent",
     "priceScenarioNormal": "Normal",
-"priceScenarioHigh": "Élevé",
+    "priceScenarioHigh": "Élevé",
     "priceScenarioVeryHigh": "Très élevé",
     "priceScenarioExtreme": "Extrême",
     "priceScenarioCustom": "Hypothèse personnalisée",
@@ -357,7 +363,22 @@ export const fr = {
     "productionCostHigherValue": "Dans ce calcul, chaque kWh vaut plus qu'il ne coûte à produire.",
     "productionCostUnavailable": "Nous ne pouvons pas calculer le coût de production avec les données actuelles.",
     "perKwh": "{{amount}}/kWh",
-    "locked": "Ce calcul est verrouillé. Finalisez l'achat pour voir le résultat."
+    "locked": "Ce calcul est verrouillé. Finalisez l'achat pour voir le résultat.",
+    "missingSelfConsumedValue": "Prix de l'électricité manquant. Indiquez ce que vous payez par kWh pour voir la valeur de l'autoconsommation solaire.",
+    "missingExportValue": "Rémunération du surplus manquante. Indiquez ce que vous recevez par kWh injecté pour calculer le revenu de la revente.",
+    "missingInstallationCost": "Coût d'installation manquant. Saisissez votre devis ou l'investissement estimé.",
+    "economicsIncomplete": "Base incomplète",
+    "enterValues": "Saisir les valeurs",
+    "economicsRequiresPrice": "Le calcul économique nécessite un prix de l'électricité. Saisissez vos prix pour voir les économies, le temps de retour et le coût de production.",
+    "economicsRequiresPriceShort": "Nécessite un prix de l'électricité",
+    "gridUnverifiedTitle": "Données réseau non vérifiées",
+    "gridUnverifiedWarning": "Les hypothèses réseau reposent sur des valeurs génériques et doivent être vérifiées localement avant l'installation.",
+    "gridProfileStatusLabel": "Profil réseau",
+    "gridProfileStatusVerified": "Vérifié",
+    "gridProfileStatusGeneric": "Générique (non vérifié)",
+    "gridProfileStatusUnsupported": "Manuel (non vérifié)",
+    "calcErrorTitle": "Le calcul ne peut pas être finalisé",
+    "calcErrorBody": "Certaines données ne permettent pas le calcul. Revenez en arrière et vérifiez la consommation, le raccordement et les hypothèses."
   },
   "units": {
     "kwhPerYear": "kWh/an",
@@ -519,7 +540,8 @@ export const fr = {
       "orientation_east": "Est",
       "orientation_west": "Ouest",
       "priceChangeNoteFlat": "Le calcul utilise des valeurs inchangées pour l'électricité solaire autoconsommée et exportée sur toute la période. Aucune hausse de prix n'est supposée, car les prix futurs de l'électricité ne peuvent être prévus. Si les prix augmentent, la valeur sera plus élevée que dans ce rapport ; s'ils baissent, elle sera plus faible.",
-      "priceChangeNoteTrend": "Le calcul suppose que la valeur de l'électricité solaire autoconsommée et exportée évolue de {{priceChange}} % par an sur toute la période. Il s'agit d'une hypothèse, car les prix futurs de l'électricité ne peuvent être prévus. Une évolution différente entraîne un résultat plus élevé ou plus faible que dans ce rapport."
+      "priceChangeNoteTrend": "Le calcul suppose que la valeur de l'électricité solaire autoconsommée et exportée évolue de {{priceChange}} % par an sur toute la période. Il s'agit d'une hypothèse, car les prix futurs de l'électricité ne peuvent être prévus. Une évolution différente entraîne un résultat plus élevé ou plus faible que dans ce rapport.",
+      "gridMethodNoteDynamic": "La puissance AC théorique est basée sur le raccordement choisi : {{phases}} phase(s), {{voltage}} V, calculée comme {{factor}} × {{voltage}} V × disjoncteur principal. La puissance réellement autorisée peut être limitée par le gestionnaire de réseau ou par l'installation."
     },
     "title": "Rapport solaire",
     "technical": "Données techniques",
@@ -603,7 +625,8 @@ export const fr = {
     "single": {
       "title": "Un calcul",
       "body": "Débloquez le résultat complet et le rapport PDF pour ce calcul.",
-      "cta": "Débloquer pour {{price}}"
+      "cta": "Débloquer pour {{price}}",
+      "ctaNoPrice": "Débloquer"
     },
     "premium": {
       "title": "Premium",
@@ -633,7 +656,8 @@ export const fr = {
     "failed": "L'achat n'a pas pu être finalisé. Vous n'avez pas été débité.",
     "retry": "Nous n'avons pas pu confirmer l'achat pour le moment. Rien n'est perdu — il se débloquera automatiquement dès que la connexion sera rétablie.",
     "appOnly": "L'achat se fait dans l'application avec votre compte Apple et n'est pas disponible dans le navigateur.",
-    "appleNote": "Géré par l'App Store."
+    "appleNote": "Géré par l'App Store.",
+    "priceLoading": "Récupération du prix…"
   },
   "history": {
     "empty": "Vous n'avez encore aucun calcul enregistré.",

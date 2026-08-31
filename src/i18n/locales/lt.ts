@@ -68,11 +68,9 @@ export const lt = {
     "unit": "kWh/kWp/metus",
     "disclaimer": "Apskaičiuota saulės energijos gamyba pagrįsta vieta, kryptimi ir stogo nuolydžiu. Faktinę gamybą gali paveikti šešėliavimas, orai, temperatūra ir sistemos nuostoliai.",
     "error": "Šiuo metu negalėjome gauti saulės energijos gamybos duomenų šiai vietai. Jokios vertės neatspėjamos.",
-    "errorOverSea":
-      "Atrodo, kad vieta yra virš vandens. Perkelkite žymeklį ant pastato sausumoje ir bandykite dar kartą.",
-    "errorOutsideCoverage":
-      "Šiai vietai saulės duomenų neturime. Pabandykite netoliese esantį adresą.",
-    "errorSource": "PVGIS: {{message}}",
+    "errorOverSea": "Atrodo, kad vieta yra virš vandens. Perkelkite žymeklį ant pastato sausumoje ir bandykite dar kartą.",
+    "errorOutsideCoverage": "Šiai vietai saulės duomenų neturime. Pabandykite netoliese esantį adresą.",
+    "errorSource": "PVGIS: {{message}}"
   },
   "consumption": {
     "validation": {
@@ -160,7 +158,7 @@ export const lt = {
       }
     },
     "gridAssumption": "Skaičiavimas remiasi 400 V trifaze jungtimi.",
-"gridAssumptionInfo": "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
+    "gridAssumptionInfo": "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
     "disclaimerTitle": "Svarbu žinoti",
     "disclaimer": "Skaičiavimas yra orientacinis ir negali pakeisti techninio įvertinimo. Prieš įrengimą visada patikrinkite įtampą, prijungimo galią, leistiną galią ir kitus vietinius tinklo reikalavimus su kvalifikuotu elektriku ir, jei reikia, su savo tinklo operatoriumi.\n\n„Mr Solar Doc“ neatsako už įrenginius ar sprendimus, priimtus tik remiantis programėlės skaičiavimais.",
     "grid": {
@@ -178,6 +176,9 @@ export const lt = {
       "frequency": "Dažnis",
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Keiskite tik tada, jei numatytosios reikšmės neatitinka jūsų jungties.",
+      "serviceType": "Prijungimo tipas",
+      "splitPhase": "Dviejų fazių (split-phase)",
+      "unverifiedHint": "Neturime patvirtintų tinklo duomenų šiai šaliai. Patikrinkite duomenis savo skaitiklyje arba skydinėje."
     },
     "title": "Kokį pagrindinį automatinį jungiklį turite?",
     "subtitle": "Pagrindinis automatinis jungiklis naudojamas įvertinti, kokio dydžio keitiklį paprastai galima prijungti. Faktinę leistiną galią nustato tinklo operatorius.",
@@ -186,7 +187,12 @@ export const lt = {
     "otherLabel": "Amperai",
     "maxAc": "Maksimali apskaičiuota kintamosios srovės galia",
     "calculate": "Apskaičiuoti",
-    "invalid": "Įveskite pagrindinį automatinį jungiklį nuo 6 iki 400 A."
+    "invalid": "Įveskite pagrindinį automatinį jungiklį nuo 6 iki 400 A.",
+    "genericTitle": "Kokį elektros prijungimą turite?",
+    "noCountryOptions": "Šiai šaliai dar neturime patvirtintų prijungimo parinkčių. Įveskite pagrindinį saugiklį amperais ir, jei reikia, pakoreguokite tinklo nustatymus žemiau.",
+    "unverifiedCountryNotice": "Šios šalies tinklo standarto nepatikrinome. Patikrinkite įtampą, fazių skaičių ir prijungimo galią elektros sąskaitoje arba pas savo tinklo operatorių ir patvirtinkite žemiau.",
+    "confirmGrid": "Patikrinau tinklo duomenis",
+    "confirmedGrid": "Tinklo duomenys patvirtinti"
   },
   "result": {
     "connection": {
@@ -249,7 +255,7 @@ export const lt = {
     "priceScenarioFlat": "Nekinta",
     "priceScenarioCautious": "Atsargus",
     "priceScenarioNormal": "Normal",
-"priceScenarioHigh": "Aukštas",
+    "priceScenarioHigh": "Aukštas",
     "priceScenarioVeryHigh": "Labai aukštas",
     "priceScenarioExtreme": "Ekstremalus",
     "priceScenarioCustom": "Sava prielaida",
@@ -357,7 +363,22 @@ export const lt = {
     "productionCostHigherValue": "Šiame skaičiavime kiekvienas kWh vertas daugiau, nei kainuoja jį pagaminti.",
     "productionCostUnavailable": "Su dabartiniais duomenimis negalime apskaičiuoti gamybos kainos.",
     "perKwh": "{{amount}}/kWh",
-    "locked": "Šis skaičiavimas užrakintas. Užbaikite pirkimą, kad pamatytumėte rezultatą."
+    "locked": "Šis skaičiavimas užrakintas. Užbaikite pirkimą, kad pamatytumėte rezultatą.",
+    "missingSelfConsumedValue": "Trūksta elektros kainos. Įveskite, kiek mokate už kWh, kad matytumėte savo suvartotos saulės energijos vertę.",
+    "missingExportValue": "Trūksta pardavimo kainos. Įveskite, kiek gaunate už atiduotą kWh, kad apskaičiuotume pajamas.",
+    "missingInstallationCost": "Trūksta įrengimo kainos. Įveskite savo pasiūlymą arba numatomą investiciją.",
+    "economicsIncomplete": "Nepilni duomenys",
+    "enterValues": "Įveskite reikšmes",
+    "economicsRequiresPrice": "Ekonominiam skaičiavimui reikia elektros kainos. Įveskite savo kainas, kad matytumėte santaupas, atsipirkimo laiką ir gamybos savikainą.",
+    "economicsRequiresPriceShort": "Reikia elektros kainos",
+    "gridUnverifiedTitle": "Tinklo duomenys nepatikrinti",
+    "gridUnverifiedWarning": "Prielaidos apie tinklą remiasi bendromis reikšmėmis ir prieš įrengimą turi būti patikrintos vietoje.",
+    "gridProfileStatusLabel": "Tinklo profilis",
+    "gridProfileStatusVerified": "Patikrinta",
+    "gridProfileStatusGeneric": "Bendra (nepatikrinta)",
+    "gridProfileStatusUnsupported": "Rankinis (nepatikrinta)",
+    "calcErrorTitle": "Skaičiavimo užbaigti negalima",
+    "calcErrorBody": "Su kai kuriais duomenimis skaičiuoti negalima. Grįžkite ir patikrinkite suvartojimą, prijungimą ir prielaidas."
   },
   "units": {
     "kwhPerYear": "kWh/metus",
@@ -519,7 +540,8 @@ export const lt = {
       "orientation_east": "Rytai",
       "orientation_west": "Vakarai",
       "priceChangeNoteFlat": "Skaičiavime visą laikotarpį naudojamos nekintančios pačių suvartojamos ir eksportuojamos saulės energijos vertės. Kainų augimas neprognozuojamas, nes būsimų elektros kainų numatyti negalima. Jei kainos kils, vertė bus didesnė nei šioje ataskaitoje; jei kris — mažesnė.",
-      "priceChangeNoteTrend": "Skaičiavime daroma prielaida, kad pačių suvartojamos ir eksportuojamos saulės energijos vertė kinta {{priceChange}} % per metus visą laikotarpį. Tai prielaida, nes būsimų elektros kainų numatyti negalima. Kitoks pokytis reiškia didesnį arba mažesnį rezultatą nei šioje ataskaitoje."
+      "priceChangeNoteTrend": "Skaičiavime daroma prielaida, kad pačių suvartojamos ir eksportuojamos saulės energijos vertė kinta {{priceChange}} % per metus visą laikotarpį. Tai prielaida, nes būsimų elektros kainų numatyti negalima. Kitoks pokytis reiškia didesnį arba mažesnį rezultatą nei šioje ataskaitoje.",
+      "gridMethodNoteDynamic": "Teorinė AC galia remiasi jūsų pasirinktu prijungimu: {{phases}} fazių, {{voltage}} V, apskaičiuota kaip {{factor}} × {{voltage}} V × pagrindinis saugiklis. Faktiškai leidžiamą prijungimo ar atidavimo galią gali riboti tinklo operatorius arba konkretus įrengimas."
     },
     "title": "Saulės elektrinės ataskaita",
     "technical": "Techniniai duomenys",
@@ -603,7 +625,8 @@ export const lt = {
     "single": {
       "title": "Vienas skaičiavimas",
       "body": "Atrakinkite pilną rezultatą ir PDF ataskaitą šiam skaičiavimui.",
-      "cta": "Atrakinti už {{price}}"
+      "cta": "Atrakinti už {{price}}",
+      "ctaNoPrice": "Atrakinti"
     },
     "premium": {
       "title": "Premium",
@@ -633,7 +656,8 @@ export const lt = {
     "failed": "Pirkimo nepavyko užbaigti. Iš jūsų nebuvo nuskaičiuota jokia suma.",
     "retry": "Šiuo metu nepavyko patvirtinti pirkimo. Niekas nedingo — jis atsirakins automatiškai, kai tik atsistatys ryšys.",
     "appOnly": "Pirkimas atliekamas programėlėje su jūsų Apple paskyra ir naršyklėje neprieinamas.",
-    "appleNote": "Tvarko App Store."
+    "appleNote": "Tvarko App Store.",
+    "priceLoading": "Gaunama kaina…"
   },
   "history": {
     "empty": "Kol kas neturite išsaugotų skaičiavimų.",

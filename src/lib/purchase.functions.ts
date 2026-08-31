@@ -12,12 +12,7 @@
 
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import {
-  PREMIUM_PRODUCT_ID,
-  UNLOCK_PRICE_AMOUNT,
-  UNLOCK_PRICE_CURRENCY,
-  UNLOCK_PRODUCT_ID,
-} from "@/config/purchase";
+import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import type { PurchaseReceipt, PurchaseStatus } from "@/lib/calculation-snapshot";
 
 const deviceIdSchema = z.string().min(8).max(128);
@@ -49,8 +44,10 @@ export const createPendingCalculation = createServerFn({ method: "POST" })
         device_id: data.deviceId,
         status: "pending",
         product_id: UNLOCK_PRODUCT_ID,
-        price_amount: UNLOCK_PRICE_AMOUNT,
-        price_currency: UNLOCK_PRICE_CURRENCY,
+        // The real price and currency come from the verified App Store
+        // transaction; never store a hardcoded local amount.
+        price_amount: null,
+        price_currency: null,
       } as never)
       .select("id, access_token")
       .single();

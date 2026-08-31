@@ -54,6 +54,9 @@ export const CURRENCY_BY_COUNTRY: Record<string, CurrencyCode> = {
   FR: "EUR",
   IT: "EUR",
   GR: "EUR",
+  BR: "BRL",
+  IN: "INR",
+  ZA: "ZAR",
 };
 
 /** Currency for a country, or the neutral code when it cannot be determined. */
