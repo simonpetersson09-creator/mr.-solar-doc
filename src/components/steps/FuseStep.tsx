@@ -60,11 +60,11 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
     <StepShell
       step={4}
       totalSteps={totalSteps}
-title={t("fuse.title")}
+      title={t("fuse.title")}
       onBack={onBack}
       footer={
         <Button
-className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
+          className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           variant="cta"
           size="lg"
           disabled={!valid}
@@ -145,85 +145,89 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             </span>
           </div>
         ) : null}
+      </div>
 
-        <div className="space-y-2 border-t border-white/15 pt-3">
-          <div className="flex items-center justify-between gap-3">
-            <div className="min-w-0">
-              <p className="text-xs font-semibold text-white">{t("fuse.grid.section")}</p>
-              <p className="truncate text-[11px] text-white/70">
-                {t("fuse.grid.summary", {
-                  phases: phaseLabel,
-                  voltage: voltageV,
-                  frequency: frequencyHz,
-                })}
-              </p>
-            </div>
-            <button
-              type="button"
-              onClick={() => {
-                void haptic("light");
-                setEditGrid((open) => !open);
-              }}
-              className="shrink-0 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-semibold text-white"
-            >
-              {editGrid ? t("fuse.grid.done") : t("fuse.grid.change")}
-            </button>
+      <h2 className="text-xs font-bold tracking-widest text-primary/70 uppercase">
+        {t("fuse.grid.advanced")}
+      </h2>
+
+      <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
+        <div className="flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-xs font-semibold text-white">{t("fuse.grid.section")}</p>
+            <p className="truncate text-[11px] text-white/70">
+              {t("fuse.grid.summary", {
+                phases: phaseLabel,
+                voltage: voltageV,
+                frequency: frequencyHz,
+              })}
+            </p>
           </div>
-
-          {editGrid ? (
-            <div className="space-y-3 rounded-2xl bg-white/10 px-3 py-3">
-              <div className="space-y-1.5">
-                <Label className="text-[11px] text-white/70">{t("fuse.grid.phases")}</Label>
-                <div className="grid grid-cols-2 gap-1.5">
-                  {GRID_PHASE_OPTIONS.map((option) => (
-                    <button
-                      key={option}
-                      type="button"
-                      onClick={() => setGridProfile({ phaseCount: option })}
-                      className={chipClass(phaseCount === option)}
-                    >
-                      {t(option === 1 ? "fuse.grid.phase1" : "fuse.grid.phase3")}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <Label className="text-[11px] text-white/70">{t("fuse.grid.voltage")}</Label>
-                <div className="grid grid-cols-4 gap-1.5">
-                  {GRID_VOLTAGE_OPTIONS.map((option) => (
-                    <button
-                      key={option}
-                      type="button"
-                      onClick={() => setGridProfile({ voltageV: option })}
-                      className={chipClass(voltageV === option)}
-                    >
-                      {option} V
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div className="space-y-1.5">
-                <Label className="text-[11px] text-white/70">{t("fuse.grid.frequency")}</Label>
-                <div className="grid grid-cols-2 gap-1.5">
-                  {GRID_FREQUENCY_OPTIONS.map((option) => (
-                    <button
-                      key={option}
-                      type="button"
-                      onClick={() => setGridProfile({ frequencyHz: option })}
-                      className={chipClass(frequencyHz === option)}
-                    >
-                      {option} Hz
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <p className="text-[11px] leading-relaxed text-white/60">{t("fuse.grid.hint")}</p>
-            </div>
-          ) : null}
+          <button
+            type="button"
+            onClick={() => {
+              void haptic("light");
+              setEditGrid((open) => !open);
+            }}
+            className="shrink-0 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-semibold text-white"
+          >
+            {editGrid ? t("fuse.grid.done") : t("fuse.grid.change")}
+          </button>
         </div>
+
+        {editGrid ? (
+          <div className="space-y-3 rounded-2xl bg-white/10 px-3 py-3">
+            <div className="space-y-1.5">
+              <Label className="text-[11px] text-white/70">{t("fuse.grid.phases")}</Label>
+              <div className="grid grid-cols-2 gap-1.5">
+                {GRID_PHASE_OPTIONS.map((option) => (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => setGridProfile({ phaseCount: option })}
+                    className={chipClass(phaseCount === option)}
+                  >
+                    {t(option === 1 ? "fuse.grid.phase1" : "fuse.grid.phase3")}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Label className="text-[11px] text-white/70">{t("fuse.grid.voltage")}</Label>
+              <div className="grid grid-cols-4 gap-1.5">
+                {GRID_VOLTAGE_OPTIONS.map((option) => (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => setGridProfile({ voltageV: option })}
+                    className={chipClass(voltageV === option)}
+                  >
+                    {option} V
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <Label className="text-[11px] text-white/70">{t("fuse.grid.frequency")}</Label>
+              <div className="grid grid-cols-2 gap-1.5">
+                {GRID_FREQUENCY_OPTIONS.map((option) => (
+                  <button
+                    key={option}
+                    type="button"
+                    onClick={() => setGridProfile({ frequencyHz: option })}
+                    className={chipClass(frequencyHz === option)}
+                  >
+                    {option} Hz
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <p className="text-[11px] leading-relaxed text-white/60">{t("fuse.grid.hint")}</p>
+          </div>
+        ) : null}
 
         <div
           className="border-t border-white/15 pt-3"

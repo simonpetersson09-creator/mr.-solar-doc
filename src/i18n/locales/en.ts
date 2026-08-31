@@ -155,6 +155,7 @@ error: "Address search failed.",
     gridAssumption: "The calculation assumes a 400 V three-phase connection.",
     gridAssumptionInfo: "The theoretical power of the main fuse is calculated from a 400 V three-phase connection. Check your actual grid connection if you are unsure.",
     grid: {
+      advanced: "Advanced settings",
       section: "Grid settings",
       change: "Change",
       done: "Done",
