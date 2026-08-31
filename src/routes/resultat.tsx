@@ -180,7 +180,7 @@ const cost = result.productionCost;
             <p className="mt-4 text-sm font-bold">
               {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
             </p>
-            <p className="mt-1 text-xs text-white/70">{rationale}</p>
+            
             {result.notes.includes("minimum-system-size") ? (
               <p className="mt-1.5 text-xs text-white/70">{t("result.minimumSizeNote")}</p>
             ) : null}
