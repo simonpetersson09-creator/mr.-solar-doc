@@ -5,6 +5,7 @@ import { NumericField } from "@/components/NumericField";
 import { Label } from "@/components/ui/label";
 import { StepShell } from "@/components/StepShell";
 import { CompassDial } from "@/components/CompassDial";
+import { TiltDial } from "@/components/TiltDial";
 import { useSolarResource } from "@/hooks/use-solar-resource";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatNumber } from "@/lib/format";
@@ -125,6 +126,13 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         <div className="glass-primary rounded-[28px] px-4 py-4">
 <div className="mb-2 text-center">
             <Label className="text-xs text-white">{t("roof.tilt")}</Label>
+          </div>
+          {/* Drag the roof line to set the tilt; presets stay as shortcuts. */}
+          <div className="mb-3 flex justify-center">
+            <TiltDial
+              value={tiltDegrees ?? 30}
+              onChange={(degrees) => setRoof(orientation, degrees, azimuthDegrees)}
+            />
           </div>
           <div className="flex flex-wrap items-center justify-center gap-1.5">
             {TILT_PRESETS.map((preset) => (
