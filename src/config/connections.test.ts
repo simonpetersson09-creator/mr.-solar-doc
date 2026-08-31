@@ -54,11 +54,11 @@ describe("country connection config", () => {
     const option = getConnectionConfig("SE").connectionOptions[0]!;
     // The user switches to single-phase 230 V in the grid settings.
     const overridden: ConnectionCapacity = {
-      ...option.capacity,
       type: "amperage",
       amperageA: 16,
       serviceType: "single-phase",
       voltageV: 230,
+      frequencyHz: 50,
     };
     expect(Math.abs(acPowerOf(overridden) - 3.68)).toBeLessThan(0.02);
   });
