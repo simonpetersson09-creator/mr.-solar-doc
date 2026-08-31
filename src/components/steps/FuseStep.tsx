@@ -320,13 +320,13 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
                 <span className="max-w-[90px] truncate">{countryName}</span>
               </button>
             ) : null}
-            <button
+<button
               type="button"
               onClick={() => {
                 void haptic("light");
                 setEditGrid((open) => !open);
               }}
-              className="shrink-0 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-semibold text-white"
+              className="shrink-0 rounded-full bg-accent px-3 py-1.5 text-[11px] font-bold text-accent-foreground shadow-md shadow-accent/30"
             >
               {editGrid ? t("fuse.grid.done") : t("fuse.grid.change")}
             </button>
