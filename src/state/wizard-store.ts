@@ -10,6 +10,10 @@ import {
   MIN_CUSTOM_PRICE_CHANGE_PERCENT,
   type PriceScenarioId,
 } from "@/config/constants";
+import {
+  DEFAULT_GRID_PROFILE,
+  type PhaseCount,
+} from "@/config/grid";
 
 export interface WizardState {
   location: SiteLocation | null;
@@ -25,6 +29,10 @@ export interface WizardState {
   /** Which estimated shape the user picked (only for "annual-profile"). */
   consumptionShape: ConsumptionShape | null;
   mainFuseAmp: number | null;
+  /** Grid profile: phases, voltage and frequency of the connection. */
+  gridPhaseCount: PhaseCount;
+  gridVoltageV: number;
+  gridFrequencyHz: number;
   selfConsumptionShare: number;
   /** True once the user actively adjusted the share, regardless of its value. */
   selfConsumptionShareIsUserSet: boolean;
@@ -53,6 +61,11 @@ export interface WizardState {
     shape?: ConsumptionShape | null,
   ) => void;
   setMainFuse: (amp: number) => void;
+  setGridProfile: (profile: {
+    phaseCount?: PhaseCount;
+    voltageV?: number;
+    frequencyHz?: number;
+  }) => void;
   setSelfConsumptionShare: (share: number) => void;
   setSelfConsumedValue: (value: number | null) => void;
   setExportValue: (value: number | null) => void;
@@ -75,6 +88,9 @@ const initialState = {
   consumptionInputType: "annual-only" as ConsumptionInputType,
   consumptionShape: null as ConsumptionShape | null,
   mainFuseAmp: null,
+  gridPhaseCount: DEFAULT_GRID_PROFILE.phaseCount,
+  gridVoltageV: DEFAULT_GRID_PROFILE.voltageV,
+  gridFrequencyHz: DEFAULT_GRID_PROFILE.frequencyHz,
   selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
   selfConsumptionShareIsUserSet: false,
   selfConsumedValuePerKwh: null,
@@ -110,6 +126,12 @@ export const useWizardStore = create<WizardState>()(
           consumptionShape: shape ?? null,
         }),
       setMainFuse: (amp) => set({ mainFuseAmp: amp }),
+      setGridProfile: (profile) =>
+        set((state) => ({
+          gridPhaseCount: profile.phaseCount ?? state.gridPhaseCount,
+          gridVoltageV: profile.voltageV ?? state.gridVoltageV,
+          gridFrequencyHz: profile.frequencyHz ?? state.gridFrequencyHz,
+        })),
       setSelfConsumptionShare: (share) =>
         set({ selfConsumptionShare: share, selfConsumptionShareIsUserSet: true }),
       setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
@@ -148,6 +170,9 @@ export const useWizardStore = create<WizardState>()(
         consumptionInputType,
         consumptionShape,
         mainFuseAmp,
+        gridPhaseCount,
+        gridVoltageV,
+        gridFrequencyHz,
         selfConsumptionShare,
         selfConsumptionShareIsUserSet,
         selfConsumedValuePerKwh,
@@ -167,6 +192,9 @@ export const useWizardStore = create<WizardState>()(
         consumptionInputType,
         consumptionShape,
         mainFuseAmp,
+        gridPhaseCount,
+        gridVoltageV,
+        gridFrequencyHz,
         selfConsumptionShare,
         selfConsumptionShareIsUserSet,
         selfConsumedValuePerKwh,
