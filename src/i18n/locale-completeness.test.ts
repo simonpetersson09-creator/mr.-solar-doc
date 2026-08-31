@@ -13,10 +13,28 @@ import { lv } from "./locales/lv";
 import { lt } from "./locales/lt";
 import { fr } from "./locales/fr";
 import { it as itLocale } from "./locales/it";
+import { es } from "./locales/es";
+import { pt } from "./locales/pt";
+import { nl } from "./locales/nl";
+import { no } from "./locales/no";
+import { ro } from "./locales/ro";
+import { el } from "./locales/el";
+import { hu } from "./locales/hu";
+import { hr } from "./locales/hr";
+import { sr } from "./locales/sr";
+import { bg } from "./locales/bg";
+import { uk } from "./locales/uk";
+import { tr } from "./locales/tr";
+import { hi } from "./locales/hi";
+import { id } from "./locales/id";
+import { he } from "./locales/he";
+import { SUPPORTED_LANGUAGES } from "./languages";
 
 const LOCALES: Record<string, unknown> = {
   sv, en, fi, da, de, cs, pl, sk, sl, et, lv, lt, fr, it: itLocale,
+  es, pt, nl, no, ro, el, hu, hr, sr, bg, uk, tr, hi, id, he,
 };
+
 
 function flatten(value: unknown, prefix = ""): Record<string, string> {
   const out: Record<string, string> = {};
