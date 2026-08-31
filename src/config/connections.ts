@@ -151,10 +151,11 @@ function kvaOption(kva: number): ConnectionOption {
 }
 
 
-function kwOption(kw: number, profile?: Partial<ConnectionGridProfile>): ConnectionOption {
-  const suffix = profile?.serviceType === "three-phase" ? "-3p" : "";
-  return { id: `kw${kw}${suffix}`, capacity: { type: "contracted-kw", kw, ...profile } };
+/** Contracted active power (kW) is likewise a total, never per phase. */
+function kwOption(kw: number): ConnectionOption {
+  return { id: `kw${kw}`, capacity: { type: "contracted-kw", kw } };
 }
+
 
 
 function config(
