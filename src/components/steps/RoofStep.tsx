@@ -10,6 +10,7 @@ import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatNumber } from "@/lib/format";
 import { useWizardStore } from "@/state/wizard-store";
 import { haptic } from "@/services/native-service";
+import { describePvgisError } from "@/lib/pvgis-error";
 import type { Orientation } from "@/lib/calc/types";
 import { useEffect } from "react";
 
