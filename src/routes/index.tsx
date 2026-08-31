@@ -5,6 +5,7 @@ import { RoofStep } from "@/components/steps/RoofStep";
 import { ConsumptionStep } from "@/components/steps/ConsumptionStep";
 import { FuseStep } from "@/components/steps/FuseStep";
 import { AssumptionsStep } from "@/components/steps/AssumptionsStep";
+import { useCreatePendingCalculation } from "@/hooks/use-create-pending-calculation";
 import { useWizardStore } from "@/state/wizard-store";
 import { useCountryLanguage } from "@/hooks/use-country-language";
 
@@ -26,6 +27,7 @@ const TOTAL_STEPS = 5;
 
 function WizardPage() {
   const navigate = useNavigate();
+  const createPending = useCreatePendingCalculation();
   useCountryLanguage();
   const persistedStep = useWizardStore((s) => s.currentStep);
   const setStep = useWizardStore((s) => s.setCurrentStep);
@@ -77,7 +79,12 @@ function WizardPage() {
     <AssumptionsStep
       totalSteps={TOTAL_STEPS}
       onBack={() => setStep(4)}
-      onSubmit={() => void navigate({ to: "/resultat" })}
+      onSubmit={() => {
+        void (async () => {
+          const created = await createPending();
+          if (created) void navigate({ to: "/betalning" });
+        })();
+      }}
     />
   );
 }
