@@ -9,12 +9,12 @@ interface TiltDialProps {
   disabled?: boolean;
 }
 
-const WIDTH = 240;
-const HEIGHT = 150;
-const PIVOT_X = 34;
-const PIVOT_Y = 120;
-const ARM = 168;
-const GRIP_RADIUS = 14;
+const WIDTH = 176;
+const HEIGHT = 128;
+const PIVOT_X = 26;
+const PIVOT_Y = 110;
+const ARM = 90;
+const GRIP_RADIUS = 11;
 const MAX_TILT = 90;
 const TICKS = [0, 15, 30, 45, 60, 75, 90];
 
