@@ -128,11 +128,11 @@ function SettingsPage() {
 
   return (
     <div className="surface-sun flex h-dvh max-h-dvh flex-col overflow-hidden">
-      <main
-        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-3 overflow-y-auto overscroll-contain px-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]"
+<main
+        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-2.5 overflow-y-auto overscroll-contain px-4 pb-[calc(1.25rem+env(safe-area-inset-bottom))]"
         style={{ paddingTop: "max(var(--safe-top-min), calc(0.25rem + env(safe-area-inset-top)))" }}
       >
-        <header className="flex items-center gap-3">
+        <header className="flex items-center gap-2.5">
           <button
             type="button"
             aria-label={t("common.back")}
@@ -140,29 +140,28 @@ function SettingsPage() {
               void haptic("light");
               void navigate({ to: "/" });
             }}
-            className="flex size-9 shrink-0 items-center justify-center rounded-full border border-primary/50 bg-primary text-primary-foreground shadow-lg shadow-primary/40 transition-transform active:scale-90"
+            className="flex size-8 shrink-0 items-center justify-center rounded-full border border-primary/50 bg-primary text-primary-foreground shadow-lg shadow-primary/40 transition-transform active:scale-90"
           >
             <ArrowLeft className="size-4" />
           </button>
-<h1 className="text-xl leading-tight font-bold text-foreground">
-              {t("settings.title")}
-            </h1>
+          <h1 className="text-lg leading-tight font-bold text-foreground">
+            {t("settings.title")}
+          </h1>
         </header>
 
-        {/* Option 1 — one calculation (purchased later, in the wizard) */}
-        <section className="cta-primary flex flex-col gap-3 rounded-3xl p-4 text-primary-foreground">
-          <div className="flex items-start gap-3">
-            <span className="flex size-10 shrink-0 items-center justify-center rounded-2xl bg-accent text-accent-foreground shadow-md shadow-accent/40">
-              <Lock className="size-5" />
+{/* Option 1 — one calculation (purchased later, in the wizard) */}
+        <section className="cta-primary flex flex-col gap-2 rounded-2xl p-3 text-primary-foreground">
+          <div className="flex items-center gap-3">
+            <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-accent text-accent-foreground shadow-md shadow-accent/40">
+              <Lock className="size-4" />
             </span>
             <div className="flex flex-1 flex-col">
               <p className="text-sm font-bold">{t("paywall.single.title")}</p>
-              <p className="text-2xl font-bold tabular-nums">{unlockPrice}</p>
-              <p className="text-sm text-primary-foreground/80">{t("paywall.single.body")}</p>
+              <p className="text-lg font-bold tabular-nums">{unlockPrice}</p>
             </div>
           </div>
+          <p className="text-xs text-primary-foreground/80">{t("paywall.single.body")}</p>
           <Button
-            size="lg"
             disabled
             className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
           >
