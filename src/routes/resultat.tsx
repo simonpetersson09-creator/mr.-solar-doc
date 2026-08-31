@@ -342,7 +342,7 @@ const cost = result.productionCost;
                   </p>
                 </div>
               </div>
-              <p className="mt-2 text-[11px] text-white/60">
+              <p className="mt-2 text-center text-[11px] text-white/60">
                 {t("result.productionCostBasis", {
                   investment: formatCurrency(cost.investment, locale, currency),
                   production: formatNumber(cost.totalProductionKwh, locale),
