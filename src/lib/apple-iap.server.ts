@@ -127,10 +127,22 @@ interface SignedTransactionPayload {
 }
 
 function decodeJwsPayload(jws: string): SignedTransactionPayload {
-  const part = jws.split(".")[1];
-  if (!part) throw new AppleVerificationError("apple-error", "Malformed signed transaction.");
+  const [rawHeader, part] = jws.split(".");
+  if (!rawHeader || !part) {
+    throw new AppleVerificationError("apple-error", "Malformed signed transaction.");
+  }
+  // The payload comes from Apple's authenticated API over TLS, but we still
+  // sanity check that it is the expected ES256/x5c-signed App Store token.
+  const header = JSON.parse(Buffer.from(rawHeader, "base64").toString("utf8")) as {
+    alg?: string;
+    x5c?: string[];
+  };
+  if (header.alg !== "ES256" || !header.x5c?.length) {
+    throw new AppleVerificationError("apple-error", "Unexpected signed transaction header.");
+  }
   return JSON.parse(Buffer.from(part, "base64").toString("utf8")) as SignedTransactionPayload;
 }
+
 
 async function fetchTransaction(
   baseUrl: string,
