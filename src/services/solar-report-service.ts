@@ -932,21 +932,24 @@ export function generateReportBlob(options: ReportOptions): Blob {
         value: `${formatNumber(result.presentation.selfConsumptionPercent, locale)} %`,
         origin: selfConsumptionOrigin,
       },
+      // Derived from the self-consumption rate — a calculated result, never
+      // something the user stated.
       {
         label: f.selfConsumption,
         value: `${formatNumber(result.presentation.selfConsumptionKwh, locale)} kWh`,
-        origin: selfConsumptionOrigin,
+        origin: "calculated",
       },
       {
         label: f.exported,
         value: `${formatNumber(result.presentation.exportedKwh, locale)} kWh`,
-        origin: selfConsumptionOrigin,
+        origin: "calculated",
       },
       {
         label: f["selfSufficiencyRate"] ?? "",
         value: `${formatNumber(Math.round(result.selfSufficiencyRate * 100), locale)} %`,
-        origin: selfConsumptionOrigin,
+        origin: "calculated",
       },
+
     ],
     labels.origin,
   );
