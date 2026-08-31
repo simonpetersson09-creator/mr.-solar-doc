@@ -43,18 +43,47 @@ interface AppleConfig {
   bundleId: string;
 }
 
+/**
+ * Rebuilds a valid PEM from a pasted .p8 key.
+ *
+ * Secret forms are usually single-line, so the key can arrive with real
+ * newlines, escaped "\n" sequences, spaces instead of newlines, or as bare
+ * base64 with no header at all. All of those are normalised here into the
+ * strict 64-character-per-line PEM that createPrivateKey requires.
+ */
+function normalizePrivateKey(raw: string): string {
+  const unescaped = raw.trim().replace(/\\r/g, "").replace(/\\n/g, "\n");
+  const header = /-----BEGIN ([A-Z ]+)-----/.exec(unescaped);
+  const label = header?.[1] ?? "PRIVATE KEY";
+
+  // Strip headers/footers and every kind of whitespace to recover the base64 body.
+  const body = unescaped
+    .replace(/-----BEGIN [A-Z ]+-----/g, "")
+    .replace(/-----END [A-Z ]+-----/g, "")
+    .replace(/\s+/g, "");
+  if (!body) {
+    throw new AppleVerificationError(
+      "not-configured",
+      "Apple private key is empty or malformed.",
+    );
+  }
+
+  const lines = body.match(/.{1,64}/g) ?? [body];
+  return `-----BEGIN ${label}-----\n${lines.join("\n")}\n-----END ${label}-----\n`;
+}
+
 function readConfig(): AppleConfig {
-  const issuerId = process.env["APPLE_IAP_ISSUER_ID"];
-  const keyId = process.env["APPLE_IAP_KEY_ID"];
+  const issuerId = process.env["APPLE_IAP_ISSUER_ID"]?.trim();
+  const keyId = process.env["APPLE_IAP_KEY_ID"]?.trim();
   const privateKey = process.env["APPLE_IAP_PRIVATE_KEY"];
-  const bundleId = process.env["APPLE_IAP_BUNDLE_ID"];
+  const bundleId = process.env["APPLE_IAP_BUNDLE_ID"]?.trim();
   if (!issuerId || !keyId || !privateKey || !bundleId) {
     throw new AppleVerificationError(
       "not-configured",
       "Apple In-App Purchase credentials are not configured.",
     );
   }
-  return { issuerId, keyId, privateKey: privateKey.replace(/\\n/g, "\n"), bundleId };
+  return { issuerId, keyId, privateKey: normalizePrivateKey(privateKey), bundleId };
 }
 
 function base64Url(input: Buffer | string): string {
