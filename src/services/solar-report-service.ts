@@ -83,7 +83,6 @@ const PRIMARY: [number, number, number] = [22, 65, 45];
 const ACCENT: [number, number, number] = [245, 164, 32];
 const CREAM: [number, number, number] = [252, 250, 241];
 const LINE: [number, number, number] = [225, 226, 218];
-const GREY: [number, number, number] = [163, 172, 166];
 
 
 interface Row {
