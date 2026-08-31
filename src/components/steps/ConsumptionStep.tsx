@@ -151,10 +151,20 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
     >
       {/* ── Upload card ── separate from manual entry ── */}
       <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
-        <div>
-          <p className="text-sm font-semibold text-white">{t("consumption.upload.sectionTitle")}</p>
-          <p className="text-xs leading-snug text-white/70">{t("consumption.upload.sectionHint")}</p>
+        <div className="flex items-start gap-3">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-accent">
+            <FileUp className="size-4" />
+          </span>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-white">
+              {t("consumption.upload.sectionTitle")}
+            </p>
+            <p className="text-xs leading-snug text-white/70">
+              {t("consumption.upload.sectionHint")}
+            </p>
+          </div>
         </div>
+
 
         {parsing ? (
           <div className="flex items-center gap-2.5 rounded-2xl border border-white/25 bg-white/15 p-3">
@@ -205,15 +215,21 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             </Button>
           </div>
         ) : (
-          <Button
-            variant="outline"
-            className="h-auto w-full gap-2 rounded-2xl border-white/25 bg-white/15 py-3 text-sm font-semibold text-white shadow-inner transition-colors hover:bg-white/25 hover:text-white"
+          <button
+            type="button"
             onClick={() => fileInputRef.current?.click()}
+            className="flex w-full flex-col items-center gap-1 rounded-2xl border border-dashed border-white/35 bg-white/10 px-4 py-5 text-center transition-colors hover:bg-white/20"
           >
-            <FileUp className="size-4 text-accent" />
-            {t("consumption.upload.title")}
-          </Button>
+            <FileUp className="size-5 text-accent" />
+            <span className="text-sm font-semibold text-white">
+              {t("consumption.upload.button")}
+            </span>
+            <span className="text-[11px] leading-tight text-white/60">
+              {t("consumption.upload.fileTypes")}
+            </span>
+          </button>
         )}
+
         <input
           ref={fileInputRef}
           type="file"
