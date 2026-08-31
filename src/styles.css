@@ -303,3 +303,18 @@ html[data-native="true"] {
     font-size: 16px;
   }
 }
+
+/* Map performance: backdrop blur and looping animations over a moving map
+   force a full repaint every frame on mobile. Drop them while panning/zooming. */
+.map-busy .glass-primary {
+  backdrop-filter: none;
+}
+
+.map-busy .leaflet-marker-icon div,
+.map-busy [data-map-anim] {
+  animation: none !important;
+}
+
+.leaflet-container {
+  contain: paint;
+}
