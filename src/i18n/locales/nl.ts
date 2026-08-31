@@ -613,7 +613,7 @@ export const nl = {
       mainFuse: "Hoofdzekering",
       maxAc: "Theoretische vermogenslimiet van hoofdzekering",
       annualProduction: "Elektriciteit per jaar",
-      specificYield: "Economische waarde per jaar" if False else "Locatiespecifieke opbrengst",
+      specificYield: "Productiepotentieel op deze locatie",
       dataSource: "Gegevensbron",
       consumptionSource: "Bron verbruiksgegevens",
       consumptionShape: "Verbruiksprofiel",
