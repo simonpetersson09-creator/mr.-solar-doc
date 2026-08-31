@@ -235,11 +235,12 @@ const cost = result.productionCost;
             <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
               {t("result.annualSavings")}
             </p>
-            <p className="mt-1 text-3xl font-extrabold tracking-tight text-white">
+            <p className="mt-0.5 text-3xl font-extrabold tracking-tight text-white tabular-nums">
               {economicValuesMissing ? "–" : formatCurrency(p.annualSavings, locale, currency)}{" "}
-              <span className="text-xs font-normal text-white/60">{t("result.perYear")}</span>
+              <span className="text-[11px] font-semibold text-white/60">{t("result.perYear")}</span>
             </p>
           </div>
+
 
           <dl className="grid grid-cols-2 gap-2">
             <div className="rounded-2xl bg-white/10 p-2.5 text-center">
