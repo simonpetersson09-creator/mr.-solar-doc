@@ -196,7 +196,6 @@ describe("implausible optimal tilt from PVGIS (case D)", () => {
     expect(plan.params.get("aspect")).toBe("180");
     expect(Number(plan.params.get("angle"))).toBeGreaterThan(
       MIN_PLAUSIBLE_OPTIMAL_TILT_DEGREES,
-  maxPlausibleOptimalTilt,
     );
     expect(plan.params.get("optimalangles")).toBeNull();
   });
