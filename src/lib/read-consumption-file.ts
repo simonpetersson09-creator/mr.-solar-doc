@@ -1,12 +1,15 @@
 import { parseConsumptionText, type ParsedConsumption } from "@/lib/parse-consumption-document";
 
-async function readPdfText(file: File): Promise<string> {
+async function loadPdf(file: File) {
   const pdfjs = await import("pdfjs-dist");
   const workerSrc = (await import("pdfjs-dist/build/pdf.worker.min.mjs?url")).default;
   pdfjs.GlobalWorkerOptions.workerSrc = workerSrc;
-
   const data = new Uint8Array(await file.arrayBuffer());
-  const doc = await pdfjs.getDocument({ data }).promise;
+  return pdfjs.getDocument({ data }).promise;
+}
+
+async function readPdfText(file: File, langs: string[]): Promise<string> {
+  const doc = await loadPdf(file);
   const pages: string[] = [];
 
   for (let pageNumber = 1; pageNumber <= doc.numPages; pageNumber += 1) {
