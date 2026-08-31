@@ -190,6 +190,7 @@ export const fi = {
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Tekninen degradaatio",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Laskennan vakioarvot. Vaihda ne oman sähkösopimuksesi arvoihin saadaksesi yksilöllisemmän tuloksen.",
     "editable": "Muokattavissa",

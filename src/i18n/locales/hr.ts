@@ -190,6 +190,7 @@ export const hr = {
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Tehnička degradacija",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Standardne vrijednosti za izračun. Promijenite ih u vrijednosti iz vlastitog ugovora o opskrbi strujom za individualniji rezultat.",
     "editable": "Može se uređivati",

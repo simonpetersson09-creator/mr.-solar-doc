@@ -190,6 +190,7 @@ export const sk = {
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Technická degradácia",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Štandardné hodnoty pre výpočet. Zmeňte ich na hodnoty z vlastnej zmluvy o dodávke elektriny pre individuálnejší výsledok.",
     "editable": "Upraviteľné",

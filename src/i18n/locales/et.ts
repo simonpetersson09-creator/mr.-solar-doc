@@ -190,6 +190,7 @@ export const et = {
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Tehniline degradatsioon",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Arvutuse standardväärtused. Muuda need oma elektrilepingu väärtusteks, et saada individuaalsem tulemus.",
     "editable": "Muudetav",

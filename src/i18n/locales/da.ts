@@ -190,6 +190,7 @@ export const da = {
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Teknisk degradering",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Standardværdier for beregningen. Ret dem til værdier fra din egen elaftale for et mere individuelt resultat.",
     "editable": "Kan ændres",

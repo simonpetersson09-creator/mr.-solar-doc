@@ -190,6 +190,7 @@ export const lv = {
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Tehniskā degradācija",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Aprēķina standarta vērtības. Nomainiet tās pret savā elektroenerģijas līgumā norādītajām vērtībām, lai iegūtu individuālāku rezultātu.",
     "editable": "Rediģējams",
