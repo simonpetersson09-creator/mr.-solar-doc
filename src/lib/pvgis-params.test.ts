@@ -5,6 +5,7 @@ import {
   fallbackTiltForLatitude,
   isImplausibleOptimalTilt,
   MIN_PLAUSIBLE_OPTIMAL_TILT_DEGREES,
+  maxPlausibleOptimalTilt,
 } from "./pvgis-params";
 import { readDataSource } from "./pvgis-response";
 import { describePvgisError, encodePvgisError, extractPvgisMessage } from "./pvgis-error";
@@ -197,5 +198,60 @@ describe("implausible optimal tilt from PVGIS (case D)", () => {
       MIN_PLAUSIBLE_OPTIMAL_TILT_DEGREES,
     );
     expect(plan.params.get("optimalangles")).toBeNull();
+  });
+});
+
+const NAIROBI = { latitude: -1.29, longitude: 36.82 };
+const CAPE_TOWN = { latitude: -33.92, longitude: 18.42 };
+const SAO_PAULO = { latitude: -23.55, longitude: -46.63 };
+const BERLIN = { latitude: 52.52, longitude: 13.41 };
+
+describe("steep implausible optimal tilt (geographic sanity check)", () => {
+  it("rejects the near-vertical optimum PVGIS returned for Nairobi", () => {
+    // min(60, 1.29 + 25) = 26.29 deg ceiling
+    expect(maxPlausibleOptimalTilt(NAIROBI.latitude)).toBeCloseTo(26.29, 2);
+    expect(isImplausibleOptimalTilt(89, NAIROBI.latitude)).toBe(true);
+  });
+
+  it("keeps the equatorial regressions working", () => {
+    expect(isImplausibleOptimalTilt(0, SINGAPORE.latitude)).toBe(false);
+    expect(isImplausibleOptimalTilt(1, QUITO.latitude)).toBe(false);
+    expect(isImplausibleOptimalTilt(89, SINGAPORE.latitude)).toBe(true);
+    expect(isImplausibleOptimalTilt(89, QUITO.latitude)).toBe(true);
+  });
+
+  it("caps the ceiling at 60 degrees at high latitudes", () => {
+    expect(maxPlausibleOptimalTilt(STOCKHOLM.latitude)).toBe(60);
+    expect(isImplausibleOptimalTilt(45, STOCKHOLM.latitude)).toBe(false);
+    expect(isImplausibleOptimalTilt(75, STOCKHOLM.latitude)).toBe(true);
+    expect(isImplausibleOptimalTilt(38, BERLIN.latitude)).toBe(false);
+  });
+
+  it("accepts realistic optima on the southern hemisphere", () => {
+    expect(isImplausibleOptimalTilt(30, SYDNEY.latitude)).toBe(false);
+    expect(isImplausibleOptimalTilt(29, CAPE_TOWN.latitude)).toBe(false);
+    expect(isImplausibleOptimalTilt(21, SAO_PAULO.latitude)).toBe(false);
+    expect(isImplausibleOptimalTilt(85, CAPE_TOWN.latitude)).toBe(true);
+  });
+
+  it("orients the fallback toward the equator on both hemispheres", () => {
+    for (const site of [NAIROBI, CAPE_TOWN, SAO_PAULO, SYDNEY]) {
+      const plan = buildPvgisOrientationFallbackRequest({ ...site, tilt: null, azimuth: null });
+      expect(Number(plan.params.get("aspect"))).toBe(site.latitude < -5 ? 180 : 0);
+      expect(plan.params.get("optimalangles")).toBeNull();
+      expect(Number(plan.params.get("angle"))).toBeGreaterThanOrEqual(0);
+    }
+    for (const site of [STOCKHOLM, BERLIN]) {
+      const plan = buildPvgisOrientationFallbackRequest({ ...site, tilt: null, azimuth: null });
+      expect(Number(plan.params.get("aspect"))).toBe(0);
+    }
+  });
+
+  it("never touches a manually supplied tilt or aspect", () => {
+    const plan = buildPvgisRequest({ ...NAIROBI, tilt: 25, azimuth: 90 });
+    expect(plan.mode).toBe("explicit");
+    expect(plan.params.get("angle")).toBe("25");
+    expect(plan.params.get("aspect")).toBe("90");
+    expect(plan.optimalTiltUsed).toBe(false);
   });
 });

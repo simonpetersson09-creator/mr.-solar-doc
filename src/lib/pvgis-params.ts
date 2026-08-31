@@ -146,12 +146,38 @@ export function buildPvgisRequest(input: PvgisLocationInput): PvgisRequestPlan {
  */
 export const MIN_PLAUSIBLE_OPTIMAL_TILT_DEGREES = 5;
 
+/**
+ * Absolute ceiling for a credible optimal tilt. A fixed roof array is never
+ * optimally near-vertical, so anything above this is treated as a PVGIS
+ * artefact regardless of latitude.
+ */
+export const MAX_PLAUSIBLE_OPTIMAL_TILT_DEGREES = 60;
+
+/**
+ * Latitude-relative headroom: the physical rule of thumb is tilt ~= |latitude|,
+ * so 25 deg of slack covers winter-optimised and diffuse-heavy sites while
+ * still rejecting answers such as Nairobi's 89 deg at |lat| 1.3.
+ */
+export const OPTIMAL_TILT_LATITUDE_MARGIN_DEGREES = 25;
+
+/** Highest tilt that is still credible as an "optimum" for this latitude. */
+export function maxPlausibleOptimalTilt(latitude: number): number {
+  const absolute = Math.abs(Number.isFinite(latitude) ? latitude : 0);
+  return Math.min(
+    MAX_PLAUSIBLE_OPTIMAL_TILT_DEGREES,
+    absolute + OPTIMAL_TILT_LATITUDE_MARGIN_DEGREES,
+  );
+}
+
 export function isImplausibleOptimalTilt(
   slope: number | null | undefined,
   latitude: number,
 ): boolean {
   if (slope === null || slope === undefined || !Number.isFinite(slope)) return true;
+  // Sentinel / out-of-range answers.
   if (slope < 0 || slope > 90) return true;
+  // Too steep to be a real optimum for this latitude (e.g. Nairobi 89 deg).
+  if (slope > maxPlausibleOptimalTilt(latitude)) return true;
   // Near the equator a flat array really is close to optimal.
   if (Math.abs(latitude) <= EQUATOR_NEUTRAL_ZONE_DEGREES) return false;
   return slope < MIN_PLAUSIBLE_OPTIMAL_TILT_DEGREES;

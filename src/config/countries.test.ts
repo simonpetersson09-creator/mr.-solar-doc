@@ -110,3 +110,31 @@ describe("currency coverage for every launch and roadmap country", () => {
     }
   });
 });
+
+describe("ISO currencies for the random global fallback markets", () => {
+  const expected = {
+    MX: "MXN", CL: "CLP", TH: "THB", KE: "KES",
+    TR: "TRY", ID: "IDR", AR: "ARS",
+    NO: "NOK", NZ: "NZD", PL: "PLN",
+  } as const;
+
+  it("maps every audited country to its ISO code", () => {
+    for (const [country, currency] of Object.entries(expected)) {
+      expect(getCurrencyCode(country)).toBe(currency);
+    }
+  });
+
+  it("adds no economic defaults for the newly mapped countries", () => {
+    for (const country of ["MX", "CL", "TH", "KE", "TR", "ID", "AR"] as const) {
+      const economics = resolveEconomicsDefaults(country, {});
+      expect(economics.selfConsumedValuePerKwh).toBeNull();
+      expect(economics.exportValuePerKwh).toBeNull();
+      expect(economics.valuesMissing).toBe(true);
+    }
+  });
+
+  it("keeps the neutral fallback for an unknown country", () => {
+    expect(getCurrencyCode("ZZ")).toBe("XXX");
+    expect(getCurrencyCode(null)).toBe("XXX");
+  });
+});
