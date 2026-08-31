@@ -207,9 +207,9 @@
 
 /* Safe-area aware spacing for full-screen shells. */
 @utility pt-safe {
-  /* Header content sits flush under the status bar: exactly the safe-area inset,
-     no extra gap, nothing overlapped. */
-  padding-top: env(safe-area-inset-top);
+  /* Header content clears the status bar (clock/battery/notch). A minimum gap is
+     kept so nothing is hidden even when the device reports no safe-area inset. */
+  padding-top: max(0.75rem, calc(env(safe-area-inset-top) + 0.25rem));
 }
 
 @utility pb-safe {
