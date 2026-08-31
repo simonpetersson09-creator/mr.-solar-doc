@@ -18,6 +18,7 @@ export const Route = createFileRoute("/installningar")({
 });
 
 const LEGAL_URL = "https://solar-doc-terms.lovable.app";
+const PRIVACY_URL = "https://solar-doc-terms.lovable.app/integritetspolicy";
 
 function SettingsPage() {
   const { t } = useTranslation();
@@ -109,7 +110,7 @@ function SettingsPage() {
             <span className="text-sm font-bold text-foreground">{t("settings.terms")}</span>
           </a>
           <a
-            href={LEGAL_URL}
+href={PRIVACY_URL}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => void haptic("light")}
