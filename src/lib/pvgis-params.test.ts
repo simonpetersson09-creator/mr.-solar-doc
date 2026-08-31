@@ -3,6 +3,8 @@ import {
   buildPvgisOrientationFallbackRequest,
   buildPvgisRequest,
   fallbackTiltForLatitude,
+  isImplausibleOptimalTilt,
+  MIN_PLAUSIBLE_OPTIMAL_TILT_DEGREES,
 } from "./pvgis-params";
 import { readDataSource } from "./pvgis-response";
 import { describePvgisError, encodePvgisError, extractPvgisMessage } from "./pvgis-error";
@@ -158,5 +160,42 @@ describe("PVGIS error messages", () => {
     const info = describePvgisError(new Error("TypeError: fetch failed at foo.ts:12"));
     expect(info.kind).toBe("unknown");
     expect(info.message).toBeNull();
+  });
+});
+
+describe("implausible optimal tilt from PVGIS (case D)", () => {
+  it("rejects the sentinel slope PVGIS returned for Sydney", () => {
+    expect(isImplausibleOptimalTilt(-1, SYDNEY.latitude)).toBe(true);
+  });
+
+  it("rejects a flat optimum outside the equatorial zone", () => {
+    expect(isImplausibleOptimalTilt(0, SYDNEY.latitude)).toBe(true);
+    expect(isImplausibleOptimalTilt(0, STOCKHOLM.latitude)).toBe(true);
+  });
+
+  it("accepts a flat optimum near the equator", () => {
+    expect(isImplausibleOptimalTilt(0, SINGAPORE.latitude)).toBe(false);
+    expect(isImplausibleOptimalTilt(2, QUITO.latitude)).toBe(false);
+  });
+
+  it("accepts normal roof tilts everywhere", () => {
+    expect(isImplausibleOptimalTilt(34, SYDNEY.latitude)).toBe(false);
+    expect(isImplausibleOptimalTilt(42, STOCKHOLM.latitude)).toBe(false);
+  });
+
+  it("rejects missing or nonsensical values", () => {
+    expect(isImplausibleOptimalTilt(null, SYDNEY.latitude)).toBe(true);
+    expect(isImplausibleOptimalTilt(undefined, SYDNEY.latitude)).toBe(true);
+    expect(isImplausibleOptimalTilt(Number.NaN, SYDNEY.latitude)).toBe(true);
+    expect(isImplausibleOptimalTilt(120, SYDNEY.latitude)).toBe(true);
+  });
+
+  it("the fallback used after rejection faces the equator with a real tilt", () => {
+    const plan = buildPvgisOrientationFallbackRequest({ ...SYDNEY, tilt: null, azimuth: null });
+    expect(plan.params.get("aspect")).toBe("180");
+    expect(Number(plan.params.get("angle"))).toBeGreaterThan(
+      MIN_PLAUSIBLE_OPTIMAL_TILT_DEGREES,
+    );
+    expect(plan.params.get("optimalangles")).toBeNull();
   });
 });

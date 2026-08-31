@@ -93,3 +93,20 @@ describe("locale vs country", () => {
     expect(ctxEnglish.currency).toBe(ctxSwedish.currency);
   });
 });
+
+describe("currency coverage for every launch and roadmap country", () => {
+  it("maps the countries that previously fell back to a neutral code", () => {
+    expect(getCurrencyCode("BR")).toBe("BRL");
+    expect(getCurrencyCode("IN")).toBe("INR");
+    expect(getCurrencyCode("ZA")).toBe("ZAR");
+  });
+
+  it("never renders the neutral XXX placeholder for a known country", () => {
+    for (const code of ["BR", "IN", "ZA", "US", "CA", "JP", "SE", "DE"] as const) {
+      const currency = getCurrencyCode(code);
+      expect(currency).not.toBe("XXX");
+      expect(currency).toMatch(/^[A-Z]{3}$/);
+      expect(formatCurrency(1234, "en-US", currency)).toContain(currency);
+    }
+  });
+});
