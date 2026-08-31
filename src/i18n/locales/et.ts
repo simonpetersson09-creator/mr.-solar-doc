@@ -249,6 +249,9 @@ export const et = {
     "paybackInfo": "Lihtne tasuvusaeg näitab, mitu aastat kulub investeeringu tagasiteenimiseks hinnangulise aastase majandusliku väärtusega. Arvutus ei arvesta näiteks tulevaste elektrihinnamuutuste, finantseerimiskulude, inflatsiooni, hoolduse ega diskonteerimisega.",
     "maxInvestment": "Investeeringu tase valitud tasuvusajal",
     "maxInvestmentApprox": "umbes {{amount}}",
+    productionCostInfoLabel: "Rohkem teavet",
+    productionCostInfo: "Näitab ligikaudu, milline investeeringukulu vastab teie valitud tasuvusajale. See ei ole hinnang selle kohta, mida paigaldus tegelikult maksab.",
+
     "maxInvestmentExplainer": "Ligikaudu {{years}} aasta lihtsa tasuvusaja saavutamiseks peaks paigalduse maksumus olema maksimaalselt umbes {{amount}}.",
     "maxInvestmentNote": "Summa on arvutatud sinu sisendite ja arvutuseelduste põhjal – see ei ole pakkumine ega turuhinna hinnang.",
     "missingMarketValues": "Selle riigi kohta pole meil kontrollitud standardväärtusi. Palun sisestage väärtused ise allpool.",

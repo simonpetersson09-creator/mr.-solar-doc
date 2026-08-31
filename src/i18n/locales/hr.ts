@@ -249,6 +249,9 @@ export const hr = {
     "paybackInfo": "Jednostavni povrat pokazuje koliko godina procijenjena godišnja ekonomska vrijednost odgovara ulaganju. Ne uzima u obzir, na primjer, buduće promjene cijena električne energije, troškove financiranja, inflaciju, održavanje ili diskontiranje.",
     "maxInvestment": "Razina ulaganja pri odabranom razdoblju povrata",
     "maxInvestmentApprox": "cca {{amount}}",
+    productionCostInfoLabel: "Više informacija",
+    productionCostInfo: "Približno prikazuje koliki trošak ulaganja odgovara odabranom razdoblju povrata. To nije procjena stvarnog troška instalacije.",
+
     "maxInvestmentExplainer": "Da bi se postigao približno {{years}} godina jednostavnog povrata, instalacija bi trebala koštati najviše oko {{amount}}.",
     "maxInvestmentNote": "Iznos je izračun na temelju vaših podataka i pretpostavki izračuna – nije ponuda ili procjena tržišne cijene.",
     "missingMarketValues": "Nemamo provjerenu standardnu vrijednost za ovu zemlju. Molimo, sami unesite vrijednosti u nastavku.",

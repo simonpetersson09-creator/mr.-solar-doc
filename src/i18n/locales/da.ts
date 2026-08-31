@@ -249,6 +249,9 @@ export const da = {
     "paybackInfo": "Simpel tilbagebetalingstid viser, hvor mange år den beregnede årlige økonomiske værdi svarer til investeringen. Beregningen tager ikke højde for eksempelvis fremtidige elprisforskydninger, finansieringsomkostninger, inflation, vedligeholdelse eller diskontering.",
     "maxInvestment": "Investeringsniveau ved valgt tilbagebetalingstid",
     "maxInvestmentApprox": "ca. {{amount}}",
+    productionCostInfoLabel: "Mere information",
+    productionCostInfo: "Viser cirka, hvilken investeringsomkostning der svarer til den tilbagebetalingstid, du har valgt. Det er ikke et skøn over, hvad installationen faktisk koster.",
+
     "maxInvestmentExplainer": "For at nå cirka {{years}} års simpel tilbagebetalingstid bør installationen højst koste omkring {{amount}}.",
     "maxInvestmentNote": "Beløbet er en beregning ud fra dine oplysninger og kalkulationsantagelser – ikke et tilbud eller et skøn over markedspris.",
     "missingMarketValues": "Vi har ingen verificeret standardværdi for dette land. Angiv selv værdierne nedenfor.",

@@ -249,6 +249,9 @@ export const sl = {
     "paybackInfo": "Enostavna doba vračila prikazuje, koliko let ocenjena letna ekonomska vrednost ustreza investiciji. Izračun ne upošteva na primer prihodnjih sprememb cen električne energije, stroškov financiranja, inflacije, vzdrževanja ali diskontiranja.",
     "maxInvestment": "Raven investicije pri izbrani dobi vračila",
     "maxInvestmentApprox": "pribl. {{amount}}",
+    productionCostInfoLabel: "Več informacij",
+    productionCostInfo: "Približno prikazuje, kakšen strošek naložbe ustreza izbranemu obdobju vračila. To ni ocena dejanskih stroškov namestitve.",
+
     "maxInvestmentExplainer": "Za dosego približno {{years}} let enostavne dobe vračila naj inštalacija stane največ okoli {{amount}}.",
     "maxInvestmentNote": "Znesek je izračunan na podlagi vaših vnosov in kalkulacijskih predpostavk – ni ponudba ali ocena tržne cene.",
     "missingMarketValues": "Za to državo nimamo preverjene standardne vrednosti. Vnesite vrednosti sami spodaj.",
