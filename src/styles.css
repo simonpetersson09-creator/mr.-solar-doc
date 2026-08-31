@@ -147,7 +147,7 @@
 }
 
 html[data-native="true"] {
-  --safe-top-min: 3rem;
+  --safe-top-min: 3.5rem;
 }
 
 @layer base {
