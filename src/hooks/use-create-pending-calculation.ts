@@ -65,7 +65,7 @@ export function useCreatePendingCalculation(): () => Promise<boolean> {
           countryCode: result.location.countryCode,
           currency: result.economics.currency,
           installedKwp: result.installedKwp,
-          annualProductionKwh: result.presentation.annualProductionKwh,
+          annualProductionKwh: result.annualProductionKwh,
           paybackYears: wizard.acceptedPaybackYears,
         },
       },
