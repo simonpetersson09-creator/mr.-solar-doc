@@ -11,7 +11,7 @@ interface TiltDialProps {
 
 const WIDTH = 176;
 const HEIGHT = 128;
-const PIVOT_X = 26;
+const PIVOT_X = 44;
 const PIVOT_Y = 110;
 const ARM = 90;
 const GRIP_RADIUS = 11;
