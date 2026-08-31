@@ -254,7 +254,9 @@ export const sl = {
     investmentLevelInfoLabel: "Več informacij",
     investmentLevelInfo: "Približno prikazuje, kakšen strošek naložbe ustreza izbranemu obdobju vračila. To ni ocena dejanskih stroškov namestitve. Dejanska cena je med drugim odvisna od strehe, namestitve, komponent in dobavitelja.",
     systemSizeInfoLabel: "Več informacij",
-    systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dejanska proizvodnja, lastna poraba, cena elektrike, nadomestilo, stroški namestitve in gospodarski izid se lahko razlikujejo. Rezultat ni ponudba niti garancija.",
+systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dejanska proizvodnja, lastna poraba, cena elektrike, nadomestilo, stroški namestitve in gospodarski izid se lahko razlikujejo. Rezultat ni ponudba niti garancija.",
+    productionCostInfoLabel: "Več informacij",
+    productionCostInfo: "Proizvodni strošek je izračunan povprečni strošek na proizvedeno kWh v času življenjske dobe naprave. Na dejanski strošek lahko vplivajo proizvodnja, degradacija, vzdrževanje in drugi prihodnji stroški.",
 
 
     "maxInvestmentExplainer": "Za dosego približno {{years}} let enostavne dobe vračila naj inštalacija stane največ okoli {{amount}}.",

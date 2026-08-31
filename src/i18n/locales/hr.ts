@@ -254,7 +254,9 @@ export const hr = {
     investmentLevelInfoLabel: "Više informacija",
     investmentLevelInfo: "Približno prikazuje koliki trošak ulaganja odgovara odabranom razdoblju povrata. To nije procjena stvarnog troška instalacije. Stvarna cijena ovisi, između ostalog, o krovu, instalaciji, komponentama i dobavljaču.",
     systemSizeInfoLabel: "Više informacija",
-    systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarna proizvodnja, vlastita potrošnja, cijena električne energije, naknada, trošak instalacije i ekonomski rezultat mogu odstupati. Rezultat ne predstavlja ponudu ni jamstvo.",
+systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarna proizvodnja, vlastita potrošnja, cijena električne energije, naknada, trošak instalacije i ekonomski rezultat mogu odstupati. Rezultat ne predstavlja ponudu ni jamstvo.",
+    productionCostInfoLabel: "Više informacija",
+    productionCostInfo: "Trošak proizvodnje je izračunati prosječni trošak po proizvedenom kWh tijekom životnog vijeka sustava. Na stvarni trošak mogu utjecati proizvodnja, degradacija, održavanje i drugi budući troškovi.",
 
 
     "maxInvestmentExplainer": "Da bi se postigao približno {{years}} godina jednostavnog povrata, instalacija bi trebala koštati najviše oko {{amount}}.",

@@ -254,7 +254,9 @@ export const it = {
     investmentLevelInfoLabel: "Maggiori informazioni",
     investmentLevelInfo: "Mostra approssimativamente quale costo di investimento corrisponde al periodo di ammortamento scelto. Non è una stima del costo reale dell'impianto. Il prezzo effettivo dipende, tra l'altro, dal tetto, dall'installazione, dai componenti e dal fornitore.",
     systemSizeInfoLabel: "Maggiori informazioni",
-    systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produzione effettiva, autoconsumo, prezzo dell'energia, compensazione, costo di installazione e risultato economico possono variare. Il risultato non costituisce un'offerta né una garanzia.",
+systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produzione effettiva, autoconsumo, prezzo dell'energia, compensazione, costo di installazione e risultato economico possono variare. Il risultato non costituisce un'offerta né una garanzia.",
+    productionCostInfoLabel: "Maggiori informazioni",
+    productionCostInfo: "Il costo di produzione è un costo medio calcolato per kWh prodotto durante la vita dell'impianto. Il costo effettivo può essere influenzato da produzione, degrado, manutenzione e altri costi futuri.",
 
 
     "maxInvestmentExplainer": "Per raggiungere circa {{years}} anni di tempo di ritorno semplice, l'installazione dovrebbe costare al massimo circa {{amount}}.",

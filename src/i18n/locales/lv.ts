@@ -254,7 +254,9 @@ export const lv = {
     investmentLevelInfoLabel: "Vairāk informācijas",
     investmentLevelInfo: "Aptuveni parāda, kādas investīciju izmaksas atbilst jūsu izvēlētajam atmaksāšanās periodam. Tas nav aprēķins par to, cik instalācija patiesībā maksā. Faktiskā cena cita starpā ir atkarīga no jumta, uzstādīšanas, komponentiem un piegādātāja.",
     systemSizeInfoLabel: "Vairāk informācijas",
-    systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā ražošana, pašpatēriņš, elektroenerģijas cena, atlīdzība, uzstādīšanas izmaksas un ekonomiskais rezultāts var atšķirties. Rezultāts nav piedāvājums vai garantija.",
+systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā ražošana, pašpatēriņš, elektroenerģijas cena, atlīdzība, uzstādīšanas izmaksas un ekonomiskais rezultāts var atšķirties. Rezultāts nav piedāvājums vai garantija.",
+    productionCostInfoLabel: "Vairāk informācijas",
+    productionCostInfo: "Ražošanas izmaksas ir aprēķinātās vidējās izmaksas par saražoto kWh visā sistēmas kalpošanas laikā. Faktiskās izmaksas var ietekmēt ražošana, degradācija, apkope un citas nākotnes izmaksas.",
 
 
     "maxInvestmentExplainer": "Lai sasniegtu aptuveni {{years}} gadu vienkāršu atmaksas periodu, instalācijai vajadzētu maksāt ne vairāk kā aptuveni {{amount}}.",

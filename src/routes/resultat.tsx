@@ -52,6 +52,7 @@ const [exporting, setExporting] = useState(false);
 const [exportError, setExportError] = useState(false);
 const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
   const [showSystemSizeInfo, setShowSystemSizeInfo] = useState(false);
+  const [showProductionCostInfo, setShowProductionCostInfo] = useState(false);
 
   const shortMonths = i18n.t("months.short", { returnObjects: true }) as string[];
 
@@ -332,10 +333,24 @@ const cost = result.productionCost;
 
 
 {/* 5. Cost per produced kWh — own green card */}
-<section className="rounded-[28px] border border-primary-foreground/20 cta-primary p-3.5 text-primary-foreground shadow-hero">
+<section className="relative rounded-[28px] border border-primary-foreground/20 cta-primary p-3.5 text-primary-foreground shadow-hero">
+          <button
+            type="button"
+            onClick={() => setShowProductionCostInfo((open) => !open)}
+            aria-label={t("result.productionCostInfoLabel")}
+            aria-expanded={showProductionCostInfo}
+            className="absolute top-3 right-3 flex size-6 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
+          >
+            <CircleAlert className="size-3.5" />
+          </button>
           <h2 className="text-center text-sm font-semibold text-white">
             {t("result.productionCostTitle")}
           </h2>
+          {showProductionCostInfo ? (
+            <p className="mt-2 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
+              {t("result.productionCostInfo")}
+            </p>
+          ) : null}
           {cost.costPerKwh === null ? (
             <p className="mt-3 text-center text-[11px] text-white/60">
               {t("result.productionCostUnavailable")}

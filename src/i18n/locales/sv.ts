@@ -300,7 +300,9 @@ error: "Adressökningen misslyckades.",
     investmentLevelInfoLabel: "Mer information",
     investmentLevelInfo: "Visar ungefär vilken investeringskostnad som motsvarar den återbetalningstid du valt. Det är inte en uppskattning av vad installationen faktiskt kostar. Faktiskt pris beror på bland annat tak, installation, komponenter och leverantör.",
     systemSizeInfoLabel: "Mer information",
-    systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledning. Faktisk produktion, egenanvändning, elpris, ersättning, installationskostnad och ekonomiskt utfall kan avvika. Resultatet utgör inte en offert eller garanti.",
+systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledning. Faktisk produktion, egenanvändning, elpris, ersättning, installationskostnad och ekonomiskt utfall kan avvika. Resultatet utgör inte en offert eller garanti.",
+    productionCostInfoLabel: "Mer information",
+    productionCostInfo: "Produktionskostnaden är en beräknad genomsnittlig kostnad per producerad kWh över anläggningens livslängd. Faktisk kostnad kan påverkas av produktion, degradering, underhåll och andra framtida kostnader.",
 
 
     productionCostExplainer: "Vi delar anläggningens kostnad med den beräknade produktionen under hela kalkylperioden.",
