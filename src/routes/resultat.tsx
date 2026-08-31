@@ -149,51 +149,52 @@ const cost = result.productionCost;
               <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                 {t("result.panelPowerLabel")}
               </p>
-              <p className="mt-0.5 text-4xl font-extrabold tracking-tight">
+              <p className="mt-0.5 text-3xl font-extrabold tracking-tight tabular-nums">
                 {formatDecimal(result.installedKwp, locale)}{" "}
-                <span className="text-lg font-semibold text-white/80">kWp</span>
+                <span className="text-base font-semibold text-white/80">kWp</span>
               </p>
-              <p className="text-xs text-white/70">
+              <p className="text-[11px] text-white/60">
                 {t("result.panelCount", { count: result.panelCount })}
               </p>
+
             </div>
 
             <div className="mt-2.5 grid grid-cols-2 gap-2.5">
-              <div className="glass-panel rounded-2xl p-2.5">
-                <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+              <div className="glass-panel rounded-2xl p-2.5 text-center">
+                <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   <Zap className="size-3" /> {t("result.recommendedInverter")}
                 </p>
-                <p className="mt-0.5 text-lg font-bold">
+                <p className="mt-0.5 text-lg font-bold tabular-nums">
                   {formatNumber(result.inverterKw, locale)}{" "}
-                  <span className="text-xs font-semibold text-white/70">kW</span>
+                  <span className="text-[11px] font-semibold text-white/60">kW</span>
                 </p>
               </div>
-              <div className="glass-panel rounded-2xl p-2.5">
+              <div className="glass-panel rounded-2xl p-2.5 text-center">
                 <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   {t("result.annualProduction")}
                 </p>
-                <p className="mt-0.5 text-lg font-bold text-accent">
+                <p className="mt-0.5 text-lg font-bold text-accent tabular-nums">
                   {formatNumber(p.annualProductionKwh, locale)}{" "}
-                  <span className="text-xs font-semibold text-white/70">
+                  <span className="text-[11px] font-semibold text-white/60">
                     kWh{t("common.perYear")}
                   </span>
                 </p>
               </div>
             </div>
 
-
-            <p className="mt-4 text-sm font-bold">
+            <p className="mt-3 text-center text-sm font-bold">
               {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
             </p>
-            
+
             {result.notes.includes("minimum-system-size") ? (
-              <p className="mt-1.5 text-xs text-white/70">{t("result.minimumSizeNote")}</p>
+              <p className="mt-1.5 text-center text-[11px] text-white/60">{t("result.minimumSizeNote")}</p>
             ) : null}
             {result.notes.includes("consumption-below-minimum") ? (
-              <p className="mt-1.5 text-xs text-white/70">
+              <p className="mt-1.5 text-center text-[11px] text-white/60">
                 {t("result.consumptionTooLowNote")}
               </p>
             ) : null}
+
           </div>
         </section>
 
@@ -235,16 +236,19 @@ const cost = result.productionCost;
             <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
               {t("result.annualSavings")}
             </p>
-            <p className="mt-1 text-3xl font-extrabold tracking-tight text-white">
+            <p className="mt-0.5 text-3xl font-extrabold tracking-tight text-white tabular-nums">
               {economicValuesMissing ? "–" : formatCurrency(p.annualSavings, locale, currency)}{" "}
-              <span className="text-xs font-normal text-white/60">{t("result.perYear")}</span>
+              <span className="text-[11px] font-semibold text-white/60">{t("result.perYear")}</span>
             </p>
           </div>
 
-          <dl className="grid grid-cols-2 gap-2 text-xs">
-            <div className="rounded-xl bg-white/10 p-2.5">
-              <dt className="text-[11px] text-white/60">{t("result.selfConsumption")}</dt>
-              <dd className="font-semibold text-white">
+
+          <dl className="grid grid-cols-2 gap-2">
+            <div className="rounded-2xl bg-white/10 p-2.5 text-center">
+              <dt className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+                {t("result.selfConsumption")}
+              </dt>
+              <dd className="mt-0.5 text-lg font-bold text-white tabular-nums">
                 {economicValuesMissing
                   ? "–"
                   : formatCurrency(p.selfConsumptionValue, locale, currency)}
@@ -254,9 +258,11 @@ const cost = result.productionCost;
                 {formatNumber(p.selfConsumptionKwh, locale)} kWh
               </dd>
             </div>
-            <div className="rounded-xl bg-white/10 p-2.5">
-              <dt className="text-[11px] text-white/60">{t("result.exported")}</dt>
-              <dd className="font-semibold text-white">
+            <div className="rounded-2xl bg-white/10 p-2.5 text-center">
+              <dt className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+                {t("result.exported")}
+              </dt>
+              <dd className="mt-0.5 text-lg font-bold text-white tabular-nums">
                 {economicValuesMissing ? "–" : formatCurrency(p.exportValue, locale, currency)}
               </dd>
               <dd className="text-[11px] text-white/60">
@@ -264,6 +270,7 @@ const cost = result.productionCost;
               </dd>
             </div>
           </dl>
+
 
           {economicValuesMissing ? (
             <p className="rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] text-white/70">
@@ -287,12 +294,10 @@ const cost = result.productionCost;
             })}
           </p>
 
-          <p className="mt-1 text-center text-3xl font-extrabold tracking-tight text-accent">
+          <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-accent">
             {t("result.maxInvestmentApprox", { amount: investmentAmount })}
           </p>
-          <p className="mt-1.5 text-center text-[11px] text-white/60">
-            {t("result.maxInvestmentNote")}
-          </p>
+
         </section>
 
 
@@ -303,62 +308,56 @@ const cost = result.productionCost;
           <h2 className="text-center text-sm font-semibold text-white">
             {t("result.productionCostTitle")}
           </h2>
-          <p className="mt-0.5 text-center text-xs text-white/60">
-            {t("result.productionCostExplainer")}
-          </p>
           {cost.costPerKwh === null ? (
-            <p className="mt-3 text-xs text-white/60">{t("result.productionCostUnavailable")}</p>
+            <p className="mt-3 text-center text-[11px] text-white/60">
+              {t("result.productionCostUnavailable")}
+            </p>
+
           ) : (
             <>
 <div className="mt-3 grid grid-cols-3 gap-1.5 text-center">
                 <div className="flex min-w-0 flex-col items-center justify-center rounded-2xl bg-white/10 px-1.5 py-2.5">
-                  <p className="flex min-h-[26px] items-center justify-center text-[10px] leading-tight text-white/60">
+                  <p className="flex min-h-[28px] items-center justify-center text-[11px] leading-tight text-white/60">
                     {t("result.productionCostLabel")}
                   </p>
-                  <p className="mt-0.5 text-sm leading-tight font-bold text-white">
+                  <p className="mt-0.5 text-lg leading-tight font-bold text-white">
                     <span className="block whitespace-nowrap tabular-nums">
                       {formatDecimal(cost.costPerKwh, locale, 2)}
                     </span>
-                    <span className="block text-[9px] font-semibold text-white/60">
+                    <span className="block text-[11px] font-semibold text-white/60">
                       {currency}/kWh
                     </span>
                   </p>
                 </div>
                 <div className="flex min-w-0 flex-col items-center justify-center rounded-2xl bg-white/10 px-1.5 py-2.5">
-                  <p className="flex min-h-[26px] items-center justify-center text-[10px] leading-tight text-white/60">
+                  <p className="flex min-h-[28px] items-center justify-center text-[11px] leading-tight text-white/60">
                     {t("result.productionCostValueLabel")}
                   </p>
-                  <p className="mt-0.5 text-sm leading-tight font-bold text-white">
+                  <p className="mt-0.5 text-lg leading-tight font-bold text-white">
                     <span className="block whitespace-nowrap tabular-nums">
                       {formatDecimal(cost.valuePerKwh, locale, 2)}
                     </span>
-                    <span className="block text-[9px] font-semibold text-white/60">
+                    <span className="block text-[11px] font-semibold text-white/60">
                       {currency}/kWh
                     </span>
                   </p>
                 </div>
                 <div className="flex min-w-0 flex-col items-center justify-center rounded-2xl bg-white/10 px-1.5 py-2.5">
-                  <p className="flex min-h-[26px] items-center justify-center text-[10px] leading-tight text-white/60">
+                  <p className="flex min-h-[28px] items-center justify-center text-[11px] leading-tight text-white/60">
                     {t("result.productionCostDifference")}
                   </p>
-                  <p className="mt-0.5 text-sm leading-tight font-bold text-accent">
+                  <p className="mt-0.5 text-lg leading-tight font-bold text-accent">
                     <span className="block whitespace-nowrap tabular-nums">
                       {(cost.differencePerKwh ?? 0) >= 0 ? "+" : "−"}
                       {formatDecimal(Math.abs(cost.differencePerKwh ?? 0), locale, 2)}
                     </span>
-                    <span className="block text-[9px] font-semibold text-white/60">
+                    <span className="block text-[11px] font-semibold text-white/60">
                       {currency}/kWh
                     </span>
                   </p>
                 </div>
               </div>
-              <p className="mt-2 text-center text-[11px] text-white/60">
-                {t("result.productionCostBasis", {
-                  investment: formatCurrency(cost.investment, locale, currency),
-                  production: formatNumber(cost.totalProductionKwh, locale),
-                  years: formatNumber(cost.periodYears, locale),
-                })}
-              </p>
+
             </>
           )}
         </section>
