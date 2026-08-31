@@ -58,7 +58,7 @@ export const CURRENCY_BY_COUNTRY: Record<string, CurrencyCode> = {
 /** Currency for a country, or the neutral code when it cannot be determined. */
 export function currencyForCountry(countryCode?: string | null): CurrencyCode {
   const code = (countryCode ?? "").toUpperCase();
-  return CURRENCY_BY_COUNTRY[code] ?? NEUTRAL_CURRENCY_CODE;
+  return MARKETS[code]?.currency ?? CURRENCY_BY_COUNTRY[code] ?? NEUTRAL_CURRENCY_CODE;
 }
 
 /** How a monetary default was obtained. Never hidden from the UI. */
