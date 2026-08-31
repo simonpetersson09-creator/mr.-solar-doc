@@ -426,7 +426,8 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
     fields: {
       gridConnection: "Nätanslutning",
       gridConnectionValue: "{{voltage}} V, {{phases}}-fas",
-      gridMethodNote: "Beräkningen av teoretisk AC-effekt utgår från 400 V trefas och beräknas enligt √3 × 400 V × huvudsäkring. Den faktiska tillåtna anslutnings- eller inmatningseffekten kan begränsas av nätägaren eller den specifika installationen.",
+      gridMethodNote:
+        "Teoretisk AC-effekt beräknas utifrån 400 V trefas enligt √3 × 400 V × huvudsäkring. Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
       savings30Short: "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade elvärden.",
       solarShareTitle: "Din solel",
       selfConsumptionRate: "Egenanvändningsgrad (andel av solelproduktionen)",
@@ -447,6 +448,10 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       "valueSource_user-override": "Angivet av dig",
       priceChange: "Elprisförändring",
       calculationPeriod: "Kalkylperiod",
+      priceChangeNoteFlat:
+        "Kalkylen räknar med oförändrade värden för egenanvänd och såld solel under hela perioden. Vi lägger alltså inte in någon antagen prisökning, eftersom framtida elpriser inte går att förutsäga. Blir elpriset högre än i dag blir värdet högre än i rapporten, blir det lägre blir värdet lägre.",
+      priceChangeNoteTrend:
+        "Kalkylen räknar med att värdet på egenanvänd och såld solel förändras med {{priceChange}} % per år under hela perioden. Det är ett antagande, eftersom framtida elpriser inte går att förutsäga. Blir utvecklingen en annan blir det ekonomiska utfallet högre eller lägre än i rapporten.",
       priceChangeNote:
         "Elprisförändring {{priceChange}} % per år betyder att kalkylen räknar med oförändrade värden för egenanvänd och såld solel under hela perioden. Vi lägger alltså inte in någon antagen prisökning, eftersom framtida elpriser inte går att förutsäga. Blir elpriset högre än i dag blir värdet högre än i rapporten, blir det lägre blir värdet lägre.",
       calculationPeriodNote:
