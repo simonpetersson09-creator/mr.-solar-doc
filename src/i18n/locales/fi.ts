@@ -120,7 +120,7 @@ export const fi = {
     "gridAssumption": "Laskenta perustuu 400 V:n kolmivaiheliittymään.",
     "gridAssumptionInfo": "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     "title": "Mikä pääsulake sinulla on?",
-    "subtitle": "Se määrittää, kuinka paljon tehoa järjestelmäsi saa syöttää verkkoon.",
+    "subtitle": "Pääsulakkeen avulla arvioidaan, kuinka suuri invertteri voidaan normaalisti liittää. Varsinaisen sallitun tehon määrää verkonhaltija.",
     "label": "Pääsulake",
     "other": "Muu",
     "otherLabel": "Ampeeria",

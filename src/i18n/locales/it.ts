@@ -120,7 +120,7 @@ export const it = {
     "gridAssumption": "Il calcolo presuppone un allacciamento trifase a 400 V.",
     "gridAssumptionInfo": "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
     "title": "Qual è la potenza del tuo limitatore di potenza?",
-    "subtitle": "Determina quanta potenza il tuo impianto può immettere in rete.",
+    "subtitle": "Il limitatore di potenza serve a stimare quale inverter può essere normalmente collegato. La potenza effettivamente consentita è determinata dal gestore di rete.",
     "label": "Limitatore di potenza",
     "other": "Altro",
     "otherLabel": "Ampere",

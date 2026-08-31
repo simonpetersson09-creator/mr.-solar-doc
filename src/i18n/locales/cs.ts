@@ -120,7 +120,7 @@ export const cs = {
     "gridAssumption": "Výpočet vychází z třífázové přípojky 400 V.",
     "gridAssumptionInfo": "Teoretický výkon hlavního jističe se počítá z třífázové přípojky 400 V. Pokud si nejste jisti, ověřte si skutečnou přípojku.",
     "title": "Jaký máte hlavní jistič?",
-    "subtitle": "Určuje, kolik energie smí vaše zařízení dodávat do sítě.",
+    "subtitle": "Hlavní jistič slouží k odhadu, jak velký střídač lze běžně připojit. Skutečný povolený výkon určuje provozovatel sítě.",
     "label": "Hlavní jistič",
     "other": "Jiný",
     "otherLabel": "Ampéry",

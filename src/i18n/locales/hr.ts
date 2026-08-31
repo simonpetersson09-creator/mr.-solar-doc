@@ -120,7 +120,7 @@ export const hr = {
     "gridAssumption": "Izračun pretpostavlja trofazni priključak 400 V.",
     "gridAssumptionInfo": "Teorijska snaga glavnog osigurača računa se za trofazni priključak 400 V. Ako niste sigurni, provjerite svoj stvarni mrežni priključak.",
     "title": "Koji glavni osigurač imate?",
-    "subtitle": "On određuje koliko snage vaš sustav smije isporučivati.",
+    "subtitle": "Glavni osigurač služi za procjenu koliko velik pretvarač se obično može priključiti. Stvarno dopuštenu snagu određuje operator mreže.",
     "label": "Glavni osigurač",
     "other": "Drugo",
     "otherLabel": "Amperi",

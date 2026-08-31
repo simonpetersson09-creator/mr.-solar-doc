@@ -144,7 +144,7 @@ export const en = {
     gridAssumption: "The calculation assumes a 400 V three-phase connection.",
     gridAssumptionInfo: "The theoretical power of the main fuse is calculated from a 400 V three-phase connection. Check your actual grid connection if you are unsure.",
     title: "What main fuse do you have?",
-    subtitle: "It determines how much power your system may feed out.",
+    subtitle: "The main fuse is used to estimate how large an inverter can normally be connected. The actual permitted power is determined by the grid operator.",
     label: "Main fuse",
     other: "Other",
     otherLabel: "Amperes",

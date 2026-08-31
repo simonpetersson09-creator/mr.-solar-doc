@@ -120,7 +120,7 @@ export const fr = {
     "gridAssumption": "Le calcul suppose un raccordement triphasé 400 V.",
     "gridAssumptionInfo": "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute.",
     "title": "Quel fusible principal avez-vous ?",
-    "subtitle": "Il détermine la puissance que votre installation peut injecter.",
+    "subtitle": "Le fusible principal permet d'estimer la taille d'onduleur pouvant normalement être raccordée. La puissance réellement autorisée est déterminée par le gestionnaire de réseau.",
     "label": "Fusible principal",
     "other": "Autre",
     "otherLabel": "Ampères",

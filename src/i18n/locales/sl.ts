@@ -120,7 +120,7 @@ export const sl = {
     "gridAssumption": "Izračun predpostavlja trifazni priključek 400 V.",
     "gridAssumptionInfo": "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
     "title": "Kakšno glavno varovalko imate?",
-    "subtitle": "Določa, koliko moči lahko odda vaša elektrarna.",
+    "subtitle": "Glavna varovalka se uporablja za oceno, kako velik razsmernik je običajno mogoče priključiti. Dejansko dovoljeno moč določi operater omrežja.",
     "label": "Glavna varovalka",
     "other": "Drugo",
     "otherLabel": "Amperi",

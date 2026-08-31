@@ -120,7 +120,7 @@ export const lv = {
     "gridAssumption": "Aprēķins balstās uz 400 V trīsfāžu pieslēgumu.",
     "gridAssumptionInfo": "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     "title": "Kāds ir jūsu galvenais drošinātājs?",
-    "subtitle": "Tas nosaka, cik daudz jaudas jūsu sistēma var ievadīt tīklā.",
+    "subtitle": "Galvenais drošinātājs tiek izmantots, lai novērtētu, cik lielu invertoru parasti var pieslēgt. Faktisko atļauto jaudu nosaka tīkla operators.",
     "label": "Galvenais drošinātājs",
     "other": "Cits",
     "otherLabel": "Ampēri",
