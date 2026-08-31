@@ -57,6 +57,13 @@ export const CURRENCY_BY_COUNTRY: Record<string, CurrencyCode> = {
   BR: "BRL",
   IN: "INR",
   ZA: "ZAR",
+  MX: "MXN",
+  CL: "CLP",
+  TH: "THB",
+  KE: "KES",
+  TR: "TRY",
+  ID: "IDR",
+  AR: "ARS",
 };
 
 /** Currency for a country, or the neutral code when it cannot be determined. */
