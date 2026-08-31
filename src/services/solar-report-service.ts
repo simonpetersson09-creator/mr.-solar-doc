@@ -76,11 +76,15 @@ export interface ReportOptions {
 }
 
 const PAGE = { width: 210, height: 297, margin: 18 };
-const INK: [number, number, number] = [28, 46, 40];
+/** Palette mirrors the app design tokens: forest green primary, solar orange accent, cream surfaces. */
+const INK: [number, number, number] = [17, 38, 26];
 const MUTED: [number, number, number] = [108, 122, 114];
-const ACCENT: [number, number, number] = [232, 158, 54];
+const PRIMARY: [number, number, number] = [22, 65, 45];
+const ACCENT: [number, number, number] = [245, 164, 32];
+const CREAM: [number, number, number] = [252, 250, 241];
 const LINE: [number, number, number] = [225, 226, 218];
 const GREY: [number, number, number] = [163, 172, 166];
+
 
 interface Row {
   label: string;
