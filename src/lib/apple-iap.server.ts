@@ -114,7 +114,9 @@ async function fetchTransaction(
   );
   if (!response.ok) return { status: response.status };
   const body = (await response.json()) as { signedTransactionInfo?: string };
-  return { status: response.status, signedTransactionInfo: body.signedTransactionInfo };
+  return body.signedTransactionInfo
+    ? { status: response.status, signedTransactionInfo: body.signedTransactionInfo }
+    : { status: response.status };
 }
 
 /**
