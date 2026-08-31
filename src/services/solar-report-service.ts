@@ -245,6 +245,20 @@ class ReportDocument {
     this.y = PAGE.margin;
   }
 
+  /**
+   * Soft break: keeps the flow going when the next block still fits,
+   * otherwise starts a new page. Avoids half-empty pages.
+   */
+  softBreak(neededHeight = 60) {
+    if (this.y <= PAGE.margin) return;
+    if (this.y + neededHeight > PAGE.height - PAGE.margin) {
+      this.pageBreak();
+    } else {
+      this.y += 8;
+    }
+  }
+
+
   /** Smaller group label inside a section (e.g. the assumption groups). */
   subheading(text: string) {
     if (!text.trim()) return;
