@@ -40,16 +40,12 @@ export interface CalculationSnapshot {
   assumptions: CalculationAssumptions;
 }
 
-export interface CalculationSummary {
+/** Receipt metadata from the server. Contains no calculation data. */
+export interface PurchaseReceipt {
   id: string;
   accessToken: string;
   createdAt: string;
   purchasedAt: string | null;
-  address: string;
-  countryCode: string;
-  installedKwp: number;
-  annualProductionKwh: number;
-  paybackYears: number;
 }
 
 export type PurchaseStatus = "pending" | "paid" | "failed" | "cancelled";
