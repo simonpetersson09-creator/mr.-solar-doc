@@ -2,7 +2,7 @@ import { buildPvgisRequest, buildPvgisOrientationFallbackRequest, isImplausibleO
 import { runCalculation } from "@/lib/calc/engine";
 import { getMarketConfig } from "@/config/markets";
 import { resolveEconomicsDefaults, getCountryConfig, getCurrencyCode } from "@/config/countries";
-import { resolveConnectionConfig } from "@/config/connections";
+import { getConnectionConfig } from "@/config/connections";
 
 const SITES = [
   ["NO", "Oslo", 59.91, 10.75, 63, "three-phase", 230],
@@ -43,7 +43,7 @@ async function pvgis(lat: number, lon: number) {
 function calc(country: string, lat: number, lon: number, pv: any, amp: number, service: string, volt: number, self: number | null, exp: number | null) {
   const econ = resolveEconomicsDefaults(country, { selfConsumedValuePerKwh: self, exportValuePerKwh: exp });
   const market = getMarketConfig(country);
-  const conn = resolveConnectionConfig(country);
+  const conn = getConnectionConfig(country);
   const phases = service === "three-phase" ? 3 : 1;
   const maxAc = service === "three-phase" ? Math.sqrt(3) * volt * amp / 1000 : volt * amp / 1000;
   return runCalculation({
@@ -63,7 +63,7 @@ for (const [c, city, lat, lon, amp, service, volt] of SITES) {
   const a = calc(c, lat, lon, pv, amp, service as string, volt, null, null);
   const b = calc(c, lat, lon, pv, amp, service as string, volt, 0.3, 0.1);
   rows.push({ c, city, mode: pv.mode, before: pv.before, slope: pv.slope, aspect: pv.aspect,
-    annual: Math.round(pv.annual), currency: getCurrencyCode(c), conn: resolveConnectionConfig(c).status,
+    annual: Math.round(pv.annual), currency: getCurrencyCode(c), conn: getConnectionConfig(c).status,
     kwp: a.result.installedKwp, inv: a.result.inverterKw ?? a.result.presentation?.maxAcPowerKw,
     prod: Math.round(a.result.annualProductionKwh),
     econA: a.result.economicsStatus, totalA: a.result.presentation.annualSavings,
