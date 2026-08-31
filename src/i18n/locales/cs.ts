@@ -222,7 +222,7 @@ export const cs = {
     "recommendedArray": "Velikost systému",
     "recommendedInverter": "Střídač (měnič)",
     "annualProduction": "Výroba elektřiny za rok",
-    "specificYield": "Specifický výnos solární energie v daném místě",
+    "specificYield": "Produkční potenciál v této lokalitě",
     "annualConsumption": "Roční spotřeba",
     "mainFuse": "Hlavní jistič",
     "maxAc": "Maximální vypočtený AC výkon",
@@ -304,22 +304,22 @@ export const cs = {
     "exportValueHelp": "Odhadovaná cena, kterou obdržíte za elektřinu dodanou do sítě.",
     "selfConsumptionValue": "Hodnota spotřebované vlastní solární energie",
     "exportValue": "Hodnota prodané solární energie",
-    "totalAnnualBenefit": "Celkový odhadovaný roční přínos",
+    "totalAnnualBenefit": "Ekonomická hodnota, rok 1",
     "economicsDisclaimer": "Tyto částky jsou předpoklady výpočtu, nikoli garantované budoucí ceny.",
     "paybackTitle": "Zvolte dobu návratnosti",
-    "paybackSubtitle": "Podívejte se, jaká úroveň investice odpovídá různým jednoduchým dobám návratnosti.",
+    "paybackSubtitle": "Podívejte se, jaká úroveň investice odpovídá různým dobám návratnosti.",
     "investmentLevelTitle": "Cena podle vámi zvolené doby návratnosti",
     "panelPowerLabel": "Výkon panelů",
     "investmentLevelBasis": "Na základě zvolené doby návratnosti {{years}} let",
-    "investmentLevelNote": "S dnešními předpoklady výpočtu odpovídá {{years}} let jednoduché doby návratnosti investici přibližně {{amount}}.",
+    "investmentLevelNote": "S dnešními předpoklady výpočtu odpovídá {{years}} let doby návratnosti investici přibližně {{amount}}.",
     "quoteToggle": "Porovnat s nabízenou cenou",
     "quoteLabel": "Nabídková cena ({{currency}})",
     "quotePlaceholder": "89000",
-    "quoteResult": "Nabídková cena odpovídá přibližně {{years}} letům jednoduché doby návratnosti",
+    "quoteResult": "Nabídková cena odpovídá přibližně {{years}} letům doby návratnosti",
     "quoteNote": "Výpočet používá stejnou výrobu, vlastní spotřebu a ceny elektřiny jako váš aktuální výpočet.",
     "priceExplainer": "Spotřebovaná vlastní solární energie nahrazuje elektřinu, která by jinak musela být zakoupena ze sítě. Prodaná solární energie naopak přináší náhradu za elektřinu dodanou do sítě.",
     "paybackYears": "{{years}} let",
-    "paybackInfo": "Jednoduchá doba návratnosti ukazuje, za kolik let se odhadovaná roční ekonomická hodnota rovná investici. Nepočítá s budoucími změnami cen elektřiny, náklady na financování, inflací, údržbou ani diskontováním.",
+    "paybackInfo": "Doba návratnosti ukazuje, za kolik let se odhadovaná roční ekonomická hodnota rovná investici. Nepočítá s budoucími změnami cen elektřiny, náklady na financování, inflací, údržbou ani diskontováním.",
     "maxInvestment": "Úroveň investice při zvolené době návratnosti",
     "maxInvestmentApprox": "cca {{amount}}",
     "investmentLevelInfoLabel": "Více informací",
@@ -328,7 +328,7 @@ export const cs = {
     "systemSizeInfo": "Výpočet je odhadem a měl by sloužit jako orientace. Skutečná výroba, vlastní spotřeba, cena elektřiny, kompenzace, náklady na instalaci a ekonomický výsledek se mohou lišit. Výsledek nepředstavuje nabídku ani záruku.",
     "productionCostInfoLabel": "Více informací",
     "productionCostInfo": "Výrobní náklady jsou vypočítané průměrné náklady na vyrobenou kWh za dobu životnosti zařízení. Skutečné náklady mohou být ovlivněny výrobou, degradací, údržbou a dalšími budoucími náklady.",
-    "maxInvestmentExplainer": "Pro dosažení přibližně {{years}} let jednoduché doby návratnosti by instalace měla stát maximálně kolem {{amount}}.",
+    "maxInvestmentExplainer": "Pro dosažení přibližně {{years}} let doby návratnosti by instalace měla stát maximálně kolem {{amount}}.",
     "maxInvestmentNote": "Částka je vypočítána z vašich vstupů a předpokladů výpočtu – nejedná se o nabídku ani odhad tržní ceny.",
     "missingMarketValues": "Pro tuto zemi nemáme ověřenou standardní hodnotu. Zadejte hodnoty sami níže.",
     "currency": "Měna",
@@ -480,8 +480,8 @@ export const cs = {
       "uncertaintyTitle": "Co může ovlivnit výsledek?",
       "uncertaintyText": "Skutečná solární výroba a ekonomický výsledek se mohou lišit od výpočtu. Výsledek je ovlivněn mimo jiné kolísáním počasí, zastíněním, orientací a sklonem panelů, skutečnou spotřebou elektřiny a jejím časem, cenami elektřiny, kompenzací za export a výkonem systému v čase.",
       "panelPower": "Výkon panelů",
-      "annualValue": "Odhadovaná ekonomická hodnota",
-      "savings30": "Celková ekonomická hodnota za {{years}} let",
+      "annualValue": "Ekonomická hodnota, rok 1",
+      "savings30": "Kumulovaná ekonomická hodnota za {{years}} let",
       "savings30Method": "Období výpočtu: {{years}} let. Degradace výroby: {{degradation}} %/rok. Změna ceny elektřiny: {{priceChange}} %/rok.",
       "savings30Note": "Dlouhodobá ekonomická hodnota je vypočítána rok po roce s {{degradation}} % roční degradací výroby. Výpočet předpokládá nezměněné hodnoty pro vlastní spotřebu a prodanou solární energii.",
       "degradation": "Degradace výroby",
@@ -495,7 +495,7 @@ export const cs = {
       "balanceRatio": "Výroba / spotřeba",
       "balanceNote": "Roční výroba odpovídá přibližně {{percent}} % vaší roční spotřeby elektřiny. To neznamená, že veškerá vyrobená elektřina může být přímo spotřebována v nemovitosti, protože výroba a spotřeba probíhají v různých časech.",
       "perYearShort": "za rok",
-      "paybackTime": "Zvolená jednoduchá doba návratnosti",
+      "paybackTime": "Zvolená doba návratnosti",
       "address": "Adresa",
       "coordinates": "Souřadnice",
       "array": "Velikost systému",
@@ -531,7 +531,7 @@ export const cs = {
       "acceptedPayback": "Zvolená doba návratnosti",
       "maxInvestment": "Úroveň investice při zvolené době návratnosti",
       "quotePrice": "Poskytnutá nabídková cena",
-      "quotePayback": "Jednoduchá doba návratnosti na základě nabídkové ceny",
+      "quotePayback": "Doba návratnosti na základě nabídkové ceny",
       "calculationVersion": "Verze výpočtu",
       "orientation_unknown": "Předpokládaná optimální",
       "orientation_south": "Jih",
@@ -555,9 +555,9 @@ export const cs = {
     "chartConsumption": "Spotřeba",
     "assumptions": "Předpoklady a zdroje dat",
     "origin": {
-      "user": "Poskytnuto vámi",
-      "calculated": "Vypočteno aplikací",
-      "assumed": "Předpoklad (standardní hodnota)",
+      "user": "Vaše hodnota",
+      "calculated": "Vypočteno",
+      "assumed": "Standardní předpoklad",
       "external": "Externí zdroj dat"
     },
     "disclaimer": "Tato zpráva je snímkem výpočtu a je založena na výše uvedených předpokladech. Nejedná se o nabídku.",
@@ -591,19 +591,8 @@ export const cs = {
       {
         "q": "Proč se výroba v průběhu času snižuje?",
         "a": "Výkon solárních panelů se v průběhu let obvykle mírně snižuje. Výpočet vychází z roční degradace 0,5 %, což znamená, že se vypočtená výroba během kalkulačního období postupně snižuje."
-      },
-      {
-        "q": "Jak se vypočítá hodnota mé solární elektřiny?",
-        "a": "Vlastní spotřebovaná solární elektřina se oceňuje podle nákladů na elektřinu, kterou byste jinak museli koupit. Prodaná solární elektřina se oceňuje podle předpokládané náhrady za elektřinu dodanou do sítě."
-      },
-      {
-        "q": "Co znamená výrobní náklad na kWh?",
-        "a": "Výrobní náklad ukazuje vypočtené průměrné náklady na každou vyrobenou kilowatthodinu za dobu životnosti zařízení. Lze jej porovnat s vypočtenou ekonomickou hodnotou solární elektřiny."
-      },
-      {
-        "q": "Proč se doporučuje právě tato velikost zařízení?",
-        "a": "Velikost zařízení se vypočítává mimo jiné na základě vaší spotřeby elektřiny, slunečního záření v daném místě a technických omezení. Cílem je dimenzovat zařízení podle vašich podmínek, nikoli instalovat co největší zařízení."
       }
+    
     ]
   },
   "premium": {

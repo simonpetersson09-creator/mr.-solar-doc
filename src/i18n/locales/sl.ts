@@ -222,7 +222,7 @@ export const sl = {
     "recommendedArray": "Velikost elektrarne",
     "recommendedInverter": "Razsmernik",
     "annualProduction": "Proizvodnja električne energije na leto",
-    "specificYield": "Specifična sončna proizvodnja na lokaciji",
+    "specificYield": "Proizvodni potencial na tej lokaciji",
     "annualConsumption": "Letna poraba",
     "mainFuse": "Glavna varovalka",
     "maxAc": "Največja izračunana AC moč",
@@ -304,10 +304,10 @@ export const sl = {
     "exportValueHelp": "Ocenjena cena, ki jo prejmete za električno energijo, oddano v omrežje.",
     "selfConsumptionValue": "Lastna poraba sončne energije",
     "exportValue": "Oddana sončna energija",
-    "totalAnnualBenefit": "Skupna ocenjena letna korist",
+    "totalAnnualBenefit": "Ekonomska vrednost, 1. leto",
     "economicsDisclaimer": "Ti zneski so kalkulacijske predpostavke, ne zagotovljene prihodnje cene.",
     "paybackTitle": "Izberite dobo vračila",
-    "paybackSubtitle": "Poglejte, katera raven investicije ustreza različnim enostavnim dobam vračila.",
+    "paybackSubtitle": "Poglejte, katera raven investicije ustreza različnim dobam vračila.",
     "investmentLevelTitle": "Cena po izbranem obdobju vračila",
     "panelPowerLabel": "Moč panelov",
     "investmentLevelBasis": "Na podlagi izbrane dobe vračila {{years}} let",
@@ -319,7 +319,7 @@ export const sl = {
     "quoteNote": "Izračun uporablja enako proizvodnjo, lastno porabo in cene električne energije kot vaš trenutni izračun.",
     "priceExplainer": "Lastna poraba sončne energije nadomesti električno energijo, ki bi jo sicer morali kupiti iz omrežja. Oddana sončna energija pa prinaša nadomestilo za električno energijo, oddano v omrežje.",
     "paybackYears": "{{years}} let",
-    "paybackInfo": "Enostavna doba vračila prikazuje, koliko let ocenjena letna ekonomska vrednost ustreza investiciji. Izračun ne upošteva na primer prihodnjih sprememb cen električne energije, stroškov financiranja, inflacije, vzdrževanja ali diskontiranja.",
+    "paybackInfo": "Doba vračila prikazuje, koliko let ocenjena letna ekonomska vrednost ustreza investiciji. Izračun ne upošteva na primer prihodnjih sprememb cen električne energije, stroškov financiranja, inflacije, vzdrževanja ali diskontiranja.",
     "maxInvestment": "Raven investicije pri izbrani dobi vračila",
     "maxInvestmentApprox": "pribl. {{amount}}",
     "investmentLevelInfoLabel": "Več informacij",
@@ -328,7 +328,7 @@ export const sl = {
     "systemSizeInfo": "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dejanska proizvodnja, lastna poraba, cena elektrike, nadomestilo, stroški namestitve in gospodarski izid se lahko razlikujejo. Rezultat ni ponudba niti garancija.",
     "productionCostInfoLabel": "Več informacij",
     "productionCostInfo": "Proizvodni strošek je izračunan povprečni strošek na proizvedeno kWh v času življenjske dobe naprave. Na dejanski strošek lahko vplivajo proizvodnja, degradacija, vzdrževanje in drugi prihodnji stroški.",
-    "maxInvestmentExplainer": "Za dosego približno {{years}} let enostavne dobe vračila naj inštalacija stane največ okoli {{amount}}.",
+    "maxInvestmentExplainer": "Za dosego približno {{years}} let dobe vračila naj inštalacija stane največ okoli {{amount}}.",
     "maxInvestmentNote": "Znesek je izračunan na podlagi vaših vnosov in kalkulacijskih predpostavk – ni ponudba ali ocena tržne cene.",
     "missingMarketValues": "Za to državo nimamo preverjene standardne vrednosti. Vnesite vrednosti sami spodaj.",
     "currency": "Valuta",
@@ -480,8 +480,8 @@ export const sl = {
       "uncertaintyTitle": "Kaj lahko vpliva na rezultat?",
       "uncertaintyText": "Dejanska sončna proizvodnja in ekonomski izid se lahko razlikujeta od izračuna. Na rezultat med drugim vplivajo vremenske spremembe, senčenje, orientacija in naklon panelov, dejanska poraba električne energije in čas, ko se pojavi, cene električne energije, nadomestilo za prodano elektriko ter učinkovitost elektrarne skozi čas.",
       "panelPower": "Moč panelov",
-      "annualValue": "Ocenjena ekonomska vrednost",
-      "savings30": "Skupna ekonomska vrednost v {{years}} letih",
+      "annualValue": "Ekonomska vrednost, 1. leto",
+      "savings30": "Akumulirana ekonomska vrednost v {{years}} letih",
       "savings30Method": "Obdobje izračuna: {{years}} let. Degradacija proizvodnje: {{degradation}} %/leto. Sprememba cene električne energije: {{priceChange}} %/leto.",
       "savings30Note": "Dolgoročna ekonomska vrednost se izračuna vsako leto z {{degradation}} % letne degradacije proizvodnje. Izračun predpostavlja nespremenjene vrednosti za lastno porabo in oddano sončno energijo.",
       "degradation": "Degradacija proizvodnje",
@@ -495,7 +495,7 @@ export const sl = {
       "balanceRatio": "Proizvodnja / poraba",
       "balanceNote": "Letna proizvodnja ustreza približno {{percent}} % vaše letne porabe električne energije. To ne pomeni, da se vsa proizvedena električna energija lahko neposredno porabi v nepremičnini, saj se proizvodnja in poraba pojavljata ob različnih časih.",
       "perYearShort": "na leto",
-      "paybackTime": "Izbrana enostavna doba vračila",
+      "paybackTime": "Izbrana doba vračila",
       "address": "Naslov",
       "coordinates": "Koordinate",
       "array": "Velikost elektrarne",
@@ -531,7 +531,7 @@ export const sl = {
       "acceptedPayback": "Izbrana doba vračila",
       "maxInvestment": "Raven investicije pri izbrani dobi vračila",
       "quotePrice": "Navedena ponudbena cena",
-      "quotePayback": "Enostavna doba vračila na podlagi ponudbene cene",
+      "quotePayback": "Doba vračila na podlagi ponudbene cene",
       "calculationVersion": "Različica izračuna",
       "orientation_unknown": "Predpostavljeno optimalno",
       "orientation_south": "Jug",
@@ -555,9 +555,9 @@ export const sl = {
     "chartConsumption": "Poraba",
     "assumptions": "Predpostavke in viri podatkov",
     "origin": {
-      "user": "Vneseno s strani vas",
-      "calculated": "Izračunano z aplikacijo",
-      "assumed": "Predpostavka (standardna vrednost)",
+      "user": "Vaša vrednost",
+      "calculated": "Izračunano",
+      "assumed": "Standardna predpostavka",
       "external": "Zunanji vir podatkov"
     },
     "disclaimer": "To poročilo je posnetek izračuna in temelji na zgoraj navedenih predpostavkah. Ni ponudba.",
@@ -591,19 +591,8 @@ export const sl = {
       {
         "q": "Zakaj se proizvodnja sčasoma zmanjšuje?",
         "a": "Učinkovitost sončnih panelov se z leti običajno nekoliko zmanjša. Izračun temelji na letni degradaciji 0,5 %, kar pomeni, da se izračunana proizvodnja v obdobju izračuna postopoma zmanjšuje."
-      },
-      {
-        "q": "Kako se izračuna vrednost moje sončne energije?",
-        "a": "Sončna energija, porabljena za lastne potrebe, se vrednoti glede na stroške električne energije, ki bi jo sicer morali kupiti. Prodana sončna energija se vrednoti glede na predvideno nadomestilo za električno energijo, oddano v omrežje."
-      },
-      {
-        "q": "Kaj pomeni strošek proizvodnje na kWh?",
-        "a": "Strošek proizvodnje prikazuje izračunani povprečni strošek vsake proizvedene kilovatne ure v življenjski dobi naprave. Primerjamo ga lahko z izračunano ekonomsko vrednostjo sončne energije."
-      },
-      {
-        "q": "Zakaj se priporoča ravno ta velikost naprave?",
-        "a": "Velikost naprave se izračuna na podlagi med drugim vaše porabe električne energije, sončnega sevanja na lokaciji in tehničnih omejitev. Cilj je dimenzionirati napravo glede na vaše razmere, ne pa namestiti čim večjo napravo."
       }
+    
     ]
   },
   "premium": {
