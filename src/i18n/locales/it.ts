@@ -252,7 +252,7 @@ export const it = {
     "maxInvestment": "Livello di investimento al tempo di ritorno scelto",
     "maxInvestmentApprox": "circa {{amount}}",
     investmentLevelInfoLabel: "Maggiori informazioni",
-    productionCostInfo: "Mostra approssimativamente quale costo di investimento corrisponde al periodo di ammortamento scelto. Non è una stima del costo reale dell'impianto.",
+    investmentLevelInfo: "Mostra approssimativamente quale costo di investimento corrisponde al periodo di ammortamento scelto. Non è una stima del costo reale dell'impianto.",
     systemSizeInfoLabel: "Maggiori informazioni",
     systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produzione effettiva, autoconsumo, prezzo dell'energia, compensazione, costo di installazione e risultato economico possono variare. Il risultato non costituisce un'offerta né una garanzia.",
 

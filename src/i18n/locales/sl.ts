@@ -252,7 +252,7 @@ export const sl = {
     "maxInvestment": "Raven investicije pri izbrani dobi vračila",
     "maxInvestmentApprox": "pribl. {{amount}}",
     investmentLevelInfoLabel: "Več informacij",
-    productionCostInfo: "Približno prikazuje, kakšen strošek naložbe ustreza izbranemu obdobju vračila. To ni ocena dejanskih stroškov namestitve.",
+    investmentLevelInfo: "Približno prikazuje, kakšen strošek naložbe ustreza izbranemu obdobju vračila. To ni ocena dejanskih stroškov namestitve.",
     systemSizeInfoLabel: "Več informacij",
     systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dejanska proizvodnja, lastna poraba, cena elektrike, nadomestilo, stroški namestitve in gospodarski izid se lahko razlikujejo. Rezultat ni ponudba niti garancija.",
 

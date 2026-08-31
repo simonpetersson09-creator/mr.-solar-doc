@@ -252,7 +252,7 @@ export const cs = {
     "maxInvestment": "Úroveň investice při zvolené době návratnosti",
     "maxInvestmentApprox": "cca {{amount}}",
     investmentLevelInfoLabel: "Více informací",
-    productionCostInfo: "Přibližně ukazuje, jaká investiční částka odpovídá vámi zvolené době návratnosti. Nejde o odhad skutečných nákladů na instalaci.",
+    investmentLevelInfo: "Přibližně ukazuje, jaká investiční částka odpovídá vámi zvolené době návratnosti. Nejde o odhad skutečných nákladů na instalaci.",
     systemSizeInfoLabel: "Více informací",
     systemSizeInfo: "Výpočet je odhadem a měl by sloužit jako orientace. Skutečná výroba, vlastní spotřeba, cena elektřiny, kompenzace, náklady na instalaci a ekonomický výsledek se mohou lišit. Výsledek nepředstavuje nabídku ani záruku.",
 

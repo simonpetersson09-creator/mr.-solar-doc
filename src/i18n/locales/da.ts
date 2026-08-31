@@ -252,7 +252,7 @@ export const da = {
     "maxInvestment": "Investeringsniveau ved valgt tilbagebetalingstid",
     "maxInvestmentApprox": "ca. {{amount}}",
     investmentLevelInfoLabel: "Mere information",
-    productionCostInfo: "Viser cirka, hvilken investeringsomkostning der svarer til den tilbagebetalingstid, du har valgt. Det er ikke et skøn over, hvad installationen faktisk koster.",
+    investmentLevelInfo: "Viser cirka, hvilken investeringsomkostning der svarer til den tilbagebetalingstid, du har valgt. Det er ikke et skøn over, hvad installationen faktisk koster.",
     systemSizeInfoLabel: "Mere information",
     systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk produktion, egenforbrug, elpris, godtgørelse, installationsomkostning og økonomisk resultat kan afvige. Resultatet er ikke et tilbud eller en garanti.",
 
