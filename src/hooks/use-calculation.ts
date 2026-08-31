@@ -11,6 +11,7 @@ import {
   connectionCapacityToMaxAcPowerKw,
   isValidConnectionCapacity,
 } from "@/config/connection-capacity";
+import { getPvConnectionRules, resolvePvPowerLimit } from "@/config/pv-connection-rules";
 import { getConnectionConfig } from "@/config/connections";
 import { getCountryConfig } from "@/config/countries";
 
@@ -66,6 +67,10 @@ export function useCalculation(): {
     const maxAcPowerKw = connectionCapacityToMaxAcPowerKw(connectionCapacity!, {
       ...(kvaPowerFactor === undefined ? {} : { contractedKvaPowerFactor: kvaPowerFactor }),
     });
+    const pvLimit = resolvePvPowerLimit({
+      connectionCapacityKw: maxAcPowerKw,
+      rules: getPvConnectionRules(location.countryCode),
+    });
     return runCalculation({
       location,
       resource,
@@ -84,6 +89,9 @@ export function useCalculation(): {
         gridVoltageV,
         gridPhases: gridPhaseCount,
         gridFrequencyHz,
+        pvPowerLimitKw: pvLimit.maxPvAcKw,
+        pvLimitBinding: pvLimit.binding,
+        pvRulesStatus: pvLimit.rulesStatus,
         gridProfileStatus: getConnectionConfig(location.countryCode).status,
         gridProfileConfirmed: gridConfirmed,
       },
