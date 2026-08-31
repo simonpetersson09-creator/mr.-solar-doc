@@ -589,7 +589,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       assumptionsTechnical: "Technical",
       lifetimeYearOne: "Economic value, year 1",
       lifetimeInvestmentLink:
-        "The accumulated economic value through year {{years}} is what the investment level of approximately {{amount}} is based on \u2014 it is the same calculation, only rounded.",
+        "The accumulated economic value through year {{years}} is what the investment level of approximately {{amount}} is based on - it is the same calculation, only rounded.",
       annualValue: "Economic value, year 1",
       savings30: "Accumulated economic value over {{years}} years",
       savings30Method: "Calculation period: {{years}} years. Production degradation: {{degradation}} %/year. Electricity price change: {{priceChange}} %/year.",
