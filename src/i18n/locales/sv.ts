@@ -427,7 +427,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       gridConnection: "Nätanslutning",
       gridConnectionValue: "{{voltage}} V, {{phases}}-fas",
       gridMethodNote:
-        "Teoretisk AC-effekt beräknas utifrån 400 V trefas enligt √3 × 400 V × huvudsäkring. Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
+        "Teoretisk AC-effekt beräknas utifrån 400 V trefas enligt 1,73 × 400 V × huvudsäkring. Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
       savings30Short: "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade elvärden.",
       solarShareTitle: "Din solel",
       selfConsumptionRate: "Egenanvändningsgrad (andel av solelproduktionen)",
