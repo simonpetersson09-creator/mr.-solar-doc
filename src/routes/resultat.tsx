@@ -150,7 +150,7 @@ const cost = result.productionCost;
                 onClick={() => setShowSystemSizeInfo((open) => !open)}
                 aria-label={t("result.systemSizeInfoLabel")}
                 aria-expanded={showSystemSizeInfo}
-                className="flex size-5 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white/80 transition-colors hover:bg-white/20"
+className="flex size-5 shrink-0 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
               >
                 <CircleAlert className="size-3.5" />
               </button>
@@ -329,7 +329,7 @@ const cost = result.productionCost;
               onClick={() => setShowProdCostInfo((open) => !open)}
               aria-label={t("result.productionCostInfoLabel")}
               aria-expanded={showProdCostInfo}
-              className="flex size-5 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white/80 transition-colors hover:bg-white/20"
+              className="flex size-5 shrink-0 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
             >
               <CircleAlert className="size-3.5" />
             </button>
