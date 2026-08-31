@@ -311,7 +311,7 @@ export const fi = {
     "investmentLevelTitle": "Hinta valitsemasi takaisinmaksuajan mukaan",
     "panelPowerLabel": "Paneelien teho",
     "investmentLevelBasis": "Perustuu valittuun {{years}} vuoden takaisinmaksuaikaan",
-    "investmentLevelNote": "Nykyisillä laskentaoletuksilla {{years}} vuoden yksinkertainen takaisinmaksuaika vastaa noin {{amount}} investointia.",
+    "investmentLevelNote": "Nykyisillä laskentaoletuksilla {{years}} vuoden takaisinmaksuaika vastaa noin {{amount}} investointia.",
     "quoteToggle": "Vertaa tarjoushintoihin",
     "quoteLabel": "Tarjoushinta ({{currency}})",
     "quotePlaceholder": "89000",
@@ -319,7 +319,7 @@ export const fi = {
     "quoteNote": "Laskelma käyttää samaa tuotantoa, omaa kulutusta ja sähköhintoja kuin nykyinen laskelmasi.",
     "priceExplainer": "Itse kulutettu aurinkosähkö korvaa sähkön, joka olisi muuten pitänyt ostaa sähköverkosta. Myyty aurinkosähkö sen sijaan tuottaa korvausta verkkoon syötetystä sähköstä.",
     "paybackYears": "{{years}} vuotta",
-    "paybackInfo": "Yksinkertainen takaisinmaksuaika osoittaa, kuinka monta vuotta arvioitu vuotuinen taloudellinen arvo vastaa investointia. Laskelma ei huomioi esimerkiksi tulevia sähkön hinnanmuutoksia, rahoituskustannuksia, inflaatiota, huoltoa tai diskonttausta.",
+    "paybackInfo": "Investointitaso näyttää suunnilleen, kuinka suuri investointi vastaa valittua takaisinmaksuaikaa, perustuen laskelman ennustamiin taloudellisiin arvoihin kyseisellä ajanjaksolla. Se ei ole arvioitu markkinahinta tai tarjous.",
     "maxInvestment": "Investointitaso valitulla takaisinmaksuajalla",
     "maxInvestmentApprox": "n. {{amount}}",
     "investmentLevelInfoLabel": "Lisätietoja",
@@ -480,8 +480,17 @@ export const fi = {
       "uncertaintyTitle": "Mikä voi vaikuttaa lopputulokseen?",
       "uncertaintyText": "Todellinen aurinkosähköntuotanto ja taloudellinen tulos voivat poiketa laskelmasta. Tulokseen vaikuttavat muun muassa sääolosuhteiden vaihtelut, varjostus, paneelien suunta ja kaltevuus, todellinen sähkönkulutus ja sen ajankohta, sähkön hinnat, korvaus myydystä sähköstä sekä järjestelmän suorituskyky ajan mittaan.",
       "panelPower": "Paneeliteho",
-      "annualValue": "Arvioitu taloudellinen arvo",
-      "savings30": "Taloudellinen kokonaisarvo {{years}} vuoden ajalta",
+      "summaryMethodFlat": "Laskettu {{degradation}} %:n vuotuisella tuotannon heikkenemisellä ja muuttumattomilla arvoilla itse kulutetulle ja myydylle aurinkosähkölle.",
+      "summaryMethodTrend": "Laskettu {{degradation}} %:n vuotuisella tuotannon heikkenemisellä ja oletetulla {{priceChange}} %:n vuotuisella aurinkosähkön arvon muutoksella.",
+      "specificYieldNote": "Kohteen tuotto on laskettu tuotto asennettua kWp:tä kohden tällä sijainnilla, kattosi suunnan ja kaltevuuden mukaan. Se ei ole järjestelmän kokonaisvuosituotanto.",
+      "investmentNote": "Investointitaso näyttää suunnilleen, kuinka suuri investointi vastaa valittua takaisinmaksuaikaa, perustuen laskelman ennustamaan kertyneeseen taloudelliseen arvoon kyseiseen vuoteen mennessä. Siihen vaikuttavat oletettu sähkön arvon muutos ja tuotannon heikkeneminen, eikä se ole arvioitu markkinahinta tai tarjous.",
+      "assumptionsProduction": "Tuotanto",
+      "assumptionsEconomy": "Talous",
+      "assumptionsTechnical": "Tekniikka",
+      "lifetimeYearOne": "Taloudellinen arvo, vuosi 1",
+      "lifetimeInvestmentLink": "Kertynyt taloudellinen arvo vuoteen {{years}} mennessä on se, mihin noin {{amount}}:n investointitaso perustuu - kyseessä on sama laskelma, vain pyöristettynä.",
+      "annualValue": "Taloudellinen arvo, vuosi 1",
+      "savings30": "Kertynyt taloudellinen arvo {{years}} vuoden ajalta",
       "savings30Method": "Laskentajakso: {{years}} vuotta. Tuotannon heikkeneminen: {{degradation}} %/vuosi. Sähkön hinnan muutos: {{priceChange}} %/vuosi.",
       "savings30Note": "Pitkän aikavälin taloudellinen arvo lasketaan vuosittain käyttäen {{degradation}} %:n vuotuista tuotannon heikkenemistä. Laskelmassa oletetaan käytetyn ja myydyn aurinkosähkön arvojen pysyvän ennallaan.",
       "degradation": "Tuotannon heikkeneminen",
@@ -495,7 +504,7 @@ export const fi = {
       "balanceRatio": "Tuotanto / kulutus",
       "balanceNote": "Vuosituotanto vastaa noin {{percent}} % vuotuisesta sähkönkulutuksestasi. Se ei tarkoita, että kaikki tuotettu sähkö voidaan käyttää suoraan kiinteistössä, koska tuotanto ja sähkönkulutus tapahtuvat eri aikoina.",
       "perYearShort": "/v",
-      "paybackTime": "Valittu yksinkertainen takaisinmaksuaika",
+      "paybackTime": "Valittu takaisinmaksuaika",
       "address": "Osoite",
       "coordinates": "Koordinaatit",
       "array": "Järjestelmän koko",
@@ -507,7 +516,7 @@ export const fi = {
       "mainFuse": "Pääsulake",
       "maxAc": "Teoreettinen tehoraja pääsulakkeesta",
       "annualProduction": "Sähköntuotanto vuodessa",
-      "specificYield": "Kohteen tuotto",
+      "specificYield": "Tuotantopotentiaali tässä sijainnissa",
       "dataSource": "Tietojen lähde",
       "consumptionSource": "Kulutustietojen lähde",
       "consumptionShape": "Kulutusprofiili",
@@ -519,7 +528,7 @@ export const fi = {
       "exportValueRate": "Oletettu korvaus myydystä aurinkosähköstä",
       "selfConsumptionValue": "Itse kulutetun aurinkosähkön arvo",
       "exportValue": "Myydyn aurinkosähkön arvo",
-      "totalAnnualBenefit": "Arvioitu taloudellinen arvo",
+      "totalAnnualBenefit": "Taloudellinen arvo, vuosi 1",
       "currency": "Valuutta",
       "economicValue": "Perustava taloudellinen arvo",
       "orientation": "Ilmansuunta",
@@ -531,7 +540,7 @@ export const fi = {
       "acceptedPayback": "Valittu takaisinmaksuaika",
       "maxInvestment": "Investointitaso valitulla takaisinmaksuajalla",
       "quotePrice": "Ilmoitettu tarjoushinta",
-      "quotePayback": "Yksinkertainen takaisinmaksuaika tarjoushinnan perusteella",
+      "quotePayback": "Takaisinmaksuaika tarjoushinnan perusteella",
       "calculationVersion": "Laskentajärjestelmäversio",
       "orientation_unknown": "Oletettu optimaalinen",
       "orientation_south": "Etelä",
@@ -555,9 +564,9 @@ export const fi = {
     "chartConsumption": "Kulutus",
     "assumptions": "Oletukset ja tietolähteet",
     "origin": {
-      "user": "Antamasi tiedot",
-      "calculated": "Sovelluksen laskema",
-      "assumed": "Oletus (oletusarvo)",
+      "user": "Oma arvosi",
+      "calculated": "Laskettu",
+      "assumed": "Vakio-oletus",
       "external": "Ulkoinen tietolähde"
     },
     "disclaimer": "Tämä raportti on otos laskelmasta ja perustuu yllä lueteltuihin oletuksiin. Se ei ole tarjous.",
@@ -591,18 +600,6 @@ export const fi = {
       {
         "q": "Miksi tuotanto vähenee ajan myötä?",
         "a": "Aurinkopaneelien teho laskee normaalisti hieman vuosien myötä. Laskenta perustuu 0,5 %:n vuotuiseen degradaatioon, mikä tarkoittaa, että laskettu tuotanto vähenee vähitellen laskentajakson aikana."
-      },
-      {
-        "q": "Miten aurinkosähköni arvo lasketaan?",
-        "a": "Omaan käyttöön menevä aurinkosähkö arvostetaan sen sähkön hinnan mukaan, jonka olisit muuten joutunut ostamaan. Myyty aurinkosähkö arvostetaan oletetun korvauksen mukaan sähköverkkoon syötetystä sähköstä."
-      },
-      {
-        "q": "Mitä tuotantokustannus per kWh tarkoittaa?",
-        "a": "Tuotantokustannus osoittaa laskennallisen keskimääräisen kustannuksen jokaista tuotettua kilowattituntia kohden laitoksen käyttöiän aikana. Sitä voidaan verrata aurinkosähkön laskennalliseen taloudelliseen arvoon."
-      },
-      {
-        "q": "Miksi juuri tätä laitoksen kokoa suositellaan?",
-        "a": "Laitoksen koko lasketaan muun muassa sähkönkulutuksesi, paikan auringonsäteilyn ja teknisten rajoitusten perusteella. Tavoitteena on mitoittaa laitos olosuhteidesi mukaan, ei asentaa suurinta mahdollista laitosta."
       }
     ]
   },

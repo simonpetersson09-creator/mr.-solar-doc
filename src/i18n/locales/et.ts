@@ -222,7 +222,7 @@ export const et = {
     "recommendedArray": "Süsteemi suurus",
     "recommendedInverter": "Inverter",
     "annualProduction": "Elektritootmine aastas",
-    "specificYield": "Spetsiifiline tootlikkus asukohas",
+    "specificYield": "Selle asukoha tootmispotentsiaal",
     "annualConsumption": "Aastatarbimine",
     "mainFuse": "Peakaitse",
     "maxAc": "Maksimaalne arvutatud vahelduvvoolu võimsus",
@@ -304,14 +304,14 @@ export const et = {
     "exportValueHelp": "Hinnanguline hind, mida saad võrku antud elektri eest.",
     "selfConsumptionValue": "Ise tarbitud päikeseenergia",
     "exportValue": "Müüdud päikeseenergia",
-    "totalAnnualBenefit": "Aastane hinnanguline kogukasu",
+    "totalAnnualBenefit": "Majanduslik väärtus, 1. aasta",
     "economicsDisclaimer": "Need summad on arvutuseeldused, mitte garanteeritud tulevased hinnad.",
     "paybackTitle": "Vali tasuvusaeg",
     "paybackSubtitle": "Vaata, milline investeeringu tase vastab erinevatele lihtsatele tasuvusaegadele.",
     "investmentLevelTitle": "Hind vastavalt teie valitud tasuvusajale",
     "panelPowerLabel": "Paneelide võimsus",
     "investmentLevelBasis": "Põhineb valitud {{years}} aasta tasuvusajal",
-    "investmentLevelNote": "Tänaste arvutuseelduste kohaselt vastab {{years}} aasta lihtne tasuvusaeg umbes {{amount}} investeeringule.",
+    "investmentLevelNote": "Tänaste arvutuseelduste kohaselt vastab {{years}} aasta tasuvusaeg umbes {{amount}} investeeringule.",
     "quoteToggle": "Võrdle pakkumise hinnaga",
     "quoteLabel": "Pakkumise hind ({{currency}})",
     "quotePlaceholder": "89000",
@@ -319,7 +319,7 @@ export const et = {
     "quoteNote": "Arvutus kasutab samu tootmis-, omatarbe- ja elektrihindu nagu sinu praegune arvutus.",
     "priceExplainer": "Ise tarbitud päikeseenergia asendab elektrit, mis oleks muidu tulnud võrgust osta. Müüdud päikeseenergia annab aga hüvitist võrku antud elektri eest.",
     "paybackYears": "{{years}} aastat",
-    "paybackInfo": "Lihtne tasuvusaeg näitab, mitu aastat kulub investeeringu tagasiteenimiseks hinnangulise aastase majandusliku väärtusega. Arvutus ei arvesta näiteks tulevaste elektrihinnamuutuste, finantseerimiskulude, inflatsiooni, hoolduse ega diskonteerimisega.",
+    "paybackInfo": "Tasuvusaeg näitab, mitu aastat kulub investeeringu tagasiteenimiseks hinnangulise aastase majandusliku väärtusega. Arvutus ei arvesta näiteks tulevaste elektrihinnamuutuste, finantseerimiskulude, inflatsiooni, hoolduse ega diskonteerimisega.",
     "maxInvestment": "Investeeringu tase valitud tasuvusajal",
     "maxInvestmentApprox": "umbes {{amount}}",
     "investmentLevelInfoLabel": "Rohkem teavet",
@@ -480,8 +480,17 @@ export const et = {
       "uncertaintyTitle": "Mis võib tulemusi mõjutada?",
       "uncertaintyText": "Tegelik päikeseenergia tootmine ja majanduslik tulemus võivad erineda arvutatust. Tulemust mõjutavad muu hulgas ilmastikumuutused, varjutus, paneelide orientatsioon ja kalle, tegelik elektritarbimine ja selle ajastus, elektrihinnad, müügihüvitis ja süsteemi toimivus aja jooksul.",
       "panelPower": "Paneeli võimsus",
-      "annualValue": "Hinnanguline majanduslik väärtus",
-      "savings30": "Kogumajanduslik väärtus {{years}} aasta jooksul",
+      "summaryMethodFlat": "Arvutatud aastase tootlikkuse languse {{degradation}} % ja muutumatute oma- ning müüdud päikeseenergia väärtustega.",
+      "summaryMethodTrend": "Arvutatud aastase tootlikkuse languse {{degradation}} % ja eeldatava {{priceChange}} % aastase päikeseenergia väärtuse muutusega.",
+      "specificYieldNote": "Tootmispotentsiaal on selle asukoha arvutatud toodang paigaldatud kWp kohta, teie katuse suuna ja kalde juures. See ei ole süsteemi kogutoodang aastas.",
+      "investmentNote": "Investeeringutase näitab ligikaudu, milline investeering vastab valitud tasuvusajale, lähtudes arvutuse kumulatiivsest majanduslikust väärtusest selle aastani. See ei ole turuhinna hinnang ega pakkumine.",
+      "assumptionsProduction": "Tootmine",
+      "assumptionsEconomy": "Majandus",
+      "assumptionsTechnical": "Tehnilised andmed",
+      "lifetimeYearOne": "Majanduslik väärtus, aasta 1",
+      "lifetimeInvestmentLink": "Kumulatiivne majanduslik väärtus aastani {{years}} on aluseks investeeringutasemele umbes {{amount}} - see on sama arvutus, ainult ümardatud.",
+      "annualValue": "Majanduslik väärtus, 1. aasta",
+      "savings30": "Kogunenud majanduslik väärtus {{years}} aasta jooksul",
       "savings30Method": "Arvutusperiood: {{years}} aastat. Tootluse langus: {{degradation}} %/a. Elektrihinna muutus: {{priceChange}} %/a.",
       "savings30Note": "Pikaajaline majanduslik väärtus arvutatakse aasta-aastalt, kasutades {{degradation}} % aastast tootluse langust. Arvutus eeldab omatarbe ja müüdud päikeseenergia muutumatuid väärtusi.",
       "degradation": "Tootluse langus",
@@ -495,7 +504,7 @@ export const et = {
       "balanceRatio": "Tootmine / tarbimine",
       "balanceNote": "Aastane tootmine vastab umbes {{percent}} % sinu aastasest elektritarbimisest. See ei tähenda, et kogu toodetud elektrit saab otse kinnistul kasutada, kuna tootmine ja tarbimine toimuvad erinevatel aegadel.",
       "perYearShort": "aastas",
-      "paybackTime": "Valitud lihtne tasuvusaeg",
+      "paybackTime": "Valitud tasuvusaeg",
       "address": "Aadress",
       "coordinates": "Koordinaadid",
       "array": "Süsteemi suurus",
@@ -531,7 +540,7 @@ export const et = {
       "acceptedPayback": "Valitud tasuvusaeg",
       "maxInvestment": "Investeeringu tase valitud tasuvusajal",
       "quotePrice": "Esitatud pakkumise hind",
-      "quotePayback": "Lihtne tasuvusaeg pakkumise hinna alusel",
+      "quotePayback": "Tasuvusaeg pakkumise hinna alusel",
       "calculationVersion": "Arvutuse versioon",
       "orientation_unknown": "Eeldatav optimaalne",
       "orientation_south": "Lõuna",
@@ -555,9 +564,9 @@ export const et = {
     "chartConsumption": "Tarbimine",
     "assumptions": "Eeldused ja andmeallikad",
     "origin": {
-      "user": "Sinu poolt sisestatud",
-      "calculated": "Rakenduse poolt arvutatud",
-      "assumed": "Eeldus (vaikeväärtus)",
+      "user": "Sinu väärtus",
+      "calculated": "Arvutatud",
+      "assumed": "Standardeeldus",
       "external": "Väline andmeallikas"
     },
     "disclaimer": "See aruanne on arvutuse hetkepilt ja põhineb eelnevalt nimetatud eeldustel. See ei ole pakkumine.",
@@ -591,19 +600,8 @@ export const et = {
       {
         "q": "Miks tootmine aja jooksul väheneb?",
         "a": "Päikesepaneelide võimsus väheneb aastate jooksul tavaliselt veidi. Arvutus lähtub aastasest 0,5 %-lisest degradeerumisest, mis tähendab, et arvutuslik tootmine väheneb kalkulatsiooniperioodi jooksul järk-järgult."
-      },
-      {
-        "q": "Kuidas arvutatakse minu päikeseenergia väärtus?",
-        "a": "Omatarbitud päikeseenergiat hinnatakse elektri hinna järgi, mida muidu oleksite pidanud ostma. Müüdud päikeseenergiat hinnatakse eeldatava tasu järgi võrku antud elektri eest."
-      },
-      {
-        "q": "Mida tähendab tootmiskulu kWh kohta?",
-        "a": "Tootmiskulu näitab arvutuslikku keskmist kulu iga toodetud kilovatt-tunni kohta seadme eluea jooksul. Seda saab võrrelda päikeseenergia arvutusliku majandusliku väärtusega."
-      },
-      {
-        "q": "Miks soovitatakse just seda seadme suurust?",
-        "a": "Seadme suurus arvutatakse muu hulgas teie elektritarbimise, asukoha päikesekiirguse ja tehniliste piirangute alusel. Eesmärk on mõõtu anda seade vastavalt teie oludele, mitte paigaldada võimalikult suurt seadet."
       }
+    
     ]
   },
   "premium": {

@@ -528,6 +528,15 @@ export const tr = {
       "uncertaintyTitle": "Sonucu neler etkileyebilir?",
       "uncertaintyText": "Gerçek güneş enerjisi üretimi ve ekonomik sonuç, hesaplamadan farklı olabilir. Sonuç; hava koşullarındaki değişim, gölgelenme, panel yönü ve eğimi, gerçek elektrik kullanımı ve ne zaman gerçekleştiği, elektrik fiyatları, şebekeye satış tazminatı ve sistemin zaman içindeki performansından etkilenir.",
       "panelPower": "Panel gücü",
+      "summaryMethodFlat": "Yıllık {{degradation}} % üretim kaybı ve kendi kullanılan ile satılan güneş elektriği için değişmeyen değerlerle hesaplanmıştır.",
+      "summaryMethodTrend": "Yıllık {{degradation}} % üretim kaybı ve güneş elektriği değerinde varsayılan {{priceChange}} % yıllık değişimle hesaplanmıştır.",
+      "specificYieldNote": "Üretim potansiyeli, çatınızın yönü ve eğimi için bu konumda kurulu kWp başına hesaplanan üretimdir. Sistemin toplam yıllık üretimi değildir.",
+      "investmentNote": "Yatırım düzeyi, hesaplamanın o yıla kadar biriken ekonomik değerine göre seçilen geri ödeme süresine yaklaşık olarak hangi yatırımın karşılık geldiğini gösterir. Tahmini piyasa fiyatı veya teklif değildir.",
+      "assumptionsProduction": "Üretim",
+      "assumptionsEconomy": "Ekonomi",
+      "assumptionsTechnical": "Teknik veriler",
+      "lifetimeYearOne": "Ekonomik değer, 1. yıl",
+      "lifetimeInvestmentLink": "{{years}}. yıla kadar biriken ekonomik değer, yaklaşık {{amount}} yatırım düzeyinin temelidir - aynı hesap, sadece yuvarlanmış.",
       "annualValue": "Tahmini ekonomik değer",
       "savings30": "{{years}} yıl boyunca toplam ekonomik değer",
       "savings30Method": "Hesaplama dönemi: {{years}} yıl. Üretim verim kaybı: %{{degradation}}/yıl. Elektrik fiyatı değişimi: %{{priceChange}}/yıl.",
@@ -615,10 +624,7 @@ export const tr = {
       { "q": "Seçilen geri ödeme süresi için fiyat ne anlama gelir?", "a": "Hesaplamanın varsayımlarına dayanarak, seçtiğiniz geri ödeme süresine karşılık gelmesi için kurulumun yaklaşık ne kadara mal olabileceğini gösterir. Tahmini bir piyasa fiyatı değildir." },
       { "q": "Kurulumcunun hesaplaması neden farklılık gösterebilir?", "a": "Üretim, öz tüketim, elektrik fiyatları, sistem kayıpları ve gelecekteki fiyat gelişimi hakkındaki farklı varsayımlar farklı sonuçlar verebilir." },
       { "q": "Bu hesaplama bir teklif mi?", "a": "Hayır. Sonuç bir tahmindir ve karar verme temeli olarak amaçlanmıştır. Gerçek fiyat, üretim ve ekonomik sonuç farklılık gösterebilir." },
-      { "q": "Üretim neden zamanla azalır?", "a": "Güneş panellerinin verimliliği normalde yıllar içinde biraz azalır. Hesaplama, yıllık %0,5 verim kaybı varsayar; bu da tahmini üretimin hesaplama dönemi boyunca kademeli olarak azaldığı anlamına gelir." },
-      { "q": "Güneş enerjimin değeri nasıl hesaplanır?", "a": "Öz tüketilen güneş enerjisi, aksi takdirde satın almak zorunda kalacağınız elektriğin maliyeti üzerinden değerlendirilir. Satılan güneş enerjisi ise şebekeye verilen elektrik için varsayılan tazminat üzerinden değerlendirilir." },
-      { "q": "kWh başına üretim maliyeti ne anlama gelir?", "a": "Üretim maliyeti, kurulumun ömrü boyunca üretilen her kilovat-saatin tahmini ortalama maliyetini gösterir. Güneş enerjisinin tahmini ekonomik değeriyle karşılaştırılabilir." },
-      { "q": "Bu kurulum boyutu neden özellikle önerildi?", "a": "Kurulumun boyutu, diğerlerinin yanı sıra elektrik tüketiminize, konumdaki güneş ışınımına ve teknik sınırlamalara göre hesaplanır. Amaç, mümkün olan en büyük kurulumu yapmak değil, kurulumu koşullarınıza göre boyutlandırmaktır." }
+      { "q": "Üretim neden zamanla azalır?", "a": "Güneş panellerinin verimliliği normalde yıllar içinde biraz azalır. Hesaplama, yıllık %0,5 verim kaybı varsayar; bu da tahmini üretimin hesaplama dönemi boyunca kademeli olarak azaldığı anlamına gelir." }
     ]
   }
 } as const;

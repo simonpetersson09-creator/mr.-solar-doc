@@ -528,6 +528,15 @@ export const sr = {
       "uncertaintyTitle": "Шта може утицати на исход?",
       "uncertaintyText": "Стварна соларна производња и економски исход могу се разликовати од прорачуна. На резултат утичу временске варијације, засенчење, оријентација и нагиб панела, стварна потрошња струје и када се она дешава, цене струје, накнада за предају и учинак система током времена.",
       "panelPower": "Снага панела",
+      "summaryMethodFlat": "Izračunato uz godišnju degradaciju proizvodnje od {{degradation}} % i nepromenjene vrednosti sopstveno potrošene i prodate solarne struje.",
+      "summaryMethodTrend": "Izračunato uz godišnju degradaciju proizvodnje od {{degradation}} % i pretpostavljenu godišnju promenu vrednosti solarne struje od {{priceChange}} %.",
+      "specificYieldNote": "Proizvodni potencijal je izračunata proizvodnja po instaliranom kWp na ovoj lokaciji, za orijentaciju i nagib vašeg krova. To nije ukupna godišnja proizvodnja sistema.",
+      "investmentNote": "Nivo investicije pokazuje približno koja investicija odgovara izabranom periodu povraćaja, na osnovu kumulativne ekonomske vrednosti izračuna do te godine. To nije procena tržišne cene niti ponuda.",
+      "assumptionsProduction": "Proizvodnja",
+      "assumptionsEconomy": "Ekonomija",
+      "assumptionsTechnical": "Tehnički podaci",
+      "lifetimeYearOne": "Ekonomska vrednost, 1. godina",
+      "lifetimeInvestmentLink": "Kumulativna ekonomska vrednost do {{years}}. godine je osnova za nivo investicije od oko {{amount}} - isti izračun, samo zaokružen.",
       "annualValue": "Процењена економска вредност",
       "savings30": "Укупна економска вредност током {{years}} година",
       "savings30Method": "Период прорачуна: {{years}} година. Деградација производње: {{degradation}} %/год. Промена цене струје: {{priceChange}} %/год.",
@@ -615,10 +624,7 @@ export const sr = {
       { "q": "Шта значи цена за изабрани период отплате?", "a": "Она показује приближно колико инсталација сме коштати да би одговарала периоду отплате који сте изабрали, на основу претпоставки прорачуна. Није процењена тржишна цена." },
       { "q": "Зашто се прорачун инсталатера може разликовати?", "a": "Различите претпоставке о производњи, самопотрошњи, ценама струје, губицима система и будућем кретању цена могу дати различите резултате." },
       { "q": "Да ли је прорачун понуда?", "a": "Не. Резултат је процена и намењен је као основа за доношење одлуке. Стварна цена, производња и економски исход могу се разликовати." },
-      { "q": "Зашто производња опада током времена?", "a": "Ефикасност соларних панела обично се временом благо смањује. Прорачун претпоставља годишњу деградацију од 0,5 %, што значи да се процењена производња постепено смањује током периода прорачуна." },
-      { "q": "Како се израчунава вредност моје соларне струје?", "a": "Самопотрошена соларна струја вреднује се према трошку струје коју бисте иначе морали купити. Продата соларна струја вреднује се према претпостављеној накнади за струју предату у мрежу." },
-      { "q": "Шта значи трошак производње по kWh?", "a": "Трошак производње показује процењени просечан трошак сваког произведеног киловат-часа током животног века инсталације. Може се упоредити са процењеном економском вредношћу соларне струје." },
-      { "q": "Зашто се препоручује баш ова величина инсталације?", "a": "Величина инсталације израчунава се, између осталог, на основу ваше потрошње струје, сунчевог зрачења на локацији и техничких ограничења. Циљ је димензионисати инсталацију према вашим условима, а не изградити највећу могућу инсталацију." }
+      { "q": "Зашто производња опада током времена?", "a": "Ефикасност соларних панела обично се временом благо смањује. Прорачун претпоставља годишњу деградацију од 0,5 %, што значи да се процењена производња постепено смањује током периода прорачуна." }
     ]
   }
 } as const;

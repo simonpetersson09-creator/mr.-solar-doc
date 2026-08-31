@@ -245,7 +245,7 @@ gridAssumptionInfo: "Säkringens teoretiska effekt beräknas utifrån 400 V tref
     recommendedArray: "Storlek på anläggning",
     recommendedInverter: "Växelriktare",
     annualProduction: "Elproduktion/år",
-    specificYield: "Solproduktion på platsen",
+    specificYield: "Produktionspotential på platsen",
     annualConsumption: "Årsförbrukning",
     mainFuse: "Huvudsäkring",
     maxAc: "Maximal beräknad AC-effekt",
@@ -351,18 +351,18 @@ priceScenarioHigh: "Hög",
     panelPowerLabel: "Paneleffekt",
     investmentLevelBasis: "Baserat på din valda återbetalningstid på {{years}} år",
     investmentLevelNote:
-      "Med dagens kalkylantaganden motsvarar {{years}} års enkel återbetalningstid en investering på cirka {{amount}}.",
+      "Med kalkylens antaganden motsvarar {{years}} års återbetalningstid en investering på cirka {{amount}}.",
     quoteToggle: "Jämför med offertpris",
     quoteLabel: "Pris enligt offert ({{currency}})",
     quotePlaceholder: "89000",
-    quoteResult: "Offertpriset motsvarar cirka {{years}} års enkel återbetalningstid",
+    quoteResult: "Offertpriset motsvarar cirka {{years}} års återbetalningstid",
     quoteNote:
       "Beräkningen utgår från samma produktion, egenanvändning och elpriser som din nuvarande kalkyl.",
     priceExplainer:
       "Egenanvänd solel ersätter el som annars hade behövt köpas från elnätet. Såld solel ger istället en ersättning för den el som matas ut på nätet.",
     paybackYears: "{{years}} år",
     paybackInfo:
-      "Enkel återbetalningstid visar hur många år det beräknade årliga ekonomiska värdet motsvarar investeringen. Beräkningen tar inte hänsyn till exempelvis framtida elprisförändringar, finansieringskostnad, inflation, underhåll eller diskontering.",
+      "Investeringsnivån visar ungefär vilken investering som motsvarar den valda återbetalningstiden utifrån kalkylens beräknade ekonomiska värden under perioden. Beloppet är inte ett uppskattat marknadspris eller en offert.",
     maxInvestment: "Investeringsnivå vid vald återbetalningstid",
     productionCostTitle: "Produktionskostnad",
     investmentLevelInfoLabel: "Mer information",
@@ -383,7 +383,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
     perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "ca {{amount}}",
     maxInvestmentExplainer:
-      "För att nå cirka {{years}} års enkel återbetalningstid bör installationen kosta högst omkring {{amount}}.",
+      "För att nå cirka {{years}} års återbetalningstid bör installationen kosta högst omkring {{amount}}.",
     maxInvestmentNote:
       "Beloppet är en beräkning utifrån dina uppgifter och kalkylantaganden – inte en offert eller en uppskattning av marknadspris.",
     missingSelfConsumedValue: "Elpris saknas. Ange vad du betalar per kWh för att se värdet av egenanvänd solel.",
@@ -578,8 +578,22 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       uncertaintyText:
         "Faktisk solelproduktion och ekonomiskt utfall kan avvika från beräkningen. Resultatet påverkas bland annat av vädervariationer, skuggning, panelernas orientering och lutning, faktisk elanvändning och när den sker, elpriser, ersättning för såld el samt anläggningens prestanda över tid.",
       panelPower: "Paneleffekt",
-      annualValue: "Beräknat ekonomiskt värde",
-      savings30: "Totalt ekonomiskt värde över {{years}} år",
+      summaryMethodFlat:
+        "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade värden för egenanvänd och såld solel.",
+      summaryMethodTrend:
+        "Beräknat med {{degradation}} % årlig produktionsdegradering och {{priceChange}} % antagen årlig förändring av elvärden.",
+      specificYieldNote:
+        "Produktionspotentialen är platsens beräknade produktion per installerad kWp, för ditt taks riktning och lutning. Det är inte anläggningens totala årsproduktion.",
+      investmentNote:
+        "Investeringsnivån visar ungefär vilken investering som motsvarar den valda återbetalningstiden utifrån det ackumulerade ekonomiska värde kalkylen räknar fram fram till det året. Beräkningen påverkas bland annat av antagen förändring av elvärden och av produktionsdegradering. Beloppet är inte ett uppskattat marknadspris eller en offert.",
+      assumptionsProduction: "Produktion",
+      assumptionsEconomy: "Ekonomi",
+      assumptionsTechnical: "Teknik",
+      lifetimeYearOne: "Ekonomiskt värde år 1",
+      lifetimeInvestmentLink:
+        "Det ackumulerade ekonomiska värdet fram till år {{years}} är det som investeringsnivån på cirka {{amount}} bygger på - det är samma kalkyl, bara avrundad.",
+      annualValue: "Ekonomiskt värde år 1",
+      savings30: "Ackumulerat ekonomiskt värde över {{years}} år",
       savings30Method: "Kalkylperiod: {{years}} år. Produktionsdegradering: {{degradation}} %/år. Elprisförändring: {{priceChange}} %/år.",
       savings30Note: "Det långsiktiga ekonomiska värdet beräknas år för år med {{degradation}} % årlig produktionsdegradering. Kalkylen antar oförändrade värden för egenanvänd och såld solel.",
       degradation: "Produktionsdegradering",
@@ -594,7 +608,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       balanceNote:
         "Årsproduktionen motsvarar cirka {{percent}} % av din årsförbrukning. Det betyder inte att all producerad el kan användas direkt i fastigheten, eftersom produktion och elanvändning sker vid olika tidpunkter.",
       perYearShort: "per år",
-      paybackTime: "Vald enkel återbetalningstid",
+      paybackTime: "Vald återbetalningstid",
       address: "Adress",
       coordinates: "Koordinater",
       array: "Storlek på anläggning",
@@ -606,7 +620,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       mainFuse: "Huvudsäkring",
       maxAc: "Teoretisk effektgräns från huvudsäkring",
       annualProduction: "Elproduktion per år",
-      specificYield: "Solproduktion på platsen",
+      specificYield: "Produktionspotential på platsen",
       dataSource: "Datakälla",
       consumptionSource: "Datakälla förbrukning",
       consumptionShape: "Förbrukningsprofil",
@@ -618,7 +632,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       exportValueRate: "Antagen ersättning såld solel",
       selfConsumptionValue: "Värde egenanvänd solel",
       exportValue: "Värde såld solel",
-      totalAnnualBenefit: "Beräknat ekonomiskt värde",
+      totalAnnualBenefit: "Ekonomiskt värde år 1",
       currency: "Valuta",
       economicValue: "Grundläggande ekonomiskt värde",
       orientation: "Väderstreck",
@@ -630,7 +644,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       acceptedPayback: "Vald återbetalningstid",
       maxInvestment: "Investeringsnivå vid vald återbetalningstid",
       quotePrice: "Angivet offertpris",
-      quotePayback: "Enkel återbetalningstid utifrån offertpriset",
+      quotePayback: "Återbetalningstid utifrån offertpriset",
       calculationVersion: "Beräkningsversion",
       orientation_unknown: "Antagen optimal",
       orientation_south: "Syd",
@@ -651,9 +665,9 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
     chartConsumption: "Förbrukning",
     assumptions: "Antaganden och datakällor",
     origin: {
-      user: "Angivet av dig",
-      calculated: "Beräknat av appen",
-      assumed: "Antagande (standardvärde)",
+      user: "Ditt värde",
+      calculated: "Beräknat",
+      assumed: "Standardantagande",
       external: "Extern datakälla",
     },
     disclaimer:
@@ -664,14 +678,11 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       { q: 'Hur säker är den beräknade solproduktionen?', a: 'Beräkningen bygger på solinstrålning för platsen, takets riktning och lutning. Faktisk produktion påverkas bland annat av väder, skuggning och anläggningens tekniska förutsättningar.' },
       { q: 'Vad betyder egenanvändning?', a: 'Den del av solelen som används direkt i bostaden. Resterande produktion matas ut på elnätet.' },
       { q: 'Varför är egenanvänd solel mer värd än såld solel?', a: 'Egenanvänd solel ersätter el som annars hade köpts från nätet, medan såld solel ersätts enligt villkoren för inmatad el.' },
-      { q: 'Vad betyder pris för vald återbetalningstid?', a: 'Det visar ungefär hur mycket anläggningen kan kosta för att motsvara den återbetalningstid du valt, baserat på kalkylens antaganden. Det är inte ett uppskattat marknadspris.' },
+      { q: 'Vad betyder investeringsnivå för vald återbetalningstid?', a: 'Det visar ungefär vilken investering som motsvarar den återbetalningstid du valt, utifrån det ackumulerade ekonomiska värdet i kalkylen. Det är inte ett uppskattat marknadspris eller en offert.' },
       { q: 'Varför kan installatörens beräkning skilja sig?', a: 'Olika antaganden om produktion, egenanvändning, elpriser, systemförluster och framtida prisutveckling kan ge olika resultat.' },
       { q: 'Är beräkningen en offert?', a: 'Nej. Resultatet är en uppskattning och ska användas som beslutsunderlag. Faktiskt pris, produktion och ekonomiskt utfall kan avvika.' },
-      { q: 'Varför minskar produktionen över tid?', a: 'Solpanelers effekt minskar normalt något med åren. Beräkningen utgår från en årlig degradering på 0,5 %, vilket innebär att den beräknade produktionen gradvis minskar under kalkylperioden.' },
-      { q: 'Hur beräknas värdet på min solel?', a: 'Egenanvänd solel värderas utifrån kostnaden för el som du annars hade behövt köpa. Såld solel värderas utifrån den antagna ersättningen för el som matas ut på elnätet.' },
-      { q: 'Vad betyder produktionskostnad per kWh?', a: 'Produktionskostnaden visar den beräknade genomsnittliga kostnaden för varje producerad kilowattimme över anläggningens livslängd. Den kan jämföras med det beräknade ekonomiska värdet av solelen.' },
-      { q: 'Varför rekommenderas just den här storleken på anläggningen?', a: 'Anläggningens storlek beräknas utifrån bland annat din elanvändning, solinstrålningen på platsen och tekniska begränsningar. Målet är att dimensionera anläggningen efter dina förutsättningar, inte att installera största möjliga anläggning.' },
-    ],
+      { q: 'Varför minskar produktionen över tid?', a: 'Solpanelers effekt minskar normalt något med åren. Beräkningen använder den årliga degradering som anges under kalkylantaganden, vilket innebär att den beräknade produktionen gradvis minskar under kalkylperioden.' },
+                      ],
 
   },
 } as const;

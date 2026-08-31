@@ -528,6 +528,15 @@ export const ro = {
       "uncertaintyTitle": "Ce poate afecta rezultatul?",
       "uncertaintyText": "Producția solară reală și rezultatul economic pot diferi de calcul. Rezultatul este afectat de variații meteorologice, umbrire, orientarea și înclinarea panourilor, consumul real de energie și momentul acestuia, prețurile energiei, compensația de export și performanța sistemului în timp.",
       "panelPower": "Puterea panoului",
+      "summaryMethodFlat": "Calculat cu o degradare anuală a producției de {{degradation}} % și valori neschimbate pentru energia solară autoconsumată și vândută.",
+      "summaryMethodTrend": "Calculat cu o degradare anuală a producției de {{degradation}} % și o modificare anuală estimată de {{priceChange}} % a valorii energiei solare.",
+      "specificYieldNote": "Potențialul de producție este producția calculată pe kWp instalat în această locație, pentru orientarea și înclinarea acoperișului tău. Nu este producția anuală totală a sistemului.",
+      "investmentNote": "Nivelul investiției arată aproximativ ce investiție corespunde perioadei de amortizare alese, pe baza valorii economice cumulate calculate până în acel an. Nu este un preț de piață estimat sau o ofertă.",
+      "assumptionsProduction": "Producție",
+      "assumptionsEconomy": "Economie",
+      "assumptionsTechnical": "Date tehnice",
+      "lifetimeYearOne": "Valoare economică, anul 1",
+      "lifetimeInvestmentLink": "Valoarea economică cumulată până în anul {{years}} stă la baza nivelului de investiție de aproximativ {{amount}} - este același calcul, doar rotunjit.",
       "annualValue": "Valoare economică estimată",
       "savings30": "Valoarea economică totală pe {{years}} ani",
       "savings30Method": "Perioada de calcul: {{years}} ani. Degradarea producției: {{degradation}} %/an. Schimbarea prețului energiei: {{priceChange}} %/an.",
@@ -615,10 +624,7 @@ export const ro = {
       { "q": "Ce înseamnă prețul pentru perioada de amortizare aleasă?", "a": "Arată aproximativ cât ar putea costa instalația pentru a corespunde perioadei de amortizare pe care ai ales-o, pe baza presupunerilor calculului. Nu este un preț de piață estimat." },
       { "q": "De ce poate diferi calculul instalatorului?", "a": "Presupuneri diferite despre producție, autoconsum, prețuri de energie, pierderi ale sistemului și evoluția viitoare a prețurilor pot da rezultate diferite." },
       { "q": "Calculul este o ofertă?", "a": "Nu. Rezultatul este o estimare și este menit ca bază de decizie. Prețul real, producția și rezultatul economic pot diferi." },
-      { "q": "De ce scade producția în timp?", "a": "Eficiența panourilor solare scade de obicei ușor de-a lungul anilor. Calculul presupune o degradare anuală de 0,5 %, ceea ce înseamnă că producția estimată scade treptat pe parcursul perioadei de calcul." },
-      { "q": "Cum este calculată valoarea energiei mele solare?", "a": "Energia solară consumată propriu este evaluată la costul energiei pe care altfel ar fi trebuit să o cumperi. Energia solară vândută este evaluată la compensația presupusă pentru energia injectată în rețea." },
-      { "q": "Ce înseamnă costul de producție pe kWh?", "a": "Costul de producție arată costul mediu estimat pentru fiecare kilowatt-oră produs pe durata de viață a instalației. Poate fi comparat cu valoarea economică estimată a energiei solare." },
-      { "q": "De ce este recomandată exact această dimensiune a instalației?", "a": "Dimensiunea instalației se calculează pe baza, printre altele, a consumului tău de energie, a radiației solare la fața locului și a limitărilor tehnice. Scopul este dimensionarea instalației după condițiile tale, nu instalarea celei mai mari instalații posibile." }
+      { "q": "De ce scade producția în timp?", "a": "Eficiența panourilor solare scade de obicei ușor de-a lungul anilor. Calculul presupune o degradare anuală de 0,5 %, ceea ce înseamnă că producția estimată scade treptat pe parcursul perioadei de calcul." }
     ]
   }
 } as const;

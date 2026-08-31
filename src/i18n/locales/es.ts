@@ -576,6 +576,15 @@ export const es = {
       uncertaintyText:
         "La producción solar real y el resultado económico pueden diferir del cálculo. El resultado se ve afectado por la variación meteorológica, las sombras, la orientación e inclinación de los paneles, el consumo eléctrico real y cuándo se produce, los precios de la electricidad, la compensación por exportación y el rendimiento del sistema con el tiempo.",
       panelPower: "Potencia de los paneles",
+      summaryMethodFlat: "Calculado con una degradación anual de la producción del {{degradation}} % y valores constantes de la energía solar autoconsumida y vendida.",
+      summaryMethodTrend: "Calculado con una degradación anual de la producción del {{degradation}} % y una variación anual estimada del {{priceChange}} % en el valor de la energía solar.",
+      specificYieldNote: "El potencial de producción es la producción calculada por kWp instalado en esta ubicación, según la orientación e inclinación de tu tejado. No es la producción anual total del sistema.",
+      investmentNote: "El nivel de inversión indica aproximadamente qué inversión corresponde al plazo de amortización elegido, según el valor económico acumulado que calcula la herramienta hasta ese año. No es un precio de mercado estimado ni un presupuesto.",
+      assumptionsProduction: "Producción",
+      assumptionsEconomy: "Economía",
+      assumptionsTechnical: "Datos técnicos",
+      lifetimeYearOne: "Valor económico, año 1",
+      lifetimeInvestmentLink: "El valor económico acumulado hasta el año {{years}} es la base del nivel de inversión de aproximadamente {{amount}}: es el mismo cálculo, solo redondeado.",
       annualValue: "Valor económico estimado",
       savings30: "Valor económico total en {{years}} años",
       savings30Method: "Periodo de cálculo: {{years}} años. Degradación de producción: {{degradation}} %/año. Cambio del precio eléctrico: {{priceChange}} %/año.",
@@ -665,10 +674,7 @@ export const es = {
       { q: '¿Qué significa el precio para el plazo de amortización elegido?', a: "Indica aproximadamente cuánto puede costar la instalación para ajustarse al plazo de amortización que has elegido, según los supuestos del cálculo. No es un precio de mercado estimado." },
       { q: '¿Por qué puede diferir el cálculo del instalador?', a: 'Diferentes supuestos sobre producción, autoconsumo, precios eléctricos, pérdidas del sistema y evolución futura de precios pueden dar resultados distintos.' },
       { q: '¿Es el cálculo un presupuesto?', a: 'No. El resultado es una estimación y sirve como base para la decisión. El precio real, la producción y el resultado económico pueden diferir.' },
-      { q: '¿Por qué disminuye la producción con el tiempo?', a: 'La eficiencia de los paneles solares normalmente disminuye ligeramente con los años. El cálculo asume una degradación anual del 0,5 %, por lo que la producción estimada disminuye gradualmente durante el periodo de cálculo.' },
-      { q: '¿Cómo se calcula el valor de mi electricidad solar?', a: 'La electricidad solar autoconsumida se valora al coste de la electricidad que de otro modo habrías tenido que comprar. La electricidad solar vendida se valora según la compensación asumida por la electricidad vertida a la red.' },
-      { q: '¿Qué significa el coste de producción por kWh?', a: 'El coste de producción muestra el coste medio estimado de cada kilovatio-hora producido durante la vida útil de la instalación. Puede compararse con el valor económico estimado de la electricidad solar.' },
-      { q: '¿Por qué se recomienda este tamaño concreto de instalación?', a: 'El tamaño de la instalación se calcula en función, entre otros factores, de tu consumo eléctrico, la irradiación solar del emplazamiento y las limitaciones técnicas. El objetivo es dimensionar la instalación según tus condiciones, no instalar la mayor instalación posible.' },
+      { q: '¿Por qué disminuye la producción con el tiempo?', a: 'La eficiencia de los paneles solares normalmente disminuye ligeramente con los años. El cálculo asume una degradación anual del 0,5 %, por lo que la producción estimada disminuye gradualmente durante el periodo de cálculo.' }
     ],
 
   },

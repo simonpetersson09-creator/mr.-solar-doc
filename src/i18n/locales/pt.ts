@@ -576,6 +576,15 @@ export const pt = {
       uncertaintyText:
         "A produção solar real e o resultado económico podem diferir do cálculo. O resultado é afetado pela variação meteorológica, sombreamento, orientação e inclinação dos painéis, consumo elétrico real e quando ocorre, preços de eletricidade, compensação pela exportação e desempenho do sistema ao longo do tempo.",
       panelPower: "Potência dos painéis",
+      summaryMethodFlat: "Calculado com uma degradação anual da produção de {{degradation}} % e valores inalterados da energia solar autoconsumida e vendida.",
+      summaryMethodTrend: "Calculado com uma degradação anual da produção de {{degradation}} % e uma variação anual assumida de {{priceChange}} % no valor da energia solar.",
+      specificYieldNote: "O potencial de produção é a produção calculada por kWp instalado neste local, para a orientação e inclinação do seu telhado. Não é a produção anual total do sistema.",
+      investmentNote: "O nível de investimento indica aproximadamente que investimento corresponde ao período de retorno escolhido, com base no valor económico acumulado calculado até esse ano. Não é um preço de mercado estimado nem um orçamento.",
+      assumptionsProduction: "Produção",
+      assumptionsEconomy: "Economia",
+      assumptionsTechnical: "Dados técnicos",
+      lifetimeYearOne: "Valor económico, ano 1",
+      lifetimeInvestmentLink: "O valor económico acumulado até ao ano {{years}} é a base do nível de investimento de cerca de {{amount}}: é o mesmo cálculo, apenas arredondado.",
       annualValue: "Valor económico estimado",
       savings30: "Valor económico total em {{years}} anos",
       savings30Method: "Período de cálculo: {{years}} anos. Degradação de produção: {{degradation}} %/ano. Variação do preço de eletricidade: {{priceChange}} %/ano.",
@@ -665,10 +674,7 @@ export const pt = {
       { q: 'O que significa o preço para o período de retorno escolhido?', a: "Mostra aproximadamente quanto a instalação pode custar para corresponder ao período de retorno que escolheu, com base nos pressupostos do cálculo. Não é um preço de mercado estimado." },
       { q: 'Porque é que o cálculo do instalador pode diferir?', a: 'Pressupostos diferentes sobre produção, autoconsumo, preços de eletricidade, perdas do sistema e evolução futura dos preços podem dar resultados diferentes.' },
       { q: 'O cálculo é um orçamento?', a: 'Não. O resultado é uma estimativa e destina-se a servir de base à decisão. O preço real, a produção e o resultado económico podem diferir.' },
-      { q: 'Porque diminui a produção ao longo do tempo?', a: 'A eficiência dos painéis solares normalmente diminui ligeiramente com os anos. O cálculo assume uma degradação anual de 0,5 %, o que significa que a produção estimada diminui gradualmente ao longo do período de cálculo.' },
-      { q: 'Como é calculado o valor da minha eletricidade solar?', a: 'A eletricidade solar autoconsumida é valorizada ao custo da eletricidade que de outro modo teria de comprar. A eletricidade solar vendida é valorizada segundo a compensação assumida pela eletricidade injetada na rede.' },
-      { q: 'O que significa o custo de produção por kWh?', a: 'O custo de produção mostra o custo médio estimado de cada quilowatt-hora produzido ao longo da vida útil da instalação. Pode ser comparado com o valor económico estimado da eletricidade solar.' },
-      { q: 'Porque é recomendada esta dimensão específica de instalação?', a: 'A dimensão da instalação é calculada com base, entre outros fatores, no seu consumo elétrico, na irradiação solar do local e em limitações técnicas. O objetivo é dimensionar a instalação de acordo com as suas condições, não instalar a maior instalação possível.' },
+      { q: 'Porque diminui a produção ao longo do tempo?', a: 'A eficiência dos painéis solares normalmente diminui ligeiramente com os anos. O cálculo assume uma degradação anual de 0,5 %, o que significa que a produção estimada diminui gradualmente ao longo do período de cálculo.' }
     ],
 
   },

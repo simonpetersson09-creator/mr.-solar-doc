@@ -350,18 +350,18 @@ priceScenarioHigh: "High",
     panelPowerLabel: "Panel power",
     investmentLevelBasis: "Based on your selected payback period of {{years}} years",
     investmentLevelNote:
-      "With today's calculation assumptions, {{years}} years of simple payback corresponds to an investment of about {{amount}}.",
+      "With the calculation assumptions, {{years}} years of payback corresponds to an investment of about {{amount}}.",
     quoteToggle: "Compare with a quoted price",
     quoteLabel: "Quoted price ({{currency}})",
     quotePlaceholder: "89000",
-    quoteResult: "The quoted price corresponds to about {{years}} years of simple payback",
+    quoteResult: "The quoted price corresponds to about {{years}} years of payback",
     quoteNote:
       "The calculation uses the same production, self-consumption and electricity prices as your current calculation.",
     priceExplainer:
       "Self-consumed solar replaces electricity that would otherwise have been bought from the grid. Exported solar instead earns compensation for electricity fed into the grid.",
     paybackYears: "{{years}} years",
     paybackInfo:
-      "Simple payback shows how many years the estimated annual economic value corresponds to the investment. It does not account for future electricity price changes, financing cost, inflation, maintenance or discounting.",
+      "The investment level shows roughly what investment matches the chosen payback time, based on the economic values the calculation projects over that period. It is not an estimated market price or a quote.",
     maxInvestment: "Investment level at chosen payback time",
     productionCostTitle: "What does solar power from your roof cost?",
     investmentLevelInfoLabel: "More information",
@@ -382,7 +382,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "approx. {{amount}}",
     maxInvestmentExplainer:
-      "To reach roughly {{years}} years of simple payback, the installation should cost at most about {{amount}}.",
+      "To reach roughly {{years}} years of payback, the installation should cost at most about {{amount}}.",
     maxInvestmentNote:
       "The amount is calculated from your inputs and calculation assumptions — not a quote or a market price estimate.",
     missingSelfConsumedValue: "Electricity price missing. Enter what you pay per kWh to see the value of self-consumed solar.",
@@ -576,8 +576,22 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       uncertaintyText:
         "Actual solar production and economic outcome may differ from the calculation. The result is affected by weather variation, shading, panel orientation and tilt, actual electricity use and when it occurs, electricity prices, export compensation and system performance over time.",
       panelPower: "Panel power",
-      annualValue: "Estimated economic value",
-      savings30: "Total economic value over {{years}} years",
+      summaryMethodFlat:
+        "Calculated with {{degradation}} % annual production degradation and unchanged values for self-consumed and exported solar power.",
+      summaryMethodTrend:
+        "Calculated with {{degradation}} % annual production degradation and an assumed {{priceChange}} % annual change in the value of solar electricity.",
+      specificYieldNote:
+        "Production potential is the calculated yield per installed kWp at this location, for your roof orientation and tilt. It is not the total annual production of the system.",
+      investmentNote:
+        "The investment level shows roughly what investment matches the chosen payback time, based on the accumulated economic value the calculation projects up to that year. It is affected by the assumed change in electricity value and by production degradation, and is not an estimated market price or a quote.",
+      assumptionsProduction: "Production",
+      assumptionsEconomy: "Economics",
+      assumptionsTechnical: "Technical",
+      lifetimeYearOne: "Economic value, year 1",
+      lifetimeInvestmentLink:
+        "The accumulated economic value through year {{years}} is what the investment level of approximately {{amount}} is based on - it is the same calculation, only rounded.",
+      annualValue: "Economic value, year 1",
+      savings30: "Accumulated economic value over {{years}} years",
       savings30Method: "Calculation period: {{years}} years. Production degradation: {{degradation}} %/year. Electricity price change: {{priceChange}} %/year.",
       savings30Note: "The long-term economic value is calculated year by year using {{degradation}} % annual production degradation. The calculation assumes unchanged values for self-consumed and exported solar power.",
       degradation: "Production degradation",
@@ -592,7 +606,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       balanceNote:
         "Annual production corresponds to about {{percent}} % of your annual electricity use. It does not mean all produced electricity can be used directly in the property, since production and consumption occur at different times.",
       perYearShort: "per year",
-      paybackTime: "Chosen simple payback time",
+      paybackTime: "Chosen payback time",
       address: "Address",
       coordinates: "Coordinates",
       array: "System size",
@@ -604,7 +618,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       mainFuse: "Main fuse",
       maxAc: "Theoretical power limit from main fuse",
       annualProduction: "Electricity per year",
-      specificYield: "Site specific yield",
+      specificYield: "Production potential at this location",
       dataSource: "Data source",
       consumptionSource: "Consumption data source",
       consumptionShape: "Consumption profile",
@@ -616,7 +630,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       exportValueRate: "Assumed compensation for exported solar",
       selfConsumptionValue: "Value of self-consumed solar",
       exportValue: "Value of exported solar",
-      totalAnnualBenefit: "Estimated economic value",
+      totalAnnualBenefit: "Economic value, year 1",
       currency: "Currency",
       economicValue: "Basic economic value",
       orientation: "Orientation",
@@ -628,7 +642,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       acceptedPayback: "Chosen payback time",
       maxInvestment: "Investment level at chosen payback time",
       quotePrice: "Quoted price provided",
-      quotePayback: "Simple payback based on the quoted price",
+      quotePayback: "Payback time based on the quoted price",
       calculationVersion: "Calculation version",
       orientation_unknown: "Assumed optimal",
       orientation_south: "South",
@@ -649,9 +663,9 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     chartConsumption: "Consumption",
     assumptions: "Assumptions and data sources",
     origin: {
-      user: "Provided by you",
-      calculated: "Calculated by the app",
-      assumed: "Assumption (default value)",
+      user: "Your value",
+      calculated: "Calculated",
+      assumed: "Standard assumption",
       external: "External data source",
     },
     disclaimer:
@@ -662,14 +676,11 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       { q: 'How reliable is the estimated solar production?', a: "The calculation is based on solar irradiation for the location and the roof's orientation and tilt. Actual production is affected by factors such as weather, shading and the technical conditions of the installation." },
       { q: 'What does self-consumption mean?', a: 'The share of solar electricity used directly in the home. The remaining production is fed into the electricity grid.' },
       { q: 'Why is self-consumed solar electricity worth more than sold solar electricity?', a: 'Self-consumed solar electricity replaces electricity that would otherwise have been bought from the grid, while sold solar electricity is compensated according to the terms for exported electricity.' },
-      { q: 'What does the price for the chosen payback period mean?', a: "It shows approximately how much the installation may cost in order to match the payback period you have chosen, based on the calculation's assumptions. It is not an estimated market price." },
+      { q: 'What does the investment level for the chosen payback time mean?', a: "It shows roughly what investment matches the payback time you chose, based on the accumulated economic value in the calculation. It is not an estimated market price or a quote." },
       { q: "Why can the installer's calculation differ?", a: 'Different assumptions about production, self-consumption, electricity prices, system losses and future price development can give different results.' },
       { q: 'Is the calculation a quote?', a: 'No. The result is an estimate and is intended as a basis for decision-making. The actual price, production and economic outcome may differ.' },
-      { q: 'Why does production decrease over time?', a: 'The efficiency of solar panels normally decreases slightly over the years. The calculation assumes an annual degradation of 0.5 %, which means that the estimated production gradually decreases over the calculation period.' },
-      { q: 'How is the value of my solar electricity calculated?', a: 'Self-consumed solar electricity is valued at the cost of the electricity you would otherwise have had to buy. Sold solar electricity is valued at the assumed compensation for electricity fed into the grid.' },
-      { q: 'What does production cost per kWh mean?', a: 'The production cost shows the estimated average cost of each produced kilowatt-hour over the lifetime of the installation. It can be compared with the estimated economic value of the solar electricity.' },
-      { q: 'Why is this particular size of installation recommended?', a: 'The size of the installation is calculated based on, among other things, your electricity consumption, the solar irradiation at the site and technical limitations. The goal is to size the installation according to your conditions, not to install the largest possible installation.' },
-    ],
+      { q: 'Why does production decrease over time?', a: 'The efficiency of solar panels normally decreases slightly over the years. The calculation applies the annual degradation stated in the assumptions, so the estimated production gradually decreases over the calculation period.' },
+                      ],
 
   },
 } as const;

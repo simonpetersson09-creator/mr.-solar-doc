@@ -574,6 +574,15 @@ export const hu = {
       uncertaintyText:
         "A tényleges napelemes termelés és gazdasági eredmény eltérhet a számítástól. Az eredményt befolyásolja az időjárási ingadozás, az árnyékolás, a panelek tájolása és dőlésszöge, a tényleges villamosenergia-fogyasztás és annak időzítése, a villamosenergia-árak, a visszatáplálási kompenzáció és a rendszer teljesítménye idővel.",
       panelPower: "Panel teljesítménye",
+      summaryMethodFlat: "Számítva {{degradation}} % éves termeléscsökkenéssel és változatlan értékkel a saját felhasználású és az eladott napenergiára.",
+      summaryMethodTrend: "Számítva {{degradation}} % éves termeléscsökkenéssel és a napenergia értékének feltételezett {{priceChange}} %-os éves változásával.",
+      specificYieldNote: "A termelési potenciál az adott helyszín számított termelése telepített kWp-onként, a tető tájolása és dőlése mellett. Ez nem a rendszer teljes éves termelése.",
+      investmentNote: "A beruházási szint azt mutatja, hozzávetőleg mekkora beruházás felel meg a választott megtérülési időnek a számítás adott évig felhalmozott gazdasági értéke alapján. Ez nem becsült piaci ár és nem árajánlat.",
+      assumptionsProduction: "Termelés",
+      assumptionsEconomy: "Gazdaság",
+      assumptionsTechnical: "Műszaki adatok",
+      lifetimeYearOne: "Gazdasági érték, 1. év",
+      lifetimeInvestmentLink: "A {{years}}. évig felhalmozott gazdasági érték az alapja a körülbelül {{amount}} beruházási szintnek - ugyanaz a számítás, csak kerekítve.",
       annualValue: "Becsült gazdasági érték",
       savings30: "Teljes gazdasági érték {{years}} év alatt",
       savings30Method: "Számítási időszak: {{years}} év. Termelési degradáció: {{degradation}} %/év. Villamosenergia-ár-változás: {{priceChange}} %/év.",
@@ -663,10 +672,7 @@ export const hu = {
       { q: 'Mit jelent a választott megtérülési időhöz tartozó ár?', a: "Megközelítőleg megmutatja, mennyibe kerülhet a telepítés ahhoz, hogy megfeleljen a kiválasztott megtérülési időnek, a számítás feltételezései alapján. Nem becsült piaci ár." },
       { q: "Miért térhet el a kivitelező számítása?", a: 'A termelésre, a saját fogyasztásra, a villamosenergia-árakra, a rendszerveszteségekre és a jövőbeli áralakulásra vonatkozó eltérő feltételezések eltérő eredményt adhatnak.' },
       { q: 'A számítás árajánlat?', a: 'Nem. Az eredmény egy becslés, és döntéshozatali alapként szolgál. A tényleges ár, termelés és gazdasági eredmény eltérhet.' },
-      { q: 'Miért csökken a termelés idővel?', a: 'A napelemek hatásfoka az évek során általában kismértékben csökken. A számítás évi 0,5 %-os degradációt feltételez, ami azt jelenti, hogy a becsült termelés fokozatosan csökken a számítási időszak alatt.' },
-      { q: 'Hogyan számítjuk ki napenergiája értékét?', a: 'A saját fogyasztású napenergiát azon áram költségén értékeljük, amelyet egyébként meg kellett volna vásárolnia. Az eladott napenergiát a hálózatba táplált áramra vonatkozó feltételezett kompenzáció alapján értékeljük.' },
-      { q: 'Mit jelent a kWh-nkénti termelési költség?', a: 'A termelési költség a telepítés élettartama alatt megtermelt minden kilowattóra becsült átlagköltségét mutatja. Összehasonlítható a napenergia becsült gazdasági értékével.' },
-      { q: 'Miért éppen ekkora rendszert javasolunk?', a: 'A telepítés méretét többek között az Ön villamosenergia-fogyasztása, a helyszín napsugárzása és a műszaki korlátok alapján számítjuk ki. A cél az, hogy a telepítést az Ön adottságaihoz igazítsuk, ne a lehető legnagyobb rendszert telepítsük.' },
+      { q: 'Miért csökken a termelés idővel?', a: 'A napelemek hatásfoka az évek során általában kismértékben csökken. A számítás évi 0,5 %-os degradációt feltételez, ami azt jelenti, hogy a becsült termelés fokozatosan csökken a számítási időszak alatt.' }
     ],
 
   },

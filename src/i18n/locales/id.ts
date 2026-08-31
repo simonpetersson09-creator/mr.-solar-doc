@@ -166,6 +166,15 @@ export const id = {
       "yearShort": "Tahun", "reportId": "ID Laporan", "uncertaintyTitle": "Apa yang dapat memengaruhi hasil?",
       "uncertaintyText": "Produksi solar dan hasil ekonomi aktual dapat berbeda dari perhitungan. Hasil dipengaruhi oleh variasi cuaca, bayangan, orientasi dan kemiringan panel, pemakaian listrik aktual dan waktunya, harga listrik, kompensasi ekspor, dan kinerja sistem dari waktu ke waktu.",
       "panelPower": "Daya panel", "annualValue": "Estimasi nilai ekonomi", "savings30": "Total nilai ekonomi selama {{years}} tahun",
+      "summaryMethodFlat": "Dihitung dengan degradasi produksi tahunan {{degradation}} % dan nilai tetap untuk listrik surya yang dipakai sendiri dan dijual.",
+      "summaryMethodTrend": "Dihitung dengan degradasi produksi tahunan {{degradation}} % dan asumsi perubahan nilai listrik surya {{priceChange}} % per tahun.",
+      "specificYieldNote": "Potensi produksi adalah produksi yang dihitung per kWp terpasang di lokasi ini, untuk arah dan kemiringan atap Anda. Ini bukan total produksi tahunan sistem.",
+      "investmentNote": "Tingkat investasi menunjukkan kira-kira investasi yang sesuai dengan waktu balik modal yang dipilih, berdasarkan nilai ekonomi kumulatif perhitungan sampai tahun tersebut. Ini bukan perkiraan harga pasar atau penawaran.",
+      "assumptionsProduction": "Produksi",
+      "assumptionsEconomy": "Ekonomi",
+      "assumptionsTechnical": "Data teknis",
+      "lifetimeYearOne": "Nilai ekonomi, tahun 1",
+      "lifetimeInvestmentLink": "Nilai ekonomi kumulatif sampai tahun {{years}} menjadi dasar tingkat investasi sekitar {{amount}} - perhitungan yang sama, hanya dibulatkan.",
       "savings30Method": "Periode perhitungan: {{years}} tahun. Degradasi produksi: {{degradation}} %/tahun. Perubahan harga listrik: {{priceChange}} %/tahun.",
       "savings30Note": "Nilai ekonomi jangka panjang dihitung tahun demi tahun menggunakan degradasi produksi tahunan {{degradation}} %. Perhitungan mengasumsikan nilai yang tidak berubah untuk solar yang dipakai sendiri dan diekspor.",
       "degradation": "Degradasi produksi", "degradationNote": "Output panel diasumsikan menurun {{degradation}} % per tahun. Ini adalah asumsi perhitungan; degradasi aktual bervariasi antara jenis panel, merek, dan kondisi operasi.",
@@ -189,10 +198,7 @@ export const id = {
       { "q": "Apa arti harga untuk periode pengembalian modal yang dipilih?", "a": "Ini menunjukkan perkiraan berapa biaya instalasi agar sesuai dengan periode pengembalian modal yang Anda pilih, berdasarkan asumsi perhitungan. Ini bukan perkiraan harga pasar." },
       { "q": "Mengapa perhitungan instalator bisa berbeda?", "a": "Asumsi yang berbeda tentang produksi, konsumsi sendiri, harga listrik, kehilangan sistem, dan perkembangan harga masa depan dapat memberikan hasil yang berbeda." },
       { "q": "Apakah perhitungan ini adalah penawaran?", "a": "Tidak. Hasil ini adalah perkiraan dan dimaksudkan sebagai dasar pengambilan keputusan. Harga, produksi, dan hasil ekonomi aktual mungkin berbeda." },
-      { "q": "Mengapa produksi menurun seiring waktu?", "a": "Efisiensi panel solar biasanya menurun sedikit dari tahun ke tahun. Perhitungan mengasumsikan degradasi tahunan sebesar 0,5 %, yang berarti produksi yang diperkirakan menurun secara bertahap selama periode perhitungan." },
-      { "q": "Bagaimana nilai listrik solar saya dihitung?", "a": "Listrik solar yang dipakai sendiri dinilai sebesar biaya listrik yang seharusnya Anda beli. Listrik solar yang dijual dinilai sebesar kompensasi yang diasumsikan untuk listrik yang dialirkan ke jaringan." },
-      { "q": "Apa arti biaya produksi per kWh?", "a": "Biaya produksi menunjukkan perkiraan biaya rata-rata setiap kilowatt-jam yang diproduksi selama masa pakai instalasi. Ini dapat dibandingkan dengan estimasi nilai ekonomi listrik solar." },
-      { "q": "Mengapa ukuran instalasi ini disarankan?", "a": "Ukuran instalasi dihitung berdasarkan, antara lain, konsumsi listrik Anda, radiasi matahari di lokasi, dan batasan teknis. Tujuannya adalah untuk mengukur instalasi sesuai kondisi Anda, bukan memasang instalasi sebesar mungkin." }
+      { "q": "Mengapa produksi menurun seiring waktu?", "a": "Efisiensi panel solar biasanya menurun sedikit dari tahun ke tahun. Perhitungan mengasumsikan degradasi tahunan sebesar 0,5 %, yang berarti produksi yang diperkirakan menurun secara bertahap selama periode perhitungan." }
     ]
   }
 } as const;

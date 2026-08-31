@@ -222,7 +222,7 @@ export const pl = {
     "recommendedArray": "Wielkość instalacji",
     "recommendedInverter": "Inwerter",
     "annualProduction": "Produkcja energii elektrycznej rocznie",
-    "specificYield": "Produkcja energii słonecznej w tej lokalizacji",
+    "specificYield": "Potencjał produkcyjny w tej lokalizacji",
     "annualConsumption": "Roczne zużycie",
     "mainFuse": "Zabezpieczenie główne",
     "maxAc": "Maksymalna obliczona moc AC",
@@ -304,10 +304,10 @@ export const pl = {
     "exportValueHelp": "Szacowana cena, którą otrzymujesz za energię elektryczną wprowadzoną do sieci.",
     "selfConsumptionValue": "Autokonsumowana energia słoneczna",
     "exportValue": "Sprzedana energia słoneczna",
-    "totalAnnualBenefit": "Całkowita szacowana korzyść roczna",
+    "totalAnnualBenefit": "Wartość ekonomiczna, rok 1",
     "economicsDisclaimer": "Te kwoty są założeniami kalkulacyjnymi, a nie gwarantowanymi przyszłymi cenami.",
     "paybackTitle": "Wybierz czas zwrotu",
-    "paybackSubtitle": "Sprawdź, jaki poziom inwestycji odpowiada różnym prostym czasom zwrotu.",
+    "paybackSubtitle": "Sprawdź, jaki poziom inwestycji odpowiada różnym czasom zwrotu.",
     "investmentLevelTitle": "Cena po wybranym okresie zwrotu",
     "panelPowerLabel": "Moc paneli",
     "investmentLevelBasis": "Na podstawie wybranego okresu zwrotu {{years}} lat",
@@ -319,7 +319,7 @@ export const pl = {
     "quoteNote": "Kalkulacja wykorzystuje tę samą produkcję, autokonsumpcję i ceny energii elektrycznej, co Twoja obecna kalkulacja.",
     "priceExplainer": "Autokonsumowana energia słoneczna zastępuje energię elektryczną, którą w przeciwnym razie trzeba by kupić z sieci. Sprzedana energia słoneczna natomiast zapewnia wynagrodzenie za energię wprowadzoną do sieci.",
     "paybackYears": "{{years}} lat",
-    "paybackInfo": "Prosty czas zwrotu pokazuje, ile lat szacowana roczna wartość ekonomiczna odpowiada inwestycji. Kalkulacja nie uwzględnia np. przyszłych zmian cen energii elektrycznej, kosztów finansowania, inflacji, konserwacji ani dyskontowania.",
+    "paybackInfo": "Czas zwrotu pokazuje, ile lat szacowana roczna wartość ekonomiczna odpowiada inwestycji. Kalkulacja nie uwzględnia np. przyszłych zmian cen energii elektrycznej, kosztów finansowania, inflacji, konserwacji ani dyskontowania.",
     "maxInvestment": "Poziom inwestycji przy wybranym czasie zwrotu",
     "maxInvestmentApprox": "ok. {{amount}}",
     "investmentLevelInfoLabel": "Więcej informacji",
@@ -480,8 +480,17 @@ export const pl = {
       "uncertaintyTitle": "Co może wpłynąć na wynik?",
       "uncertaintyText": "Faktyczna produkcja energii słonecznej i wynik ekonomiczny mogą odbiegać od kalkulacji. Na wynik wpływają m.in. wahania pogodowe, zacienienie, orientacja i kąt nachylenia paneli, rzeczywiste zużycie energii elektrycznej i czas jego występowania, ceny energii elektrycznej, wynagrodzenie za sprzedaną energię oraz wydajność instalacji w czasie.",
       "panelPower": "Moc panelu",
-      "annualValue": "Szacowana wartość ekonomiczna",
-      "savings30": "Całkowita wartość ekonomiczna przez {{years}} lat",
+      "summaryMethodFlat": "Obliczone przy rocznej degradacji produkcji {{degradation}} % i niezmiennych wartościach energii zużytej na miejscu i sprzedanej.",
+      "summaryMethodTrend": "Obliczone przy rocznej degradacji produkcji {{degradation}} % i zakładanej rocznej zmianie wartości energii słonecznej o {{priceChange}} %.",
+      "specificYieldNote": "Potencjał produkcyjny to obliczona produkcja na zainstalowany kWp w tej lokalizacji, dla orientacji i nachylenia Twojego dachu. To nie jest całkowita roczna produkcja instalacji.",
+      "investmentNote": "Poziom inwestycji pokazuje w przybliżeniu, jaka inwestycja odpowiada wybranemu czasowi zwrotu na podstawie skumulowanej wartości ekonomicznej z obliczeń do danego roku. Nie jest to szacunkowa cena rynkowa ani oferta.",
+      "assumptionsProduction": "Produkcja",
+      "assumptionsEconomy": "Ekonomia",
+      "assumptionsTechnical": "Dane techniczne",
+      "lifetimeYearOne": "Wartość ekonomiczna, rok 1",
+      "lifetimeInvestmentLink": "Skumulowana wartość ekonomiczna do roku {{years}} jest podstawą poziomu inwestycji około {{amount}} - to te same obliczenia, tylko zaokrąglone.",
+      "annualValue": "Wartość ekonomiczna, rok 1",
+      "savings30": "Skumulowana wartość ekonomiczna przez {{years}} lat",
       "savings30Method": "Okres kalkulacji: {{years}} lat. Degradacja produkcji: {{degradation}} %/rok. Zmiana ceny energii elektrycznej: {{priceChange}} %/rok.",
       "savings30Note": "Długoterminowa wartość ekonomiczna jest obliczana rok po roku, przy degradacji produkcji o {{degradation}} % rocznie. Kalkulacja zakłada niezmienione wartości dla autokonsumowanej i sprzedanej energii słonecznej.",
       "degradation": "Degradacja produkcji",
@@ -495,7 +504,7 @@ export const pl = {
       "balanceRatio": "Produkcja / zużycie",
       "balanceNote": "Roczna produkcja odpowiada około {{percent}} % Twojego rocznego zużycia energii elektrycznej. Nie oznacza to, że cała wyprodukowana energia może być bezpośrednio zużyta w nieruchomości, ponieważ produkcja i zużycie energii odbywają się w różnych momentach.",
       "perYearShort": "rocznie",
-      "paybackTime": "Wybrany prosty czas zwrotu",
+      "paybackTime": "Wybrany czas zwrotu",
       "address": "Adres",
       "coordinates": "Współrzędne",
       "array": "Wielkość instalacji",
@@ -531,7 +540,7 @@ export const pl = {
       "acceptedPayback": "Wybrany czas zwrotu",
       "maxInvestment": "Poziom inwestycji przy wybranym czasie zwrotu",
       "quotePrice": "Podana cena ofertowa",
-      "quotePayback": "Prosty czas zwrotu na podstawie ceny ofertowej",
+      "quotePayback": "Czas zwrotu na podstawie ceny ofertowej",
       "calculationVersion": "Wersja kalkulacji",
       "orientation_unknown": "Przyjęto optymalną",
       "orientation_south": "Południe",
@@ -555,9 +564,9 @@ export const pl = {
     "chartConsumption": "Zużycie",
     "assumptions": "Założenia i źródła danych",
     "origin": {
-      "user": "Podane przez Ciebie",
-      "calculated": "Obliczone przez aplikację",
-      "assumed": "Założenie (wartość domyślna)",
+      "user": "Twoja wartość",
+      "calculated": "Obliczone",
+      "assumed": "Standardowe założenie",
       "external": "Zewnętrzne źródło danych"
     },
     "disclaimer": "Raport jest migawką kalkulacji i opiera się na powyższych założeniach. Nie jest to oferta.",
@@ -591,19 +600,8 @@ export const pl = {
       {
         "q": "Dlaczego produkcja zmniejsza się z czasem?",
         "a": "Wydajność paneli słonecznych normalnie nieznacznie spada z upływem lat. Obliczenia zakładają roczną degradację na poziomie 0,5 %, co oznacza, że obliczona produkcja stopniowo maleje w okresie kalkulacji."
-      },
-      {
-        "q": "Jak obliczana jest wartość mojej energii słonecznej?",
-        "a": "Energia słoneczna zużywana na własne potrzeby jest wyceniana na podstawie kosztu energii, którą w innym przypadku musiałbyś kupić. Sprzedana energia słoneczna jest wyceniana na podstawie zakładanego wynagrodzenia za energię wprowadzoną do sieci."
-      },
-      {
-        "q": "Co oznacza koszt produkcji za kWh?",
-        "a": "Koszt produkcji pokazuje obliczony średni koszt każdej wyprodukowanej kilowatogodziny w okresie eksploatacji instalacji. Można go porównać z obliczoną wartością ekonomiczną energii słonecznej."
-      },
-      {
-        "q": "Dlaczego zalecany jest właśnie taki rozmiar instalacji?",
-        "a": "Wielkość instalacji jest obliczana między innymi na podstawie zużycia energii elektrycznej, nasłonecznienia w danym miejscu i ograniczeń technicznych. Celem jest dobranie instalacji do Twoich warunków, a nie montaż jak największej instalacji."
       }
+    
     ]
   },
   "premium": {
