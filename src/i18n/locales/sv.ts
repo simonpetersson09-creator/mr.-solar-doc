@@ -277,6 +277,7 @@ export const sv = {
       "Du bestämmer hur snabbt du vill ha investeringen tillbaka. Vi räknar ut vad det motsvarar i installationskostnad.",
     paybackYearsUnit: "år",
     investmentLevelTitle: "Rimlig investeringsnivå",
+    panelPowerLabel: "Paneleffekt",
     investmentLevelBasis: "Baserat på din valda återbetalningstid på {{years}} år",
     investmentLevelNote:
       "Med dagens kalkylantaganden motsvarar {{years}} års enkel återbetalningstid en investering på cirka {{amount}}.",

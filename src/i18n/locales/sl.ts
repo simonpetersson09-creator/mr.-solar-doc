@@ -235,6 +235,7 @@ export const sl = {
     "paybackTitle": "Izberite dobo vračila",
     "paybackSubtitle": "Poglejte, katera raven investicije ustreza različnim enostavnim dobam vračila.",
     "investmentLevelTitle": "Raven investicije pri dobi vračila {{years}} let",
+    "panelPowerLabel": "Moč panelov",
     "investmentLevelBasis": "Na podlagi izbrane dobe vračila {{years}} let",
     "investmentLevelNote": "Z današnjimi kalkulacijskimi predpostavkami dobi vračila {{years}} let ustreza investiciji približno {{amount}}.",
     "quoteToggle": "Primerjaj s ponudbeno ceno",

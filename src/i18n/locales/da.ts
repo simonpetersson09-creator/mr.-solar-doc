@@ -235,6 +235,7 @@ export const da = {
     "paybackTitle": "Vælg tilbagebetalingstid",
     "paybackSubtitle": "Se hvilket investeringsniveau, der svarer til forskellige simple tilbagebetalingstider.",
     "investmentLevelTitle": "Investeringsniveau ved {{years}} års tilbagebetaling",
+    "panelPowerLabel": "Paneleffekt",
     "investmentLevelBasis": "Baseret på din valgte tilbagebetalingstid på {{years}} år",
     "investmentLevelNote": "Med dagens kalkulationsantagelser svarer {{years}} års simpel tilbagebetalingstid til en investering på cirka {{amount}}.",
     "quoteToggle": "Sammenlign med tilbudspris",

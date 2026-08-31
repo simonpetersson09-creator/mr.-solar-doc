@@ -235,6 +235,7 @@ export const hr = {
     "paybackTitle": "Odaberite razdoblje povrata",
     "paybackSubtitle": "Pogledajte koja razina ulaganja odgovara različitim jednostavnim razdobljima povrata.",
     "investmentLevelTitle": "Razina ulaganja pri povratu od {{years}} godina",
+    "panelPowerLabel": "Snaga panela",
     "investmentLevelBasis": "Na temelju odabranog roka povrata od {{years}} godina",
     "investmentLevelNote": "Prema današnjim pretpostavkama izračuna, {{years}} godina jednostavnog povrata odgovara ulaganju od približno {{amount}}.",
     "quoteToggle": "Usporedi s cijenom ponude",
