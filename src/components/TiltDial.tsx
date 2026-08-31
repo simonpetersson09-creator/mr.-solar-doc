@@ -156,13 +156,13 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
         />
 
         {/* Pulsing halo behind the grip — signals it can be dragged */}
-        <circle cx={grip.x} cy={grip.y} r={GRIP_RADIUS + 5} className="animate-pulse fill-accent/25" />
+        <circle cx={grip.x} cy={grip.y} r={GRIP_RADIUS + 4} className="animate-pulse fill-accent/25" />
         <circle
           cx={grip.x}
           cy={grip.y}
           r={GRIP_RADIUS}
           className="fill-white stroke-accent drop-shadow-md"
-          strokeWidth={3}
+          strokeWidth={2.5}
         />
         {/* Chevrons hinting the up/down swing */}
         <g transform={`rotate(${-safeValue} ${grip.x} ${grip.y})`}>
