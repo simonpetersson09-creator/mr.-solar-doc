@@ -285,22 +285,23 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   ),
 
   /* --- contracted kVA markets --- */
-  /** France: "puissance souscrite" in kVA. */
+  /**
+   * France: "puissance souscrite" in kVA — always the TOTAL subscribed
+   * apparent power. 9 kVA is 9 kVA whether the supply is monophasé 230 V or
+   * triphasé 400 V; it is never 3 x 9 kVA.
+   */
   FR: config(
     "FR",
     "contracted-kva",
-    [
-      ...[3, 6, 9, 12].map((kva) => kvaOption(kva, SINGLE_PHASE_230)),
-      ...[9, 12, 15, 18, 24, 30, 36].map((kva) => kvaOption(kva, EU_THREE_PHASE_400, "3 × ")),
-    ],
+    [3, 6, 9, 12, 15, 18, 24, 30, 36].map((kva) => kvaOption(kva)),
     SINGLE_PHASE_230,
     { localTerm: "Puissance souscrite" },
   ),
-  /** Portugal: regulated "potência contratada" steps in kVA. */
+  /** Portugal: regulated "potência contratada" steps in kVA (total). */
   PT: config(
     "PT",
     "contracted-kva",
-    [1.15, 2.3, 3.45, 4.6, 5.75, 6.9, 10.35].map((kva) => kvaOption(kva, SINGLE_PHASE_230)),
+    [1.15, 2.3, 3.45, 4.6, 5.75, 6.9, 10.35].map((kva) => kvaOption(kva)),
     SINGLE_PHASE_230,
     { localTerm: "Potência contratada" },
   ),
@@ -310,7 +311,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   ES: config(
     "ES",
     "contracted-kw",
-    [3.45, 4.6, 5.75, 6.9].map((kw) => kwOption(kw, SINGLE_PHASE_230)),
+    [3.45, 4.6, 5.75, 6.9].map((kw) => kwOption(kw)),
     SINGLE_PHASE_230,
     { localTerm: "Potencia contratada" },
   ),
@@ -318,8 +319,9 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   IT: config(
     "IT",
     "contracted-kw",
-    [3, 4.5, 6, 10, 15].map((kw) => kwOption(kw, SINGLE_PHASE_230)),
+    [3, 4.5, 6, 10, 15].map((kw) => kwOption(kw)),
     SINGLE_PHASE_230,
+
     { localTerm: "Potenza impegnata" },
   ),
 };
