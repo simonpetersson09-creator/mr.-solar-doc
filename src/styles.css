@@ -216,7 +216,7 @@ html[data-native="true"] {
 @utility pt-safe {
   /* Header content clears the status bar (clock/battery/notch). A minimum gap is
      kept so nothing is hidden even when the device reports no safe-area inset. */
-  padding-top: max(var(--safe-top-min), calc(env(safe-area-inset-top) + 0.25rem));
+  padding-top: max(var(--safe-top-min), calc(env(safe-area-inset-top) + 0.5rem));
 }
 
 @utility pb-safe {
