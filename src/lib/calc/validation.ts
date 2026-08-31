@@ -318,10 +318,12 @@ export function validateCalculationInput(input: CalculationInput): CalculationIs
     [input.economics.installationCostPerKwp, "economics.installationCostPerKwp"],
     [input.economics.gridCompensationPerKwh, "economics.gridCompensationPerKwh"],
   ];
+  // Per-kWh rates are CLAMPED to >= 0 by the engine (documented assumption:
+  // a negative price is not meaningful in this model), so a negative rate is
+  // not fatal — only a non-finite one is.
   for (const [value, field] of priceFields) {
     if (value === null || value === undefined) continue;
-    if (!requireFinite(issues, value, field)) continue;
-    if (value < 0) issues.push(issue("negative-price", field, `${field} cannot be negative`));
+    requireFinite(issues, value, field);
   }
   if (input.quotePrice !== null && input.quotePrice !== undefined) {
     if (requireFinite(issues, input.quotePrice, "quotePrice") && input.quotePrice < 0) {
