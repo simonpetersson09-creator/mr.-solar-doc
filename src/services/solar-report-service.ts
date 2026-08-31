@@ -1064,22 +1064,21 @@ export function generateReportBlob(options: ReportOptions): Blob {
         }
       : null,
   );
-  report.highlights(
-    [10, 20, periodYears]
+  // Year 1 next to the accumulated milestones: the difference between "per year"
+  // and "over the whole period" must be obvious at a glance.
+  report.highlights([
+    {
+      label: f["lifetimeYearOne"] ?? f["annualValue"] ?? "",
+      value: money(Math.round(cumulativeAt(1))),
+    },
+    ...[10, 20, periodYears]
       .filter((year, index, all) => year <= periodYears && all.indexOf(year) === index)
       .map((year) => ({
         label: (f["lifetimeAfterYears"] ?? "").replace("{{years}}", String(year)),
         value: money(Math.round(cumulativeAt(year))),
       })),
-  );
-  report.highlights(
-    [1, 10, 20, periodYears]
-      .filter((year, index, all) => year <= periodYears && all.indexOf(year) === index)
-      .map((year) => ({
-        label: (f["lifetimeProductionYear"] ?? "").replace("{{year}}", String(year)),
-        value: `${formatNumber(Math.round(productionAt(year)), locale)} kWh`,
-      })),
-  );
+  ]);
+
   report.lifetimeTable(
     result.lifetime.years.map((entry) => ({
       year: entry.year,
