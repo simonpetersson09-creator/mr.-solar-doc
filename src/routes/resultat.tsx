@@ -130,7 +130,13 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
   const currency = result.economics.currency;
   const p = result.presentation;
   const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
-  const economicValuesMissing = result.notes.includes("economic-values-missing");
+  // null !== 0: a missing price is never shown as a number.
+  const availability = result.economics.availability;
+  const selfConsumedMissing = availability.selfConsumedValue === "missing";
+  const exportMissing = availability.exportValue === "missing";
+  const installationCostMissing =
+    availability.installationCost === "missing" && result.investment.quotePrice == null;
+  const economicValuesMissing = !availability.totalsComplete;
 const cost = result.productionCost;
 
 
@@ -281,7 +287,7 @@ const cost = result.productionCost;
                 {t("result.selfConsumption")}
               </dt>
               <dd className="mt-0.5 text-lg font-bold text-white tabular-nums">
-                {economicValuesMissing
+                {selfConsumedMissing
                   ? "–"
                   : formatCurrency(p.selfConsumptionValue, locale, currency)}
               </dd>
@@ -295,7 +301,7 @@ const cost = result.productionCost;
                 {t("result.exported")}
               </dt>
               <dd className="mt-0.5 text-lg font-bold text-white tabular-nums">
-                {economicValuesMissing ? "–" : formatCurrency(p.exportValue, locale, currency)}
+                {exportMissing ? "–" : formatCurrency(p.exportValue, locale, currency)}
               </dd>
               <dd className="text-[11px] text-white/60">
                 {formatNumber(p.exportPercent, locale)} % · {formatNumber(p.exportedKwh, locale)} kWh
@@ -304,10 +310,12 @@ const cost = result.productionCost;
           </dl>
 
 
-          {economicValuesMissing ? (
-            <p className="rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] text-white/70">
-              {t("result.missingMarketValues")}
-            </p>
+          {selfConsumedMissing || exportMissing || installationCostMissing ? (
+            <div className="space-y-1.5 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] text-white/70">
+              {selfConsumedMissing ? <p>{t("result.missingSelfConsumedValue")}</p> : null}
+              {exportMissing ? <p>{t("result.missingExportValue")}</p> : null}
+              {installationCostMissing ? <p>{t("result.missingInstallationCost")}</p> : null}
+            </div>
           ) : null}
 
           
@@ -338,9 +346,15 @@ const cost = result.productionCost;
             })}
           </p>
 
-          <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-accent">
-            {t("result.maxInvestmentApprox", { amount: investmentAmount })}
-          </p>
+          {economicValuesMissing ? (
+            <p className="mt-1.5 text-center text-[11px] leading-relaxed text-white/70">
+              {t("result.missingMarketValues")}
+            </p>
+          ) : (
+            <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-accent">
+              {t("result.maxInvestmentApprox", { amount: investmentAmount })}
+            </p>
+          )}
 
         </section>
 

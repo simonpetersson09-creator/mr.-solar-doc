@@ -12,7 +12,11 @@ import {
 } from "@/config/constants";
 import {
   DEFAULT_GRID_PROFILE,
+  PHASE_COUNT_FOR_SERVICE_TYPE,
+  SERVICE_TYPE_FOR_PHASE_COUNT,
+  splitPhaseLineToNeutral,
   type PhaseCount,
+  type ServiceType,
 } from "@/config/grid";
 
 export interface WizardState {
@@ -31,7 +35,12 @@ export interface WizardState {
   mainFuseAmp: number | null;
   /** Grid profile: phases, voltage and frequency of the connection. */
   gridPhaseCount: PhaseCount;
+  /** Electrical service type. Split-phase is its own type, not 1- or 3-phase. */
+  gridServiceType: ServiceType;
+  /** Reference voltage: line-to-line, except single-phase (line-to-neutral). */
   gridVoltageV: number;
+  /** Line-to-neutral voltage, relevant for split-phase (e.g. 120 of 120/240). */
+  gridLineToNeutralVoltageV: number | null;
   gridFrequencyHz: number;
   /** True once the user actively changed the grid profile in the UI. */
   gridProfileIsUserSet: boolean;
@@ -65,13 +74,17 @@ export interface WizardState {
   setMainFuse: (amp: number) => void;
   setGridProfile: (profile: {
     phaseCount?: PhaseCount;
+    serviceType?: ServiceType;
     voltageV?: number;
+    lineToNeutralVoltageV?: number | null;
     frequencyHz?: number;
   }) => void;
   /** Applies a country/connection default without marking it as user set. */
   setGridDefaults: (profile: {
     phaseCount?: PhaseCount;
+    serviceType?: ServiceType;
     voltageV?: number;
+    lineToNeutralVoltageV?: number | null;
     frequencyHz?: number;
   }) => void;
   setSelfConsumptionShare: (share: number) => void;
@@ -97,7 +110,9 @@ const initialState = {
   consumptionShape: null as ConsumptionShape | null,
   mainFuseAmp: null,
   gridPhaseCount: DEFAULT_GRID_PROFILE.phaseCount,
+  gridServiceType: SERVICE_TYPE_FOR_PHASE_COUNT[DEFAULT_GRID_PROFILE.phaseCount] as ServiceType,
   gridVoltageV: DEFAULT_GRID_PROFILE.voltageV,
+  gridLineToNeutralVoltageV: null as number | null,
   gridFrequencyHz: DEFAULT_GRID_PROFILE.frequencyHz,
   gridProfileIsUserSet: false,
   selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
@@ -110,6 +125,39 @@ const initialState = {
   quotePrice: null,
   currentStep: 1,
 };
+
+interface GridPatch {
+  phaseCount?: PhaseCount;
+  serviceType?: ServiceType;
+  voltageV?: number;
+  lineToNeutralVoltageV?: number | null;
+  frequencyHz?: number;
+}
+
+/**
+ * Merges a grid patch. Service type is the source of truth; the phase count is
+ * kept in sync for legacy consumers. For split-phase the line-to-neutral
+ * voltage defaults to half the (line-to-line) service voltage.
+ */
+function mergeGrid(state: WizardState, patch: GridPatch) {
+  const serviceType =
+    patch.serviceType ??
+    (patch.phaseCount ? SERVICE_TYPE_FOR_PHASE_COUNT[patch.phaseCount] : state.gridServiceType);
+  const voltageV = patch.voltageV ?? state.gridVoltageV;
+  const lineToNeutral =
+    patch.lineToNeutralVoltageV !== undefined
+      ? patch.lineToNeutralVoltageV
+      : serviceType === "split-phase"
+        ? splitPhaseLineToNeutral(voltageV)
+        : null;
+  return {
+    gridServiceType: serviceType,
+    gridPhaseCount: patch.phaseCount ?? PHASE_COUNT_FOR_SERVICE_TYPE[serviceType],
+    gridVoltageV: voltageV,
+    gridLineToNeutralVoltageV: lineToNeutral,
+    gridFrequencyHz: patch.frequencyHz ?? state.gridFrequencyHz,
+  };
+}
 
 export const useWizardStore = create<WizardState>()(
   persist(
@@ -136,22 +184,9 @@ export const useWizardStore = create<WizardState>()(
         }),
       setMainFuse: (amp) => set({ mainFuseAmp: amp }),
       setGridProfile: (profile) =>
-        set((state) => ({
-          gridPhaseCount: profile.phaseCount ?? state.gridPhaseCount,
-          gridVoltageV: profile.voltageV ?? state.gridVoltageV,
-          gridFrequencyHz: profile.frequencyHz ?? state.gridFrequencyHz,
-          gridProfileIsUserSet: true,
-        })),
+        set((state) => ({ ...mergeGrid(state, profile), gridProfileIsUserSet: true })),
       setGridDefaults: (profile) =>
-        set((state) =>
-          state.gridProfileIsUserSet
-            ? {}
-            : {
-                gridPhaseCount: profile.phaseCount ?? state.gridPhaseCount,
-                gridVoltageV: profile.voltageV ?? state.gridVoltageV,
-                gridFrequencyHz: profile.frequencyHz ?? state.gridFrequencyHz,
-              },
-        ),
+        set((state) => (state.gridProfileIsUserSet ? {} : mergeGrid(state, profile))),
       setSelfConsumptionShare: (share) =>
         set({ selfConsumptionShare: share, selfConsumptionShareIsUserSet: true }),
       setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
@@ -191,7 +226,9 @@ export const useWizardStore = create<WizardState>()(
         consumptionShape,
         mainFuseAmp,
         gridPhaseCount,
+        gridServiceType,
         gridVoltageV,
+        gridLineToNeutralVoltageV,
         gridFrequencyHz,
         gridProfileIsUserSet,
         selfConsumptionShare,
@@ -214,7 +251,9 @@ export const useWizardStore = create<WizardState>()(
         consumptionShape,
         mainFuseAmp,
         gridPhaseCount,
+        gridServiceType,
         gridVoltageV,
+        gridLineToNeutralVoltageV,
         gridFrequencyHz,
         gridProfileIsUserSet,
         selfConsumptionShare,

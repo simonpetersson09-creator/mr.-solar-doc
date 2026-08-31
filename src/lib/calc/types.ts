@@ -119,14 +119,40 @@ export interface GridAssumption {
   frequencyHz: number;
 }
 
+/**
+ * Availability of one economic input.
+ *  - "available": we have a number (0 is a real, verified number)
+ *  - "missing": no verified value and no user input — never treated as 0
+ *  - "not-applicable": the component does not exist in this country
+ */
+export type EconomicAvailability = "available" | "missing" | "not-applicable";
+
+export interface EconomicsAvailability {
+  selfConsumedValue: EconomicAvailability;
+  exportValue: EconomicAvailability;
+  installationCost: EconomicAvailability;
+  gridCompensation: EconomicAvailability;
+  /** True only when every value needed for a total is available. */
+  totalsComplete: boolean;
+}
+
 /** Where a price used in the calculation came from. */
 export type PriceValueSource = "standard-value" | "user-override";
 
 export interface EconomicsInput {
-  /** Assumed value of one self-consumed kWh. */
-  selfConsumedValuePerKwh: number;
-  /** Assumed compensation for one exported kWh. */
-  exportValuePerKwh: number;
+  /**
+   * Assumed value of one self-consumed kWh. `null` means the value is unknown
+   * (no verified country default, no user input) — it is NOT zero.
+   */
+  selfConsumedValuePerKwh: number | null;
+  /** Assumed compensation for one exported kWh. `null` = unknown, not zero. */
+  exportValuePerKwh: number | null;
+  /** Installation cost per kWp. `null` = unknown, not zero. */
+  installationCostPerKwp?: number | null;
+  /** Grid benefit per kWh. `null` = unknown; `0` = verified "no compensation". */
+  gridCompensationPerKwh?: number | null;
+  /** False when the country has no grid-benefit component at all. */
+  gridCompensationEnabled?: boolean;
   currency: string;
   /** True when the market has no standard value and the user has not entered one. */
   valuesMissing?: boolean;
@@ -209,6 +235,12 @@ export interface CalculationResult {
     /** Standard value from the market config, or a value entered by the user. */
     selfConsumedValueSource: PriceValueSource;
     exportValueSource: PriceValueSource;
+    /** Which economic inputs were known. Presentation must respect this. */
+    availability: EconomicsAvailability;
+    /** Grid benefit per kWh when the country has one and it is known. */
+    gridCompensationPerKwh: number | null;
+    /** Installation cost per kWp when known. */
+    installationCostPerKwp: number | null;
   };
   mainFuseAmp: number;
   /** Grid assumption used to derive `maxAcPowerKw`. Read by UI and PDF. */

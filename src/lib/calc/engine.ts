@@ -28,6 +28,7 @@ import {
 import { recommendArraySize } from "./solar-sizing";
 import { clampShare, splitProduction, summariseSelfConsumption } from "./self-consumption";
 import type {
+  EconomicsAvailability,
   CalculationInput,
   CalculationResult,
   RecommendationReason,
@@ -152,9 +153,31 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   });
 
 
+  // null means "unknown" and must never silently become 0. It is only mapped to
+  // 0 for the internal arithmetic, and every total that depends on a missing
+  // value is flagged as incomplete via `availability` below.
+  const selfConsumedKnown = input.economics.selfConsumedValuePerKwh != null;
+  const exportKnown = input.economics.exportValuePerKwh != null;
+  const gridCompensationEnabled = input.economics.gridCompensationEnabled ?? false;
+  const gridCompensationKnown =
+    gridCompensationEnabled && input.economics.gridCompensationPerKwh != null;
+  const installationCostKnown = input.economics.installationCostPerKwp != null;
+
+  const availability: EconomicsAvailability = {
+    selfConsumedValue: selfConsumedKnown ? "available" : "missing",
+    exportValue: exportKnown ? "available" : "missing",
+    installationCost: installationCostKnown ? "available" : "missing",
+    gridCompensation: !gridCompensationEnabled
+      ? "not-applicable"
+      : gridCompensationKnown
+        ? "available"
+        : "missing",
+    totalsComplete: selfConsumedKnown && exportKnown,
+  };
+
   // Negative prices are rejected at the calculation layer, not only in the UI.
-  const selfConsumedValuePerKwh = nonNegative(input.economics.selfConsumedValuePerKwh);
-  const exportValuePerKwh = nonNegative(input.economics.exportValuePerKwh);
+  const selfConsumedValuePerKwh = nonNegative(input.economics.selfConsumedValuePerKwh ?? 0);
+  const exportValuePerKwh = nonNegative(input.economics.exportValuePerKwh ?? 0);
 
   const economics = calculateEconomicValue({
     selfConsumptionKwh: split.selfConsumptionKwh,
@@ -162,7 +185,12 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     selfConsumedValuePerKwh,
     exportValuePerKwh,
   });
-  if (input.economics.valuesMissing) notes.push("economic-values-missing");
+  if (!availability.totalsComplete || input.economics.valuesMissing) {
+    notes.push("economic-values-missing");
+  }
+  if (availability.selfConsumedValue === "missing") notes.push("self-consumed-value-missing");
+  if (availability.exportValue === "missing") notes.push("export-value-missing");
+  if (availability.installationCost === "missing") notes.push("installation-cost-missing");
 
   if (input.resource.orientationAssumed) notes.push("orientation-assumed");
   if (input.resource.tiltAssumed) notes.push("tilt-assumed");
@@ -238,6 +266,11 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       ...economics,
       selfConsumedValueSource: input.economics.selfConsumedValueSource ?? "standard-value",
       exportValueSource: input.economics.exportValueSource ?? "standard-value",
+      availability,
+      gridCompensationPerKwh: gridCompensationKnown
+        ? (input.economics.gridCompensationPerKwh ?? null)
+        : null,
+      installationCostPerKwp: input.economics.installationCostPerKwp ?? null,
     },
     mainFuseAmp: input.electrical.mainFuseAmp,
     grid: {

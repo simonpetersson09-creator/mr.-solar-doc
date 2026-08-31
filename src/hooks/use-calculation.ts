@@ -5,7 +5,8 @@ import { getMarketConfig } from "@/config/markets";
 import { resolveEconomicsDefaults } from "@/config/countries";
 import { useWizardStore } from "@/state/wizard-store";
 import { PRICE_SCENARIO_RATES } from "@/config/constants";
-import { SERVICE_TYPE_FOR_PHASE_COUNT } from "@/config/grid";
+import type { ServiceType } from "@/config/grid";
+import { getCountryConfig } from "@/config/countries";
 
 /** UI -> Hook -> Calculation engine -> Result. No logic lives in components. */
 export function useCalculation(): {
@@ -20,6 +21,7 @@ export function useCalculation(): {
   const consumptionShape = useWizardStore((s) => s.consumptionShape);
   const mainFuseAmp = useWizardStore((s) => s.mainFuseAmp);
   const gridPhaseCount = useWizardStore((s) => s.gridPhaseCount);
+  const gridServiceType = useWizardStore((s) => s.gridServiceType);
   const gridVoltageV = useWizardStore((s) => s.gridVoltageV);
   const gridFrequencyHz = useWizardStore((s) => s.gridFrequencyHz);
   const selfConsumptionShare = useWizardStore((s) => s.selfConsumptionShare);
@@ -56,15 +58,20 @@ export function useCalculation(): {
       },
       electrical: {
         mainFuseAmp,
-        serviceType: SERVICE_TYPE_FOR_PHASE_COUNT[gridPhaseCount],
+        serviceType: gridServiceType as ServiceType,
         gridVoltageV,
         gridPhases: gridPhaseCount,
         gridFrequencyHz,
       },
       economics: {
         // Country decides the standard values; the user's own values always win.
-        selfConsumedValuePerKwh: economicsDefaults.selfConsumedValuePerKwh ?? 0,
-        exportValuePerKwh: economicsDefaults.exportValuePerKwh ?? 0,
+        // null stays null: unknown values must not be presented as zero.
+        selfConsumedValuePerKwh: economicsDefaults.selfConsumedValuePerKwh,
+        exportValuePerKwh: economicsDefaults.exportValuePerKwh,
+        installationCostPerKwp: economicsDefaults.installationCostPerKwp,
+        gridCompensationPerKwh: economicsDefaults.gridCompensationPerKwh,
+        gridCompensationEnabled: getCountryConfig(location?.countryCode).economics
+          .gridCompensation.enabled,
         currency: economicsDefaults.currencyCode,
         valuesMissing: economicsDefaults.valuesMissing,
         // The source follows how the value was set, never the number itself.
@@ -88,6 +95,7 @@ export function useCalculation(): {
     consumptionShape,
     mainFuseAmp,
     gridPhaseCount,
+    gridServiceType,
     gridVoltageV,
     gridFrequencyHz,
     selfConsumptionShare,

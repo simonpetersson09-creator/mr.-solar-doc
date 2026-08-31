@@ -13,7 +13,7 @@ export type PhaseCount = 1 | 3;
  * future service types (e.g. "split-phase" for US/CA) can be added by
  * extending the tables below without redoing the calculation formula.
  */
-export type ServiceType = "single-phase" | "three-phase";
+export type ServiceType = "single-phase" | "three-phase" | "split-phase";
 
 /** Maps the UI's phase count to its electrical service type. */
 export const SERVICE_TYPE_FOR_PHASE_COUNT: Record<PhaseCount, ServiceType> = {
@@ -22,14 +22,59 @@ export const SERVICE_TYPE_FOR_PHASE_COUNT: Record<PhaseCount, ServiceType> = {
 };
 
 /**
+ * Nominal phase count stored alongside a service type. Split-phase (US/CA
+ * 120/240 V) is a single-phase transformer secondary with a centre tap — it is
+ * NOT modelled as ordinary single- or three-phase in the power formula.
+ */
+export const PHASE_COUNT_FOR_SERVICE_TYPE: Record<ServiceType, PhaseCount> = {
+  "single-phase": 1,
+  "three-phase": 3,
+  "split-phase": 1,
+};
+
+/** Selectable service types, in display order. */
+export const SERVICE_TYPE_OPTIONS: readonly ServiceType[] = [
+  "single-phase",
+  "three-phase",
+  "split-phase",
+];
+
+/**
  * AC power factor per service type:
- *  - three-phase: sqrt(3)  ->  P(kW) = sqrt(3) x U x I / 1000
- *  - single-phase: 1       ->  P(kW) = U x I / 1000
+ *  - three-phase: sqrt(3)  ->  P(kW) = sqrt(3) x U_LL x I / 1000
+ *  - single-phase: 1       ->  P(kW) = U_LN x I / 1000
+ *  - split-phase: 1        ->  P(kW) = U_LL x I / 1000 (240 V, not 120 V)
  */
 export const SERVICE_TYPE_AC_FACTOR: Record<ServiceType, number> = {
   "single-phase": 1,
   "three-phase": Math.sqrt(3),
+  "split-phase": 1,
 };
+
+/**
+ * Which voltage the stored `voltageV` represents for each service type. The
+ * calculation always uses this reference voltage — for split-phase that is the
+ * line-to-line voltage (240 V of a 120/240 V service), never the 120 V leg.
+ */
+export const SERVICE_TYPE_VOLTAGE_REFERENCE: Record<
+  ServiceType,
+  "line-to-line" | "line-to-neutral"
+> = {
+  "single-phase": "line-to-neutral",
+  "three-phase": "line-to-line",
+  "split-phase": "line-to-line",
+};
+
+/** Split-phase (US/CA residential) nominal values. */
+export const SPLIT_PHASE_LINE_TO_LINE_V = 240;
+export const SPLIT_PHASE_LINE_TO_NEUTRAL_V = 120;
+export const SPLIT_PHASE_VOLTAGE_OPTIONS: readonly number[] = [240, 208];
+export const SPLIT_PHASE_FREQUENCY_HZ = 60;
+
+/** Line-to-neutral voltage of a split-phase service (centre-tapped). */
+export function splitPhaseLineToNeutral(lineToLineV: number): number {
+  return lineToLineV / 2;
+}
 
 /** Selectable phase counts, in display order. */
 export const GRID_PHASE_OPTIONS: readonly PhaseCount[] = [1, 3];
@@ -37,13 +82,19 @@ export const GRID_PHASE_OPTIONS: readonly PhaseCount[] = [1, 3];
 /** Selectable nominal voltages (V), in display order. Extend freely. */
 export const GRID_VOLTAGE_OPTIONS: readonly number[] = [220, 230, 240, 380, 400, 415];
 
+/** Voltage presets for a given service type. */
+export function voltageOptionsForService(serviceType: ServiceType): readonly number[] {
+  return serviceType === "split-phase" ? SPLIT_PHASE_VOLTAGE_OPTIONS : GRID_VOLTAGE_OPTIONS;
+}
+
+
 /** Bounds for a user-entered custom voltage (V). */
 export const MIN_CUSTOM_VOLTAGE_V = 50;
 export const MAX_CUSTOM_VOLTAGE_V = 1000;
 
-/** True when the voltage is one of the predefined options. */
-export function isPresetVoltage(voltageV: number): boolean {
-  return GRID_VOLTAGE_OPTIONS.includes(voltageV);
+/** True when the voltage is one of the predefined options for the service. */
+export function isPresetVoltage(voltageV: number, serviceType?: ServiceType): boolean {
+  return voltageOptionsForService(serviceType ?? "three-phase").includes(voltageV);
 }
 
 /**
@@ -98,21 +149,43 @@ export function kwPerAmpFor(phaseCount: PhaseCount, voltageV: number): number {
  *    UK-style systems), used as P(kW) = sqrt(3) x U_LL x I / 1000
  *  - single-phase: U is the LINE-TO-NEUTRAL voltage (e.g. 230 V),
  *    used as P(kW) = U_LN x I / 1000
- * Never pass a phase-neutral voltage for a three-phase service.
+ *  - split-phase: U is the LINE-TO-LINE voltage of the service (240 V of a
+ *    120/240 V US/CA service), used as P(kW) = U_LL x I / 1000.
+ *    The 120 V leg is NEVER the service voltage, and sqrt(3) is never applied.
+ * Never pass a phase-neutral voltage for a three-phase or split-phase service.
  */
 export interface GridPowerInput {
-  /** Main fuse rating in amperes. */
+  /** Main fuse / service rating in amperes. */
   mainFuseAmp: number;
-  /** Line-to-line voltage for three-phase, line-to-neutral for single-phase. */
+  /** Reference voltage: line-to-line except for single-phase (line-to-neutral). */
   voltageV: number;
   /** Service type; derived from `phaseCount` when omitted. */
   serviceType?: ServiceType;
   phaseCount?: PhaseCount;
+  /**
+   * Optional explicit line-to-line voltage. When given for a split-phase or
+   * three-phase service it takes precedence over `voltageV`.
+   */
+  lineToLineVoltageV?: number | null;
+  /** Optional explicit line-to-neutral voltage (e.g. 120 V of 120/240 V). */
+  lineToNeutralVoltageV?: number | null;
 }
 
 /** kW per ampere for a service type. Single source of the power rule. */
 export function kwPerAmpForService(serviceType: ServiceType, voltageV: number): number {
   return (SERVICE_TYPE_AC_FACTOR[serviceType] * voltageV) / 1000;
+}
+
+/** The voltage a given service type's power calculation must use. */
+export function referenceVoltageFor(input: GridPowerInput, serviceType: ServiceType): number {
+  const reference = SERVICE_TYPE_VOLTAGE_REFERENCE[serviceType];
+  if (reference === "line-to-line" && input.lineToLineVoltageV != null) {
+    return input.lineToLineVoltageV;
+  }
+  if (reference === "line-to-neutral" && input.lineToNeutralVoltageV != null) {
+    return input.lineToNeutralVoltageV;
+  }
+  return input.voltageV;
 }
 
 /**
@@ -123,5 +196,7 @@ export function maxAcPowerKwFor(input: GridPowerInput): number {
   const serviceType =
     input.serviceType ??
     SERVICE_TYPE_FOR_PHASE_COUNT[input.phaseCount ?? DEFAULT_GRID_PHASE_COUNT];
-  return input.mainFuseAmp * kwPerAmpForService(serviceType, input.voltageV);
+  const voltageV = referenceVoltageFor(input, serviceType);
+  return input.mainFuseAmp * kwPerAmpForService(serviceType, voltageV);
 }
+
