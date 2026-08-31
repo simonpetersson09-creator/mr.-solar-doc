@@ -149,13 +149,14 @@ const cost = result.productionCost;
               <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                 {t("result.panelPowerLabel")}
               </p>
-              <p className="mt-0.5 text-4xl font-extrabold tracking-tight">
+              <p className="mt-0.5 text-3xl font-extrabold tracking-tight tabular-nums">
                 {formatDecimal(result.installedKwp, locale)}{" "}
-                <span className="text-lg font-semibold text-white/80">kWp</span>
+                <span className="text-base font-semibold text-white/80">kWp</span>
               </p>
-              <p className="text-xs text-white/70">
+              <p className="text-[11px] text-white/60">
                 {t("result.panelCount", { count: result.panelCount })}
               </p>
+
             </div>
 
             <div className="mt-2.5 grid grid-cols-2 gap-2.5">
