@@ -34,7 +34,7 @@ export const Route = createFileRoute("/betalning")({
   component: PaywallPage,
 });
 
-type Phase = "idle" | "purchasing" | "verifying" | "failed" | "cancelled";
+type Phase = "idle" | "purchasing" | "verifying" | "failed" | "cancelled" | "retry";
 
 function PaywallPage() {
   const { t } = useTranslation();
