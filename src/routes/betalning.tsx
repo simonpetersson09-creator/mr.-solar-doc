@@ -19,14 +19,7 @@ import {
   verifyApplePurchase,
 } from "@/lib/purchase.functions";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
-import {
-  PREMIUM_PRICE_AMOUNT,
-  PREMIUM_PRICE_CURRENCY,
-  PREMIUM_PRODUCT_ID,
-  UNLOCK_PRICE_AMOUNT,
-  UNLOCK_PRICE_CURRENCY,
-  UNLOCK_PRODUCT_ID,
-} from "@/config/purchase";
+import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 
 export const Route = createFileRoute("/betalning")({
   head: () => ({
@@ -88,8 +81,11 @@ function PaywallPage() {
     }
   }, [premium.active, pending, rememberToken, navigate]);
 
-  const unlockPrice = prices.unlock ?? `${UNLOCK_PRICE_AMOUNT} ${UNLOCK_PRICE_CURRENCY}`;
-  const premiumPrice = prices.premium ?? `${PREMIUM_PRICE_AMOUNT} ${PREMIUM_PRICE_CURRENCY}`;
+  // Only the StoreKit price is ever shown: it is already localised for the
+  // user's storefront. Without it we show a neutral text — never a fabricated
+  // amount or currency.
+  const unlockPrice = prices.unlock;
+  const premiumPrice = prices.premium;
   const busy = phase === "purchasing" || phase === "verifying";
 
   async function handleUnlock() {
@@ -197,7 +193,9 @@ function PaywallPage() {
             </span>
             <div className="flex flex-1 flex-col">
               <p className="text-sm font-bold">{t("paywall.single.title")}</p>
-              <p className="text-2xl font-bold tabular-nums">{unlockPrice}</p>
+              <p className="text-2xl font-bold tabular-nums">
+                {unlockPrice ?? t("paywall.priceLoading")}
+              </p>
               <p className="text-sm text-primary-foreground/80">{t("paywall.single.body")}</p>
             </div>
           </div>
@@ -213,7 +211,9 @@ function PaywallPage() {
                 {busyLabel()}
               </>
             ) : (
-              t("paywall.single.cta", { price: unlockPrice })
+              unlockPrice
+                ? t("paywall.single.cta", { price: unlockPrice })
+                : t("paywall.single.ctaNoPrice")
             )}
           </Button>
         </section>
@@ -227,7 +227,9 @@ function PaywallPage() {
             <div className="flex flex-1 flex-col">
               <p className="text-sm font-bold">{t("paywall.premium.title")}</p>
               <p className="text-2xl font-bold tabular-nums">
-                {t("paywall.premium.price", { price: premiumPrice })}
+                {premiumPrice
+                  ? t("paywall.premium.price", { price: premiumPrice })
+                  : t("paywall.priceLoading")}
               </p>
               <p className="text-sm text-primary-foreground/80">{t("paywall.premium.body")}</p>
             </div>

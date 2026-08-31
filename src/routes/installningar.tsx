@@ -16,14 +16,7 @@ import {
 import { verifyApplePremium } from "@/lib/purchase.functions";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
-import {
-  PREMIUM_PRICE_AMOUNT,
-  PREMIUM_PRICE_CURRENCY,
-  PREMIUM_PRODUCT_ID,
-  UNLOCK_PRICE_AMOUNT,
-  UNLOCK_PRICE_CURRENCY,
-  UNLOCK_PRODUCT_ID,
-} from "@/config/purchase";
+import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 
 export const Route = createFileRoute("/installningar")({
   head: () => ({
@@ -50,10 +43,9 @@ function SettingsPage() {
   const premium = usePremium();
   const [restoring, setRestoring] = useState(false);
   const [buying, setBuying] = useState(false);
-  const premiumPrice =
-    getStorePrice(PREMIUM_PRODUCT_ID) ?? `${PREMIUM_PRICE_AMOUNT} ${PREMIUM_PRICE_CURRENCY}`;
-  const unlockPrice =
-    getStorePrice(UNLOCK_PRODUCT_ID) ?? `${UNLOCK_PRICE_AMOUNT} ${UNLOCK_PRICE_CURRENCY}`;
+  // StoreKit prices only — no hardcoded fallback amount or currency.
+  const premiumPrice = getStorePrice(PREMIUM_PRODUCT_ID);
+  const unlockPrice = getStorePrice(UNLOCK_PRODUCT_ID);
 
   /** Buys the yearly subscription. Verification is always server-side. */
   async function handleBuyPremium() {
@@ -157,7 +149,9 @@ function SettingsPage() {
             </span>
             <div className="flex flex-1 flex-col">
               <p className="text-sm font-bold">{t("paywall.single.title")}</p>
-              <p className="text-lg font-bold tabular-nums">{unlockPrice}</p>
+              <p className="text-lg font-bold tabular-nums">
+                {unlockPrice ?? t("paywall.priceLoading")}
+              </p>
             </div>
           </div>
           <p className="text-xs text-primary-foreground/80">{t("paywall.single.body")}</p>
@@ -179,7 +173,9 @@ function SettingsPage() {
             <div className="flex flex-1 flex-col">
               <p className="text-sm font-bold">{t("paywall.premium.title")}</p>
               <p className="text-lg font-bold tabular-nums">
-                {t("paywall.premium.price", { price: premiumPrice })}
+                {premiumPrice
+                  ? t("paywall.premium.price", { price: premiumPrice })
+                  : t("paywall.priceLoading")}
               </p>
             </div>
           </div>
