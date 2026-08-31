@@ -325,9 +325,15 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           </button>
           {showGridInfo ? (
             <p className="mt-2 pl-5 text-[11px] leading-relaxed text-white/60">
-              {t("fuse.gridAssumptionInfo")}
+              {/* Always describes the CURRENT grid settings — never a fixed
+                  400 V three-phase assumption. */}
+              {`${t("fuse.gridAssumptionDynamic", {
+                service: serviceLabel(serviceType),
+                voltage: voltageLabel(voltageV),
+              })} ${t("fuse.gridCheckHint")}`}
             </p>
           ) : null}
+
         </div>
 
         <div className="border-t border-white/15 pt-3">
