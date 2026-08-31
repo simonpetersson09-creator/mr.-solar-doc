@@ -37,7 +37,7 @@ export const fr = {
     "coordinates": "Coordonnées",
     "country": "Pays",
     "region": "Région",
-"error": "La recherche d'adresse a échoué.",
+    "error": "La recherche d'adresse a échoué.",
     "info": "L'adresse sert uniquement à calculer l'ensoleillement à votre emplacement.",
     "infoLabel": "Plus d'informations sur l'adresse"
   },
@@ -66,7 +66,7 @@ export const fr = {
     "fetching": "Récupération des données de production solaire de PVGIS…",
     "result": "Production solaire estimée à cet emplacement",
     "unit": "kWh/kWc/an",
-    disclaimer: "La production solaire calculée repose sur l'emplacement, l'orientation et l'inclinaison du toit. La production réelle peut être affectée par l'ombrage, la météo, la température et les pertes du système.",
+    "disclaimer": "La production solaire calculée repose sur l'emplacement, l'orientation et l'inclinaison du toit. La production réelle peut être affectée par l'ombrage, la météo, la température et les pertes du système.",
     "error": "Nous n'avons pas pu récupérer les données de production solaire pour cet emplacement pour le moment. Aucune valeur n'est estimée."
   },
   "consumption": {
@@ -107,7 +107,16 @@ export const fr = {
       "successMonthly": "Nous avons trouvé 12 valeurs mensuelles et les avons remplies pour vous.",
       "successAnnual": "Nous avons trouvé une consommation annuelle dans le document.",
       "error": "Nous n'avons pas pu trouver de consommation dans le document. Veuillez saisir les valeurs manuellement.",
-      "fileTypes": "PDF, XLSX, XLS, CSV, TXT ou image (PNG, JPEG)"
+      "fileTypes": "PDF, XLSX, XLS, CSV, TXT ou image (PNG, JPEG)",
+      "sectionTitle": "À partir d'un document",
+      "sectionHint": "Laissez-nous lire automatiquement votre facture d'électricité ou vos données de consommation.",
+      "dropHint": "Glissez-déposez votre fichier ici, ou",
+      "dropActive": "Déposez le fichier pour le lire",
+      "browse": "parcourir les fichiers",
+      "remove": "Supprimer",
+      "retry": "Essayer un autre fichier",
+      "readingFile": "Lecture de {{name}}…",
+      "ready": "Importé"
     },
     "title": "Quelle quantité d'électricité consommez-vous ?",
     "subtitle": "Consultez votre facture ou contrat d'électricité.",
@@ -116,7 +125,13 @@ export const fr = {
     "useMonthly": "Saisir la consommation mensuelle pour une meilleure précision",
     "monthlyTitle": "Consommation mensuelle",
     "total": "Consommation annuelle totale",
-    "invalid": "Saisissez une consommation annuelle entre 100 et 200 000 kWh."
+    "invalid": "Saisissez une consommation annuelle entre 100 et 200 000 kWh.",
+    "or": "ou",
+    "manual": {
+      "sectionTitle": "Saisir manuellement",
+      "sectionHint": "Indiquez votre consommation annuelle — vérifiez votre facture ou votre contrat d'électricité."
+    },
+    "monthlyHint": "Indiquez la consommation pour les 12 mois"
   },
   "fuse": {
     "gridAssumption": "Le calcul suppose un raccordement triphasé 400 V.",
@@ -179,20 +194,20 @@ export const fr = {
     "productionCaption": "production annuelle estimée",
     "annualSavings": "Valeur économique par an",
     "assumedPrices": "Prix de l'électricité supposés",
-    standardValueBadge: "Valeur standard",
-    resetToStandard: "Rétablir la valeur standard",
-    userValueBadge: "Saisi par vous",
-    priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
-    priceScenarioFlat: "Unchanged",
-    priceScenarioCautious: "Cautious",
-    priceScenarioNormal: "Normal",
-    priceScenarioHigh: "High",
-    priceScenarioCustom: "Own assumption",
-    priceScenarioCustomLabel: "Own change (%/year)",
-    degradationAssumption: "Dégradation technique",
-    priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Valeurs standard pour le calcul. Remplacez-les par les valeurs de votre propre contrat d'électricité pour un résultat plus individuel.",
+    "standardValueBadge": "Valeur standard",
+    "resetToStandard": "Rétablir la valeur standard",
+    "userValueBadge": "Saisi par vous",
+    "priceScenarioTitle": "Comment pensez-vous que les prix de l'électricité vont évoluer ?",
+    "priceScenarioHint": "Une hypothèse d'évolution annuelle, pas une prévision. Le prix augmente chaque année sur la période de calcul.",
+    "priceScenarioFlat": "Inchangé",
+    "priceScenarioCautious": "Prudent",
+    "priceScenarioNormal": "Normal",
+    "priceScenarioHigh": "Élevé",
+    "priceScenarioCustom": "Hypothèse personnalisée",
+    "priceScenarioCustomLabel": "Évolution personnalisée (%/an)",
+    "degradationAssumption": "Dégradation technique",
+    "priceScenarioAssumption": "Évolution supposée du prix de l'électricité",
+    "standardValueHint": "Valeurs standard pour le calcul. Remplacez-les par les valeurs de votre propre contrat d'électricité pour un résultat plus individuel.",
     "editable": "Modifiable",
     "editableTooltip": "Modifier l'hypothèse",
     "fuseLimit": "Limite de puissance théorique du fusible principal",
@@ -252,14 +267,12 @@ export const fr = {
     "paybackInfo": "Le temps de retour sur investissement simple indique le nombre d'années pendant lesquelles la valeur économique annuelle estimée correspond à l'investissement. Il ne prend pas en compte les changements futurs de prix de l'électricité, les coûts de financement, l'inflation, la maintenance ou l'actualisation.",
     "maxInvestment": "Niveau d'investissement pour le temps de retour sur investissement choisi",
     "maxInvestmentApprox": "environ {{amount}}",
-    investmentLevelInfoLabel: "Plus d'informations",
-    investmentLevelInfo: "Indique approximativement le coût d'investissement correspondant à la période de remboursement que vous avez choisie. Il ne s'agit pas d'une estimation du coût réel de l'installation. Le prix réel dépend, entre autres, de la toiture, de l'installation, des composants et du fournisseur.",
-    systemSizeInfoLabel: "Plus d'informations",
-systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre indicatif. La production réelle, l'autoconsommation, le prix de l'électricité, la rémunération, le coût d'installation et le résultat économique peuvent varier. Le résultat ne constitue ni une offre ni une garantie.",
-    productionCostInfoLabel: "Plus d'informations",
-    productionCostInfo: "Le coût de production est un coût moyen calculé par kWh produit sur la durée de vie de l'installation. Le coût réel peut être influencé par la production, la dégradation, l'entretien et d'autres coûts futurs.",
-
-
+    "investmentLevelInfoLabel": "Plus d'informations",
+    "investmentLevelInfo": "Indique approximativement le coût d'investissement correspondant à la période de remboursement que vous avez choisie. Il ne s'agit pas d'une estimation du coût réel de l'installation. Le prix réel dépend, entre autres, de la toiture, de l'installation, des composants et du fournisseur.",
+    "systemSizeInfoLabel": "Plus d'informations",
+    "systemSizeInfo": "Le calcul est une estimation et doit être utilisé à titre indicatif. La production réelle, l'autoconsommation, le prix de l'électricité, la rémunération, le coût d'installation et le résultat économique peuvent varier. Le résultat ne constitue ni une offre ni une garantie.",
+    "productionCostInfoLabel": "Plus d'informations",
+    "productionCostInfo": "Le coût de production est un coût moyen calculé par kWh produit sur la durée de vie de l'installation. Le coût réel peut être influencé par la production, la dégradation, l'entretien et d'autres coûts futurs.",
     "maxInvestmentExplainer": "Pour atteindre environ {{years}} ans de retour sur investissement simple, l'installation ne devrait pas coûter plus d'environ {{amount}}.",
     "maxInvestmentNote": "Le montant est calculé à partir de vos entrées et hypothèses de calcul – ce n'est ni un devis ni une estimation du prix du marché.",
     "missingMarketValues": "Nous n'avons pas de valeur par défaut vérifiée pour ce pays. Veuillez saisir les valeurs vous-même ci-dessous.",
@@ -284,7 +297,18 @@ systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre in
     "limitedByFuse": "L'installation est limitée par votre fusible principal, pas par votre consommation.",
     "dataSource": "Source des données solaires",
     "calculatedAt": "Date de calcul",
-    "noCalculation": "Aucun calcul trouvé. Recommencez à partir de l'adresse."
+    "noCalculation": "Aucun calcul trouvé. Recommencez à partir de l'adresse.",
+    "paybackYearsUnit": "ans",
+    "productionCostTitle": "Combien coûte l'électricité solaire de votre toit ?",
+    "productionCostExplainer": "Nous divisons le coût de l'installation par la production estimée sur toute la période de calcul.",
+    "productionCostLabel": "Coût de production",
+    "productionCostValueLabel": "Valeur pour vous",
+    "productionCostDifference": "Différence",
+    "productionCostBasis": "Basé sur {{investment}} et {{production}} kWh sur {{years}} ans.",
+    "productionCostHigherValue": "Dans ce calcul, chaque kWh vaut plus qu'il ne coûte à produire.",
+    "productionCostUnavailable": "Nous ne pouvons pas calculer le coût de production avec les données actuelles.",
+    "perKwh": "{{amount}}/kWh",
+    "locked": "Ce calcul est verrouillé. Finalisez l'achat pour voir le résultat."
   },
   "units": {
     "kwhPerYear": "kWh/an",
@@ -294,7 +318,13 @@ systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre in
   "settings": {
     "title": "Paramètres",
     "language": "Langue",
-    "languageHint": "La devise est déterminée par le pays de votre adresse, et non par la langue."
+    "languageHint": "La devise est déterminée par le pays de votre adresse, et non par la langue.",
+    "history": "Historique",
+    "plansTitle": "Achats et abonnement",
+    "singleCta": "Acheté avec votre prochain calcul",
+    "singleNote": "L'achat unique se fait lorsque vous démarrez un nouveau calcul — pas ici.",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité"
   },
   "chart": {
     "productionAria": "Production mensuelle",
@@ -313,34 +343,34 @@ systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre in
     }
   },
   "months": {
-    "short": [
-      "Jan",
-      "Fév",
-      "Mar",
-      "Avr",
-      "Mai",
-      "Juin",
-      "Juil",
-      "Août",
-      "Sep",
-      "Oct",
-      "Nov",
-      "Déc"
-    ],
-    "long": [
-      "Janvier",
-      "Février",
-      "Mars",
-      "Avril",
-      "Mai",
-      "Juin",
-      "Juillet",
-      "Août",
-      "Septembre",
-      "Octobre",
-      "Novembre",
-      "Décembre"
-    ]
+    "short": {
+      "0": "Jan",
+      "1": "Fév",
+      "2": "Mar",
+      "3": "Avr",
+      "4": "Mai",
+      "5": "Juin",
+      "6": "Juil",
+      "7": "Août",
+      "8": "Sep",
+      "9": "Oct",
+      "10": "Nov",
+      "11": "Déc"
+    },
+    "long": {
+      "0": "Janvier",
+      "1": "Février",
+      "2": "Mars",
+      "3": "Avril",
+      "4": "Mai",
+      "5": "Juin",
+      "6": "Juillet",
+      "7": "Août",
+      "8": "Septembre",
+      "9": "Octobre",
+      "10": "Novembre",
+      "11": "Décembre"
+    }
   },
   "report": {
     "fields": {
@@ -360,7 +390,7 @@ systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre in
       "selfConsumptionSource_simulated": "estimée à partir du profil de consommation",
       "longTermChartTitle": "Valeur économique dans le temps",
       "keyAssumptions": "Hypothèses clés du calcul",
-      priceMethodNote: "Les valeurs d'électricité sont des hypothèses de calcul. La valeur réelle de l'électricité solaire autoconsommée et vendue dépend du contrat, des frais, des taxes, des règles et des conditions du marché.",
+      "priceMethodNote": "Les valeurs d'électricité sont des hypothèses de calcul. La valeur réelle de l'électricité solaire autoconsommée et vendue dépend du contrat, des frais, des taxes, des règles et des conditions du marché.",
       "valueSource_standard-value": "Valeur standard",
       "valueSource_user-override": "Saisi par vous",
       "priceChange": "Évolution du prix de l'électricité",
@@ -438,7 +468,9 @@ systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre in
       "orientation_southeast": "Sud-Est",
       "orientation_southwest": "Sud-Ouest",
       "orientation_east": "Est",
-      "orientation_west": "Ouest"
+      "orientation_west": "Ouest",
+      "priceChangeNoteFlat": "Le calcul utilise des valeurs inchangées pour l'électricité solaire autoconsommée et exportée sur toute la période. Aucune hausse de prix n'est supposée, car les prix futurs de l'électricité ne peuvent être prévus. Si les prix augmentent, la valeur sera plus élevée que dans ce rapport ; s'ils baissent, elle sera plus faible.",
+      "priceChangeNoteTrend": "Le calcul suppose que la valeur de l'électricité solaire autoconsommée et exportée évolue de {{priceChange}} % par an sur toute la période. Il s'agit d'une hypothèse, car les prix futurs de l'électricité ne peuvent être prévus. Une évolution différente entraîne un résultat plus élevé ou plus faible que dans ce rapport."
     },
     "title": "Rapport solaire",
     "technical": "Données techniques",
@@ -460,18 +492,103 @@ systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre in
     "disclaimer": "Ce rapport est un aperçu du calcul et est basé sur les hypothèses énumérées ci-dessus. Ce n'est pas un devis.",
     "generated": "Généré",
     "faqTitle": "Questions fréquentes",
-    "faqItems": [
-      { "q": "Quelle est la fiabilité de la production solaire estimée ?", "a": "Le calcul s'appuie sur l'ensoleillement du lieu ainsi que sur l'orientation et l'inclinaison de la toiture. La production réelle est notamment influencée par la météo, l'ombrage et les conditions techniques de l'installation." },
-      { "q": "Que signifie l'autoconsommation ?", "a": "La part de l'électricité solaire utilisée directement dans le logement. Le reste de la production est injecté sur le réseau électrique." },
-      { "q": "Pourquoi l'électricité solaire autoconsommée vaut-elle plus que l'électricité solaire vendue ?", "a": "L'électricité solaire autoconsommée remplace de l'électricité qui aurait sinon été achetée sur le réseau, tandis que l'électricité solaire vendue est rémunérée selon les conditions de l'électricité injectée." },
-      { "q": "Que signifie le prix pour la durée de retour choisie ?", "a": "Il indique approximativement combien l'installation peut coûter pour correspondre à la durée de retour que vous avez choisie, sur la base des hypothèses du calcul. Il ne s'agit pas d'un prix de marché estimé." },
-      { "q": "Pourquoi le calcul de l'installateur peut-il différer ?", "a": "Des hypothèses différentes sur la production, l'autoconsommation, les prix de l'électricité, les pertes du système et l'évolution future des prix peuvent donner des résultats différents." },
-      { "q": "Le calcul est-il un devis ?", "a": "Non. Le résultat est une estimation et doit servir de base à la décision. Le prix, la production et le résultat économique réels peuvent différer." },
-      { q: 'Pourquoi la production diminue-t-elle au fil du temps ?', a: 'La puissance des panneaux solaires diminue normalement légèrement avec les années. Le calcul repose sur une dégradation annuelle de 0,5 %, ce qui signifie que la production estimée diminue progressivement au cours de la période de calcul.' },
-      { q: 'Comment la valeur de mon électricité solaire est-elle calculée ?', a: 'L\'électricité solaire autoconsommée est valorisée sur la base du coût de l\'électricité que vous auriez dû acheter autrement. L\'électricité solaire vendue est valorisée sur la base de la rémunération supposée pour l\'électricité injectée dans le réseau.' },
-      { q: 'Que signifie le coût de production par kWh ?', a: 'Le coût de production indique le coût moyen estimé de chaque kilowattheure produit sur la durée de vie de l\'installation. Il peut être comparé à la valeur économique estimée de l\'électricité solaire.' },
-      { q: 'Pourquoi cette taille d\'installation est-elle recommandée ?', a: 'La taille de l\'installation est calculée notamment en fonction de votre consommation d\'électricité, de l\'ensoleillement du site et des limitations techniques. L\'objectif est de dimensionner l\'installation selon vos conditions, et non d\'installer la plus grande installation possible.' },
-    ],
-
+    "faqItems": {
+      "0": {
+        "q": "Quelle est la fiabilité de la production solaire estimée ?",
+        "a": "Le calcul s'appuie sur l'ensoleillement du lieu ainsi que sur l'orientation et l'inclinaison de la toiture. La production réelle est notamment influencée par la météo, l'ombrage et les conditions techniques de l'installation."
+      },
+      "1": {
+        "q": "Que signifie l'autoconsommation ?",
+        "a": "La part de l'électricité solaire utilisée directement dans le logement. Le reste de la production est injecté sur le réseau électrique."
+      },
+      "2": {
+        "q": "Pourquoi l'électricité solaire autoconsommée vaut-elle plus que l'électricité solaire vendue ?",
+        "a": "L'électricité solaire autoconsommée remplace de l'électricité qui aurait sinon été achetée sur le réseau, tandis que l'électricité solaire vendue est rémunérée selon les conditions de l'électricité injectée."
+      },
+      "3": {
+        "q": "Que signifie le prix pour la durée de retour choisie ?",
+        "a": "Il indique approximativement combien l'installation peut coûter pour correspondre à la durée de retour que vous avez choisie, sur la base des hypothèses du calcul. Il ne s'agit pas d'un prix de marché estimé."
+      },
+      "4": {
+        "q": "Pourquoi le calcul de l'installateur peut-il différer ?",
+        "a": "Des hypothèses différentes sur la production, l'autoconsommation, les prix de l'électricité, les pertes du système et l'évolution future des prix peuvent donner des résultats différents."
+      },
+      "5": {
+        "q": "Le calcul est-il un devis ?",
+        "a": "Non. Le résultat est une estimation et doit servir de base à la décision. Le prix, la production et le résultat économique réels peuvent différer."
+      },
+      "6": {
+        "q": "Pourquoi la production diminue-t-elle au fil du temps ?",
+        "a": "La puissance des panneaux solaires diminue normalement légèrement avec les années. Le calcul repose sur une dégradation annuelle de 0,5 %, ce qui signifie que la production estimée diminue progressivement au cours de la période de calcul."
+      },
+      "7": {
+        "q": "Comment la valeur de mon électricité solaire est-elle calculée ?",
+        "a": "L'électricité solaire autoconsommée est valorisée sur la base du coût de l'électricité que vous auriez dû acheter autrement. L'électricité solaire vendue est valorisée sur la base de la rémunération supposée pour l'électricité injectée dans le réseau."
+      },
+      "8": {
+        "q": "Que signifie le coût de production par kWh ?",
+        "a": "Le coût de production indique le coût moyen estimé de chaque kilowattheure produit sur la durée de vie de l'installation. Il peut être comparé à la valeur économique estimée de l'électricité solaire."
+      },
+      "9": {
+        "q": "Pourquoi cette taille d'installation est-elle recommandée ?",
+        "a": "La taille de l'installation est calculée notamment en fonction de votre consommation d'électricité, de l'ensoleillement du site et des limitations techniques. L'objectif est de dimensionner l'installation selon vos conditions, et non d'installer la plus grande installation possible."
+      }
+    }
+  },
+  "premium": {
+    "title": "Premium",
+    "restore": "Restaurer l'achat",
+    "manage": "Gérer l'abonnement",
+    "unavailable": "Les achats sont gérés dans l'application iOS via l'App Store.",
+    "restored": "Vos achats ont été restaurés ({{count}}).",
+    "active": "Premium actif",
+    "activeHint": "Calculs et rapports illimités",
+    "become": "Obtenir Premium",
+    "becomeHint": "Calculs illimités – {{price}}/an",
+    "activated": "Premium est maintenant actif.",
+    "restoredPremium": "Votre Premium a été restauré.",
+    "nothingToRestore": "Aucun achat trouvé sur cet appareil.",
+    "restoreFailed": "Impossible de restaurer les achats pour le moment."
+  },
+  "paywall": {
+    "single": {
+      "title": "Un calcul",
+      "body": "Débloquez le résultat complet et le rapport PDF pour ce calcul.",
+      "cta": "Débloquer pour {{price}}"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{{price}}/an",
+      "body": "Calculs et rapports PDF illimités.",
+      "includes": {
+        "calculations": "Calculs illimités",
+        "pdf": "Rapports PDF illimités",
+        "result": "Accès complet au résultat"
+      },
+      "cta": "Obtenir Premium",
+      "renewal": "Renouvellement automatique chaque année. Annulable à tout moment."
+    },
+    "title": "Débloquez votre calcul",
+    "eyebrow": "Achat unique",
+    "oneTime": "Payé une seule fois — sans abonnement.",
+    "includesTitle": "Ce qui est inclus",
+    "includes": {
+      "result": "Votre calcul complet avec l'économie et la production",
+      "pdf": "Rapport PDF à enregistrer ou partager",
+      "history": "Le calcul est enregistré dans votre historique"
+    },
+    "cta": "Débloquer pour {{price}}",
+    "purchasing": "Ouverture de l'App Store…",
+    "verifying": "Confirmation de votre achat…",
+    "cancelled": "L'achat a été annulé. Vous pouvez réessayer.",
+    "failed": "L'achat n'a pas pu être finalisé. Vous n'avez pas été débité.",
+    "retry": "Nous n'avons pas pu confirmer l'achat pour le moment. Rien n'est perdu — il se débloquera automatiquement dès que la connexion sera rétablie.",
+    "appOnly": "L'achat se fait dans l'application avec votre compte Apple et n'est pas disponible dans le navigateur.",
+    "appleNote": "Géré par l'App Store."
+  },
+  "history": {
+    "empty": "Vous n'avez encore aucun calcul enregistré.",
+    "unknownAddress": "Calcul",
+    "error": "Impossible de charger votre historique."
   }
 } as const;

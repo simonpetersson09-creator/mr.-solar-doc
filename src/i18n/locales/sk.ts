@@ -37,7 +37,7 @@ export const sk = {
     "coordinates": "Súradnice",
     "country": "Krajina",
     "region": "Kraj",
-"error": "Vyhľadávanie adresy zlyhalo.",
+    "error": "Vyhľadávanie adresy zlyhalo.",
     "info": "Adresa sa používa výlučne na výpočet slnečného žiarenia vo vašej lokalite.",
     "infoLabel": "Viac informácií o adrese"
   },
@@ -66,7 +66,7 @@ export const sk = {
     "fetching": "Načítavanie údajov o solárnej produkcii z PVGIS…",
     "result": "Odhadovaná solárna produkcia na mieste",
     "unit": "kWh/kWp/rok",
-    disclaimer: "Vypočítaná solárna výroba je založená na polohe, orientácii a sklone strechy. Skutočnú výrobu môže okrem iného ovplyvniť zatienenie, počasie, teplota a systémové straty.",
+    "disclaimer": "Vypočítaná solárna výroba je založená na polohe, orientácii a sklone strechy. Skutočnú výrobu môže okrem iného ovplyvniť zatienenie, počasie, teplota a systémové straty.",
     "error": "Momentálne sa nám nepodarilo načítať údaje o solárnej produkcii pre toto miesto. Žiadne hodnoty sa neodhadujú."
   },
   "consumption": {
@@ -107,7 +107,16 @@ export const sk = {
       "successMonthly": "Našli sme 12 mesačných hodnôt a vyplnili sme ich za vás.",
       "successAnnual": "V dokumente sme našli ročnú spotrebu.",
       "error": "V dokumente sa nám nepodarilo nájsť žiadnu spotrebu. Zadajte hodnoty manuálne.",
-      "fileTypes": "PDF, XLSX, XLS, CSV, TXT alebo obrázok (PNG, JPEG)"
+      "fileTypes": "PDF, XLSX, XLS, CSV, TXT alebo obrázok (PNG, JPEG)",
+      "sectionTitle": "Z dokumentu",
+      "sectionHint": "Nechajte nás automaticky prečítať váš účet za elektrinu alebo údaje o spotrebe.",
+      "dropHint": "Presuňte súbor sem, alebo",
+      "dropActive": "Pustite súbor, aby sa načítal",
+      "browse": "prehľadávať súbory",
+      "remove": "Odstrániť",
+      "retry": "Skúsiť iný súbor",
+      "readingFile": "Načítava sa {{name}}…",
+      "ready": "Importované"
     },
     "title": "Koľko elektriny spotrebujete?",
     "subtitle": "Pozrite si svoju faktúru za elektrinu alebo zmluvu o dodávke elektriny.",
@@ -116,7 +125,13 @@ export const sk = {
     "useMonthly": "Zadajte mesačnú spotrebu pre lepšiu presnosť",
     "monthlyTitle": "Mesačná spotreba",
     "total": "Celková ročná spotreba",
-    "invalid": "Zadajte ročnú spotrebu medzi 100 a 200 000 kWh."
+    "invalid": "Zadajte ročnú spotrebu medzi 100 a 200 000 kWh.",
+    "or": "alebo",
+    "manual": {
+      "sectionTitle": "Zadať ručne",
+      "sectionHint": "Zadajte svoju ročnú spotrebu — skontrolujte účet za elektrinu alebo zmluvu."
+    },
+    "monthlyHint": "Zadajte spotrebu za všetkých 12 mesiacov"
   },
   "fuse": {
     "gridAssumption": "Výpočet vychádza z trojfázovej prípojky 400 V.",
@@ -179,20 +194,20 @@ export const sk = {
     "productionCaption": "odhadovaná ročná produkcia",
     "annualSavings": "Ekonomická hodnota za rok",
     "assumedPrices": "Predpokladané ceny elektriny",
-    standardValueBadge: "Štandardná hodnota",
-    resetToStandard: "Obnoviť štandardnú hodnotu",
-    userValueBadge: "Zadané vami",
-    priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
-    priceScenarioFlat: "Unchanged",
-    priceScenarioCautious: "Cautious",
-    priceScenarioNormal: "Normal",
-    priceScenarioHigh: "High",
-    priceScenarioCustom: "Own assumption",
-    priceScenarioCustomLabel: "Own change (%/year)",
-    degradationAssumption: "Technická degradácia",
-    priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Štandardné hodnoty pre výpočet. Zmeňte ich na hodnoty z vlastnej zmluvy o dodávke elektriny pre individuálnejší výsledok.",
+    "standardValueBadge": "Štandardná hodnota",
+    "resetToStandard": "Obnoviť štandardnú hodnotu",
+    "userValueBadge": "Zadané vami",
+    "priceScenarioTitle": "Ako si myslíte, že sa budú vyvíjať ceny elektriny?",
+    "priceScenarioHint": "Predpoklad o ročnej zmene, nie prognóza. Cena sa rok čo rok zvyšuje počas celého obdobia výpočtu.",
+    "priceScenarioFlat": "Bez zmeny",
+    "priceScenarioCautious": "Opatrné",
+    "priceScenarioNormal": "Normal",
+    "priceScenarioHigh": "Vysoké",
+    "priceScenarioCustom": "Vlastný predpoklad",
+    "priceScenarioCustomLabel": "Vlastná zmena (%/rok)",
+    "degradationAssumption": "Technická degradácia",
+    "priceScenarioAssumption": "Predpokladaný vývoj ceny elektriny",
+    "standardValueHint": "Štandardné hodnoty pre výpočet. Zmeňte ich na hodnoty z vlastnej zmluvy o dodávke elektriny pre individuálnejší výsledok.",
     "editable": "Upraviteľné",
     "editableTooltip": "Zmeniť predpoklad",
     "fuseLimit": "Teoretický výkonový limit hlavného ističa",
@@ -252,14 +267,12 @@ export const sk = {
     "paybackInfo": "Jednoduchá doba návratnosti ukazuje, za koľko rokov odhadovaná ročná ekonomická hodnota zodpovedá investícii. Neberie do úvahy napríklad budúce zmeny cien elektriny, náklady na financovanie, infláciu, údržbu ani diskontovanie.",
     "maxInvestment": "Úroveň investície pri zvolenej dobe návratnosti",
     "maxInvestmentApprox": "cca {{amount}}",
-    investmentLevelInfoLabel: "Viac informácií",
-    investmentLevelInfo: "Približne ukazuje, aká investičná suma zodpovedá vami zvolenej dobe návratnosti. Nejde o odhad skutočných nákladov na inštaláciu. Skutočná cena závisí okrem iného od strechy, inštalácie, komponentov a dodávateľa.",
-    systemSizeInfoLabel: "Viac informácií",
-systemSizeInfo: "Výpočet je odhadom a mal by slúžiť ako orientácia. Skutočná výroba, vlastná spotreba, cena elektriny, kompenzácia, náklady na inštaláciu a ekonomický výsledok sa môžu líšiť. Výsledok nepredstavuje ponuku ani záruku.",
-    productionCostInfoLabel: "Viac informácií",
-    productionCostInfo: "Výrobné náklady sú vypočítané priemerné náklady na vyrobenú kWh počas životnosti zariadenia. Skutočné náklady môžu byť ovplyvnené výrobou, degradáciou, údržbou a ďalšími budúcimi nákladmi.",
-
-
+    "investmentLevelInfoLabel": "Viac informácií",
+    "investmentLevelInfo": "Približne ukazuje, aká investičná suma zodpovedá vami zvolenej dobe návratnosti. Nejde o odhad skutočných nákladov na inštaláciu. Skutočná cena závisí okrem iného od strechy, inštalácie, komponentov a dodávateľa.",
+    "systemSizeInfoLabel": "Viac informácií",
+    "systemSizeInfo": "Výpočet je odhadom a mal by slúžiť ako orientácia. Skutočná výroba, vlastná spotreba, cena elektriny, kompenzácia, náklady na inštaláciu a ekonomický výsledok sa môžu líšiť. Výsledok nepredstavuje ponuku ani záruku.",
+    "productionCostInfoLabel": "Viac informácií",
+    "productionCostInfo": "Výrobné náklady sú vypočítané priemerné náklady na vyrobenú kWh počas životnosti zariadenia. Skutočné náklady môžu byť ovplyvnené výrobou, degradáciou, údržbou a ďalšími budúcimi nákladmi.",
     "maxInvestmentExplainer": "Na dosiahnutie približne {{years}} rokov jednoduchej návratnosti by inštalácia mala stáť najviac približne {{amount}}.",
     "maxInvestmentNote": "Táto suma je vypočítaná z vašich vstupov a výpočtových predpokladov – nie je to ponuka ani odhad trhovej ceny.",
     "missingMarketValues": "Nemáme overenú štandardnú hodnotu pre túto krajinu. Zadajte prosím hodnoty sami nižšie.",
@@ -284,7 +297,18 @@ systemSizeInfo: "Výpočet je odhadom a mal by slúžiť ako orientácia. Skuto�
     "limitedByFuse": "Systém je obmedzený vaším hlavným ističom, nie vašou spotrebou.",
     "dataSource": "Zdroj dát o solárnej produkcii",
     "calculatedAt": "Dátum výpočtu",
-    "noCalculation": "Výpočet nebol nájdený. Začnite znova od adresy."
+    "noCalculation": "Výpočet nebol nájdený. Začnite znova od adresy.",
+    "paybackYearsUnit": "rokov",
+    "productionCostTitle": "Koľko stojí solárna energia z vašej strechy?",
+    "productionCostExplainer": "Náklady na systém delíme odhadovanou výrobou počas celého obdobia výpočtu.",
+    "productionCostLabel": "Náklady na výrobu",
+    "productionCostValueLabel": "Hodnota pre vás",
+    "productionCostDifference": "Rozdiel",
+    "productionCostBasis": "Na základe {{investment}} a {{production}} kWh za {{years}} rokov.",
+    "productionCostHigherValue": "V tomto výpočte má každá kWh vyššiu hodnotu, než koľko stojí jej výroba.",
+    "productionCostUnavailable": "Pri aktuálnych údajoch nemôžeme vypočítať náklady na výrobu.",
+    "perKwh": "{{amount}}/kWh",
+    "locked": "Tento výpočet je uzamknutý. Dokončite nákup, aby ste videli výsledok."
   },
   "units": {
     "kwhPerYear": "kWh/rok",
@@ -294,7 +318,13 @@ systemSizeInfo: "Výpočet je odhadom a mal by slúžiť ako orientácia. Skuto�
   "settings": {
     "title": "Nastavenia",
     "language": "Jazyk",
-    "languageHint": "Mena sa riadi krajinou vo vašej adrese, nie jazykom."
+    "languageHint": "Mena sa riadi krajinou vo vašej adrese, nie jazykom.",
+    "history": "História",
+    "plansTitle": "Nákupy a predplatné",
+    "singleCta": "Zakúpené pri ďalšom výpočte",
+    "singleNote": "Jednorazový nákup sa uskutoční, keď začnete nový výpočet — nie odtiaľto.",
+    "terms": "Podmienky používania",
+    "privacy": "Zásady ochrany osobných údajov"
   },
   "chart": {
     "productionAria": "Mesačná výroba",
@@ -313,34 +343,34 @@ systemSizeInfo: "Výpočet je odhadom a mal by slúžiť ako orientácia. Skuto�
     }
   },
   "months": {
-    "short": [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "Máj",
-      "Jún",
-      "Júl",
-      "Aug",
-      "Sep",
-      "Okt",
-      "Nov",
-      "Dec"
-    ],
-    "long": [
-      "Január",
-      "Február",
-      "Marec",
-      "Apríl",
-      "Máj",
-      "Jún",
-      "Júl",
-      "August",
-      "September",
-      "Október",
-      "November",
-      "December"
-    ]
+    "short": {
+      "0": "Jan",
+      "1": "Feb",
+      "2": "Mar",
+      "3": "Apr",
+      "4": "Máj",
+      "5": "Jún",
+      "6": "Júl",
+      "7": "Aug",
+      "8": "Sep",
+      "9": "Okt",
+      "10": "Nov",
+      "11": "Dec"
+    },
+    "long": {
+      "0": "Január",
+      "1": "Február",
+      "2": "Marec",
+      "3": "Apríl",
+      "4": "Máj",
+      "5": "Jún",
+      "6": "Júl",
+      "7": "August",
+      "8": "September",
+      "9": "Október",
+      "10": "November",
+      "11": "December"
+    }
   },
   "report": {
     "fields": {
@@ -360,7 +390,7 @@ systemSizeInfo: "Výpočet je odhadom a mal by slúžiť ako orientácia. Skuto�
       "selfConsumptionSource_simulated": "odhadnuté z profilu spotreby",
       "longTermChartTitle": "Ekonomická hodnota v čase",
       "keyAssumptions": "Kľúčové výpočtové predpoklady",
-      priceMethodNote: "Hodnoty elektriny sú predpoklady výpočtu. Skutočná hodnota vlastnej spotreby a predanej solárnej elektriny závisí od zmluvy, poplatkov, daní, pravidiel a trhových podmienok.",
+      "priceMethodNote": "Hodnoty elektriny sú predpoklady výpočtu. Skutočná hodnota vlastnej spotreby a predanej solárnej elektriny závisí od zmluvy, poplatkov, daní, pravidiel a trhových podmienok.",
       "valueSource_standard-value": "Štandardná hodnota",
       "valueSource_user-override": "Zadané vami",
       "priceChange": "Zmena ceny elektriny",
@@ -438,7 +468,9 @@ systemSizeInfo: "Výpočet je odhadom a mal by slúžiť ako orientácia. Skuto�
       "orientation_southeast": "Juhovýchod",
       "orientation_southwest": "Juhozápad",
       "orientation_east": "Východ",
-      "orientation_west": "Západ"
+      "orientation_west": "Západ",
+      "priceChangeNoteFlat": "Výpočet používa nezmenené hodnoty vlastnej spotreby a exportu solárnej energie počas celého obdobia. Nepredpokladá sa zvýšenie cien, keďže budúce ceny elektriny nemožno predpovedať. Ak ceny stúpnu, hodnota bude vyššia ako v tejto správe; ak klesnú, bude nižšia.",
+      "priceChangeNoteTrend": "Výpočet predpokladá, že hodnota vlastnej spotreby a exportu solárnej energie sa mení o {{priceChange}} % ročne počas celého obdobia. Ide o predpoklad, keďže budúce ceny elektriny nemožno predpovedať. Iný vývoj znamená vyšší alebo nižší výsledok ako v tejto správe."
     },
     "title": "Správa o solárnom systéme",
     "technical": "Technické údaje",
@@ -460,18 +492,103 @@ systemSizeInfo: "Výpočet je odhadom a mal by slúžiť ako orientácia. Skuto�
     "disclaimer": "Táto správa je momentálnym stavom výpočtu a je založená na vyššie uvedených predpokladoch. Nie je to ponuka.",
     "generated": "Vygenerované",
     "faqTitle": "Často kladené otázky",
-    "faqItems": [
-      { "q": "Ako spoľahlivá je vypočítaná solárna výroba?", "a": "Výpočet vychádza zo slnečného žiarenia v danej lokalite a zo smeru a sklonu strechy. Skutočnú výrobu ovplyvňujú okrem iného počasie, tienenie a technické podmienky zariadenia." },
-      { "q": "Čo znamená vlastná spotreba?", "a": "Podiel solárnej energie využitej priamo v domácnosti. Zvyšná výroba sa dodáva do elektrickej siete." },
-      { "q": "Prečo má vlastná spotrebovaná solárna energia väčšiu hodnotu ako predaná?", "a": "Vlastná spotrebovaná solárna energia nahrádza elektrinu, ktorú by inak bolo potrebné kúpiť zo siete, zatiaľ čo predaná solárna energia sa kompenzuje podľa podmienok pre dodávku do siete." },
-      { "q": "Čo znamená cena pre zvolenú dobu návratnosti?", "a": "Približne ukazuje, koľko môže zariadenie stáť, aby zodpovedalo vami zvolenej dobe návratnosti na základe predpokladov kalkulácie. Nejde o odhad trhovej ceny." },
-      { "q": "Prečo sa môže výpočet inštalatéra líšiť?", "a": "Rôzne predpoklady o výrobe, vlastnej spotrebe, cenách elektriny, stratách systému a budúcom cenovom vývoji môžu viesť k rôznym výsledkom." },
-      { "q": "Je výpočet ponukou?", "a": "Nie. Výsledok je odhad a má slúžiť ako podklad na rozhodovanie. Skutočná cena, výroba och ekonomický výsledok sa môžu líšiť." },
-      { q: 'Prečo sa výroba v priebehu času znižuje?', a: 'Výkon solárnych panelov sa v priebehu rokov zvyčajne mierne znižuje. Výpočet vychádza z ročnej degradácie 0,5 %, čo znamená, že vypočítaná výroba sa počas kalkulačného obdobia postupne znižuje.' },
-      { q: 'Ako sa vypočíta hodnota mojej solárnej elektriny?', a: 'Vlastná spotrebovaná solárna elektrina sa oceňuje podľa nákladov na elektrinu, ktorú by ste inak museli kúpiť. Predaná solárna elektrina sa oceňuje podľa predpokladanej náhrady za elektrinu dodanú do siete.' },
-      { q: 'Čo znamená výrobný náklad na kWh?', a: 'Výrobný náklad ukazuje vypočítané priemerné náklady na každú vyrobenú kilowatthodinu počas životnosti zariadenia. Dá sa porovnať s vypočítanou ekonomickou hodnotou solárnej elektriny.' },
-      { q: 'Prečo sa odporúča práve táto veľkosť zariadenia?', a: 'Veľkosť zariadenia sa vypočítava okrem iného na základe vašej spotreby elektriny, slnečného žiarenia v lokalite a technických obmedzení. Cieľom je dimenzovať zariadenie podľa vašich podmienok, nie inštalovať čo najväčšie zariadenie.' },
-    ],
-
+    "faqItems": {
+      "0": {
+        "q": "Ako spoľahlivá je vypočítaná solárna výroba?",
+        "a": "Výpočet vychádza zo slnečného žiarenia v danej lokalite a zo smeru a sklonu strechy. Skutočnú výrobu ovplyvňujú okrem iného počasie, tienenie a technické podmienky zariadenia."
+      },
+      "1": {
+        "q": "Čo znamená vlastná spotreba?",
+        "a": "Podiel solárnej energie využitej priamo v domácnosti. Zvyšná výroba sa dodáva do elektrickej siete."
+      },
+      "2": {
+        "q": "Prečo má vlastná spotrebovaná solárna energia väčšiu hodnotu ako predaná?",
+        "a": "Vlastná spotrebovaná solárna energia nahrádza elektrinu, ktorú by inak bolo potrebné kúpiť zo siete, zatiaľ čo predaná solárna energia sa kompenzuje podľa podmienok pre dodávku do siete."
+      },
+      "3": {
+        "q": "Čo znamená cena pre zvolenú dobu návratnosti?",
+        "a": "Približne ukazuje, koľko môže zariadenie stáť, aby zodpovedalo vami zvolenej dobe návratnosti na základe predpokladov kalkulácie. Nejde o odhad trhovej ceny."
+      },
+      "4": {
+        "q": "Prečo sa môže výpočet inštalatéra líšiť?",
+        "a": "Rôzne predpoklady o výrobe, vlastnej spotrebe, cenách elektriny, stratách systému a budúcom cenovom vývoji môžu viesť k rôznym výsledkom."
+      },
+      "5": {
+        "q": "Je výpočet ponukou?",
+        "a": "Nie. Výsledok je odhad a má slúžiť ako podklad na rozhodovanie. Skutočná cena, výroba och ekonomický výsledok sa môžu líšiť."
+      },
+      "6": {
+        "q": "Prečo sa výroba v priebehu času znižuje?",
+        "a": "Výkon solárnych panelov sa v priebehu rokov zvyčajne mierne znižuje. Výpočet vychádza z ročnej degradácie 0,5 %, čo znamená, že vypočítaná výroba sa počas kalkulačného obdobia postupne znižuje."
+      },
+      "7": {
+        "q": "Ako sa vypočíta hodnota mojej solárnej elektriny?",
+        "a": "Vlastná spotrebovaná solárna elektrina sa oceňuje podľa nákladov na elektrinu, ktorú by ste inak museli kúpiť. Predaná solárna elektrina sa oceňuje podľa predpokladanej náhrady za elektrinu dodanú do siete."
+      },
+      "8": {
+        "q": "Čo znamená výrobný náklad na kWh?",
+        "a": "Výrobný náklad ukazuje vypočítané priemerné náklady na každú vyrobenú kilowatthodinu počas životnosti zariadenia. Dá sa porovnať s vypočítanou ekonomickou hodnotou solárnej elektriny."
+      },
+      "9": {
+        "q": "Prečo sa odporúča práve táto veľkosť zariadenia?",
+        "a": "Veľkosť zariadenia sa vypočítava okrem iného na základe vašej spotreby elektriny, slnečného žiarenia v lokalite a technických obmedzení. Cieľom je dimenzovať zariadenie podľa vašich podmienok, nie inštalovať čo najväčšie zariadenie."
+      }
+    }
+  },
+  "premium": {
+    "title": "Premium",
+    "restore": "Obnoviť nákup",
+    "manage": "Spravovať predplatné",
+    "unavailable": "Nákupy sa spracúvajú v aplikácii iOS cez App Store.",
+    "restored": "Vaše nákupy boli obnovené ({{count}}).",
+    "active": "Premium aktívne",
+    "activeHint": "Neobmedzené výpočty a správy",
+    "become": "Získať Premium",
+    "becomeHint": "Neobmedzené výpočty – {{price}}/rok",
+    "activated": "Premium je teraz aktívne.",
+    "restoredPremium": "Vaše Premium bolo obnovené.",
+    "nothingToRestore": "Na tomto zariadení sme nenašli žiadne nákupy.",
+    "restoreFailed": "Momentálne sa nepodarilo obnoviť nákupy."
+  },
+  "paywall": {
+    "single": {
+      "title": "Jeden výpočet",
+      "body": "Odomknite úplný výsledok a PDF správu pre tento výpočet.",
+      "cta": "Odomknúť za {{price}}"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{{price}}/rok",
+      "body": "Neobmedzené výpočty a PDF správy.",
+      "includes": {
+        "calculations": "Neobmedzené výpočty",
+        "pdf": "Neobmedzené PDF správy",
+        "result": "Plný prístup k výsledku"
+      },
+      "cta": "Získať Premium",
+      "renewal": "Automaticky sa obnovuje každý rok. Kedykoľvek môžete zrušiť."
+    },
+    "title": "Odomknite svoj výpočet",
+    "eyebrow": "Jednorazový nákup",
+    "oneTime": "Zaplatené raz — bez predplatného.",
+    "includesTitle": "Čo je zahrnuté",
+    "includes": {
+      "result": "Váš úplný výpočet s ekonomikou a výrobou",
+      "pdf": "PDF správa na uloženie alebo zdieľanie",
+      "history": "Výpočet je uložený vo vašej histórii"
+    },
+    "cta": "Odomknúť za {{price}}",
+    "purchasing": "Otvára sa App Store…",
+    "verifying": "Potvrdzuje sa váš nákup…",
+    "cancelled": "Nákup bol zrušený. Môžete to skúsiť znova.",
+    "failed": "Nákup sa nepodarilo dokončiť. Nebolo vám nič účtované.",
+    "retry": "Momentálne sa nám nepodarilo potvrdiť nákup. Nič sa nestratilo — odomkne sa automaticky, keď bude pripojenie opäť funkčné.",
+    "appOnly": "Nákup sa uskutočňuje v aplikácii pomocou vášho účtu Apple a nie je dostupný v prehliadači.",
+    "appleNote": "Spracúva App Store."
+  },
+  "history": {
+    "empty": "Zatiaľ nemáte žiadne uložené výpočty.",
+    "unknownAddress": "Výpočet",
+    "error": "Nepodarilo sa načítať vašu históriu."
   }
 } as const;

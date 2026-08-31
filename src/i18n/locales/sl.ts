@@ -37,7 +37,7 @@ export const sl = {
     "coordinates": "Koordinate",
     "country": "Država",
     "region": "Regija",
-"error": "Iskanje naslova ni uspelo.",
+    "error": "Iskanje naslova ni uspelo.",
     "info": "Naslov se uporablja izključno za izračun sončnega sevanja na vaši lokaciji.",
     "infoLabel": "Več informacij o naslovu"
   },
@@ -66,7 +66,7 @@ export const sl = {
     "fetching": "Pridobivanje podatkov o sončni proizvodnji iz PVGIS…",
     "result": "Ocenjena sončna proizvodnja na lokaciji",
     "unit": "kWh/kWp/leto",
-    disclaimer: "Izračunana sončna proizvodnja temelji na lokaciji, orientaciji in naklonu strehe. Na dejansko proizvodnjo lahko vplivajo senčenje, vreme, temperatura in sistemske izgube.",
+    "disclaimer": "Izračunana sončna proizvodnja temelji na lokaciji, orientaciji in naklonu strehe. Na dejansko proizvodnjo lahko vplivajo senčenje, vreme, temperatura in sistemske izgube.",
     "error": "Trenutno nismo mogli pridobiti podatkov o sončni proizvodnji za to lokacijo. Vrednosti niso ugibane."
   },
   "consumption": {
@@ -107,7 +107,16 @@ export const sl = {
       "successMonthly": "Našli smo 12 mesečnih vrednosti in jih izpolnili za vas.",
       "successAnnual": "V dokumentu smo našli letno porabo.",
       "error": "V dokumentu nismo našli nobene porabe. Vnesite vrednosti ročno.",
-      "fileTypes": "PDF, XLSX, XLS, CSV, TXT ali slika (PNG, JPEG)"
+      "fileTypes": "PDF, XLSX, XLS, CSV, TXT ali slika (PNG, JPEG)",
+      "sectionTitle": "Iz dokumenta",
+      "sectionHint": "Pustite nam samodejno prebrati vaš račun za elektriko ali podatke o porabi.",
+      "dropHint": "Povlecite in spustite datoteko tukaj ali",
+      "dropActive": "Spustite datoteko za branje",
+      "browse": "prebrskaj datoteke",
+      "remove": "Odstrani",
+      "retry": "Poskusi z drugo datoteko",
+      "readingFile": "Branje {{name}}…",
+      "ready": "Uvoženo"
     },
     "title": "Koliko električne energije porabite?",
     "subtitle": "Poglejte si svoj račun za elektriko ali pogodbo o dobavi električne energije.",
@@ -116,7 +125,13 @@ export const sl = {
     "useMonthly": "Za večjo natančnost vnesite mesečno porabo",
     "monthlyTitle": "Mesečna poraba",
     "total": "Skupna letna poraba",
-    "invalid": "Vnesite letno porabo med 100 in 200.000 kWh."
+    "invalid": "Vnesite letno porabo med 100 in 200.000 kWh.",
+    "or": "ali",
+    "manual": {
+      "sectionTitle": "Vnesi ročno",
+      "sectionHint": "Vnesite svojo letno porabo — preverite račun za elektriko ali pogodbo."
+    },
+    "monthlyHint": "Vnesite porabo za vseh 12 mesecev"
   },
   "fuse": {
     "gridAssumption": "Izračun predpostavlja trifazni priključek 400 V.",
@@ -179,20 +194,20 @@ export const sl = {
     "productionCaption": "ocenjena letna proizvodnja",
     "annualSavings": "Ekonomska vrednost na leto",
     "assumedPrices": "Predpostavljene cene električne energije",
-    standardValueBadge: "Standardna vrednost",
-    resetToStandard: "Ponastavi na standardno vrednost",
-    userValueBadge: "Vnesli ste sami",
-    priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
-    priceScenarioFlat: "Unchanged",
-    priceScenarioCautious: "Cautious",
-    priceScenarioNormal: "Normal",
-    priceScenarioHigh: "High",
-    priceScenarioCustom: "Own assumption",
-    priceScenarioCustomLabel: "Own change (%/year)",
-    degradationAssumption: "Tehnična degradacija",
-    priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Standardne vrednosti za izračun. Zamenjajte jih z vrednostmi iz svoje pogodbe o dobavi elektrike za bolj individualen rezultat.",
+    "standardValueBadge": "Standardna vrednost",
+    "resetToStandard": "Ponastavi na standardno vrednost",
+    "userValueBadge": "Vnesli ste sami",
+    "priceScenarioTitle": "Kako mislite, da se bodo razvijale cene elektrike?",
+    "priceScenarioHint": "Predpostavka o letni spremembi, ne napoved. Cena se iz leta v leto zvišuje skozi obdobje izračuna.",
+    "priceScenarioFlat": "Nespremenjeno",
+    "priceScenarioCautious": "Previdno",
+    "priceScenarioNormal": "Normal",
+    "priceScenarioHigh": "Visoko",
+    "priceScenarioCustom": "Lastna predpostavka",
+    "priceScenarioCustomLabel": "Lastna sprememba (%/leto)",
+    "degradationAssumption": "Tehnična degradacija",
+    "priceScenarioAssumption": "Predpostavljen razvoj cene elektrike",
+    "standardValueHint": "Standardne vrednosti za izračun. Zamenjajte jih z vrednostmi iz svoje pogodbe o dobavi elektrike za bolj individualen rezultat.",
     "editable": "Nastavljivo",
     "editableTooltip": "Spremeni predpostavko",
     "fuseLimit": "Teoretična omejitev moči zaradi glavne varovalke",
@@ -252,14 +267,12 @@ export const sl = {
     "paybackInfo": "Enostavna doba vračila prikazuje, koliko let ocenjena letna ekonomska vrednost ustreza investiciji. Izračun ne upošteva na primer prihodnjih sprememb cen električne energije, stroškov financiranja, inflacije, vzdrževanja ali diskontiranja.",
     "maxInvestment": "Raven investicije pri izbrani dobi vračila",
     "maxInvestmentApprox": "pribl. {{amount}}",
-    investmentLevelInfoLabel: "Več informacij",
-    investmentLevelInfo: "Približno prikazuje, kakšen strošek naložbe ustreza izbranemu obdobju vračila. To ni ocena dejanskih stroškov namestitve. Dejanska cena je med drugim odvisna od strehe, namestitve, komponent in dobavitelja.",
-    systemSizeInfoLabel: "Več informacij",
-systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dejanska proizvodnja, lastna poraba, cena elektrike, nadomestilo, stroški namestitve in gospodarski izid se lahko razlikujejo. Rezultat ni ponudba niti garancija.",
-    productionCostInfoLabel: "Več informacij",
-    productionCostInfo: "Proizvodni strošek je izračunan povprečni strošek na proizvedeno kWh v času življenjske dobe naprave. Na dejanski strošek lahko vplivajo proizvodnja, degradacija, vzdrževanje in drugi prihodnji stroški.",
-
-
+    "investmentLevelInfoLabel": "Več informacij",
+    "investmentLevelInfo": "Približno prikazuje, kakšen strošek naložbe ustreza izbranemu obdobju vračila. To ni ocena dejanskih stroškov namestitve. Dejanska cena je med drugim odvisna od strehe, namestitve, komponent in dobavitelja.",
+    "systemSizeInfoLabel": "Več informacij",
+    "systemSizeInfo": "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dejanska proizvodnja, lastna poraba, cena elektrike, nadomestilo, stroški namestitve in gospodarski izid se lahko razlikujejo. Rezultat ni ponudba niti garancija.",
+    "productionCostInfoLabel": "Več informacij",
+    "productionCostInfo": "Proizvodni strošek je izračunan povprečni strošek na proizvedeno kWh v času življenjske dobe naprave. Na dejanski strošek lahko vplivajo proizvodnja, degradacija, vzdrževanje in drugi prihodnji stroški.",
     "maxInvestmentExplainer": "Za dosego približno {{years}} let enostavne dobe vračila naj inštalacija stane največ okoli {{amount}}.",
     "maxInvestmentNote": "Znesek je izračunan na podlagi vaših vnosov in kalkulacijskih predpostavk – ni ponudba ali ocena tržne cene.",
     "missingMarketValues": "Za to državo nimamo preverjene standardne vrednosti. Vnesite vrednosti sami spodaj.",
@@ -284,7 +297,18 @@ systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dej
     "limitedByFuse": "Elektrarno omejuje vaša glavna varovalka, ne vaša poraba električne energije.",
     "dataSource": "Vir podatkov o sončni proizvodnji",
     "calculatedAt": "Datum izračuna",
-    "noCalculation": "Izračuna ni bilo najdenega. Začnite znova z naslovom."
+    "noCalculation": "Izračuna ni bilo najdenega. Začnite znova z naslovom.",
+    "paybackYearsUnit": "let",
+    "productionCostTitle": "Koliko stane sončna energija z vaše strehe?",
+    "productionCostExplainer": "Strošek sistema delimo z ocenjeno proizvodnjo v celotnem obdobju izračuna.",
+    "productionCostLabel": "Strošek proizvodnje",
+    "productionCostValueLabel": "Vrednost za vas",
+    "productionCostDifference": "Razlika",
+    "productionCostBasis": "Na podlagi {{investment}} in {{production}} kWh v {{years}} letih.",
+    "productionCostHigherValue": "V tem izračunu je vsaka kWh vredna več, kot stane njena proizvodnja.",
+    "productionCostUnavailable": "S trenutnimi podatki ne moremo izračunati stroška proizvodnje.",
+    "perKwh": "{{amount}}/kWh",
+    "locked": "Ta izračun je zaklenjen. Dokončajte nakup, da vidite rezultat."
   },
   "units": {
     "kwhPerYear": "kWh/leto",
@@ -294,7 +318,13 @@ systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dej
   "settings": {
     "title": "Nastavitve",
     "language": "Jezik",
-    "languageHint": "Valuta je določena z državo v vašem naslovu, ne z jezikom."
+    "languageHint": "Valuta je določena z državo v vašem naslovu, ne z jezikom.",
+    "history": "Zgodovina",
+    "plansTitle": "Nakupi in naročnina",
+    "singleCta": "Kupljeno ob naslednjem izračunu",
+    "singleNote": "Enkraten nakup se izvede, ko začnete nov izračun — ne od tukaj.",
+    "terms": "Pogoji uporabe",
+    "privacy": "Politika zasebnosti"
   },
   "chart": {
     "productionAria": "Mesečna proizvodnja",
@@ -313,34 +343,34 @@ systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dej
     }
   },
   "months": {
-    "short": [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "Maj",
-      "Jun",
-      "Jul",
-      "Avg",
-      "Sep",
-      "Okt",
-      "Nov",
-      "Dec"
-    ],
-    "long": [
-      "Januar",
-      "Februar",
-      "Marec",
-      "April",
-      "Maj",
-      "Junij",
-      "Julij",
-      "Avgust",
-      "September",
-      "Oktober",
-      "November",
-      "December"
-    ]
+    "short": {
+      "0": "Jan",
+      "1": "Feb",
+      "2": "Mar",
+      "3": "Apr",
+      "4": "Maj",
+      "5": "Jun",
+      "6": "Jul",
+      "7": "Avg",
+      "8": "Sep",
+      "9": "Okt",
+      "10": "Nov",
+      "11": "Dec"
+    },
+    "long": {
+      "0": "Januar",
+      "1": "Februar",
+      "2": "Marec",
+      "3": "April",
+      "4": "Maj",
+      "5": "Junij",
+      "6": "Julij",
+      "7": "Avgust",
+      "8": "September",
+      "9": "Oktober",
+      "10": "November",
+      "11": "December"
+    }
   },
   "report": {
     "fields": {
@@ -360,7 +390,7 @@ systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dej
       "selfConsumptionSource_simulated": "ocenjeno iz profila porabe",
       "longTermChartTitle": "Ekonomska vrednost skozi čas",
       "keyAssumptions": "Ključne kalkulacijske predpostavke",
-      priceMethodNote: "Vrednosti elektrike so predpostavke izračuna. Dejanska vrednost lastne porabe in prodane sončne elektrike je odvisna od pogodbe, prispevkov, davkov, pravil in tržnih razmer.",
+      "priceMethodNote": "Vrednosti elektrike so predpostavke izračuna. Dejanska vrednost lastne porabe in prodane sončne elektrike je odvisna od pogodbe, prispevkov, davkov, pravil in tržnih razmer.",
       "valueSource_standard-value": "Standardna vrednost",
       "valueSource_user-override": "Vnesli ste sami",
       "priceChange": "Sprememba cene električne energije",
@@ -438,7 +468,9 @@ systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dej
       "orientation_southeast": "Jugovzhod",
       "orientation_southwest": "Jugozahod",
       "orientation_east": "Vzhod",
-      "orientation_west": "Zahod"
+      "orientation_west": "Zahod",
+      "priceChangeNoteFlat": "Izračun uporablja nespremenjene vrednosti za lastno porabljeno in izvoženo sončno energijo skozi celotno obdobje. Ni predvidenega dviga cen, ker prihodnjih cen elektrike ni mogoče napovedati. Če cene narastejo, bo vrednost višja kot v tem poročilu; če padejo, bo nižja.",
+      "priceChangeNoteTrend": "Izračun predpostavlja, da se vrednost lastno porabljene in izvožene sončne energije spreminja za {{priceChange}} % na leto skozi celotno obdobje. To je predpostavka, ker prihodnjih cen elektrike ni mogoče napovedati. Drugačen razvoj pomeni višji ali nižji rezultat kot v tem poročilu."
     },
     "title": "Poročilo o sončni elektrarni",
     "technical": "Tehnični podatki",
@@ -460,18 +492,103 @@ systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dej
     "disclaimer": "To poročilo je posnetek izračuna in temelji na zgoraj navedenih predpostavkah. Ni ponudba.",
     "generated": "Ustvarjeno",
     "faqTitle": "Pogosta vprašanja",
-    "faqItems": [
-      { "q": "Kako zanesljiva je izračunana sončna proizvodnja?", "a": "Izračun temelji na sončnem obsevanju lokacije ter usmerjenosti in naklonu strehe. Na dejansko proizvodnjo med drugim vplivajo vreme, senčenje in tehnične značilnosti naprave." },
-      { "q": "Kaj pomeni lastna poraba?", "a": "Delež sončne energije, ki se porabi neposredno v domu. Preostala proizvodnja se oddaja v električno omrežje." },
-      { "q": "Zakaj je lastno porabljena sončna energija vrednejša od prodane?", "a": "Lastno porabljena sončna energija nadomešča elektriko, ki bi jo sicer kupili iz omrežja, medtem ko se prodana sončna energija nadomesti v skladu s pogoji za oddajo v omrežje." },
-      { "q": "Kaj pomeni cena za izbrano dobo vračila?", "a": "Približno prikazuje, koliko lahko stane naprava, da ustreza izbrani dobi vračila na podlagi predpostavk izračuna. To ni ocenjena tržna cena." },
-      { "q": "Zakaj se izračun monterja lahko razlikuje?", "a": "Različne predpostavke o proizvodnji, lastni porabi, cenah elektrike, izgubah sistema in prihodnjem gibanju cen lahko dajo različne rezultate." },
-      { "q": "Ali je izračun ponudba?", "a": "Ne. Rezultat je ocena in naj se uporabi kot podlaga za odločanje. Dejanska cena, proizvodnja in ekonomski izid se lahko razlikujejo." },
-      { q: 'Zakaj se proizvodnja sčasoma zmanjšuje?', a: 'Učinkovitost sončnih panelov se z leti običajno nekoliko zmanjša. Izračun temelji na letni degradaciji 0,5 %, kar pomeni, da se izračunana proizvodnja v obdobju izračuna postopoma zmanjšuje.' },
-      { q: 'Kako se izračuna vrednost moje sončne energije?', a: 'Sončna energija, porabljena za lastne potrebe, se vrednoti glede na stroške električne energije, ki bi jo sicer morali kupiti. Prodana sončna energija se vrednoti glede na predvideno nadomestilo za električno energijo, oddano v omrežje.' },
-      { q: 'Kaj pomeni strošek proizvodnje na kWh?', a: 'Strošek proizvodnje prikazuje izračunani povprečni strošek vsake proizvedene kilovatne ure v življenjski dobi naprave. Primerjamo ga lahko z izračunano ekonomsko vrednostjo sončne energije.' },
-      { q: 'Zakaj se priporoča ravno ta velikost naprave?', a: 'Velikost naprave se izračuna na podlagi med drugim vaše porabe električne energije, sončnega sevanja na lokaciji in tehničnih omejitev. Cilj je dimenzionirati napravo glede na vaše razmere, ne pa namestiti čim večjo napravo.' },
-    ],
-
+    "faqItems": {
+      "0": {
+        "q": "Kako zanesljiva je izračunana sončna proizvodnja?",
+        "a": "Izračun temelji na sončnem obsevanju lokacije ter usmerjenosti in naklonu strehe. Na dejansko proizvodnjo med drugim vplivajo vreme, senčenje in tehnične značilnosti naprave."
+      },
+      "1": {
+        "q": "Kaj pomeni lastna poraba?",
+        "a": "Delež sončne energije, ki se porabi neposredno v domu. Preostala proizvodnja se oddaja v električno omrežje."
+      },
+      "2": {
+        "q": "Zakaj je lastno porabljena sončna energija vrednejša od prodane?",
+        "a": "Lastno porabljena sončna energija nadomešča elektriko, ki bi jo sicer kupili iz omrežja, medtem ko se prodana sončna energija nadomesti v skladu s pogoji za oddajo v omrežje."
+      },
+      "3": {
+        "q": "Kaj pomeni cena za izbrano dobo vračila?",
+        "a": "Približno prikazuje, koliko lahko stane naprava, da ustreza izbrani dobi vračila na podlagi predpostavk izračuna. To ni ocenjena tržna cena."
+      },
+      "4": {
+        "q": "Zakaj se izračun monterja lahko razlikuje?",
+        "a": "Različne predpostavke o proizvodnji, lastni porabi, cenah elektrike, izgubah sistema in prihodnjem gibanju cen lahko dajo različne rezultate."
+      },
+      "5": {
+        "q": "Ali je izračun ponudba?",
+        "a": "Ne. Rezultat je ocena in naj se uporabi kot podlaga za odločanje. Dejanska cena, proizvodnja in ekonomski izid se lahko razlikujejo."
+      },
+      "6": {
+        "q": "Zakaj se proizvodnja sčasoma zmanjšuje?",
+        "a": "Učinkovitost sončnih panelov se z leti običajno nekoliko zmanjša. Izračun temelji na letni degradaciji 0,5 %, kar pomeni, da se izračunana proizvodnja v obdobju izračuna postopoma zmanjšuje."
+      },
+      "7": {
+        "q": "Kako se izračuna vrednost moje sončne energije?",
+        "a": "Sončna energija, porabljena za lastne potrebe, se vrednoti glede na stroške električne energije, ki bi jo sicer morali kupiti. Prodana sončna energija se vrednoti glede na predvideno nadomestilo za električno energijo, oddano v omrežje."
+      },
+      "8": {
+        "q": "Kaj pomeni strošek proizvodnje na kWh?",
+        "a": "Strošek proizvodnje prikazuje izračunani povprečni strošek vsake proizvedene kilovatne ure v življenjski dobi naprave. Primerjamo ga lahko z izračunano ekonomsko vrednostjo sončne energije."
+      },
+      "9": {
+        "q": "Zakaj se priporoča ravno ta velikost naprave?",
+        "a": "Velikost naprave se izračuna na podlagi med drugim vaše porabe električne energije, sončnega sevanja na lokaciji in tehničnih omejitev. Cilj je dimenzionirati napravo glede na vaše razmere, ne pa namestiti čim večjo napravo."
+      }
+    }
+  },
+  "premium": {
+    "title": "Premium",
+    "restore": "Obnovi nakup",
+    "manage": "Upravljaj naročnino",
+    "unavailable": "Nakupi se obravnavajo v aplikaciji iOS prek App Store.",
+    "restored": "Vaši nakupi so bili obnovljeni ({{count}}).",
+    "active": "Premium aktiven",
+    "activeHint": "Neomejeni izračuni in poročila",
+    "become": "Nadgradi na Premium",
+    "becomeHint": "Neomejeni izračuni – {{price}}/leto",
+    "activated": "Premium je zdaj aktiven.",
+    "restoredPremium": "Vaš Premium je bil obnovljen.",
+    "nothingToRestore": "Na tej napravi nismo našli nobenih nakupov.",
+    "restoreFailed": "Trenutno ni bilo mogoče obnoviti nakupov."
+  },
+  "paywall": {
+    "single": {
+      "title": "En izračun",
+      "body": "Odklenite celoten rezultat in PDF poročilo za ta izračun.",
+      "cta": "Odkleni za {{price}}"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{{price}}/leto",
+      "body": "Neomejeni izračuni in PDF poročila.",
+      "includes": {
+        "calculations": "Neomejeni izračuni",
+        "pdf": "Neomejena PDF poročila",
+        "result": "Poln dostop do rezultata"
+      },
+      "cta": "Nadgradi na Premium",
+      "renewal": "Samodejno se obnovi vsako leto. Kadar koli lahko prekličete."
+    },
+    "title": "Odklenite svoj izračun",
+    "eyebrow": "Enkraten nakup",
+    "oneTime": "Plačano enkrat — brez naročnine.",
+    "includesTitle": "Kaj je vključeno",
+    "includes": {
+      "result": "Vaš celoten izračun z ekonomiko in proizvodnjo",
+      "pdf": "PDF poročilo za shranjevanje ali deljenje",
+      "history": "Izračun je shranjen v vaši zgodovini"
+    },
+    "cta": "Odkleni za {{price}}",
+    "purchasing": "Odpiranje App Store…",
+    "verifying": "Potrjevanje vašega nakupa…",
+    "cancelled": "Nakup je bil preklican. Lahko poskusite znova.",
+    "failed": "Nakupa ni bilo mogoče dokončati. Ni vam bilo nič zaračunano.",
+    "retry": "Trenutno nismo mogli potrditi nakupa. Nič ni izgubljeno — samodejno se bo odklenil, ko bo povezava spet delovala.",
+    "appOnly": "Nakup se izvede v aplikaciji z vašim Apple računom in ni na voljo v brskalniku.",
+    "appleNote": "Obravnava App Store."
+  },
+  "history": {
+    "empty": "Nimate še shranjenih izračunov.",
+    "unknownAddress": "Izračun",
+    "error": "Vaše zgodovine ni bilo mogoče naložiti."
   }
 } as const;

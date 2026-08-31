@@ -37,7 +37,7 @@ export const da = {
     "coordinates": "Koordinater",
     "country": "Land",
     "region": "Region",
-"error": "Adressesøgningen mislykkedes.",
+    "error": "Adressesøgningen mislykkedes.",
     "info": "Adressen bruges udelukkende til at beregne solindstrålingen på din placering.",
     "infoLabel": "Mere information om adressen"
   },
@@ -66,7 +66,7 @@ export const da = {
     "fetching": "Henter solproduktionsdata fra PVGIS…",
     "result": "Beregnet solproduktion på stedet",
     "unit": "kWh/kWp/år",
-    disclaimer: "Den beregnede solproduktion er baseret på placering, orientering og taghældning. Den faktiske produktion kan bl.a. påvirkes af skygge, vejr, temperatur og systemtab.",
+    "disclaimer": "Den beregnede solproduktion er baseret på placering, orientering og taghældning. Den faktiske produktion kan bl.a. påvirkes af skygge, vejr, temperatur og systemtab.",
     "error": "Vi kunne ikke hente solproduktionsdata for placeringen lige nu. Der gættes ingen værdier."
   },
   "consumption": {
@@ -107,7 +107,16 @@ export const da = {
       "successMonthly": "Vi fandt 12 månedsværdier og udfyldte dem for dig.",
       "successAnnual": "Vi fandt et årsforbrug i dokumentet.",
       "error": "Vi kunne ikke finde noget forbrug i dokumentet. Udfyld værdierne manuelt.",
-      "fileTypes": "PDF, XLSX, XLS, CSV, TXT eller billede (PNG, JPEG)"
+      "fileTypes": "PDF, XLSX, XLS, CSV, TXT eller billede (PNG, JPEG)",
+      "sectionTitle": "Fra et dokument",
+      "sectionHint": "Lad os læse din elregning eller forbrugsdata automatisk.",
+      "dropHint": "Træk og slip din fil her, eller",
+      "dropActive": "Slip filen for at læse den",
+      "browse": "gennemse filer",
+      "remove": "Fjern",
+      "retry": "Prøv en anden fil",
+      "readingFile": "Læser {{name}}…",
+      "ready": "Importeret"
     },
     "title": "Hvor meget el bruger du?",
     "subtitle": "Kig på din elregning eller din elaftale.",
@@ -116,7 +125,13 @@ export const da = {
     "useMonthly": "Angiv månedsforbrug for bedre præcision",
     "monthlyTitle": "Månedsforbrug",
     "total": "Total årsforbrug",
-    "invalid": "Angiv et årsforbrug mellem 100 og 200.000 kWh."
+    "invalid": "Angiv et årsforbrug mellem 100 og 200.000 kWh.",
+    "or": "eller",
+    "manual": {
+      "sectionTitle": "Indtast manuelt",
+      "sectionHint": "Angiv dit årlige forbrug — tjek din elregning eller kontrakt."
+    },
+    "monthlyHint": "Angiv forbrug for alle 12 måneder"
   },
   "fuse": {
     "gridAssumption": "Beregningen tager udgangspunkt i 400 V trefaset.",
@@ -179,20 +194,20 @@ export const da = {
     "productionCaption": "beregnet årsproduktion",
     "annualSavings": "Økonomisk værdi per år",
     "assumedPrices": "Antagne elpriser",
-    standardValueBadge: "Standardværdi",
-    resetToStandard: "Nulstil til standardværdi",
-    userValueBadge: "Angivet af dig",
-    priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
-    priceScenarioFlat: "Unchanged",
-    priceScenarioCautious: "Cautious",
-    priceScenarioNormal: "Normal",
-    priceScenarioHigh: "High",
-    priceScenarioCustom: "Own assumption",
-    priceScenarioCustomLabel: "Own change (%/year)",
-    degradationAssumption: "Teknisk degradering",
-    priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Standardværdier for beregningen. Ret dem til værdier fra din egen elaftale for et mere individuelt resultat.",
+    "standardValueBadge": "Standardværdi",
+    "resetToStandard": "Nulstil til standardværdi",
+    "userValueBadge": "Angivet af dig",
+    "priceScenarioTitle": "Hvordan tror du elpriserne vil udvikle sig?",
+    "priceScenarioHint": "En antagelse om årlig ændring, ikke en prognose. Prisen optrappes år for år over beregningsperioden.",
+    "priceScenarioFlat": "Uændret",
+    "priceScenarioCautious": "Forsigtig",
+    "priceScenarioNormal": "Normal",
+    "priceScenarioHigh": "Høj",
+    "priceScenarioCustom": "Egen antagelse",
+    "priceScenarioCustomLabel": "Egen ændring (%/år)",
+    "degradationAssumption": "Teknisk degradering",
+    "priceScenarioAssumption": "Antaget udvikling i elpriser",
+    "standardValueHint": "Standardværdier for beregningen. Ret dem til værdier fra din egen elaftale for et mere individuelt resultat.",
     "editable": "Kan ændres",
     "editableTooltip": "Ændre antagelse",
     "fuseLimit": "Teoretisk effektgrænse fra hovedsikring",
@@ -252,14 +267,12 @@ export const da = {
     "paybackInfo": "Simpel tilbagebetalingstid viser, hvor mange år den beregnede årlige økonomiske værdi svarer til investeringen. Beregningen tager ikke højde for eksempelvis fremtidige elprisforskydninger, finansieringsomkostninger, inflation, vedligeholdelse eller diskontering.",
     "maxInvestment": "Investeringsniveau ved valgt tilbagebetalingstid",
     "maxInvestmentApprox": "ca. {{amount}}",
-    investmentLevelInfoLabel: "Mere information",
-    investmentLevelInfo: "Viser cirka, hvilken investeringsomkostning der svarer til den tilbagebetalingstid, du har valgt. Det er ikke et skøn over, hvad installationen faktisk koster. Den faktiske pris afhænger blandt andet af tag, installation, komponenter og leverandør.",
-    systemSizeInfoLabel: "Mere information",
-systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk produktion, egenforbrug, elpris, godtgørelse, installationsomkostning og økonomisk resultat kan afvige. Resultatet er ikke et tilbud eller en garanti.",
-    productionCostInfoLabel: "Mere information",
-    productionCostInfo: "Produktionsomkostningen er en beregnet gennemsnitlig omkostning per produceret kWh over anlæggets levetid. Den faktiske omkostning kan påvirkes af produktion, degradering, vedligeholdelse og andre fremtidige omkostninger.",
-
-
+    "investmentLevelInfoLabel": "Mere information",
+    "investmentLevelInfo": "Viser cirka, hvilken investeringsomkostning der svarer til den tilbagebetalingstid, du har valgt. Det er ikke et skøn over, hvad installationen faktisk koster. Den faktiske pris afhænger blandt andet af tag, installation, komponenter og leverandør.",
+    "systemSizeInfoLabel": "Mere information",
+    "systemSizeInfo": "Beregningen er et skøn og skal bruges som vejledning. Faktisk produktion, egenforbrug, elpris, godtgørelse, installationsomkostning og økonomisk resultat kan afvige. Resultatet er ikke et tilbud eller en garanti.",
+    "productionCostInfoLabel": "Mere information",
+    "productionCostInfo": "Produktionsomkostningen er en beregnet gennemsnitlig omkostning per produceret kWh over anlæggets levetid. Den faktiske omkostning kan påvirkes af produktion, degradering, vedligeholdelse og andre fremtidige omkostninger.",
     "maxInvestmentExplainer": "For at nå cirka {{years}} års simpel tilbagebetalingstid bør installationen højst koste omkring {{amount}}.",
     "maxInvestmentNote": "Beløbet er en beregning ud fra dine oplysninger og kalkulationsantagelser – ikke et tilbud eller et skøn over markedspris.",
     "missingMarketValues": "Vi har ingen verificeret standardværdi for dette land. Angiv selv værdierne nedenfor.",
@@ -284,7 +297,18 @@ systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk 
     "limitedByFuse": "Anlægget er begrænset af din hovedsikring, ikke af dit elforbrug.",
     "dataSource": "Datakilde solproduktion",
     "calculatedAt": "Beregningsdato",
-    "noCalculation": "Ingen beregning fundet. Start forfra fra adressen."
+    "noCalculation": "Ingen beregning fundet. Start forfra fra adressen.",
+    "paybackYearsUnit": "år",
+    "productionCostTitle": "Hvad koster solstrøm fra dit tag?",
+    "productionCostExplainer": "Vi dividerer systemets omkostning med den estimerede produktion over hele beregningsperioden.",
+    "productionCostLabel": "Produktionsomkostning",
+    "productionCostValueLabel": "Værdi for dig",
+    "productionCostDifference": "Forskel",
+    "productionCostBasis": "Baseret på {{investment}} og {{production}} kWh over {{years}} år.",
+    "productionCostHigherValue": "I denne beregning er hver kWh mere værd, end den koster at producere.",
+    "productionCostUnavailable": "Vi kan ikke beregne produktionsomkostningen med de nuværende data.",
+    "perKwh": "{{amount}}/kWh",
+    "locked": "Denne beregning er låst. Gennemfør købet for at se resultatet."
   },
   "units": {
     "kwhPerYear": "kWh/år",
@@ -294,7 +318,13 @@ systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk 
   "settings": {
     "title": "Indstillinger",
     "language": "Sprog",
-    "languageHint": "Valutaen styres af landet i din adresse, ikke af sproget."
+    "languageHint": "Valutaen styres af landet i din adresse, ikke af sproget.",
+    "history": "Historik",
+    "plansTitle": "Køb og abonnement",
+    "singleCta": "Købes ved din næste beregning",
+    "singleNote": "Engangskøbet foretages, når du starter en ny beregning — ikke herfra.",
+    "terms": "Brugsvilkår",
+    "privacy": "Privatlivspolitik"
   },
   "chart": {
     "productionAria": "Månedlig produktion",
@@ -313,34 +343,34 @@ systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk 
     }
   },
   "months": {
-    "short": [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
-      "Maj",
-      "Jun",
-      "Jul",
-      "Aug",
-      "Sep",
-      "Okt",
-      "Nov",
-      "Dec"
-    ],
-    "long": [
-      "Januar",
-      "Februar",
-      "Marts",
-      "April",
-      "Maj",
-      "Juni",
-      "Juli",
-      "August",
-      "September",
-      "Oktober",
-      "November",
-      "December"
-    ]
+    "short": {
+      "0": "Jan",
+      "1": "Feb",
+      "2": "Mar",
+      "3": "Apr",
+      "4": "Maj",
+      "5": "Jun",
+      "6": "Jul",
+      "7": "Aug",
+      "8": "Sep",
+      "9": "Okt",
+      "10": "Nov",
+      "11": "Dec"
+    },
+    "long": {
+      "0": "Januar",
+      "1": "Februar",
+      "2": "Marts",
+      "3": "April",
+      "4": "Maj",
+      "5": "Juni",
+      "6": "Juli",
+      "7": "August",
+      "8": "September",
+      "9": "Oktober",
+      "10": "November",
+      "11": "December"
+    }
   },
   "report": {
     "fields": {
@@ -360,7 +390,7 @@ systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk 
       "selfConsumptionSource_simulated": "estimeret fra forbrugsprofil",
       "longTermChartTitle": "Økonomisk værdi over tid",
       "keyAssumptions": "Vigtigste kalkulationsantagelser",
-      priceMethodNote: "Elværdierne er beregningsantagelser. Den faktiske værdi af egetforbrugt og solgt solstrøm afhænger af elaftale, gebyrer, skatter, regler og markedsforhold.",
+      "priceMethodNote": "Elværdierne er beregningsantagelser. Den faktiske værdi af egetforbrugt og solgt solstrøm afhænger af elaftale, gebyrer, skatter, regler og markedsforhold.",
       "valueSource_standard-value": "Standardværdi",
       "valueSource_user-override": "Angivet af dig",
       "priceChange": "Elprisforskel",
@@ -391,7 +421,7 @@ systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk 
       "balanceTitle": "Årsbalance",
       "balanceConsumption": "Årsforbrug",
       "balanceProduction": "Solelproduktion",
-      "balanceDiff": "Difference",
+      "balanceDiff": "Forskel",
       "balanceRatio": "Produktion / forbrug",
       "balanceNote": "Årsproduktionen svarer til cirka {{percent}} % af dit årsforbrug. Det betyder ikke, at al produceret el kan bruges direkte i ejendommen, da produktion og elanvendelse sker på forskellige tidspunkter.",
       "perYearShort": "per år",
@@ -438,7 +468,9 @@ systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk 
       "orientation_southeast": "Sydøst",
       "orientation_southwest": "Sydvest",
       "orientation_east": "Øst",
-      "orientation_west": "Vest"
+      "orientation_west": "Vest",
+      "priceChangeNoteFlat": "Beregningen bruger uændrede værdier for egetforbrugt og eksporteret solstrøm gennem hele perioden. Der antages ingen prisstigning, da fremtidige elpriser ikke kan forudsiges. Hvis priserne stiger, vil værdien være højere end i denne rapport; hvis de falder, vil den være lavere.",
+      "priceChangeNoteTrend": "Beregningen antager, at værdien af egetforbrugt og eksporteret solstrøm ændres med {{priceChange}} % om året gennem hele perioden. Dette er en antagelse, da fremtidige elpriser ikke kan forudsiges. En anden udvikling betyder et højere eller lavere resultat end i denne rapport."
     },
     "title": "Solcellsrapport",
     "technical": "Tekniske data",
@@ -460,18 +492,103 @@ systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk 
     "disclaimer": "Rapporten er et øjebliksbillede af beregningen og er baseret på de antagelser, der er angivet ovenfor. Den er ikke et tilbud.",
     "generated": "Genereret",
     "faqTitle": "Ofte stillede spørgsmål",
-    "faqItems": [
-      { "q": "Hvor sikker er den beregnede solproduktion?", "a": "Beregningen bygger på solindstråling for stedet samt tagets retning og hældning. Den faktiske produktion påvirkes blandt andet af vejr, skygge og anlæggets tekniske forudsætninger." },
-      { "q": "Hvad betyder egenforbrug?", "a": "Den del af solstrømmen, der bruges direkte i boligen. Resten af produktionen sendes ud på elnettet." },
-      { "q": "Hvorfor er egenforbrugt solstrøm mere værd end solgt solstrøm?", "a": "Egenforbrugt solstrøm erstatter strøm, der ellers skulle købes fra nettet, mens solgt solstrøm betales efter vilkårene for leveret strøm." },
-      { "q": "Hvad betyder pris for valgt tilbagebetalingstid?", "a": "Det viser cirka, hvor meget anlægget kan koste for at svare til den tilbagebetalingstid, du har valgt, baseret på kalkulens antagelser. Det er ikke en estimeret markedspris." },
-      { "q": "Hvorfor kan installatørens beregning afvige?", "a": "Forskellige antagelser om produktion, egenforbrug, elpriser, systemtab og fremtidig prisudvikling kan give forskellige resultater." },
-      { "q": "Er beregningen et tilbud?", "a": "Nej. Resultatet er et skøn og skal bruges som beslutningsgrundlag. Faktisk pris, produktion og økonomisk udfald kan afvige." },
-      { q: 'Hvorfor falder produktionen over tid?', a: 'Solpaneleffekten falder normalt en smule med årene. Beregningen tager udgangspunkt i en årlig degradering på 0,5 %, hvilket betyder, at den beregnede produktion gradvist falder i løbet af kalkulationsperioden.' },
-      { q: 'Hvordan beregnes værdien af min solenergi?', a: 'Egenforbrugt solenergi værdisættes ud fra prisen på den el, du ellers skulle have købt. Solgt solenergi værdisættes ud fra den antagne godtgørelse for el, der leveres til elnettet.' },
-      { q: 'Hvad betyder produktionsomkostning per kWh?', a: 'Produktionsomkostningen viser den beregnede gennemsnitlige omkostning for hver produceret kilowatt-time over anlæggets levetid. Den kan sammenlignes med den beregnede økonomiske værdi af solenergien.' },
-      { q: 'Hvorfor anbefales netop denne størrelse på anlægget?', a: 'Anlæggets størrelse beregnes ud fra blandt andet dit elforbrug, solindstrålingen på stedet og tekniske begrænsninger. Målet er at dimensionere anlægget efter dine forhold, ikke at installere det størst mulige anlæg.' },
-    ],
-
+    "faqItems": {
+      "0": {
+        "q": "Hvor sikker er den beregnede solproduktion?",
+        "a": "Beregningen bygger på solindstråling for stedet samt tagets retning og hældning. Den faktiske produktion påvirkes blandt andet af vejr, skygge og anlæggets tekniske forudsætninger."
+      },
+      "1": {
+        "q": "Hvad betyder egenforbrug?",
+        "a": "Den del af solstrømmen, der bruges direkte i boligen. Resten af produktionen sendes ud på elnettet."
+      },
+      "2": {
+        "q": "Hvorfor er egenforbrugt solstrøm mere værd end solgt solstrøm?",
+        "a": "Egenforbrugt solstrøm erstatter strøm, der ellers skulle købes fra nettet, mens solgt solstrøm betales efter vilkårene for leveret strøm."
+      },
+      "3": {
+        "q": "Hvad betyder pris for valgt tilbagebetalingstid?",
+        "a": "Det viser cirka, hvor meget anlægget kan koste for at svare til den tilbagebetalingstid, du har valgt, baseret på kalkulens antagelser. Det er ikke en estimeret markedspris."
+      },
+      "4": {
+        "q": "Hvorfor kan installatørens beregning afvige?",
+        "a": "Forskellige antagelser om produktion, egenforbrug, elpriser, systemtab og fremtidig prisudvikling kan give forskellige resultater."
+      },
+      "5": {
+        "q": "Er beregningen et tilbud?",
+        "a": "Nej. Resultatet er et skøn og skal bruges som beslutningsgrundlag. Faktisk pris, produktion og økonomisk udfald kan afvige."
+      },
+      "6": {
+        "q": "Hvorfor falder produktionen over tid?",
+        "a": "Solpaneleffekten falder normalt en smule med årene. Beregningen tager udgangspunkt i en årlig degradering på 0,5 %, hvilket betyder, at den beregnede produktion gradvist falder i løbet af kalkulationsperioden."
+      },
+      "7": {
+        "q": "Hvordan beregnes værdien af min solenergi?",
+        "a": "Egenforbrugt solenergi værdisættes ud fra prisen på den el, du ellers skulle have købt. Solgt solenergi værdisættes ud fra den antagne godtgørelse for el, der leveres til elnettet."
+      },
+      "8": {
+        "q": "Hvad betyder produktionsomkostning per kWh?",
+        "a": "Produktionsomkostningen viser den beregnede gennemsnitlige omkostning for hver produceret kilowatt-time over anlæggets levetid. Den kan sammenlignes med den beregnede økonomiske værdi af solenergien."
+      },
+      "9": {
+        "q": "Hvorfor anbefales netop denne størrelse på anlægget?",
+        "a": "Anlæggets størrelse beregnes ud fra blandt andet dit elforbrug, solindstrålingen på stedet og tekniske begrænsninger. Målet er at dimensionere anlægget efter dine forhold, ikke at installere det størst mulige anlæg."
+      }
+    }
+  },
+  "premium": {
+    "title": "Premium",
+    "restore": "Gendan køb",
+    "manage": "Administrer abonnement",
+    "unavailable": "Køb håndteres i iOS-appen via App Store.",
+    "restored": "Dine køb er blevet gendannet ({{count}}).",
+    "active": "Premium aktiv",
+    "activeHint": "Ubegrænsede beregninger og rapporter",
+    "become": "Få Premium",
+    "becomeHint": "Ubegrænsede beregninger – {{price}}/år",
+    "activated": "Premium er nu aktiv.",
+    "restoredPremium": "Din Premium er blevet gendannet.",
+    "nothingToRestore": "Vi fandt ingen køb på denne enhed.",
+    "restoreFailed": "Kunne ikke gendanne køb lige nu."
+  },
+  "paywall": {
+    "single": {
+      "title": "Én beregning",
+      "body": "Lås det fulde resultat og PDF-rapporten op for denne beregning.",
+      "cta": "Lås op for {{price}}"
+    },
+    "premium": {
+      "title": "Premium",
+      "price": "{{price}}/år",
+      "body": "Ubegrænsede beregninger og PDF-rapporter.",
+      "includes": {
+        "calculations": "Ubegrænsede beregninger",
+        "pdf": "Ubegrænsede PDF-rapporter",
+        "result": "Fuld adgang til resultatet"
+      },
+      "cta": "Få Premium",
+      "renewal": "Fornys automatisk hvert år. Opsig når som helst."
+    },
+    "title": "Lås din beregning op",
+    "eyebrow": "Engangskøb",
+    "oneTime": "Betales én gang — intet abonnement.",
+    "includesTitle": "Hvad er inkluderet",
+    "includes": {
+      "result": "Din fulde beregning med økonomi og produktion",
+      "pdf": "PDF-rapport til opbevaring eller deling",
+      "history": "Beregningen gemmes i din historik"
+    },
+    "cta": "Lås op for {{price}}",
+    "purchasing": "Åbner App Store…",
+    "verifying": "Bekræfter dit køb…",
+    "cancelled": "Købet blev annulleret. Du kan prøve igen.",
+    "failed": "Købet kunne ikke gennemføres. Du er ikke blevet opkrævet.",
+    "retry": "Vi kunne ikke bekræfte købet lige nu. Intet går tabt — det låses automatisk op, når forbindelsen virker igen.",
+    "appOnly": "Købet foretages i appen med din Apple-konto og er ikke tilgængeligt i browseren.",
+    "appleNote": "Håndteres af App Store."
+  },
+  "history": {
+    "empty": "Du har endnu ingen gemte beregninger.",
+    "unknownAddress": "Beregning",
+    "error": "Kunne ikke indlæse din historik."
   }
 } as const;
