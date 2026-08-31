@@ -4,6 +4,7 @@ import { usePurchaseStore } from "@/state/purchase-store";
 import { usePremium } from "@/hooks/use-premium";
 import { useCalculationStore } from "@/state/calculation-store";
 import { getMarketConfig } from "@/config/markets";
+import { isDevUnlock } from "@/lib/dev-unlock";
 import type { CalculationSnapshot } from "@/lib/calculation-snapshot";
 import type { CalculationResult } from "@/lib/calc/types";
 
