@@ -214,7 +214,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
 
             <div className="space-y-1.5">
               <Label className="text-[11px] text-white/70">{t("fuse.grid.voltage")}</Label>
-              <div className="grid grid-cols-4 gap-1.5">
+              <div className="grid grid-cols-3 gap-1.5">
                 {GRID_VOLTAGE_OPTIONS.map((option) => (
                   <button
                     key={option}
