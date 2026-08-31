@@ -443,9 +443,10 @@ this.y += height + 6;
     markers: number[],
     formatValue: (value: number) => string,
     axisLabel: string,
+    highlight?: { year: number; label: string } | null,
   ) {
-    const height = 32;
-    this.ensureSpace(height + 24);
+    const height = 36;
+    this.ensureSpace(height + 26);
     const width = PAGE.width - PAGE.margin * 2;
     const baseline = this.y + height;
     const maxValue = Math.max(...points.map((p) => p.value), 1);
@@ -456,6 +457,21 @@ this.y += height + 6;
     this.doc.setDrawColor(...LINE);
     this.doc.setLineWidth(0.2);
     this.doc.line(PAGE.margin, baseline, PAGE.margin + width, baseline);
+
+    // Chosen payback year: vertical guide behind the curve.
+    if (highlight) {
+      const hx = xFor(highlight.year);
+      this.doc.setDrawColor(...PRIMARY);
+      this.doc.setLineWidth(0.4);
+      this.doc.setLineDashPattern([1, 1], 0);
+      this.doc.line(hx, baseline, hx, baseline - height);
+      this.doc.setLineDashPattern([], 0);
+      this.doc.setFontSize(6.5);
+      this.doc.setTextColor(...PRIMARY);
+      this.doc.text(highlight.label, hx, baseline - height - 2, {
+        align: hx > PAGE.margin + width * 0.6 ? "right" : "left",
+      });
+    }
 
     this.doc.setDrawColor(...ACCENT);
     this.doc.setLineWidth(0.7);
@@ -479,8 +495,87 @@ this.y += height + 6;
       this.doc.setTextColor(...MUTED);
       this.doc.text(`${axisLabel} ${year}`, x, baseline + 4, { align });
     });
+    if (highlight) {
+      const point = points.find((p) => p.year === highlight.year);
+      if (point) {
+        this.doc.setFillColor(...PRIMARY);
+        this.doc.circle(xFor(point.year), yFor(point.value), 1, "F");
+      }
+    }
     this.y = baseline + 10;
   }
+
+  /**
+   * Year-by-year table for the calculation period, laid out in two columns so
+   * 30 years fit on one page. Values are pre-formatted by the caller.
+   */
+  lifetimeTable(
+    rows: Array<{
+      year: number;
+      production: string;
+      value: string;
+      cumulative: string;
+      highlighted?: boolean;
+    }>,
+    head: { year: string; production: string; value: string; cumulative: string },
+  ) {
+    const gap = 6;
+    const columnWidth = (PAGE.width - PAGE.margin * 2 - gap) / 2;
+    const half = Math.ceil(rows.length / 2);
+    const columns = [rows.slice(0, half), rows.slice(half)];
+    const rowHeight = 5;
+    const blockHeight = 6 + half * rowHeight + 2;
+    this.ensureSpace(blockHeight + 6);
+    const top = this.y;
+
+    columns.forEach((columnRows, columnIndex) => {
+      const x = PAGE.margin + columnIndex * (columnWidth + gap);
+      const cols = [
+        { key: "year" as const, w: columnWidth * 0.14, align: "left" as const },
+        { key: "production" as const, w: columnWidth * 0.26, align: "right" as const },
+        { key: "value" as const, w: columnWidth * 0.28, align: "right" as const },
+        { key: "cumulative" as const, w: columnWidth * 0.32, align: "right" as const },
+      ];
+      const xAt = (index: number) =>
+        x + cols.slice(0, index).reduce((sum, col) => sum + col.w, 0) + cols[index]!.w;
+
+      // Header
+      this.doc.setFillColor(...PRIMARY);
+      this.doc.roundedRect(x, top, columnWidth, 5.4, 1, 1, "F");
+      this.doc.setFont("helvetica", "bold");
+      this.doc.setFontSize(6.5);
+      this.doc.setTextColor(...CREAM);
+      this.doc.text(head.year, x + 1.5, top + 3.7);
+      cols.slice(1).forEach((col, index) => {
+        this.doc.text(head[col.key], xAt(index + 1) - 1.5, top + 3.7, { align: "right" });
+      });
+
+      this.doc.setFont("helvetica", "normal");
+      columnRows.forEach((row, index) => {
+        const rowY = top + 6 + index * rowHeight;
+        if (row.highlighted) {
+          this.doc.setFillColor(...ACCENT);
+          this.doc.roundedRect(x, rowY - 0.2, columnWidth, rowHeight, 0.8, 0.8, "F");
+        } else if (index % 2 === 0) {
+          this.doc.setFillColor(...CREAM);
+          this.doc.rect(x, rowY - 0.2, columnWidth, rowHeight, "F");
+        }
+        this.doc.setFontSize(6.5);
+        this.doc.setTextColor(...(row.highlighted ? PRIMARY : INK));
+        this.doc.text(String(row.year), x + 1.5, rowY + 3.3);
+        this.doc.setTextColor(...(row.highlighted ? PRIMARY : MUTED));
+        this.doc.text(row.production, xAt(1) - 1.5, rowY + 3.3, { align: "right" });
+        this.doc.setTextColor(...(row.highlighted ? PRIMARY : INK));
+        this.doc.text(row.value, xAt(2) - 1.5, rowY + 3.3, { align: "right" });
+        this.doc.setFont("helvetica", "bold");
+        this.doc.text(row.cumulative, xAt(3) - 1.5, rowY + 3.3, { align: "right" });
+        this.doc.setFont("helvetica", "normal");
+      });
+    });
+
+    this.y = top + blockHeight + 4;
+  }
+
 
   footer(appName: string, reportId?: string) {
     const pages = this.doc.getNumberOfPages();
@@ -824,39 +919,94 @@ export function generateReportBlob(options: ReportOptions): Blob {
       : labels.paybackNote,
   );
 
-  // Cumulative economic value over the calculation period, straight from
-  // result.lifetime (0.5 %/year degradation, unchanged electricity values).
+  // ── Long-term development page ───────────────────────────────────────────
+  // Everything below is read straight from result.lifetime (the same projection
+  // the results page uses). No economics are recomputed here.
   let running = 0;
   const cumulative = result.lifetime.years.map((year) => {
     running += year.economicValue;
     return { year: year.year, value: running };
   });
-  const markerYears = [1, 10, 20, result.lifetime.periodYears].filter(
-    (year, index, all) => year <= result.lifetime.periodYears && all.indexOf(year) === index,
+  const periodYears = result.lifetime.periodYears;
+  const paybackYear = Math.round(
+    result.investment.quotePaybackYears ?? result.investment.acceptedPaybackYears,
   );
-  report.sectionTitle(f["longTermChartTitle"] ?? "");
+  const markerYears = [1, 10, 20, periodYears].filter(
+    (year, index, all) => year <= periodYears && all.indexOf(year) === index,
+  );
+  const cumulativeAt = (year: number) =>
+    cumulative.find((point) => point.year === year)?.value ?? 0;
+  const productionAt = (year: number) =>
+    result.lifetime.years.find((entry) => entry.year === year)?.productionKwh ?? 0;
+
+  report.pageBreak();
+  report.sectionTitle(
+    (f["lifetimeTitle"] ?? f["longTermChartTitle"] ?? "").replace(
+      "{{years}}",
+      String(periodYears),
+    ),
+  );
   report.cumulativeChart(
     cumulative,
     markerYears,
     (value) => formatCurrency(Math.round(value), locale, currency),
     f["yearShort"] ?? "",
+    paybackYear > 1 && paybackYear <= periodYears
+      ? {
+          year: paybackYear,
+          label: (f["lifetimePaybackMarker"] ?? "").replace(
+            "{{years}}",
+            formatNumber(paybackYear, locale),
+          ),
+        }
+      : null,
+  );
+  report.highlights(
+    [10, 20, periodYears]
+      .filter((year, index, all) => year <= periodYears && all.indexOf(year) === index)
+      .map((year) => ({
+        label: (f["lifetimeAfterYears"] ?? "").replace("{{years}}", String(year)),
+        value: formatCurrency(Math.round(cumulativeAt(year)), locale, currency),
+      })),
+  );
+  report.highlights(
+    [1, 10, 20, periodYears]
+      .filter((year, index, all) => year <= periodYears && all.indexOf(year) === index)
+      .map((year) => ({
+        label: (f["lifetimeProductionYear"] ?? "").replace("{{year}}", String(year)),
+        value: `${formatNumber(Math.round(productionAt(year)), locale)} kWh`,
+      })),
+  );
+  report.lifetimeTable(
+    result.lifetime.years.map((entry) => ({
+      year: entry.year,
+      production: `${formatNumber(Math.round(entry.productionKwh), locale)}`,
+      value: formatCurrency(Math.round(entry.economicValue), locale, currency),
+      cumulative: formatCurrency(Math.round(cumulativeAt(entry.year)), locale, currency),
+      highlighted: entry.year === paybackYear,
+    })),
+    {
+      year: f["yearShort"] ?? "",
+      production: f["lifetimeColProduction"] ?? "",
+      value: f["lifetimeColValue"] ?? "",
+      cumulative: f["lifetimeColCumulative"] ?? "",
+    },
   );
   report.paragraph(
-    `${(f["savings30Note"] ?? "").replace(
-      "{{degradation}}",
-      formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
-    )} ${(f["savings30Method"] ?? "")
-      .replace("{{years}}", String(result.lifetime.periodYears))
+    (f["lifetimeNote"] ?? "")
+      .replaceAll("{{years}}", String(periodYears))
       .replace(
         "{{degradation}}",
         formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
       )
       .replace(
         "{{priceChange}}",
-        formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0),
-      )}`,
+        formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 1),
+      ),
   );
 
+
+  report.pageBreak();
   report.sectionTitle(f["keyAssumptions"] ?? labels.assumptions);
   const selfConsumptionSourceLabel =
     f[`selfConsumptionSource_${result.selfConsumptionSource}`] ?? "";
