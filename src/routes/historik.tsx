@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft, ChevronRight, History, Loader2 } from "lucide-react";
 import { haptic } from "@/services/native-service";
 import { usePurchaseStore } from "@/state/purchase-store";
+import { useCalculationStore } from "@/state/calculation-store";
 import { listPurchasedCalculations } from "@/lib/purchase.functions";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatDate, formatDecimal, formatNumber } from "@/lib/format";
@@ -29,12 +30,30 @@ function HistoryPage() {
   const ensureDeviceId = usePurchaseStore((s) => s.ensureDeviceId);
   const setActive = usePurchaseStore((s) => s.setActive);
 
+  const stored = useCalculationStore((s) => s.items);
+
+  // The server only knows which purchases are verified. Everything shown here
+  // (address, size, production) is read from the local snapshot on this device.
   const query = useQuery({
     queryKey: ["purchased-calculations"],
     queryFn: async () => listPurchasedCalculations({ data: { deviceId: ensureDeviceId() } }),
   });
 
-  const items = query.data?.items ?? [];
+  const items = (query.data?.items ?? []).flatMap((receipt) => {
+    const local = stored[receipt.id];
+    if (!local) return [];
+    return [
+      {
+        id: receipt.id,
+        accessToken: receipt.accessToken,
+        createdAt: receipt.createdAt,
+        purchasedAt: receipt.purchasedAt,
+        address: local.snapshot.result.location.address,
+        installedKwp: local.snapshot.result.installedKwp,
+        annualProductionKwh: local.snapshot.result.annualProductionKwh,
+      },
+    ];
+  });
 
   return (
     <div className="surface-sun flex h-dvh max-h-dvh flex-col overflow-hidden">
