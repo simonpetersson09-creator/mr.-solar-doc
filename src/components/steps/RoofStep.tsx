@@ -87,7 +87,8 @@ title={t("roof.title")}
       onBack={onBack}
 footer={
         <Button
-          className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
+className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
+          variant="cta"
           size="lg"
           disabled={!query.data}
           onClick={() => {

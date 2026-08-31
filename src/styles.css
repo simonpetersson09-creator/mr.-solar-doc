@@ -272,6 +272,12 @@ html[data-native="true"] {
   box-shadow: 0 20px 40px -12px oklch(0.34 0.06 160 / 0.45);
 }
 
+/* Solid forest-green CTA in the exact rendered green of the glass cards
+   (oklch(0.34 0.06 160 / 0.9) composited over the cream background). */
+@utility cta-primary {
+  background-color: oklch(0.41 0.055 161);
+}
+
 /* Soft amber glow blob used as decoration inside dark hero cards. */
 @utility glow-amber {
   position: absolute;

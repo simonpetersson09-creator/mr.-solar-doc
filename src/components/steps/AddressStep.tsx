@@ -254,7 +254,8 @@ return (
                 void haptic("medium");
                 onNext();
               }}
-              className="h-auto flex-1 rounded-[24px] py-4 text-base font-bold shadow-cta"
+className="h-auto flex-1 rounded-[24px] py-4 text-base font-bold shadow-cta"
+              variant="cta"
               size="lg"
             >
               {t("common.next")}
