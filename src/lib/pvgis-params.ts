@@ -17,7 +17,10 @@
  * parameters — irradiation always comes from PVGIS for the real coordinate.
  */
 
-import { defaultPvgisAzimuthForLatitude } from "@/lib/geo/hemisphere";
+import {
+  EQUATOR_NEUTRAL_ZONE_DEGREES,
+  defaultPvgisAzimuthForLatitude,
+} from "@/lib/geo/hemisphere";
 
 export const PVGIS_BASE_URL = "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc";
 
