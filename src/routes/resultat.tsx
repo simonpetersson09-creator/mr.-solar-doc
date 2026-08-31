@@ -380,7 +380,7 @@ const cost = result.productionCost;
               {t("result.missingMarketValues")}
             </p>
           ) : (
-            <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-accent">
+            <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-white">
               {t("result.maxInvestmentApprox", { amount: investmentAmount })}
             </p>
           )}
