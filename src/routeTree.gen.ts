@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnvandarvillkorRouteImport } from './routes/anvandarvillkor'
 import { Route as BetalningRouteImport } from './routes/betalning'
+import { Route as HistorikRouteImport } from './routes/historik'
 import { Route as InstallningarRouteImport } from './routes/installningar'
 import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
 import { Route as ResultatRouteImport } from './routes/resultat'
@@ -29,6 +30,11 @@ const AnvandarvillkorRoute = AnvandarvillkorRouteImport.update({
 const BetalningRoute = BetalningRouteImport.update({
   id: '/betalning',
   path: '/betalning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistorikRoute = HistorikRouteImport.update({
+  id: '/historik',
+  path: '/historik',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InstallningarRoute = InstallningarRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/anvandarvillkor': typeof AnvandarvillkorRoute
   '/betalning': typeof BetalningRoute
+  '/historik': typeof HistorikRoute
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/anvandarvillkor': typeof AnvandarvillkorRoute
   '/betalning': typeof BetalningRoute
+  '/historik': typeof HistorikRoute
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/anvandarvillkor': typeof AnvandarvillkorRoute
   '/betalning': typeof BetalningRoute
+  '/historik': typeof HistorikRoute
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/anvandarvillkor'
     | '/betalning'
+    | '/historik'
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/anvandarvillkor'
     | '/betalning'
+    | '/historik'
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/anvandarvillkor'
     | '/betalning'
+    | '/historik'
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnvandarvillkorRoute: typeof AnvandarvillkorRoute
   BetalningRoute: typeof BetalningRoute
+  HistorikRoute: typeof HistorikRoute
   InstallningarRoute: typeof InstallningarRoute
   IntegritetspolicyRoute: typeof IntegritetspolicyRoute
   ResultatRoute: typeof ResultatRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/betalning'
       fullPath: '/betalning'
       preLoaderRoute: typeof BetalningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/historik': {
+      id: '/historik'
+      path: '/historik'
+      fullPath: '/historik'
+      preLoaderRoute: typeof HistorikRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/installningar': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnvandarvillkorRoute: AnvandarvillkorRoute,
   BetalningRoute: BetalningRoute,
+  HistorikRoute: HistorikRoute,
   InstallningarRoute: InstallningarRoute,
   IntegritetspolicyRoute: IntegritetspolicyRoute,
   ResultatRoute: ResultatRoute,
