@@ -237,7 +237,7 @@ export const sl = {
     "economicsDisclaimer": "Ti zneski so kalkulacijske predpostavke, ne zagotovljene prihodnje cene.",
     "paybackTitle": "Izberite dobo vračila",
     "paybackSubtitle": "Poglejte, katera raven investicije ustreza različnim enostavnim dobam vračila.",
-    "investmentLevelTitle": "Raven investicije pri dobi vračila {{years}} let",
+    "investmentLevelTitle": "Cena po izbranem obdobju vračila",
     "panelPowerLabel": "Moč panelov",
     "investmentLevelBasis": "Na podlagi izbrane dobe vračila {{years}} let",
     "investmentLevelNote": "Z današnjimi kalkulacijskimi predpostavkami dobi vračila {{years}} let ustreza investiciji približno {{amount}}.",
@@ -252,7 +252,7 @@ export const sl = {
     "maxInvestment": "Raven investicije pri izbrani dobi vračila",
     "maxInvestmentApprox": "pribl. {{amount}}",
     investmentLevelInfoLabel: "Več informacij",
-    investmentLevelInfo: "Približno prikazuje, kakšen strošek naložbe ustreza izbranemu obdobju vračila. To ni ocena dejanskih stroškov namestitve.",
+    investmentLevelInfo: "Približno prikazuje, kakšen strošek naložbe ustreza izbranemu obdobju vračila. To ni ocena dejanskih stroškov namestitve. Dejanska cena je med drugim odvisna od strehe, namestitve, komponent in dobavitelja.",
     systemSizeInfoLabel: "Več informacij",
     systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dejanska proizvodnja, lastna poraba, cena elektrike, nadomestilo, stroški namestitve in gospodarski izid se lahko razlikujejo. Rezultat ni ponudba niti garancija.",
 

@@ -278,7 +278,7 @@ error: "Address search failed.",
     paybackSubtitle:
       "You decide how quickly you want the investment paid back. We calculate what it corresponds to in installation cost.",
     paybackYearsUnit: "years",
-    investmentLevelTitle: "Investment level at {{years}} years payback",
+    investmentLevelTitle: "Price after your selected payback period",
     panelPowerLabel: "Panel power",
     investmentLevelBasis: "Based on your selected payback period of {{years}} years",
     investmentLevelNote:
@@ -297,7 +297,7 @@ error: "Address search failed.",
     maxInvestment: "Investment level at chosen payback time",
     productionCostTitle: "What does solar power from your roof cost?",
     investmentLevelInfoLabel: "More information",
-    investmentLevelInfo: "Shows approximately what investment cost corresponds to the payback period you selected. It is not an estimate of what the installation actually costs.",
+    investmentLevelInfo: "Shows approximately what investment cost corresponds to the payback period you selected. It is not an estimate of what the installation actually costs. The actual price depends on, among other things, the roof, installation, components and supplier.",
     systemSizeInfoLabel: "More information",
     systemSizeInfo: "The calculation is an estimate and should be used as guidance. Actual production, self-consumption, electricity price, compensation, installation cost and financial outcome may differ. The result does not constitute a quote or guarantee.",
 

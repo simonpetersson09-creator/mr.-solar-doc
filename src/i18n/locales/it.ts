@@ -237,7 +237,7 @@ export const it = {
     "economicsDisclaimer": "Questi importi sono ipotesi di calcolo, non prezzi futuri garantiti.",
     "paybackTitle": "Scegli il tempo di ritorno",
     "paybackSubtitle": "Vedi quale livello di investimento corrisponde a diversi tempi di ritorno semplici.",
-    "investmentLevelTitle": "Livello di investimento a {{years}} anni di ritorno",
+    "investmentLevelTitle": "Prezzo in base al periodo di ammortamento scelto",
     "panelPowerLabel": "Potenza dei pannelli",
     "investmentLevelBasis": "In base al periodo di ritorno scelto di {{years}} anni",
     "investmentLevelNote": "Con le ipotesi di calcolo odierne, {{years}} anni di tempo di ritorno semplice corrispondono a un investimento di circa {{amount}}.",
@@ -252,7 +252,7 @@ export const it = {
     "maxInvestment": "Livello di investimento al tempo di ritorno scelto",
     "maxInvestmentApprox": "circa {{amount}}",
     investmentLevelInfoLabel: "Maggiori informazioni",
-    investmentLevelInfo: "Mostra approssimativamente quale costo di investimento corrisponde al periodo di ammortamento scelto. Non è una stima del costo reale dell'impianto.",
+    investmentLevelInfo: "Mostra approssimativamente quale costo di investimento corrisponde al periodo di ammortamento scelto. Non è una stima del costo reale dell'impianto. Il prezzo effettivo dipende, tra l'altro, dal tetto, dall'installazione, dai componenti e dal fornitore.",
     systemSizeInfoLabel: "Maggiori informazioni",
     systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produzione effettiva, autoconsumo, prezzo dell'energia, compensazione, costo di installazione e risultato economico possono variare. Il risultato non costituisce un'offerta né una garanzia.",
 

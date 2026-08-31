@@ -308,10 +308,8 @@ const cost = result.productionCost;
           >
             <CircleAlert className="size-3.5" />
           </button>
-          <h2 className="text-center text-sm font-semibold text-white">
-            {t("result.investmentLevelTitle", {
-              years: formatNumber(paybackYears, locale),
-            })}
+<h2 className="text-center text-sm font-semibold text-white">
+            {t("result.investmentLevelTitle")}
           </h2>
           {showInvestmentInfo ? (
             <p className="mt-2 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">

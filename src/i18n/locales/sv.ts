@@ -279,7 +279,7 @@ error: "Adressökningen misslyckades.",
     paybackSubtitle:
       "Du bestämmer hur snabbt du vill ha investeringen tillbaka. Vi räknar ut vad det motsvarar i installationskostnad.",
     paybackYearsUnit: "år",
-    investmentLevelTitle: "Rimlig investeringsnivå",
+    investmentLevelTitle: "Pris efter din valda återbetalningstid",
     panelPowerLabel: "Paneleffekt",
     investmentLevelBasis: "Baserat på din valda återbetalningstid på {{years}} år",
     investmentLevelNote:
@@ -298,7 +298,7 @@ error: "Adressökningen misslyckades.",
     maxInvestment: "Investeringsnivå vid vald återbetalningstid",
     productionCostTitle: "Produktionskostnad",
     investmentLevelInfoLabel: "Mer information",
-    investmentLevelInfo: "Visar ungefär vilken investeringskostnad som motsvarar den återbetalningstid du valt. Det är inte en uppskattning av vad installationen faktiskt kostar.",
+    investmentLevelInfo: "Visar ungefär vilken investeringskostnad som motsvarar den återbetalningstid du valt. Det är inte en uppskattning av vad installationen faktiskt kostar. Faktiskt pris beror på bland annat tak, installation, komponenter och leverantör.",
     systemSizeInfoLabel: "Mer information",
     systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledning. Faktisk produktion, egenanvändning, elpris, ersättning, installationskostnad och ekonomiskt utfall kan avvika. Resultatet utgör inte en offert eller garanti.",
 

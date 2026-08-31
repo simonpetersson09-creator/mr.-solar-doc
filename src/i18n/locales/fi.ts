@@ -237,7 +237,7 @@ export const fi = {
     "economicsDisclaimer": "Summat ovat laskentaoletuksia, eivät taattuja tulevia hintoja.",
     "paybackTitle": "Valitse takaisinmaksuaika",
     "paybackSubtitle": "Katso, mikä investointitaso vastaa erilaisia yksinkertaisia takaisinmaksuaikoja.",
-    "investmentLevelTitle": "Investointitaso {{years}} vuoden takaisinmaksuajalla",
+    "investmentLevelTitle": "Hinta valitsemasi takaisinmaksuajan mukaan",
     "panelPowerLabel": "Paneelien teho",
     "investmentLevelBasis": "Perustuu valittuun {{years}} vuoden takaisinmaksuaikaan",
     "investmentLevelNote": "Nykyisillä laskentaoletuksilla {{years}} vuoden yksinkertainen takaisinmaksuaika vastaa noin {{amount}} investointia.",
@@ -252,7 +252,7 @@ export const fi = {
     "maxInvestment": "Investointitaso valitulla takaisinmaksuajalla",
     "maxInvestmentApprox": "n. {{amount}}",
     investmentLevelInfoLabel: "Lisätietoja",
-    investmentLevelInfo: "Näyttää suunnilleen, minkä suuruista investointia valitsemasi takaisinmaksuaika vastaa. Se ei ole arvio siitä, mitä asennus todellisuudessa maksaa.",
+    investmentLevelInfo: "Näyttää suunnilleen, minkä suuruista investointia valitsemasi takaisinmaksuaika vastaa. Se ei ole arvio siitä, mitä asennus todellisuudessa maksaa. Todellinen hinta riippuu muun muassa katosta, asennuksesta, komponenteista ja toimittajasta.",
     systemSizeInfoLabel: "Lisätietoja",
     systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. Todellinen tuotanto, omaan käyttöön jäävä osuus, sähkön hinta, korvaus, asennuskustannus ja taloudellinen lopputulos voivat poiketa. Tulos ei ole tarjous eikä takuu.",
 

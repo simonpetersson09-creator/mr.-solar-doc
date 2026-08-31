@@ -237,7 +237,7 @@ export const lt = {
     "economicsDisclaimer": "Šios sumos yra skaičiavimo prielaidos, o ne garantuotos ateities kainos.",
     "paybackTitle": "Pasirinkite atsipirkimo laiką",
     "paybackSubtitle": "Pažiūrėkite, koks investicijos lygis atitinka skirtingus paprastus atsipirkimo terminus.",
-    "investmentLevelTitle": "Investicijos lygis prie {{years}} metų atsipirkimo",
+    "investmentLevelTitle": "Kaina pagal jūsų pasirinktą atsipirkimo laikotarpį",
     "panelPowerLabel": "Plokščių galia",
     "investmentLevelBasis": "Pagal pasirinktą {{years}} metų atsipirkimo laikotarpį",
     "investmentLevelNote": "Remiantis šiandienos skaičiavimo prielaidomis, {{years}} metų paprastas atsipirkimas atitinka maždaug {{amount}} investiciją.",
@@ -252,7 +252,7 @@ export const lt = {
     "maxInvestment": "Investicijos lygis pasirinktu atsipirkimo laiku",
     "maxInvestmentApprox": "apie {{amount}}",
     investmentLevelInfoLabel: "Daugiau informacijos",
-    investmentLevelInfo: "Apytiksliai parodo, kokia investicijų suma atitinka jūsų pasirinktą atsipirkimo laikotarpį. Tai nėra įvertinimas, kiek įrengimas iš tikrųjų kainuoja.",
+    investmentLevelInfo: "Apytiksliai parodo, kokia investicijų suma atitinka jūsų pasirinktą atsipirkimo laikotarpį. Tai nėra įvertinimas, kiek įrengimas iš tikrųjų kainuoja. Faktinė kaina priklauso, be kita ko, nuo stogo, įrengimo, komponentų ir tiekėjo.",
     systemSizeInfoLabel: "Daugiau informacijos",
     systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kaip orientyras. Faktinė gamyba, savas suvartojimas, elektros kaina, atlygis, įrengimo kaina ir ekonominis rezultatas gali skirtis. Rezultatas nėra pasiūlymas ar garantija.",
 

@@ -237,7 +237,7 @@ export const et = {
     "economicsDisclaimer": "Need summad on arvutuseeldused, mitte garanteeritud tulevased hinnad.",
     "paybackTitle": "Vali tasuvusaeg",
     "paybackSubtitle": "Vaata, milline investeeringu tase vastab erinevatele lihtsatele tasuvusaegadele.",
-    "investmentLevelTitle": "Investeeringu tase {{years}} aasta tasuvusajal",
+    "investmentLevelTitle": "Hind vastavalt teie valitud tasuvusajale",
     "panelPowerLabel": "Paneelide võimsus",
     "investmentLevelBasis": "Põhineb valitud {{years}} aasta tasuvusajal",
     "investmentLevelNote": "Tänaste arvutuseelduste kohaselt vastab {{years}} aasta lihtne tasuvusaeg umbes {{amount}} investeeringule.",
@@ -252,7 +252,7 @@ export const et = {
     "maxInvestment": "Investeeringu tase valitud tasuvusajal",
     "maxInvestmentApprox": "umbes {{amount}}",
     investmentLevelInfoLabel: "Rohkem teavet",
-    investmentLevelInfo: "Näitab ligikaudu, milline investeeringukulu vastab teie valitud tasuvusajale. See ei ole hinnang selle kohta, mida paigaldus tegelikult maksab.",
+    investmentLevelInfo: "Näitab ligikaudu, milline investeeringukulu vastab teie valitud tasuvusajale. See ei ole hinnang selle kohta, mida paigaldus tegelikult maksab. Tegelik hind sõltub muu hulgas katusest, paigaldusest, komponentidest ja tarnijast.",
     systemSizeInfoLabel: "Rohkem teavet",
     systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tegelik tootlus, oma tarve, elektrihind, hüvitis, paigalduskulu ja majanduslik tulemus võivad erineda. Tulemus ei ole pakkumine ega garantii.",
 

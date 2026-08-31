@@ -237,7 +237,7 @@ export const fr = {
     "economicsDisclaimer": "Ces montants sont des hypothèses de calcul, pas des prix futurs garantis.",
     "paybackTitle": "Choisir le temps de retour sur investissement",
     "paybackSubtitle": "Voyez quel niveau d'investissement correspond à différents temps de retour sur investissement simples.",
-    "investmentLevelTitle": "Niveau d'investissement pour {{years}} ans de retour sur investissement",
+    "investmentLevelTitle": "Prix selon la période de remboursement choisie",
     "panelPowerLabel": "Puissance des panneaux",
     "investmentLevelBasis": "Basé sur la période de retour choisie de {{years}} ans",
     "investmentLevelNote": "Avec les hypothèses de calcul actuelles, {{years}} ans de retour sur investissement simple correspondent à un investissement d'environ {{amount}}.",
@@ -252,7 +252,7 @@ export const fr = {
     "maxInvestment": "Niveau d'investissement pour le temps de retour sur investissement choisi",
     "maxInvestmentApprox": "environ {{amount}}",
     investmentLevelInfoLabel: "Plus d'informations",
-    investmentLevelInfo: "Indique approximativement le coût d'investissement correspondant à la période de remboursement que vous avez choisie. Il ne s'agit pas d'une estimation du coût réel de l'installation.",
+    investmentLevelInfo: "Indique approximativement le coût d'investissement correspondant à la période de remboursement que vous avez choisie. Il ne s'agit pas d'une estimation du coût réel de l'installation. Le prix réel dépend, entre autres, de la toiture, de l'installation, des composants et du fournisseur.",
     systemSizeInfoLabel: "Plus d'informations",
     systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre indicatif. La production réelle, l'autoconsommation, le prix de l'électricité, la rémunération, le coût d'installation et le résultat économique peuvent varier. Le résultat ne constitue ni une offre ni une garantie.",
 
