@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import {
   DEFAULT_GRID_PROFILE,
   GRID_VOLTAGE_OPTIONS,
+  isPresetVoltage,
+  isValidCustomVoltage,
   kwPerAmpFor,
   SERVICE_TYPE_AC_FACTOR,
   SERVICE_TYPE_FOR_PHASE_COUNT,
