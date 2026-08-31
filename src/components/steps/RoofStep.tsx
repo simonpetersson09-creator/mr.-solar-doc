@@ -169,7 +169,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
 
 
       {/* Fixed result card: only the number swaps while a new value loads. */}
-      <div className="hero-metric rounded-2xl px-4 py-3">
+      <div className="glass-primary rounded-[28px] px-4 py-3">
         <div className="glow-amber -top-10 -right-10 size-32" aria-hidden="true" />
         <div className="flex items-center justify-between gap-4">
           <div className="text-center">
