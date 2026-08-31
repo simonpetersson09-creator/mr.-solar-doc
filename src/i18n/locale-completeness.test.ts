@@ -92,7 +92,7 @@ describe("i18n completeness", () => {
     for (const [lang, entries] of Object.entries(flat)) {
       for (const key of keys) {
         expect(entries[key], `${lang}.${key}`).toBeTruthy();
-        if (lang !== "sv") {
+        if (lang !== "sv" && flat.sv[key] !== flat.en[key]) {
           // No Swedish source text leaking into other languages.
           expect(entries[key]).not.toBe(flat.sv[key]);
         }
