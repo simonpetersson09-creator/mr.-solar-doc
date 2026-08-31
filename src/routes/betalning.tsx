@@ -153,6 +153,10 @@ function PaywallPage() {
         {phase === "failed" ? (
           <p className="text-sm text-destructive">{t("paywall.failed")}</p>
         ) : null}
+        {phase === "retry" ? (
+          <p className="text-sm text-foreground">{t("paywall.retry")}</p>
+        ) : null}
+
 
         <div className="flex flex-col gap-2 pt-1">
           <Button
