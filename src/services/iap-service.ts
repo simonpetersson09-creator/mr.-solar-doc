@@ -183,10 +183,12 @@ export async function purchaseUnlock(): Promise<{
   });
 }
 
-/** Asks StoreKit to restore previous purchases (used from settings). */
-export async function restorePurchases(): Promise<void> {
-  const cdv = getCdv();
-  if (!isPurchaseAvailable() || !cdv) throw new PurchaseError("unavailable");
-  await ensureInitialized(cdv);
-  await cdv.store.restorePurchases();
+/**
+ * The unlock is a consumable, so the App Store cannot "restore" it. Recovery
+ * instead means: boot StoreKit (so any unfinished transaction is redelivered)
+ * and re-read the verified receipts the server holds for this device.
+ */
+export async function refreshPurchases(): Promise<void> {
+  await initializePurchases();
 }
+
