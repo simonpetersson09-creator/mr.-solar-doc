@@ -45,6 +45,26 @@ export function parseLocaleNumber(raw: string): number | null {
   return Number.isFinite(value) ? value : null;
 }
 
+const NUMBER_SOURCE = "-?[\\d][\\d\\s\\u00a0\\u202f.,']*\\d|\\d";
+
+/**
+ * Picks the number that is attached to an energy unit (kWh/MWh/Wh) on the line.
+ * MWh is converted to kWh. Returns null when no unit-bound number exists.
+ */
+function energyValueInLine(line: string): number | null {
+  const pattern = new RegExp(`(${NUMBER_SOURCE})\\s*(kwh|mwh|wh|kw h)\\b`, "gi");
+  let match: RegExpExecArray | null;
+  let best: number | null = null;
+  while ((match = pattern.exec(line)) !== null) {
+    const value = parseLocaleNumber(match[1] ?? "");
+    if (value === null) continue;
+    const unit = (match[2] ?? "").toLowerCase();
+    const scaled = unit === "mwh" ? value * 1000 : unit === "wh" ? value / 1000 : value;
+    if (best === null) best = scaled;
+  }
+  return best;
+}
+
 function numbersInLine(line: string): number[] {
   const matches = line.match(/-?[\d][\d\s\u00a0\u202f.,']*\d|\d/g) ?? [];
   return matches
