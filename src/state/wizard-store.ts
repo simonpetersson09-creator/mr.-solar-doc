@@ -33,6 +33,8 @@ export interface WizardState {
   gridPhaseCount: PhaseCount;
   gridVoltageV: number;
   gridFrequencyHz: number;
+  /** True once the user actively changed the grid profile in the UI. */
+  gridProfileIsUserSet: boolean;
   selfConsumptionShare: number;
   /** True once the user actively adjusted the share, regardless of its value. */
   selfConsumptionShareIsUserSet: boolean;
@@ -66,6 +68,12 @@ export interface WizardState {
     voltageV?: number;
     frequencyHz?: number;
   }) => void;
+  /** Applies a country/connection default without marking it as user set. */
+  setGridDefaults: (profile: {
+    phaseCount?: PhaseCount;
+    voltageV?: number;
+    frequencyHz?: number;
+  }) => void;
   setSelfConsumptionShare: (share: number) => void;
   setSelfConsumedValue: (value: number | null) => void;
   setExportValue: (value: number | null) => void;
@@ -91,6 +99,7 @@ const initialState = {
   gridPhaseCount: DEFAULT_GRID_PROFILE.phaseCount,
   gridVoltageV: DEFAULT_GRID_PROFILE.voltageV,
   gridFrequencyHz: DEFAULT_GRID_PROFILE.frequencyHz,
+  gridProfileIsUserSet: false,
   selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
   selfConsumptionShareIsUserSet: false,
   selfConsumedValuePerKwh: null,
@@ -131,7 +140,18 @@ export const useWizardStore = create<WizardState>()(
           gridPhaseCount: profile.phaseCount ?? state.gridPhaseCount,
           gridVoltageV: profile.voltageV ?? state.gridVoltageV,
           gridFrequencyHz: profile.frequencyHz ?? state.gridFrequencyHz,
+          gridProfileIsUserSet: true,
         })),
+      setGridDefaults: (profile) =>
+        set((state) =>
+          state.gridProfileIsUserSet
+            ? {}
+            : {
+                gridPhaseCount: profile.phaseCount ?? state.gridPhaseCount,
+                gridVoltageV: profile.voltageV ?? state.gridVoltageV,
+                gridFrequencyHz: profile.frequencyHz ?? state.gridFrequencyHz,
+              },
+        ),
       setSelfConsumptionShare: (share) =>
         set({ selfConsumptionShare: share, selfConsumptionShareIsUserSet: true }),
       setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
@@ -173,6 +193,7 @@ export const useWizardStore = create<WizardState>()(
         gridPhaseCount,
         gridVoltageV,
         gridFrequencyHz,
+        gridProfileIsUserSet,
         selfConsumptionShare,
         selfConsumptionShareIsUserSet,
         selfConsumedValuePerKwh,
@@ -195,6 +216,7 @@ export const useWizardStore = create<WizardState>()(
         gridPhaseCount,
         gridVoltageV,
         gridFrequencyHz,
+        gridProfileIsUserSet,
         selfConsumptionShare,
         selfConsumptionShareIsUserSet,
         selfConsumedValuePerKwh,
