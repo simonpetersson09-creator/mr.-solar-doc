@@ -81,6 +81,9 @@ export function parseNumericInput(
   const { allowNegative = false, locale = null, min, max } = options;
   const text = raw.trim();
   if (text === "") return { value: null, status: "empty", clamped: false };
+  // A value the user is still typing is never a committed number, even though
+  // the parser can already read it ("0," would otherwise commit 0).
+  if (isIncompleteNumericInput(text)) return { value: null, status: "incomplete", clamped: false };
 
   const parsed = parseLocaleNumber(text, locale);
   if (parsed === null) {

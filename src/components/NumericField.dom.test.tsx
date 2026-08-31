@@ -112,9 +112,15 @@ describe("NumericField – commit semantics", () => {
     expect(committed()).toBe("90");
   });
 
-  it("restores the last good value when the text is garbage", () => {
+  it("cannot even type letters into the field", () => {
     render(<Harness initial={30} />);
     type("abc");
+    expect(input().value).toBe("");
+  });
+
+  it("restores the last good value when the text is not a valid number", () => {
+    render(<Harness initial={30} />);
+    type("1,2,3");
     fireEvent.blur(input());
     expect(committed()).toBe("30");
     expect(input().value).toBe("30");
