@@ -140,20 +140,16 @@ function ampOption(
   };
 }
 
-function kvaOption(
-  kva: number,
-  profile?: Partial<ConnectionGridProfile>,
-  phasePrefix?: string,
-): ConnectionOption {
-  // The service type is part of the id: a market can offer the same kVA level
-  // on both a single-phase and a three-phase connection (FR 9/12 kVA).
-  const suffix = profile?.serviceType === "three-phase" ? "-3p" : "";
-  return {
-    id: `kva${kva}${suffix}`,
-    ...(phasePrefix ? { phasePrefix } : {}),
-    capacity: { type: "contracted-kva", kva, ...profile },
-  };
+/**
+ * A contracted apparent power (kVA) is ALWAYS the total for the connection,
+ * never a per-phase figure. Therefore a kVA option carries no phase prefix and
+ * no pinned grid profile: the number is the same on 1-phase 230 V and on
+ * 3-phase 400 V. Phases/voltage live in the grid settings.
+ */
+function kvaOption(kva: number): ConnectionOption {
+  return { id: `kva${kva}`, capacity: { type: "contracted-kva", kva } };
 }
+
 
 function kwOption(kw: number, profile?: Partial<ConnectionGridProfile>): ConnectionOption {
   const suffix = profile?.serviceType === "three-phase" ? "-3p" : "";
