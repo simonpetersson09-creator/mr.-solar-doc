@@ -65,8 +65,12 @@ export interface ReportLabels {
   consumptionSource: string;
   /** Chosen estimated profile, when the monthly data is estimated. */
   consumptionShape?: string | null;
-  origin: Record<ValueOrigin, string>;
+origin: Record<ValueOrigin, string>;
   fields: ReportFieldLabels;
+  /** Heading for the FAQ page. */
+  faqTitle: string;
+  /** FAQ entries rendered on their own page at the end of the report. */
+  faqItems: Array<{ q: string; a: string }>;
 }
 
 export interface ReportOptions {
@@ -404,7 +408,30 @@ class ReportDocument {
     this.doc.setFontSize(8.5);
     this.doc.setTextColor(...MUTED);
     this.doc.text(lines, PAGE.margin + 4, this.y + 11);
-    this.y += height + 6;
+this.y += height + 6;
+  }
+
+  /** FAQ page: question in bold primary, answer in muted, on cream blocks. */
+  faq(title: string, items: Array<{ q: string; a: string }>) {
+    this.sectionTitle(title);
+    const width = PAGE.width - PAGE.margin * 2;
+    items.forEach((item) => {
+      const questionLines = this.doc.splitTextToSize(item.q, width - 6) as string[];
+      const answerLines = this.doc.splitTextToSize(item.a, width - 6) as string[];
+      const blockHeight = questionLines.length * 5 + answerLines.length * 4 + 9;
+      this.ensureSpace(blockHeight + 2);
+      this.doc.setFillColor(...CREAM);
+      this.doc.roundedRect(PAGE.margin, this.y - 5, width, blockHeight, 2.5, 2.5, "F");
+      this.doc.setFont("helvetica", "bold");
+      this.doc.setFontSize(9.5);
+      this.doc.setTextColor(...PRIMARY);
+      this.doc.text(questionLines, PAGE.margin + 3, this.y);
+      this.doc.setFont("helvetica", "normal");
+      this.doc.setFontSize(8.5);
+      this.doc.setTextColor(...MUTED);
+      this.doc.text(answerLines, PAGE.margin + 3, this.y + questionLines.length * 5 + 2);
+      this.y += blockHeight + 4;
+    });
   }
 
   /**
@@ -895,10 +922,14 @@ export function generateReportBlob(options: ReportOptions): Blob {
         formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
       ),
   );
-  report.noteBox(
+report.noteBox(
     f["uncertaintyTitle"] ?? "",
     `${f["uncertaintyText"] ?? ""} ${labels.disclaimer}`,
   );
+
+  // FAQ: rendered on its own page, right before the report metadata.
+  report.pageBreak();
+  report.faq(labels.faqTitle, labels.faqItems);
 
   const reportId = buildReportId(result);
   report.rows([
