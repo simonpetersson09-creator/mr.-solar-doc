@@ -56,9 +56,12 @@ export default function MapPicker({
       attributionControl: true,
       zoomControl: !hideZoomControl,
       // Cheaper gestures on mobile: no fractional zoom steps, less inertia work.
-      zoomSnap: 1,
-      wheelPxPerZoomLevel: 120,
-      wheelDebounceTime: 20,
+      zoomSnap: 0,
+      zoomDelta: 0.5,
+      wheelPxPerZoomLevel: 140,
+      wheelDebounceTime: 0,
+      inertiaDeceleration: 2200,
+      zoomAnimation: true,
       preferCanvas: true,
     }).setView([latitude, longitude], zoom);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -66,7 +69,7 @@ export default function MapPicker({
       attribution: "© OpenStreetMap",
       // Fewer tile requests/DOM churn mid-gesture keeps panning smooth.
       updateWhenZooming: false,
-      keepBuffer: 1,
+      keepBuffer: 2,
       detectRetina: false,
     }).addTo(map);
 
