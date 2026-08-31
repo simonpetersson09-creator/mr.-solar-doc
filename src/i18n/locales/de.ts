@@ -68,11 +68,9 @@ export const de = {
     "unit": "kWh/kWp/Jahr",
     "disclaimer": "Die berechnete Solarproduktion basiert auf Standort, Ausrichtung und Dachneigung. Die tatsächliche Produktion kann u. a. durch Verschattung, Wetter, Temperatur und Systemverluste beeinflusst werden.",
     "error": "Wir konnten die Solarertragsdaten für diesen Standort derzeit nicht abrufen. Es werden keine Werte geschätzt.",
-    "errorOverSea":
-      "Der Standort liegt offenbar über Wasser. Verschieben Sie die Markierung auf das Gebäude an Land und versuchen Sie es erneut.",
-    "errorOutsideCoverage":
-      "Für diesen Standort liegen keine Solardaten vor. Versuchen Sie eine Adresse in der Nähe.",
-    "errorSource": "PVGIS: {{message}}",
+    "errorOverSea": "Der Standort liegt offenbar über Wasser. Verschieben Sie die Markierung auf das Gebäude an Land und versuchen Sie es erneut.",
+    "errorOutsideCoverage": "Für diesen Standort liegen keine Solardaten vor. Versuchen Sie eine Adresse in der Nähe.",
+    "errorSource": "PVGIS: {{message}}"
   },
   "consumption": {
     "validation": {
@@ -160,7 +158,7 @@ export const de = {
       }
     },
     "gridAssumption": "Die Berechnung geht von 400 V Dreiphasenanschluss aus.",
-"gridAssumptionInfo": "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
+    "gridAssumptionInfo": "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
     "disclaimerTitle": "Wichtig zu wissen",
     "disclaimer": "Die Berechnung ist richtungsweisend und ersetzt keine technische Bewertung. Prüfen Sie vor der Installation immer Spannung, Anschlussleistung, zulässige Leistung und weitere lokale Netzanforderungen mit einem qualifizierten Elektroinstallateur und, falls erforderlich, mit Ihrem Netzbetreiber.\n\nMr Solar Doc übernimmt keine Verantwortung für Installationen oder Entscheidungen, die ausschließlich auf Grundlage der Berechnungen der App getroffen werden.",
     "grid": {
@@ -178,6 +176,9 @@ export const de = {
       "frequency": "Frequenz",
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Nur ändern, wenn die Standardwerte nicht zu Ihrem Anschluss passen.",
+      "serviceType": "Anschlussart",
+      "splitPhase": "Zweiphasig (Split-Phase)",
+      "unverifiedHint": "Für dieses Land liegen uns keine verifizierten Netzwerte vor. Bitte prüfen Sie Ihre Angaben anhand Ihres Zählers oder Sicherungskastens."
     },
     "title": "Welche Hauptsicherung haben Sie?",
     "subtitle": "Die Hauptsicherung dient zur Abschätzung, wie groß ein Wechselrichter normalerweise angeschlossen werden kann. Die tatsächlich zulässige Leistung bestimmt der Netzbetreiber.",
@@ -186,7 +187,12 @@ export const de = {
     "otherLabel": "Ampere",
     "maxAc": "Maximal berechnete AC-Leistung",
     "calculate": "Berechnen",
-    "invalid": "Geben Sie eine Hauptsicherung zwischen 6 und 400 A ein."
+    "invalid": "Geben Sie eine Hauptsicherung zwischen 6 und 400 A ein.",
+    "genericTitle": "Welchen Netzanschluss haben Sie?",
+    "noCountryOptions": "Für dieses Land haben wir noch keine verifizierten Anschlussoptionen. Geben Sie Ihre Hauptsicherung in Ampere ein und passen Sie die Netzeinstellungen unten bei Bedarf an.",
+    "unverifiedCountryNotice": "Wir haben den Netzstandard für dieses Land nicht verifiziert. Prüfen Sie Spannung, Phasen und Anschlussgröße auf Ihrer Stromrechnung oder beim Netzbetreiber und bestätigen Sie unten.",
+    "confirmGrid": "Ich habe die Netzdaten geprüft",
+    "confirmedGrid": "Netzdaten bestätigt"
   },
   "result": {
     "connection": {
@@ -249,7 +255,7 @@ export const de = {
     "priceScenarioFlat": "Unverändert",
     "priceScenarioCautious": "Vorsichtig",
     "priceScenarioNormal": "Normal",
-"priceScenarioHigh": "Hoch",
+    "priceScenarioHigh": "Hoch",
     "priceScenarioVeryHigh": "Sehr hoch",
     "priceScenarioExtreme": "Extrem",
     "priceScenarioCustom": "Eigene Annahme",
@@ -357,7 +363,22 @@ export const de = {
     "productionCostHigherValue": "In dieser Berechnung ist jede kWh mehr wert, als sie zu erzeugen kostet.",
     "productionCostUnavailable": "Wir können die Erzeugungskosten mit den aktuellen Daten nicht berechnen.",
     "perKwh": "{{amount}}/kWh",
-    "locked": "Diese Berechnung ist gesperrt. Schließe den Kauf ab, um das Ergebnis zu sehen."
+    "locked": "Diese Berechnung ist gesperrt. Schließe den Kauf ab, um das Ergebnis zu sehen.",
+    "missingSelfConsumedValue": "Strompreis fehlt. Geben Sie an, was Sie pro kWh zahlen, um den Wert des selbst genutzten Solarstroms zu sehen.",
+    "missingExportValue": "Einspeisevergütung fehlt. Geben Sie an, was Sie pro eingespeister kWh erhalten, um die Einnahmen zu berechnen.",
+    "missingInstallationCost": "Installationskosten fehlen. Geben Sie Ihr Angebot oder die geschätzte Investition ein.",
+    "economicsIncomplete": "Unvollständige Grundlage",
+    "enterValues": "Werte eingeben",
+    "economicsRequiresPrice": "Die Wirtschaftlichkeitsberechnung erfordert einen Strompreis. Geben Sie Ihre Preise ein, um Einsparung, Amortisation und Stromgestehungskosten zu sehen.",
+    "economicsRequiresPriceShort": "Erfordert Strompreis",
+    "gridUnverifiedTitle": "Netzdaten nicht verifiziert",
+    "gridUnverifiedWarning": "Die Netzannahmen beruhen auf generischen Werten und müssen vor der Installation lokal überprüft werden.",
+    "gridProfileStatusLabel": "Netzprofil",
+    "gridProfileStatusVerified": "Verifiziert",
+    "gridProfileStatusGeneric": "Generisch (nicht verifiziert)",
+    "gridProfileStatusUnsupported": "Manuell (nicht verifiziert)",
+    "calcErrorTitle": "Die Berechnung kann nicht abgeschlossen werden",
+    "calcErrorBody": "Mit einigen Eingaben kann nicht gerechnet werden. Gehen Sie zurück und prüfen Sie Verbrauch, Netzanschluss und Annahmen."
   },
   "units": {
     "kwhPerYear": "kWh/Jahr",
@@ -519,7 +540,8 @@ export const de = {
       "orientation_east": "Ost",
       "orientation_west": "West",
       "priceChangeNoteFlat": "Die Berechnung verwendet über den gesamten Zeitraum unveränderte Werte für selbst verbrauchten und eingespeisten Solarstrom. Es wird keine Preissteigerung angenommen, da zukünftige Strompreise nicht vorhersehbar sind. Steigen die Preise, ist der Wert höher als in diesem Bericht; fallen sie, ist er niedriger.",
-      "priceChangeNoteTrend": "Die Berechnung geht davon aus, dass sich der Wert von selbst verbrauchtem und eingespeistem Solarstrom über den gesamten Zeitraum jährlich um {{priceChange}} % ändert. Dies ist eine Annahme, da zukünftige Strompreise nicht vorhersehbar sind. Eine andere Entwicklung führt zu einem höheren oder niedrigeren Ergebnis als in diesem Bericht."
+      "priceChangeNoteTrend": "Die Berechnung geht davon aus, dass sich der Wert von selbst verbrauchtem und eingespeistem Solarstrom über den gesamten Zeitraum jährlich um {{priceChange}} % ändert. Dies ist eine Annahme, da zukünftige Strompreise nicht vorhersehbar sind. Eine andere Entwicklung führt zu einem höheren oder niedrigeren Ergebnis als in diesem Bericht.",
+      "gridMethodNoteDynamic": "Die theoretische AC-Leistung basiert auf Ihrem gewählten Netzanschluss: {{phases}}-phasig, {{voltage}} V, berechnet als {{factor}} × {{voltage}} V × Hauptsicherung. Die tatsächlich zulässige Anschluss- oder Einspeiseleistung kann vom Netzbetreiber oder der konkreten Installation begrenzt werden."
     },
     "title": "Solarbericht",
     "technical": "Technische Daten",
@@ -603,7 +625,8 @@ export const de = {
     "single": {
       "title": "Eine Berechnung",
       "body": "Schalte das vollständige Ergebnis und den PDF-Bericht für diese Berechnung frei.",
-      "cta": "Für {{price}} freischalten"
+      "cta": "Für {{price}} freischalten",
+      "ctaNoPrice": "Freischalten"
     },
     "premium": {
       "title": "Premium",
@@ -633,7 +656,8 @@ export const de = {
     "failed": "Der Kauf konnte nicht abgeschlossen werden. Es wurde dir nichts berechnet.",
     "retry": "Wir konnten den Kauf gerade nicht bestätigen. Es geht nichts verloren — er wird automatisch freigeschaltet, sobald die Verbindung wieder funktioniert.",
     "appOnly": "Der Kauf erfolgt in der App mit deinem Apple-Konto und ist im Browser nicht verfügbar.",
-    "appleNote": "Wird vom App Store abgewickelt."
+    "appleNote": "Wird vom App Store abgewickelt.",
+    "priceLoading": "Preis wird geladen…"
   },
   "history": {
     "empty": "Du hast noch keine gespeicherten Berechnungen.",

@@ -68,11 +68,9 @@ export const pl = {
     "unit": "kWh/kWp/rok",
     "disclaimer": "Szacowana produkcja energii słonecznej opiera się na lokalizacji, orientacji i nachyleniu dachu. Na rzeczywistą produkcję mogą wpływać m.in. zacienienie, pogoda, temperatura i straty systemowe.",
     "error": "Nie udało nam się teraz pobrać danych o produkcji energii słonecznej dla tej lokalizacji. Nie zgadujemy żadnych wartości.",
-    "errorOverSea":
-      "Lokalizacja wydaje się znajdować na wodzie. Przesuń znacznik na budynek na lądzie i spróbuj ponownie.",
-    "errorOutsideCoverage":
-      "Nie mamy danych słonecznych dla tej lokalizacji. Spróbuj pobliskiego adresu.",
-    "errorSource": "PVGIS: {{message}}",
+    "errorOverSea": "Lokalizacja wydaje się znajdować na wodzie. Przesuń znacznik na budynek na lądzie i spróbuj ponownie.",
+    "errorOutsideCoverage": "Nie mamy danych słonecznych dla tej lokalizacji. Spróbuj pobliskiego adresu.",
+    "errorSource": "PVGIS: {{message}}"
   },
   "consumption": {
     "validation": {
@@ -160,7 +158,7 @@ export const pl = {
       }
     },
     "gridAssumption": "Obliczenia zakładają przyłącze trójfazowe 400 V.",
-"gridAssumptionInfo": "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
+    "gridAssumptionInfo": "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
     "disclaimerTitle": "Ważne informacje",
     "disclaimer": "Obliczenia mają charakter orientacyjny i nie zastępują oceny technicznej. Przed instalacją zawsze zweryfikuj napięcie, moc przyłączeniową, dopuszczalną moc oraz inne lokalne wymagania sieciowe z wykwalifikowanym elektrykiem, a w razie potrzeby z operatorem sieci.\n\nFirma Mr Solar Doc nie ponosi odpowiedzialności za instalacje ani decyzje podjęte wyłącznie na podstawie obliczeń aplikacji.",
     "grid": {
@@ -178,6 +176,9 @@ export const pl = {
       "frequency": "Częstotliwość",
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Zmieniaj tylko wtedy, gdy wartości domyślne nie pasują do Twojego przyłącza.",
+      "serviceType": "Rodzaj przyłącza",
+      "splitPhase": "Dwufazowe (split-phase)",
+      "unverifiedHint": "Nie mamy zweryfikowanych danych sieciowych dla tego kraju. Sprawdź swoje dane na liczniku lub w rozdzielnicy."
     },
     "title": "Jakie masz zabezpieczenie główne?",
     "subtitle": "Zabezpieczenie główne służy do oszacowania, jak duży inwerter może być normalnie przyłączony. Rzeczywista dozwolona moc jest określana przez operatora sieci.",
@@ -186,7 +187,12 @@ export const pl = {
     "otherLabel": "Ampery",
     "maxAc": "Maksymalna obliczona moc AC",
     "calculate": "Oblicz",
-    "invalid": "Podaj zabezpieczenie główne od 6 do 400 A."
+    "invalid": "Podaj zabezpieczenie główne od 6 do 400 A.",
+    "genericTitle": "Jakie masz przyłącze elektryczne?",
+    "noCountryOptions": "Nie mamy jeszcze zweryfikowanych opcji przyłącza dla tego kraju. Podaj bezpiecznik główny w amperach i w razie potrzeby dostosuj ustawienia sieci poniżej.",
+    "unverifiedCountryNotice": "Nie zweryfikowaliśmy standardu sieci w tym kraju. Sprawdź napięcie, liczbę faz i moc przyłącza na rachunku za prąd lub u operatora sieci, a następnie potwierdź poniżej.",
+    "confirmGrid": "Sprawdziłem(-am) dane sieciowe",
+    "confirmedGrid": "Dane sieciowe potwierdzone"
   },
   "result": {
     "connection": {
@@ -249,7 +255,7 @@ export const pl = {
     "priceScenarioFlat": "Bez zmian",
     "priceScenarioCautious": "Ostrożne",
     "priceScenarioNormal": "Normal",
-"priceScenarioHigh": "Wysokie",
+    "priceScenarioHigh": "Wysokie",
     "priceScenarioVeryHigh": "Bardzo wysokie",
     "priceScenarioExtreme": "Ekstremalne",
     "priceScenarioCustom": "Własne założenie",
@@ -357,7 +363,22 @@ export const pl = {
     "productionCostHigherValue": "W tym obliczeniu każda kWh jest warta więcej niż koszt jej wytworzenia.",
     "productionCostUnavailable": "Nie możemy obliczyć kosztu produkcji przy obecnych danych.",
     "perKwh": "{{amount}}/kWh",
-    "locked": "To obliczenie jest zablokowane. Dokończ zakup, aby zobaczyć wynik."
+    "locked": "To obliczenie jest zablokowane. Dokończ zakup, aby zobaczyć wynik.",
+    "missingSelfConsumedValue": "Brakuje ceny energii. Podaj, ile płacisz za kWh, aby zobaczyć wartość autokonsumpcji energii słonecznej.",
+    "missingExportValue": "Brakuje ceny sprzedaży. Podaj, ile otrzymujesz za oddaną kWh, aby obliczyć przychód ze sprzedaży.",
+    "missingInstallationCost": "Brakuje kosztu instalacji. Podaj swoją ofertę lub szacowaną inwestycję.",
+    "economicsIncomplete": "Niepełne dane",
+    "enterValues": "Wprowadź wartości",
+    "economicsRequiresPrice": "Obliczenia ekonomiczne wymagają ceny energii. Podaj swoje ceny, aby zobaczyć oszczędności, czas zwrotu i koszt produkcji.",
+    "economicsRequiresPriceShort": "Wymaga ceny energii",
+    "gridUnverifiedTitle": "Dane sieciowe niezweryfikowane",
+    "gridUnverifiedWarning": "Założenia sieciowe opierają się na wartościach ogólnych i przed instalacją muszą zostać zweryfikowane lokalnie.",
+    "gridProfileStatusLabel": "Profil sieci",
+    "gridProfileStatusVerified": "Zweryfikowany",
+    "gridProfileStatusGeneric": "Ogólny (niezweryfikowany)",
+    "gridProfileStatusUnsupported": "Ręczny (niezweryfikowany)",
+    "calcErrorTitle": "Nie można ukończyć obliczeń",
+    "calcErrorBody": "Na części danych nie da się liczyć. Wróć i sprawdź zużycie, przyłącze i założenia."
   },
   "units": {
     "kwhPerYear": "kWh/rok",
@@ -519,7 +540,8 @@ export const pl = {
       "orientation_east": "Wschód",
       "orientation_west": "Zachód",
       "priceChangeNoteFlat": "Obliczenie wykorzystuje niezmienione wartości energii słonecznej zużytej na własne potrzeby i eksportowanej przez cały okres. Nie zakłada się wzrostu cen, ponieważ przyszłych cen energii nie da się przewidzieć. Jeśli ceny wzrosną, wartość będzie wyższa niż w tym raporcie; jeśli spadną, będzie niższa.",
-      "priceChangeNoteTrend": "Obliczenie zakłada, że wartość energii słonecznej zużytej na własne potrzeby i eksportowanej zmienia się o {{priceChange}} % rocznie przez cały okres. To jest założenie, ponieważ przyszłych cen energii nie da się przewidzieć. Inny rozwój sytuacji oznacza wyższy lub niższy wynik niż w tym raporcie."
+      "priceChangeNoteTrend": "Obliczenie zakłada, że wartość energii słonecznej zużytej na własne potrzeby i eksportowanej zmienia się o {{priceChange}} % rocznie przez cały okres. To jest założenie, ponieważ przyszłych cen energii nie da się przewidzieć. Inny rozwój sytuacji oznacza wyższy lub niższy wynik niż w tym raporcie.",
+      "gridMethodNoteDynamic": "Teoretyczna moc AC opiera się na wybranym przyłączu: {{phases}}-fazowe, {{voltage}} V, obliczona jako {{factor}} × {{voltage}} V × bezpiecznik główny. Faktycznie dopuszczalna moc przyłączeniowa lub oddawana może być ograniczona przez operatora sieci lub konkretną instalację."
     },
     "title": "Raport fotowoltaiczny",
     "technical": "Dane techniczne",
@@ -603,7 +625,8 @@ export const pl = {
     "single": {
       "title": "Jedno obliczenie",
       "body": "Odblokuj pełny wynik i raport PDF dla tego obliczenia.",
-      "cta": "Odblokuj za {{price}}"
+      "cta": "Odblokuj za {{price}}",
+      "ctaNoPrice": "Odblokuj"
     },
     "premium": {
       "title": "Premium",
@@ -633,7 +656,8 @@ export const pl = {
     "failed": "Nie udało się zrealizować zakupu. Nie zostałeś obciążony opłatą.",
     "retry": "Nie mogliśmy teraz potwierdzić zakupu. Nic nie zostało utracone — odblokuje się automatycznie, gdy połączenie znów zadziała.",
     "appOnly": "Zakup jest realizowany w aplikacji za pomocą Twojego konta Apple i nie jest dostępny w przeglądarce.",
-    "appleNote": "Obsługiwane przez App Store."
+    "appleNote": "Obsługiwane przez App Store.",
+    "priceLoading": "Pobieranie ceny…"
   },
   "history": {
     "empty": "Nie masz jeszcze żadnych zapisanych obliczeń.",

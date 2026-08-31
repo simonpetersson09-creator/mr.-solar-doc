@@ -68,11 +68,9 @@ export const fi = {
     "unit": "kWh/kWp/vuosi",
     "disclaimer": "Laskettu aurinkotuotanto perustuu sijaintiin, ilmansuuntaan ja katon kaltevuuteen. Todelliseen tuotantoon voivat vaikuttaa muun muassa varjostus, sää, lämpötila ja järjestelmähäviöt.",
     "error": "Emme voineet hakea aurinkotuotantotietoja tästä kohteesta. Arvoja ei arvailla.",
-    "errorOverSea":
-      "Sijainti näyttää olevan veden päällä. Siirrä merkki rakennuksen kohdalle maalle ja yritä uudelleen.",
-    "errorOutsideCoverage":
-      "Tälle sijainnille ei ole aurinkodataa. Kokeile lähellä olevaa osoitetta.",
-    "errorSource": "PVGIS: {{message}}",
+    "errorOverSea": "Sijainti näyttää olevan veden päällä. Siirrä merkki rakennuksen kohdalle maalle ja yritä uudelleen.",
+    "errorOutsideCoverage": "Tälle sijainnille ei ole aurinkodataa. Kokeile lähellä olevaa osoitetta.",
+    "errorSource": "PVGIS: {{message}}"
   },
   "consumption": {
     "validation": {
@@ -160,7 +158,7 @@ export const fi = {
       }
     },
     "gridAssumption": "Laskenta perustuu 400 V:n kolmivaiheliittymään.",
-"gridAssumptionInfo": "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
+    "gridAssumptionInfo": "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     "disclaimerTitle": "Hyvä tietää",
     "disclaimer": "Laskelma on suuntaa-antava eikä korvaa teknistä arviointia. Tarkista aina jännite, liittymisteho, sallittu teho ja muut paikalliset verkkovaatimukset pätevältä sähköasentajalta ja tarvittaessa verkkoyhtiöltäsi ennen asennusta.\n\nMr Solar Doc ei vastaa asennuksista tai päätöksistä, jotka tehdään yksinomaan sovelluksen laskelmien perusteella.",
     "grid": {
@@ -178,6 +176,9 @@ export const fi = {
       "frequency": "Taajuus",
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Muuta vain, jos oletusarvot eivät vastaa liittymääsi.",
+      "serviceType": "Liittymän tyyppi",
+      "splitPhase": "Kaksivaihe (split-phase)",
+      "unverifiedHint": "Meillä ei ole varmennettuja verkkotietoja tälle maalle. Tarkista tiedot mittarista tai sähkökeskuksesta."
     },
     "title": "Mikä pääsulake sinulla on?",
     "subtitle": "Pääsulakkeen avulla arvioidaan, kuinka suuri invertteri voidaan normaalisti liittää. Varsinaisen sallitun tehon määrää verkonhaltija.",
@@ -186,7 +187,12 @@ export const fi = {
     "otherLabel": "Ampeeria",
     "maxAc": "Maksimi arvioitu AC-teho",
     "calculate": "Laske",
-    "invalid": "Anna pääsulake väliltä 6 – 400 A."
+    "invalid": "Anna pääsulake väliltä 6 – 400 A.",
+    "genericTitle": "Millainen sähköliittymä sinulla on?",
+    "noCountryOptions": "Meillä ei ole vielä varmennettuja liittymävaihtoehtoja tälle maalle. Syötä pääsulake ampeereina ja säädä verkkoasetuksia alta tarvittaessa.",
+    "unverifiedCountryNotice": "Emme ole varmentaneet tämän maan verkkostandardia. Tarkista jännite, vaiheet ja liittymäkoko sähkölaskusta tai verkkoyhtiöltäsi ja vahvista alta.",
+    "confirmGrid": "Olen tarkistanut verkkotiedot",
+    "confirmedGrid": "Verkkotiedot vahvistettu"
   },
   "result": {
     "connection": {
@@ -249,7 +255,7 @@ export const fi = {
     "priceScenarioFlat": "Muuttumaton",
     "priceScenarioCautious": "Varovainen",
     "priceScenarioNormal": "Normal",
-"priceScenarioHigh": "Korkea",
+    "priceScenarioHigh": "Korkea",
     "priceScenarioVeryHigh": "Erittäin korkea",
     "priceScenarioExtreme": "Äärimmäinen",
     "priceScenarioCustom": "Oma oletus",
@@ -357,7 +363,22 @@ export const fi = {
     "productionCostHigherValue": "Tässä laskelmassa jokainen kWh on arvokkaampi kuin sen tuottaminen maksaa.",
     "productionCostUnavailable": "Emme voi laskea tuotantokustannusta nykyisillä tiedoilla.",
     "perKwh": "{{amount}}/kWh",
-    "locked": "Tämä laskelma on lukittu. Suorita osto nähdäksesi tuloksen."
+    "locked": "Tämä laskelma on lukittu. Suorita osto nähdäksesi tuloksen.",
+    "missingSelfConsumedValue": "Sähkön hinta puuttuu. Syötä kWh-hintasi nähdäksesi itse käytetyn aurinkosähkön arvon.",
+    "missingExportValue": "Myyntihinta puuttuu. Syötä paljonko saat myydystä kWh:sta, niin lasketaan myyntitulot.",
+    "missingInstallationCost": "Asennuskustannus puuttuu. Syötä tarjouksesi tai arvioitu investointi.",
+    "economicsIncomplete": "Puutteelliset lähtötiedot",
+    "enterValues": "Syötä arvot",
+    "economicsRequiresPrice": "Talouslaskenta vaatii sähkön hinnan. Syötä hintasi nähdäksesi säästön, takaisinmaksuajan ja tuotantokustannuksen.",
+    "economicsRequiresPriceShort": "Vaatii sähkön hinnan",
+    "gridUnverifiedTitle": "Verkkotietoja ei ole varmennettu",
+    "gridUnverifiedWarning": "Verkko-oletukset perustuvat yleisiin arvoihin ja ne on varmennettava paikallisesti ennen asennusta.",
+    "gridProfileStatusLabel": "Verkkoprofiili",
+    "gridProfileStatusVerified": "Varmennettu",
+    "gridProfileStatusGeneric": "Yleinen (varmentamaton)",
+    "gridProfileStatusUnsupported": "Manuaalinen (varmentamaton)",
+    "calcErrorTitle": "Laskentaa ei voi viimeistellä",
+    "calcErrorBody": "Joitakin syötteitä ei voi laskea. Palaa takaisin ja tarkista kulutus, liittymä ja oletukset."
   },
   "units": {
     "kwhPerYear": "kWh/vuosi",
@@ -519,7 +540,8 @@ export const fi = {
       "orientation_east": "Itä",
       "orientation_west": "Länsi",
       "priceChangeNoteFlat": "Laskelmassa käytetään muuttumattomia arvoja itse kulutetulle ja verkkoon myydylle aurinkosähkölle koko jakson ajan. Hinnannousua ei oleteta, koska tulevaa sähkön hintaa ei voida ennustaa. Jos hinnat nousevat, arvo on tässä raportissa esitettyä korkeampi; jos ne laskevat, se on matalampi.",
-      "priceChangeNoteTrend": "Laskelmassa oletetaan, että itse kulutetun ja verkkoon myydyn aurinkosähkön arvo muuttuu {{priceChange}} % vuodessa koko jakson ajan. Tämä on oletus, koska tulevaa sähkön hintaa ei voida ennustaa. Erilainen kehitys tarkoittaa tässä raportissa esitettyä korkeampaa tai matalampaa lopputulosta."
+      "priceChangeNoteTrend": "Laskelmassa oletetaan, että itse kulutetun ja verkkoon myydyn aurinkosähkön arvo muuttuu {{priceChange}} % vuodessa koko jakson ajan. Tämä on oletus, koska tulevaa sähkön hintaa ei voida ennustaa. Erilainen kehitys tarkoittaa tässä raportissa esitettyä korkeampaa tai matalampaa lopputulosta.",
+      "gridMethodNoteDynamic": "Teoreettinen AC-teho perustuu valitsemaasi liittymään: {{phases}}-vaiheinen, {{voltage}} V, laskettuna {{factor}} × {{voltage}} V × pääsulake. Verkkoyhtiö tai asennus voi rajoittaa todellista sallittua liittymis- tai syöttötehoa."
     },
     "title": "Aurinkosähköraportti",
     "technical": "Tekniset tiedot",
@@ -603,7 +625,8 @@ export const fi = {
     "single": {
       "title": "Yksi laskelma",
       "body": "Avaa koko tulos ja PDF-raportti tälle laskelmalle.",
-      "cta": "Avaa hintaan {{price}}"
+      "cta": "Avaa hintaan {{price}}",
+      "ctaNoPrice": "Avaa"
     },
     "premium": {
       "title": "Premium",
@@ -633,7 +656,8 @@ export const fi = {
     "failed": "Ostoa ei voitu suorittaa loppuun. Sinulta ei ole veloitettu.",
     "retry": "Emme voineet vahvistaa ostosta juuri nyt. Mikään ei ole hukassa — se avautuu automaattisesti, kun yhteys toimii jälleen.",
     "appOnly": "Ostos tehdään sovelluksessa Apple-tunnuksellasi eikä se ole käytettävissä selaimessa.",
-    "appleNote": "App Storen hoitama."
+    "appleNote": "App Storen hoitama.",
+    "priceLoading": "Haetaan hintaa…"
   },
   "history": {
     "empty": "Sinulla ei ole vielä tallennettuja laskelmia.",

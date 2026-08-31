@@ -68,11 +68,9 @@ export const it = {
     "unit": "kWh/kWp/anno",
     "disclaimer": "La produzione solare calcolata si basa su posizione, orientamento e inclinazione del tetto. La produzione effettiva può essere influenzata da ombreggiamento, meteo, temperatura e perdite di sistema.",
     "error": "Non è stato possibile recuperare i dati di produzione solare per questo sito al momento. Nessun valore viene stimato.",
-    "errorOverSea":
-      "La posizione sembra trovarsi sull'acqua. Sposta il segnaposto sull'edificio sulla terraferma e riprova.",
-    "errorOutsideCoverage":
-      "Non abbiamo dati solari per questa posizione. Prova un indirizzo vicino.",
-    "errorSource": "PVGIS: {{message}}",
+    "errorOverSea": "La posizione sembra trovarsi sull'acqua. Sposta il segnaposto sull'edificio sulla terraferma e riprova.",
+    "errorOutsideCoverage": "Non abbiamo dati solari per questa posizione. Prova un indirizzo vicino.",
+    "errorSource": "PVGIS: {{message}}"
   },
   "consumption": {
     "validation": {
@@ -160,7 +158,7 @@ export const it = {
       }
     },
     "gridAssumption": "Il calcolo presuppone un allacciamento trifase a 400 V.",
-"gridAssumptionInfo": "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
+    "gridAssumptionInfo": "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
     "disclaimerTitle": "Importante da sapere",
     "disclaimer": "Il calcolo è indicativo e non sostituisce una valutazione tecnica. Verificare sempre tensione, capacità di connessione, potenza consentita e altri requisiti locali della rete con un elettricista qualificato e, se necessario, con il proprio gestore di rete prima dell'installazione.\n\nMr Solar Doc non è responsabile di impianti o decisioni prese esclusivamente sulla base dei calcoli dell'app.",
     "grid": {
@@ -178,6 +176,9 @@ export const it = {
       "frequency": "Frequenza",
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Modifica solo se i valori predefiniti non corrispondono al tuo allaccio.",
+      "serviceType": "Tipo di allacciamento",
+      "splitPhase": "Bifase (split-phase)",
+      "unverifiedHint": "Non abbiamo valori di rete verificati per questo paese. Controlla i tuoi dati sul contatore o sul quadro elettrico."
     },
     "title": "Qual è la potenza del tuo limitatore di potenza?",
     "subtitle": "Il limitatore di potenza serve a stimare quale inverter può essere normalmente collegato. La potenza effettivamente consentita è determinata dal gestore di rete.",
@@ -186,7 +187,12 @@ export const it = {
     "otherLabel": "Ampere",
     "maxAc": "Potenza AC massima calcolata",
     "calculate": "Calcola",
-    "invalid": "Inserisci un limitatore di potenza tra 6 e 400 A."
+    "invalid": "Inserisci un limitatore di potenza tra 6 e 400 A.",
+    "genericTitle": "Che allacciamento elettrico hai?",
+    "noCountryOptions": "Non abbiamo ancora opzioni di allacciamento verificate per questo paese. Inserisci l'interruttore generale in ampere e modifica le impostazioni di rete qui sotto se necessario.",
+    "unverifiedCountryNotice": "Non abbiamo verificato lo standard di rete di questo paese. Controlla tensione, fasi e potenza di allacciamento sulla bolletta o presso il tuo distributore, poi conferma qui sotto.",
+    "confirmGrid": "Ho controllato i dati di rete",
+    "confirmedGrid": "Dati di rete confermati"
   },
   "result": {
     "connection": {
@@ -249,7 +255,7 @@ export const it = {
     "priceScenarioFlat": "Invariato",
     "priceScenarioCautious": "Prudente",
     "priceScenarioNormal": "Normal",
-"priceScenarioHigh": "Alto",
+    "priceScenarioHigh": "Alto",
     "priceScenarioVeryHigh": "Molto alto",
     "priceScenarioExtreme": "Estremo",
     "priceScenarioCustom": "Ipotesi personalizzata",
@@ -357,7 +363,22 @@ export const it = {
     "productionCostHigherValue": "In questo calcolo, ogni kWh vale più di quanto costi produrlo.",
     "productionCostUnavailable": "Non possiamo calcolare il costo di produzione con i dati attuali.",
     "perKwh": "{{amount}}/kWh",
-    "locked": "Questo calcolo è bloccato. Completa l'acquisto per vedere il risultato."
+    "locked": "Questo calcolo è bloccato. Completa l'acquisto per vedere il risultato.",
+    "missingSelfConsumedValue": "Manca il prezzo dell'elettricità. Inserisci quanto paghi per kWh per vedere il valore dell'autoconsumo solare.",
+    "missingExportValue": "Manca la remunerazione per l'immissione. Inserisci quanto ricevi per kWh immesso per calcolare i ricavi.",
+    "missingInstallationCost": "Manca il costo dell'impianto. Inserisci il tuo preventivo o l'investimento stimato.",
+    "economicsIncomplete": "Base incompleta",
+    "enterValues": "Inserisci i valori",
+    "economicsRequiresPrice": "Il calcolo economico richiede un prezzo dell'elettricità. Inserisci i tuoi prezzi per vedere risparmio, tempo di ritorno e costo di produzione.",
+    "economicsRequiresPriceShort": "Richiede il prezzo dell'elettricità",
+    "gridUnverifiedTitle": "Dati di rete non verificati",
+    "gridUnverifiedWarning": "Le ipotesi di rete si basano su valori generici e devono essere verificate localmente prima dell'installazione.",
+    "gridProfileStatusLabel": "Profilo di rete",
+    "gridProfileStatusVerified": "Verificato",
+    "gridProfileStatusGeneric": "Generico (non verificato)",
+    "gridProfileStatusUnsupported": "Manuale (non verificato)",
+    "calcErrorTitle": "Il calcolo non può essere completato",
+    "calcErrorBody": "Alcuni dati non permettono il calcolo. Torna indietro e controlla consumi, allacciamento e ipotesi."
   },
   "units": {
     "kwhPerYear": "kWh/anno",
@@ -519,7 +540,8 @@ export const it = {
       "orientation_east": "Est",
       "orientation_west": "Ovest",
       "priceChangeNoteFlat": "Il calcolo utilizza valori invariati per l'energia solare autoconsumata ed esportata per tutto il periodo. Non si ipotizza alcun aumento dei prezzi, poiché i prezzi futuri dell'elettricità non possono essere previsti. Se i prezzi aumentano, il valore sarà superiore a quello indicato in questo report; se diminuiscono, sarà inferiore.",
-      "priceChangeNoteTrend": "Il calcolo presuppone che il valore dell'energia solare autoconsumata ed esportata cambi del {{priceChange}} % all'anno per tutto il periodo. Si tratta di un'ipotesi, poiché i prezzi futuri dell'elettricità non possono essere previsti. Un'evoluzione diversa comporta un risultato più alto o più basso rispetto a quello di questo report."
+      "priceChangeNoteTrend": "Il calcolo presuppone che il valore dell'energia solare autoconsumata ed esportata cambi del {{priceChange}} % all'anno per tutto il periodo. Si tratta di un'ipotesi, poiché i prezzi futuri dell'elettricità non possono essere previsti. Un'evoluzione diversa comporta un risultato più alto o più basso rispetto a quello di questo report.",
+      "gridMethodNoteDynamic": "La potenza AC teorica si basa sull'allacciamento scelto: {{phases}} fase/i, {{voltage}} V, calcolata come {{factor}} × {{voltage}} V × interruttore generale. La potenza effettivamente consentita può essere limitata dal distributore o dall'impianto specifico."
     },
     "title": "Rapporto solare",
     "technical": "Dati tecnici",
@@ -603,7 +625,8 @@ export const it = {
     "single": {
       "title": "Un calcolo",
       "body": "Sblocca il risultato completo e il report PDF per questo calcolo.",
-      "cta": "Sblocca per {{price}}"
+      "cta": "Sblocca per {{price}}",
+      "ctaNoPrice": "Sblocca"
     },
     "premium": {
       "title": "Premium",
@@ -633,7 +656,8 @@ export const it = {
     "failed": "Non è stato possibile completare l'acquisto. Non ti è stato addebitato nulla.",
     "retry": "Al momento non siamo riusciti a confermare l'acquisto. Non hai perso nulla — si sbloccherà automaticamente non appena la connessione tornerà disponibile.",
     "appOnly": "L'acquisto viene effettuato nell'app con il tuo account Apple e non è disponibile nel browser.",
-    "appleNote": "Gestito dall'App Store."
+    "appleNote": "Gestito dall'App Store.",
+    "priceLoading": "Caricamento del prezzo…"
   },
   "history": {
     "empty": "Non hai ancora calcoli salvati.",

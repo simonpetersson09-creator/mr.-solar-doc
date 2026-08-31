@@ -68,11 +68,9 @@ export const sk = {
     "unit": "kWh/kWp/rok",
     "disclaimer": "Vypočítaná solárna výroba je založená na polohe, orientácii a sklone strechy. Skutočnú výrobu môže okrem iného ovplyvniť zatienenie, počasie, teplota a systémové straty.",
     "error": "Momentálne sa nám nepodarilo načítať údaje o solárnej produkcii pre toto miesto. Žiadne hodnoty sa neodhadujú.",
-    "errorOverSea":
-      "Miesto sa zrejme nachádza nad vodou. Presuňte značku na budovu na pevnine a skúste to znova.",
-    "errorOutsideCoverage":
-      "Pre toto miesto nemáme solárne dáta. Skúste adresu v okolí.",
-    "errorSource": "PVGIS: {{message}}",
+    "errorOverSea": "Miesto sa zrejme nachádza nad vodou. Presuňte značku na budovu na pevnine a skúste to znova.",
+    "errorOutsideCoverage": "Pre toto miesto nemáme solárne dáta. Skúste adresu v okolí.",
+    "errorSource": "PVGIS: {{message}}"
   },
   "consumption": {
     "validation": {
@@ -160,7 +158,7 @@ export const sk = {
       }
     },
     "gridAssumption": "Výpočet vychádza z trojfázovej prípojky 400 V.",
-"gridAssumptionInfo": "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
+    "gridAssumptionInfo": "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
     "disclaimerTitle": "Dôležité vedieť",
     "disclaimer": "Výpočet je orientačný a nenahrádza technické posúdenie. Pred inštaláciou vždy overte napätie, prípojný výkon, povolený výkon a ďalšie miestne požiadavky siete u kvalifikovaného elektrikára a prípadne u vášho prevádzkovateľa distribučnej siete.\n\nSpoločnosť Mr Solar Doc nezodpovedá za inštalácie ani rozhodnutia prijaté výhradne na základe výpočtov aplikácie.",
     "grid": {
@@ -178,6 +176,9 @@ export const sk = {
       "frequency": "Frekvencia",
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Zmeňte iba v prípade, že predvolené hodnoty nezodpovedajú vášmu pripojeniu.",
+      "serviceType": "Typ pripojenia",
+      "splitPhase": "Dvojfázové (split-phase)",
+      "unverifiedHint": "Pre túto krajinu nemáme overené sieťové hodnoty. Skontrolujte údaje podľa elektromera alebo rozvádzača."
     },
     "title": "Aký máte hlavný istič?",
     "subtitle": "Hlavný istič slúži na odhad, aký veľký menič možno bežne pripojiť. Skutočný povolený výkon určuje prevádzkovateľ siete.",
@@ -186,7 +187,12 @@ export const sk = {
     "otherLabel": "Ampére",
     "maxAc": "Maximálny vypočítaný AC výkon",
     "calculate": "Vypočítať",
-    "invalid": "Zadajte hlavný istič medzi 6 a 400 A."
+    "invalid": "Zadajte hlavný istič medzi 6 a 400 A.",
+    "genericTitle": "Aké máte elektrické pripojenie?",
+    "noCountryOptions": "Pre túto krajinu zatiaľ nemáme overené možnosti pripojenia. Zadajte hlavný istič v ampéroch a v prípade potreby upravte nastavenia siete nižšie.",
+    "unverifiedCountryNotice": "Sieťový štandard tejto krajiny sme neoverili. Skontrolujte napätie, počet fáz a veľkosť ističa na faktúre za elektrinu alebo u distribútora a potvrďte nižšie.",
+    "confirmGrid": "Skontroloval(a) som sieťové údaje",
+    "confirmedGrid": "Sieťové údaje potvrdené"
   },
   "result": {
     "connection": {
@@ -249,7 +255,7 @@ export const sk = {
     "priceScenarioFlat": "Bez zmeny",
     "priceScenarioCautious": "Opatrné",
     "priceScenarioNormal": "Normal",
-"priceScenarioHigh": "Vysoké",
+    "priceScenarioHigh": "Vysoké",
     "priceScenarioVeryHigh": "Veľmi vysoké",
     "priceScenarioExtreme": "Extrémne",
     "priceScenarioCustom": "Vlastný predpoklad",
@@ -357,7 +363,22 @@ export const sk = {
     "productionCostHigherValue": "V tomto výpočte má každá kWh vyššiu hodnotu, než koľko stojí jej výroba.",
     "productionCostUnavailable": "Pri aktuálnych údajoch nemôžeme vypočítať náklady na výrobu.",
     "perKwh": "{{amount}}/kWh",
-    "locked": "Tento výpočet je uzamknutý. Dokončite nákup, aby ste videli výsledok."
+    "locked": "Tento výpočet je uzamknutý. Dokončite nákup, aby ste videli výsledok.",
+    "missingSelfConsumedValue": "Chýba cena elektriny. Zadajte, koľko platíte za kWh, aby ste videli hodnotu vlastnej spotreby solárnej energie.",
+    "missingExportValue": "Chýba výkupná cena. Zadajte, koľko dostanete za dodanú kWh, aby sme vypočítali výnos z predaja.",
+    "missingInstallationCost": "Chýba cena inštalácie. Zadajte svoju ponuku alebo odhadovanú investíciu.",
+    "economicsIncomplete": "Neúplný podklad",
+    "enterValues": "Zadať hodnoty",
+    "economicsRequiresPrice": "Ekonomický výpočet vyžaduje cenu elektriny. Zadajte svoje ceny, aby ste videli úsporu, návratnosť a výrobnú cenu.",
+    "economicsRequiresPriceShort": "Vyžaduje cenu elektriny",
+    "gridUnverifiedTitle": "Sieťové údaje nie sú overené",
+    "gridUnverifiedWarning": "Predpoklady o sieti vychádzajú zo všeobecných hodnôt a pred inštaláciou ich treba overiť lokálne.",
+    "gridProfileStatusLabel": "Profil siete",
+    "gridProfileStatusVerified": "Overené",
+    "gridProfileStatusGeneric": "Všeobecné (neoverené)",
+    "gridProfileStatusUnsupported": "Ručne zadané (neoverené)",
+    "calcErrorTitle": "Výpočet sa nedá dokončiť",
+    "calcErrorBody": "S niektorými údajmi sa nedá počítať. Vráťte sa späť a skontrolujte spotrebu, pripojenie a predpoklady."
   },
   "units": {
     "kwhPerYear": "kWh/rok",
@@ -519,7 +540,8 @@ export const sk = {
       "orientation_east": "Východ",
       "orientation_west": "Západ",
       "priceChangeNoteFlat": "Výpočet používa nezmenené hodnoty vlastnej spotreby a exportu solárnej energie počas celého obdobia. Nepredpokladá sa zvýšenie cien, keďže budúce ceny elektriny nemožno predpovedať. Ak ceny stúpnu, hodnota bude vyššia ako v tejto správe; ak klesnú, bude nižšia.",
-      "priceChangeNoteTrend": "Výpočet predpokladá, že hodnota vlastnej spotreby a exportu solárnej energie sa mení o {{priceChange}} % ročne počas celého obdobia. Ide o predpoklad, keďže budúce ceny elektriny nemožno predpovedať. Iný vývoj znamená vyšší alebo nižší výsledok ako v tejto správe."
+      "priceChangeNoteTrend": "Výpočet predpokladá, že hodnota vlastnej spotreby a exportu solárnej energie sa mení o {{priceChange}} % ročne počas celého obdobia. Ide o predpoklad, keďže budúce ceny elektriny nemožno predpovedať. Iný vývoj znamená vyšší alebo nižší výsledok ako v tejto správe.",
+      "gridMethodNoteDynamic": "Teoretický AC výkon vychádza z vami zvoleného pripojenia: {{phases}}-fázové, {{voltage}} V, vypočítané ako {{factor}} × {{voltage}} V × hlavný istič. Skutočne povolený výkon pripojenia alebo dodávky môže obmedziť distribútor alebo konkrétna inštalácia."
     },
     "title": "Správa o solárnom systéme",
     "technical": "Technické údaje",
@@ -603,7 +625,8 @@ export const sk = {
     "single": {
       "title": "Jeden výpočet",
       "body": "Odomknite úplný výsledok a PDF správu pre tento výpočet.",
-      "cta": "Odomknúť za {{price}}"
+      "cta": "Odomknúť za {{price}}",
+      "ctaNoPrice": "Odomknúť"
     },
     "premium": {
       "title": "Premium",
@@ -633,7 +656,8 @@ export const sk = {
     "failed": "Nákup sa nepodarilo dokončiť. Nebolo vám nič účtované.",
     "retry": "Momentálne sa nám nepodarilo potvrdiť nákup. Nič sa nestratilo — odomkne sa automaticky, keď bude pripojenie opäť funkčné.",
     "appOnly": "Nákup sa uskutočňuje v aplikácii pomocou vášho účtu Apple a nie je dostupný v prehliadači.",
-    "appleNote": "Spracúva App Store."
+    "appleNote": "Spracúva App Store.",
+    "priceLoading": "Načítava sa cena…"
   },
   "history": {
     "empty": "Zatiaľ nemáte žiadne uložené výpočty.",

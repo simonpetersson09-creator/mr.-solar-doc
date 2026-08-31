@@ -68,11 +68,9 @@ export const da = {
     "unit": "kWh/kWp/år",
     "disclaimer": "Den beregnede solproduktion er baseret på placering, orientering og taghældning. Den faktiske produktion kan bl.a. påvirkes af skygge, vejr, temperatur og systemtab.",
     "error": "Vi kunne ikke hente solproduktionsdata for placeringen lige nu. Der gættes ingen værdier.",
-    "errorOverSea":
-      "Placeringen ser ud til at ligge over vand. Flyt markøren hen på bygningen på land, og prøv igen.",
-    "errorOutsideCoverage":
-      "Vi har ingen soldata for denne placering. Prøv en adresse i nærheden.",
-    "errorSource": "PVGIS: {{message}}",
+    "errorOverSea": "Placeringen ser ud til at ligge over vand. Flyt markøren hen på bygningen på land, og prøv igen.",
+    "errorOutsideCoverage": "Vi har ingen soldata for denne placering. Prøv en adresse i nærheden.",
+    "errorSource": "PVGIS: {{message}}"
   },
   "consumption": {
     "validation": {
@@ -160,7 +158,7 @@ export const da = {
       }
     },
     "gridAssumption": "Beregningen tager udgangspunkt i 400 V trefaset.",
-"gridAssumptionInfo": "Hovedsikringens teoretiske effekt beregnes ud fra en 400 V trefaset tilslutning. Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
+    "gridAssumptionInfo": "Hovedsikringens teoretiske effekt beregnes ud fra en 400 V trefaset tilslutning. Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
     "disclaimerTitle": "Vigtigt at vide",
     "disclaimer": "Beregningen er vejledende og kan ikke erstatte en teknisk vurdering. Kontrollér altid spænding, tilslutningskapacitet, tilladt effekt og øvrige lokale netkrav hos en kvalificeret elinstallatør og, om nødvendigt, dit netselskab før installation.\n\nMr Solar Doc er ikke ansvarlig for installationer eller beslutninger, der træffes udelukkende på baggrund af appens beregninger.",
     "grid": {
@@ -178,6 +176,9 @@ export const da = {
       "frequency": "Frekvens",
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Ændr kun, hvis standardværdierne ikke passer til din forbindelse.",
+      "serviceType": "Tilslutningstype",
+      "splitPhase": "Split-fase",
+      "unverifiedHint": "Vi har ingen verificerede netværdier for dette land. Kontrollér dine oplysninger på måleren eller i eltavlen."
     },
     "title": "Hvilken hovedsikring har du?",
     "subtitle": "Hovedsikringen bruges til at vurdere, hvor stor en inverter der normalt kan tilsluttes. Den faktiske tilladte effekt fastsættes af netselskabet.",
@@ -186,7 +187,12 @@ export const da = {
     "otherLabel": "Ampere",
     "maxAc": "Maksimal beregnet AC-effekt",
     "calculate": "Beregn",
-    "invalid": "Angiv en hovedsikring mellem 6 og 400 A."
+    "invalid": "Angiv en hovedsikring mellem 6 og 400 A.",
+    "genericTitle": "Hvilken eltilslutning har du?",
+    "noCountryOptions": "Vi har endnu ikke verificerede tilslutningsmuligheder for dette land. Indtast din hovedsikring i ampere, og justér netindstillingerne nedenfor efter behov.",
+    "unverifiedCountryNotice": "Vi har ikke verificeret netstandarden for dette land. Kontrollér spænding, faser og tilslutningsstørrelse på din elregning eller hos dit netselskab, og bekræft nedenfor.",
+    "confirmGrid": "Jeg har kontrolleret netdataene",
+    "confirmedGrid": "Netdata bekræftet"
   },
   "result": {
     "connection": {
@@ -249,7 +255,7 @@ export const da = {
     "priceScenarioFlat": "Uændret",
     "priceScenarioCautious": "Forsigtig",
     "priceScenarioNormal": "Normal",
-"priceScenarioHigh": "Høj",
+    "priceScenarioHigh": "Høj",
     "priceScenarioVeryHigh": "Meget høj",
     "priceScenarioExtreme": "Ekstrem",
     "priceScenarioCustom": "Egen antagelse",
@@ -357,7 +363,22 @@ export const da = {
     "productionCostHigherValue": "I denne beregning er hver kWh mere værd, end den koster at producere.",
     "productionCostUnavailable": "Vi kan ikke beregne produktionsomkostningen med de nuværende data.",
     "perKwh": "{{amount}}/kWh",
-    "locked": "Denne beregning er låst. Gennemfør købet for at se resultatet."
+    "locked": "Denne beregning er låst. Gennemfør købet for at se resultatet.",
+    "missingSelfConsumedValue": "Elpris mangler. Indtast hvad du betaler pr. kWh for at se værdien af egetforbrugt solstrøm.",
+    "missingExportValue": "Salgspris mangler. Indtast hvad du får pr. solgt kWh for at beregne salgsindtægten.",
+    "missingInstallationCost": "Anlægsomkostning mangler. Indtast dit tilbud eller den anslåede investering.",
+    "economicsIncomplete": "Ufuldstændigt grundlag",
+    "enterValues": "Indtast værdier",
+    "economicsRequiresPrice": "Økonomiberegningen kræver en elpris. Indtast dine priser for at se besparelse, tilbagebetalingstid og produktionsomkostning.",
+    "economicsRequiresPriceShort": "Kræver elpris",
+    "gridUnverifiedTitle": "Netdata er ikke verificeret",
+    "gridUnverifiedWarning": "Netantagelserne bygger på generiske værdier og skal verificeres lokalt før installation.",
+    "gridProfileStatusLabel": "Netprofil",
+    "gridProfileStatusVerified": "Verificeret",
+    "gridProfileStatusGeneric": "Generisk (ikke verificeret)",
+    "gridProfileStatusUnsupported": "Manuel (ikke verificeret)",
+    "calcErrorTitle": "Beregningen kan ikke gennemføres",
+    "calcErrorBody": "Nogle indtastninger kan der ikke regnes på. Gå tilbage og kontrollér forbrug, nettilslutning og forudsætninger."
   },
   "units": {
     "kwhPerYear": "kWh/år",
@@ -519,7 +540,8 @@ export const da = {
       "orientation_east": "Øst",
       "orientation_west": "Vest",
       "priceChangeNoteFlat": "Beregningen bruger uændrede værdier for egetforbrugt og eksporteret solstrøm gennem hele perioden. Der antages ingen prisstigning, da fremtidige elpriser ikke kan forudsiges. Hvis priserne stiger, vil værdien være højere end i denne rapport; hvis de falder, vil den være lavere.",
-      "priceChangeNoteTrend": "Beregningen antager, at værdien af egetforbrugt og eksporteret solstrøm ændres med {{priceChange}} % om året gennem hele perioden. Dette er en antagelse, da fremtidige elpriser ikke kan forudsiges. En anden udvikling betyder et højere eller lavere resultat end i denne rapport."
+      "priceChangeNoteTrend": "Beregningen antager, at værdien af egetforbrugt og eksporteret solstrøm ændres med {{priceChange}} % om året gennem hele perioden. Dette er en antagelse, da fremtidige elpriser ikke kan forudsiges. En anden udvikling betyder et højere eller lavere resultat end i denne rapport.",
+      "gridMethodNoteDynamic": "Den teoretiske AC-effekt er baseret på din valgte nettilslutning: {{phases}}-faset, {{voltage}} V, beregnet som {{factor}} × {{voltage}} V × hovedsikring. Den faktisk tilladte tilslutnings- eller indfødningseffekt kan være begrænset af netselskabet eller af den konkrete installation."
     },
     "title": "Solcellsrapport",
     "technical": "Tekniske data",
@@ -603,7 +625,8 @@ export const da = {
     "single": {
       "title": "Én beregning",
       "body": "Lås det fulde resultat og PDF-rapporten op for denne beregning.",
-      "cta": "Lås op for {{price}}"
+      "cta": "Lås op for {{price}}",
+      "ctaNoPrice": "Lås op"
     },
     "premium": {
       "title": "Premium",
@@ -633,7 +656,8 @@ export const da = {
     "failed": "Købet kunne ikke gennemføres. Du er ikke blevet opkrævet.",
     "retry": "Vi kunne ikke bekræfte købet lige nu. Intet går tabt — det låses automatisk op, når forbindelsen virker igen.",
     "appOnly": "Købet foretages i appen med din Apple-konto og er ikke tilgængeligt i browseren.",
-    "appleNote": "Håndteres af App Store."
+    "appleNote": "Håndteres af App Store.",
+    "priceLoading": "Henter pris…"
   },
   "history": {
     "empty": "Du har endnu ingen gemte beregninger.",
