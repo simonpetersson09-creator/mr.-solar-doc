@@ -262,9 +262,6 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         {!useMonthly ? (
           <div className="flex items-end gap-2">
             <div className="flex-1">
-              <Label htmlFor="annual" className="text-xs text-white/70">
-                {t("consumption.annual")}
-              </Label>
               <Input
                 id="annual"
                 type="text"
@@ -272,7 +269,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
                 value={annual}
                 placeholder={t("consumption.annualPlaceholder")}
                 onChange={(event) => setAnnual(sanitizeNumericInput(event.target.value))}
-                className="mt-0.5 h-9 rounded-full border-white/25 bg-white/15 text-sm text-white placeholder:text-white/50"
+                className="h-9 rounded-full border-white/25 bg-white/15 text-sm text-white placeholder:text-white/50"
               />
             </div>
             <span className="pb-2 text-[11px] text-white/70">{t("units.kwhPerYear")}</span>
