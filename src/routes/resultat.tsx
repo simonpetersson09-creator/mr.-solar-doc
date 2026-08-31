@@ -50,7 +50,7 @@ function ResultPage() {
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
 const [exporting, setExporting] = useState(false);
 const [exportError, setExportError] = useState(false);
-  const [showProdCostInfo, setShowProdCostInfo] = useState(false);
+const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
   const [showSystemSizeInfo, setShowSystemSizeInfo] = useState(false);
 
   const shortMonths = i18n.t("months.short", { returnObjects: true }) as string[];
@@ -298,12 +298,26 @@ const cost = result.productionCost;
         </section>
 
 {/* 4. Max justifiable investment — its own hero card */}
-        <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
+<section className="relative rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
+          <button
+            type="button"
+            onClick={() => setShowInvestmentInfo((open) => !open)}
+            aria-label={t("result.investmentLevelInfoLabel")}
+            aria-expanded={showInvestmentInfo}
+            className="absolute top-3 right-3 flex size-6 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
+          >
+            <CircleAlert className="size-3.5" />
+          </button>
           <h2 className="text-center text-sm font-semibold text-white">
             {t("result.investmentLevelTitle", {
               years: formatNumber(paybackYears, locale),
             })}
           </h2>
+          {showInvestmentInfo ? (
+            <p className="mt-2 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
+              {t("result.investmentLevelInfo")}
+            </p>
+          ) : null}
           <p className="mt-0.5 text-center text-[11px] text-white/60">
             {t("result.investmentLevelBasis", {
               years: formatNumber(paybackYears, locale),
@@ -320,24 +334,10 @@ const cost = result.productionCost;
 
 
 {/* 5. Cost per produced kWh — own green card */}
-<section className="relative rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
-          <button
-            type="button"
-            onClick={() => setShowProdCostInfo((open) => !open)}
-            aria-label={t("result.productionCostInfoLabel")}
-            aria-expanded={showProdCostInfo}
-            className="absolute top-3 right-3 flex size-6 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
-          >
-            <CircleAlert className="size-3.5" />
-          </button>
+<section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
           <h2 className="text-center text-sm font-semibold text-white">
             {t("result.productionCostTitle")}
           </h2>
-          {showProdCostInfo ? (
-            <p className="mt-2 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
-              {t("result.productionCostInfo")}
-            </p>
-          ) : null}
           {cost.costPerKwh === null ? (
             <p className="mt-3 text-center text-[11px] text-white/60">
               {t("result.productionCostUnavailable")}

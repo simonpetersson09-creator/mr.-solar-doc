@@ -249,7 +249,7 @@ export const de = {
     "paybackInfo": "Die einfache Amortisationszeit zeigt, wie viele Jahre der geschätzte jährliche wirtschaftliche Wert der Investition entspricht. Die Berechnung berücksichtigt keine zukünftigen Strompreisänderungen, Finanzierungskosten, Inflation, Wartung oder Diskontierung.",
     "maxInvestment": "Investitionsniveau bei gewählter Amortisationszeit",
     "maxInvestmentApprox": "ca. {{amount}}",
-    productionCostInfoLabel: "Weitere Informationen",
+    investmentLevelInfoLabel: "Weitere Informationen",
     productionCostInfo: "Zeigt ungefähr, welche Investitionskosten der von Ihnen gewählten Amortisationszeit entsprechen. Es handelt sich nicht um eine Schätzung der tatsächlichen Installationskosten.",
     systemSizeInfoLabel: "Weitere Informationen",
     systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. Tatsächliche Produktion, Eigenverbrauch, Strompreis, Vergütung, Installationskosten und wirtschaftliches Ergebnis können abweichen. Das Ergebnis stellt kein Angebot und keine Garantie dar.",

@@ -249,7 +249,7 @@ export const lt = {
     "paybackInfo": "Paprastas atsipirkimas rodo, kiek metų numatoma metinė ekonominė vertė atitinka investiciją. Atsipirkimas neatsižvelgia į tokius veiksnius kaip būsimi elektros kainų pokyčiai, finansavimo išlaidos, infliacija, priežiūra ar diskontavimas.",
     "maxInvestment": "Investicijos lygis pasirinktu atsipirkimo laiku",
     "maxInvestmentApprox": "apie {{amount}}",
-    productionCostInfoLabel: "Daugiau informacijos",
+    investmentLevelInfoLabel: "Daugiau informacijos",
     productionCostInfo: "Apytiksliai parodo, kokia investicijų suma atitinka jūsų pasirinktą atsipirkimo laikotarpį. Tai nėra įvertinimas, kiek įrengimas iš tikrųjų kainuoja.",
     systemSizeInfoLabel: "Daugiau informacijos",
     systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kaip orientyras. Faktinė gamyba, savas suvartojimas, elektros kaina, atlygis, įrengimo kaina ir ekonominis rezultatas gali skirtis. Rezultatas nėra pasiūlymas ar garantija.",

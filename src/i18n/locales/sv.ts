@@ -295,7 +295,7 @@ export const sv = {
       "Enkel återbetalningstid visar hur många år det beräknade årliga ekonomiska värdet motsvarar investeringen. Beräkningen tar inte hänsyn till exempelvis framtida elprisförändringar, finansieringskostnad, inflation, underhåll eller diskontering.",
     maxInvestment: "Investeringsnivå vid vald återbetalningstid",
     productionCostTitle: "Produktionskostnad",
-    productionCostInfoLabel: "Mer information",
+    investmentLevelInfoLabel: "Mer information",
     productionCostInfo: "Visar ungefär vilken investeringskostnad som motsvarar den återbetalningstid du valt. Det är inte en uppskattning av vad installationen faktiskt kostar.",
     systemSizeInfoLabel: "Mer information",
     systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledning. Faktisk produktion, egenanvändning, elpris, ersättning, installationskostnad och ekonomiskt utfall kan avvika. Resultatet utgör inte en offert eller garanti.",

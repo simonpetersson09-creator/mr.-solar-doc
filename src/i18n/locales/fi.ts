@@ -249,7 +249,7 @@ export const fi = {
     "paybackInfo": "Yksinkertainen takaisinmaksuaika osoittaa, kuinka monta vuotta arvioitu vuotuinen taloudellinen arvo vastaa investointia. Laskelma ei huomioi esimerkiksi tulevia sähkön hinnanmuutoksia, rahoituskustannuksia, inflaatiota, huoltoa tai diskonttausta.",
     "maxInvestment": "Investointitaso valitulla takaisinmaksuajalla",
     "maxInvestmentApprox": "n. {{amount}}",
-    productionCostInfoLabel: "Lisätietoja",
+    investmentLevelInfoLabel: "Lisätietoja",
     productionCostInfo: "Näyttää suunnilleen, minkä suuruista investointia valitsemasi takaisinmaksuaika vastaa. Se ei ole arvio siitä, mitä asennus todellisuudessa maksaa.",
     systemSizeInfoLabel: "Lisätietoja",
     systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. Todellinen tuotanto, omaan käyttöön jäävä osuus, sähkön hinta, korvaus, asennuskustannus ja taloudellinen lopputulos voivat poiketa. Tulos ei ole tarjous eikä takuu.",
