@@ -122,7 +122,9 @@ export const PRICE_SCENARIO_RATES = {
   flat: 0,
   cautious: 0.01,
   normal: 0.02,
-  high: 0.03,
+high: 0.03,
+  veryHigh: 0.04,
+  extreme: 0.05,
   custom: 0.02,
 } as const;
 

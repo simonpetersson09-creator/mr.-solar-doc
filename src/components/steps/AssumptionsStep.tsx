@@ -85,7 +85,9 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
     { id: "flat", label: t("result.priceScenarioFlat"), rateLabel: "0 %/\u00e5r" },
     { id: "cautious", label: t("result.priceScenarioCautious"), rateLabel: "+1 %/\u00e5r" },
     { id: "normal", label: t("result.priceScenarioNormal"), rateLabel: "+2 %/\u00e5r" },
-    { id: "high", label: t("result.priceScenarioHigh"), rateLabel: "+3 %/\u00e5r" },
+{ id: "high", label: t("result.priceScenarioHigh"), rateLabel: "+3 %/\u00e5r" },
+    { id: "veryHigh", label: t("result.priceScenarioVeryHigh"), rateLabel: "+4 %/\u00e5r" },
+    { id: "extreme", label: t("result.priceScenarioExtreme"), rateLabel: "+5 %/\u00e5r" },
     { id: "custom", label: t("result.priceScenarioCustom"), rateLabel: null },
   ];
 
