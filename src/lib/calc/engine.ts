@@ -48,12 +48,19 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   const serviceType =
     input.electrical.serviceType ??
     SERVICE_TYPE_FOR_PHASE_COUNT[(gridPhases as PhaseCount) ?? EU_GRID_PHASES];
-  const kwPerAmp =
-    input.electrical.gridVoltageV !== undefined || input.electrical.kwPerAmp === undefined
-      ? kwPerAmpForService(serviceType, gridVoltageV)
-      : input.electrical.kwPerAmp;
-  const maxAcPowerKw = input.electrical.mainFuseAmp * kwPerAmp;
-  void maxAcPowerKwFor;
+  const useLegacyFactor =
+    input.electrical.gridVoltageV === undefined && input.electrical.kwPerAmp !== undefined;
+  const kwPerAmp = useLegacyFactor
+    ? input.electrical.kwPerAmp!
+    : kwPerAmpForService(serviceType, gridVoltageV);
+  const maxAcPowerKw = useLegacyFactor
+    ? input.electrical.mainFuseAmp * kwPerAmp
+    : maxAcPowerKwFor({
+        mainFuseAmp: input.electrical.mainFuseAmp,
+        voltageV: gridVoltageV,
+        serviceType,
+      });
+
 
   const sizing = recommendArraySize({
     desiredAnnualKwh: input.consumption.annualKwh,
