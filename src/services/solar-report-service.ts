@@ -1081,10 +1081,15 @@ export function generateReportBlob(options: ReportOptions): Blob {
   report.rows(assumptionRows, labels.origin);
   report.paragraph(f["priceMethodNote"] ?? "");
   report.paragraph(f["gridMethodNote"] ?? "");
+  // The wording differs: a flat calculation assumes unchanged values, while a
+  // non-zero rate assumes yearly change. Using one text for both is misleading.
+  const priceChangePercent = result.lifetime.annualPriceChangeRate * 100;
+  const priceChangeNoteKey =
+    Math.abs(priceChangePercent) < 0.05 ? "priceChangeNoteFlat" : "priceChangeNoteTrend";
   report.paragraph(
-    (f["priceChangeNote"] ?? "").replace(
+    (f[priceChangeNoteKey] ?? f["priceChangeNote"] ?? "").replaceAll(
       "{{priceChange}}",
-      formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0),
+      `${priceChangePercent > 0 ? "+" : ""}${formatDecimal(priceChangePercent, locale, 1)}`,
     ),
   );
   report.paragraph(
