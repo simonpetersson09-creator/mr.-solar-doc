@@ -474,6 +474,8 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
     fields: {
       gridConnection: "Nätanslutning",
       gridConnectionValue: "{{voltage}} V, {{phases}}-fas",
+      gridMethodNoteDynamic:
+        "Teoretisk AC-effekt beräknas utifrån din valda nätanslutning: {{phases}}-fas, {{voltage}} V, enligt {{factor}} × {{voltage}} V × huvudsäkring. Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
       gridMethodNote:
         "Teoretisk AC-effekt beräknas utifrån 400 V trefas enligt 1,73 × 400 V × huvudsäkring. Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
       savings30Short: "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade elvärden.",

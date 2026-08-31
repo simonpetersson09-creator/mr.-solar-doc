@@ -1083,7 +1083,16 @@ export function generateReportBlob(options: ReportOptions): Blob {
   ];
   report.rows(assumptionRows, labels.origin);
   report.paragraph(f["priceMethodNote"] ?? "");
-  report.paragraph(f["gridMethodNote"] ?? "");
+  // The method note must describe the user's actual grid profile, never a
+  // fixed 400 V three-phase assumption.
+  const isDefaultGrid = result.grid.serviceType === "three-phase" && result.grid.voltageV === 400;
+  const gridNote = isDefaultGrid
+    ? (f["gridMethodNote"] ?? "")
+    : (f["gridMethodNoteDynamic"] ?? f["gridMethodNote"] ?? "")
+        .replaceAll("{{voltage}}", formatNumber(result.grid.voltageV, locale))
+        .replaceAll("{{phases}}", String(result.grid.phases))
+        .replaceAll("{{factor}}", formatDecimal(result.grid.serviceType === "three-phase" ? 1.73 : 1, locale, 2));
+  report.paragraph(gridNote);
   // The wording differs: a flat calculation assumes unchanged values, while a
   // non-zero rate assumes yearly change. Using one text for both is misleading.
   const priceChangePercent = result.lifetime.annualPriceChangeRate * 100;
