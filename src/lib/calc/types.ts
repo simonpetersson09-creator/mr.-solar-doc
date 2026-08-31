@@ -1,5 +1,6 @@
 /** Shared calculation types. Pure data — no UI or framework imports. */
 
+import type { CalculationIssue } from "./validation";
 import type { PresentationValues } from "./presentation";
 import type { MaxInvestmentResult } from "./payback";
 import type { ProductionCostResult } from "./production-cost";
@@ -8,6 +9,7 @@ import type { SelfConsumptionSource, SelfConsumptionSummary } from "./self-consu
 import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
 import type { ServiceType } from "@/config/grid";
 import type { ConnectionCapacity } from "@/config/connection-capacity";
+import type { ConnectionProfileStatus } from "@/config/connections";
 
 import type {
   ConsumptionProfileAnalysis,
@@ -288,9 +290,21 @@ export interface CalculationResult {
   /** Cost per produced kWh over the period, and what a kWh is worth. */
   productionCost: ProductionCostResult;
 
+  /**
+   * Whether every economic input needed for the money figures was available.
+   * "incomplete" means savings, payback, lifetime value, LCOE and the maximum
+   * investment MUST NOT be presented as numbers — not even as 0.
+   */
+  economicsStatus: "complete" | "incomplete";
+
   /** Consumer-facing, rounding-consistent values derived from the above. */
   presentation: PresentationValues;
   calculationVersion: string;
   calculatedAt: string;
   notes: string[];
 }
+
+/** Explicit calculation outcome. A result only exists on "success". */
+export type CalculationOutcome =
+  | { status: "success"; result: CalculationResult }
+  | { status: "validation-error"; phase: "input" | "result"; issues: CalculationIssue[] };
