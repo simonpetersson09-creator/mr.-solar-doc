@@ -279,7 +279,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
               type="text"
               inputMode="decimal"
               value={customValue}
-              onChange={(event) => setCustomValue(event.target.value)}
+              onChange={(event) => setCustomValue(sanitizeNumericInput(event.target.value))}
               className="h-8 w-20 rounded-full border-white/25 bg-white/15 text-xs text-white placeholder:text-white/50"
             />
             <span className="text-xs text-white/60">{unit}</span>
