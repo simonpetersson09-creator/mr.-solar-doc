@@ -151,7 +151,7 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
           x2={armEnd.x}
           y2={armEnd.y}
           className="stroke-accent"
-          strokeWidth={5}
+          strokeWidth={4}
           strokeLinecap="round"
         />
 
