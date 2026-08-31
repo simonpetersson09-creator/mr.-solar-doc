@@ -251,6 +251,9 @@ export const pl = {
     "maxInvestmentApprox": "ok. {{amount}}",
     productionCostInfoLabel: "Więcej informacji",
     productionCostInfo: "Pokazuje w przybliżeniu, jaki koszt inwestycji odpowiada wybranemu okresowi zwrotu. Nie jest to szacunek rzeczywistego kosztu instalacji.",
+    systemSizeInfoLabel: "Więcej informacji",
+    systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskazówka. Rzeczywista produkcja, zużycie własne, cena energii, wynagrodzenie, koszt instalacji i wynik finansowy mogą się różnić. Wynik nie stanowi oferty ani gwarancji.",
+
 
     "maxInvestmentExplainer": "Aby osiągnąć około {{years}} lat prostego zwrotu, instalacja powinna kosztować maksymalnie około {{amount}}.",
     "maxInvestmentNote": "Kwota jest obliczana na podstawie Twoich danych i założeń kalkulacyjnych – nie jest to oferta ani oszacowanie ceny rynkowej.",

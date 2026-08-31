@@ -49,8 +49,9 @@ function ResultPage() {
   const [showDetails, setShowDetails] = useState(false);
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
 const [exporting, setExporting] = useState(false);
-  const [exportError, setExportError] = useState(false);
+const [exportError, setExportError] = useState(false);
   const [showProdCostInfo, setShowProdCostInfo] = useState(false);
+  const [showSystemSizeInfo, setShowSystemSizeInfo] = useState(false);
 
   const shortMonths = i18n.t("months.short", { returnObjects: true }) as string[];
 
@@ -140,12 +141,28 @@ const cost = result.productionCost;
           {t("result.groupSystem")}
         </p>
         {/* 1. Recommendation */}
-        <section className="hero-metric rounded-3xl p-5">
+<section className="hero-metric rounded-3xl p-5">
           <div className="glow-amber -top-16 -right-16 size-48" aria-hidden="true" />
           <div className="relative">
-            <h2 className="flex items-center justify-center gap-2 text-center text-sm font-semibold text-white">
-              <Sun className="size-4" /> {t("result.recommendedArray")}
-            </h2>
+            <div className="flex items-center justify-center gap-2">
+              <button
+                type="button"
+                onClick={() => setShowSystemSizeInfo((open) => !open)}
+                aria-label={t("result.systemSizeInfoLabel")}
+                aria-expanded={showSystemSizeInfo}
+                className="flex size-5 shrink-0 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white/80 transition-colors hover:bg-white/20"
+              >
+                <CircleAlert className="size-3.5" />
+              </button>
+              <h2 className="flex items-center gap-2 text-center text-sm font-semibold text-white">
+                <Sun className="size-4" /> {t("result.recommendedArray")}
+              </h2>
+            </div>
+            {showSystemSizeInfo ? (
+              <p className="mt-2 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
+                {t("result.systemSizeInfo")}
+              </p>
+            ) : null}
             <div className="glass-panel mt-2.5 rounded-2xl p-3 text-center">
               <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                 {t("result.panelPowerLabel")}

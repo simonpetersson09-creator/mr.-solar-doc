@@ -251,6 +251,9 @@ export const lt = {
     "maxInvestmentApprox": "apie {{amount}}",
     productionCostInfoLabel: "Daugiau informacijos",
     productionCostInfo: "Apytiksliai parodo, kokia investicijų suma atitinka jūsų pasirinktą atsipirkimo laikotarpį. Tai nėra įvertinimas, kiek įrengimas iš tikrųjų kainuoja.",
+    systemSizeInfoLabel: "Daugiau informacijos",
+    systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kaip orientyras. Faktinė gamyba, savas suvartojimas, elektros kaina, atlygis, įrengimo kaina ir ekonominis rezultatas gali skirtis. Rezultatas nėra pasiūlymas ar garantija.",
+
 
     "maxInvestmentExplainer": "Norint pasiekti maždaug {{years}} metų paprastą atsipirkimą, įrengimas turėtų kainuoti ne daugiau kaip apie {{amount}}.",
     "maxInvestmentNote": "Suma apskaičiuojama pagal jūsų įvestis ir skaičiavimo prielaidas – tai nėra pasiūlymas ar rinkos kainos įvertinimas.",

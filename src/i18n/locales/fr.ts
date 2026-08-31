@@ -251,6 +251,9 @@ export const fr = {
     "maxInvestmentApprox": "environ {{amount}}",
     productionCostInfoLabel: "Plus d'informations",
     productionCostInfo: "Indique approximativement le coût d'investissement correspondant à la période de remboursement que vous avez choisie. Il ne s'agit pas d'une estimation du coût réel de l'installation.",
+    systemSizeInfoLabel: "Plus d'informations",
+    systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre indicatif. La production réelle, l'autoconsommation, le prix de l'électricité, la rémunération, le coût d'installation et le résultat économique peuvent varier. Le résultat ne constitue ni une offre ni une garantie.",
+
 
     "maxInvestmentExplainer": "Pour atteindre environ {{years}} ans de retour sur investissement simple, l'installation ne devrait pas coûter plus d'environ {{amount}}.",
     "maxInvestmentNote": "Le montant est calculé à partir de vos entrées et hypothèses de calcul – ce n'est ni un devis ni une estimation du prix du marché.",

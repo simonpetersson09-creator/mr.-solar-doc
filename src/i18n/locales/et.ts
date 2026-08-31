@@ -251,6 +251,9 @@ export const et = {
     "maxInvestmentApprox": "umbes {{amount}}",
     productionCostInfoLabel: "Rohkem teavet",
     productionCostInfo: "Näitab ligikaudu, milline investeeringukulu vastab teie valitud tasuvusajale. See ei ole hinnang selle kohta, mida paigaldus tegelikult maksab.",
+    systemSizeInfoLabel: "Rohkem teavet",
+    systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tegelik tootlus, oma tarve, elektrihind, hüvitis, paigalduskulu ja majanduslik tulemus võivad erineda. Tulemus ei ole pakkumine ega garantii.",
+
 
     "maxInvestmentExplainer": "Ligikaudu {{years}} aasta lihtsa tasuvusaja saavutamiseks peaks paigalduse maksumus olema maksimaalselt umbes {{amount}}.",
     "maxInvestmentNote": "Summa on arvutatud sinu sisendite ja arvutuseelduste põhjal – see ei ole pakkumine ega turuhinna hinnang.",

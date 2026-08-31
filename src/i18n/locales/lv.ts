@@ -251,6 +251,9 @@ export const lv = {
     "maxInvestmentApprox": "apmēram {{amount}}",
     productionCostInfoLabel: "Vairāk informācijas",
     productionCostInfo: "Aptuveni parāda, kādas investīciju izmaksas atbilst jūsu izvēlētajam atmaksāšanās periodam. Tas nav aprēķins par to, cik instalācija patiesībā maksā.",
+    systemSizeInfoLabel: "Vairāk informācijas",
+    systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā ražošana, pašpatēriņš, elektroenerģijas cena, atlīdzība, uzstādīšanas izmaksas un ekonomiskais rezultāts var atšķirties. Rezultāts nav piedāvājums vai garantija.",
+
 
     "maxInvestmentExplainer": "Lai sasniegtu aptuveni {{years}} gadu vienkāršu atmaksas periodu, instalācijai vajadzētu maksāt ne vairāk kā aptuveni {{amount}}.",
     "maxInvestmentNote": "Šī summa ir aprēķināta no jūsu ievadītajiem datiem un aprēķinu pieņēmumiem – tas nav piedāvājums vai tirgus cenas aplēse.",
