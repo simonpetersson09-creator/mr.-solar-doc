@@ -11,6 +11,7 @@
     "lint": "eslint .",
     "format": "prettier --write .",
     "cap:sync": "cap sync",
+    "ios:icons": "mkdir -p ios/App/App/Assets.xcassets/AppIcon.appiconset && cp resources/AppIcon.appiconset/* ios/App/App/Assets.xcassets/AppIcon.appiconset/",
     "cap:add:ios": "cap add ios",
     "cap:add:android": "cap add android",
     "cap:open:ios": "cap open ios",
