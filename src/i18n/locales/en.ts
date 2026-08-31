@@ -46,6 +46,10 @@ error: "Address search failed.",
     start: "Start premium",
     restore: "Restore purchase",
     manage: "Manage subscription",
+    unavailable: "Purchases are handled in the iOS app via the App Store.",
+    restored: "Your purchases have been restored.",
+    restoreFailed: "Could not restore purchases right now.",
+    noPending: "Start a new calculation to unlock it.",
   },
   roof: {
     title: "Your roof",
@@ -375,6 +379,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
   history: {
     empty: "You have no saved calculations yet.",
     unknownAddress: "Calculation",
+    error: "Could not load your history.",
   },
   settings: {
     title: "Settings",

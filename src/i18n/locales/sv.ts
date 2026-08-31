@@ -46,6 +46,10 @@ error: "Adressökningen misslyckades.",
     start: "Starta premium",
     restore: "Återställ köp",
     manage: "Hantera abonnemang",
+    unavailable: "Köp hanteras i iOS-appen via App Store.",
+    restored: "Dina köp är återställda.",
+    restoreFailed: "Kunde inte återställa köp just nu.",
+    noPending: "Gör en ny beräkning för att låsa upp den.",
   },
   roof: {
     title: "Ditt tak",
@@ -377,6 +381,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
   history: {
     empty: "Du har inga sparade beräkningar än.",
     unknownAddress: "Beräkning",
+    error: "Kunde inte hämta din historik.",
   },
   settings: {
     title: "Inställningar",
