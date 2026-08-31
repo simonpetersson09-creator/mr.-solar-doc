@@ -190,6 +190,7 @@ export const fr = {
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Dégradation technique",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Valeurs standard pour le calcul. Remplacez-les par les valeurs de votre propre contrat d'électricité pour un résultat plus individuel.",
     "editable": "Modifiable",
@@ -287,7 +288,8 @@ systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre in
   },
   "units": {
     "kwhPerYear": "kWh/an",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} ans"
   },
   "settings": {
     "title": "Paramètres",

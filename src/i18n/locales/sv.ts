@@ -217,6 +217,7 @@ error: "Adressökningen misslyckades.",
     priceScenarioHigh: "Hög",
     priceScenarioCustom: "Eget antagande",
     priceScenarioCustomLabel: "Egen förändring (%/år)",
+    degradationAssumption: "Teknisk degradering",
     priceScenarioAssumption: "Antagen elprisutveckling",
     standardValueHint: "Schablonvärden för beräkningen. Ändra till värden från ditt eget elavtal för ett mer individuellt resultat.",
     editable: "Kan ändras",
@@ -352,6 +353,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
   units: {
     kwhPerYear: "kWh/år",
     kwhPerKwp: "kWh/kWp",
+    years: "{{count}} år",
   },
   settings: {
     title: "Inställningar",

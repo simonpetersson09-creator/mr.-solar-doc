@@ -216,6 +216,7 @@ error: "Address search failed.",
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Technical degradation",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Standard values for the calculation. Change them to the values in your own electricity contract for a more individual result.",
     editable: "Adjustable",
@@ -350,6 +351,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
   units: {
     kwhPerYear: "kWh/yr",
     kwhPerKwp: "kWh/kWp",
+    years: "{{count}} years",
   },
   settings: {
     title: "Settings",

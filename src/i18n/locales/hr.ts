@@ -190,6 +190,7 @@ export const hr = {
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Tehnička degradacija",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Standardne vrijednosti za izračun. Promijenite ih u vrijednosti iz vlastitog ugovora o opskrbi strujom za individualniji rezultat.",
     "editable": "Može se uređivati",
@@ -287,7 +288,8 @@ systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarn
   },
   "units": {
     "kwhPerYear": "kWh/god",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} god."
   },
   "settings": {
     "title": "Postavke",

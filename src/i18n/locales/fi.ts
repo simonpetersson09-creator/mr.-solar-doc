@@ -190,6 +190,7 @@ export const fi = {
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Tekninen degradaatio",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Laskennan vakioarvot. Vaihda ne oman sähkösopimuksesi arvoihin saadaksesi yksilöllisemmän tuloksen.",
     "editable": "Muokattavissa",
@@ -287,7 +288,8 @@ systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. 
   },
   "units": {
     "kwhPerYear": "kWh/vuosi",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} vuotta"
   },
   "settings": {
     "title": "Asetukset",

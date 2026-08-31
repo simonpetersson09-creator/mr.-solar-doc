@@ -190,6 +190,7 @@ export const sk = {
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Technická degradácia",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Štandardné hodnoty pre výpočet. Zmeňte ich na hodnoty z vlastnej zmluvy o dodávke elektriny pre individuálnejší výsledok.",
     "editable": "Upraviteľné",
@@ -287,7 +288,8 @@ systemSizeInfo: "Výpočet je odhadom a mal by slúžiť ako orientácia. Skuto�
   },
   "units": {
     "kwhPerYear": "kWh/rok",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} rokov"
   },
   "settings": {
     "title": "Nastavenia",

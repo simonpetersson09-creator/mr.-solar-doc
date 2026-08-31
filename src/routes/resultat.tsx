@@ -482,6 +482,10 @@ const cost = result.productionCost;
                   t("result.priceScenarioAssumption"),
                   `${result.lifetime.annualPriceChangeRate >= 0 ? "+" : ""}${formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 1)} %${t("common.perYear")}`,
                 ],
+                [
+                  t("result.degradationAssumption"),
+                  `−${formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1)} %${t("common.perYear")} · ${t("units.years", { count: result.lifetime.periodYears })}`,
+                ],
                 [t("result.dataSource"), result.resource.dataSource],
                 [t("result.calculatedAt"), formatDate(result.calculatedAt, locale)],
                 [t("result.currency"), `${currency} · ${market.countryCode}`],

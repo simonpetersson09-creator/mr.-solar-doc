@@ -190,6 +190,7 @@ export const lt = {
     priceScenarioHigh: "High",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
+    degradationAssumption: "Techninė degradacija",
     priceScenarioAssumption: "Assumed electricity price development",
     standardValueHint: "Skaičiavimo standartinės vertės. Pakeiskite jas savo elektros sutarties vertėmis, kad rezultatas būtų individualesnis.",
     "editable": "Redaguojama",
@@ -287,7 +288,8 @@ systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kai
   },
   "units": {
     "kwhPerYear": "kWh/metus",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} metai"
   },
   "settings": {
     "title": "Nustatymai",
