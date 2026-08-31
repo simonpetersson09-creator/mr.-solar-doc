@@ -244,7 +244,7 @@ const cost = result.productionCost;
               </div>
             </div>
 
-            <p className="mt-3 text-center text-sm font-bold">
+            <p className="mt-3 text-center text-sm font-bold text-white">
               {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
             </p>
 
