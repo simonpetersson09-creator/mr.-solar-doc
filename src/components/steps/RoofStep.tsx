@@ -69,6 +69,8 @@ export function RoofStep({ totalSteps, onBack, onNext }: RoofStepProps) {
     azimuthDegrees,
   });
 
+  const pvgisError = describePvgisError(query.error);
+
   useEffect(() => {
     setResource(query.data ?? null);
   }, [query.data, setResource]);
