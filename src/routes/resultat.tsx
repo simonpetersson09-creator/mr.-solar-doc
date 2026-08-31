@@ -145,7 +145,7 @@ const cost = result.productionCost;
             <h2 className="flex items-center justify-center gap-2 text-center text-sm font-semibold text-white">
               <Sun className="size-4" /> {t("result.recommendedArray")}
             </h2>
-            <div className="mt-2 text-center">
+            <div className="glass-panel mt-3 rounded-2xl p-4 text-center">
               <p className="text-5xl font-extrabold tracking-tight">
                 {formatDecimal(result.installedKwp, locale)}{" "}
                 <span className="text-xl font-semibold text-white/80">kWp</span>
@@ -154,6 +154,7 @@ const cost = result.productionCost;
                 {t("result.panelCount", { count: result.panelCount })}
               </p>
             </div>
+
 
             <div className="mt-4 grid grid-cols-2 gap-2.5">
               <div className="glass-panel rounded-2xl p-3">
