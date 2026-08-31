@@ -156,6 +156,7 @@ export const fi = {
     },
     "gridAssumption": "Laskenta perustuu 400 V:n kolmivaiheliittymään.",
     "gridAssumptionInfo": "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
+    gridCheckHint: "Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     "disclaimerTitle": "Hyvä tietää",
     "disclaimer": "Laskelma on suuntaa-antava eikä korvaa teknistä arviointia. Tarkista aina jännite, liittymisteho, sallittu teho ja muut paikalliset verkkovaatimukset pätevältä sähköasentajalta ja tarvittaessa verkkoyhtiöltäsi ennen asennusta.\n\nMr Solar Doc ei vastaa asennuksista tai päätöksistä, jotka tehdään yksinomaan sovelluksen laskelmien perusteella.",
     "grid": {
@@ -444,6 +445,7 @@ export const fi = {
       "gridConnection": "Verkkoliittymä",
       "gridConnectionValue": "{{voltage}} V, {{phases}}-vaihe",
       "gridMethodNote": "Teoreettinen AC-teho perustuu 400 V:n kolmivaiheliittymään ja lasketaan kaavalla 1,73 × 400 V × pääsulake. Verkkoyhtiö tai itse asennus voi rajoittaa todellista sallittua liittymis- tai syöttötehoa.",
+      gridMethodNoteContracted: "Verkkoyhtiö tai itse asennus voi rajoittaa todellista sallittua liittymis- tai syöttötehoa.",
       "savings30Short": "Laskettu {{degradation}} %:n vuotuisella tuotannon heikkenemisellä ja muuttumattomilla sähköarvoilla.",
       "solarShareTitle": "Aurinkosähkösi",
       "selfConsumptionRate": "Omakäyttöaste (osuus aurinkosähköntuotannosta)",

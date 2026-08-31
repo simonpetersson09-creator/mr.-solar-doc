@@ -156,6 +156,7 @@ export const it = {
     },
     "gridAssumption": "Il calcolo presuppone un allacciamento trifase a 400 V.",
     "gridAssumptionInfo": "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
+    gridCheckHint: "In caso di dubbio verifica il tuo allacciamento reale.",
     "disclaimerTitle": "Importante da sapere",
     "disclaimer": "Il calcolo è indicativo e non sostituisce una valutazione tecnica. Verificare sempre tensione, capacità di connessione, potenza consentita e altri requisiti locali della rete con un elettricista qualificato e, se necessario, con il proprio gestore di rete prima dell'installazione.\n\nMr Solar Doc non è responsabile di impianti o decisioni prese esclusivamente sulla base dei calcoli dell'app.",
     "grid": {
@@ -444,6 +445,7 @@ export const it = {
       "gridConnection": "Allacciamento alla rete",
       "gridConnectionValue": "{{voltage}} V, {{phases}} fasi",
       "gridMethodNote": "La potenza CA teorica presuppone un allacciamento trifase a 400 V ed è calcolata come 1,73 × 400 V × fusibile principale. La potenza di allacciamento o di immissione effettivamente consentita può essere limitata dal gestore di rete o dall'installazione specifica.",
+      gridMethodNoteContracted: "La potenza di allacciamento o di immissione effettivamente consentita può essere limitata dal gestore di rete o dall'installazione specifica.",
       "savings30Short": "Calcolato con {{degradation}} % di degrado annuo della produzione e valori dell'elettricità invariati.",
       "solarShareTitle": "La tua energia solare",
       "selfConsumptionRate": "Tasso di autoconsumo (quota della produzione solare)",

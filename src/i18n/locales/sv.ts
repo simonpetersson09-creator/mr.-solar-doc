@@ -180,6 +180,7 @@ error: "Adressökningen misslyckades.",
     },
     gridAssumption: "Beräkningen utgår från 400 V trefas.",
 gridAssumptionInfo: "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
+gridCheckHint: "Kontrollera din faktiska nätanslutning om du är osäker.",
     disclaimerTitle: "Viktigt att veta",
     disclaimer: "Beräkningen är vägledande och kan inte ersätta en teknisk bedömning. Kontrollera alltid spänning, anslutningskapacitet, tillåten effekt och övriga lokala nätkrav med en kvalificerad elinstallatör och, vid behov, din nätägare innan installation.\n\nMr Solar Doc ansvarar inte för installationer eller beslut som fattas enbart utifrån appens beräkningar.",
     grid: {
@@ -536,6 +537,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
         "Teoretisk AC-effekt beräknas utifrån din valda nätanslutning: {{phases}}-fas, {{voltage}} V, enligt {{factor}} × {{voltage}} V × huvudsäkring. Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
       gridMethodNote:
         "Teoretisk AC-effekt beräknas utifrån 400 V trefas enligt 1,73 × 400 V × huvudsäkring. Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
+      gridMethodNoteContracted: "Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
       savings30Short: "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade elvärden.",
       solarShareTitle: "Din solel",
       selfConsumptionRate: "Egenanvändningsgrad (andel av solelproduktionen)",

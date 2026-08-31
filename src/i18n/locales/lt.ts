@@ -156,6 +156,7 @@ export const lt = {
     },
     "gridAssumption": "Skaičiavimas remiasi 400 V trifaze jungtimi.",
     "gridAssumptionInfo": "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
+    gridCheckHint: "Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
     "disclaimerTitle": "Svarbu žinoti",
     "disclaimer": "Skaičiavimas yra orientacinis ir negali pakeisti techninio įvertinimo. Prieš įrengimą visada patikrinkite įtampą, prijungimo galią, leistiną galią ir kitus vietinius tinklo reikalavimus su kvalifikuotu elektriku ir, jei reikia, su savo tinklo operatoriumi.\n\n„Mr Solar Doc“ neatsako už įrenginius ar sprendimus, priimtus tik remiantis programėlės skaičiavimais.",
     "grid": {
@@ -444,6 +445,7 @@ export const lt = {
       "gridConnection": "Tinklo prijungimas",
       "gridConnectionValue": "{{voltage}} V, {{phases}} fazės",
       "gridMethodNote": "Teorinė AC galia remiasi 400 V trifaze jungtimi ir skaičiuojama kaip 1,73 × 400 V × pagrindinis saugiklis. Faktinę leistiną prijungimo ar atiduodamą galią gali riboti tinklo operatorius arba konkreti instaliacija.",
+      gridMethodNoteContracted: "Faktinę leistiną prijungimo ar atiduodamą galią gali riboti tinklo operatorius arba konkreti instaliacija.",
       "savings30Short": "Apskaičiuota su {{degradation}} % metiniu gamybos degradacija ir nepakitusia elektros verte.",
       "solarShareTitle": "Jūsų saulės energija",
       "selfConsumptionRate": "Savarankiško suvartojimo norma (saulės energijos gamybos dalis)",

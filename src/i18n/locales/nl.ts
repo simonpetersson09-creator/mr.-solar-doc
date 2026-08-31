@@ -176,6 +176,7 @@ export const nl = {
     },
     gridAssumption: "De berekening gaat uit van een driefasenaansluiting van 400 V.",
     gridAssumptionInfo: "Het theoretische vermogen van de hoofdzekering wordt berekend op basis van een driefasenaansluiting van 400 V. Controleer je werkelijke netaansluiting als je twijfelt.",
+    gridCheckHint: "Controleer je werkelijke netaansluiting als je twijfelt.",
     disclaimerTitle: "Belangrijk om te weten",
     disclaimer: "De berekening is indicatief en vervangt geen technische beoordeling. Controleer altijd spanning, aansluitcapaciteit, toegestaan vermogen en andere lokale netvereisten bij een erkende elektricien en, indien nodig, je netbeheerder voordat je installeert.\n\nMr Solar Doc is niet verantwoordelijk voor installaties of beslissingen die alleen op basis van de berekeningen van de app zijn genomen.",
     grid: {
@@ -531,6 +532,7 @@ export const nl = {
         "Het theoretische AC-vermogen is gebaseerd op je gekozen netaansluiting: {{phases}}-fase, {{voltage}} V, berekend als {{factor}} × {{voltage}} V × hoofdzekering. Het werkelijk toegestane aansluit- of terugleververmogen kan worden beperkt door de netbeheerder of de specifieke installatie.",
       gridMethodNote:
         "Het theoretische AC-vermogen is gebaseerd op 400 V driefasen, berekend als 1,73 × 400 V × hoofdzekering. Het werkelijk toegestane aansluit- of terugleververmogen kan worden beperkt door de netbeheerder of de specifieke installatie.",
+      gridMethodNoteContracted: "Het werkelijk toegestane aansluit- of terugleververmogen kan worden beperkt door de netbeheerder of de specifieke installatie.",
       savings30Short: "Berekend met {{degradation}} % jaarlijkse productiedegradatie en ongewijzigde elektriciteitswaarden.",
       solarShareTitle: "Je zonne-energie",
       selfConsumptionRate: "Zelfverbruikspercentage (aandeel van zonneproductie)",

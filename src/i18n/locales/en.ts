@@ -179,6 +179,7 @@ error: "Address search failed.",
     },
     gridAssumption: "The calculation assumes a 400 V three-phase connection.",
 gridAssumptionInfo: "The theoretical power of the main fuse is calculated from a 400 V three-phase connection. Check your actual grid connection if you are unsure.",
+gridCheckHint: "Check your actual grid connection if you are unsure.",
     disclaimerTitle: "Important to know",
     disclaimer: "The calculation is indicative and cannot replace a technical assessment. Always verify voltage, connection capacity, permitted power and other local grid requirements with a qualified electrician and, if needed, your grid operator before installation.\n\nMr Solar Doc is not responsible for installations or decisions made solely on the basis of the app's calculations.",
     grid: {
@@ -534,6 +535,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
         "Theoretical AC power is based on your selected grid connection: {{phases}}-phase, {{voltage}} V, calculated as {{factor}} × {{voltage}} V × main fuse. The actual permitted connection or feed-in power may be limited by the grid operator or by the specific installation.",
       gridMethodNote:
         "Theoretical AC power is based on 400 V three-phase, calculated as 1.73 × 400 V × main fuse. The actual permitted connection or feed-in power may be limited by the grid operator or by the specific installation.",
+      gridMethodNoteContracted: "The actual permitted connection or feed-in power may be limited by the grid operator or by the specific installation.",
       savings30Short: "Calculated with {{degradation}} % annual production degradation and unchanged electricity values.",
       solarShareTitle: "Your solar electricity",
       selfConsumptionRate: "Self-consumption rate (share of solar production)",

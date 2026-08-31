@@ -156,6 +156,7 @@ export const sl = {
     },
     "gridAssumption": "Izračun predpostavlja trifazni priključek 400 V.",
     "gridAssumptionInfo": "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
+    gridCheckHint: "Če niste prepričani, preverite svoj dejanski omrežni priključek.",
     "disclaimerTitle": "Pomembno je vedeti",
     "disclaimer": "Izračun je okviren in ne more nadomestiti tehnične ocene. Pred namestitvijo vedno preverite napetost, priključno moč, dovoljeno moč in druge lokalne zahteve omrežja pri usposobljenem električarju ter po potrebi pri vašem operaterju omrežja.\n\nMr Solar Doc ne odgovarja za namestitve ali odločitve, sprejete izključno na podlagi izračunov aplikacije.",
     "grid": {
@@ -444,6 +445,7 @@ export const sl = {
       "gridConnection": "Omrežni priključek",
       "gridConnectionValue": "{{voltage}} V, {{phases}}-fazni",
       "gridMethodNote": "Teoretična moč AC predpostavlja trifazni priključek 400 V in se izračuna kot 1,73 × 400 V × glavna varovalka. Dejansko dovoljeno priključno moč ali moč oddaje lahko omeji upravljavec omrežja ali konkretna namestitev.",
+      gridMethodNoteContracted: "Dejansko dovoljeno priključno moč ali moč oddaje lahko omeji upravljavec omrežja ali konkretna namestitev.",
       "savings30Short": "Izračunano z {{degradation}} % letne degradacije proizvodnje in nespremenjenimi vrednostmi električne energije.",
       "solarShareTitle": "Vaša sončna elektrika",
       "selfConsumptionRate": "Stopnja lastne porabe (delež sončne proizvodnje)",

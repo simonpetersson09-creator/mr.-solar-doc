@@ -176,6 +176,7 @@ export const hr = {
     },
     gridAssumption: "Izračun pretpostavlja trofazni priključak od 400 V.",
     gridAssumptionInfo: "Teoretska snaga glavnog osigurača izračunava se iz trofaznog priključka od 400 V. Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
+    gridCheckHint: "Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
     disclaimerTitle: "Važno je znati",
     disclaimer: "Izračun je informativan i ne može zamijeniti tehničku procjenu. Prije instalacije uvijek provjerite napon, kapacitet priključka, dopuštenu snagu i druge lokalne mrežne zahtjeve s kvalificiranim električarom i, ako je potrebno, operatorom mreže.\n\nMr Solar Doc nije odgovoran za instalacije ili odluke donesene isključivo na temelju izračuna aplikacije.",
     grid: {
@@ -529,6 +530,7 @@ export const hr = {
         "Teoretska AC snaga temelji se na vašem odabranom mrežnom priključku: {{phases}}-fazno, {{voltage}} V, izračunato kao {{factor}} × {{voltage}} V × glavni osigurač. Stvarno dopuštenu snagu priključka ili predaje u mrežu može ograničiti operator mreže ili sama instalacija.",
       gridMethodNote:
         "Teoretska AC snaga temelji se na trofaznom priključku od 400 V, izračunato kao 1,73 × 400 V × glavni osigurač. Stvarno dopuštenu snagu priključka ili predaje u mrežu može ograničiti operator mreže ili sama instalacija.",
+      gridMethodNoteContracted: "Stvarno dopuštenu snagu priključka ili predaje u mrežu može ograničiti operator mreže ili sama instalacija.",
       savings30Short: "Izračunato uz {{degradation}} % godišnje degradacije proizvodnje i nepromijenjene vrijednosti struje.",
       solarShareTitle: "Vaša solarna energija",
       selfConsumptionRate: "Stopa samopotrošnje (udio solarne proizvodnje)",

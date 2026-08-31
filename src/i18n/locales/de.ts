@@ -156,6 +156,7 @@ export const de = {
     },
     "gridAssumption": "Die Berechnung geht von 400 V Dreiphasenanschluss aus.",
     "gridAssumptionInfo": "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
+    gridCheckHint: "Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
     "disclaimerTitle": "Wichtig zu wissen",
     "disclaimer": "Die Berechnung ist richtungsweisend und ersetzt keine technische Bewertung. Prüfen Sie vor der Installation immer Spannung, Anschlussleistung, zulässige Leistung und weitere lokale Netzanforderungen mit einem qualifizierten Elektroinstallateur und, falls erforderlich, mit Ihrem Netzbetreiber.\n\nMr Solar Doc übernimmt keine Verantwortung für Installationen oder Entscheidungen, die ausschließlich auf Grundlage der Berechnungen der App getroffen werden.",
     "grid": {
@@ -444,6 +445,7 @@ export const de = {
       "gridConnection": "Netzanschluss",
       "gridConnectionValue": "{{voltage}} V, {{phases}}-phasig",
       "gridMethodNote": "Die theoretische AC-Leistung geht von 400 V Dreiphasenanschluss aus und wird als 1,73 × 400 V × Hauptsicherung berechnet. Die tatsächlich zulässige Anschluss- oder Einspeiseleistung kann vom Netzbetreiber oder der konkreten Installation begrenzt werden.",
+      gridMethodNoteContracted: "Die tatsächlich zulässige Anschluss- oder Einspeiseleistung kann vom Netzbetreiber oder der konkreten Installation begrenzt werden.",
       "savings30Short": "Berechnet mit {{degradation}} % jährlicher Produktionsminderung und unveränderten Stromwerten.",
       "solarShareTitle": "Ihr Solarstrom",
       "selfConsumptionRate": "Eigenverbrauchsquote (Anteil der Solarstromproduktion)",

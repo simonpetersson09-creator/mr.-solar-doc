@@ -171,6 +171,7 @@ export const ro = {
     },
     "gridAssumption": "Calculul presupune o conexiune trifazată de 400 V.",
     "gridAssumptionInfo": "Puterea teoretică a siguranței principale este calculată pentru o conexiune trifazată de 400 V. Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
+    gridCheckHint: "Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
     "disclaimerTitle": "Important de știut",
     "disclaimer": "Calculul este orientativ și nu poate înlocui o evaluare tehnică. Verifică întotdeauna tensiunea, capacitatea conexiunii, puterea admisă și alte cerințe locale de rețea împreună cu un electrician calificat și, dacă este necesar, cu operatorul de rețea, înainte de instalare.\n\nMr Solar Doc nu este responsabil pentru instalații sau decizii luate exclusiv pe baza calculelor aplicației.",
     "grid": {
@@ -490,6 +491,7 @@ export const ro = {
       "gridConnectionValue": "{{voltage}} V, {{phases}} faze",
       "gridMethodNoteDynamic": "Puterea AC teoretică se bazează pe conexiunea la rețea selectată: {{phases}} faze, {{voltage}} V, calculată ca {{factor}} × {{voltage}} V × siguranță principală. Puterea reală admisă a conexiunii sau de injecție poate fi limitată de operatorul de rețea sau de instalația specifică.",
       "gridMethodNote": "Puterea AC teoretică se bazează pe 400 V trifazat, calculată ca 1,73 × 400 V × siguranță principală. Puterea reală admisă a conexiunii sau de injecție poate fi limitată de operatorul de rețea sau de instalația specifică.",
+      gridMethodNoteContracted: "Puterea reală admisă a conexiunii sau de injecție poate fi limitată de operatorul de rețea sau de instalația specifică.",
       "savings30Short": "Calculat cu {{degradation}} % degradare anuală a producției și valori de energie neschimbate.",
       "solarShareTitle": "Energia ta solară",
       "selfConsumptionRate": "Rata de autoconsum (cota din producția solară)",

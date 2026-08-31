@@ -171,6 +171,7 @@ export const no = {
     },
     "gridAssumption": "Beregningen forutsetter en 400 V trefaset tilkobling.",
     "gridAssumptionInfo": "Den teoretiske effekten fra hovedsikringen beregnes ut fra en 400 V trefaset tilkobling. Sjekk din faktiske nettilkobling hvis du er usikker.",
+    gridCheckHint: "Sjekk din faktiske nettilkobling hvis du er usikker.",
     "disclaimerTitle": "Viktig å vite",
     "disclaimer": "Beregningen er veiledende og kan ikke erstatte en teknisk vurdering. Sjekk alltid spenning, tilkoblingskapasitet, tillatt effekt og andre lokale nettkrav med en kvalifisert elektriker og om nødvendig nettselskapet ditt før installasjon.\n\nMr Solar Doc er ikke ansvarlig for installasjoner eller beslutninger tatt utelukkende på grunnlag av appens beregninger.",
     "grid": {
@@ -490,6 +491,7 @@ export const no = {
       "gridConnectionValue": "{{voltage}} V, {{phases}}-fase",
       "gridMethodNoteDynamic": "Teoretisk AC-effekt er basert på den valgte nettilkoblingen din: {{phases}}-fase, {{voltage}} V, beregnet som {{factor}} × {{voltage}} V × hovedsikring. Faktisk tillatt tilkoblings- eller innmatingseffekt kan begrenses av nettselskapet eller den konkrete installasjonen.",
       "gridMethodNote": "Teoretisk AC-effekt er basert på 400 V trefaset, beregnet som 1,73 × 400 V × hovedsikring. Faktisk tillatt tilkoblings- eller innmatingseffekt kan begrenses av nettselskapet eller den konkrete installasjonen.",
+      gridMethodNoteContracted: "Faktisk tillatt tilkoblings- eller innmatingseffekt kan begrenses av nettselskapet eller den konkrete installasjonen.",
       "savings30Short": "Beregnet med {{degradation}} % årlig produksjonsdegradering og uendrede strømverdier.",
       "solarShareTitle": "Din solstrøm",
       "selfConsumptionRate": "Egenforbruksandel (andel av solproduksjon)",

@@ -156,6 +156,7 @@ export const lv = {
     },
     "gridAssumption": "Aprēķins balstās uz 400 V trīsfāžu pieslēgumu.",
     "gridAssumptionInfo": "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
+    gridCheckHint: "Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     "disclaimerTitle": "Svarīgi zināt",
     "disclaimer": "Aprēķins ir orientējošs un neaizstāj tehnisko novērtējumu. Pirms uzstādīšanas vienmēr pārbaudiet spriegumu, pieslēguma jaudu, atļauto jaudu un citas vietējās tīkla prasības pie kvalificēta elektriķa un nepieciešamības gadījumā pie sava tīkla operatora.\n\nMr Solar Doc nav atbildīgs par instalācijām vai lēmumiem, kas pieņemti tikai, pamatojoties uz lietotnes aprēķiniem.",
     "grid": {
@@ -444,6 +445,7 @@ export const lv = {
       "gridConnection": "Tīkla pieslēgums",
       "gridConnectionValue": "{{voltage}} V, {{phases}} fāzes",
       "gridMethodNote": "Teorētiskā AC jauda balstās uz 400 V trīsfāžu pieslēgumu un tiek aprēķināta kā 1,73 × 400 V × galvenais drošinātājs. Faktisko atļauto pieslēguma vai atdeves jaudu var ierobežot tīkla operators vai konkrētā instalācija.",
+      gridMethodNoteContracted: "Faktisko atļauto pieslēguma vai atdeves jaudu var ierobežot tīkla operators vai konkrētā instalācija.",
       "savings30Short": "Aprēķināts ar {{degradation}} % gada ražošanas degradāciju un nemainīgām elektroenerģijas vērtībām.",
       "solarShareTitle": "Jūsu saules elektroenerģija",
       "selfConsumptionRate": "Pašpatēriņa likme (saules enerģijas ražošanas daļa)",
