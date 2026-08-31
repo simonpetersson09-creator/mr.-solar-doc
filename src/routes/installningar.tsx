@@ -3,7 +3,8 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
-import { ArrowLeft, Crown, FileText, History, Loader2, RefreshCw, Settings2, ShieldCheck } from "lucide-react";
+import { ArrowLeft, Check, Crown, FileText, History, Loader2, Lock, RefreshCw, Settings2, ShieldCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { haptic } from "@/services/native-service";
 import {
   PurchaseError,
@@ -19,6 +20,9 @@ import {
   PREMIUM_PRICE_AMOUNT,
   PREMIUM_PRICE_CURRENCY,
   PREMIUM_PRODUCT_ID,
+  UNLOCK_PRICE_AMOUNT,
+  UNLOCK_PRICE_CURRENCY,
+  UNLOCK_PRODUCT_ID,
 } from "@/config/purchase";
 
 export const Route = createFileRoute("/installningar")({
@@ -48,6 +52,8 @@ function SettingsPage() {
   const [buying, setBuying] = useState(false);
   const premiumPrice =
     getStorePrice(PREMIUM_PRODUCT_ID) ?? `${PREMIUM_PRICE_AMOUNT} ${PREMIUM_PRICE_CURRENCY}`;
+  const unlockPrice =
+    getStorePrice(UNLOCK_PRODUCT_ID) ?? `${UNLOCK_PRICE_AMOUNT} ${UNLOCK_PRICE_CURRENCY}`;
 
   /** Buys the yearly subscription. Verification is always server-side. */
   async function handleBuyPremium() {
