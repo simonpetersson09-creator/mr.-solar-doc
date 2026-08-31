@@ -67,7 +67,12 @@ export const fr = {
     "result": "Production solaire estimée à cet emplacement",
     "unit": "kWh/kWc/an",
     "disclaimer": "La production solaire calculée repose sur l'emplacement, l'orientation et l'inclinaison du toit. La production réelle peut être affectée par l'ombrage, la météo, la température et les pertes du système.",
-    "error": "Nous n'avons pas pu récupérer les données de production solaire pour cet emplacement pour le moment. Aucune valeur n'est estimée."
+    "error": "Nous n'avons pas pu récupérer les données de production solaire pour cet emplacement pour le moment. Aucune valeur n'est estimée.",
+    "errorOverSea":
+      "Cet emplacement semble se situer sur l'eau. Déplacez le repère sur le bâtiment à terre et réessayez.",
+    "errorOutsideCoverage":
+      "Nous n'avons pas de données solaires pour cet emplacement. Essayez une adresse à proximité.",
+    "errorSource": "PVGIS : {{message}}",
   },
   "consumption": {
     "validation": {

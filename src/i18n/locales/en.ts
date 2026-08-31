@@ -83,6 +83,11 @@ error: "Address search failed.",
     unit: "kWh/kWp/yr",
     disclaimer: "Estimated solar production is based on location, orientation and roof tilt. Actual production may be affected by shading, weather, temperature and system losses.",
     error: "We couldn't fetch solar data for this location. No values are guessed.",
+    errorOverSea:
+      "This location appears to be over water. Move the marker onto the building on land and try again.",
+    errorOutsideCoverage:
+      "We have no solar data for this location. Try a nearby address.",
+    errorSource: "PVGIS: {{message}}",
   },
   consumption: {
     validation: {

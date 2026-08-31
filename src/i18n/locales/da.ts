@@ -67,7 +67,12 @@ export const da = {
     "result": "Beregnet solproduktion på stedet",
     "unit": "kWh/kWp/år",
     "disclaimer": "Den beregnede solproduktion er baseret på placering, orientering og taghældning. Den faktiske produktion kan bl.a. påvirkes af skygge, vejr, temperatur og systemtab.",
-    "error": "Vi kunne ikke hente solproduktionsdata for placeringen lige nu. Der gættes ingen værdier."
+    "error": "Vi kunne ikke hente solproduktionsdata for placeringen lige nu. Der gættes ingen værdier.",
+    "errorOverSea":
+      "Placeringen ser ud til at ligge over vand. Flyt markøren hen på bygningen på land, og prøv igen.",
+    "errorOutsideCoverage":
+      "Vi har ingen soldata for denne placering. Prøv en adresse i nærheden.",
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {

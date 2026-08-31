@@ -67,7 +67,12 @@ export const sk = {
     "result": "Odhadovaná solárna produkcia na mieste",
     "unit": "kWh/kWp/rok",
     "disclaimer": "Vypočítaná solárna výroba je založená na polohe, orientácii a sklone strechy. Skutočnú výrobu môže okrem iného ovplyvniť zatienenie, počasie, teplota a systémové straty.",
-    "error": "Momentálne sa nám nepodarilo načítať údaje o solárnej produkcii pre toto miesto. Žiadne hodnoty sa neodhadujú."
+    "error": "Momentálne sa nám nepodarilo načítať údaje o solárnej produkcii pre toto miesto. Žiadne hodnoty sa neodhadujú.",
+    "errorOverSea":
+      "Miesto sa zrejme nachádza nad vodou. Presuňte značku na budovu na pevnine a skúste to znova.",
+    "errorOutsideCoverage":
+      "Pre toto miesto nemáme solárne dáta. Skúste adresu v okolí.",
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
