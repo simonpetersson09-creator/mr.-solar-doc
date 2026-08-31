@@ -224,7 +224,9 @@ const cost = result.productionCost;
         </p>
 {/* 3. What you get out of it — plain numbers, no controls */}
         <section className="space-y-2.5 rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
-          <h2 className="text-sm font-semibold text-white">{t("result.sectionEconomy")}</h2>
+          <h2 className="text-center text-sm font-semibold text-white">
+            {t("result.sectionEconomy")}
+          </h2>
 
           <div className="flex items-baseline justify-between gap-3">
             <p className="text-xs text-white/60">{t("result.annualSavings")}</p>
