@@ -60,6 +60,22 @@ let approvedHandler: ((transaction: CdvTransaction) => void) | null = null;
 let cancelledHandler: (() => void) | null = null;
 let errorHandler: ((message: string) => void) | null = null;
 
+/**
+ * Transactions StoreKit approved while no purchase flow was listening — for
+ * example when the app was closed or the network died before verification.
+ * They must be verified and finished on the next app start, otherwise the user
+ * has paid without getting access.
+ */
+const unclaimed: CdvTransaction[] = [];
+
+function handleApproved(transaction: CdvTransaction) {
+  if (approvedHandler) {
+    approvedHandler(transaction);
+    return;
+  }
+  unclaimed.push(transaction);
+}
+
 function ensureInitialized(cdv: CdvPurchaseGlobal): Promise<void> {
   if (initialized) return Promise.resolve();
   const { store, ProductType, Platform } = cdv;
@@ -70,11 +86,38 @@ function ensureInitialized(cdv: CdvPurchaseGlobal): Promise<void> {
       platform: Platform.APPLE_APPSTORE,
     },
   ]);
-  store.when().approved((transaction) => approvedHandler?.(transaction));
+  store.when().approved(handleApproved);
   store.when().cancelled(() => cancelledHandler?.());
   store.error((error) => errorHandler?.(error.message ?? "store-error"));
   initialized = true;
   return store.initialize([Platform.APPLE_APPSTORE]).then(() => undefined);
+}
+
+/** Boots StoreKit at app start so unfinished transactions are delivered. */
+export async function initializePurchases(): Promise<void> {
+  const cdv = getCdv();
+  if (!isPurchaseAvailable() || !cdv) return;
+  await ensureInitialized(cdv);
+}
+
+/** Hands over transactions StoreKit delivered outside an active purchase flow. */
+export function takeUnclaimedTransactions(): {
+  transactionId: string;
+  finish: () => Promise<void>;
+}[] {
+  const taken = unclaimed.splice(0, unclaimed.length);
+  return taken.flatMap((transaction) => {
+    const transactionId = transaction.transactionId;
+    if (!transactionId) return [];
+    return [
+      {
+        transactionId,
+        finish: async () => {
+          await transaction.finish?.();
+        },
+      },
+    ];
+  });
 }
 
 /** Formatted App Store price, when StoreKit has loaded it. */
@@ -83,6 +126,7 @@ export function getStorePrice(): string | null {
   const product = cdv?.store.products?.find((item) => item.id === UNLOCK_PRODUCT_ID);
   return product?.pricing?.price ?? null;
 }
+
 
 /**
  * Starts the App Store purchase and resolves with the transaction id once the
