@@ -60,7 +60,7 @@ describe("country connection config", () => {
     expect(config.defaultVoltage).toBe(400);
     expect(config.defaultFrequencyHz).toBe(50);
     expect(config.defaultServiceType).toBe("three-phase");
-    expect(hasVerifiedConnectionConfig("US")).toBe(false);
+    expect(hasVerifiedConnectionConfig("ZZ")).toBe(false);
     expect(hasVerifiedConnectionConfig("SE")).toBe(true);
   });
 
