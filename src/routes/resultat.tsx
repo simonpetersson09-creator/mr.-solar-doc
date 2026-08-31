@@ -195,10 +195,9 @@ const cost = result.productionCost;
 
 {/* 2. Production */}
         <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
-          <h2 className="text-sm font-semibold text-white">{t("result.sectionProduction")}</h2>
-          <p className="mt-0.5 mb-3 text-xs text-white/60">
-            {t("result.monthlyProduction")}
-          </p>
+          <h2 className="mb-3 text-center text-sm font-semibold text-white">
+            {t("result.sectionProduction")}
+          </h2>
           {result.consumption.isEstimated ? (
             <p className="mb-2 flex flex-wrap items-center gap-2 text-[11px] text-white/60">
               <span className="rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white/80">
