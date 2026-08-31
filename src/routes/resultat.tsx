@@ -287,8 +287,12 @@ const cost = result.productionCost;
 
 {/* 5. Cost per produced kWh — own green card */}
         <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
-          <h2 className="text-sm font-semibold text-white">{t("result.productionCostTitle")}</h2>
-          <p className="mt-0.5 text-xs text-white/60">{t("result.productionCostExplainer")}</p>
+          <h2 className="text-center text-sm font-semibold text-white">
+            {t("result.productionCostTitle")}
+          </h2>
+          <p className="mt-0.5 text-center text-xs text-white/60">
+            {t("result.productionCostExplainer")}
+          </p>
           {cost.costPerKwh === null ? (
             <p className="mt-3 text-xs text-white/60">{t("result.productionCostUnavailable")}</p>
           ) : (
