@@ -75,7 +75,8 @@ describe("engine respects the PV rule ceiling", () => {
     expect(result.inverterKw).toBeLessThanOrEqual(43.5);
     expect(result.gridConnectionLimitKw).toBe(138);
     expect(result.pvPowerLimitKw).toBe(43.5);
-    expect(result.sizingBasis).toBe("pv-rule-limit");
+    expect(result.pvLimitBinding).toBe("pv-rule");
+    expect(result.notes).toContain("pv-limit-pv-rule");
   });
 
   it("falls back to the connection capacity without a PV rule", () => {
