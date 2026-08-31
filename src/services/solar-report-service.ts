@@ -176,6 +176,9 @@ export function pdfText(value: string): string {
   return value
     .replace(/\u2212/g, "-")
     .replace(/[\u202f\u2009]/g, "\u00a0")
+    // Maths symbols outside WinAnsi render as stray quotes in Helvetica.
+    .replace(/\u221a3/g, "1,73")
+    .replace(/\u221a/g, "sqrt")
     .replace(/[^\u0000-\u00ff]/g, (char) => WINANSI_FALLBACK[char] ?? char);
 }
 
@@ -378,14 +381,37 @@ class ReportDocument {
     this.y += 4;
   }
 
+  /**
+   * Explanatory note. The height is measured before reserving space, and long
+   * notes are split across pages — otherwise the tail of the text is drawn
+   * below the page edge and silently disappears.
+   */
   paragraph(text: string) {
-    this.ensureSpace(14);
+    if (!text.trim()) return;
+    const lineHeight = 4;
     this.doc.setFont("helvetica", "italic");
     this.doc.setFontSize(8.5);
     this.doc.setTextColor(...MUTED);
-    const lines = this.doc.splitTextToSize(text, PAGE.width - PAGE.margin * 2);
-    this.doc.text(lines, PAGE.margin, this.y);
-    this.y += lines.length * 4 + 4;
+    let lines = this.doc.splitTextToSize(text, PAGE.width - PAGE.margin * 2) as string[];
+
+    while (lines.length > 0) {
+      const available = PAGE.height - PAGE.margin - this.y;
+      let fitCount = Math.floor(available / lineHeight);
+      if (fitCount < Math.min(2, lines.length)) {
+        // Not enough room for a readable chunk — continue on the next page.
+        this.doc.addPage();
+        this.y = PAGE.margin;
+        fitCount = Math.floor((PAGE.height - PAGE.margin * 2) / lineHeight);
+      }
+      const chunk = lines.slice(0, fitCount);
+      this.doc.setFont("helvetica", "italic");
+      this.doc.setFontSize(8.5);
+      this.doc.setTextColor(...MUTED);
+      this.doc.text(chunk, PAGE.margin, this.y);
+      this.y += chunk.length * lineHeight;
+      lines = lines.slice(fitCount);
+    }
+    this.y += 4;
   }
 
   /** Bordered note block, used for the closing "what can affect the outcome" text. */
@@ -1058,10 +1084,15 @@ export function generateReportBlob(options: ReportOptions): Blob {
   report.rows(assumptionRows, labels.origin);
   report.paragraph(f["priceMethodNote"] ?? "");
   report.paragraph(f["gridMethodNote"] ?? "");
+  // The wording differs: a flat calculation assumes unchanged values, while a
+  // non-zero rate assumes yearly change. Using one text for both is misleading.
+  const priceChangePercent = result.lifetime.annualPriceChangeRate * 100;
+  const priceChangeNoteKey =
+    Math.abs(priceChangePercent) < 0.05 ? "priceChangeNoteFlat" : "priceChangeNoteTrend";
   report.paragraph(
-    (f["priceChangeNote"] ?? "").replace(
+    (f[priceChangeNoteKey] ?? f["priceChangeNote"] ?? "").replaceAll(
       "{{priceChange}}",
-      formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0),
+      `${priceChangePercent > 0 ? "+" : ""}${formatDecimal(priceChangePercent, locale, 1)}`,
     ),
   );
   report.paragraph(

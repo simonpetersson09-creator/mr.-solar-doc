@@ -346,7 +346,7 @@ systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarn
     "fields": {
       "gridConnection": "Mrežni priključak",
       "gridConnectionValue": "{{voltage}} V, {{phases}}-fazni",
-      "gridMethodNote": "Teorijska AC snaga pretpostavlja trofazni priključak 400 V i računa se kao √3 × 400 V × glavni osigurač. Stvarnu dopuštenu priključnu snagu ili snagu predaje može ograničiti operator mreže ili konkretna instalacija.",
+      "gridMethodNote": "Teorijska AC snaga pretpostavlja trofazni priključak 400 V i računa se kao 1,73 × 400 V × glavni osigurač. Stvarnu dopuštenu priključnu snagu ili snagu predaje može ograničiti operator mreže ili konkretna instalacija.",
       "savings30Short": "Izračunato s {{degradation}} % godišnje degradacije proizvodnje i nepromijenjenim vrijednostima električne energije.",
       "solarShareTitle": "Vaša solarna električna energija",
       "selfConsumptionRate": "Stopa vlastite potrošnje (udio solarne proizvodnje)",

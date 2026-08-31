@@ -346,7 +346,7 @@ systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. 
     "fields": {
       "gridConnection": "Verkkoliittymä",
       "gridConnectionValue": "{{voltage}} V, {{phases}}-vaihe",
-      "gridMethodNote": "Teoreettinen AC-teho perustuu 400 V:n kolmivaiheliittymään ja lasketaan kaavalla √3 × 400 V × pääsulake. Verkkoyhtiö tai itse asennus voi rajoittaa todellista sallittua liittymis- tai syöttötehoa.",
+      "gridMethodNote": "Teoreettinen AC-teho perustuu 400 V:n kolmivaiheliittymään ja lasketaan kaavalla 1,73 × 400 V × pääsulake. Verkkoyhtiö tai itse asennus voi rajoittaa todellista sallittua liittymis- tai syöttötehoa.",
       "savings30Short": "Laskettu {{degradation}} %:n vuotuisella tuotannon heikkenemisellä ja muuttumattomilla sähköarvoilla.",
       "solarShareTitle": "Aurinkosähkösi",
       "selfConsumptionRate": "Omakäyttöaste (osuus aurinkosähköntuotannosta)",

@@ -346,7 +346,7 @@ systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. 
     "fields": {
       "gridConnection": "Netzanschluss",
       "gridConnectionValue": "{{voltage}} V, {{phases}}-phasig",
-      "gridMethodNote": "Die theoretische AC-Leistung geht von 400 V Dreiphasenanschluss aus und wird als √3 × 400 V × Hauptsicherung berechnet. Die tatsächlich zulässige Anschluss- oder Einspeiseleistung kann vom Netzbetreiber oder der konkreten Installation begrenzt werden.",
+      "gridMethodNote": "Die theoretische AC-Leistung geht von 400 V Dreiphasenanschluss aus und wird als 1,73 × 400 V × Hauptsicherung berechnet. Die tatsächlich zulässige Anschluss- oder Einspeiseleistung kann vom Netzbetreiber oder der konkreten Installation begrenzt werden.",
       "savings30Short": "Berechnet mit {{degradation}} % jährlicher Produktionsminderung und unveränderten Stromwerten.",
       "solarShareTitle": "Ihr Solarstrom",
       "selfConsumptionRate": "Eigenverbrauchsquote (Anteil der Solarstromproduktion)",

@@ -346,7 +346,7 @@ systemSizeInfo: "Výpočet je odhadem a měl by sloužit jako orientace. Skuteč
     "fields": {
       "gridConnection": "Připojení k síti",
       "gridConnectionValue": "{{voltage}} V, {{phases}} fáze",
-      "gridMethodNote": "Teoretický AC výkon vychází z třífázové přípojky 400 V a počítá se jako √3 × 400 V × hlavní jistič. Skutečný povolený připojovací nebo dodávaný výkon může být omezen provozovatelem sítě nebo konkrétní instalací.",
+      "gridMethodNote": "Teoretický AC výkon vychází z třífázové přípojky 400 V a počítá se jako 1,73 × 400 V × hlavní jistič. Skutečný povolený připojovací nebo dodávaný výkon může být omezen provozovatelem sítě nebo konkrétní instalací.",
       "savings30Short": "Vypočítáno s {{degradation}} % roční degradací výroby a nezměněnými hodnotami elektřiny.",
       "solarShareTitle": "Vaše solární elektřina",
       "selfConsumptionRate": "Míra vlastní spotřeby (podíl solární výroby)",

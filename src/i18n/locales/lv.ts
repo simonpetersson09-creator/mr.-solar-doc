@@ -346,7 +346,7 @@ systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā
     "fields": {
       "gridConnection": "Tīkla pieslēgums",
       "gridConnectionValue": "{{voltage}} V, {{phases}} fāzes",
-      "gridMethodNote": "Teorētiskā AC jauda balstās uz 400 V trīsfāžu pieslēgumu un tiek aprēķināta kā √3 × 400 V × galvenais drošinātājs. Faktisko atļauto pieslēguma vai atdeves jaudu var ierobežot tīkla operators vai konkrētā instalācija.",
+      "gridMethodNote": "Teorētiskā AC jauda balstās uz 400 V trīsfāžu pieslēgumu un tiek aprēķināta kā 1,73 × 400 V × galvenais drošinātājs. Faktisko atļauto pieslēguma vai atdeves jaudu var ierobežot tīkla operators vai konkrētā instalācija.",
       "savings30Short": "Aprēķināts ar {{degradation}} % gada ražošanas degradāciju un nemainīgām elektroenerģijas vērtībām.",
       "solarShareTitle": "Jūsu saules elektroenerģija",
       "selfConsumptionRate": "Pašpatēriņa likme (saules enerģijas ražošanas daļa)",

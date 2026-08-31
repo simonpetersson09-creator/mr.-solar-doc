@@ -424,7 +424,8 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     fields: {
       gridConnection: "Grid connection",
       gridConnectionValue: "{{voltage}} V, {{phases}}-phase",
-      gridMethodNote: "Theoretical AC power assumes a 400 V three-phase connection and is calculated as √3 × 400 V × main fuse. The actual permitted connection or feed-in power may be limited by the grid operator or the specific installation.",
+      gridMethodNote:
+        "Theoretical AC power is based on 400 V three-phase, calculated as 1.73 × 400 V × main fuse. The actual permitted connection or feed-in power may be limited by the grid operator or by the specific installation.",
       savings30Short: "Calculated with {{degradation}} % annual production degradation and unchanged electricity values.",
       solarShareTitle: "Your solar electricity",
       selfConsumptionRate: "Self-consumption rate (share of solar production)",
@@ -445,6 +446,10 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       "valueSource_user-override": "Entered by you",
       priceChange: "Electricity price change",
       calculationPeriod: "Calculation period",
+      priceChangeNoteFlat:
+        "The calculation uses unchanged values for self-consumed and exported solar power throughout the period. No price increase is assumed, since future electricity prices cannot be predicted. If prices rise, the value will be higher than in this report; if they fall, it will be lower.",
+      priceChangeNoteTrend:
+        "The calculation assumes the value of self-consumed and exported solar power changes by {{priceChange}} % per year throughout the period. This is an assumption, since future electricity prices cannot be predicted. A different development means a higher or lower outcome than in this report.",
       priceChangeNote:
         "An electricity price change of {{priceChange}} % per year means the calculation keeps the values of self-consumed and exported solar electricity unchanged for the whole period. No assumed price increase is added, since future electricity prices cannot be predicted. Higher future prices mean a higher value than shown, lower prices mean a lower value.",
       calculationPeriodNote:
