@@ -61,10 +61,14 @@ const [map, setMap] = useState<L.Map | null>(null);
     }
   };
 
-  // A resolved address outside the supported markets may not continue.
+  // Any country with a resolvable currency can continue: economics without
+  // verified local defaults are entered by the user later in the wizard.
+  // Only countries we cannot even resolve a currency for are blocked.
   const unsupportedMarket = Boolean(
-    location?.countryCode && !isActiveMarket(location.countryCode),
+    location?.countryCode &&
+      getCurrencyCode(location.countryCode) === NEUTRAL_CURRENCY_CODE,
   );
+
 
   // Default view: Sweden overview until a position is chosen.
   const mapLatitude = location?.latitude ?? 62.0;
