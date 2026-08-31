@@ -67,7 +67,10 @@ function PaywallPage() {
         data: { id: pending.id, accessToken: pending.accessToken, transactionId },
       });
       if (verified.status !== "paid") {
-        setPhase("failed");
+        // Pending means verification could not be completed — the transaction is
+        // deliberately left unfinished so Apple redelivers it and the recovery
+        // listener can unlock it later.
+        setPhase(verified.status === "pending" ? "retry" : "failed");
         return;
       }
       await finish();
@@ -88,6 +91,7 @@ function PaywallPage() {
       setPhase(reason === "cancelled" ? "cancelled" : "failed");
     }
   }
+
 
   const busy = phase === "purchasing" || phase === "verifying";
 
