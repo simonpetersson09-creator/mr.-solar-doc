@@ -21,33 +21,41 @@ describe("max AC power from grid profile", () => {
 
 const market = MARKETS["SE"]!;
 
+const MONTHLY_KWH_PER_KWP = [22, 45, 90, 121, 140, 137, 133, 111, 74, 41, 19, 5];
+
 function buildInput(
   electrical: CalculationInput["electrical"],
-  annualKwh = 20000,
+  annualKwh = 20_000,
 ): CalculationInput {
   return {
-    location: { lat: 59.3, lon: 18.1, address: "Test", countryCode: "SE" },
+    location: {
+      address: "Testgatan 1, Stockholm",
+      latitude: 59.33,
+      longitude: 18.07,
+      countryCode: "SE",
+      region: "Stockholm",
+    },
     resource: {
-      annualKwhPerKwp: 950,
-      monthlyKwhPerKwp: [20, 40, 80, 110, 130, 135, 130, 110, 80, 50, 25, 15],
+      annualKwhPerKwp: MONTHLY_KWH_PER_KWP.reduce((a, b) => a + b, 0),
+      monthlyKwhPerKwp: MONTHLY_KWH_PER_KWP,
       orientation: "south",
-      tiltDeg: 30,
-      dataSource: "PVGIS",
-    } as CalculationInput["resource"],
-    consumption: { annualKwh, monthlyKwh: null, inputType: "annual", isEstimated: false },
+      tiltDegrees: 30,
+      orientationAssumed: false,
+      tiltAssumed: false,
+      dataSource: "PVGIS test",
+      calculationDate: "2026-01-01",
+    },
+    consumption: { annualKwh, monthlyKwh: null },
     electrical,
     economics: {
       selfConsumedValuePerKwh: 1.5,
       exportValuePerKwh: 0.6,
       currency: "SEK",
     },
-    selfConsumptionShare: null,
-    selfConsumptionShareIsUserSet: false,
-    acceptedPaybackYears: 10,
-    annualPriceChangeRate: 0.02,
-    quotePrice: null,
+    selfConsumptionShare: 0.5,
+    acceptedPaybackYears: 12,
     inverterSizesKw: market.inverterSizesKw,
-  } as CalculationInput;
+  };
 }
 
 describe("grid profile drives the whole calculation chain", () => {
