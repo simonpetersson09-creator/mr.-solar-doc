@@ -56,6 +56,21 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   const setGridDefaults = useWizardStore((s) => s.setGridDefaults);
 
   const connection = getConnectionConfig(location?.countryCode);
+  const countryCode = location?.countryCode?.toUpperCase();
+  const countryFlag = countryCode
+    ? String.fromCodePoint(...[...countryCode].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65))
+    : "";
+  const countryName = (() => {
+    if (!countryCode) return "";
+    try {
+      return (
+        new Intl.DisplayNames([locale], { type: "region" }).of(countryCode) ?? countryCode
+      );
+    } catch {
+      return countryCode;
+    }
+  })();
+
 
   // The country decides the initial grid profile; a manual override wins.
   useEffect(() => {
@@ -293,16 +308,30 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
               {`${serviceLabel(serviceType)} · ${voltageLabel(voltageV)} · ${frequencyHz} Hz`}
             </p>
           </div>
-          <button
-            type="button"
-            onClick={() => {
-              void haptic("light");
-              setEditGrid((open) => !open);
-            }}
-            className="shrink-0 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-semibold text-white"
-          >
-            {editGrid ? t("fuse.grid.done") : t("fuse.grid.change")}
-          </button>
+          <div className="flex shrink-0 items-center gap-1.5">
+            {countryCode ? (
+              <button
+                type="button"
+                disabled
+                aria-disabled="true"
+                className="flex cursor-default items-center gap-1 rounded-full border border-white/20 bg-white/10 px-2.5 py-1.5 text-[11px] font-semibold text-white/80"
+              >
+                <span aria-hidden="true">{countryFlag}</span>
+                <span className="max-w-[90px] truncate">{countryName}</span>
+              </button>
+            ) : null}
+            <button
+              type="button"
+              onClick={() => {
+                void haptic("light");
+                setEditGrid((open) => !open);
+              }}
+              className="shrink-0 rounded-full border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-semibold text-white"
+            >
+              {editGrid ? t("fuse.grid.done") : t("fuse.grid.change")}
+            </button>
+          </div>
+
         </div>
 
         {editGrid ? (
