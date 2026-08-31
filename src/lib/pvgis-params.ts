@@ -130,6 +130,30 @@ export function buildPvgisRequest(input: PvgisLocationInput): PvgisRequestPlan {
  * Replaces only the orientation parameters with documented geographic
  * defaults; the coordinate and every system assumption stay identical.
  */
+/**
+ * Plausibility gate for the tilt PVGIS reports back in case D
+ * (`optimalangles=1`). PVGIS has been observed to answer with a sentinel /
+ * flat optimum (e.g. slope -1) outside the equatorial band, which understates
+ * the yield of a normal roof. Such an answer is rejected and the documented
+ * geographic fallback is used instead — the irradiation still comes from
+ * PVGIS for the exact same coordinate.
+ *
+ * A genuinely flat optimum inside the equatorial neutral zone is plausible and
+ * is kept.
+ */
+export const MIN_PLAUSIBLE_OPTIMAL_TILT_DEGREES = 5;
+
+export function isImplausibleOptimalTilt(
+  slope: number | null | undefined,
+  latitude: number,
+): boolean {
+  if (slope === null || slope === undefined || !Number.isFinite(slope)) return true;
+  if (slope < 0 || slope > 90) return true;
+  // Near the equator a flat array really is close to optimal.
+  if (Math.abs(latitude) <= EQUATOR_NEUTRAL_ZONE_DEGREES) return false;
+  return slope < MIN_PLAUSIBLE_OPTIMAL_TILT_DEGREES;
+}
+
 export function buildPvgisOrientationFallbackRequest(
   input: PvgisLocationInput,
 ): PvgisRequestPlan {
