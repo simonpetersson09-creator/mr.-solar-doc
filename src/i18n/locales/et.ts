@@ -64,6 +64,7 @@ export const et = {
     "fetching": "Andmete toomine PVGIS-ist…",
     "result": "Hinnanguline päikeseenergia tootlikkus selles asukohas",
     "unit": "kWh/kWp/a",
+    disclaimer: "Arvutatud päikesetoodang põhineb asukohal, suunal ja katuse kaldenurgal. Tegelikku toodangut võivad mõjutada näiteks varjutus, ilm, temperatuur ja süsteemikaod.",
     "error": "Me ei saanud praegu selle asukoha päikeseenergia tootlikkuse andmeid tuua. Väärtusi ei pakuta."
   },
   "consumption": {

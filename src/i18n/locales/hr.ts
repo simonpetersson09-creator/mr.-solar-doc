@@ -64,6 +64,7 @@ export const hr = {
     "fetching": "Dohvaćam podatke o solarnoj proizvodnji s PVGIS-a…",
     "result": "Procijenjena solarna proizvodnja na lokaciji",
     "unit": "kWh/kWp/god.",
+    disclaimer: "Izračunana solarna proizvodnja temelji se na lokaciji, orijentaciji i nagibu krova. Na stvarnu proizvodnju mogu utjecati zasjenjenje, vrijeme, temperatura i gubici sustava.",
     "error": "Trenutno nismo mogli dohvatiti podatke o solarnoj proizvodnji za ovu lokaciju. Vrijednosti se ne nagađaju."
   },
   "consumption": {

@@ -64,6 +64,7 @@ export const sl = {
     "fetching": "Pridobivanje podatkov o sončni proizvodnji iz PVGIS…",
     "result": "Ocenjena sončna proizvodnja na lokaciji",
     "unit": "kWh/kWp/leto",
+    disclaimer: "Izračunana sončna proizvodnja temelji na lokaciji, orientaciji in naklonu strehe. Na dejansko proizvodnjo lahko vplivajo senčenje, vreme, temperatura in sistemske izgube.",
     "error": "Trenutno nismo mogli pridobiti podatkov o sončni proizvodnji za to lokacijo. Vrednosti niso ugibane."
   },
   "consumption": {

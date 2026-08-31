@@ -64,6 +64,7 @@ export const de = {
     "fetching": "Ruft Solarertragsdaten von PVGIS ab…",
     "result": "Berechneter Solarertrag am Standort",
     "unit": "kWh/kWp/Jahr",
+    disclaimer: "Die berechnete Solarproduktion basiert auf Standort, Ausrichtung und Dachneigung. Die tatsächliche Produktion kann u. a. durch Verschattung, Wetter, Temperatur und Systemverluste beeinflusst werden.",
     "error": "Wir konnten die Solarertragsdaten für diesen Standort derzeit nicht abrufen. Es werden keine Werte geschätzt."
   },
   "consumption": {

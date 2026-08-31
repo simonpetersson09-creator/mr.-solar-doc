@@ -64,6 +64,7 @@ export const cs = {
     "fetching": "Načítám data o solární výrobě z PVGIS…",
     "result": "Odhadovaná solární výroba v daném místě",
     "unit": "kWh/kWp/rok",
+    disclaimer: "Vypočítaná solární výroba je založena na poloze, orientaci a sklonu střechy. Skutečnou výrobu může ovlivnit mimo jiné zastínění, počasí, teplota a systémové ztráty.",
     "error": "V tuto chvíli se nepodařilo načíst data o solární výrobě pro dané místo. Hodnoty nejsou odhadovány."
   },
   "consumption": {

@@ -64,6 +64,7 @@ export const lt = {
     "fetching": "Gaunami saulės energijos gamybos duomenys iš PVGIS…",
     "result": "Apskaičiuota saulės energijos gamyba vietoje",
     "unit": "kWh/kWp/metus",
+    disclaimer: "Apskaičiuota saulės energijos gamyba pagrįsta vieta, kryptimi ir stogo nuolydžiu. Faktinę gamybą gali paveikti šešėliavimas, orai, temperatūra ir sistemos nuostoliai.",
     "error": "Šiuo metu negalėjome gauti saulės energijos gamybos duomenų šiai vietai. Jokios vertės neatspėjamos."
   },
   "consumption": {

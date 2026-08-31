@@ -64,6 +64,7 @@ export const da = {
     "fetching": "Henter solproduktionsdata fra PVGIS…",
     "result": "Beregnet solproduktion på stedet",
     "unit": "kWh/kWp/år",
+    disclaimer: "Den beregnede solproduktion er baseret på placering, orientering og taghældning. Den faktiske produktion kan bl.a. påvirkes af skygge, vejr, temperatur og systemtab.",
     "error": "Vi kunne ikke hente solproduktionsdata for placeringen lige nu. Der gættes ingen værdier."
   },
   "consumption": {
