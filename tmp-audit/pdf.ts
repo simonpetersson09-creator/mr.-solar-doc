@@ -2,7 +2,7 @@ import { generateReportBlob } from "@/services/solar-report-service";
 import { runCalculation } from "@/lib/calc/engine";
 import { getMarketConfig } from "@/config/markets";
 import { resolveEconomicsDefaults, getCountryConfig } from "@/config/countries";
-import sv from "@/i18n/locales/sv";
+import { sv } from "@/i18n/locales/sv";
 
 const t = (path: string) => path.split(".").reduce((o: any, k) => o?.[k], sv as any);
 function calc(country: string, self: number | null, exp: number | null) {
