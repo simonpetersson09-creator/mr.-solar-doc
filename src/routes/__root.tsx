@@ -14,6 +14,8 @@ import { Toaster } from "@/components/ui/sonner";
 
 
 import i18n from "../i18n";
+import { isRtlLanguage, normaliseLanguage } from "../i18n/languages";
+
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
