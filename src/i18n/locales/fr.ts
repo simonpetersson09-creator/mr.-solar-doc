@@ -139,6 +139,26 @@ export const fr = {
     "monthlyHint": "Indiquez la consommation pour les 12 mois"
   },
   "fuse": {
+    "gridAssumptionDynamic": "Le calcul repose sur {{service}} {{voltage}}.",
+    "capacity": {
+      "otherLabel": "Saisir une valeur",
+      "invalid": "Saisissez une valeur entre {{min}} et {{max}} {{unit}}.",
+      "amperage": {
+        "title": "Quel est votre disjoncteur principal ?",
+        "label": "Disjoncteur principal",
+        "help": "Ampères par phase, indiqués sur le disjoncteur ou la facture."
+      },
+      "contracted-kva": {
+        "title": "Quelle est votre puissance souscrite ?",
+        "label": "Puissance souscrite",
+        "help": "Indiquée en kVA sur votre facture d'électricité."
+      },
+      "contracted-kw": {
+        "title": "Quelle est votre puissance souscrite ?",
+        "label": "Puissance souscrite",
+        "help": "Indiquée en kW sur votre facture d'électricité."
+      }
+    },
     "gridAssumption": "Le calcul suppose un raccordement triphasé 400 V.",
     "gridAssumptionInfo": "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute.",
     "grid": {
@@ -167,6 +187,10 @@ export const fr = {
     "invalid": "Saisissez un fusible principal entre 6 et 400 A."
   },
   "result": {
+    "connection": {
+      "contractedKva": "Puissance souscrite (kVA)",
+      "contractedKw": "Puissance souscrite (kW)"
+    },
     "gridConnection": "Raccordement au réseau",
     "gridConnectionValue": "{{voltage}} V, {{phases}} phases",
     "title": "Votre calcul",

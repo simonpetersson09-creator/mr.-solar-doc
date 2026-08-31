@@ -157,6 +157,26 @@ error: "Address search failed.",
     invalid: "Enter an annual consumption between 100 and 200,000 kWh.",
   },
   fuse: {
+    gridAssumptionDynamic: "The calculation is based on {{service}} {{voltage}}.",
+    capacity: {
+      otherLabel: "Enter value",
+      invalid: "Enter a value between {{min}} and {{max}} {{unit}}.",
+      amperage: {
+        title: "What is your main fuse?",
+        label: "Main fuse",
+        help: "Amperes per phase, shown on your main breaker or bill.",
+      },
+      "contracted-kva": {
+        title: "What is your contracted power?",
+        label: "Contracted power",
+        help: "Stated in kVA on your electricity bill.",
+      },
+      "contracted-kw": {
+        title: "What is your contracted power?",
+        label: "Contracted power",
+        help: "Stated in kW on your electricity bill.",
+      },
+    },
     gridAssumption: "The calculation assumes a 400 V three-phase connection.",
     gridAssumptionInfo: "The theoretical power of the main fuse is calculated from a 400 V three-phase connection. Check your actual grid connection if you are unsure.",
     grid: {
@@ -190,6 +210,10 @@ error: "Address search failed.",
     invalid: "Enter a main fuse between 6 and 400 A.",
   },
   result: {
+    connection: {
+      contractedKva: "Contracted power (kVA)",
+      contractedKw: "Contracted power (kW)",
+    },
     gridConnection: "Grid connection",
     gridConnectionValue: "{{voltage}} V, {{phases}}-phase",
     title: "Your calculation",

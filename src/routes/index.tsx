@@ -9,6 +9,7 @@ import { useCreatePendingCalculation } from "@/hooks/use-create-pending-calculat
 import { usePremium } from "@/hooks/use-premium";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { useWizardStore } from "@/state/wizard-store";
+import { isValidConnectionCapacity } from "@/config/connection-capacity";
 import { useCountryLanguage } from "@/hooks/use-country-language";
 
 export const Route = createFileRoute("/")({
@@ -37,7 +38,7 @@ function WizardPage() {
   const location = useWizardStore((s) => s.location);
   const tiltDegrees = useWizardStore((s) => s.tiltDegrees);
   const annualConsumptionKwh = useWizardStore((s) => s.annualConsumptionKwh);
-  const mainFuseAmp = useWizardStore((s) => s.mainFuseAmp);
+  const connectionCapacity = useWizardStore((s) => s.connectionCapacity);
 
   // Never resume past the first step that still lacks data — otherwise a
   // returning user lands on step 5 and gets an empty result page.
@@ -47,7 +48,7 @@ function WizardPage() {
       ? 2
       : !annualConsumptionKwh
         ? 3
-        : !mainFuseAmp
+        : !isValidConnectionCapacity(connectionCapacity)
           ? 4
           : 5;
   const step = Math.min(persistedStep, maxReachableStep);

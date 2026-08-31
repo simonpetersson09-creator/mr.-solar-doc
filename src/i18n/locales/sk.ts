@@ -139,6 +139,26 @@ export const sk = {
     "monthlyHint": "Zadajte spotrebu za všetkých 12 mesiacov"
   },
   "fuse": {
+    "gridAssumptionDynamic": "Výpočet vychádza z {{service}} {{voltage}}.",
+    "capacity": {
+      "otherLabel": "Zadajte hodnotu",
+      "invalid": "Zadajte hodnotu medzi {{min}} a {{max}} {{unit}}.",
+      "amperage": {
+        "title": "Aký máte hlavný istič?",
+        "label": "Hlavný istič",
+        "help": "Ampéry na fázu, uvedené na hlavnom ističi alebo faktúre."
+      },
+      "contracted-kva": {
+        "title": "Aký máte dohodnutý príkon?",
+        "label": "Dohodnutý príkon",
+        "help": "Na faktúre je uvedený v kVA."
+      },
+      "contracted-kw": {
+        "title": "Aký máte dohodnutý príkon?",
+        "label": "Dohodnutý príkon",
+        "help": "Na faktúre je uvedený v kW."
+      }
+    },
     "gridAssumption": "Výpočet vychádza z trojfázovej prípojky 400 V.",
     "gridAssumptionInfo": "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
     "grid": {
@@ -167,6 +187,10 @@ export const sk = {
     "invalid": "Zadajte hlavný istič medzi 6 a 400 A."
   },
   "result": {
+    "connection": {
+      "contractedKva": "Dohodnutý príkon (kVA)",
+      "contractedKw": "Dohodnutý príkon (kW)"
+    },
     "gridConnection": "Pripojenie do siete",
     "gridConnectionValue": "{{voltage}} V, {{phases}} fázy",
     "title": "Váš výpočet",

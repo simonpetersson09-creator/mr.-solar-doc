@@ -1,6 +1,8 @@
 import { jsPDF } from "jspdf";
 import type { CalculationResult, ValueOrigin } from "@/lib/calc/types";
 import { formatCurrency, formatDecimal, formatNumber, isoDateOnly } from "@/lib/format";
+import { formatConnectionCapacity } from "@/lib/connection-display";
+
 import { shareFile } from "./native-service";
 
 /**
@@ -756,7 +758,18 @@ export function generateReportBlob(options: ReportOptions): Blob {
         value: `${formatDecimal(result.oversizingPercent, locale)} %`,
         origin: "calculated",
       },
-      { label: f.mainFuse, value: `${result.mainFuseAmp} A`, origin: "user" },
+      {
+        label:
+          result.connection?.type === "contracted-kva"
+            ? (f["connectionKva"] ?? f.mainFuse)
+            : result.connection?.type === "contracted-kw"
+              ? (f["connectionKw"] ?? f.mainFuse)
+              : f.mainFuse,
+        value:
+          formatConnectionCapacity(result.connection, locale) ??
+          `${result.mainFuseAmp ?? "-"} A`,
+        origin: "user",
+      },
       {
         label: f["gridConnection"] ?? "",
         value: (f["gridConnectionValue"] ?? "{{voltage}} V, {{phases}}")

@@ -42,25 +42,32 @@ import type {
 export function calculateSolarSystem(input: CalculationInput): CalculationResult {
   const notes: string[] = [];
 
-  // Single source for the grid limit: service type + voltage + main fuse.
-  // A legacy `kwPerAmp` is only used when no voltage is supplied.
+  // The engine consumes ONE normalised ceiling. Whether the user answered in
+  // amperes, kVA or kW was resolved by the connection-capacity layer before
+  // this point; nothing country- or unit-specific lives in here.
   const gridVoltageV = input.electrical.gridVoltageV ?? EU_GRID_VOLTAGE_V;
   const gridPhases = input.electrical.gridPhases ?? EU_GRID_PHASES;
   const serviceType =
     input.electrical.serviceType ??
     SERVICE_TYPE_FOR_PHASE_COUNT[(gridPhases as PhaseCount) ?? EU_GRID_PHASES];
+  const mainFuseAmp = input.electrical.mainFuseAmp ?? null;
   const useLegacyFactor =
-    input.electrical.gridVoltageV === undefined && input.electrical.kwPerAmp !== undefined;
+    input.electrical.gridVoltageV === undefined &&
+    input.electrical.kwPerAmp !== undefined &&
+    mainFuseAmp !== null;
   const kwPerAmp = useLegacyFactor
     ? input.electrical.kwPerAmp!
     : kwPerAmpForService(serviceType, gridVoltageV);
-  const maxAcPowerKw = useLegacyFactor
-    ? input.electrical.mainFuseAmp * kwPerAmp
-    : maxAcPowerKwFor({
-        mainFuseAmp: input.electrical.mainFuseAmp,
-        voltageV: gridVoltageV,
-        serviceType,
-      });
+  const maxAcPowerKw =
+    input.electrical.maxAcPowerKw ??
+    (useLegacyFactor
+      ? mainFuseAmp! * kwPerAmp
+      : maxAcPowerKwFor({
+          mainFuseAmp: mainFuseAmp ?? 0,
+          voltageV: gridVoltageV,
+          serviceType,
+        }));
+
 
 
   const sizing = recommendArraySize({
@@ -272,7 +279,12 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
         : null,
       installationCostPerKwp: input.economics.installationCostPerKwp ?? null,
     },
-    mainFuseAmp: input.electrical.mainFuseAmp,
+    mainFuseAmp: input.electrical.connection
+      ? input.electrical.connection.type === "amperage"
+        ? input.electrical.connection.amperageA
+        : null
+      : mainFuseAmp,
+    connection: input.electrical.connection ?? null,
     grid: {
       voltageV: gridVoltageV,
       phases: gridPhases,

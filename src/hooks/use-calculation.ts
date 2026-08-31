@@ -6,6 +6,11 @@ import { resolveEconomicsDefaults } from "@/config/countries";
 import { useWizardStore } from "@/state/wizard-store";
 import { PRICE_SCENARIO_RATES } from "@/config/constants";
 import type { ServiceType } from "@/config/grid";
+import {
+  connectionCapacityToMaxAcPowerKw,
+  isValidConnectionCapacity,
+} from "@/config/connection-capacity";
+import { getConnectionConfig } from "@/config/connections";
 import { getCountryConfig } from "@/config/countries";
 
 /** UI -> Hook -> Calculation engine -> Result. No logic lives in components. */
@@ -20,6 +25,7 @@ export function useCalculation(): {
   const consumptionInputType = useWizardStore((s) => s.consumptionInputType);
   const consumptionShape = useWizardStore((s) => s.consumptionShape);
   const mainFuseAmp = useWizardStore((s) => s.mainFuseAmp);
+  const connectionCapacity = useWizardStore((s) => s.connectionCapacity);
   const gridPhaseCount = useWizardStore((s) => s.gridPhaseCount);
   const gridServiceType = useWizardStore((s) => s.gridServiceType);
   const gridVoltageV = useWizardStore((s) => s.gridVoltageV);
@@ -45,7 +51,14 @@ export function useCalculation(): {
   });
 
   const result = useMemo(() => {
-    if (!location || !resource || !annualConsumptionKwh || !mainFuseAmp) return null;
+    if (!location || !resource || !annualConsumptionKwh) return null;
+    if (!isValidConnectionCapacity(connectionCapacity)) return null;
+    // Country config only supplies the documented kVA assumption; the
+    // normalisation itself is unit-generic.
+    const kvaPowerFactor = getConnectionConfig(location.countryCode).contractedKvaPowerFactor;
+    const maxAcPowerKw = connectionCapacityToMaxAcPowerKw(connectionCapacity!, {
+      ...(kvaPowerFactor === undefined ? {} : { contractedKvaPowerFactor: kvaPowerFactor }),
+    });
     return calculateSolarSystem({
       location,
       resource,
@@ -58,6 +71,8 @@ export function useCalculation(): {
       },
       electrical: {
         mainFuseAmp,
+        maxAcPowerKw,
+        connection: connectionCapacity,
         serviceType: gridServiceType as ServiceType,
         gridVoltageV,
         gridPhases: gridPhaseCount,
@@ -94,6 +109,7 @@ export function useCalculation(): {
     consumptionInputType,
     consumptionShape,
     mainFuseAmp,
+    connectionCapacity,
     gridPhaseCount,
     gridServiceType,
     gridVoltageV,

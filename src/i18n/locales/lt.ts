@@ -139,6 +139,26 @@ export const lt = {
     "monthlyHint": "Įveskite suvartojimą visiems 12 mėnesių"
   },
   "fuse": {
+    "gridAssumptionDynamic": "Skaičiavimas remiasi {{service}} {{voltage}}.",
+    "capacity": {
+      "otherLabel": "Įveskite reikšmę",
+      "invalid": "Įveskite reikšmę nuo {{min}} iki {{max}} {{unit}}.",
+      "amperage": {
+        "title": "Koks jūsų įvadinis saugiklis?",
+        "label": "Įvadinis saugiklis",
+        "help": "Amperai vienai fazei, nurodyti ant įvadinio automato arba sąskaitoje."
+      },
+      "contracted-kva": {
+        "title": "Kokia jūsų sutartinė galia?",
+        "label": "Sutartinė galia",
+        "help": "Sąskaitoje nurodoma kVA."
+      },
+      "contracted-kw": {
+        "title": "Kokia jūsų sutartinė galia?",
+        "label": "Sutartinė galia",
+        "help": "Sąskaitoje nurodoma kW."
+      }
+    },
     "gridAssumption": "Skaičiavimas remiasi 400 V trifaze jungtimi.",
     "gridAssumptionInfo": "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
     "grid": {
@@ -167,6 +187,10 @@ export const lt = {
     "invalid": "Įveskite pagrindinį automatinį jungiklį nuo 6 iki 400 A."
   },
   "result": {
+    "connection": {
+      "contractedKva": "Sutartinė galia (kVA)",
+      "contractedKw": "Sutartinė galia (kW)"
+    },
     "gridConnection": "Tinklo prijungimas",
     "gridConnectionValue": "{{voltage}} V, {{phases}} fazės",
     "title": "Jūsų apskaičiavimas",

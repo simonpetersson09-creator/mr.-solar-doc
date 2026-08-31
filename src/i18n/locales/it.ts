@@ -139,6 +139,26 @@ export const it = {
     "monthlyHint": "Inserisci il consumo per tutti i 12 mesi"
   },
   "fuse": {
+    "gridAssumptionDynamic": "Il calcolo si basa su {{service}} {{voltage}}.",
+    "capacity": {
+      "otherLabel": "Inserisci un valore",
+      "invalid": "Inserisci un valore tra {{min}} e {{max}} {{unit}}.",
+      "amperage": {
+        "title": "Qual è il tuo interruttore generale?",
+        "label": "Interruttore generale",
+        "help": "Ampere per fase, indicati sull'interruttore generale o in bolletta."
+      },
+      "contracted-kva": {
+        "title": "Qual è la tua potenza impegnata?",
+        "label": "Potenza impegnata",
+        "help": "Indicata in kVA nella bolletta."
+      },
+      "contracted-kw": {
+        "title": "Qual è la tua potenza impegnata?",
+        "label": "Potenza impegnata",
+        "help": "Indicata in kW nella bolletta."
+      }
+    },
     "gridAssumption": "Il calcolo presuppone un allacciamento trifase a 400 V.",
     "gridAssumptionInfo": "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
     "grid": {
@@ -167,6 +187,10 @@ export const it = {
     "invalid": "Inserisci un limitatore di potenza tra 6 e 400 A."
   },
   "result": {
+    "connection": {
+      "contractedKva": "Potenza impegnata (kVA)",
+      "contractedKw": "Potenza impegnata (kW)"
+    },
     "gridConnection": "Allacciamento alla rete",
     "gridConnectionValue": "{{voltage}} V, {{phases}} fasi",
     "title": "Il tuo calcolo",

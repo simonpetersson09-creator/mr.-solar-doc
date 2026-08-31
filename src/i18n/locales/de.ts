@@ -139,6 +139,26 @@ export const de = {
     "monthlyHint": "Gib den Verbrauch für alle 12 Monate ein"
   },
   "fuse": {
+    "gridAssumptionDynamic": "Die Berechnung basiert auf {{service}} {{voltage}}.",
+    "capacity": {
+      "otherLabel": "Wert eingeben",
+      "invalid": "Geben Sie einen Wert zwischen {{min}} und {{max}} {{unit}} ein.",
+      "amperage": {
+        "title": "Welche Hausanschlusssicherung haben Sie?",
+        "label": "Hausanschlusssicherung",
+        "help": "Ampere pro Phase, steht am Hauptschalter oder auf der Rechnung."
+      },
+      "contracted-kva": {
+        "title": "Welche vereinbarte Leistung haben Sie?",
+        "label": "Vereinbarte Leistung",
+        "help": "Wird auf der Stromrechnung in kVA angegeben."
+      },
+      "contracted-kw": {
+        "title": "Welche vereinbarte Leistung haben Sie?",
+        "label": "Vereinbarte Leistung",
+        "help": "Wird auf der Stromrechnung in kW angegeben."
+      }
+    },
     "gridAssumption": "Die Berechnung geht von 400 V Dreiphasenanschluss aus.",
     "gridAssumptionInfo": "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
     "grid": {
@@ -167,6 +187,10 @@ export const de = {
     "invalid": "Geben Sie eine Hauptsicherung zwischen 6 und 400 A ein."
   },
   "result": {
+    "connection": {
+      "contractedKva": "Vereinbarte Leistung (kVA)",
+      "contractedKw": "Vereinbarte Leistung (kW)"
+    },
     "gridConnection": "Netzanschluss",
     "gridConnectionValue": "{{voltage}} V, {{phases}}-phasig",
     "title": "Ihre Berechnung",
