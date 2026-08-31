@@ -37,7 +37,9 @@ export const lv = {
     "coordinates": "Koordinātes",
     "country": "Valsts",
     "region": "Reģions",
-    "error": "Adreses meklēšana neizdevās."
+"error": "Adreses meklēšana neizdevās.",
+    "info": "Adrese tiek izmantota tikai saules starojuma aprēķināšanai jūsu atrašanās vietā.",
+    "infoLabel": "Vairāk informācijas par adresi"
   },
   "roof": {
     "title": "Jūsu jumts",

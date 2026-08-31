@@ -37,7 +37,9 @@ export const et = {
     "coordinates": "Koordinaadid",
     "country": "Riik",
     "region": "Piirkond",
-    "error": "Aadressi otsing ebaõnnestus."
+"error": "Aadressi otsing ebaõnnestus.",
+    "info": "Aadressi kasutatakse ainult päikesekiirguse arvutamiseks teie asukohas.",
+    "infoLabel": "Rohkem teavet aadressi kohta"
   },
   "roof": {
     "title": "Sinu katus",

@@ -1,7 +1,7 @@
 import { Suspense, lazy, useEffect, useState } from "react";
 import { ClientOnly, useNavigate } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Loader2, MapPin, Minus, Plus, Search, Settings, Sun } from "lucide-react";
+import { ArrowRight, CircleAlert, Loader2, MapPin, Minus, Plus, Search, Settings, Sun } from "lucide-react";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import type L from "leaflet";
 import { Button } from "@/components/ui/button";
@@ -31,7 +31,8 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
   const [query, setQuery] = useState(location?.address ?? "");
   const [debounced, setDebounced] = useState("");
   const [showResults, setShowResults] = useState(false);
-  const [map, setMap] = useState<L.Map | null>(null);
+const [map, setMap] = useState<L.Map | null>(null);
+  const [showAddressInfo, setShowAddressInfo] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setDebounced(query), 500);
@@ -137,7 +138,23 @@ return (
               <LanguageSwitcher className="h-8 w-auto gap-2 rounded-full border-white/25 bg-white/15 px-3 text-xs font-bold text-white shadow-sm" />
             </div>
 
-            <h1 className="mb-4 text-[22px] leading-[1.1] font-bold text-white">{t("address.title")}</h1>
+<div className="relative mb-4">
+              <h1 className="text-[22px] leading-[1.1] font-bold text-white">{t("address.title")}</h1>
+              <button
+                type="button"
+                onClick={() => setShowAddressInfo((open) => !open)}
+                aria-label={t("address.infoLabel")}
+                aria-expanded={showAddressInfo}
+                className="absolute top-0 right-0 flex size-6 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
+              >
+                <CircleAlert className="size-3.5" />
+              </button>
+            </div>
+            {showAddressInfo ? (
+              <p className="mb-4 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
+                {t("address.info")}
+              </p>
+            ) : null}
 
             <div className="relative">
               <Search className="pointer-events-none absolute top-1/2 left-3.5 z-10 size-4.5 -translate-y-1/2 text-accent" />

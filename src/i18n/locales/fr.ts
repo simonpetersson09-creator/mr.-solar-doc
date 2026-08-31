@@ -37,7 +37,9 @@ export const fr = {
     "coordinates": "Coordonnées",
     "country": "Pays",
     "region": "Région",
-    "error": "La recherche d'adresse a échoué."
+"error": "La recherche d'adresse a échoué.",
+    "info": "L'adresse sert uniquement à calculer l'ensoleillement à votre emplacement.",
+    "infoLabel": "Plus d'informations sur l'adresse"
   },
   "roof": {
     "title": "Votre toit",

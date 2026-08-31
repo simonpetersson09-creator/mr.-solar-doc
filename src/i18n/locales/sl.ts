@@ -37,7 +37,9 @@ export const sl = {
     "coordinates": "Koordinate",
     "country": "Država",
     "region": "Regija",
-    "error": "Iskanje naslova ni uspelo."
+"error": "Iskanje naslova ni uspelo.",
+    "info": "Naslov se uporablja izključno za izračun sončnega sevanja na vaši lokaciji.",
+    "infoLabel": "Več informacij o naslovu"
   },
   "roof": {
     "title": "Vaša streha",

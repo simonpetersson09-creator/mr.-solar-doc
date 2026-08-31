@@ -37,7 +37,9 @@ export const lt = {
     "coordinates": "Koordinatės",
     "country": "Šalis",
     "region": "Regionas",
-    "error": "Adreso paieška nepavyko."
+"error": "Adreso paieška nepavyko.",
+    "info": "Adresas naudojamas tik saulės spinduliuotei jūsų vietovėje apskaičiuoti.",
+    "infoLabel": "Daugiau informacijos apie adresą"
   },
   "roof": {
     "title": "Jūsų stogas",

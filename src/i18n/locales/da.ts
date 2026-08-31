@@ -37,7 +37,9 @@ export const da = {
     "coordinates": "Koordinater",
     "country": "Land",
     "region": "Region",
-    "error": "Adressesøgningen mislykkedes."
+"error": "Adressesøgningen mislykkedes.",
+    "info": "Adressen bruges udelukkende til at beregne solindstrålingen på din placering.",
+    "infoLabel": "Mere information om adressen"
   },
   "roof": {
     "title": "Dit tag",

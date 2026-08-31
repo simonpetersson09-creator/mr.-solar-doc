@@ -37,7 +37,9 @@ export const cs = {
     "coordinates": "Souřadnice",
     "country": "Země",
     "region": "Region",
-    "error": "Vyhledávání adresy selhalo."
+"error": "Vyhledávání adresy selhalo.",
+    "info": "Adresa se používá pouze pro výpočet slunečního záření ve vaší lokalitě.",
+    "infoLabel": "Více informací o adrese"
   },
   "roof": {
     "title": "Vaše střecha",

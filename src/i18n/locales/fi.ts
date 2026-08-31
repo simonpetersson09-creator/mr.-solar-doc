@@ -37,7 +37,9 @@ export const fi = {
     "coordinates": "Koordinaatit",
     "country": "Maa",
     "region": "Alue",
-    "error": "Osoitehaku epäonnistui."
+"error": "Osoitehaku epäonnistui.",
+    "info": "Osoitetta käytetään vain auringon säteilyn laskemiseen sijainnissasi.",
+    "infoLabel": "Lisätietoja osoitteesta"
   },
   "roof": {
     "title": "Kattosi",

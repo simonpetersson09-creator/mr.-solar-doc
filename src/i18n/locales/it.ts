@@ -37,7 +37,9 @@ export const it = {
     "coordinates": "Coordinate",
     "country": "Paese",
     "region": "Regione",
-    "error": "La ricerca dell'indirizzo è fallita."
+"error": "La ricerca dell'indirizzo è fallita.",
+    "info": "L'indirizzo viene utilizzato solo per calcolare l'irraggiamento solare nella tua posizione.",
+    "infoLabel": "Maggiori informazioni sull'indirizzo"
   },
   "roof": {
     "title": "Il tuo tetto",
