@@ -303,11 +303,11 @@ const cost = result.productionCost;
           <h2 className="text-center text-sm font-semibold text-white">
             {t("result.productionCostTitle")}
           </h2>
-          <p className="mt-0.5 text-center text-xs text-white/60">
-            {t("result.productionCostExplainer")}
-          </p>
           {cost.costPerKwh === null ? (
-            <p className="mt-3 text-xs text-white/60">{t("result.productionCostUnavailable")}</p>
+            <p className="mt-3 text-center text-[11px] text-white/60">
+              {t("result.productionCostUnavailable")}
+            </p>
+
           ) : (
             <>
 <div className="mt-3 grid grid-cols-3 gap-1.5 text-center">
