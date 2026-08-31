@@ -160,7 +160,9 @@ export const et = {
       }
     },
     "gridAssumption": "Arvutus eeldab 400 V kolmefaasilist liitumist.",
-    "gridAssumptionInfo": "Peakaitsme teoreetiline võimsus arvutatakse 400 V kolmefaasilise liitumise alusel. Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
+"gridAssumptionInfo": "Peakaitsme teoreetiline võimsus arvutatakse 400 V kolmefaasilise liitumise alusel. Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
+    "disclaimerTitle": "Oluline teada",
+    "disclaimer": "Arvutus on suunav ega asenda tehnilist hinnangut. Enne paigaldust kontrollige alati pinget, liitumisvõimsust, lubatud võimsust ja muid kohalikke võrgunõudeid kvalifitseeritud elektrikuga ning vajadusel oma võrguettevõtjaga.\n\nMr Solar Doc ei vastuta paigaldiste ega otsuste eest, mis on tehtud üksnes rakenduse arvutuste põhjal.",
     "grid": {
       "advanced": "Täpsemad seaded",
       "section": "Võrgu seaded",

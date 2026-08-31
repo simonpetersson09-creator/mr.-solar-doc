@@ -160,7 +160,9 @@ export const lt = {
       }
     },
     "gridAssumption": "Skaičiavimas remiasi 400 V trifaze jungtimi.",
-    "gridAssumptionInfo": "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
+"gridAssumptionInfo": "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
+    "disclaimerTitle": "Svarbu žinoti",
+    "disclaimer": "Skaičiavimas yra orientacinis ir negali pakeisti techninio įvertinimo. Prieš įrengimą visada patikrinkite įtampą, prijungimo galią, leistiną galią ir kitus vietinius tinklo reikalavimus su kvalifikuotu elektriku ir, jei reikia, su savo tinklo operatoriumi.\n\n„Mr Solar Doc“ neatsako už įrenginius ar sprendimus, priimtus tik remiantis programėlės skaičiavimais.",
     "grid": {
       "advanced": "Išplėstiniai nustatymai",
       "section": "Tinklo nustatymai",

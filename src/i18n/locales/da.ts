@@ -160,7 +160,9 @@ export const da = {
       }
     },
     "gridAssumption": "Beregningen tager udgangspunkt i 400 V trefaset.",
-    "gridAssumptionInfo": "Hovedsikringens teoretiske effekt beregnes ud fra en 400 V trefaset tilslutning. Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
+"gridAssumptionInfo": "Hovedsikringens teoretiske effekt beregnes ud fra en 400 V trefaset tilslutning. Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
+    "disclaimerTitle": "Vigtigt at vide",
+    "disclaimer": "Beregningen er vejledende og kan ikke erstatte en teknisk vurdering. Kontrollér altid spænding, tilslutningskapacitet, tilladt effekt og øvrige lokale netkrav hos en kvalificeret elinstallatør og, om nødvendigt, dit netselskab før installation.\n\nMr Solar Doc er ikke ansvarlig for installationer eller beslutninger, der træffes udelukkende på baggrund af appens beregninger.",
     "grid": {
       "advanced": "Avancerede indstillinger",
       "section": "Netsindstillinger",

@@ -160,7 +160,9 @@ export const pl = {
       }
     },
     "gridAssumption": "Obliczenia zakładają przyłącze trójfazowe 400 V.",
-    "gridAssumptionInfo": "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
+"gridAssumptionInfo": "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
+    "disclaimerTitle": "Ważne informacje",
+    "disclaimer": "Obliczenia mają charakter orientacyjny i nie zastępują oceny technicznej. Przed instalacją zawsze zweryfikuj napięcie, moc przyłączeniową, dopuszczalną moc oraz inne lokalne wymagania sieciowe z wykwalifikowanym elektrykiem, a w razie potrzeby z operatorem sieci.\n\nFirma Mr Solar Doc nie ponosi odpowiedzialności za instalacje ani decyzje podjęte wyłącznie na podstawie obliczeń aplikacji.",
     "grid": {
       "advanced": "Ustawienia zaawansowane",
       "section": "Ustawienia sieci",

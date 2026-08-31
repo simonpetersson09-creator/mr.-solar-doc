@@ -160,7 +160,9 @@ export const fi = {
       }
     },
     "gridAssumption": "Laskenta perustuu 400 V:n kolmivaiheliittymään.",
-    "gridAssumptionInfo": "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
+"gridAssumptionInfo": "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
+    "disclaimerTitle": "Hyvä tietää",
+    "disclaimer": "Laskelma on suuntaa-antava eikä korvaa teknistä arviointia. Tarkista aina jännite, liittymisteho, sallittu teho ja muut paikalliset verkkovaatimukset pätevältä sähköasentajalta ja tarvittaessa verkkoyhtiöltäsi ennen asennusta.\n\nMr Solar Doc ei vastaa asennuksista tai päätöksistä, jotka tehdään yksinomaan sovelluksen laskelmien perusteella.",
     "grid": {
       "advanced": "Lisäasetukset",
       "section": "Verkkoasetukset",

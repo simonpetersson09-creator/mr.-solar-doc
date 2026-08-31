@@ -160,7 +160,9 @@ export const sk = {
       }
     },
     "gridAssumption": "Výpočet vychádza z trojfázovej prípojky 400 V.",
-    "gridAssumptionInfo": "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
+"gridAssumptionInfo": "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
+    "disclaimerTitle": "Dôležité vedieť",
+    "disclaimer": "Výpočet je orientačný a nenahrádza technické posúdenie. Pred inštaláciou vždy overte napätie, prípojný výkon, povolený výkon a ďalšie miestne požiadavky siete u kvalifikovaného elektrikára a prípadne u vášho prevádzkovateľa distribučnej siete.\n\nSpoločnosť Mr Solar Doc nezodpovedá za inštalácie ani rozhodnutia prijaté výhradne na základe výpočtov aplikácie.",
     "grid": {
       "advanced": "Pokročilé nastavenia",
       "section": "Nastavenia siete",

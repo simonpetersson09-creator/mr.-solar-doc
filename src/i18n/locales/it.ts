@@ -160,7 +160,9 @@ export const it = {
       }
     },
     "gridAssumption": "Il calcolo presuppone un allacciamento trifase a 400 V.",
-    "gridAssumptionInfo": "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
+"gridAssumptionInfo": "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
+    "disclaimerTitle": "Importante da sapere",
+    "disclaimer": "Il calcolo è indicativo e non sostituisce una valutazione tecnica. Verificare sempre tensione, capacità di connessione, potenza consentita e altri requisiti locali della rete con un elettricista qualificato e, se necessario, con il proprio gestore di rete prima dell'installazione.\n\nMr Solar Doc non è responsabile di impianti o decisioni prese esclusivamente sulla base dei calcoli dell'app.",
     "grid": {
       "advanced": "Impostazioni avanzate",
       "section": "Impostazioni di rete",
