@@ -441,7 +441,9 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       title: "One calculation",
       body: "Unlock the full result and the PDF report for this calculation.",
       cta: "Unlock for {{price}}",
+      ctaNoPrice: "Unlock",
     },
+    priceLoading: "Fetching price…",
     premium: {
       title: "Premium",
       price: "{{price}}/year",
