@@ -254,7 +254,9 @@ export const et = {
     investmentLevelInfoLabel: "Rohkem teavet",
     investmentLevelInfo: "Näitab ligikaudu, milline investeeringukulu vastab teie valitud tasuvusajale. See ei ole hinnang selle kohta, mida paigaldus tegelikult maksab. Tegelik hind sõltub muu hulgas katusest, paigaldusest, komponentidest ja tarnijast.",
     systemSizeInfoLabel: "Rohkem teavet",
-    systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tegelik tootlus, oma tarve, elektrihind, hüvitis, paigalduskulu ja majanduslik tulemus võivad erineda. Tulemus ei ole pakkumine ega garantii.",
+systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tegelik tootlus, oma tarve, elektrihind, hüvitis, paigalduskulu ja majanduslik tulemus võivad erineda. Tulemus ei ole pakkumine ega garantii.",
+    productionCostInfoLabel: "Rohkem teavet",
+    productionCostInfo: "Tootmiskulu on arvutatud keskmine kulu toodetud kWh kohta süsteemi eluea jooksul. Tegelikku kulu võivad mõjutada tootmine, degradatsioon, hooldus ja muud tulevased kulud.",
 
 
     "maxInvestmentExplainer": "Ligikaudu {{years}} aasta lihtsa tasuvusaja saavutamiseks peaks paigalduse maksumus olema maksimaalselt umbes {{amount}}.",

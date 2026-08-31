@@ -254,7 +254,9 @@ export const da = {
     investmentLevelInfoLabel: "Mere information",
     investmentLevelInfo: "Viser cirka, hvilken investeringsomkostning der svarer til den tilbagebetalingstid, du har valgt. Det er ikke et skøn over, hvad installationen faktisk koster. Den faktiske pris afhænger blandt andet af tag, installation, komponenter og leverandør.",
     systemSizeInfoLabel: "Mere information",
-    systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk produktion, egenforbrug, elpris, godtgørelse, installationsomkostning og økonomisk resultat kan afvige. Resultatet er ikke et tilbud eller en garanti.",
+systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk produktion, egenforbrug, elpris, godtgørelse, installationsomkostning og økonomisk resultat kan afvige. Resultatet er ikke et tilbud eller en garanti.",
+    productionCostInfoLabel: "Mere information",
+    productionCostInfo: "Produktionsomkostningen er en beregnet gennemsnitlig omkostning per produceret kWh over anlæggets levetid. Den faktiske omkostning kan påvirkes af produktion, degradering, vedligeholdelse og andre fremtidige omkostninger.",
 
 
     "maxInvestmentExplainer": "For at nå cirka {{years}} års simpel tilbagebetalingstid bør installationen højst koste omkring {{amount}}.",

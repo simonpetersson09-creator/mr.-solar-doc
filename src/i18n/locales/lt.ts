@@ -254,7 +254,9 @@ export const lt = {
     investmentLevelInfoLabel: "Daugiau informacijos",
     investmentLevelInfo: "Apytiksliai parodo, kokia investicijų suma atitinka jūsų pasirinktą atsipirkimo laikotarpį. Tai nėra įvertinimas, kiek įrengimas iš tikrųjų kainuoja. Faktinė kaina priklauso, be kita ko, nuo stogo, įrengimo, komponentų ir tiekėjo.",
     systemSizeInfoLabel: "Daugiau informacijos",
-    systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kaip orientyras. Faktinė gamyba, savas suvartojimas, elektros kaina, atlygis, įrengimo kaina ir ekonominis rezultatas gali skirtis. Rezultatas nėra pasiūlymas ar garantija.",
+systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kaip orientyras. Faktinė gamyba, savas suvartojimas, elektros kaina, atlygis, įrengimo kaina ir ekonominis rezultatas gali skirtis. Rezultatas nėra pasiūlymas ar garantija.",
+    productionCostInfoLabel: "Daugiau informacijos",
+    productionCostInfo: "Gamybos sąnaudos yra apskaičiuotos vidutinės sąnaudos už pagamintą kWh per įrenginio eksploatavimo laikotarpį. Faktinėms sąnaudoms įtakos gali turėti gamyba, degradacija, priežiūra ir kitos būsimos išlaidos.",
 
 
     "maxInvestmentExplainer": "Norint pasiekti maždaug {{years}} metų paprastą atsipirkimą, įrengimas turėtų kainuoti ne daugiau kaip apie {{amount}}.",

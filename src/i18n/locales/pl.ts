@@ -254,7 +254,9 @@ export const pl = {
     investmentLevelInfoLabel: "Więcej informacji",
     investmentLevelInfo: "Pokazuje w przybliżeniu, jaki koszt inwestycji odpowiada wybranemu okresowi zwrotu. Nie jest to szacunek rzeczywistego kosztu instalacji. Rzeczywista cena zależy między innymi od dachu, instalacji, komponentów i dostawcy.",
     systemSizeInfoLabel: "Więcej informacji",
-    systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskazówka. Rzeczywista produkcja, zużycie własne, cena energii, wynagrodzenie, koszt instalacji i wynik finansowy mogą się różnić. Wynik nie stanowi oferty ani gwarancji.",
+systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskazówka. Rzeczywista produkcja, zużycie własne, cena energii, wynagrodzenie, koszt instalacji i wynik finansowy mogą się różnić. Wynik nie stanowi oferty ani gwarancji.",
+    productionCostInfoLabel: "Więcej informacji",
+    productionCostInfo: "Koszt produkcji to obliczony średni koszt za wyprodukowaną kWh przez cały okres eksploatacji instalacji. Na rzeczywisty koszt mogą wpływać produkcja, degradacja, konserwacja i inne przyszłe koszty.",
 
 
     "maxInvestmentExplainer": "Aby osiągnąć około {{years}} lat prostego zwrotu, instalacja powinna kosztować maksymalnie około {{amount}}.",

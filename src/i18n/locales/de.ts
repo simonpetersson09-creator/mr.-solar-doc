@@ -254,7 +254,9 @@ export const de = {
     investmentLevelInfoLabel: "Weitere Informationen",
     investmentLevelInfo: "Zeigt ungefähr, welche Investitionskosten der von Ihnen gewählten Amortisationszeit entsprechen. Es handelt sich nicht um eine Schätzung der tatsächlichen Installationskosten. Der tatsächliche Preis hängt unter anderem vom Dach, der Installation, den Komponenten und dem Anbieter ab.",
     systemSizeInfoLabel: "Weitere Informationen",
-    systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. Tatsächliche Produktion, Eigenverbrauch, Strompreis, Vergütung, Installationskosten und wirtschaftliches Ergebnis können abweichen. Das Ergebnis stellt kein Angebot und keine Garantie dar.",
+systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. Tatsächliche Produktion, Eigenverbrauch, Strompreis, Vergütung, Installationskosten und wirtschaftliches Ergebnis können abweichen. Das Ergebnis stellt kein Angebot und keine Garantie dar.",
+    productionCostInfoLabel: "Weitere Informationen",
+    productionCostInfo: "Die Produktionskosten sind ein berechneter durchschnittlicher Preis pro erzeugter kWh über die Lebensdauer der Anlage. Die tatsächlichen Kosten können durch Produktion, Degradation, Wartung und andere zukünftige Kosten beeinflusst werden.",
 
 
     "maxInvestmentExplainer": "Um eine einfache Amortisationszeit von etwa {{years}} Jahren zu erreichen, sollten die Installationskosten höchstens etwa {{amount}} betragen.",

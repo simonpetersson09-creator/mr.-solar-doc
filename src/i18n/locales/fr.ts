@@ -254,7 +254,9 @@ export const fr = {
     investmentLevelInfoLabel: "Plus d'informations",
     investmentLevelInfo: "Indique approximativement le coût d'investissement correspondant à la période de remboursement que vous avez choisie. Il ne s'agit pas d'une estimation du coût réel de l'installation. Le prix réel dépend, entre autres, de la toiture, de l'installation, des composants et du fournisseur.",
     systemSizeInfoLabel: "Plus d'informations",
-    systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre indicatif. La production réelle, l'autoconsommation, le prix de l'électricité, la rémunération, le coût d'installation et le résultat économique peuvent varier. Le résultat ne constitue ni une offre ni une garantie.",
+systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre indicatif. La production réelle, l'autoconsommation, le prix de l'électricité, la rémunération, le coût d'installation et le résultat économique peuvent varier. Le résultat ne constitue ni une offre ni une garantie.",
+    productionCostInfoLabel: "Plus d'informations",
+    productionCostInfo: "Le coût de production est un coût moyen calculé par kWh produit sur la durée de vie de l'installation. Le coût réel peut être influencé par la production, la dégradation, l'entretien et d'autres coûts futurs.",
 
 
     "maxInvestmentExplainer": "Pour atteindre environ {{years}} ans de retour sur investissement simple, l'installation ne devrait pas coûter plus d'environ {{amount}}.",

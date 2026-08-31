@@ -254,7 +254,9 @@ export const fi = {
     investmentLevelInfoLabel: "Lisätietoja",
     investmentLevelInfo: "Näyttää suunnilleen, minkä suuruista investointia valitsemasi takaisinmaksuaika vastaa. Se ei ole arvio siitä, mitä asennus todellisuudessa maksaa. Todellinen hinta riippuu muun muassa katosta, asennuksesta, komponenteista ja toimittajasta.",
     systemSizeInfoLabel: "Lisätietoja",
-    systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. Todellinen tuotanto, omaan käyttöön jäävä osuus, sähkön hinta, korvaus, asennuskustannus ja taloudellinen lopputulos voivat poiketa. Tulos ei ole tarjous eikä takuu.",
+systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. Todellinen tuotanto, omaan käyttöön jäävä osuus, sähkön hinta, korvaus, asennuskustannus ja taloudellinen lopputulos voivat poiketa. Tulos ei ole tarjous eikä takuu.",
+    productionCostInfoLabel: "Lisätietoja",
+    productionCostInfo: "Tuotantokustannus on laskettu keskimääräinen kustannus tuotettua kWh:ta kohti järjestelmän elinkaaren aikana. Todelliseen kustannukseen voivat vaikuttaa tuotanto, tehon heikkeneminen, huolto ja muut tulevat kustannukset.",
 
 
     "maxInvestmentExplainer": "Noin {{years}} vuoden yksinkertaisen takaisinmaksuajan saavuttamiseksi asennuksen tulisi maksaa enintään noin {{amount}}.",

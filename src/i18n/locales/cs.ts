@@ -254,7 +254,9 @@ export const cs = {
     investmentLevelInfoLabel: "Více informací",
     investmentLevelInfo: "Přibližně ukazuje, jaká investiční částka odpovídá vámi zvolené době návratnosti. Nejde o odhad skutečných nákladů na instalaci. Skutečná cena závisí mimo jiné na střeše, instalaci, komponentech a dodavateli.",
     systemSizeInfoLabel: "Více informací",
-    systemSizeInfo: "Výpočet je odhadem a měl by sloužit jako orientace. Skutečná výroba, vlastní spotřeba, cena elektřiny, kompenzace, náklady na instalaci a ekonomický výsledek se mohou lišit. Výsledek nepředstavuje nabídku ani záruku.",
+systemSizeInfo: "Výpočet je odhadem a měl by sloužit jako orientace. Skutečná výroba, vlastní spotřeba, cena elektřiny, kompenzace, náklady na instalaci a ekonomický výsledek se mohou lišit. Výsledek nepředstavuje nabídku ani záruku.",
+    productionCostInfoLabel: "Více informací",
+    productionCostInfo: "Výrobní náklady jsou vypočítané průměrné náklady na vyrobenou kWh za dobu životnosti zařízení. Skutečné náklady mohou být ovlivněny výrobou, degradací, údržbou a dalšími budoucími náklady.",
 
 
     "maxInvestmentExplainer": "Pro dosažení přibližně {{years}} let jednoduché doby návratnosti by instalace měla stát maximálně kolem {{amount}}.",
