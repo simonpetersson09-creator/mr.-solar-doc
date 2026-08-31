@@ -1,5 +1,6 @@
 import { fetchPvgis } from "@/lib/pvgis.functions";
 import type { Orientation, SolarResource } from "@/lib/calc/types";
+import { defaultPvgisAzimuthForLatitude } from "@/lib/geo/hemisphere";
 
 /** PVGIS azimuth convention: 0 = south, negative = east, positive = west. */
 const ORIENTATION_AZIMUTH: Record<Exclude<Orientation, "unknown">, number> = {
@@ -36,8 +37,11 @@ export async function getSolarResource(
   const orientationAssumed = request.orientation === "unknown";
   const tiltAssumed = request.tiltDegrees === null;
 
+  // Priority: user azimuth > user preset orientation > latitude-based default.
+  // Latitude (not country) decides the hemisphere: south on the northern
+  // hemisphere, north on the southern one, and no assumption near the equator.
   const azimuth = orientationAssumed
-    ? 0
+    ? defaultPvgisAzimuthForLatitude(request.latitude)
     : request.azimuthDegrees != null
       ? compassToPvgisAzimuth(request.azimuthDegrees)
       : ORIENTATION_AZIMUTH[request.orientation as Exclude<Orientation, "unknown">];

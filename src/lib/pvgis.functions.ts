@@ -37,12 +37,15 @@ substrings: "",
     });
     params.delete("substrings");
 
+    // A null azimuth means "no direction assumption" (equatorial band): let
+    // PVGIS optimise the aspect instead of asserting south or north.
+    const useOptimalAngles = data.tilt === null || data.azimuth === null;
     const useOptimalTilt = data.tilt === null;
-    if (useOptimalTilt) {
+    if (useOptimalAngles) {
       params.set("optimalangles", "1");
     } else {
       params.set("angle", String(data.tilt));
-      params.set("aspect", String(data.azimuth ?? 0));
+      params.set("aspect", String(data.azimuth));
     }
 
     const url = `https://re.jrc.ec.europa.eu/api/v5_3/PVcalc?${params.toString()}`;
