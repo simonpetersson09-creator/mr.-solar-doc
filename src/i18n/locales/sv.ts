@@ -84,6 +84,11 @@ error: "Adressökningen misslyckades.",
     disclaimer: "Beräknad solproduktion baseras på plats, väderstreck och taklutning. Faktisk produktion kan påverkas av bland annat skuggning, väder, temperatur och systemförluster.",
     error:
       "Vi kunde inte hämta solproduktionsdata för platsen just nu. Inga värden gissas fram.",
+    errorOverSea:
+      "Platsen verkar ligga över vatten. Flytta markören till byggnaden på land och försök igen.",
+    errorOutsideCoverage:
+      "Vi har ingen soldata för den här platsen. Prova en närliggande adress.",
+    errorSource: "PVGIS: {{message}}",
   },
   consumption: {
     validation: {
