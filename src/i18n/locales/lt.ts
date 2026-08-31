@@ -346,7 +346,7 @@ systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kai
     "fields": {
       "gridConnection": "Tinklo prijungimas",
       "gridConnectionValue": "{{voltage}} V, {{phases}} fazės",
-      "gridMethodNote": "Teorinė AC galia remiasi 400 V trifaze jungtimi ir skaičiuojama kaip √3 × 400 V × pagrindinis saugiklis. Faktinę leistiną prijungimo ar atiduodamą galią gali riboti tinklo operatorius arba konkreti instaliacija.",
+      "gridMethodNote": "Teorinė AC galia remiasi 400 V trifaze jungtimi ir skaičiuojama kaip 1,73 × 400 V × pagrindinis saugiklis. Faktinę leistiną prijungimo ar atiduodamą galią gali riboti tinklo operatorius arba konkreti instaliacija.",
       "savings30Short": "Apskaičiuota su {{degradation}} % metiniu gamybos degradacija ir nepakitusia elektros verte.",
       "solarShareTitle": "Jūsų saulės energija",
       "selfConsumptionRate": "Savarankiško suvartojimo norma (saulės energijos gamybos dalis)",

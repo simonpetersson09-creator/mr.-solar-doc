@@ -346,7 +346,7 @@ systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk 
     "fields": {
       "gridConnection": "Nettilslutning",
       "gridConnectionValue": "{{voltage}} V, {{phases}}-faset",
-      "gridMethodNote": "Den teoretiske AC-effekt tager udgangspunkt i 400 V trefaset og beregnes som √3 × 400 V × hovedsikring. Den faktisk tilladte tilslutnings- eller indfødningseffekt kan være begrænset af netselskabet eller den konkrete installation.",
+      "gridMethodNote": "Den teoretiske AC-effekt tager udgangspunkt i 400 V trefaset og beregnes som 1,73 × 400 V × hovedsikring. Den faktisk tilladte tilslutnings- eller indfødningseffekt kan være begrænset af netselskabet eller den konkrete installation.",
       "savings30Short": "Beregnet med {{degradation}} % årlig produktionsdegradering og uændrede elværdier.",
       "solarShareTitle": "Din solel",
       "selfConsumptionRate": "Egenforbrugsgrad (andel af solelproduktionen)",

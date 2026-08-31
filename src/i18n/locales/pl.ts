@@ -346,7 +346,7 @@ systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskaz
     "fields": {
       "gridConnection": "Przyłącze sieciowe",
       "gridConnectionValue": "{{voltage}} V, {{phases}} fazy",
-      "gridMethodNote": "Teoretyczna moc AC zakłada przyłącze trójfazowe 400 V i jest obliczana jako √3 × 400 V × zabezpieczenie główne. Rzeczywista dopuszczalna moc przyłączeniowa lub oddawana do sieci może być ograniczona przez operatora sieci lub konkretną instalację.",
+      "gridMethodNote": "Teoretyczna moc AC zakłada przyłącze trójfazowe 400 V i jest obliczana jako 1,73 × 400 V × zabezpieczenie główne. Rzeczywista dopuszczalna moc przyłączeniowa lub oddawana do sieci może być ograniczona przez operatora sieci lub konkretną instalację.",
       "savings30Short": "Obliczono z degradacją produkcji {{degradation}} % rocznie i niezmienionymi wartościami energii elektrycznej.",
       "solarShareTitle": "Twoja energia słoneczna",
       "selfConsumptionRate": "Współczynnik autokonsumpcji (udział w produkcji energii słonecznej)",

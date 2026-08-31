@@ -346,7 +346,7 @@ systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dej
     "fields": {
       "gridConnection": "Omrežni priključek",
       "gridConnectionValue": "{{voltage}} V, {{phases}}-fazni",
-      "gridMethodNote": "Teoretična moč AC predpostavlja trifazni priključek 400 V in se izračuna kot √3 × 400 V × glavna varovalka. Dejansko dovoljeno priključno moč ali moč oddaje lahko omeji upravljavec omrežja ali konkretna namestitev.",
+      "gridMethodNote": "Teoretična moč AC predpostavlja trifazni priključek 400 V in se izračuna kot 1,73 × 400 V × glavna varovalka. Dejansko dovoljeno priključno moč ali moč oddaje lahko omeji upravljavec omrežja ali konkretna namestitev.",
       "savings30Short": "Izračunano z {{degradation}} % letne degradacije proizvodnje in nespremenjenimi vrednostmi električne energije.",
       "solarShareTitle": "Vaša sončna elektrika",
       "selfConsumptionRate": "Stopnja lastne porabe (delež sončne proizvodnje)",

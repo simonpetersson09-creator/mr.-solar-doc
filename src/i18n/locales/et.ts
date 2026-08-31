@@ -346,7 +346,7 @@ systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tege
     "fields": {
       "gridConnection": "Võrguühendus",
       "gridConnectionValue": "{{voltage}} V, {{phases}}-faasiline",
-      "gridMethodNote": "Teoreetiline AC-võimsus eeldab 400 V kolmefaasilist liitumist ja arvutatakse valemiga √3 × 400 V × peakaitse. Tegelikku lubatud liitumis- või väljastusvõimsust võib piirata võrguettevõtja või konkreetne paigaldis.",
+      "gridMethodNote": "Teoreetiline AC-võimsus eeldab 400 V kolmefaasilist liitumist ja arvutatakse valemiga 1,73 × 400 V × peakaitse. Tegelikku lubatud liitumis- või väljastusvõimsust võib piirata võrguettevõtja või konkreetne paigaldis.",
       "savings30Short": "Arvutatud {{degradation}} % aastase tootluse languse ja muutumatute elektriväärtustega.",
       "solarShareTitle": "Sinu päikeseenergia",
       "selfConsumptionRate": "Omatarvemäär (päikeseenergia tootmise osakaal)",

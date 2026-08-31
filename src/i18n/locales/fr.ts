@@ -346,7 +346,7 @@ systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre in
     "fields": {
       "gridConnection": "Raccordement au réseau",
       "gridConnectionValue": "{{voltage}} V, {{phases}} phases",
-      "gridMethodNote": "La puissance CA théorique suppose un raccordement triphasé 400 V et se calcule comme √3 × 400 V × fusible principal. La puissance de raccordement ou d'injection réellement autorisée peut être limitée par le gestionnaire de réseau ou par l'installation.",
+      "gridMethodNote": "La puissance CA théorique suppose un raccordement triphasé 400 V et se calcule comme 1,73 × 400 V × fusible principal. La puissance de raccordement ou d'injection réellement autorisée peut être limitée par le gestionnaire de réseau ou par l'installation.",
       "savings30Short": "Calculé avec une dégradation de production annuelle de {{degradation}} % et des valeurs d'électricité inchangées.",
       "solarShareTitle": "Votre électricité solaire",
       "selfConsumptionRate": "Taux d'autoconsommation (part de la production solaire)",

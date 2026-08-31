@@ -346,7 +346,7 @@ systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produ
     "fields": {
       "gridConnection": "Allacciamento alla rete",
       "gridConnectionValue": "{{voltage}} V, {{phases}} fasi",
-      "gridMethodNote": "La potenza CA teorica presuppone un allacciamento trifase a 400 V ed è calcolata come √3 × 400 V × fusibile principale. La potenza di allacciamento o di immissione effettivamente consentita può essere limitata dal gestore di rete o dall'installazione specifica.",
+      "gridMethodNote": "La potenza CA teorica presuppone un allacciamento trifase a 400 V ed è calcolata come 1,73 × 400 V × fusibile principale. La potenza di allacciamento o di immissione effettivamente consentita può essere limitata dal gestore di rete o dall'installazione specifica.",
       "savings30Short": "Calcolato con {{degradation}} % di degrado annuo della produzione e valori dell'elettricità invariati.",
       "solarShareTitle": "La tua energia solare",
       "selfConsumptionRate": "Tasso di autoconsumo (quota della produzione solare)",
