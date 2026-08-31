@@ -107,7 +107,7 @@ function SettingsPage() {
         <div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
           <button
             type="button"
-            onClick={() => void haptic("medium")}
+            onClick={handleStartPremium}
             className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
           >
             <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground shadow-md shadow-accent/40">
@@ -117,16 +117,23 @@ function SettingsPage() {
           </button>
           <button
             type="button"
-            onClick={() => void haptic("light")}
-            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
+            disabled={restoring}
+            onClick={() => void handleRestore()}
+            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98] disabled:opacity-60"
           >
             <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
-              <RefreshCw className="size-4" />
+              {restoring ? (
+                <Loader2 className="size-4 animate-spin" />
+              ) : (
+                <RefreshCw className="size-4" />
+              )}
             </span>
             <span className="text-sm font-bold text-foreground">{t("premium.restore")}</span>
           </button>
-          <button
-            type="button"
+          <a
+            href={MANAGE_SUBSCRIPTION_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => void haptic("light")}
             className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
           >
@@ -134,7 +141,7 @@ function SettingsPage() {
               <Settings2 className="size-4" />
             </span>
             <span className="text-sm font-bold text-foreground">{t("premium.manage")}</span>
-          </button>
+          </a>
         </div>
 
 <div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
