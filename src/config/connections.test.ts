@@ -103,10 +103,13 @@ describe("country connection config", () => {
 
   it("Belgium supports 3 × 230 V without neutral", () => {
     const option = getConnectionConfig("BE").connectionOptions.find(
-      (o) => o.capacity.voltageV === 230 && o.capacity.serviceType === "three-phase",
+      (o) =>
+        o.capacity.voltageV === 230 &&
+        o.capacity.serviceType === "three-phase" &&
+        connectionCapacityAmount(o.capacity) === 40,
     )!;
     // sqrt(3) x 230 x 40 / 1000
-    expect(Math.abs(acPowerOf(option.capacity) - 15.93)).toBeLessThan(0.6);
+    expect(Math.abs(acPowerOf(option.capacity) - 15.93)).toBeLessThan(0.05);
   });
 
   it("finds an option by id", () => {
