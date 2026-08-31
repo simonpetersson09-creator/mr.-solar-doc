@@ -91,8 +91,13 @@ const [showGridInfo, setShowGridInfo] = useState(false);
         option.capacity.type === storedCapacity.type &&
         connectionCapacityAmount(option.capacity) ===
           connectionCapacityAmount(storedCapacity) &&
-        (option.capacity.voltageV ?? null) === (storedCapacity.voltageV ?? null),
+        // Voltage identifies an ampere option (BE 3x230 vs 3N400). Contracted
+        // kVA/kW options are grid-independent totals, so voltage is ignored —
+        // otherwise a persisted value from an older build would look "custom".
+        (option.capacity.type !== "amperage" ||
+          (option.capacity.voltageV ?? null) === (storedCapacity.voltageV ?? null)),
     );
+
     return match?.id ?? null;
   });
   const [custom, setCustom] = useState(
