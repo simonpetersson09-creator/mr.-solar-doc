@@ -187,7 +187,7 @@ const cost = result.productionCost;
           {t("result.groupSystem")}
         </p>
         {/* 1. Recommendation */}
-<section className="hero-metric rounded-3xl p-5">
+<section className="hero-metric glass-primary rounded-3xl p-5">
           <div className="glow-amber -top-16 -right-16 size-48" aria-hidden="true" />
           <div className="relative">
             <button
