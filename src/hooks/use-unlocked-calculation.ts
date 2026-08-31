@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPaidCalculation } from "@/lib/purchase.functions";
+import { getPurchaseStatus } from "@/lib/purchase.functions";
 import { usePurchaseStore } from "@/state/purchase-store";
+import { useCalculationStore } from "@/state/calculation-store";
 import { getMarketConfig } from "@/config/markets";
 import type { CalculationSnapshot } from "@/lib/calculation-snapshot";
 import type { CalculationResult } from "@/lib/calc/types";
 
 /**
- * Loads the purchased calculation from the server. Locked calculations return
- * no data at all, so the result page can never render unpaid content.
+ * The snapshot is read from local device storage; the server is only asked
+ * whether the purchase is verified. Locked calculations render nothing.
  */
 export function useUnlockedCalculation(): {
   isLoading: boolean;
@@ -17,19 +18,21 @@ export function useUnlockedCalculation(): {
   market: ReturnType<typeof getMarketConfig>;
 } {
   const active = usePurchaseStore((s) => s.active);
+  const stored = useCalculationStore((s) => (active ? (s.items[active.id] ?? null) : null));
 
   const query = useQuery({
-    queryKey: ["paid-calculation", active?.id ?? null],
+    queryKey: ["purchase-status", active?.id ?? null],
     enabled: Boolean(active),
     staleTime: Infinity,
     retry: 1,
     queryFn: async () =>
-      getPaidCalculation({
+      getPurchaseStatus({
         data: { id: active!.id, accessToken: active!.accessToken },
       }),
   });
 
-  const snapshot = query.data?.unlocked ? (query.data.snapshot as CalculationSnapshot) : null;
+  const paid = query.data?.status === "paid";
+  const snapshot = paid ? (stored?.snapshot ?? null) : null;
   const result = snapshot?.result ?? null;
 
   return {
