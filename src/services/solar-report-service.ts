@@ -655,6 +655,23 @@ export function generateReportBlob(options: ReportOptions): Blob {
     economicsIncomplete
       ? labels.economicsRequiresPriceShort
       : formatCurrency(value, locale, options.result.economics.currency);
+  /**
+   * A per-kWh assumption is only printed when the value really exists. A null
+   * / missing value is never formatted as "0,00", and "standard value" is only
+   * claimed when there is an actual standard value behind it.
+   */
+  const rate = (
+    value: number | null | undefined,
+    availability: "available" | "missing" | "not-applicable",
+    source: string,
+  ) => {
+    if (availability !== "available" || value == null || !Number.isFinite(value)) {
+      return labels.economicsRequiresPriceShort;
+    }
+    const sourceLabel = labels.fields[`valueSource_${source}`] ?? "";
+    const amount = `${formatDecimal(value, locale, 2)} ${options.result.economics.currency}/kWh`;
+    return sourceLabel ? `${amount} – ${sourceLabel}` : amount;
+  };
   /** S6: unverified grid assumptions follow the result into the PDF. */
   const gridUnverified = result.grid.profileStatus !== "verified";
   const currency = result.economics.currency;
