@@ -247,6 +247,19 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     lifetimeValuesScaledToPresentation,
   );
 
+  // What the installation is estimated to cost (not what it may be worth).
+  const estimatedInstallationCost =
+    input.economics.installationCostPerKwp != null && installedKwp > 0
+      ? input.economics.installationCostPerKwp * installedKwp
+      : null;
+  const quotedOrEstimatedCost = investmentResult.quotePrice ?? estimatedInstallationCost;
+  const costBasis: "quote" | "installation-cost" | "none" =
+    investmentResult.quotePrice != null
+      ? "quote"
+      : estimatedInstallationCost != null
+        ? "installation-cost"
+        : "none";
+
   return {
     location: input.location,
     resource: input.resource,
@@ -255,6 +268,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     sizingBasis,
     inverterKw,
     maxAcPowerKw,
+    /** The grid connection's AC ceiling — a grid limit, not an inverter spec. */
+    gridConnectionLimitKw: maxAcPowerKw,
     dcAcRatio: dcAcRatio(installedKwp, inverterKw),
     oversizingPercent: oversizingPercent(installedKwp, inverterKw),
     targetDcAcRange,
@@ -295,8 +310,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     lifetime,
     investment: investmentResult,
     productionCost: calculateProductionCost({
-      investment: investmentResult.quotePrice ?? investmentResult.maxInvestmentRounded,
+      // Cost per kWh must come from what the system COSTS: the user's quote,
+      // otherwise the country's installation cost per kWp. The maximum
+      // justifiable investment is derived from the accepted payback time and
+      // would make the cost track the user's payback slider instead of reality.
+      investment: quotedOrEstimatedCost ?? 0,
       investmentFromQuote: investmentResult.quotePrice != null,
+      investmentBasis: costBasis,
       totalProductionKwh: lifetime.totalProductionKwh,
       periodYears: lifetime.periodYears,
       selfConsumptionShare: split.selfConsumptionShare,

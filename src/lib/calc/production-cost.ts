@@ -15,6 +15,12 @@ export interface ProductionCostResult {
   investment: number;
   /** Whether the investment comes from a user-entered quote. */
   investmentFromQuote: boolean;
+  /**
+   * What the investment figure represents. LCOE must be based on what the
+   * system COSTS ("quote" or "installation-cost"), never on the
+   * payback-derived maximum justifiable investment, which is a value figure.
+   */
+  investmentBasis: "quote" | "installation-cost" | "none";
   /** Total production over the calculation period, after degradation. */
   totalProductionKwh: number;
   periodYears: number;
@@ -52,6 +58,7 @@ export function weightedValuePerKwh(params: {
 export function calculateProductionCost(params: {
   investment: number;
   investmentFromQuote?: boolean | undefined;
+  investmentBasis?: "quote" | "installation-cost" | "none" | undefined;
   totalProductionKwh: number;
   periodYears: number;
   selfConsumptionShare: number;
@@ -77,6 +84,9 @@ export function calculateProductionCost(params: {
   return {
     investment,
     investmentFromQuote: params.investmentFromQuote ?? false,
+    investmentBasis:
+      params.investmentBasis ??
+      (investment <= 0 ? "none" : params.investmentFromQuote ? "quote" : "installation-cost"),
     totalProductionKwh,
     periodYears: params.periodYears,
     costPerKwh,
