@@ -245,6 +245,20 @@ class ReportDocument {
     this.y = PAGE.margin;
   }
 
+  /**
+   * Soft break: keeps the flow going when the next block still fits,
+   * otherwise starts a new page. Avoids half-empty pages.
+   */
+  softBreak(neededHeight = 60) {
+    if (this.y <= PAGE.margin) return;
+    if (this.y + neededHeight > PAGE.height - PAGE.margin) {
+      this.pageBreak();
+    } else {
+      this.y += 8;
+    }
+  }
+
+
   /** Smaller group label inside a section (e.g. the assumption groups). */
   subheading(text: string) {
     if (!text.trim()) return;
@@ -796,7 +810,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
   );
 
 
-  report.pageBreak();
+  report.softBreak(70);
 
   if (gridUnverified) {
     report.paragraph(`${labels.gridUnverifiedTitle}: ${labels.gridUnverifiedWarning}`);
@@ -879,7 +893,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     labels.origin,
   );
 
-  report.pageBreak();
+  report.softBreak(80);
   report.sectionTitle(labels.production);
   report.rows(
     [
@@ -970,66 +984,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
     `${f["selfConsumptionRateNote"] ?? ""} ${f["selfSufficiencyRateNote"] ?? ""}`,
   );
 
-  report.pageBreak();
-  report.sectionTitle(labels.economics);
-  report.rows(
-    [
-      {
-        label: f["selfConsumptionValue"] ?? f.selfConsumption,
-        value: money(result.presentation.selfConsumptionValue),
-        origin: "calculated",
-      },
-      {
-        label: f["exportValue"] ?? f.exported,
-        value: money(result.presentation.exportValue),
-        origin: "calculated",
-      },
-      {
-        label: f["totalAnnualBenefit"] ?? f.economicValue,
-        value: money(result.presentation.annualSavings),
-        origin: "calculated",
-      },
-    ],
-    labels.origin,
-  );
-
-  report.rows(
-    [
-      {
-        label: f["acceptedPayback"] ?? "",
-        value: `${formatNumber(result.investment.acceptedPaybackYears, locale)} ${f["yearsUnit"] ?? ""}`,
-        origin: "user",
-      },
-      {
-        label: f["maxInvestment"] ?? "",
-        value: money(result.investment.maxInvestmentRounded),
-        origin: "calculated",
-      },
-    ],
-    labels.origin,
-  );
-  if (result.investment.quotePrice != null) {
-    report.rows(
-      [
-        {
-          label: f["quotePrice"] ?? "",
-          value: formatCurrency(result.investment.quotePrice, locale, currency),
-          origin: "user",
-        },
-        {
-          label: f["quotePayback"] ?? "",
-          value:
-            result.investment.quotePaybackYears != null
-              ? `${formatDecimal(result.investment.quotePaybackYears, locale, 1)} ${f["yearsUnit"] ?? ""}`
-              : "-",
-          origin: "calculated",
-        },
-      ],
-      labels.origin,
-    );
-  }
-  report.paragraph(f["investmentNote"] ?? "");
-  if (result.investment.quotePrice != null) report.paragraph(labels.quoteNote);
 
 
   // ── Long-term development page ───────────────────────────────────────────
@@ -1132,6 +1086,66 @@ export function generateReportBlob(options: ReportOptions): Blob {
 
 
   report.pageBreak();
+  report.sectionTitle(labels.economics);
+  report.rows(
+    [
+      {
+        label: f["selfConsumptionValue"] ?? f.selfConsumption,
+        value: money(result.presentation.selfConsumptionValue),
+        origin: "calculated",
+      },
+      {
+        label: f["exportValue"] ?? f.exported,
+        value: money(result.presentation.exportValue),
+        origin: "calculated",
+      },
+      {
+        label: f["totalAnnualBenefit"] ?? f.economicValue,
+        value: money(result.presentation.annualSavings),
+        origin: "calculated",
+      },
+    ],
+    labels.origin,
+  );
+
+  report.rows(
+    [
+      {
+        label: f["acceptedPayback"] ?? "",
+        value: `${formatNumber(result.investment.acceptedPaybackYears, locale)} ${f["yearsUnit"] ?? ""}`,
+        origin: "user",
+      },
+      {
+        label: f["maxInvestment"] ?? "",
+        value: money(result.investment.maxInvestmentRounded),
+        origin: "calculated",
+      },
+    ],
+    labels.origin,
+  );
+  if (result.investment.quotePrice != null) {
+    report.rows(
+      [
+        {
+          label: f["quotePrice"] ?? "",
+          value: formatCurrency(result.investment.quotePrice, locale, currency),
+          origin: "user",
+        },
+        {
+          label: f["quotePayback"] ?? "",
+          value:
+            result.investment.quotePaybackYears != null
+              ? `${formatDecimal(result.investment.quotePaybackYears, locale, 1)} ${f["yearsUnit"] ?? ""}`
+              : "-",
+          origin: "calculated",
+        },
+      ],
+      labels.origin,
+    );
+  }
+  report.paragraph(f["investmentNote"] ?? "");
+  if (result.investment.quotePrice != null) report.paragraph(labels.quoteNote);
+  report.softBreak(60);
   report.sectionTitle(f["keyAssumptions"] ?? labels.assumptions);
   if (gridUnverified) {
     report.paragraph(`${labels.gridUnverifiedTitle}: ${labels.gridUnverifiedWarning}`);
@@ -1243,7 +1257,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
   );
 
   // FAQ closes the report; the metadata is a discreet closing line, not a page.
-  report.pageBreak();
+  report.softBreak(60);
   report.faq(labels.faqTitle, labels.faqItems);
 
   const reportId = buildReportId(result);
