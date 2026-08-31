@@ -103,7 +103,10 @@ const SPLIT_PHASE_120_240: ConnectionGridProfile = {
  * affects the power calculation.
  */
 const JP_SINGLE_PHASE_200: ConnectionGridProfile = {
-  serviceType: "single-phase",
+  // Single-phase three-wire is electrically a centre-tapped (split-phase)
+  // service: the contract amperage applies to the 200 V line-to-line level,
+  // factor 1.0 and never the 100 V leg.
+  serviceType: "split-phase",
   voltageV: 200,
   lineToNeutralVoltageV: 100,
   frequencyHz: 50,
