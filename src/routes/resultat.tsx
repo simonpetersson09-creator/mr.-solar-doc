@@ -5,7 +5,7 @@ import { ArrowLeft, ChevronDown, CircleAlert, Download, Info, Loader2, Sun, Zap 
 import i18nInstance from "@/i18n";
 import { Button } from "@/components/ui/button";
 import { MonthlyChart } from "@/components/MonthlyChart";
-import { useCalculation } from "@/hooks/use-calculation";
+import { useUnlockedCalculation } from "@/hooks/use-unlocked-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useWizardStore } from "@/state/wizard-store";
 import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";
@@ -42,12 +42,15 @@ export const Route = createFileRoute("/resultat")({
 function ResultPage() {
   const { t, i18n } = useTranslation();
   const { locale } = useAppLocale();
-  const { result, market } = useCalculation();
+  // Paid content only: the server returns a snapshot exclusively for unlocked
+  // calculations, so a direct visit or refresh can never reveal the result.
+  const { result, snapshot, market, isLoading, unlocked } = useUnlockedCalculation();
   const reset = useWizardStore((s) => s.reset);
   const setCurrentStep = useWizardStore((s) => s.setCurrentStep);
   const navigate = useNavigate();
   const [showDetails, setShowDetails] = useState(false);
-  const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
+  const wizardPaybackYears = useWizardStore((s) => s.acceptedPaybackYears);
+  const paybackYears = snapshot?.assumptions.acceptedPaybackYears ?? wizardPaybackYears;
 const [exporting, setExporting] = useState(false);
 const [exportError, setExportError] = useState(false);
 const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
@@ -56,16 +59,26 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
 
   const shortMonths = i18n.t("months.short", { returnObjects: true }) as string[];
 
-  if (!result) {
+  if (isLoading) {
+    return (
+      <div className="flex min-h-dvh flex-col items-center justify-center gap-3 surface-sun px-6 text-center">
+        <Loader2 className="size-5 animate-spin text-primary" />
+        <p className="text-sm text-muted-foreground">{t("common.loading")}</p>
+      </div>
+    );
+  }
+
+  if (!unlocked || !result) {
     return (
       <div className="flex min-h-dvh flex-col items-center justify-center gap-4 surface-sun px-6 text-center">
-        <p className="text-muted-foreground">{t("result.noCalculation")}</p>
+        <p className="text-muted-foreground">{t("result.locked")}</p>
         <Button asChild>
           <Link to="/">{t("common.startOver")}</Link>
         </Button>
       </div>
     );
   }
+
 
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
 

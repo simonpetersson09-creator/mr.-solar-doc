@@ -11,6 +11,8 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AnvandarvillkorRouteImport } from './routes/anvandarvillkor'
+import { Route as BetalningRouteImport } from './routes/betalning'
+import { Route as HistorikRouteImport } from './routes/historik'
 import { Route as InstallningarRouteImport } from './routes/installningar'
 import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
 import { Route as ResultatRouteImport } from './routes/resultat'
@@ -23,6 +25,16 @@ const IndexRoute = IndexRouteImport.update({
 const AnvandarvillkorRoute = AnvandarvillkorRouteImport.update({
   id: '/anvandarvillkor',
   path: '/anvandarvillkor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BetalningRoute = BetalningRouteImport.update({
+  id: '/betalning',
+  path: '/betalning',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistorikRoute = HistorikRouteImport.update({
+  id: '/historik',
+  path: '/historik',
   getParentRoute: () => rootRouteImport,
 } as any)
 const InstallningarRoute = InstallningarRouteImport.update({
@@ -44,6 +56,8 @@ const ResultatRoute = ResultatRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/anvandarvillkor': typeof AnvandarvillkorRoute
+  '/betalning': typeof BetalningRoute
+  '/historik': typeof HistorikRoute
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
@@ -51,6 +65,8 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/anvandarvillkor': typeof AnvandarvillkorRoute
+  '/betalning': typeof BetalningRoute
+  '/historik': typeof HistorikRoute
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
@@ -59,6 +75,8 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/anvandarvillkor': typeof AnvandarvillkorRoute
+  '/betalning': typeof BetalningRoute
+  '/historik': typeof HistorikRoute
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
@@ -68,6 +86,8 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/anvandarvillkor'
+    | '/betalning'
+    | '/historik'
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
@@ -75,6 +95,8 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/anvandarvillkor'
+    | '/betalning'
+    | '/historik'
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
@@ -82,6 +104,8 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/anvandarvillkor'
+    | '/betalning'
+    | '/historik'
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
@@ -90,6 +114,8 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AnvandarvillkorRoute: typeof AnvandarvillkorRoute
+  BetalningRoute: typeof BetalningRoute
+  HistorikRoute: typeof HistorikRoute
   InstallningarRoute: typeof InstallningarRoute
   IntegritetspolicyRoute: typeof IntegritetspolicyRoute
   ResultatRoute: typeof ResultatRoute
@@ -109,6 +135,20 @@ declare module '@tanstack/react-router' {
       path: '/anvandarvillkor'
       fullPath: '/anvandarvillkor'
       preLoaderRoute: typeof AnvandarvillkorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/betalning': {
+      id: '/betalning'
+      path: '/betalning'
+      fullPath: '/betalning'
+      preLoaderRoute: typeof BetalningRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/historik': {
+      id: '/historik'
+      path: '/historik'
+      fullPath: '/historik'
+      preLoaderRoute: typeof HistorikRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/installningar': {
@@ -138,6 +178,8 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AnvandarvillkorRoute: AnvandarvillkorRoute,
+  BetalningRoute: BetalningRoute,
+  HistorikRoute: HistorikRoute,
   InstallningarRoute: InstallningarRoute,
   IntegritetspolicyRoute: IntegritetspolicyRoute,
   ResultatRoute: ResultatRoute,

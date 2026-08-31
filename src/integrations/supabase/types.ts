@@ -14,7 +14,78 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      calculations: {
+        Row: {
+          access_token: string
+          address: string | null
+          annual_production_kwh: number | null
+          apple_environment: string | null
+          apple_original_transaction_id: string | null
+          apple_transaction_id: string | null
+          country_code: string | null
+          created_at: string
+          currency: string | null
+          device_id: string
+          failure_reason: string | null
+          id: string
+          installed_kwp: number | null
+          payback_years: number | null
+          price_amount: number | null
+          price_currency: string | null
+          product_id: string | null
+          purchased_at: string | null
+          snapshot: Json
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          access_token?: string
+          address?: string | null
+          annual_production_kwh?: number | null
+          apple_environment?: string | null
+          apple_original_transaction_id?: string | null
+          apple_transaction_id?: string | null
+          country_code?: string | null
+          created_at?: string
+          currency?: string | null
+          device_id: string
+          failure_reason?: string | null
+          id?: string
+          installed_kwp?: number | null
+          payback_years?: number | null
+          price_amount?: number | null
+          price_currency?: string | null
+          product_id?: string | null
+          purchased_at?: string | null
+          snapshot: Json
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          access_token?: string
+          address?: string | null
+          annual_production_kwh?: number | null
+          apple_environment?: string | null
+          apple_original_transaction_id?: string | null
+          apple_transaction_id?: string | null
+          country_code?: string | null
+          created_at?: string
+          currency?: string | null
+          device_id?: string
+          failure_reason?: string | null
+          id?: string
+          installed_kwp?: number | null
+          payback_years?: number | null
+          price_amount?: number | null
+          price_currency?: string | null
+          product_id?: string | null
+          purchased_at?: string | null
+          snapshot?: Json
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
