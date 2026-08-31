@@ -138,28 +138,12 @@ function SettingsPage() {
           >
             <ArrowLeft className="size-4" />
           </button>
-          <h1 className="text-xl leading-tight font-bold text-foreground">
-            {t("premium.title")}
-          </h1>
+<h1 className="text-xl leading-tight font-bold text-foreground">
+              {t("settings.title")}
+            </h1>
         </header>
 
-        <div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
-          <button
-            type="button"
-            onClick={() => {
-              void haptic("light");
-              void navigate({ to: "/historik" });
-            }}
-            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
-          >
-            <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
-              <History className="size-4" />
-            </span>
-            <span className="text-sm font-bold text-foreground">{t("settings.history")}</span>
-          </button>
-        </div>
-
-        <div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
+<div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
           {premium.active ? (
             <div className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm">
               <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground shadow-md shadow-accent/40">
@@ -217,6 +201,22 @@ function SettingsPage() {
             </span>
             <span className="text-sm font-bold text-foreground">{t("premium.manage")}</span>
           </a>
+        </div>
+
+        <div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
+          <button
+            type="button"
+            onClick={() => {
+              void haptic("light");
+              void navigate({ to: "/historik" });
+            }}
+            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
+          >
+            <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
+              <History className="size-4" />
+            </span>
+            <span className="text-sm font-bold text-foreground">{t("settings.history")}</span>
+          </button>
         </div>
 
 <div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
