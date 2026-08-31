@@ -391,7 +391,7 @@ const cost = result.productionCost;
 
 
 {/* 5. Cost per produced kWh — own green card */}
-<section className="relative rounded-[28px] border border-primary-foreground/20 cta-primary p-3.5 text-primary-foreground shadow-hero">
+<section className="relative rounded-[28px] border border-primary-foreground/20 glass-primary p-3.5 text-primary-foreground shadow-hero">
           <button
             type="button"
             onClick={() => setShowProductionCostInfo((open) => !open)}
