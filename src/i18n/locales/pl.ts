@@ -288,7 +288,8 @@ systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskaz
   },
   "units": {
     "kwhPerYear": "kWh/rok",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} lat"
   },
   "settings": {
     "title": "Ustawienia",

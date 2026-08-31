@@ -288,7 +288,8 @@ systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. 
   },
   "units": {
     "kwhPerYear": "kWh/Jahr",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} Jahre"
   },
   "settings": {
     "title": "Einstellungen",

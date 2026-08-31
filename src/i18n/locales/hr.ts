@@ -288,7 +288,8 @@ systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarn
   },
   "units": {
     "kwhPerYear": "kWh/god",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} god."
   },
   "settings": {
     "title": "Postavke",

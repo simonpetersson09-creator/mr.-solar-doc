@@ -288,7 +288,8 @@ systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kai
   },
   "units": {
     "kwhPerYear": "kWh/metus",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} metai"
   },
   "settings": {
     "title": "Nustatymai",

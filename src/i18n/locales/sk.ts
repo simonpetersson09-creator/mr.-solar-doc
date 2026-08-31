@@ -288,7 +288,8 @@ systemSizeInfo: "Výpočet je odhadom a mal by slúžiť ako orientácia. Skuto�
   },
   "units": {
     "kwhPerYear": "kWh/rok",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} rokov"
   },
   "settings": {
     "title": "Nastavenia",

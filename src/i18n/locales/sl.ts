@@ -288,7 +288,8 @@ systemSizeInfo: "Izračun je ocena in ga je treba uporabiti kot orientacijo. Dej
   },
   "units": {
     "kwhPerYear": "kWh/leto",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} let"
   },
   "settings": {
     "title": "Nastavitve",

@@ -288,7 +288,8 @@ systemSizeInfo: "Le calcul est une estimation et doit être utilisé à titre in
   },
   "units": {
     "kwhPerYear": "kWh/an",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} ans"
   },
   "settings": {
     "title": "Paramètres",

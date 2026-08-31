@@ -288,7 +288,8 @@ systemSizeInfo: "Laskelma on arvio, ja sitä tulee käyttää suuntaa-antavana. 
   },
   "units": {
     "kwhPerYear": "kWh/vuosi",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} vuotta"
   },
   "settings": {
     "title": "Asetukset",

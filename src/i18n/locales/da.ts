@@ -288,7 +288,8 @@ systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk 
   },
   "units": {
     "kwhPerYear": "kWh/år",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} år"
   },
   "settings": {
     "title": "Indstillinger",

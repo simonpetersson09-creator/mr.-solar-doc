@@ -288,7 +288,8 @@ systemSizeInfo: "Arvutus on hinnanguline ja seda tuleks kasutada suunavana. Tege
   },
   "units": {
     "kwhPerYear": "kWh/aastas",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} aastat"
   },
   "settings": {
     "title": "Seaded",

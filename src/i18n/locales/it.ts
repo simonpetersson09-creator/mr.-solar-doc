@@ -288,7 +288,8 @@ systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produ
   },
   "units": {
     "kwhPerYear": "kWh/anno",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} anni"
   },
   "settings": {
     "title": "Impostazioni",

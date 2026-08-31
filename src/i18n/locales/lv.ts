@@ -288,7 +288,8 @@ systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā
   },
   "units": {
     "kwhPerYear": "kWh/gadā",
-    "kwhPerKwp": "kWh/kWp"
+    "kwhPerKwp": "kWh/kWp",
+    "years": "{{count}} gadi"
   },
   "settings": {
     "title": "Iestatījumi",
