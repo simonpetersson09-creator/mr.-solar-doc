@@ -151,10 +151,20 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
     >
       {/* ── Upload card ── separate from manual entry ── */}
       <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
-        <div>
-          <p className="text-sm font-semibold text-white">{t("consumption.upload.sectionTitle")}</p>
-          <p className="text-xs leading-snug text-white/70">{t("consumption.upload.sectionHint")}</p>
+        <div className="flex items-start gap-3">
+          <span className="flex size-9 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-accent">
+            <FileUp className="size-4" />
+          </span>
+          <div className="min-w-0">
+            <p className="text-sm font-semibold text-white">
+              {t("consumption.upload.sectionTitle")}
+            </p>
+            <p className="text-xs leading-snug text-white/70">
+              {t("consumption.upload.sectionHint")}
+            </p>
+          </div>
         </div>
+
 
         {parsing ? (
           <div className="flex items-center gap-2.5 rounded-2xl border border-white/25 bg-white/15 p-3">
