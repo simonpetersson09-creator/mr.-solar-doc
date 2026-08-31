@@ -51,7 +51,7 @@ describe("global currency mapping", () => {
 
   it("reports genuine multi-currency cases as neutral instead of guessing", () => {
     expect(currencyForCountryCode("ZW")).toBe(NEUTRAL_CURRENCY_CODE);
-    expect(AMBIGUOUS_CURRENCY_COUNTRIES.ZW).toBeTruthy();
+    expect(AMBIGUOUS_CURRENCY_COUNTRIES["ZW"]).toBeTruthy();
     for (const code of Object.keys(AMBIGUOUS_CURRENCY_COUNTRIES)) {
       expect(currencyForCountryCode(code)).toBe(NEUTRAL_CURRENCY_CODE);
     }
@@ -76,7 +76,7 @@ describe("global currency mapping", () => {
       expect(country).toMatch(/^[A-Z]{2}$/);
       expect(currency).toMatch(/^[A-Z]{3}$/);
       expect(currency).not.toBe(NEUTRAL_CURRENCY_CODE);
-      expect(AMBIGUOUS_CURRENCY_COUNTRIES[country]).toBeUndefined();
+      expect(AMBIGUOUS_CURRENCY_COUNTRIES[country as string]).toBeUndefined();
     }
   });
 
