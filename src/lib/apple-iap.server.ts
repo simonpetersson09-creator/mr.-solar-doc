@@ -123,6 +123,7 @@ interface SignedTransactionPayload {
   bundleId?: string;
   environment?: string;
   purchaseDate?: number;
+  expiresDate?: number;
   revocationDate?: number;
 }
 
