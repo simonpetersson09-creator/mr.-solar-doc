@@ -271,15 +271,17 @@ const cost = result.productionCost;
 
 {/* 4. Max justifiable investment — its own hero card */}
         <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
-          <p className="text-xs text-white/60">
+          <h2 className="text-center text-sm font-semibold text-white">
             {t("result.investmentLevelTitle", {
               years: formatNumber(paybackYears, locale),
             })}
-          </p>
-          <p className="mt-1 text-3xl font-extrabold tracking-tight text-accent">
+          </h2>
+          <p className="mt-1 text-center text-3xl font-extrabold tracking-tight text-accent">
             {t("result.maxInvestmentApprox", { amount: investmentAmount })}
           </p>
-          <p className="mt-1.5 text-[11px] text-white/60">{t("result.maxInvestmentNote")}</p>
+          <p className="mt-1.5 text-center text-[11px] text-white/60">
+            {t("result.maxInvestmentNote")}
+          </p>
         </section>
 
 
