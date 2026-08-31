@@ -38,6 +38,7 @@ export default function MapPicker({
   className = "h-64 w-full overflow-hidden rounded-xl",
   hideZoomControl = false,
   onMapReady,
+  onInteractingChange,
 }: MapPickerProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
@@ -46,17 +47,36 @@ export default function MapPicker({
   changeRef.current = onPositionChange;
   const readyRef = useRef(onMapReady);
   readyRef.current = onMapReady;
+  const interactingRef = useRef(onInteractingChange);
+  interactingRef.current = onInteractingChange;
 
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
     const map = L.map(containerRef.current, {
       attributionControl: true,
       zoomControl: !hideZoomControl,
+      // Cheaper gestures on mobile: no fractional zoom steps, less inertia work.
+      zoomSnap: 1,
+      wheelPxPerZoomLevel: 120,
+      wheelDebounceTime: 20,
+      preferCanvas: true,
     }).setView([latitude, longitude], zoom);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution: "© OpenStreetMap",
+      // Fewer tile requests/DOM churn mid-gesture keeps panning smooth.
+      updateWhenZooming: false,
+      keepBuffer: 1,
+      detectRetina: false,
     }).addTo(map);
+
+    const startInteract = () => interactingRef.current?.(true);
+    const endInteract = () => interactingRef.current?.(false);
+    map.on("movestart", startInteract);
+    map.on("zoomstart", startInteract);
+    map.on("moveend", endInteract);
+    map.on("zoomend", endInteract);
+
 
     map.on("click", (event: L.LeafletMouseEvent) => {
       if (markerRef.current) {
