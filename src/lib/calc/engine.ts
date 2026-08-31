@@ -17,8 +17,14 @@ import { calculateEconomicValue, nonNegative } from "./electricity-price";
 import { calculateMaxInvestment } from "./payback";
 import { calculateProductionCost } from "./production-cost";
 import { buildLifetimeProjection } from "./degradation";
-import { maxAcPowerFromFuse, dcAcRatio, oversizingPercent } from "./inverter-sizing";
-import { DEFAULT_GRID_FREQUENCY_HZ } from "@/config/grid";
+import { dcAcRatio, oversizingPercent } from "./inverter-sizing";
+import {
+  DEFAULT_GRID_FREQUENCY_HZ,
+  SERVICE_TYPE_FOR_PHASE_COUNT,
+  kwPerAmpForService,
+  maxAcPowerKwFor,
+  type PhaseCount,
+} from "@/config/grid";
 import { recommendArraySize } from "./solar-sizing";
 import { clampShare, splitProduction, summariseSelfConsumption } from "./self-consumption";
 import type {
@@ -35,10 +41,19 @@ import type {
 export function calculateSolarSystem(input: CalculationInput): CalculationResult {
   const notes: string[] = [];
 
-  const maxAcPowerKw = maxAcPowerFromFuse(
-    input.electrical.mainFuseAmp,
-    input.electrical.kwPerAmp,
-  );
+  // Single source for the grid limit: service type + voltage + main fuse.
+  // A legacy `kwPerAmp` is only used when no voltage is supplied.
+  const gridVoltageV = input.electrical.gridVoltageV ?? EU_GRID_VOLTAGE_V;
+  const gridPhases = input.electrical.gridPhases ?? EU_GRID_PHASES;
+  const serviceType =
+    input.electrical.serviceType ??
+    SERVICE_TYPE_FOR_PHASE_COUNT[(gridPhases as PhaseCount) ?? EU_GRID_PHASES];
+  const kwPerAmp =
+    input.electrical.gridVoltageV !== undefined || input.electrical.kwPerAmp === undefined
+      ? kwPerAmpForService(serviceType, gridVoltageV)
+      : input.electrical.kwPerAmp;
+  const maxAcPowerKw = input.electrical.mainFuseAmp * kwPerAmp;
+  void maxAcPowerKwFor;
 
   const sizing = recommendArraySize({
     desiredAnnualKwh: input.consumption.annualKwh,
@@ -219,9 +234,10 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     },
     mainFuseAmp: input.electrical.mainFuseAmp,
     grid: {
-      voltageV: input.electrical.gridVoltageV ?? EU_GRID_VOLTAGE_V,
-      phases: input.electrical.gridPhases ?? EU_GRID_PHASES,
-      kwPerAmp: input.electrical.kwPerAmp,
+      voltageV: gridVoltageV,
+      phases: gridPhases,
+      serviceType,
+      kwPerAmp,
       frequencyHz: input.electrical.gridFrequencyHz ?? DEFAULT_GRID_FREQUENCY_HZ,
     },
     lifetime,
