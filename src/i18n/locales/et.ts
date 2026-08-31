@@ -235,6 +235,7 @@ export const et = {
     "paybackTitle": "Vali tasuvusaeg",
     "paybackSubtitle": "Vaata, milline investeeringu tase vastab erinevatele lihtsatele tasuvusaegadele.",
     "investmentLevelTitle": "Investeeringu tase {{years}} aasta tasuvusajal",
+    "investmentLevelBasis": "Põhineb valitud {{years}} aasta tasuvusajal",
     "investmentLevelNote": "Tänaste arvutuseelduste kohaselt vastab {{years}} aasta lihtne tasuvusaeg umbes {{amount}} investeeringule.",
     "quoteToggle": "Võrdle pakkumise hinnaga",
     "quoteLabel": "Pakkumise hind ({{currency}})",

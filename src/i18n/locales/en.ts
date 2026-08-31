@@ -276,6 +276,7 @@ export const en = {
       "You decide how quickly you want the investment paid back. We calculate what it corresponds to in installation cost.",
     paybackYearsUnit: "years",
     investmentLevelTitle: "Investment level at {{years}} years payback",
+    investmentLevelBasis: "Based on your selected payback period of {{years}} years",
     investmentLevelNote:
       "With today's calculation assumptions, {{years}} years of simple payback corresponds to an investment of about {{amount}}.",
     quoteToggle: "Compare with a quoted price",

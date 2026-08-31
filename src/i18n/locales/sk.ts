@@ -235,6 +235,7 @@ export const sk = {
     "paybackTitle": "Vyberte si dobu návratnosti",
     "paybackSubtitle": "Pozrite si, aká úroveň investície zodpovedá rôznym jednoduchým dobám návratnosti.",
     "investmentLevelTitle": "Úroveň investície pri návratnosti {{years}} rokov",
+    "investmentLevelBasis": "Na základe zvolenej návratnosti {{years}} rokov",
     "investmentLevelNote": "Pri dnešných výpočtových predpokladoch zodpovedá {{years}} rokov jednoduchej návratnosti investícii približne {{amount}}.",
     "quoteToggle": "Porovnať s ponukovou cenou",
     "quoteLabel": "Ponuková cena ({{currency}})",
