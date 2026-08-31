@@ -226,8 +226,11 @@ export function getCountryConfig(countryCode?: string | null): CountryConfig {
     grid: {
       ...fallback.grid,
       gridVoltageV: connection.defaultVoltage,
-      gridPhases: connection.connectionOptions[0]?.phaseCount ?? fallback.grid.gridPhases,
-      mainFuseOptionsAmp: connection.connectionOptions.map((option) => option.amperage),
+      gridPhases: PHASE_COUNT_FOR_SERVICE_TYPE[connection.defaultServiceType],
+      // Ampere options only; kVA/kW markets are not expressible here.
+      mainFuseOptionsAmp: connection.connectionOptions.flatMap((option) =>
+        option.capacity.type === "amperage" ? [option.capacity.amperageA] : [],
+      ),
     },
     economics: {
       ...fallback.economics,

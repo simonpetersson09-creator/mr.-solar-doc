@@ -121,7 +121,9 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   const capacityValid = isValidConnectionCapacity(capacity) && voltageValid;
   const maxAc = capacity
     ? connectionCapacityToMaxAcPowerKw(capacity, {
-        contractedKvaPowerFactor: connection.contractedKvaPowerFactor,
+        ...(connection.contractedKvaPowerFactor === undefined
+          ? {}
+          : { contractedKvaPowerFactor: connection.contractedKvaPowerFactor }),
       })
     : 0;
 

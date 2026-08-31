@@ -213,12 +213,12 @@ export const useWizardStore = create<WizardState>()(
         set((state) => ({
           connectionCapacity: capacity,
           mainFuseAmp: capacity?.type === "amperage" ? capacity.amperageA : null,
-          ...(capacity && capacity.serviceType
+          ...(capacity && capacity.serviceType && capacity.voltageV
             ? mergeGrid(state, {
                 serviceType: capacity.serviceType,
                 voltageV: capacity.voltageV,
                 lineToNeutralVoltageV: capacity.lineToNeutralVoltageV ?? null,
-                frequencyHz: capacity.frequencyHz,
+                frequencyHz: capacity.frequencyHz ?? state.gridFrequencyHz,
               })
             : {}),
         })),

@@ -122,7 +122,7 @@ function ampOption(
   const phases = profile.serviceType === "three-phase" ? 3 : 1;
   return {
     id: `a${phases}x${amperageA}@${profile.voltageV}`,
-    phasePrefix,
+    ...(phasePrefix ? { phasePrefix } : {}),
     capacity: { type: "amperage", amperageA, ...profile },
   };
 }

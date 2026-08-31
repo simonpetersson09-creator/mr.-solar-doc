@@ -55,9 +55,9 @@ export function useCalculation(): {
     if (!isValidConnectionCapacity(connectionCapacity)) return null;
     // Country config only supplies the documented kVA assumption; the
     // normalisation itself is unit-generic.
+    const kvaPowerFactor = getConnectionConfig(location.countryCode).contractedKvaPowerFactor;
     const maxAcPowerKw = connectionCapacityToMaxAcPowerKw(connectionCapacity!, {
-      contractedKvaPowerFactor: getConnectionConfig(location.countryCode)
-        .contractedKvaPowerFactor,
+      ...(kvaPowerFactor === undefined ? {} : { contractedKvaPowerFactor: kvaPowerFactor }),
     });
     return calculateSolarSystem({
       location,
