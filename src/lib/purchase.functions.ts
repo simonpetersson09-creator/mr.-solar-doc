@@ -50,7 +50,7 @@ export const createPendingCalculation = createServerFn({ method: "POST" })
       .insert({
         device_id: data.deviceId,
         status: "pending",
-        snapshot: data.snapshot,
+        snapshot: data.snapshot as never,
         address: data.summary.address,
         country_code: data.summary.countryCode,
         currency: data.summary.currency,
