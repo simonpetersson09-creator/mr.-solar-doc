@@ -31,10 +31,12 @@ function flatten(value: unknown, prefix = ""): Record<string, string> {
   return out;
 }
 
-const flat = Object.fromEntries(
+const flat: Record<string, Record<string, string>> = Object.fromEntries(
   Object.entries(LOCALES).map(([lang, value]) => [lang, flatten(value)]),
 );
-const englishKeys = Object.keys(flat.en);
+const english = flat["en"]!;
+const swedish = flat["sv"]!;
+const englishKeys = Object.keys(english);
 
 describe("i18n completeness", () => {
   it("every language has every English key", () => {
@@ -92,9 +94,9 @@ describe("i18n completeness", () => {
     for (const [lang, entries] of Object.entries(flat)) {
       for (const key of keys) {
         expect(entries[key], `${lang}.${key}`).toBeTruthy();
-        if (lang !== "sv" && flat.sv[key] !== flat.en[key]) {
+        if (lang !== "sv" && swedish[key] !== english[key]) {
           // No Swedish source text leaking into other languages.
-          expect(entries[key]).not.toBe(flat.sv[key]);
+          expect(entries[key]).not.toBe(swedish[key]);
         }
       }
     }
@@ -106,7 +108,7 @@ describe("i18n completeness", () => {
     for (const [lang, entries] of Object.entries(flat)) {
       for (const key of englishKeys) {
         expect(placeholders(entries[key] ?? ""), `${lang}.${key}`).toEqual(
-          placeholders(flat.en[key]),
+          placeholders(english[key] ?? ""),
         );
       }
     }
