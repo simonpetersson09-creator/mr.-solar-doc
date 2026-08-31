@@ -32,6 +32,7 @@ export function AddressStep({ totalSteps, onNext }: AddressStepProps) {
   const [debounced, setDebounced] = useState("");
   const [showResults, setShowResults] = useState(false);
 const [map, setMap] = useState<L.Map | null>(null);
+  const [mapBusy, setMapBusy] = useState(false);
   const [showAddressInfo, setShowAddressInfo] = useState(false);
 
   useEffect(() => {
