@@ -110,9 +110,10 @@ export function parseConsumptionText(text: string): ParsedConsumption {
   let annual: number | null = null;
 
   for (const line of lines) {
-    const values = numbersInLine(line);
+    const { index: monthIndex, rest } = monthForLine(line);
+    const values = numbersInLine(rest);
     if (values.length === 0) continue;
-    const energy = energyValueInLine(line);
+    const energy = energyValueInLine(rest);
 
     if (annual === null && ANNUAL_PATTERNS.some((pattern) => pattern.test(line))) {
       const candidate = energy ?? values[values.length - 1];
@@ -122,7 +123,6 @@ export function parseConsumptionText(text: string): ParsedConsumption {
       }
     }
 
-    const monthIndex = monthIndexForLine(line);
     if (monthIndex === -1) continue;
     if (monthly[monthIndex] !== null) continue;
 
