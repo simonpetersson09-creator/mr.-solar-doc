@@ -9,7 +9,6 @@ import { cs } from "./locales/cs";
 import { pl } from "./locales/pl";
 import { sk } from "./locales/sk";
 import { sl } from "./locales/sl";
-import { hr } from "./locales/hr";
 import { et } from "./locales/et";
 import { lv } from "./locales/lv";
 import { lt } from "./locales/lt";
@@ -52,7 +51,6 @@ const resources = {
   pl: { translation: pl },
   sk: { translation: sk },
   sl: { translation: sl },
-  hr: { translation: hr },
   et: { translation: et },
   lv: { translation: lv },
   lt: { translation: lt },
