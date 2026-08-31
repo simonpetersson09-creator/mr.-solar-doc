@@ -472,6 +472,8 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     fields: {
       gridConnection: "Grid connection",
       gridConnectionValue: "{{voltage}} V, {{phases}}-phase",
+      gridMethodNoteDynamic:
+        "Theoretical AC power is based on your selected grid connection: {{phases}}-phase, {{voltage}} V, calculated as {{factor}} × {{voltage}} V × main fuse. The actual permitted connection or feed-in power may be limited by the grid operator or by the specific installation.",
       gridMethodNote:
         "Theoretical AC power is based on 400 V three-phase, calculated as 1.73 × 400 V × main fuse. The actual permitted connection or feed-in power may be limited by the grid operator or by the specific installation.",
       savings30Short: "Calculated with {{degradation}} % annual production degradation and unchanged electricity values.",

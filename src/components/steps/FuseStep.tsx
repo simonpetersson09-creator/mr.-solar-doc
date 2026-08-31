@@ -14,9 +14,8 @@ import {
   GRID_VOLTAGE_OPTIONS,
   isPresetVoltage,
   isValidCustomVoltage,
-  kwPerAmpFor,
+  maxAcPowerKwFor,
 } from "@/config/grid";
-import { maxAcPowerFromFuse } from "@/lib/calc/inverter-sizing";
 import { useWizardStore } from "@/state/wizard-store";
 import { haptic } from "@/services/native-service";
 
@@ -64,7 +63,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
 
   const selected = custom ? (parseLocaleNumber(customValue) ?? 0) : (storedFuse ?? 0);
   const valid = selected >= MIN_AMP && selected <= MAX_AMP && voltageValid;
-  const maxAc = maxAcPowerFromFuse(selected, kwPerAmpFor(phaseCount, voltageV));
+  const maxAc = maxAcPowerKwFor({ mainFuseAmp: selected, voltageV, phaseCount });
   const phaseLabel = t(phaseCount === 1 ? "fuse.grid.phase1" : "fuse.grid.phase3");
 
   const chipClass = (active: boolean) =>

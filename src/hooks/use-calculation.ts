@@ -5,7 +5,7 @@ import { getMarketConfig } from "@/config/markets";
 import { resolveEconomicsDefaults } from "@/config/countries";
 import { useWizardStore } from "@/state/wizard-store";
 import { PRICE_SCENARIO_RATES } from "@/config/constants";
-import { kwPerAmpFor } from "@/config/grid";
+import { SERVICE_TYPE_FOR_PHASE_COUNT } from "@/config/grid";
 
 /** UI -> Hook -> Calculation engine -> Result. No logic lives in components. */
 export function useCalculation(): {
@@ -56,7 +56,7 @@ export function useCalculation(): {
       },
       electrical: {
         mainFuseAmp,
-        kwPerAmp: kwPerAmpFor(gridPhaseCount, gridVoltageV),
+        serviceType: SERVICE_TYPE_FOR_PHASE_COUNT[gridPhaseCount],
         gridVoltageV,
         gridPhases: gridPhaseCount,
         gridFrequencyHz,

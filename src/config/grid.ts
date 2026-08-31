@@ -92,3 +92,36 @@ export function kwPerAmpFor(phaseCount: PhaseCount, voltageV: number): number {
   const factor = SERVICE_TYPE_AC_FACTOR[serviceType];
   return (factor * voltageV) / 1000;
 }
+/**
+ * Voltage semantics — one meaning per service type, never mixed:
+ *  - three-phase: U is the LINE-TO-LINE voltage (e.g. 400 V in Europe, 415 V in
+ *    UK-style systems), used as P(kW) = sqrt(3) x U_LL x I / 1000
+ *  - single-phase: U is the LINE-TO-NEUTRAL voltage (e.g. 230 V),
+ *    used as P(kW) = U_LN x I / 1000
+ * Never pass a phase-neutral voltage for a three-phase service.
+ */
+export interface GridPowerInput {
+  /** Main fuse rating in amperes. */
+  mainFuseAmp: number;
+  /** Line-to-line voltage for three-phase, line-to-neutral for single-phase. */
+  voltageV: number;
+  /** Service type; derived from `phaseCount` when omitted. */
+  serviceType?: ServiceType;
+  phaseCount?: PhaseCount;
+}
+
+/** kW per ampere for a service type. Single source of the power rule. */
+export function kwPerAmpForService(serviceType: ServiceType, voltageV: number): number {
+  return (SERVICE_TYPE_AC_FACTOR[serviceType] * voltageV) / 1000;
+}
+
+/**
+ * The ONE place the maximum AC power of a grid connection is computed.
+ * Full precision — round only when presenting. Frequency never affects it.
+ */
+export function maxAcPowerKwFor(input: GridPowerInput): number {
+  const serviceType =
+    input.serviceType ??
+    SERVICE_TYPE_FOR_PHASE_COUNT[input.phaseCount ?? DEFAULT_GRID_PHASE_COUNT];
+  return input.mainFuseAmp * kwPerAmpForService(serviceType, input.voltageV);
+}
