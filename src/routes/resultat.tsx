@@ -145,32 +145,34 @@ const cost = result.productionCost;
             <h2 className="flex items-center justify-center gap-2 text-center text-sm font-semibold text-white">
               <Sun className="size-4" /> {t("result.recommendedArray")}
             </h2>
-            <div className="glass-panel mt-3 rounded-2xl p-4 text-center">
-              <p className="text-5xl font-extrabold tracking-tight">
-                {formatDecimal(result.installedKwp, locale)}{" "}
-                <span className="text-xl font-semibold text-white/80">kWp</span>
+            <div className="glass-panel mt-2.5 rounded-2xl p-3 text-center">
+              <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+                {t("result.panelPowerLabel")}
               </p>
-              <p className="mt-1 text-xs text-white/70">
+              <p className="mt-0.5 text-4xl font-extrabold tracking-tight">
+                {formatDecimal(result.installedKwp, locale)}{" "}
+                <span className="text-lg font-semibold text-white/80">kWp</span>
+              </p>
+              <p className="text-xs text-white/70">
                 {t("result.panelCount", { count: result.panelCount })}
               </p>
             </div>
 
-
-            <div className="mt-4 grid grid-cols-2 gap-2.5">
-              <div className="glass-panel rounded-2xl p-3">
+            <div className="mt-2.5 grid grid-cols-2 gap-2.5">
+              <div className="glass-panel rounded-2xl p-2.5">
                 <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   <Zap className="size-3" /> {t("result.recommendedInverter")}
                 </p>
-                <p className="mt-1 text-xl font-bold">
+                <p className="mt-0.5 text-lg font-bold">
                   {formatNumber(result.inverterKw, locale)}{" "}
                   <span className="text-xs font-semibold text-white/70">kW</span>
                 </p>
               </div>
-              <div className="glass-panel rounded-2xl p-3">
+              <div className="glass-panel rounded-2xl p-2.5">
                 <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   {t("result.annualProduction")}
                 </p>
-                <p className="mt-1 text-xl font-bold text-accent">
+                <p className="mt-0.5 text-lg font-bold text-accent">
                   {formatNumber(p.annualProductionKwh, locale)}{" "}
                   <span className="text-xs font-semibold text-white/70">
                     kWh{t("common.perYear")}
@@ -178,6 +180,7 @@ const cost = result.productionCost;
                 </p>
               </div>
             </div>
+
 
             <p className="mt-4 text-sm font-bold">
               {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
