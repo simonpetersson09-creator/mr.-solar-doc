@@ -1,3 +1,4 @@
+import { connectionCapacityAmount } from "@/config/connection-capacity";
 import { describe, expect, it } from "vitest";
 import { maxAcPowerKwFor, SERVICE_TYPE_AC_FACTOR, splitPhaseLineToNeutral } from "@/config/grid";
 import { getConnectionConfig, hasVerifiedConnectionConfig } from "@/config/connections";
@@ -49,7 +50,7 @@ describe("split-phase service (US/CA 120/240 V)", () => {
 describe("connection configuration", () => {
   it("Sweden is verified and offers Swedish fuse sizes", () => {
     expect(hasVerifiedConnectionConfig("SE")).toBe(true);
-    expect(getConnectionConfig("SE").connectionOptions.map((o) => o.amperage)).toEqual([
+    expect(getConnectionConfig("SE").connectionOptions.map((o) => connectionCapacityAmount(o.capacity))).toEqual([
       16, 20, 25, 35, 50, 63,
     ]);
   });
@@ -62,7 +63,7 @@ describe("connection configuration", () => {
     expect(config.defaultVoltage).toBe(240);
     expect(config.defaultLineToNeutralVoltage).toBe(120);
     expect(config.defaultFrequencyHz).toBe(60);
-    expect(config.connectionOptions.map((o) => o.amperage)).toEqual([60, 100, 125, 150, 200, 400]);
+    expect(config.connectionOptions.map((o) => connectionCapacityAmount(o.capacity))).toEqual([60, 100, 125, 150, 200, 400]);
     // No service rating is preselected: we cannot know the user's panel.
     expect(config.defaultConnection).toBeNull();
   });
