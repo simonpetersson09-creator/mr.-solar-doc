@@ -235,6 +235,7 @@ export const lv = {
     "paybackTitle": "Izvēlieties atmaksas laiku",
     "paybackSubtitle": "Skatiet, kāds investīciju līmenis atbilst dažādiem vienkāršiem atmaksas periodiem.",
     "investmentLevelTitle": "Investīciju līmenis pie {{years}} gadu atmaksas",
+    "investmentLevelBasis": "Balstīts uz izvēlēto {{years}} gadu atmaksas laiku",
     "investmentLevelNote": "Ar šodienas aprēķinu pieņēmumiem {{years}} gadu vienkāršs atmaksas periods atbilst investīcijai aptuveni {{amount}} apmērā.",
     "quoteToggle": "Salīdzināt ar piedāvājuma cenu",
     "quoteLabel": "Piedāvājuma cena ({{currency}})",

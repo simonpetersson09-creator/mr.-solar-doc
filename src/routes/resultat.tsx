@@ -278,6 +278,12 @@ const cost = result.productionCost;
               years: formatNumber(paybackYears, locale),
             })}
           </h2>
+          <p className="mt-0.5 text-center text-[11px] text-white/60">
+            {t("result.investmentLevelBasis", {
+              years: formatNumber(paybackYears, locale),
+            })}
+          </p>
+
           <p className="mt-1 text-center text-3xl font-extrabold tracking-tight text-accent">
             {t("result.maxInvestmentApprox", { amount: investmentAmount })}
           </p>
