@@ -810,7 +810,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
   );
 
 
-  report.pageBreak();
+  report.softBreak(70);
 
   if (gridUnverified) {
     report.paragraph(`${labels.gridUnverifiedTitle}: ${labels.gridUnverifiedWarning}`);
@@ -893,7 +893,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     labels.origin,
   );
 
-  report.pageBreak();
+  report.softBreak(80);
   report.sectionTitle(labels.production);
   report.rows(
     [
@@ -984,7 +984,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     `${f["selfConsumptionRateNote"] ?? ""} ${f["selfSufficiencyRateNote"] ?? ""}`,
   );
 
-  report.pageBreak();
+  report.softBreak(80);
   report.sectionTitle(labels.economics);
   report.rows(
     [
