@@ -824,38 +824,92 @@ export function generateReportBlob(options: ReportOptions): Blob {
       : labels.paybackNote,
   );
 
-  // Cumulative economic value over the calculation period, straight from
-  // result.lifetime (0.5 %/year degradation, unchanged electricity values).
+  // ── Long-term development page ───────────────────────────────────────────
+  // Everything below is read straight from result.lifetime (the same projection
+  // the results page uses). No economics are recomputed here.
   let running = 0;
   const cumulative = result.lifetime.years.map((year) => {
     running += year.economicValue;
     return { year: year.year, value: running };
   });
-  const markerYears = [1, 10, 20, result.lifetime.periodYears].filter(
-    (year, index, all) => year <= result.lifetime.periodYears && all.indexOf(year) === index,
+  const periodYears = result.lifetime.periodYears;
+  const paybackYear = Math.round(
+    result.investment.quotePaybackYears ?? result.investment.acceptedPaybackYears,
   );
-  report.sectionTitle(f["longTermChartTitle"] ?? "");
+  const markerYears = [1, 10, 20, periodYears].filter(
+    (year, index, all) => year <= periodYears && all.indexOf(year) === index,
+  );
+  const cumulativeAt = (year: number) =>
+    cumulative.find((point) => point.year === year)?.value ?? 0;
+  const productionAt = (year: number) =>
+    result.lifetime.years.find((entry) => entry.year === year)?.productionKwh ?? 0;
+
+  report.pageBreak();
+  report.sectionTitle(
+    (f["lifetimeTitle"] ?? f["longTermChartTitle"] ?? "").replace(
+      "{{years}}",
+      String(periodYears),
+    ),
+  );
   report.cumulativeChart(
     cumulative,
     markerYears,
     (value) => formatCurrency(Math.round(value), locale, currency),
     f["yearShort"] ?? "",
+    paybackYear > 1 && paybackYear <= periodYears
+      ? {
+          year: paybackYear,
+          label: (f["lifetimePaybackMarker"] ?? "").replace(
+            "{{years}}",
+            formatNumber(paybackYear, locale),
+          ),
+        }
+      : null,
+  );
+  report.highlights(
+    [10, 20, periodYears]
+      .filter((year, index, all) => year <= periodYears && all.indexOf(year) === index)
+      .map((year) => ({
+        label: (f["lifetimeAfterYears"] ?? "").replace("{{years}}", String(year)),
+        value: formatCurrency(Math.round(cumulativeAt(year)), locale, currency),
+      })),
+  );
+  report.highlights(
+    [1, 10, 20, periodYears]
+      .filter((year, index, all) => year <= periodYears && all.indexOf(year) === index)
+      .map((year) => ({
+        label: (f["lifetimeProductionYear"] ?? "").replace("{{year}}", String(year)),
+        value: `${formatNumber(Math.round(productionAt(year)), locale)} kWh`,
+      })),
+  );
+  report.lifetimeTable(
+    result.lifetime.years.map((entry) => ({
+      year: entry.year,
+      production: `${formatNumber(Math.round(entry.productionKwh), locale)}`,
+      value: formatCurrency(Math.round(entry.economicValue), locale, currency),
+      cumulative: formatCurrency(Math.round(cumulativeAt(entry.year)), locale, currency),
+      highlighted: entry.year === paybackYear,
+    })),
+    {
+      year: f["yearShort"] ?? "",
+      production: f["lifetimeColProduction"] ?? "",
+      value: f["lifetimeColValue"] ?? "",
+      cumulative: f["lifetimeColCumulative"] ?? "",
+    },
   );
   report.paragraph(
-    `${(f["savings30Note"] ?? "").replace(
-      "{{degradation}}",
-      formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
-    )} ${(f["savings30Method"] ?? "")
-      .replace("{{years}}", String(result.lifetime.periodYears))
+    (f["lifetimeNote"] ?? "")
+      .replaceAll("{{years}}", String(periodYears))
       .replace(
         "{{degradation}}",
         formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
       )
       .replace(
         "{{priceChange}}",
-        formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0),
-      )}`,
+        formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 1),
+      ),
   );
+
 
   report.sectionTitle(f["keyAssumptions"] ?? labels.assumptions);
   const selfConsumptionSourceLabel =
