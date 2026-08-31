@@ -64,6 +64,7 @@ export const lv = {
     "fetching": "Iegūst saules ražošanas datus no PVGIS…",
     "result": "Aprēķinātā saules enerģijas ražošana objektā",
     "unit": "kWh/kWp/gadā",
+    disclaimer: "Aprēķinātā saules enerģijas ražošana balstās uz atrašanās vietu, orientāciju un jumta slīpumu. Faktisko ražošanu var ietekmēt, piemēram, ēnojums, laikapstākļi, temperatūra un sistēmas zudumi.",
     "error": "Pašlaik nevarējām iegūt saules enerģijas ražošanas datus šai vietai. Vērtības netiek minētas."
   },
   "consumption": {

@@ -70,6 +70,7 @@ export const sv = {
     fetching: "Hämtar solproduktionsdata från PVGIS…",
     result: "Beräknad solproduktion på platsen",
     unit: "kWh/kWp/år",
+    disclaimer: "Beräknad solproduktion baseras på plats, väderstreck och taklutning. Faktisk produktion kan påverkas av bland annat skuggning, väder, temperatur och systemförluster.",
     error:
       "Vi kunde inte hämta solproduktionsdata för platsen just nu. Inga värden gissas fram.",
   },

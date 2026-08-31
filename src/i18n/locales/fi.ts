@@ -64,6 +64,7 @@ export const fi = {
     "fetching": "Haetaan aurinkotuotantotietoja PVGIS-palvelusta…",
     "result": "Arvioitu aurinkosähkön tuotto kohteessa",
     "unit": "kWh/kWp/vuosi",
+    disclaimer: "Laskettu aurinkotuotanto perustuu sijaintiin, ilmansuuntaan ja katon kaltevuuteen. Todelliseen tuotantoon voivat vaikuttaa muun muassa varjostus, sää, lämpötila ja järjestelmähäviöt.",
     "error": "Emme voineet hakea aurinkotuotantotietoja tästä kohteesta. Arvoja ei arvailla."
   },
   "consumption": {

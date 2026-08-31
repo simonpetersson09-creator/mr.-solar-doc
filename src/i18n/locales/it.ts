@@ -64,6 +64,7 @@ export const it = {
     "fetching": "Recupero dati di produzione solare da PVGIS…",
     "result": "Produzione solare stimata per il sito",
     "unit": "kWh/kWp/anno",
+    disclaimer: "La produzione solare calcolata si basa su posizione, orientamento e inclinazione del tetto. La produzione effettiva può essere influenzata da ombreggiamento, meteo, temperatura e perdite di sistema.",
     "error": "Non è stato possibile recuperare i dati di produzione solare per questo sito al momento. Nessun valore viene stimato."
   },
   "consumption": {

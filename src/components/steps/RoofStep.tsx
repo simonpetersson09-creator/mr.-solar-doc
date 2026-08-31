@@ -175,22 +175,27 @@ className="h-7 w-16 rounded-full border-white/25 bg-white/15 px-2 text-xs text-w
       ) : null}
 
 {query.data ? (
-        <div className="hero-metric flex items-center justify-between gap-4 rounded-2xl px-4 py-3">
+        <div className="hero-metric rounded-2xl px-4 py-3">
           <div className="glow-amber -top-10 -right-10 size-32" aria-hidden="true" />
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-1.5 text-xs font-semibold">
-              <span className="size-1.5 animate-pulse rounded-full bg-accent" />
-              <Sun className="size-3.5" />
-              {t("roof.result")}
+          <div className="flex items-center justify-between gap-4">
+            <div className="text-center">
+              <div className="flex items-center justify-center gap-1.5 text-xs font-semibold">
+                <span className="size-1.5 animate-pulse rounded-full bg-accent" />
+                <Sun className="size-3.5" />
+                {t("roof.result")}
+              </div>
+              <p className="mt-0.5 text-[11px] text-white/70">{query.data.dataSource}</p>
             </div>
-            <p className="mt-0.5 text-[11px] text-white/70">{query.data.dataSource}</p>
+            <div className="text-center">
+              <p className="text-3xl leading-none font-extrabold tracking-tight">
+                {formatNumber(query.data.annualKwhPerKwp, locale)}
+              </p>
+              <p className="mt-1 text-[11px] text-white/70">{t("roof.unit")}</p>
+            </div>
           </div>
-<div className="text-center">
-            <p className="text-3xl leading-none font-extrabold tracking-tight">
-              {formatNumber(query.data.annualKwhPerKwp, locale)}
-            </p>
-            <p className="mt-1 text-[11px] text-white/70">{t("roof.unit")}</p>
-          </div>
+          <p className="mt-2.5 border-t border-white/15 pt-2 text-center text-[10px] leading-relaxed text-white/60">
+            {t("roof.disclaimer")}
+          </p>
         </div>
       ) : null}
     </StepShell>

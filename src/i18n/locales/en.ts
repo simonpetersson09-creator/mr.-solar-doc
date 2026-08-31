@@ -70,6 +70,7 @@ export const en = {
     fetching: "Fetching solar data from PVGIS…",
     result: "Estimated solar yield at this location",
     unit: "kWh/kWp/yr",
+    disclaimer: "Estimated solar production is based on location, orientation and roof tilt. Actual production may be affected by shading, weather, temperature and system losses.",
     error: "We couldn't fetch solar data for this location. No values are guessed.",
   },
   consumption: {
