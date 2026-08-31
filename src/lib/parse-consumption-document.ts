@@ -51,15 +51,21 @@ const NUMERIC_MONTH_PATTERNS: RegExp[] = [
   /^\D{0,3}(0?[1-9]|1[0-2])\s*[-/.]\s*(19|20)\d{2}\b/,
 ];
 
-function monthIndexForLine(line: string): number {
-  const byName = MONTH_PATTERNS.findIndex((pattern) => pattern.test(line));
-  if (byName !== -1) return byName;
-
+/**
+ * Detects the month a line refers to and returns the line with any leading
+ * date token removed, so "2025-01" is not mistaken for a value.
+ */
+function monthForLine(line: string): { index: number; rest: string } {
   const yearFirst = NUMERIC_MONTH_PATTERNS[0]!.exec(line);
-  if (yearFirst) return Number(yearFirst[2]) - 1;
+  if (yearFirst) {
+    return { index: Number(yearFirst[2]) - 1, rest: line.slice(yearFirst[0].length) };
+  }
   const monthFirst = NUMERIC_MONTH_PATTERNS[1]!.exec(line);
-  if (monthFirst) return Number(monthFirst[1]) - 1;
-  return -1;
+  if (monthFirst) {
+    return { index: Number(monthFirst[1]) - 1, rest: line.slice(monthFirst[0].length) };
+  }
+  const byName = MONTH_PATTERNS.findIndex((pattern) => pattern.test(line));
+  return { index: byName, rest: line };
 }
 
 const NUMBER_SOURCE = "-?[\\d][\\d\\s\\u00a0\\u202f.,']*\\d|\\d";
