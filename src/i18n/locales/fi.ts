@@ -139,6 +139,26 @@ export const fi = {
     "monthlyHint": "Syötä kulutus kaikille 12 kuukaudelle"
   },
   "fuse": {
+    "gridAssumptionDynamic": "Laskenta perustuu arvoihin {{service}} {{voltage}}.",
+    "capacity": {
+      "otherLabel": "Anna arvo",
+      "invalid": "Anna arvo välillä {{min}}–{{max}} {{unit}}.",
+      "amperage": {
+        "title": "Mikä on pääsulakkeesi?",
+        "label": "Pääsulake",
+        "help": "Ampeeria vaihetta kohti, näkyy pääkytkimessä tai laskussa."
+      },
+      "contracted-kva": {
+        "title": "Mikä on sopimustehosi?",
+        "label": "Sopimusteho",
+        "help": "Ilmoitetaan laskulla kilovolttiampeereina (kVA)."
+      },
+      "contracted-kw": {
+        "title": "Mikä on sopimustehosi?",
+        "label": "Sopimusteho",
+        "help": "Ilmoitetaan laskulla kilowatteina (kW)."
+      }
+    },
     "gridAssumption": "Laskenta perustuu 400 V:n kolmivaiheliittymään.",
     "gridAssumptionInfo": "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     "grid": {
@@ -167,6 +187,10 @@ export const fi = {
     "invalid": "Anna pääsulake väliltä 6 – 400 A."
   },
   "result": {
+    "connection": {
+      "contractedKva": "Sopimusteho (kVA)",
+      "contractedKw": "Sopimusteho (kW)"
+    },
     "gridConnection": "Verkkoliittymä",
     "gridConnectionValue": "{{voltage}} V, {{phases}}-vaihe",
     "title": "Laskelmasi",

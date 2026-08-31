@@ -139,6 +139,26 @@ export const da = {
     "monthlyHint": "Angiv forbrug for alle 12 måneder"
   },
   "fuse": {
+    "gridAssumptionDynamic": "Beregningen tager udgangspunkt i {{service}} {{voltage}}.",
+    "capacity": {
+      "otherLabel": "Indtast værdi",
+      "invalid": "Indtast en værdi mellem {{min}} og {{max}} {{unit}}.",
+      "amperage": {
+        "title": "Hvilken hovedsikring har du?",
+        "label": "Hovedsikring",
+        "help": "Ampere pr. fase, står på hovedafbryderen eller regningen."
+      },
+      "contracted-kva": {
+        "title": "Hvilken abonneret effekt har du?",
+        "label": "Abonneret effekt",
+        "help": "Angives i kVA på din elregning."
+      },
+      "contracted-kw": {
+        "title": "Hvilken aftalt effekt har du?",
+        "label": "Aftalt effekt",
+        "help": "Angives i kW på din elregning."
+      }
+    },
     "gridAssumption": "Beregningen tager udgangspunkt i 400 V trefaset.",
     "gridAssumptionInfo": "Hovedsikringens teoretiske effekt beregnes ud fra en 400 V trefaset tilslutning. Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
     "grid": {
@@ -167,6 +187,10 @@ export const da = {
     "invalid": "Angiv en hovedsikring mellem 6 og 400 A."
   },
   "result": {
+    "connection": {
+      "contractedKva": "Abonneret effekt (kVA)",
+      "contractedKw": "Aftalt effekt (kW)"
+    },
     "gridConnection": "Nettilslutning",
     "gridConnectionValue": "{{voltage}} V, {{phases}}-faset",
     "title": "Din beregning",

@@ -139,6 +139,26 @@ export const et = {
     "monthlyHint": "Sisestage tarbimine kõigi 12 kuu kohta"
   },
   "fuse": {
+    "gridAssumptionDynamic": "Arvutus lähtub {{service}} {{voltage}}.",
+    "capacity": {
+      "otherLabel": "Sisestage väärtus",
+      "invalid": "Sisestage väärtus vahemikus {{min}} kuni {{max}} {{unit}}.",
+      "amperage": {
+        "title": "Milline on teie peakaitse?",
+        "label": "Peakaitse",
+        "help": "Amprid faasi kohta, näidatud pealülitil või arvel."
+      },
+      "contracted-kva": {
+        "title": "Milline on teie lepinguline võimsus?",
+        "label": "Lepinguline võimsus",
+        "help": "Arvel esitatud kVA-des."
+      },
+      "contracted-kw": {
+        "title": "Milline on teie lepinguline võimsus?",
+        "label": "Lepinguline võimsus",
+        "help": "Arvel esitatud kW-des."
+      }
+    },
     "gridAssumption": "Arvutus eeldab 400 V kolmefaasilist liitumist.",
     "gridAssumptionInfo": "Peakaitsme teoreetiline võimsus arvutatakse 400 V kolmefaasilise liitumise alusel. Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
     "grid": {
@@ -167,6 +187,10 @@ export const et = {
     "invalid": "Sisesta peakaitse vahemikus 6 kuni 400 A."
   },
   "result": {
+    "connection": {
+      "contractedKva": "Lepinguline võimsus (kVA)",
+      "contractedKw": "Lepinguline võimsus (kW)"
+    },
     "gridConnection": "Võrguühendus",
     "gridConnectionValue": "{{voltage}} V, {{phases}}-faasiline",
     "title": "Sinu arvutus",

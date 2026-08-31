@@ -139,6 +139,26 @@ export const pl = {
     "monthlyHint": "Wprowadź zużycie dla wszystkich 12 miesięcy"
   },
   "fuse": {
+    "gridAssumptionDynamic": "Obliczenia opierają się na {{service}} {{voltage}}.",
+    "capacity": {
+      "otherLabel": "Podaj wartość",
+      "invalid": "Podaj wartość od {{min}} do {{max}} {{unit}}.",
+      "amperage": {
+        "title": "Jaki masz bezpiecznik główny?",
+        "label": "Bezpiecznik główny",
+        "help": "Ampery na fazę, podane na wyłączniku głównym lub rachunku."
+      },
+      "contracted-kva": {
+        "title": "Jaka jest Twoja moc umowna?",
+        "label": "Moc umowna",
+        "help": "Podawana na rachunku w kVA."
+      },
+      "contracted-kw": {
+        "title": "Jaka jest Twoja moc umowna?",
+        "label": "Moc umowna",
+        "help": "Podawana na rachunku w kW."
+      }
+    },
     "gridAssumption": "Obliczenia zakładają przyłącze trójfazowe 400 V.",
     "gridAssumptionInfo": "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
     "grid": {
@@ -167,6 +187,10 @@ export const pl = {
     "invalid": "Podaj zabezpieczenie główne od 6 do 400 A."
   },
   "result": {
+    "connection": {
+      "contractedKva": "Moc umowna (kVA)",
+      "contractedKw": "Moc umowna (kW)"
+    },
     "gridConnection": "Przyłącze sieciowe",
     "gridConnectionValue": "{{voltage}} V, {{phases}} fazy",
     "title": "Twoja kalkulacja",

@@ -139,6 +139,26 @@ export const lv = {
     "monthlyHint": "Ievadiet patēriņu visiem 12 mēnešiem"
   },
   "fuse": {
+    "gridAssumptionDynamic": "Aprēķina pamatā ir {{service}} {{voltage}}.",
+    "capacity": {
+      "otherLabel": "Ievadiet vērtību",
+      "invalid": "Ievadiet vērtību no {{min}} līdz {{max}} {{unit}}.",
+      "amperage": {
+        "title": "Kāds ir jūsu ievadaizsardzības automāts?",
+        "label": "Ievadaizsardzība",
+        "help": "Amperi uz fāzi, norādīti uz ievadautomāta vai rēķina."
+      },
+      "contracted-kva": {
+        "title": "Kāda ir jūsu līgumā noteiktā jauda?",
+        "label": "Līgumā noteiktā jauda",
+        "help": "Rēķinā norādīta kVA."
+      },
+      "contracted-kw": {
+        "title": "Kāda ir jūsu līgumā noteiktā jauda?",
+        "label": "Līgumā noteiktā jauda",
+        "help": "Rēķinā norādīta kW."
+      }
+    },
     "gridAssumption": "Aprēķins balstās uz 400 V trīsfāžu pieslēgumu.",
     "gridAssumptionInfo": "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     "grid": {
@@ -167,6 +187,10 @@ export const lv = {
     "invalid": "Ievadiet galveno drošinātāju no 6 līdz 400 A."
   },
   "result": {
+    "connection": {
+      "contractedKva": "Līgumā noteiktā jauda (kVA)",
+      "contractedKw": "Līgumā noteiktā jauda (kW)"
+    },
     "gridConnection": "Tīkla pieslēgums",
     "gridConnectionValue": "{{voltage}} V, {{phases}} fāzes",
     "title": "Jūsu aprēķins",

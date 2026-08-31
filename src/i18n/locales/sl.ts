@@ -139,6 +139,26 @@ export const sl = {
     "monthlyHint": "Vnesite porabo za vseh 12 mesecev"
   },
   "fuse": {
+    "gridAssumptionDynamic": "Izračun temelji na {{service}} {{voltage}}.",
+    "capacity": {
+      "otherLabel": "Vnesite vrednost",
+      "invalid": "Vnesite vrednost med {{min}} in {{max}} {{unit}}.",
+      "amperage": {
+        "title": "Kakšno glavno varovalko imate?",
+        "label": "Glavna varovalka",
+        "help": "Amperi na fazo, navedeni na glavnem stikalu ali računu."
+      },
+      "contracted-kva": {
+        "title": "Kakšno dogovorjeno moč imate?",
+        "label": "Dogovorjena moč",
+        "help": "Na računu je navedena v kVA."
+      },
+      "contracted-kw": {
+        "title": "Kakšno dogovorjeno moč imate?",
+        "label": "Dogovorjena moč",
+        "help": "Na računu je navedena v kW."
+      }
+    },
     "gridAssumption": "Izračun predpostavlja trifazni priključek 400 V.",
     "gridAssumptionInfo": "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
     "grid": {
@@ -167,6 +187,10 @@ export const sl = {
     "invalid": "Vnesite glavno varovalko med 6 in 400 A."
   },
   "result": {
+    "connection": {
+      "contractedKva": "Dogovorjena moč (kVA)",
+      "contractedKw": "Dogovorjena moč (kW)"
+    },
     "gridConnection": "Omrežni priključek",
     "gridConnectionValue": "{{voltage}} V, {{phases}}-fazni",
     "title": "Vaš izračun",
