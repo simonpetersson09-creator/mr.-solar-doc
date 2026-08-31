@@ -123,8 +123,8 @@ error: "Address search failed.",
     },
     upload: {
       title: "Attach 12 months of consumption data",
-      sectionTitle: "From a document",
-      sectionHint: "Let us read your electricity bill or consumption data automatically.",
+      sectionTitle: "Scan your electricity bill",
+      sectionHint: "Attach your electricity bill or 12 months of consumption data and we'll fill in the values for you.",
       description:
         "Upload an electricity invoice or your own consumption data (PDF, Excel, CSV or an image like PNG/JPEG) and we fill in annual and monthly values automatically.",
       button: "Choose file",

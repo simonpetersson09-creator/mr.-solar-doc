@@ -111,8 +111,8 @@ export const fr = {
       "successAnnual": "Nous avons trouvé une consommation annuelle dans le document.",
       "error": "Nous n'avons pas pu trouver de consommation dans le document. Veuillez saisir les valeurs manuellement.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT ou image (PNG, JPEG)",
-      "sectionTitle": "À partir d'un document",
-      "sectionHint": "Laissez-nous lire automatiquement votre facture d'électricité ou vos données de consommation.",
+      "sectionTitle": "Scannez votre facture d’électricité",
+      "sectionHint": "Joignez votre facture d’électricité ou 12 mois de données de consommation et nous remplirons les valeurs pour vous.",
       "dropHint": "Glissez-déposez votre fichier ici, ou",
       "dropActive": "Déposez le fichier pour le lire",
       "browse": "parcourir les fichiers",
@@ -130,10 +130,7 @@ export const fr = {
     "total": "Consommation annuelle totale",
     "invalid": "Saisissez une consommation annuelle entre 100 et 200 000 kWh.",
     "or": "ou",
-    "manual": {
-      "sectionTitle": "Saisir manuellement",
-      "sectionHint": "Indiquez votre consommation annuelle — vérifiez votre facture ou votre contrat d'électricité."
-    },
+    "manual": { "sectionTitle": "Saisir manuellement", "sectionHint": "Indiquez votre consommation annuelle — vérifiez votre facture ou votre contrat d’électricité." },
     "monthlyHint": "Indiquez la consommation pour les 12 mois"
   },
   "fuse": {

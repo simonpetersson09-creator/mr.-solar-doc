@@ -111,8 +111,8 @@ export const lt = {
       "successAnnual": "Dokumente radome metinį suvartojimą.",
       "error": "Dokumente neradome jokio suvartojimo. Įveskite vertes rankiniu būdu.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT arba paveikslėlis (PNG, JPEG)",
-      "sectionTitle": "Iš dokumento",
-      "sectionHint": "Leiskite mums automatiškai nuskaityti jūsų elektros sąskaitą ar suvartojimo duomenis.",
+      "sectionTitle": "Nuskaitykite savo elektros sąskaitą",
+      "sectionHint": "Pridėkite savo elektros sąskaitą arba 12 mėnesių suvartojimo duomenis ir mes užpildysime vertes už jus.",
       "dropHint": "Nutempkite failą čia arba",
       "dropActive": "Atleiskite failą, kad jį nuskaitytumėte",
       "browse": "naršyti failus",
@@ -130,10 +130,7 @@ export const lt = {
     "total": "Bendras metinis suvartojimas",
     "invalid": "Įveskite metinį suvartojimą nuo 100 iki 200 000 kWh.",
     "or": "arba",
-    "manual": {
-      "sectionTitle": "Įvesti rankiniu būdu",
-      "sectionHint": "Įveskite metinį suvartojimą — patikrinkite elektros sąskaitą ar sutartį."
-    },
+    "manual": { "sectionTitle": "Įvesti rankiniu būdu", "sectionHint": "Įveskite metinį suvartojimą — patikrinkite elektros sąskaitą ar sutartį." },
     "monthlyHint": "Įveskite suvartojimą visiems 12 mėnesių"
   },
   "fuse": {

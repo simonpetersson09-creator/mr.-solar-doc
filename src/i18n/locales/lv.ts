@@ -111,8 +111,8 @@ export const lv = {
       "successAnnual": "Mēs atradām gada patēriņu dokumentā.",
       "error": "Mēs nevarējām atrast patēriņu dokumentā. Lūdzu, ievadiet vērtības manuāli.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT vai attēls (PNG, JPEG)",
-      "sectionTitle": "No dokumenta",
-      "sectionHint": "Ļaujiet mums automātiski nolasīt jūsu elektrības rēķinu vai patēriņa datus.",
+      "sectionTitle": "Skenēt elektrības rēķinu",
+      "sectionHint": "Pievienojiet savu elektrības rēķinu vai 12 mēnešu patēriņa datus, un mēs aizpildīsim vērtības jūsu vietā.",
       "dropHint": "Ievelciet failu šeit vai",
       "dropActive": "Atlaidiet failu, lai to nolasītu",
       "browse": "pārlūkot failus",
@@ -130,10 +130,7 @@ export const lv = {
     "total": "Kopējais gada patēriņš",
     "invalid": "Ievadiet gada patēriņu no 100 līdz 200 000 kWh.",
     "or": "vai",
-    "manual": {
-      "sectionTitle": "Ievadīt manuāli",
-      "sectionHint": "Ievadiet savu gada patēriņu — pārbaudiet elektrības rēķinu vai līgumu."
-    },
+    "manual": { "sectionTitle": "Ievadīt manuāli", "sectionHint": "Ievadiet savu gada patēriņu — pārbaudiet elektrības rēķinu vai līgumu." },
     "monthlyHint": "Ievadiet patēriņu visiem 12 mēnešiem"
   },
   "fuse": {

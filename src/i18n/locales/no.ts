@@ -119,8 +119,8 @@ export const no = {
     },
     "upload": {
       "title": "Legg ved 12 måneders forbruksdata",
-      "sectionTitle": "Fra et dokument",
-      "sectionHint": "La oss lese strømregningen eller forbruksdataene dine automatisk.",
+      "sectionTitle": "Les av strømregningen",
+      "sectionHint": "Legg ved strømregningen eller forbruksdata for 12 måneder, så fyller vi ut verdiene for deg.",
       "description": "Last opp en strømfaktura eller egne forbruksdata (PDF, Excel, CSV eller et bilde som PNG/JPEG), så fyller vi ut års- og månedsverdier automatisk.",
       "button": "Velg fil",
       "loading": "Leser dokumentet…",
@@ -139,10 +139,7 @@ export const no = {
     "title": "Hvor mye strøm bruker du?",
     "subtitle": "Sjekk strømregningen eller avtalen din.",
     "or": "eller",
-    "manual": {
-      "sectionTitle": "Angi manuelt",
-      "sectionHint": "Angi årsforbruket ditt — sjekk strømregningen eller avtalen din."
-    },
+    "manual": { "sectionTitle": "Angi manuelt", "sectionHint": "Angi årsforbruket ditt — sjekk strømregningen eller avtalen din." },
     "annual": "Årsforbruk",
     "annualPlaceholder": "f.eks. 18 000",
     "useMonthly": "Angi forbruk per måned (12 måneder)",

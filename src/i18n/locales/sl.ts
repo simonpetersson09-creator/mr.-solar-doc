@@ -111,8 +111,8 @@ export const sl = {
       "successAnnual": "V dokumentu smo našli letno porabo.",
       "error": "V dokumentu nismo našli nobene porabe. Vnesite vrednosti ročno.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT ali slika (PNG, JPEG)",
-      "sectionTitle": "Iz dokumenta",
-      "sectionHint": "Pustite nam samodejno prebrati vaš račun za elektriko ali podatke o porabi.",
+      "sectionTitle": "Skenirajte račun za elektriko",
+      "sectionHint": "Priložite račun za elektriko ali podatke o porabi za 12 mesecev in za vas bomo izpolnili vrednosti.",
       "dropHint": "Povlecite in spustite datoteko tukaj ali",
       "dropActive": "Spustite datoteko za branje",
       "browse": "prebrskaj datoteke",
@@ -130,10 +130,7 @@ export const sl = {
     "total": "Skupna letna poraba",
     "invalid": "Vnesite letno porabo med 100 in 200.000 kWh.",
     "or": "ali",
-    "manual": {
-      "sectionTitle": "Vnesi ročno",
-      "sectionHint": "Vnesite svojo letno porabo — preverite račun za elektriko ali pogodbo."
-    },
+    "manual": { "sectionTitle": "Vnesi ročno", "sectionHint": "Vnesite svojo letno porabo — preverite račun za elektriko ali pogodbo." },
     "monthlyHint": "Vnesite porabo za vseh 12 mesecev"
   },
   "fuse": {

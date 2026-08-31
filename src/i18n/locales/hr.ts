@@ -123,8 +123,8 @@ export const hr = {
     },
     upload: {
       title: "Priložite podatke o potrošnji za 12 mjeseci",
-      sectionTitle: "Iz dokumenta",
-      sectionHint: "Dopustite nam da automatski pročitamo vaš račun za struju ili podatke o potrošnji.",
+      sectionTitle: "Skenirajte račun za struju",
+      sectionHint: "Priložite račun za struju ili podatke o potrošnji za 12 mjeseci i mi ćemo popuniti vrijednosti umjesto vas.",
       description:
         "Prenesite račun za struju ili vlastite podatke o potrošnji (PDF, Excel, CSV ili sliku poput PNG/JPEG) i automatski ćemo popuniti godišnje i mjesečne vrijednosti.",
       button: "Odaberi datoteku",
@@ -144,10 +144,7 @@ export const hr = {
     title: "Koliko struje trošite?",
     subtitle: "Provjerite svoj račun za struju ili ugovor.",
     or: "ili",
-    manual: {
-      sectionTitle: "Unesi ručno",
-      sectionHint: "Unesite godišnju potrošnju – provjerite svoj račun za struju ili ugovor.",
-    },
+    manual: { sectionTitle: "Unesi ručno", sectionHint: "Unesite godišnju potrošnju – provjerite svoj račun za struju ili ugovor." },
     annual: "Godišnja potrošnja",
     annualPlaceholder: "npr. 18.000",
     useMonthly: "Unesi potrošnju po mjesecu (12 mjeseci)",

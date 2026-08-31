@@ -124,8 +124,8 @@ error: "Adressökningen misslyckades.",
     },
     upload: {
       title: "Bifoga förbrukningsdata för 12 månader",
-      sectionTitle: "Från dokument",
-      sectionHint: "Låt oss läsa av din elräkning eller förbrukningsdata automatiskt.",
+      sectionTitle: "Läs av din elräkning",
+      sectionHint: "Bifoga din elräkning eller förbrukningsdata för de senaste 12 månaderna så fyller vi i värdena åt dig.",
       description:
         "Ladda upp en elfaktura eller egen förbrukningsdata (PDF, Excel, CSV eller bild som PNG/JPEG) så fyller vi i årsförbrukning och månadsvärden automatiskt.",
       button: "Välj fil",

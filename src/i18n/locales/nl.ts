@@ -123,8 +123,8 @@ export const nl = {
     },
     upload: {
       title: "Voeg 12 maanden verbruiksgegevens toe",
-      sectionTitle: "Vanuit een document",
-      sectionHint: "Laat ons je energierekening of verbruiksgegevens automatisch uitlezen.",
+      sectionTitle: "Scan je energierekening",
+      sectionHint: "Voeg je energierekening of verbruiksgegevens van 12 maanden toe en wij vullen de waarden voor je in.",
       description:
         "Upload een energierekening of je eigen verbruiksgegevens (PDF, Excel, CSV of een afbeelding zoals PNG/JPEG) en we vullen de jaar- en maandwaarden automatisch in.",
       button: "Bestand kiezen",
@@ -144,10 +144,7 @@ export const nl = {
     title: "Hoeveel stroom gebruik je?",
     subtitle: "Bekijk je energierekening of contract.",
     or: "of",
-    manual: {
-      sectionTitle: "Handmatig invoeren",
-      sectionHint: "Vul je jaarverbruik in — bekijk je energierekening of contract.",
-    },
+    manual: { sectionTitle: "Handmatig invoeren", sectionHint: "Vul je jaarverbruik in — bekijk je energierekening of contract." },
     annual: "Jaarverbruik",
     annualPlaceholder: "bijv. 18.000",
     useMonthly: "Verbruik per maand invoeren (12 maanden)",

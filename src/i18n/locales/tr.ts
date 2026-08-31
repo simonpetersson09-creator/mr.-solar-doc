@@ -119,8 +119,8 @@ export const tr = {
     },
     "upload": {
       "title": "12 aylık tüketim verisi ekleyin",
-      "sectionTitle": "Bir belgeden",
-      "sectionHint": "Elektrik faturanızı veya tüketim verinizi otomatik olarak okumamıza izin verin.",
+      "sectionTitle": "Elektrik faturanızı tarayın",
+      "sectionHint": "Elektrik faturanızı veya 12 aylık tüketim verinizi ekleyin, değerleri sizin için biz dolduralım.",
       "description": "Bir elektrik faturası veya kendi tüketim verinizi (PDF, Excel, CSV veya PNG/JPEG gibi bir görsel) yükleyin; yıllık ve aylık değerleri sizin için otomatik olarak dolduralım.",
       "button": "Dosya seç",
       "loading": "Belge okunuyor…",
@@ -139,10 +139,7 @@ export const tr = {
     "title": "Ne kadar elektrik kullanıyorsunuz?",
     "subtitle": "Elektrik faturanızı veya sözleşmenizi kontrol edin.",
     "or": "veya",
-    "manual": {
-      "sectionTitle": "Manuel olarak girin",
-      "sectionHint": "Yıllık tüketiminizi girin — elektrik faturanızı veya sözleşmenizi kontrol edin."
-    },
+    "manual": { "sectionTitle": "Manuel olarak girin", "sectionHint": "Yıllık tüketiminizi girin — elektrik faturanızı veya sözleşmenizi kontrol edin." },
     "annual": "Yıllık tüketim",
     "annualPlaceholder": "örn. 18.000",
     "useMonthly": "Tüketimi aylık olarak girin (12 ay)",

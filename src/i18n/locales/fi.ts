@@ -111,8 +111,8 @@ export const fi = {
       "successAnnual": "Löysimme vuotuisen kulutuksen asiakirjasta.",
       "error": "Emme löytäneet kulutustietoja asiakirjasta. Syötä arvot manuaalisesti.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT tai kuva (PNG, JPEG)",
-      "sectionTitle": "Asiakirjasta",
-      "sectionHint": "Anna meidän lukea sähkölaskusi tai kulutustietosi automaattisesti.",
+      "sectionTitle": "Lue sähkölaskusi",
+      "sectionHint": "Liitä sähkölaskusi tai 12 kuukauden kulutustiedot, niin täytämme arvot puolestasi.",
       "dropHint": "Vedä ja pudota tiedosto tähän, tai",
       "dropActive": "Pudota tiedosto lukeaksesi sen",
       "browse": "selaa tiedostoja",
@@ -130,10 +130,7 @@ export const fi = {
     "total": "Vuosikulutus yhteensä",
     "invalid": "Anna vuosikulutus väliltä 100 – 200 000 kWh.",
     "or": "tai",
-    "manual": {
-      "sectionTitle": "Syötä manuaalisesti",
-      "sectionHint": "Syötä vuosikulutuksesi — tarkista sähkölaskustasi tai sopimuksestasi."
-    },
+    "manual": { "sectionTitle": "Syötä manuaalisesti", "sectionHint": "Syötä vuosikulutuksesi — tarkista sähkölaskustasi tai sopimuksestasi." },
     "monthlyHint": "Syötä kulutus kaikille 12 kuukaudelle"
   },
   "fuse": {

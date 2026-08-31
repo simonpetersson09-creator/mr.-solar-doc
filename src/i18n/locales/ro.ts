@@ -119,8 +119,8 @@ export const ro = {
     },
     "upload": {
       "title": "Atașează 12 luni de date de consum",
-      "sectionTitle": "Dintr-un document",
-      "sectionHint": "Lasă-ne să citim automat factura ta de energie sau datele de consum.",
+      "sectionTitle": "Scanează factura de energie",
+      "sectionHint": "Atașează factura de energie sau datele de consum pe 12 luni și vom completa valorile pentru tine.",
       "description": "Încarcă o factură de energie sau propriile date de consum (PDF, Excel, CSV sau o imagine precum PNG/JPEG) și completăm automat valorile anuale și lunare.",
       "button": "Alege fișier",
       "loading": "Se citește documentul…",
@@ -139,10 +139,7 @@ export const ro = {
     "title": "Câtă energie electrică folosești?",
     "subtitle": "Verifică factura sau contractul de energie.",
     "or": "sau",
-    "manual": {
-      "sectionTitle": "Introdu manual",
-      "sectionHint": "Introdu consumul tău anual — verifică factura sau contractul de energie."
-    },
+    "manual": { "sectionTitle": "Introdu manual", "sectionHint": "Introdu consumul tău anual — verifică factura sau contractul de energie." },
     "annual": "Consum anual",
     "annualPlaceholder": "ex. 18.000",
     "useMonthly": "Introdu consumul pe lună (12 luni)",

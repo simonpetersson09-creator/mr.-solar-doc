@@ -123,8 +123,8 @@ export const hu = {
     },
     upload: {
       title: "Csatolja 12 hónap fogyasztási adatát",
-      sectionTitle: "Dokumentumból",
-      sectionHint: "Hagyja, hogy automatikusan beolvassuk villanyszámláját vagy fogyasztási adatait.",
+      sectionTitle: "Olvassa be villanyszámláját",
+      sectionHint: "Csatolja villanyszámláját vagy 12 havi fogyasztási adatait, és mi kitöltjük az értékeket Ön helyett.",
       description:
         "Töltse fel villanyszámláját vagy saját fogyasztási adatait (PDF, Excel, CSV vagy kép, pl. PNG/JPEG), és automatikusan kitöltjük az éves és havi értékeket.",
       button: "Fájl kiválasztása",
@@ -144,10 +144,7 @@ export const hu = {
     title: "Mennyi villamos energiát használ?",
     subtitle: "Nézze meg a villanyszámláját vagy szerződését.",
     or: "vagy",
-    manual: {
-      sectionTitle: "Kézi megadás",
-      sectionHint: "Adja meg éves fogyasztását – nézze meg villanyszámláját vagy szerződését.",
-    },
+    manual: { sectionTitle: "Kézi megadás", sectionHint: "Adja meg éves fogyasztását – nézze meg villanyszámláját vagy szerződését." },
     annual: "Éves fogyasztás",
     annualPlaceholder: "pl. 18 000",
     useMonthly: "Fogyasztás megadása havonta (12 hónap)",
