@@ -37,7 +37,9 @@ export const sk = {
     "coordinates": "Súradnice",
     "country": "Krajina",
     "region": "Kraj",
-    "error": "Vyhľadávanie adresy zlyhalo."
+"error": "Vyhľadávanie adresy zlyhalo.",
+    "info": "Adresa sa používa výlučne na výpočet slnečného žiarenia vo vašej lokalite.",
+    "infoLabel": "Viac informácií o adrese"
   },
   "roof": {
     "title": "Vaša strecha",

@@ -37,7 +37,9 @@ export const en = {
     coordinates: "Coordinates",
     country: "Country",
     region: "Region",
-    error: "Address search failed.",
+error: "Address search failed.",
+    info: "The address is used only to calculate the solar irradiation at your location.",
+    infoLabel: "More information about the address"
   },
   premium: {
     title: "Premium",

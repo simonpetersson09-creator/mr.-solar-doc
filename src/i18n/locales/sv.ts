@@ -37,7 +37,9 @@ export const sv = {
     coordinates: "Koordinater",
     country: "Land",
     region: "Region",
-    error: "Adressökningen misslyckades.",
+error: "Adressökningen misslyckades.",
+    info: "Adressen används enbart för att få fram solinstrålningen på din plats.",
+    infoLabel: "Mer information om adressen"
   },
   premium: {
     title: "Premium",

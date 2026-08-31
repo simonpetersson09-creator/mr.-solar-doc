@@ -37,7 +37,9 @@ export const hr = {
     "coordinates": "Koordinate",
     "country": "Država",
     "region": "Regija",
-    "error": "Pretraživanje adrese nije uspjelo."
+"error": "Pretraživanje adrese nije uspjelo.",
+    "info": "Adresa se koristi samo za izračun sunčevog zračenja na vašoj lokaciji.",
+    "infoLabel": "Više informacija o adresi"
   },
   "roof": {
     "title": "Vaš krov",

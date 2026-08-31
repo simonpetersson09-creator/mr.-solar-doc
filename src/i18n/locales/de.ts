@@ -37,7 +37,9 @@ export const de = {
     "coordinates": "Koordinaten",
     "country": "Land",
     "region": "Region",
-    "error": "Die Adresssuche ist fehlgeschlagen."
+"error": "Die Adresssuche ist fehlgeschlagen.",
+    "info": "Die Adresse wird ausschließlich verwendet, um die Sonneneinstrahlung an Ihrem Standort zu berechnen.",
+    "infoLabel": "Weitere Informationen zur Adresse"
   },
   "roof": {
     "title": "Ihr Dach",

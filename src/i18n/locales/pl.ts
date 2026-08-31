@@ -37,7 +37,9 @@ export const pl = {
     "coordinates": "Współrzędne",
     "country": "Kraj",
     "region": "Region",
-    "error": "Wyszukiwanie adresu nie powiodło się."
+"error": "Wyszukiwanie adresu nie powiodło się.",
+    "info": "Adres jest używany wyłącznie do obliczenia nasłonecznienia w Twojej lokalizacji.",
+    "infoLabel": "Więcej informacji o adresie"
   },
   "roof": {
     "title": "Twój dach",
