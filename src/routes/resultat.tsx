@@ -215,7 +215,7 @@ const cost = result.productionCost;
         </section>
 
 {/* 2. Production */}
-        <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
+        <section className="rounded-[28px] border border-primary-foreground/20 cta-primary p-3.5 text-primary-foreground shadow-hero">
           <h2 className="mb-3 text-center text-sm font-semibold text-white">
             {t("result.sectionProduction")}
           </h2>
@@ -243,7 +243,7 @@ const cost = result.productionCost;
           {t("result.groupEconomy")}
         </p>
 {/* 3. What you get out of it — plain numbers, no controls */}
-        <section className="space-y-2.5 rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
+        <section className="space-y-2.5 rounded-[28px] border border-primary-foreground/20 cta-primary p-3.5 text-primary-foreground shadow-hero">
           <h2 className="text-center text-sm font-semibold text-white">
             {t("result.sectionEconomy")}
           </h2>
@@ -298,7 +298,7 @@ const cost = result.productionCost;
         </section>
 
 {/* 4. Max justifiable investment — its own hero card */}
-<section className="relative rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
+<section className="relative rounded-[28px] border border-primary-foreground/20 cta-primary p-3.5 text-primary-foreground shadow-hero">
           <button
             type="button"
             onClick={() => setShowInvestmentInfo((open) => !open)}
@@ -334,7 +334,7 @@ const cost = result.productionCost;
 
 
 {/* 5. Cost per produced kWh — own green card */}
-<section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
+<section className="rounded-[28px] border border-primary-foreground/20 cta-primary p-3.5 text-primary-foreground shadow-hero">
           <h2 className="text-center text-sm font-semibold text-white">
             {t("result.productionCostTitle")}
           </h2>
@@ -399,7 +399,7 @@ const cost = result.productionCost;
           {t("result.groupDetails")}
         </p>
         {/* 6. Technical details */}
-        <div className="overflow-hidden rounded-[28px] border border-primary-foreground/20 bg-primary text-primary-foreground shadow-hero">
+        <div className="overflow-hidden rounded-[28px] border border-primary-foreground/20 cta-primary text-primary-foreground shadow-hero">
           <button
             type="button"
             onClick={() => setShowDetails((open) => !open)}
