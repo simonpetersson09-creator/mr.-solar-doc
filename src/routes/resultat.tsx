@@ -470,7 +470,7 @@ const cost = result.productionCost;
           {t("result.groupDetails")}
         </p>
         {/* 6. Technical details */}
-        <div className="overflow-hidden rounded-[28px] border border-primary-foreground/20 cta-primary text-primary-foreground shadow-hero">
+        <div className="overflow-hidden rounded-[28px] border border-primary-foreground/20 glass-primary text-primary-foreground shadow-hero">
           <button
             type="button"
             onClick={() => setShowDetails((open) => !open)}
