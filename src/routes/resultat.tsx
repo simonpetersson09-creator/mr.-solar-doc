@@ -289,7 +289,7 @@ const cost = result.productionCost;
           {t("result.groupEconomy")}
         </p>
 {/* 3. What you get out of it — plain numbers, no controls */}
-        <section className="space-y-2.5 rounded-[28px] border border-primary-foreground/20 cta-primary p-3.5 text-primary-foreground shadow-hero">
+        <section className="space-y-2.5 rounded-[28px] border border-primary-foreground/20 glass-primary p-3.5 text-primary-foreground shadow-hero">
           <h2 className="text-center text-sm font-semibold text-white">
             {t("result.sectionEconomy")}
           </h2>
