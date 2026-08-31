@@ -135,7 +135,7 @@ const cost = result.productionCost;
           <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
         </header>
         {/* Group: the system */}
-        <p className="px-1 pt-1 text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+        <p className="px-1 pt-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
           {t("result.groupSystem")}
         </p>
         {/* 1. Recommendation */}
