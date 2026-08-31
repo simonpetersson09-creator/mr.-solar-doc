@@ -1125,61 +1125,95 @@ export function generateReportBlob(options: ReportOptions): Blob {
   }
   const selfConsumptionSourceLabel =
     f[`selfConsumptionSource_${result.selfConsumptionSource}`] ?? "";
-  const assumptionRows: Row[] = [
-    {
-      label: f.specificYield,
-      value: `${formatNumber(result.resource.annualKwhPerKwp, locale)} kWh/kWp`,
-      origin: "external",
-    },
-    {
-      label: f["selfConsumptionShare"] ?? f.selfConsumption,
-      value: `${formatNumber(result.presentation.selfConsumptionPercent, locale)} % – ${selfConsumptionSourceLabel}`,
-      origin: selfConsumptionOrigin,
-    },
-    {
-      label: f["selfConsumedValueRate"] ?? f.assumedPrice,
-      value: rate(
-        result.economics.selfConsumedValuePerKwh,
-        result.economics.availability.selfConsumedValue,
-        result.economics.selfConsumedValueSource,
-      ),
-      origin: result.economics.selfConsumedValueSource === "user-override" ? "user" : "assumed",
-    },
-    {
-      label: f["exportValueRate"] ?? f.assumedPrice,
-      value: rate(
-        result.economics.exportValuePerKwh,
-        result.economics.availability.exportValue,
-        result.economics.exportValueSource,
-      ),
-      origin: result.economics.exportValueSource === "user-override" ? "user" : "assumed",
-    },
-    {
-      label: f["gridConnection"] ?? "",
-      value: (f["gridConnectionValue"] ?? "{{voltage}} V, {{phases}}")
-        .replace("{{voltage}}", formatNumber(result.grid.voltageV, locale))
-        .replace("{{phases}}", String(result.grid.phases)),
-      origin: "assumed",
-    },
-    {
-      label: f["priceChange"] ?? "",
-      value: `${formatDecimal(result.lifetime.annualPriceChangeRate * 100, locale, 0)} % ${f["perYearShort"] ?? ""}`,
-      origin: "assumed",
-    },
-    {
-      label: f["calculationPeriod"] ?? "",
-      value: `${result.lifetime.periodYears} ${f["yearsUnit"] ?? ""}`,
-      origin: "assumed",
-    },
-    {
-      label: f["degradation"] ?? "",
-      value: `${formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1)} % ${f["perYearShort"] ?? ""}`,
-      origin: "assumed",
-    },
-    { label: f.dataSource, value: result.resource.dataSource, origin: "external" },
-  ];
-  report.rows(assumptionRows, labels.origin);
+
+  // Grouped so a reader can tell production, economics and technical
+  // assumptions apart instead of scanning one long list.
+  report.subheading(f["assumptionsProduction"] ?? "");
+  report.rows(
+    [
+      {
+        label: f.specificYield,
+        value: `${formatNumber(result.resource.annualKwhPerKwp, locale)} kWh/kWp`,
+        origin: "external",
+      },
+      { label: f.dataSource, value: result.resource.dataSource, origin: "external" },
+      {
+        label: f["degradation"] ?? "",
+        value: `${formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1)} % ${f["perYearShort"] ?? ""}`,
+        origin: "assumed",
+      },
+      {
+        label: f["calculationPeriod"] ?? "",
+        value: `${result.lifetime.periodYears} ${f["yearsUnit"] ?? ""}`,
+        origin: "assumed",
+      },
+    ],
+    labels.origin,
+  );
+
+  report.subheading(f["assumptionsEconomy"] ?? "");
+  report.rows(
+    [
+      {
+        label: f["selfConsumptionShare"] ?? f.selfConsumption,
+        value: `${formatNumber(result.presentation.selfConsumptionPercent, locale)} % – ${selfConsumptionSourceLabel}`,
+        origin: selfConsumptionOrigin,
+      },
+      {
+        label: f["selfConsumedValueRate"] ?? f.assumedPrice,
+        value: rate(
+          result.economics.selfConsumedValuePerKwh,
+          result.economics.availability.selfConsumedValue,
+          result.economics.selfConsumedValueSource,
+        ),
+        origin: result.economics.selfConsumedValueSource === "user-override" ? "user" : "assumed",
+      },
+      {
+        label: f["exportValueRate"] ?? f.assumedPrice,
+        value: rate(
+          result.economics.exportValuePerKwh,
+          result.economics.availability.exportValue,
+          result.economics.exportValueSource,
+        ),
+        origin: result.economics.exportValueSource === "user-override" ? "user" : "assumed",
+      },
+      {
+        label: f["priceChange"] ?? "",
+        value: `${formatDecimal(priceChangePercent, locale, 1)} % ${f["perYearShort"] ?? ""}`,
+        origin: "assumed",
+      },
+    ],
+    labels.origin,
+  );
   report.paragraph(f["priceMethodNote"] ?? "");
+  report.paragraph(
+    (priceChangeIsFlat
+      ? (f["priceChangeNoteFlat"] ?? "")
+      : (f["priceChangeNoteTrend"] ?? "")
+    ).replaceAll(
+      "{{priceChange}}",
+      `${priceChangePercent > 0 ? "+" : ""}${formatDecimal(priceChangePercent, locale, 1)}`,
+    ),
+  );
+
+  report.subheading(f["assumptionsTechnical"] ?? "");
+  report.rows(
+    [
+      {
+        label: f["gridConnection"] ?? "",
+        value: (f["gridConnectionValue"] ?? "{{voltage}} V, {{phases}}")
+          .replace("{{voltage}}", formatNumber(result.grid.voltageV, locale))
+          .replace("{{phases}}", String(result.grid.phases)),
+        origin: "assumed",
+      },
+      {
+        label: f.maxAc,
+        value: `${formatDecimal(result.presentation.maxAcPowerKw, locale, 1)} kW`,
+        origin: "calculated",
+      },
+    ],
+    labels.origin,
+  );
   // The method note must describe the user's actual grid profile, never a
   // fixed 400 V three-phase assumption.
   const isDefaultGrid = result.grid.serviceType === "three-phase" && result.grid.voltageV === 400;
@@ -1190,43 +1224,21 @@ export function generateReportBlob(options: ReportOptions): Blob {
         .replaceAll("{{phases}}", String(result.grid.phases))
         .replaceAll("{{factor}}", formatDecimal(result.grid.serviceType === "three-phase" ? 1.73 : 1, locale, 2));
   report.paragraph(gridNote);
-  // The wording differs: a flat calculation assumes unchanged values, while a
-  // non-zero rate assumes yearly change. Using one text for both is misleading.
-  const priceChangePercent = result.lifetime.annualPriceChangeRate * 100;
-  const priceChangeNoteKey =
-    Math.abs(priceChangePercent) < 0.05 ? "priceChangeNoteFlat" : "priceChangeNoteTrend";
-  report.paragraph(
-    (f[priceChangeNoteKey] ?? f["priceChangeNote"] ?? "").replaceAll(
-      "{{priceChange}}",
-      `${priceChangePercent > 0 ? "+" : ""}${formatDecimal(priceChangePercent, locale, 1)}`,
-    ),
-  );
-  report.paragraph(
-    (f["calculationPeriodNote"] ?? "")
-      .replaceAll("{{years}}", String(result.lifetime.periodYears))
-      .replace(
-        "{{degradation}}",
-        formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
-      ),
-  );
-report.noteBox(
+  report.noteBox(
     f["uncertaintyTitle"] ?? "",
     `${f["uncertaintyText"] ?? ""} ${labels.disclaimer}`,
   );
 
-  // FAQ: rendered on its own page, right before the report metadata.
+  // FAQ closes the report; the metadata is a discreet closing line, not a page.
   report.pageBreak();
   report.faq(labels.faqTitle, labels.faqItems);
 
   const reportId = buildReportId(result);
-  report.rows([
-    { label: f["reportId"] ?? "", value: reportId },
-    {
-      label: `${labels.generated} · ${f.calculationVersion}`,
-      value: `${isoDateOnly(result.calculatedAt)} · ${result.calculationVersion}`,
-    },
-  ]);
+  report.paragraph(
+    `${f["reportId"] ?? ""}: ${reportId} · ${labels.generated}: ${isoDateOnly(result.calculatedAt)} · ${f.calculationVersion}: ${result.calculationVersion}`,
+  );
   report.footer(labels.appName, reportId);
+
 
   return report.doc.output("blob");
 }
