@@ -578,6 +578,20 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       uncertaintyText:
         "Faktisk solelproduktion och ekonomiskt utfall kan avvika från beräkningen. Resultatet påverkas bland annat av vädervariationer, skuggning, panelernas orientering och lutning, faktisk elanvändning och när den sker, elpriser, ersättning för såld el samt anläggningens prestanda över tid.",
       panelPower: "Paneleffekt",
+      summaryMethodFlat:
+        "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade värden för egenanvänd och såld solel.",
+      summaryMethodTrend:
+        "Beräknat med {{degradation}} % årlig produktionsdegradering och {{priceChange}} % antagen årlig förändring av elvärden.",
+      specificYieldNote:
+        "Produktionspotentialen är platsens beräknade produktion per installerad kWp, för ditt taks riktning och lutning. Det är inte anläggningens totala årsproduktion.",
+      investmentNote:
+        "Investeringsnivån visar ungefär vilken investering som motsvarar den valda återbetalningstiden utifrån det ackumulerade ekonomiska värde kalkylen räknar fram fram till det året. Beräkningen påverkas bland annat av antagen förändring av elvärden och av produktionsdegradering. Beloppet är inte ett uppskattat marknadspris eller en offert.",
+      assumptionsProduction: "Produktion",
+      assumptionsEconomy: "Ekonomi",
+      assumptionsTechnical: "Teknik",
+      lifetimeYearOne: "Ekonomiskt värde år 1",
+      lifetimeInvestmentLink:
+        "Det ackumulerade ekonomiska värdet fram till år {{years}} är det som investeringsnivån på cirka {{amount}} bygger på \u2014 det är samma kalkyl, bara avrundad.",
       annualValue: "Ekonomiskt värde år 1",
       savings30: "Ackumulerat ekonomiskt värde över {{years}} år",
       savings30Method: "Kalkylperiod: {{years}} år. Produktionsdegradering: {{degradation}} %/år. Elprisförändring: {{priceChange}} %/år.",

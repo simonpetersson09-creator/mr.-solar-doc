@@ -576,8 +576,22 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       uncertaintyText:
         "Actual solar production and economic outcome may differ from the calculation. The result is affected by weather variation, shading, panel orientation and tilt, actual electricity use and when it occurs, electricity prices, export compensation and system performance over time.",
       panelPower: "Panel power",
-      annualValue: "Estimated economic value",
-      savings30: "Total economic value over {{years}} years",
+      summaryMethodFlat:
+        "Calculated with {{degradation}} % annual production degradation and unchanged values for self-consumed and exported solar power.",
+      summaryMethodTrend:
+        "Calculated with {{degradation}} % annual production degradation and an assumed {{priceChange}} % annual change in the value of solar electricity.",
+      specificYieldNote:
+        "Production potential is the calculated yield per installed kWp at this location, for your roof orientation and tilt. It is not the total annual production of the system.",
+      investmentNote:
+        "The investment level shows roughly what investment matches the chosen payback time, based on the accumulated economic value the calculation projects up to that year. It is affected by the assumed change in electricity value and by production degradation, and is not an estimated market price or a quote.",
+      assumptionsProduction: "Production",
+      assumptionsEconomy: "Economics",
+      assumptionsTechnical: "Technical",
+      lifetimeYearOne: "Economic value, year 1",
+      lifetimeInvestmentLink:
+        "The accumulated economic value through year {{years}} is what the investment level of approximately {{amount}} is based on \u2014 it is the same calculation, only rounded.",
+      annualValue: "Economic value, year 1",
+      savings30: "Accumulated economic value over {{years}} years",
       savings30Method: "Calculation period: {{years}} years. Production degradation: {{degradation}} %/year. Electricity price change: {{priceChange}} %/year.",
       savings30Note: "The long-term economic value is calculated year by year using {{degradation}} % annual production degradation. The calculation assumes unchanged values for self-consumed and exported solar power.",
       degradation: "Production degradation",
@@ -604,7 +618,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       mainFuse: "Main fuse",
       maxAc: "Theoretical power limit from main fuse",
       annualProduction: "Electricity per year",
-      specificYield: "Site specific yield",
+      specificYield: "Production potential at this location",
       dataSource: "Data source",
       consumptionSource: "Consumption data source",
       consumptionShape: "Consumption profile",
@@ -616,7 +630,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       exportValueRate: "Assumed compensation for exported solar",
       selfConsumptionValue: "Value of self-consumed solar",
       exportValue: "Value of exported solar",
-      totalAnnualBenefit: "Estimated economic value",
+      totalAnnualBenefit: "Economic value, year 1",
       currency: "Currency",
       economicValue: "Basic economic value",
       orientation: "Orientation",
@@ -628,7 +642,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       acceptedPayback: "Chosen payback time",
       maxInvestment: "Investment level at chosen payback time",
       quotePrice: "Quoted price provided",
-      quotePayback: "Simple payback based on the quoted price",
+      quotePayback: "Payback time based on the quoted price",
       calculationVersion: "Calculation version",
       orientation_unknown: "Assumed optimal",
       orientation_south: "South",
@@ -649,9 +663,9 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     chartConsumption: "Consumption",
     assumptions: "Assumptions and data sources",
     origin: {
-      user: "Provided by you",
-      calculated: "Calculated by the app",
-      assumed: "Assumption (default value)",
+      user: "Your value",
+      calculated: "Calculated",
+      assumed: "Standard assumption",
       external: "External data source",
     },
     disclaimer:
