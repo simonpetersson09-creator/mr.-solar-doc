@@ -237,7 +237,7 @@ export const cs = {
     "economicsDisclaimer": "Tyto částky jsou předpoklady výpočtu, nikoli garantované budoucí ceny.",
     "paybackTitle": "Zvolte dobu návratnosti",
     "paybackSubtitle": "Podívejte se, jaká úroveň investice odpovídá různým jednoduchým dobám návratnosti.",
-    "investmentLevelTitle": "Úroveň investice při {{years}} letech návratnosti",
+    "investmentLevelTitle": "Cena podle vámi zvolené doby návratnosti",
     "panelPowerLabel": "Výkon panelů",
     "investmentLevelBasis": "Na základě zvolené doby návratnosti {{years}} let",
     "investmentLevelNote": "S dnešními předpoklady výpočtu odpovídá {{years}} let jednoduché doby návratnosti investici přibližně {{amount}}.",
@@ -252,7 +252,7 @@ export const cs = {
     "maxInvestment": "Úroveň investice při zvolené době návratnosti",
     "maxInvestmentApprox": "cca {{amount}}",
     investmentLevelInfoLabel: "Více informací",
-    investmentLevelInfo: "Přibližně ukazuje, jaká investiční částka odpovídá vámi zvolené době návratnosti. Nejde o odhad skutečných nákladů na instalaci.",
+    investmentLevelInfo: "Přibližně ukazuje, jaká investiční částka odpovídá vámi zvolené době návratnosti. Nejde o odhad skutečných nákladů na instalaci. Skutečná cena závisí mimo jiné na střeše, instalaci, komponentech a dodavateli.",
     systemSizeInfoLabel: "Více informací",
     systemSizeInfo: "Výpočet je odhadem a měl by sloužit jako orientace. Skutečná výroba, vlastní spotřeba, cena elektřiny, kompenzace, náklady na instalaci a ekonomický výsledek se mohou lišit. Výsledek nepředstavuje nabídku ani záruku.",
 

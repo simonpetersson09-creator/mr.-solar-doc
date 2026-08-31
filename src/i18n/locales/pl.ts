@@ -237,7 +237,7 @@ export const pl = {
     "economicsDisclaimer": "Te kwoty są założeniami kalkulacyjnymi, a nie gwarantowanymi przyszłymi cenami.",
     "paybackTitle": "Wybierz czas zwrotu",
     "paybackSubtitle": "Sprawdź, jaki poziom inwestycji odpowiada różnym prostym czasom zwrotu.",
-    "investmentLevelTitle": "Poziom inwestycji przy {{years}} latach zwrotu",
+    "investmentLevelTitle": "Cena po wybranym okresie zwrotu",
     "panelPowerLabel": "Moc paneli",
     "investmentLevelBasis": "Na podstawie wybranego okresu zwrotu {{years}} lat",
     "investmentLevelNote": "Przy dzisiejszych założeniach kalkulacyjnych, {{years}} lat prostego zwrotu odpowiada inwestycji w wysokości około {{amount}}.",
@@ -252,7 +252,7 @@ export const pl = {
     "maxInvestment": "Poziom inwestycji przy wybranym czasie zwrotu",
     "maxInvestmentApprox": "ok. {{amount}}",
     investmentLevelInfoLabel: "Więcej informacji",
-    investmentLevelInfo: "Pokazuje w przybliżeniu, jaki koszt inwestycji odpowiada wybranemu okresowi zwrotu. Nie jest to szacunek rzeczywistego kosztu instalacji.",
+    investmentLevelInfo: "Pokazuje w przybliżeniu, jaki koszt inwestycji odpowiada wybranemu okresowi zwrotu. Nie jest to szacunek rzeczywistego kosztu instalacji. Rzeczywista cena zależy między innymi od dachu, instalacji, komponentów i dostawcy.",
     systemSizeInfoLabel: "Więcej informacji",
     systemSizeInfo: "Obliczenie jest szacunkiem i powinno być traktowane jako wskazówka. Rzeczywista produkcja, zużycie własne, cena energii, wynagrodzenie, koszt instalacji i wynik finansowy mogą się różnić. Wynik nie stanowi oferty ani gwarancji.",
 

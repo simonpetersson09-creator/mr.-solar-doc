@@ -237,7 +237,7 @@ export const da = {
     "economicsDisclaimer": "Beløbene er kalkulationsantagelser, ikke garanterede fremtidige priser.",
     "paybackTitle": "Vælg tilbagebetalingstid",
     "paybackSubtitle": "Se hvilket investeringsniveau, der svarer til forskellige simple tilbagebetalingstider.",
-    "investmentLevelTitle": "Investeringsniveau ved {{years}} års tilbagebetaling",
+    "investmentLevelTitle": "Pris efter din valgte tilbagebetalingstid",
     "panelPowerLabel": "Paneleffekt",
     "investmentLevelBasis": "Baseret på din valgte tilbagebetalingstid på {{years}} år",
     "investmentLevelNote": "Med dagens kalkulationsantagelser svarer {{years}} års simpel tilbagebetalingstid til en investering på cirka {{amount}}.",
@@ -252,7 +252,7 @@ export const da = {
     "maxInvestment": "Investeringsniveau ved valgt tilbagebetalingstid",
     "maxInvestmentApprox": "ca. {{amount}}",
     investmentLevelInfoLabel: "Mere information",
-    investmentLevelInfo: "Viser cirka, hvilken investeringsomkostning der svarer til den tilbagebetalingstid, du har valgt. Det er ikke et skøn over, hvad installationen faktisk koster.",
+    investmentLevelInfo: "Viser cirka, hvilken investeringsomkostning der svarer til den tilbagebetalingstid, du har valgt. Det er ikke et skøn over, hvad installationen faktisk koster. Den faktiske pris afhænger blandt andet af tag, installation, komponenter og leverandør.",
     systemSizeInfoLabel: "Mere information",
     systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk produktion, egenforbrug, elpris, godtgørelse, installationsomkostning og økonomisk resultat kan afvige. Resultatet er ikke et tilbud eller en garanti.",
 

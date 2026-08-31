@@ -237,7 +237,7 @@ export const de = {
     "economicsDisclaimer": "Diese Beträge sind Kalkulationsannahmen, keine garantierten zukünftigen Preise.",
     "paybackTitle": "Wählen Sie die Amortisationszeit",
     "paybackSubtitle": "Sehen Sie, welches Investitionsniveau zu verschiedenen einfachen Amortisationszeiten passt.",
-    "investmentLevelTitle": "Investitionsniveau bei {{years}} Jahren Amortisation",
+    "investmentLevelTitle": "Preis nach Ihrer gewählten Amortisationszeit",
     "panelPowerLabel": "Modulleistung",
     "investmentLevelBasis": "Basierend auf der gewählten Amortisationszeit von {{years}} Jahren",
     "investmentLevelNote": "Mit den heutigen Kalkulationsannahmen entspricht eine einfache Amortisationszeit von {{years}} Jahren einer Investition von etwa {{amount}}.",
@@ -252,7 +252,7 @@ export const de = {
     "maxInvestment": "Investitionsniveau bei gewählter Amortisationszeit",
     "maxInvestmentApprox": "ca. {{amount}}",
     investmentLevelInfoLabel: "Weitere Informationen",
-    investmentLevelInfo: "Zeigt ungefähr, welche Investitionskosten der von Ihnen gewählten Amortisationszeit entsprechen. Es handelt sich nicht um eine Schätzung der tatsächlichen Installationskosten.",
+    investmentLevelInfo: "Zeigt ungefähr, welche Investitionskosten der von Ihnen gewählten Amortisationszeit entsprechen. Es handelt sich nicht um eine Schätzung der tatsächlichen Installationskosten. Der tatsächliche Preis hängt unter anderem vom Dach, der Installation, den Komponenten und dem Anbieter ab.",
     systemSizeInfoLabel: "Weitere Informationen",
     systemSizeInfo: "Die Berechnung ist eine Schätzung und dient als Orientierung. Tatsächliche Produktion, Eigenverbrauch, Strompreis, Vergütung, Installationskosten und wirtschaftliches Ergebnis können abweichen. Das Ergebnis stellt kein Angebot und keine Garantie dar.",
 

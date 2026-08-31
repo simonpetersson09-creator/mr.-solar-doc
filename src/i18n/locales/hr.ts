@@ -237,7 +237,7 @@ export const hr = {
     "economicsDisclaimer": "Iznosi su pretpostavke izračuna, a ne zajamčene buduće cijene.",
     "paybackTitle": "Odaberite razdoblje povrata",
     "paybackSubtitle": "Pogledajte koja razina ulaganja odgovara različitim jednostavnim razdobljima povrata.",
-    "investmentLevelTitle": "Razina ulaganja pri povratu od {{years}} godina",
+    "investmentLevelTitle": "Cijena prema odabranom razdoblju povrata",
     "panelPowerLabel": "Snaga panela",
     "investmentLevelBasis": "Na temelju odabranog roka povrata od {{years}} godina",
     "investmentLevelNote": "Prema današnjim pretpostavkama izračuna, {{years}} godina jednostavnog povrata odgovara ulaganju od približno {{amount}}.",
@@ -252,7 +252,7 @@ export const hr = {
     "maxInvestment": "Razina ulaganja pri odabranom razdoblju povrata",
     "maxInvestmentApprox": "cca {{amount}}",
     investmentLevelInfoLabel: "Više informacija",
-    investmentLevelInfo: "Približno prikazuje koliki trošak ulaganja odgovara odabranom razdoblju povrata. To nije procjena stvarnog troška instalacije.",
+    investmentLevelInfo: "Približno prikazuje koliki trošak ulaganja odgovara odabranom razdoblju povrata. To nije procjena stvarnog troška instalacije. Stvarna cijena ovisi, između ostalog, o krovu, instalaciji, komponentama i dobavljaču.",
     systemSizeInfoLabel: "Više informacija",
     systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarna proizvodnja, vlastita potrošnja, cijena električne energije, naknada, trošak instalacije i ekonomski rezultat mogu odstupati. Rezultat ne predstavlja ponudu ni jamstvo.",
 

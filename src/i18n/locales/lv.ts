@@ -237,7 +237,7 @@ export const lv = {
     "economicsDisclaimer": "Šīs summas ir aprēķinu pieņēmumi, nevis garantētas nākotnes cenas.",
     "paybackTitle": "Izvēlieties atmaksas laiku",
     "paybackSubtitle": "Skatiet, kāds investīciju līmenis atbilst dažādiem vienkāršiem atmaksas periodiem.",
-    "investmentLevelTitle": "Investīciju līmenis pie {{years}} gadu atmaksas",
+    "investmentLevelTitle": "Cena atbilstoši jūsu izvēlētajam atmaksāšanās periodam",
     "panelPowerLabel": "Paneļu jauda",
     "investmentLevelBasis": "Balstīts uz izvēlēto {{years}} gadu atmaksas laiku",
     "investmentLevelNote": "Ar šodienas aprēķinu pieņēmumiem {{years}} gadu vienkāršs atmaksas periods atbilst investīcijai aptuveni {{amount}} apmērā.",
@@ -252,7 +252,7 @@ export const lv = {
     "maxInvestment": "Investīciju līmenis izvēlētajā atmaksas periodā",
     "maxInvestmentApprox": "apmēram {{amount}}",
     investmentLevelInfoLabel: "Vairāk informācijas",
-    investmentLevelInfo: "Aptuveni parāda, kādas investīciju izmaksas atbilst jūsu izvēlētajam atmaksāšanās periodam. Tas nav aprēķins par to, cik instalācija patiesībā maksā.",
+    investmentLevelInfo: "Aptuveni parāda, kādas investīciju izmaksas atbilst jūsu izvēlētajam atmaksāšanās periodam. Tas nav aprēķins par to, cik instalācija patiesībā maksā. Faktiskā cena cita starpā ir atkarīga no jumta, uzstādīšanas, komponentiem un piegādātāja.",
     systemSizeInfoLabel: "Vairāk informācijas",
     systemSizeInfo: "Aprēķins ir aplēse, un tas jāizmanto kā norāde. Faktiskā ražošana, pašpatēriņš, elektroenerģijas cena, atlīdzība, uzstādīšanas izmaksas un ekonomiskais rezultāts var atšķirties. Rezultāts nav piedāvājums vai garantija.",
 
