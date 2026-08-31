@@ -5,7 +5,8 @@ import {
   isPurchaseAvailable,
   takeUnclaimedTransactions,
 } from "@/services/iap-service";
-import { verifyApplePurchase } from "@/lib/purchase.functions";
+import { verifyApplePremium, verifyApplePurchase } from "@/lib/purchase.functions";
+import { PREMIUM_PRODUCT_ID } from "@/config/purchase";
 import { usePurchaseStore } from "@/state/purchase-store";
 
 /**
@@ -27,10 +28,29 @@ export function usePurchaseRecovery(): void {
 
     async function drain() {
       const store = usePurchaseStore.getState();
-      const ref = store.pending ?? store.active;
-      if (!ref) return;
       for (const transaction of takeUnclaimedTransactions()) {
         try {
+          // Subscription transactions (first purchase, renewal, restore/sync)
+          // are bound to the device, not to a single calculation.
+          if (transaction.productId === PREMIUM_PRODUCT_ID) {
+            const premium = await verifyApplePremium({
+              data: {
+                deviceId: store.ensureDeviceId(),
+                transactionId: transaction.transactionId,
+              },
+            });
+            if (premium.status === "active" || premium.status === "inactive") {
+              await transaction.finish();
+              await queryClient.invalidateQueries({ queryKey: ["premium-status"] });
+              await queryClient.invalidateQueries({ queryKey: ["purchase-status"] });
+            } else if (premium.status === "failed") {
+              await transaction.finish();
+            }
+            continue;
+          }
+
+          const ref = store.pending ?? store.active;
+          if (!ref) continue;
           const verified = await verifyApplePurchase({
             data: {
               id: ref.id,

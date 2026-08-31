@@ -6,6 +6,8 @@ import { ConsumptionStep } from "@/components/steps/ConsumptionStep";
 import { FuseStep } from "@/components/steps/FuseStep";
 import { AssumptionsStep } from "@/components/steps/AssumptionsStep";
 import { useCreatePendingCalculation } from "@/hooks/use-create-pending-calculation";
+import { usePremium } from "@/hooks/use-premium";
+import { usePurchaseStore } from "@/state/purchase-store";
 import { useWizardStore } from "@/state/wizard-store";
 import { useCountryLanguage } from "@/hooks/use-country-language";
 
@@ -28,6 +30,7 @@ const TOTAL_STEPS = 5;
 function WizardPage() {
   const navigate = useNavigate();
   const createPending = useCreatePendingCalculation();
+  const premium = usePremium();
   useCountryLanguage();
   const persistedStep = useWizardStore((s) => s.currentStep);
   const setStep = useWizardStore((s) => s.setCurrentStep);
@@ -82,7 +85,15 @@ function WizardPage() {
       onSubmit={() => {
         void (async () => {
           const created = await createPending();
-          if (created) void navigate({ to: "/betalning" });
+          if (!created) return;
+          // Premium skips the paywall: the calculation is opened directly.
+          const pending = usePurchaseStore.getState().pending;
+          if (premium.active && pending) {
+            usePurchaseStore.getState().rememberToken(pending);
+            void navigate({ to: "/resultat" });
+            return;
+          }
+          void navigate({ to: "/betalning" });
         })();
       }}
     />

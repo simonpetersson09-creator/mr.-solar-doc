@@ -6,7 +6,7 @@
  * the app with the user's Apple account.
  */
 
-import { UNLOCK_PRODUCT_ID } from "@/config/purchase";
+import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import { getPlatform, isNativePlatform } from "@/services/native-service";
 
 export type PurchaseFailure = "unavailable" | "cancelled" | "failed";
@@ -24,6 +24,7 @@ interface CdvTransaction {
   transactionId?: string;
   finish?: () => Promise<void> | void;
   state?: string;
+  products?: { id?: string }[];
 }
 
 interface CdvStore {
@@ -41,7 +42,7 @@ interface CdvStore {
 
 interface CdvPurchaseGlobal {
   store: CdvStore;
-  ProductType: { CONSUMABLE: string };
+  ProductType: { CONSUMABLE: string; PAID_SUBSCRIPTION: string };
   Platform: { APPLE_APPSTORE: string };
 }
 
@@ -85,6 +86,11 @@ function ensureInitialized(cdv: CdvPurchaseGlobal): Promise<void> {
       type: ProductType.CONSUMABLE,
       platform: Platform.APPLE_APPSTORE,
     },
+    {
+      id: PREMIUM_PRODUCT_ID,
+      type: ProductType.PAID_SUBSCRIPTION,
+      platform: Platform.APPLE_APPSTORE,
+    },
   ]);
   store.when().approved(handleApproved);
   store.when().cancelled(() => cancelledHandler?.());
@@ -100,11 +106,14 @@ export async function initializePurchases(): Promise<void> {
   await ensureInitialized(cdv);
 }
 
-/** Hands over transactions StoreKit delivered outside an active purchase flow. */
-export function takeUnclaimedTransactions(): {
+export interface UnclaimedTransaction {
   transactionId: string;
+  productId: string | null;
   finish: () => Promise<void>;
-}[] {
+}
+
+/** Hands over transactions StoreKit delivered outside an active purchase flow. */
+export function takeUnclaimedTransactions(): UnclaimedTransaction[] {
   const taken = unclaimed.splice(0, unclaimed.length);
   return taken.flatMap((transaction) => {
     const transactionId = transaction.transactionId;
@@ -112,6 +121,7 @@ export function takeUnclaimedTransactions(): {
     return [
       {
         transactionId,
+        productId: transaction.products?.[0]?.id ?? null,
         finish: async () => {
           await transaction.finish?.();
         },
@@ -120,10 +130,10 @@ export function takeUnclaimedTransactions(): {
   });
 }
 
-/** Formatted App Store price, when StoreKit has loaded it. */
-export function getStorePrice(): string | null {
+/** Formatted App Store price for a product, when StoreKit has loaded it. */
+export function getStorePrice(productId: string = UNLOCK_PRODUCT_ID): string | null {
   const cdv = getCdv();
-  const product = cdv?.store.products?.find((item) => item.id === UNLOCK_PRODUCT_ID);
+  const product = cdv?.store.products?.find((item) => item.id === productId);
   return product?.pricing?.price ?? null;
 }
 
@@ -133,8 +143,9 @@ export function getStorePrice(): string | null {
  * user has approved it. The transaction is only finished after the server has
  * verified it with Apple.
  */
-export async function purchaseUnlock(): Promise<{
+export async function purchaseProduct(productId: string): Promise<{
   transactionId: string;
+  productId: string | null;
   finish: () => Promise<void>;
 }> {
   const cdv = getCdv();
@@ -162,6 +173,7 @@ export async function purchaseUnlock(): Promise<{
       settle(() =>
         resolve({
           transactionId,
+          productId: transaction.products?.[0]?.id ?? productId,
           finish: async () => {
             await transaction.finish?.();
           },
@@ -171,7 +183,7 @@ export async function purchaseUnlock(): Promise<{
     cancelledHandler = () => settle(() => reject(new PurchaseError("cancelled")));
     errorHandler = (message) => settle(() => reject(new PurchaseError("failed", message)));
 
-    const offer = cdv.store.get(UNLOCK_PRODUCT_ID, cdv.Platform.APPLE_APPSTORE)?.getOffer?.();
+    const offer = cdv.store.get(productId, cdv.Platform.APPLE_APPSTORE)?.getOffer?.();
     if (!offer) {
       settle(() => reject(new PurchaseError("unavailable", "Product not available")));
       return;
@@ -183,12 +195,26 @@ export async function purchaseUnlock(): Promise<{
   });
 }
 
+/** Buys the single-calculation unlock (consumable). */
+export function purchaseUnlock() {
+  return purchaseProduct(UNLOCK_PRODUCT_ID);
+}
+
+/** Buys the yearly Premium subscription. */
+export function purchasePremium() {
+  return purchaseProduct(PREMIUM_PRODUCT_ID);
+}
+
 /**
- * The unlock is a consumable, so the App Store cannot "restore" it. Recovery
- * instead means: boot StoreKit (so any unfinished transaction is redelivered)
- * and re-read the verified receipts the server holds for this device.
+ * Restore. The 49 kr unlock is a consumable and can never be restored, so this
+ * targets the subscription: StoreKit syncs with the App Store account and
+ * redelivers the current subscription entitlement as an approved transaction,
+ * which the recovery hook then verifies server-side.
  */
 export async function refreshPurchases(): Promise<void> {
-  await initializePurchases();
+  const cdv = getCdv();
+  if (!isPurchaseAvailable() || !cdv) return;
+  await ensureInitialized(cdv);
+  await cdv.store.restorePurchases();
 }
 

@@ -5,9 +5,21 @@ import { useTranslation } from "react-i18next";
 import { toast } from "sonner";
 import { ArrowLeft, Crown, FileText, History, Loader2, RefreshCw, Settings2, ShieldCheck } from "lucide-react";
 import { haptic } from "@/services/native-service";
-import { refreshPurchases } from "@/services/iap-service";
-import { listPurchasedCalculations } from "@/lib/purchase.functions";
+import {
+  PurchaseError,
+  getStorePrice,
+  isPurchaseAvailable,
+  purchasePremium,
+  refreshPurchases,
+} from "@/services/iap-service";
+import { verifyApplePremium } from "@/lib/purchase.functions";
 import { usePurchaseStore } from "@/state/purchase-store";
+import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
+import {
+  PREMIUM_PRICE_AMOUNT,
+  PREMIUM_PRICE_CURRENCY,
+  PREMIUM_PRODUCT_ID,
+} from "@/config/purchase";
 
 export const Route = createFileRoute("/installningar")({
   head: () => ({
@@ -31,40 +43,75 @@ function SettingsPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const pending = usePurchaseStore((s) => s.pending);
+  const premium = usePremium();
   const [restoring, setRestoring] = useState(false);
+  const [buying, setBuying] = useState(false);
+  const premiumPrice =
+    getStorePrice(PREMIUM_PRODUCT_ID) ?? `${PREMIUM_PRICE_AMOUNT} ${PREMIUM_PRICE_CURRENCY}`;
 
-  // The unlock is bought per calculation, so "start premium" continues an
-  // unfinished purchase or sends the user into a new calculation.
-  function handleStartPremium() {
+  /** Buys the yearly subscription. Verification is always server-side. */
+  async function handleBuyPremium() {
+    if (buying || premium.active) return;
     void haptic("medium");
-    if (pending) {
-      void navigate({ to: "/betalning" });
+    if (!isPurchaseAvailable()) {
+      toast.info(t("premium.unavailable"));
       return;
     }
-    toast.info(t("premium.noPending"));
-    void navigate({ to: "/" });
+    setBuying(true);
+    try {
+      const { transactionId, finish } = await purchasePremium();
+      const verified = await verifyApplePremium({
+        data: { deviceId: usePurchaseStore.getState().ensureDeviceId(), transactionId },
+      });
+      if (verified.status === "active") {
+        await finish();
+        await queryClient.invalidateQueries({ queryKey: PREMIUM_QUERY_KEY });
+        void haptic("success");
+        toast.success(t("premium.activated"));
+      } else if (verified.status === "pending") {
+        // Unfinished on purpose: StoreKit redelivers it and the recovery hook
+        // verifies it again, so a paid user never loses access.
+        toast.info(t("paywall.retry"));
+      } else {
+        await finish();
+        toast.error(t("paywall.failed"));
+      }
+    } catch (error) {
+      const reason = error instanceof PurchaseError ? error.reason : "failed";
+      if (reason === "cancelled") toast.info(t("paywall.cancelled"));
+      else if (reason === "unavailable") toast.info(t("premium.unavailable"));
+      else toast.error(t("paywall.failed"));
+    } finally {
+      setBuying(false);
+    }
   }
 
-  // The unlock is a consumable, so the App Store has nothing to "restore".
-  // Recovery means re-reading the verified receipts the server holds for this
-  // device and letting StoreKit redeliver any unfinished transaction.
+  /**
+   * Restore syncs the App Store account with StoreKit so the current
+   * subscription entitlement is redelivered and re-verified server-side.
+   * The 49 kr unlock is a consumable and is never restorable.
+   */
   async function handleRestore() {
     if (restoring) return;
     void haptic("light");
     setRestoring(true);
     try {
       await refreshPurchases();
-      const { items } = await listPurchasedCalculations({
-        data: { deviceId: usePurchaseStore.getState().ensureDeviceId() },
+      // Give StoreKit a moment to redeliver, then re-read entitlement.
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      await queryClient.invalidateQueries({ queryKey: PREMIUM_QUERY_KEY });
+      const status = await queryClient.fetchQuery({
+        queryKey: PREMIUM_QUERY_KEY,
+        queryFn: () =>
+          import("@/lib/purchase.functions").then((m) =>
+            m.getPremiumStatus({
+              data: { deviceId: usePurchaseStore.getState().ensureDeviceId() },
+            }),
+          ),
       });
-      await queryClient.invalidateQueries({ queryKey: ["purchased-calculations"] });
       await queryClient.invalidateQueries({ queryKey: ["purchase-status"] });
-      if (items.length > 0) {
-        toast.success(t("premium.restored", { count: items.length }));
-      } else {
-        toast.info(t("premium.nothingToRestore"));
-      }
+      if (status.active) toast.success(t("premium.restoredPremium"));
+      else toast.info(t("premium.nothingToRestore"));
     } catch {
       toast.error(t("premium.restoreFailed"));
     } finally {
@@ -113,16 +160,36 @@ function SettingsPage() {
         </div>
 
         <div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
-          <button
-            type="button"
-            onClick={handleStartPremium}
-            className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
-          >
-            <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground shadow-md shadow-accent/40">
-              <Crown className="size-4" />
-            </span>
-            <span className="text-sm font-bold text-foreground">{t("premium.start")}</span>
-          </button>
+          {premium.active ? (
+            <div className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm">
+              <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground shadow-md shadow-accent/40">
+                <Crown className="size-4" />
+              </span>
+              <span className="flex flex-col">
+                <span className="text-sm font-bold text-foreground">{t("premium.active")}</span>
+                <span className="text-xs text-muted-foreground">
+                  {t("premium.activeHint")}
+                </span>
+              </span>
+            </div>
+          ) : (
+            <button
+              type="button"
+              disabled={buying}
+              onClick={() => void handleBuyPremium()}
+              className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98] disabled:opacity-60"
+            >
+              <span className="flex size-9 items-center justify-center rounded-lg bg-accent text-accent-foreground shadow-md shadow-accent/40">
+                {buying ? <Loader2 className="size-4 animate-spin" /> : <Crown className="size-4" />}
+              </span>
+              <span className="flex flex-col">
+                <span className="text-sm font-bold text-foreground">{t("premium.become")}</span>
+                <span className="text-xs text-muted-foreground">
+                  {t("premium.becomeHint", { price: premiumPrice })}
+                </span>
+              </span>
+            </button>
+          )}
           <button
             type="button"
             disabled={restoring}

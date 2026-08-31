@@ -123,6 +123,7 @@ interface SignedTransactionPayload {
   bundleId?: string;
   environment?: string;
   purchaseDate?: number;
+  expiresDate?: number;
   revocationDate?: number;
 }
 
@@ -166,13 +167,16 @@ async function fetchTransaction(
  */
 export async function verifyAppleTransaction(
   transactionId: string,
-  expectedProductId: string,
+  expectedProductId: string | string[],
 ): Promise<VerifiedTransaction> {
   const config = readConfig();
   const token = createAppleJwt(config);
+  const expected = Array.isArray(expectedProductId) ? expectedProductId : [expectedProductId];
 
+  let environmentHint: "Production" | "Sandbox" = "Production";
   let result = await fetchTransaction(PRODUCTION_BASE, transactionId, token);
   if (result.status === 404) {
+    environmentHint = "Sandbox";
     result = await fetchTransaction(SANDBOX_BASE, transactionId, token);
   }
   if (result.status === 404) {
@@ -189,7 +193,7 @@ export async function verifyAppleTransaction(
   if (payload.bundleId !== config.bundleId) {
     throw new AppleVerificationError("wrong-bundle", "Transaction belongs to another app.");
   }
-  if (payload.productId !== expectedProductId) {
+  if (!payload.productId || !expected.includes(payload.productId)) {
     throw new AppleVerificationError("wrong-product", "Transaction is for another product.");
   }
   if (payload.revocationDate) {
@@ -201,7 +205,127 @@ export async function verifyAppleTransaction(
     originalTransactionId: payload.originalTransactionId ?? transactionId,
     productId: payload.productId,
     bundleId: payload.bundleId,
-    environment: payload.environment === "Sandbox" ? "Sandbox" : "Production",
+    environment:
+      payload.environment === "Sandbox" || payload.environment === "Production"
+        ? payload.environment
+        : environmentHint,
     purchasedAt: new Date(payload.purchaseDate ?? Date.now()).toISOString(),
   };
 }
+
+/* ------------------------------------------------------------------ */
+/* Auto-renewable subscription status                                   */
+/* ------------------------------------------------------------------ */
+
+export interface SubscriptionState {
+  /** True when the subscription currently entitles the user to Premium. */
+  active: boolean;
+  /** Apple's raw status: 1 active, 2 expired, 3 billing retry, 4 grace, 5 revoked. */
+  appleStatus: number;
+  productId: string | null;
+  originalTransactionId: string;
+  transactionId: string | null;
+  environment: "Production" | "Sandbox";
+  expiresAt: string | null;
+  autoRenew: boolean;
+  revokedAt: string | null;
+}
+
+interface SubscriptionStatusResponse {
+  data?: {
+    lastTransactions?: {
+      status?: number;
+      originalTransactionId?: string;
+      signedTransactionInfo?: string;
+      signedRenewalInfo?: string;
+    }[];
+  }[];
+}
+
+async function fetchSubscriptionStatuses(
+  baseUrl: string,
+  originalTransactionId: string,
+  token: string,
+): Promise<{ status: number; body?: SubscriptionStatusResponse }> {
+  const response = await fetch(
+    `${baseUrl}/inApps/v1/subscriptions/${encodeURIComponent(originalTransactionId)}`,
+    { headers: { Authorization: `Bearer ${token}` } },
+  );
+  if (!response.ok) return { status: response.status };
+  return { status: response.status, body: (await response.json()) as SubscriptionStatusResponse };
+}
+
+/**
+ * Asks Apple for the live state of a subscription.
+ *
+ * Entitlement follows Apple's status codes: 1 (active) and 4 (grace period)
+ * grant access, 3 (billing retry) only while the paid period has not ended,
+ * 2 (expired) and 5 (revoked) never do. Auto-renew being switched off does not
+ * remove access until the period actually ends.
+ */
+export async function getAppleSubscriptionState(
+  originalTransactionId: string,
+  expectedProductId: string,
+): Promise<SubscriptionState> {
+  const config = readConfig();
+  const token = createAppleJwt(config);
+
+  let environment: "Production" | "Sandbox" = "Production";
+  let result = await fetchSubscriptionStatuses(PRODUCTION_BASE, originalTransactionId, token);
+  if (result.status === 404) {
+    environment = "Sandbox";
+    result = await fetchSubscriptionStatuses(SANDBOX_BASE, originalTransactionId, token);
+  }
+  if (result.status === 404) {
+    throw new AppleVerificationError("not-found", "Subscription not found at Apple.");
+  }
+  if (!result.body) {
+    throw new AppleVerificationError(
+      "apple-error",
+      `Apple returned status ${String(result.status)}.`,
+    );
+  }
+
+  const entry = result.body.data
+    ?.flatMap((group) => group.lastTransactions ?? [])
+    .find((item) => item.originalTransactionId === originalTransactionId)
+    ?? result.body.data?.flatMap((group) => group.lastTransactions ?? [])[0];
+
+  if (!entry?.signedTransactionInfo) {
+    throw new AppleVerificationError("not-found", "No subscription transaction from Apple.");
+  }
+
+  const payload = decodeJwsPayload(entry.signedTransactionInfo);
+  if (payload.bundleId !== config.bundleId) {
+    throw new AppleVerificationError("wrong-bundle", "Subscription belongs to another app.");
+  }
+  if (payload.productId !== expectedProductId) {
+    throw new AppleVerificationError("wrong-product", "Subscription is for another product.");
+  }
+
+  const renewal = entry.signedRenewalInfo
+    ? (decodeJwsPayload(entry.signedRenewalInfo) as { autoRenewStatus?: number })
+    : {};
+  const appleStatus = entry.status ?? 0;
+  const expiresAt = payload.expiresDate ? new Date(payload.expiresDate).toISOString() : null;
+  const notExpired = payload.expiresDate ? payload.expiresDate > Date.now() : false;
+  const revoked = Boolean(payload.revocationDate) || appleStatus === 5;
+
+  return {
+    active:
+      !revoked &&
+      (appleStatus === 1 || appleStatus === 4 || (appleStatus === 3 && notExpired)),
+    appleStatus,
+    productId: payload.productId ?? null,
+    originalTransactionId: payload.originalTransactionId ?? originalTransactionId,
+    transactionId: payload.transactionId ?? null,
+    environment:
+      payload.environment === "Sandbox" || payload.environment === "Production"
+        ? payload.environment
+        : environment,
+    expiresAt,
+    autoRenew: renewal.autoRenewStatus === 1,
+    revokedAt: payload.revocationDate ? new Date(payload.revocationDate).toISOString() : null,
+  };
+}
+

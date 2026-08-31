@@ -65,6 +65,54 @@ export type Database = {
         }
         Relationships: []
       }
+      premium_subscriptions: {
+        Row: {
+          apple_environment: string | null
+          apple_original_transaction_id: string
+          apple_transaction_id: string | null
+          auto_renew: boolean
+          created_at: string
+          device_id: string
+          expires_at: string | null
+          id: string
+          last_checked_at: string
+          product_id: string
+          revoked_at: string | null
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          apple_environment?: string | null
+          apple_original_transaction_id: string
+          apple_transaction_id?: string | null
+          auto_renew?: boolean
+          created_at?: string
+          device_id: string
+          expires_at?: string | null
+          id?: string
+          last_checked_at?: string
+          product_id: string
+          revoked_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          apple_environment?: string | null
+          apple_original_transaction_id?: string
+          apple_transaction_id?: string | null
+          auto_renew?: boolean
+          created_at?: string
+          device_id?: string
+          expires_at?: string | null
+          id?: string
+          last_checked_at?: string
+          product_id?: string
+          revoked_at?: string | null
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

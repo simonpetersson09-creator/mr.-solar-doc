@@ -12,7 +12,12 @@
 
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { UNLOCK_PRICE_AMOUNT, UNLOCK_PRICE_CURRENCY, UNLOCK_PRODUCT_ID } from "@/config/purchase";
+import {
+  PREMIUM_PRODUCT_ID,
+  UNLOCK_PRICE_AMOUNT,
+  UNLOCK_PRICE_CURRENCY,
+  UNLOCK_PRODUCT_ID,
+} from "@/config/purchase";
 import type { PurchaseReceipt, PurchaseStatus } from "@/lib/calculation-snapshot";
 
 const deviceIdSchema = z.string().min(8).max(128);
@@ -184,3 +189,153 @@ export const listPurchasedCalculations = createServerFn({ method: "POST" })
     }));
     return { items };
   });
+
+/* ------------------------------------------------------------------ */
+/* Premium — auto-renewable yearly subscription                        */
+/* ------------------------------------------------------------------ */
+
+export interface PremiumStatus {
+  active: boolean;
+  expiresAt: string | null;
+  autoRenew: boolean;
+  /** True when Apple could not be reached, so the answer is the stored one. */
+  stale: boolean;
+}
+
+const premiumSchema = z.object({ deviceId: deviceIdSchema });
+const premiumVerifySchema = premiumSchema.extend({
+  transactionId: z.string().min(1).max(200),
+});
+
+interface SubscriptionRow {
+  device_id: string;
+  apple_original_transaction_id: string;
+  status: string;
+  expires_at: string | null;
+  auto_renew: boolean;
+  revoked_at: string | null;
+}
+
+/**
+ * Re-checks one stored subscription against Apple and writes back the result.
+ * Apple is the source of truth; the row is only a cache so the app still knows
+ * about the subscription when Apple is briefly unreachable.
+ */
+async function refreshSubscriptionRow(
+  row: SubscriptionRow,
+  deviceId: string,
+): Promise<PremiumStatus> {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { getAppleSubscriptionState } = await import("@/lib/apple-iap.server");
+  try {
+    const state = await getAppleSubscriptionState(
+      row.apple_original_transaction_id,
+      PREMIUM_PRODUCT_ID,
+    );
+    await supabaseAdmin
+      .from("premium_subscriptions")
+      .update({
+        device_id: deviceId,
+        status: state.active ? "active" : String(state.appleStatus),
+        expires_at: state.expiresAt,
+        auto_renew: state.autoRenew,
+        revoked_at: state.revokedAt,
+        apple_transaction_id: state.transactionId,
+        apple_environment: state.environment,
+        last_checked_at: new Date().toISOString(),
+      } as never)
+      .eq("apple_original_transaction_id", row.apple_original_transaction_id);
+    return {
+      active: state.active,
+      expiresAt: state.expiresAt,
+      autoRenew: state.autoRenew,
+      stale: false,
+    };
+  } catch {
+    // Apple unreachable: fall back to the cached period so a paying user is
+    // not locked out by a network problem, but never past the paid period.
+    const stillPaid =
+      !row.revoked_at && Boolean(row.expires_at) && new Date(row.expires_at!) > new Date();
+    return {
+      active: stillPaid,
+      expiresAt: row.expires_at,
+      autoRenew: row.auto_renew,
+      stale: true,
+    };
+  }
+}
+
+/** Live Premium entitlement for this device. Never trusts the client. */
+export const getPremiumStatus = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) => premiumSchema.parse(input))
+  .handler(async ({ data }): Promise<PremiumStatus> => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: rows } = await supabaseAdmin
+      .from("premium_subscriptions")
+      .select("device_id, apple_original_transaction_id, status, expires_at, auto_renew, revoked_at")
+      .eq("device_id", data.deviceId)
+      .order("expires_at", { ascending: false })
+      .limit(5);
+
+    let best: PremiumStatus = { active: false, expiresAt: null, autoRenew: false, stale: false };
+    for (const row of (rows ?? []) as unknown as SubscriptionRow[]) {
+      const status = await refreshSubscriptionRow(row, data.deviceId);
+      if (status.active && !best.active) best = status;
+      else if (!best.active && !best.expiresAt) best = status;
+    }
+    return best;
+  });
+
+/**
+ * Verifies a StoreKit subscription transaction with Apple and binds it to this
+ * device. The same Apple subscription may move between devices (reinstall, new
+ * phone, restore) — the row simply follows the latest verified device.
+ */
+export const verifyApplePremium = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) => premiumVerifySchema.parse(input))
+  .handler(
+    async ({
+      data,
+    }): Promise<{ status: "active" | "inactive" | "failed" | "pending"; reason?: string } & Partial<PremiumStatus>> => {
+      const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+      const { verifyAppleTransaction, getAppleSubscriptionState, AppleVerificationError } =
+        await import("@/lib/apple-iap.server");
+
+      try {
+        const verified = await verifyAppleTransaction(data.transactionId, PREMIUM_PRODUCT_ID);
+        const state = await getAppleSubscriptionState(
+          verified.originalTransactionId,
+          PREMIUM_PRODUCT_ID,
+        );
+
+        const { error } = await supabaseAdmin.from("premium_subscriptions").upsert(
+          {
+            device_id: data.deviceId,
+            product_id: PREMIUM_PRODUCT_ID,
+            apple_original_transaction_id: verified.originalTransactionId,
+            apple_transaction_id: state.transactionId ?? verified.transactionId,
+            apple_environment: state.environment,
+            status: state.active ? "active" : String(state.appleStatus),
+            expires_at: state.expiresAt,
+            auto_renew: state.autoRenew,
+            revoked_at: state.revokedAt,
+            last_checked_at: new Date().toISOString(),
+          } as never,
+          { onConflict: "apple_original_transaction_id" },
+        );
+        if (error) return { status: "pending", reason: "retry" };
+
+        return {
+          status: state.active ? "active" : "inactive",
+          active: state.active,
+          expiresAt: state.expiresAt,
+          autoRenew: state.autoRenew,
+          stale: false,
+        };
+      } catch (error) {
+        const code = error instanceof AppleVerificationError ? error.code : "apple-error";
+        const terminal = code === "wrong-bundle" || code === "wrong-product" || code === "revoked";
+        return { status: terminal ? "failed" : "pending", reason: code };
+      }
+    },
+  );
