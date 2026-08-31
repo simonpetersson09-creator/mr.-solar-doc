@@ -14,6 +14,8 @@ interface MapPickerProps {
   hideZoomControl?: boolean;
   /** Called once the Leaflet map instance is ready. */
   onMapReady?: (map: L.Map) => void;
+  /** True while the user pans/zooms — lets parents drop expensive effects. */
+  onInteractingChange?: (interacting: boolean) => void;
 }
 
 const markerIcon = L.divIcon({
