@@ -984,7 +984,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     `${f["selfConsumptionRateNote"] ?? ""} ${f["selfSufficiencyRateNote"] ?? ""}`,
   );
 
-  report.softBreak(80);
+  report.softBreak(50);
   report.sectionTitle(labels.economics);
   report.rows(
     [
