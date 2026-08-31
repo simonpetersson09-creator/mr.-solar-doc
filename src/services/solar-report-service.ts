@@ -285,22 +285,27 @@ class ReportDocument {
     this.y += 32;
   }
 
+  /**
+   * Value rows. The value is primary (bold, ink); the provenance label is
+   * deliberately secondary: small, muted and in its own right-hand column, so
+   * the report stays readable instead of drowning in parentheses.
+   */
   rows(rows: Row[], originLabels?: Record<ValueOrigin, string>) {
     const full = PAGE.width - PAGE.margin * 2;
+    const originColumn = originLabels ? 30 : 0;
     rows.forEach((row, index) => {
+      const originText = row.origin && originLabels ? originLabels[row.origin] : "";
       this.doc.setFontSize(9.5);
       this.doc.setFont("helvetica", "normal");
-      const suffix = row.origin && originLabels ? `  (${originLabels[row.origin]})` : "";
       const labelWidth = this.doc.getTextWidth(row.label);
       this.doc.setFont("helvetica", "bold");
-      const text = `${row.value}${suffix}`;
-      const valueWidth = this.doc.getTextWidth(text);
+      const valueWidth = this.doc.getTextWidth(row.value);
 
       // Wrap onto a second line when label and value would collide.
-      const stacked = labelWidth + valueWidth + 10 > full;
+      const stacked = labelWidth + valueWidth + originColumn + 10 > full;
       const valueLines = stacked
-        ? (this.doc.splitTextToSize(text, full - 4) as string[])
-        : [text];
+        ? (this.doc.splitTextToSize(row.value, full - originColumn - 4) as string[])
+        : [row.value];
       const height = stacked ? 6 + valueLines.length * 5 : 8;
       this.ensureSpace(height + 1);
 
@@ -311,21 +316,30 @@ class ReportDocument {
       this.doc.setFont("helvetica", "normal");
       this.doc.setTextColor(...MUTED);
       this.doc.text(row.label, PAGE.margin + 2, this.y);
+      const valueRight = PAGE.width - PAGE.margin - 2 - originColumn;
       this.doc.setFont("helvetica", "bold");
       this.doc.setTextColor(...INK);
       if (stacked) {
         valueLines.forEach((line, lineIndex) => {
-          this.doc.text(line, PAGE.width - PAGE.margin - 2, this.y + 5 + lineIndex * 5, {
-            align: "right",
-          });
+          this.doc.text(line, valueRight, this.y + 5 + lineIndex * 5, { align: "right" });
         });
       } else {
-        this.doc.text(text, PAGE.width - PAGE.margin - 2, this.y, { align: "right" });
+        this.doc.text(row.value, valueRight, this.y, { align: "right" });
+      }
+      if (originText) {
+        this.doc.setFont("helvetica", "normal");
+        this.doc.setFontSize(6.8);
+        this.doc.setTextColor(...MUTED);
+        this.doc.text(originText, PAGE.width - PAGE.margin - 2, stacked ? this.y + 5 : this.y, {
+          align: "right",
+        });
+        this.doc.setFontSize(9.5);
       }
       this.y += height;
     });
     this.y += 4;
   }
+
 
   monthlyChart(
     values: number[],
