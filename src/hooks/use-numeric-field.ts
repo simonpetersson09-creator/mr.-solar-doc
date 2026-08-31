@@ -73,7 +73,13 @@ export function useNumericField(options: UseNumericFieldOptions): NumericFieldAp
   }, [value, locale, decimals]);
 
   const parse = useCallback(
-    (raw: string) => parseNumericInput(raw, { allowNegative, locale, min, max }),
+    (raw: string) =>
+      parseNumericInput(raw, {
+        allowNegative,
+        locale,
+        ...(min === undefined ? {} : { min }),
+        ...(max === undefined ? {} : { max }),
+      }),
     [allowNegative, locale, min, max],
   );
 
@@ -112,8 +118,8 @@ export function useNumericField(options: UseNumericFieldOptions): NumericFieldAp
       const salvaged = parseNumericInput(text.replace(/[.,]+$/, ""), {
         allowNegative,
         locale,
-        min,
-        max,
+        ...(min === undefined ? {} : { min }),
+        ...(max === undefined ? {} : { max }),
       });
       const next = salvaged.status === "ok" ? salvaged.value : lastCommittedRef.current;
       lastCommittedRef.current = next;
