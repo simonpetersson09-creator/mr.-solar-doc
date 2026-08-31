@@ -144,20 +144,18 @@ const cost = result.productionCost;
 <section className="hero-metric rounded-3xl p-5">
           <div className="glow-amber -top-16 -right-16 size-48" aria-hidden="true" />
           <div className="relative">
-            <div className="flex items-center justify-center gap-2">
-              <button
-                type="button"
-                onClick={() => setShowSystemSizeInfo((open) => !open)}
-                aria-label={t("result.systemSizeInfoLabel")}
-                aria-expanded={showSystemSizeInfo}
-className="flex size-5 shrink-0 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
-              >
-                <CircleAlert className="size-3.5" />
-              </button>
-              <h2 className="flex items-center gap-2 text-center text-sm font-semibold text-white">
-                <Sun className="size-4" /> {t("result.recommendedArray")}
-              </h2>
-            </div>
+            <button
+              type="button"
+              onClick={() => setShowSystemSizeInfo((open) => !open)}
+              aria-label={t("result.systemSizeInfoLabel")}
+              aria-expanded={showSystemSizeInfo}
+              className="absolute top-0 right-0 flex size-6 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
+            >
+              <CircleAlert className="size-3.5" />
+            </button>
+            <h2 className="flex items-center justify-center gap-2 text-center text-sm font-semibold text-white">
+              <Sun className="size-4" /> {t("result.recommendedArray")}
+            </h2>
             {showSystemSizeInfo ? (
               <p className="mt-2 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
                 {t("result.systemSizeInfo")}
@@ -322,21 +320,19 @@ className="flex size-5 shrink-0 items-center justify-center rounded-full text-wh
 
 
 {/* 5. Cost per produced kWh — own green card */}
-        <section className="rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
-          <div className="flex items-center justify-center gap-1.5">
-            <button
-              type="button"
-              onClick={() => setShowProdCostInfo((open) => !open)}
-              aria-label={t("result.productionCostInfoLabel")}
-              aria-expanded={showProdCostInfo}
-              className="flex size-5 shrink-0 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
-            >
-              <CircleAlert className="size-3.5" />
-            </button>
-            <h2 className="text-center text-sm font-semibold text-white">
-              {t("result.productionCostTitle")}
-            </h2>
-          </div>
+<section className="relative rounded-[28px] border border-primary-foreground/20 bg-primary p-3.5 text-primary-foreground shadow-hero">
+          <button
+            type="button"
+            onClick={() => setShowProdCostInfo((open) => !open)}
+            aria-label={t("result.productionCostInfoLabel")}
+            aria-expanded={showProdCostInfo}
+            className="absolute top-3 right-3 flex size-6 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
+          >
+            <CircleAlert className="size-3.5" />
+          </button>
+          <h2 className="text-center text-sm font-semibold text-white">
+            {t("result.productionCostTitle")}
+          </h2>
           {showProdCostInfo ? (
             <p className="mt-2 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
               {t("result.productionCostInfo")}
