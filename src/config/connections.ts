@@ -128,12 +128,17 @@ function ampOption(
 }
 
 function kvaOption(kva: number, profile?: Partial<ConnectionGridProfile>): ConnectionOption {
-  return { id: `kva${kva}`, capacity: { type: "contracted-kva", kva, ...profile } };
+  // The voltage is part of the id: a market can offer the same kVA level on
+  // both a single-phase and a three-phase connection (FR 9/12 kVA).
+  const suffix = profile?.serviceType === "three-phase" ? "-3p" : "";
+  return { id: `kva${kva}${suffix}`, capacity: { type: "contracted-kva", kva, ...profile } };
 }
 
 function kwOption(kw: number, profile?: Partial<ConnectionGridProfile>): ConnectionOption {
-  return { id: `kw${kw}`, capacity: { type: "contracted-kw", kw, ...profile } };
+  const suffix = profile?.serviceType === "three-phase" ? "-3p" : "";
+  return { id: `kw${kw}${suffix}`, capacity: { type: "contracted-kw", kw, ...profile } };
 }
+
 
 function config(
   countryCode: string,
