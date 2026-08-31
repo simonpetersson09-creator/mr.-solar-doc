@@ -13,10 +13,28 @@ import { lv } from "./locales/lv";
 import { lt } from "./locales/lt";
 import { fr } from "./locales/fr";
 import { it as itLocale } from "./locales/it";
+import { es } from "./locales/es";
+import { pt } from "./locales/pt";
+import { nl } from "./locales/nl";
+import { no } from "./locales/no";
+import { ro } from "./locales/ro";
+import { el } from "./locales/el";
+import { hu } from "./locales/hu";
+import { hr } from "./locales/hr";
+import { sr } from "./locales/sr";
+import { bg } from "./locales/bg";
+import { uk } from "./locales/uk";
+import { tr } from "./locales/tr";
+import { hi } from "./locales/hi";
+import { id } from "./locales/id";
+import { he } from "./locales/he";
+import { SUPPORTED_LANGUAGES } from "./languages";
 
 const LOCALES: Record<string, unknown> = {
   sv, en, fi, da, de, cs, pl, sk, sl, et, lv, lt, fr, it: itLocale,
+  es, pt, nl, no, ro, el, hu, hr, sr, bg, uk, tr, hi, id, he,
 };
+
 
 function flatten(value: unknown, prefix = ""): Record<string, string> {
   const out: Record<string, string> = {};
@@ -39,6 +57,16 @@ const swedish = flat["sv"]!;
 const englishKeys = Object.keys(english);
 
 describe("i18n completeness", () => {
+  it("every supported language has a translation bundle", () => {
+    const missing = SUPPORTED_LANGUAGES.filter((lang) => !(lang in LOCALES));
+    expect(missing, "languages without a locale file").toEqual([]);
+    const unregistered = Object.keys(LOCALES).filter(
+      (lang) => !(SUPPORTED_LANGUAGES as readonly string[]).includes(lang),
+    );
+    expect(unregistered, "locale files not registered in SUPPORTED_LANGUAGES").toEqual([]);
+  });
+
+
   it("every language has every English key", () => {
     for (const [lang, entries] of Object.entries(flat)) {
       const missing = englishKeys.filter((key) => !(key in entries));
