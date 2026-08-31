@@ -871,6 +871,11 @@ export function generateReportBlob(options: ReportOptions): Blob {
   report.rows(
     [
       {
+        label: f.specificYield,
+        value: `${formatNumber(result.resource.annualKwhPerKwp, locale)} kWh/kWp`,
+        origin: "external",
+      },
+      {
         label: f.annualProduction,
         value: `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh`,
         origin: "calculated",
@@ -879,6 +884,8 @@ export function generateReportBlob(options: ReportOptions): Blob {
     ],
     labels.origin,
   );
+  report.paragraph(f["specificYieldNote"] ?? "");
+
   report.monthlyChart(
     result.monthlyProductionKwh,
     labels.months,
