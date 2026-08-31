@@ -8,6 +8,7 @@ import type { LifetimeProjection } from "./degradation";
 import type { SelfConsumptionSource, SelfConsumptionSummary } from "./self-consumption";
 import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
 import type { ServiceType } from "@/config/grid";
+import type { PvLimitBinding, PvRulesStatus } from "@/config/pv-connection-rules";
 import type { ConnectionCapacity } from "@/config/connection-capacity";
 import type { ConnectionProfileStatus } from "@/config/connections";
 
@@ -127,6 +128,15 @@ export interface ElectricalInput {
    * the result and the PDF can state it — never re-derived in the UI.
    */
   gridProfileStatus?: ConnectionProfileStatus;
+  /**
+   * PV power the country permits on this connection (kW), from the PV rules
+   * layer. Optional: when absent only the connection capacity limits sizing.
+   */
+  pvPowerLimitKw?: number | null;
+  /** Which rule bound the ceiling, resolved outside the engine. */
+  pvLimitBinding?: PvLimitBinding;
+  /** Status of the country's PV rules. */
+  pvRulesStatus?: PvRulesStatus;
   /** True when the user confirmed unverified grid data (required in step 4). */
   gridProfileConfirmed?: boolean;
 }
@@ -214,6 +224,8 @@ export interface CalculationInput {
 export type SizingBasis =
   | "consumption"
   | "grid-limit"
+  /** Capped by what the country permits to connect, not by the connection. */
+  | "pv-rule-limit"
   | "inverter-limit"
   | "minimum-size"
   | "maximum-size";
@@ -234,6 +246,16 @@ export interface CalculationResult {
    * present a grid limit as an inverter limitation.
    */
   gridConnectionLimitKw: number;
+  /**
+   * The AC ceiling actually used for sizing: the lower of the connection
+   * capacity and what the country permits to connect (see
+   * `@/config/pv-connection-rules`).
+   */
+  pvPowerLimitKw: number;
+  /** Which rule was binding. Drives the explanation, never re-derived in UI. */
+  pvLimitBinding: PvLimitBinding;
+  /** Whether the country's PV rules are verified or a generic fallback. */
+  pvRulesStatus: PvRulesStatus;
 
   dcAcRatio: number;
   oversizingPercent: number;
