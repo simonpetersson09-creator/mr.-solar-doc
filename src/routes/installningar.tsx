@@ -17,6 +17,8 @@ export const Route = createFileRoute("/installningar")({
   component: SettingsPage,
 });
 
+const LEGAL_URL = "https://solar-doc-terms.lovable.app";
+
 function SettingsPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -94,32 +96,30 @@ function SettingsPage() {
         </div>
 
         <div className="glass-primary flex flex-col gap-2 rounded-3xl p-3">
-          <button
-            type="button"
-            onClick={() => {
-              void haptic("light");
-              void navigate({ to: "/anvandarvillkor" });
-            }}
+<a
+            href={LEGAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => void haptic("light")}
             className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
           >
             <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
               <FileText className="size-4" />
             </span>
             <span className="text-sm font-bold text-foreground">{t("settings.terms")}</span>
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              void haptic("light");
-              void navigate({ to: "/integritetspolicy" });
-            }}
+          </a>
+          <a
+            href={LEGAL_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => void haptic("light")}
             className="flex items-center gap-3 rounded-xl bg-card px-3 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
           >
             <span className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground shadow-md shadow-primary/40">
               <ShieldCheck className="size-4" />
             </span>
             <span className="text-sm font-bold text-foreground">{t("settings.privacy")}</span>
-          </button>
+          </a>
         </div>
       </main>
     </div>
