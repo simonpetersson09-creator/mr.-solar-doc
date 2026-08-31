@@ -207,6 +207,10 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
             type="button"
             onClick={() => {
               void haptic("light");
+              // "Other" always opens an EMPTY field in the country's own unit —
+              // never prefilled with a previous or standard value.
+              setSelectedId(null);
+              setCustomValue("");
               setCustom(true);
             }}
             className={chipClass(custom)}

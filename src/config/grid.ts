@@ -68,7 +68,8 @@ export const SERVICE_TYPE_VOLTAGE_REFERENCE: Record<
 /** Split-phase (US/CA residential) nominal values. */
 export const SPLIT_PHASE_LINE_TO_LINE_V = 240;
 export const SPLIT_PHASE_LINE_TO_NEUTRAL_V = 120;
-export const SPLIT_PHASE_VOLTAGE_OPTIONS: readonly number[] = [240, 208];
+/** 240/208 V North America, 200 V Japanese single-phase three-wire. */
+export const SPLIT_PHASE_VOLTAGE_OPTIONS: readonly number[] = [240, 208, 200];
 export const SPLIT_PHASE_FREQUENCY_HZ = 60;
 
 /** Line-to-neutral voltage of a split-phase service (centre-tapped). */

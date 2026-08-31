@@ -16,9 +16,6 @@
 
 import {
   DEFAULT_GRID_FREQUENCY_HZ,
-  DEFAULT_GRID_PHASE_COUNT,
-  DEFAULT_GRID_VOLTAGE_V,
-  SERVICE_TYPE_FOR_PHASE_COUNT,
   SPLIT_PHASE_FREQUENCY_HZ,
   SPLIT_PHASE_LINE_TO_LINE_V,
   SPLIT_PHASE_LINE_TO_NEUTRAL_V,
@@ -106,7 +103,10 @@ const SPLIT_PHASE_120_240: ConnectionGridProfile = {
  * affects the power calculation.
  */
 const JP_SINGLE_PHASE_200: ConnectionGridProfile = {
-  serviceType: "single-phase",
+  // Single-phase three-wire is electrically a centre-tapped (split-phase)
+  // service: the contract amperage applies to the 200 V line-to-line level,
+  // factor 1.0 and never the 100 V leg.
+  serviceType: "split-phase",
   voltageV: 200,
   lineToNeutralVoltageV: 100,
   frequencyHz: 50,
@@ -127,13 +127,26 @@ function ampOption(
   };
 }
 
-function kvaOption(kva: number, profile?: Partial<ConnectionGridProfile>): ConnectionOption {
-  return { id: `kva${kva}`, capacity: { type: "contracted-kva", kva, ...profile } };
+function kvaOption(
+  kva: number,
+  profile?: Partial<ConnectionGridProfile>,
+  phasePrefix?: string,
+): ConnectionOption {
+  // The service type is part of the id: a market can offer the same kVA level
+  // on both a single-phase and a three-phase connection (FR 9/12 kVA).
+  const suffix = profile?.serviceType === "three-phase" ? "-3p" : "";
+  return {
+    id: `kva${kva}${suffix}`,
+    ...(phasePrefix ? { phasePrefix } : {}),
+    capacity: { type: "contracted-kva", kva, ...profile },
+  };
 }
 
 function kwOption(kw: number, profile?: Partial<ConnectionGridProfile>): ConnectionOption {
-  return { id: `kw${kw}`, capacity: { type: "contracted-kw", kw, ...profile } };
+  const suffix = profile?.serviceType === "three-phase" ? "-3p" : "";
+  return { id: `kw${kw}${suffix}`, capacity: { type: "contracted-kw", kw, ...profile } };
 }
+
 
 function config(
   countryCode: string,
@@ -207,7 +220,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   DE: config(
     "DE",
     "amperage",
-    [35, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+    [35, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
     EU_THREE_PHASE_400,
     { localTerm: "Hausanschlusssicherung" },
   ),
@@ -264,7 +277,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     "contracted-kva",
     [
       ...[3, 6, 9, 12].map((kva) => kvaOption(kva, SINGLE_PHASE_230)),
-      ...[18, 24, 36].map((kva) => kvaOption(kva, EU_THREE_PHASE_400)),
+      ...[9, 12, 15, 18, 24, 30, 36].map((kva) => kvaOption(kva, EU_THREE_PHASE_400, "3 × ")),
     ],
     SINGLE_PHASE_230,
     { localTerm: "Puissance souscrite" },
@@ -311,8 +324,12 @@ export function fallbackConnectionConfig(countryCode = ""): CountryConnectionCon
     helpTextKey: "fuse.capacity.amperage.help",
     connectionOptions: [],
     defaultConnection: null,
-    defaultServiceType: SERVICE_TYPE_FOR_PHASE_COUNT[DEFAULT_GRID_PHASE_COUNT],
-    defaultVoltage: DEFAULT_GRID_VOLTAGE_V,
+    // Unverified countries must NOT inherit the Swedish 3-phase 400 V profile
+    // as if it were verified. The most common residential service worldwide
+    // (single-phase 230 V) is the neutral starting point, clearly marked
+    // unverified, and the user can change every value manually.
+    defaultServiceType: "single-phase",
+    defaultVoltage: 230,
     defaultLineToNeutralVoltage: null,
     defaultFrequencyHz: DEFAULT_GRID_FREQUENCY_HZ,
     verified: false,
