@@ -135,6 +135,9 @@ function PurchaseRecovery() {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   useNativeShell();
+  useDocumentLanguage();
+
+
 
 
   return (
