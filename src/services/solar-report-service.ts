@@ -698,22 +698,49 @@ export function generateReportBlob(options: ReportOptions): Blob {
     `${labels.generated}: ${isoDateOnly(result.calculatedAt)}`,
   );
 
-  report.sectionTitle(labels.technical);
+  const investmentValue = result.investment.quotePrice ?? result.investment.maxInvestmentRounded;
+  const paybackValue =
+    result.investment.quotePaybackYears ?? result.investment.acceptedPaybackYears;
+  const priceChangePercent = result.lifetime.annualPriceChangeRate * 100;
+  const priceChangeIsFlat = Math.abs(priceChangePercent) < 0.05;
+
+  // Executive summary: the four figures a homeowner actually decides on.
+  report.sectionTitle(labels.summary);
   report.highlights([
     {
       label: f["panelPower"] ?? f.installedDc,
       value: `${formatDecimal(result.installedKwp, locale)} kWp (${result.panelCount} ${f["panelsUnit"]})`,
     },
-    { label: f.inverter, value: `${formatNumber(result.inverterKw, locale)} kW` },
     {
       label: f.annualProduction,
       value: `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh`,
     },
     {
-      label: `${f.specificYield} (${labels.origin.external})`,
-      value: `${formatNumber(result.resource.annualKwhPerKwp, locale)} kWh/kWp`,
+      label: f["annualValue"] ?? f.savings,
+      value: money(result.presentation.annualSavings),
+    },
+    {
+      label: f["investment"] ?? f["maxInvestment"] ?? "",
+      value: money(investmentValue),
     },
   ]);
+  report.rows([
+    {
+      label: f["acceptedPayback"] ?? f["paybackTime"] ?? "",
+      value: economicsIncomplete
+        ? labels.economicsRequiresPriceShort
+        : `${formatDecimal(paybackValue, locale, 1)} ${f["yearsUnit"] ?? ""}`,
+    },
+    {
+      label: (f["savings30"] ?? f.savings).replace(
+        "{{years}}",
+        String(result.lifetime.periodYears),
+      ),
+      value: money(Math.round(result.lifetime.totalEconomicValue)),
+    },
+    { label: f.inverter, value: `${formatNumber(result.inverterKw, locale)} kW` },
+  ]);
+  if (economicsIncomplete) report.paragraph(labels.economicsRequiresPrice);
 
   // Annual balance: production vs consumption, from the same presentation values
   // used by the results page and the monthly chart.
@@ -744,43 +771,17 @@ export function generateReportBlob(options: ReportOptions): Blob {
     (f["balanceNote"] ?? "").replace("{{percent}}", formatNumber(ratioPercent, locale)),
   );
 
-  const investmentValue = result.investment.quotePrice ?? result.investment.maxInvestmentRounded;
-  const paybackValue =
-    result.investment.quotePaybackYears ?? result.investment.acceptedPaybackYears;
-  report.sectionTitle(labels.economicSummary);
-  if (economicsIncomplete) report.paragraph(labels.economicsRequiresPrice);
-  report.highlights([
-    {
-      label: f["annualValue"] ?? f.savings,
-      value: money(result.presentation.annualSavings),
-    },
-    {
-      label: f["investment"] ?? f["maxInvestment"] ?? "",
-      value: money(investmentValue),
-    },
-    {
-      label: f["paybackTime"] ?? f["acceptedPayback"] ?? "",
-      value: economicsIncomplete
-        ? labels.economicsRequiresPriceShort
-        : `${formatDecimal(paybackValue, locale, 1)} ${f["yearsUnit"] ?? ""}`,
-    },
-    {
-      label: (f["savings30"] ?? f.savings).replace(
-        "{{years}}",
-        String(result.lifetime.periodYears),
-      ),
-      value: money(Math.round(result.lifetime.totalEconomicValue)),
-    },
-  ]);
-
-  // Page 1 keeps only the short method line; the full explanation lives on the
-  // economics page so the summary stays readable.
+  // Method line: mirrors the assumptions actually used, so the summary can never
+  // claim "unchanged values" while the projection applies a yearly change.
   report.paragraph(
-    (f["savings30Short"] ?? "").replace(
-      "{{degradation}}",
-      formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
-    ),
+    (priceChangeIsFlat ? (f["summaryMethodFlat"] ?? "") : (f["summaryMethodTrend"] ?? ""))
+      .replace(
+        "{{degradation}}",
+        formatDecimal(result.lifetime.annualDegradationRate * 100, locale, 1),
+      )
+      .replace("{{priceChange}}", formatDecimal(priceChangePercent, locale, 1)),
   );
+
 
   report.pageBreak();
 
