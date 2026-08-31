@@ -10,6 +10,7 @@ import { usePremium } from "@/hooks/use-premium";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { useWizardStore } from "@/state/wizard-store";
 import { isValidConnectionCapacity } from "@/config/connection-capacity";
+import { isDevUnlock } from "@/lib/dev-unlock";
 
 export const Route = createFileRoute("/")({
   head: () => ({
