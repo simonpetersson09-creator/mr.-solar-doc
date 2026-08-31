@@ -225,7 +225,10 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           ) : null}
         </div>
 
-        <div className="border-t border-white/15 pt-3">
+        <div
+          className="border-t border-white/15 pt-3"
+          hidden={phaseCount !== 3 || voltageV !== 400}
+        >
           <button
             type="button"
             onClick={() => setShowGridInfo((open) => !open)}
