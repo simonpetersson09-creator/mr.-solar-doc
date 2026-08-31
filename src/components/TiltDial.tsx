@@ -79,7 +79,7 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
         ref={svgRef}
         viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
         className={[
-          "w-full max-w-[260px]",
+          "w-full max-w-[200px]",
           disabled
             ? "select-none opacity-40"
             : "cursor-grab touch-none select-none active:cursor-grabbing",
