@@ -1094,6 +1094,16 @@ export function generateReportBlob(options: ReportOptions): Blob {
       cumulative: f["lifetimeColCumulative"] ?? "",
     },
   );
+  // Ties the highlighted year in the table to the investment level, so the two
+  // figures read as one calculation instead of two.
+  if (!economicsIncomplete && paybackYear >= 1 && paybackYear <= periodYears) {
+    report.paragraph(
+      (f["lifetimeInvestmentLink"] ?? "")
+        .replace("{{years}}", formatNumber(paybackYear, locale))
+        .replace("{{amount}}", money(result.investment.maxInvestmentRounded)),
+    );
+  }
+
   report.paragraph(
     (f["lifetimeNote"] ?? "")
       .replaceAll("{{years}}", String(periodYears))
