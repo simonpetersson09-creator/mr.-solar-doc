@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import { StepShell } from "@/components/StepShell";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatDecimal, parseLocaleNumber } from "@/lib/format";
-import { getMarketConfig } from "@/config/markets";
+import { getConnectionConfig } from "@/config/connections";
 import {
   GRID_FREQUENCY_OPTIONS,
   GRID_PHASE_OPTIONS,
@@ -40,9 +40,13 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
   const frequencyHz = useWizardStore((s) => s.gridFrequencyHz);
   const setGridProfile = useWizardStore((s) => s.setGridProfile);
 
-  const market = getMarketConfig(location?.countryCode);
+  const setGridDefaults = useWizardStore((s) => s.setGridDefaults);
+
+  const connection = getConnectionConfig(location?.countryCode);
   const [custom, setCustom] = useState(
-    storedFuse !== null && !market.mainFuseOptionsAmp.includes(storedFuse),
+    !connection.verified ||
+      (storedFuse !== null &&
+        !connection.connectionOptions.some((option) => option.amperage === storedFuse)),
   );
   const [customValue, setCustomValue] = useState(custom && storedFuse ? String(storedFuse) : "");
 
@@ -60,7 +64,7 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
     <StepShell
       step={4}
       totalSteps={totalSteps}
-      title={t("fuse.title")}
+      title={t(connection.questionKey)}
       onBack={onBack}
       footer={
         <Button
@@ -86,18 +90,23 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
         </div>
 
         <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-5">
-          {market.mainFuseOptionsAmp.map((amp) => (
+          {connection.connectionOptions.map((option) => (
             <button
-              key={amp}
+              key={option.id}
               type="button"
               onClick={() => {
                 void haptic("light");
                 setCustom(false);
-                setMainFuse(amp);
+                setMainFuse(option.amperage);
+                setGridDefaults({
+                  phaseCount: option.phaseCount,
+                  voltageV: option.voltage,
+                  frequencyHz: option.frequencyHz,
+                });
               }}
-              className={chipClass(!custom && storedFuse === amp)}
+              className={chipClass(!custom && storedFuse === option.amperage)}
             >
-              {amp} A
+              {option.label}
             </button>
           ))}
           <button
@@ -111,6 +120,10 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
             {t("fuse.other")}
           </button>
         </div>
+
+        {!connection.verified ? (
+          <p className="text-[11px] leading-relaxed text-white/70">{t("fuse.noCountryOptions")}</p>
+        ) : null}
 
         {custom ? (
           <div className="flex items-center gap-2">
