@@ -156,6 +156,7 @@ error: "Adressökningen misslyckades.",
     gridAssumption: "Beräkningen utgår från 400 V trefas.",
     gridAssumptionInfo: "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
     grid: {
+      advanced: "Avancerade inställningar",
       section: "Nätinställningar",
       change: "Ändra",
       done: "Klar",
