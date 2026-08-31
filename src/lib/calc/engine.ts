@@ -221,6 +221,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       voltageV: input.electrical.gridVoltageV ?? EU_GRID_VOLTAGE_V,
       phases: input.electrical.gridPhases ?? EU_GRID_PHASES,
       kwPerAmp: input.electrical.kwPerAmp,
+      frequencyHz: input.electrical.gridFrequencyHz,
     },
     lifetime,
     investment: investmentResult,

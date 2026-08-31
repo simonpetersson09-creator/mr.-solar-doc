@@ -94,6 +94,8 @@ export interface ElectricalInput {
   gridVoltageV?: number;
   /** Assumed number of phases. Defaults to 3. */
   gridPhases?: number;
+  /** Grid frequency (Hz). Stored only; does not affect the power calculation. */
+  gridFrequencyHz?: number;
 }
 
 /** The grid connection assumption behind the theoretical AC power. */
@@ -101,6 +103,7 @@ export interface GridAssumption {
   voltageV: number;
   phases: number;
   kwPerAmp: number;
+  frequencyHz?: number;
 }
 
 /** Where a price used in the calculation came from. */
