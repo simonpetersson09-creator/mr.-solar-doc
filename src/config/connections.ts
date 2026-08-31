@@ -29,15 +29,20 @@ import type {
 
 /**
  * One selectable connection. The technical content lives entirely in
- * `capacity`; `phasePrefix` is only a display affordance for markets that
- * write their connection as "3 x 25 A" (FI, NL).
+ * `capacity`; `phasePrefix` is only a display affordance for AMPERE markets
+ * that write their connection per phase, e.g. "3 x 25 A" (FI, NL).
+ *
+ * It must never be used for contracted kVA/kW options: those values are always
+ * totals, and a "3 x 9 kVA" label would imply 27 kVA while the engine uses 9.
+ * `connections.test.ts` asserts this.
  */
 export interface ConnectionOption {
   id: string;
   capacity: ConnectionCapacity;
-  /** e.g. "3 x " — prepended to the formatted amount in the UI. */
+  /** e.g. "3 x " — amperage options only; prepended to the formatted amount. */
   phasePrefix?: string;
 }
+
 
 /**
  * How much we actually know about a country's residential connection.
