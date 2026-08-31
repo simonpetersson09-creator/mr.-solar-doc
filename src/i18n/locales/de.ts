@@ -120,7 +120,7 @@ export const de = {
     "gridAssumption": "Die Berechnung geht von 400 V Dreiphasenanschluss aus.",
     "gridAssumptionInfo": "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
     "title": "Welche Hauptsicherung haben Sie?",
-    "subtitle": "Sie bestimmt, wie viel Leistung Ihre Anlage einspeisen darf.",
+    "subtitle": "Die Hauptsicherung dient zur Abschätzung, wie groß ein Wechselrichter normalerweise angeschlossen werden kann. Die tatsächlich zulässige Leistung bestimmt der Netzbetreiber.",
     "label": "Hauptsicherung",
     "other": "Andere",
     "otherLabel": "Ampere",

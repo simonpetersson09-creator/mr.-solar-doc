@@ -120,7 +120,7 @@ export const da = {
     "gridAssumption": "Beregningen tager udgangspunkt i 400 V trefaset.",
     "gridAssumptionInfo": "Hovedsikringens teoretiske effekt beregnes ud fra en 400 V trefaset tilslutning. Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
     "title": "Hvilken hovedsikring har du?",
-    "subtitle": "Den afgør, hvor meget effekt dit anlæg må levere til nettet.",
+    "subtitle": "Hovedsikringen bruges til at vurdere, hvor stor en inverter der normalt kan tilsluttes. Den faktiske tilladte effekt fastsættes af netselskabet.",
     "label": "Hovedsikring",
     "other": "Anden",
     "otherLabel": "Ampere",

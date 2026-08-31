@@ -120,7 +120,7 @@ export const pl = {
     "gridAssumption": "Obliczenia zakładają przyłącze trójfazowe 400 V.",
     "gridAssumptionInfo": "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
     "title": "Jakie masz zabezpieczenie główne?",
-    "subtitle": "Decyduje ono o tym, jaką moc może oddawać Twoja instalacja.",
+    "subtitle": "Zabezpieczenie główne służy do oszacowania, jak duży inwerter może być normalnie przyłączony. Rzeczywista dozwolona moc jest określana przez operatora sieci.",
     "label": "Zabezpieczenie główne",
     "other": "Inne",
     "otherLabel": "Ampery",

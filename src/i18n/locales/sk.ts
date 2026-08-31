@@ -120,7 +120,7 @@ export const sk = {
     "gridAssumption": "Výpočet vychádza z trojfázovej prípojky 400 V.",
     "gridAssumptionInfo": "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
     "title": "Aký máte hlavný istič?",
-    "subtitle": "Určuje, koľko energie môže vaša sústava dodávať do siete.",
+    "subtitle": "Hlavný istič slúži na odhad, aký veľký menič možno bežne pripojiť. Skutočný povolený výkon určuje prevádzkovateľ siete.",
     "label": "Hlavný istič",
     "other": "Iné",
     "otherLabel": "Ampére",

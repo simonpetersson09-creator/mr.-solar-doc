@@ -145,7 +145,7 @@ export const sv = {
     gridAssumption: "Beräkningen utgår från 400 V trefas.",
     gridAssumptionInfo: "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
     title: "Vilken huvudsäkring har du?",
-    subtitle: "Den avgör hur mycket effekt din anläggning får mata ut.",
+    subtitle: "Huvudsäkringen används för att uppskatta hur stor växelriktare som normalt kan anslutas. Faktisk tillåten effekt bestäms av nätägaren.",
     label: "Huvudsäkring",
     other: "Annan",
     otherLabel: "Ampere",

@@ -120,7 +120,7 @@ export const lt = {
     "gridAssumption": "Skaičiavimas remiasi 400 V trifaze jungtimi.",
     "gridAssumptionInfo": "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
     "title": "Kokį pagrindinį automatinį jungiklį turite?",
-    "subtitle": "Jis lemia, kiek galios jūsų sistema gali tiekti.",
+    "subtitle": "Pagrindinis automatinis jungiklis naudojamas įvertinti, kokio dydžio keitiklį paprastai galima prijungti. Faktinę leistiną galią nustato tinklo operatorius.",
     "label": "Pagrindinis automatinis jungiklis",
     "other": "Kitas",
     "otherLabel": "Amperai",

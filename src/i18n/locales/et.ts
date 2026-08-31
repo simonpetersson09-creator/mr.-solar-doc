@@ -120,7 +120,7 @@ export const et = {
     "gridAssumption": "Arvutus eeldab 400 V kolmefaasilist liitumist.",
     "gridAssumptionInfo": "Peakaitsme teoreetiline võimsus arvutatakse 400 V kolmefaasilise liitumise alusel. Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
     "title": "Milline peakaitse sul on?",
-    "subtitle": "See määrab, kui palju energiat sinu süsteem tohib võrku anda.",
+    "subtitle": "Peakaitse abil hinnatakse, kui suure inverteri saab tavaliselt ühendada. Tegeliku lubatud võimsuse määrab võrguettevõtja.",
     "label": "Peakaitse",
     "other": "Muu",
     "otherLabel": "Amprit",
