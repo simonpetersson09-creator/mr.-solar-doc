@@ -11,6 +11,7 @@
  */
 
 import { getMarketConfig, MARKETS, type MarketConfig } from "./markets";
+import { PHASE_COUNT_FOR_SERVICE_TYPE } from "./grid";
 import { getConnectionConfig, type CountryConnectionConfig } from "./connections";
 
 /** ISO 4217 currency code, e.g. "SEK", "EUR". */
