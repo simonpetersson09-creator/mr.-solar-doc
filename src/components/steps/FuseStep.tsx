@@ -143,6 +143,8 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
               {formatDecimal(maxAc, locale, 2)}{" "}
               <span className="text-[11px] font-normal text-white/60">kW</span>
             </span>
+          </div>
+        ) : null}
 
         <div
           className="border-t border-white/15 pt-3"
@@ -162,8 +164,6 @@ export function FuseStep({ totalSteps, onBack, onSubmit }: FuseStepProps) {
             </p>
           ) : null}
         </div>
-      </div>
-        ) : null}
       </div>
 
       <h2 className="text-xs font-bold tracking-widest text-primary/70 uppercase">
