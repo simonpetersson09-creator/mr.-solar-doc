@@ -6,9 +6,10 @@ import { amperageCapacity } from "@/config/connection-capacity";
 const store = () => useWizardStore.getState();
 
 const location = (countryCode: string) => ({
-  lat: 59,
-  lon: 18,
+  latitude: 59,
+  longitude: 18,
   address: "Test",
+  region: null,
   countryCode,
 });
 
