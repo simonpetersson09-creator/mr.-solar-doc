@@ -77,7 +77,7 @@ const [map, setMap] = useState<L.Map | null>(null);
   const mapZoom = location ? 17 : 4;
 
 return (
-    <div className="surface-sun relative flex min-h-dvh flex-col">
+    <div className={`surface-sun relative flex min-h-dvh flex-col${mapBusy ? " map-busy" : ""}`}>
       {/* Map hero — fills the viewport so the map edge shows below the floating CTA */}
       <div className="relative min-h-dvh flex-1">
         {/* Full-bleed map backdrop */}
@@ -92,6 +92,7 @@ return (
                 className="h-full w-full"
                 hideZoomControl
                 onMapReady={setMap}
+                onInteractingChange={setMapBusy}
                 onPositionChange={(lat, lon) => void handlePositionChange(lat, lon)}
               />
             </Suspense>
@@ -105,7 +106,10 @@ return (
         {!location ? (
           <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
             <div className="relative flex flex-col items-center">
-              <span className="absolute top-1/2 left-1/2 size-12 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full bg-accent/25" />
+              <span
+                data-map-anim
+                className="absolute top-1/2 left-1/2 size-12 -translate-x-1/2 -translate-y-1/2 animate-ping rounded-full bg-accent/25"
+              />
               <MapPin
                 fill="currentColor"
                 strokeWidth={0}
