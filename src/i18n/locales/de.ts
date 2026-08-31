@@ -111,8 +111,8 @@ export const de = {
       "successAnnual": "Wir haben einen Jahresverbrauch im Dokument gefunden.",
       "error": "Wir konnten keinen Verbrauch im Dokument finden. Bitte geben Sie die Werte manuell ein.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT oder Bild (PNG, JPEG)",
-      "sectionTitle": "Aus einem Dokument",
-      "sectionHint": "Lass uns deine Stromrechnung oder Verbrauchsdaten automatisch auslesen.",
+      "sectionTitle": "Stromrechnung scannen",
+      "sectionHint": "Hängen Sie Ihre Stromrechnung oder Verbrauchsdaten für 12 Monate an, und wir füllen die Werte automatisch für Sie aus.",
       "dropHint": "Ziehe deine Datei hierher, oder",
       "dropActive": "Lass die Datei los, um sie zu lesen",
       "browse": "Dateien durchsuchen",
@@ -131,8 +131,8 @@ export const de = {
     "invalid": "Geben Sie einen Jahresverbrauch zwischen 100 und 200.000 kWh ein.",
     "or": "oder",
     "manual": {
-      "sectionTitle": "Manuell eingeben",
-      "sectionHint": "Gib deinen Jahresverbrauch ein — prüfe deine Stromrechnung oder deinen Vertrag."
+      "sectionTitle": "Stromrechnung scannen",
+      "sectionHint": "Hängen Sie Ihre Stromrechnung oder Verbrauchsdaten für 12 Monate an, und wir füllen die Werte automatisch für Sie aus."
     },
     "monthlyHint": "Gib den Verbrauch für alle 12 Monate ein"
   },

@@ -123,8 +123,8 @@ export const es = {
     },
     upload: {
       title: "Adjunta 12 meses de datos de consumo",
-      sectionTitle: "Desde un documento",
-      sectionHint: "Dejaremos que leamos automáticamente tu factura o tus datos de consumo.",
+      sectionTitle: "Escanea tu factura",
+      sectionHint: "Adjunta tu factura o 12 meses de datos de consumo y rellenaremos los valores por ti.",
       description:
         "Sube una factura de electricidad o tus propios datos de consumo (PDF, Excel, CSV o una imagen tipo PNG/JPEG) y rellenamos automáticamente los valores anuales y mensuales.",
       button: "Elegir archivo",
@@ -145,8 +145,8 @@ export const es = {
     subtitle: "Consulta tu factura o contrato de electricidad.",
     or: "o",
     manual: {
-      sectionTitle: "Introducir manualmente",
-      sectionHint: "Introduce tu consumo anual — consulta tu factura o contrato de electricidad.",
+      sectionTitle: "Escanea tu factura",
+      sectionHint: "Adjunta tu factura o 12 meses de datos de consumo y rellenaremos los valores por ti.",
     },
     annual: "Consumo anual",
     annualPlaceholder: "p. ej. 18.000",

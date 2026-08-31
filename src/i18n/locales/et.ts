@@ -111,8 +111,8 @@ export const et = {
       "successAnnual": "Leidsime dokumendist aastatarbimise.",
       "error": "Me ei leidnud dokumendist ühtegi tarbimist. Palun sisestage väärtused käsitsi.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT või pilt (PNG, JPEG)",
-      "sectionTitle": "Dokumendist",
-      "sectionHint": "Laske meil automaatselt lugeda teie elektriarvet või tarbimisandmeid.",
+      "sectionTitle": "Skanni oma elektriarve",
+      "sectionHint": "Lisa oma elektriarve või 12 kuu tarbimisandmed ja me täidame väärtused sinu eest.",
       "dropHint": "Lohistage fail siia või",
       "dropActive": "Laske failil siia kukkuda, et see loetaks",
       "browse": "sirvi faile",
@@ -131,8 +131,8 @@ export const et = {
     "invalid": "Sisesta aastatarbimine vahemikus 100 kuni 200 000 kWh.",
     "or": "või",
     "manual": {
-      "sectionTitle": "Sisesta käsitsi",
-      "sectionHint": "Sisestage oma aastane tarbimine — vaadake elektriarvet või lepingut."
+      "sectionTitle": "Skanni oma elektriarve",
+      "sectionHint": "Lisa oma elektriarve või 12 kuu tarbimisandmed ja me täidame väärtused sinu eest."
     },
     "monthlyHint": "Sisestage tarbimine kõigi 12 kuu kohta"
   },

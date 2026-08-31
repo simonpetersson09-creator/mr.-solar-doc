@@ -111,8 +111,8 @@ export const it = {
       "successAnnual": "Abbiamo trovato un consumo annuo nel documento.",
       "error": "Non siamo riusciti a trovare alcun consumo nel documento. Inserisci i valori manualmente.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT o immagine (PNG, JPEG)",
-      "sectionTitle": "Da un documento",
-      "sectionHint": "Lasciaci leggere automaticamente la tua bolletta o i dati di consumo.",
+      "sectionTitle": "Scansiona la tua bolletta",
+      "sectionHint": "Allega la bolletta o i dati di consumo di 12 mesi e compileremo noi i valori per te.",
       "dropHint": "Trascina qui il tuo file, oppure",
       "dropActive": "Rilascia il file per leggerlo",
       "browse": "sfoglia i file",
@@ -131,8 +131,8 @@ export const it = {
     "invalid": "Inserisci un consumo annuo tra 100 e 200.000 kWh.",
     "or": "oppure",
     "manual": {
-      "sectionTitle": "Inserisci manualmente",
-      "sectionHint": "Inserisci il tuo consumo annuo — controlla la bolletta o il contratto elettrico."
+      "sectionTitle": "Scansiona la tua bolletta",
+      "sectionHint": "Allega la bolletta o i dati di consumo di 12 mesi e compileremo noi i valori per te."
     },
     "monthlyHint": "Inserisci il consumo per tutti i 12 mesi"
   },

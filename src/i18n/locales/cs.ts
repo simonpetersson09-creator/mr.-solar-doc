@@ -111,8 +111,8 @@ export const cs = {
       "successAnnual": "V dokumentu jsme našli roční spotřebu.",
       "error": "V dokumentu jsme nenašli žádnou spotřebu. Vyplňte hodnoty ručně.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT nebo obrázek (PNG, JPEG)",
-      "sectionTitle": "Z dokumentu",
-      "sectionHint": "Necháme automaticky přečíst vaši fakturu za elektřinu nebo údaje o spotřebě.",
+      "sectionTitle": "Načtěte fakturu za elektřinu",
+      "sectionHint": "Přiložte fakturu za elektřinu nebo údaje o spotřebě za 12 měsíců a my za vás vyplníme hodnoty.",
       "dropHint": "Přetáhněte sem soubor, nebo",
       "dropActive": "Pusťte soubor pro jeho načtení",
       "browse": "procházet soubory",
@@ -131,8 +131,8 @@ export const cs = {
     "invalid": "Zadejte roční spotřebu mezi 100 a 200 000 kWh.",
     "or": "nebo",
     "manual": {
-      "sectionTitle": "Zadat ručně",
-      "sectionHint": "Zadejte svou roční spotřebu — zkontrolujte fakturu za elektřinu nebo smlouvu."
+      "sectionTitle": "Načtěte fakturu za elektřinu",
+      "sectionHint": "Přiložte fakturu za elektřinu nebo údaje o spotřebě za 12 měsíců a my za vás vyplníme hodnoty."
     },
     "monthlyHint": "Zadejte spotřebu za všech 12 měsíců"
   },

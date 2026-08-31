@@ -111,8 +111,8 @@ export const sk = {
       "successAnnual": "V dokumente sme našli ročnú spotrebu.",
       "error": "V dokumente sa nám nepodarilo nájsť žiadnu spotrebu. Zadajte hodnoty manuálne.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT alebo obrázok (PNG, JPEG)",
-      "sectionTitle": "Z dokumentu",
-      "sectionHint": "Nechajte nás automaticky prečítať váš účet za elektrinu alebo údaje o spotrebe.",
+      "sectionTitle": "Naskenujte svoj účet za elektrinu",
+      "sectionHint": "Priložte svoj účet za elektrinu alebo údaje o spotrebe za 12 mesiacov a my za vás vyplníme hodnoty.",
       "dropHint": "Presuňte súbor sem, alebo",
       "dropActive": "Pustite súbor, aby sa načítal",
       "browse": "prehľadávať súbory",
@@ -131,8 +131,8 @@ export const sk = {
     "invalid": "Zadajte ročnú spotrebu medzi 100 a 200 000 kWh.",
     "or": "alebo",
     "manual": {
-      "sectionTitle": "Zadať ručne",
-      "sectionHint": "Zadajte svoju ročnú spotrebu — skontrolujte účet za elektrinu alebo zmluvu."
+      "sectionTitle": "Naskenujte svoj účet za elektrinu",
+      "sectionHint": "Priložte svoj účet za elektrinu alebo údaje o spotrebe za 12 mesiacov a my za vás vyplníme hodnoty."
     },
     "monthlyHint": "Zadajte spotrebu za všetkých 12 mesiacov"
   },

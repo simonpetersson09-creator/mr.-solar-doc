@@ -123,8 +123,8 @@ export const pt = {
     },
     upload: {
       title: "Anexe 12 meses de dados de consumo",
-      sectionTitle: "A partir de um documento",
-      sectionHint: "Deixe-nos ler automaticamente a sua fatura de eletricidade ou dados de consumo.",
+      sectionTitle: "Digitalize a sua fatura de eletricidade",
+      sectionHint: "Anexe a sua fatura de eletricidade ou 12 meses de dados de consumo e preencheremos os valores por si.",
       description:
         "Carregue uma fatura de eletricidade ou os seus próprios dados de consumo (PDF, Excel, CSV ou uma imagem como PNG/JPEG) e preenchemos automaticamente os valores anuais e mensais.",
       button: "Escolher ficheiro",
@@ -145,8 +145,8 @@ export const pt = {
     subtitle: "Verifique a sua fatura ou contrato de eletricidade.",
     or: "ou",
     manual: {
-      sectionTitle: "Introduzir manualmente",
-      sectionHint: "Introduza o seu consumo anual — verifique a sua fatura ou contrato de eletricidade.",
+      sectionTitle: "Digitalize a sua fatura de eletricidade",
+      sectionHint: "Anexe a sua fatura de eletricidade ou 12 meses de dados de consumo e preencheremos os valores por si.",
     },
     annual: "Consumo anual",
     annualPlaceholder: "p. ex. 18.000",

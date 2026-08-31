@@ -111,8 +111,8 @@ export const da = {
       "successAnnual": "Vi fandt et årsforbrug i dokumentet.",
       "error": "Vi kunne ikke finde noget forbrug i dokumentet. Udfyld værdierne manuelt.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT eller billede (PNG, JPEG)",
-      "sectionTitle": "Fra et dokument",
-      "sectionHint": "Lad os læse din elregning eller forbrugsdata automatisk.",
+      "sectionTitle": "Aflæs din elregning",
+      "sectionHint": "Vedhæft din elregning eller forbrugsdata for 12 måneder, så udfylder vi værdierne for dig.",
       "dropHint": "Træk og slip din fil her, eller",
       "dropActive": "Slip filen for at læse den",
       "browse": "gennemse filer",
@@ -131,8 +131,8 @@ export const da = {
     "invalid": "Angiv et årsforbrug mellem 100 og 200.000 kWh.",
     "or": "eller",
     "manual": {
-      "sectionTitle": "Indtast manuelt",
-      "sectionHint": "Angiv dit årlige forbrug — tjek din elregning eller kontrakt."
+      "sectionTitle": "Aflæs din elregning",
+      "sectionHint": "Vedhæft din elregning eller forbrugsdata for 12 måneder, så udfylder vi værdierne for dig."
     },
     "monthlyHint": "Angiv forbrug for alle 12 måneder"
   },

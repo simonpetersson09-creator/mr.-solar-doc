@@ -111,8 +111,8 @@ export const pl = {
       "successAnnual": "W dokumencie znaleźliśmy roczne zużycie.",
       "error": "Nie udało nam się znaleźć zużycia w dokumencie. Wprowadź wartości ręcznie.",
       "fileTypes": "PDF, XLSX, XLS, CSV, TXT lub obraz (PNG, JPEG)",
-      "sectionTitle": "Z dokumentu",
-      "sectionHint": "Pozwól nam automatycznie odczytać Twój rachunek za prąd lub dane o zużyciu.",
+      "sectionTitle": "Zeskanuj rachunek za prąd",
+      "sectionHint": "Załącz rachunek za prąd lub dane o zużyciu z 12 miesięcy, a my uzupełnimy wartości za Ciebie.",
       "dropHint": "Przeciągnij i upuść plik tutaj, lub",
       "dropActive": "Upuść plik, aby go odczytać",
       "browse": "przeglądaj pliki",
@@ -131,8 +131,8 @@ export const pl = {
     "invalid": "Podaj roczne zużycie od 100 do 200 000 kWh.",
     "or": "lub",
     "manual": {
-      "sectionTitle": "Wprowadź ręcznie",
-      "sectionHint": "Wprowadź swoje roczne zużycie — sprawdź rachunek za prąd lub umowę."
+      "sectionTitle": "Zeskanuj rachunek za prąd",
+      "sectionHint": "Załącz rachunek za prąd lub dane o zużyciu z 12 miesięcy, a my uzupełnimy wartości za Ciebie."
     },
     "monthlyHint": "Wprowadź zużycie dla wszystkich 12 miesięcy"
   },
