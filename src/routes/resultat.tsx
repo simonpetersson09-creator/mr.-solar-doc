@@ -226,7 +226,7 @@ const cost = result.productionCost;
                 <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   <Zap className="size-3" /> {t("result.recommendedInverter")}
                 </p>
-                <p className="mt-0.5 text-lg font-bold tabular-nums">
+                <p className="mt-0.5 text-lg font-bold text-white tabular-nums">
                   {formatNumber(result.inverterKw, locale)}{" "}
                   <span className="text-[11px] font-semibold text-white/60">kW</span>
                 </p>
