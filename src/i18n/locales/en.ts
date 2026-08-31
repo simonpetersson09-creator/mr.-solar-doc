@@ -205,6 +205,10 @@ gridAssumptionInfo: "The theoretical power of the main fuse is calculated from a
     subtitle: "The main fuse is used to estimate how large an inverter can normally be connected. The actual permitted power is determined by the grid operator.",
     label: "Main fuse",
     noCountryOptions: "We do not have verified connection options for this country yet. Enter your main fuse in amperes and adjust the grid settings below if needed.",
+    unverifiedCountryNotice:
+      "We have not verified the grid standard for this country. Check your voltage, phases and connection size on your electricity bill or with your grid operator, then confirm below.",
+    confirmGrid: "I have checked the grid data",
+    confirmedGrid: "Grid data confirmed",
     other: "Other",
     otherLabel: "Amperes",
     maxAc: "Maximum calculated AC power",

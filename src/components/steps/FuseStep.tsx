@@ -48,11 +48,13 @@ const [showGridInfo, setShowGridInfo] = useState(false);
   const location = useWizardStore((s) => s.location);
   const storedCapacity = useWizardStore((s) => s.connectionCapacity);
   const setConnectionCapacity = useWizardStore((s) => s.setConnectionCapacity);
+  const selectConnectionOption = useWizardStore((s) => s.selectConnectionOption);
+  const gridConfirmed = useWizardStore((s) => s.gridConfirmed);
+  const setGridConfirmed = useWizardStore((s) => s.setGridConfirmed);
   const serviceType = useWizardStore((s) => s.gridServiceType);
   const voltageV = useWizardStore((s) => s.gridVoltageV);
   const lineToNeutralVoltageV = useWizardStore((s) => s.gridLineToNeutralVoltageV);
   const frequencyHz = useWizardStore((s) => s.gridFrequencyHz);
-  const gridProfileIsUserSet = useWizardStore((s) => s.gridProfileIsUserSet);
   const setGridProfile = useWizardStore((s) => s.setGridProfile);
   const setGridDefaults = useWizardStore((s) => s.setGridDefaults);
 
@@ -109,22 +111,26 @@ const [showGridInfo, setShowGridInfo] = useState(false);
   const customVoltageValid = isValidCustomVoltage(parsedCustomVoltage);
   const voltageValid = !customVoltage || customVoltageValid;
 
-  /** Builds the capacity for a given amount in the country's own unit. */
+  /**
+   * Builds the capacity for a given amount in the country's own unit.
+   * A country option always carries its OWN grid profile — that is what makes
+   * "3 x 25 A" mean the same thing as the country defines it. Manual amounts
+   * use whatever profile is currently set in the advanced settings.
+   */
   const capacityFor = (amount: number, option?: ConnectionOption): ConnectionCapacity => {
-    // The user's own grid settings always win over the country profile.
-    const profile =
-      gridProfileIsUserSet || !option
-        ? { serviceType, voltageV, lineToNeutralVoltageV, frequencyHz }
-        : {
-            serviceType: option.capacity.serviceType ?? serviceType,
-            voltageV: option.capacity.voltageV ?? voltageV,
-            lineToNeutralVoltageV: option.capacity.lineToNeutralVoltageV ?? null,
-            frequencyHz: option.capacity.frequencyHz ?? frequencyHz,
-          };
+    const profile = option
+      ? {
+          serviceType: option.capacity.serviceType ?? serviceType,
+          voltageV: option.capacity.voltageV ?? voltageV,
+          lineToNeutralVoltageV: option.capacity.lineToNeutralVoltageV ?? null,
+          frequencyHz: option.capacity.frequencyHz ?? frequencyHz,
+        }
+      : { serviceType, voltageV, lineToNeutralVoltageV, frequencyHz };
     if (inputType === "contracted-kva") return { type: "contracted-kva", kva: amount, ...profile };
     if (inputType === "contracted-kw") return { type: "contracted-kw", kw: amount, ...profile };
     return { type: "amperage", amperageA: amount, ...profile };
   };
+
 
   const selectedOption = connection.connectionOptions.find((o) => o.id === selectedId) ?? null;
   const customAmount = parseLocaleNumber(customValue) ?? 0;
@@ -134,7 +140,11 @@ const [showGridInfo, setShowGridInfo] = useState(false);
       ? capacityFor(connectionCapacityAmount(selectedOption.capacity), selectedOption)
       : storedCapacity;
 
-  const capacityValid = isValidConnectionCapacity(capacity) && voltageValid;
+  // A generic/unsupported country profile is not a local standard. The user
+  // must confirm the grid data before the calculation may use it.
+  const isVerified = connection.status === "verified";
+  const capacityValid =
+    isValidConnectionCapacity(capacity) && voltageValid && (isVerified || gridConfirmed);
   const maxAc = capacity
     ? connectionCapacityToMaxAcPowerKw(capacity, {
         ...(connection.contractedKvaPowerFactor === undefined
@@ -172,7 +182,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
     <StepShell
       step={4}
       totalSteps={totalSteps}
-      title={connection.verified ? t(connection.questionKey) : t("fuse.genericTitle")}
+      title={isVerified ? t(connection.questionKey) : t("fuse.genericTitle")}
       onBack={onBack}
       footer={
         <Button
@@ -182,7 +192,11 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           disabled={!capacityValid}
           onClick={() => {
             void haptic("success");
-            setConnectionCapacity(capacity);
+            if (!custom && selectedOption) {
+              selectConnectionOption(selectedOption.id, capacity!);
+            } else {
+              setConnectionCapacity(capacity);
+            }
             onSubmit();
           }}
         >
@@ -194,7 +208,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
       <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
         <div>
           <Label className="text-xs text-white">
-            {connection.localTerm && connection.verified
+            {connection.localTerm && isVerified
               ? connection.localTerm
               : t(`fuse.capacity.${inputType}.label`)}
           </Label>
@@ -210,7 +224,8 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                 void haptic("light");
                 setCustom(false);
                 setSelectedId(option.id);
-                setConnectionCapacity(
+                selectConnectionOption(
+                  option.id,
                   capacityFor(connectionCapacityAmount(option.capacity), option),
                 );
               }}
@@ -235,8 +250,22 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           </button>
         </div>
 
-        {!connection.verified ? (
-          <p className="text-[11px] leading-relaxed text-white/70">{t("fuse.noCountryOptions")}</p>
+        {!isVerified ? (
+          <div className="space-y-2 rounded-2xl border border-accent/40 bg-accent/10 px-3 py-2">
+            <p className="text-[11px] leading-relaxed text-white/80">
+              {t("fuse.unverifiedCountryNotice")}
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                void haptic("light");
+                setGridConfirmed(!gridConfirmed);
+              }}
+              className={chipClass(gridConfirmed)}
+            >
+              {gridConfirmed ? t("fuse.confirmedGrid") : t("fuse.confirmGrid")}
+            </button>
+          </div>
         ) : null}
 
         {custom ? (
@@ -449,7 +478,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
             </div>
 
             <p className="text-[11px] leading-relaxed text-white/60">
-              {connection.verified ? t("fuse.grid.hint") : t("fuse.grid.unverifiedHint")}
+              {isVerified ? t("fuse.grid.hint") : t("fuse.grid.unverifiedHint")}
             </p>
           </div>
         ) : null}

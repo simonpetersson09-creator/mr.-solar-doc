@@ -65,14 +65,93 @@ export function isoDateOnly(iso: string): string {
 }
 
 /**
- * Parses a number typed by a human. Accepts both "1.5" and "1,5" (comma is the
- * decimal separator on most European keyboards) plus space/NBSP thousands
- * separators. Returns `null` for empty or non-numeric input instead of 0, so
- * callers can tell "nothing entered" apart from "zero".
+ * Characters that can only ever be group separators in human input:
+ * ordinary space, NBSP, narrow NBSP, thin space and the Swiss apostrophe.
  */
-export function parseLocaleNumber(raw: string): number | null {
-  const cleaned = raw.replace(/[\s\u00a0\u202f]/g, "").replace(/,/g, ".");
-  if (cleaned === "" || cleaned === "." || cleaned === "-") return null;
-  const parsed = Number(cleaned);
-  return Number.isFinite(parsed) ? parsed : null;
+const GROUP_ONLY_CHARS = /[\s\u00a0\u202f\u2009\u2007'\u2019\u00b4`]/g;
+
+/** The decimal separator the given locale uses (".", or ","). */
+export function decimalSeparatorFor(locale?: string | null): "." | "," {
+  if (!locale) return ".";
+  try {
+    const part = new Intl.NumberFormat(locale)
+      .formatToParts(1.1)
+      .find((p) => p.type === "decimal")?.value;
+    return part === "," ? "," : ".";
+  } catch {
+    return ".";
+  }
 }
+
+/**
+ * Parses a number typed by a human, locale-aware and deterministic.
+ *
+ * DOCUMENTED STRATEGY
+ *  1. Whitespace (space, NBSP, narrow NBSP) and the Swiss apostrophe are
+ *     always group separators and are removed first.
+ *  2. Only digits, "." and "," may remain; anything else returns null.
+ *  3. When BOTH "." and "," occur, the LAST of them is the decimal separator
+ *     and the other one is a group separator: "1.234,5" and "1,234.5" both
+ *     parse to 1234.5.
+ *  4. When only one of them occurs several times it is a group separator:
+ *     "1.234.567" -> 1234567.
+ *  5. AMBIGUOUS CASE — a single separator followed by exactly three digits
+ *     ("1,234" / "1.234") is resolved by the active locale: the locale's own
+ *     decimal separator is read as a decimal separator, the other character
+ *     as a group separator. Without a locale, three trailing digits are read
+ *     as a group ("1.234" -> 1234), because entering a thousands-grouped
+ *     integer is far more common than a three-decimal value in this app.
+ *  6. A trailing separator is kept as an incomplete decimal ("12," -> 12), so
+ *     a controlled input never fights the user mid-typing.
+ *  7. Empty, sign-only and non-numeric input returns null — never 0 — so
+ *     callers can tell "nothing entered" from "zero".
+ *
+ * Every user-entered physical quantity (price, kWh, A, kW, kVA, V) must go
+ * through this one function.
+ */
+export function parseLocaleNumber(raw: string, locale?: string | null): number | null {
+  if (typeof raw !== "string") return null;
+  let s = raw.trim().replace(GROUP_ONLY_CHARS, "");
+  if (s === "") return null;
+
+  let sign = 1;
+  if (s.startsWith("-")) {
+    sign = -1;
+    s = s.slice(1);
+  } else if (s.startsWith("+")) {
+    s = s.slice(1);
+  }
+
+  if (!/^[0-9.,]+$/.test(s) || !/[0-9]/.test(s)) return null;
+
+  const lastDot = s.lastIndexOf(".");
+  const lastComma = s.lastIndexOf(",");
+  let decimalIndex = -1;
+
+  if (lastDot >= 0 && lastComma >= 0) {
+    decimalIndex = Math.max(lastDot, lastComma);
+  } else if (lastDot >= 0 || lastComma >= 0) {
+    const sep = lastDot >= 0 ? "." : ",";
+    const index = lastDot >= 0 ? lastDot : lastComma;
+    const occurrences = s.split(sep).length - 1;
+    const digitsAfter = s.length - index - 1;
+    if (occurrences > 1) {
+      decimalIndex = -1;
+    } else if (digitsAfter === 3 && index > 0) {
+      decimalIndex = sep === decimalSeparatorFor(locale) ? index : -1;
+    } else {
+      decimalIndex = index;
+    }
+  }
+
+  const integerRaw = decimalIndex >= 0 ? s.slice(0, decimalIndex) : s;
+  const fraction = decimalIndex >= 0 ? s.slice(decimalIndex + 1) : "";
+  if (/[.,]/.test(fraction)) return null;
+
+  const integer = integerRaw.replace(/[.,]/g, "");
+  if (integer === "" && fraction === "") return null;
+
+  const parsed = Number(`${integer === "" ? "0" : integer}.${fraction === "" ? "0" : fraction}`);
+  return Number.isFinite(parsed) ? sign * parsed : null;
+}
+

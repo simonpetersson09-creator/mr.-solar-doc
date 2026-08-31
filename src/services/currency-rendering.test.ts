@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { ACTIVE_MARKET_CODES, getCurrencyForCountry } from "@/config/markets";
+import { ACTIVE_MARKET_CODES } from "@/config/markets";
+import { getCurrencyCode as getCurrencyForCountry } from "@/config/countries";
 import { formatCurrency } from "@/lib/format";
 import { pdfText } from "@/services/solar-report-service";
 
