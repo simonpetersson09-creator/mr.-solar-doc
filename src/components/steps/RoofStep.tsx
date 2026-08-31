@@ -168,59 +168,51 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
       </div>
 
 
-      {query.isPending ? (
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-card px-3 py-2 text-xs text-muted-foreground">
-          <Loader2 className="size-4 animate-spin" />
-          {t("roof.fetching")}
-        </div>
-      ) : null}
-
-      {query.isError ? (
-        <div className="flex items-center justify-between gap-3 rounded-xl border border-destructive/40 bg-destructive/5 px-3 py-2.5">
-          <div className="min-w-0">
-            <p className="text-xs text-destructive">
-              {pvgisError.kind === "over-sea"
-                ? t("roof.errorOverSea")
-                : pvgisError.kind === "outside-coverage"
-                  ? t("roof.errorOutsideCoverage")
-                  : t("roof.error")}
+      {/* Fixed result card: only the number swaps while a new value loads. */}
+      <div className="hero-metric rounded-2xl px-4 py-3">
+        <div className="glow-amber -top-10 -right-10 size-32" aria-hidden="true" />
+        <div className="flex items-center justify-between gap-4">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-1.5 text-xs font-semibold">
+              <span className="size-1.5 animate-pulse rounded-full bg-accent" />
+              <Sun className="size-3.5" />
+              {t("roof.result")}
+            </div>
+            <p className="mt-0.5 min-h-4 text-[11px] text-white/70">
+              {query.data?.dataSource ?? ""}
             </p>
-            {pvgisError.message ? (
-              <p className="mt-0.5 text-[10px] text-destructive/70">
-                {t("roof.errorSource", { message: pvgisError.message })}
-              </p>
-            ) : null}
           </div>
-          <Button variant="outline" size="sm" onClick={() => void query.refetch()}>
-            {t("common.retry")}
-          </Button>
-        </div>
-      ) : null}
-
-{query.data ? (
-        <div className="hero-metric rounded-2xl px-4 py-3">
-          <div className="glow-amber -top-10 -right-10 size-32" aria-hidden="true" />
-          <div className="flex items-center justify-between gap-4">
-            <div className="text-center">
-              <div className="flex items-center justify-center gap-1.5 text-xs font-semibold">
-                <span className="size-1.5 animate-pulse rounded-full bg-accent" />
-                <Sun className="size-3.5" />
-                {t("roof.result")}
-              </div>
-              <p className="mt-0.5 text-[11px] text-white/70">{query.data.dataSource}</p>
-            </div>
-            <div className="text-center">
-              <p className="text-3xl leading-none font-extrabold tracking-tight">
-                {formatNumber(query.data.annualKwhPerKwp, locale)}
-              </p>
-              <p className="mt-1 text-[11px] text-white/70">{t("roof.unit")}</p>
-            </div>
+          <div className="flex min-h-[44px] flex-col items-center justify-center text-center">
+            {query.isError && !query.data ? (
+              <Button variant="outline" size="sm" onClick={() => void query.refetch()}>
+                {t("common.retry")}
+              </Button>
+            ) : query.data ? (
+              <>
+                <p
+                  className={`text-3xl leading-none font-extrabold tracking-tight transition-opacity ${
+                    query.isFetching ? "opacity-40" : "opacity-100"
+                  }`}
+                >
+                  {formatNumber(query.data.annualKwhPerKwp, locale)}
+                </p>
+                <p className="mt-1 text-[11px] text-white/70">{t("roof.unit")}</p>
+              </>
+            ) : (
+              <Loader2 className="size-6 animate-spin text-white/70" />
+            )}
           </div>
-          <p className="mt-2.5 border-t border-white/15 pt-2 text-center text-[10px] leading-relaxed text-white/60">
-            {t("roof.disclaimer")}
-          </p>
         </div>
-      ) : null}
+        <p className="mt-2.5 border-t border-white/15 pt-2 text-center text-[10px] leading-relaxed text-white/60">
+          {query.isError
+            ? pvgisError.kind === "over-sea"
+              ? t("roof.errorOverSea")
+              : pvgisError.kind === "outside-coverage"
+                ? t("roof.errorOutsideCoverage")
+                : t("roof.error")
+            : t("roof.disclaimer")}
+        </p>
+      </div>
     </StepShell>
   );
 }
