@@ -82,6 +82,20 @@ function HistoryPage() {
           <div className="flex items-center gap-2 px-1 py-6 text-sm text-muted-foreground">
             <Loader2 className="size-4 animate-spin" /> {t("common.loading")}
           </div>
+        ) : query.isError ? (
+          <div className="cta-primary flex flex-col items-center gap-3 rounded-3xl px-5 py-8 text-center text-primary-foreground">
+            <p className="text-sm text-primary-foreground/85">{t("history.error")}</p>
+            <button
+              type="button"
+              onClick={() => {
+                void haptic("light");
+                void query.refetch();
+              }}
+              className="rounded-full bg-accent px-4 py-2 text-xs font-bold text-accent-foreground"
+            >
+              {t("common.retry", { defaultValue: "Försök igen" })}
+            </button>
+          </div>
         ) : items.length === 0 ? (
           <div className="cta-primary flex flex-col items-center gap-2 rounded-3xl px-5 py-8 text-center text-primary-foreground">
             <span className="flex size-11 items-center justify-center rounded-2xl bg-accent text-accent-foreground">
