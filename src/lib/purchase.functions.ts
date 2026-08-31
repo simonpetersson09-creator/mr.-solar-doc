@@ -106,6 +106,24 @@ export const verifyApplePurchase = createServerFn({ method: "POST" })
 
     try {
       const verified = await verifyAppleTransaction(data.transactionId, UNLOCK_PRODUCT_ID);
+
+      // The same App Store transaction may only unlock one calculation.
+      const { data: usedBy } = await supabaseAdmin
+        .from("calculations")
+        .select("id")
+        .eq("apple_transaction_id", verified.transactionId)
+        .neq("id", data.id)
+        .maybeSingle();
+      if (usedBy) {
+        await supabaseAdmin
+          .from("calculations")
+          .update({ status: "failed", failure_reason: "already-used" })
+          .eq("id", data.id)
+          .eq("access_token", data.accessToken)
+          .neq("status", "paid");
+        return { status: "failed" as PurchaseStatus, reason: "already-used" };
+      }
+
       const { error } = await supabaseAdmin
         .from("calculations")
         .update({
@@ -118,11 +136,22 @@ export const verifyApplePurchase = createServerFn({ method: "POST" })
         })
         .eq("id", data.id)
         .eq("access_token", data.accessToken);
-      if (error) throw new Error(error.message);
+      if (error) {
+        // Writing the receipt failed (network/database). The purchase itself is
+        // valid, so keep it retryable instead of burning the transaction.
+        return { status: "pending" as PurchaseStatus, reason: "retry" };
+      }
       return { status: "paid" as PurchaseStatus };
     } catch (error) {
-      const code =
-        error instanceof AppleVerificationError ? error.code : "apple-error";
+      const code = error instanceof AppleVerificationError ? error.code : "apple-error";
+      // Only Apple's definitive answers are terminal. Anything else (network
+      // problems, Apple downtime, misconfiguration) stays pending and retryable
+      // so a paid user never loses access.
+      const terminal =
+        code === "wrong-bundle" || code === "wrong-product" || code === "revoked";
+      if (!terminal) {
+        return { status: "pending" as PurchaseStatus, reason: code };
+      }
       await supabaseAdmin
         .from("calculations")
         .update({ status: "failed", failure_reason: code })
@@ -132,6 +161,7 @@ export const verifyApplePurchase = createServerFn({ method: "POST" })
       return { status: "failed" as PurchaseStatus, reason: code };
     }
   });
+
 
 /** Receipts for calculations purchased on this device. No calculation data. */
 export const listPurchasedCalculations = createServerFn({ method: "POST" })
