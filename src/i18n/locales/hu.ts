@@ -144,10 +144,7 @@ export const hu = {
     title: "Mennyi villamos energiát használ?",
     subtitle: "Nézze meg a villanyszámláját vagy szerződését.",
     or: "vagy",
-    manual: {
-      sectionTitle: "Olvassa be villanyszámláját",
-      sectionHint: "Csatolja villanyszámláját vagy 12 havi fogyasztási adatait, és mi kitöltjük az értékeket Ön helyett.",
-    },
+    manual: { sectionTitle: "Kézi megadás", sectionHint: "Adja meg éves fogyasztását – nézze meg villanyszámláját vagy szerződését." },
     annual: "Éves fogyasztás",
     annualPlaceholder: "pl. 18 000",
     useMonthly: "Fogyasztás megadása havonta (12 hónap)",

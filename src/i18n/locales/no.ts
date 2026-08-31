@@ -139,10 +139,7 @@ export const no = {
     "title": "Hvor mye strøm bruker du?",
     "subtitle": "Sjekk strømregningen eller avtalen din.",
     "or": "eller",
-    "manual": {
-      "sectionTitle": "Les av strømregningen",
-      "sectionHint": "Legg ved strømregningen eller forbruksdata for 12 måneder, så fyller vi ut verdiene for deg."
-    },
+    "manual": { "sectionTitle": "Angi manuelt", "sectionHint": "Angi årsforbruket ditt — sjekk strømregningen eller avtalen din." },
     "annual": "Årsforbruk",
     "annualPlaceholder": "f.eks. 18 000",
     "useMonthly": "Angi forbruk per måned (12 måneder)",

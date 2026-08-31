@@ -130,10 +130,7 @@ export const lv = {
     "total": "Kopējais gada patēriņš",
     "invalid": "Ievadiet gada patēriņu no 100 līdz 200 000 kWh.",
     "or": "vai",
-    "manual": {
-      "sectionTitle": "Skenēt elektrības rēķinu",
-      "sectionHint": "Pievienojiet savu elektrības rēķinu vai 12 mēnešu patēriņa datus, un mēs aizpildīsim vērtības jūsu vietā."
-    },
+    "manual": { "sectionTitle": "Ievadīt manuāli", "sectionHint": "Ievadiet savu gada patēriņu — pārbaudiet elektrības rēķinu vai līgumu." },
     "monthlyHint": "Ievadiet patēriņu visiem 12 mēnešiem"
   },
   "fuse": {

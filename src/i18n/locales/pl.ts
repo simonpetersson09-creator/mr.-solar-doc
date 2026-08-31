@@ -130,10 +130,7 @@ export const pl = {
     "total": "Całkowite roczne zużycie",
     "invalid": "Podaj roczne zużycie od 100 do 200 000 kWh.",
     "or": "lub",
-    "manual": {
-      "sectionTitle": "Zeskanuj rachunek za prąd",
-      "sectionHint": "Załącz rachunek za prąd lub dane o zużyciu z 12 miesięcy, a my uzupełnimy wartości za Ciebie."
-    },
+    "manual": { "sectionTitle": "Wprowadź ręcznie", "sectionHint": "Wprowadź swoje roczne zużycie — sprawdź rachunek za prąd lub umowę." },
     "monthlyHint": "Wprowadź zużycie dla wszystkich 12 miesięcy"
   },
   "fuse": {

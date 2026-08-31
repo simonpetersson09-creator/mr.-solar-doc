@@ -130,10 +130,7 @@ export const cs = {
     "total": "Celková roční spotřeba",
     "invalid": "Zadejte roční spotřebu mezi 100 a 200 000 kWh.",
     "or": "nebo",
-    "manual": {
-      "sectionTitle": "Načtěte fakturu za elektřinu",
-      "sectionHint": "Přiložte fakturu za elektřinu nebo údaje o spotřebě za 12 měsíců a my za vás vyplníme hodnoty."
-    },
+    "manual": { "sectionTitle": "Zadat ručně", "sectionHint": "Zadejte svou roční spotřebu — zkontrolujte fakturu za elektřinu nebo smlouvu." },
     "monthlyHint": "Zadejte spotřebu za všech 12 měsíců"
   },
   "fuse": {

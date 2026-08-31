@@ -139,10 +139,7 @@ export const ro = {
     "title": "Câtă energie electrică folosești?",
     "subtitle": "Verifică factura sau contractul de energie.",
     "or": "sau",
-    "manual": {
-      "sectionTitle": "Scanează factura de energie",
-      "sectionHint": "Atașează factura de energie sau datele de consum pe 12 luni și vom completa valorile pentru tine."
-    },
+    "manual": { "sectionTitle": "Introdu manual", "sectionHint": "Introdu consumul tău anual — verifică factura sau contractul de energie." },
     "annual": "Consum anual",
     "annualPlaceholder": "ex. 18.000",
     "useMonthly": "Introdu consumul pe lună (12 luni)",

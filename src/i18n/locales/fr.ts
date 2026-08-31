@@ -130,10 +130,7 @@ export const fr = {
     "total": "Consommation annuelle totale",
     "invalid": "Saisissez une consommation annuelle entre 100 et 200 000 kWh.",
     "or": "ou",
-    "manual": {
-      "sectionTitle": "Scannez votre facture d’\électricité",
-      "sectionHint": "Joignez votre facture d’\électricité ou 12 mois de données de consommation et nous remplirons les valeurs pour vous."
-    },
+    "manual": { "sectionTitle": "Saisir manuellement", "sectionHint": "Indiquez votre consommation annuelle — vérifiez votre facture ou votre contrat d’électricité." },
     "monthlyHint": "Indiquez la consommation pour les 12 mois"
   },
   "fuse": {

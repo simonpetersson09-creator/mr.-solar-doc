@@ -130,10 +130,7 @@ export const de = {
     "total": "Gesamter Jahresverbrauch",
     "invalid": "Geben Sie einen Jahresverbrauch zwischen 100 und 200.000 kWh ein.",
     "or": "oder",
-    "manual": {
-      "sectionTitle": "Stromrechnung scannen",
-      "sectionHint": "Hängen Sie Ihre Stromrechnung oder Verbrauchsdaten für 12 Monate an, und wir füllen die Werte automatisch für Sie aus."
-    },
+    "manual": { "sectionTitle": "Manuell eingeben", "sectionHint": "Gib deinen Jahresverbrauch ein — prüfe deine Stromrechnung oder deinen Vertrag." },
     "monthlyHint": "Gib den Verbrauch für alle 12 Monate ein"
   },
   "fuse": {

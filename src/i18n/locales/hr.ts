@@ -144,10 +144,7 @@ export const hr = {
     title: "Koliko struje trošite?",
     subtitle: "Provjerite svoj račun za struju ili ugovor.",
     or: "ili",
-    manual: {
-      sectionTitle: "Skenirajte račun za struju",
-      sectionHint: "Priložite račun za struju ili podatke o potrošnji za 12 mjeseci i mi ćemo popuniti vrijednosti umjesto vas.",
-    },
+    manual: { sectionTitle: "Unesi ručno", sectionHint: "Unesite godišnju potrošnju – provjerite svoj račun za struju ili ugovor." },
     annual: "Godišnja potrošnja",
     annualPlaceholder: "npr. 18.000",
     useMonthly: "Unesi potrošnju po mjesecu (12 mjeseci)",

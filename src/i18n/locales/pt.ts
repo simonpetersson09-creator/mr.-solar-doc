@@ -144,10 +144,7 @@ export const pt = {
     title: "Quanta eletricidade consome?",
     subtitle: "Verifique a sua fatura ou contrato de eletricidade.",
     or: "ou",
-    manual: {
-      sectionTitle: "Digitalize a sua fatura de eletricidade",
-      sectionHint: "Anexe a sua fatura de eletricidade ou 12 meses de dados de consumo e preencheremos os valores por si.",
-    },
+    manual: { sectionTitle: "Introduzir manualmente", sectionHint: "Introduza o seu consumo anual — verifique a sua fatura ou contrato de eletricidade." },
     annual: "Consumo anual",
     annualPlaceholder: "p. ex. 18.000",
     useMonthly: "Introduzir consumo por mês (12 meses)",

@@ -139,10 +139,7 @@ export const tr = {
     "title": "Ne kadar elektrik kullanıyorsunuz?",
     "subtitle": "Elektrik faturanızı veya sözleşmenizi kontrol edin.",
     "or": "veya",
-    "manual": {
-      "sectionTitle": "Elektrik faturanızı tarayın",
-      "sectionHint": "Elektrik faturanızı veya 12 aylık tüketim verinizi ekleyin, değerleri sizin için biz dolduralım."
-    },
+    "manual": { "sectionTitle": "Manuel olarak girin", "sectionHint": "Yıllık tüketiminizi girin — elektrik faturanızı veya sözleşmenizi kontrol edin." },
     "annual": "Yıllık tüketim",
     "annualPlaceholder": "örn. 18.000",
     "useMonthly": "Tüketimi aylık olarak girin (12 ay)",

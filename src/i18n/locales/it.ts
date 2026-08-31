@@ -130,10 +130,7 @@ export const it = {
     "total": "Consumo annuo totale",
     "invalid": "Inserisci un consumo annuo tra 100 e 200.000 kWh.",
     "or": "oppure",
-    "manual": {
-      "sectionTitle": "Scansiona la tua bolletta",
-      "sectionHint": "Allega la bolletta o i dati di consumo di 12 mesi e compileremo noi i valori per te."
-    },
+    "manual": { "sectionTitle": "Inserisci manualmente", "sectionHint": "Inserisci il tuo consumo annuo — controlla la bolletta o il contratto elettrico." },
     "monthlyHint": "Inserisci il consumo per tutti i 12 mesi"
   },
   "fuse": {

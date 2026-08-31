@@ -130,10 +130,7 @@ export const fi = {
     "total": "Vuosikulutus yhteensä",
     "invalid": "Anna vuosikulutus väliltä 100 – 200 000 kWh.",
     "or": "tai",
-    "manual": {
-      "sectionTitle": "Lue sähkölaskusi",
-      "sectionHint": "Liitä sähkölaskusi tai 12 kuukauden kulutustiedot, niin täytämme arvot puolestasi."
-    },
+    "manual": { "sectionTitle": "Syötä manuaalisesti", "sectionHint": "Syötä vuosikulutuksesi — tarkista sähkölaskustasi tai sopimuksestasi." },
     "monthlyHint": "Syötä kulutus kaikille 12 kuukaudelle"
   },
   "fuse": {

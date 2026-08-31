@@ -130,10 +130,7 @@ export const lt = {
     "total": "Bendras metinis suvartojimas",
     "invalid": "Įveskite metinį suvartojimą nuo 100 iki 200 000 kWh.",
     "or": "arba",
-    "manual": {
-      "sectionTitle": "Nuskaitykite savo elektros sąskaitą",
-      "sectionHint": "Pridėkite savo elektros sąskaitą arba 12 mėnesių suvartojimo duomenis ir mes užpildysime vertes už jus."
-    },
+    "manual": { "sectionTitle": "Įvesti rankiniu būdu", "sectionHint": "Įveskite metinį suvartojimą — patikrinkite elektros sąskaitą ar sutartį." },
     "monthlyHint": "Įveskite suvartojimą visiems 12 mėnesių"
   },
   "fuse": {

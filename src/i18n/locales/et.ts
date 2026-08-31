@@ -130,10 +130,7 @@ export const et = {
     "total": "Aastane kogutarbimine",
     "invalid": "Sisesta aastatarbimine vahemikus 100 kuni 200 000 kWh.",
     "or": "või",
-    "manual": {
-      "sectionTitle": "Skanni oma elektriarve",
-      "sectionHint": "Lisa oma elektriarve või 12 kuu tarbimisandmed ja me täidame väärtused sinu eest."
-    },
+    "manual": { "sectionTitle": "Sisesta käsitsi", "sectionHint": "Sisestage oma aastane tarbimine — vaadake elektriarvet või lepingut." },
     "monthlyHint": "Sisestage tarbimine kõigi 12 kuu kohta"
   },
   "fuse": {

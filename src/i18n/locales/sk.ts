@@ -130,10 +130,7 @@ export const sk = {
     "total": "Celková ročná spotreba",
     "invalid": "Zadajte ročnú spotrebu medzi 100 a 200 000 kWh.",
     "or": "alebo",
-    "manual": {
-      "sectionTitle": "Naskenujte svoj účet za elektrinu",
-      "sectionHint": "Priložte svoj účet za elektrinu alebo údaje o spotrebe za 12 mesiacov a my za vás vyplníme hodnoty."
-    },
+    "manual": { "sectionTitle": "Zadať ručne", "sectionHint": "Zadajte svoju ročnú spotrebu — skontrolujte účet za elektrinu alebo zmluvu." },
     "monthlyHint": "Zadajte spotrebu za všetkých 12 mesiacov"
   },
   "fuse": {

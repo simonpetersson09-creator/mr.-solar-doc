@@ -144,10 +144,7 @@ export const nl = {
     title: "Hoeveel stroom gebruik je?",
     subtitle: "Bekijk je energierekening of contract.",
     or: "of",
-    manual: {
-      sectionTitle: "Scan je energierekening",
-      sectionHint: "Voeg je energierekening of verbruiksgegevens van 12 maanden toe en wij vullen de waarden voor je in.",
-    },
+    manual: { sectionTitle: "Handmatig invoeren", sectionHint: "Vul je jaarverbruik in — bekijk je energierekening of contract." },
     annual: "Jaarverbruik",
     annualPlaceholder: "bijv. 18.000",
     useMonthly: "Verbruik per maand invoeren (12 maanden)",
