@@ -176,6 +176,9 @@ export function pdfText(value: string): string {
   return value
     .replace(/\u2212/g, "-")
     .replace(/[\u202f\u2009]/g, "\u00a0")
+    // Maths symbols outside WinAnsi render as stray quotes in Helvetica.
+    .replace(/\u221a3/g, "1,73")
+    .replace(/\u221a/g, "sqrt")
     .replace(/[^\u0000-\u00ff]/g, (char) => WINANSI_FALLBACK[char] ?? char);
 }
 
