@@ -310,7 +310,16 @@ export const CURRENCY_BY_COUNTRY: Record<string, CurrencyCode> = {
   VU: "VUV",
   WF: "XPF",
   WS: "WST",
+
+  // ---- Exceptionally reserved / alias codes geocoders sometimes emit ----
+  AC: "SHP", // Ascension Island
+  DG: "USD", // Diego Garcia (BIOT)
+  EA: "EUR", // Ceuta & Melilla
+  IC: "EUR", // Canary Islands
+  TA: "SHP", // Tristan da Cunha
+  UK: "GBP", // Non-standard alias for GB
 };
+
 
 /** True when the code is a syntactically valid ISO 3166-1 alpha-2 code. */
 function normaliseCountryCode(countryCode?: string | null): string | null {
