@@ -102,6 +102,7 @@ export default function MapPicker({
     return () => {
       clearTimeout(timer);
       observer?.disconnect();
+      endInteract();
       map.remove();
       mapRef.current = null;
       markerRef.current = null;
