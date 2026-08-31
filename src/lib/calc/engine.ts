@@ -26,6 +26,7 @@ import {
   type PhaseCount,
 } from "@/config/grid";
 import { recommendArraySize } from "./solar-sizing";
+import type { PvLimitBinding } from "@/config/pv-connection-rules";
 import { clampShare, splitProduction, summariseSelfConsumption } from "./self-consumption";
 import {
   CalculationValidationError,
@@ -79,11 +80,23 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
         }));
 
 
+  // Two independent ceilings: what the connection can carry, and what the
+  // country permits to connect. Sizing must respect the lower one, and the
+  // binding rule is carried through so the reason shown is the real one.
+  const pvRuleLimitKw = input.electrical.pvPowerLimitKw ?? null;
+  const pvLimitBinding: PvLimitBinding =
+    input.electrical.pvLimitBinding ??
+    (pvRuleLimitKw != null && pvRuleLimitKw < maxAcPowerKw - 1e-9
+      ? "pv-rule"
+      : "connection-capacity");
+  const acCeilingKw =
+    pvRuleLimitKw != null ? Math.min(maxAcPowerKw, pvRuleLimitKw) : maxAcPowerKw;
+  if (pvLimitBinding !== "connection-capacity") notes.push(`pv-limit-${pvLimitBinding}`);
 
   const sizing = recommendArraySize({
     desiredAnnualKwh: input.consumption.annualKwh,
     annualKwhPerKwp: input.resource.annualKwhPerKwp,
-    maxAcPowerKw,
+    maxAcPowerKw: acCeilingKw,
   });
   if (sizing.limitedByGrid) notes.push("limited-by-main-fuse");
 
@@ -107,7 +120,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   // Candidate systems -> technical constraints -> recommended system.
   const selection = selectRecommendedSystem({
     targetKwp: sizing.recommendedKwp,
-    maxAcPowerKw,
+    maxAcPowerKw: acCeilingKw,
     inverterSizesKw: input.inverterSizesKw,
     targetRange: targetDcAcRange,
     monthlyKwhPerKwp: input.resource.monthlyKwhPerKwp,
@@ -126,7 +139,9 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   const installedKwp = selection.best.installedKwp;
 
   let sizingBasis: SizingBasis = "consumption";
-  if (sizing.limitedByGrid) sizingBasis = "grid-limit";
+  if (sizing.limitedByGrid) {
+    sizingBasis = pvLimitBinding === "connection-capacity" ? "grid-limit" : "pv-rule-limit";
+  }
   if (installedKwp < sizing.recommendedKwp - 1e-9) sizingBasis = "inverter-limit";
   if (installedKwp <= MIN_RECOMMENDED_KWP + 1e-9 && sizing.referenceKwp < MIN_RECOMMENDED_KWP) {
     sizingBasis = "minimum-size";
@@ -145,7 +160,9 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
 
   let recommendationReason: RecommendationReason = `profile-${consumptionProfile.category}` as RecommendationReason;
   if (consumptionProfile.category === "unknown") recommendationReason = "profile-unknown";
-  if (sizingBasis === "grid-limit") recommendationReason = "grid-limit";
+  if (sizingBasis === "grid-limit" || sizingBasis === "pv-rule-limit") {
+    recommendationReason = "grid-limit";
+  }
   if (sizingBasis === "minimum-size") recommendationReason = "minimum-size";
   if (sizingBasis === "maximum-size") recommendationReason = "maximum-size";
 
@@ -283,6 +300,9 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     maxAcPowerKw,
     /** The grid connection's AC ceiling — a grid limit, not an inverter spec. */
     gridConnectionLimitKw: maxAcPowerKw,
+    pvPowerLimitKw: acCeilingKw,
+    pvLimitBinding,
+    pvRulesStatus: input.electrical.pvRulesStatus ?? "generic",
     dcAcRatio: dcAcRatio(installedKwp, inverterKw),
     oversizingPercent: oversizingPercent(installedKwp, inverterKw),
     targetDcAcRange,

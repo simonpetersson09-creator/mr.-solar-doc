@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Loader2, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { NumericField } from "@/components/NumericField";
 import { Label } from "@/components/ui/label";
 import { StepShell } from "@/components/StepShell";
 import { CompassDial } from "@/components/CompassDial";
@@ -144,18 +144,16 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
                 {preset}°
               </button>
             ))}
-            <Input
-              type="number"
-              inputMode="numeric"
+            {/* Locale-safe: the user may type "30", "30,5" or "30.5". */}
+            <NumericField
+              locale={locale}
+              value={tiltDegrees}
               min={0}
               max={90}
-              value={tiltDegrees ?? ""}
+              decimals={1}
               placeholder={t("roof.tiltDegrees")}
-              onChange={(event) => {
-                const value = event.target.value;
-                setRoof(orientation, value === "" ? null : Number(value), azimuthDegrees);
-              }}
-className="h-7 w-16 rounded-full border-white/25 bg-white/15 px-2 text-xs text-white placeholder:text-white/50"
+              onCommit={(value) => setRoof(orientation, value, azimuthDegrees)}
+              className="h-7 w-16 rounded-full border-white/25 bg-white/15 px-2 text-xs text-white placeholder:text-white/50"
             />
           </div>
         </div>

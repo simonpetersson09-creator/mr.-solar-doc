@@ -98,9 +98,11 @@ export function decimalSeparatorFor(locale?: string | null): "." | "," {
  *  5. AMBIGUOUS CASE — a single separator followed by exactly three digits
  *     ("1,234" / "1.234") is resolved by the active locale: the locale's own
  *     decimal separator is read as a decimal separator, the other character
- *     as a group separator. Without a locale, three trailing digits are read
- *     as a group ("1.234" -> 1234), because entering a thousands-grouped
- *     integer is far more common than a three-decimal value in this app.
+ *     as a group separator. WITHOUT a locale both are read as a thousands
+ *     group ("1.234" -> 1234, "1,234" -> 1234) — a deterministic rule chosen
+ *     so an unknown locale can never turn 1234 into 1.234 (a 1000x error).
+ *  5b. Grouping must be consistent: one separator character, groups of three.
+ *     "1,2,3" is rejected instead of being glued into 123.
  *  6. A trailing separator is kept as an incomplete decimal ("12," -> 12), so
  *     a controlled input never fights the user mid-typing.
  *  7. Empty, sign-only and non-numeric input returns null — never 0 — so
@@ -138,7 +140,10 @@ export function parseLocaleNumber(raw: string, locale?: string | null): number |
     if (occurrences > 1) {
       decimalIndex = -1;
     } else if (digitsAfter === 3 && index > 0) {
-      decimalIndex = sep === decimalSeparatorFor(locale) ? index : -1;
+      // AMBIGUOUS: "1.234" / "1,234". With a locale, its own decimal
+      // separator decides. Without one, three trailing digits are read as a
+      // thousands group — guessing "decimal" here would risk a 1000x error.
+      decimalIndex = locale && sep === decimalSeparatorFor(locale) ? index : -1;
     } else {
       decimalIndex = index;
     }
@@ -148,6 +153,16 @@ export function parseLocaleNumber(raw: string, locale?: string | null): number |
   const fraction = decimalIndex >= 0 ? s.slice(decimalIndex + 1) : "";
   if (/[.,]/.test(fraction)) return null;
 
+  // The integer part may only contain CONSISTENT grouping: one separator
+  // character, in groups of three ("1,234,567"). Anything else ("1,2,3") is
+  // not a number a human meant, and must not be silently glued together.
+  if (/[.,]/.test(integerRaw)) {
+    const groupChar = integerRaw.includes(".") ? "." : ",";
+    const other = groupChar === "." ? "," : ".";
+    if (integerRaw.includes(other)) return null;
+    const pattern = new RegExp(`^[0-9]{1,3}(\\${groupChar}[0-9]{3})+$`);
+    if (!pattern.test(integerRaw)) return null;
+  }
   const integer = integerRaw.replace(/[.,]/g, "");
   if (integer === "" && fraction === "") return null;
 

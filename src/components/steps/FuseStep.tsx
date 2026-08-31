@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { StepShell } from "@/components/StepShell";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatDecimal, parseLocaleNumber } from "@/lib/format";
+import { sanitizeNumericInput } from "@/lib/numeric-input";
 import {
   defaultGridProfileFor,
   getConnectionConfig,
@@ -107,7 +108,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
   const [customVoltageValue, setCustomVoltageValue] = useState(
     isPresetVoltage(voltageV, serviceType) ? "" : String(voltageV),
   );
-  const parsedCustomVoltage = parseLocaleNumber(customVoltageValue);
+  const parsedCustomVoltage = parseLocaleNumber(customVoltageValue, locale);
   const customVoltageValid = isValidCustomVoltage(parsedCustomVoltage);
   const voltageValid = !customVoltage || customVoltageValid;
 
@@ -133,7 +134,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
 
 
   const selectedOption = connection.connectionOptions.find((o) => o.id === selectedId) ?? null;
-  const customAmount = parseLocaleNumber(customValue) ?? 0;
+  const customAmount = parseLocaleNumber(customValue, locale) ?? 0;
   const capacity: ConnectionCapacity | null = custom
     ? capacityFor(customAmount)
     : selectedOption
@@ -278,7 +279,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
               type="text"
               inputMode="decimal"
               value={customValue}
-              onChange={(event) => setCustomValue(event.target.value)}
+              onChange={(event) => setCustomValue(sanitizeNumericInput(event.target.value))}
               className="h-8 w-20 rounded-full border-white/25 bg-white/15 text-xs text-white placeholder:text-white/50"
             />
             <span className="text-xs text-white/60">{unit}</span>
@@ -445,9 +446,9 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                       inputMode="decimal"
                       value={customVoltageValue}
                       onChange={(event) => {
-                        const raw = event.target.value;
+                        const raw = sanitizeNumericInput(event.target.value);
                         setCustomVoltageValue(raw);
-                        const parsed = parseLocaleNumber(raw);
+                        const parsed = parseLocaleNumber(raw, locale);
                         if (isValidCustomVoltage(parsed)) setGridProfile({ voltageV: parsed! });
                       }}
                       className="h-8 w-20 rounded-full border-white/25 bg-white/15 text-xs text-white placeholder:text-white/50"
