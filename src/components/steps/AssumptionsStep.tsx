@@ -142,11 +142,14 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               </Label>
               {priceSourceBadge(selfConsumedSource)}
             </div>
-            <PriceInput
+            <NumericField
               id="self-value"
+              locale={locale}
               value={selfConsumedValue}
               onCommit={setSelfConsumedValue}
-              className="rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
+              min={0}
+              decimals={4}
+              className="mt-1 h-9 rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
             />
             {selfConsumedSource === "user-override" ? (
               <button
@@ -165,11 +168,14 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               </Label>
               {priceSourceBadge(exportSource)}
             </div>
-            <PriceInput
+            <NumericField
               id="export-value"
+              locale={locale}
               value={exportValue}
               onCommit={setExportValue}
-              className="rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
+              min={0}
+              decimals={4}
+              className="mt-1 h-9 rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
             />
             {exportSource === "user-override" ? (
               <button
