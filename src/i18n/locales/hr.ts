@@ -448,6 +448,16 @@ systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarn
       "external": "Vanjski izvor podataka"
     },
     "disclaimer": "Ovo izvješće je trenutni prikaz izračuna i temelji se na gore navedenim pretpostavkama. Nije ponuda.",
-    "generated": "Generirano"
+    "generated": "Generirano",
+    "faqTitle": "Česta pitanja",
+    "faqItems": [
+      { "q": "Koliko je pouzdana izračunana solarna proizvodnja?", "a": "Izračun se temelji na sunčevom zračenju za lokaciju te smjeru i nagibu krova. Na stvarnu proizvodnju utječu, između ostalog, vrijeme, zasjenjenje i tehničke značajke postrojenja." },
+      { "q": "Što znači vlastita potrošnja?", "a": "Dio solarne energije koji se koristi izravno u domu. Ostatak proizvodnje predaje se u elektroenergetsku mrežu." },
+      { "q": "Zašto je vlastito potrošena solarna energija vrednija od prodane?", "a": "Vlastito potrošena solarna energija zamjenjuje struju koja bi se inače kupila iz mreže, dok se prodana solarna energija nadoknađuje prema uvjetima za predanu energiju." },
+      { "q": "Što znači cijena za odabrano razdoblje povrata?", "a": "Okvirno pokazuje koliko postrojenje može stajati da bi odgovaralo odabranom razdoblju povrata, na temelju pretpostavki izračuna. To nije procijenjena tržišna cijena." },
+      { "q": "Zašto se izračun instalatera može razlikovati?", "a": "Različite pretpostavke o proizvodnji, vlastitoj potrošnji, cijenama struje, gubicima sustava i budućem kretanju cijena mogu dati različite rezultate." },
+      { "q": "Je li izračun ponuda?", "a": "Ne. Rezultat je procjena i treba ga koristiti kao podlogu za odlučivanje. Stvarna cijena, proizvodnja i ekonomski ishod mogu se razlikovati." },
+    ],
+
   }
 } as const;

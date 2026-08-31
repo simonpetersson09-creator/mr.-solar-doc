@@ -448,6 +448,16 @@ systemSizeInfo: "Il calcolo è una stima e va utilizzato come indicazione. Produ
       "external": "Fonte dati esterna"
     },
     "disclaimer": "Questo rapporto è un'istantanea del calcolo e si basa sulle ipotesi sopra indicate. Non è un'offerta.",
-    "generated": "Generato"
+    "generated": "Generato",
+    "faqTitle": "Domande frequenti",
+    "faqItems": [
+      { "q": "Quanto è affidabile la produzione solare calcolata?", "a": "Il calcolo si basa sull'irraggiamento solare del luogo e sull'orientamento e inclinazione del tetto. La produzione effettiva è influenzata, tra l'altro, dal meteo, dall'ombreggiamento e dalle condizioni tecniche dell'impianto." },
+      { "q": "Cosa significa autoconsumo?", "a": "La parte di energia solare utilizzata direttamente nell'abitazione. Il resto della produzione viene immesso nella rete elettrica." },
+      { "q": "Perché l'energia solare autoconsumata vale più di quella venduta?", "a": "L'energia solare autoconsumata sostituisce elettricità che altrimenti sarebbe stata acquistata dalla rete, mentre l'energia solare venduta è compensata secondo le condizioni per l'energia immessa." },
+      { "q": "Cosa significa prezzo per il periodo di ammortamento scelto?", "a": "Indica approssimativamente quanto può costare l'impianto per corrispondere al periodo di ammortamento da te scelto, sulla base delle ipotesi del calcolo. Non è un prezzo di mercato stimato." },
+      { "q": "Perché il calcolo dell'installatore può differire?", "a": "Ipotesi diverse su produzione, autoconsumo, prezzi dell'elettricità, perdite di sistema e andamento futuro dei prezzi possono dare risultati diversi." },
+      { "q": "Il calcolo è un preventivo?", "a": "No. Il risultato è una stima e deve essere utilizzato come base per le decisioni. Prezzo, produzione e risultato economico effettivi possono differire." },
+    ],
+
   }
 } as const;

@@ -448,6 +448,16 @@ systemSizeInfo: "Beregningen er et skøn og skal bruges som vejledning. Faktisk 
       "external": "Ekstern datakilde"
     },
     "disclaimer": "Rapporten er et øjebliksbillede af beregningen og er baseret på de antagelser, der er angivet ovenfor. Den er ikke et tilbud.",
-    "generated": "Genereret"
+    "generated": "Genereret",
+    "faqTitle": "Ofte stillede spørgsmål",
+    "faqItems": [
+      { "q": "Hvor sikker er den beregnede solproduktion?", "a": "Beregningen bygger på solindstråling for stedet samt tagets retning og hældning. Den faktiske produktion påvirkes blandt andet af vejr, skygge og anlæggets tekniske forudsætninger." },
+      { "q": "Hvad betyder egenforbrug?", "a": "Den del af solstrømmen, der bruges direkte i boligen. Resten af produktionen sendes ud på elnettet." },
+      { "q": "Hvorfor er egenforbrugt solstrøm mere værd end solgt solstrøm?", "a": "Egenforbrugt solstrøm erstatter strøm, der ellers skulle købes fra nettet, mens solgt solstrøm betales efter vilkårene for leveret strøm." },
+      { "q": "Hvad betyder pris for valgt tilbagebetalingstid?", "a": "Det viser cirka, hvor meget anlægget kan koste for at svare til den tilbagebetalingstid, du har valgt, baseret på kalkulens antagelser. Det er ikke en estimeret markedspris." },
+      { "q": "Hvorfor kan installatørens beregning afvige?", "a": "Forskellige antagelser om produktion, egenforbrug, elpriser, systemtab og fremtidig prisudvikling kan give forskellige resultater." },
+      { "q": "Er beregningen et tilbud?", "a": "Nej. Resultatet er et skøn og skal bruges som beslutningsgrundlag. Faktisk pris, produktion og økonomisk udfald kan afvige." },
+    ],
+
   }
 } as const;

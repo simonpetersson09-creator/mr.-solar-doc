@@ -513,5 +513,15 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
     disclaimer:
       "Rapporten är en ögonblicksbild av beräkningen och baseras på de antaganden som anges ovan. Den är inte en offert.",
     generated: "Skapad",
+    faqTitle: 'Vanliga frågor',
+    faqItems: [
+      { q: 'Hur säker är den beräknade solproduktionen?', a: 'Beräkningen bygger på solinstrålning för platsen, takets riktning och lutning. Faktisk produktion påverkas bland annat av väder, skuggning och anläggningens tekniska förutsättningar.' },
+      { q: 'Vad betyder egenanvändning?', a: 'Den del av solelen som används direkt i bostaden. Resterande produktion matas ut på elnätet.' },
+      { q: 'Varför är egenanvänd solel mer värd än såld solel?', a: 'Egenanvänd solel ersätter el som annars hade köpts från nätet, medan såld solel ersätts enligt villkoren för inmatad el.' },
+      { q: 'Vad betyder pris för vald återbetalningstid?', a: 'Det visar ungefär hur mycket anläggningen kan kosta för att motsvara den återbetalningstid du valt, baserat på kalkylens antaganden. Det är inte ett uppskattat marknadspris.' },
+      { q: 'Varför kan installatörens beräkning skilja sig?', a: 'Olika antaganden om produktion, egenanvändning, elpriser, systemförluster och framtida prisutveckling kan ge olika resultat.' },
+      { q: 'Är beräkningen en offert?', a: 'Nej. Resultatet är en uppskattning och ska användas som beslutsunderlag. Faktiskt pris, produktion och ekonomiskt utfall kan avvika.' },
+    ],
+
   },
 } as const;

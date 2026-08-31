@@ -448,6 +448,16 @@ systemSizeInfo: "Skaičiavimas yra įvertinimas ir turėtų būti naudojamas kai
       "external": "Išorinis duomenų šaltinis"
     },
     "disclaimer": "Ši ataskaita yra skaičiavimo momentinė nuotrauka ir pagrįsta aukščiau nurodytomis prielaidomis. Tai nėra pasiūlymas.",
-    "generated": "Sukurta"
+    "generated": "Sukurta",
+    "faqTitle": "Dažniausiai užduodami klausimai",
+    "faqItems": [
+      { "q": "Kiek patikimas apskaičiuotas saulės energijos gamybos kiekis?", "a": "Skaičiavimas pagrįstas saulės spinduliuote konkrečioje vietoje bei stogo kryptimi ir nuolydžiu. Faktinę gamybą įtakoja, be kita ko, orai, šešėliavimas ir įrenginio techninės sąlygos." },
+      { "q": "Ką reiškia savųjų poreikių vartojimas?", "a": "Saulės energijos dalis, kuri tiesiogiai naudojama būste. Likusi gamyba tiekiama į elektros tinklą." },
+      { "q": "Kodėl savo reikmėms suvartota saulės energija vertingesnė nei parduota?", "a": "Savo reikmėms suvartota saulės energija pakeičia elektrą, kurią kitaip tektų pirkti iš tinklo, o parduota saulės energija kompensuojama pagal į tinklą tiekiamos energijos sąlygas." },
+      { "q": "Ką reiškia kaina pasirinktam atsipirkimo laikotarpiui?", "a": "Apytiksliai parodo, kiek įrenginys gali kainuoti, kad atitiktų jūsų pasirinktą atsipirkimo laikotarpį, remiantis skaičiavimo prielaidomis. Tai nėra numatoma rinkos kaina." },
+      { "q": "Kodėl rangovo skaičiavimas gali skirtis?", "a": "Skirtingos prielaidos dėl gamybos, savųjų poreikių vartojimo, elektros kainų, sistemos nuostolių ir būsimos kainų kaitos gali duoti skirtingus rezultatus." },
+      { "q": "Ar skaičiavimas yra pasiūlymas?", "a": "Ne. Rezultatas yra įvertinimas ir turėtų būti naudojamas kaip sprendimų pagrindas. Faktinė kaina, gamyba ir ekonominis rezultatas gali skirtis." },
+    ],
+
   }
 } as const;

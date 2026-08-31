@@ -511,5 +511,15 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     disclaimer:
       "This report is a snapshot of the calculation and is based on the assumptions listed above. It is not a quote.",
     generated: "Generated",
+    faqTitle: 'Frequently asked questions',
+    faqItems: [
+      { q: 'How reliable is the estimated solar production?', a: "The calculation is based on solar irradiation for the location and the roof's orientation and tilt. Actual production is affected by factors such as weather, shading and the technical conditions of the installation." },
+      { q: 'What does self-consumption mean?', a: 'The share of solar electricity used directly in the home. The remaining production is fed into the electricity grid.' },
+      { q: 'Why is self-consumed solar electricity worth more than sold solar electricity?', a: 'Self-consumed solar electricity replaces electricity that would otherwise have been bought from the grid, while sold solar electricity is compensated according to the terms for exported electricity.' },
+      { q: 'What does the price for the chosen payback period mean?', a: "It shows approximately how much the installation may cost in order to match the payback period you have chosen, based on the calculation's assumptions. It is not an estimated market price." },
+      { q: "Why can the installer's calculation differ?", a: 'Different assumptions about production, self-consumption, electricity prices, system losses and future price development can give different results.' },
+      { q: 'Is the calculation a quote?', a: 'No. The result is an estimate and is intended as a basis for decision-making. The actual price, production and economic outcome may differ.' },
+    ],
+
   },
 } as const;
