@@ -245,7 +245,20 @@ class ReportDocument {
     this.y = PAGE.margin;
   }
 
+  /** Smaller group label inside a section (e.g. the assumption groups). */
+  subheading(text: string) {
+    if (!text.trim()) return;
+    this.ensureSpace(12);
+    this.y += 2;
+    this.doc.setFont("helvetica", "bold");
+    this.doc.setFontSize(9.5);
+    this.doc.setTextColor(...PRIMARY);
+    this.doc.text(text, PAGE.margin, this.y);
+    this.y += 5;
+  }
+
   sectionTitle(text: string) {
+
     this.ensureSpace(18);
     this.y += 2;
     this.doc.setFont("helvetica", "bold");
