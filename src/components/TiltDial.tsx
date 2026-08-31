@@ -68,10 +68,10 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
   const safeValue = clamp(value || 0);
   const grip = pointOnArm(safeValue, ARM + 4);
   const armEnd = pointOnArm(safeValue, ARM - 4);
-  const arcRadius = 52;
+  const arcRadius = 40;
   const arcStart = pointOnArm(0, arcRadius);
   const arcEnd = pointOnArm(safeValue, arcRadius);
-  const labelPoint = pointOnArm(safeValue / 2, arcRadius + 18);
+  const labelPoint = pointOnArm(safeValue / 2, arcRadius + 14);
 
   return (
     <div className="flex flex-col items-center gap-2">
