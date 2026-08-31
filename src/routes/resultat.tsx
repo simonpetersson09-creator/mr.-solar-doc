@@ -235,7 +235,7 @@ const cost = result.productionCost;
                 <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   {t("result.annualProduction")}
                 </p>
-                <p className="mt-0.5 text-lg font-bold text-accent tabular-nums">
+                <p className="mt-0.5 text-lg font-bold text-white tabular-nums">
                   {formatNumber(p.annualProductionKwh, locale)}{" "}
                   <span className="text-[11px] font-semibold text-white/60">
                     kWh{t("common.perYear")}
@@ -380,7 +380,7 @@ const cost = result.productionCost;
               {t("result.missingMarketValues")}
             </p>
           ) : (
-            <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-accent">
+            <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-white">
               {t("result.maxInvestmentApprox", { amount: investmentAmount })}
             </p>
           )}
@@ -447,7 +447,7 @@ const cost = result.productionCost;
                   <p className="flex min-h-[28px] items-center justify-center text-[11px] leading-tight text-white/60">
                     {t("result.productionCostDifference")}
                   </p>
-                  <p className="mt-0.5 text-lg leading-tight font-bold text-accent">
+                  <p className="mt-0.5 text-lg leading-tight font-bold text-white">
                     <span className="block whitespace-nowrap tabular-nums">
                       {(cost.differencePerKwh ?? 0) >= 0 ? "+" : "−"}
                       {formatDecimal(Math.abs(cost.differencePerKwh ?? 0), locale, 2)}
