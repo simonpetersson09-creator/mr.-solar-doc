@@ -142,24 +142,25 @@ const cost = result.productionCost;
         <section className="hero-metric rounded-3xl p-5">
           <div className="glow-amber -top-16 -right-16 size-48" aria-hidden="true" />
           <div className="relative">
-            <div className="glass-panel inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold">
-              <span className="size-1.5 animate-pulse rounded-full bg-accent" />
-              <Sun className="size-3.5" /> {t("result.recommendedArray")}
-            </div>
-            <div className="mt-3 flex items-baseline gap-2">
+            <h2 className="flex items-center justify-center gap-2 text-center text-sm font-semibold text-white">
+              <Sun className="size-4" /> {t("result.recommendedArray")}
+            </h2>
+            <div className="mt-2 text-center">
               <p className="text-5xl font-extrabold tracking-tight">
                 {formatDecimal(result.installedKwp, locale)}{" "}
                 <span className="text-xl font-semibold text-white/80">kWp</span>
               </p>
-              <p className="text-xs text-white/70">
+              <p className="mt-1 text-xs text-white/70">
                 {t("result.panelCount", { count: result.panelCount })}
               </p>
             </div>
 
             <div className="mt-4 grid grid-cols-2 gap-2.5">
-              <div className="glass-panel flex items-center gap-1.5 rounded-2xl p-3">
-                <Zap className="size-4 shrink-0 text-white/70" />
-                <p className="text-xl font-bold">
+              <div className="glass-panel rounded-2xl p-3">
+                <p className="flex items-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+                  <Zap className="size-3" /> {t("result.recommendedInverter")}
+                </p>
+                <p className="mt-1 text-xl font-bold">
                   {formatNumber(result.inverterKw, locale)}{" "}
                   <span className="text-xs font-semibold text-white/70">kW</span>
                 </p>
