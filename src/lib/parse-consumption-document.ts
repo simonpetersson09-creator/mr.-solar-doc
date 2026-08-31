@@ -93,7 +93,7 @@ function energyValueInLine(line: string): number | null {
 }
 
 function numbersInLine(line: string): number[] {
-  const matches = line.match(/-?[\d][\d\s\u00a0\u202f.,']*\d|\d/g) ?? [];
+  const matches = line.match(new RegExp(NUMBER_SOURCE, "g")) ?? [];
   return matches
     .map((match) => parseLocaleNumber(match))
     .filter((value): value is number => value !== null);
