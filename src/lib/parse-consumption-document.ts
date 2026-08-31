@@ -68,7 +68,11 @@ function monthForLine(line: string): { index: number; rest: string } {
   return { index: byName, rest: line };
 }
 
-const NUMBER_SOURCE = "-?[\\d][\\d\\s\\u00a0\\u202f.,']*\\d|\\d";
+// Grouped digits ("1 234,5", "1.234,5") or a plain number — never merging two
+// separate numbers such as "2025 336,45" into one.
+const NUMBER_SOURCE =
+  "(?<![\\d.,])\\d{1,3}(?:[\\s\\u00a0\\u202f.,']\\d{3})+(?:[.,]\\d{1,2})?(?![\\d])" +
+  "|(?<![\\d.,])\\d+(?:[.,]\\d+)?(?![\\d])";
 
 /**
  * Picks the number that is attached to an energy unit (kWh/MWh/Wh) on the line.
