@@ -90,9 +90,9 @@ async function readSpreadsheetText(file: File): Promise<string> {
   return sheets.join("\n");
 }
 
-async function readImageText(file: File): Promise<string> {
+async function readImageText(file: File, langs: string[]): Promise<string> {
   const { createWorker } = await import("tesseract.js");
-  const worker = await createWorker(["swe", "eng"]);
+  const worker = await createWorker(langs);
   try {
     const { data } = await worker.recognize(file);
     return data.text;
@@ -103,12 +103,52 @@ async function readImageText(file: File): Promise<string> {
 
 const IMAGE_EXTENSIONS = /\.(png|jpe?g|webp|gif|bmp|tiff?|heic)$/;
 
-export async function readConsumptionFile(file: File): Promise<ParsedConsumption> {
+/** Maps an app language code to Tesseract traineddata languages. */
+const OCR_LANGUAGES: Record<string, string> = {
+  sv: "swe",
+  no: "nor",
+  nb: "nor",
+  da: "dan",
+  fi: "fin",
+  de: "deu",
+  nl: "nld",
+  fr: "fra",
+  es: "spa",
+  pt: "por",
+  it: "ita",
+  pl: "pol",
+  cs: "ces",
+  sk: "slk",
+  sl: "slv",
+  et: "est",
+  lv: "lav",
+  lt: "lit",
+  hu: "hun",
+  ro: "ron",
+  hr: "hrv",
+  sr: "srp",
+  bg: "bul",
+  uk: "ukr",
+  el: "ell",
+  tr: "tur",
+  hi: "hin",
+  he: "heb",
+  id: "ind",
+};
+
+export function ocrLanguagesFor(language?: string): string[] {
+  const base = (language ?? "").split("-")[0]?.toLowerCase() ?? "";
+  const mapped = OCR_LANGUAGES[base];
+  return mapped && mapped !== "eng" ? [mapped, "eng"] : ["eng"];
+}
+
+export async function readConsumptionFile(file: File, language?: string): Promise<ParsedConsumption> {
   const name = file.name.toLowerCase();
+  const langs = ocrLanguagesFor(language);
   let text: string;
 
   if (name.endsWith(".pdf") || file.type === "application/pdf") {
-    text = await readPdfText(file);
+    text = await readPdfText(file, langs);
   } else if (/\.(xlsx|xls|ods)$/.test(name)) {
     text = await readSpreadsheetText(file);
   } else if (file.type.startsWith("image/") || IMAGE_EXTENSIONS.test(name)) {
