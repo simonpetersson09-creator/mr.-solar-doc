@@ -89,22 +89,24 @@ export function parseConsumptionText(text: string): ParsedConsumption {
   for (const line of lines) {
     const values = numbersInLine(line);
     if (values.length === 0) continue;
+    const energy = energyValueInLine(line);
 
     if (annual === null && ANNUAL_PATTERNS.some((pattern) => pattern.test(line))) {
-      const candidate = values[values.length - 1];
+      const candidate = energy ?? values[values.length - 1];
       if (candidate !== undefined && candidate >= 100 && candidate <= 200000) {
         annual = candidate;
         continue;
       }
     }
 
-    const monthIndex = MONTH_PATTERNS.findIndex((pattern) => pattern.test(line));
+    const monthIndex = monthIndexForLine(line);
     if (monthIndex === -1) continue;
     if (monthly[monthIndex] !== null) continue;
 
-    // Ignore a leading year like "2025" in "Jan 2025 336,45 kWh".
+    // Prefer a number bound to a kWh unit; otherwise ignore a leading year
+    // like "2025" in "Jan 2025 336,45".
     const candidates = values.filter((value) => !(Number.isInteger(value) && value >= 1900 && value <= 2100));
-    const picked = candidates.length > 0 ? candidates[candidates.length - 1] : undefined;
+    const picked = energy ?? (candidates.length > 0 ? candidates[candidates.length - 1] : undefined);
     if (picked !== undefined && picked >= 0) {
       monthly[monthIndex] = picked;
     }
