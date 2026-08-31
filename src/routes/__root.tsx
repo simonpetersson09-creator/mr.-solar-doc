@@ -132,6 +132,21 @@ function PurchaseRecovery() {
   return null;
 }
 
+/** Keeps <html lang> and text direction in sync with the chosen language. */
+function useDocumentLanguage() {
+  useEffect(() => {
+    const apply = () => {
+      const language = normaliseLanguage(i18n.language);
+      document.documentElement.lang = language;
+      document.documentElement.dir = isRtlLanguage(language) ? "rtl" : "ltr";
+    };
+    apply();
+    i18n.on("languageChanged", apply);
+    return () => i18n.off("languageChanged", apply);
+  }, []);
+}
+
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   useNativeShell();
