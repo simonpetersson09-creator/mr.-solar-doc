@@ -153,10 +153,10 @@ describe("no generic profiles remain", () => {
     // CH is now a verified national profile; the generic bucket is empty.
     expect(Object.keys(GENERIC_CONNECTION_CONFIGS)).toEqual([]);
     expect(getConnectionConfig("CH").status).toBe("verified");
-    // AU and ZA were promoted to verified national profiles in batch 4.
-    expect(getConnectionConfig("AU").status).toBe("verified");
-    expect(getConnectionConfig("ZA").status).toBe("verified");
-    // BR is still a regional/dual-unit special case requiring confirmation.
+    // AU, ZA and BR are regional/dual-unit special cases: they stay on the
+    // manual fallback and must keep the confirmation gate.
+    expect(requiresGridConfirmation(getConnectionConfig("AU"))).toBe(true);
+    expect(requiresGridConfirmation(getConnectionConfig("ZA"))).toBe(true);
     expect(requiresGridConfirmation(getConnectionConfig("BR"))).toBe(true);
     expect(requiresGridConfirmation(getConnectionConfig("ZZ"))).toBe(true);
   });

@@ -28,12 +28,16 @@ import {
   isPresetVoltage,
   isValidCustomVoltage,
   splitPhaseLineToNeutral,
+  voltageForPhaseChoice,
   voltageForServiceSwitch,
   voltageOptionsForService,
   type ServiceType,
 } from "@/config/grid";
 import { useWizardStore } from "@/state/wizard-store";
 import { haptic } from "@/services/native-service";
+
+/** Phase models offered by the explicit phase choice (ampere markets). */
+const PHASE_CHOICE_OPTIONS: readonly ServiceType[] = ["single-phase", "three-phase"];
 
 interface FuseStepProps {
   totalSteps: number;
@@ -182,6 +186,20 @@ const [showGridInfo, setShowGridInfo] = useState(false);
       ? `${splitPhaseLineToNeutral(value)}/${value} V`
       : `${value} V`;
 
+  // Ampere markets where both 1- and 3-phase are normal ask for the phase
+  // model explicitly: an ampere figure alone has no correct AC meaning.
+  const showPhaseChoice = inputType === "amperage" && (connection.phaseChoice ?? false);
+
+  /** The premise the calculation actually uses, e.g. "3-phase · 400 V · 35 A". */
+  const resolvedConnectionLabel =
+    capacity && capacity.type === "amperage"
+      ? `${serviceLabel(serviceType)} · ${voltageLabel(voltageV)} · ${formatDecimal(
+          connectionCapacityAmount(capacity),
+          locale,
+          0,
+        )} A`
+      : null;
+
   const chipClass = (active: boolean) =>
     active
       ? "chip-selected min-h-11 rounded-[10px] px-2 py-1.5 text-xs font-bold text-brand-black shadow-sm transition-colors"
@@ -215,6 +233,33 @@ const [showGridInfo, setShowGridInfo] = useState(false);
       }
     >
       <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
+        {showPhaseChoice ? (
+          <div className="space-y-1.5">
+            <Label className="text-xs text-white">{t("fuse.grid.serviceType")}</Label>
+            <div className="grid grid-cols-2 gap-1.5">
+              {PHASE_CHOICE_OPTIONS.map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => {
+                    void haptic("light");
+                    setCustomVoltage(false);
+                    // An explicit phase choice always snaps the voltage to that
+                    // service's nominal value: 230 V LN / 400 V LL.
+                    setGridProfile({
+                      serviceType: option,
+                      voltageV: voltageForPhaseChoice(option),
+                    });
+                  }}
+                  className={chipClass(serviceType === option)}
+                >
+                  {serviceLabel(option)}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         <div>
           <Label className="text-xs text-white">
             {connection.localTerm && isVerified
@@ -223,6 +268,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           </Label>
           <p className="text-[11px] text-white/70">{t(connection.helpTextKey)}</p>
         </div>
+
 
         <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-4">
           {connection.connectionOptions.map((option) => (
@@ -308,15 +354,25 @@ const [showGridInfo, setShowGridInfo] = useState(false);
         ) : null}
 
         {capacityValid ? (
-          <div className="flex items-center justify-between gap-3 rounded-xl bg-white/10 px-3.5 py-2.5">
-            <span className="flex items-center gap-1.5 text-xs text-white/60">
-              <Zap className="size-3.5 text-accent" />
-              {t("fuse.maxAc")}
-            </span>
-            <span className="text-base font-bold text-white">
-              {formatDecimal(maxAc, locale, 2)}{" "}
-              <span className="text-[11px] font-normal text-white/60">kW</span>
-            </span>
+          <div className="space-y-1.5 rounded-xl bg-white/10 px-3.5 py-2.5">
+            {resolvedConnectionLabel ? (
+              <p
+                data-testid="resolved-connection"
+                className="text-[11px] font-semibold text-white/75"
+              >
+                {resolvedConnectionLabel}
+              </p>
+            ) : null}
+            <div className="flex items-center justify-between gap-3">
+              <span className="flex items-center gap-1.5 text-xs text-white/60">
+                <Zap className="size-3.5 text-accent" />
+                {t("fuse.maxAc")}
+              </span>
+              <span className="text-base font-bold text-white">
+                {formatDecimal(maxAc, locale, 2)}{" "}
+                <span className="text-[11px] font-normal text-white/60">kW</span>
+              </span>
+            </div>
           </div>
         ) : null}
 
