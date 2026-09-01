@@ -314,8 +314,13 @@ html[data-native="true"] {
 /* Input card: a softer, lighter yellow so it sits one level below the
    saturated #FFDC38 result cards. The gradient stays within yellow. */
 @utility glass-primary {
-  background-color: #ffdc38;
-  background-image: var(--yellow-sheen);
+  background-image: linear-gradient(
+    180deg,
+    #ffdc38 0%,
+    #ffdc38 65%,
+    #ffd934 82%,
+    #ffd32a 100%
+  );
   color: var(--brand-black);
   border: 1px solid oklch(0.3172 0 0 / 0.22);
   box-shadow:
