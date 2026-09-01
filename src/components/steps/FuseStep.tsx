@@ -413,11 +413,10 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                     type="button"
                     onClick={() => {
                       setCustomVoltage(false);
-                      setGridProfile(
-                        option === "split-phase"
-                          ? { serviceType: option, voltageV: SPLIT_PHASE_LINE_TO_LINE_V }
-                          : { serviceType: option },
-                      );
+                      setGridProfile({
+                        serviceType: option,
+                        voltageV: voltageForServiceSwitch(option, voltageV),
+                      });
                     }}
                     className={chipClass(serviceType === option)}
                   >
