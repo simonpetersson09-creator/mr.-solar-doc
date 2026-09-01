@@ -184,7 +184,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
 
   const chipClass = (active: boolean) =>
     active
-      ? "min-h-11 rounded-[10px] bg-accent px-2 py-1.5 text-xs font-bold text-accent-foreground shadow-sm transition-colors"
+      ? "chip-selected min-h-11 rounded-[10px] px-2 py-1.5 text-xs font-bold text-brand-black shadow-sm transition-colors"
       : "min-h-11 rounded-[10px] border border-white/25 bg-white/15 px-2 py-1.5 text-xs font-medium text-white transition-colors hover:bg-white/25";
 
   return (
