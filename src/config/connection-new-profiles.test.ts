@@ -168,7 +168,7 @@ function buildInput(countryCode: string, maxAcPowerKw: number): CalculationInput
       latitude: 55,
       longitude: 14,
       countryCode,
-      region: null,
+      region: "Test",
     },
     resource: {
       annualKwhPerKwp: MONTHLY_KWH_PER_KWP.reduce((a, b) => a + b, 0),
