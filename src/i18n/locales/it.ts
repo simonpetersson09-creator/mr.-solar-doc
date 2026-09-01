@@ -362,6 +362,8 @@ export const it = {
     "productionCostUnavailable": "Non possiamo calcolare il costo di produzione con i dati attuali.",
     "perKwh": "{{amount}}/kWh",
     "locked": "Questo calcolo è bloccato. Completa l'acquisto per vedere il risultato.",
+    "gridTooSmallTitle": "La connessione è troppo piccola",
+    "gridTooSmallBody": "La tua connessione attuale ({{maxKw}} kW) è troppo piccola per il sistema più piccolo supportato (inverter da {{minKw}} kW). Aumenta il fusibile principale o la potenza contrattuale per continuare.",
     "missingSelfConsumedValue": "Manca il prezzo dell'elettricità. Inserisci quanto paghi per kWh per vedere il valore dell'autoconsumo solare.",
     "missingExportValue": "Manca la remunerazione per l'immissione. Inserisci quanto ricevi per kWh immesso per calcolare i ricavi.",
     "missingInstallationCost": "Manca il costo dell'impianto. Inserisci il tuo preventivo o l'investimento stimato.",

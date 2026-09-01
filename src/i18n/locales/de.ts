@@ -362,6 +362,8 @@ export const de = {
     "productionCostUnavailable": "Wir können die Erzeugungskosten mit den aktuellen Daten nicht berechnen.",
     "perKwh": "{{amount}}/kWh",
     "locked": "Diese Berechnung ist gesperrt. Schließe den Kauf ab, um das Ergebnis zu sehen.",
+    "gridTooSmallTitle": "Der Anschluss ist zu klein",
+    "gridTooSmallBody": "Ihr aktueller Anschluss ({{maxKw}} kW) ist zu klein für die kleinste unterstützte Anlagengröße ({{minKw}} kW Wechselrichter). Erhöhen Sie die Hauptsicherung oder die vereinbarte Leistung, um fortzufahren.",
     "missingSelfConsumedValue": "Strompreis fehlt. Geben Sie an, was Sie pro kWh zahlen, um den Wert des selbst genutzten Solarstroms zu sehen.",
     "missingExportValue": "Einspeisevergütung fehlt. Geben Sie an, was Sie pro eingespeister kWh erhalten, um die Einnahmen zu berechnen.",
     "missingInstallationCost": "Installationskosten fehlen. Geben Sie Ihr Angebot oder die geschätzte Investition ein.",

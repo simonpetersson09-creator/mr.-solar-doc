@@ -362,6 +362,8 @@ export const sl = {
     "productionCostUnavailable": "S trenutnimi podatki ne moremo izračunati stroška proizvodnje.",
     "perKwh": "{{amount}}/kWh",
     "locked": "Ta izračun je zaklenjen. Dokončajte nakup, da vidite rezultat.",
+    "gridTooSmallTitle": "Priključek je premajhen",
+    "gridTooSmallBody": "Vaš trenutni priključek ({{maxKw}} kW) je premajhen za najmanjši podprti sistem (razsmernik {{minKw}} kW). Za nadaljevanje povečajte glavno varovalko ali priključno moč.",
     "missingSelfConsumedValue": "Manjka cena elektrike. Vnesite, koliko plačate za kWh, da vidite vrednost lastne porabe sončne energije.",
     "missingExportValue": "Manjka odkupna cena. Vnesite, koliko prejmete za oddano kWh, da izračunamo prihodek od prodaje.",
     "missingInstallationCost": "Manjka cena namestitve. Vnesite svojo ponudbo ali ocenjeno naložbo.",

@@ -392,6 +392,8 @@ export const tr = {
     "calculatedAt": "Hesaplama tarihi",
     "noCalculation": "Hesaplama bulunamadı. Adresten yeniden başlayın.",
     "locked": "Bu hesaplama kilitli. Sonucu görmek için satın alımı tamamlayın."
+    "gridTooSmallTitle": "Bağlantı çok küçük",
+    "gridTooSmallBody": "Mevcut bağlantınız ({{maxKw}} kW) desteklenen en küçük sistem boyutu için çok küçük ({{minKw}} kW invertör). Devam etmek için ana sigortayı veya sözleşme gücünü artırın.",
   },
   "units": {
     "kwhPerYear": "kWh/yıl",

@@ -428,6 +428,8 @@ export const es = {
     calculatedAt: "Fecha del cálculo",
     noCalculation: "No se ha encontrado ningún cálculo. Empieza de nuevo desde la dirección.",
     locked: "Este cálculo está bloqueado. Completa la compra para ver el resultado.",
+    gridTooSmallTitle: "La conexión es demasiado pequeña",
+    gridTooSmallBody: "Tu conexión actual ({{maxKw}} kW) es demasiado pequeña para el sistema más pequeño admitido (inversor de {{minKw}} kW). Aumenta el fusible principal o la potencia contratada para continuar.",
   },
   units: {
     kwhPerYear: "kWh/año",

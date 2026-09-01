@@ -362,6 +362,8 @@ export const lv = {
     "productionCostUnavailable": "Ar pašreizējiem datiem nevaram aprēķināt ražošanas izmaksas.",
     "perKwh": "{{amount}}/kWh",
     "locked": "Šis aprēķins ir bloķēts. Pabeidziet pirkumu, lai redzētu rezultātu.",
+    "gridTooSmallTitle": "Pieslēgums ir pārāk mazs",
+    "gridTooSmallBody": "Jūsu pašreizējais pieslēgums ({{maxKw}} kW) ir pārāk mazs mazākajai atbalstītajai sistēmai ({{minKw}} kW invertors). Lai turpinātu, palieliniet galveno drošinātāju vai pieslēguma jaudu.",
     "missingSelfConsumedValue": "Trūkst elektrības cenas. Ievadiet, cik maksājat par kWh, lai redzētu pašpatērētās saules enerģijas vērtību.",
     "missingExportValue": "Trūkst pārdošanas cenas. Ievadiet, cik saņemat par nodoto kWh, lai aprēķinātu ieņēmumus.",
     "missingInstallationCost": "Trūkst uzstādīšanas izmaksu. Ievadiet savu piedāvājumu vai aptuveno ieguldījumu.",

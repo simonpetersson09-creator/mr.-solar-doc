@@ -362,6 +362,8 @@ export const et = {
     "productionCostUnavailable": "Praeguste andmete alusel ei saa tootmiskulu arvutada.",
     "perKwh": "{{amount}}/kWh",
     "locked": "See arvutus on lukustatud. Ostu lõpuleviimiseks tuleb tulemuse nägemiseks maksta.",
+    "gridTooSmallTitle": "Liitumispunkt on liiga väike",
+    "gridTooSmallBody": "Teie praegune liitumine ({{maxKw}} kW) on väikseima toetatud süsteemi jaoks liiga väike (inverter {{minKw}} kW). Jätkamiseks suurendage peakaitset või liitumisvõimsust.",
     "missingSelfConsumedValue": "Elektri hind puudub. Sisestage, kui palju maksate kWh eest, et näha omatarbitud päikeseenergia väärtust.",
     "missingExportValue": "Müügihind puudub. Sisestage, kui palju saate müüdud kWh eest, et arvutada müügitulu.",
     "missingInstallationCost": "Paigalduskulu puudub. Sisestage oma pakkumine või hinnanguline investeering.",

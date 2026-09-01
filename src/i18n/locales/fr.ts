@@ -362,6 +362,8 @@ export const fr = {
     "productionCostUnavailable": "Nous ne pouvons pas calculer le coût de production avec les données actuelles.",
     "perKwh": "{{amount}}/kWh",
     "locked": "Ce calcul est verrouillé. Finalisez l'achat pour voir le résultat.",
+    "gridTooSmallTitle": "Le raccordement est trop faible",
+    "gridTooSmallBody": "Votre raccordement actuel ({{maxKw}} kW) est trop faible pour la plus petite installation prise en charge (onduleur de {{minKw}} kW). Augmentez le disjoncteur principal ou la puissance souscrite pour continuer.",
     "missingSelfConsumedValue": "Prix de l'électricité manquant. Indiquez ce que vous payez par kWh pour voir la valeur de l'autoconsommation solaire.",
     "missingExportValue": "Rémunération du surplus manquante. Indiquez ce que vous recevez par kWh injecté pour calculer le revenu de la revente.",
     "missingInstallationCost": "Coût d'installation manquant. Saisissez votre devis ou l'investissement estimé.",

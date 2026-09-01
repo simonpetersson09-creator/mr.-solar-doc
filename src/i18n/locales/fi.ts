@@ -362,6 +362,8 @@ export const fi = {
     "productionCostUnavailable": "Emme voi laskea tuotantokustannusta nykyisillä tiedoilla.",
     "perKwh": "{{amount}}/kWh",
     "locked": "Tämä laskelma on lukittu. Suorita osto nähdäksesi tuloksen.",
+    "gridTooSmallTitle": "Liittymä on liian pieni",
+    "gridTooSmallBody": "Nykyinen liittymäsi ({{maxKw}} kW) on liian pieni pienimmälle tuetulle järjestelmälle ({{minKw}} kW invertteri). Suurenna pääsulaketta tai liittymätehoa jatkaaksesi.",
     "missingSelfConsumedValue": "Sähkön hinta puuttuu. Syötä kWh-hintasi nähdäksesi itse käytetyn aurinkosähkön arvon.",
     "missingExportValue": "Myyntihinta puuttuu. Syötä paljonko saat myydystä kWh:sta, niin lasketaan myyntitulot.",
     "missingInstallationCost": "Asennuskustannus puuttuu. Syötä tarjouksesi tai arvioitu investointi.",
