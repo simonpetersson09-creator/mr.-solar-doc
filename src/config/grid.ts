@@ -81,7 +81,9 @@ export function splitPhaseLineToNeutral(lineToLineV: number): number {
 export const GRID_PHASE_OPTIONS: readonly PhaseCount[] = [1, 3];
 
 /** Selectable nominal voltages (V), in display order. Extend freely. */
-export const GRID_VOLTAGE_OPTIONS: readonly number[] = [220, 230, 240, 380, 400, 415];
+/** 127 V covers Latin-American 127/220 V services (MX, BR). */
+export const GRID_VOLTAGE_OPTIONS: readonly number[] = [127, 220, 230, 240, 380, 400, 415];
+
 
 /** Voltage presets for a given service type. */
 export function voltageOptionsForService(serviceType: ServiceType): readonly number[] {
