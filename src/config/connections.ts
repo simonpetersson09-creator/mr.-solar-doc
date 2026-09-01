@@ -807,6 +807,9 @@ export function fallbackConnectionConfig(countryCode = ""): CountryConnectionCon
     defaultVoltage: 230,
     defaultLineToNeutralVoltage: null,
     defaultFrequencyHz: defaultFrequencyForCountry(countryCode),
+    // Nothing about the phase model is known either, so the step asks for it
+    // explicitly instead of silently applying a default.
+    phaseChoice: true,
     status: "unsupported",
     verified: false,
     source: "fallback",
