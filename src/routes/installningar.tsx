@@ -308,7 +308,7 @@ function SettingsPage() {
           </div>
 
           {/* Legal */}
-          <div className="glass-primary rounded-3xl p-2">
+          <div className="glass-primary flex flex-col gap-1.5 rounded-3xl p-2">
             <a
               href={LEGAL_URL}
               target="_blank"
