@@ -512,29 +512,27 @@ html[data-native="true"] {
   color: oklch(0.2185 0.0066 0.7 / 0.5);
 }
 
-/* Inputs, chips and inner panels: warm cream instead of translucent white. */
+/* Inputs, chips and inner panels: one single warm cream surface everywhere,
+   so every "card inside a card" looks identical across the app. */
 .glass-primary .bg-white\/5,
-.hero-metric .bg-white\/5 {
-  background-color: oklch(0.995 0.008 96 / 0.5);
-}
+.hero-metric .bg-white\/5,
 .glass-primary .bg-white\/10,
-.hero-metric .bg-white\/10 {
-  background-color: oklch(0.995 0.008 96 / 0.68);
-}
+.hero-metric .bg-white\/10,
 .glass-primary .bg-white\/15,
-.hero-metric .bg-white\/15 {
-  background-color: var(--surface-cream);
-}
+.hero-metric .bg-white\/15,
 .glass-primary .bg-white\/20,
 .glass-primary .bg-white\/25,
 .hero-metric .bg-white\/20,
 .hero-metric .bg-white\/25 {
-  background-color: var(--surface-cream-strong);
+  background-color: oklch(0.995 0.008 96 / 0.68);
 }
 .glass-primary .hover\:bg-white\/25:hover,
-.hero-metric .hover\:bg-white\/25:hover {
-  background-color: oklch(0.955 0.02 96);
+.glass-primary .hover\:bg-white\/20:hover,
+.hero-metric .hover\:bg-white\/25:hover,
+.hero-metric .hover\:bg-white\/20:hover {
+  background-color: oklch(0.995 0.008 96 / 0.85);
 }
+
 .glass-primary .bg-white\/35,
 .glass-primary .bg-white\/40,
 .hero-metric .bg-white\/35,
