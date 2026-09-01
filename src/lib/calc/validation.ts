@@ -23,6 +23,8 @@ export const ENERGY_BALANCE_TOLERANCE_KWH = 1e-3;
 export const RATIO_TOLERANCE = 1e-6;
 /** Grid ceiling slack in kW: inverter catalogues are rounded, the grid is not. */
 export const GRID_LIMIT_TOLERANCE_KW = 1e-6;
+/** Slack when checking installedKwp against panelCount x panelPowerKwp. */
+export const PANEL_QUANTISATION_TOLERANCE_KWP = 1e-6;
 
 /**
  * Specific yield sanity window, kWh per kWp and year.
@@ -60,6 +62,7 @@ export type CalculationIssueCode =
   | "invalid-inverter-power"
   | "inverter-above-grid-limit"
   | "dc-ac-above-absolute-max"
+  | "invalid-panel-quantisation"
   | "negative-energy"
   | "energy-balance-mismatch"
   | "currency-mismatch"
@@ -384,6 +387,51 @@ export function validateCalculationResult(result: CalculationResult): Calculatio
         "dc-ac-above-absolute-max",
         "dcAcRatio",
         `DC/AC ratio ${result.dcAcRatio} exceeds the absolute maximum ${ABSOLUTE_MAX_DC_AC_RATIO}`,
+      ),
+    );
+  }
+
+  // The recommended system must be physically buildable: a whole number of
+  // modules, and a DC power that is exactly that number times the module size.
+  if (finite(result.panelCount) && !Number.isInteger(result.panelCount)) {
+    issues.push(
+      issue("invalid-panel-quantisation", "panelCount", "Panel count must be a whole number"),
+    );
+  }
+  if (
+    finite(result.panelCount) &&
+    finite(result.panelPowerKwp) &&
+    finite(result.installedKwp)
+  ) {
+    if (result.panelPowerKwp <= 0) {
+      issues.push(
+        issue("invalid-panel-quantisation", "panelPowerKwp", "Panel power must be > 0"),
+      );
+    } else if (
+      Math.abs(result.installedKwp - result.panelCount * result.panelPowerKwp) >
+      PANEL_QUANTISATION_TOLERANCE_KWP
+    ) {
+      issues.push(
+        issue(
+          "invalid-panel-quantisation",
+          "installedKwp",
+          `installedKwp ${result.installedKwp} does not equal ${result.panelCount} x ${result.panelPowerKwp}`,
+        ),
+      );
+    }
+  }
+  if (
+    finite(result.dcAcRatio) &&
+    finite(result.installedKwp) &&
+    finite(result.inverterKw) &&
+    result.inverterKw > 0 &&
+    Math.abs(result.dcAcRatio - result.installedKwp / result.inverterKw) > RATIO_TOLERANCE
+  ) {
+    issues.push(
+      issue(
+        "dc-ac-above-absolute-max",
+        "dcAcRatio",
+        "dcAcRatio must equal installedKwp / inverterKw",
       ),
     );
   }

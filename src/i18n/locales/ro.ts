@@ -391,7 +391,9 @@ export const ro = {
     "dataSource": "Sursa datelor solare",
     "calculatedAt": "Data calculului",
     "noCalculation": "Nu a fost găsit niciun calcul. Reîncepe de la adresă.",
-    "locked": "Acest calcul este blocat. Finalizează achiziția pentru a vedea rezultatul."
+    "locked": "Acest calcul este blocat. Finalizează achiziția pentru a vedea rezultatul.",
+    "gridTooSmallTitle": "Racordul este prea mic",
+    "gridTooSmallBody": "Racordul dumneavoastră actual ({{maxKw}} kW) este prea mic pentru cel mai mic sistem acceptat (invertor de {{minKw}} kW). Măriți siguranța principală sau puterea contractată pentru a continua.",
   },
   "units": {
     "kwhPerYear": "kWh/an",

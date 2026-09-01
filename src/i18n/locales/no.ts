@@ -391,7 +391,9 @@ export const no = {
     "dataSource": "Kilde til soldata",
     "calculatedAt": "Beregningsdato",
     "noCalculation": "Fant ingen beregning. Start på nytt fra adressen.",
-    "locked": "Denne beregningen er låst. Fullfør kjøpet for å se resultatet."
+    "locked": "Denne beregningen er låst. Fullfør kjøpet for å se resultatet.",
+    "gridTooSmallTitle": "Tilknytningen er for liten",
+    "gridTooSmallBody": "Din nåværende tilknytning ({{maxKw}} kW) er for liten for det minste systemet som støttes ({{minKw}} kW vekselretter). Øk hovedsikringen eller avtalt effekt for å fortsette.",
   },
   "units": {
     "kwhPerYear": "kWh/år",

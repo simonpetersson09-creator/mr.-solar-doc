@@ -123,7 +123,7 @@ export const id = {
     "minimumSizeNote": "Sistem telah diukur ke ukuran praktis terkecil, karena inverter terkecil yang tersedia menetapkan batas bawah.",
     "consumptionTooLowNote": "Pemakaian listrik yang Anda masukkan sangat rendah, sehingga hasilnya hanya bersifat indikatif.",
     "priceLabel": "Harga listrik masa depan yang diasumsikan ({{currency}}/kWh)", "downloadPdf": "Unduh laporan sebagai PDF", "generatingPdf": "Membuat laporan…", "pdfShared": "Laporan sudah siap.", "pdfError": "Tidak dapat membuat laporan.",
-    "limitedByFuse": "Sistem dibatasi oleh sekring utama Anda, bukan oleh konsumsi Anda.", "dataSource": "Sumber data solar", "calculatedAt": "Tanggal perhitungan", "noCalculation": "Tidak ada perhitungan ditemukan. Mulai lagi dari alamat.", "locked": "Perhitungan ini terkunci. Selesaikan pembelian untuk melihat hasilnya."
+    "limitedByFuse": "Sistem dibatasi oleh sekring utama Anda, bukan oleh konsumsi Anda.", "dataSource": "Sumber data solar", "calculatedAt": "Tanggal perhitungan", "noCalculation": "Tidak ada perhitungan ditemukan. Mulai lagi dari alamat.", "locked": "Perhitungan ini terkunci. Selesaikan pembelian untuk melihat hasilnya.", "gridTooSmallTitle": "Sambungan terlalu kecil", "gridTooSmallBody": "Sambungan Anda saat ini ({{maxKw}} kW) terlalu kecil untuk ukuran sistem terkecil yang didukung (inverter {{minKw}} kW). Tingkatkan sekring utama atau daya kontrak untuk melanjutkan."
   },
   "units": { "kwhPerYear": "kWh/thn", "kwhPerKwp": "kWh/kWp", "years": "{{count}} tahun" },
   "paywall": {

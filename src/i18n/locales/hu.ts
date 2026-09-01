@@ -426,6 +426,8 @@ export const hu = {
     calculatedAt: "Számítás dátuma",
     noCalculation: "Nem található számítás. Kezdje újra a címtől.",
     locked: "Ez a számítás zárolva van. Az eredmény megtekintéséhez fejezze be a vásárlást.",
+    gridTooSmallTitle: "A csatlakozás túl kicsi",
+    gridTooSmallBody: "A jelenlegi csatlakozása ({{maxKw}} kW) túl kicsi a legkisebb támogatott rendszermérethez ({{minKw}} kW inverter). A folytatáshoz növelje a főbiztosítékot vagy a szerződött teljesítményt.",
   },
   units: {
     kwhPerYear: "kWh/év",

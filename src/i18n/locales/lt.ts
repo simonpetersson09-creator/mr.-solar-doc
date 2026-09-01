@@ -362,6 +362,8 @@ export const lt = {
     "productionCostUnavailable": "Su dabartiniais duomenimis negalime apskaičiuoti gamybos kainos.",
     "perKwh": "{{amount}}/kWh",
     "locked": "Šis skaičiavimas užrakintas. Užbaikite pirkimą, kad pamatytumėte rezultatą.",
+    "gridTooSmallTitle": "Prijungimo galia per maža",
+    "gridTooSmallBody": "Jūsų dabartinis prijungimas ({{maxKw}} kW) yra per mažas mažiausiai palaikomai sistemai ({{minKw}} kW inverteris). Norėdami tęsti, padidinkite pagrindinį saugiklį arba leistiną galią.",
     "missingSelfConsumedValue": "Trūksta elektros kainos. Įveskite, kiek mokate už kWh, kad matytumėte savo suvartotos saulės energijos vertę.",
     "missingExportValue": "Trūksta pardavimo kainos. Įveskite, kiek gaunate už atiduotą kWh, kad apskaičiuotume pajamas.",
     "missingInstallationCost": "Trūksta įrengimo kainos. Įveskite savo pasiūlymą arba numatomą investiciją.",

@@ -2,7 +2,7 @@ import {
   CALCULATION_VERSION,
   EU_GRID_PHASES,
   EU_GRID_VOLTAGE_V,
-  KWP_ROUNDING_STEP,
+  
   MAX_RECOMMENDED_KWP,
   MIN_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH,
   MIN_RECOMMENDED_KWP,
@@ -41,6 +41,24 @@ import type {
   RecommendationReason,
   SizingBasis,
 } from "./types";
+
+/**
+ * The grid connection cannot carry even the smallest supported inverter.
+ * A real-world situation, not a broken calculation: it is surfaced as its own
+ * outcome so the UI can explain it instead of showing a technical error.
+ */
+export class GridTooSmallError extends Error {
+  readonly maxAcPowerKw: number;
+  readonly minimumSupportedInverterKw: number;
+  constructor(maxAcPowerKw: number, minimumSupportedInverterKw: number) {
+    super(
+      `Grid connection ${maxAcPowerKw} kW is below the smallest supported inverter ${minimumSupportedInverterKw} kW`,
+    );
+    this.name = "GridTooSmallError";
+    this.maxAcPowerKw = maxAcPowerKw;
+    this.minimumSupportedInverterKw = minimumSupportedInverterKw;
+  }
+}
 
 /**
  * Pure calculation entry point.
@@ -118,17 +136,27 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       : 0;
 
   // Candidate systems -> technical constraints -> recommended system.
+  // Every candidate is a whole number of panels on a real inverter, so the
+  // winner is a physically buildable system.
+  const panelPowerKwp = input.panelPowerKwp ?? PANEL_WATTAGE_KWP;
   const selection = selectRecommendedSystem({
     targetKwp: sizing.recommendedKwp,
+    referenceKwp: sizing.referenceKwp,
     maxAcPowerKw: acCeilingKw,
     inverterSizesKw: input.inverterSizesKw,
+    panelPowerKwp,
     targetRange: targetDcAcRange,
     monthlyKwhPerKwp: input.resource.monthlyKwhPerKwp,
     annualConsumptionKwh: input.consumption.annualKwh,
     monthlyConsumptionKwh: input.consumption.monthlyKwh,
     solarSeasonProductionShare,
-    kwpStep: KWP_ROUNDING_STEP,
   });
+  if (selection.status === "grid-too-small") {
+    throw new GridTooSmallError(
+      selection.maxAcPowerKw,
+      selection.minimumSupportedInverterKw,
+    );
+  }
   if (!selection.withinTargetRange) {
     notes.push(
       selection.targetRangeMiss === "below" ? "dc-ac-below-target" : "dc-ac-above-target",
@@ -136,6 +164,9 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   }
 
   const inverterKw = selection.best.inverterKw;
+  const panelCount = selection.best.panelCount;
+  // Physical source of truth: panelCount x panelPowerKwp. Everything below
+  // (production, economics, presentation, PDF) uses this exact value.
   const installedKwp = selection.best.installedKwp;
 
   let sizingBasis: SizingBasis = "consumption";
@@ -143,14 +174,24 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     sizingBasis = pvLimitBinding === "connection-capacity" ? "grid-limit" : "pv-rule-limit";
   }
   if (installedKwp < sizing.recommendedKwp - 1e-9) sizingBasis = "inverter-limit";
-  if (installedKwp <= MIN_RECOMMENDED_KWP + 1e-9 && sizing.referenceKwp < MIN_RECOMMENDED_KWP) {
+  if (
+    installedKwp <= MIN_RECOMMENDED_KWP + panelPowerKwp + 1e-9 &&
+    sizing.referenceKwp < MIN_RECOMMENDED_KWP
+  ) {
     sizingBasis = "minimum-size";
   }
-  if (installedKwp >= MAX_RECOMMENDED_KWP - 1e-9) sizingBasis = "maximum-size";
+  if (installedKwp >= MAX_RECOMMENDED_KWP - panelPowerKwp - 1e-9) sizingBasis = "maximum-size";
 
-  // The smallest commercially available inverters set a practical floor, so a
-  // very small target can only be met by a noticeably larger array.
-  if (installedKwp > sizing.recommendedKwp * MINIMUM_SIZE_NOTE_FACTOR + 1e-9) {
+  // The smallest commercially available inverter sets a practical floor, so a
+  // very small target can only be met by a noticeably larger array. The note
+  // therefore requires BOTH that the floor is actually binding (the smallest
+  // inverter was chosen) and that the array clearly overshoots the target -
+  // otherwise ordinary panel quantisation would trip it for normal households.
+  const smallestInverterKw = Math.min(...input.inverterSizesKw);
+  if (
+    inverterKw <= smallestInverterKw + 1e-9 &&
+    installedKwp > sizing.recommendedKwp * MINIMUM_SIZE_NOTE_FACTOR + 1e-9
+  ) {
     notes.push("minimum-system-size");
   }
   if (input.consumption.annualKwh < MIN_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH) {
@@ -294,7 +335,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     location: input.location,
     resource: input.resource,
     installedKwp,
-    panelCount: Math.max(1, Math.round(installedKwp / PANEL_WATTAGE_KWP)),
+    panelCount,
+    panelPowerKwp,
     sizingBasis,
     inverterKw,
     maxAcPowerKw,
@@ -380,6 +422,13 @@ export function runCalculation(input: CalculationInput): CalculationOutcome {
   try {
     return { status: "success", result: calculateSolarSystem(input) };
   } catch (error) {
+    if (error instanceof GridTooSmallError) {
+      return {
+        status: "grid-too-small",
+        maxAcPowerKw: error.maxAcPowerKw,
+        minimumSupportedInverterKw: error.minimumSupportedInverterKw,
+      };
+    }
     if (error instanceof CalculationValidationError) {
       const phase = error.message.startsWith("Calculation input") ? "input" : "result";
       return { status: "validation-error", phase, issues: error.issues };

@@ -16,10 +16,6 @@ export const EU_GRID_PHASES = 3;
  */
 export const EU_THREE_PHASE_KW_PER_AMP = 0.69;
 
-/** Default target DC/AC ratio window (used when no profile signal exists). */
-export const TARGET_MIN_DC_AC_RATIO = 1.1;
-export const TARGET_MAX_DC_AC_RATIO = 1.2;
-
 /** Hard ceiling for automatic oversizing. Never a goal — only a limit. */
 export const ABSOLUTE_MAX_DC_AC_RATIO = 1.3;
 
@@ -45,21 +41,17 @@ export const DC_AC_TARGET_RANGES = {
   "very-high-solar-season": { min: 1.2, max: ABSOLUTE_MAX_DC_AC_RATIO },
 } as const;
 
-/** How many rounding steps below the motivated array size we test candidates. */
-export const CANDIDATE_KWP_STEPS_BELOW_TARGET = 6;
-
-/**
- * How many rounding steps ABOVE the motivated array size we test candidates.
- * Needed for small arrays, where the smallest available inverter would
- * otherwise force a severely under-sized DC/AC ratio.
- */
-export const CANDIDATE_KWP_STEPS_ABOVE_TARGET = 2;
-
 /** Relative weights used when scoring candidate systems (lower score wins). */
 export const SCORE_WEIGHTS = {
   ratioOutsideRange: 12,
   ratioCentering: 1.5,
   arrayShortfall: 3,
+  /**
+   * Penalty for exceeding the motivated array size. Without it the DC/AC
+   * centering term alone would happily grow a 1 kWp target into a 5 kWp array.
+   * Kept below arrayShortfall so quantisation to whole modules may round up.
+   */
+  arrayOversize: 2,
 } as const;
 
 
@@ -92,10 +84,17 @@ export const MIN_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH = 100;
  */
 export const MINIMUM_SIZE_NOTE_FACTOR = 1.25;
 
-/** Rounding step used when presenting a recommended array size (kWp). */
+/**
+ * Rounding step for the CONTINUOUS reference/target array size only.
+ * It is not an installation granularity: the final system is quantised to a
+ * whole number of modules (see PANEL_WATTAGE_KWP).
+ */
 export const KWP_ROUNDING_STEP = 0.5;
 
-/** Assumed nameplate wattage of a single solar panel (kWp), used to estimate panel count. */
+/**
+ * Nameplate power of a single module (kWp). The physical granularity of every
+ * recommended system: installedKwp = panelCount x PANEL_WATTAGE_KWP.
+ */
 export const PANEL_WATTAGE_KWP = 0.43;
 
 /** Accepted simple payback time (years) used for the max-investment guide. */

@@ -218,6 +218,8 @@ export interface CalculationInput {
   /** Optional quote price entered by the user, for the reverse calculation. */
   quotePrice?: number | null;
   inverterSizesKw: number[];
+  /** Module nameplate power (kWp). Defaults to PANEL_WATTAGE_KWP. */
+  panelPowerKwp?: number;
 }
 
 /** Why the recommended array ended up at this size. */
@@ -233,9 +235,12 @@ export type SizingBasis =
 export interface CalculationResult {
   location: SiteLocation;
   resource: SolarResource;
+  /** Physical DC power: always exactly panelCount x panelPowerKwp. */
   installedKwp: number;
-  /** Estimated number of modules for the recommended array. */
+  /** Whole number of modules in the recommended array. Source of truth. */
   panelCount: number;
+  /** Nameplate power of one module (kWp) behind `installedKwp`. */
+  panelPowerKwp: number;
   sizingBasis: SizingBasis;
   /** Chosen inverter's rated AC power. */
   inverterKw: number;
@@ -329,4 +334,10 @@ export interface CalculationResult {
 /** Explicit calculation outcome. A result only exists on "success". */
 export type CalculationOutcome =
   | { status: "success"; result: CalculationResult }
+  /** Controlled domain outcome: the connection is too small for any inverter. */
+  | {
+      status: "grid-too-small";
+      maxAcPowerKw: number;
+      minimumSupportedInverterKw: number;
+    }
   | { status: "validation-error"; phase: "input" | "result"; issues: CalculationIssue[] };

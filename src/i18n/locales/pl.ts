@@ -362,6 +362,8 @@ export const pl = {
     "productionCostUnavailable": "Nie możemy obliczyć kosztu produkcji przy obecnych danych.",
     "perKwh": "{{amount}}/kWh",
     "locked": "To obliczenie jest zablokowane. Dokończ zakup, aby zobaczyć wynik.",
+    "gridTooSmallTitle": "Przyłącze jest za małe",
+    "gridTooSmallBody": "Twoje obecne przyłącze ({{maxKw}} kW) jest za małe dla najmniejszego obsługiwanego systemu (falownik {{minKw}} kW). Zwiększ bezpiecznik główny lub moc umowną, aby kontynuować.",
     "missingSelfConsumedValue": "Brakuje ceny energii. Podaj, ile płacisz za kWh, aby zobaczyć wartość autokonsumpcji energii słonecznej.",
     "missingExportValue": "Brakuje ceny sprzedaży. Podaj, ile otrzymujesz za oddaną kWh, aby obliczyć przychód ze sprzedaży.",
     "missingInstallationCost": "Brakuje kosztu instalacji. Podaj swoją ofertę lub szacowaną inwestycję.",

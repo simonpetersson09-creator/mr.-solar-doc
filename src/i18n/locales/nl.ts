@@ -428,6 +428,8 @@ export const nl = {
     calculatedAt: "Berekeningsdatum",
     noCalculation: "Geen berekening gevonden. Begin opnieuw vanaf het adres.",
     locked: "Deze berekening is vergrendeld. Rond de aankoop af om het resultaat te zien.",
+    gridTooSmallTitle: "De aansluiting is te klein",
+    gridTooSmallBody: "Uw huidige aansluiting ({{maxKw}} kW) is te klein voor de kleinste ondersteunde systeemgrootte ({{minKw}} kW omvormer). Verhoog de hoofdzekering of het gecontracteerde vermogen om verder te gaan.",
   },
   units: {
     kwhPerYear: "kWh/jaar",

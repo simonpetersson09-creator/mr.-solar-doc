@@ -362,6 +362,8 @@ export const da = {
     "productionCostUnavailable": "Vi kan ikke beregne produktionsomkostningen med de nuværende data.",
     "perKwh": "{{amount}}/kWh",
     "locked": "Denne beregning er låst. Gennemfør købet for at se resultatet.",
+    "gridTooSmallTitle": "Tilslutningen er for lille",
+    "gridTooSmallBody": "Din nuværende tilslutning ({{maxKw}} kW) er for lille til den mindste understøttede systemstørrelse ({{minKw}} kW inverter). Øg hovedsikringen eller den aftalte effekt for at fortsætte.",
     "missingSelfConsumedValue": "Elpris mangler. Indtast hvad du betaler pr. kWh for at se værdien af egetforbrugt solstrøm.",
     "missingExportValue": "Salgspris mangler. Indtast hvad du får pr. solgt kWh for at beregne salgsindtægten.",
     "missingInstallationCost": "Anlægsomkostning mangler. Indtast dit tilbud eller den anslåede investering.",

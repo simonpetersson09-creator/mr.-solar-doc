@@ -362,6 +362,8 @@ export const sk = {
     "productionCostUnavailable": "Pri aktuálnych údajoch nemôžeme vypočítať náklady na výrobu.",
     "perKwh": "{{amount}}/kWh",
     "locked": "Tento výpočet je uzamknutý. Dokončite nákup, aby ste videli výsledok.",
+    "gridTooSmallTitle": "Prípojka je príliš malá",
+    "gridTooSmallBody": "Vaša súčasná prípojka ({{maxKw}} kW) je príliš malá pre najmenšiu podporovanú veľkosť systému (menič {{minKw}} kW). Pre pokračovanie zvýšte hlavný istič alebo dohodnutý príkon.",
     "missingSelfConsumedValue": "Chýba cena elektriny. Zadajte, koľko platíte za kWh, aby ste videli hodnotu vlastnej spotreby solárnej energie.",
     "missingExportValue": "Chýba výkupná cena. Zadajte, koľko dostanete za dodanú kWh, aby sme vypočítali výnos z predaja.",
     "missingInstallationCost": "Chýba cena inštalácie. Zadajte svoju ponuku alebo odhadovanú investíciu.",
