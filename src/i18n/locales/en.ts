@@ -1,4 +1,9 @@
 export const en = {
+  notFound: {
+    title: "Page not found",
+    description: "The page you are looking for does not exist or has been moved.",
+    home: "Go to start",
+  },
   app: {
     name: "Mr. Solar Doc",
     tagline: "Size your solar system in a few minutes",
