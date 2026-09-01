@@ -247,97 +247,97 @@ function SettingsPage() {
         </section>
 
         {/* Settings groups */}
-        <section className="flex flex-col gap-1.5">
+        <section className="flex flex-col gap-2.5">
           {/* Restore / Manage */}
-          <div className="glass-primary flex flex-col gap-0.5 rounded-2xl p-1">
+          <div className="flex flex-col gap-2">
             <button
               type="button"
               disabled={restoring}
               onClick={() => void handleRestore()}
-              className="flex w-full items-center justify-between rounded-xl bg-card px-3.5 py-2 text-left shadow-sm transition-transform active:scale-[0.98] disabled:opacity-60"
+              className="flex w-full items-center justify-between rounded-xl bg-brand-black px-3.5 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98] disabled:opacity-60"
             >
               <span className="flex items-center gap-2">
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-yellow/15 text-brand-yellow">
                   {restoring ? (
                     <Loader2 className="size-3 animate-spin" />
                   ) : (
                     <RefreshCw className="size-3" />
                   )}
                 </span>
-                <span className="text-xs font-semibold text-brand-black">
+                <span className="text-xs font-semibold text-primary-foreground">
                   {t("premium.restore")}
                 </span>
               </span>
-              <ChevronRight className="size-3 text-brand-black/40" />
+              <ChevronRight className="size-3 text-brand-yellow/60" />
             </button>
             <a
               href={MANAGE_SUBSCRIPTION_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => void haptic("light")}
-              className="flex w-full items-center justify-between rounded-xl bg-card px-3.5 py-2 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl bg-brand-black px-3.5 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-yellow/15 text-brand-yellow">
                   <Settings2 className="size-3" />
                 </span>
-                <span className="text-xs font-semibold text-brand-black">{t("premium.manage")}</span>
+                <span className="text-xs font-semibold text-primary-foreground">{t("premium.manage")}</span>
               </span>
-              <ChevronRight className="size-3 text-brand-black/40" />
+              <ChevronRight className="size-3 text-brand-yellow/60" />
             </a>
           </div>
 
           {/* History */}
-          <div className="glass-primary flex flex-col gap-0.5 rounded-2xl p-1">
+          <div className="flex flex-col gap-2">
             <button
               type="button"
               onClick={() => {
                 void haptic("light");
                 void navigate({ to: "/historik" });
               }}
-              className="flex w-full items-center justify-between rounded-xl bg-card px-3.5 py-2 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl bg-brand-black px-3.5 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-yellow/15 text-brand-yellow">
                   <History className="size-3" />
                 </span>
-                <span className="text-xs font-semibold text-brand-black">{t("settings.history")}</span>
+                <span className="text-xs font-semibold text-primary-foreground">{t("settings.history")}</span>
               </span>
-              <ChevronRight className="size-3 text-brand-black/40" />
+              <ChevronRight className="size-3 text-brand-yellow/60" />
             </button>
           </div>
 
           {/* Legal */}
-          <div className="glass-primary flex flex-col gap-0.5 rounded-2xl p-1">
+          <div className="flex flex-col gap-2">
             <a
               href={LEGAL_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => void haptic("light")}
-              className="flex w-full items-center justify-between rounded-xl bg-card px-3.5 py-2 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl bg-brand-black px-3.5 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-yellow/15 text-brand-yellow">
                   <FileText className="size-3" />
                 </span>
-                <span className="text-xs font-semibold text-brand-black">{t("settings.terms")}</span>
+                <span className="text-xs font-semibold text-primary-foreground">{t("settings.terms")}</span>
               </span>
-              <ChevronRight className="size-3 text-brand-black/40" />
+              <ChevronRight className="size-3 text-brand-yellow/60" />
             </a>
             <a
               href={PRIVACY_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => void haptic("light")}
-              className="flex w-full items-center justify-between rounded-xl bg-card px-3.5 py-2 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl bg-brand-black px-3.5 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
-                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-yellow/15 text-brand-yellow">
                   <ShieldCheck className="size-3" />
                 </span>
-                <span className="text-xs font-semibold text-brand-black">{t("settings.privacy")}</span>
+                <span className="text-xs font-semibold text-primary-foreground">{t("settings.privacy")}</span>
               </span>
-              <ChevronRight className="size-3 text-brand-black/40" />
+              <ChevronRight className="size-3 text-brand-yellow/60" />
             </a>
           </div>
         </section>
