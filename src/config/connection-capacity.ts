@@ -24,6 +24,21 @@ import {
 /** How the consumer states their connection in a given market. */
 export type ConnectionCapacityInputType = "amperage" | "contracted-kva" | "contracted-kw";
 
+/**
+ * Input units the generic (unsupported/manual) fallback offers. A consumer in
+ * a market we have no verified profile for may state the connection as a fuse
+ * rating (A), a contracted active power (kW) or a contracted apparent power
+ * (kVA) — no country-specific formula is involved, only the generic rules:
+ *   A   -> service physics (phase model + voltage)
+ *   kW  -> 1:1
+ *   kVA -> kVA x power factor
+ */
+export const FALLBACK_INPUT_TYPES: readonly ConnectionCapacityInputType[] = [
+  "amperage",
+  "contracted-kw",
+  "contracted-kva",
+];
+
 /** Electrical profile of the connection. Required for ampere-based input. */
 export interface ConnectionGridProfile {
   serviceType: ServiceType;

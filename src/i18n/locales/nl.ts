@@ -169,6 +169,7 @@ export const nl = {
   fuse: {
     gridAssumptionDynamic: "De berekening is gebaseerd op {{service}} {{voltage}}.",
     capacity: {
+      inputUnit: "Eenheid",
       otherLabel: "Waarde invoeren",
       invalid: "Vul een waarde in tussen {{min}} en {{max}} {{unit}}.",
       amperage: {
@@ -200,6 +201,7 @@ export const nl = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "Fasen",
       serviceType: "Type aansluiting",
+      twoPhase: "Tweefasig (fase–fase)",
       splitPhase: "Split-phase",
       unverifiedHint: "We hebben geen geverifieerde netgegevens voor dit land. Controleer je gegevens op je meter of groepenkast.",
       phase1: "1-fase",

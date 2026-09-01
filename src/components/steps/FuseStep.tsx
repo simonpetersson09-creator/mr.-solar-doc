@@ -19,7 +19,9 @@ import {
   connectionCapacityToMaxAcPowerKw,
   connectionCapacityUnit,
   isValidConnectionCapacity,
+  FALLBACK_INPUT_TYPES,
   type ConnectionCapacity,
+  type ConnectionCapacityInputType,
 } from "@/config/connection-capacity";
 import { connectionOptionLabel } from "@/lib/connection-display";
 import {
@@ -65,6 +67,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
   const setGridDefaults = useWizardStore((s) => s.setGridDefaults);
 
   const connection = getConnectionConfig(location?.countryCode);
+  const storedCapacityType = storedCapacity?.type ?? null;
   const countryCode = location?.countryCode?.toUpperCase();
   const countryFlag = countryCode
     ? String.fromCodePoint(...[...countryCode].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65))
@@ -85,7 +88,17 @@ const [showGridInfo, setShowGridInfo] = useState(false);
   useEffect(() => {
     setGridDefaults(defaultGridProfileFor(connection));
   }, [connection.countryCode, setGridDefaults]); // eslint-disable-line react-hooks/exhaustive-deps
-  const inputType = connection.capacityInputType;
+  // The generic fallback lets the user state the connection in the unit they
+  // actually have on their contract: A, kW or kVA. Verified profiles keep the
+  // country's own unit — this selector never applies to them.
+  const [fallbackInputType, setFallbackInputType] = useState<ConnectionCapacityInputType>(
+    () =>
+      connection.status !== "verified" && storedCapacityType
+        ? storedCapacityType
+        : connection.capacityInputType,
+  );
+  const inputType =
+    connection.status === "verified" ? connection.capacityInputType : fallbackInputType;
   const unit = connectionCapacityUnit(inputType);
   const bounds = CAPACITY_BOUNDS[inputType];
 
@@ -176,9 +189,11 @@ const [showGridInfo, setShowGridInfo] = useState(false);
     t(
       type === "single-phase"
         ? "fuse.grid.phase1"
-        : type === "three-phase"
-          ? "fuse.grid.phase3"
-          : "fuse.grid.splitPhase",
+        : type === "two-phase"
+          ? "fuse.grid.twoPhase"
+          : type === "three-phase"
+            ? "fuse.grid.phase3"
+            : "fuse.grid.splitPhase",
     );
   /** Split-phase is displayed as "120/240 V" — the 240 V drives the power. */
   const voltageLabel = (value: number) =>
@@ -191,14 +206,21 @@ const [showGridInfo, setShowGridInfo] = useState(false);
   const showPhaseChoice = inputType === "amperage" && (connection.phaseChoice ?? false);
 
   /** The premise the calculation actually uses, e.g. "3-phase · 400 V · 35 A". */
-  const resolvedConnectionLabel =
-    capacity && capacity.type === "amperage"
+  const resolvedConnectionLabel = !capacity
+    ? null
+    : capacity.type === "amperage"
       ? `${serviceLabel(serviceType)} · ${voltageLabel(voltageV)} · ${formatDecimal(
           connectionCapacityAmount(capacity),
           locale,
           0,
         )} A`
-      : null;
+      : `${formatDecimal(connectionCapacityAmount(capacity), locale, 2)} ${connectionCapacityUnit(
+          capacity.type,
+        )}${
+          capacity.type === "contracted-kva"
+            ? ` · PF ${formatDecimal(connection.contractedKvaPowerFactor ?? 1, locale, 2)}`
+            : ""
+        }`;
 
   const chipClass = (active: boolean) =>
     active
@@ -288,7 +310,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           <div className="space-y-3 rounded-2xl bg-white/10 px-3 py-3">
             <div className="space-y-1.5">
               <Label className="text-[11px] text-white/70">{t("fuse.grid.serviceType")}</Label>
-              <div className="grid grid-cols-3 gap-1.5">
+              <div className="grid grid-cols-2 gap-1.5">
                 {SERVICE_TYPE_OPTIONS.map((option) => (
                   <button
                     key={option}
@@ -425,6 +447,35 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           </div>
         ) : null}
 
+        {!isVerified ? (
+          <div className="space-y-1.5">
+            <Label className="text-xs text-white">{t("fuse.capacity.inputUnit")}</Label>
+            <div className="grid grid-cols-3 gap-1.5">
+              {FALLBACK_INPUT_TYPES.map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => {
+                    void haptic("light");
+                    if (option === inputType) return;
+                    // A new unit is a new statement: clear the amount and the
+                    // earlier confirmation.
+                    setFallbackInputType(option);
+                    setSelectedId(null);
+                    setCustomValue("");
+                    setCustom(true);
+                    setConnectionCapacity(null);
+                    setGridConfirmed(false);
+                  }}
+                  className={chipClass(inputType === option)}
+                >
+                  {connectionCapacityUnit(option)}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         <div>
           <Label className="text-xs text-white">
             {connection.localTerm && isVerified
@@ -504,7 +555,15 @@ const [showGridInfo, setShowGridInfo] = useState(false);
               type="text"
               inputMode="decimal"
               value={customValue}
-              onChange={(event) => setCustomValue(sanitizeNumericInput(event.target.value))}
+              onChange={(event) => {
+                const raw = sanitizeNumericInput(event.target.value);
+                setCustomValue(raw);
+                // Persist as the user types so the premise the engine uses is
+                // always the one shown — and so confirming later confirms it.
+                const parsed = parseLocaleNumber(raw, locale);
+                const next = parsed === null ? null : capacityFor(parsed);
+                setConnectionCapacity(isValidConnectionCapacity(next) ? next : null);
+              }}
               className="h-8 w-20 rounded-full border-white/25 bg-white/15 text-xs text-white placeholder:text-white/50"
             />
             <span className="text-xs text-white/60">{unit}</span>

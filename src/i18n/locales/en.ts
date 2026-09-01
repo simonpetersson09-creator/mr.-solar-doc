@@ -172,6 +172,7 @@ error: "Address search failed.",
   fuse: {
     gridAssumptionDynamic: "The calculation is based on {{service}} {{voltage}}.",
     capacity: {
+      inputUnit: "Unit",
       otherLabel: "Enter value",
       invalid: "Enter a value between {{min}} and {{max}} {{unit}}.",
       amperage: {
@@ -208,6 +209,7 @@ gridCheckHint: "Check your actual grid connection if you are unsure.",
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "Phases",
       serviceType: "Service type",
+      twoPhase: "2-phase (phase-to-phase)",
       splitPhase: "Split-phase",
       unverifiedHint: "We have no verified grid values for this country. Please check your details against your meter or service panel.",
       phase1: "1-phase",

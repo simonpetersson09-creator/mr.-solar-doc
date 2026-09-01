@@ -164,6 +164,7 @@ export const hi = {
   "fuse": {
     "gridAssumptionDynamic": "गणना {{service}} {{voltage}} पर आधारित है।",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "मान दर्ज करें",
       "invalid": "{{min}} और {{max}} {{unit}} के बीच मान दर्ज करें।",
       "amperage": {
@@ -200,6 +201,7 @@ export const hi = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "phases": "फेज़",
       "serviceType": "सेवा प्रकार",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "स्प्लिट-फेज़",
       "unverifiedHint": "इस देश के लिए हमारे पास सत्यापित ग्रिड मान नहीं हैं। कृपया अपने मीटर या सर्विस पैनल से अपने विवरण जाँचें।",
       "phase1": "1-फेज़",

@@ -149,6 +149,7 @@ export const da = {
   "fuse": {
     "gridAssumptionDynamic": "Beregningen tager udgangspunkt i {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Enhed",
       "otherLabel": "Indtast værdi",
       "invalid": "Indtast en værdi mellem {{min}} og {{max}} {{unit}}.",
       "amperage": {
@@ -193,6 +194,7 @@ export const da = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Ændr kun, hvis standardværdierne ikke passer til din forbindelse.",
       "serviceType": "Tilslutningstype",
+      "twoPhase": "2-faset (fase–fase)",
       "splitPhase": "Split-fase",
       "unverifiedHint": "Vi har ingen verificerede netværdier for dette land. Kontrollér dine oplysninger på måleren eller i eltavlen."
     },

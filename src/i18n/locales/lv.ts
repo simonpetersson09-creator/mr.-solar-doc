@@ -149,6 +149,7 @@ export const lv = {
   "fuse": {
     "gridAssumptionDynamic": "Aprēķina pamatā ir {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Ievadiet vērtību",
       "invalid": "Ievadiet vērtību no {{min}} līdz {{max}} {{unit}}.",
       "amperage": {
@@ -188,6 +189,7 @@ export const lv = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Mainiet tikai tad, ja noklusējuma vērtības neatbilst jūsu pieslēgumam.",
       "serviceType": "Pieslēguma veids",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Divfāžu (split-phase)",
       "unverifiedHint": "Mums nav pārbaudītu tīkla vērtību šai valstij. Lūdzu, pārbaudiet datus savā skaitītājā vai sadales skapī."
     },

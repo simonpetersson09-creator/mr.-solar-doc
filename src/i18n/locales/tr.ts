@@ -164,6 +164,7 @@ export const tr = {
   "fuse": {
     "gridAssumptionDynamic": "Hesaplama {{service}} {{voltage}} temel alınarak yapılmıştır.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Değer girin",
       "invalid": "{{min}} ile {{max}} {{unit}} arasında bir değer girin.",
       "amperage": {
@@ -195,6 +196,7 @@ export const tr = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "phases": "Fazlar",
       "serviceType": "Bağlantı türü",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Bölünmüş faz",
       "unverifiedHint": "Bu ülke için doğrulanmış şebeke değerlerimiz yok. Lütfen bilgilerinizi sayacınız veya elektrik panonuzla karşılaştırın.",
       "phase1": "Tek faz",

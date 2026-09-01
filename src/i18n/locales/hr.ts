@@ -169,6 +169,7 @@ export const hr = {
   fuse: {
     gridAssumptionDynamic: "Izračun se temelji na {{service}} {{voltage}}.",
     capacity: {
+      inputUnit: "Unit",
       otherLabel: "Unesi vrijednost",
       invalid: "Unesite vrijednost između {{min}} i {{max}} {{unit}}.",
       amperage: {
@@ -205,6 +206,7 @@ export const hr = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "Faze",
       serviceType: "Vrsta priključka",
+      twoPhase: "2-phase (phase-to-phase)",
       splitPhase: "Split-phase",
       unverifiedHint: "Nemamo provjerene mrežne vrijednosti za ovu državu. Provjerite svoje podatke prema brojilu ili razvodnom ormaru.",
       phase1: "1-fazni",

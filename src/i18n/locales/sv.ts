@@ -173,6 +173,7 @@ error: "Adressökningen misslyckades.",
   fuse: {
     gridAssumptionDynamic: "Beräkningen utgår från {{service}} {{voltage}}.",
     capacity: {
+      inputUnit: "Enhet",
       otherLabel: "Ange värde",
       invalid: "Ange ett värde mellan {{min}} och {{max}} {{unit}}.",
       amperage: {
@@ -204,6 +205,7 @@ gridCheckHint: "Kontrollera din faktiska nätanslutning om du är osäker.",
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "Faser",
       serviceType: "Nättyp",
+      twoPhase: "2-fas (fas–fas)",
       splitPhase: "Split-phase",
       unverifiedHint: "Vi har inga verifierade nätvärden för det här landet. Kontrollera dina uppgifter mot din elmätare eller elcentral.",
       phase1: "1-fas",

@@ -149,6 +149,7 @@ export const fi = {
   "fuse": {
     "gridAssumptionDynamic": "Laskenta perustuu arvoihin {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Yksikkö",
       "otherLabel": "Anna arvo",
       "invalid": "Anna arvo välillä {{min}}–{{max}} {{unit}}.",
       "amperage": {
@@ -193,6 +194,7 @@ export const fi = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Muuta vain, jos oletusarvot eivät vastaa liittymääsi.",
       "serviceType": "Liittymän tyyppi",
+      "twoPhase": "2-vaihe (vaihe–vaihe)",
       "splitPhase": "Kaksivaihe (split-phase)",
       "unverifiedHint": "Meillä ei ole varmennettuja verkkotietoja tälle maalle. Tarkista tiedot mittarista tai sähkökeskuksesta."
     },

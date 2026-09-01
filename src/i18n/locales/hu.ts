@@ -169,6 +169,7 @@ export const hu = {
   fuse: {
     gridAssumptionDynamic: "A számítás a következőn alapul: {{service}} {{voltage}}.",
     capacity: {
+      inputUnit: "Unit",
       otherLabel: "Érték megadása",
       invalid: "Adjon meg egy {{min}} és {{max}} {{unit}} közötti értéket.",
       amperage: {
@@ -205,6 +206,7 @@ export const hu = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "Fázisok",
       serviceType: "Csatlakozás típusa",
+      twoPhase: "2-phase (phase-to-phase)",
       splitPhase: "Osztott fázis",
       unverifiedHint: "Erre az országra nincs ellenőrzött hálózati adatunk. Kérjük, ellenőrizze adatait a mérőóra vagy az elosztószekrény alapján.",
       phase1: "1 fázis",

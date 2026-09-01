@@ -4,8 +4,11 @@
  * and adding a new service type is a one-row lookup-table change.
  */
 
-/** Phase count as shown in the UI today. */
-export type PhaseCount = 1 | 3;
+/**
+ * Phase count of a service. 2 represents a two-phase (phase-to-phase) service,
+ * e.g. a 220 V phase-to-phase connection in 127/220 V markets such as Brazil.
+ */
+export type PhaseCount = 1 | 2 | 3;
 
 /**
  * Electrical service type. The AC-power factor is derived from a lookup
@@ -13,11 +16,12 @@ export type PhaseCount = 1 | 3;
  * future service types (e.g. "split-phase" for US/CA) can be added by
  * extending the tables below without redoing the calculation formula.
  */
-export type ServiceType = "single-phase" | "three-phase" | "split-phase";
+export type ServiceType = "single-phase" | "two-phase" | "three-phase" | "split-phase";
 
 /** Maps the UI's phase count to its electrical service type. */
 export const SERVICE_TYPE_FOR_PHASE_COUNT: Record<PhaseCount, ServiceType> = {
   1: "single-phase",
+  2: "two-phase",
   3: "three-phase",
 };
 
@@ -28,6 +32,7 @@ export const SERVICE_TYPE_FOR_PHASE_COUNT: Record<PhaseCount, ServiceType> = {
  */
 export const PHASE_COUNT_FOR_SERVICE_TYPE: Record<ServiceType, PhaseCount> = {
   "single-phase": 1,
+  "two-phase": 2,
   "three-phase": 3,
   "split-phase": 1,
 };
@@ -35,6 +40,7 @@ export const PHASE_COUNT_FOR_SERVICE_TYPE: Record<ServiceType, PhaseCount> = {
 /** Selectable service types, in display order. */
 export const SERVICE_TYPE_OPTIONS: readonly ServiceType[] = [
   "single-phase",
+  "two-phase",
   "three-phase",
   "split-phase",
 ];
@@ -44,9 +50,11 @@ export const SERVICE_TYPE_OPTIONS: readonly ServiceType[] = [
  *  - three-phase: sqrt(3)  ->  P(kW) = sqrt(3) x U_LL x I / 1000
  *  - single-phase: 1       ->  P(kW) = U_LN x I / 1000
  *  - split-phase: 1        ->  P(kW) = U_LL x I / 1000 (240 V, not 120 V)
+ *  - two-phase: 1          ->  P(kW) = U_LL x I / 1000 (phase-to-phase, no sqrt(3))
  */
 export const SERVICE_TYPE_AC_FACTOR: Record<ServiceType, number> = {
   "single-phase": 1,
+  "two-phase": 1,
   "three-phase": Math.sqrt(3),
   "split-phase": 1,
 };
@@ -61,6 +69,7 @@ export const SERVICE_TYPE_VOLTAGE_REFERENCE: Record<
   "line-to-line" | "line-to-neutral"
 > = {
   "single-phase": "line-to-neutral",
+  "two-phase": "line-to-line",
   "three-phase": "line-to-line",
   "split-phase": "line-to-line",
 };
@@ -76,6 +85,14 @@ export const SPLIT_PHASE_FREQUENCY_HZ = 60;
 export function splitPhaseLineToNeutral(lineToLineV: number): number {
   return lineToLineV / 2;
 }
+
+/**
+ * Two-phase (phase-to-phase) presets are LINE-TO-LINE voltages: two phases of a
+ * three-phase system without the neutral, e.g. 220 V of a Brazilian 127/220 V
+ * grid. Power is U_LL x I — sqrt(3) is NEVER applied.
+ */
+export const TWO_PHASE_LINE_TO_LINE_V = 220;
+export const TWO_PHASE_VOLTAGE_OPTIONS: readonly number[] = [208, 220, 230, 240, 380, 400];
 
 /** Selectable phase counts, in display order. */
 export const GRID_PHASE_OPTIONS: readonly PhaseCount[] = [1, 3];
@@ -96,6 +113,7 @@ export const THREE_PHASE_VOLTAGE_OPTIONS: readonly number[] = [208, 220, 230, 38
 /** Voltage presets for a given service type. */
 export function voltageOptionsForService(serviceType: ServiceType): readonly number[] {
   if (serviceType === "split-phase") return SPLIT_PHASE_VOLTAGE_OPTIONS;
+  if (serviceType === "two-phase") return TWO_PHASE_VOLTAGE_OPTIONS;
   if (serviceType === "single-phase") return SINGLE_PHASE_VOLTAGE_OPTIONS;
   return THREE_PHASE_VOLTAGE_OPTIONS;
 }
@@ -103,6 +121,7 @@ export function voltageOptionsForService(serviceType: ServiceType): readonly num
 /** Default voltages per service type, used when a service switch invalidates the current one. */
 export const DEFAULT_VOLTAGE_FOR_SERVICE: Record<ServiceType, number> = {
   "single-phase": 230,
+  "two-phase": TWO_PHASE_LINE_TO_LINE_V,
   "three-phase": 400,
   "split-phase": SPLIT_PHASE_LINE_TO_LINE_V,
 };

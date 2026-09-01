@@ -164,6 +164,7 @@ export const he = {
   "fuse": {
     "gridAssumptionDynamic": "החישוב מבוסס על {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "הזנת ערך",
       "invalid": "הזינו ערך בין {{min}} ל-{{max}} {{unit}}.",
       "amperage": {
@@ -200,6 +201,7 @@ export const he = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "phases": "פאזות",
       "serviceType": "סוג חיבור",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "פאזה מפוצלת",
       "unverifiedHint": "אין לנו ערכי רשת מאומתים למדינה זו. אנא בדקו את הפרטים שלכם מול המונה או לוח החשמל.",
       "phase1": "חד-פאזי",
