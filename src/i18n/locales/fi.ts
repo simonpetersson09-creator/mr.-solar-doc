@@ -213,6 +213,7 @@ export const fi = {
     "confirmedGrid": "Verkkotiedot vahvistettu"
   },
   "result": {
+    "calculationUnavailable": "Laskentaa ei voitu suorittaa loppuun. Tarkista kattotiedot ja yritä uudelleen.",
     "connection": {
       "contractedKva": "Sopimusteho (kVA)",
       "contractedKw": "Sopimusteho (kW)"

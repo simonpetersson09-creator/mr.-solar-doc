@@ -208,6 +208,7 @@ export const lt = {
     "confirmedGrid": "Tinklo duomenys patvirtinti"
   },
   "result": {
+    "calculationUnavailable": "Skaičiavimo nepavyko užbaigti. Patikrinkite stogo duomenis ir bandykite dar kartą.",
     "connection": {
       "contractedKva": "Sutartinė galia (kVA)",
       "contractedKw": "Sutartinė galia (kW)"

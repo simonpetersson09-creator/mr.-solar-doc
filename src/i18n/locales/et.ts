@@ -213,6 +213,7 @@ export const et = {
     "confirmedGrid": "Võrguandmed kinnitatud"
   },
   "result": {
+    "calculationUnavailable": "Arvutust ei õnnestunud lõpetada. Kontrollige katuse andmeid ja proovige uuesti.",
     "connection": {
       "contractedKva": "Lepinguline võimsus (kVA)",
       "contractedKw": "Lepinguline võimsus (kW)"

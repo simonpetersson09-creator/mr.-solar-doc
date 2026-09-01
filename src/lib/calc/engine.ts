@@ -299,7 +299,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   }
   if (availability.selfConsumedValue === "missing") notes.push("self-consumed-value-missing");
   if (availability.exportValue === "missing") notes.push("export-value-missing");
-  if (availability.installationCost === "missing") notes.push("installation-cost-missing");
+  // Installation cost is optional (the budget comes from the payback target),
+  // so a missing value is not flagged as a calculation gap.
 
   if (input.resource.orientationAssumed) notes.push("orientation-assumed");
   if (input.resource.tiltAssumed) notes.push("tilt-assumed");

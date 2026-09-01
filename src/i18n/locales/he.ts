@@ -228,6 +228,7 @@ export const he = {
     "invalid": "הזינו מאמ\"ת ראשי בין 6 ל-400 A."
   },
   "result": {
+    "calculationUnavailable": "לא ניתן היה להשלים את החישוב. בדוק את פרטי הגג ונסה שוב.",
     "connection": {
       "contractedKva": "הספק מוסכם (kVA)",
       "contractedKw": "הספק מוסכם (kW)"

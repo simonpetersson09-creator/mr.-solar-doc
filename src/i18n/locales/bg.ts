@@ -228,6 +228,7 @@ export const bg = {
     "invalid": "Въведете главен предпазител между 6 и 400 A."
   },
   "result": {
+    "calculationUnavailable": "Изчислението не можа да бъде завършено. Проверете данните за покрива и опитайте отново.",
     "connection": {
       "contractedKva": "Договорена мощност (kVA)",
       "contractedKw": "Договорена мощност (kW)"

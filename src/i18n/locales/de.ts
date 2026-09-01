@@ -213,6 +213,7 @@ export const de = {
     "confirmedGrid": "Netzdaten bestätigt"
   },
   "result": {
+    "calculationUnavailable": "Die Berechnung konnte nicht abgeschlossen werden. Bitte prüfen Sie die Dachangaben und versuchen Sie es erneut.",
     "connection": {
       "contractedKva": "Vereinbarte Leistung (kVA)",
       "contractedKw": "Vereinbarte Leistung (kW)"

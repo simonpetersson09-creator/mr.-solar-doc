@@ -223,6 +223,7 @@ export const sr = {
     "invalid": "Унесите главни осигурач између 6 и 400 A."
   },
   "result": {
+    "calculationUnavailable": "Izračun nije mogao biti dovršen. Proverite podatke o krovu i pokušajte ponovo.",
     "connection": {
       "contractedKva": "Уговорена снага (kVA)",
       "contractedKw": "Уговорена снага (kW)"

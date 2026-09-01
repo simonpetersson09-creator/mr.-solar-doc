@@ -127,7 +127,9 @@ const ECONOMICS_OVERRIDES: Record<string, EconomicsOverride> = {
     // Sweden has an established grid-benefit component; the level is set by the
     // local grid operator, so there is no national standard value.
     gridCompensation: { enabled: true, defaultValuePerKwh: money(null) },
-    installationCostPerKwp: 15000,
+    // No national standard installation price: the model derives the budget
+    // from the chosen payback time, and the user can enter a real quote.
+    installationCostPerKwp: null,
     incentives: [
       {
         rule: { id: "se-green-tech", kind: "tax-reduction", percent: 0.2, maxAmount: 50000 },

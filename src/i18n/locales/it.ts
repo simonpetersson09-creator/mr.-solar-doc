@@ -208,6 +208,7 @@ export const it = {
     "confirmedGrid": "Dati di rete confermati"
   },
   "result": {
+    "calculationUnavailable": "Non è stato possibile completare il calcolo. Controlla i dati del tetto e riprova.",
     "connection": {
       "contractedKva": "Potenza impegnata (kVA)",
       "contractedKw": "Potenza impegnata (kW)"

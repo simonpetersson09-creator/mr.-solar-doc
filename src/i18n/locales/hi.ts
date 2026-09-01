@@ -228,6 +228,7 @@ export const hi = {
     "invalid": "6 और 400 A के बीच मुख्य फ्यूज़ दर्ज करें।"
   },
   "result": {
+    "calculationUnavailable": "गणना पूरी नहीं हो सकी। कृपया छत का विवरण जांचें और पुनः प्रयास करें।",
     "connection": {
       "contractedKva": "अनुबंधित पावर (kVA)",
       "contractedKw": "अनुबंधित पावर (kW)"

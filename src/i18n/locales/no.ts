@@ -223,6 +223,7 @@ export const no = {
     "invalid": "Angi en hovedsikring mellom 6 og 400 A."
   },
   "result": {
+    "calculationUnavailable": "Beregningen kunne ikke fullføres. Kontroller takopplysningene og prøv igjen.",
     "connection": {
       "contractedKva": "Avtalt effekt (kVA)",
       "contractedKw": "Avtalt effekt (kW)"

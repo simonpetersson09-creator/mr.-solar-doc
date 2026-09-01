@@ -124,6 +124,7 @@ export const uk = {
     "invalid": "Введіть головний запобіжник від 6 до 400 A."
   },
   "result": {
+    "calculationUnavailable": "Не вдалося завершити розрахунок. Перевірте дані даху та спробуйте ще раз.",
     "connection": { "contractedKva": "Договірна потужність (kVA)", "contractedKw": "Договірна потужність (kW)" },
     "gridConnection": "Підключення до мережі",
     "gridConnectionValue": "{{voltage}} В, {{phases}}-фазне",

@@ -223,6 +223,7 @@ export const ro = {
     "invalid": "Introdu o siguranță principală între 6 și 400 A."
   },
   "result": {
+    "calculationUnavailable": "Calculul nu a putut fi finalizat. Verificați detaliile acoperișului și încercați din nou.",
     "connection": {
       "contractedKva": "Putere contractată (kVA)",
       "contractedKw": "Putere contractată (kW)"

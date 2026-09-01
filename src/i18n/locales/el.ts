@@ -229,6 +229,7 @@ export const el = {
     "invalid": "Εισαγάγετε γενική ασφάλεια μεταξύ 6 και 400 A."
   },
   "result": {
+    "calculationUnavailable": "Ο υπολογισμός δεν ολοκληρώθηκε. Ελέγξτε τα στοιχεία της στέγης και δοκιμάστε ξανά.",
     "connection": {
       "contractedKva": "Συμβατική ισχύς (kVA)",
       "contractedKw": "Συμβατική ισχύς (kW)"

@@ -208,6 +208,7 @@ export const lv = {
     "confirmedGrid": "Tīkla dati apstiprināti"
   },
   "result": {
+    "calculationUnavailable": "Aprēķinu neizdevās pabeigt. Pārbaudiet jumta datus un mēģiniet vēlreiz.",
     "connection": {
       "contractedKva": "Līgumā noteiktā jauda (kVA)",
       "contractedKw": "Līgumā noteiktā jauda (kW)"
