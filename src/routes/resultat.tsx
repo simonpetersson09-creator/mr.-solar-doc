@@ -140,8 +140,6 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
   const availability = result.economics.availability;
   const selfConsumedMissing = availability.selfConsumedValue === "missing";
   const exportMissing = availability.exportValue === "missing";
-  const installationCostMissing =
-    availability.installationCost === "missing" && result.investment.quotePrice == null;
   // S5: the engine decides; the UI never re-derives economic completeness.
   const economicValuesMissing = result.economicsStatus === "incomplete";
   // S6: grid knowledge level travels with the result, from step 4 to the PDF.
@@ -346,11 +344,10 @@ const cost = result.productionCost;
               {t("result.economicsRequiresPrice")}
             </p>
           ) : null}
-          {selfConsumedMissing || exportMissing || installationCostMissing ? (
+          {selfConsumedMissing || exportMissing ? (
             <div className="space-y-1.5 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] text-white/70">
               {selfConsumedMissing ? <p>{t("result.missingSelfConsumedValue")}</p> : null}
               {exportMissing ? <p>{t("result.missingExportValue")}</p> : null}
-              {installationCostMissing ? <p>{t("result.missingInstallationCost")}</p> : null}
             </div>
           ) : null}
 
