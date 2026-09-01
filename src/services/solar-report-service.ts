@@ -1,7 +1,11 @@
 import { jsPDF } from "jspdf";
 import type { CalculationResult, ValueOrigin } from "@/lib/calc/types";
 import { formatCurrency, formatDecimal, formatNumber, isoDateOnly } from "@/lib/format";
-import { formatConnectionCapacity } from "@/lib/connection-display";
+import {
+  formatConnectionCapacity,
+  gridAcDisplayFactor,
+  gridMethodNoteKind,
+} from "@/lib/connection-display";
 
 import { shareFile } from "./native-service";
 
