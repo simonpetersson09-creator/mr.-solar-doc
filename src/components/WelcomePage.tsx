@@ -39,7 +39,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           />
         </div>
 
-        <section className="mt-10 text-center">
+        <section className="mt-6 text-center">
           <h1 className="font-display text-xl font-bold leading-tight tracking-tight">
             {t("welcome.title")}
           </h1>
@@ -48,11 +48,11 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           </p>
         </section>
 
-        <ul className="mt-6 space-y-2.5">
+        <ul className="mt-6 space-y-3">
           {POINTS.map(({ icon: Icon, titleKey }) => (
-            <li key={titleKey} className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-2.5 text-start">
-              <Icon className="size-4 shrink-0 opacity-80" strokeWidth={1.75} aria-hidden="true" />
-              <p className="min-w-0 text-xs font-bold leading-tight">{t(titleKey)}</p>
+            <li key={titleKey} className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 text-start">
+              <Icon className="size-5 shrink-0 opacity-80" strokeWidth={1.75} aria-hidden="true" />
+              <p className="min-w-0 text-sm font-bold leading-tight">{t(titleKey)}</p>
             </li>
           ))}
         </ul>
