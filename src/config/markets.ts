@@ -56,7 +56,19 @@ export interface MarketConfig {
   defaultConsumptionWeights: number[];
 }
 
-const EU_INVERTER_SIZES_KW = [1.5, 2, 2.5, 3, 3.6, 4, 4.6, 5, 6, 8, 10, 12, 15, 17, 20, 25, 30];
+/**
+ * Commercially available string-inverter sizes (kW AC).
+ *
+ * The ladder mirrors real residential/commercial product classes (e.g. 3.6 /
+ * 4.6 / 17 kW single- and three-phase units), not arbitrary design steps. The
+ * sizes above 30 kW are equally real three-phase products and are included so
+ * markets whose connection or PV rules permit more than 30 kW AC (for example
+ * a 43.5 kW ceiling) can actually use their allowance. The engine never picks
+ * an inverter above the AC ceiling, so larger entries are inert elsewhere.
+ */
+const EU_INVERTER_SIZES_KW = [
+  1.5, 2, 2.5, 3, 3.6, 4, 4.6, 5, 6, 8, 10, 12, 15, 17, 20, 25, 30, 33, 36, 40, 50, 60,
+];
 const EU_MAIN_FUSE_OPTIONS_AMP = [16, 20, 25, 32, 35, 40, 50, 63];
 
 const baseEuMarket = {
