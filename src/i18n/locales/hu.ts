@@ -18,8 +18,7 @@ export const hu = {
     point3Title: "Kiszámítja, mennyit fizethet érte a kívánt megtérülési idő alapján",
     point3Body: "Ön választja a kívánt megtérülési időt. A Mr. Solar Doc kiszámítja a szükséges befektetési szintet.",
     point4Title: "Jelentés és döntési alap",
-    point4Body: "Lásd a termelést, a gazdaságot és a különböző megtérülési időket egy jelentésben.",
-    disclaimer: "A számítás tájékoztató jellegű, nem árajánlat. A tényleges eredmény eltérhet a kivitelezéstől, az árampáraktól és a piaci helyzettől függően.",
+    point4Body: "Lásd a termelést, a gazdaságot és a különböző megtérülési időket egy jelentésben."
     cta: "Számítás indítása",
   },
   common: {
@@ -99,8 +98,7 @@ export const hu = {
     },
     fetching: "Napenergia-adatok lekérése a PVGIS-ből…",
     result: "Becsült napenergia-hozam ezen a helyszínen",
-    unit: "kWh/kWp/év",
-    disclaimer: "A becsült napelemes termelés a helyszín, a tájolás és a tető dőlésszöge alapján készül. A tényleges termelést befolyásolhatja az árnyékolás, az időjárás, a hőmérséklet és a rendszerveszteség.",
+    unit: "kWh/kWp/év"
     error: "Nem sikerült napenergia-adatot lekérnünk ehhez a helyszínhez. Nem becsülünk értékeket.",
     errorOverSea:
       "Úgy tűnik, ez a helyszín víz felett van. Helyezze a jelölőt a szárazföldön lévő épületre, és próbálja újra.",
@@ -202,8 +200,7 @@ export const hu = {
     gridAssumption: "A számítás 400 V-os háromfázisú csatlakozást feltételez.",
     gridAssumptionInfo: "A fő biztosíték elméleti teljesítménye 400 V-os háromfázisú csatlakozásból számítódik. Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
     gridCheckHint: "Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
-    disclaimerTitle: "Fontos tudnivaló",
-    disclaimer: "A számítás tájékoztató jellegű, és nem helyettesíti a szakértői felmérést. Telepítés előtt mindig ellenőrizze a feszültséget, a csatlakozási kapacitást, az engedélyezett teljesítményt és egyéb helyi hálózati előírásokat szakképzett villanyszerelővel, illetve szükség esetén az áramszolgáltatóval.\n\nA Mr. Solar Doc nem vállal felelősséget kizárólag az alkalmazás számításai alapján hozott telepítési vagy egyéb döntésekért.",
+    disclaimerTitle: "Fontos tudnivaló"
     grid: {
       advanced: "Speciális beállítások",
       section: "Hálózati beállítások",
@@ -700,9 +697,7 @@ export const hu = {
       calculated: "Az alkalmazás számította",
       assumed: "Feltételezés (alapérték)",
       external: "Külső adatforrás",
-    },
-    disclaimer:
-      "Ez a jelentés a számítás pillanatnyi állapota, és a fent felsorolt feltételezéseken alapul. Nem árajánlat.",
+    }
     generated: "Létrehozva",
     faqTitle: 'Gyakran ismételt kérdések',
     faqItems: [

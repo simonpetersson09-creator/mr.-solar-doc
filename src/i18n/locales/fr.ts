@@ -18,8 +18,7 @@ export const fr = {
     "point3Title": "Calcule ce qu'elle peut coûter selon le délai de remboursement souhaité",
     "point3Body": "Vous choisissez le délai de remboursement souhaité. Mr. Solar Doc calcule le niveau d'investissement nécessaire.",
     "point4Title": "Rapport et base de décision",
-    "point4Body": "Production, économie et différents délais de remboursement réunis dans un rapport.",
-    "disclaimer": "Le calcul est indicatif et ne constitue pas un devis. Le résultat réel peut varier selon l'installation, les prix de l'électricité et les conditions du marché.",
+    "point4Body": "Production, économie et différents délais de remboursement réunis dans un rapport."
     "cta": "Démarrer le calcul",
   },
   "common": {
@@ -84,8 +83,7 @@ export const fr = {
     },
     "fetching": "Récupération des données de production solaire de PVGIS…",
     "result": "Production solaire estimée à cet emplacement",
-    "unit": "kWh/kWc/an",
-    "disclaimer": "La production solaire calculée repose sur l'emplacement, l'orientation et l'inclinaison du toit. La production réelle peut être affectée par l'ombrage, la météo, la température et les pertes du système.",
+    "unit": "kWh/kWc/an"
     "error": "Nous n'avons pas pu récupérer les données de production solaire pour cet emplacement pour le moment. Aucune valeur n'est estimée.",
     "errorOverSea": "Cet emplacement semble se situer sur l'eau. Déplacez le repère sur le bâtiment à terre et réessayez.",
     "errorOutsideCoverage": "Nous n'avons pas de données solaires pour cet emplacement. Essayez une adresse à proximité.",
@@ -182,8 +180,7 @@ export const fr = {
     "gridAssumption": "Le calcul suppose un raccordement triphasé 400 V.",
     "gridAssumptionInfo": "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute.",
     gridCheckHint: "Vérifiez votre raccordement réel en cas de doute.",
-    "disclaimerTitle": "Bon à savoir",
-    "disclaimer": "Le calcul est indicatif et ne remplace pas une évaluation technique. Vérifiez toujours la tension, la capacité de raccordement, la puissance autorisée et les autres exigences locales du réseau auprès d'un électricien qualifié et, si nécessaire, de votre gestionnaire de réseau avant l'installation.\n\nMr Solar Doc n'est pas responsable des installations ou des décisions prises uniquement sur la base des calculs de l'application.",
+    "disclaimerTitle": "Bon à savoir"
     "grid": {
       "advanced": "Réglages avancés",
       "section": "Réglages du réseau",
@@ -608,8 +605,7 @@ export const fr = {
       "calculated": "Calculé",
       "assumed": "Hypothèse standard",
       "external": "Source de données externe"
-    },
-    "disclaimer": "Ce rapport est un aperçu du calcul et est basé sur les hypothèses énumérées ci-dessus. Ce n'est pas un devis.",
+    }
     "generated": "Généré",
     "faqTitle": "Questions fréquentes",
     "faqItems": [

@@ -18,8 +18,7 @@ export const es = {
     point3Title: "Calcula cuánto puede costar según el período de amortización deseado",
     point3Body: "Tú eliges el período de amortización deseado. Mr. Solar Doc calcula el nivel de inversión necesario.",
     point4Title: "Informe y base para decidir",
-    point4Body: "Producción, economía y distintos períodos de amortización reunidos en un informe.",
-    disclaimer: "El cálculo es orientativo y no es un presupuesto. El resultado real puede variar según la instalación, los precios de la electricidad y el mercado.",
+    point4Body: "Producción, economía y distintos períodos de amortización reunidos en un informe."
     cta: "Iniciar el cálculo",
   },
   common: {
@@ -99,8 +98,7 @@ export const es = {
     },
     fetching: "Obteniendo datos solares de PVGIS…",
     result: "Producción solar estimada en esta ubicación",
-    unit: "kWh/kWp/año",
-    disclaimer: "La producción solar estimada se basa en la ubicación, la orientación y la inclinación del tejado. La producción real puede verse afectada por sombras, meteorología, temperatura y pérdidas del sistema.",
+    unit: "kWh/kWp/año"
     error: "No hemos podido obtener datos solares para esta ubicación. No se estima ningún valor.",
     errorOverSea:
       "Esta ubicación parece estar sobre el agua. Mueve el marcador hasta el edificio en tierra e inténtalo de nuevo.",
@@ -202,8 +200,7 @@ export const es = {
     gridAssumption: "El cálculo asume una conexión trifásica de 400 V.",
     gridAssumptionInfo: "La potencia teórica del interruptor general se calcula a partir de una conexión trifásica de 400 V. Comprueba tu conexión real a la red si tienes dudas.",
     gridCheckHint: "Comprueba tu conexión real a la red si tienes dudas.",
-    disclaimerTitle: "Importante saber",
-    disclaimer: "El cálculo es orientativo y no puede sustituir una evaluación técnica. Verifica siempre la tensión, la capacidad de conexión, la potencia permitida y otros requisitos locales de la red con un electricista cualificado y, si es necesario, con tu distribuidora antes de la instalación.\n\nMr Solar Doc no se responsabiliza de instalaciones o decisiones tomadas únicamente en base a los cálculos de la app.",
+    disclaimerTitle: "Importante saber"
     grid: {
       advanced: "Ajustes avanzados",
       section: "Ajustes de red",
@@ -702,9 +699,7 @@ export const es = {
       calculated: "Calculado por la app",
       assumed: "Supuesto (valor predeterminado)",
       external: "Fuente de datos externa",
-    },
-    disclaimer:
-      "Este informe es una instantánea del cálculo y se basa en los supuestos indicados arriba. No es un presupuesto.",
+    }
     generated: "Generado",
     faqTitle: 'Preguntas frecuentes',
     faqItems: [

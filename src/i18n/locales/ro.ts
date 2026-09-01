@@ -18,8 +18,7 @@ export const ro = {
     "point3Title": "Calculează cât poate costa după perioada de retur dorită",
     "point3Body": "Alegi perioada de retur dorită. Mr. Solar Doc calculează nivelul de investiții necesar.",
     "point4Title": "Raport și bază de decizie",
-    "point4Body": "Vezi producția, economia și diferite perioade de retur într-un raport.",
-    "disclaimer": "Calculul este orientativ și nu este o ofertă. Rezultatul real poate diferi în funcție de instalare, prețurile la energie și piață.",
+    "point4Body": "Vezi producția, economia și diferite perioade de retur într-un raport."
     "cta": "Începe calculul",
   },
   "common": {
@@ -99,8 +98,7 @@ export const ro = {
     },
     "fetching": "Se preiau datele solare de la PVGIS…",
     "result": "Producție solară estimată la această locație",
-    "unit": "kWh/kWp/an",
-    "disclaimer": "Producția solară estimată se bazează pe locație, orientare și înclinarea acoperișului. Producția reală poate fi afectată de umbrire, vreme, temperatură și pierderi ale sistemului.",
+    "unit": "kWh/kWp/an"
     "error": "Nu am putut prelua date solare pentru această locație. Nu se estimează nicio valoare.",
     "errorOverSea": "Această locație pare a fi deasupra apei. Mută marcatorul pe clădirea de pe uscat și încearcă din nou.",
     "errorOutsideCoverage": "Nu avem date solare pentru această locație. Încearcă o adresă din apropiere.",
@@ -192,8 +190,7 @@ export const ro = {
     "gridAssumption": "Calculul presupune o conexiune trifazată de 400 V.",
     "gridAssumptionInfo": "Puterea teoretică a siguranței principale este calculată pentru o conexiune trifazată de 400 V. Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
     gridCheckHint: "Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
-    "disclaimerTitle": "Important de știut",
-    "disclaimer": "Calculul este orientativ și nu poate înlocui o evaluare tehnică. Verifică întotdeauna tensiunea, capacitatea conexiunii, puterea admisă și alte cerințe locale de rețea împreună cu un electrician calificat și, dacă este necesar, cu operatorul de rețea, înainte de instalare.\n\nMr Solar Doc nu este responsabil pentru instalații sau decizii luate exclusiv pe baza calculelor aplicației.",
+    "disclaimerTitle": "Important de știut"
     "grid": {
       "advanced": "Setări avansate",
       "section": "Setări rețea",
@@ -648,8 +645,7 @@ export const ro = {
       "calculated": "Calculat de aplicație",
       "assumed": "Presupunere (valoare implicită)",
       "external": "Sursă externă de date"
-    },
-    "disclaimer": "Acest raport este o fotografie a calculului și se bazează pe presupunerile enumerate mai sus. Nu este o ofertă.",
+    }
     "generated": "Generat",
     "faqTitle": "Întrebări frecvente",
     "faqItems": [

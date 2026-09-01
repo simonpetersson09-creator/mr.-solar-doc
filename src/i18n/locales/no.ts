@@ -18,8 +18,7 @@ export const no = {
     "point3Title": "Beregner hva det kan koste etter ønsket tilbakebetalingstid",
     "point3Body": "Du velger ønsket tilbakebetalingstid. Mr. Solar Doc beregner nødvendig investeringsnivå.",
     "point4Title": "Rapport og beslutningsgrunnlag",
-    "point4Body": "Se produksjon, økonomi og ulike tilbakebetalingstider i en rapport.",
-    "disclaimer": "Beregningen er veiledende og er ikke et tilbud. Faktisk resultat kan avvike avhengig av installasjon, strømpriser og markedsforhold.",
+    "point4Body": "Se produksjon, økonomi og ulike tilbakebetalingstider i en rapport."
     "cta": "Start beregningen",
   },
   "common": {
@@ -99,8 +98,7 @@ export const no = {
     },
     "fetching": "Henter soldata fra PVGIS…",
     "result": "Estimert solproduksjon på dette stedet",
-    "unit": "kWh/kWp/år",
-    "disclaimer": "Estimert solproduksjon er basert på plassering, retning og takvinkel. Faktisk produksjon kan påvirkes av skygge, vær, temperatur og anleggstap.",
+    "unit": "kWh/kWp/år"
     "error": "Vi kunne ikke hente soldata for dette stedet. Ingen verdier blir anslått.",
     "errorOverSea": "Dette stedet ser ut til å ligge over vann. Flytt markøren til bygningen på land og prøv igjen.",
     "errorOutsideCoverage": "Vi har ingen soldata for dette stedet. Prøv en adresse i nærheten.",
@@ -192,8 +190,7 @@ export const no = {
     "gridAssumption": "Beregningen forutsetter en 400 V trefaset tilkobling.",
     "gridAssumptionInfo": "Den teoretiske effekten fra hovedsikringen beregnes ut fra en 400 V trefaset tilkobling. Sjekk din faktiske nettilkobling hvis du er usikker.",
     gridCheckHint: "Sjekk din faktiske nettilkobling hvis du er usikker.",
-    "disclaimerTitle": "Viktig å vite",
-    "disclaimer": "Beregningen er veiledende og kan ikke erstatte en teknisk vurdering. Sjekk alltid spenning, tilkoblingskapasitet, tillatt effekt og andre lokale nettkrav med en kvalifisert elektriker og om nødvendig nettselskapet ditt før installasjon.\n\nMr Solar Doc er ikke ansvarlig for installasjoner eller beslutninger tatt utelukkende på grunnlag av appens beregninger.",
+    "disclaimerTitle": "Viktig å vite"
     "grid": {
       "advanced": "Avanserte innstillinger",
       "section": "Nettinnstillinger",
@@ -648,8 +645,7 @@ export const no = {
       "calculated": "Beregnet",
       "assumed": "Standardantakelse",
       "external": "Ekstern datakilde"
-    },
-    "disclaimer": "Denne rapporten er et øyeblikksbilde av beregningen og er basert på forutsetningene listet over. Det er ikke et tilbud.",
+    }
     "generated": "Generert",
     "faqTitle": "Ofte stilte spørsmål",
     "faqItems": [

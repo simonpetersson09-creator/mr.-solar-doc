@@ -18,8 +18,7 @@ export const tr = {
     "point3Title": "Ne kadar mal olabileceğini hesaplar istenen geri ödeme süresine göre",
     "point3Body": "İstediğiniz geri ödeme süresini seçersiniz. Mr. Solar Doc gerekli yatırım seviyesini hesaplar.",
     "point4Title": "Rapor ve karar temeli",
-    "point4Body": "Üretimi, ekonomiyi ve farklı geri ödeme sürelerini bir raporda görün.",
-    "disclaimer": "Hesaplama yol göstericidir ve teklif değildir. Gerçek sonuç kurulum, elektrik fiyatları ve piyasa koşullarına göre değişebilir.",
+    "point4Body": "Üretimi, ekonomiyi ve farklı geri ödeme sürelerini bir raporda görün."
     "cta": "Hesaplamayı başlat",
   },
   "common": {
@@ -99,8 +98,7 @@ export const tr = {
     },
     "fetching": "PVGIS'ten güneş verileri alınıyor…",
     "result": "Bu konumdaki tahmini güneş enerjisi verimi",
-    "unit": "kWh/kWp/yıl",
-    "disclaimer": "Tahmini güneş enerjisi üretimi konuma, yöne ve çatı eğimine dayanır. Gerçek üretim gölgelenme, hava koşulları, sıcaklık ve sistem kayıplarından etkilenebilir.",
+    "unit": "kWh/kWp/yıl"
     "error": "Bu konum için güneş verileri alınamadı. Hiçbir değer tahmin edilmemiştir.",
     "errorOverSea": "Bu konum su üzerinde görünüyor. İşaretçiyi karadaki binaya taşıyıp tekrar deneyin.",
     "errorOutsideCoverage": "Bu konum için güneş verimiz yok. Yakındaki bir adres deneyin.",
@@ -192,8 +190,7 @@ export const tr = {
     "gridAssumption": "Hesaplama, 400 V üç fazlı bir bağlantı varsayar.",
     "gridAssumptionInfo": "Ana sigortanın teorik gücü, 400 V üç fazlı bir bağlantıdan hesaplanır. Emin değilseniz gerçek şebeke bağlantınızı kontrol edin.",
     gridCheckHint: "Emin değilseniz gerçek şebeke bağlantınızı kontrol edin.",
-    "disclaimerTitle": "Bilinmesi gerekenler",
-    "disclaimer": "Bu hesaplama bilgilendirme amaçlıdır ve teknik bir değerlendirmenin yerini tutamaz. Kurulumdan önce gerilim, bağlantı kapasitesi, izin verilen güç ve diğer yerel şebeke gereksinimlerini mutlaka kalifiye bir elektrikçi ile ve gerekirse şebeke operatörünüzle doğrulayın.\n\nMr Solar Doc, yalnızca uygulamanın hesaplamalarına dayanılarak yapılan kurulumlardan veya alınan kararlardan sorumlu değildir.",
+    "disclaimerTitle": "Bilinmesi gerekenler"
     "grid": {
       "advanced": "Gelişmiş ayarlar",
       "section": "Şebeke ayarları",
@@ -648,8 +645,7 @@ export const tr = {
       "calculated": "Uygulama tarafından hesaplandı",
       "assumed": "Varsayım (varsayılan değer)",
       "external": "Harici veri kaynağı"
-    },
-    "disclaimer": "Bu rapor, hesaplamanın bir anlık görüntüsüdür ve yukarıda listelenen varsayımlara dayanır. Bir teklif değildir.",
+    }
     "generated": "Oluşturuldu",
     "faqTitle": "Sıkça sorulan sorular",
     "faqItems": [

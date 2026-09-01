@@ -18,8 +18,7 @@ export const lv = {
     "point3Title": "Aprēķina, cik tas drīkst maksāt pēc vēlamā atmaksāšanās laika",
     "point3Body": "Jūs izvēlaties vēlamo atmaksāšanās laiku. Mr. Solar Doc aprēķina vajadzīgo ieguldījumu līmeni.",
     "point4Title": "Ziņojums un lēmumu pamats",
-    "point4Body": "Skatiet ražošanu, ekonomiku un dažādus atmaksāšanās laikus atskaitē.",
-    "disclaimer": "Aprēķins ir orientējošs un nav piedāvājums. Faktiskais rezultāts var atšķirties atkarībā no uzstādīšanas, elektrības cenām un tirgus apstākļiem.",
+    "point4Body": "Skatiet ražošanu, ekonomiku un dažādus atmaksāšanās laikus atskaitē."
     "cta": "Sākt aprēķinu",
   },
   "common": {
@@ -84,8 +83,7 @@ export const lv = {
     },
     "fetching": "Iegūst saules ražošanas datus no PVGIS…",
     "result": "Aprēķinātā saules enerģijas ražošana objektā",
-    "unit": "kWh/kWp/gadā",
-    "disclaimer": "Aprēķinātā saules enerģijas ražošana balstās uz atrašanās vietu, orientāciju un jumta slīpumu. Faktisko ražošanu var ietekmēt, piemēram, ēnojums, laikapstākļi, temperatūra un sistēmas zudumi.",
+    "unit": "kWh/kWp/gadā"
     "error": "Pašlaik nevarējām iegūt saules enerģijas ražošanas datus šai vietai. Vērtības netiek minētas.",
     "errorOverSea": "Šķiet, ka atrašanās vieta ir virs ūdens. Pārvietojiet marķieri uz ēku uz sauszemes un mēģiniet vēlreiz.",
     "errorOutsideCoverage": "Šai vietai nav saules datu. Izmēģiniet tuvumā esošu adresi.",
@@ -177,8 +175,7 @@ export const lv = {
     "gridAssumption": "Aprēķins balstās uz 400 V trīsfāžu pieslēgumu.",
     "gridAssumptionInfo": "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     gridCheckHint: "Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
-    "disclaimerTitle": "Svarīgi zināt",
-    "disclaimer": "Aprēķins ir orientējošs un neaizstāj tehnisko novērtējumu. Pirms uzstādīšanas vienmēr pārbaudiet spriegumu, pieslēguma jaudu, atļauto jaudu un citas vietējās tīkla prasības pie kvalificēta elektriķa un nepieciešamības gadījumā pie sava tīkla operatora.\n\nMr Solar Doc nav atbildīgs par instalācijām vai lēmumiem, kas pieņemti tikai, pamatojoties uz lietotnes aprēķiniem.",
+    "disclaimerTitle": "Svarīgi zināt"
     "grid": {
       "advanced": "Papildu iestatījumi",
       "section": "Tīkla iestatījumi",
@@ -603,8 +600,7 @@ export const lv = {
       "calculated": "Aprēķināts",
       "assumed": "Standarta pieņēmums",
       "external": "Ārējs datu avots"
-    },
-    "disclaimer": "Šī atskaite ir aprēķina momentuzņēmums un balstās uz iepriekš minētajiem pieņēmumiem. Tas nav piedāvājums.",
+    }
     "generated": "Ģenerēts",
     "faqTitle": "Biežāk uzdotie jautājumi",
     "faqItems": [

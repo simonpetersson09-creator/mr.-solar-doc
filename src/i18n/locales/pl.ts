@@ -18,8 +18,7 @@ export const pl = {
     "point3Title": "Oblicza, ile może kosztować według pożądanego okresu zwrotu",
     "point3Body": "Wybierasz pożądany okres zwrotu. Mr. Solar Doc oblicza wymagany poziom inwestycji.",
     "point4Title": "Raport i podstawa decyzji",
-    "point4Body": "Zobacz produkcję, ekonomię i różne okresy zwrotu w raporcie.",
-    "disclaimer": "Obliczenie ma charakter orientacyjny i nie jest ofertą. Rzeczywisty wynik może się różnić w zależności od instalacji, cen energii i warunków rynkowych.",
+    "point4Body": "Zobacz produkcję, ekonomię i różne okresy zwrotu w raporcie."
     "cta": "Zacznij obliczenia",
   },
   "common": {
@@ -84,8 +83,7 @@ export const pl = {
     },
     "fetching": "Pobieranie danych o produkcji energii słonecznej z PVGIS…",
     "result": "Szacowana produkcja energii słonecznej w tej lokalizacji",
-    "unit": "kWh/kWp/rok",
-    "disclaimer": "Szacowana produkcja energii słonecznej opiera się na lokalizacji, orientacji i nachyleniu dachu. Na rzeczywistą produkcję mogą wpływać m.in. zacienienie, pogoda, temperatura i straty systemowe.",
+    "unit": "kWh/kWp/rok"
     "error": "Nie udało nam się teraz pobrać danych o produkcji energii słonecznej dla tej lokalizacji. Nie zgadujemy żadnych wartości.",
     "errorOverSea": "Lokalizacja wydaje się znajdować na wodzie. Przesuń znacznik na budynek na lądzie i spróbuj ponownie.",
     "errorOutsideCoverage": "Nie mamy danych słonecznych dla tej lokalizacji. Spróbuj pobliskiego adresu.",
@@ -177,8 +175,7 @@ export const pl = {
     "gridAssumption": "Obliczenia zakładają przyłącze trójfazowe 400 V.",
     "gridAssumptionInfo": "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
     gridCheckHint: "W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
-    "disclaimerTitle": "Ważne informacje",
-    "disclaimer": "Obliczenia mają charakter orientacyjny i nie zastępują oceny technicznej. Przed instalacją zawsze zweryfikuj napięcie, moc przyłączeniową, dopuszczalną moc oraz inne lokalne wymagania sieciowe z wykwalifikowanym elektrykiem, a w razie potrzeby z operatorem sieci.\n\nFirma Mr Solar Doc nie ponosi odpowiedzialności za instalacje ani decyzje podjęte wyłącznie na podstawie obliczeń aplikacji.",
+    "disclaimerTitle": "Ważne informacje"
     "grid": {
       "advanced": "Ustawienia zaawansowane",
       "section": "Ustawienia sieci",
@@ -603,8 +600,7 @@ export const pl = {
       "calculated": "Obliczone",
       "assumed": "Standardowe założenie",
       "external": "Zewnętrzne źródło danych"
-    },
-    "disclaimer": "Raport jest migawką kalkulacji i opiera się na powyższych założeniach. Nie jest to oferta.",
+    }
     "generated": "Wygenerowano",
     "faqTitle": "Często zadawane pytania",
     "faqItems": [

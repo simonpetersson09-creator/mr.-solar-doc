@@ -18,8 +18,7 @@ export const hr = {
     point3Title: "Računa koliko smije koštati prema željenom razdoblju povrata",
     point3Body: "Birajte željeno razdoblje povrata. Mr. Solar Doc računa potrebnu razinu investicije.",
     point4Title: "Izvještaj i podloga za odluku",
-    point4Body: "Vidite proizvodnju, ekonomiju i različita razdoblja povrata u izvješću.",
-    disclaimer: "Izračun je okviran i nije ponuda. Stvarni rezultat može se razlikovati ovisno o izvedbi, cijenama struje i tržišnim uvjetima.",
+    point4Body: "Vidite proizvodnju, ekonomiju i različita razdoblja povrata u izvješću."
     cta: "Pokreni izračun",
   },
   common: {
@@ -99,8 +98,7 @@ export const hr = {
     },
     fetching: "Dohvaćanje podataka o suncu s PVGIS-a…",
     result: "Procijenjeni solarni prinos na ovoj lokaciji",
-    unit: "kWh/kWp/god",
-    disclaimer: "Procijenjena solarna proizvodnja temelji se na lokaciji, orijentaciji i nagibu krova. Na stvarnu proizvodnju mogu utjecati zasjenjenje, vrijeme, temperatura i gubici u sustavu.",
+    unit: "kWh/kWp/god"
     error: "Nismo uspjeli dohvatiti solarne podatke za ovu lokaciju. Ne procjenjujemo vrijednosti nagađanjem.",
     errorOverSea:
       "Čini se da se ova lokacija nalazi iznad vode. Pomaknite oznaku na zgradu na kopnu i pokušajte ponovno.",
@@ -202,8 +200,7 @@ export const hr = {
     gridAssumption: "Izračun pretpostavlja trofazni priključak od 400 V.",
     gridAssumptionInfo: "Teoretska snaga glavnog osigurača izračunava se iz trofaznog priključka od 400 V. Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
     gridCheckHint: "Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
-    disclaimerTitle: "Važno je znati",
-    disclaimer: "Izračun je informativan i ne može zamijeniti tehničku procjenu. Prije instalacije uvijek provjerite napon, kapacitet priključka, dopuštenu snagu i druge lokalne mrežne zahtjeve s kvalificiranim električarom i, ako je potrebno, operatorom mreže.\n\nMr Solar Doc nije odgovoran za instalacije ili odluke donesene isključivo na temelju izračuna aplikacije.",
+    disclaimerTitle: "Važno je znati"
     grid: {
       advanced: "Napredne postavke",
       section: "Postavke mreže",
@@ -700,9 +697,7 @@ export const hr = {
       calculated: "Izračunala aplikacija",
       assumed: "Pretpostavka (zadana vrijednost)",
       external: "Vanjski izvor podataka",
-    },
-    disclaimer:
-      "Ovaj izvještaj predstavlja trenutno stanje izračuna i temelji se na gore navedenim pretpostavkama. Nije ponuda.",
+    }
     generated: "Generirano",
     faqTitle: 'Često postavljana pitanja',
     faqItems: [

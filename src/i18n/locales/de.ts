@@ -18,8 +18,7 @@ export const de = {
     "point3Title": "Berechnet, was sie kosten darf nach gewünschter Amortisationszeit",
     "point3Body": "Sie wählen die gewünschte Amortisationszeit. Mr. Solar Doc berechnet die nötige Investitionshöhe.",
     "point4Title": "Bericht und Entscheidungsgrundlage",
-    "point4Body": "Produktion, Wirtschaftlichkeit und verschiedene Amortisationszeiten in einem Bericht.",
-    "disclaimer": "Die Berechnung ist eine Orientierung und kein Angebot. Das tatsächliche Ergebnis kann je nach Installation, Strompreisen und Marktbedingungen abweichen.",
+    "point4Body": "Produktion, Wirtschaftlichkeit und verschiedene Amortisationszeiten in einem Bericht."
     "cta": "Berechnung starten",
   },
   "common": {
@@ -84,8 +83,7 @@ export const de = {
     },
     "fetching": "Ruft Solarertragsdaten von PVGIS ab…",
     "result": "Berechneter Solarertrag am Standort",
-    "unit": "kWh/kWp/Jahr",
-    "disclaimer": "Die berechnete Solarproduktion basiert auf Standort, Ausrichtung und Dachneigung. Die tatsächliche Produktion kann u. a. durch Verschattung, Wetter, Temperatur und Systemverluste beeinflusst werden.",
+    "unit": "kWh/kWp/Jahr"
     "error": "Wir konnten die Solarertragsdaten für diesen Standort derzeit nicht abrufen. Es werden keine Werte geschätzt.",
     "errorOverSea": "Der Standort liegt offenbar über Wasser. Verschieben Sie die Markierung auf das Gebäude an Land und versuchen Sie es erneut.",
     "errorOutsideCoverage": "Für diesen Standort liegen keine Solardaten vor. Versuchen Sie eine Adresse in der Nähe.",
@@ -182,8 +180,7 @@ export const de = {
     "gridAssumption": "Die Berechnung geht von 400 V Dreiphasenanschluss aus.",
     "gridAssumptionInfo": "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
     gridCheckHint: "Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
-    "disclaimerTitle": "Wichtig zu wissen",
-    "disclaimer": "Die Berechnung ist richtungsweisend und ersetzt keine technische Bewertung. Prüfen Sie vor der Installation immer Spannung, Anschlussleistung, zulässige Leistung und weitere lokale Netzanforderungen mit einem qualifizierten Elektroinstallateur und, falls erforderlich, mit Ihrem Netzbetreiber.\n\nMr Solar Doc übernimmt keine Verantwortung für Installationen oder Entscheidungen, die ausschließlich auf Grundlage der Berechnungen der App getroffen werden.",
+    "disclaimerTitle": "Wichtig zu wissen"
     "grid": {
       "advanced": "Erweiterte Einstellungen",
       "section": "Netzeinstellungen",
@@ -608,8 +605,7 @@ export const de = {
       "calculated": "Berechnet",
       "assumed": "Standardannahme",
       "external": "Externe Datenquelle"
-    },
-    "disclaimer": "Dieser Bericht ist eine Momentaufnahme der Berechnung und basiert auf den oben genannten Annahmen. Es handelt sich nicht um ein Angebot.",
+    }
     "generated": "Erstellt",
     "faqTitle": "Häufig gestellte Fragen",
     "faqItems": [

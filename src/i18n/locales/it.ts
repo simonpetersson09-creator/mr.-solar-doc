@@ -18,8 +18,7 @@ export const it = {
     "point3Title": "Calcola quanto può costare in base al periodo di ammortamento desiderato",
     "point3Body": "Scegli il periodo di ammortamento desiderato. Mr. Solar Doc calcola il livello di investimento necessario.",
     "point4Title": "Report e base decisionale",
-    "point4Body": "Produzione, economia e diversi periodi di ammortamento raccolti in un rapporto.",
-    "disclaimer": "Il calcolo è indicativo e non è un preventivo. Il risultato effettivo può variare in base a installazione, prezzi dell'energia e condizioni di mercato.",
+    "point4Body": "Produzione, economia e diversi periodi di ammortamento raccolti in un rapporto."
     "cta": "Avvia il calcolo",
   },
   "common": {
@@ -84,8 +83,7 @@ export const it = {
     },
     "fetching": "Recupero dati di produzione solare da PVGIS…",
     "result": "Produzione solare stimata per il sito",
-    "unit": "kWh/kWp/anno",
-    "disclaimer": "La produzione solare calcolata si basa su posizione, orientamento e inclinazione del tetto. La produzione effettiva può essere influenzata da ombreggiamento, meteo, temperatura e perdite di sistema.",
+    "unit": "kWh/kWp/anno"
     "error": "Non è stato possibile recuperare i dati di produzione solare per questo sito al momento. Nessun valore viene stimato.",
     "errorOverSea": "La posizione sembra trovarsi sull'acqua. Sposta il segnaposto sull'edificio sulla terraferma e riprova.",
     "errorOutsideCoverage": "Non abbiamo dati solari per questa posizione. Prova un indirizzo vicino.",
@@ -177,8 +175,7 @@ export const it = {
     "gridAssumption": "Il calcolo presuppone un allacciamento trifase a 400 V.",
     "gridAssumptionInfo": "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
     gridCheckHint: "In caso di dubbio verifica il tuo allacciamento reale.",
-    "disclaimerTitle": "Importante da sapere",
-    "disclaimer": "Il calcolo è indicativo e non sostituisce una valutazione tecnica. Verificare sempre tensione, capacità di connessione, potenza consentita e altri requisiti locali della rete con un elettricista qualificato e, se necessario, con il proprio gestore di rete prima dell'installazione.\n\nMr Solar Doc non è responsabile di impianti o decisioni prese esclusivamente sulla base dei calcoli dell'app.",
+    "disclaimerTitle": "Importante da sapere"
     "grid": {
       "advanced": "Impostazioni avanzate",
       "section": "Impostazioni di rete",
@@ -603,8 +600,7 @@ export const it = {
       "calculated": "Calcolato",
       "assumed": "Ipotesi standard",
       "external": "Fonte dati esterna"
-    },
-    "disclaimer": "Questo rapporto è un'istantanea del calcolo e si basa sulle ipotesi sopra indicate. Non è un'offerta.",
+    }
     "generated": "Generato",
     "faqTitle": "Domande frequenti",
     "faqItems": [

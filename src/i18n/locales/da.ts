@@ -18,8 +18,7 @@ export const da = {
     "point3Title": "Udregner hvad det må koste efter ønsket tilbagebetalingstid",
     "point3Body": "Du vælger ønsket tilbagebetalingstid. Mr. Solar Doc beregner det investeringsniveau, der kræves.",
     "point4Title": "Rapport og beslutningsgrundlag",
-    "point4Body": "Se produktion, økonomi og forskellige tilbagebetalingstider samlet i en rapport.",
-    "disclaimer": "Beregningen er vejledende og ikke et tilbud. Det faktiske resultat kan afvige afhængigt af installation, elpriser og markedsforhold.",
+    "point4Body": "Se produktion, økonomi og forskellige tilbagebetalingstider samlet i en rapport."
     "cta": "Start beregningen",
   },
   "common": {
@@ -84,8 +83,7 @@ export const da = {
     },
     "fetching": "Henter solproduktionsdata fra PVGIS…",
     "result": "Beregnet solproduktion på stedet",
-    "unit": "kWh/kWp/år",
-    "disclaimer": "Den beregnede solproduktion er baseret på placering, orientering og taghældning. Den faktiske produktion kan bl.a. påvirkes af skygge, vejr, temperatur og systemtab.",
+    "unit": "kWh/kWp/år"
     "error": "Vi kunne ikke hente solproduktionsdata for placeringen lige nu. Der gættes ingen værdier.",
     "errorOverSea": "Placeringen ser ud til at ligge over vand. Flyt markøren hen på bygningen på land, og prøv igen.",
     "errorOutsideCoverage": "Vi har ingen soldata for denne placering. Prøv en adresse i nærheden.",
@@ -182,8 +180,7 @@ export const da = {
     "gridAssumption": "Beregningen tager udgangspunkt i 400 V trefaset.",
     "gridAssumptionInfo": "Hovedsikringens teoretiske effekt beregnes ud fra en 400 V trefaset tilslutning. Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
     gridCheckHint: "Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
-    "disclaimerTitle": "Vigtigt at vide",
-    "disclaimer": "Beregningen er vejledende og kan ikke erstatte en teknisk vurdering. Kontrollér altid spænding, tilslutningskapacitet, tilladt effekt og øvrige lokale netkrav hos en kvalificeret elinstallatør og, om nødvendigt, dit netselskab før installation.\n\nMr Solar Doc er ikke ansvarlig for installationer eller beslutninger, der træffes udelukkende på baggrund af appens beregninger.",
+    "disclaimerTitle": "Vigtigt at vide"
     "grid": {
       "advanced": "Avancerede indstillinger",
       "section": "Netsindstillinger",
@@ -608,8 +605,7 @@ export const da = {
       "calculated": "Beregnet",
       "assumed": "Standardantagelse",
       "external": "Ekstern datakilde"
-    },
-    "disclaimer": "Rapporten er et øjebliksbillede af beregningen og er baseret på de antagelser, der er angivet ovenfor. Den er ikke et tilbud.",
+    }
     "generated": "Genereret",
     "faqTitle": "Ofte stillede spørgsmål",
     "faqItems": [

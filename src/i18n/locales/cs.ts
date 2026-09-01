@@ -18,8 +18,7 @@ export const cs = {
     "point3Title": "Počítá, kolik může stát podle požadované doby návratnosti",
     "point3Body": "Vyberete požadovanou dobu návratnosti. Mr. Solar Doc spočítá potřebnou úroveň investice.",
     "point4Title": "Zpráva a podklad pro rozhodnutí",
-    "point4Body": "Vidíte produkci, ekonomiku a různé doby návratnosti v přehledné zprávě.",
-    "disclaimer": "Výpočet je orientační a není nabídkou. Skutečný výsledek se může lišit podle instalace, cen elektřiny a tržních podmínek.",
+    "point4Body": "Vidíte produkci, ekonomiku a různé doby návratnosti v přehledné zprávě."
     "cta": "Zahájit výpočet",
   },
   "common": {
@@ -84,8 +83,7 @@ export const cs = {
     },
     "fetching": "Načítám data o solární výrobě z PVGIS…",
     "result": "Odhadovaná solární výroba v daném místě",
-    "unit": "kWh/kWp/rok",
-    "disclaimer": "Vypočítaná solární výroba je založena na poloze, orientaci a sklonu střechy. Skutečnou výrobu může ovlivnit mimo jiné zastínění, počasí, teplota a systémové ztráty.",
+    "unit": "kWh/kWp/rok"
     "error": "V tuto chvíli se nepodařilo načíst data o solární výrobě pro dané místo. Hodnoty nejsou odhadovány.",
     "errorOverSea": "Místo se zřejmě nachází nad vodou. Přesuňte značku na budovu na pevnině a zkuste to znovu.",
     "errorOutsideCoverage": "Pro toto místo nemáme solární data. Zkuste adresu v okolí.",
@@ -182,8 +180,7 @@ export const cs = {
     "gridAssumption": "Výpočet vychází z třífázové přípojky 400 V.",
     "gridAssumptionInfo": "Teoretický výkon hlavního jističe se počítá z třífázové přípojky 400 V. Pokud si nejste jisti, ověřte si skutečnou přípojku.",
     gridCheckHint: "Pokud si nejste jisti, ověřte si skutečnou přípojku.",
-    "disclaimerTitle": "Důležité vědět",
-    "disclaimer": "Výpočet je orientační a nenahrazuje technické posouzení. Před instalací vždy ověřte napětí, přípojný výkon, povolený výkon a další místní požadavky sítě u kvalifikovaného elektrikáře a případně u vašeho provozovatele distribuční sítě.\n\nSpolečnost Mr Solar Doc neodpovídá za instalace ani rozhodnutí učiněná výhradně na základě výpočtů aplikace.",
+    "disclaimerTitle": "Důležité vědět"
     "grid": {
       "advanced": "Pokročilá nastavení",
       "section": "Nastavení sítě",
@@ -608,8 +605,7 @@ export const cs = {
       "calculated": "Vypočteno",
       "assumed": "Standardní předpoklad",
       "external": "Externí zdroj dat"
-    },
-    "disclaimer": "Tato zpráva je snímkem výpočtu a je založena na výše uvedených předpokladech. Nejedná se o nabídku.",
+    }
     "generated": "Vygenerováno",
     "faqTitle": "Často kladené dotazy",
     "faqItems": [

@@ -18,8 +18,7 @@ export const pt = {
     point3Title: "Calcula quanto pode custar conforme o período de retorno pretendido",
     point3Body: "Escolhe o período de retorno pretendido. Mr. Solar Doc calcula o nível de investimento necessário.",
     point4Title: "Relatório e base de decisão",
-    point4Body: "Veja produção, economia e diferentes períodos de retorno num relatório.",
-    disclaimer: "O cálculo é indicativo e não é um orçamento. O resultado real pode diferir consoante a instalação, os preços da eletricidade e o mercado.",
+    point4Body: "Veja produção, economia e diferentes períodos de retorno num relatório."
     cta: "Iniciar o cálculo",
   },
   common: {
@@ -99,8 +98,7 @@ export const pt = {
     },
     fetching: "A obter dados solares do PVGIS…",
     result: "Produção solar estimada nesta localização",
-    unit: "kWh/kWp/ano",
-    disclaimer: "A produção solar estimada baseia-se na localização, orientação e inclinação do telhado. A produção real pode ser afetada por sombreamento, meteorologia, temperatura e perdas do sistema.",
+    unit: "kWh/kWp/ano"
     error: "Não foi possível obter dados solares para esta localização. Nenhum valor é estimado.",
     errorOverSea:
       "Esta localização parece estar sobre água. Mova o marcador para o edifício em terra e tente novamente.",
@@ -197,8 +195,7 @@ export const pt = {
     gridAssumption: "O cálculo assume uma ligação trifásica de 400 V.",
     gridAssumptionInfo: "A potência teórica do disjuntor geral é calculada a partir de uma ligação trifásica de 400 V. Verifique a sua ligação real à rede em caso de dúvida.",
     gridCheckHint: "Verifique a sua ligação real à rede em caso de dúvida.",
-    disclaimerTitle: "Importante saber",
-    disclaimer: "O cálculo é indicativo e não substitui uma avaliação técnica. Verifique sempre a tensão, a capacidade de ligação, a potência permitida e outros requisitos locais da rede junto de um eletricista qualificado e, se necessário, do seu operador de rede antes da instalação.\n\nA Mr Solar Doc não se responsabiliza por instalações ou decisões tomadas apenas com base nos cálculos da app.",
+    disclaimerTitle: "Importante saber"
     grid: {
       advanced: "Definições avançadas",
       section: "Definições de rede",
@@ -697,9 +694,7 @@ export const pt = {
       calculated: "Calculado pela app",
       assumed: "Pressuposto (valor predefinido)",
       external: "Fonte de dados externa",
-    },
-    disclaimer:
-      "Este relatório é uma fotografia do cálculo e baseia-se nos pressupostos indicados acima. Não é um orçamento.",
+    }
     generated: "Gerado",
     faqTitle: 'Perguntas frequentes',
     faqItems: [

@@ -18,8 +18,7 @@ export const en = {
     point3Title: "Works out what it can cost based on your desired payback period",
     point3Body: "You choose your desired payback period. Mr. Solar Doc calculates the investment level needed to reach it.",
     point4Title: "Report and decision basis",
-    point4Body: "See production, economics and different payback periods gathered in a report.",
-    disclaimer: "The calculation is guidance and not a quote. Actual outcome may differ depending on installation, electricity prices and market conditions.",
+    point4Body: "See production, economics and different payback periods gathered in a report."
     cta: "Start the calculation",
   },
   common: {
@@ -99,8 +98,7 @@ error: "Address search failed.",
     },
     fetching: "Fetching solar data from PVGIS…",
     result: "Estimated solar yield at this location",
-    unit: "kWh/kWp/yr",
-    disclaimer: "Estimated solar production is based on location, orientation and roof tilt. Actual production may be affected by shading, weather, temperature and system losses.",
+    unit: "kWh/kWp/yr"
     error: "We couldn't fetch solar data for this location. No values are guessed.",
     errorOverSea:
       "This location appears to be over water. Move the marker onto the building on land and try again.",
@@ -205,8 +203,7 @@ error: "Address search failed.",
     gridAssumption: "The calculation assumes a 400 V three-phase connection.",
 gridAssumptionInfo: "The theoretical power of the main fuse is calculated from a 400 V three-phase connection. Check your actual grid connection if you are unsure.",
 gridCheckHint: "Check your actual grid connection if you are unsure.",
-    disclaimerTitle: "Important to know",
-    disclaimer: "The calculation is indicative and cannot replace a technical assessment. Always verify voltage, connection capacity, permitted power and other local grid requirements with a qualified electrician and, if needed, your grid operator before installation.\n\nMr Solar Doc is not responsible for installations or decisions made solely on the basis of the app's calculations.",
+    disclaimerTitle: "Important to know"
     grid: {
       advanced: "Advanced settings",
       section: "Grid settings",
@@ -710,9 +707,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       calculated: "Calculated",
       assumed: "Standard assumption",
       external: "External data source",
-    },
-    disclaimer:
-      "This report is a snapshot of the calculation and is based on the assumptions listed above. It is not a quote.",
+    }
     generated: "Generated",
     faqTitle: 'Frequently asked questions',
     faqItems: [

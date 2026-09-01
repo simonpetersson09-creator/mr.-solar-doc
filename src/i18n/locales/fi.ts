@@ -18,8 +18,7 @@ export const fi = {
     "point3Title": "Laskee, mihin hintaan se saa maksaa halutun takaisinmaksuajan perusteella",
     "point3Body": "Valitset halutun takaisinmaksuajan. Mr. Solar Doc laskee vaaditun sijoitustason.",
     "point4Title": "Raportti ja päätöspohja",
-    "point4Body": "Katso tuotanto, talous ja eri takaisinmaksuajat koottuna raporttiin.",
-    "disclaimer": "Laskelma on suuntaa antava eikä tarjous. Todellinen lopputulos voi poiketa asennuksesta, sähkön hinnoista ja markkinatilanteesta riippuen.",
+    "point4Body": "Katso tuotanto, talous ja eri takaisinmaksuajat koottuna raporttiin."
     "cta": "Aloita laskenta",
   },
   "common": {
@@ -84,8 +83,7 @@ export const fi = {
     },
     "fetching": "Haetaan aurinkotuotantotietoja PVGIS-palvelusta…",
     "result": "Arvioitu aurinkosähkön tuotto kohteessa",
-    "unit": "kWh/kWp/vuosi",
-    "disclaimer": "Laskettu aurinkotuotanto perustuu sijaintiin, ilmansuuntaan ja katon kaltevuuteen. Todelliseen tuotantoon voivat vaikuttaa muun muassa varjostus, sää, lämpötila ja järjestelmähäviöt.",
+    "unit": "kWh/kWp/vuosi"
     "error": "Emme voineet hakea aurinkotuotantotietoja tästä kohteesta. Arvoja ei arvailla.",
     "errorOverSea": "Sijainti näyttää olevan veden päällä. Siirrä merkki rakennuksen kohdalle maalle ja yritä uudelleen.",
     "errorOutsideCoverage": "Tälle sijainnille ei ole aurinkodataa. Kokeile lähellä olevaa osoitetta.",
@@ -182,8 +180,7 @@ export const fi = {
     "gridAssumption": "Laskenta perustuu 400 V:n kolmivaiheliittymään.",
     "gridAssumptionInfo": "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     gridCheckHint: "Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
-    "disclaimerTitle": "Hyvä tietää",
-    "disclaimer": "Laskelma on suuntaa-antava eikä korvaa teknistä arviointia. Tarkista aina jännite, liittymisteho, sallittu teho ja muut paikalliset verkkovaatimukset pätevältä sähköasentajalta ja tarvittaessa verkkoyhtiöltäsi ennen asennusta.\n\nMr Solar Doc ei vastaa asennuksista tai päätöksistä, jotka tehdään yksinomaan sovelluksen laskelmien perusteella.",
+    "disclaimerTitle": "Hyvä tietää"
     "grid": {
       "advanced": "Lisäasetukset",
       "section": "Verkkoasetukset",
@@ -608,8 +605,7 @@ export const fi = {
       "calculated": "Laskettu",
       "assumed": "Vakio-oletus",
       "external": "Ulkoinen tietolähde"
-    },
-    "disclaimer": "Tämä raportti on otos laskelmasta ja perustuu yllä lueteltuihin oletuksiin. Se ei ole tarjous.",
+    }
     "generated": "Luotu",
     "faqTitle": "Usein kysytyt kysymykset",
     "faqItems": [

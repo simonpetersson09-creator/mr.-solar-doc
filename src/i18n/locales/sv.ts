@@ -18,8 +18,7 @@ export const sv = {
     point3Title: "Räknar fram vad den får kosta efter önskad återbetalningstid",
     point3Body: "Du väljer önskad återbetalningstid. Mr. Solar Doc räknar ut vilken investeringsnivå som krävs för att nå den.",
     point4Title: "Rapport och beslutsunderlag",
-    point4Body: "Se produktion, ekonomi och olika återbetalningstider samlat i en rapport.",
-    disclaimer: "Beräkningen är vägledande och är inte en offert. Faktiskt utfall kan skilja sig beroende på installation, elpriser och marknadsförutsättningar.",
+    point4Body: "Se produktion, ekonomi och olika återbetalningstider samlat i en rapport."
     cta: "Starta beräkningen",
   },
   common: {
@@ -99,8 +98,7 @@ error: "Adressökningen misslyckades.",
     },
     fetching: "Hämtar solproduktionsdata från PVGIS…",
     result: "Beräknad solproduktion på platsen",
-    unit: "kWh/kWp/år",
-    disclaimer: "Beräknad solproduktion baseras på plats, väderstreck och taklutning. Faktisk produktion kan påverkas av bland annat skuggning, väder, temperatur och systemförluster.",
+    unit: "kWh/kWp/år"
     error:
       "Vi kunde inte hämta solproduktionsdata för platsen just nu. Inga värden gissas fram.",
     errorOverSea:
@@ -201,8 +199,7 @@ error: "Adressökningen misslyckades.",
     gridAssumption: "Beräkningen utgår från 400 V trefas.",
 gridAssumptionInfo: "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
 gridCheckHint: "Kontrollera din faktiska nätanslutning om du är osäker.",
-    disclaimerTitle: "Viktigt att veta",
-    disclaimer: "Beräkningen är vägledande och kan inte ersätta en teknisk bedömning. Kontrollera alltid spänning, anslutningskapacitet, tillåten effekt och övriga lokala nätkrav med en kvalificerad elinstallatör och, vid behov, din nätägare innan installation.\n\nMr Solar Doc ansvarar inte för installationer eller beslut som fattas enbart utifrån appens beräkningar.",
+    disclaimerTitle: "Viktigt att veta"
     grid: {
       advanced: "Avancerade inställningar",
       section: "Nätinställningar",
@@ -707,9 +704,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       calculated: "Beräknat",
       assumed: "Standardantagande",
       external: "Extern datakälla",
-    },
-    disclaimer:
-      "Rapporten är en ögonblicksbild av beräkningen och baseras på de antaganden som anges ovan. Den är inte en offert.",
+    }
     generated: "Skapad",
     faqTitle: 'Vanliga frågor',
     faqItems: [

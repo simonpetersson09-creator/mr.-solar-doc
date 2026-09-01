@@ -18,8 +18,7 @@ export const lt = {
     "point3Title": "Skaičiuoja, kiek tai gali kainuoti pagal pageidaujamą atsiperkamumo laiką",
     "point3Body": "Jūs renkatės pageidaujamą atsiperkamumo laiką. Mr. Solar Doc apskaičiuoja reikalingą investicijų lygį.",
     "point4Title": "Ataskaita ir sprendimo pagrindas",
-    "point4Body": "Matykite gamybą, ekonomiką ir skirtingus atsiperkamumo laikus ataskaitoje.",
-    "disclaimer": "Skaičiavimas yra orientacinis ir nėra pasiūlymas. Faktinis rezultatas gali skirtis priklausomai nuo įrengimo, elektros kainų ir rinkos sąlygų.",
+    "point4Body": "Matykite gamybą, ekonomiką ir skirtingus atsiperkamumo laikus ataskaitoje."
     "cta": "Pradėti skaičiavimą",
   },
   "common": {
@@ -84,8 +83,7 @@ export const lt = {
     },
     "fetching": "Gaunami saulės energijos gamybos duomenys iš PVGIS…",
     "result": "Apskaičiuota saulės energijos gamyba vietoje",
-    "unit": "kWh/kWp/metus",
-    "disclaimer": "Apskaičiuota saulės energijos gamyba pagrįsta vieta, kryptimi ir stogo nuolydžiu. Faktinę gamybą gali paveikti šešėliavimas, orai, temperatūra ir sistemos nuostoliai.",
+    "unit": "kWh/kWp/metus"
     "error": "Šiuo metu negalėjome gauti saulės energijos gamybos duomenų šiai vietai. Jokios vertės neatspėjamos.",
     "errorOverSea": "Atrodo, kad vieta yra virš vandens. Perkelkite žymeklį ant pastato sausumoje ir bandykite dar kartą.",
     "errorOutsideCoverage": "Šiai vietai saulės duomenų neturime. Pabandykite netoliese esantį adresą.",
@@ -177,8 +175,7 @@ export const lt = {
     "gridAssumption": "Skaičiavimas remiasi 400 V trifaze jungtimi.",
     "gridAssumptionInfo": "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
     gridCheckHint: "Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
-    "disclaimerTitle": "Svarbu žinoti",
-    "disclaimer": "Skaičiavimas yra orientacinis ir negali pakeisti techninio įvertinimo. Prieš įrengimą visada patikrinkite įtampą, prijungimo galią, leistiną galią ir kitus vietinius tinklo reikalavimus su kvalifikuotu elektriku ir, jei reikia, su savo tinklo operatoriumi.\n\n„Mr Solar Doc“ neatsako už įrenginius ar sprendimus, priimtus tik remiantis programėlės skaičiavimais.",
+    "disclaimerTitle": "Svarbu žinoti"
     "grid": {
       "advanced": "Išplėstiniai nustatymai",
       "section": "Tinklo nustatymai",
@@ -603,8 +600,7 @@ export const lt = {
       "calculated": "Apskaičiuota",
       "assumed": "Standartinė prielaida",
       "external": "Išorinis duomenų šaltinis"
-    },
-    "disclaimer": "Ši ataskaita yra skaičiavimo momentinė nuotrauka ir pagrįsta aukščiau nurodytomis prielaidomis. Tai nėra pasiūlymas.",
+    }
     "generated": "Sukurta",
     "faqTitle": "Dažniausiai užduodami klausimai",
     "faqItems": [

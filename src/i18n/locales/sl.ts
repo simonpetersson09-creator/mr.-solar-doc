@@ -18,8 +18,7 @@ export const sl = {
     "point3Title": "Izračuna, koliko sme stalno glede na želeni čas povračila",
     "point3Body": "Izberite želeni čas povračila. Mr. Solar Doc izračuna potrebno raven naložbe.",
     "point4Title": "Poročilo in podlaga za odločitev",
-    "point4Body": "Glejte proizvodnjo, ekonomijo in različne čase povračila v poročilu.",
-    "disclaimer": "Izračun je informativen in ni ponudba. Dejanski rezultat se lahko razlikuje glede na izvedbo, cene elektrike in razmere na trgu.",
+    "point4Body": "Glejte proizvodnjo, ekonomijo in različne čase povračila v poročilu."
     "cta": "Začni izračun",
   },
   "common": {
@@ -84,8 +83,7 @@ export const sl = {
     },
     "fetching": "Pridobivanje podatkov o sončni proizvodnji iz PVGIS…",
     "result": "Ocenjena sončna proizvodnja na lokaciji",
-    "unit": "kWh/kWp/leto",
-    "disclaimer": "Izračunana sončna proizvodnja temelji na lokaciji, orientaciji in naklonu strehe. Na dejansko proizvodnjo lahko vplivajo senčenje, vreme, temperatura in sistemske izgube.",
+    "unit": "kWh/kWp/leto"
     "error": "Trenutno nismo mogli pridobiti podatkov o sončni proizvodnji za to lokacijo. Vrednosti niso ugibane.",
     "errorOverSea": "Lokacija je videti nad vodo. Premaknite oznako na stavbo na kopnem in poskusite znova.",
     "errorOutsideCoverage": "Za to lokacijo nimamo sončnih podatkov. Poskusite bližnji naslov.",
@@ -177,8 +175,7 @@ export const sl = {
     "gridAssumption": "Izračun predpostavlja trifazni priključek 400 V.",
     "gridAssumptionInfo": "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
     gridCheckHint: "Če niste prepričani, preverite svoj dejanski omrežni priključek.",
-    "disclaimerTitle": "Pomembno je vedeti",
-    "disclaimer": "Izračun je okviren in ne more nadomestiti tehnične ocene. Pred namestitvijo vedno preverite napetost, priključno moč, dovoljeno moč in druge lokalne zahteve omrežja pri usposobljenem električarju ter po potrebi pri vašem operaterju omrežja.\n\nMr Solar Doc ne odgovarja za namestitve ali odločitve, sprejete izključno na podlagi izračunov aplikacije.",
+    "disclaimerTitle": "Pomembno je vedeti"
     "grid": {
       "advanced": "Napredne nastavitve",
       "section": "Nastavitve omrežja",
@@ -603,8 +600,7 @@ export const sl = {
       "calculated": "Izračunano",
       "assumed": "Standardna predpostavka",
       "external": "Zunanji vir podatkov"
-    },
-    "disclaimer": "To poročilo je posnetek izračuna in temelji na zgoraj navedenih predpostavkah. Ni ponudba.",
+    }
     "generated": "Ustvarjeno",
     "faqTitle": "Pogosta vprašanja",
     "faqItems": [

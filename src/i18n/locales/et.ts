@@ -18,8 +18,7 @@ export const et = {
     "point3Title": "Arvutab, mida see maksma võib minna soovitud tasuvusaja põhjal",
     "point3Body": "Te valite soovitud tasuvusaja. Mr. Solar Doc arvutab vajaliku investeeringutaseme.",
     "point4Title": "Aruanne ja otsuse alus",
-    "point4Body": "Vaata tootmist, majandust ja erinevaid tasuvusaegu ühes aruandes.",
-    "disclaimer": "Arvutus on suunav ega ole pakkumine. Tegelik tulemus võib erineda sõltuvalt paigaldusest, elektrihindadest ja turuolukorrast.",
+    "point4Body": "Vaata tootmist, majandust ja erinevaid tasuvusaegu ühes aruandes."
     "cta": "Alusta arvutust",
   },
   "common": {
@@ -84,8 +83,7 @@ export const et = {
     },
     "fetching": "Andmete toomine PVGIS-ist…",
     "result": "Hinnanguline päikeseenergia tootlikkus selles asukohas",
-    "unit": "kWh/kWp/a",
-    "disclaimer": "Arvutatud päikesetoodang põhineb asukohal, suunal ja katuse kaldenurgal. Tegelikku toodangut võivad mõjutada näiteks varjutus, ilm, temperatuur ja süsteemikaod.",
+    "unit": "kWh/kWp/a"
     "error": "Me ei saanud praegu selle asukoha päikeseenergia tootlikkuse andmeid tuua. Väärtusi ei pakuta.",
     "errorOverSea": "Asukoht paistab olevat vee kohal. Liigutage marker maismaal asuvale hoonele ja proovige uuesti.",
     "errorOutsideCoverage": "Selle asukoha kohta puuduvad päikeseandmed. Proovige lähedal asuvat aadressi.",
@@ -182,8 +180,7 @@ export const et = {
     "gridAssumption": "Arvutus eeldab 400 V kolmefaasilist liitumist.",
     "gridAssumptionInfo": "Peakaitsme teoreetiline võimsus arvutatakse 400 V kolmefaasilise liitumise alusel. Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
     gridCheckHint: "Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
-    "disclaimerTitle": "Oluline teada",
-    "disclaimer": "Arvutus on suunav ega asenda tehnilist hinnangut. Enne paigaldust kontrollige alati pinget, liitumisvõimsust, lubatud võimsust ja muid kohalikke võrgunõudeid kvalifitseeritud elektrikuga ning vajadusel oma võrguettevõtjaga.\n\nMr Solar Doc ei vastuta paigaldiste ega otsuste eest, mis on tehtud üksnes rakenduse arvutuste põhjal.",
+    "disclaimerTitle": "Oluline teada"
     "grid": {
       "advanced": "Täpsemad seaded",
       "section": "Võrgu seaded",
@@ -608,8 +605,7 @@ export const et = {
       "calculated": "Arvutatud",
       "assumed": "Standardeeldus",
       "external": "Väline andmeallikas"
-    },
-    "disclaimer": "See aruanne on arvutuse hetkepilt ja põhineb eelnevalt nimetatud eeldustel. See ei ole pakkumine.",
+    }
     "generated": "Loodud",
     "faqTitle": "Korduma kippuvad küsimused",
     "faqItems": [
