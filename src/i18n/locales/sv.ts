@@ -14,12 +14,13 @@ export const sv = {
     point1Title: "Beräknar din solpotential",
     point1Body: "",
     point2Title: "Dimensionerar anläggningen",
-    point2Body: "Din elanvändning, nätanslutning och solproduktion vägs samman för att hitta en lämplig storlek.",
+    point2Body:
+      "Din elanvändning, nätanslutning och solproduktion vägs samman för att hitta en lämplig storlek.",
     point3Title: "Räknar fram vad den får kosta efter önskad återbetalningstid",
-    point3Body: "Du väljer önskad återbetalningstid. Mr. Solar Doc räknar ut vilken investeringsnivå som krävs för att nå den.",
+    point3Body:
+      "Du väljer önskad återbetalningstid. Mr. Solar Doc räknar ut vilken investeringsnivå som krävs för att nå den.",
     point4Title: "Rapport och beslutsunderlag",
     point4Body: "Se produktion, ekonomi och olika återbetalningstider samlat i en rapport.",
-    disclaimer: "Beräkningen är vägledande och är inte en offert. Faktiskt utfall kan skilja sig beroende på installation, elpriser och marknadsförutsättningar.",
     cta: "Starta beräkningen",
   },
   common: {
@@ -52,13 +53,14 @@ export const sv = {
     noResults: "Inga träffar. Prova en mer exakt adress.",
     selected: "Vald plats",
     adjustHint: "Dra markören om positionen inte stämmer.",
-    marketUnsupported: "Mr. Solar Doc stödjer inte det här landet ännu. Välj en adress i ett land som stöds för att gå vidare.",
+    marketUnsupported:
+      "Mr. Solar Doc stödjer inte det här landet ännu. Välj en adress i ett land som stöds för att gå vidare.",
     coordinates: "Koordinater",
     country: "Land",
     region: "Region",
-error: "Adressökningen misslyckades.",
+    error: "Adressökningen misslyckades.",
     info: "Adressen används enbart för att få fram solinstrålningen på din plats.",
-    infoLabel: "Mer information om adressen"
+    infoLabel: "Mer information om adressen",
   },
   premium: {
     title: "Premium",
@@ -100,13 +102,10 @@ error: "Adressökningen misslyckades.",
     fetching: "Hämtar solproduktionsdata från PVGIS…",
     result: "Beräknad solproduktion på platsen",
     unit: "kWh/kWp/år",
-    disclaimer: "Beräknad solproduktion baseras på plats, väderstreck och taklutning. Faktisk produktion kan påverkas av bland annat skuggning, väder, temperatur och systemförluster.",
-    error:
-      "Vi kunde inte hämta solproduktionsdata för platsen just nu. Inga värden gissas fram.",
+    error: "Vi kunde inte hämta solproduktionsdata för platsen just nu. Inga värden gissas fram.",
     errorOverSea:
       "Platsen verkar ligga över vatten. Flytta markören till byggnaden på land och försök igen.",
-    errorOutsideCoverage:
-      "Vi har ingen soldata för den här platsen. Prova en närliggande adress.",
+    errorOutsideCoverage: "Vi har ingen soldata för den här platsen. Prova en närliggande adress.",
     errorSource: "PVGIS: {{message}}",
   },
   consumption: {
@@ -144,7 +143,8 @@ error: "Adressökningen misslyckades.",
     upload: {
       title: "Bifoga förbrukningsdata för 12 månader",
       sectionTitle: "Läs av din elräkning",
-      sectionHint: "Bifoga din elräkning eller förbrukningsdata för de senaste 12 månaderna så fyller vi i värdena åt dig.",
+      sectionHint:
+        "Bifoga din elräkning eller förbrukningsdata för de senaste 12 månaderna så fyller vi i värdena åt dig.",
       description:
         "Ladda upp en elfaktura eller egen förbrukningsdata (PDF, Excel, CSV eller bild som PNG/JPEG) så fyller vi i årsförbrukning och månadsvärden automatiskt.",
       button: "Välj fil",
@@ -186,7 +186,12 @@ error: "Adressökningen misslyckades.",
         title: "Vilken huvudsäkring har du?",
         label: "Huvudsäkring",
         help: "Ampere per fas, står på huvudbrytaren eller elräkningen.",
-      }, service: { title: "Elservicens storlek", label: "Elservicens storlek", help: "Hitta amperetalet på huvudbrytaren eller elcentralen." },
+      },
+      service: {
+        title: "Elservicens storlek",
+        label: "Elservicens storlek",
+        help: "Hitta amperetalet på huvudbrytaren eller elcentralen.",
+      },
       "contracted-kva": {
         title: "Vilken abonnerad effekt har du?",
         label: "Abonnerad effekt",
@@ -199,10 +204,10 @@ error: "Adressökningen misslyckades.",
       },
     },
     gridAssumption: "Beräkningen utgår från 400 V trefas.",
-gridAssumptionInfo: "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
-gridCheckHint: "Kontrollera din faktiska nätanslutning om du är osäker.",
+    gridAssumptionInfo:
+      "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
+    gridCheckHint: "Kontrollera din faktiska nätanslutning om du är osäker.",
     disclaimerTitle: "Viktigt att veta",
-    disclaimer: "Beräkningen är vägledande och kan inte ersätta en teknisk bedömning. Kontrollera alltid spänning, anslutningskapacitet, tillåten effekt och övriga lokala nätkrav med en kvalificerad elinstallatör och, vid behov, din nätägare innan installation.\n\nMr Solar Doc ansvarar inte för installationer eller beslut som fattas enbart utifrån appens beräkningar.",
     grid: {
       advanced: "Avancerade inställningar",
       section: "Nätinställningar",
@@ -213,7 +218,8 @@ gridCheckHint: "Kontrollera din faktiska nätanslutning om du är osäker.",
       serviceType: "Nättyp",
       twoPhase: "2-fas (fas–fas)",
       splitPhase: "Split-phase",
-      unverifiedHint: "Vi har inga verifierade nätvärden för det här landet. Kontrollera dina uppgifter mot din elmätare eller elcentral.",
+      unverifiedHint:
+        "Vi har inga verifierade nätvärden för det här landet. Kontrollera dina uppgifter mot din elmätare eller elcentral.",
       phase1: "1-fas",
       phase3: "3-fas",
       voltage: "Spänning",
@@ -225,9 +231,11 @@ gridCheckHint: "Kontrollera din faktiska nätanslutning om du är osäker.",
     },
     genericTitle: "Vilken elanslutning har du?",
     title: "Vilken huvudsäkring har du?",
-    subtitle: "Huvudsäkringen används för att uppskatta hur stor växelriktare som normalt kan anslutas. Faktisk tillåten effekt bestäms av nätägaren.",
+    subtitle:
+      "Huvudsäkringen används för att uppskatta hur stor växelriktare som normalt kan anslutas. Faktisk tillåten effekt bestäms av nätägaren.",
     label: "Huvudsäkring",
-    noCountryOptions: "Vi har inga verifierade anslutningsalternativ för det här landet ännu. Ange din huvudsäkring i ampere och justera vid behov nätinställningarna nedan.",
+    noCountryOptions:
+      "Vi har inga verifierade anslutningsalternativ för det här landet ännu. Ange din huvudsäkring i ampere och justera vid behov nätinställningarna nedan.",
     unverifiedCountryNotice:
       "Vi har inte verifierat nätstandarden för det här landet. Kontrollera spänning, antal faser och anslutningsstorlek på din elfaktura eller hos din nätägare och bekräfta sedan nedan.",
     confirmGrid: "Jag har kontrollerat nätuppgifterna",
@@ -297,19 +305,22 @@ gridCheckHint: "Kontrollera din faktiska nätanslutning om du är osäker.",
     resetToStandard: "Återställ till schablonvärde",
     userValueBadge: "Angivet av dig",
     priceScenarioTitle: "Hur tror du att elpriset utvecklas?",
-    priceScenarioHint: "Ett antagande om årlig förändring, inte en prognos. Elpriset räknas upp år för år under kalkylperioden.",
+    priceScenarioHint:
+      "Ett antagande om årlig förändring, inte en prognos. Elpriset räknas upp år för år under kalkylperioden.",
     priceScenarioFlat: "Oförändrat",
     priceScenarioCautious: "Försiktig",
     priceScenarioNormal: "Normal",
-priceScenarioHigh: "Hög",
+    priceScenarioHigh: "Hög",
     priceScenarioVeryHigh: "Mycket hög",
     priceScenarioExtreme: "Extrem",
     priceScenarioCustom: "Eget antagande",
     priceScenarioCustomLabel: "Egen förändring (%/år)",
     degradationAssumption: "Teknisk degradering",
     priceScenarioAssumption: "Antagen elprisutveckling",
-    standardValueHint: "Schablonvärden för beräkningen. Ändra till värden från ditt eget elavtal för ett mer individuellt resultat.",
-    "exportValueInfo": "Ange den totala ersättningen per kWh för el du matar ut på nätet, inklusive eventuell nätnytta eller annan exportrelaterad ersättning.",
+    standardValueHint:
+      "Schablonvärden för beräkningen. Ändra till värden från ditt eget elavtal för ett mer individuellt resultat.",
+    exportValueInfo:
+      "Ange den totala ersättningen per kWh för el du matar ut på nätet, inklusive eventuell nätnytta eller annan exportrelaterad ersättning.",
     editable: "Kan ändras",
     editableTooltip: "Ändra antagande",
     fuseLimit: "Teoretisk effektgräns från huvudsäkring",
@@ -364,8 +375,7 @@ priceScenarioHigh: "Hög",
     selfConsumptionValue: "Egenanvänd solel",
     exportValue: "Såld solel",
     totalAnnualBenefit: "Total beräknad årlig nytta",
-    economicsDisclaimer:
-      "Beloppen är kalkylantaganden, inte garanterade framtida priser.",
+    economicsDisclaimer: "Beloppen är kalkylantaganden, inte garanterade framtida priser.",
     paybackTitle: "Välj återbetalningstid",
     paybackSubtitle:
       "Du bestämmer hur snabbt du vill ha investeringen tillbaka. Vi räknar ut vad det motsvarar i installationskostnad.",
@@ -384,27 +394,32 @@ priceScenarioHigh: "Hög",
     priceExplainer:
       "Egenanvänd solel ersätter el som annars hade behövt köpas från elnätet. Såld solel ger istället en ersättning för den el som matas ut på nätet.",
     paybackYears: "{{years}} år",
-    "paybackScenariosTitle": "Investeringsnivå vid olika återbetalningstider",
-    "paybackScenarioSelected": "Ditt val",
-    "paybackScenariosHelp": "Kortare återbetalningstid innebär en lägre möjlig investering. Här ser du hur investeringsnivån förändras om du accepterar en kortare eller längre återbetalningstid.",
+    paybackScenariosTitle: "Investeringsnivå vid olika återbetalningstider",
+    paybackScenarioSelected: "Ditt val",
+    paybackScenariosHelp:
+      "Kortare återbetalningstid innebär en lägre möjlig investering. Här ser du hur investeringsnivån förändras om du accepterar en kortare eller längre återbetalningstid.",
     paybackInfo:
       "Investeringsnivån visar ungefär vilken investering som motsvarar den valda återbetalningstiden utifrån kalkylens beräknade ekonomiska värden under perioden. Beloppet är inte ett uppskattat marknadspris eller en offert.",
     maxInvestment: "Investeringsnivå vid vald återbetalningstid",
     productionCostTitle: "Vad får solelen kosta per kWh?",
     investmentLevelInfoLabel: "Mer information",
-    investmentLevelInfo: "Visar ungefär vilken investeringskostnad som motsvarar den återbetalningstid du valt. Det är inte en uppskattning av vad installationen faktiskt kostar. Faktiskt pris beror på bland annat tak, installation, komponenter och leverantör.",
+    investmentLevelInfo:
+      "Visar ungefär vilken investeringskostnad som motsvarar den återbetalningstid du valt. Det är inte en uppskattning av vad installationen faktiskt kostar. Faktiskt pris beror på bland annat tak, installation, komponenter och leverantör.",
     systemSizeInfoLabel: "Mer information",
-systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledning. Faktisk produktion, egenanvändning, elpris, ersättning, installationskostnad och ekonomiskt utfall kan avvika. Resultatet utgör inte en offert eller garanti.",
+    systemSizeInfo:
+      "Beräkningen är en uppskattning och ska användas som vägledning. Faktisk produktion, egenanvändning, elpris, ersättning, installationskostnad och ekonomiskt utfall kan avvika. Resultatet utgör inte en offert eller garanti.",
     productionCostInfoLabel: "Mer information",
-    productionCostInfo: "Siffran bygger på den maximala investering som är förenlig med din valda återbetalningstid, fördelad på all el som anläggningen beräknas producera under kalkylperioden. Det är alltså inte ett marknadspris för installationen.",
+    productionCostInfo:
+      "Siffran bygger på den maximala investering som är förenlig med din valda återbetalningstid, fördelad på all el som anläggningen beräknas producera under kalkylperioden. Det är alltså inte ett marknadspris för installationen.",
 
-
-    productionCostExplainer: "Vi delar anläggningens kostnad med den beräknade produktionen under hela kalkylperioden.",
+    productionCostExplainer:
+      "Vi delar anläggningens kostnad med den beräknade produktionen under hela kalkylperioden.",
     productionCostLabel: "Får kosta",
     productionCostValueLabel: "Värde för dig",
     productionCostDifference: "Skillnad",
     productionCostBasis: "Baserat på {{investment}} och {{production}} kWh under {{years}} år.",
-    productionCostHigherValue: "Solelen är värd mer per kWh än vad den kostar att producera i den här kalkylen.",
+    productionCostHigherValue:
+      "Solelen är värd mer per kWh än vad den kostar att producera i den här kalkylen.",
     productionCostUnavailable: "Vi kan inte beräkna detta med nuvarande uppgifter.",
     perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "ca {{amount}}",
@@ -412,23 +427,29 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       "För att nå cirka {{years}} års återbetalningstid bör installationen kosta högst omkring {{amount}}.",
     maxInvestmentNote:
       "Beloppet är en beräkning utifrån dina uppgifter och kalkylantaganden – inte en offert eller en uppskattning av marknadspris.",
-    missingSelfConsumedValue: "Elpris saknas. Ange vad du betalar per kWh för att se värdet av egenanvänd solel.",
-    missingExportValue: "Ersättning för såld el saknas. Ange vad du får per exporterad kWh för att beräkna exportintäkten.",
-    missingInstallationCost: "Installationskostnad saknas. Ange din offert eller uppskattade investering.",
+    missingSelfConsumedValue:
+      "Elpris saknas. Ange vad du betalar per kWh för att se värdet av egenanvänd solel.",
+    missingExportValue:
+      "Ersättning för såld el saknas. Ange vad du får per exporterad kWh för att beräkna exportintäkten.",
+    missingInstallationCost:
+      "Installationskostnad saknas. Ange din offert eller uppskattade investering.",
     economicsIncomplete: "Ofullständigt underlag",
     enterValues: "Ange värden",
     missingMarketValues:
       "Vi har inget verifierat standardvärde för det här landet. Ange värdena själv nedan.",
-    economicsRequiresPrice: "Ekonomisk beräkning kräver elpris. Ange dina elpriser för att se besparing, återbetalning och produktionskostnad.",
+    economicsRequiresPrice:
+      "Ekonomisk beräkning kräver elpris. Ange dina elpriser för att se besparing, återbetalning och produktionskostnad.",
     economicsRequiresPriceShort: "Kräver elpris",
     gridUnverifiedTitle: "Nätuppgifter ej verifierade",
-    gridUnverifiedWarning: "Beräkningen bygger på generella nätantaganden för det här landet. Kontrollera spänning, fasantal och anslutningskapacitet lokalt innan installation.",
+    gridUnverifiedWarning:
+      "Beräkningen bygger på generella nätantaganden för det här landet. Kontrollera spänning, fasantal och anslutningskapacitet lokalt innan installation.",
     gridProfileStatusLabel: "Nätprofil",
     gridProfileStatusVerified: "Verifierad",
     gridProfileStatusGeneric: "Generisk (ej verifierad)",
     gridProfileStatusUnsupported: "Manuell (ej verifierad)",
     calcErrorTitle: "Beräkningen kan inte slutföras",
-    calcErrorBody: "Några uppgifter går inte att räkna på. Gå tillbaka och kontrollera förbrukning, nätanslutning och antaganden.",
+    calcErrorBody:
+      "Några uppgifter går inte att räkna på. Gå tillbaka och kontrollera förbrukning, nätanslutning och antaganden.",
     currency: "Valuta",
     economicValue: "Grundläggande ekonomiskt värde",
     perYear: "per år",
@@ -438,7 +459,8 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
     hideCalculation: "Dölj beräkning",
     adjustSplit: "Justera egenanvändning",
     selfConsumptionEstimatedLabel: "Beräknad egenanvändning",
-    selfConsumptionEstimatedHelp: "Uppskattad utifrån din elanvändning och anläggningens beräknade produktion. Du kan justera värdet manuellt.",
+    selfConsumptionEstimatedHelp:
+      "Uppskattad utifrån din elanvändning och anläggningens beräknade produktion. Du kan justera värdet manuellt.",
     selfConsumptionUserAssumption: "Ditt antagande",
     selfConsumptionAssumption:
       "Egenanvändningen är ett antagande baserat på vald andel och kan justeras manuellt.",
@@ -455,15 +477,16 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
     generatingPdf: "Skapar rapport…",
     pdfShared: "Rapporten är klar.",
     pdfError: "Kunde inte skapa rapporten.",
-    limitedByFuse:
-      "Anläggningen begränsas av din huvudsäkring, inte av din elförbrukning.",
+    limitedByFuse: "Anläggningen begränsas av din huvudsäkring, inte av din elförbrukning.",
     dataSource: "Datakälla för solproduktion",
     calculatedAt: "Beräkningsdatum",
     noCalculation: "Ingen beräkning hittades. Börja om från adressen.",
     locked: "Beräkningen är låst. Slutför köpet för att se resultatet.",
-    calculationUnavailable: "Beräkningen kunde inte slutföras. Kontrollera takuppgifterna och försök igen.",
+    calculationUnavailable:
+      "Beräkningen kunde inte slutföras. Kontrollera takuppgifterna och försök igen.",
     gridTooSmallTitle: "Anslutningen är för liten",
-    gridTooSmallBody: "Din nuvarande anslutning ({{maxKw}} kW) är för liten för den minsta systemstorlek som stöds ({{minKw}} kW växelriktare). Öka huvudsäkringen eller abonnemangseffekten för att gå vidare.",
+    gridTooSmallBody:
+      "Din nuvarande anslutning ({{maxKw}} kW) är för liten för den minsta systemstorlek som stöds ({{minKw}} kW växelriktare). Öka huvudsäkringen eller abonnemangseffekten för att gå vidare.",
   },
   units: {
     kwhPerYear: "kWh/år",
@@ -504,7 +527,8 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
     verifying: "Bekräftar köpet…",
     cancelled: "Köpet avbröts. Du kan försöka igen.",
     failed: "Köpet kunde inte genomföras. Inget belopp har dragits.",
-    retry: "Vi kunde inte bekräfta köpet just nu. Du har inte förlorat något – köpet bekräftas automatiskt när anslutningen fungerar igen.",
+    retry:
+      "Vi kunde inte bekräfta köpet just nu. Du har inte förlorat något – köpet bekräftas automatiskt när anslutningen fungerar igen.",
     appOnly: "Köpet görs i appen med ditt Apple-konto och är inte tillgängligt i webbläsaren.",
     appleNote: "Köpet hanteras av App Store.",
   },
@@ -570,8 +594,10 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
         "Teoretisk AC-effekt beräknas utifrån din valda nätanslutning: {{phases}}-fas, {{voltage}} V, enligt {{factor}} × {{voltage}} V × huvudsäkring. Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
       gridMethodNote:
         "Teoretisk AC-effekt beräknas utifrån 400 V trefas enligt 1,73 × 400 V × huvudsäkring. Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
-      gridMethodNoteContracted: "Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
-      savings30Short: "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade elvärden.",
+      gridMethodNoteContracted:
+        "Faktisk tillåten anslutnings- eller inmatningseffekt kan begränsas av nätägaren eller av den specifika installationen.",
+      savings30Short:
+        "Beräknat med {{degradation}} % årlig produktionsdegradering och oförändrade elvärden.",
       solarShareTitle: "Din solel",
       selfConsumptionRate: "Egenanvändningsgrad (andel av solelproduktionen)",
       selfSufficiencyRate: "Självförsörjningsgrad (andel av elanvändningen)",
@@ -586,7 +612,8 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       selfConsumptionSource_simulated: "uppskattad från förbrukningsprofil",
       longTermChartTitle: "Ekonomiskt värde över tid",
       keyAssumptions: "Viktigaste kalkylantaganden",
-      priceMethodNote: "Elvärdena är beräkningsantaganden. Faktiskt värde på egenanvänd och såld solel beror på elavtal, avgifter, skatter, regler och marknadsförhållanden.",
+      priceMethodNote:
+        "Elvärdena är beräkningsantaganden. Faktiskt värde på egenanvänd och såld solel beror på elavtal, avgifter, skatter, regler och marknadsförhållanden.",
       "valueSource_standard-value": "Schablonvärde",
       "valueSource_user-override": "Angivet av dig",
       priceChange: "Elprisförändring",
@@ -606,7 +633,8 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       lifetimeColProduction: "Produktion (kWh)",
       lifetimeColValue: "Värde/år",
       lifetimeColCumulative: "Ackumulerat",
-      lifetimeNote: "Beräkningen visar den uppskattade utvecklingen över {{years}} år utifrån anläggningens beräknade produktion, antagen degradering och vald elprisutveckling. Faktiskt ekonomiskt utfall och produktion kan avvika över tid.",
+      lifetimeNote:
+        "Beräkningen visar den uppskattade utvecklingen över {{years}} år utifrån anläggningens beräknade produktion, antagen degradering och vald elprisutveckling. Faktiskt ekonomiskt utfall och produktion kan avvika över tid.",
       yearShort: "År",
       reportId: "Rapport-ID",
       uncertaintyTitle: "Vad kan påverka utfallet?",
@@ -629,10 +657,13 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
         "Det ackumulerade ekonomiska värdet fram till år {{years}} är det som investeringsnivån på cirka {{amount}} bygger på - det är samma kalkyl, bara avrundad.",
       annualValue: "Ekonomiskt värde år 1",
       savings30: "Ackumulerat ekonomiskt värde över {{years}} år",
-      savings30Method: "Kalkylperiod: {{years}} år. Produktionsdegradering: {{degradation}} %/år. Elprisförändring: {{priceChange}} %/år.",
-      savings30Note: "Det långsiktiga ekonomiska värdet beräknas år för år med {{degradation}} % årlig produktionsdegradering. Kalkylen antar oförändrade värden för egenanvänd och såld solel.",
+      savings30Method:
+        "Kalkylperiod: {{years}} år. Produktionsdegradering: {{degradation}} %/år. Elprisförändring: {{priceChange}} %/år.",
+      savings30Note:
+        "Det långsiktiga ekonomiska värdet beräknas år för år med {{degradation}} % årlig produktionsdegradering. Kalkylen antar oförändrade värden för egenanvänd och såld solel.",
       degradation: "Produktionsdegradering",
-      degradationNote: "Solpanelernas produktion antas minska med {{degradation}} % per år. Det är ett kalkylantagande och faktisk degradering kan variera mellan paneltyper, fabrikat och driftförhållanden.",
+      degradationNote:
+        "Solpanelernas produktion antas minska med {{degradation}} % per år. Det är ett kalkylantagande och faktisk degradering kan variera mellan paneltyper, fabrikat och driftförhållanden.",
       investment: "Investeringsnivå vid vald återbetalningstid",
       returnRate: "Avkastning %",
       balanceTitle: "Årsbalans",
@@ -676,9 +707,10 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       savings: "Ekonomiskt värde per år",
       tilt: "Taklutning",
       yearsUnit: "år",
-      "paybackScenariosTitle": "Investeringsnivå vid olika återbetalningstider",
-      "paybackScenarioSelected": "Ditt val",
-      "paybackScenariosHelp": "Kortare återbetalningstid innebär en lägre möjlig investering. Här ser du hur investeringsnivån förändras om du accepterar en kortare eller längre återbetalningstid.",
+      paybackScenariosTitle: "Investeringsnivå vid olika återbetalningstider",
+      paybackScenarioSelected: "Ditt val",
+      paybackScenariosHelp:
+        "Kortare återbetalningstid innebär en lägre möjlig investering. Här ser du hur investeringsnivån förändras om du accepterar en kortare eller längre återbetalningstid.",
       acceptedPayback: "Vald återbetalningstid",
       maxInvestment: "Investeringsnivå vid vald återbetalningstid",
       quotePrice: "Angivet offertpris",
@@ -708,19 +740,37 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       assumed: "Standardantagande",
       external: "Extern datakälla",
     },
-    disclaimer:
-      "Rapporten är en ögonblicksbild av beräkningen och baseras på de antaganden som anges ovan. Den är inte en offert.",
     generated: "Skapad",
-    faqTitle: 'Vanliga frågor',
+    faqTitle: "Vanliga frågor",
     faqItems: [
-      { q: 'Hur säker är den beräknade solproduktionen?', a: 'Beräkningen bygger på solinstrålning för platsen, takets riktning och lutning. Faktisk produktion påverkas bland annat av väder, skuggning och anläggningens tekniska förutsättningar.' },
-      { q: 'Vad betyder egenanvändning?', a: 'Den del av solelen som används direkt i bostaden. Resterande produktion matas ut på elnätet.' },
-      { q: 'Varför är egenanvänd solel mer värd än såld solel?', a: 'Egenanvänd solel ersätter el som annars hade köpts från nätet, medan såld solel ersätts enligt villkoren för inmatad el.' },
-      { q: 'Vad betyder investeringsnivå för vald återbetalningstid?', a: 'Det visar ungefär vilken investering som motsvarar den återbetalningstid du valt, utifrån det ackumulerade ekonomiska värdet i kalkylen. Det är inte ett uppskattat marknadspris eller en offert.' },
-      { q: 'Varför kan installatörens beräkning skilja sig?', a: 'Olika antaganden om produktion, egenanvändning, elpriser, systemförluster och framtida prisutveckling kan ge olika resultat.' },
-      { q: 'Är beräkningen en offert?', a: 'Nej. Resultatet är en uppskattning och ska användas som beslutsunderlag. Faktiskt pris, produktion och ekonomiskt utfall kan avvika.' },
-      { q: 'Varför minskar produktionen över tid?', a: 'Solpanelers effekt minskar normalt något med åren. Beräkningen använder den årliga degradering som anges under kalkylantaganden, vilket innebär att den beräknade produktionen gradvis minskar under kalkylperioden.' },
-                      ],
-
+      {
+        q: "Hur säker är den beräknade solproduktionen?",
+        a: "Beräkningen bygger på solinstrålning för platsen, takets riktning och lutning. Faktisk produktion påverkas bland annat av väder, skuggning och anläggningens tekniska förutsättningar.",
+      },
+      {
+        q: "Vad betyder egenanvändning?",
+        a: "Den del av solelen som används direkt i bostaden. Resterande produktion matas ut på elnätet.",
+      },
+      {
+        q: "Varför är egenanvänd solel mer värd än såld solel?",
+        a: "Egenanvänd solel ersätter el som annars hade köpts från nätet, medan såld solel ersätts enligt villkoren för inmatad el.",
+      },
+      {
+        q: "Vad betyder investeringsnivå för vald återbetalningstid?",
+        a: "Det visar ungefär vilken investering som motsvarar den återbetalningstid du valt, utifrån det ackumulerade ekonomiska värdet i kalkylen. Det är inte ett uppskattat marknadspris eller en offert.",
+      },
+      {
+        q: "Varför kan installatörens beräkning skilja sig?",
+        a: "Olika antaganden om produktion, egenanvändning, elpriser, systemförluster och framtida prisutveckling kan ge olika resultat.",
+      },
+      {
+        q: "Är beräkningen en offert?",
+        a: "Nej. Resultatet är en uppskattning och ska användas som beslutsunderlag. Faktiskt pris, produktion och ekonomiskt utfall kan avvika.",
+      },
+      {
+        q: "Varför minskar produktionen över tid?",
+        a: "Solpanelers effekt minskar normalt något med åren. Beräkningen använder den årliga degradering som anges under kalkylantaganden, vilket innebär att den beräknade produktionen gradvis minskar under kalkylperioden.",
+      },
+    ],
   },
 } as const;

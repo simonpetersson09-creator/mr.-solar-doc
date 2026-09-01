@@ -14,12 +14,13 @@ export const hr = {
     point1Title: "Računa vaš solarni potencijal",
     point1Body: "",
     point2Title: "Dimenzionira sustav",
-    point2Body: "Vaša potrošnja struje, mrežni priključak i solarna proizvodnja se kombiniraju za odgovarajuću veličinu.",
+    point2Body:
+      "Vaša potrošnja struje, mrežni priključak i solarna proizvodnja se kombiniraju za odgovarajuću veličinu.",
     point3Title: "Računa koliko smije koštati prema željenom razdoblju povrata",
-    point3Body: "Birajte željeno razdoblje povrata. Mr. Solar Doc računa potrebnu razinu investicije.",
+    point3Body:
+      "Birajte željeno razdoblje povrata. Mr. Solar Doc računa potrebnu razinu investicije.",
     point4Title: "Izvještaj i podloga za odluku",
     point4Body: "Vidite proizvodnju, ekonomiju i različita razdoblja povrata u izvješću.",
-    disclaimer: "Izračun je okviran i nije ponuda. Stvarni rezultat može se razlikovati ovisno o izvedbi, cijenama struje i tržišnim uvjetima.",
     cta: "Pokreni izračun",
   },
   common: {
@@ -52,13 +53,14 @@ export const hr = {
     noResults: "Nema rezultata. Pokušajte s preciznijom adresom.",
     selected: "Odabrana lokacija",
     adjustHint: "Povucite oznaku ako položaj nije točan.",
-    marketUnsupported: "Mr. Solar Doc još ne podržava ovu državu. Odaberite adresu u podržanoj državi za nastavak.",
+    marketUnsupported:
+      "Mr. Solar Doc još ne podržava ovu državu. Odaberite adresu u podržanoj državi za nastavak.",
     coordinates: "Koordinate",
     country: "Država",
     region: "Regija",
     error: "Pretraga adrese nije uspjela.",
     info: "Adresa se koristi isključivo za izračun sunčevog zračenja na vašoj lokaciji.",
-    infoLabel: "Više informacija o adresi"
+    infoLabel: "Više informacija o adresi",
   },
   premium: {
     title: "Premium",
@@ -100,12 +102,11 @@ export const hr = {
     fetching: "Dohvaćanje podataka o suncu s PVGIS-a…",
     result: "Procijenjeni solarni prinos na ovoj lokaciji",
     unit: "kWh/kWp/god",
-    disclaimer: "Procijenjena solarna proizvodnja temelji se na lokaciji, orijentaciji i nagibu krova. Na stvarnu proizvodnju mogu utjecati zasjenjenje, vrijeme, temperatura i gubici u sustavu.",
-    error: "Nismo uspjeli dohvatiti solarne podatke za ovu lokaciju. Ne procjenjujemo vrijednosti nagađanjem.",
+    error:
+      "Nismo uspjeli dohvatiti solarne podatke za ovu lokaciju. Ne procjenjujemo vrijednosti nagađanjem.",
     errorOverSea:
       "Čini se da se ova lokacija nalazi iznad vode. Pomaknite oznaku na zgradu na kopnu i pokušajte ponovno.",
-    errorOutsideCoverage:
-      "Nemamo solarne podatke za ovu lokaciju. Pokušajte s obližnjom adresom.",
+    errorOutsideCoverage: "Nemamo solarne podatke za ovu lokaciju. Pokušajte s obližnjom adresom.",
     errorSource: "PVGIS: {{message}}",
   },
   consumption: {
@@ -143,7 +144,8 @@ export const hr = {
     upload: {
       title: "Priložite podatke o potrošnji za 12 mjeseci",
       sectionTitle: "Skenirajte račun za struju",
-      sectionHint: "Priložite račun za struju ili podatke o potrošnji za 12 mjeseci i mi ćemo popuniti vrijednosti umjesto vas.",
+      sectionHint:
+        "Priložite račun za struju ili podatke o potrošnji za 12 mjeseci i mi ćemo popuniti vrijednosti umjesto vas.",
       description:
         "Prenesite račun za struju ili vlastite podatke o potrošnji (PDF, Excel, CSV ili sliku poput PNG/JPEG) i automatski ćemo popuniti godišnje i mjesečne vrijednosti.",
       button: "Odaberi datoteku",
@@ -163,7 +165,10 @@ export const hr = {
     title: "Koliko struje trošite?",
     subtitle: "Provjerite svoj račun za struju ili ugovor.",
     or: "ili",
-    manual: { sectionTitle: "Unesi ručno", sectionHint: "Unesite godišnju potrošnju – provjerite svoj račun za struju ili ugovor." },
+    manual: {
+      sectionTitle: "Unesi ručno",
+      sectionHint: "Unesite godišnju potrošnju – provjerite svoj račun za struju ili ugovor.",
+    },
     annual: "Godišnja potrošnja",
     annualPlaceholder: "npr. 18.000",
     useMonthly: "Unesi potrošnju po mjesecu (12 mjeseci)",
@@ -200,10 +205,10 @@ export const hr = {
       },
     },
     gridAssumption: "Izračun pretpostavlja trofazni priključak od 400 V.",
-    gridAssumptionInfo: "Teoretska snaga glavnog osigurača izračunava se iz trofaznog priključka od 400 V. Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
+    gridAssumptionInfo:
+      "Teoretska snaga glavnog osigurača izračunava se iz trofaznog priključka od 400 V. Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
     gridCheckHint: "Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
     disclaimerTitle: "Važno je znati",
-    disclaimer: "Izračun je informativan i ne može zamijeniti tehničku procjenu. Prije instalacije uvijek provjerite napon, kapacitet priključka, dopuštenu snagu i druge lokalne mrežne zahtjeve s kvalificiranim električarom i, ako je potrebno, operatorom mreže.\n\nMr Solar Doc nije odgovoran za instalacije ili odluke donesene isključivo na temelju izračuna aplikacije.",
     grid: {
       advanced: "Napredne postavke",
       section: "Postavke mreže",
@@ -214,7 +219,8 @@ export const hr = {
       serviceType: "Vrsta priključka",
       twoPhase: "2-phase (phase-to-phase)",
       splitPhase: "Split-phase",
-      unverifiedHint: "Nemamo provjerene mrežne vrijednosti za ovu državu. Provjerite svoje podatke prema brojilu ili razvodnom ormaru.",
+      unverifiedHint:
+        "Nemamo provjerene mrežne vrijednosti za ovu državu. Provjerite svoje podatke prema brojilu ili razvodnom ormaru.",
       phase1: "1-fazni",
       phase3: "3-fazni",
       voltage: "Napon",
@@ -226,9 +232,11 @@ export const hr = {
     },
     genericTitle: "Kakav električni priključak imate?",
     title: "Koji glavni osigurač imate?",
-    subtitle: "Glavni osigurač koristi se za procjenu koliko velik invertor obično može biti priključen. Stvarnu dopuštenu snagu određuje operator mreže.",
+    subtitle:
+      "Glavni osigurač koristi se za procjenu koliko velik invertor obično može biti priključen. Stvarnu dopuštenu snagu određuje operator mreže.",
     label: "Glavni osigurač",
-    noCountryOptions: "Za ovu državu još nemamo provjerene opcije priključka. Unesite svoj glavni osigurač u amperima i po potrebi prilagodite postavke mreže ispod.",
+    noCountryOptions:
+      "Za ovu državu još nemamo provjerene opcije priključka. Unesite svoj glavni osigurač u amperima i po potrebi prilagodite postavke mreže ispod.",
     unverifiedCountryNotice:
       "Nismo provjerili mrežni standard za ovu državu. Provjerite napon, faze i veličinu priključka na svom računu za struju ili kod operatora mreže, a zatim potvrdite ispod.",
     confirmGrid: "Provjerio/la sam podatke o mreži",
@@ -298,7 +306,8 @@ export const hr = {
     resetToStandard: "Vrati na standardnu vrijednost",
     userValueBadge: "Unijeli ste vi",
     priceScenarioTitle: "Kako mislite da će se cijene struje razvijati?",
-    priceScenarioHint: "Pretpostavka o godišnjoj promjeni, ne prognoza. Cijena se povećava iz godine u godinu tijekom razdoblja izračuna.",
+    priceScenarioHint:
+      "Pretpostavka o godišnjoj promjeni, ne prognoza. Cijena se povećava iz godine u godinu tijekom razdoblja izračuna.",
     priceScenarioFlat: "Nepromijenjeno",
     priceScenarioCautious: "Oprezno",
     priceScenarioNormal: "Normalno",
@@ -309,8 +318,10 @@ export const hr = {
     priceScenarioCustomLabel: "Vlastita promjena (%/god)",
     degradationAssumption: "Tehnička degradacija",
     priceScenarioAssumption: "Pretpostavljeni razvoj cijena struje",
-    standardValueHint: "Standardne vrijednosti za izračun. Promijenite ih u vrijednosti iz vlastitog ugovora o struji za individualniji rezultat.",
-    "exportValueInfo": "Unesite ukupnu naknadu po kWh za struju koju predajete u mrežu, uključujući eventualnu mrežnu korist ili drugu naknadu vezanu za izvoz.",
+    standardValueHint:
+      "Standardne vrijednosti za izračun. Promijenite ih u vrijednosti iz vlastitog ugovora o struji za individualniji rezultat.",
+    exportValueInfo:
+      "Unesite ukupnu naknadu po kWh za struju koju predajete u mrežu, uključujući eventualnu mrežnu korist ili drugu naknadu vezanu za izvoz.",
     editable: "Prilagodivo",
     editableTooltip: "Promijeni pretpostavku",
     fuseLimit: "Teoretsko ograničenje snage prema glavnom osiguraču",
@@ -349,8 +360,7 @@ export const hr = {
         "Dimenzionirano tako da proizvede otprilike onoliko struje koliko trošite tijekom godine.",
       gridLimit:
         "Sustav je ograničen vašim glavnim osiguračem — vaš mrežni priključak ne dopušta veću snagu.",
-      inverterLimit:
-        "Veličina je usklađena s najvećim prikladnim invertorom za vaš priključak.",
+      inverterLimit: "Veličina je usklađena s najvećim prikladnim invertorom za vaš priključak.",
       minimumSize: "Vaša je potrošnja struje niska, stoga predlažemo najmanji smislen sustav.",
       maximumSize: "Prijedlog je ograničen na najveću veličinu koju ova aplikacija dimenzionira.",
     },
@@ -365,8 +375,7 @@ export const hr = {
     selfConsumptionValue: "Samostalno potrošena solarna energija",
     exportValue: "Predana solarna energija",
     totalAnnualBenefit: "Ukupna procijenjena godišnja korist",
-    economicsDisclaimer:
-      "Ovi su iznosi pretpostavke izračuna, a ne zajamčene buduće cijene.",
+    economicsDisclaimer: "Ovi su iznosi pretpostavke izračuna, a ne zajamčene buduće cijene.",
     paybackTitle: "Odaberite razdoblje povrata",
     paybackSubtitle:
       "Vi odlučujete koliko brzo želite da se investicija isplati. Izračunavamo čemu to odgovara u trošku instalacije.",
@@ -385,25 +394,31 @@ export const hr = {
     priceExplainer:
       "Samostalno potrošena solarna energija zamjenjuje struju koja bi inače bila kupljena iz mreže. Predana solarna energija umjesto toga donosi naknadu za struju predanu u mrežu.",
     paybackYears: "{{years}} godina",
-    "paybackScenariosTitle": "Razina ulaganja pri različitim razdobljima povrata",
-    "paybackScenarioSelected": "Tvoj izbor",
-    "paybackScenariosHelp": "Kraće razdoblje povrata znači niže moguće ulaganje. Ovdje vidiš kako se razina ulaganja mijenja ako prihvatiš kraće ili dulje razdoblje povrata.",
+    paybackScenariosTitle: "Razina ulaganja pri različitim razdobljima povrata",
+    paybackScenarioSelected: "Tvoj izbor",
+    paybackScenariosHelp:
+      "Kraće razdoblje povrata znači niže moguće ulaganje. Ovdje vidiš kako se razina ulaganja mijenja ako prihvatiš kraće ili dulje razdoblje povrata.",
     paybackInfo:
       "Jednostavni povrat pokazuje koliko godina odgovara procijenjena godišnja ekonomska vrijednost u odnosu na investiciju. Ne uzima u obzir buduće promjene cijena struje, trošak financiranja, inflaciju, održavanje ili diskontiranje.",
     maxInvestment: "Razina investicije za odabrano razdoblje povrata",
     productionCostTitle: "Koliko smije koštati solarni kWh?",
     investmentLevelInfoLabel: "Više informacija",
-    investmentLevelInfo: "Prikazuje otprilike kojem trošku investicije odgovara odabrano razdoblje povrata. Nije procjena stvarnog troška instalacije. Stvarna cijena ovisi, između ostalog, o krovu, ugradnji, komponentama i dobavljaču.",
+    investmentLevelInfo:
+      "Prikazuje otprilike kojem trošku investicije odgovara odabrano razdoblje povrata. Nije procjena stvarnog troška instalacije. Stvarna cijena ovisi, između ostalog, o krovu, ugradnji, komponentama i dobavljaču.",
     systemSizeInfoLabel: "Više informacija",
-    systemSizeInfo: "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarna proizvodnja, samopotrošnja, cijena struje, naknada, trošak instalacije i financijski ishod mogu se razlikovati. Rezultat ne predstavlja ponudu niti jamstvo.",
+    systemSizeInfo:
+      "Izračun je procjena i treba ga koristiti kao smjernicu. Stvarna proizvodnja, samopotrošnja, cijena struje, naknada, trošak instalacije i financijski ishod mogu se razlikovati. Rezultat ne predstavlja ponudu niti jamstvo.",
     productionCostInfoLabel: "Više informacija",
-    productionCostInfo: "Iznos se temelji na najvećem ulaganju koje odgovara odabranom razdoblju povrata, raspoređenom na svu struju koju bi sustav trebao proizvesti u razdoblju izračuna. To nije tržišna cijena instalacije.",
-    productionCostExplainer: "Trošak sustava dijelimo s procijenjenom proizvodnjom tijekom cijelog razdoblja izračuna.",
+    productionCostInfo:
+      "Iznos se temelji na najvećem ulaganju koje odgovara odabranom razdoblju povrata, raspoređenom na svu struju koju bi sustav trebao proizvesti u razdoblju izračuna. To nije tržišna cijena instalacije.",
+    productionCostExplainer:
+      "Trošak sustava dijelimo s procijenjenom proizvodnjom tijekom cijelog razdoblja izračuna.",
     productionCostLabel: "Smije koštati",
     productionCostValueLabel: "Vrijednost za vas",
     productionCostDifference: "Razlika",
     productionCostBasis: "Na temelju {{investment}} i {{production}} kWh tijekom {{years}} godina.",
-    productionCostHigherValue: "U ovom izračunu svaki kWh vrijedi više nego što košta proizvesti ga.",
+    productionCostHigherValue:
+      "U ovom izračunu svaki kWh vrijedi više nego što košta proizvesti ga.",
     productionCostUnavailable: "S trenutnim podacima to ne možemo izračunati.",
     perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "cca {{amount}}",
@@ -411,23 +426,29 @@ export const hr = {
       "Za postizanje otprilike {{years}} godina jednostavnog povrata, instalacija bi trebala koštati najviše oko {{amount}}.",
     maxInvestmentNote:
       "Iznos se izračunava na temelju vaših unosa i pretpostavki izračuna — nije ponuda ili procjena tržišne cijene.",
-    missingSelfConsumedValue: "Nedostaje cijena struje. Unesite koliko plaćate po kWh kako biste vidjeli vrijednost samostalno potrošene solarne energije.",
-    missingExportValue: "Nedostaje naknada za predaju u mrežu. Unesite koliko dobivate po predanom kWh za izračun prihoda od predaje u mrežu.",
-    missingInstallationCost: "Nedostaje trošak instalacije. Unesite svoju ponudu ili procijenjenu investiciju.",
+    missingSelfConsumedValue:
+      "Nedostaje cijena struje. Unesite koliko plaćate po kWh kako biste vidjeli vrijednost samostalno potrošene solarne energije.",
+    missingExportValue:
+      "Nedostaje naknada za predaju u mrežu. Unesite koliko dobivate po predanom kWh za izračun prihoda od predaje u mrežu.",
+    missingInstallationCost:
+      "Nedostaje trošak instalacije. Unesite svoju ponudu ili procijenjenu investiciju.",
     economicsIncomplete: "Nepotpuna osnova",
     enterValues: "Unesi vrijednosti",
     missingMarketValues:
       "Nemamo provjerenu zadanu vrijednost za ovu državu. Unesite vrijednosti sami ispod.",
-    economicsRequiresPrice: "Ekonomski izračun zahtijeva cijenu struje. Unesite svoje cijene kako biste vidjeli uštede, povrat i trošak proizvodnje.",
+    economicsRequiresPrice:
+      "Ekonomski izračun zahtijeva cijenu struje. Unesite svoje cijene kako biste vidjeli uštede, povrat i trošak proizvodnje.",
     economicsRequiresPriceShort: "Potrebna je cijena struje",
     gridUnverifiedTitle: "Mrežni podaci nisu provjereni",
-    gridUnverifiedWarning: "Pretpostavke o mreži temelje se na općim vrijednostima i moraju se lokalno provjeriti prije instalacije.",
+    gridUnverifiedWarning:
+      "Pretpostavke o mreži temelje se na općim vrijednostima i moraju se lokalno provjeriti prije instalacije.",
     gridProfileStatusLabel: "Mrežni profil",
     gridProfileStatusVerified: "Provjereno",
     gridProfileStatusGeneric: "Opće (neprovjereno)",
     gridProfileStatusUnsupported: "Ručno (neprovjereno)",
     calcErrorTitle: "Izračun se ne može dovršiti",
-    calcErrorBody: "Neki se unosi ne mogu izračunati. Vratite se i provjerite potrošnju, mrežni priključak i pretpostavke.",
+    calcErrorBody:
+      "Neki se unosi ne mogu izračunati. Vratite se i provjerite potrošnju, mrežni priključak i pretpostavke.",
     currency: "Valuta",
     economicValue: "Osnovna ekonomska vrijednost",
     perYear: "godišnje",
@@ -437,7 +458,8 @@ export const hr = {
     hideCalculation: "Sakrij izračun",
     adjustSplit: "Prilagodi samopotrošnju",
     selfConsumptionEstimatedLabel: "Procijenjena vlastita potrošnja",
-    selfConsumptionEstimatedHelp: "Procijenjeno na temelju vaše potrošnje struje i izračunate proizvodnje sustava. Vrijednost možete ručno prilagoditi.",
+    selfConsumptionEstimatedHelp:
+      "Procijenjeno na temelju vaše potrošnje struje i izračunate proizvodnje sustava. Vrijednost možete ručno prilagoditi.",
     selfConsumptionUserAssumption: "Vaša pretpostavka",
     selfConsumptionAssumption:
       "Samopotrošnja je pretpostavka na temelju odabranog udjela i može se ručno prilagoditi.",
@@ -459,9 +481,11 @@ export const hr = {
     calculatedAt: "Datum izračuna",
     noCalculation: "Izračun nije pronađen. Počnite ponovno od adrese.",
     locked: "Ovaj je izračun zaključan. Dovršite kupnju kako biste vidjeli rezultat.",
-    calculationUnavailable: "The calculation could not be completed. Please check the roof details and try again.",
+    calculationUnavailable:
+      "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "Priključak je premalen",
-    gridTooSmallBody: "Vaš trenutni priključak ({{maxKw}} kW) premalen je za najmanji podržani sustav (izmjenjivač {{minKw}} kW). Povećajte glavni osigurač ili ugovorenu snagu za nastavak.",
+    gridTooSmallBody:
+      "Vaš trenutni priključak ({{maxKw}} kW) premalen je za najmanji podržani sustav (izmjenjivač {{minKw}} kW). Povećajte glavni osigurač ili ugovorenu snagu za nastavak.",
   },
   units: {
     kwhPerYear: "kWh/god",
@@ -502,7 +526,8 @@ export const hr = {
     verifying: "Potvrđivanje vaše kupnje…",
     cancelled: "Kupnja je otkazana. Možete pokušati ponovno.",
     failed: "Kupnja nije uspjela. Niste zaduženi.",
-    retry: "Trenutno nismo mogli potvrditi kupnju. Ništa nije izgubljeno — otključat će se automatski čim veza ponovno proradi.",
+    retry:
+      "Trenutno nismo mogli potvrditi kupnju. Ništa nije izgubljeno — otključat će se automatski čim veza ponovno proradi.",
     appOnly: "Kupnja se obavlja u aplikaciji s vašim Apple računom i nije dostupna u pregledniku.",
     appleNote: "Obrađuje App Store.",
   },
@@ -568,8 +593,10 @@ export const hr = {
         "Teoretska AC snaga temelji se na vašem odabranom mrežnom priključku: {{phases}}-fazno, {{voltage}} V, izračunato kao {{factor}} × {{voltage}} V × glavni osigurač. Stvarno dopuštenu snagu priključka ili predaje u mrežu može ograničiti operator mreže ili sama instalacija.",
       gridMethodNote:
         "Teoretska AC snaga temelji se na trofaznom priključku od 400 V, izračunato kao 1,73 × 400 V × glavni osigurač. Stvarno dopuštenu snagu priključka ili predaje u mrežu može ograničiti operator mreže ili sama instalacija.",
-      gridMethodNoteContracted: "Stvarno dopuštenu snagu priključka ili predaje u mrežu može ograničiti operator mreže ili sama instalacija.",
-      savings30Short: "Izračunato uz {{degradation}} % godišnje degradacije proizvodnje i nepromijenjene vrijednosti struje.",
+      gridMethodNoteContracted:
+        "Stvarno dopuštenu snagu priključka ili predaje u mrežu može ograničiti operator mreže ili sama instalacija.",
+      savings30Short:
+        "Izračunato uz {{degradation}} % godišnje degradacije proizvodnje i nepromijenjene vrijednosti struje.",
       solarShareTitle: "Vaša solarna energija",
       selfConsumptionRate: "Stopa samopotrošnje (udio solarne proizvodnje)",
       selfSufficiencyRate: "Stopa samodostatnosti (udio potrošnje struje)",
@@ -584,7 +611,8 @@ export const hr = {
       selfConsumptionSource_simulated: "procijenjeno iz profila potrošnje",
       longTermChartTitle: "Ekonomska vrijednost tijekom vremena",
       keyAssumptions: "Ključne pretpostavke izračuna",
-      priceMethodNote: "Vrijednosti struje su pretpostavke izračuna. Stvarna vrijednost samopotrošene i predane solarne energije ovisi o vašem ugovoru o struji, naknadama, porezima, pravilima i tržišnim uvjetima.",
+      priceMethodNote:
+        "Vrijednosti struje su pretpostavke izračuna. Stvarna vrijednost samopotrošene i predane solarne energije ovisi o vašem ugovoru o struji, naknadama, porezima, pravilima i tržišnim uvjetima.",
       "valueSource_standard-value": "Standardna vrijednost",
       "valueSource_user-override": "Unijeli ste vi",
       priceChange: "Promjena cijene struje",
@@ -604,28 +632,37 @@ export const hr = {
       lifetimeColProduction: "Proizvodnja (kWh)",
       lifetimeColValue: "Vrijednost/godina",
       lifetimeColCumulative: "Kumulativno",
-      lifetimeNote: "Izračun prikazuje procijenjeni razvoj tijekom {{years}} godina na temelju procijenjene proizvodnje, pretpostavljene degradacije i odabranog razvoja cijena struje. Stvarni ekonomski ishod i proizvodnja mogu se razlikovati tijekom vremena.",
+      lifetimeNote:
+        "Izračun prikazuje procijenjeni razvoj tijekom {{years}} godina na temelju procijenjene proizvodnje, pretpostavljene degradacije i odabranog razvoja cijena struje. Stvarni ekonomski ishod i proizvodnja mogu se razlikovati tijekom vremena.",
       yearShort: "Godina",
       reportId: "ID izvještaja",
       uncertaintyTitle: "Što može utjecati na ishod?",
       uncertaintyText:
         "Stvarna solarna proizvodnja i ekonomski ishod mogu se razlikovati od izračuna. Na rezultat utječu vremenske varijacije, zasjenjenje, orijentacija i nagib panela, stvarna potrošnja struje i njezino vrijeme, cijene struje, naknada za predaju u mrežu i performanse sustava tijekom vremena.",
       panelPower: "Snaga panela",
-      summaryMethodFlat: "Izračunato uz godišnju degradaciju proizvodnje od {{degradation}} % i nepromijenjene vrijednosti vlastite potrošnje i prodane solarne struje.",
-      summaryMethodTrend: "Izračunato uz godišnju degradaciju proizvodnje od {{degradation}} % i pretpostavljenu godišnju promjenu vrijednosti solarne struje od {{priceChange}} %.",
-      specificYieldNote: "Proizvodni potencijal je izračunata proizvodnja po instaliranom kWp na ovoj lokaciji, za orijentaciju i nagib vašeg krova. To nije ukupna godišnja proizvodnja sustava.",
-      investmentNote: "Razina ulaganja pokazuje otprilike koje ulaganje odgovara odabranom razdoblju povrata, na temelju kumulativne ekonomske vrijednosti izračuna do te godine. To nije procjena tržišne cijene ni ponuda.",
+      summaryMethodFlat:
+        "Izračunato uz godišnju degradaciju proizvodnje od {{degradation}} % i nepromijenjene vrijednosti vlastite potrošnje i prodane solarne struje.",
+      summaryMethodTrend:
+        "Izračunato uz godišnju degradaciju proizvodnje od {{degradation}} % i pretpostavljenu godišnju promjenu vrijednosti solarne struje od {{priceChange}} %.",
+      specificYieldNote:
+        "Proizvodni potencijal je izračunata proizvodnja po instaliranom kWp na ovoj lokaciji, za orijentaciju i nagib vašeg krova. To nije ukupna godišnja proizvodnja sustava.",
+      investmentNote:
+        "Razina ulaganja pokazuje otprilike koje ulaganje odgovara odabranom razdoblju povrata, na temelju kumulativne ekonomske vrijednosti izračuna do te godine. To nije procjena tržišne cijene ni ponuda.",
       assumptionsProduction: "Proizvodnja",
       assumptionsEconomy: "Ekonomija",
       assumptionsTechnical: "Tehnički podaci",
       lifetimeYearOne: "Ekonomska vrijednost, 1. godina",
-      lifetimeInvestmentLink: "Kumulativna ekonomska vrijednost do {{years}}. godine osnova je za razinu ulaganja od približno {{amount}} - isti izračun, samo zaokružen.",
+      lifetimeInvestmentLink:
+        "Kumulativna ekonomska vrijednost do {{years}}. godine osnova je za razinu ulaganja od približno {{amount}} - isti izračun, samo zaokružen.",
       annualValue: "Procijenjena ekonomska vrijednost",
       savings30: "Ukupna ekonomska vrijednost tijekom {{years}} godina",
-      savings30Method: "Razdoblje izračuna: {{years}} godina. Degradacija proizvodnje: {{degradation}} %/god. Promjena cijene struje: {{priceChange}} %/god.",
-      savings30Note: "Dugoročna ekonomska vrijednost izračunava se iz godine u godinu uz {{degradation}} % godišnje degradacije proizvodnje. Izračun pretpostavlja nepromijenjene vrijednosti za samopotrošenu i predanu solarnu energiju.",
+      savings30Method:
+        "Razdoblje izračuna: {{years}} godina. Degradacija proizvodnje: {{degradation}} %/god. Promjena cijene struje: {{priceChange}} %/god.",
+      savings30Note:
+        "Dugoročna ekonomska vrijednost izračunava se iz godine u godinu uz {{degradation}} % godišnje degradacije proizvodnje. Izračun pretpostavlja nepromijenjene vrijednosti za samopotrošenu i predanu solarnu energiju.",
       degradation: "Degradacija proizvodnje",
-      degradationNote: "Pretpostavlja se da snaga panela opada za {{degradation}} % godišnje. Ovo je pretpostavka izračuna; stvarna degradacija varira ovisno o tipu panela, marki i uvjetima rada.",
+      degradationNote:
+        "Pretpostavlja se da snaga panela opada za {{degradation}} % godišnje. Ovo je pretpostavka izračuna; stvarna degradacija varira ovisno o tipu panela, marki i uvjetima rada.",
       investment: "Razina investicije za odabrano razdoblje povrata",
       returnRate: "Povrat %",
       balanceTitle: "Godišnja bilanca",
@@ -669,9 +706,10 @@ export const hr = {
       savings: "Ekonomska vrijednost godišnje",
       tilt: "Nagib krova",
       yearsUnit: "god",
-      "paybackScenariosTitle": "Razina ulaganja pri različitim razdobljima povrata",
-      "paybackScenarioSelected": "Tvoj izbor",
-      "paybackScenariosHelp": "Kraće razdoblje povrata znači niže moguće ulaganje. Ovdje vidiš kako se razina ulaganja mijenja ako prihvatiš kraće ili dulje razdoblje povrata.",
+      paybackScenariosTitle: "Razina ulaganja pri različitim razdobljima povrata",
+      paybackScenarioSelected: "Tvoj izbor",
+      paybackScenariosHelp:
+        "Kraće razdoblje povrata znači niže moguće ulaganje. Ovdje vidiš kako se razina ulaganja mijenja ako prihvatiš kraće ili dulje razdoblje povrata.",
       acceptedPayback: "Odabrano razdoblje povrata",
       maxInvestment: "Razina investicije za odabrano razdoblje povrata",
       quotePrice: "Navedena ponuđena cijena",
@@ -701,19 +739,37 @@ export const hr = {
       assumed: "Pretpostavka (zadana vrijednost)",
       external: "Vanjski izvor podataka",
     },
-    disclaimer:
-      "Ovaj izvještaj predstavlja trenutno stanje izračuna i temelji se na gore navedenim pretpostavkama. Nije ponuda.",
     generated: "Generirano",
-    faqTitle: 'Često postavljana pitanja',
+    faqTitle: "Često postavljana pitanja",
     faqItems: [
-      { q: 'Koliko je pouzdana procijenjena solarna proizvodnja?', a: "Izračun se temelji na sunčevom zračenju za lokaciju te orijentaciji i nagibu krova. Na stvarnu proizvodnju utječu čimbenici poput vremena, zasjenjenja i tehničkog stanja instalacije." },
-      { q: 'Što znači samopotrošnja?', a: 'Udio solarne energije koji se izravno koristi u kućanstvu. Preostala proizvodnja predaje se u električnu mrežu.' },
-      { q: 'Zašto samopotrošena solarna energija vrijedi više od prodane?', a: 'Samopotrošena solarna energija zamjenjuje struju koja bi inače bila kupljena iz mreže, dok se prodana solarna energija naknađuje prema uvjetima za predanu struju.' },
-      { q: 'Što znači cijena za odabrano razdoblje povrata?', a: "Pokazuje otprilike koliko instalacija smije koštati da odgovara odabranom razdoblju povrata, na temelju pretpostavki izračuna. Nije procijenjena tržišna cijena." },
-      { q: "Zašto se izračun instalatera može razlikovati?", a: 'Različite pretpostavke o proizvodnji, samopotrošnji, cijenama struje, gubicima sustava i budućem razvoju cijena mogu dati različite rezultate.' },
-      { q: 'Je li izračun ponuda?', a: 'Ne. Rezultat je procjena i namijenjen je kao osnova za donošenje odluke. Stvarna cijena, proizvodnja i ekonomski ishod mogu se razlikovati.' },
-      { q: 'Zašto se proizvodnja smanjuje tijekom vremena?', a: 'Učinkovitost solarnih panela obično se s godinama malo smanjuje. Izračun pretpostavlja godišnju degradaciju od 0,5 %, što znači da se procijenjena proizvodnja postupno smanjuje tijekom razdoblja izračuna.' }
+      {
+        q: "Koliko je pouzdana procijenjena solarna proizvodnja?",
+        a: "Izračun se temelji na sunčevom zračenju za lokaciju te orijentaciji i nagibu krova. Na stvarnu proizvodnju utječu čimbenici poput vremena, zasjenjenja i tehničkog stanja instalacije.",
+      },
+      {
+        q: "Što znači samopotrošnja?",
+        a: "Udio solarne energije koji se izravno koristi u kućanstvu. Preostala proizvodnja predaje se u električnu mrežu.",
+      },
+      {
+        q: "Zašto samopotrošena solarna energija vrijedi više od prodane?",
+        a: "Samopotrošena solarna energija zamjenjuje struju koja bi inače bila kupljena iz mreže, dok se prodana solarna energija naknađuje prema uvjetima za predanu struju.",
+      },
+      {
+        q: "Što znači cijena za odabrano razdoblje povrata?",
+        a: "Pokazuje otprilike koliko instalacija smije koštati da odgovara odabranom razdoblju povrata, na temelju pretpostavki izračuna. Nije procijenjena tržišna cijena.",
+      },
+      {
+        q: "Zašto se izračun instalatera može razlikovati?",
+        a: "Različite pretpostavke o proizvodnji, samopotrošnji, cijenama struje, gubicima sustava i budućem razvoju cijena mogu dati različite rezultate.",
+      },
+      {
+        q: "Je li izračun ponuda?",
+        a: "Ne. Rezultat je procjena i namijenjen je kao osnova za donošenje odluke. Stvarna cijena, proizvodnja i ekonomski ishod mogu se razlikovati.",
+      },
+      {
+        q: "Zašto se proizvodnja smanjuje tijekom vremena?",
+        a: "Učinkovitost solarnih panela obično se s godinama malo smanjuje. Izračun pretpostavlja godišnju degradaciju od 0,5 %, što znači da se procijenjena proizvodnja postupno smanjuje tijekom razdoblja izračuna.",
+      },
     ],
-
   },
 } as const;

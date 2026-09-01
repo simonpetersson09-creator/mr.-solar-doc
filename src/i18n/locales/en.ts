@@ -14,12 +14,13 @@ export const en = {
     point1Title: "Calculates your solar potential",
     point1Body: "",
     point2Title: "Sizes the system",
-    point2Body: "Your electricity use, grid connection and solar production are weighed together to find a suitable size.",
+    point2Body:
+      "Your electricity use, grid connection and solar production are weighed together to find a suitable size.",
     point3Title: "Works out what it can cost based on your desired payback period",
-    point3Body: "You choose your desired payback period. Mr. Solar Doc calculates the investment level needed to reach it.",
+    point3Body:
+      "You choose your desired payback period. Mr. Solar Doc calculates the investment level needed to reach it.",
     point4Title: "Report and decision basis",
     point4Body: "See production, economics and different payback periods gathered in a report.",
-    disclaimer: "The calculation is guidance and not a quote. Actual outcome may differ depending on installation, electricity prices and market conditions.",
     cta: "Start the calculation",
   },
   common: {
@@ -52,13 +53,14 @@ export const en = {
     noResults: "No matches. Try a more precise address.",
     selected: "Selected location",
     adjustHint: "Drag the marker if the position is off.",
-    marketUnsupported: "Mr. Solar Doc does not support this country yet. Choose an address in a supported country to continue.",
+    marketUnsupported:
+      "Mr. Solar Doc does not support this country yet. Choose an address in a supported country to continue.",
     coordinates: "Coordinates",
     country: "Country",
     region: "Region",
-error: "Address search failed.",
+    error: "Address search failed.",
     info: "The address is used only to calculate the solar irradiation at your location.",
-    infoLabel: "More information about the address"
+    infoLabel: "More information about the address",
   },
   premium: {
     title: "Premium",
@@ -100,12 +102,10 @@ error: "Address search failed.",
     fetching: "Fetching solar data from PVGIS…",
     result: "Estimated solar yield at this location",
     unit: "kWh/kWp/yr",
-    disclaimer: "Estimated solar production is based on location, orientation and roof tilt. Actual production may be affected by shading, weather, temperature and system losses.",
     error: "We couldn't fetch solar data for this location. No values are guessed.",
     errorOverSea:
       "This location appears to be over water. Move the marker onto the building on land and try again.",
-    errorOutsideCoverage:
-      "We have no solar data for this location. Try a nearby address.",
+    errorOutsideCoverage: "We have no solar data for this location. Try a nearby address.",
     errorSource: "PVGIS: {{message}}",
   },
   consumption: {
@@ -143,7 +143,8 @@ error: "Address search failed.",
     upload: {
       title: "Attach 12 months of consumption data",
       sectionTitle: "Scan your electricity bill",
-      sectionHint: "Attach your electricity bill or 12 months of consumption data and we'll fill in the values for you.",
+      sectionHint:
+        "Attach your electricity bill or 12 months of consumption data and we'll fill in the values for you.",
       description:
         "Upload an electricity invoice or your own consumption data (PDF, Excel, CSV or an image like PNG/JPEG) and we fill in annual and monthly values automatically.",
       button: "Choose file",
@@ -203,10 +204,10 @@ error: "Address search failed.",
       },
     },
     gridAssumption: "The calculation assumes a 400 V three-phase connection.",
-gridAssumptionInfo: "The theoretical power of the main fuse is calculated from a 400 V three-phase connection. Check your actual grid connection if you are unsure.",
-gridCheckHint: "Check your actual grid connection if you are unsure.",
+    gridAssumptionInfo:
+      "The theoretical power of the main fuse is calculated from a 400 V three-phase connection. Check your actual grid connection if you are unsure.",
+    gridCheckHint: "Check your actual grid connection if you are unsure.",
     disclaimerTitle: "Important to know",
-    disclaimer: "The calculation is indicative and cannot replace a technical assessment. Always verify voltage, connection capacity, permitted power and other local grid requirements with a qualified electrician and, if needed, your grid operator before installation.\n\nMr Solar Doc is not responsible for installations or decisions made solely on the basis of the app's calculations.",
     grid: {
       advanced: "Advanced settings",
       section: "Grid settings",
@@ -217,7 +218,8 @@ gridCheckHint: "Check your actual grid connection if you are unsure.",
       serviceType: "Service type",
       twoPhase: "2-phase (phase-to-phase)",
       splitPhase: "Split-phase",
-      unverifiedHint: "We have no verified grid values for this country. Please check your details against your meter or service panel.",
+      unverifiedHint:
+        "We have no verified grid values for this country. Please check your details against your meter or service panel.",
       phase1: "1-phase",
       phase3: "3-phase",
       voltage: "Voltage",
@@ -229,9 +231,11 @@ gridCheckHint: "Check your actual grid connection if you are unsure.",
     },
     genericTitle: "What electrical connection do you have?",
     title: "What main fuse do you have?",
-    subtitle: "The main fuse is used to estimate how large an inverter can normally be connected. The actual permitted power is determined by the grid operator.",
+    subtitle:
+      "The main fuse is used to estimate how large an inverter can normally be connected. The actual permitted power is determined by the grid operator.",
     label: "Main fuse",
-    noCountryOptions: "We do not have verified connection options for this country yet. Enter your main fuse in amperes and adjust the grid settings below if needed.",
+    noCountryOptions:
+      "We do not have verified connection options for this country yet. Enter your main fuse in amperes and adjust the grid settings below if needed.",
     unverifiedCountryNotice:
       "We have not verified the grid standard for this country. Check your voltage, phases and connection size on your electricity bill or with your grid operator, then confirm below.",
     confirmGrid: "I have checked the grid data",
@@ -301,19 +305,22 @@ gridCheckHint: "Check your actual grid connection if you are unsure.",
     resetToStandard: "Reset to standard value",
     userValueBadge: "Entered by you",
     priceScenarioTitle: "How do you think electricity prices will develop?",
-    priceScenarioHint: "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
+    priceScenarioHint:
+      "An assumption about annual change, not a forecast. The price is escalated year by year over the calculation period.",
     priceScenarioFlat: "Unchanged",
     priceScenarioCautious: "Cautious",
     priceScenarioNormal: "Normal",
-priceScenarioHigh: "High",
+    priceScenarioHigh: "High",
     priceScenarioVeryHigh: "Very high",
     priceScenarioExtreme: "Extreme",
     priceScenarioCustom: "Own assumption",
     priceScenarioCustomLabel: "Own change (%/year)",
     degradationAssumption: "Technical degradation",
     priceScenarioAssumption: "Assumed electricity price development",
-    standardValueHint: "Standard values for the calculation. Change them to the values in your own electricity contract for a more individual result.",
-    "exportValueInfo": "Enter the total compensation per kWh for electricity you export to the grid, including any grid benefit or other export-related compensation.",
+    standardValueHint:
+      "Standard values for the calculation. Change them to the values in your own electricity contract for a more individual result.",
+    exportValueInfo:
+      "Enter the total compensation per kWh for electricity you export to the grid, including any grid benefit or other export-related compensation.",
     editable: "Adjustable",
     editableTooltip: "Change assumption",
     fuseLimit: "Theoretical power limit from main fuse",
@@ -348,12 +355,10 @@ priceScenarioHigh: "High",
     targetDcAcRange: "Target DC/AC range",
     summerShare: "Share of use Apr-Sep",
     rationale: {
-      consumption:
-        "Sized to produce roughly as much electricity as you use over a year.",
+      consumption: "Sized to produce roughly as much electricity as you use over a year.",
       gridLimit:
         "The system is limited by your main fuse — your grid connection does not allow more power.",
-      inverterLimit:
-        "The size is matched to the largest suitable inverter for your connection.",
+      inverterLimit: "The size is matched to the largest suitable inverter for your connection.",
       minimumSize: "Your electricity use is low, so we suggest the smallest sensible system.",
       maximumSize: "The suggestion is capped at the largest size this app sizes for.",
     },
@@ -368,8 +373,7 @@ priceScenarioHigh: "High",
     selfConsumptionValue: "Self-consumed solar",
     exportValue: "Exported solar",
     totalAnnualBenefit: "Total estimated annual benefit",
-    economicsDisclaimer:
-      "These amounts are calculation assumptions, not guaranteed future prices.",
+    economicsDisclaimer: "These amounts are calculation assumptions, not guaranteed future prices.",
     paybackTitle: "Choose payback time",
     paybackSubtitle:
       "You decide how quickly you want the investment paid back. We calculate what it corresponds to in installation cost.",
@@ -388,27 +392,32 @@ priceScenarioHigh: "High",
     priceExplainer:
       "Self-consumed solar replaces electricity that would otherwise have been bought from the grid. Exported solar instead earns compensation for electricity fed into the grid.",
     paybackYears: "{{years}} years",
-    "paybackScenariosTitle": "Investment level at different payback times",
-    "paybackScenarioSelected": "Your choice",
-    "paybackScenariosHelp": "A shorter payback time means a lower possible investment. Here you see how the investment level changes if you accept a shorter or longer payback time.",
+    paybackScenariosTitle: "Investment level at different payback times",
+    paybackScenarioSelected: "Your choice",
+    paybackScenariosHelp:
+      "A shorter payback time means a lower possible investment. Here you see how the investment level changes if you accept a shorter or longer payback time.",
     paybackInfo:
       "The investment level shows roughly what investment matches the chosen payback time, based on the economic values the calculation projects over that period. It is not an estimated market price or a quote.",
     maxInvestment: "Investment level at chosen payback time",
     productionCostTitle: "What may solar power cost per kWh?",
     investmentLevelInfoLabel: "More information",
-    investmentLevelInfo: "Shows approximately what investment cost corresponds to the payback period you selected. It is not an estimate of what the installation actually costs. The actual price depends on, among other things, the roof, installation, components and supplier.",
+    investmentLevelInfo:
+      "Shows approximately what investment cost corresponds to the payback period you selected. It is not an estimate of what the installation actually costs. The actual price depends on, among other things, the roof, installation, components and supplier.",
     systemSizeInfoLabel: "More information",
-systemSizeInfo: "The calculation is an estimate and should be used as guidance. Actual production, self-consumption, electricity price, compensation, installation cost and financial outcome may differ. The result does not constitute a quote or guarantee.",
+    systemSizeInfo:
+      "The calculation is an estimate and should be used as guidance. Actual production, self-consumption, electricity price, compensation, installation cost and financial outcome may differ. The result does not constitute a quote or guarantee.",
     productionCostInfoLabel: "More information",
-    productionCostInfo: "The figure is based on the maximum investment that fits your chosen payback time, spread over all electricity the system is expected to produce during the calculation period. It is not a market price for the installation.",
+    productionCostInfo:
+      "The figure is based on the maximum investment that fits your chosen payback time, spread over all electricity the system is expected to produce during the calculation period. It is not a market price for the installation.",
 
-
-    productionCostExplainer: "We divide the cost of the system by the estimated production over the whole calculation period.",
+    productionCostExplainer:
+      "We divide the cost of the system by the estimated production over the whole calculation period.",
     productionCostLabel: "May cost",
     productionCostValueLabel: "Value to you",
     productionCostDifference: "Difference",
     productionCostBasis: "Based on {{investment}} and {{production}} kWh over {{years}} years.",
-    productionCostHigherValue: "In this calculation, each kWh is worth more than it costs to produce.",
+    productionCostHigherValue:
+      "In this calculation, each kWh is worth more than it costs to produce.",
     productionCostUnavailable: "We cannot calculate this with the current data.",
     perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "approx. {{amount}}",
@@ -416,23 +425,28 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       "To reach roughly {{years}} years of payback, the installation should cost at most about {{amount}}.",
     maxInvestmentNote:
       "The amount is calculated from your inputs and calculation assumptions — not a quote or a market price estimate.",
-    missingSelfConsumedValue: "Electricity price missing. Enter what you pay per kWh to see the value of self-consumed solar.",
-    missingExportValue: "Export compensation missing. Enter what you get per exported kWh to calculate the export income.",
+    missingSelfConsumedValue:
+      "Electricity price missing. Enter what you pay per kWh to see the value of self-consumed solar.",
+    missingExportValue:
+      "Export compensation missing. Enter what you get per exported kWh to calculate the export income.",
     missingInstallationCost: "Installation cost missing. Enter your quote or estimated investment.",
     economicsIncomplete: "Incomplete basis",
     enterValues: "Enter values",
     missingMarketValues:
       "We have no verified default value for this country. Please enter the values yourself below.",
-    economicsRequiresPrice: "Economic calculation requires an electricity price. Enter your prices to see savings, payback and production cost.",
+    economicsRequiresPrice:
+      "Economic calculation requires an electricity price. Enter your prices to see savings, payback and production cost.",
     economicsRequiresPriceShort: "Requires electricity price",
     gridUnverifiedTitle: "Grid data not verified",
-    gridUnverifiedWarning: "Grid assumptions are based on generic values and must be verified locally before installation.",
+    gridUnverifiedWarning:
+      "Grid assumptions are based on generic values and must be verified locally before installation.",
     gridProfileStatusLabel: "Grid profile",
     gridProfileStatusVerified: "Verified",
     gridProfileStatusGeneric: "Generic (unverified)",
     gridProfileStatusUnsupported: "Manual (unverified)",
     calcErrorTitle: "The calculation cannot be completed",
-    calcErrorBody: "Some inputs cannot be calculated on. Go back and check consumption, grid connection and assumptions.",
+    calcErrorBody:
+      "Some inputs cannot be calculated on. Go back and check consumption, grid connection and assumptions.",
     currency: "Currency",
     economicValue: "Basic economic value",
     perYear: "per year",
@@ -442,7 +456,8 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     hideCalculation: "Hide calculation",
     adjustSplit: "Adjust self-consumption",
     selfConsumptionEstimatedLabel: "Estimated self-consumption",
-    selfConsumptionEstimatedHelp: "Estimated from your electricity use and the system's calculated production. You can adjust the value manually.",
+    selfConsumptionEstimatedHelp:
+      "Estimated from your electricity use and the system's calculated production. You can adjust the value manually.",
     selfConsumptionUserAssumption: "Your assumption",
     selfConsumptionAssumption:
       "Self-consumption is an assumption based on the selected share and can be adjusted manually.",
@@ -464,9 +479,11 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     calculatedAt: "Calculation date",
     noCalculation: "No calculation found. Start again from the address.",
     locked: "This calculation is locked. Complete the purchase to see the result.",
-    calculationUnavailable: "The calculation could not be completed. Please check the roof details and try again.",
+    calculationUnavailable:
+      "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "The connection is too small",
-    gridTooSmallBody: "Your current connection ({{maxKw}} kW) is too small for the smallest supported system size ({{minKw}} kW inverter). Increase the main fuse or contracted capacity to continue.",
+    gridTooSmallBody:
+      "Your current connection ({{maxKw}} kW) is too small for the smallest supported system size ({{minKw}} kW inverter). Increase the main fuse or contracted capacity to continue.",
   },
   units: {
     kwhPerYear: "kWh/yr",
@@ -507,8 +524,10 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     verifying: "Confirming your purchase…",
     cancelled: "The purchase was cancelled. You can try again.",
     failed: "The purchase could not be completed. You have not been charged.",
-    retry: "We could not confirm the purchase right now. Nothing is lost — it unlocks automatically once the connection works again.",
-    appOnly: "The purchase is made in the app with your Apple account and is not available in the browser.",
+    retry:
+      "We could not confirm the purchase right now. Nothing is lost — it unlocks automatically once the connection works again.",
+    appOnly:
+      "The purchase is made in the app with your Apple account and is not available in the browser.",
     appleNote: "Handled by the App Store.",
   },
   history: {
@@ -573,8 +592,10 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
         "Theoretical AC power is based on your selected grid connection: {{phases}}-phase, {{voltage}} V, calculated as {{factor}} × {{voltage}} V × main fuse. The actual permitted connection or feed-in power may be limited by the grid operator or by the specific installation.",
       gridMethodNote:
         "Theoretical AC power is based on 400 V three-phase, calculated as 1.73 × 400 V × main fuse. The actual permitted connection or feed-in power may be limited by the grid operator or by the specific installation.",
-      gridMethodNoteContracted: "The actual permitted connection or feed-in power may be limited by the grid operator or by the specific installation.",
-      savings30Short: "Calculated with {{degradation}} % annual production degradation and unchanged electricity values.",
+      gridMethodNoteContracted:
+        "The actual permitted connection or feed-in power may be limited by the grid operator or by the specific installation.",
+      savings30Short:
+        "Calculated with {{degradation}} % annual production degradation and unchanged electricity values.",
       solarShareTitle: "Your solar electricity",
       selfConsumptionRate: "Self-consumption rate (share of solar production)",
       selfSufficiencyRate: "Self-sufficiency rate (share of electricity use)",
@@ -589,7 +610,8 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       selfConsumptionSource_simulated: "estimated from consumption profile",
       longTermChartTitle: "Economic value over time",
       keyAssumptions: "Key calculation assumptions",
-      priceMethodNote: "The electricity values are calculation assumptions. The actual value of self-consumed and exported solar depends on your electricity contract, fees, taxes, rules and market conditions.",
+      priceMethodNote:
+        "The electricity values are calculation assumptions. The actual value of self-consumed and exported solar depends on your electricity contract, fees, taxes, rules and market conditions.",
       "valueSource_standard-value": "Standard value",
       "valueSource_user-override": "Entered by you",
       priceChange: "Electricity price change",
@@ -609,7 +631,8 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       lifetimeColProduction: "Production (kWh)",
       lifetimeColValue: "Value/year",
       lifetimeColCumulative: "Cumulative",
-      lifetimeNote: "The calculation shows the estimated development over {{years}} years based on the estimated production, the assumed degradation and the chosen electricity price development. Actual economic outcome and production may differ over time.",
+      lifetimeNote:
+        "The calculation shows the estimated development over {{years}} years based on the estimated production, the assumed degradation and the chosen electricity price development. Actual economic outcome and production may differ over time.",
       yearShort: "Year",
       reportId: "Report ID",
       uncertaintyTitle: "What can affect the outcome?",
@@ -632,10 +655,13 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
         "The accumulated economic value through year {{years}} is what the investment level of approximately {{amount}} is based on - it is the same calculation, only rounded.",
       annualValue: "Economic value, year 1",
       savings30: "Accumulated economic value over {{years}} years",
-      savings30Method: "Calculation period: {{years}} years. Production degradation: {{degradation}} %/year. Electricity price change: {{priceChange}} %/year.",
-      savings30Note: "The long-term economic value is calculated year by year using {{degradation}} % annual production degradation. The calculation assumes unchanged values for self-consumed and exported solar power.",
+      savings30Method:
+        "Calculation period: {{years}} years. Production degradation: {{degradation}} %/year. Electricity price change: {{priceChange}} %/year.",
+      savings30Note:
+        "The long-term economic value is calculated year by year using {{degradation}} % annual production degradation. The calculation assumes unchanged values for self-consumed and exported solar power.",
       degradation: "Production degradation",
-      degradationNote: "Panel output is assumed to decline by {{degradation}} % per year. This is a calculation assumption; actual degradation varies between panel types, brands and operating conditions.",
+      degradationNote:
+        "Panel output is assumed to decline by {{degradation}} % per year. This is a calculation assumption; actual degradation varies between panel types, brands and operating conditions.",
       investment: "Investment level at chosen payback time",
       returnRate: "Return %",
       balanceTitle: "Annual balance",
@@ -679,9 +705,10 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       savings: "Economic value per year",
       tilt: "Roof tilt",
       yearsUnit: "years",
-      "paybackScenariosTitle": "Investment level at different payback times",
-      "paybackScenarioSelected": "Your choice",
-      "paybackScenariosHelp": "A shorter payback time means a lower possible investment. Here you see how the investment level changes if you accept a shorter or longer payback time.",
+      paybackScenariosTitle: "Investment level at different payback times",
+      paybackScenarioSelected: "Your choice",
+      paybackScenariosHelp:
+        "A shorter payback time means a lower possible investment. Here you see how the investment level changes if you accept a shorter or longer payback time.",
       acceptedPayback: "Chosen payback time",
       maxInvestment: "Investment level at chosen payback time",
       quotePrice: "Quoted price provided",
@@ -711,19 +738,37 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       assumed: "Standard assumption",
       external: "External data source",
     },
-    disclaimer:
-      "This report is a snapshot of the calculation and is based on the assumptions listed above. It is not a quote.",
     generated: "Generated",
-    faqTitle: 'Frequently asked questions',
+    faqTitle: "Frequently asked questions",
     faqItems: [
-      { q: 'How reliable is the estimated solar production?', a: "The calculation is based on solar irradiation for the location and the roof's orientation and tilt. Actual production is affected by factors such as weather, shading and the technical conditions of the installation." },
-      { q: 'What does self-consumption mean?', a: 'The share of solar electricity used directly in the home. The remaining production is fed into the electricity grid.' },
-      { q: 'Why is self-consumed solar electricity worth more than sold solar electricity?', a: 'Self-consumed solar electricity replaces electricity that would otherwise have been bought from the grid, while sold solar electricity is compensated according to the terms for exported electricity.' },
-      { q: 'What does the investment level for the chosen payback time mean?', a: "It shows roughly what investment matches the payback time you chose, based on the accumulated economic value in the calculation. It is not an estimated market price or a quote." },
-      { q: "Why can the installer's calculation differ?", a: 'Different assumptions about production, self-consumption, electricity prices, system losses and future price development can give different results.' },
-      { q: 'Is the calculation a quote?', a: 'No. The result is an estimate and is intended as a basis for decision-making. The actual price, production and economic outcome may differ.' },
-      { q: 'Why does production decrease over time?', a: 'The efficiency of solar panels normally decreases slightly over the years. The calculation applies the annual degradation stated in the assumptions, so the estimated production gradually decreases over the calculation period.' },
-                      ],
-
+      {
+        q: "How reliable is the estimated solar production?",
+        a: "The calculation is based on solar irradiation for the location and the roof's orientation and tilt. Actual production is affected by factors such as weather, shading and the technical conditions of the installation.",
+      },
+      {
+        q: "What does self-consumption mean?",
+        a: "The share of solar electricity used directly in the home. The remaining production is fed into the electricity grid.",
+      },
+      {
+        q: "Why is self-consumed solar electricity worth more than sold solar electricity?",
+        a: "Self-consumed solar electricity replaces electricity that would otherwise have been bought from the grid, while sold solar electricity is compensated according to the terms for exported electricity.",
+      },
+      {
+        q: "What does the investment level for the chosen payback time mean?",
+        a: "It shows roughly what investment matches the payback time you chose, based on the accumulated economic value in the calculation. It is not an estimated market price or a quote.",
+      },
+      {
+        q: "Why can the installer's calculation differ?",
+        a: "Different assumptions about production, self-consumption, electricity prices, system losses and future price development can give different results.",
+      },
+      {
+        q: "Is the calculation a quote?",
+        a: "No. The result is an estimate and is intended as a basis for decision-making. The actual price, production and economic outcome may differ.",
+      },
+      {
+        q: "Why does production decrease over time?",
+        a: "The efficiency of solar panels normally decreases slightly over the years. The calculation applies the annual degradation stated in the assumptions, so the estimated production gradually decreases over the calculation period.",
+      },
+    ],
   },
 } as const;

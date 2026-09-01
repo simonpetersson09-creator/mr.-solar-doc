@@ -14,12 +14,13 @@ export const pt = {
     point1Title: "Calcula o seu potencial solar",
     point1Body: "",
     point2Title: "Dimensiona o sistema",
-    point2Body: "O seu consumo de eletricidade, ligação à rede e produção solar são combinados para encontrar o tamanho adequado.",
+    point2Body:
+      "O seu consumo de eletricidade, ligação à rede e produção solar são combinados para encontrar o tamanho adequado.",
     point3Title: "Calcula quanto pode custar conforme o período de retorno pretendido",
-    point3Body: "Escolhe o período de retorno pretendido. Mr. Solar Doc calcula o nível de investimento necessário.",
+    point3Body:
+      "Escolhe o período de retorno pretendido. Mr. Solar Doc calcula o nível de investimento necessário.",
     point4Title: "Relatório e base de decisão",
     point4Body: "Veja produção, economia e diferentes períodos de retorno num relatório.",
-    disclaimer: "O cálculo é indicativo e não é um orçamento. O resultado real pode diferir consoante a instalação, os preços da eletricidade e o mercado.",
     cta: "Iniciar o cálculo",
   },
   common: {
@@ -52,13 +53,14 @@ export const pt = {
     noResults: "Sem resultados. Tente uma morada mais precisa.",
     selected: "Localização selecionada",
     adjustHint: "Arraste o marcador se a posição não estiver correta.",
-    marketUnsupported: "O Mr. Solar Doc ainda não suporta este país. Escolha uma morada num país suportado para continuar.",
+    marketUnsupported:
+      "O Mr. Solar Doc ainda não suporta este país. Escolha uma morada num país suportado para continuar.",
     coordinates: "Coordenadas",
     country: "País",
     region: "Região",
     error: "A pesquisa de morada falhou.",
     info: "A morada é utilizada apenas para calcular a irradiação solar na sua localização.",
-    infoLabel: "Mais informação sobre a morada"
+    infoLabel: "Mais informação sobre a morada",
   },
   premium: {
     title: "Premium",
@@ -100,7 +102,6 @@ export const pt = {
     fetching: "A obter dados solares do PVGIS…",
     result: "Produção solar estimada nesta localização",
     unit: "kWh/kWp/ano",
-    disclaimer: "A produção solar estimada baseia-se na localização, orientação e inclinação do telhado. A produção real pode ser afetada por sombreamento, meteorologia, temperatura e perdas do sistema.",
     error: "Não foi possível obter dados solares para esta localização. Nenhum valor é estimado.",
     errorOverSea:
       "Esta localização parece estar sobre água. Mova o marcador para o edifício em terra e tente novamente.",
@@ -133,7 +134,8 @@ export const pt = {
       },
       "summer-heavy": {
         title: "Maior no verão",
-        description: "Consome mais eletricidade no verão, por exemplo para piscina ou climatização.",
+        description:
+          "Consome mais eletricidade no verão, por exemplo para piscina ou climatização.",
       },
       default: {
         title: "Não sei",
@@ -143,14 +145,16 @@ export const pt = {
     upload: {
       title: "Anexe 12 meses de dados de consumo",
       sectionTitle: "Digitalize a sua fatura de eletricidade",
-      sectionHint: "Anexe a sua fatura de eletricidade ou 12 meses de dados de consumo e preencheremos os valores por si.",
+      sectionHint:
+        "Anexe a sua fatura de eletricidade ou 12 meses de dados de consumo e preencheremos os valores por si.",
       description:
         "Carregue uma fatura de eletricidade ou os seus próprios dados de consumo (PDF, Excel, CSV ou uma imagem como PNG/JPEG) e preenchemos automaticamente os valores anuais e mensais.",
       button: "Escolher ficheiro",
       loading: "A ler o documento…",
       successMonthly: "Encontrámos 12 valores mensais e preenchemo-los por si.",
       successAnnual: "Encontrámos um consumo anual no documento.",
-      error: "Não conseguimos encontrar nenhum consumo no documento. Introduza os valores manualmente.",
+      error:
+        "Não conseguimos encontrar nenhum consumo no documento. Introduza os valores manualmente.",
       fileTypes: "PDF, XLSX, XLS, CSV, TXT ou imagem (PNG, JPEG)",
       dropHint: "Arraste e largue o seu ficheiro aqui, ou",
       dropActive: "Largue o ficheiro para o ler",
@@ -163,7 +167,11 @@ export const pt = {
     title: "Quanta eletricidade consome?",
     subtitle: "Verifique a sua fatura ou contrato de eletricidade.",
     or: "ou",
-    manual: { sectionTitle: "Introduzir manualmente", sectionHint: "Introduza o seu consumo anual — verifique a sua fatura ou contrato de eletricidade." },
+    manual: {
+      sectionTitle: "Introduzir manualmente",
+      sectionHint:
+        "Introduza o seu consumo anual — verifique a sua fatura ou contrato de eletricidade.",
+    },
     annual: "Consumo anual",
     annualPlaceholder: "p. ex. 18.000",
     useMonthly: "Introduzir consumo por mês (12 meses)",
@@ -182,7 +190,12 @@ export const pt = {
         title: "Qual é o seu disjuntor geral?",
         label: "Disjuntor geral",
         help: "Amperes por fase, indicados no seu disjuntor principal ou fatura.",
-      }, service: { title: "Dimensão do serviço elétrico", label: "Dimensão do serviço elétrico", help: "Veja a amperagem no disjuntor principal ou no quadro elétrico." },
+      },
+      service: {
+        title: "Dimensão do serviço elétrico",
+        label: "Dimensão do serviço elétrico",
+        help: "Veja a amperagem no disjuntor principal ou no quadro elétrico.",
+      },
       "contracted-kva": {
         title: "Qual é a sua potência contratada?",
         label: "Potência contratada",
@@ -195,10 +208,10 @@ export const pt = {
       },
     },
     gridAssumption: "O cálculo assume uma ligação trifásica de 400 V.",
-    gridAssumptionInfo: "A potência teórica do disjuntor geral é calculada a partir de uma ligação trifásica de 400 V. Verifique a sua ligação real à rede em caso de dúvida.",
+    gridAssumptionInfo:
+      "A potência teórica do disjuntor geral é calculada a partir de uma ligação trifásica de 400 V. Verifique a sua ligação real à rede em caso de dúvida.",
     gridCheckHint: "Verifique a sua ligação real à rede em caso de dúvida.",
     disclaimerTitle: "Importante saber",
-    disclaimer: "O cálculo é indicativo e não substitui uma avaliação técnica. Verifique sempre a tensão, a capacidade de ligação, a potência permitida e outros requisitos locais da rede junto de um eletricista qualificado e, se necessário, do seu operador de rede antes da instalação.\n\nA Mr Solar Doc não se responsabiliza por instalações ou decisões tomadas apenas com base nos cálculos da app.",
     grid: {
       advanced: "Definições avançadas",
       section: "Definições de rede",
@@ -209,7 +222,8 @@ export const pt = {
       serviceType: "Tipo de fornecimento",
       twoPhase: "Bifásico (fase–fase)",
       splitPhase: "Bifásico (split-phase)",
-      unverifiedHint: "Não temos valores de rede verificados para este país. Verifique os seus dados no contador ou no quadro elétrico.",
+      unverifiedHint:
+        "Não temos valores de rede verificados para este país. Verifique os seus dados no contador ou no quadro elétrico.",
       phase1: "Monofásico",
       phase3: "Trifásico",
       voltage: "Tensão",
@@ -221,9 +235,11 @@ export const pt = {
     },
     genericTitle: "Que ligação elétrica tem?",
     title: "Que disjuntor geral tem?",
-    subtitle: "O disjuntor geral é usado para estimar a dimensão máxima habitual do inversor. A potência realmente permitida é determinada pelo operador de rede.",
+    subtitle:
+      "O disjuntor geral é usado para estimar a dimensão máxima habitual do inversor. A potência realmente permitida é determinada pelo operador de rede.",
     label: "Disjuntor geral",
-    noCountryOptions: "Ainda não temos opções de ligação verificadas para este país. Introduza o seu disjuntor geral em amperes e ajuste as definições de rede abaixo, se necessário.",
+    noCountryOptions:
+      "Ainda não temos opções de ligação verificadas para este país. Introduza o seu disjuntor geral em amperes e ajuste as definições de rede abaixo, se necessário.",
     unverifiedCountryNotice:
       "Não verificámos a norma de rede deste país. Verifique a tensão, as fases e a dimensão da ligação na sua fatura ou junto do operador de rede e confirme abaixo.",
     confirmGrid: "Verifiquei os dados da rede",
@@ -293,7 +309,8 @@ export const pt = {
     resetToStandard: "Repor valor padrão",
     userValueBadge: "Introduzido por si",
     priceScenarioTitle: "Como acha que os preços da eletricidade vão evoluir?",
-    priceScenarioHint: "É um pressuposto sobre a variação anual, não uma previsão. O preço é agravado ano a ano ao longo do período de cálculo.",
+    priceScenarioHint:
+      "É um pressuposto sobre a variação anual, não uma previsão. O preço é agravado ano a ano ao longo do período de cálculo.",
     priceScenarioFlat: "Sem alteração",
     priceScenarioCautious: "Cauteloso",
     priceScenarioNormal: "Normal",
@@ -304,18 +321,18 @@ export const pt = {
     priceScenarioCustomLabel: "Variação própria (%/ano)",
     degradationAssumption: "Degradação técnica",
     priceScenarioAssumption: "Evolução do preço de eletricidade assumida",
-    standardValueHint: "Valores padrão para o cálculo. Altere-os para os valores do seu próprio contrato de eletricidade para um resultado mais individual.",
-    "exportValueInfo": "Indique a compensação total por kWh da eletricidade que injeta na rede, incluindo qualquer benefício de rede ou outra compensação relacionada à exportação.",
+    standardValueHint:
+      "Valores padrão para o cálculo. Altere-os para os valores do seu próprio contrato de eletricidade para um resultado mais individual.",
+    exportValueInfo:
+      "Indique a compensação total por kWh da eletricidade que injeta na rede, incluindo qualquer benefício de rede ou outra compensação relacionada à exportação.",
     editable: "Ajustável",
     editableTooltip: "Alterar pressuposto",
     fuseLimit: "Limite de potência teórico do disjuntor geral",
     fuseLimitInfo:
       "Derivado do seu disjuntor geral e da tensão da rede. A potência de ligação ou de injeção realmente permitida pode ser limitada pelo seu operador de rede e pelas regras locais de rede.",
     reason: {
-      profileUnknown:
-        "O sistema é ajustado ao seu consumo elétrico e à produção solar estimada.",
-      profileNormal:
-        "O sistema é ajustado ao seu consumo elétrico e à produção solar estimada.",
+      profileUnknown: "O sistema é ajustado ao seu consumo elétrico e à produção solar estimada.",
+      profileNormal: "O sistema é ajustado ao seu consumo elétrico e à produção solar estimada.",
       profileLowSolarSeason:
         "Uma grande parte do seu consumo elétrico ocorre quando a produção solar é menor, pelo que o sistema não foi sobredimensionado mais.",
       profileHighSolarSeason:
@@ -344,8 +361,7 @@ export const pt = {
         "Dimensionado para produzir aproximadamente a mesma eletricidade que consome num ano.",
       gridLimit:
         "O sistema está limitado pelo seu disjuntor geral — a sua ligação à rede não permite mais potência.",
-      inverterLimit:
-        "A dimensão é ajustada ao maior inversor adequado para a sua ligação.",
+      inverterLimit: "A dimensão é ajustada ao maior inversor adequado para a sua ligação.",
       minimumSize: "O seu consumo elétrico é baixo, pelo que sugerimos o menor sistema sensato.",
       maximumSize: "A sugestão está limitada à maior dimensão que esta app calcula.",
     },
@@ -380,26 +396,31 @@ export const pt = {
     priceExplainer:
       "A solar autoconsumida substitui eletricidade que de outro modo teria sido comprada à rede. A solar exportada, em contrapartida, gera compensação pela eletricidade injetada na rede.",
     paybackYears: "{{years}} anos",
-    "paybackScenariosTitle": "Nível de investimento com diferentes prazos de retorno",
-    "paybackScenarioSelected": "A sua escolha",
-    "paybackScenariosHelp": "Um prazo de retorno mais curto significa um investimento possível menor. Aqui vê como o nível de investimento muda se aceitar um prazo mais curto ou mais longo.",
+    paybackScenariosTitle: "Nível de investimento com diferentes prazos de retorno",
+    paybackScenarioSelected: "A sua escolha",
+    paybackScenariosHelp:
+      "Um prazo de retorno mais curto significa um investimento possível menor. Aqui vê como o nível de investimento muda se aceitar um prazo mais curto ou mais longo.",
     paybackInfo:
       "O retorno simples mostra a quantos anos corresponde o valor económico anual estimado face ao investimento. Não tem em conta futuras alterações do preço da eletricidade, custo de financiamento, inflação, manutenção ou atualização financeira.",
     maxInvestment: "Nível de investimento no período de retorno escolhido",
     productionCostTitle: "Quanto pode custar o kWh solar?",
     investmentLevelInfoLabel: "Mais informação",
-    investmentLevelInfo: "Mostra aproximadamente a que custo de investimento corresponde o período de retorno que selecionou. Não é uma estimativa do custo real da instalação. O preço real depende, entre outros fatores, do telhado, da instalação, dos componentes e do fornecedor.",
+    investmentLevelInfo:
+      "Mostra aproximadamente a que custo de investimento corresponde o período de retorno que selecionou. Não é uma estimativa do custo real da instalação. O preço real depende, entre outros fatores, do telhado, da instalação, dos componentes e do fornecedor.",
     systemSizeInfoLabel: "Mais informação",
-    systemSizeInfo: "O cálculo é uma estimativa e deve ser usado como orientação. A produção real, o autoconsumo, o preço da eletricidade, a compensação, o custo de instalação e o resultado financeiro podem variar. O resultado não constitui um orçamento nem uma garantia.",
+    systemSizeInfo:
+      "O cálculo é uma estimativa e deve ser usado como orientação. A produção real, o autoconsumo, o preço da eletricidade, a compensação, o custo de instalação e o resultado financeiro podem variar. O resultado não constitui um orçamento nem uma garantia.",
     productionCostInfoLabel: "Mais informação",
-    productionCostInfo: "O valor baseia-se no investimento máximo compatível com o período de retorno escolhido, distribuído por toda a eletricidade que o sistema deverá produzir no período de cálculo. Não é um preço de mercado da instalação.",
+    productionCostInfo:
+      "O valor baseia-se no investimento máximo compatível com o período de retorno escolhido, distribuído por toda a eletricidade que o sistema deverá produzir no período de cálculo. Não é um preço de mercado da instalação.",
 
-
-    productionCostExplainer: "Dividimos o custo do sistema pela produção estimada durante todo o período de cálculo.",
+    productionCostExplainer:
+      "Dividimos o custo do sistema pela produção estimada durante todo o período de cálculo.",
     productionCostLabel: "Pode custar",
     productionCostValueLabel: "Valor para si",
     productionCostDifference: "Diferença",
-    productionCostBasis: "Com base em {{investment}} e {{production}} kWh ao longo de {{years}} anos.",
+    productionCostBasis:
+      "Com base em {{investment}} e {{production}} kWh ao longo de {{years}} anos.",
     productionCostHigherValue: "Neste cálculo, cada kWh vale mais do que custa a produzir.",
     productionCostUnavailable: "Não é possível calcular isto com os dados atuais.",
     perKwh: "{{amount}}/kWh",
@@ -408,33 +429,41 @@ export const pt = {
       "Para alcançar cerca de {{years}} anos de retorno simples, a instalação deveria custar no máximo cerca de {{amount}}.",
     maxInvestmentNote:
       "O valor é calculado a partir dos seus dados e pressupostos de cálculo — não é um orçamento nem uma estimativa de preço de mercado.",
-    missingSelfConsumedValue: "Falta o preço da eletricidade. Introduza o que paga por kWh para ver o valor da solar autoconsumida.",
-    missingExportValue: "Falta a compensação pela exportação. Introduza o que recebe por kWh exportado para calcular a receita de exportação.",
-    missingInstallationCost: "Falta o custo de instalação. Introduza o seu orçamento ou investimento estimado.",
+    missingSelfConsumedValue:
+      "Falta o preço da eletricidade. Introduza o que paga por kWh para ver o valor da solar autoconsumida.",
+    missingExportValue:
+      "Falta a compensação pela exportação. Introduza o que recebe por kWh exportado para calcular a receita de exportação.",
+    missingInstallationCost:
+      "Falta o custo de instalação. Introduza o seu orçamento ou investimento estimado.",
     economicsIncomplete: "Base incompleta",
     enterValues: "Introduzir valores",
     missingMarketValues:
       "Não temos um valor padrão verificado para este país. Introduza os valores você mesmo abaixo.",
-    economicsRequiresPrice: "O cálculo económico requer um preço de eletricidade. Introduza os seus preços para ver a poupança, o retorno e o custo de produção.",
+    economicsRequiresPrice:
+      "O cálculo económico requer um preço de eletricidade. Introduza os seus preços para ver a poupança, o retorno e o custo de produção.",
     economicsRequiresPriceShort: "Requer preço de eletricidade",
     gridUnverifiedTitle: "Dados de rede não verificados",
-    gridUnverifiedWarning: "Os pressupostos de rede baseiam-se em valores genéricos e devem ser verificados localmente antes da instalação.",
+    gridUnverifiedWarning:
+      "Os pressupostos de rede baseiam-se em valores genéricos e devem ser verificados localmente antes da instalação.",
     gridProfileStatusLabel: "Perfil de rede",
     gridProfileStatusVerified: "Verificado",
     gridProfileStatusGeneric: "Genérico (não verificado)",
     gridProfileStatusUnsupported: "Manual (não verificado)",
     calcErrorTitle: "O cálculo não pode ser concluído",
-    calcErrorBody: "Alguns dados não podem ser calculados. Volte atrás e verifique o consumo, a ligação à rede e os pressupostos.",
+    calcErrorBody:
+      "Alguns dados não podem ser calculados. Volte atrás e verifique o consumo, a ligação à rede e os pressupostos.",
     currency: "Moeda",
     economicValue: "Valor económico base",
     perYear: "por ano",
     adjustAssumptions: "Ajustar pressupostos",
-    adjustAssumptionsHint: "Altere o autoconsumo, os preços de eletricidade e o período de retorno desejado.",
+    adjustAssumptionsHint:
+      "Altere o autoconsumo, os preços de eletricidade e o período de retorno desejado.",
     showCalculation: "Mostrar cálculo",
     hideCalculation: "Ocultar cálculo",
     adjustSplit: "Ajustar autoconsumo",
     selfConsumptionEstimatedLabel: "Autoconsumo estimado",
-    selfConsumptionEstimatedHelp: "Estimado a partir do seu consumo de eletricidade e da produção calculada do sistema. Pode ajustar o valor manualmente.",
+    selfConsumptionEstimatedHelp:
+      "Estimado a partir do seu consumo de eletricidade e da produção calculada do sistema. Pode ajustar o valor manualmente.",
     selfConsumptionUserAssumption: "A sua suposição",
     selfConsumptionAssumption:
       "O autoconsumo é um pressuposto baseado na quota selecionada e pode ser ajustado manualmente.",
@@ -456,9 +485,11 @@ export const pt = {
     calculatedAt: "Data do cálculo",
     noCalculation: "Não foi encontrado nenhum cálculo. Recomece a partir da morada.",
     locked: "Este cálculo está bloqueado. Conclua a compra para ver o resultado.",
-    calculationUnavailable: "The calculation could not be completed. Please check the roof details and try again.",
+    calculationUnavailable:
+      "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "A ligação é demasiado pequena",
-    gridTooSmallBody: "A sua ligação atual ({{maxKw}} kW) é demasiado pequena para o menor sistema suportado (inversor de {{minKw}} kW). Aumente o fusível principal ou a potência contratada para continuar.",
+    gridTooSmallBody:
+      "A sua ligação atual ({{maxKw}} kW) é demasiado pequena para o menor sistema suportado (inversor de {{minKw}} kW). Aumente o fusível principal ou a potência contratada para continuar.",
   },
   units: {
     kwhPerYear: "kWh/ano",
@@ -499,7 +530,8 @@ export const pt = {
     verifying: "A confirmar a sua compra…",
     cancelled: "A compra foi cancelada. Pode tentar novamente.",
     failed: "Não foi possível concluir a compra. Não lhe foi cobrado nada.",
-    retry: "Não conseguimos confirmar a compra neste momento. Nada se perde — desbloqueia automaticamente assim que a ligação voltar a funcionar.",
+    retry:
+      "Não conseguimos confirmar a compra neste momento. Nada se perde — desbloqueia automaticamente assim que a ligação voltar a funcionar.",
     appOnly: "A compra é feita na app com a sua conta Apple e não está disponível no navegador.",
     appleNote: "Gerido pela App Store.",
   },
@@ -565,8 +597,10 @@ export const pt = {
         "A potência AC teórica baseia-se na ligação de rede selecionada: {{phases}} fases, {{voltage}} V, calculada como {{factor}} × {{voltage}} V × disjuntor geral. A potência de ligação ou de injeção realmente permitida pode ser limitada pelo operador de rede ou pela instalação específica.",
       gridMethodNote:
         "A potência AC teórica baseia-se numa ligação trifásica de 400 V, calculada como 1,73 × 400 V × disjuntor geral. A potência de ligação ou de injeção realmente permitida pode ser limitada pelo operador de rede ou pela instalação específica.",
-      gridMethodNoteContracted: "A potência de ligação ou de injeção realmente permitida pode ser limitada pelo operador de rede ou pela instalação específica.",
-      savings30Short: "Calculado com uma degradação anual de produção de {{degradation}} % e valores elétricos sem alteração.",
+      gridMethodNoteContracted:
+        "A potência de ligação ou de injeção realmente permitida pode ser limitada pelo operador de rede ou pela instalação específica.",
+      savings30Short:
+        "Calculado com uma degradação anual de produção de {{degradation}} % e valores elétricos sem alteração.",
       solarShareTitle: "A sua eletricidade solar",
       selfConsumptionRate: "Taxa de autoconsumo (quota da produção solar)",
       selfSufficiencyRate: "Taxa de autossuficiência (quota do consumo elétrico)",
@@ -581,7 +615,8 @@ export const pt = {
       selfConsumptionSource_simulated: "estimado a partir do perfil de consumo",
       longTermChartTitle: "Valor económico ao longo do tempo",
       keyAssumptions: "Principais pressupostos do cálculo",
-      priceMethodNote: "Os valores de eletricidade são pressupostos de cálculo. O valor real da energia solar autoconsumida e exportada depende do seu contrato de eletricidade, taxas, impostos, regras e condições de mercado.",
+      priceMethodNote:
+        "Os valores de eletricidade são pressupostos de cálculo. O valor real da energia solar autoconsumida e exportada depende do seu contrato de eletricidade, taxas, impostos, regras e condições de mercado.",
       "valueSource_standard-value": "Valor padrão",
       "valueSource_user-override": "Introduzido por si",
       priceChange: "Variação do preço da eletricidade",
@@ -601,28 +636,37 @@ export const pt = {
       lifetimeColProduction: "Produção (kWh)",
       lifetimeColValue: "Valor/ano",
       lifetimeColCumulative: "Acumulado",
-      lifetimeNote: "O cálculo mostra a evolução estimada ao longo de {{years}} anos com base na produção estimada, na degradação assumida e na evolução do preço de eletricidade escolhida. O resultado económico e a produção reais podem diferir ao longo do tempo.",
+      lifetimeNote:
+        "O cálculo mostra a evolução estimada ao longo de {{years}} anos com base na produção estimada, na degradação assumida e na evolução do preço de eletricidade escolhida. O resultado económico e a produção reais podem diferir ao longo do tempo.",
       yearShort: "Ano",
       reportId: "ID do relatório",
       uncertaintyTitle: "O que pode afetar o resultado?",
       uncertaintyText:
         "A produção solar real e o resultado económico podem diferir do cálculo. O resultado é afetado pela variação meteorológica, sombreamento, orientação e inclinação dos painéis, consumo elétrico real e quando ocorre, preços de eletricidade, compensação pela exportação e desempenho do sistema ao longo do tempo.",
       panelPower: "Potência dos painéis",
-      summaryMethodFlat: "Calculado com uma degradação anual da produção de {{degradation}} % e valores inalterados da energia solar autoconsumida e vendida.",
-      summaryMethodTrend: "Calculado com uma degradação anual da produção de {{degradation}} % e uma variação anual assumida de {{priceChange}} % no valor da energia solar.",
-      specificYieldNote: "O potencial de produção é a produção calculada por kWp instalado neste local, para a orientação e inclinação do seu telhado. Não é a produção anual total do sistema.",
-      investmentNote: "O nível de investimento indica aproximadamente que investimento corresponde ao período de retorno escolhido, com base no valor económico acumulado calculado até esse ano. Não é um preço de mercado estimado nem um orçamento.",
+      summaryMethodFlat:
+        "Calculado com uma degradação anual da produção de {{degradation}} % e valores inalterados da energia solar autoconsumida e vendida.",
+      summaryMethodTrend:
+        "Calculado com uma degradação anual da produção de {{degradation}} % e uma variação anual assumida de {{priceChange}} % no valor da energia solar.",
+      specificYieldNote:
+        "O potencial de produção é a produção calculada por kWp instalado neste local, para a orientação e inclinação do seu telhado. Não é a produção anual total do sistema.",
+      investmentNote:
+        "O nível de investimento indica aproximadamente que investimento corresponde ao período de retorno escolhido, com base no valor económico acumulado calculado até esse ano. Não é um preço de mercado estimado nem um orçamento.",
       assumptionsProduction: "Produção",
       assumptionsEconomy: "Economia",
       assumptionsTechnical: "Dados técnicos",
       lifetimeYearOne: "Valor económico, ano 1",
-      lifetimeInvestmentLink: "O valor económico acumulado até ao ano {{years}} é a base do nível de investimento de cerca de {{amount}}: é o mesmo cálculo, apenas arredondado.",
+      lifetimeInvestmentLink:
+        "O valor económico acumulado até ao ano {{years}} é a base do nível de investimento de cerca de {{amount}}: é o mesmo cálculo, apenas arredondado.",
       annualValue: "Valor económico estimado",
       savings30: "Valor económico total em {{years}} anos",
-      savings30Method: "Período de cálculo: {{years}} anos. Degradação de produção: {{degradation}} %/ano. Variação do preço de eletricidade: {{priceChange}} %/ano.",
-      savings30Note: "O valor económico a longo prazo é calculado ano a ano usando uma degradação anual de produção de {{degradation}} %. O cálculo assume valores sem alteração para a energia solar autoconsumida e exportada.",
+      savings30Method:
+        "Período de cálculo: {{years}} anos. Degradação de produção: {{degradation}} %/ano. Variação do preço de eletricidade: {{priceChange}} %/ano.",
+      savings30Note:
+        "O valor económico a longo prazo é calculado ano a ano usando uma degradação anual de produção de {{degradation}} %. O cálculo assume valores sem alteração para a energia solar autoconsumida e exportada.",
       degradation: "Degradação de produção",
-      degradationNote: "Assume-se que o rendimento dos painéis diminui {{degradation}} % ao ano. É um pressuposto de cálculo; a degradação real varia entre tipos de painéis, marcas e condições de funcionamento.",
+      degradationNote:
+        "Assume-se que o rendimento dos painéis diminui {{degradation}} % ao ano. É um pressuposto de cálculo; a degradação real varia entre tipos de painéis, marcas e condições de funcionamento.",
       investment: "Nível de investimento no período de retorno escolhido",
       returnRate: "Rentabilidade %",
       balanceTitle: "Balanço anual",
@@ -666,9 +710,10 @@ export const pt = {
       savings: "Valor económico por ano",
       tilt: "Inclinação do telhado",
       yearsUnit: "anos",
-      "paybackScenariosTitle": "Nível de investimento com diferentes prazos de retorno",
-      "paybackScenarioSelected": "A sua escolha",
-      "paybackScenariosHelp": "Um prazo de retorno mais curto significa um investimento possível menor. Aqui vê como o nível de investimento muda se aceitar um prazo mais curto ou mais longo.",
+      paybackScenariosTitle: "Nível de investimento com diferentes prazos de retorno",
+      paybackScenarioSelected: "A sua escolha",
+      paybackScenariosHelp:
+        "Um prazo de retorno mais curto significa um investimento possível menor. Aqui vê como o nível de investimento muda se aceitar um prazo mais curto ou mais longo.",
       acceptedPayback: "Período de retorno escolhido",
       maxInvestment: "Nível de investimento no período de retorno escolhido",
       quotePrice: "Preço de orçamento indicado",
@@ -698,19 +743,37 @@ export const pt = {
       assumed: "Pressuposto (valor predefinido)",
       external: "Fonte de dados externa",
     },
-    disclaimer:
-      "Este relatório é uma fotografia do cálculo e baseia-se nos pressupostos indicados acima. Não é um orçamento.",
     generated: "Gerado",
-    faqTitle: 'Perguntas frequentes',
+    faqTitle: "Perguntas frequentes",
     faqItems: [
-      { q: 'Quão fiável é a produção solar estimada?', a: "O cálculo baseia-se na irradiação solar do local e na orientação e inclinação do telhado. A produção real é afetada por fatores como o clima, o sombreamento e as condições técnicas da instalação." },
-      { q: 'O que significa autoconsumo?', a: 'A percentagem de eletricidade solar usada diretamente na habitação. A restante produção é injetada na rede elétrica.' },
-      { q: 'Porque é que a eletricidade solar autoconsumida vale mais do que a vendida?', a: 'A eletricidade solar autoconsumida substitui eletricidade que de outro modo teria sido comprada à rede, enquanto a eletricidade solar vendida é compensada de acordo com as condições para a eletricidade exportada.' },
-      { q: 'O que significa o preço para o período de retorno escolhido?', a: "Mostra aproximadamente quanto a instalação pode custar para corresponder ao período de retorno que escolheu, com base nos pressupostos do cálculo. Não é um preço de mercado estimado." },
-      { q: 'Porque é que o cálculo do instalador pode diferir?', a: 'Pressupostos diferentes sobre produção, autoconsumo, preços de eletricidade, perdas do sistema e evolução futura dos preços podem dar resultados diferentes.' },
-      { q: 'O cálculo é um orçamento?', a: 'Não. O resultado é uma estimativa e destina-se a servir de base à decisão. O preço real, a produção e o resultado económico podem diferir.' },
-      { q: 'Porque diminui a produção ao longo do tempo?', a: 'A eficiência dos painéis solares normalmente diminui ligeiramente com os anos. O cálculo assume uma degradação anual de 0,5 %, o que significa que a produção estimada diminui gradualmente ao longo do período de cálculo.' }
+      {
+        q: "Quão fiável é a produção solar estimada?",
+        a: "O cálculo baseia-se na irradiação solar do local e na orientação e inclinação do telhado. A produção real é afetada por fatores como o clima, o sombreamento e as condições técnicas da instalação.",
+      },
+      {
+        q: "O que significa autoconsumo?",
+        a: "A percentagem de eletricidade solar usada diretamente na habitação. A restante produção é injetada na rede elétrica.",
+      },
+      {
+        q: "Porque é que a eletricidade solar autoconsumida vale mais do que a vendida?",
+        a: "A eletricidade solar autoconsumida substitui eletricidade que de outro modo teria sido comprada à rede, enquanto a eletricidade solar vendida é compensada de acordo com as condições para a eletricidade exportada.",
+      },
+      {
+        q: "O que significa o preço para o período de retorno escolhido?",
+        a: "Mostra aproximadamente quanto a instalação pode custar para corresponder ao período de retorno que escolheu, com base nos pressupostos do cálculo. Não é um preço de mercado estimado.",
+      },
+      {
+        q: "Porque é que o cálculo do instalador pode diferir?",
+        a: "Pressupostos diferentes sobre produção, autoconsumo, preços de eletricidade, perdas do sistema e evolução futura dos preços podem dar resultados diferentes.",
+      },
+      {
+        q: "O cálculo é um orçamento?",
+        a: "Não. O resultado é uma estimativa e destina-se a servir de base à decisão. O preço real, a produção e o resultado económico podem diferir.",
+      },
+      {
+        q: "Porque diminui a produção ao longo do tempo?",
+        a: "A eficiência dos painéis solares normalmente diminui ligeiramente com os anos. O cálculo assume uma degradação anual de 0,5 %, o que significa que a produção estimada diminui gradualmente ao longo do período de cálculo.",
+      },
     ],
-
   },
 } as const;
