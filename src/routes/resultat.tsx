@@ -213,7 +213,7 @@ const cost = result.productionCost;
                 {t("result.systemSizeInfo")}
               </p>
             ) : null}
-            <div className="glass-panel mt-2.5 rounded-2xl p-3 text-center">
+            <div className="mt-2.5 rounded-2xl bg-white/10 p-3 text-center">
               <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                 {t("result.panelPowerLabel")}
               </p>
@@ -228,7 +228,7 @@ const cost = result.productionCost;
             </div>
 
             <div className="mt-2.5 grid grid-cols-2 gap-2.5">
-              <div className="glass-panel rounded-2xl p-2.5 text-center">
+              <div className="rounded-2xl bg-white/10 p-2.5 text-center">
                 <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   <Zap className="size-3" /> {t("result.recommendedInverter")}
                 </p>
@@ -237,7 +237,7 @@ const cost = result.productionCost;
                   <span className="text-[11px] font-semibold text-white/60">kW</span>
                 </p>
               </div>
-              <div className="glass-panel rounded-2xl p-2.5 text-center">
+              <div className="rounded-2xl bg-white/10 p-2.5 text-center">
                 <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
                   {t("result.annualProduction")}
                 </p>

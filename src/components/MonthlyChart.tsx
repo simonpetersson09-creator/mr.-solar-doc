@@ -53,12 +53,12 @@ export function MonthlyChart({
             </span>
             <div className="flex h-32 w-full items-end justify-center gap-0.5">
               <div
-                className={`rounded-t-md bg-accent transition-all ${hasComparison ? "w-1/2" : "w-full"}`}
+                className={`rounded-t-md transition-all ${onDark ? "chart-bar-production" : "bg-accent"} ${hasComparison ? "w-1/2" : "w-full"}`}
                 style={{ height: `${Math.max((value / max) * 100, 2)}%` }}
               />
               {hasComparison ? (
                 <div
-                  className={`w-1/2 rounded-t-md transition-all ${onDark ? "bg-white/40" : "bg-muted-foreground/60"}`}
+                  className={`w-1/2 rounded-t-md transition-all ${onDark ? "chart-bar-consumption" : "bg-muted-foreground/60"}`}
                   style={{
                     height: `${Math.max(((comparison![index] ?? 0) / max) * 100, 2)}%`,
                   }}
@@ -77,12 +77,12 @@ export function MonthlyChart({
           className={`mt-3 flex flex-wrap items-center justify-center gap-4 text-xs ${legendClass}`}
         >
           <span className="inline-flex items-center gap-1.5">
-            <span className="size-2.5 rounded-sm bg-accent" />
+            <span className={`size-2.5 rounded-sm ${onDark ? "chart-bar-production" : "bg-accent"}`} />
             {productionLabel}
           </span>
           <span className="inline-flex items-center gap-1.5">
             <span
-              className={`size-2.5 rounded-sm ${onDark ? "bg-white/40" : "bg-muted-foreground/60"}`}
+              className={`size-2.5 rounded-sm ${onDark ? "chart-bar-consumption" : "bg-muted-foreground/60"}`}
             />
             {comparisonLabel}
           </span>
