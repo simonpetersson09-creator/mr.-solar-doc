@@ -154,6 +154,11 @@ describe("verified country profiles match the connection audit", () => {
     { country: "PL", inputType: "contracted-kw", amounts: [3, 4, 5, 6, 8, 10, 12, 14, 17, 20, 25, 30], serviceType: "single-phase", voltageV: 230, frequencyHz: 50 },
     { country: "SI", inputType: "contracted-kw", amounts: [4, 5, 6, 7, 8, 11, 14, 17, 22, 24, 35, 43], serviceType: "three-phase", voltageV: 400, frequencyHz: 50 },
     { country: "JP", inputType: "amperage", amounts: [10, 15, 20, 30, 40, 50, 60], serviceType: "split-phase", voltageV: 200, frequencyHz: 50 },
+    { country: "IE", inputType: "contracted-kva", amounts: [12, 16], serviceType: "single-phase", voltageV: 230, frequencyHz: 50 },
+    { country: "HR", inputType: "contracted-kw", amounts: [4.6, 5.75, 7.36, 9.2, 11.5, 11.04, 13.8, 17.25, 22], serviceType: "three-phase", voltageV: 400, frequencyHz: 50 },
+    { country: "LV", inputType: "amperage", amounts: [16, 20, 25, 32, 16, 20, 25, 32, 40, 50, 63], serviceType: "three-phase", voltageV: 400, frequencyHz: 50 },
+    { country: "LT", inputType: "contracted-kw", amounts: [3, 4, 5, 7, 9, 11, 14, 18, 22, 28, 35, 45, 60], serviceType: "three-phase", voltageV: 400, frequencyHz: 50 },
+
   ];
 
   it.each(expectations)(
