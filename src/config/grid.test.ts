@@ -32,7 +32,7 @@ describe("dynamic grid profile", () => {
   });
 
   it("offers the extended European voltage set with 400 V first", () => {
-    expect(GRID_VOLTAGE_OPTIONS).toEqual([220, 230, 240, 380, 400, 415]);
+    expect(GRID_VOLTAGE_OPTIONS).toEqual([127, 220, 230, 240, 380, 400, 415]);
     expect(GRID_VOLTAGE_OPTIONS).toContain(DEFAULT_GRID_PROFILE.voltageV);
   });
 
