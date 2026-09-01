@@ -97,9 +97,14 @@ function WizardPage() {
       onSubmit={() => {
         void (async () => {
           const created = await createPending();
-          if (!created) return;
-          // Premium (and dev bypass) skip the paywall: the calculation is opened directly.
-          const pending = usePurchaseStore.getState().pending;
+          if (!created) {
+            // The engine had no usable result (e.g. the cached solar data was
+            // dropped): say so instead of leaving a dead button.
+            toast.error(i18n.t("result.calculationUnavailable"));
+            setStep(2);
+            return;
+          }
+
           if ((premium.active || isDevUnlock()) && pending) {
             usePurchaseStore.getState().rememberToken(pending);
             void navigate({ to: "/resultat" });
