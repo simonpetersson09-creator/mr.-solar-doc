@@ -37,6 +37,9 @@ import {
   gridMethodNoteKind,
 } from "@/lib/connection-display";
 import { SERVICE_TYPE_AC_FACTOR, type ServiceType } from "./grid";
+import { sv } from "@/i18n/locales/sv";
+import { en } from "@/i18n/locales/en";
+import { fr } from "@/i18n/locales/fr";
 
 /** Every profile the app can hand to step 4 — new markets are picked up here. */
 const ALL_PROFILES: Array<[string, CountryConnectionConfig]> = [
@@ -300,5 +303,61 @@ describe("method notes follow the actual state, not a fixed 400 V assumption", (
     expect(gridAcDisplayFactor("single-phase")).toBe(1);
     expect(gridAcDisplayFactor("split-phase")).toBe(1);
     expect(gridAcDisplayFactor(null)).toBe(1);
+  });
+});
+
+/* ------------------------- grid help text (i18n) ------------------------ */
+
+describe("step 4 help text always describes the current grid settings", () => {
+  /** Same interpolation i18next performs, kept dependency free. */
+  const interpolate = (template: string, vars: Record<string, string>) =>
+    template.replace(/\{\{(\w+)\}\}/g, (_m, key: string) => vars[key] ?? "");
+
+  const templates: Array<[string, string]> = [
+    ["sv", sv.translation.fuse.gridAssumptionDynamic],
+    ["en", en.translation.fuse.gridAssumptionDynamic],
+    ["fr", fr.translation.fuse.gridAssumptionDynamic],
+  ];
+
+  it.each(templates)("%s: the template is fully parameterised", (_lang, template) => {
+    expect(template).toContain("{{service}}");
+    expect(template).toContain("{{voltage}}");
+    // No hardcoded reference grid anywhere in the sentence.
+    expect(template).not.toMatch(/400/);
+    expect(template).not.toMatch(/230/);
+  });
+
+  it.each(templates)("%s: 1-phase 230 V never renders a 3-phase 400 V claim", (_lang, template) => {
+    const text = interpolate(template, { service: "1-fas", voltage: "230 V" });
+    expect(text).toContain("230 V");
+    expect(text).not.toContain("400");
+    expect(text).not.toContain("3-fas");
+  });
+
+  it.each(templates)("%s: 3-phase 400 V renders the 3-phase text", (_lang, template) => {
+    const text = interpolate(template, { service: "3-fas", voltage: "400 V" });
+    expect(text).toContain("400 V");
+    expect(text).toContain("3-fas");
+  });
+
+  it("the generic check hint exists separately and states no grid values", () => {
+    for (const hint of [
+      sv.translation.fuse.gridCheckHint,
+      en.translation.fuse.gridCheckHint,
+      fr.translation.fuse.gridCheckHint,
+    ]) {
+      expect(hint.length).toBeGreaterThan(0);
+      expect(hint).not.toMatch(/400|230|1[,.]73/);
+    }
+  });
+
+  it("the contracted PDF note never describes the fuse formula", () => {
+    for (const note of [
+      sv.translation.pdf.gridMethodNoteContracted,
+      en.translation.pdf.gridMethodNoteContracted,
+      fr.translation.pdf.gridMethodNoteContracted,
+    ]) {
+      expect(note).not.toMatch(/1[,.]73|400\s*V|kVA\s*[x×]/i);
+    }
   });
 });
