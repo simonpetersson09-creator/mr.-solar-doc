@@ -133,7 +133,7 @@ function SettingsPage() {
   return (
     <div className="surface-sun flex h-dvh max-h-dvh flex-col overflow-hidden">
       <main
-        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-4 overflow-y-auto overscroll-contain px-4 pb-[calc(1.5rem+env(safe-area-inset-bottom))]"
+        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-3 overflow-y-auto overscroll-contain px-4 pb-[calc(1.5rem+env(safe-area-inset-bottom))]"
         style={{ paddingTop: "max(var(--safe-top-min), calc(0.5rem + env(safe-area-inset-top)))" }}
       >
         <header className="flex items-center gap-2.5 pt-1">
