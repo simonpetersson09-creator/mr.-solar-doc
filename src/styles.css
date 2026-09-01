@@ -392,6 +392,16 @@ html[data-native="true"] {
   transform: translateY(1px);
   box-shadow: inset 0 2px 4px oklch(0.2185 0.0066 0.7 / 0.18);
 }
+/* Everything on the CTA — label, arrow, icons — is ink black. */
+.cta-primary,
+.cta-primary * {
+  color: var(--brand-black);
+}
+.cta-primary svg {
+  color: var(--brand-black);
+  stroke: currentColor;
+}
+
 
 /* Soft amber glow blob used as decoration inside dark hero cards. */
 @utility glow-amber {
