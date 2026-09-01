@@ -155,7 +155,7 @@ export const lt = {
         "title": "Koks jūsų įvadinis saugiklis?",
         "label": "Įvadinis saugiklis",
         "help": "Amperai vienai fazei, nurodyti ant įvadinio automato arba sąskaitoje."
-      },
+      }, "service": { "title": "Elektros įvado dydis", "label": "Elektros įvado dydis", "help": "Amperų vertę rasite ant pagrindinio jungiklio arba skydinėje." },
       "contracted-kva": {
         "title": "Kokia jūsų sutartinė galia?",
         "label": "Sutartinė galia",

@@ -175,7 +175,7 @@ export const nl = {
         title: "Wat is je hoofdzekering?",
         label: "Hoofdzekering",
         help: "Ampère per fase, te vinden op je hoofdschakelaar of energierekening.",
-      },
+      }, service: { title: "Grootte van de elektrische aansluiting", label: "Grootte van de elektrische aansluiting", help: "De ampèrewaarde staat op je hoofdschakelaar of in de meterkast." },
       "contracted-kva": {
         title: "Wat is je gecontracteerd vermogen?",
         label: "Gecontracteerd vermogen",

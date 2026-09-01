@@ -155,7 +155,7 @@ export const lv = {
         "title": "Kāds ir jūsu ievadaizsardzības automāts?",
         "label": "Ievadaizsardzība",
         "help": "Amperi uz fāzi, norādīti uz ievadautomāta vai rēķina."
-      },
+      }, "service": { "title": "Elektrības pieslēguma lielums", "label": "Elektrības pieslēguma lielums", "help": "Ampēru vērtību atradīsiet uz galvenā slēdža vai elektrības sadalnē." },
       "contracted-kva": {
         "title": "Kāda ir jūsu līgumā noteiktā jauda?",
         "label": "Līgumā noteiktā jauda",

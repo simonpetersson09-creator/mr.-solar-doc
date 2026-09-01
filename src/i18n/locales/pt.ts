@@ -175,7 +175,7 @@ export const pt = {
         title: "Qual é o seu disjuntor geral?",
         label: "Disjuntor geral",
         help: "Amperes por fase, indicados no seu disjuntor principal ou fatura.",
-      },
+      }, service: { title: "Dimensão do serviço elétrico", label: "Dimensão do serviço elétrico", help: "Veja a amperagem no disjuntor principal ou no quadro elétrico." },
       "contracted-kva": {
         title: "Qual é a sua potência contratada?",
         label: "Potência contratada",

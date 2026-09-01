@@ -170,7 +170,7 @@ export const tr = {
         "title": "Ana sigortanız kaç amper?",
         "label": "Ana sigorta",
         "help": "Ana şalterinizde veya faturanızda gösterilen faz başına amper değeri."
-      },
+      }, "service": { "title": "Elektrik bağlantısının büyüklüğü", "label": "Elektrik bağlantısının büyüklüğü", "help": "Amper değerini ana şalterde veya elektrik panosunda bulabilirsiniz." },
       "contracted-kva": {
         "title": "Sözleşmeli gücünüz nedir?",
         "label": "Sözleşmeli güç",
