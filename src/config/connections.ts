@@ -225,24 +225,27 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     SINGLE_PHASE_230,
     { localTerm: "Aansluitwaarde" },
   ),
+  /** Denmark: 40 A is a standard step in the Danish fuse series. */
   DK: config(
     "DK",
     "amperage",
-    [16, 20, 25, 32, 35, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400)),
+    [16, 20, 25, 32, 35, 40, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400)),
     EU_THREE_PHASE_400,
     { localTerm: "Hovedsikring" },
   ),
   /**
    * Germany: the connection capacity is not on the bill; the house connection
-   * fuse is what exists. Nothing is preselected — we do not know the user's.
+   * fuse is what exists. 3 x 25 A is the common small connection
+   * ("Kleinstanschluss"). Nothing is preselected — we do not know the user's.
    */
   DE: config(
     "DE",
     "amperage",
-    [35, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+    [25, 35, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
     EU_THREE_PHASE_400,
     { localTerm: "Hausanschlusssicherung" },
   ),
+
   /** Great Britain: single-phase 230 V cut-out fuse. */
   GB: config(
     "GB",
