@@ -16,7 +16,7 @@ export const hr = {
     point2Title: "Pronalazi pravu veličinu za vas",
     point2Body:
       "Vaša potrošnja struje, mrežni priključak i solarna proizvodnja se kombiniraju za odgovarajuću veličinu.",
-    point3Title: "Računa koliko smije koštati prema željenom razdoblju povrata",
+    point3Title: "Računa koliko smije koštati [[prema željenom razdoblju povrata]]",
     point3Body:
       "Birajte željeno razdoblje povrata. Mr. Solar Doc računa potrebnu razinu investicije.",
     point4Title: "Izvještaj i podloga za odluku",

@@ -16,7 +16,7 @@ export const de = {
     point2Title: "Findet die richtige Größe für Sie",
     point2Body:
       "Ihr Stromverbrauch, Netzanschluss und Solarerzeugung werden kombiniert, um eine passende Größe zu finden.",
-    point3Title: "Berechnet, was sie kosten darf nach gewünschter Amortisationszeit",
+    point3Title: "Berechnet, was sie kosten darf [[nach gewünschter Amortisationszeit]]",
     point3Body:
       "Sie wählen die gewünschte Amortisationszeit. Mr. Solar Doc berechnet die nötige Investitionshöhe.",
     point4Title: "Bericht und Entscheidungsgrundlage",

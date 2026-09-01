@@ -16,7 +16,7 @@ export const et = {
     point2Title: "Leiab teie jaoks õige suuruse",
     point2Body:
       "Teie elekutarve, võrguühendus ja päikese tootmine ühendatakse, et leida sobiv suurus.",
-    point3Title: "Arvutab, mida see maksma võib minna soovitud tasuvusaja põhjal",
+    point3Title: "Arvutab, mida see maksma võib minna [[soovitud tasuvusaja põhjal]]",
     point3Body:
       "Te valite soovitud tasuvusaja. Mr. Solar Doc arvutab vajaliku investeeringutaseme.",
     point4Title: "Aruanne ja otsuse alus",

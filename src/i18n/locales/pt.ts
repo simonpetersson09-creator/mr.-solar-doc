@@ -16,7 +16,7 @@ export const pt = {
     point2Title: "Encontra o tamanho certo para si",
     point2Body:
       "O seu consumo de eletricidade, ligação à rede e produção solar são combinados para encontrar o tamanho adequado.",
-    point3Title: "Calcula quanto pode custar conforme o período de retorno pretendido",
+    point3Title: "Calcula quanto pode custar [[conforme o período de retorno pretendido]]",
     point3Body:
       "Escolhe o período de retorno pretendido. Mr. Solar Doc calcula o nível de investimento necessário.",
     point4Title: "Relatório e base de decisão",

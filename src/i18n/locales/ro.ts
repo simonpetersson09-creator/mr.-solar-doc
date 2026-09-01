@@ -16,7 +16,7 @@ export const ro = {
     point2Title: "Găsește dimensiunea potrivită pentru tine",
     point2Body:
       "Consumul de curent, conexiunea la rețea și producția solară se combină pentru a găsi o dimensiune potrivită.",
-    point3Title: "Calculează cât poate costa după perioada de retur dorită",
+    point3Title: "Calculează cât poate costa [[după perioada de retur dorită]]",
     point3Body:
       "Alegi perioada de retur dorită. Mr. Solar Doc calculează nivelul de investiții necesar.",
     point4Title: "Raport și bază de decizie",

@@ -16,7 +16,7 @@ export const hu = {
     point2Title: "Megtalálja a megfelelő méretet",
     point2Body:
       "Áramfogyasztását, hálózati csatlakozását és napelemes termelését összesúlyozza a megfelelő mérethez.",
-    point3Title: "Kiszámítja, mennyit fizethet érte a kívánt megtérülési idő alapján",
+    point3Title: "Kiszámítja, mennyit fizethet érte [[a kívánt megtérülési idő alapján]]",
     point3Body:
       "Ön választja a kívánt megtérülési időt. A Mr. Solar Doc kiszámítja a szükséges befektetési szintet.",
     point4Title: "Jelentés és döntési alap",

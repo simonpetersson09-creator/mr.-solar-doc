@@ -16,7 +16,7 @@ export const tr = {
     point2Title: "Sizin için doğru boyutu bulur",
     point2Body:
       "Elektrik tüketiminiz, şebeke bağlantınız ve güneş üretimi uygun boyutu bulmak için birleştirilir.",
-    point3Title: "Ne kadar mal olabileceğini hesaplar istenen geri ödeme süresine göre",
+    point3Title: "Ne kadar mal olabileceğini hesaplar [[istenen geri ödeme süresine göre]]",
     point3Body:
       "İstediğiniz geri ödeme süresini seçersiniz. Mr. Solar Doc gerekli yatırım seviyesini hesaplar.",
     point4Title: "Rapor ve karar temeli",

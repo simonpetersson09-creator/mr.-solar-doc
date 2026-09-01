@@ -16,7 +16,7 @@ export const lv = {
     point2Title: "Atrod jums pareizo izmēru",
     point2Body:
       "Jūsu elektroenerģijas patēriņš, tīkla pieslēgums un saules ražošana tiek apvienoti, lai atrastu atbilstošu izmēru.",
-    point3Title: "Aprēķina, cik tas drīkst maksāt pēc vēlamā atmaksāšanās laika",
+    point3Title: "Aprēķina, cik tas drīkst maksāt [[pēc vēlamā atmaksāšanās laika]]",
     point3Body:
       "Jūs izvēlaties vēlamo atmaksāšanās laiku. Mr. Solar Doc aprēķina vajadzīgo ieguldījumu līmeni.",
     point4Title: "Ziņojums un lēmumu pamats",

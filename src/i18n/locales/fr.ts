@@ -17,7 +17,7 @@ export const fr = {
     point2Title: "Trouve la bonne taille pour vous",
     point2Body:
       "Votre consommation, votre raccordement au réseau et votre production solaire sont combinés pour trouver la taille appropriée.",
-    point3Title: "Calcule ce qu'elle peut coûter selon le délai de remboursement souhaité",
+    point3Title: "Calcule ce qu'elle peut coûter [[selon le délai de remboursement souhaité]]",
     point3Body:
       "Vous choisissez le délai de remboursement souhaité. Mr. Solar Doc calcule le niveau d'investissement nécessaire.",
     point4Title: "Rapport et base de décision",

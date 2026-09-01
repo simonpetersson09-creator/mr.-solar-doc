@@ -16,7 +16,7 @@ export const sk = {
     point2Title: "Nájde správnu veľkosť pre vás",
     point2Body:
       "Vaša spotreba, pripojenie siete a solárna produkcia sa spájajú, aby našli vhodnú veľkosť.",
-    point3Title: "Počíta, koľko môže stáť podľa požadovanej doby návratnosti",
+    point3Title: "Počíta, koľko môže stáť [[podľa požadovanej doby návratnosti]]",
     point3Body:
       "Vyberiete požadovanú dobu návratnosti. Mr. Solar Doc počíta potrebnú úroveň investície.",
     point4Title: "Správa a podklad pre rozhodnutie",

@@ -13,7 +13,7 @@ export const id = {
     point2Title: "Menemukan ukuran yang tepat untuk Anda",
     point2Body:
       "Pemakaian listrik, koneksi jaringan dan produksi surya Anda dipadukan untuk menemukan ukuran yang sesuai.",
-    point3Title: "Menghitung berapa harganya berdasarkan periode pengembalian yang diinginkan",
+    point3Title: "Menghitung berapa harganya [[berdasarkan periode pengembalian yang diinginkan]]",
     point3Body:
       "Anda memilih periode pengembalian yang diinginkan. Mr. Solar Doc menghitung tingkat investasi yang dibutuhkan.",
     point4Title: "Laporan dan dasar keputusan",

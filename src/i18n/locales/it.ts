@@ -16,7 +16,7 @@ export const it = {
     point2Title: "Trova la dimensione giusta per te",
     point2Body:
       "I tuoi consumi, la connessione alla rete e la produzione solare vengono combinati per trovare la giusta dimensione.",
-    point3Title: "Calcola quanto può costare in base al periodo di ammortamento desiderato",
+    point3Title: "Calcola quanto può costare [[in base al periodo di ammortamento desiderato]]",
     point3Body:
       "Scegli il periodo di ammortamento desiderato. Mr. Solar Doc calcola il livello di investimento necessario.",
     point4Title: "Report e base decisionale",
