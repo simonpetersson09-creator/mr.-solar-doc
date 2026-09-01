@@ -218,6 +218,8 @@ export interface CalculationInput {
   /** Optional quote price entered by the user, for the reverse calculation. */
   quotePrice?: number | null;
   inverterSizesKw: number[];
+  /** Module nameplate power (kWp). Defaults to PANEL_WATTAGE_KWP. */
+  panelPowerKwp?: number;
 }
 
 /** Why the recommended array ended up at this size. */
