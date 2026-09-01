@@ -105,9 +105,8 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         </Button>
       }
     >
-      <div className="space-y-5">
 {/* Compass — one card */}
-        <div className="glass-primary rounded-[28px] px-4 py-5">
+      <div className="glass-primary rounded-[28px] px-4 py-5">
           <div className="mb-1 text-center">
             <Label className="text-xs text-white">{t("roof.orientation")}</Label>
             <p className="text-[11px] text-white/70">{t("roof.manualHint")}</p>
