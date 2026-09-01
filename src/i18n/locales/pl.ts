@@ -11,9 +11,15 @@ export const pl = {
   "welcome": {
     "title": "Mr. Solar Doc",
     "subtitle": "Sprawdź, jaka instalacja fotowoltaiczna będzie odpowiednia dla Twojej nieruchomości i ile może kosztować.",
-    "body1": "Wykorzystujemy dane o Twojej nieruchomości, zużyciu energii i lokalnych warunkach nasłonecznienia, aby obliczyć odpowiednią wielkość instalacji i przewidywaną produkcję.",
-    "body2": "Wybierasz okres zwrotu inwestycji, który Ci odpowiada. Mr. Solar Doc obliczy maksymalny koszt instalacji, aby ten okres zwrotu został osiągnięty.",
-    "disclaimer": "Wynik ma charakter orientacyjny, a nie jest ofertą. Rzeczywiste ceny, produkcja i wynik finansowy mogą się różnić w zależności od instalacji, cen energii i warunków rynkowych.",
+    "point1Title": "Dopasowane do Twojej nieruchomości",
+    "point1Body": "Liczymy na podstawie zużycia energii, warunków nasłonecznienia i przyłącza.",
+    "point2Title": "Właściwa wielkość instalacji",
+    "point2Body": "Otrzymasz rekomendowaną moc i szacowaną produkcję roczną.",
+    "point3Title": "Ty wybierasz czas zwrotu",
+    "point3Body": "Obliczamy, ile maksymalnie może kosztować instalacja, by osiągnąć wybrany czas zwrotu.",
+    "point4Title": "Czytelny raport",
+    "point4Body": "Wynik otrzymasz w raporcie, który pomaga ocenić inwestycję w fotowoltaikę.",
+    "disclaimer": "Obliczenie ma charakter orientacyjny i nie jest ofertą. Rzeczywisty wynik może się różnić w zależności od instalacji, cen energii i warunków rynkowych.",
     "cta": "Zacznij obliczenia",
   },
   "common": {

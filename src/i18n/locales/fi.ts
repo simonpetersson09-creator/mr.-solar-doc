@@ -11,9 +11,15 @@ export const fi = {
   "welcome": {
     "title": "Mr. Solar Doc",
     "subtitle": "Selvitä, mikä aurinkosähköjärjestelmä sopii kiinteistöllesi ja mitä se voisi maksaa.",
-    "body1": "Käytämme kiinteistöäsi, sähkönkulutustasi ja paikallisia aurinko-olosuhteita sopivan järjestelmäkoon ja odotetun tuotannon laskemiseen.",
-    "body2": "Valitset itsellesi sopivan takaisinmaksuajan. Mr. Solar Doc laskee tämän jälkeen, kuinka paljon järjestelmä voi enintään maksaa, jotta takaisinmaksuaika toteutuu.",
-    "disclaimer": "Tulos on suuntaa antava, ei tarjous. Todelliset hinnat, tuotanto ja taloudellinen lopputulos voivat poiketa asennuksen, sähkön hinnan ja markkinatilanteen mukaan.",
+    "point1Title": "Räätälöity kiinteistöllesi",
+    "point1Body": "Laskemme sähkönkulutuksen, aurinko-olosuhteiden ja liittymäsi perusteella.",
+    "point2Title": "Oikea järjestelmän koko",
+    "point2Body": "Saat suositellun järjestelmäkoon ja arvioidun vuosituoton.",
+    "point3Title": "Sinä valitset takaisinmaksuajan",
+    "point3Body": "Laskemme, mitä järjestelmä saa enintään maksaa valitsemallasi takaisinmaksuajalla.",
+    "point4Title": "Selkeä raportti",
+    "point4Body": "Saat tuloksen koottuna raporttiin, joka auttaa arvioimaan aurinkosähköinvestointia.",
+    "disclaimer": "Laskelma on suuntaa antava eikä tarjous. Todellinen lopputulos voi poiketa asennuksesta, sähkön hinnoista ja markkinatilanteesta riippuen.",
     "cta": "Aloita laskenta",
   },
   "common": {

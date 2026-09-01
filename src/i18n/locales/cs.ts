@@ -11,9 +11,15 @@ export const cs = {
   "welcome": {
     "title": "Mr. Solar Doc",
     "subtitle": "Zjistěte, jaký solární systém se hodí pro vaši nemovitost a kolik může stát.",
-    "body1": "Na základě vaší nemovitosti, spotřeby elektřiny a místních slunečních podmínek vypočítáme vhodnou velikost systému a očekávanou výrobu.",
-    "body2": "Vyberete si dobu návratnosti, která vám vyhovuje. Mr. Solar Doc následně vypočítá maximální cenu systému, aby byla tato doba návratnosti splněna.",
-    "disclaimer": "Výsledek je orientační, nikoli nabídka. Skutečné ceny, výroba a finanční výsledek se mohou lišit v závislosti na instalaci, cenách elektřiny a podmínkách trhu.",
+    "point1Title": "Přizpůsobeno vaší nemovitosti",
+    "point1Body": "Počítáme se spotřebou elektřiny, slunečními podmínkami a vaší přípojkou.",
+    "point2Title": "Správná velikost systému",
+    "point2Body": "Získáte doporučený výkon a vypočtenou roční výrobu.",
+    "point3Title": "Vy volíte dobu návratnosti",
+    "point3Body": "Spočítáme, kolik smí systém maximálně stát, aby se vrátil ve zvolené době.",
+    "point4Title": "Přehledná zpráva",
+    "point4Body": "Výsledek dostanete ve zprávě, která pomůže posoudit vaši investici do fotovoltaiky.",
+    "disclaimer": "Výpočet je orientační a není nabídkou. Skutečný výsledek se může lišit podle instalace, cen elektřiny a tržních podmínek.",
     "cta": "Zahájit výpočet",
   },
   "common": {

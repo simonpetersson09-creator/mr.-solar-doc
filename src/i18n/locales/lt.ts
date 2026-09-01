@@ -11,9 +11,15 @@ export const lt = {
   "welcome": {
     "title": "Mr. Solar Doc",
     "subtitle": "Sužinokite, kokia saulės sistema tinka jūsų nekilnojamajam turtui ir kiek ji gali kainuoti.",
-    "body1": "Naudojame jūsų nekilnojamojo turto duomenis, elektros suvartojimą ir vietines saulės sąlygas, kad apskaičiuotume tinkamą sistemos dydį ir tikėtiną gamybą.",
-    "body2": "Jūs pasirenkate atsipirkimo laikotarpį, kuris jums atrodo priimtinas. Mr. Solar Doc tuomet apskaičiuoja maksimalią kainą, kurią sistema gali kainuoti, kad būtų pasiektas šis atsipirkimo laikotarpis.",
-    "disclaimer": "Rezultatas yra orientacinis, o ne pasiūlymas. Tikros kainos, gamyba ir finansinis rezultatas gali skirtis atsižvelgiant į montavimą, elektros kainas ir rinkos sąlygas.",
+    "point1Title": "Pritaikyta jūsų objektui",
+    "point1Body": "Skaičiuojame pagal elektros suvartojimą, saulės sąlygas ir jūsų prijungimą.",
+    "point2Title": "Tinkamas sistemos dydis",
+    "point2Body": "Gausite rekomenduojamą galią ir apskaičiuotą metinę gamybą.",
+    "point3Title": "Jūs pasirenkate atsipirkimo laiką",
+    "point3Body": "Apskaičiuojame, kiek daugiausia gali kainuoti sistema, kad atsipirktų per pasirinktą laiką.",
+    "point4Title": "Aiški ataskaita",
+    "point4Body": "Rezultatą gausite ataskaitoje, padedančioje įvertinti investiciją į saulės elektrinę.",
+    "disclaimer": "Skaičiavimas yra orientacinis ir nėra pasiūlymas. Faktinis rezultatas gali skirtis priklausomai nuo įrengimo, elektros kainų ir rinkos sąlygų.",
     "cta": "Pradėti skaičiavimą",
   },
   "common": {
