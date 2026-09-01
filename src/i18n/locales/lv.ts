@@ -370,6 +370,7 @@ export const lv = {
     paybackTitle: "Izvēlieties atmaksas laiku",
     paybackSubtitle: "Skatiet, kāds investīciju līmenis atbilst dažādiem atmaksas periodiem.",
     investmentLevelTitle: "Cena atbilstoši jūsu izvēlētajam atmaksāšanās periodam",
+    investmentPerKwLabel: "Investīciju izmaksas uz kW",
     panelPowerLabel: "Paneļu jauda",
     investmentLevelBasis: "Balstīts uz izvēlēto {{years}} gadu atmaksas laiku",
     investmentLevelNote:

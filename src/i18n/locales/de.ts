@@ -377,6 +377,7 @@ export const de = {
     paybackSubtitle:
       "Sehen Sie, welches Investitionsniveau zu verschiedenen Amortisationszeiten passt.",
     investmentLevelTitle: "Preis nach Ihrer gewählten Amortisationszeit",
+    investmentPerKwLabel: "Investitionskosten pro kW",
     panelPowerLabel: "Modulleistung",
     investmentLevelBasis: "Basierend auf der gewählten Amortisationszeit von {{years}} Jahren",
     investmentLevelNote:

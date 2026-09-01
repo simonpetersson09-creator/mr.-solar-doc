@@ -367,6 +367,7 @@ export const cs = {
     paybackTitle: "Zvolte dobu návratnosti",
     paybackSubtitle: "Podívejte se, jaká úroveň investice odpovídá různým dobám návratnosti.",
     investmentLevelTitle: "Cena podle vámi zvolené doby návratnosti",
+    investmentPerKwLabel: "Investiční náklady na kW",
     panelPowerLabel: "Výkon panelů",
     investmentLevelBasis: "Na základě zvolené doby návratnosti {{years}} let",
     investmentLevelNote:

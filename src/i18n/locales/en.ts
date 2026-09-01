@@ -380,6 +380,7 @@ export const en = {
       "You decide how quickly you want the investment paid back. We calculate what it corresponds to in installation cost.",
     paybackYearsUnit: "years",
     investmentLevelTitle: "Price after your selected payback period",
+    investmentPerKwLabel: "Investment cost per kW",
     panelPowerLabel: "Panel power",
     investmentLevelBasis: "Based on your selected payback period of {{years}} years",
     investmentLevelNote:

@@ -381,6 +381,7 @@ export const sr = {
       "Ви одлучујете колико брзо желите да се инвестиција исплати. Ми израчунавамо шта то одговара у трошку инсталације.",
     paybackYearsUnit: "година",
     investmentLevelTitle: "Цена после изабраног периода отплате",
+    investmentPerKwLabel: "Трошак инвестиције по kW",
     panelPowerLabel: "Снага панела",
     investmentLevelBasis: "На основу вашег изабраног периода отплате од {{years}} година",
     investmentLevelNote:

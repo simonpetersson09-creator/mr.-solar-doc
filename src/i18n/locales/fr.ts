@@ -382,6 +382,7 @@ export const fr = {
     paybackSubtitle:
       "Voyez quel niveau d'investissement correspond à différents temps de retour sur investissement.",
     investmentLevelTitle: "Prix selon la période de remboursement choisie",
+    investmentPerKwLabel: "Coût d\'investissement par kW",
     panelPowerLabel: "Puissance des panneaux",
     investmentLevelBasis: "Basé sur la période de retour choisie de {{years}} ans",
     investmentLevelNote:

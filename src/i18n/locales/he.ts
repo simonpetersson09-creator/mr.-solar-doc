@@ -372,6 +372,7 @@ export const he = {
     paybackSubtitle: "אתם קובעים כמה מהר תרצו שההשקעה תוחזר. אנו מחשבים למה זה מקביל בעלות ההתקנה.",
     paybackYearsUnit: "שנים",
     investmentLevelTitle: "מחיר לפי תקופת ההחזר שבחרתם",
+    investmentPerKwLabel: "עלות השקעה לכל kW",
     panelPowerLabel: "הספק הפאנל",
     investmentLevelBasis: "מבוסס על תקופת ההחזר שבחרתם של {{years}} שנים",
     investmentLevelNote:

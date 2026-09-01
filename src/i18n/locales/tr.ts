@@ -384,6 +384,7 @@ export const tr = {
       "Yatırımın ne kadar hızlı geri ödenmesini istediğinize siz karar verirsiniz. Bunun kurulum maliyeti açısından neye karşılık geldiğini hesaplıyoruz.",
     paybackYearsUnit: "yıl",
     investmentLevelTitle: "Seçtiğiniz geri ödeme süresine göre fiyat",
+    investmentPerKwLabel: "Kw başına yatırım maliyeti",
     panelPowerLabel: "Panel gücü",
     investmentLevelBasis: "Seçtiğiniz {{years}} yıllık geri ödeme süresine dayanarak",
     investmentLevelNote:

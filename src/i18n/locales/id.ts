@@ -375,6 +375,7 @@ export const id = {
       "Anda menentukan seberapa cepat investasi ingin dikembalikan. Kami menghitung berapa biaya instalasi yang sesuai.",
     paybackYearsUnit: "tahun",
     investmentLevelTitle: "Harga setelah periode pengembalian modal yang Anda pilih",
+    investmentPerKwLabel: "Biaya investasi per kW",
     panelPowerLabel: "Daya panel",
     investmentLevelBasis:
       "Berdasarkan periode pengembalian modal pilihan Anda selama {{years}} tahun",

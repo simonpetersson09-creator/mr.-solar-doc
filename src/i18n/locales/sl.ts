@@ -367,6 +367,7 @@ export const sl = {
     paybackTitle: "Izberite dobo vračila",
     paybackSubtitle: "Poglejte, katera raven investicije ustreza različnim dobam vračila.",
     investmentLevelTitle: "Cena po izbranem obdobju vračila",
+    investmentPerKwLabel: "Strošek naložbe na kW",
     panelPowerLabel: "Moč panelov",
     investmentLevelBasis: "Na podlagi izbrane dobe vračila {{years}} let",
     investmentLevelNote:

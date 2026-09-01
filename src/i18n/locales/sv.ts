@@ -382,6 +382,7 @@ export const sv = {
       "Du bestämmer hur snabbt du vill ha investeringen tillbaka. Vi räknar ut vad det motsvarar i installationskostnad.",
     paybackYearsUnit: "år",
     investmentLevelTitle: "Pris efter din valda återbetalningstid",
+    investmentPerKwLabel: "Investeringskostnad per kW",
     panelPowerLabel: "Paneleffekt",
     investmentLevelBasis: "Baserat på din valda återbetalningstid på {{years}} år",
     investmentLevelNote:

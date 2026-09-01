@@ -389,6 +389,7 @@ export const nl = {
       "Je bepaalt hoe snel je de investering wilt terugverdienen. Wij berekenen wat dat betekent voor de installatiekosten.",
     paybackYearsUnit: "jaar",
     investmentLevelTitle: "Prijs op basis van je gekozen terugverdientijd",
+    investmentPerKwLabel: "Investering per kW",
     panelPowerLabel: "Paneelvermogen",
     investmentLevelBasis: "Gebaseerd op je gekozen terugverdientijd van {{years}} jaar",
     investmentLevelNote:

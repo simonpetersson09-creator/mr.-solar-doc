@@ -378,6 +378,7 @@ export const pl = {
     paybackTitle: "Wybierz czas zwrotu",
     paybackSubtitle: "Sprawdź, jaki poziom inwestycji odpowiada różnym czasom zwrotu.",
     investmentLevelTitle: "Cena po wybranym okresie zwrotu",
+    investmentPerKwLabel: "Koszt inwestycji za kW",
     panelPowerLabel: "Moc paneli",
     investmentLevelBasis: "Na podstawie wybranego okresu zwrotu {{years}} lat",
     investmentLevelNote:

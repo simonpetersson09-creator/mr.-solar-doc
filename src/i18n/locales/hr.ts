@@ -382,6 +382,7 @@ export const hr = {
       "Vi odlučujete koliko brzo želite da se investicija isplati. Izračunavamo čemu to odgovara u trošku instalacije.",
     paybackYearsUnit: "godina",
     investmentLevelTitle: "Cijena nakon odabranog razdoblja povrata",
+    investmentPerKwLabel: "Trošak investicije po kW",
     panelPowerLabel: "Snaga panela",
     investmentLevelBasis: "Na temelju odabranog razdoblja povrata od {{years}} godina",
     investmentLevelNote:

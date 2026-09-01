@@ -387,6 +387,7 @@ export const bg = {
       "Вие решавате колко бързо искате да се изплати инвестицията. Ние изчисляваме на какви разходи за инсталация отговаря това.",
     paybackYearsUnit: "години",
     investmentLevelTitle: "Цена след избрания от вас период на изплащане",
+    investmentPerKwLabel: "Инвестиционна цена на kW",
     panelPowerLabel: "Мощност на панела",
     investmentLevelBasis: "На база избрания от вас период на изплащане от {{years}} години",
     investmentLevelNote:

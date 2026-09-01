@@ -395,6 +395,7 @@ export const el = {
       "Αποφασίζετε πόσο γρήγορα θέλετε να αποσβεστεί η επένδυση. Υπολογίζουμε σε τι κόστος εγκατάστασης αντιστοιχεί αυτό.",
     paybackYearsUnit: "έτη",
     investmentLevelTitle: "Τιμή μετά τον επιλεγμένο χρόνο απόσβεσης",
+    investmentPerKwLabel: "Κόστος επένδυσης ανά kW",
     panelPowerLabel: "Ισχύς πάνελ",
     investmentLevelBasis: "Βάσει του επιλεγμένου χρόνου απόσβεσης {{years}} ετών",
     investmentLevelNote:
