@@ -518,7 +518,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
  */
 const GENERIC_EU_AMPERE_LEVELS = [16, 20, 25, 32, 35, 40, 50, 63];
 
-const GENERIC_EU_MARKET_CODES = ["CH", "LV", "LT"] as const;
+const GENERIC_EU_MARKET_CODES = ["CH"] as const;
 
 function genericEuConfig(countryCode: string): CountryConnectionConfig {
   return config(
