@@ -140,8 +140,6 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
   const availability = result.economics.availability;
   const selfConsumedMissing = availability.selfConsumedValue === "missing";
   const exportMissing = availability.exportValue === "missing";
-  const installationCostMissing =
-    availability.installationCost === "missing" && result.investment.quotePrice == null;
   // S5: the engine decides; the UI never re-derives economic completeness.
   const economicValuesMissing = result.economicsStatus === "incomplete";
   // S6: grid knowledge level travels with the result, from step 4 to the PDF.
