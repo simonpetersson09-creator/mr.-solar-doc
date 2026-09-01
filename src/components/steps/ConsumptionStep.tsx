@@ -105,7 +105,12 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
         ? "consumption.validation.tooLow"
         : "consumption.validation.tooHigh";
   const estimatedMonthly = showEstimatedProfile
-    ? estimateMonthlyConsumption(effectiveAnnual, shape, market.defaultConsumptionWeights)
+    ? estimateMonthlyConsumption(
+        effectiveAnnual,
+        shape,
+        market.defaultConsumptionWeights,
+        location?.latitude ?? null,
+      )
     : null;
 
   return (
@@ -355,6 +360,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               setShape(next);
             }}
             marketDefaultWeights={market.defaultConsumptionWeights}
+            latitude={location?.latitude ?? null}
             onDark
           />
 

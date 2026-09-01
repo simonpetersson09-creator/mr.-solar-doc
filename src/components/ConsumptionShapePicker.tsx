@@ -10,14 +10,16 @@ function MiniShape({
   shape,
   active,
   marketDefaultWeights,
+  latitude,
   onDark,
 }: {
   shape: ConsumptionShape;
   active: boolean;
   marketDefaultWeights?: number[] | null | undefined;
+  latitude?: number | null | undefined;
   onDark?: boolean;
 }) {
-  const weights = getShapeWeights(shape, marketDefaultWeights);
+  const weights = getShapeWeights(shape, marketDefaultWeights, latitude);
   const max = Math.max(...weights, 0.0001);
   return (
     <div className="flex h-6 items-end gap-[2px]" aria-hidden="true">
@@ -39,6 +41,8 @@ interface ConsumptionShapePickerProps {
   value: ConsumptionShape;
   onChange: (shape: ConsumptionShape) => void;
   marketDefaultWeights?: number[] | null | undefined;
+  /** Site latitude — flips the seasonal shape south of the equator. */
+  latitude?: number | null | undefined;
   /** Renders the frosted-white variant for the forest-green glass cards. */
   onDark?: boolean;
 }
@@ -47,6 +51,7 @@ export function ConsumptionShapePicker({
   value,
   onChange,
   marketDefaultWeights,
+  latitude,
   onDark = false,
 }: ConsumptionShapePickerProps) {
   const { t } = useTranslation();
@@ -76,6 +81,7 @@ export function ConsumptionShapePicker({
               shape={shape}
               active={active}
               marketDefaultWeights={marketDefaultWeights}
+              latitude={latitude}
               onDark={onDark}
             />
             <span className="min-w-0 flex-1">
