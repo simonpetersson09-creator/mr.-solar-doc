@@ -362,22 +362,22 @@ export const nl = {
     paybackInfo:
       "Het investeringsniveau laat ongeveer zien welke investering overeenkomt met de gekozen terugverdientijd, gebaseerd op de economische waarden die de berekening over die periode voorspelt. Het is geen geschatte marktprijs of offerte.",
     maxInvestment: "Investeringsniveau bij gekozen terugverdientijd",
-    productionCostTitle: "Wat kost zonne-energie van je dak?",
+    productionCostTitle: "Wat mag zonnestroom per kWh kosten?",
     investmentLevelInfoLabel: "Meer informatie",
     investmentLevelInfo: "Toont ongeveer welke investeringskosten overeenkomen met de door jou gekozen terugverdientijd. Het is geen schatting van de werkelijke installatiekosten. De werkelijke prijs hangt onder andere af van het dak, de installatie, de componenten en de leverancier.",
     systemSizeInfoLabel: "Meer informatie",
     systemSizeInfo: "De berekening is een schatting en moet als richtlijn worden gebruikt. Werkelijke productie, zelfverbruik, elektriciteitsprijs, vergoeding, installatiekosten en financieel resultaat kunnen afwijken. Het resultaat is geen offerte of garantie.",
     productionCostInfoLabel: "Meer informatie",
-    productionCostInfo: "De productiekosten zijn een berekende gemiddelde kost per geproduceerde kWh over de levensduur van de installatie. De werkelijke kosten kunnen worden beïnvloed door productie, degradatie, onderhoud en andere toekomstige kosten.",
+    productionCostInfo: "Het bedrag is gebaseerd op de maximale investering die past bij uw gekozen terugverdientijd, verdeeld over alle stroom die de installatie naar verwachting produceert in de rekenperiode. Het is geen marktprijs voor de installatie.",
 
 
     productionCostExplainer: "We delen de kosten van het systeem door de geschatte productie over de hele berekeningsperiode.",
-    productionCostLabel: "Kosten om te produceren",
+    productionCostLabel: "Mag kosten",
     productionCostValueLabel: "Waarde voor jou",
     productionCostDifference: "Verschil",
     productionCostBasis: "Gebaseerd op {{investment}} en {{production}} kWh over {{years}} jaar.",
     productionCostHigherValue: "In deze berekening is elke kWh meer waard dan hij kost om te produceren.",
-    productionCostUnavailable: "We kunnen de productiekosten niet berekenen met de huidige gegevens.",
+    productionCostUnavailable: "We kunnen dit niet berekenen met de huidige gegevens.",
     perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "ong. {{amount}}",
     maxInvestmentExplainer:

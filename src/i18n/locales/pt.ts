@@ -362,22 +362,22 @@ export const pt = {
     paybackInfo:
       "O retorno simples mostra a quantos anos corresponde o valor económico anual estimado face ao investimento. Não tem em conta futuras alterações do preço da eletricidade, custo de financiamento, inflação, manutenção ou atualização financeira.",
     maxInvestment: "Nível de investimento no período de retorno escolhido",
-    productionCostTitle: "Quanto custa a energia solar do seu telhado?",
+    productionCostTitle: "Quanto pode custar o kWh solar?",
     investmentLevelInfoLabel: "Mais informação",
     investmentLevelInfo: "Mostra aproximadamente a que custo de investimento corresponde o período de retorno que selecionou. Não é uma estimativa do custo real da instalação. O preço real depende, entre outros fatores, do telhado, da instalação, dos componentes e do fornecedor.",
     systemSizeInfoLabel: "Mais informação",
     systemSizeInfo: "O cálculo é uma estimativa e deve ser usado como orientação. A produção real, o autoconsumo, o preço da eletricidade, a compensação, o custo de instalação e o resultado financeiro podem variar. O resultado não constitui um orçamento nem uma garantia.",
     productionCostInfoLabel: "Mais informação",
-    productionCostInfo: "O custo de produção é um custo médio calculado por kWh produzido ao longo da vida útil da instalação. O custo real pode ser afetado pela produção, degradação, manutenção e outros custos futuros.",
+    productionCostInfo: "O valor baseia-se no investimento máximo compatível com o período de retorno escolhido, distribuído por toda a eletricidade que o sistema deverá produzir no período de cálculo. Não é um preço de mercado da instalação.",
 
 
     productionCostExplainer: "Dividimos o custo do sistema pela produção estimada durante todo o período de cálculo.",
-    productionCostLabel: "Custo de produzir",
+    productionCostLabel: "Pode custar",
     productionCostValueLabel: "Valor para si",
     productionCostDifference: "Diferença",
     productionCostBasis: "Com base em {{investment}} e {{production}} kWh ao longo de {{years}} anos.",
     productionCostHigherValue: "Neste cálculo, cada kWh vale mais do que custa a produzir.",
-    productionCostUnavailable: "Não conseguimos calcular o custo de produção com os dados atuais.",
+    productionCostUnavailable: "Não é possível calcular isto com os dados atuais.",
     perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "aprox. {{amount}}",
     maxInvestmentExplainer:
