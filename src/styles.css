@@ -284,8 +284,8 @@ html[data-native="true"] {
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
   box-shadow:
-    0 8px 20px oklch(0.3172 0 0 / 0.1),
-    0 2px 5px oklch(0.3172 0 0 / 0.06);
+    0 16px 34px oklch(0.3172 0 0 / 0.18),
+    0 5px 12px oklch(0.3172 0 0 / 0.12);
 }
 
 /* Frosted panel that sits on top of the yellow hero and card surfaces. */
@@ -311,8 +311,8 @@ html[data-native="true"] {
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.4);
   box-shadow:
-    0 8px 20px oklch(0.3172 0 0 / 0.1),
-    0 2px 5px oklch(0.3172 0 0 / 0.06);
+    0 16px 34px oklch(0.3172 0 0 / 0.18),
+    0 5px 12px oklch(0.3172 0 0 / 0.12);
 }
 
 /* Promotes an input-level surface to a saturated #FFDC38 result surface. */
@@ -330,8 +330,8 @@ html[data-native="true"] {
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
   box-shadow:
-    0 8px 20px oklch(0.3172 0 0 / 0.1),
-    0 2px 5px oklch(0.3172 0 0 / 0.06);
+    0 16px 34px oklch(0.3172 0 0 / 0.18),
+    0 5px 12px oklch(0.3172 0 0 / 0.12);
 }
 
 /* Selected chip on a yellow card: a light translucent gray, mirroring the
