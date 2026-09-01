@@ -190,11 +190,12 @@ function config(
 }
 
 /**
- * US service sizes. 100/150/200/400 A are the standard residential steps;
- * 60 A only exists on legacy services and is kept so those homes can answer.
- * 125 A is not a residential service size and is deliberately absent.
+ * North American service sizes. 100/125/150/200/400 A are the standard
+ * residential steps; 60 A only exists on legacy services and is kept so those
+ * homes can answer. Sizes above 400 A are not residential.
  */
-const NORTH_AMERICAN_RATINGS = [60, 100, 150, 200, 400];
+const NORTH_AMERICAN_RATINGS = [60, 100, 125, 150, 200, 400];
+
 
 
 /** Verified country profiles. Add a country only when its data is confirmed. */
