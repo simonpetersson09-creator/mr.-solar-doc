@@ -468,11 +468,11 @@ html[data-native="true"] {
 .glass-primary .text-white\/80,
 .hero-metric .text-white\/85,
 .hero-metric .text-white\/80 {
-  color: oklch(0.2185 0.0066 0.7 / 0.88);
+  color: oklch(0.2185 0.0066 0.7 / 0.92);
 }
 .glass-primary .text-white\/70,
 .hero-metric .text-white\/70 {
-  color: oklch(0.2185 0.0066 0.7 / 0.78);
+  color: oklch(0.2185 0.0066 0.7 / 0.86);
 }
 .glass-primary .text-white\/60,
 .glass-primary .text-white\/50,
@@ -480,7 +480,7 @@ html[data-native="true"] {
 .hero-metric .text-white\/60,
 .hero-metric .text-white\/50,
 .hero-metric .text-white\/45 {
-  color: oklch(0.2185 0.0066 0.7 / 0.68);
+  color: oklch(0.2185 0.0066 0.7 / 0.8);
 }
 .glass-primary .placeholder\:text-white\/50::placeholder,
 .hero-metric .placeholder\:text-white\/50::placeholder {
