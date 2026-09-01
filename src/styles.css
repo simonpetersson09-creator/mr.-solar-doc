@@ -288,13 +288,7 @@ html[data-native="true"] {
   position: relative;
   overflow: hidden;
   background-color: #ffdc38;
-  background-image: none;
-  color: var(--brand-black);
-  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
-  box-shadow:
-    0 16px 34px oklch(0.3172 0 0 / 0.18),
-    0 5px 12px oklch(0.3172 0 0 / 0.12);
-}
+  background-image: var(--yellow-sheen);
 
 /* Frosted panel that sits on top of the yellow hero and card surfaces. */
 @utility glass-panel {
