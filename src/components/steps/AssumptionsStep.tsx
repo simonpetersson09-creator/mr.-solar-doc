@@ -245,7 +245,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
       {/* ── Card 3: electricity price development scenario ── */}
       <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">
         <p className="text-xs font-semibold text-white">{t("result.priceScenarioTitle")}</p>
-        <div className="flex flex-wrap gap-1.5">
+        <div className="flex flex-wrap gap-1.5 rounded-2xl bg-white/10 p-2.5">
           {scenarios.map((scenario) => {
             const active = priceScenario === scenario.id;
             return (
