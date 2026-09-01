@@ -61,9 +61,19 @@ export function useCreatePendingCalculation(): () => Promise<boolean> {
       },
     };
 
+    // In development the purchase backend may be unavailable; fall back to a
+    // local-only receipt so the result page can still be exercised.
     const created = await createPendingCalculation({
       data: { deviceId: ensureDeviceId() },
+    }).catch((error: unknown) => {
+      if (!isDevUnlock()) throw error;
+      console.warn("[dev] createPendingCalculation failed, using local receipt", error);
+      return {
+        id: `dev-${Math.random().toString(36).slice(2)}${Date.now().toString(36)}`,
+        accessToken: "dev-local",
+      };
     });
+
 
     saveLocal({
       id: created.id,
