@@ -16,7 +16,7 @@ export const pl = {
     point2Title: "Znajduje odpowiedni rozmiar dla Ciebie",
     point2Body:
       "Twoje zużycie prądu, podłączenie do sieci i produkcja słoneczna są łączone, by znaleźć odpowiedni rozmiar.",
-    point3Title: "Oblicza, ile może kosztować według pożądanego okresu zwrotu",
+    point3Title: "Oblicza, ile może kosztować [[według pożądanego okresu zwrotu]]",
     point3Body:
       "Wybierasz pożądany okres zwrotu. Mr. Solar Doc oblicza wymagany poziom inwestycji.",
     point4Title: "Raport i podstawa decyzji",

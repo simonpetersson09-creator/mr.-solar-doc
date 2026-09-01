@@ -16,7 +16,7 @@ export const da = {
     point2Title: "Finder den rigtige størrelse til dig",
     point2Body:
       "Dit elforbrug, nettilslutning og solproduktion afvejes for at finde en passende størrelse.",
-    point3Title: "Udregner hvad det må koste efter ønsket tilbagebetalingstid",
+    point3Title: "Udregner hvad det må koste [[efter ønsket tilbagebetalingstid]]",
     point3Body:
       "Du vælger ønsket tilbagebetalingstid. Mr. Solar Doc beregner det investeringsniveau, der kræves.",
     point4Title: "Rapport og beslutningsgrundlag",

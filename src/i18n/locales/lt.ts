@@ -16,7 +16,7 @@ export const lt = {
     point2Title: "Randa tinkamą dydį jums",
     point2Body:
       "Jūsų elektros suvartojimas, tinklo prijungimas ir saulės gamyba derinami tinkamam dydžiui rasti.",
-    point3Title: "Skaičiuoja, kiek tai gali kainuoti pagal pageidaujamą atsiperkamumo laiką",
+    point3Title: "Skaičiuoja, kiek tai gali kainuoti [[pagal pageidaujamą atsiperkamumo laiką]]",
     point3Body:
       "Jūs renkatės pageidaujamą atsiperkamumo laiką. Mr. Solar Doc apskaičiuoja reikalingą investicijų lygį.",
     point4Title: "Ataskaita ir sprendimo pagrindas",
