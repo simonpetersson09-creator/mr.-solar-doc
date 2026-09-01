@@ -531,6 +531,80 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     localTerm: "Ισχύς παροχής",
   }),
 
+  /**
+   * Switzerland: the connection is rated by the "Anschluss-Überstromunterbrecher"
+   * in amperes per phase on a 3N~400 V / 50 Hz house connection (VSE: three-phase
+   * house connection, minimum 25 A for detached homes). 25 A is a documented
+   * minimum, NOT evidence of a national customer ladder, so no presets ship —
+   * the user enters the actual rating.
+   */
+  CH: config("CH", "amperage", [], EU_THREE_PHASE_400, {
+    localTerm: "Anschluss-Überstromunterbrecher",
+  }),
+
+  /**
+   * Bulgaria: "предоставена мощност" is the granted total active power in kW.
+   * Regulatory power classes (<=6 / 7-15 / 16-50 kW) are bands, not customer
+   * choices, so the value is entered freely. maxAcKw = entered kW.
+   */
+  BG: config("BG", "contracted-kw", [], EU_THREE_PHASE_400, {
+    localTerm: "Предоставена мощност",
+  }),
+
+  /**
+   * Serbia: "одобрена снага" (odobrena snaga) — approved total active power in
+   * kW as stated by EPS. Free input; no verified national ladder.
+   */
+  RS: config("RS", "contracted-kw", [], EU_THREE_PHASE_400, {
+    localTerm: "Одобрена снага (Odobrena snaga)",
+  }),
+
+  /**
+   * New Zealand: the supply is rated by the main fuse / service capacity in
+   * amperes, 1~230 V or 3N~400 V, 50 Hz. 60 A single-phase is common (Vector)
+   * but is not a national standard, so no presets — free A input.
+   */
+  NZ: config("NZ", "amperage", [], SINGLE_PHASE_230, {
+    localTerm: "Main fuse / supply capacity",
+  }),
+
+  /**
+   * Israel: "גודל החיבור" — the connection size in amperes per phase. The
+   * verified residential three-phase 400 V options are 3 x 25/40/63/80/100 A.
+   */
+  IL: config(
+    "IL",
+    "amperage",
+    [25, 40, 63, 80, 100].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+    EU_THREE_PHASE_400,
+    { localTerm: "גודל החיבור" },
+  ),
+
+  /**
+   * Mexico: "capacidad del suministro / interruptor principal" in amperes.
+   * Residential LV is 1~127 V, two-wire 120/240 V (split-phase) or 3~220 V
+   * (127/220 V), all 60 Hz — all representable by the existing service-type
+   * model, so sqrt(3) is only applied to a genuine three-phase service. No
+   * national breaker ladder is claimed: free A input.
+   */
+  MX: config(
+    "MX",
+    "amperage",
+    [],
+    { serviceType: "single-phase", voltageV: 127, frequencyHz: 60 },
+    { localTerm: "Capacidad del suministro (interruptor principal)" },
+  ),
+
+  /**
+   * Türkiye: "bağlantı gücü" — the connection power in kW (total), 1~230 V or
+   * 3~400 V, 50 Hz. Free kW input; maxAcKw = entered kW.
+   */
+  TR: config("TR", "contracted-kw", [], EU_THREE_PHASE_400, {
+    localTerm: "Bağlantı gücü",
+  }),
+
+
+
 };
 
 
