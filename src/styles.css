@@ -148,6 +148,11 @@
 
 .dark {
   --brand-yellow: oklch(0.8982 0.171 96.2);
+  --brand-yellow-soft: oklch(0.9235 0.1349 97.2);
+  --brand-yellow-selected: oklch(0.8516 0.1732 94.4);
+  --surface-cream: oklch(0.988 0.012 96);
+  --surface-cream-strong: oklch(0.995 0.008 96);
+
   --brand-yellow-cta: oklch(0.8516 0.1732 94.4);
   --brand-yellow-hover: oklch(0.8577 0.1723 94.3);
   --brand-yellow-pressed: oklch(0.8296 0.1697 91.8);
