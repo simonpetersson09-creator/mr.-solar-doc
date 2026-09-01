@@ -27,7 +27,12 @@ import {
 } from "@/config/grid";
 import { recommendArraySize } from "./solar-sizing";
 import type { PvLimitBinding } from "@/config/pv-connection-rules";
-import { clampShare, splitProduction, summariseSelfConsumption } from "./self-consumption";
+import {
+  clampShare,
+  resolveSelfConsumptionShare,
+  splitProduction,
+  summariseSelfConsumption,
+} from "./self-consumption";
 import {
   CalculationValidationError,
   validateCalculationInput,
@@ -307,7 +312,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     annualProductionKwh,
     selfConsumptionKwh: split.selfConsumptionKwh,
     selfConsumptionShare: split.selfConsumptionShare,
-    requestedSelfConsumptionShare: clampShare(input.selfConsumptionShare),
+    requestedSelfConsumptionShare: clampShare(selfConsumptionEstimate.share),
     annualConsumptionKwh: input.consumption.annualKwh,
     maxAcPowerKw,
     selfConsumptionValue: economics.selfConsumptionValue,
@@ -317,7 +322,12 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   // Year-by-year economics (degradation + electricity price scenario).
   const lifetime = buildLifetimeProjection({
     firstYearProductionKwh: annualProductionKwh,
-    selfConsumptionShare: input.selfConsumptionShare,
+    selfConsumptionShare: selfConsumptionEstimate.share,
+    // A user override is a stated assumption and stays constant over the
+    // period; the modelled share is re-resolved each year from that year's
+    // degraded production.
+    selfConsumptionShareForProduction:
+      selfConsumptionEstimate.source === "user-override" ? undefined : shareForProduction,
     annualConsumptionKwh: input.consumption.annualKwh,
     selfConsumedValuePerKwh,
     exportValuePerKwh,
