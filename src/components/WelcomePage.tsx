@@ -29,7 +29,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
       style={{ backgroundImage: "var(--yellow-sheen)" }}
     >
       <main className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-y-auto overscroll-contain px-5 pt-[calc(1rem+env(safe-area-inset-top))] pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
-        <div className="flex justify-center pt-6">
+        <div className="flex justify-center pt-16">
           <img
             src={brandIcon}
             alt=""
@@ -39,7 +39,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           />
         </div>
 
-        <section className="text-center">
+        <section className="mt-6 text-center">
           <h1 className="font-display text-xl font-bold leading-tight tracking-tight">
             {t("welcome.title")}
           </h1>
