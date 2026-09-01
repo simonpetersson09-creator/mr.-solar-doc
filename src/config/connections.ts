@@ -497,7 +497,42 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     { localTerm: "Leistinoji naudoti galia" },
   ),
 
+  /**
+   * Hungary: the connection is stated as the rated current of the main
+   * breaker, in amperes per phase, on 1~230 V or 3N~400 V / 50 Hz. 32 A per
+   * phase is a regulatory threshold, but no single national CUSTOMER ladder
+   * could be verified — so the profile is verified on the INPUT MODEL
+   * (unit, phases, voltage) and deliberately ships no invented presets: the
+   * user enters the actual amperage per phase. Source: MVM Hálózat grid rules.
+   */
+  HU: config("HU", "amperage", [], EU_THREE_PHASE_400, {
+    localTerm: "Csatlakozási teljesítmény (A/fázis)",
+  }),
+
+  /**
+   * Romania: "putere aprobată" is the approved active power in kW, printed on
+   * the ATR / connection certificate. It is a TOTAL, so maxAcKw = enteredKw —
+   * never converted via amperes or √3. No verified national ladder exists, so
+   * the value is entered freely. Source: Rețele Electrice (spor de putere).
+   */
+  RO: config("RO", "contracted-kw", [], EU_THREE_PHASE_400, {
+    localTerm: "Putere aprobată",
+  }),
+
+  /**
+   * Greece: DEDDIE rates the supply ("ισχύς παροχής") in kVA — a total, never
+   * per phase. The verified LV consumer series from DEDDIE's own load-meter
+   * catalogue is 8 / 12 kVA (single-phase, supplies No 03 and 05) and
+   * 15 / 25 / 35 / 55 kVA (three-phase, supplies No 1-4). Larger supplies
+   * (85 / 135 / 250 kVA) exist but are not residential; any other value can
+   * still be typed manually.
+   */
+  GR: config("GR", "contracted-kva", [8, 12, 15, 25, 35, 55].map((kva) => kvaOption(kva)), SINGLE_PHASE_230, {
+    localTerm: "Ισχύς παροχής",
+  }),
+
 };
+
 
 
 /**
