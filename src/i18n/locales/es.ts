@@ -169,6 +169,7 @@ export const es = {
   fuse: {
     gridAssumptionDynamic: "El cálculo se basa en {{service}} {{voltage}}.",
     capacity: {
+      inputUnit: "Unidad",
       otherLabel: "Introducir valor",
       invalid: "Introduce un valor entre {{min}} y {{max}} {{unit}}.",
       amperage: {
@@ -205,6 +206,7 @@ export const es = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "Fases",
       serviceType: "Tipo de suministro",
+      twoPhase: "Bifásico (fase–fase)",
       splitPhase: "Bifásico (split-phase)",
       unverifiedHint: "No tenemos valores de red verificados para este país. Comprueba tus datos en el contador o en el cuadro eléctrico.",
       phase1: "Monofásico",

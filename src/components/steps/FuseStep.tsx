@@ -214,11 +214,13 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           locale,
           0,
         )} A`
-      : `${serviceLabel(serviceType)} · ${formatDecimal(
-          connectionCapacityAmount(capacity),
-          locale,
-          capacity.type === "contracted-kva" ? 2 : 2,
-        )} ${connectionCapacityUnit(capacity.type)}`;
+      : `${formatDecimal(connectionCapacityAmount(capacity), locale, 2)} ${connectionCapacityUnit(
+          capacity.type,
+        )}${
+          capacity.type === "contracted-kva"
+            ? ` · PF ${formatDecimal(connection.contractedKvaPowerFactor ?? 1, locale, 2)}`
+            : ""
+        }`;
 
   const chipClass = (active: boolean) =>
     active
