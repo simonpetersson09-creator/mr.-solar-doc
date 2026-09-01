@@ -3,7 +3,6 @@ import {
   KWP_ROUNDING_STEP,
   MAX_RECOMMENDED_KWP,
   MIN_RECOMMENDED_KWP,
-  TARGET_MAX_DC_AC_RATIO,
 } from "@/config/constants";
 
 export function roundKwp(kwp: number): number {
@@ -36,10 +35,6 @@ export function maxKwpFromGridLimit(maxAcPowerKw: number): number {
 
 export function maxKwpForInverter(inverterKw: number): number {
   return inverterKw * ABSOLUTE_MAX_DC_AC_RATIO;
-}
-
-export function targetKwpForInverter(inverterKw: number): number {
-  return inverterKw * TARGET_MAX_DC_AC_RATIO;
 }
 
 export interface ArraySizing {
