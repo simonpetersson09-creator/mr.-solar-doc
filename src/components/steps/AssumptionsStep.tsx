@@ -30,6 +30,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   const { t } = useTranslation();
   const { locale } = useAppLocale();
   const { result, outcome, market } = useCalculation();
+  const [showExportInfo, setShowExportInfo] = useState(false);
   const setSelfConsumptionShare = useWizardStore((s) => s.setSelfConsumptionShare);
   const setSelfConsumedValue = useWizardStore((s) => s.setSelfConsumedValue);
   const setExportValue = useWizardStore((s) => s.setExportValue);
