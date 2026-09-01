@@ -1,4 +1,4 @@
-import type { ReactNode } from "react";
+import { useRef, type ReactNode } from "react";
 import { ArrowLeft, Sun } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { haptic } from "@/services/native-service";
