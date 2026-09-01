@@ -17,7 +17,7 @@ export const no = {
     "point2Body": "Ditt strømforbruk, netttilkobling og solprodukt avveies for å finne en passende størrelse.",
     "point3Title": "Beregner hva det kan koste etter ønsket tilbakebetalingstid",
     "point3Body": "Du velger ønsket tilbakebetalingstid. Mr. Solar Doc beregner nødvendig investeringsnivå.",
-    "point4Title": "Gir deg et tydelig beslutningsgrunnlag",
+    "point4Title": "Rapport og beslutningsgrunnlag",
     "point4Body": "Se produksjon, økonomi og ulike tilbakebetalingstider i en rapport.",
     "disclaimer": "Beregningen er veiledende og er ikke et tilbud. Faktisk resultat kan avvike avhengig av installasjon, strømpriser og markedsforhold.",
     "cta": "Start beregningen",

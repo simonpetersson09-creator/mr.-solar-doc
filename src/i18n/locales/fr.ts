@@ -17,7 +17,7 @@ export const fr = {
     "point2Body": "Votre consommation, votre raccordement au réseau et votre production solaire sont combinés pour trouver la taille appropriée.",
     "point3Title": "Calcule ce qu'elle peut coûter selon le délai de remboursement souhaité",
     "point3Body": "Vous choisissez le délai de remboursement souhaité. Mr. Solar Doc calcule le niveau d'investissement nécessaire.",
-    "point4Title": "Vous donne une base de décision claire",
+    "point4Title": "Rapport et base de décision",
     "point4Body": "Production, économie et différents délais de remboursement réunis dans un rapport.",
     "disclaimer": "Le calcul est indicatif et ne constitue pas un devis. Le résultat réel peut varier selon l'installation, les prix de l'électricité et les conditions du marché.",
     "cta": "Démarrer le calcul",

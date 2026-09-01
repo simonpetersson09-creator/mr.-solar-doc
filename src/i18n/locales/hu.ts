@@ -17,7 +17,7 @@ export const hu = {
     point2Body: "Áramfogyasztását, hálózati csatlakozását és napelemes termelését összesúlyozza a megfelelő mérethez.",
     point3Title: "Kiszámítja, mennyit fizethet érte a kívánt megtérülési idő alapján",
     point3Body: "Ön választja a kívánt megtérülési időt. A Mr. Solar Doc kiszámítja a szükséges befektetési szintet.",
-    point4Title: "Egyértelmű döntési alapot ad",
+    point4Title: "Jelentés és döntési alap",
     point4Body: "Lásd a termelést, a gazdaságot és a különböző megtérülési időket egy jelentésben.",
     disclaimer: "A számítás tájékoztató jellegű, nem árajánlat. A tényleges eredmény eltérhet a kivitelezéstől, az árampáraktól és a piaci helyzettől függően.",
     cta: "Számítás indítása",

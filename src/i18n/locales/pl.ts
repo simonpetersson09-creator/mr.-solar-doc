@@ -17,7 +17,7 @@ export const pl = {
     "point2Body": "Twoje zużycie prądu, podłączenie do sieci i produkcja słoneczna są łączone, by znaleźć odpowiedni rozmiar.",
     "point3Title": "Oblicza, ile może kosztować według pożądanego okresu zwrotu",
     "point3Body": "Wybierasz pożądany okres zwrotu. Mr. Solar Doc oblicza wymagany poziom inwestycji.",
-    "point4Title": "Daje ci jasną podstawę decyzji",
+    "point4Title": "Raport i podstawa decyzji",
     "point4Body": "Zobacz produkcję, ekonomię i różne okresy zwrotu w raporcie.",
     "disclaimer": "Obliczenie ma charakter orientacyjny i nie jest ofertą. Rzeczywisty wynik może się różnić w zależności od instalacji, cen energii i warunków rynkowych.",
     "cta": "Zacznij obliczenia",

@@ -17,7 +17,7 @@ export const lv = {
     "point2Body": "Jūsu elektroenerģijas patēriņš, tīkla pieslēgums un saules ražošana tiek apvienoti, lai atrastu atbilstošu izmēru.",
     "point3Title": "Aprēķina, cik tas drīkst maksāt pēc vēlamā atmaksāšanās laika",
     "point3Body": "Jūs izvēlaties vēlamo atmaksāšanās laiku. Mr. Solar Doc aprēķina vajadzīgo ieguldījumu līmeni.",
-    "point4Title": "Dod jums skaidru lēmumu pamatu",
+    "point4Title": "Ziņojums un lēmumu pamats",
     "point4Body": "Skatiet ražošanu, ekonomiku un dažādus atmaksāšanās laikus atskaitē.",
     "disclaimer": "Aprēķins ir orientējošs un nav piedāvājums. Faktiskais rezultāts var atšķirties atkarībā no uzstādīšanas, elektrības cenām un tirgus apstākļiem.",
     "cta": "Sākt aprēķinu",

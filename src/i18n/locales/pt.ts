@@ -17,7 +17,7 @@ export const pt = {
     point2Body: "O seu consumo de eletricidade, ligação à rede e produção solar são combinados para encontrar o tamanho adequado.",
     point3Title: "Calcula quanto pode custar conforme o período de retorno pretendido",
     point3Body: "Escolhe o período de retorno pretendido. Mr. Solar Doc calcula o nível de investimento necessário.",
-    point4Title: "Dá-lhe uma base de decisão clara",
+    point4Title: "Relatório e base de decisão",
     point4Body: "Veja produção, economia e diferentes períodos de retorno num relatório.",
     disclaimer: "O cálculo é indicativo e não é um orçamento. O resultado real pode diferir consoante a instalação, os preços da eletricidade e o mercado.",
     cta: "Iniciar o cálculo",

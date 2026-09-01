@@ -17,7 +17,7 @@ export const sk = {
     "point2Body": "Vaša spotreba, pripojenie siete a solárna produkcia sa spájajú, aby našli vhodnú veľkosť.",
     "point3Title": "Počíta, koľko môže stáť podľa požadovanej doby návratnosti",
     "point3Body": "Vyberiete požadovanú dobu návratnosti. Mr. Solar Doc počíta potrebnú úroveň investície.",
-    "point4Title": "Dáva vám jasný podklad pre rozhodnutie",
+    "point4Title": "Správa a podklad pre rozhodnutie",
     "point4Body": "Pozrite si produkciu, ekonomiku a rôzne doby návratnosti v správe.",
     "disclaimer": "Výpočet je orientačný a nie je ponukou. Skutočný výsledok sa môže líšiť podľa inštalácie, cien elektriny a trhových podmienok.",
     "cta": "Spustiť výpočet",

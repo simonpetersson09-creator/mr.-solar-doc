@@ -17,7 +17,7 @@ export const et = {
     "point2Body": "Teie elekutarve, võrguühendus ja päikese tootmine ühendatakse, et leida sobiv suurus.",
     "point3Title": "Arvutab, mida see maksma võib minna soovitud tasuvusaja põhjal",
     "point3Body": "Te valite soovitud tasuvusaja. Mr. Solar Doc arvutab vajaliku investeeringutaseme.",
-    "point4Title": "Annab teile selge otsusaluse",
+    "point4Title": "Aruanne ja otsuse alus",
     "point4Body": "Vaata tootmist, majandust ja erinevaid tasuvusaegu ühes aruandes.",
     "disclaimer": "Arvutus on suunav ega ole pakkumine. Tegelik tulemus võib erineda sõltuvalt paigaldusest, elektrihindadest ja turuolukorrast.",
     "cta": "Alusta arvutust",

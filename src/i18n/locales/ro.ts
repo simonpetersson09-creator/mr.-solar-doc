@@ -17,7 +17,7 @@ export const ro = {
     "point2Body": "Consumul de curent, conexiunea la rețea și producția solară se combină pentru a găsi o dimensiune potrivită.",
     "point3Title": "Calculează cât poate costa după perioada de retur dorită",
     "point3Body": "Alegi perioada de retur dorită. Mr. Solar Doc calculează nivelul de investiții necesar.",
-    "point4Title": "Îți oferă o bază clară de decizie",
+    "point4Title": "Raport și bază de decizie",
     "point4Body": "Vezi producția, economia și diferite perioade de retur într-un raport.",
     "disclaimer": "Calculul este orientativ și nu este o ofertă. Rezultatul real poate diferi în funcție de instalare, prețurile la energie și piață.",
     "cta": "Începe calculul",

@@ -17,7 +17,7 @@ export const es = {
     point2Body: "Tu consumo eléctrico, conexión a red y producción solar se combinan para encontrar el tamaño adecuado.",
     point3Title: "Calcula cuánto puede costar según el período de amortización deseado",
     point3Body: "Tú eliges el período de amortización deseado. Mr. Solar Doc calcula el nivel de inversión necesario.",
-    point4Title: "Te da una base clara para decidir",
+    point4Title: "Informe y base para decidir",
     point4Body: "Producción, economía y distintos períodos de amortización reunidos en un informe.",
     disclaimer: "El cálculo es orientativo y no es un presupuesto. El resultado real puede variar según la instalación, los precios de la electricidad y el mercado.",
     cta: "Iniciar el cálculo",

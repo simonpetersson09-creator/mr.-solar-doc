@@ -17,7 +17,7 @@ export const nl = {
     point2Body: "Uw stroomverbruik, netaansluiting en zon-opbrengst worden gecombineerd voor een geschikte grootte.",
     point3Title: "Berekent wat het mag kosten na gewenste terugverdientijd",
     point3Body: "U kiest de gewenste terugverdientijd. Mr. Solar Doc berekent het benodigde investeringsniveau.",
-    point4Title: "Geeft u een duidelijke beslissingsbasis",
+    point4Title: "Rapport en beslisbasis",
     point4Body: "Zie productie, economie en verschillende terugverdientijden in een rapport.",
     disclaimer: "De berekening is indicatief en geen offerte. Het werkelijke resultaat kan afwijken afhankelijk van installatie, stroomprijzen en marktomstandigheden.",
     cta: "Start de berekening",

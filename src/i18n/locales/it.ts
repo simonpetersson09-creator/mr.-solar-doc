@@ -17,7 +17,7 @@ export const it = {
     "point2Body": "I tuoi consumi, la connessione alla rete e la produzione solare vengono combinati per trovare la giusta dimensione.",
     "point3Title": "Calcola quanto può costare in base al periodo di ammortamento desiderato",
     "point3Body": "Scegli il periodo di ammortamento desiderato. Mr. Solar Doc calcola il livello di investimento necessario.",
-    "point4Title": "Ti dà una base decisionale chiara",
+    "point4Title": "Report e base decisionale",
     "point4Body": "Produzione, economia e diversi periodi di ammortamento raccolti in un rapporto.",
     "disclaimer": "Il calcolo è indicativo e non è un preventivo. Il risultato effettivo può variare in base a installazione, prezzi dell'energia e condizioni di mercato.",
     "cta": "Avvia il calcolo",
