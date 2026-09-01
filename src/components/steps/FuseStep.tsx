@@ -25,10 +25,10 @@ import { connectionOptionLabel } from "@/lib/connection-display";
 import {
   GRID_FREQUENCY_OPTIONS,
   SERVICE_TYPE_OPTIONS,
-  SPLIT_PHASE_LINE_TO_LINE_V,
   isPresetVoltage,
   isValidCustomVoltage,
   splitPhaseLineToNeutral,
+  voltageForServiceSwitch,
   voltageOptionsForService,
   type ServiceType,
 } from "@/config/grid";
