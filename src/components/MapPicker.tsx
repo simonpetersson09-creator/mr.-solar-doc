@@ -56,12 +56,16 @@ export default function MapPicker({
       attributionControl: true,
       zoomControl: !hideZoomControl,
       // Cheaper gestures on mobile: no fractional zoom steps, less inertia work.
-      zoomSnap: 0,
-      zoomDelta: 0.5,
-      wheelPxPerZoomLevel: 140,
-      wheelDebounceTime: 0,
-      inertiaDeceleration: 2200,
+      // Integer zoom levels only: fractional levels force the browser to
+      // rescale every tile, which is what made zooming out crawl.
+      zoomSnap: 1,
+      zoomDelta: 1,
+      wheelPxPerZoomLevel: 200,
+      wheelDebounceTime: 60,
+      inertiaDeceleration: 2600,
       zoomAnimation: true,
+      zoomAnimationThreshold: 2,
+      minZoom: 4,
       preferCanvas: true,
     }).setView([latitude, longitude], zoom);
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -69,7 +73,10 @@ export default function MapPicker({
       attribution: "© OpenStreetMap",
       // Fewer tile requests/DOM churn mid-gesture keeps panning smooth.
       updateWhenZooming: false,
-      keepBuffer: 2,
+      // Only fetch tiles once the gesture settles, and keep the off-screen
+      // buffer small so a zoom-out doesn't queue hundreds of requests.
+      updateWhenIdle: true,
+      keepBuffer: 1,
       detectRetina: false,
     }).addTo(map);
 
