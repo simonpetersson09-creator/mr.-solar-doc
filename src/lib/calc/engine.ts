@@ -182,9 +182,16 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   }
   if (installedKwp >= MAX_RECOMMENDED_KWP - panelPowerKwp - 1e-9) sizingBasis = "maximum-size";
 
-  // The smallest commercially available inverters set a practical floor, so a
-  // very small target can only be met by a noticeably larger array.
-  if (installedKwp > sizing.recommendedKwp * MINIMUM_SIZE_NOTE_FACTOR + 1e-9) {
+  // The smallest commercially available inverter sets a practical floor, so a
+  // very small target can only be met by a noticeably larger array. The note
+  // therefore requires BOTH that the floor is actually binding (the smallest
+  // inverter was chosen) and that the array clearly overshoots the target -
+  // otherwise ordinary panel quantisation would trip it for normal households.
+  const smallestInverterKw = Math.min(...input.inverterSizesKw);
+  if (
+    inverterKw <= smallestInverterKw + 1e-9 &&
+    installedKwp > sizing.recommendedKwp * MINIMUM_SIZE_NOTE_FACTOR + 1e-9
+  ) {
     notes.push("minimum-system-size");
   }
   if (input.consumption.annualKwh < MIN_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH) {
