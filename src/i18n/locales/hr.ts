@@ -450,6 +450,7 @@ export const hr = {
     calculatedAt: "Datum izračuna",
     noCalculation: "Izračun nije pronađen. Počnite ponovno od adrese.",
     locked: "Ovaj je izračun zaključan. Dovršite kupnju kako biste vidjeli rezultat.",
+    calculationUnavailable: "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "Priključak je premalen",
     gridTooSmallBody: "Vaš trenutni priključak ({{maxKw}} kW) premalen je za najmanji podržani sustav (izmjenjivač {{minKw}} kW). Povećajte glavni osigurač ili ugovorenu snagu za nastavak.",
   },

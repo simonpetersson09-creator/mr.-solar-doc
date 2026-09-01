@@ -447,6 +447,7 @@ export const pt = {
     calculatedAt: "Data do cálculo",
     noCalculation: "Não foi encontrado nenhum cálculo. Recomece a partir da morada.",
     locked: "Este cálculo está bloqueado. Conclua a compra para ver o resultado.",
+    calculationUnavailable: "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "A ligação é demasiado pequena",
     gridTooSmallBody: "A sua ligação atual ({{maxKw}} kW) é demasiado pequena para o menor sistema suportado (inversor de {{minKw}} kW). Aumente o fusível principal ou a potência contratada para continuar.",
   },
