@@ -37,6 +37,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
   const setAcceptedPaybackYears = useWizardStore((s) => s.setAcceptedPaybackYears);
   const storedSelfConsumptionShare = useWizardStore((s) => s.selfConsumptionShare);
+  const selfConsumptionShareIsUserSet = useWizardStore((s) => s.selfConsumptionShareIsUserSet);
   const storedSelfConsumedValue = useWizardStore((s) => s.selfConsumedValuePerKwh);
   const storedExportValue = useWizardStore((s) => s.exportValuePerKwh);
   const priceScenario = useWizardStore((s) => s.priceScenario);
@@ -55,6 +56,10 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   ];
 
   const currency = result?.economics.currency ?? market.currency;
+  // Provenance drives the wording: an automatic estimate is shown with "≈",
+  // a manual choice is presented as the user's own assumption.
+  const isUserSetShare =
+    result?.selfConsumptionSource === "user-override" || selfConsumptionShareIsUserSet;
   const sharePercent = result
     ? result.presentation.requestedSelfConsumptionPercent
     : Math.round(storedSelfConsumptionShare * 100);
