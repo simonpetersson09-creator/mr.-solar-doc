@@ -8,6 +8,14 @@ export const tr = {
     "name": "Mr. Solar Doc",
     "tagline": "Güneş enerjisi sisteminizi birkaç dakikada boyutlandırın"
   },
+  "welcome": {
+    "title": "Mr. Solar Doc'a Hoş Geldiniz",
+    "subtitle": "Mülkünüze hangi güneş enerjisi sisteminin uygun olduğunu ve maliyetini öğrenin.",
+    "body1": "Uygun sistem boyutunu ve tahmini üretimi hesaplamak için mülkünüzü, elektrik tüketiminizi ve yerel güneşlenme koşullarını kullanıyoruz.",
+    "body2": "Size uygun gelen bir geri ödeme süresi seçersiniz. Mr. Solar Doc ardından bu geri ödeme süresine ulaşmak için sistemin en fazla ne kadara mal olabileceğini hesaplar.",
+    "disclaimer": "Sonuç bir rehberdir, teklif değildir. Gerçek fiyatlar, üretim ve finansal sonuç kurulum, elektrik fiyatları ve piyasa koşullarına göre farklılık gösterebilir.",
+    "cta": "Hesaplamayı başlat",
+  },
   "common": {
     "back": "Geri",
     "next": "İleri",

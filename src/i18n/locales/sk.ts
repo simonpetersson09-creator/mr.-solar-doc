@@ -8,6 +8,14 @@ export const sk = {
     "name": "Mr. Solar Doc",
     "tagline": "Nadimenzujte si svoju fotovoltickú elektráreň za pár minút"
   },
+  "welcome": {
+    "title": "Vitajte v Mr. Solar Doc",
+    "subtitle": "Zistite, aký solárny systém je vhodný pre vašu nehnuteľnosť a koľko môže stáť.",
+    "body1": "Na základe vašej nehnuteľnosti, spotreby elektriny a miestnych slnečných podmienok vypočítame vhodnú veľkosť systému a očakávanú výrobu.",
+    "body2": "Vyberiete si dobu návratnosti, ktorá vám vyhovuje. Mr. Solar Doc následne vypočíta maximálnu cenu systému, aby bola táto doba návratnosti dosiahnutá.",
+    "disclaimer": "Výsledok je orientačný, nie je to ponuka. Skutočné ceny, výroba a finančný výsledok sa môžu líšiť v závislosti od instalácie, cien elektriny a trhových podmienok.",
+    "cta": "Spustiť výpočet",
+  },
   "common": {
     "back": "Späť",
     "next": "Ďalej",

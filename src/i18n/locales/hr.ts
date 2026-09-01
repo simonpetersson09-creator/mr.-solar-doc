@@ -8,6 +8,14 @@ export const hr = {
     name: "Mr. Solar Doc",
     tagline: "Dimenzionirajte svoj solarni sustav u nekoliko minuta",
   },
+  welcome: {
+    title: "Dobrodošli u Mr. Solar Doc",
+    subtitle: "Otkrijte koji solarni sustav odgovara vašoj nekretnini i koliko bi mogao koštati.",
+    body1: "Koristimo podatke o vašoj nekretnini, potrošnji električne energije i lokalnim solarnim uvjetima za izračun odgovarajuće veličine sustava i očekivane proizvodnje.",
+    body2: "Odaberete rok povrata investicije koji vam odgovara. Mr. Solar Doc zatim izračunava maksimalnu cijenu koju sustav može imati da bi se postigao taj rok povrata.",
+    disclaimer: "Rezultat je informativan, a ne ponuda. Stvarne cijene, proizvodnja i financijski rezultat mogu se razlikovati ovisno o instalaciji, cijenama električne energije i tržišnim uvjetima.",
+    cta: "Pokreni izračun",
+  },
   common: {
     back: "Natrag",
     next: "Dalje",

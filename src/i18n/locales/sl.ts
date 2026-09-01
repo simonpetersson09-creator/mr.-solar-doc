@@ -8,6 +8,14 @@ export const sl = {
     "name": "Mr. Solar Doc",
     "tagline": "Dimenzionirajte svojo sončno elektrarno v nekaj minutah"
   },
+  "welcome": {
+    "title": "Pozdravljeni v Mr. Solar Doc",
+    "subtitle": "Ugotovite, kateri solarni sistem je primeren za vašo nepremičnino in koliko lahko stane.",
+    "body1": "Uporabimo podatke o vaši nepremičnini, porabi elektrike in lokalnih sončnih razmerah, da izračunamo primerno velikost sistema in pričakovano proizvodnjo.",
+    "body2": "Izberete dobo vračila, ki vam ustreza. Mr. Solar Doc nato izračuna najvišjo ceno sistema, da bo ta doba vračila dosežena.",
+    "disclaimer": "Rezultat je zgolj informativen in ne predstavlja ponudbe. Dejanske cene, proizvodnja in finančni izid se lahko razlikujejo glede na namestitev, cene elektrike in razmere na trgu.",
+    "cta": "Začni izračun",
+  },
   "common": {
     "back": "Nazaj",
     "next": "Naprej",

@@ -8,6 +8,14 @@ export const it = {
     "name": "Mr. Solar Doc",
     "tagline": "Dimensiona il tuo impianto solare in pochi minuti"
   },
+  "welcome": {
+    "title": "Benvenuto in Mr. Solar Doc",
+    "subtitle": "Scopri quale impianto solare è adatto alla tua proprietà e quanto potrebbe costare.",
+    "body1": "Utilizziamo la tua proprietà, il consumo di elettricità e le condizioni solari locali per calcolare una dimensione dell'impianto adeguata e la produzione prevista.",
+    "body2": "Scegli un periodo di rientro dell'investimento che ti sembra giusto. Mr. Solar Doc calcola quindi il costo massimo che l'impianto può avere per rispettare questo periodo di rientro.",
+    "disclaimer": "Il risultato è indicativo, non un'offerta. I prezzi reali, la produzione e il risultato finanziario possono variare in base all'installazione, ai prezzi dell'elettricità e alle condizioni di mercato.",
+    "cta": "Avvia il calcolo",
+  },
   "common": {
     "back": "Indietro",
     "next": "Avanti",

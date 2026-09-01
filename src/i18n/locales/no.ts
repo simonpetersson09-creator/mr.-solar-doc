@@ -8,6 +8,14 @@ export const no = {
     "name": "Mr. Solar Doc",
     "tagline": "Dimensjoner solcelleanlegget ditt på noen minutter"
   },
+  "welcome": {
+    "title": "Velkommen til Mr. Solar Doc",
+    "subtitle": "Finn ut hvilket solcelleanlegg som passer for boligen din, og hva det kan kostet.",
+    "body1": "Vi bruker boligen din, strømforbruket ditt og lokale solforhold til å beregne en passende anleggsstørrelse og forventet produksjon.",
+    "body2": "Du velger en nedbetalingstid som passer for deg. Mr. Solar Doc beregner deretter hva anlegget maksimalt kan koste for å nå denne nedbetalingstiden.",
+    "disclaimer": "Resultatet er veiledende, ikke et tilbud. Faktiske priser, produksjon og økonomisk resultat kan variere basert på installasjon, strømpriser og markedsforhold.",
+    "cta": "Start beregningen",
+  },
   "common": {
     "back": "Tilbake",
     "next": "Neste",
