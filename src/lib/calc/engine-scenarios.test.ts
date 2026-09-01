@@ -27,6 +27,7 @@ function input(paybackYears: number): CalculationInput {
     consumption: { annualKwh: 12000, monthlyKwh: null },
     electrical: { mainFuseAmp: 25, kwPerAmp: 0.69 },
     economics: { selfConsumedValuePerKwh: 1.5, exportValuePerKwh: 0.5, currency: "SEK" },
+    selfConsumptionShare: 0.5,
     acceptedPaybackYears: paybackYears,
     inverterSizesKw: [1.5, 2, 3, 4, 5, 6, 8, 10, 12, 15],
   };
