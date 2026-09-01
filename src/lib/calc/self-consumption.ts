@@ -154,15 +154,15 @@ const PROFILE_FACTOR: Record<LoadProfileClass, number> = {
  * array grows relative to the load, with no breakpoints — a small change in
  * system size can never cause a jump. Two parameters keep it explainable.
  *
- * Calibration: anchored on two points of the synthetic hourly reference
- * (ratio 0.2 -> ~60 %, ratio 2.0 -> ~15 %), which gives B = ln(4)/ln(10) ≈ 0.60
- * and A ≈ 0.23. The curve is then intentionally left slightly BELOW the
- * reference in the mid range (ratio 0.5 -> 35 % vs 38 %; ratio 1.0 -> 23 % vs
- * 25 %) rather than refitted, because the reference itself is synthetic and
- * over-estimating self-consumption over-states the economics. Conservative
- * beats precise here.
+ * Calibration: the standard (mixed load, ratio = 1) self-consumption share is
+ * 40 %, so A = 0.40 and B = 0.60 (B = ln(4)/ln(10)). The curve is country-
+ * agnostic — only the production/consumption ratio and the load profile drive
+ * the share, not the country — so 40 % is the default for every market. A
+ * small array (ratio 0.2) self-consumes ~105 % (clamped to 85 %); an oversized
+ * array (ratio 2.0) self-consumes ~26 %. Monthly data can only lower the
+ * estimate, never raise it.
  */
-const SC_CURVE_A = 0.23;
+const SC_CURVE_A = 0.40;
 const SC_CURVE_B = 0.6;
 /** Even a tiny array is never fully self-consumed (night load, summer surplus). */
 const SC_MAX_SHARE = 0.85;

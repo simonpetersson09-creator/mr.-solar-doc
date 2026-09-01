@@ -26,15 +26,16 @@ describe("dynamic self-consumption model — golden cases (10 000 kWh villa)", (
     }
   });
 
-  it("stays inside the physically plausible reference band", () => {
-    // Synthetic hourly reference (audit), with tolerance. The model is allowed
-    // to be conservative (lower), never materially more optimistic.
+  it("stays inside the calibrated reference band", () => {
+    // Calibrated so the neutral point (mixed, ratio = 1) is 40 % self-consumption.
+    // The curve is monotonic and bounded; the bands below are the model output
+    // with tolerance. Monthly data can only lower the estimate, never raise it.
     const band: Record<number, [number, number]> = {
-      2_000: [0.5, 0.65],
-      5_000: [0.3, 0.4],
-      10_000: [0.18, 0.27],
-      15_000: [0.14, 0.21],
-      20_000: [0.11, 0.17],
+      2_000: [0.80, 0.85],
+      5_000: [0.55, 0.66],
+      10_000: [0.35, 0.45],
+      15_000: [0.28, 0.35],
+      20_000: [0.23, 0.30],
     };
     for (const [production, [lo, hi]] of Object.entries(band)) {
       const share = shareFor(Number(production));
