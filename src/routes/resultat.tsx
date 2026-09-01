@@ -189,7 +189,7 @@ const cost = result.productionCost;
           </div>
         ) : null}
         {/* Group: the system */}
-        <p className="px-1 pt-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+        <p className="px-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
           {t("result.groupSystem")}
         </p>
         {/* 1. Recommendation */}
