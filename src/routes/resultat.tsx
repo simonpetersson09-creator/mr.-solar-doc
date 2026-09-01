@@ -316,8 +316,14 @@ const cost = result.productionCost;
                   : formatCurrency(p.selfConsumptionValue, locale, currency)}
               </dd>
               <dd className="text-[11px] text-white/60">
+                {selfConsumptionIsUserSet ? "" : "\u2248 "}
                 {formatNumber(p.selfConsumptionPercent, locale)} % ·{" "}
                 {formatNumber(p.selfConsumptionKwh, locale)} kWh
+              </dd>
+              <dd className="text-[10px] text-white/45">
+                {selfConsumptionIsUserSet
+                  ? t("result.selfConsumptionUserAssumption")
+                  : t("result.selfConsumptionEstimatedLabel")}
               </dd>
             </div>
             <div className="rounded-2xl bg-white/10 p-2.5 text-center">
