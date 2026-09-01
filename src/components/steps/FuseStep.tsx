@@ -224,7 +224,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           <p className="text-[11px] text-white/70">{t(connection.helpTextKey)}</p>
         </div>
 
-        <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-4">
+        <div className="grid grid-cols-3 gap-1.5 rounded-2xl bg-white/10 p-2.5 sm:grid-cols-4">
           {connection.connectionOptions.map((option) => (
             <button
               key={option.id}
