@@ -52,9 +52,7 @@ describe("dynamic self-consumption model — golden cases (10 000 kWh villa)", (
     for (let p = 1_000; p <= 40_000; p += 500) {
       const a = shareFor(p);
       const b = shareFor(p * 1.01);
-      expect(Math.abs(a - b)).toBeLessThan 
-        ? expect(Math.abs(a - b)).toBeLessThan(0.01)
-        : undefined;
+      expect(Math.abs(a - b)).toBeLessThan(0.01);
     }
   });
 });
