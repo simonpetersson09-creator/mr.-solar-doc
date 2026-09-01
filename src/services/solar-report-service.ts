@@ -1163,7 +1163,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
   }
   // Payback scenarios: identical values to the result page (engine-provided).
   if (!economicsIncomplete && result.investmentScenarios.length > 1) {
-    report.subTitle?.(f["paybackScenariosTitle"] ?? "");
+    report.subheading(f["paybackScenariosTitle"] ?? "");
     report.rows(
       result.investmentScenarios.map((scenario) => ({
         label: `${formatNumber(scenario.paybackYears, locale)} ${f["yearsUnit"] ?? ""}${
