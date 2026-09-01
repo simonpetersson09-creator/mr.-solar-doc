@@ -133,7 +133,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               onChange={(degrees) => setRoof(orientation, degrees, azimuthDegrees)}
             />
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-1.5 rounded-2xl bg-white/10 p-2.5">
+          <div className="flex flex-wrap items-center justify-center gap-1.5">
             {TILT_PRESETS.map((preset) => (
               <button
                 key={preset}
@@ -182,7 +182,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               {query.data?.dataSource ?? ""}
             </p>
           </div>
-          <div className="flex min-h-[44px] flex-col items-center justify-center rounded-2xl bg-white/10 px-3 py-2 text-center">
+          <div className="flex min-h-[44px] flex-col items-center justify-center text-center">
             {query.isError && !query.data ? (
               <Button variant="outline" size="sm" onClick={() => void query.refetch()}>
                 {t("common.retry")}
