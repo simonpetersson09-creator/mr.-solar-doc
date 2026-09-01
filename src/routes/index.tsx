@@ -40,14 +40,17 @@ function WizardPage() {
   const setStep = useWizardStore((s) => s.setCurrentStep);
   const location = useWizardStore((s) => s.location);
   const tiltDegrees = useWizardStore((s) => s.tiltDegrees);
+  const resource = useWizardStore((s) => s.resource);
   const annualConsumptionKwh = useWizardStore((s) => s.annualConsumptionKwh);
   const connectionCapacity = useWizardStore((s) => s.connectionCapacity);
 
   // Never resume past the first step that still lacks data — otherwise a
   // returning user lands on step 5 and gets an empty result page.
+  // The cached solar resource counts as step 2 data: a storage migration can
+  // drop it, and without it the engine silently produces no result.
   const maxReachableStep = !location
     ? 1
-    : tiltDegrees === null
+    : tiltDegrees === null || !resource
       ? 2
       : !annualConsumptionKwh
         ? 3
@@ -55,6 +58,7 @@ function WizardPage() {
           ? 4
           : 5;
   const step = Math.min(persistedStep, maxReachableStep);
+
 
   if (!hasStarted) {
     return <WelcomePage onStart={() => setStarted(true)} />;
