@@ -467,7 +467,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
         pdf: "Obegränsade PDF-rapporter",
         result: "Full tillgång till resultatet",
       },
-      cta: "Bli Premium",
+      cta: "Starta Premium",
       renewal: "Förnyas automatiskt årsvis. Kan avslutas när som helst.",
     },
     title: "Lås upp din beräkning",
