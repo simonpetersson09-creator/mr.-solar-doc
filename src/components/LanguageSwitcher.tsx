@@ -7,9 +7,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  LANGUAGE_DEFAULT_REGION,
   LANGUAGE_NAMES,
   SUPPORTED_LANGUAGES,
-  languageFlagEmoji,
   normaliseLanguage,
 } from "@/i18n/languages";
 import { updateSettings } from "@/services/settings-service";
