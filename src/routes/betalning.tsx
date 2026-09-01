@@ -180,7 +180,7 @@ function PaywallPage() {
           >
             <ArrowLeft className="size-4" />
           </button>
-          <h1 className="text-xl leading-tight font-bold text-foreground">
+          <h1 className="text-base leading-tight font-semibold text-foreground">
             {t("paywall.title")}
           </h1>
         </header>
