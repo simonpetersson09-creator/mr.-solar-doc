@@ -64,6 +64,11 @@ export function productionForYear(
 export function buildLifetimeProjection(params: {
   firstYearProductionKwh: number;
   selfConsumptionShare: number;
+  /**
+   * Optional: resolves the share for a given year's production. Used for the
+   * dynamic estimate; omitted (or for a user override) the fixed share applies.
+   */
+  selfConsumptionShareForProduction?: ((productionKwh: number) => number) | undefined;
   selfConsumedValuePerKwh: number;
   exportValuePerKwh: number;
   /** Physical cap: self-consumption can never exceed what the site uses. */
