@@ -379,6 +379,9 @@ export const hr = {
     priceExplainer:
       "Samostalno potrošena solarna energija zamjenjuje struju koja bi inače bila kupljena iz mreže. Predana solarna energija umjesto toga donosi naknadu za struju predanu u mrežu.",
     paybackYears: "{{years}} godina",
+    "paybackScenariosTitle": "Razina ulaganja pri različitim razdobljima povrata",
+    "paybackScenarioSelected": "Tvoj izbor",
+    "paybackScenariosHelp": "Kraće razdoblje povrata znači niže moguće ulaganje. Ovdje vidiš kako se razina ulaganja mijenja ako prihvatiš kraće ili dulje razdoblje povrata.",
     paybackInfo:
       "Jednostavni povrat pokazuje koliko godina odgovara procijenjena godišnja ekonomska vrijednost u odnosu na investiciju. Ne uzima u obzir buduće promjene cijena struje, trošak financiranja, inflaciju, održavanje ili diskontiranje.",
     maxInvestment: "Razina investicije za odabrano razdoblje povrata",
@@ -660,6 +663,9 @@ export const hr = {
       savings: "Ekonomska vrijednost godišnje",
       tilt: "Nagib krova",
       yearsUnit: "god",
+      "paybackScenariosTitle": "Razina ulaganja pri različitim razdobljima povrata",
+      "paybackScenarioSelected": "Tvoj izbor",
+      "paybackScenariosHelp": "Kraće razdoblje povrata znači niže moguće ulaganje. Ovdje vidiš kako se razina ulaganja mijenja ako prihvatiš kraće ili dulje razdoblje povrata.",
       acceptedPayback: "Odabrano razdoblje povrata",
       maxInvestment: "Razina investicije za odabrano razdoblje povrata",
       quotePrice: "Navedena ponuđena cijena",

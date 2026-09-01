@@ -374,6 +374,9 @@ export const nl = {
     priceExplainer:
       "Zelf verbruikte zonne-energie vervangt stroom die anders van het net zou zijn gekocht. Teruggeleverde zonne-energie levert daarentegen een vergoeding op voor stroom die op het net wordt teruggeleverd.",
     paybackYears: "{{years}} jaar",
+    "paybackScenariosTitle": "Investeringsniveau bij verschillende terugverdientijden",
+    "paybackScenarioSelected": "Jouw keuze",
+    "paybackScenariosHelp": "Een kortere terugverdientijd betekent een lagere mogelijke investering. Hier zie je hoe het investeringsniveau verandert als je een kortere of langere terugverdientijd accepteert.",
     paybackInfo:
       "Het investeringsniveau laat ongeveer zien welke investering overeenkomt met de gekozen terugverdientijd, gebaseerd op de economische waarden die de berekening over die periode voorspelt. Het is geen geschatte marktprijs of offerte.",
     maxInvestment: "Investeringsniveau bij gekozen terugverdientijd",
@@ -657,6 +660,9 @@ export const nl = {
       savings: "Economische waarde per jaar",
       tilt: "Dakhelling",
       yearsUnit: "jaar",
+      "paybackScenariosTitle": "Investeringsniveau bij verschillende terugverdientijden",
+      "paybackScenarioSelected": "Jouw keuze",
+      "paybackScenariosHelp": "Een kortere terugverdientijd betekent een lagere mogelijke investering. Hier zie je hoe het investeringsniveau verandert als je een kortere of langere terugverdientijd accepteert.",
       acceptedPayback: "Gekozen terugverdientijd",
       maxInvestment: "Investeringsniveau bij gekozen terugverdientijd",
       quotePrice: "Opgegeven offerteprijs",

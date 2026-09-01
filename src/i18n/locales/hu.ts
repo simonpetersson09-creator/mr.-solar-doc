@@ -379,6 +379,9 @@ export const hu = {
     priceExplainer:
       "A saját fogyasztású napenergia kiváltja azt az áramot, amelyet egyébként a hálózatból vásárolt volna. A visszatáplált napenergia ezzel szemben kompenzációt kap a hálózatba táplált áramért.",
     paybackYears: "{{years}} év",
+    "paybackScenariosTitle": "Beruházási szint különböző megtérülési idők mellett",
+    "paybackScenarioSelected": "A te választásod",
+    "paybackScenariosHelp": "A rövidebb megtérülési idő alacsonyabb lehetséges beruházást jelent. Itt láthatod, hogyan változik a beruházási szint, ha rövidebb vagy hosszabb megtérülési időt fogadsz el.",
     paybackInfo:
       "Az egyszerű megtérülés megmutatja, hány évnek felel meg a becsült éves gazdasági érték a befektetéshez képest. Nem veszi figyelembe a jövőbeli áramár-változásokat, a finanszírozási költséget, az inflációt, a karbantartást vagy a diszkontálást.",
     maxInvestment: "Befektetési szint a választott megtérülési időnél",
@@ -660,6 +663,9 @@ export const hu = {
       savings: "Éves gazdasági érték",
       tilt: "Tető dőlésszöge",
       yearsUnit: "év",
+      "paybackScenariosTitle": "Beruházási szint különböző megtérülési idők mellett",
+      "paybackScenarioSelected": "A te választásod",
+      "paybackScenariosHelp": "A rövidebb megtérülési idő alacsonyabb lehetséges beruházást jelent. Itt láthatod, hogyan változik a beruházási szint, ha rövidebb vagy hosszabb megtérülési időt fogadsz el.",
       acceptedPayback: "Választott megtérülési idő",
       maxInvestment: "Befektetési szint a választott megtérülési időnél",
       quotePrice: "Megadott árajánlat",

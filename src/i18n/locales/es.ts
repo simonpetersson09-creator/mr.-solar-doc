@@ -379,6 +379,9 @@ export const es = {
     priceExplainer:
       "La solar autoconsumida sustituye electricidad que de otro modo se habría comprado de la red. La solar exportada, en cambio, genera una compensación por la electricidad vertida a la red.",
     paybackYears: "{{years}} años",
+    "paybackScenariosTitle": "Nivel de inversión con distintos plazos de amortización",
+    "paybackScenarioSelected": "Tu elección",
+    "paybackScenariosHelp": "Un plazo de amortización más corto implica una inversión posible menor. Aquí ves cómo cambia el nivel de inversión si aceptas un plazo más corto o más largo.",
     paybackInfo:
       "La amortización simple muestra a cuántos años corresponde el valor económico anual estimado respecto a la inversión. No tiene en cuenta cambios futuros del precio de la electricidad, coste de financiación, inflación, mantenimiento ni descuento financiero.",
     maxInvestment: "Nivel de inversión en el plazo de amortización elegido",
@@ -662,6 +665,9 @@ export const es = {
       savings: "Valor económico al año",
       tilt: "Inclinación del tejado",
       yearsUnit: "años",
+      "paybackScenariosTitle": "Nivel de inversión con distintos plazos de amortización",
+      "paybackScenarioSelected": "Tu elección",
+      "paybackScenariosHelp": "Un plazo de amortización más corto implica una inversión posible menor. Aquí ves cómo cambia el nivel de inversión si aceptas un plazo más corto o más largo.",
       acceptedPayback: "Plazo de amortización elegido",
       maxInvestment: "Nivel de inversión en el plazo de amortización elegido",
       quotePrice: "Precio de presupuesto indicado",
