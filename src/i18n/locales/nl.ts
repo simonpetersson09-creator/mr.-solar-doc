@@ -284,6 +284,7 @@ export const nl = {
     degradationAssumption: "Technische degradatie",
     priceScenarioAssumption: "Aangenomen ontwikkeling elektriciteitsprijs",
     standardValueHint: "Standaardwaarden voor de berekening. Wijzig deze naar de waarden van je eigen energiecontract voor een individueler resultaat.",
+    "exportValueInfo": "Geef de totale vergoeding per kWh op voor stroom die je aan het net levert, inclusief eventuele netvoordelen of andere exportgerelateerde vergoedingen.",
     editable: "Aanpasbaar",
     editableTooltip: "Aanname wijzigen",
     fuseLimit: "Theoretische vermogenslimiet van hoofdzekering",

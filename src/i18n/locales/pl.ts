@@ -261,6 +261,7 @@ export const pl = {
     "degradationAssumption": "Degradacja techniczna",
     "priceScenarioAssumption": "Założony rozwój cen energii",
     "standardValueHint": "Wartości standardowe do obliczeń. Zmień je na wartości z własnej umowy na energię, aby uzyskać bardziej indywidualny wynik.",
+    "exportValueInfo": "Podaj całkowite wynagrodzenie za kWh za energię oddaną do sieci, łącznie z ewentualnym benefitem sieciowym lub innym wynagrodzeniem związanym z eksportem.",
     "editable": "Możliwe do edycji",
     "editableTooltip": "Zmień założenie",
     "fuseLimit": "Teoretyczny limit mocy z zabezpieczenia głównego",

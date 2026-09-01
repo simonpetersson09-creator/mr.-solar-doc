@@ -261,6 +261,7 @@ export const et = {
     "degradationAssumption": "Tehniline degradatsioon",
     "priceScenarioAssumption": "Eeldatav elektrihinna areng",
     "standardValueHint": "Arvutuse standardväärtused. Muuda need oma elektrilepingu väärtusteks, et saada individuaalsem tulemus.",
+    "exportValueInfo": "Sisesta kogu hüvitis kWh kohta elektrite eest, mida võrgule tagasi annad, sealhulgas võimalik võrgukasu või muu eksporti seotud hüvitis.",
     "editable": "Muudetav",
     "editableTooltip": "Muuda eeldust",
     "fuseLimit": "Teoreetiline võimsuspiir peakaitsest",

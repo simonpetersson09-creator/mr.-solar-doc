@@ -284,6 +284,7 @@ export const es = {
     degradationAssumption: "Degradación técnica",
     priceScenarioAssumption: "Evolución del precio eléctrico asumida",
     standardValueHint: "Valores estándar para el cálculo. Cámbialos por los de tu propio contrato eléctrico para obtener un resultado más personalizado.",
+    "exportValueInfo": "Indica la compensación total por kWh de la electricidad que viertes a la red, incluido cualquier beneficio de red u otra compensación relacionada con la exportación.",
     editable: "Ajustable",
     editableTooltip: "Cambiar suposición",
     fuseLimit: "Límite de potencia teórico del interruptor general",

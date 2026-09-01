@@ -261,6 +261,7 @@ export const fr = {
     "degradationAssumption": "Dégradation technique",
     "priceScenarioAssumption": "Évolution supposée du prix de l'électricité",
     "standardValueHint": "Valeurs standard pour le calcul. Remplacez-les par les valeurs de votre propre contrat d'électricité pour un résultat plus individuel.",
+    "exportValueInfo": "Indiquez la rémunération totale par kWh pour l'électricité que vous injectez sur le réseau, y compris les éventuelles primes liées au réseau ou autres compensations liées à l'exportation.",
     "editable": "Modifiable",
     "editableTooltip": "Modifier l'hypothèse",
     "fuseLimit": "Limite de puissance théorique du fusible principal",

@@ -261,6 +261,7 @@ export const da = {
     "degradationAssumption": "Teknisk degradering",
     "priceScenarioAssumption": "Antaget udvikling i elpriser",
     "standardValueHint": "Standardværdier for beregningen. Ret dem til værdier fra din egen elaftale for et mere individuelt resultat.",
+    "exportValueInfo": "Angiv den samlede kompensation pr. kWh for el, du sender tilbage til nettet, inklusive eventuel netnytte eller anden eksportrelateret kompensation.",
     "editable": "Kan ændres",
     "editableTooltip": "Ændre antagelse",
     "fuseLimit": "Teoretisk effektgrænse fra hovedsikring",

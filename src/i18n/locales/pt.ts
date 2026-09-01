@@ -284,6 +284,7 @@ export const pt = {
     degradationAssumption: "Degradação técnica",
     priceScenarioAssumption: "Evolução do preço de eletricidade assumida",
     standardValueHint: "Valores padrão para o cálculo. Altere-os para os valores do seu próprio contrato de eletricidade para um resultado mais individual.",
+    "exportValueInfo": "Indique a compensação total por kWh da eletricidade que injeta na rede, incluindo qualquer benefício de rede ou outra compensação relacionada à exportação.",
     editable: "Ajustável",
     editableTooltip: "Alterar pressuposto",
     fuseLimit: "Limite de potência teórico do disjuntor geral",

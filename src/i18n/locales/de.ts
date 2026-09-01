@@ -261,6 +261,7 @@ export const de = {
     "degradationAssumption": "Technische Degradation",
     "priceScenarioAssumption": "Angenommene Strompreisentwicklung",
     "standardValueHint": "Standardwerte für die Berechnung. Passen Sie sie an die Werte Ihres eigenen Stromvertrags an, um ein individuelleres Ergebnis zu erhalten.",
+    "exportValueInfo": "Geben Sie die Gesamtvergütung pro kWh für ins Netz eingespeisten Strom an, einschließlich etwaiger Netznutzung oder anderer einspeisebezogener Vergütungen.",
     "editable": "Anpassbar",
     "editableTooltip": "Annahme ändern",
     "fuseLimit": "Theoretische Leistungsgrenze durch Hauptsicherung",

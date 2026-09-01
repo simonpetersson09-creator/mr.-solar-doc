@@ -284,6 +284,7 @@ export const hu = {
     degradationAssumption: "Technikai degradáció",
     priceScenarioAssumption: "Feltételezett villamosenergia-ár-alakulás",
     standardValueHint: "A számításhoz használt alapértékek. Módosítsa saját villanyszerződésének értékeire az egyénibb eredményért.",
+    "exportValueInfo": "Add meg a teljes díjazást kWh-ként a hálózatra leadott áramért, beleértve a hálózati előnyöket vagy az exporttal kapcsolatos egyéb díjazást.",
     editable: "Módosítható",
     editableTooltip: "Feltételezés módosítása",
     fuseLimit: "A fő biztosítékból adódó elméleti teljesítménykorlát",

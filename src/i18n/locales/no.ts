@@ -276,6 +276,7 @@ export const no = {
     "degradationAssumption": "Teknisk degradering",
     "priceScenarioAssumption": "Antatt utvikling i strømpris",
     "standardValueHint": "Standardverdier for beregningen. Endre dem til verdiene i din egen strømavtale for et mer individuelt resultat.",
+    "exportValueInfo": "Angi total kompensasjon per kWh for strøm du mater inn på nettet, inkludert eventuell nettoverdi eller annen eksportrelatert kompensasjon.",
     "editable": "Justerbar",
     "editableTooltip": "Endre antakelse",
     "fuseLimit": "Teoretisk effektgrense fra hovedsikring",
