@@ -15,7 +15,7 @@ export const en = {
     point1Body: "",
     point2Title: "Sizes the system",
     point2Body: "Your electricity use, grid connection and solar production are weighed together to find a suitable size.",
-    point3Title: "Works out what it can cost",
+    point3Title: "Works out what it can cost based on your desired payback period",
     point3Body: "You choose your desired payback period. Mr. Solar Doc calculates the investment level needed to reach it.",
     point4Title: "Gives you a clear basis for decision",
     point4Body: "See production, economics and different payback periods gathered in a report.",

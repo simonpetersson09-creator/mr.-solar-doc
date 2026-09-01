@@ -15,7 +15,7 @@ export const lt = {
     "point1Body": "Pagal jūsų vietą, stogą ir vietos saulės sąlygas.",
     "point2Title": "Matuoja sistemos dydį",
     "point2Body": "Jūsų elektros suvartojimas, tinklo prijungimas ir saulės gamyba derinami tinkamam dydžiui rasti.",
-    "point3Title": "Skaičiuoja, kiek tai gali kainuoti",
+    "point3Title": "Skaičiuoja, kiek tai gali kainuoti pagal pageidaujamą atsiperkamumo laiką",
     "point3Body": "Jūs renkatės pageidaujamą atsiperkamumo laiką. Mr. Solar Doc apskaičiuoja reikalingą investicijų lygį.",
     "point4Title": "Suteikia aiškų sprendimo pagrindą",
     "point4Body": "Matykite gamybą, ekonomiką ir skirtingus atsiperkamumo laikus ataskaitoje.",

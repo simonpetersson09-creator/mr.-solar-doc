@@ -15,7 +15,7 @@ export const fi = {
     "point1Body": "Sijaintisi, kattosi ja paikallisten aurinko-olojen perusteella.",
     "point2Title": "Mitoittaa voimalan",
     "point2Body": "Sähkönkäyttösi, verkkoliitäntäsi ja aurinkotuotanto yhdistetään sopivan koon löytämiseksi.",
-    "point3Title": "Laskee, mihin hintaan se saa maksaa",
+    "point3Title": "Laskee, mihin hintaan se saa maksaa halutun takaisinmaksuajan perusteella",
     "point3Body": "Valitset halutun takaisinmaksuajan. Mr. Solar Doc laskee vaaditun sijoitustason.",
     "point4Title": "Antaa sinulle selkeän päätösperusteen",
     "point4Body": "Katso tuotanto, talous ja eri takaisinmaksuajat koottuna raporttiin.",

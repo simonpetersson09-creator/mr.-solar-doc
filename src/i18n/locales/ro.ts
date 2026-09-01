@@ -15,7 +15,7 @@ export const ro = {
     "point1Body": "Pe baza locației, acoperișului și condițiilor solare locale.",
     "point2Title": "Dimensionează sistemul",
     "point2Body": "Consumul de curent, conexiunea la rețea și producția solară se combină pentru a găsi o dimensiune potrivită.",
-    "point3Title": "Calculează cât poate costa",
+    "point3Title": "Calculează cât poate costa după perioada de retur dorită",
     "point3Body": "Alegi perioada de retur dorită. Mr. Solar Doc calculează nivelul de investiții necesar.",
     "point4Title": "Îți oferă o bază clară de decizie",
     "point4Body": "Vezi producția, economia și diferite perioade de retur într-un raport.",

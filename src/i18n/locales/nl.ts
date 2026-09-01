@@ -15,7 +15,7 @@ export const nl = {
     point1Body: "",
     point2Title: "Dimensioneert de installatie",
     point2Body: "Uw stroomverbruik, netaansluiting en zon-opbrengst worden gecombineerd voor een geschikte grootte.",
-    point3Title: "Berekent wat het mag kosten",
+    point3Title: "Berekent wat het mag kosten na gewenste terugverdientijd",
     point3Body: "U kiest de gewenste terugverdientijd. Mr. Solar Doc berekent het benodigde investeringsniveau.",
     point4Title: "Geeft u een duidelijke beslissingsbasis",
     point4Body: "Zie productie, economie en verschillende terugverdientijden in een rapport.",
