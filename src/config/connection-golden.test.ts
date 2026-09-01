@@ -314,9 +314,9 @@ describe("step 4 help text always describes the current grid settings", () => {
     template.replace(/\{\{(\w+)\}\}/g, (_m, key: string) => vars[key] ?? "");
 
   const templates: Array<[string, string]> = [
-    ["sv", sv.translation.fuse.gridAssumptionDynamic],
-    ["en", en.translation.fuse.gridAssumptionDynamic],
-    ["fr", fr.translation.fuse.gridAssumptionDynamic],
+    ["sv", sv.fuse.gridAssumptionDynamic],
+    ["en", en.fuse.gridAssumptionDynamic],
+    ["fr", fr.fuse.gridAssumptionDynamic],
   ];
 
   it.each(templates)("%s: the template is fully parameterised", (_lang, template) => {
@@ -342,9 +342,9 @@ describe("step 4 help text always describes the current grid settings", () => {
 
   it("the generic check hint exists separately and states no grid values", () => {
     for (const hint of [
-      sv.translation.fuse.gridCheckHint,
-      en.translation.fuse.gridCheckHint,
-      fr.translation.fuse.gridCheckHint,
+      sv.fuse.gridCheckHint,
+      en.fuse.gridCheckHint,
+      fr.fuse.gridCheckHint,
     ]) {
       expect(hint.length).toBeGreaterThan(0);
       expect(hint).not.toMatch(/400|230|1[,.]73/);
@@ -353,9 +353,9 @@ describe("step 4 help text always describes the current grid settings", () => {
 
   it("the contracted PDF note never describes the fuse formula", () => {
     for (const note of [
-      sv.translation.pdf.gridMethodNoteContracted,
-      en.translation.pdf.gridMethodNoteContracted,
-      fr.translation.pdf.gridMethodNoteContracted,
+      sv.pdf.gridMethodNoteContracted,
+      en.pdf.gridMethodNoteContracted,
+      fr.pdf.gridMethodNoteContracted,
     ]) {
       expect(note).not.toMatch(/1[,.]73|400\s*V|kVA\s*[x×]/i);
     }
