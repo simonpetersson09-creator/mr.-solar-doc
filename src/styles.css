@@ -144,6 +144,14 @@
   --sidebar-accent-foreground: var(--brand-black);
   --sidebar-border: oklch(0.912 0.008 95);
   --sidebar-ring: var(--brand-yellow-cta);
+
+  /* Extremely subtle natural-light sheen layered over the flat #FFDC38 card
+     base. One area reads ~2-3% lighter, another ~1-2% darker; transitions are
+     so large and soft the surface still reads as a single #FFDC38 plane —
+     felt as gentle light, not a visible gradient. */
+  --yellow-sheen:
+    radial-gradient(120% 90% at 28% 18%, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0) 52%),
+    radial-gradient(140% 110% at 78% 88%, rgba(50, 50, 50, 0.04) 0%, rgba(50, 50, 50, 0) 58%);
 }
 
 .dark {
@@ -280,7 +288,7 @@ html[data-native="true"] {
   position: relative;
   overflow: hidden;
   background-color: #ffdc38;
-  background-image: none;
+  background-image: var(--yellow-sheen);
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
   box-shadow:
@@ -307,7 +315,7 @@ html[data-native="true"] {
    saturated #FFDC38 result cards. The gradient stays within yellow. */
 @utility glass-primary {
   background-color: #ffdc38;
-  background-image: none;
+  background-image: var(--yellow-sheen);
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.4);
   box-shadow:
@@ -318,6 +326,7 @@ html[data-native="true"] {
 /* Promotes an input-level surface to a saturated #FFDC38 result surface. */
 @utility surface-strong {
   background-color: #ffdc38;
+  background-image: var(--yellow-sheen);
   border-color: oklch(0.8296 0.1697 91.8 / 0.5);
 }
 
@@ -326,7 +335,7 @@ html[data-native="true"] {
 @utility card-yellow {
   position: relative;
   background-color: #ffdc38;
-  background-image: none;
+  background-image: var(--yellow-sheen);
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
   box-shadow:
