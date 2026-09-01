@@ -190,7 +190,12 @@ function config(
   };
 }
 
-const NORTH_AMERICAN_RATINGS = [60, 100, 125, 150, 200, 400];
+/**
+ * US service sizes. 100/150/200/400 A are the standard residential steps;
+ * 60 A only exists on legacy services and is kept so those homes can answer.
+ * 125 A is not a residential service size and is deliberately absent.
+ */
+const NORTH_AMERICAN_RATINGS = [60, 100, 150, 200, 400];
 
 
 /** Verified country profiles. Add a country only when its data is confirmed. */
@@ -445,7 +450,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
  */
 const GENERIC_EU_AMPERE_LEVELS = [16, 20, 25, 32, 35, 40, 50, 63];
 
-const GENERIC_EU_MARKET_CODES = ["AT", "CZ", "PL", "SK", "SI", "EE", "LV", "LT", "CH"] as const;
+const GENERIC_EU_MARKET_CODES = ["CH", "LV", "LT"] as const;
 
 function genericEuConfig(countryCode: string): CountryConnectionConfig {
   return config(
