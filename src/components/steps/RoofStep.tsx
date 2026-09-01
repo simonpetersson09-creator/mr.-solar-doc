@@ -145,7 +145,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
                 }}
                 className={
                   tiltDegrees === preset
-                    ? "rounded-[10px] bg-accent px-3 py-1.5 text-[11px] font-semibold text-accent-foreground shadow-sm"
+                    ? "chip-selected rounded-[10px] px-3 py-1.5 text-[11px] font-semibold text-brand-black shadow-sm"
                     : "rounded-[10px] border border-white/25 bg-white/15 px-3 py-1.5 text-[11px] font-medium text-white transition-colors hover:bg-white/25"
                 }
               >
