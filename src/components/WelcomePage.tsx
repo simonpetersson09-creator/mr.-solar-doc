@@ -1,6 +1,7 @@
 import { ArrowRight, Sun } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { haptic } from "@/services/native-service";
+import brandIcon from "@/assets/mr-solar-doc-icon.png.asset.json";
 
 interface WelcomePageProps {
   onStart: () => void;
@@ -29,7 +30,17 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           </span>
         </header>
 
-        <section className="mt-6">
+        {/* Centered brand icon — sits slightly above the title and blends with the yellow surface */}
+        <div className="mt-2 flex justify-center">
+          <img
+            src={brandIcon.url}
+            alt="Mr. Solar Doc"
+            className="w-40 select-none drop-shadow-sm opacity-90 mix-blend-multiply"
+            draggable={false}
+          />
+        </div>
+
+        <section className="mt-3 text-center">
           <h1 className="font-display text-2xl font-bold leading-tight tracking-tight">
             {t("welcome.title")}
           </h1>
