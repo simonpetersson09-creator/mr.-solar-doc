@@ -1,10 +1,12 @@
 /**
- * Golden tests for batch 4 connection profiles: IS, LU, MT, CY, MK, AL, BA, ME,
- * AU, ZA.
+ * Golden tests for batch 4 connection profiles: IS, LU, MT, CY, MK, AL, BA, ME
+ * — plus the deliberate NON-promotion of AU and ZA.
  *
- * All ten are verified free-input amperage profiles: the input model (unit,
- * phase, voltage, frequency) is confirmed against national sources, but no
- * invented customer ladder is shipped — the user enters the actual rating.
+ * The eight European profiles are verified free-input amperage profiles: the
+ * input model (unit, voltage system, frequency) is confirmed against national
+ * sources, but no invented customer ladder is shipped and no phase model is
+ * assumed — both 1-phase 230 V and 3-phase 400 V are normal, so the step asks
+ * (`phaseChoice`).
  *
  * Connection domain only — PV rules, export limits and tariffs are separate.
  */
@@ -16,6 +18,7 @@ import {
   connectionCapacityUnit,
   type ConnectionCapacity,
 } from "./connection-capacity";
+import { voltageForPhaseChoice } from "./grid";
 import { calculateSolarSystem, GridTooSmallError } from "@/lib/calc/engine";
 import { MARKETS } from "./markets";
 import type { CalculationInput } from "@/lib/calc/types";
@@ -26,74 +29,83 @@ const THREE_400 = { serviceType: "three-phase", voltageV: 400, frequencyHz: 50 }
 const amps = (amperageA: number, profile: object): ConnectionCapacity =>
   ({ type: "amperage", amperageA, ...profile }) as ConnectionCapacity;
 
+const BATCH_4 = ["IS", "LU", "MT", "CY", "MK", "AL", "BA", "ME"] as const;
+/** Which service type the country starts on — the user may change it. */
+const DEFAULT_SERVICE: Record<string, "single-phase" | "three-phase"> = {
+  IS: "three-phase",
+  LU: "three-phase",
+  MK: "three-phase",
+  AL: "three-phase",
+  BA: "three-phase",
+  ME: "three-phase",
+  MT: "single-phase",
+  CY: "single-phase",
+};
+
 describe("batch 4 verified amperage profiles", () => {
-  // 3-phase 400 V / 50 Hz markets — connection rated in A per phase.
-  const threePhaseMarkets: Array<[string, string]> = [
-    ["IS", "Tengi (A/fasa)"],
-    ["LU", "Disjoncteur de branchement"],
-    ["MK", "Приклучна снага (A/faza)"],
-    ["AL", "Fuqia e lidhjes (A/fazë)"],
-    ["BA", "Priključna snaga (A/faza)"],
-    ["ME", "Priključna snaga (A/faza)"],
-  ];
+  it.each(BATCH_4)("%s is a verified free-input amperage profile", (code) => {
+    const config = getConnectionConfig(code);
+    expect(config.verified).toBe(true);
+    expect(config.status).toBe("verified");
+    expect(config.capacityInputType).toBe("amperage");
+    // No invented national ladder.
+    expect(config.connectionOptions).toHaveLength(0);
+    expect(config.defaultConnection).toBeNull();
+    expect(config.defaultFrequencyHz).toBe(50);
+  });
 
-  // Single-phase 230 V / 50 Hz markets — connection rated in A/phase.
-  const singlePhaseMarkets: Array<[string, string]> = [
-    ["MT", "Service capacity (A/phase)"],
-    ["CY", "Connection capacity (A/phase)"],
-    ["AU", "Main switch / service capacity (A/phase)"],
-    ["ZA", "Supply capacity / main fuse (A/phase)"],
-  ];
+  it.each(BATCH_4)("%s offers an explicit phase choice", (code) => {
+    expect(getConnectionConfig(code).phaseChoice).toBe(true);
+  });
 
-  it.each(threePhaseMarkets)(
-    "%s is a verified 3-phase 400 V free-input amperage profile",
-    (code, term) => {
-      const config = getConnectionConfig(code);
-      expect(config.verified).toBe(true);
-      expect(config.status).toBe("verified");
-      expect(config.capacityInputType).toBe("amperage");
-      expect(config.connectionOptions).toHaveLength(0);
-      expect(config.defaultServiceType).toBe("three-phase");
-      expect(config.defaultVoltage).toBe(400);
-      expect(config.defaultFrequencyHz).toBe(50);
-      expect(config.localTerm).toBe(term);
-    },
-  );
+  it.each(BATCH_4)("%s starts on its documented service type and voltage", (code) => {
+    const config = getConnectionConfig(code);
+    const expected = DEFAULT_SERVICE[code]!;
+    expect(config.defaultServiceType).toBe(expected);
+    expect(config.defaultVoltage).toBe(expected === "three-phase" ? 400 : 230);
+  });
 
-  it.each(singlePhaseMarkets)(
-    "%s is a verified single-phase 230 V free-input amperage profile",
-    (code, term) => {
-      const config = getConnectionConfig(code);
-      expect(config.verified).toBe(true);
-      expect(config.status).toBe("verified");
-      expect(config.capacityInputType).toBe("amperage");
-      expect(config.connectionOptions).toHaveLength(0);
-      expect(config.defaultServiceType).toBe("single-phase");
-      expect(config.defaultVoltage).toBe(230);
-      expect(config.defaultFrequencyHz).toBe(50);
-      expect(config.localTerm).toBe(term);
-    },
-  );
+  it("snaps the voltage to the nominal value of the chosen phase model", () => {
+    expect(voltageForPhaseChoice("single-phase")).toBe(230);
+    expect(voltageForPhaseChoice("three-phase")).toBe(400);
+  });
 
-  it.each([25, 32, 40, 63])(
-    "3-phase 400 V markets: %s A = sqrt(3) x 400 x A",
-    (a) => {
-      expect(connectionCapacityToMaxAcPowerKw(amps(a, THREE_400))).toBeCloseTo(
-        (Math.sqrt(3) * 400 * a) / 1000,
-        6,
-      );
-    },
-  );
+  it("the same ampere value means different power per phase model", () => {
+    // The whole reason the phase question is asked before the ampere value.
+    expect(connectionCapacityToMaxAcPowerKw(amps(35, SINGLE_230))).toBeCloseTo(8.05, 2);
+    expect(connectionCapacityToMaxAcPowerKw(amps(35, THREE_400))).toBeCloseTo(24.25, 2);
+  });
 
-  it.each([40, 60, 63, 80])(
-    "single-phase 230 V markets: %s A = 230 x A",
-    (a) => {
-      expect(connectionCapacityToMaxAcPowerKw(amps(a, SINGLE_230))).toBeCloseTo(
-        (230 * a) / 1000,
-        6,
-      );
-    },
-  );
+  it.each([25, 32, 40, 63])("3-phase 400 V: %s A = sqrt(3) x 400 x A", (a) => {
+    expect(connectionCapacityToMaxAcPowerKw(amps(a, THREE_400))).toBeCloseTo(
+      (Math.sqrt(3) * 400 * a) / 1000,
+      6,
+    );
+  });
+
+  it.each([40, 60, 63, 80])("single-phase 230 V: %s A = 230 x A", (a) => {
+    expect(connectionCapacityToMaxAcPowerKw(amps(a, SINGLE_230))).toBeCloseTo(
+      (230 * a) / 1000,
+      6,
+    );
+  });
+});
+
+describe("AU and ZA stay on the manual fallback", () => {
+  // Australia varies by DNSP/state and South African residential supply is
+  // stated in amperes (Homelight) or kVA (Homepower). Neither fits one national
+  // profile, so both must keep the confirmation gate and free manual entry.
+  it.each(["AU", "ZA"])("%s is not a verified profile", (code) => {
+    const config = getConnectionConfig(code);
+    expect(config.verified).toBe(false);
+    expect(config.status).not.toBe("verified");
+    expect(config.defaultConnection).toBeNull();
+    expect(config.connectionOptions).toHaveLength(0);
+  });
+
+  it.each(["AU", "ZA"])("%s asks for the phase model explicitly", (code) => {
+    expect(getConnectionConfig(code).phaseChoice).toBe(true);
+  });
 });
 
 /* ---------------------- full chain through the engine --------------------- */
@@ -142,6 +154,9 @@ describe("batch 4: free-input values survive the full engine chain", () => {
     ...[25, 40].map((a) => ({ country: "ME", capacity: amps(a, THREE_400) })),
     ...[40, 60].map((a) => ({ country: "MT", capacity: amps(a, SINGLE_230) })),
     ...[40, 60].map((a) => ({ country: "CY", capacity: amps(a, SINGLE_230) })),
+    // Both phase models must work in every one of these markets.
+    ...[25, 40].map((a) => ({ country: "MT", capacity: amps(a, THREE_400) })),
+    ...[40, 63].map((a) => ({ country: "IS", capacity: amps(a, SINGLE_230) })),
     ...[40, 63, 80].map((a) => ({ country: "AU", capacity: amps(a, SINGLE_230) })),
     ...[60, 80].map((a) => ({ country: "ZA", capacity: amps(a, SINGLE_230) })),
   ];
