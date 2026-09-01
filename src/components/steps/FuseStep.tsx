@@ -354,15 +354,25 @@ const [showGridInfo, setShowGridInfo] = useState(false);
         ) : null}
 
         {capacityValid ? (
-          <div className="flex items-center justify-between gap-3 rounded-xl bg-white/10 px-3.5 py-2.5">
-            <span className="flex items-center gap-1.5 text-xs text-white/60">
-              <Zap className="size-3.5 text-accent" />
-              {t("fuse.maxAc")}
-            </span>
-            <span className="text-base font-bold text-white">
-              {formatDecimal(maxAc, locale, 2)}{" "}
-              <span className="text-[11px] font-normal text-white/60">kW</span>
-            </span>
+          <div className="space-y-1.5 rounded-xl bg-white/10 px-3.5 py-2.5">
+            {resolvedConnectionLabel ? (
+              <p
+                data-testid="resolved-connection"
+                className="text-[11px] font-semibold text-white/75"
+              >
+                {resolvedConnectionLabel}
+              </p>
+            ) : null}
+            <div className="flex items-center justify-between gap-3">
+              <span className="flex items-center gap-1.5 text-xs text-white/60">
+                <Zap className="size-3.5 text-accent" />
+                {t("fuse.maxAc")}
+              </span>
+              <span className="text-base font-bold text-white">
+                {formatDecimal(maxAc, locale, 2)}{" "}
+                <span className="text-[11px] font-normal text-white/60">kW</span>
+              </span>
+            </div>
           </div>
         ) : null}
 
