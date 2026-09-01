@@ -421,18 +421,15 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     lifetime,
     investment: investmentResult,
     productionCost: calculateProductionCost({
-      // Cost per kWh must come from what the system COSTS: the user's quote,
-      // otherwise the country's installation cost per kWp. The maximum
-      // justifiable investment is derived from the accepted payback time and
-      // would make the cost track the user's payback slider instead of reality.
-      investment: quotedOrEstimatedCost ?? 0,
-      investmentFromQuote: investmentResult.quotePrice != null,
-      investmentBasis: costBasis,
+      // Works in every market: no CAPEX database, no quote required. The
+      // investment level comes from the engine's max justifiable investment,
+      // the value side from the same lifetime years.
+      maxInvestment: investmentResult.maxInvestment,
       totalProductionKwh: lifetime.totalProductionKwh,
+      totalEconomicValue: totalLifetimeEconomicValue,
       periodYears: lifetime.periodYears,
       selfConsumptionShare: split.selfConsumptionShare,
-      selfConsumedValuePerKwh,
-      exportValuePerKwh,
+      quotePrice: investmentResult.quotePrice,
     }),
     economicsStatus: availability.totalsComplete ? "complete" : "incomplete",
     presentation,
