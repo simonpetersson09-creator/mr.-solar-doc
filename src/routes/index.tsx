@@ -104,8 +104,10 @@ function WizardPage() {
             setStep(2);
             return;
           }
-
+          // Premium (and dev bypass) skip the paywall: the calculation opens directly.
+          const pending = usePurchaseStore.getState().pending;
           if ((premium.active || isDevUnlock()) && pending) {
+
             usePurchaseStore.getState().rememberToken(pending);
             void navigate({ to: "/resultat" });
             return;
