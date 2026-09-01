@@ -455,6 +455,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     calculatedAt: "Calculation date",
     noCalculation: "No calculation found. Start again from the address.",
     locked: "This calculation is locked. Complete the purchase to see the result.",
+    calculationUnavailable: "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "The connection is too small",
     gridTooSmallBody: "Your current connection ({{maxKw}} kW) is too small for the smallest supported system size ({{minKw}} kW inverter). Increase the main fuse or contracted capacity to continue.",
   },

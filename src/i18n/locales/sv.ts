@@ -452,6 +452,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
     calculatedAt: "Beräkningsdatum",
     noCalculation: "Ingen beräkning hittades. Börja om från adressen.",
     locked: "Beräkningen är låst. Slutför köpet för att se resultatet.",
+    calculationUnavailable: "Beräkningen kunde inte slutföras. Kontrollera takuppgifterna och försök igen.",
     gridTooSmallTitle: "Anslutningen är för liten",
     gridTooSmallBody: "Din nuvarande anslutning ({{maxKw}} kW) är för liten för den minsta systemstorlek som stöds ({{minKw}} kW växelriktare). Öka huvudsäkringen eller abonnemangseffekten för att gå vidare.",
   },

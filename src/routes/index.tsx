@@ -1,5 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import i18n from "@/i18n";
+import { toast } from "sonner";
 import { AddressStep } from "@/components/steps/AddressStep";
 import { RoofStep } from "@/components/steps/RoofStep";
 import { ConsumptionStep } from "@/components/steps/ConsumptionStep";
@@ -40,14 +41,17 @@ function WizardPage() {
   const setStep = useWizardStore((s) => s.setCurrentStep);
   const location = useWizardStore((s) => s.location);
   const tiltDegrees = useWizardStore((s) => s.tiltDegrees);
+  const resource = useWizardStore((s) => s.resource);
   const annualConsumptionKwh = useWizardStore((s) => s.annualConsumptionKwh);
   const connectionCapacity = useWizardStore((s) => s.connectionCapacity);
 
   // Never resume past the first step that still lacks data — otherwise a
   // returning user lands on step 5 and gets an empty result page.
+  // The cached solar resource counts as step 2 data: a storage migration can
+  // drop it, and without it the engine silently produces no result.
   const maxReachableStep = !location
     ? 1
-    : tiltDegrees === null
+    : tiltDegrees === null || !resource
       ? 2
       : !annualConsumptionKwh
         ? 3
@@ -55,6 +59,7 @@ function WizardPage() {
           ? 4
           : 5;
   const step = Math.min(persistedStep, maxReachableStep);
+
 
   if (!hasStarted) {
     return <WelcomePage onStart={() => setStarted(true)} />;
@@ -93,10 +98,17 @@ function WizardPage() {
       onSubmit={() => {
         void (async () => {
           const created = await createPending();
-          if (!created) return;
-          // Premium (and dev bypass) skip the paywall: the calculation is opened directly.
+          if (!created) {
+            // The engine had no usable result (e.g. the cached solar data was
+            // dropped): say so instead of leaving a dead button.
+            toast.error(i18n.t("result.calculationUnavailable"));
+            setStep(2);
+            return;
+          }
+          // Premium (and dev bypass) skip the paywall: the calculation opens directly.
           const pending = usePurchaseStore.getState().pending;
           if ((premium.active || isDevUnlock()) && pending) {
+
             usePurchaseStore.getState().rememberToken(pending);
             void navigate({ to: "/resultat" });
             return;
