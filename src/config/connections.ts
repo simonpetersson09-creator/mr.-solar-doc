@@ -291,6 +291,68 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     JP_SINGLE_PHASE_200,
     { localTerm: "契約アンペア" },
   ),
+  /**
+   * Norway: "hovedsikring" in amperes. Large parts of the country run a
+   * 230 V IT/delta network without neutral, so three-phase 230 V must be
+   * offered next to the newer 400 V TN service.
+   */
+  NO: config(
+    "NO",
+    "amperage",
+    [
+      ...[25, 32, 40, 63].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+      ...[25, 32, 40, 63].map((a) => ampOption(a, THREE_PHASE_230, "3 × 230 V · ")),
+      ...[25, 32, 40, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3N × 400 V · ")),
+    ],
+    THREE_PHASE_230,
+    { localTerm: "Hovedsikring" },
+  ),
+  /** Austria: "Anschlussleistung" is set by the house connection fuse. */
+  AT: config(
+    "AT",
+    "amperage",
+    [
+      ...[20, 25, 32, 35, 40, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+      ...[16, 20, 25, 32].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+    ],
+    EU_THREE_PHASE_400,
+    { localTerm: "Hausanschlusssicherung" },
+  ),
+  /** Czechia: "hlavní jistič" in amperes — the billed quantity. */
+  CZ: config(
+    "CZ",
+    "amperage",
+    [
+      ...[16, 20, 25, 32, 40, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+      ...[25, 32, 40].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+    ],
+    EU_THREE_PHASE_400,
+    { localTerm: "Hlavní jistič" },
+  ),
+  /** Slovakia: "hlavný istič" in amperes, with an official A -> kW table. */
+  SK: config(
+    "SK",
+    "amperage",
+    [
+      ...[16, 20, 25, 32, 40, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+      ...[25, 32, 40].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+    ],
+    EU_THREE_PHASE_400,
+    { localTerm: "Hlavný istič" },
+  ),
+  /** Estonia: "peakaitse" in amperes, per the network operator's price list. */
+  EE: config(
+    "EE",
+    "amperage",
+    [
+      ...[16, 20, 25, 32, 35, 40, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+      ...[16, 20, 25, 32, 35, 40].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+    ],
+    EU_THREE_PHASE_400,
+    { localTerm: "Peakaitse" },
+  ),
+
+
 
   /* --- contracted kVA markets --- */
   /**
