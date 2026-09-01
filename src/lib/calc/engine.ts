@@ -224,7 +224,12 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       annualConsumptionKwh: input.consumption.annualKwh,
       userShare: input.selfConsumptionShare,
       userSet: input.selfConsumptionShareIsUserSet ?? false,
-      monthlyProductionKwh: monthlyProductionKwh,
+      // Scale the monthly shape with the year's production so the monthly
+      // upper bound stays consistent with the degraded annual figure.
+      monthlyProductionKwh:
+        annualProductionKwh > 0
+          ? monthlyProductionKwh.map((v) => v * (productionKwh / annualProductionKwh))
+          : monthlyProductionKwh,
       monthlyConsumptionKwh: input.consumption.monthlyKwh ?? null,
     }).share;
 
