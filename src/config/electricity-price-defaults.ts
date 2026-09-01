@@ -27,7 +27,7 @@ export interface ElectricityPriceDefault {
 export const ELECTRICITY_PRICE_DEFAULTS_REVISION = "2026-09";
 
 export const ELECTRICITY_PRICE_DEFAULTS: Record<string, ElectricityPriceDefault> = {
-  SE: { selfConsumed: 1.5, exported: 0.5 },
+  SE: { selfConsumed: 1.44, exported: 0.6 },
   FI: { selfConsumed: 0.18, exported: 0.05 },
   DK: { selfConsumed: 2.8, exported: 0.35 },
   DE: { selfConsumed: 0.35, exported: 0.08 },
