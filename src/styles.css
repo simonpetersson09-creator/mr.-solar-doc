@@ -81,12 +81,18 @@
 
   /* --- Brand constants -------------------------------------------------- */
   --brand-yellow: oklch(0.8982 0.171 96.2);          /* #FFDC38 */
+  --brand-yellow-soft: oklch(0.9235 0.1349 97.2);    /* soft input-card yellow */
+  --brand-yellow-selected: oklch(0.8516 0.1732 94.4);/* #F3CB0C selected state */
   --brand-yellow-cta: oklch(0.8516 0.1732 94.4);     /* #F3CB0C */
   --brand-yellow-hover: oklch(0.8577 0.1723 94.3);   /* #F5CD18 */
   --brand-yellow-pressed: oklch(0.8296 0.1697 91.8); /* #EFC200 */
   --brand-yellow-light: oklch(0.9277 0.1337 97.8);   /* #FFE879 */
   --brand-black: oklch(0.2185 0.0066 0.7);           /* #1D191A */
   --brand-black-soft: oklch(0.2678 0.0097 355.6);    /* #2A2426 */
+  /* Warm off-white used for unselected controls, inputs and badges. */
+  --surface-cream: oklch(0.988 0.012 96);
+  --surface-cream-strong: oklch(0.995 0.008 96);
+
 
   --background: oklch(0.9877 0.0054 95.1);
   --foreground: var(--brand-black);
