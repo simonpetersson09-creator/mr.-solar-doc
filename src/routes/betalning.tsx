@@ -266,6 +266,21 @@ function PaywallPage() {
           </p>
         ) : null}
 
+        {isDevUnlock() ? (
+          <Button
+            size="lg"
+            variant="outline"
+            className="w-full"
+            onClick={() => {
+              if (pending) rememberToken(pending);
+              void navigate({ to: "/resultat" });
+            }}
+          >
+            Dev: fortsätt utan betalning
+          </Button>
+        ) : null}
+
+
         {phase === "cancelled" ? (
           <p className="text-sm text-muted-foreground">{t("paywall.cancelled")}</p>
         ) : null}
