@@ -5,7 +5,7 @@ import { ELECTRICITY_PRICE_DEFAULTS } from "./electricity-price-defaults";
 
 /** [countryCode, currency, purchased price, estimated export price] */
 const EXPECTED: Array<[string, string, number, number]> = [
-  ["SE", "SEK", 1.5, 0.5],
+  ["SE", "SEK", 1.44, 0.6],
   ["FI", "EUR", 0.18, 0.05],
   ["DK", "DKK", 2.8, 0.35],
   ["DE", "EUR", 0.35, 0.08],
