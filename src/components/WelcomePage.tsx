@@ -70,7 +70,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           {t("welcome.cta")}
           <ArrowRight className="size-4 rtl:-scale-x-100" />
         </button>
-        <p className="mt-10 text-center text-[11px] leading-snug opacity-60">
+        <p className="mt-2 text-center text-[11px] leading-snug opacity-60">
           {t("welcome.disclaimer")}
         </p>
       </main>
