@@ -134,3 +134,79 @@ describe("regional markets stay unverified", () => {
     expect(getConnectionConfig("MX").defaultFrequencyHz).toBe(60);
   });
 });
+
+/* ---------------------- full chain through the engine --------------------- */
+
+const MONTHLY_KWH_PER_KWP = [22, 45, 90, 121, 140, 137, 133, 111, 74, 41, 19, 5];
+
+function buildInput(countryCode: string, maxAcPowerKw: number): CalculationInput {
+  return {
+    location: {
+      address: "Test 1",
+      latitude: 40,
+      longitude: 14,
+      countryCode,
+      region: "Test",
+    },
+    resource: {
+      annualKwhPerKwp: MONTHLY_KWH_PER_KWP.reduce((a, b) => a + b, 0),
+      monthlyKwhPerKwp: MONTHLY_KWH_PER_KWP,
+      orientation: "south",
+      tiltDegrees: 30,
+      orientationAssumed: false,
+      tiltAssumed: false,
+      dataSource: "PVGIS test",
+      calculationDate: "2026-01-01",
+    },
+    consumption: { annualKwh: 12_000, monthlyKwh: null },
+    electrical: { maxAcPowerKw },
+    economics: {
+      selfConsumedValuePerKwh: 0.25,
+      exportValuePerKwh: 0.06,
+      currency: "EUR",
+    },
+    selfConsumptionShare: 0.5,
+    acceptedPaybackYears: 12,
+    inverterSizesKw: MARKETS["SE"]!.inverterSizesKw,
+  };
+}
+
+describe("batch 3: presets and free-input values survive the full engine chain", () => {
+  const cases: Array<{ country: string; capacity: ConnectionCapacity }> = [
+    ...[16, 25, 32, 63].map((a) => ({ country: "CH", capacity: amps(a, THREE_400) })),
+    ...[15, 60, 100].map((a) => ({ country: "NZ", capacity: amps(a, SINGLE_230) })),
+    ...[30, 50].map((a) => ({ country: "MX", capacity: amps(a, MX_SINGLE_127) })),
+    { country: "MX", capacity: amps(100, MX_SPLIT_240) },
+    { country: "MX", capacity: amps(40, MX_THREE_220) },
+    ...getConnectionConfig("IL").connectionOptions.map((o) => ({
+      country: "IL",
+      capacity: o.capacity,
+    })),
+    ...[1.5, 6, 11.7, 35].flatMap((kw) =>
+      ["BG", "RS", "TR"].map((country) => ({
+        country,
+        capacity: { type: "contracted-kw", kw, ...THREE_400 } as ConnectionCapacity,
+      })),
+    ),
+  ];
+
+  for (const { country, capacity } of cases) {
+    const amount = connectionCapacityAmount(capacity);
+    const maxAc = connectionCapacityToMaxAcPowerKw(capacity);
+    it(`${country} ${amount}${connectionCapacityUnit(capacity.type)} -> finite sizing`, () => {
+      expect(Number.isFinite(maxAc)).toBe(true);
+      let result;
+      try {
+        result = calculateSolarSystem(buildInput(country, maxAc));
+      } catch (error) {
+        expect(error).toBeInstanceOf(GridTooSmallError);
+        return;
+      }
+      expect(Number.isFinite(result.inverterKw)).toBe(true);
+      expect(Number.isFinite(result.installedKwp)).toBe(true);
+      expect(result.inverterKw).toBeLessThanOrEqual(result.pvPowerLimitKw + 1e-9);
+      expect(result.installedKwp).toBeGreaterThan(0);
+      expect(result.dcAcRatio).toBeCloseTo(result.installedKwp / result.inverterKw, 6);
+    });
+  }
+});
