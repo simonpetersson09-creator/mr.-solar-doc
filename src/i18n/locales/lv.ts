@@ -261,6 +261,7 @@ export const lv = {
     "degradationAssumption": "Tehniskā degradācija",
     "priceScenarioAssumption": "Pieņemtā elektrības cenas attīstība",
     "standardValueHint": "Aprēķina standarta vērtības. Nomainiet tās pret savā elektroenerģijas līgumā norādītajām vērtībām, lai iegūtu individuālāku rezultātu.",
+    "exportValueInfo": "Norādiet kopējo kompensāciju par kWh par elektrību, ko padodat tīklā, tostarp jebkuru tīkla labumu vai citu ar eksportu saistītu kompensāciju.",
     "editable": "Rediģējams",
     "editableTooltip": "Mainīt pieņēmumu",
     "fuseLimit": "Teorētiskā jaudas robeža no galvenā drošinātāja",

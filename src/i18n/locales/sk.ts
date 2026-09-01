@@ -261,6 +261,7 @@ export const sk = {
     "degradationAssumption": "Technická degradácia",
     "priceScenarioAssumption": "Predpokladaný vývoj ceny elektriny",
     "standardValueHint": "Štandardné hodnoty pre výpočet. Zmeňte ich na hodnoty z vlastnej zmluvy o dodávke elektriny pre individuálnejší výsledok.",
+    "exportValueInfo": "Zadajte celkovú kompenzáciu za kWh za elektrinu, ktorú odovzdávate do siete, vrátane prípadnej sietevýhody alebo inej kompenzácie súvisiacej s vývozom.",
     "editable": "Upraviteľné",
     "editableTooltip": "Zmeniť predpoklad",
     "fuseLimit": "Teoretický výkonový limit hlavného ističa",

@@ -1,4 +1,5 @@
-import { AlertTriangle, ArrowRight } from "lucide-react";
+import { AlertTriangle, ArrowRight, CircleAlert } from "lucide-react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -29,6 +30,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   const { t } = useTranslation();
   const { locale } = useAppLocale();
   const { result, outcome, market } = useCalculation();
+  const [showExportInfo, setShowExportInfo] = useState(false);
   const setSelfConsumptionShare = useWizardStore((s) => s.setSelfConsumptionShare);
   const setSelfConsumedValue = useWizardStore((s) => s.setSelfConsumedValue);
   const setExportValue = useWizardStore((s) => s.setExportValue);
@@ -156,7 +158,23 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
 
       {/* ── Card 2: assumed prices ── */}
       <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
-        <p className="text-xs font-semibold text-white">{t("result.assumedPrices")}</p>
+        <div className="relative">
+          <p className="text-xs font-semibold text-white">{t("result.assumedPrices")}</p>
+          <button
+            type="button"
+            onClick={() => setShowExportInfo((open) => !open)}
+            aria-label={t("result.exportValueInfo")}
+            aria-expanded={showExportInfo}
+            className="absolute top-0 right-0 flex size-6 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
+          >
+            <CircleAlert className="size-3.5" />
+          </button>
+        </div>
+        {showExportInfo ? (
+          <p className="rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
+            {t("result.exportValueInfo")}
+          </p>
+        ) : null}
         <div className="grid gap-2.5 sm:grid-cols-2">
           <div>
             <div className="flex flex-wrap items-center gap-1.5">

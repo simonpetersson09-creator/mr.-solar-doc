@@ -276,6 +276,7 @@ export const tr = {
     "degradationAssumption": "Teknik verim kaybı",
     "priceScenarioAssumption": "Varsayılan elektrik fiyatı gelişimi",
     "standardValueHint": "Hesaplama için standart değerler. Daha kişisel bir sonuç için bunları kendi elektrik sözleşmenizdeki değerlerle değiştirin.",
+    "exportValueInfo": "Şebekeye verdiğiniz elektrik için kWh başına toplam tazminatı girin; herhangi bir şebeke geliri veya ihracatla ilgili diğer tazminat dahil.",
     "editable": "Ayarlanabilir",
     "editableTooltip": "Varsayımı değiştir",
     "fuseLimit": "Ana sigortadan gelen teorik güç limiti",

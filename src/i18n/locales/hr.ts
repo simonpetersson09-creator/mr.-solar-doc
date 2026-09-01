@@ -284,6 +284,7 @@ export const hr = {
     degradationAssumption: "Tehnička degradacija",
     priceScenarioAssumption: "Pretpostavljeni razvoj cijena struje",
     standardValueHint: "Standardne vrijednosti za izračun. Promijenite ih u vrijednosti iz vlastitog ugovora o struji za individualniji rezultat.",
+    "exportValueInfo": "Unesite ukupnu naknadu po kWh za struju koju predajete u mrežu, uključujući eventualnu mrežnu korist ili drugu naknadu vezanu za izvoz.",
     editable: "Prilagodivo",
     editableTooltip: "Promijeni pretpostavku",
     fuseLimit: "Teoretsko ograničenje snage prema glavnom osiguraču",

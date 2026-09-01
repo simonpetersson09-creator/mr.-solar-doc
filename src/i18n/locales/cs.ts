@@ -261,6 +261,7 @@ export const cs = {
     "degradationAssumption": "Technická degradace",
     "priceScenarioAssumption": "Předpokládaný vývoj ceny elektřiny",
     "standardValueHint": "Standardní hodnoty pro výpočet. Změňte je na hodnoty z vlastní smlouvy o dodávce elektřiny pro individuálnější výsledek.",
+    "exportValueInfo": "Zadejte celkovou kompenzaci za kWh za elektřinu, kterou odevzdáváte do sítě, včetně případné výhody ze sítě nebo jiné kompenzace související s vývozem.",
     "editable": "Upravitelné",
     "editableTooltip": "Změnit předpoklad",
     "fuseLimit": "Teoretický výkonový limit z hlavního jističe",

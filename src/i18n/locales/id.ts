@@ -52,6 +52,7 @@ export const id = {
     "priceScenarioTitle": "Bagaimana menurut Anda harga listrik akan berkembang?", "priceScenarioHint": "Asumsi tentang perubahan tahunan, bukan perkiraan. Harga dinaikkan bertahap setiap tahun selama periode perhitungan.",
     "priceScenarioFlat": "Tidak berubah", "priceScenarioCautious": "Hati-hati", "priceScenarioNormal": "Normal", "priceScenarioHigh": "Tinggi", "priceScenarioVeryHigh": "Sangat tinggi", "priceScenarioExtreme": "Ekstrem", "priceScenarioCustom": "Asumsi sendiri", "priceScenarioCustomLabel": "Perubahan sendiri (%/tahun)",
     "degradationAssumption": "Degradasi teknis", "priceScenarioAssumption": "Perkembangan harga listrik yang diasumsikan", "standardValueHint": "Nilai standar untuk perhitungan. Ubah ke nilai kontrak listrik Anda sendiri untuk hasil yang lebih personal.",
+    "exportValueInfo": "Masukkan total kompensasi per kWh untuk listrik yang Anda ekspor ke jaringan, termasuk manfaat jaringan atau kompensasi terkait ekspor lainnya.",
     "editable": "Dapat disesuaikan", "editableTooltip": "Ubah asumsi", "fuseLimit": "Batas daya teoretis dari sekring utama",
     "fuseLimitInfo": "Diperoleh dari sekring utama dan tegangan jaringan Anda. Daya inverter atau ekspor yang benar-benar diizinkan mungkin dibatasi oleh operator jaringan dan aturan jaringan setempat.",
     "reason": {

@@ -261,6 +261,7 @@ export const lt = {
     "degradationAssumption": "Techninė degradacija",
     "priceScenarioAssumption": "Numatoma elektros kainos raida",
     "standardValueHint": "Skaičiavimo standartinės vertės. Pakeiskite jas savo elektros sutarties vertėmis, kad rezultatas būtų individualesnis.",
+    "exportValueInfo": "Nurodykite bendrą kompensaciją už kWh už elektrą, kurią tiekiate į tinklą, įskaitant bet kokį tinklo naudą ar kitą su eksportu susijusią kompensaciją.",
     "editable": "Redaguojama",
     "editableTooltip": "Keisti prielaidą",
     "fuseLimit": "Teorinė galios riba nuo pagrindinio automatinio jungiklio",

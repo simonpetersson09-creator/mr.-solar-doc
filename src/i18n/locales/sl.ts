@@ -261,6 +261,7 @@ export const sl = {
     "degradationAssumption": "Tehnična degradacija",
     "priceScenarioAssumption": "Predpostavljen razvoj cene elektrike",
     "standardValueHint": "Standardne vrednosti za izračun. Zamenjajte jih z vrednostmi iz svoje pogodbe o dobavi elektrike za bolj individualen rezultat.",
+    "exportValueInfo": "Vnesite skupno povračilo na kWh za elektriko, ki jo oddajate v omrežje, vključno z morebitno mrežno koristjo ali drugim povračilom, povezanim z izvozom.",
     "editable": "Nastavljivo",
     "editableTooltip": "Spremeni predpostavko",
     "fuseLimit": "Teoretična omejitev moči zaradi glavne varovalke",

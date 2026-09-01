@@ -261,6 +261,7 @@ export const fi = {
     "degradationAssumption": "Tekninen degradaatio",
     "priceScenarioAssumption": "Oletettu sähkön hinnan kehitys",
     "standardValueHint": "Laskennan vakioarvot. Vaihda ne oman sähkösopimuksesi arvoihin saadaksesi yksilöllisemmän tuloksen.",
+    "exportValueInfo": "Anna kokonaiskorvaus per kWh sähköstä, jota syötät verkkoon, mukaan lukien mahdollinen verkkohyöty tai muu vientiin liittyvä korvaus.",
     "editable": "Muokattavissa",
     "editableTooltip": "Muuta oletusta",
     "fuseLimit": "Teoreettinen tehoraja pääsulakkeesta",

@@ -261,6 +261,7 @@ export const it = {
     "degradationAssumption": "Degrado tecnico",
     "priceScenarioAssumption": "Evoluzione ipotizzata del prezzo dell'elettricità",
     "standardValueHint": "Valori standard per il calcolo. Modificali con i valori del tuo contratto di fornitura elettrica per un risultato più individuale.",
+    "exportValueInfo": "Inserisci la compensazione totale per kWh per l'elettricità che immetti in rete, inclusi eventuali benefici di rete o altre compensazioni legate all'esportazione.",
     "editable": "Modificabile",
     "editableTooltip": "Modifica ipotesi",
     "fuseLimit": "Limite di potenza teorico dal limitatore di potenza",

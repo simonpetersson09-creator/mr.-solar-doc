@@ -276,6 +276,7 @@ export const ro = {
     "degradationAssumption": "Degradare tehnică",
     "priceScenarioAssumption": "Evoluție presupusă a prețului energiei",
     "standardValueHint": "Valori standard pentru calcul. Schimbă-le cu valorile din propriul tău contract de energie pentru un rezultat mai personalizat.",
+    "exportValueInfo": "Introdu compensația totală pe kWh pentru curentul pe care îl introduci în rețea, inclusiv orice beneficiu de rețea sau altă compensație legată de export.",
     "editable": "Ajustabil",
     "editableTooltip": "Schimbă presupunerea",
     "fuseLimit": "Limita teoretică de putere din siguranța principală",
