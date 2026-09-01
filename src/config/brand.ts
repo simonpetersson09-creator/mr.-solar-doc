@@ -13,10 +13,13 @@ export const BRAND_HEX = {
   yellowHover: "#F5CD18",
   yellowPressed: "#EFC200",
   yellowLight: "#FFE879",
+  /** Soft yellow for secondary information areas (cards, tints). */
+  yellowSoft: "#FFF0AE",
   black: "#1D191A",
   blackSoft: "#2A2426",
   paper: "#FCFBF7",
-  muted: "#6B6663",
+  /** #1D191A softened toward paper — never a separate grey hue. */
+  muted: "#6E6A6B",
   line: "#E4E2DD",
 } as const;
 
@@ -37,6 +40,7 @@ export const BRAND_RGB = {
   yellowHover: toRgb(BRAND_HEX.yellowHover),
   yellowPressed: toRgb(BRAND_HEX.yellowPressed),
   yellowLight: toRgb(BRAND_HEX.yellowLight),
+  yellowSoft: toRgb(BRAND_HEX.yellowSoft),
   black: toRgb(BRAND_HEX.black),
   blackSoft: toRgb(BRAND_HEX.blackSoft),
   paper: toRgb(BRAND_HEX.paper),

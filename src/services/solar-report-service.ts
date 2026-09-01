@@ -112,7 +112,7 @@ const LINE: [number, number, number] = BRAND_RGB.line;
 /** Slightly deeper yellow, matching the app's primary CTA. */
 const ACCENT_DEEP: [number, number, number] = BRAND_RGB.yellowCta;
 /** Soft yellow tint for highlighted rows that must stay readable in print. */
-const ACCENT_TINT: [number, number, number] = [255, 246, 209];
+const ACCENT_TINT: [number, number, number] = BRAND_RGB.yellowSoft;
 
 
 interface Row {
@@ -635,11 +635,11 @@ this.y += height + 6;
         x + cols.slice(0, index).reduce((sum, col) => sum + col.w, 0) + cols[index]!.w;
 
       // Header
-      this.doc.setFillColor(...PRIMARY);
+      this.doc.setFillColor(...ACCENT_DEEP);
       this.doc.roundedRect(x, top, columnWidth, 5.4, 1, 1, "F");
       this.doc.setFont("helvetica", "bold");
       this.doc.setFontSize(6.5);
-      this.doc.setTextColor(...CREAM);
+      this.doc.setTextColor(...INK);
       this.doc.text(head.year, x + 1.5, top + 3.7);
       cols.slice(1).forEach((col, index) => {
         this.doc.text(head[col.key], xAt(index + 1) - 1.5, top + 3.7, { align: "right" });

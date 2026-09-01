@@ -63,9 +63,13 @@
   /* Brand palette — the single source of truth for the yellow/black identity.
      The same hex values are mirrored in src/config/brand.ts for the PDF. */
   --color-brand-yellow: var(--brand-yellow);
+  --color-brand-yellow-soft: var(--brand-yellow-soft);
+  --color-brand-yellow-selected: var(--brand-yellow-selected);
+  --color-surface-cream: var(--surface-cream);
   --color-brand-yellow-cta: var(--brand-yellow-cta);
   --color-brand-yellow-hover: var(--brand-yellow-hover);
   --color-brand-yellow-pressed: var(--brand-yellow-pressed);
+
   --color-brand-black: var(--brand-black);
   --color-brand-black-soft: var(--brand-black-soft);
 
@@ -81,12 +85,18 @@
 
   /* --- Brand constants -------------------------------------------------- */
   --brand-yellow: oklch(0.8982 0.171 96.2);          /* #FFDC38 */
+  --brand-yellow-soft: oklch(0.9235 0.1349 97.2);    /* soft input-card yellow */
+  --brand-yellow-selected: oklch(0.8516 0.1732 94.4);/* #F3CB0C selected state */
   --brand-yellow-cta: oklch(0.8516 0.1732 94.4);     /* #F3CB0C */
   --brand-yellow-hover: oklch(0.8577 0.1723 94.3);   /* #F5CD18 */
   --brand-yellow-pressed: oklch(0.8296 0.1697 91.8); /* #EFC200 */
   --brand-yellow-light: oklch(0.9277 0.1337 97.8);   /* #FFE879 */
   --brand-black: oklch(0.2185 0.0066 0.7);           /* #1D191A */
   --brand-black-soft: oklch(0.2678 0.0097 355.6);    /* #2A2426 */
+  /* Warm off-white used for unselected controls, inputs and badges. */
+  --surface-cream: oklch(0.988 0.012 96);
+  --surface-cream-strong: oklch(0.995 0.008 96);
+
 
   --background: oklch(0.9877 0.0054 95.1);
   --foreground: var(--brand-black);
@@ -104,7 +114,7 @@
   --secondary-foreground: var(--brand-black);
 
   --muted: oklch(0.962 0.006 95);
-  --muted-foreground: oklch(0.5139 0.0079 53.3);
+  --muted-foreground: oklch(0.5139 0.0066 0.7);
 
   /* Accent = brand yellow: badges, selected states, key figures, charts. */
   --accent: var(--brand-yellow);
@@ -138,6 +148,11 @@
 
 .dark {
   --brand-yellow: oklch(0.8982 0.171 96.2);
+  --brand-yellow-soft: oklch(0.9235 0.1349 97.2);
+  --brand-yellow-selected: oklch(0.8516 0.1732 94.4);
+  --surface-cream: oklch(0.988 0.012 96);
+  --surface-cream-strong: oklch(0.995 0.008 96);
+
   --brand-yellow-cta: oklch(0.8516 0.1732 94.4);
   --brand-yellow-hover: oklch(0.8577 0.1723 94.3);
   --brand-yellow-pressed: oklch(0.8296 0.1697 91.8);
@@ -260,29 +275,29 @@ html[data-native="true"] {
   box-shadow: var(--shadow-card);
 }
 
-/* Lacquered brand-yellow hero surface: a barely-there sheen, no 3D. */
+/* Saturated brand-yellow result surface: #FFDC38 with a barely-there sheen. */
 @utility hero-metric {
   position: relative;
   overflow: hidden;
   background-color: var(--brand-yellow);
   background-image: linear-gradient(
-    160deg,
-    oklch(1 1 0 / 0.32) 0%,
-    oklch(1 0 0 / 0) 45%,
-    oklch(0.2185 0.0066 0.7 / 0.06) 100%
+    170deg,
+    oklch(1 0 0 / 0.16) 0%,
+    oklch(1 0 0 / 0) 46%,
+    oklch(0.2185 0.0066 0.7 / 0.05) 100%
   );
   color: var(--brand-black);
-  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.55);
+  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
   box-shadow:
-    inset 0 1px 0 oklch(1 0 0 / 0.4),
-    0 18px 44px -20px oklch(0.2185 0.0066 0.7 / 0.35);
+    inset 0 1px 0 oklch(1 0 0 / 0.35),
+    0 18px 44px -20px oklch(0.2185 0.0066 0.7 / 0.3);
 }
 
 /* Frosted panel that sits on top of the yellow hero and card surfaces. */
 @utility glass-panel {
-  background-color: oklch(1 1 0 / 0.42);
-  backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid oklch(0.2185 0.0066 0.7 / 0.12);
+  background-color: var(--surface-cream-strong);
+  backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid oklch(0.2185 0.0066 0.7 / 0.1);
 }
 
 /* Frosted floating sheet used over the full-bleed map on the first page. */
@@ -293,23 +308,28 @@ html[data-native="true"] {
   box-shadow: 0 8px 32px oklch(0.2185 0.0066 0.7 / 0.1);
 }
 
-/* Primary information card: one clean #FFDC38 plane with a discreet top
-   highlight and a soft shadow. The sheen is felt, not seen. */
+/* Input card: a softer, lighter yellow so it sits one level below the
+   saturated #FFDC38 result cards. The gradient stays within yellow. */
 @utility glass-primary {
-  background-color: var(--brand-yellow);
+  background-color: var(--brand-yellow-soft);
   background-image: linear-gradient(
     170deg,
-    oklch(1 1 0 / 0.3) 0%,
-    oklch(1 0 0 / 0) 44%,
-    oklch(0.2185 0.0066 0.7 / 0.05) 100%
+    oklch(1 0 0 / 0.18) 0%,
+    oklch(1 0 0 / 0) 48%,
+    oklch(0.2185 0.0066 0.7 / 0.04) 100%
   );
   color: var(--brand-black);
-  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.6);
+  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.4);
   box-shadow:
     inset 0 1px 0 oklch(1 0 0 / 0.4),
-    0 14px 34px -18px oklch(0.2185 0.0066 0.7 / 0.32);
+    0 14px 34px -20px oklch(0.2185 0.0066 0.7 / 0.26);
 }
 
+/* Promotes an input-level surface to a saturated #FFDC38 result surface. */
+@utility surface-strong {
+  background-color: var(--brand-yellow);
+  border-color: oklch(0.8296 0.1697 91.8 / 0.5);
+}
 
 /* Lacquered brand-yellow surface for key figures, summary cards and info
    boxes. Reads as one clean yellow plane; the sheen is felt, not seen. */
@@ -318,16 +338,17 @@ html[data-native="true"] {
   background-color: var(--brand-yellow);
   background-image: linear-gradient(
     170deg,
-    oklch(1 1 0 / 0.28) 0%,
-    oklch(1 0 0 / 0) 42%,
+    oklch(1 0 0 / 0.16) 0%,
+    oklch(1 0 0 / 0) 44%,
     oklch(0.2185 0.0066 0.7 / 0.05) 100%
   );
   color: var(--brand-black);
-  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.55);
+  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
   box-shadow:
-    inset 0 1px 0 oklch(1 0 0 / 0.35),
-    0 10px 28px -12px oklch(0.2185 0.0066 0.7 / 0.28);
+    inset 0 1px 0 oklch(1 0 0 / 0.32),
+    0 10px 28px -14px oklch(0.2185 0.0066 0.7 / 0.24);
 }
+
 
 /* Very subtle lacquer for large black graphic elements and display numbers.
    Body copy never uses this — plain foreground keeps maximum legibility. */
@@ -371,6 +392,16 @@ html[data-native="true"] {
   transform: translateY(1px);
   box-shadow: inset 0 2px 4px oklch(0.2185 0.0066 0.7 / 0.18);
 }
+/* Everything on the CTA — label, arrow, icons — is ink black. */
+.cta-primary,
+.cta-primary * {
+  color: var(--brand-black);
+}
+.cta-primary svg {
+  color: var(--brand-black);
+  stroke: currentColor;
+}
+
 
 /* Soft amber glow blob used as decoration inside dark hero cards. */
 @utility glow-amber {
@@ -437,11 +468,11 @@ html[data-native="true"] {
 .glass-primary .text-white\/80,
 .hero-metric .text-white\/85,
 .hero-metric .text-white\/80 {
-  color: oklch(0.2185 0.0066 0.7 / 0.88);
+  color: oklch(0.2185 0.0066 0.7 / 0.92);
 }
 .glass-primary .text-white\/70,
 .hero-metric .text-white\/70 {
-  color: oklch(0.2185 0.0066 0.7 / 0.78);
+  color: oklch(0.2185 0.0066 0.7 / 0.86);
 }
 .glass-primary .text-white\/60,
 .glass-primary .text-white\/50,
@@ -449,35 +480,35 @@ html[data-native="true"] {
 .hero-metric .text-white\/60,
 .hero-metric .text-white\/50,
 .hero-metric .text-white\/45 {
-  color: oklch(0.2185 0.0066 0.7 / 0.68);
+  color: oklch(0.2185 0.0066 0.7 / 0.8);
 }
 .glass-primary .placeholder\:text-white\/50::placeholder,
 .hero-metric .placeholder\:text-white\/50::placeholder {
   color: oklch(0.2185 0.0066 0.7 / 0.5);
 }
 
-/* Inputs, chips and inner panels: warm-white instead of translucent white. */
+/* Inputs, chips and inner panels: warm cream instead of translucent white. */
 .glass-primary .bg-white\/5,
 .hero-metric .bg-white\/5 {
-  background-color: oklch(1 0.02 96 / 0.3);
+  background-color: oklch(0.995 0.008 96 / 0.5);
 }
 .glass-primary .bg-white\/10,
 .hero-metric .bg-white\/10 {
-  background-color: oklch(1 0.02 96 / 0.42);
+  background-color: oklch(0.995 0.008 96 / 0.68);
 }
 .glass-primary .bg-white\/15,
 .hero-metric .bg-white\/15 {
-  background-color: oklch(1 0.02 96 / 0.58);
+  background-color: var(--surface-cream);
 }
 .glass-primary .bg-white\/20,
 .glass-primary .bg-white\/25,
 .hero-metric .bg-white\/20,
 .hero-metric .bg-white\/25 {
-  background-color: oklch(1 0.02 96 / 0.72);
+  background-color: var(--surface-cream-strong);
 }
 .glass-primary .hover\:bg-white\/25:hover,
 .hero-metric .hover\:bg-white\/25:hover {
-  background-color: oklch(1 0.02 96 / 0.85);
+  background-color: oklch(0.955 0.02 96);
 }
 .glass-primary .bg-white\/35,
 .glass-primary .bg-white\/40,
@@ -485,6 +516,7 @@ html[data-native="true"] {
 .hero-metric .bg-white\/40 {
   background-color: oklch(0.2185 0.0066 0.7 / 0.35);
 }
+
 
 .glass-primary [class*="border-white/"],
 .hero-metric [class*="border-white/"] {
@@ -506,10 +538,12 @@ html[data-native="true"] {
 /* Selected states must read as a deeper yellow than the card itself. */
 .glass-primary .bg-accent,
 .hero-metric .bg-accent {
-  background-color: var(--brand-yellow-pressed);
+  background-color: var(--brand-yellow-selected);
 }
 .glass-primary .border-accent,
-.hero-metric .border-accent {
+.glass-primary [class*="border-accent/"],
+.hero-metric .border-accent,
+.hero-metric [class*="border-accent/"] {
   border-color: var(--brand-yellow-pressed);
 }
 .glass-primary .text-accent,
@@ -518,12 +552,23 @@ html[data-native="true"] {
 }
 .glass-primary .bg-accent\/10,
 .hero-metric .bg-accent\/10 {
-  background-color: oklch(1 0.02 96 / 0.5);
+  background-color: var(--surface-cream);
 }
 .glass-primary .bg-accent\/25,
 .hero-metric .bg-accent\/25 {
   background-color: oklch(0.8296 0.1697 91.8 / 0.5);
 }
+
+/* No red/rose copy on yellow: warnings stay ink with a deep-yellow marker. */
+.glass-primary [class*="text-red-"],
+.hero-metric [class*="text-red-"] {
+  color: oklch(0.42 0.14 28);
+}
+.glass-primary [class*="border-red-"],
+.hero-metric [class*="border-red-"] {
+  border-color: oklch(0.42 0.14 28 / 0.45);
+}
+
 
 /* Slider on a yellow card: ink range, translucent ink track, cream thumb. */
 .glass-primary .bg-accent[data-slot="slider-range"],
@@ -543,5 +588,5 @@ html[data-native="true"] {
 /* Decorative glow inside yellow cards must not muddy the surface. */
 .glass-primary .glow-amber,
 .hero-metric .glow-amber {
-  background-color: oklch(1 1 0 / 0.35);
+  background-color: oklch(1 0 0 / 0.35);
 }
