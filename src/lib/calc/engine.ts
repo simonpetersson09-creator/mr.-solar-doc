@@ -210,22 +210,46 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   const monthlyProductionKwh = selection.best.monthlyProductionKwh;
   const annualProductionKwh = selection.best.annualProductionKwh;
 
+  // Self-consumption is estimated AFTER the system size is known: the share
+  // depends on production/consumption, so it can only be resolved here. The
+  // sizing engine above never sees it.
+  const shareForProduction = (productionKwh: number): number =>
+    resolveSelfConsumptionShare({
+      annualProductionKwh: productionKwh,
+      annualConsumptionKwh: input.consumption.annualKwh,
+      userShare: input.selfConsumptionShare,
+      userSet: input.selfConsumptionShareIsUserSet ?? false,
+      monthlyProductionKwh: monthlyProductionKwh,
+      monthlyConsumptionKwh: input.consumption.monthlyKwh ?? null,
+    }).share;
+
+  const selfConsumptionEstimate = resolveSelfConsumptionShare({
+    annualProductionKwh,
+    annualConsumptionKwh: input.consumption.annualKwh,
+    userShare: input.selfConsumptionShare,
+    userSet: input.selfConsumptionShareIsUserSet ?? false,
+    monthlyProductionKwh,
+    monthlyConsumptionKwh: input.consumption.monthlyKwh ?? null,
+  });
+
   // Self-consumption is capped by what the household actually uses, so the
   // energy amount — not just the displayed percentage — stays physical.
   const split = splitProduction(
     annualProductionKwh,
-    input.selfConsumptionShare,
+    selfConsumptionEstimate.share,
     input.consumption.annualKwh,
   );
 
-  // No hourly model yet. The source follows how the value was set, never the
-  // number itself: picking exactly the default share manually is still an override.
+  // The source follows how the value was determined: an explicit user choice is
+  // always an override, otherwise the value is modelled (simulated), never a
+  // flat standard assumption.
   const selfConsumptionSummary = summariseSelfConsumption({
     split,
     annualProductionKwh,
     annualConsumptionKwh: input.consumption.annualKwh,
-    source: input.selfConsumptionShareIsUserSet ? "user-override" : "standard-assumption",
+    source: selfConsumptionEstimate.source,
   });
+
 
 
   // null means "unknown" and must never silently become 0. It is only mapped to
