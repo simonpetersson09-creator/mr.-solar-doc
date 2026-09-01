@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 
 import { calculateSolarSystem } from "./engine";
 import { MARKETS } from "@/config/markets";
-import { getCountryConfig } from "@/config/countries";
+import { currencyForCountry } from "@/config/countries";
 import type { CalculationInput } from "./types";
 
 /** Stockholm-like PVGIS reference: ~938 kWh/kWp, south, 30 degrees. */
@@ -13,7 +13,6 @@ function makeInput(
   overrides: Partial<CalculationInput> = {},
 ): CalculationInput {
   const market = MARKETS[countryCode] ?? MARKETS["SE"]!;
-  const country = getCountryConfig(countryCode);
   return {
     location: {
       address: "Test 1",
@@ -37,7 +36,7 @@ function makeInput(
     economics: {
       selfConsumedValuePerKwh: 1.8,
       exportValuePerKwh: 0.5,
-      currency: country.currency,
+      currency: currencyForCountry(countryCode),
       // Deliberately absent: the KPI must not depend on it.
       installationCostPerKwp: null,
     },
@@ -80,7 +79,7 @@ describe("investment level per produced kWh", () => {
       expect(cost.costPerKwh, code).not.toBeNull();
       expect(Number.isFinite(cost.costPerKwh!), code).toBe(true);
       expect(cost.costPerKwh!, code).toBeGreaterThan(0);
-      expect(result.economics.currency, code).toBe(getCountryConfig(code).currency);
+      expect(result.economics.currency, code).toBe(currencyForCountry(code));
     }
   });
 
