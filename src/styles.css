@@ -538,10 +538,12 @@ html[data-native="true"] {
 /* Selected states must read as a deeper yellow than the card itself. */
 .glass-primary .bg-accent,
 .hero-metric .bg-accent {
-  background-color: var(--brand-yellow-pressed);
+  background-color: var(--brand-yellow-selected);
 }
 .glass-primary .border-accent,
-.hero-metric .border-accent {
+.glass-primary [class*="border-accent/"],
+.hero-metric .border-accent,
+.hero-metric [class*="border-accent/"] {
   border-color: var(--brand-yellow-pressed);
 }
 .glass-primary .text-accent,
@@ -550,12 +552,23 @@ html[data-native="true"] {
 }
 .glass-primary .bg-accent\/10,
 .hero-metric .bg-accent\/10 {
-  background-color: oklch(1 0.02 96 / 0.5);
+  background-color: var(--surface-cream);
 }
 .glass-primary .bg-accent\/25,
 .hero-metric .bg-accent\/25 {
   background-color: oklch(0.8296 0.1697 91.8 / 0.5);
 }
+
+/* No red/rose copy on yellow: warnings stay ink with a deep-yellow marker. */
+.glass-primary [class*="text-red-"],
+.hero-metric [class*="text-red-"] {
+  color: oklch(0.42 0.14 28);
+}
+.glass-primary [class*="border-red-"],
+.hero-metric [class*="border-red-"] {
+  border-color: oklch(0.42 0.14 28 / 0.45);
+}
+
 
 /* Slider on a yellow card: ink range, translucent ink track, cream thumb. */
 .glass-primary .bg-accent[data-slot="slider-range"],
