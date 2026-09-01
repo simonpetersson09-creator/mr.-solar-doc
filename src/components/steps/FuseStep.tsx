@@ -267,6 +267,20 @@ const [showGridInfo, setShowGridInfo] = useState(false);
             >
               {editGrid ? t("fuse.grid.done") : t("fuse.grid.change")}
             </button>
+            <button
+              type="button"
+              onClick={() => {
+                void haptic("light");
+                setShowGridInfo((open) => !open);
+              }}
+              aria-label={t("fuse.gridAssumptionDynamic", {
+                service: serviceLabel(serviceType),
+                voltage: voltageLabel(voltageV),
+              })}
+              className="shrink-0 rounded-full bg-white/15 p-1.5 text-white"
+            >
+              <Info className="size-3.5" />
+            </button>
           </div>
         </div>
 
