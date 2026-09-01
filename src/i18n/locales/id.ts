@@ -37,7 +37,7 @@ export const id = {
     "gridAssumption": "Perhitungan mengasumsikan sambungan tiga fase 400 V.",
     "gridAssumptionInfo": "Daya teoretis sekring utama dihitung dari sambungan tiga fase 400 V. Periksa sambungan jaringan Anda yang sebenarnya jika ragu.",
     gridCheckHint: "Periksa sambungan jaringan Anda yang sebenarnya jika ragu.",
-    "disclaimerTitle": "Penting untuk diketahui"
+    "disclaimerTitle": "Penting untuk diketahui",
     "grid": { "advanced": "Pengaturan lanjutan", "section": "Pengaturan jaringan", "change": "Ubah", "done": "Selesai", "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz", "phases": "Fase", "serviceType": "Jenis layanan", "twoPhase": "2-fase (fase–fase)", "splitPhase": "Split-phase", "unverifiedHint": "Kami tidak memiliki nilai jaringan terverifikasi untuk negara ini. Silakan periksa detail Anda dengan meteran atau panel layanan Anda.", "phase1": "1-fase", "phase3": "3-fase", "voltage": "Tegangan", "voltageOther": "Lainnya", "voltageOtherLabel": "Masukkan tegangan", "voltageInvalid": "Masukkan tegangan yang valid dalam volt.", "frequency": "Frekuensi", "hint": "Ubah ini hanya jika nilai default tidak sesuai dengan sambungan Anda." },
     "genericTitle": "Sambungan listrik apa yang Anda miliki?", "title": "Sekring utama apa yang Anda miliki?", "subtitle": "Sekring utama digunakan untuk memperkirakan seberapa besar inverter yang biasanya dapat disambungkan. Daya yang benar-benar diizinkan ditentukan oleh operator jaringan.", "label": "Sekring utama",
     "noCountryOptions": "Kami belum memiliki opsi sambungan terverifikasi untuk negara ini. Masukkan sekring utama Anda dalam ampere dan sesuaikan pengaturan jaringan di bawah jika perlu.",
@@ -70,7 +70,7 @@ export const id = {
       "profileVeryHighSolarSeason": "Pemakaian listrik Anda jelas terkonsentrasi pada bulan-bulan cerah, sehingga daya panel yang lebih tinggi dari inverter disarankan.",
       "gridLimit": "Sistem dibatasi oleh sekring utama Anda — sambungan jaringan Anda tidak mengizinkan daya lebih besar.",
       "minimumSize": "Pemakaian listrik Anda rendah, sehingga kami sarankan sistem terkecil yang masuk akal.",
-      "maximumSize": "Saran ini dibatasi pada ukuran terbesar yang dihitung oleh aplikasi ini."
+      "maximumSize": "Saran ini dibatasi pada ukuran terbesar yang dihitung oleh aplikasi ini.",
     },
     "monthlyDataNote": "Nilai bulanan tidak menunjukkan apakah listrik digunakan siang atau malam hari. Nilai ini digunakan sebagai sinyal ukuran, bukan bukti berapa banyak solar yang dapat Anda gunakan sendiri.",
     "profileLabel": "Profil konsumsi",
@@ -81,7 +81,7 @@ export const id = {
       "gridLimit": "Sistem dibatasi oleh sekring utama Anda — sambungan jaringan Anda tidak mengizinkan daya lebih besar.",
       "inverterLimit": "Ukuran disesuaikan dengan inverter terbesar yang cocok untuk sambungan Anda.",
       "minimumSize": "Pemakaian listrik Anda rendah, sehingga kami sarankan sistem terkecil yang masuk akal.",
-      "maximumSize": "Saran ini dibatasi pada ukuran terbesar yang dihitung oleh aplikasi ini."
+      "maximumSize": "Saran ini dibatasi pada ukuran terbesar yang dihitung oleh aplikasi ini.",
     },
     "selfConsumption": "Solar yang dipakai sendiri", "exported": "Solar yang diekspor", "assumedPrice": "Harga listrik masa depan yang diasumsikan",
     "selfConsumedValueLabel": "Nilai solar yang dipakai sendiri ({{currency}}/kWh)", "selfConsumedValueHelp": "Solar yang dipakai sendiri menggantikan listrik yang seharusnya Anda beli dari jaringan.",
@@ -211,6 +211,6 @@ export const id = {
       { "q": "Mengapa perhitungan instalator bisa berbeda?", "a": "Asumsi yang berbeda tentang produksi, konsumsi sendiri, harga listrik, kehilangan sistem, dan perkembangan harga masa depan dapat memberikan hasil yang berbeda." },
       { "q": "Apakah perhitungan ini adalah penawaran?", "a": "Tidak. Hasil ini adalah perkiraan dan dimaksudkan sebagai dasar pengambilan keputusan. Harga, produksi, dan hasil ekonomi aktual mungkin berbeda." },
       { "q": "Mengapa produksi menurun seiring waktu?", "a": "Efisiensi panel solar biasanya menurun sedikit dari tahun ke tahun. Perhitungan mengasumsikan degradasi tahunan sebesar 0,5 %, yang berarti produksi yang diperkirakan menurun secara bertahap selama periode perhitungan." }
-    ]
-  }
+    ],
+  },
 } as const;

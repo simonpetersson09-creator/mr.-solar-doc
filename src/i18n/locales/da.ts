@@ -6,7 +6,7 @@ export const da = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Dimensioner dit solcelleanlæg på få minutter"
+    "tagline": "Dimensioner dit solcelleanlæg på få minutter",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const da = {
     "point3Title": "Udregner hvad det må koste efter ønsket tilbagebetalingstid",
     "point3Body": "Du vælger ønsket tilbagebetalingstid. Mr. Solar Doc beregner det investeringsniveau, der kræves.",
     "point4Title": "Rapport og beslutningsgrundlag",
-    "point4Body": "Se produktion, økonomi og forskellige tilbagebetalingstider samlet i en rapport."
+    "point4Body": "Se produktion, økonomi og forskellige tilbagebetalingstider samlet i en rapport.",
     "cta": "Start beregningen",
   },
   "common": {
@@ -33,14 +33,14 @@ export const da = {
     "perYear": "/år",
     "dontKnow": "Ved ikke",
     "startOver": "Start forfra",
-    "close": "Luk"
+    "close": "Luk",
   },
   "steps": {
     "address": "Adresse",
     "roof": "Tag & sol",
     "consumption": "Elforbrug",
     "fuse": "Hovedsikring",
-    "stepOf": "Trin {{current}} af {{total}}"
+    "stepOf": "Trin {{current}} af {{total}}",
   },
   "address": {
     "title": "Hvor ligger ejendommen?",
@@ -57,7 +57,7 @@ export const da = {
     "region": "Region",
     "error": "Adressesøgningen mislykkedes.",
     "info": "Adressen bruges udelukkende til at beregne solindstrålingen på din placering.",
-    "infoLabel": "Mere information om adressen"
+    "infoLabel": "Mere information om adressen",
   },
   "roof": {
     "title": "Dit tag",
@@ -71,7 +71,7 @@ export const da = {
       "n": "N",
       "e": "Ø",
       "s": "S",
-      "w": "V"
+      "w": "V",
     },
     "orientations": {
       "unknown": "Ved ikke",
@@ -79,21 +79,21 @@ export const da = {
       "southeast": "Sydøst",
       "southwest": "Sydvest",
       "east": "Øst",
-      "west": "Vest"
+      "west": "Vest",
     },
     "fetching": "Henter solproduktionsdata fra PVGIS…",
     "result": "Beregnet solproduktion på stedet",
-    "unit": "kWh/kWp/år"
+    "unit": "kWh/kWp/år",
     "error": "Vi kunne ikke hente solproduktionsdata for placeringen lige nu. Der gættes ingen værdier.",
     "errorOverSea": "Placeringen ser ud til at ligge over vand. Flyt markøren hen på bygningen på land, og prøv igen.",
     "errorOutsideCoverage": "Vi har ingen soldata for denne placering. Prøv en adresse i nærheden.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Angiv dit elforbrug for at fortsætte beregningen.",
       "tooLow": "Forbruget ser for lavt ud. Angiv mindst {{min}} kWh om året.",
-      "tooHigh": "Forbruget ser for højt ud. Angiv højst {{max}} kWh om året."
+      "tooHigh": "Forbruget ser for højt ud. Angiv højst {{max}} kWh om året.",
     },
     "shape": {
       "question": "Hvordan er dit elforbrug normalt fordelt over året?",
@@ -104,20 +104,20 @@ export const da = {
       "defaultNote": "Vi bruger en normal estimeret fordeling af dit årsforbrug. Du kan ændre dette senere.",
       "even": {
         "title": "Jævnt fordelt over året",
-        "description": "Cirka det samme elforbrug hele året."
+        "description": "Cirka det samme elforbrug hele året.",
       },
       "winter-heavy": {
         "title": "Højere om vinteren",
-        "description": "Du bruger mere el i årets kolde måneder, f.eks. til opvarmning."
+        "description": "Du bruger mere el i årets kolde måneder, f.eks. til opvarmning.",
       },
       "summer-heavy": {
         "title": "Højere om sommeren",
-        "description": "Du bruger mere el om sommeren, f.eks. til pool eller køling."
+        "description": "Du bruger mere el om sommeren, f.eks. til pool eller køling.",
       },
       "default": {
         "title": "Jeg ved det ikke",
-        "description": "Brug en normal estimeret profil."
-      }
+        "description": "Brug en normal estimeret profil.",
+      },
     },
     "upload": {
       "title": "Indsæt eller vedhæft dokument",
@@ -136,7 +136,7 @@ export const da = {
       "remove": "Fjern",
       "retry": "Prøv en anden fil",
       "readingFile": "Læser {{name}}…",
-      "ready": "Importeret"
+      "ready": "Importeret",
     },
     "title": "Hvor meget el bruger du?",
     "subtitle": "Kig på din elregning eller din elaftale.",
@@ -148,7 +148,7 @@ export const da = {
     "invalid": "Angiv et årsforbrug mellem 100 og 200.000 kWh.",
     "or": "eller",
     "manual": { "sectionTitle": "Indtast manuelt", "sectionHint": "Angiv dit årlige forbrug — tjek din elregning eller kontrakt." },
-    "monthlyHint": "Angiv forbrug for alle 12 måneder"
+    "monthlyHint": "Angiv forbrug for alle 12 måneder",
   },
   "fuse": {
     "gridAssumptionDynamic": "Beregningen tager udgangspunkt i {{service}} {{voltage}}.",
@@ -159,28 +159,28 @@ export const da = {
       "amperage": {
         "title": "Hvilken hovedsikring har du?",
         "label": "Hovedsikring",
-        "help": "Ampere pr. fase, står på hovedafbryderen eller regningen."
+        "help": "Ampere pr. fase, står på hovedafbryderen eller regningen.",
       },
       "service": {
         "title": "Elinstallationens størrelse",
         "label": "Elinstallationens størrelse",
-        "help": "Find amperetallet på hovedafbryderen eller eltavlen."
+        "help": "Find amperetallet på hovedafbryderen eller eltavlen.",
       },
       "contracted-kva": {
         "title": "Hvilken abonneret effekt har du?",
         "label": "Abonneret effekt",
-        "help": "Angives i kVA på din elregning."
+        "help": "Angives i kVA på din elregning.",
       },
       "contracted-kw": {
         "title": "Hvilken aftalt effekt har du?",
         "label": "Aftalt effekt",
-        "help": "Angives i kW på din elregning."
-      }
+        "help": "Angives i kW på din elregning.",
+      },
     },
     "gridAssumption": "Beregningen tager udgangspunkt i 400 V trefaset.",
     "gridAssumptionInfo": "Hovedsikringens teoretiske effekt beregnes ud fra en 400 V trefaset tilslutning. Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
     gridCheckHint: "Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
-    "disclaimerTitle": "Vigtigt at vide"
+    "disclaimerTitle": "Vigtigt at vide",
     "grid": {
       "advanced": "Avancerede indstillinger",
       "section": "Netsindstillinger",
@@ -199,7 +199,7 @@ export const da = {
       "serviceType": "Tilslutningstype",
       "twoPhase": "2-faset (fase–fase)",
       "splitPhase": "Split-fase",
-      "unverifiedHint": "Vi har ingen verificerede netværdier for dette land. Kontrollér dine oplysninger på måleren eller i eltavlen."
+      "unverifiedHint": "Vi har ingen verificerede netværdier for dette land. Kontrollér dine oplysninger på måleren eller i eltavlen.",
     },
     "title": "Hvilken hovedsikring har du?",
     "subtitle": "Hovedsikringen bruges til at vurdere, hvor stor en inverter der normalt kan tilsluttes. Den faktiske tilladte effekt fastsættes af netselskabet.",
@@ -213,13 +213,13 @@ export const da = {
     "noCountryOptions": "Vi har endnu ikke verificerede tilslutningsmuligheder for dette land. Indtast din hovedsikring i ampere, og justér netindstillingerne nedenfor efter behov.",
     "unverifiedCountryNotice": "Vi har ikke verificeret netstandarden for dette land. Kontrollér spænding, faser og tilslutningsstørrelse på din elregning eller hos dit netselskab, og bekræft nedenfor.",
     "confirmGrid": "Jeg har kontrolleret netdataene",
-    "confirmedGrid": "Netdata bekræftet"
+    "confirmedGrid": "Netdata bekræftet",
   },
   "result": {
     "calculationUnavailable": "Beregningen kunne ikke fuldføres. Tjek tagoplysningerne, og prøv igen.",
     "connection": {
       "contractedKva": "Abonneret effekt (kVA)",
-      "contractedKw": "Aftalt effekt (kW)"
+      "contractedKw": "Aftalt effekt (kW)",
     },
     "gridConnection": "Nettilslutning",
     "gridConnectionValue": "{{voltage}} V, {{phases}}-faset",
@@ -236,7 +236,7 @@ export const da = {
       "even": "Jævnt over året",
       "winter-heavy": "Højere vinterforbrug",
       "summer-heavy": "Højere sommerforbrug",
-      "default": "Normal estimeret profil"
+      "default": "Normal estimeret profil",
     },
     "estimatedBadge": "Estimeret",
     "estimatedConsumptionNote": "Månedsforbruget er estimeret ud fra dit årsforbrug og din valgte profil.",
@@ -298,7 +298,7 @@ export const da = {
       "profileVeryHighSolarSeason": "Dit elforbrug er tydeligt koncentreret til årets solrige måneder. Derfor foreslås en højere paneleffekt i forhold til vekselretteren.",
       "gridLimit": "Anlægget er begrænset af din hovedsikring – større effekt tillades ikke af din nettilslutning.",
       "minimumSize": "Dit elforbrug er lavt, så vi foreslår det mindste rimelige anlæg.",
-      "maximumSize": "Forslaget er begrænset til den største størrelse, appen dimensionerer for."
+      "maximumSize": "Forslaget er begrænset til den største størrelse, appen dimensionerer for.",
     },
     "monthlyDataNote": "Månedsværdier viser ikke, om elen bruges om dagen eller om natten. De bruges derfor som en vejledning for dimensioneringen, ikke som bevis for, hvor meget solel du selv kan bruge.",
     "profileLabel": "Forbrugsprofil",
@@ -316,7 +316,7 @@ export const da = {
       "gridLimit": "Anlægget er begrænset af din hovedsikring – større effekt tillades ikke af din nettilslutning.",
       "inverterLimit": "Størrelsen er tilpasset den største passende vekselretter til din tilslutning.",
       "minimumSize": "Dit elforbrug er lavt, så vi foreslår det mindste rimelige anlæg.",
-      "maximumSize": "Forslaget er begrænset til den største størrelse, appen dimensionerer for."
+      "maximumSize": "Forslaget er begrænset til den største størrelse, appen dimensionerer for.",
     },
     "selfConsumption": "Egenanvendt solel",
     "exported": "Solgt solel",
@@ -409,12 +409,12 @@ export const da = {
     "gridProfileStatusGeneric": "Generisk (ikke verificeret)",
     "gridProfileStatusUnsupported": "Manuel (ikke verificeret)",
     "calcErrorTitle": "Beregningen kan ikke gennemføres",
-    "calcErrorBody": "Nogle indtastninger kan der ikke regnes på. Gå tilbage og kontrollér forbrug, nettilslutning og forudsætninger."
+    "calcErrorBody": "Nogle indtastninger kan der ikke regnes på. Gå tilbage og kontrollér forbrug, nettilslutning og forudsætninger.",
   },
   "units": {
     "kwhPerYear": "kWh/år",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} år"
+    "years": "{{count}} år",
   },
   "settings": {
     "title": "Indstillinger",
@@ -427,23 +427,23 @@ export const da = {
     "singleCta": "Købes ved din næste beregning",
     "singleNote": "Engangskøbet foretages, når du starter en ny beregning — ikke herfra.",
     "terms": "Brugsvilkår",
-    "privacy": "Privatlivspolitik"
+    "privacy": "Privatlivspolitik",
   },
   "chart": {
     "productionAria": "Månedlig produktion",
-    "consumptionAria": "Månedligt forbrug"
+    "consumptionAria": "Månedligt forbrug",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc – dimensionér dit solcelleanlæg",
       "description": "Beregn anbefalet solcelleeffekt, inverterstørrelse og årlig produktion ud fra din adresse, elforbrug og hovedsikring.",
-      "ogDescription": "Trin-for-trin-beregning med lokationsdata fra PVGIS: kWp, inverter, månedlig produktion og økonomi."
+      "ogDescription": "Trin-for-trin-beregning med lokationsdata fra PVGIS: kWp, inverter, månedlig produktion og økonomi.",
     },
     "result": {
       "title": "Din solcelleberegning – Mr. Solar Doc",
       "description": "Se beregnet kWp, inverterstørrelse, DC/AC-forhold, månedlig produktion og økonomisk værdi – og download rapporten som PDF.",
-      "ogDescription": "Beregnet dimensionering af dit solcelleanlæg med PDF-rapport."
-    }
+      "ogDescription": "Beregnet dimensionering af dit solcelleanlæg med PDF-rapport.",
+    },
   },
   "months": {
     "short": [
@@ -473,7 +473,7 @@ export const da = {
       "Oktober",
       "November",
       "December"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -587,7 +587,7 @@ export const da = {
       "orientation_west": "Vest",
       "priceChangeNoteFlat": "Beregningen bruger uændrede værdier for egetforbrugt og eksporteret solstrøm gennem hele perioden. Der antages ingen prisstigning, da fremtidige elpriser ikke kan forudsiges. Hvis priserne stiger, vil værdien være højere end i denne rapport; hvis de falder, vil den være lavere.",
       "priceChangeNoteTrend": "Beregningen antager, at værdien af egetforbrugt og eksporteret solstrøm ændres med {{priceChange}} % om året gennem hele perioden. Dette er en antagelse, da fremtidige elpriser ikke kan forudsiges. En anden udvikling betyder et højere eller lavere resultat end i denne rapport.",
-      "gridMethodNoteDynamic": "Den teoretiske AC-effekt er baseret på din valgte nettilslutning: {{phases}}-faset, {{voltage}} V, beregnet som {{factor}} × {{voltage}} V × hovedsikring. Den faktisk tilladte tilslutnings- eller indfødningseffekt kan være begrænset af netselskabet eller af den konkrete installation."
+      "gridMethodNoteDynamic": "Den teoretiske AC-effekt er baseret på din valgte nettilslutning: {{phases}}-faset, {{voltage}} V, beregnet som {{factor}} × {{voltage}} V × hovedsikring. Den faktisk tilladte tilslutnings- eller indfødningseffekt kan være begrænset af netselskabet eller af den konkrete installation.",
     },
     "title": "Solcellsrapport",
     "technical": "Tekniske data",
@@ -604,40 +604,40 @@ export const da = {
       "user": "Din værdi",
       "calculated": "Beregnet",
       "assumed": "Standardantagelse",
-      "external": "Ekstern datakilde"
-    }
+      "external": "Ekstern datakilde",
+    },
     "generated": "Genereret",
     "faqTitle": "Ofte stillede spørgsmål",
     "faqItems": [
       {
         "q": "Hvor sikker er den beregnede solproduktion?",
-        "a": "Beregningen bygger på solindstråling for stedet samt tagets retning og hældning. Den faktiske produktion påvirkes blandt andet af vejr, skygge og anlæggets tekniske forudsætninger."
+        "a": "Beregningen bygger på solindstråling for stedet samt tagets retning og hældning. Den faktiske produktion påvirkes blandt andet af vejr, skygge og anlæggets tekniske forudsætninger.",
       },
       {
         "q": "Hvad betyder egenforbrug?",
-        "a": "Den del af solstrømmen, der bruges direkte i boligen. Resten af produktionen sendes ud på elnettet."
+        "a": "Den del af solstrømmen, der bruges direkte i boligen. Resten af produktionen sendes ud på elnettet.",
       },
       {
         "q": "Hvorfor er egenforbrugt solstrøm mere værd end solgt solstrøm?",
-        "a": "Egenforbrugt solstrøm erstatter strøm, der ellers skulle købes fra nettet, mens solgt solstrøm betales efter vilkårene for leveret strøm."
+        "a": "Egenforbrugt solstrøm erstatter strøm, der ellers skulle købes fra nettet, mens solgt solstrøm betales efter vilkårene for leveret strøm.",
       },
       {
         "q": "Hvad betyder pris for valgt tilbagebetalingstid?",
-        "a": "Det viser cirka, hvor meget anlægget kan koste for at svare til den tilbagebetalingstid, du har valgt, baseret på kalkulens antagelser. Det er ikke en estimeret markedspris."
+        "a": "Det viser cirka, hvor meget anlægget kan koste for at svare til den tilbagebetalingstid, du har valgt, baseret på kalkulens antagelser. Det er ikke en estimeret markedspris.",
       },
       {
         "q": "Hvorfor kan installatørens beregning afvige?",
-        "a": "Forskellige antagelser om produktion, egenforbrug, elpriser, systemtab og fremtidig prisudvikling kan give forskellige resultater."
+        "a": "Forskellige antagelser om produktion, egenforbrug, elpriser, systemtab og fremtidig prisudvikling kan give forskellige resultater.",
       },
       {
         "q": "Er beregningen et tilbud?",
-        "a": "Nej. Resultatet er et skøn og skal bruges som beslutningsgrundlag. Faktisk pris, produktion og økonomisk udfald kan afvige."
+        "a": "Nej. Resultatet er et skøn og skal bruges som beslutningsgrundlag. Faktisk pris, produktion og økonomisk udfald kan afvige.",
       },
       {
         "q": "Hvorfor falder produktionen over tid?",
-        "a": "Solpaneleffekten falder normalt en smule med årene. Beregningen tager udgangspunkt i en årlig degradering på 0,5 %, hvilket betyder, at den beregnede produktion gradvist falder i løbet af kalkulationsperioden."
-      }
-    ]
+        "a": "Solpaneleffekten falder normalt en smule med årene. Beregningen tager udgangspunkt i en årlig degradering på 0,5 %, hvilket betyder, at den beregnede produktion gradvist falder i løbet af kalkulationsperioden.",
+      },
+    ],
   },
   "premium": {
     "title": "Premium",
@@ -652,14 +652,14 @@ export const da = {
     "activated": "Premium er nu aktiv.",
     "restoredPremium": "Din Premium er blevet gendannet.",
     "nothingToRestore": "Vi fandt ingen køb på denne enhed.",
-    "restoreFailed": "Kunne ikke gendanne køb lige nu."
+    "restoreFailed": "Kunne ikke gendanne køb lige nu.",
   },
   "paywall": {
     "single": {
       "title": "Én beregning",
       "body": "Lås det fulde resultat og PDF-rapporten op for denne beregning.",
       "cta": "Lås op for {{price}}",
-      "ctaNoPrice": "Lås op"
+      "ctaNoPrice": "Lås op",
     },
     "premium": {
       "title": "Premium",
@@ -668,10 +668,10 @@ export const da = {
       "includes": {
         "calculations": "Ubegrænsede beregninger",
         "pdf": "Ubegrænsede PDF-rapporter",
-        "result": "Fuld adgang til resultatet"
+        "result": "Fuld adgang til resultatet",
       },
       "cta": "Få Premium",
-      "renewal": "Fornys automatisk hvert år. Opsig når som helst."
+      "renewal": "Fornys automatisk hvert år. Opsig når som helst.",
     },
     "title": "Lås din beregning op",
     "eyebrow": "Engangskøb",
@@ -680,7 +680,7 @@ export const da = {
     "includes": {
       "result": "Din fulde beregning med økonomi og produktion",
       "pdf": "PDF-rapport til opbevaring eller deling",
-      "history": "Beregningen gemmes i din historik"
+      "history": "Beregningen gemmes i din historik",
     },
     "cta": "Lås op for {{price}}",
     "purchasing": "Åbner App Store…",
@@ -690,11 +690,11 @@ export const da = {
     "retry": "Vi kunne ikke bekræfte købet lige nu. Intet går tabt — det låses automatisk op, når forbindelsen virker igen.",
     "appOnly": "Købet foretages i appen med din Apple-konto og er ikke tilgængeligt i browseren.",
     "appleNote": "Håndteres af App Store.",
-    "priceLoading": "Henter pris…"
+    "priceLoading": "Henter pris…",
   },
   "history": {
     "empty": "Du har endnu ingen gemte beregninger.",
     "unknownAddress": "Beregning",
-    "error": "Kunne ikke indlæse din historik."
-  }
+    "error": "Kunne ikke indlæse din historik.",
+  },
 } as const;

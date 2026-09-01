@@ -18,7 +18,7 @@ export const nl = {
     point3Title: "Berekent wat het mag kosten na gewenste terugverdientijd",
     point3Body: "U kiest de gewenste terugverdientijd. Mr. Solar Doc berekent het benodigde investeringsniveau.",
     point4Title: "Rapport en beslisbasis",
-    point4Body: "Zie productie, economie en verschillende terugverdientijden in een rapport."
+    point4Body: "Zie productie, economie en verschillende terugverdientijden in een rapport.",
     cta: "Start de berekening",
   },
   common: {
@@ -57,7 +57,7 @@ export const nl = {
     region: "Regio",
     error: "Adres zoeken is mislukt.",
     info: "Het adres wordt uitsluitend gebruikt om de zoninstraling op je locatie te berekenen.",
-    infoLabel: "Meer informatie over het adres"
+    infoLabel: "Meer informatie over het adres",
   },
   premium: {
     title: "Premium",
@@ -98,7 +98,7 @@ export const nl = {
     },
     fetching: "Zonnegegevens ophalen bij PVGIS…",
     result: "Geschatte zonopbrengst op deze locatie",
-    unit: "kWh/kWp/jaar"
+    unit: "kWh/kWp/jaar",
     error: "We konden geen zonnegegevens voor deze locatie ophalen. Er worden geen waarden geschat.",
     errorOverSea:
       "Deze locatie lijkt boven water te liggen. Verplaats de marker naar het gebouw op land en probeer het opnieuw.",
@@ -195,7 +195,7 @@ export const nl = {
     gridAssumption: "De berekening gaat uit van een driefasenaansluiting van 400 V.",
     gridAssumptionInfo: "Het theoretische vermogen van de hoofdzekering wordt berekend op basis van een driefasenaansluiting van 400 V. Controleer je werkelijke netaansluiting als je twijfelt.",
     gridCheckHint: "Controleer je werkelijke netaansluiting als je twijfelt.",
-    disclaimerTitle: "Belangrijk om te weten"
+    disclaimerTitle: "Belangrijk om te weten",
     grid: {
       advanced: "Geavanceerde instellingen",
       section: "Netinstellingen",
@@ -694,7 +694,7 @@ export const nl = {
       calculated: "Berekend",
       assumed: "Standaardaanname",
       external: "Externe gegevensbron",
-    }
+    },
     generated: "Gegenereerd",
     faqTitle: 'Veelgestelde vragen',
     faqItems: [

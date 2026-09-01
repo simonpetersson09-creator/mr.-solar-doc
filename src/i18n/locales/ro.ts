@@ -6,7 +6,7 @@ export const ro = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Dimensionează sistemul tău solar în câteva minute"
+    "tagline": "Dimensionează sistemul tău solar în câteva minute",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const ro = {
     "point3Title": "Calculează cât poate costa după perioada de retur dorită",
     "point3Body": "Alegi perioada de retur dorită. Mr. Solar Doc calculează nivelul de investiții necesar.",
     "point4Title": "Raport și bază de decizie",
-    "point4Body": "Vezi producția, economia și diferite perioade de retur într-un raport."
+    "point4Body": "Vezi producția, economia și diferite perioade de retur într-un raport.",
     "cta": "Începe calculul",
   },
   "common": {
@@ -33,14 +33,14 @@ export const ro = {
     "perYear": "/an",
     "dontKnow": "Nu știu",
     "startOver": "Ia-o de la capăt",
-    "close": "Închide"
+    "close": "Închide",
   },
   "steps": {
     "address": "Adresă",
     "roof": "Acoperiș & soare",
     "consumption": "Consum de energie",
     "fuse": "Siguranță principală",
-    "stepOf": "Pasul {{current}} din {{total}}"
+    "stepOf": "Pasul {{current}} din {{total}}",
   },
   "address": {
     "title": "Unde este situată proprietatea?",
@@ -57,7 +57,7 @@ export const ro = {
     "region": "Regiune",
     "error": "Căutarea adresei a eșuat.",
     "info": "Adresa este folosită doar pentru a calcula radiația solară de la locația ta.",
-    "infoLabel": "Mai multe informații despre adresă"
+    "infoLabel": "Mai multe informații despre adresă",
   },
   "premium": {
     "title": "Premium",
@@ -72,7 +72,7 @@ export const ro = {
     "activated": "Premium este acum activ.",
     "restoredPremium": "Premium-ul tău a fost restaurat.",
     "nothingToRestore": "Nu am găsit nicio achiziție pe acest dispozitiv.",
-    "restoreFailed": "Nu s-au putut restaura achizițiile acum."
+    "restoreFailed": "Nu s-au putut restaura achizițiile acum.",
   },
   "roof": {
     "title": "Acoperișul tău",
@@ -86,7 +86,7 @@ export const ro = {
       "n": "N",
       "e": "E",
       "s": "S",
-      "w": "V"
+      "w": "V",
     },
     "orientations": {
       "unknown": "Nu știu",
@@ -94,21 +94,21 @@ export const ro = {
       "southeast": "Sud-est",
       "southwest": "Sud-vest",
       "east": "Est",
-      "west": "Vest"
+      "west": "Vest",
     },
     "fetching": "Se preiau datele solare de la PVGIS…",
     "result": "Producție solară estimată la această locație",
-    "unit": "kWh/kWp/an"
+    "unit": "kWh/kWp/an",
     "error": "Nu am putut prelua date solare pentru această locație. Nu se estimează nicio valoare.",
     "errorOverSea": "Această locație pare a fi deasupra apei. Mută marcatorul pe clădirea de pe uscat și încearcă din nou.",
     "errorOutsideCoverage": "Nu avem date solare pentru această locație. Încearcă o adresă din apropiere.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Introdu consumul tău de energie pentru a continua calculul.",
       "tooLow": "Pare prea mic. Introdu cel puțin {{min}} kWh pe an.",
-      "tooHigh": "Pare prea mare. Introdu cel mult {{max}} kWh pe an."
+      "tooHigh": "Pare prea mare. Introdu cel mult {{max}} kWh pe an.",
     },
     "shape": {
       "question": "Cum se distribuie de obicei consumul tău de energie pe parcursul anului?",
@@ -119,20 +119,20 @@ export const ro = {
       "defaultNote": "Folosim o distribuție estimată normală a consumului tău anual. Poți schimba acest lucru mai târziu.",
       "even": {
         "title": "Uniform pe tot parcursul anului",
-        "description": "Consum de energie aproximativ același pe tot parcursul anului."
+        "description": "Consum de energie aproximativ același pe tot parcursul anului.",
       },
       "winter-heavy": {
         "title": "Mai mare iarna",
-        "description": "Consumi mai multă energie în lunile reci, de exemplu pentru încălzire."
+        "description": "Consumi mai multă energie în lunile reci, de exemplu pentru încălzire.",
       },
       "summer-heavy": {
         "title": "Mai mare vara",
-        "description": "Consumi mai multă energie vara, de exemplu pentru o piscină sau răcire."
+        "description": "Consumi mai multă energie vara, de exemplu pentru o piscină sau răcire.",
       },
       "default": {
         "title": "Nu știu",
-        "description": "Folosește un profil estimat normal."
-      }
+        "description": "Folosește un profil estimat normal.",
+      },
     },
     "upload": {
       "title": "Atașează 12 luni de date de consum",
@@ -151,7 +151,7 @@ export const ro = {
       "remove": "Elimină",
       "retry": "Încearcă alt fișier",
       "readingFile": "Se citește {{name}}…",
-      "ready": "Importat"
+      "ready": "Importat",
     },
     "title": "Câtă energie electrică folosești?",
     "subtitle": "Verifică factura sau contractul de energie.",
@@ -163,7 +163,7 @@ export const ro = {
     "monthlyTitle": "Consum lunar",
     "monthlyHint": "Introdu consumul pentru toate cele 12 luni",
     "total": "Consum anual total",
-    "invalid": "Introdu un consum anual între 100 și 200.000 kWh."
+    "invalid": "Introdu un consum anual între 100 și 200.000 kWh.",
   },
   "fuse": {
     "gridAssumptionDynamic": "Calculul se bazează pe {{service}} {{voltage}}.",
@@ -174,23 +174,23 @@ export const ro = {
       "amperage": {
         "title": "Care este siguranța ta principală?",
         "label": "Siguranță principală",
-        "help": "Amperi per fază, indicați pe tabloul principal sau pe factură."
+        "help": "Amperi per fază, indicați pe tabloul principal sau pe factură.",
       }, "service": { "title": "Dimensiunea branșamentului electric", "label": "Dimensiunea branșamentului electric", "help": "Găsiți amperajul pe întrerupătorul general sau în tabloul electric." },
       "contracted-kva": {
         "title": "Care este puterea ta contractată?",
         "label": "Putere contractată",
-        "help": "Menționată în kVA pe factura ta de energie."
+        "help": "Menționată în kVA pe factura ta de energie.",
       },
       "contracted-kw": {
         "title": "Care este puterea ta contractată?",
         "label": "Putere contractată",
-        "help": "Menționată în kW pe factura ta de energie."
-      }
+        "help": "Menționată în kW pe factura ta de energie.",
+      },
     },
     "gridAssumption": "Calculul presupune o conexiune trifazată de 400 V.",
     "gridAssumptionInfo": "Puterea teoretică a siguranței principale este calculată pentru o conexiune trifazată de 400 V. Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
     gridCheckHint: "Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
-    "disclaimerTitle": "Important de știut"
+    "disclaimerTitle": "Important de știut",
     "grid": {
       "advanced": "Setări avansate",
       "section": "Setări rețea",
@@ -209,7 +209,7 @@ export const ro = {
       "voltageOtherLabel": "Introdu tensiunea",
       "voltageInvalid": "Introdu o tensiune validă în volți.",
       "frequency": "Frecvență",
-      "hint": "Schimbă acest lucru doar dacă valorile implicite nu corespund conexiunii tale."
+      "hint": "Schimbă acest lucru doar dacă valorile implicite nu corespund conexiunii tale.",
     },
     "genericTitle": "Ce conexiune electrică ai?",
     "title": "Ce siguranță principală ai?",
@@ -223,13 +223,13 @@ export const ro = {
     "otherLabel": "Amperi",
     "maxAc": "Putere AC maximă calculată",
     "calculate": "Calculează",
-    "invalid": "Introdu o siguranță principală între 6 și 400 A."
+    "invalid": "Introdu o siguranță principală între 6 și 400 A.",
   },
   "result": {
     "calculationUnavailable": "Calculul nu a putut fi finalizat. Verificați detaliile acoperișului și încercați din nou.",
     "connection": {
       "contractedKva": "Putere contractată (kVA)",
-      "contractedKw": "Putere contractată (kW)"
+      "contractedKw": "Putere contractată (kW)",
     },
     "gridConnection": "Conexiune la rețea",
     "gridConnectionValue": "{{voltage}} V, {{phases}} faze",
@@ -246,7 +246,7 @@ export const ro = {
       "even": "Uniform pe tot parcursul anului",
       "winter-heavy": "Consum mai mare iarna",
       "summer-heavy": "Consum mai mare vara",
-      "default": "Profil estimat normal"
+      "default": "Profil estimat normal",
     },
     "estimatedBadge": "Estimat",
     "estimatedConsumptionNote": "Consumul lunar este estimat pe baza valorii tale anuale și a profilului ales.",
@@ -308,7 +308,7 @@ export const ro = {
       "profileVeryHighSolarSeason": "Consumul tău de energie este concentrat clar în lunile însorite, deci se sugerează o putere mai mare a panourilor față de invertor.",
       "gridLimit": "Sistemul este limitat de siguranța ta principală — conexiunea ta la rețea nu permite mai multă putere.",
       "minimumSize": "Consumul tău de energie este scăzut, deci sugerăm cel mai mic sistem rezonabil.",
-      "maximumSize": "Sugestia este limitată la cea mai mare dimensiune pe care aplicația o dimensionează."
+      "maximumSize": "Sugestia este limitată la cea mai mare dimensiune pe care aplicația o dimensionează.",
     },
     "monthlyDataNote": "Valorile lunare nu arată dacă energia este folosită ziua sau noaptea. Sunt folosite ca semnal de dimensionare, nu ca dovadă a cât de multă energie solară poți folosi tu însuți.",
     "profileLabel": "Profil de consum",
@@ -326,7 +326,7 @@ export const ro = {
       "gridLimit": "Sistemul este limitat de siguranța ta principală — conexiunea ta la rețea nu permite mai multă putere.",
       "inverterLimit": "Dimensiunea este adaptată celui mai mare invertor potrivit pentru conexiunea ta.",
       "minimumSize": "Consumul tău de energie este scăzut, deci sugerăm cel mai mic sistem rezonabil.",
-      "maximumSize": "Sugestia este limitată la cea mai mare dimensiune pe care aplicația o dimensionează."
+      "maximumSize": "Sugestia este limitată la cea mai mare dimensiune pe care aplicația o dimensionează.",
     },
     "selfConsumption": "Energie solară consumată propriu",
     "exported": "Energie solară exportată",
@@ -424,14 +424,14 @@ export const ro = {
   "units": {
     "kwhPerYear": "kWh/an",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} ani"
+    "years": "{{count}} ani",
   },
   "paywall": {
     "single": {
       "title": "Un calcul",
       "body": "Deblochează rezultatul complet și raportul PDF pentru acest calcul.",
       "cta": "Deblochează pentru {{price}}",
-      "ctaNoPrice": "Deblochează"
+      "ctaNoPrice": "Deblochează",
     },
     "priceLoading": "Se preia prețul…",
     "premium": {
@@ -441,10 +441,10 @@ export const ro = {
       "includes": {
         "calculations": "Calcule nelimitate",
         "pdf": "Rapoarte PDF nelimitate",
-        "result": "Acces complet la rezultat"
+        "result": "Acces complet la rezultat",
       },
       "cta": "Devino Premium",
-      "renewal": "Se reînnoiește automat în fiecare an. Anulează oricând."
+      "renewal": "Se reînnoiește automat în fiecare an. Anulează oricând.",
     },
     "title": "Deblochează calculul tău",
     "eyebrow": "Achiziție unică",
@@ -453,7 +453,7 @@ export const ro = {
     "includes": {
       "result": "Calculul tău complet cu economie și producție",
       "pdf": "Raport PDF pentru salvare sau distribuire",
-      "history": "Calculul este salvat în istoricul tău"
+      "history": "Calculul este salvat în istoricul tău",
     },
     "cta": "Deblochează pentru {{price}}",
     "purchasing": "Se deschide App Store…",
@@ -462,12 +462,12 @@ export const ro = {
     "failed": "Achiziția nu a putut fi finalizată. Nu ai fost taxat.",
     "retry": "Nu am putut confirma achiziția acum. Nimic nu se pierde — se deblochează automat de îndată ce conexiunea funcționează din nou.",
     "appOnly": "Achiziția se face în aplicație cu contul tău Apple și nu este disponibilă în browser.",
-    "appleNote": "Gestionat de App Store."
+    "appleNote": "Gestionat de App Store.",
   },
   "history": {
     "empty": "Nu ai încă niciun calcul salvat.",
     "unknownAddress": "Calcul",
-    "error": "Nu am putut încărca istoricul tău."
+    "error": "Nu am putut încărca istoricul tău.",
   },
   "settings": {
     "title": "Setări",
@@ -480,23 +480,23 @@ export const ro = {
     "singleCta": "Achiziționat cu următorul tău calcul",
     "singleNote": "Achiziția unică se face atunci când începi un calcul nou — nu de aici.",
     "terms": "Termeni de utilizare",
-    "privacy": "Politica de confidențialitate"
+    "privacy": "Politica de confidențialitate",
   },
   "chart": {
     "productionAria": "Producție lunară",
-    "consumptionAria": "Consum lunar"
+    "consumptionAria": "Consum lunar",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc - dimensionează sistemul tău solar",
       "description": "Calculează capacitatea solară recomandată, dimensiunea invertorului și producția anuală pe baza adresei, consumului de energie și siguranței principale.",
-      "ogDescription": "Calcul pas cu pas cu date de locație de la PVGIS: kWp, invertor, producție lunară și economie."
+      "ogDescription": "Calcul pas cu pas cu date de locație de la PVGIS: kWp, invertor, producție lunară și economie.",
     },
     "result": {
       "title": "Calculul tău solar - Mr. Solar Doc",
       "description": "Vezi kWp calculat, dimensiunea invertorului, raportul DC/AC, producția lunară și valoarea economică - și descarcă raportul ca PDF.",
-      "ogDescription": "Dimensionarea calculată a sistemului tău solar cu un raport PDF."
-    }
+      "ogDescription": "Dimensionarea calculată a sistemului tău solar cu un raport PDF.",
+    },
   },
   "months": {
     "short": ["ian", "feb", "mar", "apr", "mai", "iun", "iul", "aug", "sep", "oct", "nov", "dec"],
@@ -513,7 +513,7 @@ export const ro = {
       "octombrie",
       "noiembrie",
       "decembrie"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -627,7 +627,7 @@ export const ro = {
       "orientation_southeast": "Sud-est",
       "orientation_southwest": "Sud-vest",
       "orientation_east": "Est",
-      "orientation_west": "Vest"
+      "orientation_west": "Vest",
     },
     "title": "Raport solar",
     "technical": "Date tehnice",
@@ -644,8 +644,8 @@ export const ro = {
       "user": "Furnizat de tine",
       "calculated": "Calculat de aplicație",
       "assumed": "Presupunere (valoare implicită)",
-      "external": "Sursă externă de date"
-    }
+      "external": "Sursă externă de date",
+    },
     "generated": "Generat",
     "faqTitle": "Întrebări frecvente",
     "faqItems": [
@@ -656,6 +656,6 @@ export const ro = {
       { "q": "De ce poate diferi calculul instalatorului?", "a": "Presupuneri diferite despre producție, autoconsum, prețuri de energie, pierderi ale sistemului și evoluția viitoare a prețurilor pot da rezultate diferite." },
       { "q": "Calculul este o ofertă?", "a": "Nu. Rezultatul este o estimare și este menit ca bază de decizie. Prețul real, producția și rezultatul economic pot diferi." },
       { "q": "De ce scade producția în timp?", "a": "Eficiența panourilor solare scade de obicei ușor de-a lungul anilor. Calculul presupune o degradare anuală de 0,5 %, ceea ce înseamnă că producția estimată scade treptat pe parcursul perioadei de calcul." }
-    ]
-  }
+    ],
+  },
 } as const;

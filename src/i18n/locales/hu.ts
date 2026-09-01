@@ -18,7 +18,7 @@ export const hu = {
     point3Title: "Kiszámítja, mennyit fizethet érte a kívánt megtérülési idő alapján",
     point3Body: "Ön választja a kívánt megtérülési időt. A Mr. Solar Doc kiszámítja a szükséges befektetési szintet.",
     point4Title: "Jelentés és döntési alap",
-    point4Body: "Lásd a termelést, a gazdaságot és a különböző megtérülési időket egy jelentésben."
+    point4Body: "Lásd a termelést, a gazdaságot és a különböző megtérülési időket egy jelentésben.",
     cta: "Számítás indítása",
   },
   common: {
@@ -57,7 +57,7 @@ export const hu = {
     region: "Régió",
     error: "A címkeresés nem sikerült.",
     info: "A cím kizárólag a helyszín napsugárzásának kiszámításához szükséges.",
-    infoLabel: "További információ a címről"
+    infoLabel: "További információ a címről",
   },
   premium: {
     title: "Prémium",
@@ -98,7 +98,7 @@ export const hu = {
     },
     fetching: "Napenergia-adatok lekérése a PVGIS-ből…",
     result: "Becsült napenergia-hozam ezen a helyszínen",
-    unit: "kWh/kWp/év"
+    unit: "kWh/kWp/év",
     error: "Nem sikerült napenergia-adatot lekérnünk ehhez a helyszínhez. Nem becsülünk értékeket.",
     errorOverSea:
       "Úgy tűnik, ez a helyszín víz felett van. Helyezze a jelölőt a szárazföldön lévő épületre, és próbálja újra.",
@@ -200,7 +200,7 @@ export const hu = {
     gridAssumption: "A számítás 400 V-os háromfázisú csatlakozást feltételez.",
     gridAssumptionInfo: "A fő biztosíték elméleti teljesítménye 400 V-os háromfázisú csatlakozásból számítódik. Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
     gridCheckHint: "Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
-    disclaimerTitle: "Fontos tudnivaló"
+    disclaimerTitle: "Fontos tudnivaló",
     grid: {
       advanced: "Speciális beállítások",
       section: "Hálózati beállítások",
@@ -697,7 +697,7 @@ export const hu = {
       calculated: "Az alkalmazás számította",
       assumed: "Feltételezés (alapérték)",
       external: "Külső adatforrás",
-    }
+    },
     generated: "Létrehozva",
     faqTitle: 'Gyakran ismételt kérdések',
     faqItems: [

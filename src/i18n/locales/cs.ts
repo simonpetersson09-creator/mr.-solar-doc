@@ -6,7 +6,7 @@ export const cs = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Navrhněte si fotovoltaickou elektrárnu za pár minut"
+    "tagline": "Navrhněte si fotovoltaickou elektrárnu za pár minut",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const cs = {
     "point3Title": "Počítá, kolik může stát podle požadované doby návratnosti",
     "point3Body": "Vyberete požadovanou dobu návratnosti. Mr. Solar Doc spočítá potřebnou úroveň investice.",
     "point4Title": "Zpráva a podklad pro rozhodnutí",
-    "point4Body": "Vidíte produkci, ekonomiku a různé doby návratnosti v přehledné zprávě."
+    "point4Body": "Vidíte produkci, ekonomiku a různé doby návratnosti v přehledné zprávě.",
     "cta": "Zahájit výpočet",
   },
   "common": {
@@ -33,14 +33,14 @@ export const cs = {
     "perYear": "/rok",
     "dontKnow": "Nevím",
     "startOver": "Začít znovu",
-    "close": "Zavřít"
+    "close": "Zavřít",
   },
   "steps": {
     "address": "Adresa",
     "roof": "Střecha a slunce",
     "consumption": "Spotřeba elektřiny",
     "fuse": "Hlavní jistič",
-    "stepOf": "Krok {{current}} z {{total}}"
+    "stepOf": "Krok {{current}} z {{total}}",
   },
   "address": {
     "title": "Kde se nemovitost nachází?",
@@ -57,7 +57,7 @@ export const cs = {
     "region": "Region",
     "error": "Vyhledávání adresy selhalo.",
     "info": "Adresa se používá pouze pro výpočet slunečního záření ve vaší lokalitě.",
-    "infoLabel": "Více informací o adrese"
+    "infoLabel": "Více informací o adrese",
   },
   "roof": {
     "title": "Vaše střecha",
@@ -71,7 +71,7 @@ export const cs = {
       "n": "S",
       "e": "V",
       "s": "J",
-      "w": "Z"
+      "w": "Z",
     },
     "orientations": {
       "unknown": "Nevím",
@@ -79,21 +79,21 @@ export const cs = {
       "southeast": "Jihovýchod",
       "southwest": "Jihozápad",
       "east": "Východ",
-      "west": "Západ"
+      "west": "Západ",
     },
     "fetching": "Načítám data o solární výrobě z PVGIS…",
     "result": "Odhadovaná solární výroba v daném místě",
-    "unit": "kWh/kWp/rok"
+    "unit": "kWh/kWp/rok",
     "error": "V tuto chvíli se nepodařilo načíst data o solární výrobě pro dané místo. Hodnoty nejsou odhadovány.",
     "errorOverSea": "Místo se zřejmě nachází nad vodou. Přesuňte značku na budovu na pevnině a zkuste to znovu.",
     "errorOutsideCoverage": "Pro toto místo nemáme solární data. Zkuste adresu v okolí.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Zadejte svou spotřebu elektřiny, aby výpočet mohl pokračovat.",
       "tooLow": "Spotřeba vypadá příliš nízká. Zadejte alespoň {{min}} kWh za rok.",
-      "tooHigh": "Spotřeba vypadá příliš vysoká. Zadejte nejvýše {{max}} kWh za rok."
+      "tooHigh": "Spotřeba vypadá příliš vysoká. Zadejte nejvýše {{max}} kWh za rok.",
     },
     "shape": {
       "question": "Jak je vaše spotřeba elektřiny obvykle rozdělena v průběhu roku?",
@@ -104,20 +104,20 @@ export const cs = {
       "defaultNote": "Používáme normální odhadované rozdělení vaší roční spotřeby. Můžete to změnit později.",
       "even": {
         "title": "Rovnoměrně po celý rok",
-        "description": "Přibližně stejná spotřeba elektřiny po celý rok."
+        "description": "Přibližně stejná spotřeba elektřiny po celý rok.",
       },
       "winter-heavy": {
         "title": "Vyšší v zimě",
-        "description": "V chladných měsících spotřebujete více elektřiny, například na vytápění."
+        "description": "V chladných měsících spotřebujete více elektřiny, například na vytápění.",
       },
       "summer-heavy": {
         "title": "Vyšší v létě",
-        "description": "V létě spotřebujete více elektřiny, například pro bazén nebo chlazení."
+        "description": "V létě spotřebujete více elektřiny, například pro bazén nebo chlazení.",
       },
       "default": {
         "title": "Nevím",
-        "description": "Použít normální odhadovaný profil."
-      }
+        "description": "Použít normální odhadovaný profil.",
+      },
     },
     "upload": {
       "title": "Vložte nebo přiložte dokument",
@@ -136,7 +136,7 @@ export const cs = {
       "remove": "Odebrat",
       "retry": "Zkusit jiný soubor",
       "readingFile": "Čtení {{name}}…",
-      "ready": "Importováno"
+      "ready": "Importováno",
     },
     "title": "Kolik elektřiny spotřebujete?",
     "subtitle": "Podívejte se na vaši fakturu za elektřinu nebo smlouvu.",
@@ -148,7 +148,7 @@ export const cs = {
     "invalid": "Zadejte roční spotřebu mezi 100 a 200 000 kWh.",
     "or": "nebo",
     "manual": { "sectionTitle": "Zadat ručně", "sectionHint": "Zadejte svou roční spotřebu — zkontrolujte fakturu za elektřinu nebo smlouvu." },
-    "monthlyHint": "Zadejte spotřebu za všech 12 měsíců"
+    "monthlyHint": "Zadejte spotřebu za všech 12 měsíců",
   },
   "fuse": {
     "gridAssumptionDynamic": "Výpočet vychází z {{service}} {{voltage}}.",
@@ -159,28 +159,28 @@ export const cs = {
       "amperage": {
         "title": "Jaký máte hlavní jistič?",
         "label": "Hlavní jistič",
-        "help": "Ampéry na fázi, uvedeno na hlavním jističi nebo na faktuře."
+        "help": "Ampéry na fázi, uvedeno na hlavním jističi nebo na faktuře.",
       },
       "service": {
         "title": "Velikost elektrické přípojky",
         "label": "Velikost elektrické přípojky",
-        "help": "Hodnotu v ampérech najdete na hlavním jističi nebo v rozvaděči."
+        "help": "Hodnotu v ampérech najdete na hlavním jističi nebo v rozvaděči.",
       },
       "contracted-kva": {
         "title": "Jaký máte sjednaný příkon?",
         "label": "Sjednaný příkon",
-        "help": "Na faktuře je uveden v kVA."
+        "help": "Na faktuře je uveden v kVA.",
       },
       "contracted-kw": {
         "title": "Jaký máte sjednaný příkon?",
         "label": "Sjednaný příkon",
-        "help": "Na faktuře je uveden v kW."
-      }
+        "help": "Na faktuře je uveden v kW.",
+      },
     },
     "gridAssumption": "Výpočet vychází z třífázové přípojky 400 V.",
     "gridAssumptionInfo": "Teoretický výkon hlavního jističe se počítá z třífázové přípojky 400 V. Pokud si nejste jisti, ověřte si skutečnou přípojku.",
     gridCheckHint: "Pokud si nejste jisti, ověřte si skutečnou přípojku.",
-    "disclaimerTitle": "Důležité vědět"
+    "disclaimerTitle": "Důležité vědět",
     "grid": {
       "advanced": "Pokročilá nastavení",
       "section": "Nastavení sítě",
@@ -199,7 +199,7 @@ export const cs = {
       "serviceType": "Typ připojení",
       "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Dvoufázové (split-phase)",
-      "unverifiedHint": "Pro tuto zemi nemáme ověřené síťové hodnoty. Zkontrolujte údaje podle svého elektroměru nebo rozvaděče."
+      "unverifiedHint": "Pro tuto zemi nemáme ověřené síťové hodnoty. Zkontrolujte údaje podle svého elektroměru nebo rozvaděče.",
     },
     "title": "Jaký máte hlavní jistič?",
     "subtitle": "Hlavní jistič slouží k odhadu, jak velký střídač lze běžně připojit. Skutečný povolený výkon určuje provozovatel sítě.",
@@ -213,13 +213,13 @@ export const cs = {
     "noCountryOptions": "Pro tuto zemi zatím nemáme ověřené možnosti připojení. Zadejte hlavní jistič v ampérech a v případě potřeby upravte nastavení sítě níže.",
     "unverifiedCountryNotice": "Síťový standard této země jsme neověřili. Zkontrolujte napětí, počet fází a velikost jističe na faktuře za elektřinu nebo u svého distributora a potvrďte níže.",
     "confirmGrid": "Zkontroloval(a) jsem síťové údaje",
-    "confirmedGrid": "Síťové údaje potvrzeny"
+    "confirmedGrid": "Síťové údaje potvrzeny",
   },
   "result": {
     "calculationUnavailable": "Výpočet se nepodařilo dokončit. Zkontrolujte údaje o střeše a zkuste to znovu.",
     "connection": {
       "contractedKva": "Sjednaný příkon (kVA)",
-      "contractedKw": "Sjednaný příkon (kW)"
+      "contractedKw": "Sjednaný příkon (kW)",
     },
     "gridConnection": "Připojení k síti",
     "gridConnectionValue": "{{voltage}} V, {{phases}} fáze",
@@ -236,7 +236,7 @@ export const cs = {
       "even": "Rovnoměrně po celý rok",
       "winter-heavy": "Vyšší zimní spotřeba",
       "summer-heavy": "Vyšší letní spotřeba",
-      "default": "Normální odhadovaný profil"
+      "default": "Normální odhadovaný profil",
     },
     "estimatedBadge": "Odhadováno",
     "estimatedConsumptionNote": "Měsíční spotřeba je odhadnuta z vaší roční hodnoty a zvoleného profilu.",
@@ -298,7 +298,7 @@ export const cs = {
       "profileVeryHighSolarSeason": "Vaše spotřeba elektřiny je jasně soustředěna do slunečných měsíců, proto je navržen vyšší výkon panelů vzhledem ke střídači.",
       "gridLimit": "Systém je omezen vaším hlavním jističem – vaše síťové připojení neumožňuje vyšší výkon.",
       "minimumSize": "Vaše spotřeba elektřiny je nízká, proto navrhujeme nejmenší rozumný systém.",
-      "maximumSize": "Návrh je omezen na největší velikost, pro kterou aplikace dimenzuje."
+      "maximumSize": "Návrh je omezen na největší velikost, pro kterou aplikace dimenzuje.",
     },
     "monthlyDataNote": "Měsíční hodnoty neukazují, zda se elektřina spotřebovává ve dne nebo v noci. Používají se proto jako vodítko pro dimenzování, nikoli jako důkaz toho, kolik solární energie můžete sami využít.",
     "profileLabel": "Profil spotřeby",
@@ -316,7 +316,7 @@ export const cs = {
       "gridLimit": "Systém je omezen vaším hlavním jističem – vaše síťové připojení neumožňuje vyšší výkon.",
       "inverterLimit": "Velikost je přizpůsobena největšímu vhodné střídači pro vaše připojení.",
       "minimumSize": "Vaše spotřeba elektřiny je nízká, proto navrhujeme nejmenší rozumný systém.",
-      "maximumSize": "Návrh je omezen na největší velikost, pro kterou aplikace dimenzuje."
+      "maximumSize": "Návrh je omezen na největší velikost, pro kterou aplikace dimenzuje.",
     },
     "selfConsumption": "Spotřebovaná vlastní solární energie",
     "exported": "Prodaná solární energie",
@@ -409,12 +409,12 @@ export const cs = {
     "gridProfileStatusGeneric": "Obecné (neověřeno)",
     "gridProfileStatusUnsupported": "Ručně zadané (neověřeno)",
     "calcErrorTitle": "Výpočet nelze dokončit",
-    "calcErrorBody": "S některými údaji nelze počítat. Vraťte se zpět a zkontrolujte spotřebu, připojení k síti a předpoklady."
+    "calcErrorBody": "S některými údaji nelze počítat. Vraťte se zpět a zkontrolujte spotřebu, připojení k síti a předpoklady.",
   },
   "units": {
     "kwhPerYear": "kWh/rok",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} let"
+    "years": "{{count}} let",
   },
   "settings": {
     "title": "Nastavení",
@@ -427,23 +427,23 @@ export const cs = {
     "singleCta": "Zakoupí se při vašem dalším výpočtu",
     "singleNote": "Jednorázový nákup se provede při zahájení nového výpočtu — ne odsud.",
     "terms": "Podmínky užívání",
-    "privacy": "Zásady ochrany osobních údajů"
+    "privacy": "Zásady ochrany osobních údajů",
   },
   "chart": {
     "productionAria": "Měsíční výroba",
-    "consumptionAria": "Měsíční spotřeba"
+    "consumptionAria": "Měsíční spotřeba",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc – dimenzujte svou fotovoltaickou elektrárnu",
       "description": "Vypočítejte doporučený solární výkon, velikost střídače a roční výrobu na základě vaší adresy, spotřeby elektřiny a hlavního jističe.",
-      "ogDescription": "Krok za krokem výpočet s daty o poloze z PVGIS: kWp, střídač, měsíční výroba a ekonomika."
+      "ogDescription": "Krok za krokem výpočet s daty o poloze z PVGIS: kWp, střídač, měsíční výroba a ekonomika.",
     },
     "result": {
       "title": "Váš solární výpočet – Mr. Solar Doc",
       "description": "Zobrazte vypočtený kWp, velikost střídače, poměr DC/AC, měsíční výrobu a ekonomickou hodnotu – a stáhněte si zprávu jako PDF.",
-      "ogDescription": "Vypočtené dimenzování vaší fotovoltaické elektrárny s PDF zprávou."
-    }
+      "ogDescription": "Vypočtené dimenzování vaší fotovoltaické elektrárny s PDF zprávou.",
+    },
   },
   "months": {
     "short": [
@@ -473,7 +473,7 @@ export const cs = {
       "Říjen",
       "Listopad",
       "Prosinec"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -587,7 +587,7 @@ export const cs = {
       "orientation_west": "Západ",
       "priceChangeNoteFlat": "Výpočet po celé období používá neměnné hodnoty pro vlastní spotřebu a přebytky solární energie dodané do sítě. Nepředpokládá se žádný nárůst cen, protože budoucí ceny elektřiny nelze předvídat. Pokud ceny porostou, bude hodnota vyšší než v tomto reportu; pokud klesnou, bude nižší.",
       "priceChangeNoteTrend": "Výpočet předpokládá, že hodnota vlastní spotřeby a přebytků solární energie dodané do sítě se po celé období mění o {{priceChange}} % ročně. Jde o předpoklad, protože budoucí ceny elektřiny nelze předvídat. Odlišný vývoj znamená vyšší nebo nižší výsledek, než je uvedeno v tomto reportu.",
-      "gridMethodNoteDynamic": "Teoretický AC výkon vychází z vámi zvoleného připojení: {{phases}}fázové, {{voltage}} V, vypočteno jako {{factor}} × {{voltage}} V × hlavní jistič. Skutečně povolený výkon připojení nebo dodávky může být omezen distributorem nebo konkrétní instalací."
+      "gridMethodNoteDynamic": "Teoretický AC výkon vychází z vámi zvoleného připojení: {{phases}}fázové, {{voltage}} V, vypočteno jako {{factor}} × {{voltage}} V × hlavní jistič. Skutečně povolený výkon připojení nebo dodávky může být omezen distributorem nebo konkrétní instalací.",
     },
     "title": "Zpráva o solárním systému",
     "technical": "Technické údaje",
@@ -604,41 +604,41 @@ export const cs = {
       "user": "Vaše hodnota",
       "calculated": "Vypočteno",
       "assumed": "Standardní předpoklad",
-      "external": "Externí zdroj dat"
-    }
+      "external": "Externí zdroj dat",
+    },
     "generated": "Vygenerováno",
     "faqTitle": "Často kladené dotazy",
     "faqItems": [
       {
         "q": "Jak spolehlivý je vypočítaný solární výkon?",
-        "a": "Výpočet vychází ze slunečního záření v dané lokalitě a ze směru a sklonu střechy. Skutečnou výrobu ovlivňují mimo jiné počasí, stínění a technické podmínky zařízení."
+        "a": "Výpočet vychází ze slunečního záření v dané lokalitě a ze směru a sklonu střechy. Skutečnou výrobu ovlivňují mimo jiné počasí, stínění a technické podmínky zařízení.",
       },
       {
         "q": "Co znamená vlastní spotřeba?",
-        "a": "Podíl solární energie využívané přímo v domácnosti. Zbývající výroba je dodávána do elektrické sítě."
+        "a": "Podíl solární energie využívané přímo v domácnosti. Zbývající výroba je dodávána do elektrické sítě.",
       },
       {
         "q": "Proč má vlastní spotřebovaná solární energie větší hodnotu než prodaná?",
-        "a": "Vlastní spotřebovaná solární energie nahrazuje elektřinu, kterou by jinak bylo nutné koupit ze sítě, zatímco prodaná solární energie je kompenzována podle podmínek pro dodávku do sítě."
+        "a": "Vlastní spotřebovaná solární energie nahrazuje elektřinu, kterou by jinak bylo nutné koupit ze sítě, zatímco prodaná solární energie je kompenzována podle podmínek pro dodávku do sítě.",
       },
       {
         "q": "Co znamená cena pro zvolenou dobu návratnosti?",
-        "a": "Přibližně ukazuje, kolik může zařízení stát, aby odpovídalo vámi zvolené době návratnosti na základě předpokladů kalkulace. Nejedná se o odhad tržní ceny."
+        "a": "Přibližně ukazuje, kolik může zařízení stát, aby odpovídalo vámi zvolené době návratnosti na základě předpokladů kalkulace. Nejedná se o odhad tržní ceny.",
       },
       {
         "q": "Proč se může výpočet instalatéra lišit?",
-        "a": "Různé předpoklady ohledně výroby, vlastní spotřeby, cen elektřiny, ztrát systému a budoucího cenového vývoje mohou vést k různým výsledkům."
+        "a": "Různé předpoklady ohledně výroby, vlastní spotřeby, cen elektřiny, ztrát systému a budoucího cenového vývoje mohou vést k různým výsledkům.",
       },
       {
         "q": "Je výpočet nabídkou?",
-        "a": "Ne. Výsledek je odhad a má sloužit jako podklad pro rozhodování. Skutečná cena, výroba a ekonomický výsledek se mohou lišit."
+        "a": "Ne. Výsledek je odhad a má sloužit jako podklad pro rozhodování. Skutečná cena, výroba a ekonomický výsledek se mohou lišit.",
       },
       {
         "q": "Proč se výroba v průběhu času snižuje?",
-        "a": "Výkon solárních panelů se v průběhu let obvykle mírně snižuje. Výpočet vychází z roční degradace 0,5 %, což znamená, že se vypočtená výroba během kalkulačního období postupně snižuje."
-      }
+        "a": "Výkon solárních panelů se v průběhu let obvykle mírně snižuje. Výpočet vychází z roční degradace 0,5 %, což znamená, že se vypočtená výroba během kalkulačního období postupně snižuje.",
+      },
     
-    ]
+    ],
   },
   "premium": {
     "title": "Premium",
@@ -653,14 +653,14 @@ export const cs = {
     "activated": "Premium je nyní aktivní.",
     "restoredPremium": "Vaše Premium bylo obnoveno.",
     "nothingToRestore": "Na tomto zařízení jsme nenašli žádné nákupy.",
-    "restoreFailed": "Nákupy se teď nepodařilo obnovit."
+    "restoreFailed": "Nákupy se teď nepodařilo obnovit.",
   },
   "paywall": {
     "single": {
       "title": "Jeden výpočet",
       "body": "Odemkněte úplný výsledek a PDF report pro tento výpočet.",
       "cta": "Odemknout za {{price}}",
-      "ctaNoPrice": "Odemknout"
+      "ctaNoPrice": "Odemknout",
     },
     "premium": {
       "title": "Premium",
@@ -669,10 +669,10 @@ export const cs = {
       "includes": {
         "calculations": "Neomezené výpočty",
         "pdf": "Neomezené PDF reporty",
-        "result": "Plný přístup k výsledku"
+        "result": "Plný přístup k výsledku",
       },
       "cta": "Získat Premium",
-      "renewal": "Automaticky se obnovuje každý rok. Kdykoli lze zrušit."
+      "renewal": "Automaticky se obnovuje každý rok. Kdykoli lze zrušit.",
     },
     "title": "Odemkněte svůj výpočet",
     "eyebrow": "Jednorázový nákup",
@@ -681,7 +681,7 @@ export const cs = {
     "includes": {
       "result": "Váš úplný výpočet včetně ekonomiky a produkce",
       "pdf": "PDF report k uložení nebo sdílení",
-      "history": "Výpočet se uloží do vaší historie"
+      "history": "Výpočet se uloží do vaší historie",
     },
     "cta": "Odemknout za {{price}}",
     "purchasing": "Otevírá se App Store…",
@@ -691,11 +691,11 @@ export const cs = {
     "retry": "Nákup se teď nepodařilo potvrdit. Nic není ztraceno — automaticky se odemkne, jakmile bude připojení opět fungovat.",
     "appOnly": "Nákup se provádí v aplikaci pomocí vašeho účtu Apple a v prohlížeči není k dispozici.",
     "appleNote": "Zajišťuje App Store.",
-    "priceLoading": "Načítání ceny…"
+    "priceLoading": "Načítání ceny…",
   },
   "history": {
     "empty": "Zatím nemáte žádné uložené výpočty.",
     "unknownAddress": "Výpočet",
-    "error": "Historii se nepodařilo načíst."
-  }
+    "error": "Historii se nepodařilo načíst.",
+  },
 } as const;

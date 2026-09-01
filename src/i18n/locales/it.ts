@@ -6,7 +6,7 @@ export const it = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Dimensiona il tuo impianto solare in pochi minuti"
+    "tagline": "Dimensiona il tuo impianto solare in pochi minuti",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const it = {
     "point3Title": "Calcola quanto può costare in base al periodo di ammortamento desiderato",
     "point3Body": "Scegli il periodo di ammortamento desiderato. Mr. Solar Doc calcola il livello di investimento necessario.",
     "point4Title": "Report e base decisionale",
-    "point4Body": "Produzione, economia e diversi periodi di ammortamento raccolti in un rapporto."
+    "point4Body": "Produzione, economia e diversi periodi di ammortamento raccolti in un rapporto.",
     "cta": "Avvia il calcolo",
   },
   "common": {
@@ -33,14 +33,14 @@ export const it = {
     "perYear": "/anno",
     "dontKnow": "Non lo so",
     "startOver": "Ricomincia",
-    "close": "Chiudi"
+    "close": "Chiudi",
   },
   "steps": {
     "address": "Indirizzo",
     "roof": "Tetto e sole",
     "consumption": "Consumo elettrico",
     "fuse": "Limitatore di potenza",
-    "stepOf": "Passo {{current}} di {{total}}"
+    "stepOf": "Passo {{current}} di {{total}}",
   },
   "address": {
     "title": "Dove si trova l'immobile?",
@@ -57,7 +57,7 @@ export const it = {
     "region": "Regione",
     "error": "La ricerca dell'indirizzo è fallita.",
     "info": "L'indirizzo viene utilizzato solo per calcolare l'irraggiamento solare nella tua posizione.",
-    "infoLabel": "Maggiori informazioni sull'indirizzo"
+    "infoLabel": "Maggiori informazioni sull'indirizzo",
   },
   "roof": {
     "title": "Il tuo tetto",
@@ -71,7 +71,7 @@ export const it = {
       "n": "N",
       "e": "E",
       "s": "S",
-      "w": "O"
+      "w": "O",
     },
     "orientations": {
       "unknown": "Non lo so",
@@ -79,21 +79,21 @@ export const it = {
       "southeast": "Sud-est",
       "southwest": "Sud-ovest",
       "east": "Est",
-      "west": "Ovest"
+      "west": "Ovest",
     },
     "fetching": "Recupero dati di produzione solare da PVGIS…",
     "result": "Produzione solare stimata per il sito",
-    "unit": "kWh/kWp/anno"
+    "unit": "kWh/kWp/anno",
     "error": "Non è stato possibile recuperare i dati di produzione solare per questo sito al momento. Nessun valore viene stimato.",
     "errorOverSea": "La posizione sembra trovarsi sull'acqua. Sposta il segnaposto sull'edificio sulla terraferma e riprova.",
     "errorOutsideCoverage": "Non abbiamo dati solari per questa posizione. Prova un indirizzo vicino.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Inserisci il tuo consumo di elettricità per proseguire il calcolo.",
       "tooLow": "Il consumo sembra troppo basso. Inserisci almeno {{min}} kWh all'anno.",
-      "tooHigh": "Il consumo sembra troppo alto. Inserisci al massimo {{max}} kWh all'anno."
+      "tooHigh": "Il consumo sembra troppo alto. Inserisci al massimo {{max}} kWh all'anno.",
     },
     "shape": {
       "question": "Come si distribuisce solitamente il tuo consumo elettrico durante l'anno?",
@@ -104,20 +104,20 @@ export const it = {
       "defaultNote": "Utilizziamo una ripartizione normale stimata del tuo consumo annuo. Puoi modificarlo in seguito.",
       "even": {
         "title": "Uniforme durante l'anno",
-        "description": "Consumo elettrico circa lo stesso durante tutto l'anno."
+        "description": "Consumo elettrico circa lo stesso durante tutto l'anno.",
       },
       "winter-heavy": {
         "title": "Maggiore in inverno",
-        "description": "Consumi più elettricità nei mesi freddi, ad esempio per il riscaldamento."
+        "description": "Consumi più elettricità nei mesi freddi, ad esempio per il riscaldamento.",
       },
       "summer-heavy": {
         "title": "Maggiore in estate",
-        "description": "Consumi più elettricità in estate, ad esempio per piscina o raffreddamento."
+        "description": "Consumi più elettricità in estate, ad esempio per piscina o raffreddamento.",
       },
       "default": {
         "title": "Non lo so",
-        "description": "Usa un profilo stimato normale."
-      }
+        "description": "Usa un profilo stimato normale.",
+      },
     },
     "upload": {
       "title": "Incolla o allega un documento",
@@ -136,7 +136,7 @@ export const it = {
       "remove": "Rimuovi",
       "retry": "Prova un altro file",
       "readingFile": "Lettura di {{name}}…",
-      "ready": "Importato"
+      "ready": "Importato",
     },
     "title": "Quanta elettricità consumi?",
     "subtitle": "Controlla la tua bolletta elettrica o il tuo contratto.",
@@ -148,7 +148,7 @@ export const it = {
     "invalid": "Inserisci un consumo annuo tra 100 e 200.000 kWh.",
     "or": "oppure",
     "manual": { "sectionTitle": "Inserisci manualmente", "sectionHint": "Inserisci il tuo consumo annuo — controlla la bolletta o il contratto elettrico." },
-    "monthlyHint": "Inserisci il consumo per tutti i 12 mesi"
+    "monthlyHint": "Inserisci il consumo per tutti i 12 mesi",
   },
   "fuse": {
     "gridAssumptionDynamic": "Il calcolo si basa su {{service}} {{voltage}}.",
@@ -159,23 +159,23 @@ export const it = {
       "amperage": {
         "title": "Qual è il tuo interruttore generale?",
         "label": "Interruttore generale",
-        "help": "Ampere per fase, indicati sull'interruttore generale o in bolletta."
+        "help": "Ampere per fase, indicati sull'interruttore generale o in bolletta.",
       }, "service": { "title": "Dimensione dell'allacciamento elettrico", "label": "Dimensione dell'allacciamento elettrico", "help": "Trova l'amperaggio sull'interruttore generale o nel quadro elettrico." },
       "contracted-kva": {
         "title": "Qual è la tua potenza impegnata?",
         "label": "Potenza impegnata",
-        "help": "Indicata in kVA nella bolletta."
+        "help": "Indicata in kVA nella bolletta.",
       },
       "contracted-kw": {
         "title": "Qual è la tua potenza impegnata?",
         "label": "Potenza impegnata",
-        "help": "Indicata in kW nella bolletta."
-      }
+        "help": "Indicata in kW nella bolletta.",
+      },
     },
     "gridAssumption": "Il calcolo presuppone un allacciamento trifase a 400 V.",
     "gridAssumptionInfo": "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
     gridCheckHint: "In caso di dubbio verifica il tuo allacciamento reale.",
-    "disclaimerTitle": "Importante da sapere"
+    "disclaimerTitle": "Importante da sapere",
     "grid": {
       "advanced": "Impostazioni avanzate",
       "section": "Impostazioni di rete",
@@ -194,7 +194,7 @@ export const it = {
       "serviceType": "Tipo di allacciamento",
       "twoPhase": "Bifase (fase–fase)",
       "splitPhase": "Bifase (split-phase)",
-      "unverifiedHint": "Non abbiamo valori di rete verificati per questo paese. Controlla i tuoi dati sul contatore o sul quadro elettrico."
+      "unverifiedHint": "Non abbiamo valori di rete verificati per questo paese. Controlla i tuoi dati sul contatore o sul quadro elettrico.",
     },
     "title": "Qual è la potenza del tuo limitatore di potenza?",
     "subtitle": "Il limitatore di potenza serve a stimare quale inverter può essere normalmente collegato. La potenza effettivamente consentita è determinata dal gestore di rete.",
@@ -208,13 +208,13 @@ export const it = {
     "noCountryOptions": "Non abbiamo ancora opzioni di allacciamento verificate per questo paese. Inserisci l'interruttore generale in ampere e modifica le impostazioni di rete qui sotto se necessario.",
     "unverifiedCountryNotice": "Non abbiamo verificato lo standard di rete di questo paese. Controlla tensione, fasi e potenza di allacciamento sulla bolletta o presso il tuo distributore, poi conferma qui sotto.",
     "confirmGrid": "Ho controllato i dati di rete",
-    "confirmedGrid": "Dati di rete confermati"
+    "confirmedGrid": "Dati di rete confermati",
   },
   "result": {
     "calculationUnavailable": "Non è stato possibile completare il calcolo. Controlla i dati del tetto e riprova.",
     "connection": {
       "contractedKva": "Potenza impegnata (kVA)",
-      "contractedKw": "Potenza impegnata (kW)"
+      "contractedKw": "Potenza impegnata (kW)",
     },
     "gridConnection": "Allacciamento alla rete",
     "gridConnectionValue": "{{voltage}} V, {{phases}} fasi",
@@ -231,7 +231,7 @@ export const it = {
       "even": "Uniforme durante l'anno",
       "winter-heavy": "Maggior consumo invernale",
       "summer-heavy": "Maggior consumo estivo",
-      "default": "Profilo stimato normale"
+      "default": "Profilo stimato normale",
     },
     "estimatedBadge": "Stimato",
     "estimatedConsumptionNote": "Il consumo mensile è stimato dal tuo valore annuo e dal profilo scelto.",
@@ -293,7 +293,7 @@ export const it = {
       "profileVeryHighSolarSeason": "Il tuo consumo elettrico è chiaramente concentrato nei mesi soleggiati. Si suggerisce quindi una potenza dei pannelli superiore rispetto all'inverter.",
       "gridLimit": "L'impianto è limitato dal tuo limitatore di potenza – la tua connessione alla rete non consente maggiore potenza.",
       "minimumSize": "Il tuo consumo elettrico è basso, quindi suggeriamo l'impianto più piccolo e sensato.",
-      "maximumSize": "Il suggerimento è limitato alla dimensione massima che l'app dimensiona."
+      "maximumSize": "Il suggerimento è limitato alla dimensione massima che l'app dimensiona.",
     },
     "monthlyDataNote": "I valori mensili non mostrano se l'elettricità viene utilizzata di giorno o di notte. Vengono quindi utilizzati come indicazione per il dimensionamento, non come prova di quanta energia solare puoi utilizzare tu stesso.",
     "profileLabel": "Profilo di consumo",
@@ -311,7 +311,7 @@ export const it = {
       "gridLimit": "L'impianto è limitato dal tuo limitatore di potenza – la tua connessione alla rete non consente maggiore potenza.",
       "inverterLimit": "La dimensione è abbinata all'inverter più adatto per la tua connessione.",
       "minimumSize": "Il tuo consumo elettrico è basso, quindi suggeriamo l'impianto più piccolo e sensato.",
-      "maximumSize": "Il suggerimento è limitato alla dimensione massima che l'app dimensiona."
+      "maximumSize": "Il suggerimento è limitato alla dimensione massima che l'app dimensiona.",
     },
     "selfConsumption": "Energia solare autoconsumata",
     "exported": "Energia solare immessa in rete",
@@ -404,12 +404,12 @@ export const it = {
     "gridProfileStatusGeneric": "Generico (non verificato)",
     "gridProfileStatusUnsupported": "Manuale (non verificato)",
     "calcErrorTitle": "Il calcolo non può essere completato",
-    "calcErrorBody": "Alcuni dati non permettono il calcolo. Torna indietro e controlla consumi, allacciamento e ipotesi."
+    "calcErrorBody": "Alcuni dati non permettono il calcolo. Torna indietro e controlla consumi, allacciamento e ipotesi.",
   },
   "units": {
     "kwhPerYear": "kWh/anno",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} anni"
+    "years": "{{count}} anni",
   },
   "settings": {
     "title": "Impostazioni",
@@ -422,23 +422,23 @@ export const it = {
     "singleCta": "Acquistato con il tuo prossimo calcolo",
     "singleNote": "L'acquisto singolo viene effettuato quando avvii un nuovo calcolo — non da qui.",
     "terms": "Termini di utilizzo",
-    "privacy": "Informativa sulla privacy"
+    "privacy": "Informativa sulla privacy",
   },
   "chart": {
     "productionAria": "Produzione mensile",
-    "consumptionAria": "Consumo mensile"
+    "consumptionAria": "Consumo mensile",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc – dimensiona il tuo impianto fotovoltaico",
       "description": "Calcola la potenza solare raccomandata, l'inverter e la produzione annuale in base al tuo indirizzo, consumo elettrico e fusibile principale.",
-      "ogDescription": "Calcolo passo dopo passo con dati di localizzazione da PVGIS: kWp, inverter, produzione mensile ed economia."
+      "ogDescription": "Calcolo passo dopo passo con dati di localizzazione da PVGIS: kWp, inverter, produzione mensile ed economia.",
     },
     "result": {
       "title": "Il tuo calcolo solare – Mr. Solar Doc",
       "description": "Visualizza kWp calcolati, dimensioni dell'inverter, rapporto CC/CA, produzione mensile e valore economico – e scarica il rapporto in PDF.",
-      "ogDescription": "Dimensionamento calcolato del tuo impianto fotovoltaico con un rapporto PDF."
-    }
+      "ogDescription": "Dimensionamento calcolato del tuo impianto fotovoltaico con un rapporto PDF.",
+    },
   },
   "months": {
     "short": [
@@ -468,7 +468,7 @@ export const it = {
       "Ottobre",
       "Novembre",
       "Dicembre"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -582,7 +582,7 @@ export const it = {
       "orientation_west": "Ovest",
       "priceChangeNoteFlat": "Il calcolo utilizza valori invariati per l'energia solare autoconsumata ed esportata per tutto il periodo. Non si ipotizza alcun aumento dei prezzi, poiché i prezzi futuri dell'elettricità non possono essere previsti. Se i prezzi aumentano, il valore sarà superiore a quello indicato in questo report; se diminuiscono, sarà inferiore.",
       "priceChangeNoteTrend": "Il calcolo presuppone che il valore dell'energia solare autoconsumata ed esportata cambi del {{priceChange}} % all'anno per tutto il periodo. Si tratta di un'ipotesi, poiché i prezzi futuri dell'elettricità non possono essere previsti. Un'evoluzione diversa comporta un risultato più alto o più basso rispetto a quello di questo report.",
-      "gridMethodNoteDynamic": "La potenza AC teorica si basa sull'allacciamento scelto: {{phases}} fase/i, {{voltage}} V, calcolata come {{factor}} × {{voltage}} V × interruttore generale. La potenza effettivamente consentita può essere limitata dal distributore o dall'impianto specifico."
+      "gridMethodNoteDynamic": "La potenza AC teorica si basa sull'allacciamento scelto: {{phases}} fase/i, {{voltage}} V, calcolata come {{factor}} × {{voltage}} V × interruttore generale. La potenza effettivamente consentita può essere limitata dal distributore o dall'impianto specifico.",
     },
     "title": "Rapporto solare",
     "technical": "Dati tecnici",
@@ -599,40 +599,40 @@ export const it = {
       "user": "Il tuo valore",
       "calculated": "Calcolato",
       "assumed": "Ipotesi standard",
-      "external": "Fonte dati esterna"
-    }
+      "external": "Fonte dati esterna",
+    },
     "generated": "Generato",
     "faqTitle": "Domande frequenti",
     "faqItems": [
       {
         "q": "Quanto è affidabile la produzione solare calcolata?",
-        "a": "Il calcolo si basa sull'irraggiamento solare del luogo e sull'orientamento e inclinazione del tetto. La produzione effettiva è influenzata, tra l'altro, dal meteo, dall'ombreggiamento e dalle condizioni tecniche dell'impianto."
+        "a": "Il calcolo si basa sull'irraggiamento solare del luogo e sull'orientamento e inclinazione del tetto. La produzione effettiva è influenzata, tra l'altro, dal meteo, dall'ombreggiamento e dalle condizioni tecniche dell'impianto.",
       },
       {
         "q": "Cosa significa autoconsumo?",
-        "a": "La parte di energia solare utilizzata direttamente nell'abitazione. Il resto della produzione viene immesso nella rete elettrica."
+        "a": "La parte di energia solare utilizzata direttamente nell'abitazione. Il resto della produzione viene immesso nella rete elettrica.",
       },
       {
         "q": "Perché l'energia solare autoconsumata vale più di quella venduta?",
-        "a": "L'energia solare autoconsumata sostituisce elettricità che altrimenti sarebbe stata acquistata dalla rete, mentre l'energia solare venduta è compensata secondo le condizioni per l'energia immessa."
+        "a": "L'energia solare autoconsumata sostituisce elettricità che altrimenti sarebbe stata acquistata dalla rete, mentre l'energia solare venduta è compensata secondo le condizioni per l'energia immessa.",
       },
       {
         "q": "Cosa significa prezzo per il periodo di ammortamento scelto?",
-        "a": "Indica approssimativamente quanto può costare l'impianto per corrispondere al periodo di ammortamento da te scelto, sulla base delle ipotesi del calcolo. Non è un prezzo di mercato stimato."
+        "a": "Indica approssimativamente quanto può costare l'impianto per corrispondere al periodo di ammortamento da te scelto, sulla base delle ipotesi del calcolo. Non è un prezzo di mercato stimato.",
       },
       {
         "q": "Perché il calcolo dell'installatore può differire?",
-        "a": "Ipotesi diverse su produzione, autoconsumo, prezzi dell'elettricità, perdite di sistema e andamento futuro dei prezzi possono dare risultati diversi."
+        "a": "Ipotesi diverse su produzione, autoconsumo, prezzi dell'elettricità, perdite di sistema e andamento futuro dei prezzi possono dare risultati diversi.",
       },
       {
         "q": "Il calcolo è un preventivo?",
-        "a": "No. Il risultato è una stima e deve essere utilizzato come base per le decisioni. Prezzo, produzione e risultato economico effettivi possono differire."
+        "a": "No. Il risultato è una stima e deve essere utilizzato come base per le decisioni. Prezzo, produzione e risultato economico effettivi possono differire.",
       },
       {
         "q": "Perché la produzione diminuisce nel tempo?",
-        "a": "La potenza dei pannelli solari diminuisce normalmente leggermente con gli anni. Il calcolo si basa su un degrado annuo dello 0,5 %, il che significa che la produzione stimata diminuisce gradualmente nel corso del periodo di calcolo."
-      }
-    ]
+        "a": "La potenza dei pannelli solari diminuisce normalmente leggermente con gli anni. Il calcolo si basa su un degrado annuo dello 0,5 %, il che significa che la produzione stimata diminuisce gradualmente nel corso del periodo di calcolo.",
+      },
+    ],
   },
   "premium": {
     "title": "Premium",
@@ -647,14 +647,14 @@ export const it = {
     "activated": "Premium è ora attivo.",
     "restoredPremium": "Il tuo Premium è stato ripristinato.",
     "nothingToRestore": "Non abbiamo trovato acquisti su questo dispositivo.",
-    "restoreFailed": "Al momento non è possibile ripristinare gli acquisti."
+    "restoreFailed": "Al momento non è possibile ripristinare gli acquisti.",
   },
   "paywall": {
     "single": {
       "title": "Un calcolo",
       "body": "Sblocca il risultato completo e il report PDF per questo calcolo.",
       "cta": "Sblocca per {{price}}",
-      "ctaNoPrice": "Sblocca"
+      "ctaNoPrice": "Sblocca",
     },
     "premium": {
       "title": "Premium",
@@ -663,10 +663,10 @@ export const it = {
       "includes": {
         "calculations": "Calcoli illimitati",
         "pdf": "Report PDF illimitati",
-        "result": "Accesso completo al risultato"
+        "result": "Accesso completo al risultato",
       },
       "cta": "Ottieni Premium",
-      "renewal": "Si rinnova automaticamente ogni anno. Annullabile in qualsiasi momento."
+      "renewal": "Si rinnova automaticamente ogni anno. Annullabile in qualsiasi momento.",
     },
     "title": "Sblocca il tuo calcolo",
     "eyebrow": "Acquisto unico",
@@ -675,7 +675,7 @@ export const it = {
     "includes": {
       "result": "Il tuo calcolo completo con economia e produzione",
       "pdf": "Report PDF da salvare o condividere",
-      "history": "Il calcolo viene salvato nella tua cronologia"
+      "history": "Il calcolo viene salvato nella tua cronologia",
     },
     "cta": "Sblocca per {{price}}",
     "purchasing": "Apertura dell'App Store…",
@@ -685,11 +685,11 @@ export const it = {
     "retry": "Al momento non siamo riusciti a confermare l'acquisto. Non hai perso nulla — si sbloccherà automaticamente non appena la connessione tornerà disponibile.",
     "appOnly": "L'acquisto viene effettuato nell'app con il tuo account Apple e non è disponibile nel browser.",
     "appleNote": "Gestito dall'App Store.",
-    "priceLoading": "Caricamento del prezzo…"
+    "priceLoading": "Caricamento del prezzo…",
   },
   "history": {
     "empty": "Non hai ancora calcoli salvati.",
     "unknownAddress": "Calcolo",
-    "error": "Impossibile caricare la tua cronologia."
-  }
+    "error": "Impossibile caricare la tua cronologia.",
+  },
 } as const;

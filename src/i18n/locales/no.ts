@@ -6,7 +6,7 @@ export const no = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Dimensjoner solcelleanlegget ditt på noen minutter"
+    "tagline": "Dimensjoner solcelleanlegget ditt på noen minutter",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const no = {
     "point3Title": "Beregner hva det kan koste etter ønsket tilbakebetalingstid",
     "point3Body": "Du velger ønsket tilbakebetalingstid. Mr. Solar Doc beregner nødvendig investeringsnivå.",
     "point4Title": "Rapport og beslutningsgrunnlag",
-    "point4Body": "Se produksjon, økonomi og ulike tilbakebetalingstider i en rapport."
+    "point4Body": "Se produksjon, økonomi og ulike tilbakebetalingstider i en rapport.",
     "cta": "Start beregningen",
   },
   "common": {
@@ -33,14 +33,14 @@ export const no = {
     "perYear": "/år",
     "dontKnow": "Vet ikke",
     "startOver": "Start på nytt",
-    "close": "Lukk"
+    "close": "Lukk",
   },
   "steps": {
     "address": "Adresse",
     "roof": "Tak & sol",
     "consumption": "Strømforbruk",
     "fuse": "Hovedsikring",
-    "stepOf": "Steg {{current}} av {{total}}"
+    "stepOf": "Steg {{current}} av {{total}}",
   },
   "address": {
     "title": "Hvor ligger eiendommen?",
@@ -57,7 +57,7 @@ export const no = {
     "region": "Region",
     "error": "Adressesøket mislyktes.",
     "info": "Adressen brukes kun til å beregne solinnstrålingen på stedet ditt.",
-    "infoLabel": "Mer informasjon om adressen"
+    "infoLabel": "Mer informasjon om adressen",
   },
   "premium": {
     "title": "Premium",
@@ -72,7 +72,7 @@ export const no = {
     "activated": "Premium er nå aktiv.",
     "restoredPremium": "Premium-en din er gjenopprettet.",
     "nothingToRestore": "Vi fant ingen kjøp på denne enheten.",
-    "restoreFailed": "Kunne ikke gjenopprette kjøp akkurat nå."
+    "restoreFailed": "Kunne ikke gjenopprette kjøp akkurat nå.",
   },
   "roof": {
     "title": "Taket ditt",
@@ -86,7 +86,7 @@ export const no = {
       "n": "N",
       "e": "Ø",
       "s": "S",
-      "w": "V"
+      "w": "V",
     },
     "orientations": {
       "unknown": "Vet ikke",
@@ -94,21 +94,21 @@ export const no = {
       "southeast": "Sørøst",
       "southwest": "Sørvest",
       "east": "Øst",
-      "west": "Vest"
+      "west": "Vest",
     },
     "fetching": "Henter soldata fra PVGIS…",
     "result": "Estimert solproduksjon på dette stedet",
-    "unit": "kWh/kWp/år"
+    "unit": "kWh/kWp/år",
     "error": "Vi kunne ikke hente soldata for dette stedet. Ingen verdier blir anslått.",
     "errorOverSea": "Dette stedet ser ut til å ligge over vann. Flytt markøren til bygningen på land og prøv igjen.",
     "errorOutsideCoverage": "Vi har ingen soldata for dette stedet. Prøv en adresse i nærheten.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Angi strømforbruket ditt for å fortsette beregningen.",
       "tooLow": "Det ser for lavt ut. Angi minst {{min}} kWh per år.",
-      "tooHigh": "Det ser for høyt ut. Angi maks {{max}} kWh per år."
+      "tooHigh": "Det ser for høyt ut. Angi maks {{max}} kWh per år.",
     },
     "shape": {
       "question": "Hvordan fordeler strømforbruket ditt seg vanligvis gjennom året?",
@@ -119,20 +119,20 @@ export const no = {
       "defaultNote": "Vi bruker en normal estimert fordeling av årsforbruket ditt. Du kan endre dette senere.",
       "even": {
         "title": "Jevnt fordelt gjennom året",
-        "description": "Omtrent samme strømforbruk hele året."
+        "description": "Omtrent samme strømforbruk hele året.",
       },
       "winter-heavy": {
         "title": "Høyere om vinteren",
-        "description": "Du bruker mer strøm i de kalde månedene, for eksempel til oppvarming."
+        "description": "Du bruker mer strøm i de kalde månedene, for eksempel til oppvarming.",
       },
       "summer-heavy": {
         "title": "Høyere om sommeren",
-        "description": "Du bruker mer strøm om sommeren, for eksempel til basseng eller kjøling."
+        "description": "Du bruker mer strøm om sommeren, for eksempel til basseng eller kjøling.",
       },
       "default": {
         "title": "Jeg vet ikke",
-        "description": "Bruk en normal estimert profil."
-      }
+        "description": "Bruk en normal estimert profil.",
+      },
     },
     "upload": {
       "title": "Legg ved 12 måneders forbruksdata",
@@ -151,7 +151,7 @@ export const no = {
       "remove": "Fjern",
       "retry": "Prøv en annen fil",
       "readingFile": "Leser {{name}}…",
-      "ready": "Importert"
+      "ready": "Importert",
     },
     "title": "Hvor mye strøm bruker du?",
     "subtitle": "Sjekk strømregningen eller avtalen din.",
@@ -163,7 +163,7 @@ export const no = {
     "monthlyTitle": "Månedlig forbruk",
     "monthlyHint": "Angi forbruk for alle 12 måneder",
     "total": "Totalt årsforbruk",
-    "invalid": "Angi et årsforbruk mellom 100 og 200 000 kWh."
+    "invalid": "Angi et årsforbruk mellom 100 og 200 000 kWh.",
   },
   "fuse": {
     "gridAssumptionDynamic": "Beregningen er basert på {{service}} {{voltage}}.",
@@ -174,23 +174,23 @@ export const no = {
       "amperage": {
         "title": "Hva er hovedsikringen din?",
         "label": "Hovedsikring",
-        "help": "Ampere per fase, står på hovedtavlen eller strømregningen."
+        "help": "Ampere per fase, står på hovedtavlen eller strømregningen.",
       }, "service": { "title": "Elektrisk servicestørrelse", "label": "Elektrisk servicestørrelse", "help": "Finn amperetallet på hovedbryteren eller sikringsskapet." },
       "contracted-kva": {
         "title": "Hva er din avtalte effekt?",
         "label": "Avtalt effekt",
-        "help": "Oppgitt i kVA på strømregningen din."
+        "help": "Oppgitt i kVA på strømregningen din.",
       },
       "contracted-kw": {
         "title": "Hva er din avtalte effekt?",
         "label": "Avtalt effekt",
-        "help": "Oppgitt i kW på strømregningen din."
-      }
+        "help": "Oppgitt i kW på strømregningen din.",
+      },
     },
     "gridAssumption": "Beregningen forutsetter en 400 V trefaset tilkobling.",
     "gridAssumptionInfo": "Den teoretiske effekten fra hovedsikringen beregnes ut fra en 400 V trefaset tilkobling. Sjekk din faktiske nettilkobling hvis du er usikker.",
     gridCheckHint: "Sjekk din faktiske nettilkobling hvis du er usikker.",
-    "disclaimerTitle": "Viktig å vite"
+    "disclaimerTitle": "Viktig å vite",
     "grid": {
       "advanced": "Avanserte innstillinger",
       "section": "Nettinnstillinger",
@@ -209,7 +209,7 @@ export const no = {
       "voltageOtherLabel": "Angi spenning",
       "voltageInvalid": "Angi en gyldig spenning i volt.",
       "frequency": "Frekvens",
-      "hint": "Endre dette kun hvis standardverdiene ikke stemmer med tilkoblingen din."
+      "hint": "Endre dette kun hvis standardverdiene ikke stemmer med tilkoblingen din.",
     },
     "genericTitle": "Hvilken strømtilkobling har du?",
     "title": "Hva slags hovedsikring har du?",
@@ -223,13 +223,13 @@ export const no = {
     "otherLabel": "Ampere",
     "maxAc": "Maksimal beregnet AC-effekt",
     "calculate": "Beregn",
-    "invalid": "Angi en hovedsikring mellom 6 og 400 A."
+    "invalid": "Angi en hovedsikring mellom 6 og 400 A.",
   },
   "result": {
     "calculationUnavailable": "Beregningen kunne ikke fullføres. Kontroller takopplysningene og prøv igjen.",
     "connection": {
       "contractedKva": "Avtalt effekt (kVA)",
-      "contractedKw": "Avtalt effekt (kW)"
+      "contractedKw": "Avtalt effekt (kW)",
     },
     "gridConnection": "Nettilkobling",
     "gridConnectionValue": "{{voltage}} V, {{phases}}-fase",
@@ -246,7 +246,7 @@ export const no = {
       "even": "Jevnt fordelt gjennom året",
       "winter-heavy": "Høyere vinterforbruk",
       "summer-heavy": "Høyere sommerforbruk",
-      "default": "Normal estimert profil"
+      "default": "Normal estimert profil",
     },
     "estimatedBadge": "Estimert",
     "estimatedConsumptionNote": "Månedlig forbruk er estimert ut fra årstallet ditt og profilen du valgte.",
@@ -308,7 +308,7 @@ export const no = {
       "profileVeryHighSolarSeason": "Strømforbruket ditt er tydelig konsentrert til de solrike månedene, så en høyere paneleffekt i forhold til inverteren foreslås.",
       "gridLimit": "Anlegget er begrenset av hovedsikringen din — nettilkoblingen din tillater ikke mer effekt.",
       "minimumSize": "Strømforbruket ditt er lavt, så vi foreslår minste fornuftige anlegg.",
-      "maximumSize": "Forslaget er satt til den største størrelsen appen dimensjonerer for."
+      "maximumSize": "Forslaget er satt til den største størrelsen appen dimensjonerer for.",
     },
     "monthlyDataNote": "Månedsverdier viser ikke om strøm brukes på dagtid eller natt. De brukes som et dimensjoneringssignal, ikke som bevis på hvor mye sol du selv kan bruke.",
     "profileLabel": "Forbruksprofil",
@@ -326,7 +326,7 @@ export const no = {
       "gridLimit": "Anlegget er begrenset av hovedsikringen din — nettilkoblingen din tillater ikke mer effekt.",
       "inverterLimit": "Størrelsen er tilpasset den største egnede inverteren for tilkoblingen din.",
       "minimumSize": "Strømforbruket ditt er lavt, så vi foreslår minste fornuftige anlegg.",
-      "maximumSize": "Forslaget er satt til den største størrelsen appen dimensjonerer for."
+      "maximumSize": "Forslaget er satt til den største størrelsen appen dimensjonerer for.",
     },
     "selfConsumption": "Selvbrukt solstrøm",
     "exported": "Eksportert solstrøm",
@@ -424,14 +424,14 @@ export const no = {
   "units": {
     "kwhPerYear": "kWh/år",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} år"
+    "years": "{{count}} år",
   },
   "paywall": {
     "single": {
       "title": "Én beregning",
       "body": "Lås opp det fulle resultatet og PDF-rapporten for denne beregningen.",
       "cta": "Lås opp for {{price}}",
-      "ctaNoPrice": "Lås opp"
+      "ctaNoPrice": "Lås opp",
     },
     "priceLoading": "Henter pris…",
     "premium": {
@@ -441,10 +441,10 @@ export const no = {
       "includes": {
         "calculations": "Ubegrensede beregninger",
         "pdf": "Ubegrensede PDF-rapporter",
-        "result": "Full tilgang til resultatet"
+        "result": "Full tilgang til resultatet",
       },
       "cta": "Bli Premium",
-      "renewal": "Fornyes automatisk hvert år. Avbestill når som helst."
+      "renewal": "Fornyes automatisk hvert år. Avbestill når som helst.",
     },
     "title": "Lås opp beregningen din",
     "eyebrow": "Engangskjøp",
@@ -453,7 +453,7 @@ export const no = {
     "includes": {
       "result": "Din fulle beregning med økonomi og produksjon",
       "pdf": "PDF-rapport for å lagre eller dele",
-      "history": "Beregningen lagres i historikken din"
+      "history": "Beregningen lagres i historikken din",
     },
     "cta": "Lås opp for {{price}}",
     "purchasing": "Åpner App Store…",
@@ -462,12 +462,12 @@ export const no = {
     "failed": "Kjøpet kunne ikke fullføres. Du har ikke blitt belastet.",
     "retry": "Vi kunne ikke bekrefte kjøpet akkurat nå. Ingenting går tapt — det låses opp automatisk når forbindelsen fungerer igjen.",
     "appOnly": "Kjøpet gjøres i appen med Apple-kontoen din og er ikke tilgjengelig i nettleseren.",
-    "appleNote": "Håndteres av App Store."
+    "appleNote": "Håndteres av App Store.",
   },
   "history": {
     "empty": "Du har ingen lagrede beregninger ennå.",
     "unknownAddress": "Beregning",
-    "error": "Kunne ikke laste historikken din."
+    "error": "Kunne ikke laste historikken din.",
   },
   "settings": {
     "title": "Innstillinger",
@@ -480,23 +480,23 @@ export const no = {
     "singleCta": "Kjøpt med din neste beregning",
     "singleNote": "Engangskjøpet gjøres når du starter en ny beregning — ikke herfra.",
     "terms": "Bruksvilkår",
-    "privacy": "Personvernerklæring"
+    "privacy": "Personvernerklæring",
   },
   "chart": {
     "productionAria": "Månedlig produksjon",
-    "consumptionAria": "Månedlig forbruk"
+    "consumptionAria": "Månedlig forbruk",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc - dimensjoner solcelleanlegget ditt",
       "description": "Beregn anbefalt solcelleeffekt, inverterstørrelse og årsproduksjon ut fra adressen din, strømforbruket og hovedsikringen.",
-      "ogDescription": "Trinnvis beregning med stedsdata fra PVGIS: kWp, inverter, månedlig produksjon og økonomi."
+      "ogDescription": "Trinnvis beregning med stedsdata fra PVGIS: kWp, inverter, månedlig produksjon og økonomi.",
     },
     "result": {
       "title": "Din solberegning - Mr. Solar Doc",
       "description": "Se beregnet kWp, inverterstørrelse, DC/AC-forhold, månedlig produksjon og økonomisk verdi - og last ned rapporten som PDF.",
-      "ogDescription": "Beregnet dimensjonering av solcelleanlegget ditt med PDF-rapport."
-    }
+      "ogDescription": "Beregnet dimensjonering av solcelleanlegget ditt med PDF-rapport.",
+    },
   },
   "months": {
     "short": ["jan", "feb", "mar", "apr", "mai", "jun", "jul", "aug", "sep", "okt", "nov", "des"],
@@ -513,7 +513,7 @@ export const no = {
       "oktober",
       "november",
       "desember"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -627,7 +627,7 @@ export const no = {
       "orientation_southeast": "Sørøst",
       "orientation_southwest": "Sørvest",
       "orientation_east": "Øst",
-      "orientation_west": "Vest"
+      "orientation_west": "Vest",
     },
     "title": "Solrapport",
     "technical": "Tekniske data",
@@ -644,8 +644,8 @@ export const no = {
       "user": "Din verdi",
       "calculated": "Beregnet",
       "assumed": "Standardantakelse",
-      "external": "Ekstern datakilde"
-    }
+      "external": "Ekstern datakilde",
+    },
     "generated": "Generert",
     "faqTitle": "Ofte stilte spørsmål",
     "faqItems": [
@@ -656,6 +656,6 @@ export const no = {
       { "q": "Hvorfor kan installatørens beregning avvike?", "a": "Ulike forutsetninger om produksjon, egenforbruk, strømpriser, anleggstap og fremtidig prisutvikling kan gi ulike resultater." },
       { "q": "Er beregningen et tilbud?", "a": "Nei. Resultatet er et estimat og er ment som beslutningsgrunnlag. Faktisk pris, produksjon og økonomisk resultat kan avvike." },
       { "q": "Hvorfor synker produksjonen over tid?", "a": "Effektiviteten til solcellepaneler synker vanligvis noe over årene. Beregningen forutsetter en årlig degradering på 0,5 %, som betyr at estimert produksjon gradvis synker over beregningsperioden." }
-    ]
-  }
+    ],
+  },
 } as const;

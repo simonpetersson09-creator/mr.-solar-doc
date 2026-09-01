@@ -18,7 +18,7 @@ export const sv = {
     point3Title: "Räknar fram vad den får kosta efter önskad återbetalningstid",
     point3Body: "Du väljer önskad återbetalningstid. Mr. Solar Doc räknar ut vilken investeringsnivå som krävs för att nå den.",
     point4Title: "Rapport och beslutsunderlag",
-    point4Body: "Se produktion, ekonomi och olika återbetalningstider samlat i en rapport."
+    point4Body: "Se produktion, ekonomi och olika återbetalningstider samlat i en rapport.",
     cta: "Starta beräkningen",
   },
   common: {
@@ -57,7 +57,7 @@ export const sv = {
     region: "Region",
 error: "Adressökningen misslyckades.",
     info: "Adressen används enbart för att få fram solinstrålningen på din plats.",
-    infoLabel: "Mer information om adressen"
+    infoLabel: "Mer information om adressen",
   },
   premium: {
     title: "Premium",
@@ -98,7 +98,7 @@ error: "Adressökningen misslyckades.",
     },
     fetching: "Hämtar solproduktionsdata från PVGIS…",
     result: "Beräknad solproduktion på platsen",
-    unit: "kWh/kWp/år"
+    unit: "kWh/kWp/år",
     error:
       "Vi kunde inte hämta solproduktionsdata för platsen just nu. Inga värden gissas fram.",
     errorOverSea:
@@ -199,7 +199,7 @@ error: "Adressökningen misslyckades.",
     gridAssumption: "Beräkningen utgår från 400 V trefas.",
 gridAssumptionInfo: "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
 gridCheckHint: "Kontrollera din faktiska nätanslutning om du är osäker.",
-    disclaimerTitle: "Viktigt att veta"
+    disclaimerTitle: "Viktigt att veta",
     grid: {
       advanced: "Avancerade inställningar",
       section: "Nätinställningar",
@@ -704,7 +704,7 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
       calculated: "Beräknat",
       assumed: "Standardantagande",
       external: "Extern datakälla",
-    }
+    },
     generated: "Skapad",
     faqTitle: 'Vanliga frågor',
     faqItems: [

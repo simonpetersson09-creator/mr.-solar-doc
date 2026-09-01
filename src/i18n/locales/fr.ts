@@ -6,7 +6,7 @@ export const fr = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Dimensionnez votre installation solaire en quelques minutes"
+    "tagline": "Dimensionnez votre installation solaire en quelques minutes",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const fr = {
     "point3Title": "Calcule ce qu'elle peut coûter selon le délai de remboursement souhaité",
     "point3Body": "Vous choisissez le délai de remboursement souhaité. Mr. Solar Doc calcule le niveau d'investissement nécessaire.",
     "point4Title": "Rapport et base de décision",
-    "point4Body": "Production, économie et différents délais de remboursement réunis dans un rapport."
+    "point4Body": "Production, économie et différents délais de remboursement réunis dans un rapport.",
     "cta": "Démarrer le calcul",
   },
   "common": {
@@ -33,14 +33,14 @@ export const fr = {
     "perYear": "/an",
     "dontKnow": "Je ne sais pas",
     "startOver": "Recommencer",
-    "close": "Fermer"
+    "close": "Fermer",
   },
   "steps": {
     "address": "Adresse",
     "roof": "Toit & soleil",
     "consumption": "Consommation électrique",
     "fuse": "Fusible principal",
-    "stepOf": "Étape {{current}} sur {{total}}"
+    "stepOf": "Étape {{current}} sur {{total}}",
   },
   "address": {
     "title": "Où se trouve la propriété ?",
@@ -57,7 +57,7 @@ export const fr = {
     "region": "Région",
     "error": "La recherche d'adresse a échoué.",
     "info": "L'adresse sert uniquement à calculer l'ensoleillement à votre emplacement.",
-    "infoLabel": "Plus d'informations sur l'adresse"
+    "infoLabel": "Plus d'informations sur l'adresse",
   },
   "roof": {
     "title": "Votre toit",
@@ -71,7 +71,7 @@ export const fr = {
       "n": "N",
       "e": "E",
       "s": "S",
-      "w": "O"
+      "w": "O",
     },
     "orientations": {
       "unknown": "Je ne sais pas",
@@ -79,21 +79,21 @@ export const fr = {
       "southeast": "Sud-Est",
       "southwest": "Sud-Ouest",
       "east": "Est",
-      "west": "Ouest"
+      "west": "Ouest",
     },
     "fetching": "Récupération des données de production solaire de PVGIS…",
     "result": "Production solaire estimée à cet emplacement",
-    "unit": "kWh/kWc/an"
+    "unit": "kWh/kWc/an",
     "error": "Nous n'avons pas pu récupérer les données de production solaire pour cet emplacement pour le moment. Aucune valeur n'est estimée.",
     "errorOverSea": "Cet emplacement semble se situer sur l'eau. Déplacez le repère sur le bâtiment à terre et réessayez.",
     "errorOutsideCoverage": "Nous n'avons pas de données solaires pour cet emplacement. Essayez une adresse à proximité.",
-    "errorSource": "PVGIS : {{message}}"
+    "errorSource": "PVGIS : {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Saisissez votre consommation d'électricité pour poursuivre le calcul.",
       "tooLow": "La consommation semble trop faible. Indiquez au moins {{min}} kWh par an.",
-      "tooHigh": "La consommation semble trop élevée. Indiquez au maximum {{max}} kWh par an."
+      "tooHigh": "La consommation semble trop élevée. Indiquez au maximum {{max}} kWh par an.",
     },
     "shape": {
       "question": "Comment votre consommation électrique est-elle habituellement répartie sur l'année ?",
@@ -104,20 +104,20 @@ export const fr = {
       "defaultNote": "Nous utilisons une répartition normale estimée de votre consommation annuelle. Vous pouvez la modifier ultérieurement.",
       "even": {
         "title": "Uniforme sur l'année",
-        "description": "Environ la même consommation électrique toute l'année."
+        "description": "Environ la même consommation électrique toute l'année.",
       },
       "winter-heavy": {
         "title": "Plus élevée en hiver",
-        "description": "Vous consommez plus d'électricité pendant les mois froids de l'année, par exemple pour le chauffage."
+        "description": "Vous consommez plus d'électricité pendant les mois froids de l'année, par exemple pour le chauffage.",
       },
       "summer-heavy": {
         "title": "Plus élevée en été",
-        "description": "Vous consommez plus d'électricité en été, par exemple pour une piscine ou la climatisation."
+        "description": "Vous consommez plus d'électricité en été, par exemple pour une piscine ou la climatisation.",
       },
       "default": {
         "title": "Je ne sais pas",
-        "description": "Utiliser un profil estimé normal."
-      }
+        "description": "Utiliser un profil estimé normal.",
+      },
     },
     "upload": {
       "title": "Coller ou joindre un document",
@@ -136,7 +136,7 @@ export const fr = {
       "remove": "Supprimer",
       "retry": "Essayer un autre fichier",
       "readingFile": "Lecture de {{name}}…",
-      "ready": "Importé"
+      "ready": "Importé",
     },
     "title": "Quelle quantité d'électricité consommez-vous ?",
     "subtitle": "Consultez votre facture ou contrat d'électricité.",
@@ -148,7 +148,7 @@ export const fr = {
     "invalid": "Saisissez une consommation annuelle entre 100 et 200 000 kWh.",
     "or": "ou",
     "manual": { "sectionTitle": "Saisir manuellement", "sectionHint": "Indiquez votre consommation annuelle — vérifiez votre facture ou votre contrat d’électricité." },
-    "monthlyHint": "Indiquez la consommation pour les 12 mois"
+    "monthlyHint": "Indiquez la consommation pour les 12 mois",
   },
   "fuse": {
     "gridAssumptionDynamic": "Le calcul repose sur {{service}} {{voltage}}.",
@@ -159,28 +159,28 @@ export const fr = {
       "amperage": {
         "title": "Quel est votre disjoncteur principal ?",
         "label": "Disjoncteur principal",
-        "help": "Ampères par phase, indiqués sur le disjoncteur ou la facture."
+        "help": "Ampères par phase, indiqués sur le disjoncteur ou la facture.",
       },
       "service": {
         "title": "Calibre du branchement électrique",
         "label": "Calibre du branchement électrique",
-        "help": "L'intensité en ampères figure sur votre disjoncteur principal ou votre tableau électrique."
+        "help": "L'intensité en ampères figure sur votre disjoncteur principal ou votre tableau électrique.",
       },
       "contracted-kva": {
         "title": "Quelle est votre puissance souscrite ?",
         "label": "Puissance souscrite",
-        "help": "Indiquée en kVA sur votre facture d'électricité."
+        "help": "Indiquée en kVA sur votre facture d'électricité.",
       },
       "contracted-kw": {
         "title": "Quelle est votre puissance souscrite ?",
         "label": "Puissance souscrite",
-        "help": "Indiquée en kW sur votre facture d'électricité."
-      }
+        "help": "Indiquée en kW sur votre facture d'électricité.",
+      },
     },
     "gridAssumption": "Le calcul suppose un raccordement triphasé 400 V.",
     "gridAssumptionInfo": "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute.",
     gridCheckHint: "Vérifiez votre raccordement réel en cas de doute.",
-    "disclaimerTitle": "Bon à savoir"
+    "disclaimerTitle": "Bon à savoir",
     "grid": {
       "advanced": "Réglages avancés",
       "section": "Réglages du réseau",
@@ -199,7 +199,7 @@ export const fr = {
       "serviceType": "Type de raccordement",
       "twoPhase": "Biphasé (phase–phase)",
       "splitPhase": "Biphasé (split-phase)",
-      "unverifiedHint": "Nous n'avons pas de valeurs réseau vérifiées pour ce pays. Vérifiez vos informations sur votre compteur ou votre tableau électrique."
+      "unverifiedHint": "Nous n'avons pas de valeurs réseau vérifiées pour ce pays. Vérifiez vos informations sur votre compteur ou votre tableau électrique.",
     },
     "title": "Quel fusible principal avez-vous ?",
     "subtitle": "Le fusible principal permet d'estimer la taille d'onduleur pouvant normalement être raccordée. La puissance réellement autorisée est déterminée par le gestionnaire de réseau.",
@@ -213,13 +213,13 @@ export const fr = {
     "noCountryOptions": "Nous n'avons pas encore d'options de raccordement vérifiées pour ce pays. Saisissez votre disjoncteur principal en ampères et ajustez les paramètres réseau ci-dessous si nécessaire.",
     "unverifiedCountryNotice": "Nous n'avons pas vérifié la norme réseau de ce pays. Vérifiez la tension, les phases et la puissance de raccordement sur votre facture d'électricité ou auprès de votre gestionnaire de réseau, puis confirmez ci-dessous.",
     "confirmGrid": "J'ai vérifié les données réseau",
-    "confirmedGrid": "Données réseau confirmées"
+    "confirmedGrid": "Données réseau confirmées",
   },
   "result": {
     "calculationUnavailable": "Le calcul n'a pas pu être effectué. Vérifiez les informations sur la toiture et réessayez.",
     "connection": {
       "contractedKva": "Puissance souscrite (kVA)",
-      "contractedKw": "Puissance souscrite (kW)"
+      "contractedKw": "Puissance souscrite (kW)",
     },
     "gridConnection": "Raccordement au réseau",
     "gridConnectionValue": "{{voltage}} V, {{phases}} phases",
@@ -236,7 +236,7 @@ export const fr = {
       "even": "Uniforme sur l'année",
       "winter-heavy": "Consommation plus élevée en hiver",
       "summer-heavy": "Consommation plus élevée en été",
-      "default": "Profil estimé normal"
+      "default": "Profil estimé normal",
     },
     "estimatedBadge": "Estimé",
     "estimatedConsumptionNote": "La consommation mensuelle est estimée à partir de votre chiffre annuel et du profil que vous avez choisi.",
@@ -298,7 +298,7 @@ export const fr = {
       "profileVeryHighSolarSeason": "Votre consommation électrique est clairement concentrée sur les mois ensoleillés, une puissance de panneau plus élevée par rapport à l'onduleur est donc suggérée.",
       "gridLimit": "L'installation est limitée par votre fusible principal – votre raccordement au réseau n'autorise pas plus de puissance.",
       "minimumSize": "Votre consommation électrique est faible, nous suggérons donc la plus petite installation raisonnable.",
-      "maximumSize": "La suggestion est plafonnée à la taille maximale que cette application dimensionne."
+      "maximumSize": "La suggestion est plafonnée à la taille maximale que cette application dimensionne.",
     },
     "monthlyDataNote": "Les valeurs mensuelles n'indiquent pas si l'électricité est utilisée de jour ou de nuit. Elles sont donc utilisées comme indicateur de dimensionnement, et non comme preuve de la quantité d'énergie solaire que vous pouvez autoconsommer.",
     "profileLabel": "Profil de consommation",
@@ -316,7 +316,7 @@ export const fr = {
       "gridLimit": "L'installation est limitée par votre fusible principal – votre raccordement au réseau n'autorise pas plus de puissance.",
       "inverterLimit": "La taille est adaptée au plus grand onduleur approprié pour votre connexion.",
       "minimumSize": "Votre consommation électrique est faible, nous suggérons donc la plus petite installation raisonnable.",
-      "maximumSize": "La suggestion est plafonnée à la taille maximale que cette application dimensionne."
+      "maximumSize": "La suggestion est plafonnée à la taille maximale que cette application dimensionne.",
     },
     "selfConsumption": "Énergie solaire autoconsommée",
     "exported": "Énergie solaire exportée",
@@ -409,12 +409,12 @@ export const fr = {
     "gridProfileStatusGeneric": "Générique (non vérifié)",
     "gridProfileStatusUnsupported": "Manuel (non vérifié)",
     "calcErrorTitle": "Le calcul ne peut pas être finalisé",
-    "calcErrorBody": "Certaines données ne permettent pas le calcul. Revenez en arrière et vérifiez la consommation, le raccordement et les hypothèses."
+    "calcErrorBody": "Certaines données ne permettent pas le calcul. Revenez en arrière et vérifiez la consommation, le raccordement et les hypothèses.",
   },
   "units": {
     "kwhPerYear": "kWh/an",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} ans"
+    "years": "{{count}} ans",
   },
   "settings": {
     "title": "Paramètres",
@@ -427,23 +427,23 @@ export const fr = {
     "singleCta": "Acheté avec votre prochain calcul",
     "singleNote": "L'achat unique se fait lorsque vous démarrez un nouveau calcul — pas ici.",
     "terms": "Conditions d'utilisation",
-    "privacy": "Politique de confidentialité"
+    "privacy": "Politique de confidentialité",
   },
   "chart": {
     "productionAria": "Production mensuelle",
-    "consumptionAria": "Consommation mensuelle"
+    "consumptionAria": "Consommation mensuelle",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc – dimensionnez votre installation solaire",
       "description": "Calculez la puissance solaire recommandée, la taille de l'onduleur et la production annuelle en fonction de votre adresse, de votre consommation électrique et de votre disjoncteur principal.",
-      "ogDescription": "Calcul étape par étape avec les données de localisation de PVGIS : kWp, onduleur, production mensuelle et aspects économiques."
+      "ogDescription": "Calcul étape par étape avec les données de localisation de PVGIS : kWp, onduleur, production mensuelle et aspects économiques.",
     },
     "result": {
       "title": "Votre calcul solaire – Mr. Solar Doc",
       "description": "Consultez le kWp calculé, la taille de l'onduleur, le ratio DC/AC, la production mensuelle et la valeur économique – et téléchargez le rapport au format PDF.",
-      "ogDescription": "Dimensionnement calculé de votre installation solaire avec un rapport PDF."
-    }
+      "ogDescription": "Dimensionnement calculé de votre installation solaire avec un rapport PDF.",
+    },
   },
   "months": {
     "short": [
@@ -473,7 +473,7 @@ export const fr = {
       "Octobre",
       "Novembre",
       "Décembre"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -587,7 +587,7 @@ export const fr = {
       "orientation_west": "Ouest",
       "priceChangeNoteFlat": "Le calcul utilise des valeurs inchangées pour l'électricité solaire autoconsommée et exportée sur toute la période. Aucune hausse de prix n'est supposée, car les prix futurs de l'électricité ne peuvent être prévus. Si les prix augmentent, la valeur sera plus élevée que dans ce rapport ; s'ils baissent, elle sera plus faible.",
       "priceChangeNoteTrend": "Le calcul suppose que la valeur de l'électricité solaire autoconsommée et exportée évolue de {{priceChange}} % par an sur toute la période. Il s'agit d'une hypothèse, car les prix futurs de l'électricité ne peuvent être prévus. Une évolution différente entraîne un résultat plus élevé ou plus faible que dans ce rapport.",
-      "gridMethodNoteDynamic": "La puissance AC théorique est basée sur le raccordement choisi : {{phases}} phase(s), {{voltage}} V, calculée comme {{factor}} × {{voltage}} V × disjoncteur principal. La puissance réellement autorisée peut être limitée par le gestionnaire de réseau ou par l'installation."
+      "gridMethodNoteDynamic": "La puissance AC théorique est basée sur le raccordement choisi : {{phases}} phase(s), {{voltage}} V, calculée comme {{factor}} × {{voltage}} V × disjoncteur principal. La puissance réellement autorisée peut être limitée par le gestionnaire de réseau ou par l'installation.",
     },
     "title": "Rapport solaire",
     "technical": "Données techniques",
@@ -604,40 +604,40 @@ export const fr = {
       "user": "Votre valeur",
       "calculated": "Calculé",
       "assumed": "Hypothèse standard",
-      "external": "Source de données externe"
-    }
+      "external": "Source de données externe",
+    },
     "generated": "Généré",
     "faqTitle": "Questions fréquentes",
     "faqItems": [
       {
         "q": "Quelle est la fiabilité de la production solaire estimée ?",
-        "a": "Le calcul s'appuie sur l'ensoleillement du lieu ainsi que sur l'orientation et l'inclinaison de la toiture. La production réelle est notamment influencée par la météo, l'ombrage et les conditions techniques de l'installation."
+        "a": "Le calcul s'appuie sur l'ensoleillement du lieu ainsi que sur l'orientation et l'inclinaison de la toiture. La production réelle est notamment influencée par la météo, l'ombrage et les conditions techniques de l'installation.",
       },
       {
         "q": "Que signifie l'autoconsommation ?",
-        "a": "La part de l'électricité solaire utilisée directement dans le logement. Le reste de la production est injecté sur le réseau électrique."
+        "a": "La part de l'électricité solaire utilisée directement dans le logement. Le reste de la production est injecté sur le réseau électrique.",
       },
       {
         "q": "Pourquoi l'électricité solaire autoconsommée vaut-elle plus que l'électricité solaire vendue ?",
-        "a": "L'électricité solaire autoconsommée remplace de l'électricité qui aurait sinon été achetée sur le réseau, tandis que l'électricité solaire vendue est rémunérée selon les conditions de l'électricité injectée."
+        "a": "L'électricité solaire autoconsommée remplace de l'électricité qui aurait sinon été achetée sur le réseau, tandis que l'électricité solaire vendue est rémunérée selon les conditions de l'électricité injectée.",
       },
       {
         "q": "Que signifie le prix pour la durée de retour choisie ?",
-        "a": "Il indique approximativement combien l'installation peut coûter pour correspondre à la durée de retour que vous avez choisie, sur la base des hypothèses du calcul. Il ne s'agit pas d'un prix de marché estimé."
+        "a": "Il indique approximativement combien l'installation peut coûter pour correspondre à la durée de retour que vous avez choisie, sur la base des hypothèses du calcul. Il ne s'agit pas d'un prix de marché estimé.",
       },
       {
         "q": "Pourquoi le calcul de l'installateur peut-il différer ?",
-        "a": "Des hypothèses différentes sur la production, l'autoconsommation, les prix de l'électricité, les pertes du système et l'évolution future des prix peuvent donner des résultats différents."
+        "a": "Des hypothèses différentes sur la production, l'autoconsommation, les prix de l'électricité, les pertes du système et l'évolution future des prix peuvent donner des résultats différents.",
       },
       {
         "q": "Le calcul est-il un devis ?",
-        "a": "Non. Le résultat est une estimation et doit servir de base à la décision. Le prix, la production et le résultat économique réels peuvent différer."
+        "a": "Non. Le résultat est une estimation et doit servir de base à la décision. Le prix, la production et le résultat économique réels peuvent différer.",
       },
       {
         "q": "Pourquoi la production diminue-t-elle au fil du temps ?",
-        "a": "La puissance des panneaux solaires diminue normalement légèrement avec les années. Le calcul repose sur une dégradation annuelle de 0,5 %, ce qui signifie que la production estimée diminue progressivement au cours de la période de calcul."
-      }
-    ]
+        "a": "La puissance des panneaux solaires diminue normalement légèrement avec les années. Le calcul repose sur une dégradation annuelle de 0,5 %, ce qui signifie que la production estimée diminue progressivement au cours de la période de calcul.",
+      },
+    ],
   },
   "premium": {
     "title": "Premium",
@@ -652,14 +652,14 @@ export const fr = {
     "activated": "Premium est maintenant actif.",
     "restoredPremium": "Votre Premium a été restauré.",
     "nothingToRestore": "Aucun achat trouvé sur cet appareil.",
-    "restoreFailed": "Impossible de restaurer les achats pour le moment."
+    "restoreFailed": "Impossible de restaurer les achats pour le moment.",
   },
   "paywall": {
     "single": {
       "title": "Un calcul",
       "body": "Débloquez le résultat complet et le rapport PDF pour ce calcul.",
       "cta": "Débloquer pour {{price}}",
-      "ctaNoPrice": "Débloquer"
+      "ctaNoPrice": "Débloquer",
     },
     "premium": {
       "title": "Premium",
@@ -668,10 +668,10 @@ export const fr = {
       "includes": {
         "calculations": "Calculs illimités",
         "pdf": "Rapports PDF illimités",
-        "result": "Accès complet au résultat"
+        "result": "Accès complet au résultat",
       },
       "cta": "Obtenir Premium",
-      "renewal": "Renouvellement automatique chaque année. Annulable à tout moment."
+      "renewal": "Renouvellement automatique chaque année. Annulable à tout moment.",
     },
     "title": "Débloquez votre calcul",
     "eyebrow": "Achat unique",
@@ -680,7 +680,7 @@ export const fr = {
     "includes": {
       "result": "Votre calcul complet avec l'économie et la production",
       "pdf": "Rapport PDF à enregistrer ou partager",
-      "history": "Le calcul est enregistré dans votre historique"
+      "history": "Le calcul est enregistré dans votre historique",
     },
     "cta": "Débloquer pour {{price}}",
     "purchasing": "Ouverture de l'App Store…",
@@ -690,11 +690,11 @@ export const fr = {
     "retry": "Nous n'avons pas pu confirmer l'achat pour le moment. Rien n'est perdu — il se débloquera automatiquement dès que la connexion sera rétablie.",
     "appOnly": "L'achat se fait dans l'application avec votre compte Apple et n'est pas disponible dans le navigateur.",
     "appleNote": "Géré par l'App Store.",
-    "priceLoading": "Récupération du prix…"
+    "priceLoading": "Récupération du prix…",
   },
   "history": {
     "empty": "Vous n'avez encore aucun calcul enregistré.",
     "unknownAddress": "Calcul",
-    "error": "Impossible de charger votre historique."
-  }
+    "error": "Impossible de charger votre historique.",
+  },
 } as const;

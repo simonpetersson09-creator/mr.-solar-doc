@@ -6,7 +6,7 @@ export const lv = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Daudās minūtēs izmēriet savu saules elektrostaciju"
+    "tagline": "Daudās minūtēs izmēriet savu saules elektrostaciju",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const lv = {
     "point3Title": "Aprēķina, cik tas drīkst maksāt pēc vēlamā atmaksāšanās laika",
     "point3Body": "Jūs izvēlaties vēlamo atmaksāšanās laiku. Mr. Solar Doc aprēķina vajadzīgo ieguldījumu līmeni.",
     "point4Title": "Ziņojums un lēmumu pamats",
-    "point4Body": "Skatiet ražošanu, ekonomiku un dažādus atmaksāšanās laikus atskaitē."
+    "point4Body": "Skatiet ražošanu, ekonomiku un dažādus atmaksāšanās laikus atskaitē.",
     "cta": "Sākt aprēķinu",
   },
   "common": {
@@ -33,14 +33,14 @@ export const lv = {
     "perYear": "/gadā",
     "dontKnow": "Nezinu",
     "startOver": "Sākt no jauna",
-    "close": "Aizvērt"
+    "close": "Aizvērt",
   },
   "steps": {
     "address": "Adrese",
     "roof": "Jumts un saule",
     "consumption": "Elektroenerģijas patēriņš",
     "fuse": "Galvenais drošinātājs",
-    "stepOf": "Solis {{current}} no {{total}}"
+    "stepOf": "Solis {{current}} no {{total}}",
   },
   "address": {
     "title": "Kur atrodas īpašums?",
@@ -57,7 +57,7 @@ export const lv = {
     "region": "Reģions",
     "error": "Adreses meklēšana neizdevās.",
     "info": "Adrese tiek izmantota tikai saules starojuma aprēķināšanai jūsu atrašanās vietā.",
-    "infoLabel": "Vairāk informācijas par adresi"
+    "infoLabel": "Vairāk informācijas par adresi",
   },
   "roof": {
     "title": "Jūsu jumts",
@@ -71,7 +71,7 @@ export const lv = {
       "n": "Z",
       "e": "A",
       "s": "D",
-      "w": "R"
+      "w": "R",
     },
     "orientations": {
       "unknown": "Nezinu",
@@ -79,21 +79,21 @@ export const lv = {
       "southeast": "Dienvidaustrumi",
       "southwest": "Dienvidrietumi",
       "east": "Austrumi",
-      "west": "Rietumi"
+      "west": "Rietumi",
     },
     "fetching": "Iegūst saules ražošanas datus no PVGIS…",
     "result": "Aprēķinātā saules enerģijas ražošana objektā",
-    "unit": "kWh/kWp/gadā"
+    "unit": "kWh/kWp/gadā",
     "error": "Pašlaik nevarējām iegūt saules enerģijas ražošanas datus šai vietai. Vērtības netiek minētas.",
     "errorOverSea": "Šķiet, ka atrašanās vieta ir virs ūdens. Pārvietojiet marķieri uz ēku uz sauszemes un mēģiniet vēlreiz.",
     "errorOutsideCoverage": "Šai vietai nav saules datu. Izmēģiniet tuvumā esošu adresi.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Ievadiet savu elektroenerģijas patēriņu, lai turpinātu aprēķinu.",
       "tooLow": "Patēriņš šķiet pārāk mazs. Ievadiet vismaz {{min}} kWh gadā.",
-      "tooHigh": "Patēriņš šķiet pārāk liels. Ievadiet ne vairāk kā {{max}} kWh gadā."
+      "tooHigh": "Patēriņš šķiet pārāk liels. Ievadiet ne vairāk kā {{max}} kWh gadā.",
     },
     "shape": {
       "question": "Kā parasti sadalās jūsu elektroenerģijas patēriņš visa gada garumā?",
@@ -104,20 +104,20 @@ export const lv = {
       "defaultNote": "Mēs izmantojam normālu jūsu gada patēriņa sadalījumu. Jūs to varat mainīt vēlāk.",
       "even": {
         "title": "Vienmērīgi visa gada garumā",
-        "description": "Aptuveni vienāds elektroenerģijas patēriņš visa gada garumā."
+        "description": "Aptuveni vienāds elektroenerģijas patēriņš visa gada garumā.",
       },
       "winter-heavy": {
         "title": "Lielāks ziemā",
-        "description": "Aukstajos mēnešos jūs patērējat vairāk elektroenerģijas, piemēram, apkurei."
+        "description": "Aukstajos mēnešos jūs patērējat vairāk elektroenerģijas, piemēram, apkurei.",
       },
       "summer-heavy": {
         "title": "Lielāks vasarā",
-        "description": "Vasarā jūs patērējat vairāk elektroenerģijas, piemēram, baseinam vai dzesēšanai."
+        "description": "Vasarā jūs patērējat vairāk elektroenerģijas, piemēram, baseinam vai dzesēšanai.",
       },
       "default": {
         "title": "Es nezinu",
-        "description": "Izmantot normālu aplēsto profilu."
-      }
+        "description": "Izmantot normālu aplēsto profilu.",
+      },
     },
     "upload": {
       "title": "Ielīmēt vai pievienot dokumentu",
@@ -136,7 +136,7 @@ export const lv = {
       "remove": "Noņemt",
       "retry": "Mēģināt citu failu",
       "readingFile": "Nolasa {{name}}…",
-      "ready": "Importēts"
+      "ready": "Importēts",
     },
     "title": "Cik daudz elektroenerģijas jūs patērējat?",
     "subtitle": "Pārbaudiet savu elektrības rēķinu vai līgumu.",
@@ -148,7 +148,7 @@ export const lv = {
     "invalid": "Ievadiet gada patēriņu no 100 līdz 200 000 kWh.",
     "or": "vai",
     "manual": { "sectionTitle": "Ievadīt manuāli", "sectionHint": "Ievadiet savu gada patēriņu — pārbaudiet elektrības rēķinu vai līgumu." },
-    "monthlyHint": "Ievadiet patēriņu visiem 12 mēnešiem"
+    "monthlyHint": "Ievadiet patēriņu visiem 12 mēnešiem",
   },
   "fuse": {
     "gridAssumptionDynamic": "Aprēķina pamatā ir {{service}} {{voltage}}.",
@@ -159,23 +159,23 @@ export const lv = {
       "amperage": {
         "title": "Kāds ir jūsu ievadaizsardzības automāts?",
         "label": "Ievadaizsardzība",
-        "help": "Amperi uz fāzi, norādīti uz ievadautomāta vai rēķina."
+        "help": "Amperi uz fāzi, norādīti uz ievadautomāta vai rēķina.",
       }, "service": { "title": "Elektrības pieslēguma lielums", "label": "Elektrības pieslēguma lielums", "help": "Ampēru vērtību atradīsiet uz galvenā slēdža vai elektrības sadalnē." },
       "contracted-kva": {
         "title": "Kāda ir jūsu līgumā noteiktā jauda?",
         "label": "Līgumā noteiktā jauda",
-        "help": "Rēķinā norādīta kVA."
+        "help": "Rēķinā norādīta kVA.",
       },
       "contracted-kw": {
         "title": "Kāda ir jūsu līgumā noteiktā jauda?",
         "label": "Līgumā noteiktā jauda",
-        "help": "Rēķinā norādīta kW."
-      }
+        "help": "Rēķinā norādīta kW.",
+      },
     },
     "gridAssumption": "Aprēķins balstās uz 400 V trīsfāžu pieslēgumu.",
     "gridAssumptionInfo": "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     gridCheckHint: "Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
-    "disclaimerTitle": "Svarīgi zināt"
+    "disclaimerTitle": "Svarīgi zināt",
     "grid": {
       "advanced": "Papildu iestatījumi",
       "section": "Tīkla iestatījumi",
@@ -194,7 +194,7 @@ export const lv = {
       "serviceType": "Pieslēguma veids",
       "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Divfāžu (split-phase)",
-      "unverifiedHint": "Mums nav pārbaudītu tīkla vērtību šai valstij. Lūdzu, pārbaudiet datus savā skaitītājā vai sadales skapī."
+      "unverifiedHint": "Mums nav pārbaudītu tīkla vērtību šai valstij. Lūdzu, pārbaudiet datus savā skaitītājā vai sadales skapī.",
     },
     "title": "Kāds ir jūsu galvenais drošinātājs?",
     "subtitle": "Galvenais drošinātājs tiek izmantots, lai novērtētu, cik lielu invertoru parasti var pieslēgt. Faktisko atļauto jaudu nosaka tīkla operators.",
@@ -208,13 +208,13 @@ export const lv = {
     "noCountryOptions": "Šai valstij mums vēl nav pārbaudītu pieslēguma opciju. Ievadiet galveno drošinātāju ampēros un vajadzības gadījumā pielāgojiet tīkla iestatījumus zemāk.",
     "unverifiedCountryNotice": "Mēs neesam pārbaudījuši šīs valsts tīkla standartu. Pārbaudiet spriegumu, fāžu skaitu un pieslēguma jaudu elektrības rēķinā vai pie sava tīkla operatora un apstipriniet zemāk.",
     "confirmGrid": "Esmu pārbaudījis tīkla datus",
-    "confirmedGrid": "Tīkla dati apstiprināti"
+    "confirmedGrid": "Tīkla dati apstiprināti",
   },
   "result": {
     "calculationUnavailable": "Aprēķinu neizdevās pabeigt. Pārbaudiet jumta datus un mēģiniet vēlreiz.",
     "connection": {
       "contractedKva": "Līgumā noteiktā jauda (kVA)",
-      "contractedKw": "Līgumā noteiktā jauda (kW)"
+      "contractedKw": "Līgumā noteiktā jauda (kW)",
     },
     "gridConnection": "Tīkla pieslēgums",
     "gridConnectionValue": "{{voltage}} V, {{phases}} fāzes",
@@ -231,7 +231,7 @@ export const lv = {
       "even": "Vienmērīgi visa gada garumā",
       "winter-heavy": "Lielāks patēriņš ziemā",
       "summer-heavy": "Lielāks patēriņš vasarā",
-      "default": "Normāls aplēstais profils"
+      "default": "Normāls aplēstais profils",
     },
     "estimatedBadge": "Aplēsts",
     "estimatedConsumptionNote": "Mēneša patēriņš tiek aplēsts no jūsu gada rādītāja un izvēlētā profila.",
@@ -293,7 +293,7 @@ export const lv = {
       "profileVeryHighSolarSeason": "Jūsu elektroenerģijas patēriņš ir skaidri koncentrēts saulainajos mēnešos, tāpēc tiek ieteikta lielāka paneļu jauda attiecībā pret invertoru.",
       "gridLimit": "Sistēmu ierobežo jūsu galvenais drošinātājs – jūsu tīkla pieslēgums neatļauj lielāku jaudu.",
       "minimumSize": "Jūsu elektroenerģijas patēriņš ir zems, tāpēc mēs iesakām mazāko saprātīgo sistēmu.",
-      "maximumSize": "Ieteikums ir ierobežots līdz lielākajam izmēram, ko šī lietotne aprēķina."
+      "maximumSize": "Ieteikums ir ierobežots līdz lielākajam izmēram, ko šī lietotne aprēķina.",
     },
     "monthlyDataNote": "Mēneša vērtības neparāda, vai elektroenerģija tiek patērēta dienā vai naktī. Tās tiek izmantotas kā norāde par izmēru, nevis kā pierādījums tam, cik daudz saules enerģijas jūs varat izmantot paši.",
     "profileLabel": "Patēriņa profils",
@@ -311,7 +311,7 @@ export const lv = {
       "gridLimit": "Sistēmu ierobežo jūsu galvenais drošinātājs – jūsu tīkla pieslēgums neatļauj lielāku jaudu.",
       "inverterLimit": "Izmērs ir pielāgots lielākajam piemērotajam invertoram jūsu pieslēgumam.",
       "minimumSize": "Jūsu elektroenerģijas patēriņš ir zems, tāpēc mēs iesakām mazāko saprātīgo sistēmu.",
-      "maximumSize": "Ieteikums ir ierobežots līdz lielākajam izmēram, ko šī lietotne aprēķina."
+      "maximumSize": "Ieteikums ir ierobežots līdz lielākajam izmēram, ko šī lietotne aprēķina.",
     },
     "selfConsumption": "Pašpatērētā saules enerģija",
     "exported": "Pārdotā saules enerģija",
@@ -404,12 +404,12 @@ export const lv = {
     "gridProfileStatusGeneric": "Vispārīgs (nepārbaudīts)",
     "gridProfileStatusUnsupported": "Manuāls (nepārbaudīts)",
     "calcErrorTitle": "Aprēķinu nevar pabeigt",
-    "calcErrorBody": "Ar dažiem ievadītajiem datiem nevar rēķināt. Atgriezieties un pārbaudiet patēriņu, pieslēgumu un pieņēmumus."
+    "calcErrorBody": "Ar dažiem ievadītajiem datiem nevar rēķināt. Atgriezieties un pārbaudiet patēriņu, pieslēgumu un pieņēmumus.",
   },
   "units": {
     "kwhPerYear": "kWh/gadā",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} gadi"
+    "years": "{{count}} gadi",
   },
   "settings": {
     "title": "Iestatījumi",
@@ -422,23 +422,23 @@ export const lv = {
     "singleCta": "Nopērkams ar nākamo aprēķinu",
     "singleNote": "Vienreizējais pirkums tiek veikts, sākot jaunu aprēķinu, — nevis šeit.",
     "terms": "Lietošanas noteikumi",
-    "privacy": "Privātuma politika"
+    "privacy": "Privātuma politika",
   },
   "chart": {
     "productionAria": "Mēneša ražošana",
-    "consumptionAria": "Mēneša patēriņš"
+    "consumptionAria": "Mēneša patēriņš",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc – dimensionējiet savu saules elektrostaciju",
       "description": "Aprēķiniet ieteicamo saules paneļu jaudu, invertora izmēru un gada ražošanu, pamatojoties uz jūsu adresi, elektroenerģijas patēriņu un galveno drošinātāju.",
-      "ogDescription": "Soli pa solim aprēķins ar atrašanās vietas datiem no PVGIS: kWp, invertors, mēneša ražošana un ekonomika."
+      "ogDescription": "Soli pa solim aprēķins ar atrašanās vietas datiem no PVGIS: kWp, invertors, mēneša ražošana un ekonomika.",
     },
     "result": {
       "title": "Jūsu saules enerģijas aprēķins – Mr. Solar Doc",
       "description": "Skatiet aprēķināto kWp, invertora izmēru, DC/AC attiecību, mēneša ražošanu un ekonomisko vērtību – un lejupielādējiet atskaiti PDF formātā.",
-      "ogDescription": "Aprēķināta jūsu saules elektrostacijas dimensionēšana ar PDF atskaiti."
-    }
+      "ogDescription": "Aprēķināta jūsu saules elektrostacijas dimensionēšana ar PDF atskaiti.",
+    },
   },
   "months": {
     "short": [
@@ -468,7 +468,7 @@ export const lv = {
       "Oktobris",
       "Novembris",
       "Decembris"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -582,7 +582,7 @@ export const lv = {
       "orientation_west": "Rietumi",
       "priceChangeNoteFlat": "Aprēķinā visā periodā tiek izmantotas nemainīgas vērtības pašpatēriņam un eksportētajai saules enerģijai. Cenu pieaugums netiek pieņemts, jo nākotnes elektrības cenas nevar paredzēt. Ja cenas pieaugs, vērtība būs augstāka nekā šajā pārskatā; ja samazināsies — zemāka.",
       "priceChangeNoteTrend": "Aprēķinā tiek pieņemts, ka pašpatēriņa un eksportētās saules enerģijas vērtība mainās par {{priceChange}} % gadā visā periodā. Tas ir pieņēmums, jo nākotnes elektrības cenas nevar paredzēt. Cita attīstība nozīmē augstāku vai zemāku rezultātu nekā šajā pārskatā.",
-      "gridMethodNoteDynamic": "Teorētiskā AC jauda balstās uz izvēlēto pieslēgumu: {{phases}} fāzes, {{voltage}} V, aprēķināta kā {{factor}} × {{voltage}} V × galvenais drošinātājs. Faktiski atļauto pieslēguma vai nodošanas jaudu var ierobežot tīkla operators vai konkrētā uzstādīšana."
+      "gridMethodNoteDynamic": "Teorētiskā AC jauda balstās uz izvēlēto pieslēgumu: {{phases}} fāzes, {{voltage}} V, aprēķināta kā {{factor}} × {{voltage}} V × galvenais drošinātājs. Faktiski atļauto pieslēguma vai nodošanas jaudu var ierobežot tīkla operators vai konkrētā uzstādīšana.",
     },
     "title": "Saules enerģijas atskaite",
     "technical": "Tehniskie dati",
@@ -599,41 +599,41 @@ export const lv = {
       "user": "Jūsu vērtība",
       "calculated": "Aprēķināts",
       "assumed": "Standarta pieņēmums",
-      "external": "Ārējs datu avots"
-    }
+      "external": "Ārējs datu avots",
+    },
     "generated": "Ģenerēts",
     "faqTitle": "Biežāk uzdotie jautājumi",
     "faqItems": [
       {
         "q": "Cik drošs ir aprēķinātais saules enerģijas ražošanas apjoms?",
-        "a": "Aprēķins balstās uz saules starojumu konkrētajā vietā un jumta virzienu un slīpumu. Faktisko ražošanu ietekmē, piemēram, laikapstākļi, noēnojums un sistēmas tehniskie apstākļi."
+        "a": "Aprēķins balstās uz saules starojumu konkrētajā vietā un jumta virzienu un slīpumu. Faktisko ražošanu ietekmē, piemēram, laikapstākļi, noēnojums un sistēmas tehniskie apstākļi.",
       },
       {
         "q": "Ko nozīmē pašpatēriņš?",
-        "a": "Daļa saules elektroenerģijas, kas tiek izmantota tieši mājoklī. Pārējā saražotā enerģija tiek nodota elektrotīklā."
+        "a": "Daļa saules elektroenerģijas, kas tiek izmantota tieši mājoklī. Pārējā saražotā enerģija tiek nodota elektrotīklā.",
       },
       {
         "q": "Kāpēc pašpatēriņā izmantotā saules enerģija ir vērtīgāka par pārdoto?",
-        "a": "Pašpatēriņā izmantotā saules enerģija aizstāj elektrību, kas citādi būtu jāpērk no tīkla, savukārt pārdotā saules enerģija tiek kompensēta saskaņā ar tīklā nodotās enerģijas noteikumiem."
+        "a": "Pašpatēriņā izmantotā saules enerģija aizstāj elektrību, kas citādi būtu jāpērk no tīkla, savukārt pārdotā saules enerģija tiek kompensēta saskaņā ar tīklā nodotās enerģijas noteikumiem.",
       },
       {
         "q": "Ko nozīmē cena izvēlētajam atmaksāšanās periodam?",
-        "a": "Tas aptuveni parāda, cik sistēma var maksāt, lai atbilstu izvēlētajam atmaksāšanās periodam, pamatojoties uz aprēķina pieņēmumiem. Tā nav aptuvena tirgus cena."
+        "a": "Tas aptuveni parāda, cik sistēma var maksāt, lai atbilstu izvēlētajam atmaksāšanās periodam, pamatojoties uz aprēķina pieņēmumiem. Tā nav aptuvena tirgus cena.",
       },
       {
         "q": "Kāpēc uzstādītāja aprēķins var atšķirties?",
-        "a": "Dažādi pieņēmumi par ražošanu, pašpatēriņu, elektrības cenām, sistēmas zudumiem un nākotnes cenu izmaiņām var radīt atšķirīgus rezultātus."
+        "a": "Dažādi pieņēmumi par ražošanu, pašpatēriņu, elektrības cenām, sistēmas zudumiem un nākotnes cenu izmaiņām var radīt atšķirīgus rezultātus.",
       },
       {
         "q": "Vai aprēķins ir piedāvājums?",
-        "a": "Nē. Rezultāts ir aplēse, un tas jāizmanto kā lēmumu pieņemšanas pamats. Faktiskā cena, ražošana un ekonomiskais iznākums var atšķirties."
+        "a": "Nē. Rezultāts ir aplēse, un tas jāizmanto kā lēmumu pieņemšanas pamats. Faktiskā cena, ražošana un ekonomiskais iznākums var atšķirties.",
       },
       {
         "q": "Kāpēc ražošana laika gaitā samazinās?",
-        "a": "Saules paneļu jauda gados parasti nedaudz samazinās. Aprēķins balstās uz 0,5 % gada degradāciju, kas nozīmē, ka aprēķinātā ražošana aprēķina periodā pakāpeniski samazinās."
-      }
+        "a": "Saules paneļu jauda gados parasti nedaudz samazinās. Aprēķins balstās uz 0,5 % gada degradāciju, kas nozīmē, ka aprēķinātā ražošana aprēķina periodā pakāpeniski samazinās.",
+      },
     
-    ]
+    ],
   },
   "premium": {
     "title": "Premium",
@@ -648,14 +648,14 @@ export const lv = {
     "activated": "Premium tagad ir aktīvs.",
     "restoredPremium": "Jūsu Premium ir atjaunots.",
     "nothingToRestore": "Šajā ierīcē pirkumi netika atrasti.",
-    "restoreFailed": "Pašlaik neizdevās atjaunot pirkumus."
+    "restoreFailed": "Pašlaik neizdevās atjaunot pirkumus.",
   },
   "paywall": {
     "single": {
       "title": "Viens aprēķins",
       "body": "Atbloķējiet pilnu rezultātu un PDF pārskatu šim aprēķinam.",
       "cta": "Atbloķēt par {{price}}",
-      "ctaNoPrice": "Atbloķēt"
+      "ctaNoPrice": "Atbloķēt",
     },
     "premium": {
       "title": "Premium",
@@ -664,10 +664,10 @@ export const lv = {
       "includes": {
         "calculations": "Neierobežoti aprēķini",
         "pdf": "Neierobežoti PDF pārskati",
-        "result": "Pilna piekļuve rezultātam"
+        "result": "Pilna piekļuve rezultātam",
       },
       "cta": "Iegūt Premium",
-      "renewal": "Tiek atjaunots automātiski katru gadu. Atcelt var jebkurā laikā."
+      "renewal": "Tiek atjaunots automātiski katru gadu. Atcelt var jebkurā laikā.",
     },
     "title": "Atbloķējiet savu aprēķinu",
     "eyebrow": "Vienreizējs pirkums",
@@ -676,7 +676,7 @@ export const lv = {
     "includes": {
       "result": "Jūsu pilnais aprēķins ar ekonomiku un ražošanu",
       "pdf": "PDF pārskats saglabāšanai vai kopīgošanai",
-      "history": "Aprēķins tiek saglabāts jūsu vēsturē"
+      "history": "Aprēķins tiek saglabāts jūsu vēsturē",
     },
     "cta": "Atbloķēt par {{price}}",
     "purchasing": "Tiek atvērts App Store…",
@@ -686,11 +686,11 @@ export const lv = {
     "retry": "Pašlaik neizdevās apstiprināt pirkumu. Nekas nav pazaudēts — tas atbloķēsies automātiski, tiklīdz savienojums atjaunosies.",
     "appOnly": "Pirkums tiek veikts lietotnē ar jūsu Apple kontu un nav pieejams pārlūkā.",
     "appleNote": "To nodrošina App Store.",
-    "priceLoading": "Notiek cenas ielāde…"
+    "priceLoading": "Notiek cenas ielāde…",
   },
   "history": {
     "empty": "Jums vēl nav saglabātu aprēķinu.",
     "unknownAddress": "Aprēķins",
-    "error": "Neizdevās ielādēt jūsu vēsturi."
-  }
+    "error": "Neizdevās ielādēt jūsu vēsturi.",
+  },
 } as const;

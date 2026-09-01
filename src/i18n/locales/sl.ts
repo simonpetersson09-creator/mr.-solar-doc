@@ -6,7 +6,7 @@ export const sl = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Dimenzionirajte svojo sončno elektrarno v nekaj minutah"
+    "tagline": "Dimenzionirajte svojo sončno elektrarno v nekaj minutah",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const sl = {
     "point3Title": "Izračuna, koliko sme stalno glede na želeni čas povračila",
     "point3Body": "Izberite želeni čas povračila. Mr. Solar Doc izračuna potrebno raven naložbe.",
     "point4Title": "Poročilo in podlaga za odločitev",
-    "point4Body": "Glejte proizvodnjo, ekonomijo in različne čase povračila v poročilu."
+    "point4Body": "Glejte proizvodnjo, ekonomijo in različne čase povračila v poročilu.",
     "cta": "Začni izračun",
   },
   "common": {
@@ -33,14 +33,14 @@ export const sl = {
     "perYear": "/leto",
     "dontKnow": "Ne vem",
     "startOver": "Začni znova",
-    "close": "Zapri"
+    "close": "Zapri",
   },
   "steps": {
     "address": "Naslov",
     "roof": "Streha in sonce",
     "consumption": "Poraba električne energije",
     "fuse": "Glavna varovalka",
-    "stepOf": "Korak {{current}} od {{total}}"
+    "stepOf": "Korak {{current}} od {{total}}",
   },
   "address": {
     "title": "Kje se nahaja nepremičnina?",
@@ -57,7 +57,7 @@ export const sl = {
     "region": "Regija",
     "error": "Iskanje naslova ni uspelo.",
     "info": "Naslov se uporablja izključno za izračun sončnega sevanja na vaši lokaciji.",
-    "infoLabel": "Več informacij o naslovu"
+    "infoLabel": "Več informacij o naslovu",
   },
   "roof": {
     "title": "Vaša streha",
@@ -71,7 +71,7 @@ export const sl = {
       "n": "S",
       "e": "V",
       "s": "J",
-      "w": "Z"
+      "w": "Z",
     },
     "orientations": {
       "unknown": "Ne vem",
@@ -79,21 +79,21 @@ export const sl = {
       "southeast": "Jugovzhod",
       "southwest": "Jugozahod",
       "east": "Vzhod",
-      "west": "Zahod"
+      "west": "Zahod",
     },
     "fetching": "Pridobivanje podatkov o sončni proizvodnji iz PVGIS…",
     "result": "Ocenjena sončna proizvodnja na lokaciji",
-    "unit": "kWh/kWp/leto"
+    "unit": "kWh/kWp/leto",
     "error": "Trenutno nismo mogli pridobiti podatkov o sončni proizvodnji za to lokacijo. Vrednosti niso ugibane.",
     "errorOverSea": "Lokacija je videti nad vodo. Premaknite oznako na stavbo na kopnem in poskusite znova.",
     "errorOutsideCoverage": "Za to lokacijo nimamo sončnih podatkov. Poskusite bližnji naslov.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Vnesite svojo porabo elektrike, da lahko izračun nadaljuje.",
       "tooLow": "Poraba se zdi prenizka. Vnesite vsaj {{min}} kWh na leto.",
-      "tooHigh": "Poraba se zdi previsoka. Vnesite največ {{max}} kWh na leto."
+      "tooHigh": "Poraba se zdi previsoka. Vnesite največ {{max}} kWh na leto.",
     },
     "shape": {
       "question": "Kako je vaša poraba električne energije običajno porazdeljena skozi leto?",
@@ -104,20 +104,20 @@ export const sl = {
       "defaultNote": "Uporabljamo običajno ocenjeno porazdelitev vaše letne porabe. To lahko pozneje spremenite.",
       "even": {
         "title": "Enakomerno skozi leto",
-        "description": "Približno enaka poraba električne energije skozi vse leto."
+        "description": "Približno enaka poraba električne energije skozi vse leto.",
       },
       "winter-heavy": {
         "title": "Višja pozimi",
-        "description": "Več električne energije porabite v hladnih mesecih, na primer za ogrevanje."
+        "description": "Več električne energije porabite v hladnih mesecih, na primer za ogrevanje.",
       },
       "summer-heavy": {
         "title": "Višja poleti",
-        "description": "Več električne energije porabite poleti, na primer za bazen ali hlajenje."
+        "description": "Več električne energije porabite poleti, na primer za bazen ali hlajenje.",
       },
       "default": {
         "title": "Ne vem",
-        "description": "Uporabi običajen ocenjen profil."
-      }
+        "description": "Uporabi običajen ocenjen profil.",
+      },
     },
     "upload": {
       "title": "Prilepite ali priložite dokument",
@@ -136,7 +136,7 @@ export const sl = {
       "remove": "Odstrani",
       "retry": "Poskusi z drugo datoteko",
       "readingFile": "Branje {{name}}…",
-      "ready": "Uvoženo"
+      "ready": "Uvoženo",
     },
     "title": "Koliko električne energije porabite?",
     "subtitle": "Poglejte si svoj račun za elektriko ali pogodbo o dobavi električne energije.",
@@ -148,7 +148,7 @@ export const sl = {
     "invalid": "Vnesite letno porabo med 100 in 200.000 kWh.",
     "or": "ali",
     "manual": { "sectionTitle": "Vnesi ročno", "sectionHint": "Vnesite svojo letno porabo — preverite račun za elektriko ali pogodbo." },
-    "monthlyHint": "Vnesite porabo za vseh 12 mesecev"
+    "monthlyHint": "Vnesite porabo za vseh 12 mesecev",
   },
   "fuse": {
     "gridAssumptionDynamic": "Izračun temelji na {{service}} {{voltage}}.",
@@ -159,23 +159,23 @@ export const sl = {
       "amperage": {
         "title": "Kakšno glavno varovalko imate?",
         "label": "Glavna varovalka",
-        "help": "Amperi na fazo, navedeni na glavnem stikalu ali računu."
+        "help": "Amperi na fazo, navedeni na glavnem stikalu ali računu.",
       }, "service": { "title": "Velikost električnega priključka", "label": "Velikost električnega priključka", "help": "Vrednost v amperih najdete na glavnem odklopniku ali v razdelilni omarici." },
       "contracted-kva": {
         "title": "Kakšno dogovorjeno moč imate?",
         "label": "Dogovorjena moč",
-        "help": "Na računu je navedena v kVA."
+        "help": "Na računu je navedena v kVA.",
       },
       "contracted-kw": {
         "title": "Kakšno dogovorjeno moč imate?",
         "label": "Dogovorjena moč",
-        "help": "Na računu je navedena v kW."
-      }
+        "help": "Na računu je navedena v kW.",
+      },
     },
     "gridAssumption": "Izračun predpostavlja trifazni priključek 400 V.",
     "gridAssumptionInfo": "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
     gridCheckHint: "Če niste prepričani, preverite svoj dejanski omrežni priključek.",
-    "disclaimerTitle": "Pomembno je vedeti"
+    "disclaimerTitle": "Pomembno je vedeti",
     "grid": {
       "advanced": "Napredne nastavitve",
       "section": "Nastavitve omrežja",
@@ -194,7 +194,7 @@ export const sl = {
       "serviceType": "Vrsta priključka",
       "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Dvofazni (split-phase)",
-      "unverifiedHint": "Za to državo nimamo preverjenih omrežnih vrednosti. Preverite podatke na števcu ali v elektroomarici."
+      "unverifiedHint": "Za to državo nimamo preverjenih omrežnih vrednosti. Preverite podatke na števcu ali v elektroomarici.",
     },
     "title": "Kakšno glavno varovalko imate?",
     "subtitle": "Glavna varovalka se uporablja za oceno, kako velik razsmernik je običajno mogoče priključiti. Dejansko dovoljeno moč določi operater omrežja.",
@@ -208,13 +208,13 @@ export const sl = {
     "noCountryOptions": "Za to državo še nimamo preverjenih možnosti priključka. Vnesite glavno varovalko v amperih in po potrebi spodaj prilagodite nastavitve omrežja.",
     "unverifiedCountryNotice": "Omrežnega standarda te države nismo preverili. Preverite napetost, število faz in velikost priključka na računu za elektriko ali pri distributerju, nato potrdite spodaj.",
     "confirmGrid": "Preveril(a) sem omrežne podatke",
-    "confirmedGrid": "Omrežni podatki potrjeni"
+    "confirmedGrid": "Omrežni podatki potrjeni",
   },
   "result": {
     "calculationUnavailable": "Izračuna ni bilo mogoče dokončati. Preverite podatke o strehi in poskusite znova.",
     "connection": {
       "contractedKva": "Dogovorjena moč (kVA)",
-      "contractedKw": "Dogovorjena moč (kW)"
+      "contractedKw": "Dogovorjena moč (kW)",
     },
     "gridConnection": "Omrežni priključek",
     "gridConnectionValue": "{{voltage}} V, {{phases}}-fazni",
@@ -231,7 +231,7 @@ export const sl = {
       "even": "Enakomerno skozi leto",
       "winter-heavy": "Višja zimska poraba",
       "summer-heavy": "Višja letna poraba",
-      "default": "Običajen ocenjen profil"
+      "default": "Običajen ocenjen profil",
     },
     "estimatedBadge": "Ocenjeno",
     "estimatedConsumptionNote": "Mesečna poraba je ocenjena na podlagi vaše letne vrednosti in izbranega profila.",
@@ -293,7 +293,7 @@ export const sl = {
       "profileVeryHighSolarSeason": "Vaša poraba električne energije je jasno koncentrirana v sončnih mesecih. Zato je predlagana večja moč panelov glede na razsmernik.",
       "gridLimit": "Elektrarno omejuje vaša glavna varovalka – vaša omrežna povezava ne dovoljuje večje moči.",
       "minimumSize": "Vaša poraba električne energije je nizka, zato predlagamo najmanjšo smiselno elektrarno.",
-      "maximumSize": "Predlog je omejen na največjo velikost, ki jo aplikacija dimenzionira."
+      "maximumSize": "Predlog je omejen na največjo velikost, ki jo aplikacija dimenzionira.",
     },
     "monthlyDataNote": "Mesečne vrednosti ne kažejo, ali se električna energija porablja podnevi ali ponoči. Zato se uporabljajo kot smernica za dimenzioniranje, ne kot dokaz, koliko sončne energije lahko porabite sami.",
     "profileLabel": "Profil porabe",
@@ -311,7 +311,7 @@ export const sl = {
       "gridLimit": "Elektrarno omejuje vaša glavna varovalka – vaša omrežna povezava ne dovoljuje večje moči.",
       "inverterLimit": "Velikost je prilagojena največjemu primernemu razsmerniku za vašo povezavo.",
       "minimumSize": "Vaša poraba električne energije je nizka, zato predlagamo najmanjšo smiselno elektrarno.",
-      "maximumSize": "Predlog je omejen na največjo velikost, ki jo aplikacija dimenzionira."
+      "maximumSize": "Predlog je omejen na največjo velikost, ki jo aplikacija dimenzionira.",
     },
     "selfConsumption": "Lastna poraba sončne energije",
     "exported": "Oddana sončna energija",
@@ -404,12 +404,12 @@ export const sl = {
     "gridProfileStatusGeneric": "Splošno (nepreverjeno)",
     "gridProfileStatusUnsupported": "Ročno (nepreverjeno)",
     "calcErrorTitle": "Izračuna ni mogoče dokončati",
-    "calcErrorBody": "Z nekaterimi vnosi ni mogoče računati. Vrnite se nazaj in preverite porabo, priključek in predpostavke."
+    "calcErrorBody": "Z nekaterimi vnosi ni mogoče računati. Vrnite se nazaj in preverite porabo, priključek in predpostavke.",
   },
   "units": {
     "kwhPerYear": "kWh/leto",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} let"
+    "years": "{{count}} let",
   },
   "settings": {
     "title": "Nastavitve",
@@ -422,23 +422,23 @@ export const sl = {
     "singleCta": "Kupljeno ob naslednjem izračunu",
     "singleNote": "Enkraten nakup se izvede, ko začnete nov izračun — ne od tukaj.",
     "terms": "Pogoji uporabe",
-    "privacy": "Politika zasebnosti"
+    "privacy": "Politika zasebnosti",
   },
   "chart": {
     "productionAria": "Mesečna proizvodnja",
-    "consumptionAria": "Mesečna poraba"
+    "consumptionAria": "Mesečna poraba",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc – dimenzionirajte vaš sončni sistem",
       "description": "Izračunajte priporočeno sončno zmogljivost, velikost razsmernika in letno proizvodnjo na podlagi vašega naslova, porabe električne energije in glavne varovalke.",
-      "ogDescription": "Korak za korakom izračun z lokacijskimi podatki iz PVGIS: kWp, razsmernik, mesečna proizvodnja in ekonomika."
+      "ogDescription": "Korak za korakom izračun z lokacijskimi podatki iz PVGIS: kWp, razsmernik, mesečna proizvodnja in ekonomika.",
     },
     "result": {
       "title": "Vaš sončni izračun – Mr. Solar Doc",
       "description": "Oglejte si izračunani kWp, velikost razsmernika, razmerje DC/AC, mesečno proizvodnjo in ekonomsko vrednost – ter prenesite poročilo kot PDF.",
-      "ogDescription": "Izračunana dimenzioniranje vašega sončnega sistema s poročilom PDF."
-    }
+      "ogDescription": "Izračunana dimenzioniranje vašega sončnega sistema s poročilom PDF.",
+    },
   },
   "months": {
     "short": [
@@ -468,7 +468,7 @@ export const sl = {
       "Oktober",
       "November",
       "December"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -582,7 +582,7 @@ export const sl = {
       "orientation_west": "Zahod",
       "priceChangeNoteFlat": "Izračun uporablja nespremenjene vrednosti za lastno porabljeno in izvoženo sončno energijo skozi celotno obdobje. Ni predvidenega dviga cen, ker prihodnjih cen elektrike ni mogoče napovedati. Če cene narastejo, bo vrednost višja kot v tem poročilu; če padejo, bo nižja.",
       "priceChangeNoteTrend": "Izračun predpostavlja, da se vrednost lastno porabljene in izvožene sončne energije spreminja za {{priceChange}} % na leto skozi celotno obdobje. To je predpostavka, ker prihodnjih cen elektrike ni mogoče napovedati. Drugačen razvoj pomeni višji ali nižji rezultat kot v tem poročilu.",
-      "gridMethodNoteDynamic": "Teoretična moč AC temelji na izbranem priključku: {{phases}}-fazni, {{voltage}} V, izračunano kot {{factor}} × {{voltage}} V × glavna varovalka. Dejansko dovoljeno priključno moč ali moč oddaje lahko omeji distributer ali konkretna namestitev."
+      "gridMethodNoteDynamic": "Teoretična moč AC temelji na izbranem priključku: {{phases}}-fazni, {{voltage}} V, izračunano kot {{factor}} × {{voltage}} V × glavna varovalka. Dejansko dovoljeno priključno moč ali moč oddaje lahko omeji distributer ali konkretna namestitev.",
     },
     "title": "Poročilo o sončni elektrarni",
     "technical": "Tehnični podatki",
@@ -599,41 +599,41 @@ export const sl = {
       "user": "Vaša vrednost",
       "calculated": "Izračunano",
       "assumed": "Standardna predpostavka",
-      "external": "Zunanji vir podatkov"
-    }
+      "external": "Zunanji vir podatkov",
+    },
     "generated": "Ustvarjeno",
     "faqTitle": "Pogosta vprašanja",
     "faqItems": [
       {
         "q": "Kako zanesljiva je izračunana sončna proizvodnja?",
-        "a": "Izračun temelji na sončnem obsevanju lokacije ter usmerjenosti in naklonu strehe. Na dejansko proizvodnjo med drugim vplivajo vreme, senčenje in tehnične značilnosti naprave."
+        "a": "Izračun temelji na sončnem obsevanju lokacije ter usmerjenosti in naklonu strehe. Na dejansko proizvodnjo med drugim vplivajo vreme, senčenje in tehnične značilnosti naprave.",
       },
       {
         "q": "Kaj pomeni lastna poraba?",
-        "a": "Delež sončne energije, ki se porabi neposredno v domu. Preostala proizvodnja se oddaja v električno omrežje."
+        "a": "Delež sončne energije, ki se porabi neposredno v domu. Preostala proizvodnja se oddaja v električno omrežje.",
       },
       {
         "q": "Zakaj je lastno porabljena sončna energija vrednejša od prodane?",
-        "a": "Lastno porabljena sončna energija nadomešča elektriko, ki bi jo sicer kupili iz omrežja, medtem ko se prodana sončna energija nadomesti v skladu s pogoji za oddajo v omrežje."
+        "a": "Lastno porabljena sončna energija nadomešča elektriko, ki bi jo sicer kupili iz omrežja, medtem ko se prodana sončna energija nadomesti v skladu s pogoji za oddajo v omrežje.",
       },
       {
         "q": "Kaj pomeni cena za izbrano dobo vračila?",
-        "a": "Približno prikazuje, koliko lahko stane naprava, da ustreza izbrani dobi vračila na podlagi predpostavk izračuna. To ni ocenjena tržna cena."
+        "a": "Približno prikazuje, koliko lahko stane naprava, da ustreza izbrani dobi vračila na podlagi predpostavk izračuna. To ni ocenjena tržna cena.",
       },
       {
         "q": "Zakaj se izračun monterja lahko razlikuje?",
-        "a": "Različne predpostavke o proizvodnji, lastni porabi, cenah elektrike, izgubah sistema in prihodnjem gibanju cen lahko dajo različne rezultate."
+        "a": "Različne predpostavke o proizvodnji, lastni porabi, cenah elektrike, izgubah sistema in prihodnjem gibanju cen lahko dajo različne rezultate.",
       },
       {
         "q": "Ali je izračun ponudba?",
-        "a": "Ne. Rezultat je ocena in naj se uporabi kot podlaga za odločanje. Dejanska cena, proizvodnja in ekonomski izid se lahko razlikujejo."
+        "a": "Ne. Rezultat je ocena in naj se uporabi kot podlaga za odločanje. Dejanska cena, proizvodnja in ekonomski izid se lahko razlikujejo.",
       },
       {
         "q": "Zakaj se proizvodnja sčasoma zmanjšuje?",
-        "a": "Učinkovitost sončnih panelov se z leti običajno nekoliko zmanjša. Izračun temelji na letni degradaciji 0,5 %, kar pomeni, da se izračunana proizvodnja v obdobju izračuna postopoma zmanjšuje."
-      }
+        "a": "Učinkovitost sončnih panelov se z leti običajno nekoliko zmanjša. Izračun temelji na letni degradaciji 0,5 %, kar pomeni, da se izračunana proizvodnja v obdobju izračuna postopoma zmanjšuje.",
+      },
     
-    ]
+    ],
   },
   "premium": {
     "title": "Premium",
@@ -648,14 +648,14 @@ export const sl = {
     "activated": "Premium je zdaj aktiven.",
     "restoredPremium": "Vaš Premium je bil obnovljen.",
     "nothingToRestore": "Na tej napravi nismo našli nobenih nakupov.",
-    "restoreFailed": "Trenutno ni bilo mogoče obnoviti nakupov."
+    "restoreFailed": "Trenutno ni bilo mogoče obnoviti nakupov.",
   },
   "paywall": {
     "single": {
       "title": "En izračun",
       "body": "Odklenite celoten rezultat in PDF poročilo za ta izračun.",
       "cta": "Odkleni za {{price}}",
-      "ctaNoPrice": "Odkleni"
+      "ctaNoPrice": "Odkleni",
     },
     "premium": {
       "title": "Premium",
@@ -664,10 +664,10 @@ export const sl = {
       "includes": {
         "calculations": "Neomejeni izračuni",
         "pdf": "Neomejena PDF poročila",
-        "result": "Poln dostop do rezultata"
+        "result": "Poln dostop do rezultata",
       },
       "cta": "Nadgradi na Premium",
-      "renewal": "Samodejno se obnovi vsako leto. Kadar koli lahko prekličete."
+      "renewal": "Samodejno se obnovi vsako leto. Kadar koli lahko prekličete.",
     },
     "title": "Odklenite svoj izračun",
     "eyebrow": "Enkraten nakup",
@@ -676,7 +676,7 @@ export const sl = {
     "includes": {
       "result": "Vaš celoten izračun z ekonomiko in proizvodnjo",
       "pdf": "PDF poročilo za shranjevanje ali deljenje",
-      "history": "Izračun je shranjen v vaši zgodovini"
+      "history": "Izračun je shranjen v vaši zgodovini",
     },
     "cta": "Odkleni za {{price}}",
     "purchasing": "Odpiranje App Store…",
@@ -686,11 +686,11 @@ export const sl = {
     "retry": "Trenutno nismo mogli potrditi nakupa. Nič ni izgubljeno — samodejno se bo odklenil, ko bo povezava spet delovala.",
     "appOnly": "Nakup se izvede v aplikaciji z vašim Apple računom in ni na voljo v brskalniku.",
     "appleNote": "Obravnava App Store.",
-    "priceLoading": "Pridobivanje cene…"
+    "priceLoading": "Pridobivanje cene…",
   },
   "history": {
     "empty": "Nimate še shranjenih izračunov.",
     "unknownAddress": "Izračun",
-    "error": "Vaše zgodovine ni bilo mogoče naložiti."
-  }
+    "error": "Vaše zgodovine ni bilo mogoče naložiti.",
+  },
 } as const;

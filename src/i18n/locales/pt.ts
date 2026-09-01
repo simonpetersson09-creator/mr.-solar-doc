@@ -18,7 +18,7 @@ export const pt = {
     point3Title: "Calcula quanto pode custar conforme o período de retorno pretendido",
     point3Body: "Escolhe o período de retorno pretendido. Mr. Solar Doc calcula o nível de investimento necessário.",
     point4Title: "Relatório e base de decisão",
-    point4Body: "Veja produção, economia e diferentes períodos de retorno num relatório."
+    point4Body: "Veja produção, economia e diferentes períodos de retorno num relatório.",
     cta: "Iniciar o cálculo",
   },
   common: {
@@ -57,7 +57,7 @@ export const pt = {
     region: "Região",
     error: "A pesquisa de morada falhou.",
     info: "A morada é utilizada apenas para calcular a irradiação solar na sua localização.",
-    infoLabel: "Mais informação sobre a morada"
+    infoLabel: "Mais informação sobre a morada",
   },
   premium: {
     title: "Premium",
@@ -98,7 +98,7 @@ export const pt = {
     },
     fetching: "A obter dados solares do PVGIS…",
     result: "Produção solar estimada nesta localização",
-    unit: "kWh/kWp/ano"
+    unit: "kWh/kWp/ano",
     error: "Não foi possível obter dados solares para esta localização. Nenhum valor é estimado.",
     errorOverSea:
       "Esta localização parece estar sobre água. Mova o marcador para o edifício em terra e tente novamente.",
@@ -195,7 +195,7 @@ export const pt = {
     gridAssumption: "O cálculo assume uma ligação trifásica de 400 V.",
     gridAssumptionInfo: "A potência teórica do disjuntor geral é calculada a partir de uma ligação trifásica de 400 V. Verifique a sua ligação real à rede em caso de dúvida.",
     gridCheckHint: "Verifique a sua ligação real à rede em caso de dúvida.",
-    disclaimerTitle: "Importante saber"
+    disclaimerTitle: "Importante saber",
     grid: {
       advanced: "Definições avançadas",
       section: "Definições de rede",
@@ -694,7 +694,7 @@ export const pt = {
       calculated: "Calculado pela app",
       assumed: "Pressuposto (valor predefinido)",
       external: "Fonte de dados externa",
-    }
+    },
     generated: "Gerado",
     faqTitle: 'Perguntas frequentes',
     faqItems: [

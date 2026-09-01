@@ -18,7 +18,7 @@ export const en = {
     point3Title: "Works out what it can cost based on your desired payback period",
     point3Body: "You choose your desired payback period. Mr. Solar Doc calculates the investment level needed to reach it.",
     point4Title: "Report and decision basis",
-    point4Body: "See production, economics and different payback periods gathered in a report."
+    point4Body: "See production, economics and different payback periods gathered in a report.",
     cta: "Start the calculation",
   },
   common: {
@@ -57,7 +57,7 @@ export const en = {
     region: "Region",
 error: "Address search failed.",
     info: "The address is used only to calculate the solar irradiation at your location.",
-    infoLabel: "More information about the address"
+    infoLabel: "More information about the address",
   },
   premium: {
     title: "Premium",
@@ -98,7 +98,7 @@ error: "Address search failed.",
     },
     fetching: "Fetching solar data from PVGIS…",
     result: "Estimated solar yield at this location",
-    unit: "kWh/kWp/yr"
+    unit: "kWh/kWp/yr",
     error: "We couldn't fetch solar data for this location. No values are guessed.",
     errorOverSea:
       "This location appears to be over water. Move the marker onto the building on land and try again.",
@@ -203,7 +203,7 @@ error: "Address search failed.",
     gridAssumption: "The calculation assumes a 400 V three-phase connection.",
 gridAssumptionInfo: "The theoretical power of the main fuse is calculated from a 400 V three-phase connection. Check your actual grid connection if you are unsure.",
 gridCheckHint: "Check your actual grid connection if you are unsure.",
-    disclaimerTitle: "Important to know"
+    disclaimerTitle: "Important to know",
     grid: {
       advanced: "Advanced settings",
       section: "Grid settings",
@@ -707,7 +707,7 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
       calculated: "Calculated",
       assumed: "Standard assumption",
       external: "External data source",
-    }
+    },
     generated: "Generated",
     faqTitle: 'Frequently asked questions',
     faqItems: [

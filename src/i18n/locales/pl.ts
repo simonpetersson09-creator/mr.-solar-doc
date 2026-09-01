@@ -6,7 +6,7 @@ export const pl = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Wymiaruj swoją instalację fotowoltaiczną w kilka minut"
+    "tagline": "Wymiaruj swoją instalację fotowoltaiczną w kilka minut",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const pl = {
     "point3Title": "Oblicza, ile może kosztować według pożądanego okresu zwrotu",
     "point3Body": "Wybierasz pożądany okres zwrotu. Mr. Solar Doc oblicza wymagany poziom inwestycji.",
     "point4Title": "Raport i podstawa decyzji",
-    "point4Body": "Zobacz produkcję, ekonomię i różne okresy zwrotu w raporcie."
+    "point4Body": "Zobacz produkcję, ekonomię i różne okresy zwrotu w raporcie.",
     "cta": "Zacznij obliczenia",
   },
   "common": {
@@ -33,14 +33,14 @@ export const pl = {
     "perYear": "/rok",
     "dontKnow": "Nie wiem",
     "startOver": "Zacznij od nowa",
-    "close": "Zamknij"
+    "close": "Zamknij",
   },
   "steps": {
     "address": "Adres",
     "roof": "Dach i słońce",
     "consumption": "Zużycie energii elektrycznej",
     "fuse": "Zabezpieczenie główne",
-    "stepOf": "Krok {{current}} z {{total}}"
+    "stepOf": "Krok {{current}} z {{total}}",
   },
   "address": {
     "title": "Gdzie znajduje się nieruchomość?",
@@ -57,7 +57,7 @@ export const pl = {
     "region": "Region",
     "error": "Wyszukiwanie adresu nie powiodło się.",
     "info": "Adres jest używany wyłącznie do obliczenia nasłonecznienia w Twojej lokalizacji.",
-    "infoLabel": "Więcej informacji o adresie"
+    "infoLabel": "Więcej informacji o adresie",
   },
   "roof": {
     "title": "Twój dach",
@@ -71,7 +71,7 @@ export const pl = {
       "n": "N",
       "e": "E",
       "s": "S",
-      "w": "W"
+      "w": "W",
     },
     "orientations": {
       "unknown": "Nie wiem",
@@ -79,21 +79,21 @@ export const pl = {
       "southeast": "Południowy wschód",
       "southwest": "Południowy zachód",
       "east": "Wschód",
-      "west": "Zachód"
+      "west": "Zachód",
     },
     "fetching": "Pobieranie danych o produkcji energii słonecznej z PVGIS…",
     "result": "Szacowana produkcja energii słonecznej w tej lokalizacji",
-    "unit": "kWh/kWp/rok"
+    "unit": "kWh/kWp/rok",
     "error": "Nie udało nam się teraz pobrać danych o produkcji energii słonecznej dla tej lokalizacji. Nie zgadujemy żadnych wartości.",
     "errorOverSea": "Lokalizacja wydaje się znajdować na wodzie. Przesuń znacznik na budynek na lądzie i spróbuj ponownie.",
     "errorOutsideCoverage": "Nie mamy danych słonecznych dla tej lokalizacji. Spróbuj pobliskiego adresu.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Podaj swoje zużycie energii, aby kontynuować obliczenia.",
       "tooLow": "Zużycie wydaje się zbyt niskie. Podaj co najmniej {{min}} kWh rocznie.",
-      "tooHigh": "Zużycie wydaje się zbyt wysokie. Podaj najwyżej {{max}} kWh rocznie."
+      "tooHigh": "Zużycie wydaje się zbyt wysokie. Podaj najwyżej {{max}} kWh rocznie.",
     },
     "shape": {
       "question": "Jak zazwyczaj rozkłada się Twoje zużycie energii elektrycznej w ciągu roku?",
@@ -104,20 +104,20 @@ export const pl = {
       "defaultNote": "Używamy normalnego, szacowanego rozkładu Twojego rocznego zużycia. Możesz to zmienić później.",
       "even": {
         "title": "Równomierne w ciągu roku",
-        "description": "Mniej więcej takie samo zużycie energii elektrycznej przez cały rok."
+        "description": "Mniej więcej takie samo zużycie energii elektrycznej przez cały rok.",
       },
       "winter-heavy": {
         "title": "Wyższe zimą",
-        "description": "Zużywasz więcej energii elektrycznej w zimnych miesiącach, np. do ogrzewania."
+        "description": "Zużywasz więcej energii elektrycznej w zimnych miesiącach, np. do ogrzewania.",
       },
       "summer-heavy": {
         "title": "Wyższe latem",
-        "description": "Zużywasz więcej energii elektrycznej latem, np. do basenu lub chłodzenia."
+        "description": "Zużywasz więcej energii elektrycznej latem, np. do basenu lub chłodzenia.",
       },
       "default": {
         "title": "Nie wiem",
-        "description": "Użyj normalnego, szacowanego profilu."
-      }
+        "description": "Użyj normalnego, szacowanego profilu.",
+      },
     },
     "upload": {
       "title": "Wklej lub załącz dokument",
@@ -136,7 +136,7 @@ export const pl = {
       "remove": "Usuń",
       "retry": "Spróbuj inny plik",
       "readingFile": "Odczytywanie {{name}}…",
-      "ready": "Zaimportowano"
+      "ready": "Zaimportowano",
     },
     "title": "Ile energii elektrycznej zużywasz?",
     "subtitle": "Sprawdź swoją fakturę za prąd lub umowę.",
@@ -148,7 +148,7 @@ export const pl = {
     "invalid": "Podaj roczne zużycie od 100 do 200 000 kWh.",
     "or": "lub",
     "manual": { "sectionTitle": "Wprowadź ręcznie", "sectionHint": "Wprowadź swoje roczne zużycie — sprawdź rachunek za prąd lub umowę." },
-    "monthlyHint": "Wprowadź zużycie dla wszystkich 12 miesięcy"
+    "monthlyHint": "Wprowadź zużycie dla wszystkich 12 miesięcy",
   },
   "fuse": {
     "gridAssumptionDynamic": "Obliczenia opierają się na {{service}} {{voltage}}.",
@@ -159,23 +159,23 @@ export const pl = {
       "amperage": {
         "title": "Jaki masz bezpiecznik główny?",
         "label": "Bezpiecznik główny",
-        "help": "Ampery na fazę, podane na wyłączniku głównym lub rachunku."
+        "help": "Ampery na fazę, podane na wyłączniku głównym lub rachunku.",
       }, "service": { "title": "Wielkość przyłącza elektrycznego", "label": "Wielkość przyłącza elektrycznego", "help": "Znajdź wartość w amperach na wyłączniku głównym lub w rozdzielnicy." },
       "contracted-kva": {
         "title": "Jaka jest Twoja moc umowna?",
         "label": "Moc umowna",
-        "help": "Podawana na rachunku w kVA."
+        "help": "Podawana na rachunku w kVA.",
       },
       "contracted-kw": {
         "title": "Jaka jest Twoja moc umowna?",
         "label": "Moc umowna",
-        "help": "Podawana na rachunku w kW."
-      }
+        "help": "Podawana na rachunku w kW.",
+      },
     },
     "gridAssumption": "Obliczenia zakładają przyłącze trójfazowe 400 V.",
     "gridAssumptionInfo": "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
     gridCheckHint: "W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
-    "disclaimerTitle": "Ważne informacje"
+    "disclaimerTitle": "Ważne informacje",
     "grid": {
       "advanced": "Ustawienia zaawansowane",
       "section": "Ustawienia sieci",
@@ -194,7 +194,7 @@ export const pl = {
       "serviceType": "Rodzaj przyłącza",
       "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Dwufazowe (split-phase)",
-      "unverifiedHint": "Nie mamy zweryfikowanych danych sieciowych dla tego kraju. Sprawdź swoje dane na liczniku lub w rozdzielnicy."
+      "unverifiedHint": "Nie mamy zweryfikowanych danych sieciowych dla tego kraju. Sprawdź swoje dane na liczniku lub w rozdzielnicy.",
     },
     "title": "Jakie masz zabezpieczenie główne?",
     "subtitle": "Zabezpieczenie główne służy do oszacowania, jak duży inwerter może być normalnie przyłączony. Rzeczywista dozwolona moc jest określana przez operatora sieci.",
@@ -208,13 +208,13 @@ export const pl = {
     "noCountryOptions": "Nie mamy jeszcze zweryfikowanych opcji przyłącza dla tego kraju. Podaj bezpiecznik główny w amperach i w razie potrzeby dostosuj ustawienia sieci poniżej.",
     "unverifiedCountryNotice": "Nie zweryfikowaliśmy standardu sieci w tym kraju. Sprawdź napięcie, liczbę faz i moc przyłącza na rachunku za prąd lub u operatora sieci, a następnie potwierdź poniżej.",
     "confirmGrid": "Sprawdziłem(-am) dane sieciowe",
-    "confirmedGrid": "Dane sieciowe potwierdzone"
+    "confirmedGrid": "Dane sieciowe potwierdzone",
   },
   "result": {
     "calculationUnavailable": "Nie udało się ukończyć obliczeń. Sprawdź dane dachu i spróbuj ponownie.",
     "connection": {
       "contractedKva": "Moc umowna (kVA)",
-      "contractedKw": "Moc umowna (kW)"
+      "contractedKw": "Moc umowna (kW)",
     },
     "gridConnection": "Przyłącze sieciowe",
     "gridConnectionValue": "{{voltage}} V, {{phases}} fazy",
@@ -231,7 +231,7 @@ export const pl = {
       "even": "Równomierne w ciągu roku",
       "winter-heavy": "Wyższe zużycie zimą",
       "summer-heavy": "Wyższe zużycie latem",
-      "default": "Normalny szacowany profil"
+      "default": "Normalny szacowany profil",
     },
     "estimatedBadge": "Szacowany",
     "estimatedConsumptionNote": "Miesięczne zużycie jest szacowane na podstawie Twojej rocznej wartości i wybranego profilu.",
@@ -293,7 +293,7 @@ export const pl = {
       "profileVeryHighSolarSeason": "Twoje zużycie energii elektrycznej jest wyraźnie skoncentrowane na słoneczne miesiące. Dlatego sugeruje się wyższą moc paneli w stosunku do inwertera.",
       "gridLimit": "Instalacja jest ograniczona przez Twoje zabezpieczenie główne — przyłącze sieciowe nie zezwala na większą moc.",
       "minimumSize": "Twoje zużycie energii elektrycznej jest niskie, dlatego proponujemy najmniejszą rozsądną instalację.",
-      "maximumSize": "Propozycja jest ograniczona do największego rozmiaru, jaki aplikacja wymiaruje."
+      "maximumSize": "Propozycja jest ograniczona do największego rozmiaru, jaki aplikacja wymiaruje.",
     },
     "monthlyDataNote": "Miesięczne wartości nie pokazują, czy energia elektryczna jest zużywana w dzień czy w nocy. Służą one jako sygnał do wymiarowania, a nie jako dowód, ile energii słonecznej możesz wykorzystać samodzielnie.",
     "profileLabel": "Profil zużycia",
@@ -311,7 +311,7 @@ export const pl = {
       "gridLimit": "Instalacja jest ograniczona przez Twoje zabezpieczenie główne — przyłącze sieciowe nie zezwala na większą moc.",
       "inverterLimit": "Rozmiar jest dopasowany do największego odpowiedniego inwertera dla Twojego przyłącza.",
       "minimumSize": "Twoje zużycie energii elektrycznej jest niskie, dlatego proponujemy najmniejszą rozsądną instalację.",
-      "maximumSize": "Propozycja jest ograniczona do największego rozmiaru, jaki aplikacja wymiaruje."
+      "maximumSize": "Propozycja jest ograniczona do największego rozmiaru, jaki aplikacja wymiaruje.",
     },
     "selfConsumption": "Autokonsumpcja energii słonecznej",
     "exported": "Sprzedana energia słoneczna",
@@ -404,12 +404,12 @@ export const pl = {
     "gridProfileStatusGeneric": "Ogólny (niezweryfikowany)",
     "gridProfileStatusUnsupported": "Ręczny (niezweryfikowany)",
     "calcErrorTitle": "Nie można ukończyć obliczeń",
-    "calcErrorBody": "Na części danych nie da się liczyć. Wróć i sprawdź zużycie, przyłącze i założenia."
+    "calcErrorBody": "Na części danych nie da się liczyć. Wróć i sprawdź zużycie, przyłącze i założenia.",
   },
   "units": {
     "kwhPerYear": "kWh/rok",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} lat"
+    "years": "{{count}} lat",
   },
   "settings": {
     "title": "Ustawienia",
@@ -422,23 +422,23 @@ export const pl = {
     "singleCta": "Zakupione przy następnym obliczeniu",
     "singleNote": "Zakup jednorazowy jest realizowany, gdy rozpoczynasz nowe obliczenie — nie stąd.",
     "terms": "Warunki użytkowania",
-    "privacy": "Polityka prywatności"
+    "privacy": "Polityka prywatności",
   },
   "chart": {
     "productionAria": "Miesięczna produkcja",
-    "consumptionAria": "Miesięczne zużycie"
+    "consumptionAria": "Miesięczne zużycie",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc – dobierz swoją instalację fotowoltaiczną",
       "description": "Oblicz zalecaną moc fotowoltaiki, inwerter i roczną produkcję na podstawie adresu, zużycia energii elektrycznej i bezpiecznika głównego.",
-      "ogDescription": "Kalkulacja krok po kroku z danymi lokalizacyjnymi z PVGIS: kWp, inwerter, miesięczna produkcja i ekonomia."
+      "ogDescription": "Kalkulacja krok po kroku z danymi lokalizacyjnymi z PVGIS: kWp, inwerter, miesięczna produkcja i ekonomia.",
     },
     "result": {
       "title": "Twoja kalkulacja fotowoltaiczna – Mr. Solar Doc",
       "description": "Sprawdź obliczone kWp, rozmiar inwertera, współczynnik DC/AC, miesięczną produkcję i wartość ekonomiczną – i pobierz raport jako PDF.",
-      "ogDescription": "Obliczone wymiarowanie Twojej instalacji fotowoltaicznej z raportem PDF."
-    }
+      "ogDescription": "Obliczone wymiarowanie Twojej instalacji fotowoltaicznej z raportem PDF.",
+    },
   },
   "months": {
     "short": [
@@ -468,7 +468,7 @@ export const pl = {
       "Październik",
       "Listopad",
       "Grudzień"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -582,7 +582,7 @@ export const pl = {
       "orientation_west": "Zachód",
       "priceChangeNoteFlat": "Obliczenie wykorzystuje niezmienione wartości energii słonecznej zużytej na własne potrzeby i eksportowanej przez cały okres. Nie zakłada się wzrostu cen, ponieważ przyszłych cen energii nie da się przewidzieć. Jeśli ceny wzrosną, wartość będzie wyższa niż w tym raporcie; jeśli spadną, będzie niższa.",
       "priceChangeNoteTrend": "Obliczenie zakłada, że wartość energii słonecznej zużytej na własne potrzeby i eksportowanej zmienia się o {{priceChange}} % rocznie przez cały okres. To jest założenie, ponieważ przyszłych cen energii nie da się przewidzieć. Inny rozwój sytuacji oznacza wyższy lub niższy wynik niż w tym raporcie.",
-      "gridMethodNoteDynamic": "Teoretyczna moc AC opiera się na wybranym przyłączu: {{phases}}-fazowe, {{voltage}} V, obliczona jako {{factor}} × {{voltage}} V × bezpiecznik główny. Faktycznie dopuszczalna moc przyłączeniowa lub oddawana może być ograniczona przez operatora sieci lub konkretną instalację."
+      "gridMethodNoteDynamic": "Teoretyczna moc AC opiera się na wybranym przyłączu: {{phases}}-fazowe, {{voltage}} V, obliczona jako {{factor}} × {{voltage}} V × bezpiecznik główny. Faktycznie dopuszczalna moc przyłączeniowa lub oddawana może być ograniczona przez operatora sieci lub konkretną instalację.",
     },
     "title": "Raport fotowoltaiczny",
     "technical": "Dane techniczne",
@@ -599,41 +599,41 @@ export const pl = {
       "user": "Twoja wartość",
       "calculated": "Obliczone",
       "assumed": "Standardowe założenie",
-      "external": "Zewnętrzne źródło danych"
-    }
+      "external": "Zewnętrzne źródło danych",
+    },
     "generated": "Wygenerowano",
     "faqTitle": "Często zadawane pytania",
     "faqItems": [
       {
         "q": "Jak pewna jest obliczona produkcja energii słonecznej?",
-        "a": "Obliczenie opiera się na nasłonecznieniu w danej lokalizacji oraz kierunku i nachyleniu dachu. Na rzeczywistą produkcję wpływają m.in. pogoda, zacienienie i warunki techniczne instalacji."
+        "a": "Obliczenie opiera się na nasłonecznieniu w danej lokalizacji oraz kierunku i nachyleniu dachu. Na rzeczywistą produkcję wpływają m.in. pogoda, zacienienie i warunki techniczne instalacji.",
       },
       {
         "q": "Co oznacza autokonsumpcja?",
-        "a": "Część energii słonecznej wykorzystywana bezpośrednio w domu. Pozostała produkcja jest wprowadzana do sieci elektroenergetycznej."
+        "a": "Część energii słonecznej wykorzystywana bezpośrednio w domu. Pozostała produkcja jest wprowadzana do sieci elektroenergetycznej.",
       },
       {
         "q": "Dlaczego energia zużywana na własne potrzeby jest cenniejsza niż sprzedawana?",
-        "a": "Energia zużywana na własne potrzeby zastępuje prąd, który w innym przypadku trzeba by kupić z sieci, podczas gdy sprzedawana energia jest rozliczana według warunków dla energii wprowadzanej do sieci."
+        "a": "Energia zużywana na własne potrzeby zastępuje prąd, który w innym przypadku trzeba by kupić z sieci, podczas gdy sprzedawana energia jest rozliczana według warunków dla energii wprowadzanej do sieci.",
       },
       {
         "q": "Co oznacza cena dla wybranego okresu zwrotu?",
-        "a": "Pokazuje w przybliżeniu, ile może kosztować instalacja, aby odpowiadać wybranemu przez Ciebie okresowi zwrotu, na podstawie założeń kalkulacji. Nie jest to szacunkowa cena rynkowa."
+        "a": "Pokazuje w przybliżeniu, ile może kosztować instalacja, aby odpowiadać wybranemu przez Ciebie okresowi zwrotu, na podstawie założeń kalkulacji. Nie jest to szacunkowa cena rynkowa.",
       },
       {
         "q": "Dlaczego obliczenia instalatora mogą się różnić?",
-        "a": "Różne założenia dotyczące produkcji, autokonsumpcji, cen energii, strat systemowych i przyszłego rozwoju cen mogą dawać różne wyniki."
+        "a": "Różne założenia dotyczące produkcji, autokonsumpcji, cen energii, strat systemowych i przyszłego rozwoju cen mogą dawać różne wyniki.",
       },
       {
         "q": "Czy obliczenie jest ofertą?",
-        "a": "Nie. Wynik jest szacunkiem i ma służyć jako podstawa decyzji. Rzeczywista cena, produkcja i wynik ekonomiczny mogą się różnić."
+        "a": "Nie. Wynik jest szacunkiem i ma służyć jako podstawa decyzji. Rzeczywista cena, produkcja i wynik ekonomiczny mogą się różnić.",
       },
       {
         "q": "Dlaczego produkcja zmniejsza się z czasem?",
-        "a": "Wydajność paneli słonecznych normalnie nieznacznie spada z upływem lat. Obliczenia zakładają roczną degradację na poziomie 0,5 %, co oznacza, że obliczona produkcja stopniowo maleje w okresie kalkulacji."
-      }
+        "a": "Wydajność paneli słonecznych normalnie nieznacznie spada z upływem lat. Obliczenia zakładają roczną degradację na poziomie 0,5 %, co oznacza, że obliczona produkcja stopniowo maleje w okresie kalkulacji.",
+      },
     
-    ]
+    ],
   },
   "premium": {
     "title": "Premium",
@@ -648,14 +648,14 @@ export const pl = {
     "activated": "Premium jest teraz aktywne.",
     "restoredPremium": "Twoje Premium zostało przywrócone.",
     "nothingToRestore": "Nie znaleźliśmy żadnych zakupów na tym urządzeniu.",
-    "restoreFailed": "Nie można teraz przywrócić zakupów."
+    "restoreFailed": "Nie można teraz przywrócić zakupów.",
   },
   "paywall": {
     "single": {
       "title": "Jedno obliczenie",
       "body": "Odblokuj pełny wynik i raport PDF dla tego obliczenia.",
       "cta": "Odblokuj za {{price}}",
-      "ctaNoPrice": "Odblokuj"
+      "ctaNoPrice": "Odblokuj",
     },
     "premium": {
       "title": "Premium",
@@ -664,10 +664,10 @@ export const pl = {
       "includes": {
         "calculations": "Nieograniczone obliczenia",
         "pdf": "Nieograniczone raporty PDF",
-        "result": "Pełny dostęp do wyniku"
+        "result": "Pełny dostęp do wyniku",
       },
       "cta": "Uzyskaj Premium",
-      "renewal": "Odnawia się automatycznie co roku. Możesz anulować w każdej chwili."
+      "renewal": "Odnawia się automatycznie co roku. Możesz anulować w każdej chwili.",
     },
     "title": "Odblokuj swoje obliczenie",
     "eyebrow": "Zakup jednorazowy",
@@ -676,7 +676,7 @@ export const pl = {
     "includes": {
       "result": "Pełne obliczenie z ekonomią i produkcją",
       "pdf": "Raport PDF do zapisania lub udostępnienia",
-      "history": "Obliczenie jest zapisywane w Twojej historii"
+      "history": "Obliczenie jest zapisywane w Twojej historii",
     },
     "cta": "Odblokuj za {{price}}",
     "purchasing": "Otwieranie App Store…",
@@ -686,11 +686,11 @@ export const pl = {
     "retry": "Nie mogliśmy teraz potwierdzić zakupu. Nic nie zostało utracone — odblokuje się automatycznie, gdy połączenie znów zadziała.",
     "appOnly": "Zakup jest realizowany w aplikacji za pomocą Twojego konta Apple i nie jest dostępny w przeglądarce.",
     "appleNote": "Obsługiwane przez App Store.",
-    "priceLoading": "Pobieranie ceny…"
+    "priceLoading": "Pobieranie ceny…",
   },
   "history": {
     "empty": "Nie masz jeszcze żadnych zapisanych obliczeń.",
     "unknownAddress": "Obliczenie",
-    "error": "Nie udało się wczytać Twojej historii."
-  }
+    "error": "Nie udało się wczytać Twojej historii.",
+  },
 } as const;

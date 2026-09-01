@@ -6,7 +6,7 @@ export const et = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Mõõduta oma päikesesüsteem mõne minutiga"
+    "tagline": "Mõõduta oma päikesesüsteem mõne minutiga",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const et = {
     "point3Title": "Arvutab, mida see maksma võib minna soovitud tasuvusaja põhjal",
     "point3Body": "Te valite soovitud tasuvusaja. Mr. Solar Doc arvutab vajaliku investeeringutaseme.",
     "point4Title": "Aruanne ja otsuse alus",
-    "point4Body": "Vaata tootmist, majandust ja erinevaid tasuvusaegu ühes aruandes."
+    "point4Body": "Vaata tootmist, majandust ja erinevaid tasuvusaegu ühes aruandes.",
     "cta": "Alusta arvutust",
   },
   "common": {
@@ -33,14 +33,14 @@ export const et = {
     "perYear": "/a",
     "dontKnow": "Ei tea",
     "startOver": "Alusta uuesti",
-    "close": "Sulge"
+    "close": "Sulge",
   },
   "steps": {
     "address": "Aadress",
     "roof": "Katus ja päike",
     "consumption": "Elektritarbimine",
     "fuse": "Peakaitse",
-    "stepOf": "Samm {{current}} / {{total}}"
+    "stepOf": "Samm {{current}} / {{total}}",
   },
   "address": {
     "title": "Kus kinnistu asub?",
@@ -57,7 +57,7 @@ export const et = {
     "region": "Piirkond",
     "error": "Aadressi otsing ebaõnnestus.",
     "info": "Aadressi kasutatakse ainult päikesekiirguse arvutamiseks teie asukohas.",
-    "infoLabel": "Rohkem teavet aadressi kohta"
+    "infoLabel": "Rohkem teavet aadressi kohta",
   },
   "roof": {
     "title": "Sinu katus",
@@ -71,7 +71,7 @@ export const et = {
       "n": "N",
       "e": "I",
       "s": "L",
-      "w": "M"
+      "w": "M",
     },
     "orientations": {
       "unknown": "Ei tea",
@@ -79,21 +79,21 @@ export const et = {
       "southeast": "Kagu",
       "southwest": "Edela",
       "east": "Ida",
-      "west": "Lääs"
+      "west": "Lääs",
     },
     "fetching": "Andmete toomine PVGIS-ist…",
     "result": "Hinnanguline päikeseenergia tootlikkus selles asukohas",
-    "unit": "kWh/kWp/a"
+    "unit": "kWh/kWp/a",
     "error": "Me ei saanud praegu selle asukoha päikeseenergia tootlikkuse andmeid tuua. Väärtusi ei pakuta.",
     "errorOverSea": "Asukoht paistab olevat vee kohal. Liigutage marker maismaal asuvale hoonele ja proovige uuesti.",
     "errorOutsideCoverage": "Selle asukoha kohta puuduvad päikeseandmed. Proovige lähedal asuvat aadressi.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Sisestage oma elektritarbimine, et arvutust jätkata.",
       "tooLow": "Tarbimine tundub liiga väike. Sisestage vähemalt {{min}} kWh aastas.",
-      "tooHigh": "Tarbimine tundub liiga suur. Sisestage kõige rohkem {{max}} kWh aastas."
+      "tooHigh": "Tarbimine tundub liiga suur. Sisestage kõige rohkem {{max}} kWh aastas.",
     },
     "shape": {
       "question": "Kuidas jaotub sinu elektritarbimine tavaliselt aasta lõikes?",
@@ -104,20 +104,20 @@ export const et = {
       "defaultNote": "Kasutame sinu aastatarbimise tavalist hinnangulist jaotust. Saate seda hiljem muuta.",
       "even": {
         "title": "Ühtlane aastaringselt",
-        "description": "Elektritarbimine on aastaringselt umbes sama."
+        "description": "Elektritarbimine on aastaringselt umbes sama.",
       },
       "winter-heavy": {
         "title": "Suurem talvel",
-        "description": "Kasutad külmadel kuudel rohkem elektrit, näiteks kütmiseks."
+        "description": "Kasutad külmadel kuudel rohkem elektrit, näiteks kütmiseks.",
       },
       "summer-heavy": {
         "title": "Suurem suvel",
-        "description": "Kasutad suvel rohkem elektrit, näiteks basseini või jahutuse jaoks."
+        "description": "Kasutad suvel rohkem elektrit, näiteks basseini või jahutuse jaoks.",
       },
       "default": {
         "title": "Ma ei tea",
-        "description": "Kasuta tavalist hinnangulist profiili."
-      }
+        "description": "Kasuta tavalist hinnangulist profiili.",
+      },
     },
     "upload": {
       "title": "Kleebi või lisa dokument",
@@ -136,7 +136,7 @@ export const et = {
       "remove": "Eemalda",
       "retry": "Proovi teist faili",
       "readingFile": "Loeme faili {{name}}…",
-      "ready": "Imporditud"
+      "ready": "Imporditud",
     },
     "title": "Kui palju elektrit sa kasutad?",
     "subtitle": "Vaata oma elektriarvet või elektrilepingut.",
@@ -148,7 +148,7 @@ export const et = {
     "invalid": "Sisesta aastatarbimine vahemikus 100 kuni 200 000 kWh.",
     "or": "või",
     "manual": { "sectionTitle": "Sisesta käsitsi", "sectionHint": "Sisestage oma aastane tarbimine — vaadake elektriarvet või lepingut." },
-    "monthlyHint": "Sisestage tarbimine kõigi 12 kuu kohta"
+    "monthlyHint": "Sisestage tarbimine kõigi 12 kuu kohta",
   },
   "fuse": {
     "gridAssumptionDynamic": "Arvutus lähtub {{service}} {{voltage}}.",
@@ -159,28 +159,28 @@ export const et = {
       "amperage": {
         "title": "Milline on teie peakaitse?",
         "label": "Peakaitse",
-        "help": "Amprid faasi kohta, näidatud pealülitil või arvel."
+        "help": "Amprid faasi kohta, näidatud pealülitil või arvel.",
       },
       "service": {
         "title": "Elektriliitumise suurus",
         "label": "Elektriliitumise suurus",
-        "help": "Amprite arvu leiate pealülitilt või elektrikilbilt."
+        "help": "Amprite arvu leiate pealülitilt või elektrikilbilt.",
       },
       "contracted-kva": {
         "title": "Milline on teie lepinguline võimsus?",
         "label": "Lepinguline võimsus",
-        "help": "Arvel esitatud kVA-des."
+        "help": "Arvel esitatud kVA-des.",
       },
       "contracted-kw": {
         "title": "Milline on teie lepinguline võimsus?",
         "label": "Lepinguline võimsus",
-        "help": "Arvel esitatud kW-des."
-      }
+        "help": "Arvel esitatud kW-des.",
+      },
     },
     "gridAssumption": "Arvutus eeldab 400 V kolmefaasilist liitumist.",
     "gridAssumptionInfo": "Peakaitsme teoreetiline võimsus arvutatakse 400 V kolmefaasilise liitumise alusel. Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
     gridCheckHint: "Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
-    "disclaimerTitle": "Oluline teada"
+    "disclaimerTitle": "Oluline teada",
     "grid": {
       "advanced": "Täpsemad seaded",
       "section": "Võrgu seaded",
@@ -199,7 +199,7 @@ export const et = {
       "serviceType": "Liitumise tüüp",
       "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Kahefaasiline (split-phase)",
-      "unverifiedHint": "Meil ei ole selle riigi kohta kinnitatud võrguandmeid. Kontrollige andmeid oma arvestist või kilbist."
+      "unverifiedHint": "Meil ei ole selle riigi kohta kinnitatud võrguandmeid. Kontrollige andmeid oma arvestist või kilbist.",
     },
     "title": "Milline peakaitse sul on?",
     "subtitle": "Peakaitse abil hinnatakse, kui suure inverteri saab tavaliselt ühendada. Tegeliku lubatud võimsuse määrab võrguettevõtja.",
@@ -213,13 +213,13 @@ export const et = {
     "noCountryOptions": "Meil ei ole selle riigi jaoks veel kinnitatud liitumisvalikuid. Sisestage peakaitse amprites ja kohandage vajadusel allpool võrguseadeid.",
     "unverifiedCountryNotice": "Me ei ole selle riigi võrgustandardit kinnitanud. Kontrollige pinget, faaside arvu ja liitumisvõimsust elektriarvelt või võrguettevõttelt ning kinnitage allpool.",
     "confirmGrid": "Olen võrguandmed üle kontrollinud",
-    "confirmedGrid": "Võrguandmed kinnitatud"
+    "confirmedGrid": "Võrguandmed kinnitatud",
   },
   "result": {
     "calculationUnavailable": "Arvutust ei õnnestunud lõpetada. Kontrollige katuse andmeid ja proovige uuesti.",
     "connection": {
       "contractedKva": "Lepinguline võimsus (kVA)",
-      "contractedKw": "Lepinguline võimsus (kW)"
+      "contractedKw": "Lepinguline võimsus (kW)",
     },
     "gridConnection": "Võrguühendus",
     "gridConnectionValue": "{{voltage}} V, {{phases}}-faasiline",
@@ -236,7 +236,7 @@ export const et = {
       "even": "Ühtlane aastaringselt",
       "winter-heavy": "Suurem talvine tarbimine",
       "summer-heavy": "Suurem suvine tarbimine",
-      "default": "Tavaline hinnanguline profiil"
+      "default": "Tavaline hinnanguline profiil",
     },
     "estimatedBadge": "Hinnanguline",
     "estimatedConsumptionNote": "Kuutarbimine on hinnanguline sinu aastanumbri ja valitud profiili põhjal.",
@@ -298,7 +298,7 @@ export const et = {
       "profileVeryHighSolarSeason": "Sinu elektritarbimine on selgelt koondunud päikselistele kuudele, seega on soovitatav suurem paneelivõimsus inverteri suhtes.",
       "gridLimit": "Süsteem on piiratud sinu peakaitsmega – sinu võrguühendus ei luba suuremat võimsust.",
       "minimumSize": "Sinu elektritarbimine on madal, seega pakume väikseimat mõistlikku süsteemi.",
-      "maximumSize": "Ettepanek on piiratud suurima suurusega, mille jaoks rakendus mõõtmeid arvutab."
+      "maximumSize": "Ettepanek on piiratud suurima suurusega, mille jaoks rakendus mõõtmeid arvutab.",
     },
     "monthlyDataNote": "Kuu andmed ei näita, kas elektrit kasutatakse päeval või öösel. Neid kasutatakse dimensioneerimise indikaatorina, mitte tõendina, kui palju päikeseenergiat saad ise tarbida.",
     "profileLabel": "Tarbimisprofiil",
@@ -316,7 +316,7 @@ export const et = {
       "gridLimit": "Süsteem on piiratud sinu peakaitsmega – sinu võrguühendus ei luba suuremat võimsust.",
       "inverterLimit": "Suurus on kohandatud sinu ühenduse jaoks suurimale sobivale inverterile.",
       "minimumSize": "Sinu elektritarbimine on madal, seega pakume väikseimat mõistlikku süsteemi.",
-      "maximumSize": "Ettepanek on piiratud suurima suurusega, mille jaoks rakendus mõõtmeid arvutab."
+      "maximumSize": "Ettepanek on piiratud suurima suurusega, mille jaoks rakendus mõõtmeid arvutab.",
     },
     "selfConsumption": "Ise tarbitud päikeseenergia",
     "exported": "Võrku müüdud päikeseenergia",
@@ -409,12 +409,12 @@ export const et = {
     "gridProfileStatusGeneric": "Üldine (kinnitamata)",
     "gridProfileStatusUnsupported": "Käsitsi (kinnitamata)",
     "calcErrorTitle": "Arvutust ei saa lõpule viia",
-    "calcErrorBody": "Mõne sisendiga ei saa arvutada. Minge tagasi ja kontrollige tarbimist, võrguliitumist ja eeldusi."
+    "calcErrorBody": "Mõne sisendiga ei saa arvutada. Minge tagasi ja kontrollige tarbimist, võrguliitumist ja eeldusi.",
   },
   "units": {
     "kwhPerYear": "kWh/aastas",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} aastat"
+    "years": "{{count}} aastat",
   },
   "settings": {
     "title": "Seaded",
@@ -427,23 +427,23 @@ export const et = {
     "singleCta": "Ostetud järgmise arvutuse käigus",
     "singleNote": "Ühekordne ost tehakse siis, kui alustate uut arvutust — mitte siit.",
     "terms": "Kasutustingimused",
-    "privacy": "Privaatsuspoliitika"
+    "privacy": "Privaatsuspoliitika",
   },
   "chart": {
     "productionAria": "Kuu tootmine",
-    "consumptionAria": "Kuu tarbimine"
+    "consumptionAria": "Kuu tarbimine",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc – dimensionerige oma päikesesüsteem",
       "description": "Arvutage soovituslik päikesepaneelide võimsus, inverteri suurus ja aastatoodang teie aadressi, elektritarbimise ja peakaitsme põhjal.",
-      "ogDescription": "Samm-sammult arvutus PVGIS-i andmete alusel: kWp, inverter, kuutoodang ja majanduslik tasuvus."
+      "ogDescription": "Samm-sammult arvutus PVGIS-i andmete alusel: kWp, inverter, kuutoodang ja majanduslik tasuvus.",
     },
     "result": {
       "title": "Teie päikesepaneelide kalkulatsioon – Mr. Solar Doc",
       "description": "Vaadake arvutatud kWp, inverteri suurust, DC/AC suhet, kuutoodangut ja majanduslikku väärtust – ning laadige aruanne PDF-ina alla.",
-      "ogDescription": "Teie päikesesüsteemi arvutatud dimensionering koos PDF-aruandega."
-    }
+      "ogDescription": "Teie päikesesüsteemi arvutatud dimensionering koos PDF-aruandega.",
+    },
   },
   "months": {
     "short": [
@@ -473,7 +473,7 @@ export const et = {
       "Oktoober",
       "November",
       "Detsember"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -587,7 +587,7 @@ export const et = {
       "orientation_west": "Lääs",
       "priceChangeNoteFlat": "Arvutuses kasutatakse kogu perioodi jooksul muutumatuid väärtusi omatarbitud ja eksporditud päikeseenergia kohta. Hinnatõusu ei eeldata, kuna tulevasi elektrihindu ei saa ennustada. Kui hinnad tõusevad, on väärtus selles aruandes toodust kõrgem; kui langevad, on see madalam.",
       "priceChangeNoteTrend": "Arvutus eeldab, et omatarbitud ja eksporditud päikeseenergia väärtus muutub kogu perioodi jooksul {{priceChange}} % aastas. See on eeldus, kuna tulevasi elektrihindu ei saa ennustada. Teistsugune areng tähendab selles aruandes toodust kõrgemat või madalamat tulemust.",
-      "gridMethodNoteDynamic": "Teoreetiline AC-võimsus põhineb valitud võrguliitumisel: {{phases}}-faasiline, {{voltage}} V, arvutatud kui {{factor}} × {{voltage}} V × peakaitse. Tegelikult lubatud liitumis- või tootmisvõimsust võib piirata võrguettevõte või konkreetne paigaldus."
+      "gridMethodNoteDynamic": "Teoreetiline AC-võimsus põhineb valitud võrguliitumisel: {{phases}}-faasiline, {{voltage}} V, arvutatud kui {{factor}} × {{voltage}} V × peakaitse. Tegelikult lubatud liitumis- või tootmisvõimsust võib piirata võrguettevõte või konkreetne paigaldus.",
     },
     "title": "Päikesepaneelide aruanne",
     "technical": "Tehnilised andmed",
@@ -604,41 +604,41 @@ export const et = {
       "user": "Sinu väärtus",
       "calculated": "Arvutatud",
       "assumed": "Standardeeldus",
-      "external": "Väline andmeallikas"
-    }
+      "external": "Väline andmeallikas",
+    },
     "generated": "Loodud",
     "faqTitle": "Korduma kippuvad küsimused",
     "faqItems": [
       {
         "q": "Kui usaldusväärne on arvutatud päikesetoodang?",
-        "a": "Arvutus põhineb asukoha päikesekiirgusel ning katuse suunal ja kaldenurgal. Tegelikku toodangut mõjutavad muu hulgas ilm, varjutus ja paigaldise tehnilised tingimused."
+        "a": "Arvutus põhineb asukoha päikesekiirgusel ning katuse suunal ja kaldenurgal. Tegelikku toodangut mõjutavad muu hulgas ilm, varjutus ja paigaldise tehnilised tingimused.",
       },
       {
         "q": "Mida tähendab oma tarbeks tarbimine?",
-        "a": "Osa päikeseenergiast, mida kasutatakse otse kodus. Ülejäänud toodang suunatakse elektrivõrku."
+        "a": "Osa päikeseenergiast, mida kasutatakse otse kodus. Ülejäänud toodang suunatakse elektrivõrku.",
       },
       {
         "q": "Miks on oma tarbeks tarbitud päikeseenergia väärtuslikum kui müüdud päikeseenergia?",
-        "a": "Oma tarbeks tarbitud päikeseenergia asendab elektrit, mis muidu ostetaks võrgust, samas kui müüdud päikeseenergia hüvitatakse võrku antud energia tingimuste kohaselt."
+        "a": "Oma tarbeks tarbitud päikeseenergia asendab elektrit, mis muidu ostetaks võrgust, samas kui müüdud päikeseenergia hüvitatakse võrku antud energia tingimuste kohaselt.",
       },
       {
         "q": "Mida tähendab hind valitud tasuvusaja kohta?",
-        "a": "See näitab ligikaudu, kui palju võib paigaldus maksma minna, et see vastaks teie valitud tasuvusajale arvutuse eelduste põhjal. See ei ole hinnanguline turuhind."
+        "a": "See näitab ligikaudu, kui palju võib paigaldus maksma minna, et see vastaks teie valitud tasuvusajale arvutuse eelduste põhjal. See ei ole hinnanguline turuhind.",
       },
       {
         "q": "Miks võib paigaldaja arvutus erineda?",
-        "a": "Erinevad eeldused toodangu, oma tarbeks tarbimise, elektrihindade, süsteemikadude ja tulevase hinnamuutuse kohta võivad anda erinevaid tulemusi."
+        "a": "Erinevad eeldused toodangu, oma tarbeks tarbimise, elektrihindade, süsteemikadude ja tulevase hinnamuutuse kohta võivad anda erinevaid tulemusi.",
       },
       {
         "q": "Kas arvutus on pakkumine?",
-        "a": "Ei. Tulemus on hinnang ja seda tuleks kasutada otsuste tegemise alusena. Tegelik hind, toodang ja majanduslik tulemus võivad erineda."
+        "a": "Ei. Tulemus on hinnang ja seda tuleks kasutada otsuste tegemise alusena. Tegelik hind, toodang ja majanduslik tulemus võivad erineda.",
       },
       {
         "q": "Miks tootmine aja jooksul väheneb?",
-        "a": "Päikesepaneelide võimsus väheneb aastate jooksul tavaliselt veidi. Arvutus lähtub aastasest 0,5 %-lisest degradeerumisest, mis tähendab, et arvutuslik tootmine väheneb kalkulatsiooniperioodi jooksul järk-järgult."
-      }
+        "a": "Päikesepaneelide võimsus väheneb aastate jooksul tavaliselt veidi. Arvutus lähtub aastasest 0,5 %-lisest degradeerumisest, mis tähendab, et arvutuslik tootmine väheneb kalkulatsiooniperioodi jooksul järk-järgult.",
+      },
     
-    ]
+    ],
   },
   "premium": {
     "title": "Premium",
@@ -653,14 +653,14 @@ export const et = {
     "activated": "Premium on nüüd aktiivne.",
     "restoredPremium": "Teie Premium on taastatud.",
     "nothingToRestore": "Sellest seadmest ei leitud ühtegi ostu.",
-    "restoreFailed": "Oste ei õnnestunud praegu taastada."
+    "restoreFailed": "Oste ei õnnestunud praegu taastada.",
   },
   "paywall": {
     "single": {
       "title": "Üks arvutus",
       "body": "Avage selle arvutuse täielik tulemus ja PDF-aruanne.",
       "cta": "Ava hinnaga {{price}}",
-      "ctaNoPrice": "Ava"
+      "ctaNoPrice": "Ava",
     },
     "premium": {
       "title": "Premium",
@@ -669,10 +669,10 @@ export const et = {
       "includes": {
         "calculations": "Piiramatud arvutused",
         "pdf": "Piiramatud PDF-aruanded",
-        "result": "Täielik juurdepääs tulemusele"
+        "result": "Täielik juurdepääs tulemusele",
       },
       "cta": "Hangi Premium",
-      "renewal": "Uueneb automaatselt igal aastal. Tühistage igal ajal."
+      "renewal": "Uueneb automaatselt igal aastal. Tühistage igal ajal.",
     },
     "title": "Avage oma arvutus",
     "eyebrow": "Ühekordne ost",
@@ -681,7 +681,7 @@ export const et = {
     "includes": {
       "result": "Teie täielik arvutus koos majanduse ja tootmisega",
       "pdf": "PDF-aruanne salvestamiseks või jagamiseks",
-      "history": "Arvutus salvestatakse teie ajalukku"
+      "history": "Arvutus salvestatakse teie ajalukku",
     },
     "cta": "Ava hinnaga {{price}}",
     "purchasing": "App Store'i avamine…",
@@ -691,11 +691,11 @@ export const et = {
     "retry": "Praegu ei õnnestunud ostu kinnitada. Miski pole kadunud — see avaneb automaatselt, kui ühendus taastub.",
     "appOnly": "Ost tehakse rakenduses teie Apple kontoga ega ole brauseris saadaval.",
     "appleNote": "Käsitleb App Store.",
-    "priceLoading": "Hinna laadimine…"
+    "priceLoading": "Hinna laadimine…",
   },
   "history": {
     "empty": "Teil pole veel salvestatud arvutusi.",
     "unknownAddress": "Arvutus",
-    "error": "Teie ajalugu ei õnnestunud laadida."
-  }
+    "error": "Teie ajalugu ei õnnestunud laadida.",
+  },
 } as const;

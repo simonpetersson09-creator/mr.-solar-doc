@@ -6,7 +6,7 @@ export const tr = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Güneş enerjisi sisteminizi birkaç dakikada boyutlandırın"
+    "tagline": "Güneş enerjisi sisteminizi birkaç dakikada boyutlandırın",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const tr = {
     "point3Title": "Ne kadar mal olabileceğini hesaplar istenen geri ödeme süresine göre",
     "point3Body": "İstediğiniz geri ödeme süresini seçersiniz. Mr. Solar Doc gerekli yatırım seviyesini hesaplar.",
     "point4Title": "Rapor ve karar temeli",
-    "point4Body": "Üretimi, ekonomiyi ve farklı geri ödeme sürelerini bir raporda görün."
+    "point4Body": "Üretimi, ekonomiyi ve farklı geri ödeme sürelerini bir raporda görün.",
     "cta": "Hesaplamayı başlat",
   },
   "common": {
@@ -33,14 +33,14 @@ export const tr = {
     "perYear": "/yıl",
     "dontKnow": "Bilmiyorum",
     "startOver": "Baştan başla",
-    "close": "Kapat"
+    "close": "Kapat",
   },
   "steps": {
     "address": "Adres",
     "roof": "Çatı ve güneş",
     "consumption": "Elektrik kullanımı",
     "fuse": "Ana sigorta",
-    "stepOf": "Adım {{current}} / {{total}}"
+    "stepOf": "Adım {{current}} / {{total}}",
   },
   "address": {
     "title": "Mülk nerede?",
@@ -57,7 +57,7 @@ export const tr = {
     "region": "Bölge",
     "error": "Adres araması başarısız oldu.",
     "info": "Adres yalnızca konumunuzdaki güneş ışınımını hesaplamak için kullanılır.",
-    "infoLabel": "Adres hakkında daha fazla bilgi"
+    "infoLabel": "Adres hakkında daha fazla bilgi",
   },
   "premium": {
     "title": "Premium",
@@ -72,7 +72,7 @@ export const tr = {
     "activated": "Premium artık aktif.",
     "restoredPremium": "Premium'unuz geri yüklendi.",
     "nothingToRestore": "Bu cihazda satın alım bulamadık.",
-    "restoreFailed": "Satın alımlar şu anda geri yüklenemedi."
+    "restoreFailed": "Satın alımlar şu anda geri yüklenemedi.",
   },
   "roof": {
     "title": "Çatınız",
@@ -86,7 +86,7 @@ export const tr = {
       "n": "K",
       "e": "D",
       "s": "G",
-      "w": "B"
+      "w": "B",
     },
     "orientations": {
       "unknown": "Bilmiyorum",
@@ -94,21 +94,21 @@ export const tr = {
       "southeast": "Güneydoğu",
       "southwest": "Güneybatı",
       "east": "Doğu",
-      "west": "Batı"
+      "west": "Batı",
     },
     "fetching": "PVGIS'ten güneş verileri alınıyor…",
     "result": "Bu konumdaki tahmini güneş enerjisi verimi",
-    "unit": "kWh/kWp/yıl"
+    "unit": "kWh/kWp/yıl",
     "error": "Bu konum için güneş verileri alınamadı. Hiçbir değer tahmin edilmemiştir.",
     "errorOverSea": "Bu konum su üzerinde görünüyor. İşaretçiyi karadaki binaya taşıyıp tekrar deneyin.",
     "errorOutsideCoverage": "Bu konum için güneş verimiz yok. Yakındaki bir adres deneyin.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Hesaplamaya devam etmek için elektrik kullanımınızı girin.",
       "tooLow": "Bu çok düşük görünüyor. Yılda en az {{min}} kWh girin.",
-      "tooHigh": "Bu çok yüksek görünüyor. Yılda en fazla {{max}} kWh girin."
+      "tooHigh": "Bu çok yüksek görünüyor. Yılda en fazla {{max}} kWh girin.",
     },
     "shape": {
       "question": "Elektrik kullanımınız yıl boyunca genellikle nasıl dağılıyor?",
@@ -119,20 +119,20 @@ export const tr = {
       "defaultNote": "Yıllık tüketiminizin normal, tahmini bir dağılımını kullanıyoruz. Bunu daha sonra değiştirebilirsiniz.",
       "even": {
         "title": "Yıl boyunca eşit",
-        "description": "Tüm yıl boyunca yaklaşık aynı elektrik kullanımı."
+        "description": "Tüm yıl boyunca yaklaşık aynı elektrik kullanımı.",
       },
       "winter-heavy": {
         "title": "Kışın daha yüksek",
-        "description": "Örneğin ısıtma için, soğuk aylarda daha fazla elektrik kullanırsınız."
+        "description": "Örneğin ısıtma için, soğuk aylarda daha fazla elektrik kullanırsınız.",
       },
       "summer-heavy": {
         "title": "Yazın daha yüksek",
-        "description": "Örneğin havuz veya soğutma için yazın daha fazla elektrik kullanırsınız."
+        "description": "Örneğin havuz veya soğutma için yazın daha fazla elektrik kullanırsınız.",
       },
       "default": {
         "title": "Bilmiyorum",
-        "description": "Normal, tahmini bir profil kullan."
-      }
+        "description": "Normal, tahmini bir profil kullan.",
+      },
     },
     "upload": {
       "title": "12 aylık tüketim verisi ekleyin",
@@ -151,7 +151,7 @@ export const tr = {
       "remove": "Kaldır",
       "retry": "Başka bir dosya dene",
       "readingFile": "{{name}} okunuyor…",
-      "ready": "İçe aktarıldı"
+      "ready": "İçe aktarıldı",
     },
     "title": "Ne kadar elektrik kullanıyorsunuz?",
     "subtitle": "Elektrik faturanızı veya sözleşmenizi kontrol edin.",
@@ -163,7 +163,7 @@ export const tr = {
     "monthlyTitle": "Aylık tüketim",
     "monthlyHint": "12 ayın tamamı için tüketimi girin",
     "total": "Toplam yıllık tüketim",
-    "invalid": "100 ile 200.000 kWh arasında bir yıllık tüketim girin."
+    "invalid": "100 ile 200.000 kWh arasında bir yıllık tüketim girin.",
   },
   "fuse": {
     "gridAssumptionDynamic": "Hesaplama {{service}} {{voltage}} temel alınarak yapılmıştır.",
@@ -174,23 +174,23 @@ export const tr = {
       "amperage": {
         "title": "Ana sigortanız kaç amper?",
         "label": "Ana sigorta",
-        "help": "Ana şalterinizde veya faturanızda gösterilen faz başına amper değeri."
+        "help": "Ana şalterinizde veya faturanızda gösterilen faz başına amper değeri.",
       }, "service": { "title": "Elektrik bağlantısının büyüklüğü", "label": "Elektrik bağlantısının büyüklüğü", "help": "Amper değerini ana şalterde veya elektrik panosunda bulabilirsiniz." },
       "contracted-kva": {
         "title": "Sözleşmeli gücünüz nedir?",
         "label": "Sözleşmeli güç",
-        "help": "Elektrik faturanızda kVA olarak belirtilir."
+        "help": "Elektrik faturanızda kVA olarak belirtilir.",
       },
       "contracted-kw": {
         "title": "Sözleşmeli gücünüz nedir?",
         "label": "Sözleşmeli güç",
-        "help": "Elektrik faturanızda kW olarak belirtilir."
-      }
+        "help": "Elektrik faturanızda kW olarak belirtilir.",
+      },
     },
     "gridAssumption": "Hesaplama, 400 V üç fazlı bir bağlantı varsayar.",
     "gridAssumptionInfo": "Ana sigortanın teorik gücü, 400 V üç fazlı bir bağlantıdan hesaplanır. Emin değilseniz gerçek şebeke bağlantınızı kontrol edin.",
     gridCheckHint: "Emin değilseniz gerçek şebeke bağlantınızı kontrol edin.",
-    "disclaimerTitle": "Bilinmesi gerekenler"
+    "disclaimerTitle": "Bilinmesi gerekenler",
     "grid": {
       "advanced": "Gelişmiş ayarlar",
       "section": "Şebeke ayarları",
@@ -209,7 +209,7 @@ export const tr = {
       "voltageOtherLabel": "Gerilim girin",
       "voltageInvalid": "Volt cinsinden geçerli bir gerilim girin.",
       "frequency": "Frekans",
-      "hint": "Yalnızca varsayılan değerler bağlantınızla uyuşmuyorsa değiştirin."
+      "hint": "Yalnızca varsayılan değerler bağlantınızla uyuşmuyorsa değiştirin.",
     },
     "genericTitle": "Ne tür bir elektrik bağlantınız var?",
     "title": "Ana sigortanız kaç amper?",
@@ -223,13 +223,13 @@ export const tr = {
     "otherLabel": "Amper",
     "maxAc": "Hesaplanan maksimum AC gücü",
     "calculate": "Hesapla",
-    "invalid": "6 ile 400 A arasında bir ana sigorta girin."
+    "invalid": "6 ile 400 A arasında bir ana sigorta girin.",
   },
   "result": {
     "calculationUnavailable": "Hesaplama tamamlanamadı. Çatı bilgilerini kontrol edip tekrar deneyin.",
     "connection": {
       "contractedKva": "Sözleşmeli güç (kVA)",
-      "contractedKw": "Sözleşmeli güç (kW)"
+      "contractedKw": "Sözleşmeli güç (kW)",
     },
     "gridConnection": "Şebeke bağlantısı",
     "gridConnectionValue": "{{voltage}} V, {{phases}} faz",
@@ -246,7 +246,7 @@ export const tr = {
       "even": "Yıl boyunca eşit",
       "winter-heavy": "Kışın daha yüksek tüketim",
       "summer-heavy": "Yazın daha yüksek tüketim",
-      "default": "Normal tahmini profil"
+      "default": "Normal tahmini profil",
     },
     "estimatedBadge": "Tahmini",
     "estimatedConsumptionNote": "Aylık tüketim, yıllık rakamınızdan ve seçtiğiniz profilden tahmin edilmiştir.",
@@ -308,7 +308,7 @@ export const tr = {
       "profileVeryHighSolarSeason": "Elektrik kullanımınız belirgin şekilde güneşli aylarda yoğunlaşıyor, bu nedenle invertere kıyasla daha yüksek panel gücü önerilir.",
       "gridLimit": "Sistem ana sigortanızla sınırlıdır — şebeke bağlantınız daha fazla güce izin vermiyor.",
       "minimumSize": "Elektrik kullanımınız düşük, bu yüzden mantıklı en küçük sistemi öneriyoruz.",
-      "maximumSize": "Öneri, bu uygulamanın boyutlandırdığı en büyük boyutla sınırlıdır."
+      "maximumSize": "Öneri, bu uygulamanın boyutlandırdığı en büyük boyutla sınırlıdır.",
     },
     "monthlyDataNote": "Aylık değerler, elektriğin gündüz mü yoksa gece mi kullanıldığını göstermez. Bunlar, ne kadar güneş enerjisini kendiniz kullanabileceğinizin kanıtı olarak değil, boyutlandırma sinyali olarak kullanılır.",
     "profileLabel": "Tüketim profili",
@@ -326,7 +326,7 @@ export const tr = {
       "gridLimit": "Sistem ana sigortanızla sınırlıdır — şebeke bağlantınız daha fazla güce izin vermiyor.",
       "inverterLimit": "Boyut, bağlantınız için en uygun en büyük invertere göre uyarlanmıştır.",
       "minimumSize": "Elektrik kullanımınız düşük, bu yüzden mantıklı en küçük sistemi öneriyoruz.",
-      "maximumSize": "Öneri, bu uygulamanın boyutlandırdığı en büyük boyutla sınırlıdır."
+      "maximumSize": "Öneri, bu uygulamanın boyutlandırdığı en büyük boyutla sınırlıdır.",
     },
     "selfConsumption": "Öz tüketilen güneş enerjisi",
     "exported": "Şebekeye satılan güneş enerjisi",
@@ -424,14 +424,14 @@ export const tr = {
   "units": {
     "kwhPerYear": "kWh/yıl",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} yıl"
+    "years": "{{count}} yıl",
   },
   "paywall": {
     "single": {
       "title": "Tek hesaplama",
       "body": "Bu hesaplama için tam sonucu ve PDF raporunu açın.",
       "cta": "{{price}} karşılığında aç",
-      "ctaNoPrice": "Aç"
+      "ctaNoPrice": "Aç",
     },
     "priceLoading": "Fiyat alınıyor…",
     "premium": {
@@ -441,10 +441,10 @@ export const tr = {
       "includes": {
         "calculations": "Sınırsız hesaplama",
         "pdf": "Sınırsız PDF raporu",
-        "result": "Sonuca tam erişim"
+        "result": "Sonuca tam erişim",
       },
       "cta": "Premium'a geç",
-      "renewal": "Her yıl otomatik olarak yenilenir. İstediğiniz zaman iptal edebilirsiniz."
+      "renewal": "Her yıl otomatik olarak yenilenir. İstediğiniz zaman iptal edebilirsiniz.",
     },
     "title": "Hesaplamanızı açın",
     "eyebrow": "Tek seferlik satın alım",
@@ -453,7 +453,7 @@ export const tr = {
     "includes": {
       "result": "Ekonomi ve üretim bilgileriyle tam hesaplamanız",
       "pdf": "Kaydetmek veya paylaşmak için PDF rapor",
-      "history": "Hesaplama geçmişinizde kaydedilir"
+      "history": "Hesaplama geçmişinizde kaydedilir",
     },
     "cta": "{{price}} karşılığında aç",
     "purchasing": "App Store açılıyor…",
@@ -462,12 +462,12 @@ export const tr = {
     "failed": "Satın alım tamamlanamadı. Sizden herhangi bir ücret alınmadı.",
     "retry": "Satın alımı şu anda doğrulayamadık. Hiçbir şey kaybolmadı — bağlantı tekrar çalıştığında otomatik olarak açılacaktır.",
     "appOnly": "Satın alım, Apple hesabınızla uygulama içinde yapılır ve tarayıcıda kullanılamaz.",
-    "appleNote": "App Store tarafından işlenir."
+    "appleNote": "App Store tarafından işlenir.",
   },
   "history": {
     "empty": "Henüz kaydedilmiş bir hesaplamanız yok.",
     "unknownAddress": "Hesaplama",
-    "error": "Geçmişiniz yüklenemedi."
+    "error": "Geçmişiniz yüklenemedi.",
   },
   "settings": {
     "title": "Ayarlar",
@@ -480,23 +480,23 @@ export const tr = {
     "singleCta": "Bir sonraki hesaplamanızla satın alınır",
     "singleNote": "Tek seferlik satın alım, yeni bir hesaplama başlattığınızda gerçekleşir — buradan değil.",
     "terms": "Kullanım koşulları",
-    "privacy": "Gizlilik politikası"
+    "privacy": "Gizlilik politikası",
   },
   "chart": {
     "productionAria": "Aylık üretim",
-    "consumptionAria": "Aylık tüketim"
+    "consumptionAria": "Aylık tüketim",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc - güneş enerjisi sisteminizi boyutlandırın",
       "description": "Adresinize, elektrik kullanımınıza ve ana sigortanıza göre önerilen güneş enerjisi kapasitesini, inverter boyutunu ve yıllık üretimi hesaplayın.",
-      "ogDescription": "PVGIS'ten konum verileriyle adım adım hesaplama: kWp, inverter, aylık üretim ve ekonomi."
+      "ogDescription": "PVGIS'ten konum verileriyle adım adım hesaplama: kWp, inverter, aylık üretim ve ekonomi.",
     },
     "result": {
       "title": "Güneş enerjisi hesaplamanız - Mr. Solar Doc",
       "description": "Hesaplanan kWp, inverter boyutu, DC/AC oranı, aylık üretim ve ekonomik değeri görün - ve raporu PDF olarak indirin.",
-      "ogDescription": "PDF raporuyla güneş enerjisi sisteminizin hesaplanmış boyutlandırması."
-    }
+      "ogDescription": "PDF raporuyla güneş enerjisi sisteminizin hesaplanmış boyutlandırması.",
+    },
   },
   "months": {
     "short": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
@@ -513,7 +513,7 @@ export const tr = {
       "Ekim",
       "Kasım",
       "Aralık"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -627,7 +627,7 @@ export const tr = {
       "orientation_southeast": "Güneydoğu",
       "orientation_southwest": "Güneybatı",
       "orientation_east": "Doğu",
-      "orientation_west": "Batı"
+      "orientation_west": "Batı",
     },
     "title": "Güneş enerjisi raporu",
     "technical": "Teknik veriler",
@@ -644,8 +644,8 @@ export const tr = {
       "user": "Sizin tarafınızdan sağlandı",
       "calculated": "Uygulama tarafından hesaplandı",
       "assumed": "Varsayım (varsayılan değer)",
-      "external": "Harici veri kaynağı"
-    }
+      "external": "Harici veri kaynağı",
+    },
     "generated": "Oluşturuldu",
     "faqTitle": "Sıkça sorulan sorular",
     "faqItems": [
@@ -656,6 +656,6 @@ export const tr = {
       { "q": "Kurulumcunun hesaplaması neden farklılık gösterebilir?", "a": "Üretim, öz tüketim, elektrik fiyatları, sistem kayıpları ve gelecekteki fiyat gelişimi hakkındaki farklı varsayımlar farklı sonuçlar verebilir." },
       { "q": "Bu hesaplama bir teklif mi?", "a": "Hayır. Sonuç bir tahmindir ve karar verme temeli olarak amaçlanmıştır. Gerçek fiyat, üretim ve ekonomik sonuç farklılık gösterebilir." },
       { "q": "Üretim neden zamanla azalır?", "a": "Güneş panellerinin verimliliği normalde yıllar içinde biraz azalır. Hesaplama, yıllık %0,5 verim kaybı varsayar; bu da tahmini üretimin hesaplama dönemi boyunca kademeli olarak azaldığı anlamına gelir." }
-    ]
-  }
+    ],
+  },
 } as const;

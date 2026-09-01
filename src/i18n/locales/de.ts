@@ -6,7 +6,7 @@ export const de = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Dimensionieren Sie Ihre Photovoltaikanlage in wenigen Minuten"
+    "tagline": "Dimensionieren Sie Ihre Photovoltaikanlage in wenigen Minuten",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const de = {
     "point3Title": "Berechnet, was sie kosten darf nach gewünschter Amortisationszeit",
     "point3Body": "Sie wählen die gewünschte Amortisationszeit. Mr. Solar Doc berechnet die nötige Investitionshöhe.",
     "point4Title": "Bericht und Entscheidungsgrundlage",
-    "point4Body": "Produktion, Wirtschaftlichkeit und verschiedene Amortisationszeiten in einem Bericht."
+    "point4Body": "Produktion, Wirtschaftlichkeit und verschiedene Amortisationszeiten in einem Bericht.",
     "cta": "Berechnung starten",
   },
   "common": {
@@ -33,14 +33,14 @@ export const de = {
     "perYear": "/Jahr",
     "dontKnow": "Weiß nicht",
     "startOver": "Neu beginnen",
-    "close": "Schließen"
+    "close": "Schließen",
   },
   "steps": {
     "address": "Adresse",
     "roof": "Dach & Sonne",
     "consumption": "Stromverbrauch",
     "fuse": "Hauptsicherung",
-    "stepOf": "Schritt {{current}} von {{total}}"
+    "stepOf": "Schritt {{current}} von {{total}}",
   },
   "address": {
     "title": "Wo befindet sich die Immobilie?",
@@ -57,7 +57,7 @@ export const de = {
     "region": "Region",
     "error": "Die Adresssuche ist fehlgeschlagen.",
     "info": "Die Adresse wird ausschließlich verwendet, um die Sonneneinstrahlung an Ihrem Standort zu berechnen.",
-    "infoLabel": "Weitere Informationen zur Adresse"
+    "infoLabel": "Weitere Informationen zur Adresse",
   },
   "roof": {
     "title": "Ihr Dach",
@@ -71,7 +71,7 @@ export const de = {
       "n": "N",
       "e": "O",
       "s": "S",
-      "w": "W"
+      "w": "W",
     },
     "orientations": {
       "unknown": "Weiß nicht",
@@ -79,21 +79,21 @@ export const de = {
       "southeast": "Südost",
       "southwest": "Südwest",
       "east": "Ost",
-      "west": "West"
+      "west": "West",
     },
     "fetching": "Ruft Solarertragsdaten von PVGIS ab…",
     "result": "Berechneter Solarertrag am Standort",
-    "unit": "kWh/kWp/Jahr"
+    "unit": "kWh/kWp/Jahr",
     "error": "Wir konnten die Solarertragsdaten für diesen Standort derzeit nicht abrufen. Es werden keine Werte geschätzt.",
     "errorOverSea": "Der Standort liegt offenbar über Wasser. Verschieben Sie die Markierung auf das Gebäude an Land und versuchen Sie es erneut.",
     "errorOutsideCoverage": "Für diesen Standort liegen keine Solardaten vor. Versuchen Sie eine Adresse in der Nähe.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Geben Sie Ihren Stromverbrauch ein, um die Berechnung fortzusetzen.",
       "tooLow": "Der Verbrauch scheint zu niedrig. Geben Sie mindestens {{min}} kWh pro Jahr an.",
-      "tooHigh": "Der Verbrauch scheint zu hoch. Geben Sie höchstens {{max}} kWh pro Jahr an."
+      "tooHigh": "Der Verbrauch scheint zu hoch. Geben Sie höchstens {{max}} kWh pro Jahr an.",
     },
     "shape": {
       "question": "Wie verteilt sich Ihr Stromverbrauch normalerweise über das Jahr?",
@@ -104,20 +104,20 @@ export const de = {
       "defaultNote": "Wir verwenden eine normale geschätzte Verteilung Ihres Jahresverbrauchs. Sie können dies später ändern.",
       "even": {
         "title": "Gleichmäßig über das Jahr",
-        "description": "Ungefähr gleicher Stromverbrauch während des gesamten Jahres."
+        "description": "Ungefähr gleicher Stromverbrauch während des gesamten Jahres.",
       },
       "winter-heavy": {
         "title": "Höher im Winter",
-        "description": "Sie verbrauchen in den kalten Monaten mehr Strom, zum Beispiel zum Heizen."
+        "description": "Sie verbrauchen in den kalten Monaten mehr Strom, zum Beispiel zum Heizen.",
       },
       "summer-heavy": {
         "title": "Höher im Sommer",
-        "description": "Sie verbrauchen im Sommer mehr Strom, zum Beispiel für Pool oder Kühlung."
+        "description": "Sie verbrauchen im Sommer mehr Strom, zum Beispiel für Pool oder Kühlung.",
       },
       "default": {
         "title": "Ich weiß nicht",
-        "description": "Ein normales geschätztes Profil verwenden."
-      }
+        "description": "Ein normales geschätztes Profil verwenden.",
+      },
     },
     "upload": {
       "title": "Dokument einfügen oder anhängen",
@@ -136,7 +136,7 @@ export const de = {
       "remove": "Entfernen",
       "retry": "Andere Datei versuchen",
       "readingFile": "Lese {{name}}…",
-      "ready": "Importiert"
+      "ready": "Importiert",
     },
     "title": "Wie viel Strom verbrauchen Sie?",
     "subtitle": "Schauen Sie auf Ihre Stromrechnung oder Ihren Stromvertrag.",
@@ -148,7 +148,7 @@ export const de = {
     "invalid": "Geben Sie einen Jahresverbrauch zwischen 100 und 200.000 kWh ein.",
     "or": "oder",
     "manual": { "sectionTitle": "Manuell eingeben", "sectionHint": "Gib deinen Jahresverbrauch ein — prüfe deine Stromrechnung oder deinen Vertrag." },
-    "monthlyHint": "Gib den Verbrauch für alle 12 Monate ein"
+    "monthlyHint": "Gib den Verbrauch für alle 12 Monate ein",
   },
   "fuse": {
     "gridAssumptionDynamic": "Die Berechnung basiert auf {{service}} {{voltage}}.",
@@ -159,28 +159,28 @@ export const de = {
       "amperage": {
         "title": "Welche Hausanschlusssicherung haben Sie?",
         "label": "Hausanschlusssicherung",
-        "help": "Ampere pro Phase, steht am Hauptschalter oder auf der Rechnung."
+        "help": "Ampere pro Phase, steht am Hauptschalter oder auf der Rechnung.",
       },
       "service": {
         "title": "Größe des Hausanschlusses",
         "label": "Größe des Hausanschlusses",
-        "help": "Die Amperezahl steht auf dem Hauptschalter oder im Zählerschrank."
+        "help": "Die Amperezahl steht auf dem Hauptschalter oder im Zählerschrank.",
       },
       "contracted-kva": {
         "title": "Welche vereinbarte Leistung haben Sie?",
         "label": "Vereinbarte Leistung",
-        "help": "Wird auf der Stromrechnung in kVA angegeben."
+        "help": "Wird auf der Stromrechnung in kVA angegeben.",
       },
       "contracted-kw": {
         "title": "Welche vereinbarte Leistung haben Sie?",
         "label": "Vereinbarte Leistung",
-        "help": "Wird auf der Stromrechnung in kW angegeben."
-      }
+        "help": "Wird auf der Stromrechnung in kW angegeben.",
+      },
     },
     "gridAssumption": "Die Berechnung geht von 400 V Dreiphasenanschluss aus.",
     "gridAssumptionInfo": "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
     gridCheckHint: "Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
-    "disclaimerTitle": "Wichtig zu wissen"
+    "disclaimerTitle": "Wichtig zu wissen",
     "grid": {
       "advanced": "Erweiterte Einstellungen",
       "section": "Netzeinstellungen",
@@ -199,7 +199,7 @@ export const de = {
       "serviceType": "Anschlussart",
       "twoPhase": "Zweiphasig (Phase–Phase)",
       "splitPhase": "Zweiphasig (Split-Phase)",
-      "unverifiedHint": "Für dieses Land liegen uns keine verifizierten Netzwerte vor. Bitte prüfen Sie Ihre Angaben anhand Ihres Zählers oder Sicherungskastens."
+      "unverifiedHint": "Für dieses Land liegen uns keine verifizierten Netzwerte vor. Bitte prüfen Sie Ihre Angaben anhand Ihres Zählers oder Sicherungskastens.",
     },
     "title": "Welche Hauptsicherung haben Sie?",
     "subtitle": "Die Hauptsicherung dient zur Abschätzung, wie groß ein Wechselrichter normalerweise angeschlossen werden kann. Die tatsächlich zulässige Leistung bestimmt der Netzbetreiber.",
@@ -213,13 +213,13 @@ export const de = {
     "noCountryOptions": "Für dieses Land haben wir noch keine verifizierten Anschlussoptionen. Geben Sie Ihre Hauptsicherung in Ampere ein und passen Sie die Netzeinstellungen unten bei Bedarf an.",
     "unverifiedCountryNotice": "Wir haben den Netzstandard für dieses Land nicht verifiziert. Prüfen Sie Spannung, Phasen und Anschlussgröße auf Ihrer Stromrechnung oder beim Netzbetreiber und bestätigen Sie unten.",
     "confirmGrid": "Ich habe die Netzdaten geprüft",
-    "confirmedGrid": "Netzdaten bestätigt"
+    "confirmedGrid": "Netzdaten bestätigt",
   },
   "result": {
     "calculationUnavailable": "Die Berechnung konnte nicht abgeschlossen werden. Bitte prüfen Sie die Dachangaben und versuchen Sie es erneut.",
     "connection": {
       "contractedKva": "Vereinbarte Leistung (kVA)",
-      "contractedKw": "Vereinbarte Leistung (kW)"
+      "contractedKw": "Vereinbarte Leistung (kW)",
     },
     "gridConnection": "Netzanschluss",
     "gridConnectionValue": "{{voltage}} V, {{phases}}-phasig",
@@ -236,7 +236,7 @@ export const de = {
       "even": "Gleichmäßig über das Jahr",
       "winter-heavy": "Höherer Winterverbrauch",
       "summer-heavy": "Höherer Sommerverbrauch",
-      "default": "Normales geschätztes Profil"
+      "default": "Normales geschätztes Profil",
     },
     "estimatedBadge": "Geschätzt",
     "estimatedConsumptionNote": "Der Monatsverbrauch wird aus Ihrem Jahreswert und dem gewählten Profil geschätzt.",
@@ -298,7 +298,7 @@ export const de = {
       "profileVeryHighSolarSeason": "Ihr Stromverbrauch konzentriert sich deutlich auf die sonnenreichen Monate. Daher wird eine höhere Modulleistung im Verhältnis zum Wechselrichter vorgeschlagen.",
       "gridLimit": "Die Anlage wird durch Ihre Hauptsicherung begrenzt – eine größere Leistung lässt Ihr Netzanschluss nicht zu.",
       "minimumSize": "Ihr Stromverbrauch ist gering, daher schlagen wir die kleinste sinnvolle Anlage vor.",
-      "maximumSize": "Der Vorschlag ist auf die größte Größe begrenzt, die die App dimensioniert."
+      "maximumSize": "Der Vorschlag ist auf die größte Größe begrenzt, die die App dimensioniert.",
     },
     "monthlyDataNote": "Monatswerte zeigen nicht, ob der Strom tagsüber oder nachts verbraucht wird. Sie dienen daher als Richtwert für die Dimensionierung, nicht als Beleg dafür, wie viel Solarstrom Sie selbst nutzen können.",
     "profileLabel": "Verbrauchsprofil",
@@ -316,7 +316,7 @@ export const de = {
       "gridLimit": "Die Anlage wird durch Ihre Hauptsicherung begrenzt – eine größere Leistung lässt Ihr Netzanschluss nicht zu.",
       "inverterLimit": "Die Größe ist auf den größten geeigneten Wechselrichter für Ihren Anschluss abgestimmt.",
       "minimumSize": "Ihr Stromverbrauch ist gering, daher schlagen wir die kleinste sinnvolle Anlage vor.",
-      "maximumSize": "Der Vorschlag ist auf die größte Größe begrenzt, die die App dimensioniert."
+      "maximumSize": "Der Vorschlag ist auf die größte Größe begrenzt, die die App dimensioniert.",
     },
     "selfConsumption": "Eigenverbrauchter Solarstrom",
     "exported": "Eingespeister Solarstrom",
@@ -409,12 +409,12 @@ export const de = {
     "gridProfileStatusGeneric": "Generisch (nicht verifiziert)",
     "gridProfileStatusUnsupported": "Manuell (nicht verifiziert)",
     "calcErrorTitle": "Die Berechnung kann nicht abgeschlossen werden",
-    "calcErrorBody": "Mit einigen Eingaben kann nicht gerechnet werden. Gehen Sie zurück und prüfen Sie Verbrauch, Netzanschluss und Annahmen."
+    "calcErrorBody": "Mit einigen Eingaben kann nicht gerechnet werden. Gehen Sie zurück und prüfen Sie Verbrauch, Netzanschluss und Annahmen.",
   },
   "units": {
     "kwhPerYear": "kWh/Jahr",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} Jahre"
+    "years": "{{count}} Jahre",
   },
   "settings": {
     "title": "Einstellungen",
@@ -427,23 +427,23 @@ export const de = {
     "singleCta": "Wird bei deiner nächsten Berechnung gekauft",
     "singleNote": "Der Einmalkauf erfolgt, wenn du eine neue Berechnung startest — nicht von hier aus.",
     "terms": "Nutzungsbedingungen",
-    "privacy": "Datenschutzerklärung"
+    "privacy": "Datenschutzerklärung",
   },
   "chart": {
     "productionAria": "Monatliche Produktion",
-    "consumptionAria": "Monatlicher Verbrauch"
+    "consumptionAria": "Monatlicher Verbrauch",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc – Dimensionieren Sie Ihre Solaranlage",
       "description": "Berechnen Sie die empfohlene Solarkapazität, den Wechselrichter und die jährliche Produktion basierend auf Ihrer Adresse, Ihrem Stromverbrauch und Ihrer Hauptsicherung.",
-      "ogDescription": "Schritt-für-Schritt-Berechnung mit Standortdaten von PVGIS: kWp, Wechselrichter, monatliche Produktion und Wirtschaftlichkeit."
+      "ogDescription": "Schritt-für-Schritt-Berechnung mit Standortdaten von PVGIS: kWp, Wechselrichter, monatliche Produktion und Wirtschaftlichkeit.",
     },
     "result": {
       "title": "Ihre Solarkalkulation – Mr. Solar Doc",
       "description": "Sehen Sie die berechnete kWp, Wechselrichtergröße, DC/AC-Verhältnis, monatliche Produktion und den wirtschaftlichen Wert – und laden Sie den Bericht als PDF herunter.",
-      "ogDescription": "Berechnete Dimensionierung Ihrer Solaranlage mit PDF-Bericht."
-    }
+      "ogDescription": "Berechnete Dimensionierung Ihrer Solaranlage mit PDF-Bericht.",
+    },
   },
   "months": {
     "short": [
@@ -473,7 +473,7 @@ export const de = {
       "Oktober",
       "November",
       "Dezember"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -587,7 +587,7 @@ export const de = {
       "orientation_west": "West",
       "priceChangeNoteFlat": "Die Berechnung verwendet über den gesamten Zeitraum unveränderte Werte für selbst verbrauchten und eingespeisten Solarstrom. Es wird keine Preissteigerung angenommen, da zukünftige Strompreise nicht vorhersehbar sind. Steigen die Preise, ist der Wert höher als in diesem Bericht; fallen sie, ist er niedriger.",
       "priceChangeNoteTrend": "Die Berechnung geht davon aus, dass sich der Wert von selbst verbrauchtem und eingespeistem Solarstrom über den gesamten Zeitraum jährlich um {{priceChange}} % ändert. Dies ist eine Annahme, da zukünftige Strompreise nicht vorhersehbar sind. Eine andere Entwicklung führt zu einem höheren oder niedrigeren Ergebnis als in diesem Bericht.",
-      "gridMethodNoteDynamic": "Die theoretische AC-Leistung basiert auf Ihrem gewählten Netzanschluss: {{phases}}-phasig, {{voltage}} V, berechnet als {{factor}} × {{voltage}} V × Hauptsicherung. Die tatsächlich zulässige Anschluss- oder Einspeiseleistung kann vom Netzbetreiber oder der konkreten Installation begrenzt werden."
+      "gridMethodNoteDynamic": "Die theoretische AC-Leistung basiert auf Ihrem gewählten Netzanschluss: {{phases}}-phasig, {{voltage}} V, berechnet als {{factor}} × {{voltage}} V × Hauptsicherung. Die tatsächlich zulässige Anschluss- oder Einspeiseleistung kann vom Netzbetreiber oder der konkreten Installation begrenzt werden.",
     },
     "title": "Solarbericht",
     "technical": "Technische Daten",
@@ -604,40 +604,40 @@ export const de = {
       "user": "Ihr Wert",
       "calculated": "Berechnet",
       "assumed": "Standardannahme",
-      "external": "Externe Datenquelle"
-    }
+      "external": "Externe Datenquelle",
+    },
     "generated": "Erstellt",
     "faqTitle": "Häufig gestellte Fragen",
     "faqItems": [
       {
         "q": "Wie sicher ist die berechnete Solarproduktion?",
-        "a": "Die Berechnung basiert auf der Sonneneinstrahlung am Standort sowie der Ausrichtung und Neigung des Dachs. Die tatsächliche Produktion wird unter anderem durch Wetter, Verschattung und die technischen Gegebenheiten der Anlage beeinflusst."
+        "a": "Die Berechnung basiert auf der Sonneneinstrahlung am Standort sowie der Ausrichtung und Neigung des Dachs. Die tatsächliche Produktion wird unter anderem durch Wetter, Verschattung und die technischen Gegebenheiten der Anlage beeinflusst.",
       },
       {
         "q": "Was bedeutet Eigenverbrauch?",
-        "a": "Der Anteil des Solarstroms, der direkt im Haushalt verbraucht wird. Die übrige Produktion wird ins Stromnetz eingespeist."
+        "a": "Der Anteil des Solarstroms, der direkt im Haushalt verbraucht wird. Die übrige Produktion wird ins Stromnetz eingespeist.",
       },
       {
         "q": "Warum ist selbst verbrauchter Solarstrom mehr wert als verkaufter Solarstrom?",
-        "a": "Selbst verbrauchter Solarstrom ersetzt Strom, der sonst aus dem Netz gekauft werden müsste, während verkaufter Solarstrom nach den Bedingungen für eingespeisten Strom vergütet wird."
+        "a": "Selbst verbrauchter Solarstrom ersetzt Strom, der sonst aus dem Netz gekauft werden müsste, während verkaufter Solarstrom nach den Bedingungen für eingespeisten Strom vergütet wird.",
       },
       {
         "q": "Was bedeutet der Preis für die gewählte Amortisationszeit?",
-        "a": "Er zeigt ungefähr, wie viel die Anlage kosten darf, um der von Ihnen gewählten Amortisationszeit zu entsprechen, basierend auf den Annahmen der Kalkulation. Es ist kein geschätzter Marktpreis."
+        "a": "Er zeigt ungefähr, wie viel die Anlage kosten darf, um der von Ihnen gewählten Amortisationszeit zu entsprechen, basierend auf den Annahmen der Kalkulation. Es ist kein geschätzter Marktpreis.",
       },
       {
         "q": "Warum kann die Berechnung des Installateurs abweichen?",
-        "a": "Unterschiedliche Annahmen zu Produktion, Eigenverbrauch, Strompreisen, Systemverlusten und zukünftiger Preisentwicklung können zu unterschiedlichen Ergebnissen führen."
+        "a": "Unterschiedliche Annahmen zu Produktion, Eigenverbrauch, Strompreisen, Systemverlusten und zukünftiger Preisentwicklung können zu unterschiedlichen Ergebnissen führen.",
       },
       {
         "q": "Ist die Berechnung ein Angebot?",
-        "a": "Nein. Das Ergebnis ist eine Schätzung und dient als Entscheidungsgrundlage. Tatsächlicher Preis, Produktion und wirtschaftliches Ergebnis können abweichen."
+        "a": "Nein. Das Ergebnis ist eine Schätzung und dient als Entscheidungsgrundlage. Tatsächlicher Preis, Produktion und wirtschaftliches Ergebnis können abweichen.",
       },
       {
         "q": "Warum sinkt die Produktion im Laufe der Zeit?",
-        "a": "Die Leistung von Solarmodulen nimmt mit den Jahren normalerweise etwas ab. Die Berechnung geht von einer jährlichen Degradation von 0,5 % aus, was bedeutet, dass die berechnete Produktion im Laufe des Kalkulationszeitraums allmählich abnimmt."
-      }
-    ]
+        "a": "Die Leistung von Solarmodulen nimmt mit den Jahren normalerweise etwas ab. Die Berechnung geht von einer jährlichen Degradation von 0,5 % aus, was bedeutet, dass die berechnete Produktion im Laufe des Kalkulationszeitraums allmählich abnimmt.",
+      },
+    ],
   },
   "premium": {
     "title": "Premium",
@@ -652,14 +652,14 @@ export const de = {
     "activated": "Premium ist jetzt aktiv.",
     "restoredPremium": "Dein Premium wurde wiederhergestellt.",
     "nothingToRestore": "Wir haben keine Käufe auf diesem Gerät gefunden.",
-    "restoreFailed": "Käufe konnten gerade nicht wiederhergestellt werden."
+    "restoreFailed": "Käufe konnten gerade nicht wiederhergestellt werden.",
   },
   "paywall": {
     "single": {
       "title": "Eine Berechnung",
       "body": "Schalte das vollständige Ergebnis und den PDF-Bericht für diese Berechnung frei.",
       "cta": "Für {{price}} freischalten",
-      "ctaNoPrice": "Freischalten"
+      "ctaNoPrice": "Freischalten",
     },
     "premium": {
       "title": "Premium",
@@ -668,10 +668,10 @@ export const de = {
       "includes": {
         "calculations": "Unbegrenzte Berechnungen",
         "pdf": "Unbegrenzte PDF-Berichte",
-        "result": "Voller Zugriff auf das Ergebnis"
+        "result": "Voller Zugriff auf das Ergebnis",
       },
       "cta": "Premium holen",
-      "renewal": "Verlängert sich automatisch jährlich. Jederzeit kündbar."
+      "renewal": "Verlängert sich automatisch jährlich. Jederzeit kündbar.",
     },
     "title": "Schalte deine Berechnung frei",
     "eyebrow": "Einmalkauf",
@@ -680,7 +680,7 @@ export const de = {
     "includes": {
       "result": "Deine vollständige Berechnung mit Wirtschaftlichkeit und Produktion",
       "pdf": "PDF-Bericht zum Speichern oder Teilen",
-      "history": "Die Berechnung wird in deinem Verlauf gespeichert"
+      "history": "Die Berechnung wird in deinem Verlauf gespeichert",
     },
     "cta": "Für {{price}} freischalten",
     "purchasing": "App Store wird geöffnet…",
@@ -690,11 +690,11 @@ export const de = {
     "retry": "Wir konnten den Kauf gerade nicht bestätigen. Es geht nichts verloren — er wird automatisch freigeschaltet, sobald die Verbindung wieder funktioniert.",
     "appOnly": "Der Kauf erfolgt in der App mit deinem Apple-Konto und ist im Browser nicht verfügbar.",
     "appleNote": "Wird vom App Store abgewickelt.",
-    "priceLoading": "Preis wird geladen…"
+    "priceLoading": "Preis wird geladen…",
   },
   "history": {
     "empty": "Du hast noch keine gespeicherten Berechnungen.",
     "unknownAddress": "Berechnung",
-    "error": "Dein Verlauf konnte nicht geladen werden."
-  }
+    "error": "Dein Verlauf konnte nicht geladen werden.",
+  },
 } as const;

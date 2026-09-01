@@ -18,7 +18,7 @@ export const hr = {
     point3Title: "Računa koliko smije koštati prema željenom razdoblju povrata",
     point3Body: "Birajte željeno razdoblje povrata. Mr. Solar Doc računa potrebnu razinu investicije.",
     point4Title: "Izvještaj i podloga za odluku",
-    point4Body: "Vidite proizvodnju, ekonomiju i različita razdoblja povrata u izvješću."
+    point4Body: "Vidite proizvodnju, ekonomiju i različita razdoblja povrata u izvješću.",
     cta: "Pokreni izračun",
   },
   common: {
@@ -57,7 +57,7 @@ export const hr = {
     region: "Regija",
     error: "Pretraga adrese nije uspjela.",
     info: "Adresa se koristi isključivo za izračun sunčevog zračenja na vašoj lokaciji.",
-    infoLabel: "Više informacija o adresi"
+    infoLabel: "Više informacija o adresi",
   },
   premium: {
     title: "Premium",
@@ -98,7 +98,7 @@ export const hr = {
     },
     fetching: "Dohvaćanje podataka o suncu s PVGIS-a…",
     result: "Procijenjeni solarni prinos na ovoj lokaciji",
-    unit: "kWh/kWp/god"
+    unit: "kWh/kWp/god",
     error: "Nismo uspjeli dohvatiti solarne podatke za ovu lokaciju. Ne procjenjujemo vrijednosti nagađanjem.",
     errorOverSea:
       "Čini se da se ova lokacija nalazi iznad vode. Pomaknite oznaku na zgradu na kopnu i pokušajte ponovno.",
@@ -200,7 +200,7 @@ export const hr = {
     gridAssumption: "Izračun pretpostavlja trofazni priključak od 400 V.",
     gridAssumptionInfo: "Teoretska snaga glavnog osigurača izračunava se iz trofaznog priključka od 400 V. Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
     gridCheckHint: "Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
-    disclaimerTitle: "Važno je znati"
+    disclaimerTitle: "Važno je znati",
     grid: {
       advanced: "Napredne postavke",
       section: "Postavke mreže",
@@ -697,7 +697,7 @@ export const hr = {
       calculated: "Izračunala aplikacija",
       assumed: "Pretpostavka (zadana vrijednost)",
       external: "Vanjski izvor podataka",
-    }
+    },
     generated: "Generirano",
     faqTitle: 'Često postavljana pitanja',
     faqItems: [

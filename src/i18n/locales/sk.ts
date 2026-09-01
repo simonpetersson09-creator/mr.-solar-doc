@@ -6,7 +6,7 @@ export const sk = {
   },
   "app": {
     "name": "Mr. Solar Doc",
-    "tagline": "Nadimenzujte si svoju fotovoltickú elektráreň za pár minút"
+    "tagline": "Nadimenzujte si svoju fotovoltickú elektráreň za pár minút",
   },
   "welcome": {
     "title": "Mr. Solar Doc",
@@ -18,7 +18,7 @@ export const sk = {
     "point3Title": "Počíta, koľko môže stáť podľa požadovanej doby návratnosti",
     "point3Body": "Vyberiete požadovanú dobu návratnosti. Mr. Solar Doc počíta potrebnú úroveň investície.",
     "point4Title": "Správa a podklad pre rozhodnutie",
-    "point4Body": "Pozrite si produkciu, ekonomiku a rôzne doby návratnosti v správe."
+    "point4Body": "Pozrite si produkciu, ekonomiku a rôzne doby návratnosti v správe.",
     "cta": "Spustiť výpočet",
   },
   "common": {
@@ -33,14 +33,14 @@ export const sk = {
     "perYear": "/rok",
     "dontKnow": "Neviem",
     "startOver": "Začať odznova",
-    "close": "Zavrieť"
+    "close": "Zavrieť",
   },
   "steps": {
     "address": "Adresa",
     "roof": "Strecha a slnko",
     "consumption": "Spotreba elektriny",
     "fuse": "Hlavný istič",
-    "stepOf": "Krok {{current}} z {{total}}"
+    "stepOf": "Krok {{current}} z {{total}}",
   },
   "address": {
     "title": "Kde sa nehnuteľnosť nachádza?",
@@ -57,7 +57,7 @@ export const sk = {
     "region": "Kraj",
     "error": "Vyhľadávanie adresy zlyhalo.",
     "info": "Adresa sa používa výlučne na výpočet slnečného žiarenia vo vašej lokalite.",
-    "infoLabel": "Viac informácií o adrese"
+    "infoLabel": "Viac informácií o adrese",
   },
   "roof": {
     "title": "Vaša strecha",
@@ -71,7 +71,7 @@ export const sk = {
       "n": "S",
       "e": "V",
       "s": "J",
-      "w": "Z"
+      "w": "Z",
     },
     "orientations": {
       "unknown": "Neviem",
@@ -79,21 +79,21 @@ export const sk = {
       "southeast": "Juhovýchod",
       "southwest": "Juhozápad",
       "east": "Východ",
-      "west": "Západ"
+      "west": "Západ",
     },
     "fetching": "Načítavanie údajov o solárnej produkcii z PVGIS…",
     "result": "Odhadovaná solárna produkcia na mieste",
-    "unit": "kWh/kWp/rok"
+    "unit": "kWh/kWp/rok",
     "error": "Momentálne sa nám nepodarilo načítať údaje o solárnej produkcii pre toto miesto. Žiadne hodnoty sa neodhadujú.",
     "errorOverSea": "Miesto sa zrejme nachádza nad vodou. Presuňte značku na budovu na pevnine a skúste to znova.",
     "errorOutsideCoverage": "Pre toto miesto nemáme solárne dáta. Skúste adresu v okolí.",
-    "errorSource": "PVGIS: {{message}}"
+    "errorSource": "PVGIS: {{message}}",
   },
   "consumption": {
     "validation": {
       "required": "Zadajte svoju spotrebu elektriny, aby výpočet mohol pokračovať.",
       "tooLow": "Spotreba sa zdá príliš nízka. Zadajte aspoň {{min}} kWh za rok.",
-      "tooHigh": "Spotreba sa zdá príliš vysoká. Zadajte najviac {{max}} kWh za rok."
+      "tooHigh": "Spotreba sa zdá príliš vysoká. Zadajte najviac {{max}} kWh za rok.",
     },
     "shape": {
       "question": "Ako sa zvyčajne rozdeľuje vaša spotreba elektriny počas roka?",
@@ -104,20 +104,20 @@ export const sk = {
       "defaultNote": "Používame normálne odhadované rozdelenie vašej ročnej spotreby. Toto môžete neskôr zmeniť.",
       "even": {
         "title": "Rovnomerná počas roka",
-        "description": "Približne rovnaká spotreba elektriny počas celého roka."
+        "description": "Približne rovnaká spotreba elektriny počas celého roka.",
       },
       "winter-heavy": {
         "title": "Vyššia v zime",
-        "description": "V chladných mesiacoch spotrebujete viac elektriny, napríklad na vykurovanie."
+        "description": "V chladných mesiacoch spotrebujete viac elektriny, napríklad na vykurovanie.",
       },
       "summer-heavy": {
         "title": "Vyššia v lete",
-        "description": "V lete spotrebujete viac elektriny, napríklad pre bazén alebo chladenie."
+        "description": "V lete spotrebujete viac elektriny, napríklad pre bazén alebo chladenie.",
       },
       "default": {
         "title": "Neviem",
-        "description": "Použiť normálny odhadovaný profil."
-      }
+        "description": "Použiť normálny odhadovaný profil.",
+      },
     },
     "upload": {
       "title": "Vložiť alebo priložiť dokument",
@@ -136,7 +136,7 @@ export const sk = {
       "remove": "Odstrániť",
       "retry": "Skúsiť iný súbor",
       "readingFile": "Načítava sa {{name}}…",
-      "ready": "Importované"
+      "ready": "Importované",
     },
     "title": "Koľko elektriny spotrebujete?",
     "subtitle": "Pozrite si svoju faktúru za elektrinu alebo zmluvu o dodávke elektriny.",
@@ -148,7 +148,7 @@ export const sk = {
     "invalid": "Zadajte ročnú spotrebu medzi 100 a 200 000 kWh.",
     "or": "alebo",
     "manual": { "sectionTitle": "Zadať ručne", "sectionHint": "Zadajte svoju ročnú spotrebu — skontrolujte účet za elektrinu alebo zmluvu." },
-    "monthlyHint": "Zadajte spotrebu za všetkých 12 mesiacov"
+    "monthlyHint": "Zadajte spotrebu za všetkých 12 mesiacov",
   },
   "fuse": {
     "gridAssumptionDynamic": "Výpočet vychádza z {{service}} {{voltage}}.",
@@ -159,23 +159,23 @@ export const sk = {
       "amperage": {
         "title": "Aký máte hlavný istič?",
         "label": "Hlavný istič",
-        "help": "Ampéry na fázu, uvedené na hlavnom ističi alebo faktúre."
+        "help": "Ampéry na fázu, uvedené na hlavnom ističi alebo faktúre.",
       }, "service": { "title": "Veľkosť elektrickej prípojky", "label": "Veľkosť elektrickej prípojky", "help": "Hodnotu v ampéroch nájdete na hlavnom ističi alebo v rozvádzači." },
       "contracted-kva": {
         "title": "Aký máte dohodnutý príkon?",
         "label": "Dohodnutý príkon",
-        "help": "Na faktúre je uvedený v kVA."
+        "help": "Na faktúre je uvedený v kVA.",
       },
       "contracted-kw": {
         "title": "Aký máte dohodnutý príkon?",
         "label": "Dohodnutý príkon",
-        "help": "Na faktúre je uvedený v kW."
-      }
+        "help": "Na faktúre je uvedený v kW.",
+      },
     },
     "gridAssumption": "Výpočet vychádza z trojfázovej prípojky 400 V.",
     "gridAssumptionInfo": "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
     gridCheckHint: "Ak si nie ste istí, overte si skutočnú prípojku.",
-    "disclaimerTitle": "Dôležité vedieť"
+    "disclaimerTitle": "Dôležité vedieť",
     "grid": {
       "advanced": "Pokročilé nastavenia",
       "section": "Nastavenia siete",
@@ -194,7 +194,7 @@ export const sk = {
       "serviceType": "Typ pripojenia",
       "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Dvojfázové (split-phase)",
-      "unverifiedHint": "Pre túto krajinu nemáme overené sieťové hodnoty. Skontrolujte údaje podľa elektromera alebo rozvádzača."
+      "unverifiedHint": "Pre túto krajinu nemáme overené sieťové hodnoty. Skontrolujte údaje podľa elektromera alebo rozvádzača.",
     },
     "title": "Aký máte hlavný istič?",
     "subtitle": "Hlavný istič slúži na odhad, aký veľký menič možno bežne pripojiť. Skutočný povolený výkon určuje prevádzkovateľ siete.",
@@ -208,13 +208,13 @@ export const sk = {
     "noCountryOptions": "Pre túto krajinu zatiaľ nemáme overené možnosti pripojenia. Zadajte hlavný istič v ampéroch a v prípade potreby upravte nastavenia siete nižšie.",
     "unverifiedCountryNotice": "Sieťový štandard tejto krajiny sme neoverili. Skontrolujte napätie, počet fáz a veľkosť ističa na faktúre za elektrinu alebo u distribútora a potvrďte nižšie.",
     "confirmGrid": "Skontroloval(a) som sieťové údaje",
-    "confirmedGrid": "Sieťové údaje potvrdené"
+    "confirmedGrid": "Sieťové údaje potvrdené",
   },
   "result": {
     "calculationUnavailable": "Výpočet sa nepodarilo dokončiť. Skontrolujte údaje o streche a skúste to znova.",
     "connection": {
       "contractedKva": "Dohodnutý príkon (kVA)",
-      "contractedKw": "Dohodnutý príkon (kW)"
+      "contractedKw": "Dohodnutý príkon (kW)",
     },
     "gridConnection": "Pripojenie do siete",
     "gridConnectionValue": "{{voltage}} V, {{phases}} fázy",
@@ -231,7 +231,7 @@ export const sk = {
       "even": "Rovnomerná počas roka",
       "winter-heavy": "Vyššia zimná spotreba",
       "summer-heavy": "Vyššia letná spotreba",
-      "default": "Normálny odhadovaný profil"
+      "default": "Normálny odhadovaný profil",
     },
     "estimatedBadge": "Odhadované",
     "estimatedConsumptionNote": "Mesačná spotreba je odhadnutá z vašej ročnej hodnoty a vami zvoleného profilu.",
@@ -293,7 +293,7 @@ export const sk = {
       "profileVeryHighSolarSeason": "Vaša spotreba elektriny je výrazne koncentrovaná do slnečných mesiacov, preto sa navrhuje vyšší výkon panelov vzhľadom na striedač.",
       "gridLimit": "Systém je obmedzený vaším hlavným ističom – vaše sieťové pripojenie neumožňuje vyšší výkon.",
       "minimumSize": "Vaša spotreba elektriny je nízka, preto navrhujeme najmenší zmysluplný systém.",
-      "maximumSize": "Návrh je obmedzený na najväčšiu veľkosť, ktorú aplikácia dimenzuje."
+      "maximumSize": "Návrh je obmedzený na najväčšiu veľkosť, ktorú aplikácia dimenzuje.",
     },
     "monthlyDataNote": "Mesačné hodnoty neukazujú, či sa elektrina používa cez deň alebo v noci. Používajú sa ako usmernenie pre dimenzovanie, nie ako dôkaz, koľko solárnej energie môžete sami spotrebovať.",
     "profileLabel": "Profil spotreby",
@@ -311,7 +311,7 @@ export const sk = {
       "gridLimit": "Systém je obmedzený vaším hlavným ističom – vaše sieťové pripojenie neumožňuje vyšší výkon.",
       "inverterLimit": "Veľkosť je prispôsobená najväčšiemu vhodnému striedaču pre vaše pripojenie.",
       "minimumSize": "Vaša spotreba elektriny je nízka, preto navrhujeme najmenší zmysluplný systém.",
-      "maximumSize": "Návrh je obmedzený na najväčšiu veľkosť, ktorú aplikácia dimenzuje."
+      "maximumSize": "Návrh je obmedzený na najväčšiu veľkosť, ktorú aplikácia dimenzuje.",
     },
     "selfConsumption": "Vlastná spotreba solárnej energie",
     "exported": "Predaná solárna energia",
@@ -404,12 +404,12 @@ export const sk = {
     "gridProfileStatusGeneric": "Všeobecné (neoverené)",
     "gridProfileStatusUnsupported": "Ručne zadané (neoverené)",
     "calcErrorTitle": "Výpočet sa nedá dokončiť",
-    "calcErrorBody": "S niektorými údajmi sa nedá počítať. Vráťte sa späť a skontrolujte spotrebu, pripojenie a predpoklady."
+    "calcErrorBody": "S niektorými údajmi sa nedá počítať. Vráťte sa späť a skontrolujte spotrebu, pripojenie a predpoklady.",
   },
   "units": {
     "kwhPerYear": "kWh/rok",
     "kwhPerKwp": "kWh/kWp",
-    "years": "{{count}} rokov"
+    "years": "{{count}} rokov",
   },
   "settings": {
     "title": "Nastavenia",
@@ -422,23 +422,23 @@ export const sk = {
     "singleCta": "Zakúpené pri ďalšom výpočte",
     "singleNote": "Jednorazový nákup sa uskutoční, keď začnete nový výpočet — nie odtiaľto.",
     "terms": "Podmienky používania",
-    "privacy": "Zásady ochrany osobných údajov"
+    "privacy": "Zásady ochrany osobných údajov",
   },
   "chart": {
     "productionAria": "Mesačná výroba",
-    "consumptionAria": "Mesačná spotreba"
+    "consumptionAria": "Mesačná spotreba",
   },
   "meta": {
     "home": {
       "title": "Mr. Solar Doc – dimenzujte si svoj solárny systém",
       "description": "Vypočítajte odporúčaný výkon fotovoltiky, meniča a ročnú výrobu na základe vašej adresy, spotreby elektriny a hlavného ističa.",
-      "ogDescription": "Kalkulácia krok za krokom s údajmi o polohe z PVGIS: kWp, menič, mesačná výroba a ekonomika."
+      "ogDescription": "Kalkulácia krok za krokom s údajmi o polohe z PVGIS: kWp, menič, mesačná výroba a ekonomika.",
     },
     "result": {
       "title": "Váš výpočet solárnej energie – Mr. Solar Doc",
       "description": "Pozrite si vypočítané kWp, veľkosť meniča, pomer DC/AC, mesačnú výrobu a ekonomickú hodnotu – a stiahnite si správu ako PDF.",
-      "ogDescription": "Vypočítané dimenzovanie vášho fotovoltického systému so správou vo formáte PDF."
-    }
+      "ogDescription": "Vypočítané dimenzovanie vášho fotovoltického systému so správou vo formáte PDF.",
+    },
   },
   "months": {
     "short": [
@@ -468,7 +468,7 @@ export const sk = {
       "Október",
       "November",
       "December"
-    ]
+    ],
   },
   "report": {
     "fields": {
@@ -582,7 +582,7 @@ export const sk = {
       "orientation_west": "Západ",
       "priceChangeNoteFlat": "Výpočet používa nezmenené hodnoty vlastnej spotreby a exportu solárnej energie počas celého obdobia. Nepredpokladá sa zvýšenie cien, keďže budúce ceny elektriny nemožno predpovedať. Ak ceny stúpnu, hodnota bude vyššia ako v tejto správe; ak klesnú, bude nižšia.",
       "priceChangeNoteTrend": "Výpočet predpokladá, že hodnota vlastnej spotreby a exportu solárnej energie sa mení o {{priceChange}} % ročne počas celého obdobia. Ide o predpoklad, keďže budúce ceny elektriny nemožno predpovedať. Iný vývoj znamená vyšší alebo nižší výsledok ako v tejto správe.",
-      "gridMethodNoteDynamic": "Teoretický AC výkon vychádza z vami zvoleného pripojenia: {{phases}}-fázové, {{voltage}} V, vypočítané ako {{factor}} × {{voltage}} V × hlavný istič. Skutočne povolený výkon pripojenia alebo dodávky môže obmedziť distribútor alebo konkrétna inštalácia."
+      "gridMethodNoteDynamic": "Teoretický AC výkon vychádza z vami zvoleného pripojenia: {{phases}}-fázové, {{voltage}} V, vypočítané ako {{factor}} × {{voltage}} V × hlavný istič. Skutočne povolený výkon pripojenia alebo dodávky môže obmedziť distribútor alebo konkrétna inštalácia.",
     },
     "title": "Správa o solárnom systéme",
     "technical": "Technické údaje",
@@ -599,41 +599,41 @@ export const sk = {
       "user": "Vaša hodnota",
       "calculated": "Vypočítané",
       "assumed": "Štandardný predpoklad",
-      "external": "Externý zdroj údajov"
-    }
+      "external": "Externý zdroj údajov",
+    },
     "generated": "Vygenerované",
     "faqTitle": "Často kladené otázky",
     "faqItems": [
       {
         "q": "Ako spoľahlivá je vypočítaná solárna výroba?",
-        "a": "Výpočet vychádza zo slnečného žiarenia v danej lokalite a zo smeru a sklonu strechy. Skutočnú výrobu ovplyvňujú okrem iného počasie, tienenie a technické podmienky zariadenia."
+        "a": "Výpočet vychádza zo slnečného žiarenia v danej lokalite a zo smeru a sklonu strechy. Skutočnú výrobu ovplyvňujú okrem iného počasie, tienenie a technické podmienky zariadenia.",
       },
       {
         "q": "Čo znamená vlastná spotreba?",
-        "a": "Podiel solárnej energie využitej priamo v domácnosti. Zvyšná výroba sa dodáva do elektrickej siete."
+        "a": "Podiel solárnej energie využitej priamo v domácnosti. Zvyšná výroba sa dodáva do elektrickej siete.",
       },
       {
         "q": "Prečo má vlastná spotrebovaná solárna energia väčšiu hodnotu ako predaná?",
-        "a": "Vlastná spotrebovaná solárna energia nahrádza elektrinu, ktorú by inak bolo potrebné kúpiť zo siete, zatiaľ čo predaná solárna energia sa kompenzuje podľa podmienok pre dodávku do siete."
+        "a": "Vlastná spotrebovaná solárna energia nahrádza elektrinu, ktorú by inak bolo potrebné kúpiť zo siete, zatiaľ čo predaná solárna energia sa kompenzuje podľa podmienok pre dodávku do siete.",
       },
       {
         "q": "Čo znamená cena pre zvolenú dobu návratnosti?",
-        "a": "Približne ukazuje, koľko môže zariadenie stáť, aby zodpovedalo vami zvolenej dobe návratnosti na základe predpokladov kalkulácie. Nejde o odhad trhovej ceny."
+        "a": "Približne ukazuje, koľko môže zariadenie stáť, aby zodpovedalo vami zvolenej dobe návratnosti na základe predpokladov kalkulácie. Nejde o odhad trhovej ceny.",
       },
       {
         "q": "Prečo sa môže výpočet inštalatéra líšiť?",
-        "a": "Rôzne predpoklady o výrobe, vlastnej spotrebe, cenách elektriny, stratách systému a budúcom cenovom vývoji môžu viesť k rôznym výsledkom."
+        "a": "Rôzne predpoklady o výrobe, vlastnej spotrebe, cenách elektriny, stratách systému a budúcom cenovom vývoji môžu viesť k rôznym výsledkom.",
       },
       {
         "q": "Je výpočet ponukou?",
-        "a": "Nie. Výsledok je odhad a má slúžiť ako podklad na rozhodovanie. Skutočná cena, výroba och ekonomický výsledok sa môžu líšiť."
+        "a": "Nie. Výsledok je odhad a má slúžiť ako podklad na rozhodovanie. Skutočná cena, výroba och ekonomický výsledok sa môžu líšiť.",
       },
       {
         "q": "Prečo sa výroba v priebehu času znižuje?",
-        "a": "Výkon solárnych panelov sa v priebehu rokov zvyčajne mierne znižuje. Výpočet vychádza z ročnej degradácie 0,5 %, čo znamená, že vypočítaná výroba sa počas kalkulačného obdobia postupne znižuje."
-      }
+        "a": "Výkon solárnych panelov sa v priebehu rokov zvyčajne mierne znižuje. Výpočet vychádza z ročnej degradácie 0,5 %, čo znamená, že vypočítaná výroba sa počas kalkulačného obdobia postupne znižuje.",
+      },
     
-    ]
+    ],
   },
   "premium": {
     "title": "Premium",
@@ -648,14 +648,14 @@ export const sk = {
     "activated": "Premium je teraz aktívne.",
     "restoredPremium": "Vaše Premium bolo obnovené.",
     "nothingToRestore": "Na tomto zariadení sme nenašli žiadne nákupy.",
-    "restoreFailed": "Momentálne sa nepodarilo obnoviť nákupy."
+    "restoreFailed": "Momentálne sa nepodarilo obnoviť nákupy.",
   },
   "paywall": {
     "single": {
       "title": "Jeden výpočet",
       "body": "Odomknite úplný výsledok a PDF správu pre tento výpočet.",
       "cta": "Odomknúť za {{price}}",
-      "ctaNoPrice": "Odomknúť"
+      "ctaNoPrice": "Odomknúť",
     },
     "premium": {
       "title": "Premium",
@@ -664,10 +664,10 @@ export const sk = {
       "includes": {
         "calculations": "Neobmedzené výpočty",
         "pdf": "Neobmedzené PDF správy",
-        "result": "Plný prístup k výsledku"
+        "result": "Plný prístup k výsledku",
       },
       "cta": "Získať Premium",
-      "renewal": "Automaticky sa obnovuje každý rok. Kedykoľvek môžete zrušiť."
+      "renewal": "Automaticky sa obnovuje každý rok. Kedykoľvek môžete zrušiť.",
     },
     "title": "Odomknite svoj výpočet",
     "eyebrow": "Jednorazový nákup",
@@ -676,7 +676,7 @@ export const sk = {
     "includes": {
       "result": "Váš úplný výpočet s ekonomikou a výrobou",
       "pdf": "PDF správa na uloženie alebo zdieľanie",
-      "history": "Výpočet je uložený vo vašej histórii"
+      "history": "Výpočet je uložený vo vašej histórii",
     },
     "cta": "Odomknúť za {{price}}",
     "purchasing": "Otvára sa App Store…",
@@ -686,11 +686,11 @@ export const sk = {
     "retry": "Momentálne sa nám nepodarilo potvrdiť nákup. Nič sa nestratilo — odomkne sa automaticky, keď bude pripojenie opäť funkčné.",
     "appOnly": "Nákup sa uskutočňuje v aplikácii pomocou vášho účtu Apple a nie je dostupný v prehliadači.",
     "appleNote": "Spracúva App Store.",
-    "priceLoading": "Načítava sa cena…"
+    "priceLoading": "Načítava sa cena…",
   },
   "history": {
     "empty": "Zatiaľ nemáte žiadne uložené výpočty.",
     "unknownAddress": "Výpočet",
-    "error": "Nepodarilo sa načítať vašu históriu."
-  }
+    "error": "Nepodarilo sa načítať vašu históriu.",
+  },
 } as const;
