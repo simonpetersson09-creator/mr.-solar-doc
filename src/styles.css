@@ -279,13 +279,8 @@ html[data-native="true"] {
 @utility hero-metric {
   position: relative;
   overflow: hidden;
-  background-color: var(--brand-yellow);
-  background-image: linear-gradient(
-    170deg,
-    oklch(1 0 0 / 0.16) 0%,
-    oklch(1 0 0 / 0) 46%,
-    oklch(0.2185 0.0066 0.7 / 0.05) 100%
-  );
+  background-color: #ffdc38;
+  background-image: none;
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
   box-shadow:
@@ -311,13 +306,8 @@ html[data-native="true"] {
 /* Input card: a softer, lighter yellow so it sits one level below the
    saturated #FFDC38 result cards. The gradient stays within yellow. */
 @utility glass-primary {
-  background-color: var(--brand-yellow-soft);
-  background-image: linear-gradient(
-    170deg,
-    oklch(1 0 0 / 0.18) 0%,
-    oklch(1 0 0 / 0) 48%,
-    oklch(0.2185 0.0066 0.7 / 0.04) 100%
-  );
+  background-color: #ffdc38;
+  background-image: none;
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.4);
   box-shadow:
@@ -327,7 +317,7 @@ html[data-native="true"] {
 
 /* Promotes an input-level surface to a saturated #FFDC38 result surface. */
 @utility surface-strong {
-  background-color: var(--brand-yellow);
+  background-color: #ffdc38;
   border-color: oklch(0.8296 0.1697 91.8 / 0.5);
 }
 
@@ -335,13 +325,8 @@ html[data-native="true"] {
    boxes. Reads as one clean yellow plane; the sheen is felt, not seen. */
 @utility card-yellow {
   position: relative;
-  background-color: var(--brand-yellow);
-  background-image: linear-gradient(
-    170deg,
-    oklch(1 0 0 / 0.16) 0%,
-    oklch(1 0 0 / 0) 44%,
-    oklch(0.2185 0.0066 0.7 / 0.05) 100%
-  );
+  background-color: #ffdc38;
+  background-image: none;
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
   box-shadow:
