@@ -81,12 +81,18 @@ export function evaluateSystemCandidate(params: {
   // and the smallest allowed inverter is not picked by default.
   const centeringPenalty = Math.abs(ratio - mid) * SCORE_WEIGHTS.ratioCentering;
 
-  // Prefer using as much of the motivated array size as possible.
+  // Stay as close as possible to the motivated array size: undershooting wastes
+  // roof potential, overshooting sells the household a system it cannot use.
   const shortfall =
     params.targetKwp > 0
       ? Math.max(0, params.targetKwp - installedKwp) / params.targetKwp
       : 0;
-  const sizePenalty = shortfall * SCORE_WEIGHTS.arrayShortfall;
+  const oversize =
+    params.targetKwp > 0
+      ? Math.max(0, installedKwp - params.targetKwp) / params.targetKwp
+      : 0;
+  const sizePenalty =
+    shortfall * SCORE_WEIGHTS.arrayShortfall + oversize * SCORE_WEIGHTS.arrayOversize;
 
   return {
     panelCount: params.panelCount,

@@ -46,6 +46,12 @@ export const SCORE_WEIGHTS = {
   ratioOutsideRange: 12,
   ratioCentering: 1.5,
   arrayShortfall: 3,
+  /**
+   * Penalty for exceeding the motivated array size. Without it the DC/AC
+   * centering term alone would happily grow a 1 kWp target into a 5 kWp array.
+   * Kept below arrayShortfall so quantisation to whole modules may round up.
+   */
+  arrayOversize: 2,
 } as const;
 
 
