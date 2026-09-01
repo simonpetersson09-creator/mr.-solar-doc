@@ -1,6 +1,7 @@
 import { ArrowRight, Sun } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { haptic } from "@/services/native-service";
+import brandIcon from "@/assets/mr-solar-doc-icon.png.asset.json";
 
 interface WelcomePageProps {
   onStart: () => void;
