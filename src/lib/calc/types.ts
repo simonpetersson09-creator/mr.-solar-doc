@@ -314,6 +314,11 @@ export interface CalculationResult {
   lifetime: LifetimeProjection;
   /** Maximum motivated investment given the accepted simple payback time. */
   investment: MaxInvestmentResult;
+  /**
+   * Investment level at the selected payback time and at +/- 2 years, from the
+   * same model. UI and PDF read these values; nothing recomputes them.
+   */
+  investmentScenarios: PaybackScenario[];
   /** Cost per produced kWh over the period, and what a kWh is worth. */
   productionCost: ProductionCostResult;
 
