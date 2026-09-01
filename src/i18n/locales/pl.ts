@@ -11,9 +11,9 @@ export const pl = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Jak dużej instalacji słonecznej potrzebujesz i ile jest dla ciebie warta?",
-    point1Title: "Oblicza twój potencjał słoneczny",
+    point1Title: "Analizuje Twoje warunki",
     point1Body: "Na podstawie twojej lokalizacji, dachu i lokalnych warunków słonecznych.",
-    point2Title: "Wymiaruje instalację",
+    point2Title: "Znajduje odpowiedni rozmiar dla Ciebie",
     point2Body:
       "Twoje zużycie prądu, podłączenie do sieci i produkcja słoneczna są łączone, by znaleźć odpowiedni rozmiar.",
     point3Title: "Oblicza, ile może kosztować według pożądanego okresu zwrotu",

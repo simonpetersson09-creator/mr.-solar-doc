@@ -12,9 +12,9 @@ export const fr = {
     title: "Mr. Solar Doc",
     subtitle:
       "De quelle taille d'installation solaire avez-vous besoin et quelle valeur a-t-elle pour vous ?",
-    point1Title: "Calcule votre potentiel solaire",
+    point1Title: "Analyse vos conditions",
     point1Body: "À partir de votre emplacement, votre toit et les conditions solaires locales.",
-    point2Title: "Dimensionne l'installation",
+    point2Title: "Trouve la bonne taille pour vous",
     point2Body:
       "Votre consommation, votre raccordement au réseau et votre production solaire sont combinés pour trouver la taille appropriée.",
     point3Title: "Calcule ce qu'elle peut coûter selon le délai de remboursement souhaité",

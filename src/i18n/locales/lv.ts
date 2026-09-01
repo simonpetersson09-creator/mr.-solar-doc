@@ -11,9 +11,9 @@ export const lv = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Cik liela saules sistēma jums nepieciešama un kāda tā vērtība jums?",
-    point1Title: "Aprēķina jūsu saules potenciālu",
+    point1Title: "Analizē jūsu nosacījumus",
     point1Body: "Pamatojoties uz jūsu atrašanās vietu, jumtu un vietējiem saules apstākļiem.",
-    point2Title: "Izmēro sistēmu",
+    point2Title: "Atrod jums pareizo izmēru",
     point2Body:
       "Jūsu elektroenerģijas patēriņš, tīkla pieslēgums un saules ražošana tiek apvienoti, lai atrastu atbilstošu izmēru.",
     point3Title: "Aprēķina, cik tas drīkst maksāt pēc vēlamā atmaksāšanās laika",

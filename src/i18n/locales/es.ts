@@ -11,9 +11,9 @@ export const es = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "¿Qué tamaño de instalación solar necesitas y qué valor tiene para ti?",
-    point1Title: "Calcula tu potencial solar",
+    point1Title: "Analiza tus condiciones",
     point1Body: "",
-    point2Title: "Dimensiona la instalación",
+    point2Title: "Encuentra el tamaño adecuado para ti",
     point2Body:
       "Tu consumo eléctrico, conexión a red y producción solar se combinan para encontrar el tamaño adecuado.",
     point3Title: "Calcula cuánto puede costar según el período de amortización deseado",

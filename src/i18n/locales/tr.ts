@@ -11,9 +11,9 @@ export const tr = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Ne büyüklükte bir güneş sistemine ihtiyacınız var ve sizin için değeri ne?",
-    point1Title: "Güneş potansiyelinizi hesaplar",
+    point1Title: "Koşullarınızı analiz eder",
     point1Body: "Konumunuza, çatınıza ve yerel güneş koşullarına göre.",
-    point2Title: "Sistemi boyutlandırır",
+    point2Title: "Sizin için doğru boyutu bulur",
     point2Body:
       "Elektrik tüketiminiz, şebeke bağlantınız ve güneş üretimi uygun boyutu bulmak için birleştirilir.",
     point3Title: "Ne kadar mal olabileceğini hesaplar istenen geri ödeme süresine göre",

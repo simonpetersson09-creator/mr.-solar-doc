@@ -11,9 +11,9 @@ export const lt = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Kokio dydžio saulės sistemą jums reikia ir kiek ji verta?",
-    point1Title: "Skaičiuoja jūsų saulės potencialą",
+    point1Title: "Analizuoja jūsų sąlygas",
     point1Body: "Pagal jūsų vietą, stogą ir vietos saulės sąlygas.",
-    point2Title: "Matuoja sistemos dydį",
+    point2Title: "Randa tinkamą dydį jums",
     point2Body:
       "Jūsų elektros suvartojimas, tinklo prijungimas ir saulės gamyba derinami tinkamam dydžiui rasti.",
     point3Title: "Skaičiuoja, kiek tai gali kainuoti pagal pageidaujamą atsiperkamumo laiką",

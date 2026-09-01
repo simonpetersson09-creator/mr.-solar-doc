@@ -11,9 +11,9 @@ export const cs = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Jak velkou solární instalaci potřebujete a kolik za ni stojí?",
-    point1Title: "Počítá váš solární potenciál",
+    point1Title: "Analyzuje vaše předpoklady",
     point1Body: "Na základě vaší polohy, střechy a místních solárních podmínek.",
-    point2Title: "Dimenzuje instalaci",
+    point2Title: "Najde správnou velikost pro vás",
     point2Body:
       "Vaše spotřeba elektřiny, připojení a solární produkce se spojí, aby našly vhodnou velikost.",
     point3Title: "Počítá, kolik může stát podle požadované doby návratnosti",

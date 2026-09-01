@@ -11,9 +11,9 @@ export const et = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Kui suurt päikeseppaigaldust vajate ja mis väärtus see teile on?",
-    point1Title: "Arvutab teie päikesepotentsiaali",
+    point1Title: "Analüüsib teie eeldusi",
     point1Body: "Teie asukoha, katuse ja kohalike päikeseolude põhjal.",
-    point2Title: "Dimensioonib paigalduse",
+    point2Title: "Leiab teie jaoks õige suuruse",
     point2Body:
       "Teie elekutarve, võrguühendus ja päikese tootmine ühendatakse, et leida sobiv suurus.",
     point3Title: "Arvutab, mida see maksma võib minna soovitud tasuvusaja põhjal",

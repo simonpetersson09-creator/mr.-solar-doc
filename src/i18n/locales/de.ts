@@ -11,9 +11,9 @@ export const de = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Wie groß muss Ihre Solaranlage sein und was ist sie Ihnen wert?",
-    point1Title: "Berechnet Ihr Solarpotenzial",
+    point1Title: "Analysiert Ihre Voraussetzungen",
     point1Body: "Auf Basis Ihres Standorts, Ihres Dachs und der lokalen Sonnenverhältnisse.",
-    point2Title: "Dimensioniert die Anlage",
+    point2Title: "Findet die richtige Größe für Sie",
     point2Body:
       "Ihr Stromverbrauch, Netzanschluss und Solarerzeugung werden kombiniert, um eine passende Größe zu finden.",
     point3Title: "Berechnet, was sie kosten darf nach gewünschter Amortisationszeit",
