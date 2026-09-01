@@ -400,6 +400,8 @@ export const fr = {
     "languageHint": "La devise est déterminée par le pays de votre adresse, et non par la langue.",
     "history": "Historique",
     "plansTitle": "Achats et abonnement",
+    subscription: "Abonnement",
+    popular: "Le plus populaire",
     "singleCta": "Acheté avec votre prochain calcul",
     "singleNote": "L'achat unique se fait lorsque vous démarrez un nouveau calcul — pas ici.",
     "terms": "Conditions d'utilisation",

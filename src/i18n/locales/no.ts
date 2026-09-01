@@ -458,6 +458,8 @@ export const no = {
     "languageHint": "Valutaen følger landet i adressen din, ikke språket.",
     "history": "Historikk",
     "plansTitle": "Kjøp og abonnement",
+    subscription: "Abonnement",
+    popular: "Mest populære",
     "singleCta": "Kjøpt med din neste beregning",
     "singleNote": "Engangskjøpet gjøres når du starter en ny beregning — ikke herfra.",
     "terms": "Bruksvilkår",

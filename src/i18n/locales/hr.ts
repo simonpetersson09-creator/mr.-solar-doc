@@ -492,6 +492,8 @@ export const hr = {
     languageHint: "Valuta ovisi o državi u vašoj adresi, a ne o jeziku.",
     history: "Povijest",
     plansTitle: "Kupnje i pretplata",
+    subscription: "Pretplata",
+    popular: "Najpopularnije",
     singleCta: "Kupljeno uz sljedeći izračun",
     singleNote: "Jednokratna kupnja obavlja se kada pokrenete novi izračun — ne odavde.",
     terms: "Uvjeti korištenja",

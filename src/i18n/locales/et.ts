@@ -400,6 +400,8 @@ export const et = {
     "languageHint": "Valuuta määratakse teie aadressi riigi, mitte keele järgi.",
     "history": "Ajalugu",
     "plansTitle": "Ostud ja tellimus",
+    subscription: "Tellimus",
+    popular: "Populaarseim",
     "singleCta": "Ostetud järgmise arvutuse käigus",
     "singleNote": "Ühekordne ost tehakse siis, kui alustate uut arvutust — mitte siit.",
     "terms": "Kasutustingimused",

@@ -400,6 +400,8 @@ export const pl = {
     "languageHint": "Waluta jest zależna od kraju w Twoim adresie, nie od języka.",
     "history": "Historia",
     "plansTitle": "Zakupy i subskrypcja",
+    subscription: "Subskrypcja",
+    popular: "Najpopularniejszy",
     "singleCta": "Zakupione przy następnym obliczeniu",
     "singleNote": "Zakup jednorazowy jest realizowany, gdy rozpoczynasz nowe obliczenie — nie stąd.",
     "terms": "Warunki użytkowania",
