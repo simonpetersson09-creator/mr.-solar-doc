@@ -419,7 +419,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       kwPerAmp,
       frequencyHz: input.electrical.gridFrequencyHz ?? DEFAULT_GRID_FREQUENCY_HZ,
       profileStatus: gridProfileStatus,
-      profileConfirmed: input.electrical.gridProfileConfirmed ?? gridProfileStatus === "verified",
+      profileConfirmed:
+        gridProfileStatus === "verified" || input.electrical.gridProfileConfirmed === true,
     },
     lifetime,
     investment: investmentResult,
