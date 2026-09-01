@@ -292,10 +292,11 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   CA: config(
     "CA",
     "amperage",
-    [100, 200, 400].map((a) => ampOption(a, SPLIT_PHASE_120_240)),
+    NORTH_AMERICAN_RATINGS.map((a) => ampOption(a, SPLIT_PHASE_120_240)),
     SPLIT_PHASE_120_240,
     { localTerm: "Electrical service size" },
   ),
+
   /** Japan: contract amperage on a 100/200 V single-phase three-wire supply. */
   JP: config(
     "JP",
