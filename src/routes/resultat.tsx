@@ -158,7 +158,6 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
         ? "result.gridProfileStatusGeneric"
         : "result.gridProfileStatusUnsupported",
   );
-const cost = result.productionCost;
 
 
   return (
