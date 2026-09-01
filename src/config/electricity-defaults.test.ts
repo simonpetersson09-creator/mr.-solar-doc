@@ -64,7 +64,7 @@ describe("electricity price standard values", () => {
   });
 
   it("has a versioned defaults identifier", () => {
-    expect(ELECTRICITY_PRICE_DEFAULTS_VERSION).toBe("2026-08");
+    expect(ELECTRICITY_PRICE_DEFAULTS_VERSION).toBe("2026-09");
   });
 
   it("has the exact standard values and currency in every active market", () => {

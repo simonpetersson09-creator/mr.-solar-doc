@@ -124,8 +124,8 @@ describe("ISO currencies for the random global fallback markets", () => {
     }
   });
 
-  it("adds no economic defaults for the newly mapped countries", () => {
-    for (const country of ["MX", "CL", "TH", "KE", "TR", "ID", "AR"] as const) {
+  it("adds no economic defaults for countries outside the verified price table", () => {
+    for (const country of ["CL", "TH", "KE", "ID", "AR"] as const) {
       const economics = resolveEconomicsDefaults(country, {});
       expect(economics.selfConsumedValuePerKwh).toBeNull();
       expect(economics.exportValuePerKwh).toBeNull();
