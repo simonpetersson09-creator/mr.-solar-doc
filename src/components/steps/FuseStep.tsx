@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, CircleAlert, Info, Zap } from "lucide-react";
+import { ArrowRight, Check, CircleAlert, Info, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -272,7 +272,14 @@ const [showGridInfo, setShowGridInfo] = useState(false);
               }}
               className={chipClass(!gridConfirmed)}
             >
-              {gridConfirmed ? t("fuse.confirmedGrid") : t("fuse.confirmGrid")}
+              {gridConfirmed ? (
+                <span className="flex items-center justify-center gap-1.5">
+                  <Check className="size-3.5" strokeWidth={3} />
+                  {t("fuse.confirmedGrid")}
+                </span>
+              ) : (
+                t("fuse.confirmGrid")
+              )}
             </button>
           </div>
         ) : null}
