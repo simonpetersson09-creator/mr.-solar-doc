@@ -118,17 +118,27 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
       : 0;
 
   // Candidate systems -> technical constraints -> recommended system.
+  // Every candidate is a whole number of panels on a real inverter, so the
+  // winner is a physically buildable system.
+  const panelPowerKwp = input.panelPowerKwp ?? PANEL_WATTAGE_KWP;
   const selection = selectRecommendedSystem({
     targetKwp: sizing.recommendedKwp,
+    referenceKwp: sizing.referenceKwp,
     maxAcPowerKw: acCeilingKw,
     inverterSizesKw: input.inverterSizesKw,
+    panelPowerKwp,
     targetRange: targetDcAcRange,
     monthlyKwhPerKwp: input.resource.monthlyKwhPerKwp,
     annualConsumptionKwh: input.consumption.annualKwh,
     monthlyConsumptionKwh: input.consumption.monthlyKwh,
     solarSeasonProductionShare,
-    kwpStep: KWP_ROUNDING_STEP,
   });
+  if (selection.status === "grid-too-small") {
+    throw new GridTooSmallError(
+      selection.maxAcPowerKw,
+      selection.minimumSupportedInverterKw,
+    );
+  }
   if (!selection.withinTargetRange) {
     notes.push(
       selection.targetRangeMiss === "below" ? "dc-ac-below-target" : "dc-ac-above-target",
@@ -136,6 +146,9 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   }
 
   const inverterKw = selection.best.inverterKw;
+  const panelCount = selection.best.panelCount;
+  // Physical source of truth: panelCount x panelPowerKwp. Everything below
+  // (production, economics, presentation, PDF) uses this exact value.
   const installedKwp = selection.best.installedKwp;
 
   let sizingBasis: SizingBasis = "consumption";
@@ -143,10 +156,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     sizingBasis = pvLimitBinding === "connection-capacity" ? "grid-limit" : "pv-rule-limit";
   }
   if (installedKwp < sizing.recommendedKwp - 1e-9) sizingBasis = "inverter-limit";
-  if (installedKwp <= MIN_RECOMMENDED_KWP + 1e-9 && sizing.referenceKwp < MIN_RECOMMENDED_KWP) {
+  if (
+    installedKwp <= MIN_RECOMMENDED_KWP + panelPowerKwp + 1e-9 &&
+    sizing.referenceKwp < MIN_RECOMMENDED_KWP
+  ) {
     sizingBasis = "minimum-size";
   }
-  if (installedKwp >= MAX_RECOMMENDED_KWP - 1e-9) sizingBasis = "maximum-size";
+  if (installedKwp >= MAX_RECOMMENDED_KWP - panelPowerKwp - 1e-9) sizingBasis = "maximum-size";
 
   // The smallest commercially available inverters set a practical floor, so a
   // very small target can only be met by a noticeably larger array.
