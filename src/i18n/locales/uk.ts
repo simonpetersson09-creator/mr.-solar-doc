@@ -77,6 +77,7 @@ export const uk = {
   "fuse": {
     "gridAssumptionDynamic": "Розрахунок базується на {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Введіть значення",
       "invalid": "Введіть значення від {{min}} до {{max}} {{unit}}.",
       "amperage": { "title": "Який у вас головний запобіжник?", "label": "Головний запобіжник", "help": "Ампери на фазу, зазначені на головному автоматі чи рахунку." }, "service": { "title": "Розмір електричного вводу", "label": "Розмір електричного вводу", "help": "Значення в амперах вказане на головному вимикачі або в електрощиті." },
@@ -96,6 +97,7 @@ export const uk = {
       "summary": "{{phases}} · {{voltage}} В · {{frequency}} Гц",
       "phases": "Фази",
       "serviceType": "Тип підключення",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Розділена фаза",
       "unverifiedHint": "У нас немає перевірених значень мережі для цієї країни. Будь ласка, звірте свої дані з лічильником або щитком.",
       "phase1": "1-фазне",

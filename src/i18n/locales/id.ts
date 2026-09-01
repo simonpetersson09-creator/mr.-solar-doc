@@ -32,7 +32,8 @@ export const id = {
   },
   "fuse": {
     "gridAssumptionDynamic": "Perhitungan didasarkan pada {{service}} {{voltage}}.",
-    "capacity": { "otherLabel": "Masukkan nilai", "invalid": "Masukkan nilai antara {{min}} dan {{max}} {{unit}}.", "amperage": { "title": "Berapa sekring utama Anda?", "label": "Sekring utama", "help": "Ampere per fase, tertera pada pemutus utama atau tagihan Anda." }, "service": { "title": "Ukuran sambungan listrik", "label": "Ukuran sambungan listrik", "help": "Temukan nilai ampere pada sakelar utama atau panel listrik Anda." }, "contracted-kva": { "title": "Berapa daya kontrak Anda?", "label": "Daya kontrak", "help": "Tertera dalam kVA pada tagihan listrik Anda." }, "contracted-kw": { "title": "Berapa daya kontrak Anda?", "label": "Daya kontrak", "help": "Tertera dalam kW pada tagihan listrik Anda." } },
+    "capacity": {
+      "inputUnit": "Unit", "otherLabel": "Masukkan nilai", "invalid": "Masukkan nilai antara {{min}} dan {{max}} {{unit}}.", "amperage": { "title": "Berapa sekring utama Anda?", "label": "Sekring utama", "help": "Ampere per fase, tertera pada pemutus utama atau tagihan Anda." }, "service": { "title": "Ukuran sambungan listrik", "label": "Ukuran sambungan listrik", "help": "Temukan nilai ampere pada sakelar utama atau panel listrik Anda." }, "contracted-kva": { "title": "Berapa daya kontrak Anda?", "label": "Daya kontrak", "help": "Tertera dalam kVA pada tagihan listrik Anda." }, "contracted-kw": { "title": "Berapa daya kontrak Anda?", "label": "Daya kontrak", "help": "Tertera dalam kW pada tagihan listrik Anda." } },
     "gridAssumption": "Perhitungan mengasumsikan sambungan tiga fase 400 V.",
     "gridAssumptionInfo": "Daya teoretis sekring utama dihitung dari sambungan tiga fase 400 V. Periksa sambungan jaringan Anda yang sebenarnya jika ragu.",
     gridCheckHint: "Periksa sambungan jaringan Anda yang sebenarnya jika ragu.",

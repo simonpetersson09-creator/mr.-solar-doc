@@ -149,6 +149,7 @@ export const lt = {
   "fuse": {
     "gridAssumptionDynamic": "Skaičiavimas remiasi {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Įveskite reikšmę",
       "invalid": "Įveskite reikšmę nuo {{min}} iki {{max}} {{unit}}.",
       "amperage": {
@@ -188,6 +189,7 @@ export const lt = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Keiskite tik tada, jei numatytosios reikšmės neatitinka jūsų jungties.",
       "serviceType": "Prijungimo tipas",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Dviejų fazių (split-phase)",
       "unverifiedHint": "Neturime patvirtintų tinklo duomenų šiai šaliai. Patikrinkite duomenis savo skaitiklyje arba skydinėje."
     },

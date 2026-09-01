@@ -149,6 +149,7 @@ export const et = {
   "fuse": {
     "gridAssumptionDynamic": "Arvutus lähtub {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Sisestage väärtus",
       "invalid": "Sisestage väärtus vahemikus {{min}} kuni {{max}} {{unit}}.",
       "amperage": {
@@ -193,6 +194,7 @@ export const et = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Muutke ainult siis, kui vaikeväärtused ei vasta teie liitumispunktile.",
       "serviceType": "Liitumise tüüp",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Kahefaasiline (split-phase)",
       "unverifiedHint": "Meil ei ole selle riigi kohta kinnitatud võrguandmeid. Kontrollige andmeid oma arvestist või kilbist."
     },

@@ -164,6 +164,7 @@ export const el = {
   "fuse": {
     "gridAssumptionDynamic": "Ο υπολογισμός βασίζεται σε {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Εισαγωγή τιμής",
       "invalid": "Εισαγάγετε μια τιμή μεταξύ {{min}} και {{max}} {{unit}}.",
       "amperage": {
@@ -201,6 +202,7 @@ export const el = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "phases": "Φάσεις",
       "serviceType": "Τύπος σύνδεσης",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Διφασική (split-phase)",
       "unverifiedHint": "Δεν έχουμε επιβεβαιωμένες τιμές δικτύου για αυτή τη χώρα. Παρακαλούμε ελέγξτε τα στοιχεία σας με τον μετρητή ή τον ηλεκτρικό πίνακά σας.",
       "phase1": "Μονοφασικό",

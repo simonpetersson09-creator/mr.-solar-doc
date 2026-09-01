@@ -164,6 +164,7 @@ export const bg = {
   "fuse": {
     "gridAssumptionDynamic": "Изчислението се базира на {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Въведете стойност",
       "invalid": "Въведете стойност между {{min}} и {{max}} {{unit}}.",
       "amperage": {
@@ -200,6 +201,7 @@ export const bg = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "phases": "Фази",
       "serviceType": "Тип на връзката",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Разделена фаза",
       "unverifiedHint": "Нямаме проверени мрежови стойности за тази държава. Моля, проверете данните си спрямо електромера или таблото си.",
       "phase1": "Еднофазен",

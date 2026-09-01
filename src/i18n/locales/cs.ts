@@ -149,6 +149,7 @@ export const cs = {
   "fuse": {
     "gridAssumptionDynamic": "Výpočet vychází z {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Zadejte hodnotu",
       "invalid": "Zadejte hodnotu mezi {{min}} a {{max}} {{unit}}.",
       "amperage": {
@@ -193,6 +194,7 @@ export const cs = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Změňte pouze v případě, že výchozí hodnoty neodpovídají vaší přípojce.",
       "serviceType": "Typ připojení",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Dvoufázové (split-phase)",
       "unverifiedHint": "Pro tuto zemi nemáme ověřené síťové hodnoty. Zkontrolujte údaje podle svého elektroměru nebo rozvaděče."
     },

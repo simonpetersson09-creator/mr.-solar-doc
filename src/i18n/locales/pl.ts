@@ -149,6 +149,7 @@ export const pl = {
   "fuse": {
     "gridAssumptionDynamic": "Obliczenia opierają się na {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Podaj wartość",
       "invalid": "Podaj wartość od {{min}} do {{max}} {{unit}}.",
       "amperage": {
@@ -188,6 +189,7 @@ export const pl = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Zmieniaj tylko wtedy, gdy wartości domyślne nie pasują do Twojego przyłącza.",
       "serviceType": "Rodzaj przyłącza",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Dwufazowe (split-phase)",
       "unverifiedHint": "Nie mamy zweryfikowanych danych sieciowych dla tego kraju. Sprawdź swoje dane na liczniku lub w rozdzielnicy."
     },

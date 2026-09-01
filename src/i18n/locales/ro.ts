@@ -164,6 +164,7 @@ export const ro = {
   "fuse": {
     "gridAssumptionDynamic": "Calculul se bazează pe {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Introdu valoare",
       "invalid": "Introdu o valoare între {{min}} și {{max}} {{unit}}.",
       "amperage": {
@@ -195,6 +196,7 @@ export const ro = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "phases": "Faze",
       "serviceType": "Tip de conexiune",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Fază divizată",
       "unverifiedHint": "Nu avem valori de rețea verificate pentru această țară. Verifică datele tale cu contorul sau tabloul electric.",
       "phase1": "1 fază",

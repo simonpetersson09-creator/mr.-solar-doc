@@ -149,6 +149,7 @@ export const sl = {
   "fuse": {
     "gridAssumptionDynamic": "Izračun temelji na {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Vnesite vrednost",
       "invalid": "Vnesite vrednost med {{min}} in {{max}} {{unit}}.",
       "amperage": {
@@ -188,6 +189,7 @@ export const sl = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Spremenite le, če privzete vrednosti ne ustrezajo vašemu priključku.",
       "serviceType": "Vrsta priključka",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Dvofazni (split-phase)",
       "unverifiedHint": "Za to državo nimamo preverjenih omrežnih vrednosti. Preverite podatke na števcu ali v elektroomarici."
     },

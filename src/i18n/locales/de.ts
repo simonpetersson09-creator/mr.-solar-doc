@@ -149,6 +149,7 @@ export const de = {
   "fuse": {
     "gridAssumptionDynamic": "Die Berechnung basiert auf {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Einheit",
       "otherLabel": "Wert eingeben",
       "invalid": "Geben Sie einen Wert zwischen {{min}} und {{max}} {{unit}} ein.",
       "amperage": {
@@ -193,6 +194,7 @@ export const de = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "hint": "Nur ändern, wenn die Standardwerte nicht zu Ihrem Anschluss passen.",
       "serviceType": "Anschlussart",
+      "twoPhase": "Zweiphasig (Phase–Phase)",
       "splitPhase": "Zweiphasig (Split-Phase)",
       "unverifiedHint": "Für dieses Land liegen uns keine verifizierten Netzwerte vor. Bitte prüfen Sie Ihre Angaben anhand Ihres Zählers oder Sicherungskastens."
     },

@@ -164,6 +164,7 @@ export const sr = {
   "fuse": {
     "gridAssumptionDynamic": "Прорачун се заснива на {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Unit",
       "otherLabel": "Унесите вредност",
       "invalid": "Унесите вредност између {{min}} и {{max}} {{unit}}.",
       "amperage": {
@@ -195,6 +196,7 @@ export const sr = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "phases": "Фазе",
       "serviceType": "Тип прикључка",
+      "twoPhase": "2-phase (phase-to-phase)",
       "splitPhase": "Раздвојена фаза",
       "unverifiedHint": "Немамо проверене мрежне вредности за ову земљу. Молимо проверите своје податке на бројилу или разводном орману.",
       "phase1": "1-фазни",

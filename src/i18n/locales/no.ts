@@ -164,6 +164,7 @@ export const no = {
   "fuse": {
     "gridAssumptionDynamic": "Beregningen er basert på {{service}} {{voltage}}.",
     "capacity": {
+      "inputUnit": "Enhet",
       "otherLabel": "Angi verdi",
       "invalid": "Angi en verdi mellom {{min}} og {{max}} {{unit}}.",
       "amperage": {
@@ -195,6 +196,7 @@ export const no = {
       "summary": "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       "phases": "Faser",
       "serviceType": "Tilkoblingstype",
+      "twoPhase": "2-fase (fase–fase)",
       "splitPhase": "Delt fase",
       "unverifiedHint": "Vi har ingen verifiserte nettverdier for dette landet. Sjekk opplysningene dine mot måleren eller sikringsskapet.",
       "phase1": "1-fase",
