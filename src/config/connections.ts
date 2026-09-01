@@ -15,7 +15,6 @@
  */
 
 import {
-  DEFAULT_GRID_FREQUENCY_HZ,
   SPLIT_PHASE_FREQUENCY_HZ,
   SPLIT_PHASE_LINE_TO_LINE_V,
   SPLIT_PHASE_LINE_TO_NEUTRAL_V,
@@ -190,7 +189,12 @@ function config(
   };
 }
 
-const NORTH_AMERICAN_RATINGS = [60, 100, 125, 150, 200, 400];
+/**
+ * US service sizes. 100/150/200/400 A are the standard residential steps;
+ * 60 A only exists on legacy services and is kept so those homes can answer.
+ * 125 A is not a residential service size and is deliberately absent.
+ */
+const NORTH_AMERICAN_RATINGS = [60, 100, 150, 200, 400];
 
 
 /** Verified country profiles. Add a country only when its data is confirmed. */
@@ -225,24 +229,27 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     SINGLE_PHASE_230,
     { localTerm: "Aansluitwaarde" },
   ),
+  /** Denmark: 40 A is a standard step in the Danish fuse series. */
   DK: config(
     "DK",
     "amperage",
-    [16, 20, 25, 32, 35, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400)),
+    [16, 20, 25, 32, 35, 40, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400)),
     EU_THREE_PHASE_400,
     { localTerm: "Hovedsikring" },
   ),
   /**
    * Germany: the connection capacity is not on the bill; the house connection
-   * fuse is what exists. Nothing is preselected — we do not know the user's.
+   * fuse is what exists. 3 x 25 A is the common small connection
+   * ("Kleinstanschluss"). Nothing is preselected — we do not know the user's.
    */
   DE: config(
     "DE",
     "amperage",
-    [35, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+    [25, 35, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
     EU_THREE_PHASE_400,
     { localTerm: "Hausanschlusssicherung" },
   ),
+
   /** Great Britain: single-phase 230 V cut-out fuse. */
   GB: config(
     "GB",
@@ -288,6 +295,68 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     JP_SINGLE_PHASE_200,
     { localTerm: "契約アンペア" },
   ),
+  /**
+   * Norway: "hovedsikring" in amperes. Large parts of the country run a
+   * 230 V IT/delta network without neutral, so three-phase 230 V must be
+   * offered next to the newer 400 V TN service.
+   */
+  NO: config(
+    "NO",
+    "amperage",
+    [
+      ...[25, 32, 40, 63].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+      ...[25, 32, 40, 63].map((a) => ampOption(a, THREE_PHASE_230, "3 × 230 V · ")),
+      ...[25, 32, 40, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3N × 400 V · ")),
+    ],
+    THREE_PHASE_230,
+    { localTerm: "Hovedsikring" },
+  ),
+  /** Austria: "Anschlussleistung" is set by the house connection fuse. */
+  AT: config(
+    "AT",
+    "amperage",
+    [
+      ...[20, 25, 32, 35, 40, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+      ...[16, 20, 25, 32].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+    ],
+    EU_THREE_PHASE_400,
+    { localTerm: "Hausanschlusssicherung" },
+  ),
+  /** Czechia: "hlavní jistič" in amperes — the billed quantity. */
+  CZ: config(
+    "CZ",
+    "amperage",
+    [
+      ...[16, 20, 25, 32, 40, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+      ...[25, 32, 40].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+    ],
+    EU_THREE_PHASE_400,
+    { localTerm: "Hlavní jistič" },
+  ),
+  /** Slovakia: "hlavný istič" in amperes, with an official A -> kW table. */
+  SK: config(
+    "SK",
+    "amperage",
+    [
+      ...[16, 20, 25, 32, 40, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+      ...[25, 32, 40].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+    ],
+    EU_THREE_PHASE_400,
+    { localTerm: "Hlavný istič" },
+  ),
+  /** Estonia: "peakaitse" in amperes, per the network operator's price list. */
+  EE: config(
+    "EE",
+    "amperage",
+    [
+      ...[16, 20, 25, 32, 35, 40, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+      ...[16, 20, 25, 32, 35, 40].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+    ],
+    EU_THREE_PHASE_400,
+    { localTerm: "Peakaitse" },
+  ),
+
+
 
   /* --- contracted kVA markets --- */
   /**
@@ -302,33 +371,64 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     SINGLE_PHASE_230,
     { localTerm: "Puissance souscrite" },
   ),
-  /** Portugal: regulated "potência contratada" steps in kVA (total). */
+  /**
+   * Portugal: regulated "potência contratada" steps in kVA (total). The BTN
+   * ladder continues above 10.35 kVA (13.8 / 17.25 / 20.7 kVA), which is where
+   * households with a heat pump or an EV charger sit.
+   */
   PT: config(
     "PT",
     "contracted-kva",
-    [1.15, 2.3, 3.45, 4.6, 5.75, 6.9, 10.35].map((kva) => kvaOption(kva)),
+    [1.15, 2.3, 3.45, 4.6, 5.75, 6.9, 10.35, 13.8, 17.25, 20.7].map((kva) => kvaOption(kva)),
     SINGLE_PHASE_230,
     { localTerm: "Potência contratada" },
   ),
 
   /* --- contracted kW markets --- */
-  /** Spain: "potencia contratada" in kW, free in 0.1 kW steps. */
+  /**
+   * Spain: "potencia contratada" in kW. The regulated BOE ladder — 9.2 and
+   * 11.5 kW are the common levels for homes with an EV or a heat pump.
+   */
   ES: config(
     "ES",
     "contracted-kw",
-    [3.45, 4.6, 5.75, 6.9].map((kw) => kwOption(kw)),
+    [1.15, 2.3, 3.45, 4.6, 5.75, 6.9, 8.05, 9.2, 10.35, 11.5, 14.49].map((kw) => kwOption(kw)),
     SINGLE_PHASE_230,
     { localTerm: "Potencia contratada" },
   ),
-  /** Italy: "potenza impegnata" in kW. */
+  /** Italy: "potenza impegnata" in kW. 1.5 kW covers holiday homes. */
   IT: config(
     "IT",
     "contracted-kw",
-    [3, 4.5, 6, 10, 15].map((kw) => kwOption(kw)),
+    [1.5, 3, 4.5, 6, 10, 15].map((kw) => kwOption(kw)),
     SINGLE_PHASE_230,
-
     { localTerm: "Potenza impegnata" },
   ),
+  /**
+   * Poland: the connection is contracted as "moc umowna" in kW — the figure
+   * printed on the bill. Asking for amperes would force the consumer to
+   * convert from something they never see.
+   */
+  PL: config(
+    "PL",
+    "contracted-kw",
+    [3, 4, 5, 6, 8, 10, 12, 14, 17, 20, 25, 30].map((kw) => kwOption(kw)),
+    SINGLE_PHASE_230,
+    { localTerm: "Moc umowna" },
+  ),
+  /**
+   * Slovenia: "priključna moč" is officially stated in kW, with a fixed
+   * kW <-> fuse table held by the operator. Single-phase homes sit at 4-8 kW,
+   * three-phase homes from 11 kW upwards.
+   */
+  SI: config(
+    "SI",
+    "contracted-kw",
+    [4, 5, 6, 7, 8, 11, 14, 17, 22, 24, 35, 43].map((kw) => kwOption(kw)),
+    EU_THREE_PHASE_400,
+    { localTerm: "Priključna moč" },
+  ),
+
 };
 
 /**
@@ -349,7 +449,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
  */
 const GENERIC_EU_AMPERE_LEVELS = [16, 20, 25, 32, 35, 40, 50, 63];
 
-const GENERIC_EU_MARKET_CODES = ["AT", "CZ", "PL", "SK", "SI", "EE", "LV", "LT", "CH"] as const;
+const GENERIC_EU_MARKET_CODES = ["CH", "LV", "LT"] as const;
 
 function genericEuConfig(countryCode: string): CountryConnectionConfig {
   return config(
@@ -368,6 +468,21 @@ export const GENERIC_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   Object.fromEntries(GENERIC_EU_MARKET_CODES.map((code) => [code, genericEuConfig(code)]));
 
 /**
+ * Mains frequency is a well documented physical fact even for countries whose
+ * connection ladder we have not verified, so an unknown country still gets the
+ * right frequency instead of a blanket 50 Hz. Nothing else is claimed.
+ */
+const SIXTY_HZ_COUNTRIES = new Set([
+  "US", "CA", "MX", "BR", "CO", "VE", "PE", "EC", "GT", "CR", "PA", "DO", "CU", "HN",
+  "NI", "SV", "PR", "KR", "TW", "PH", "SA", "AE", "KW", "LR", "GU",
+]);
+
+/** 50 Hz unless the country is a documented 60 Hz market. */
+export function defaultFrequencyForCountry(countryCode?: string | null): number {
+  return SIXTY_HZ_COUNTRIES.has((countryCode ?? "").toUpperCase()) ? 60 : 50;
+}
+
+/**
  * Last-resort profile for countries we know nothing about: no options, manual
  * entry only, `status: "unsupported"`. Never presented as a local standard.
  */
@@ -384,7 +499,7 @@ export function fallbackConnectionConfig(countryCode = ""): CountryConnectionCon
     defaultServiceType: "single-phase",
     defaultVoltage: 230,
     defaultLineToNeutralVoltage: null,
-    defaultFrequencyHz: DEFAULT_GRID_FREQUENCY_HZ,
+    defaultFrequencyHz: defaultFrequencyForCountry(countryCode),
     status: "unsupported",
     verified: false,
     source: "fallback",
