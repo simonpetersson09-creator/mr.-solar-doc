@@ -162,6 +162,22 @@ interface GridPatch {
  * kept in sync for legacy consumers. For split-phase the line-to-neutral
  * voltage defaults to half the (line-to-line) service voltage.
  */
+/**
+ * Identity of a stated capacity for confirmation purposes: the input type, the
+ * amount and the electrical premise behind it. Any change here means the user
+ * is confirming something else than before.
+ */
+function capacitySignature(capacity: ConnectionCapacity | null): string {
+  if (!capacity) return "none";
+  return [
+    capacity.type,
+    connectionCapacityAmount(capacity),
+    capacity.serviceType ?? "-",
+    capacity.voltageV ?? "-",
+    capacity.frequencyHz ?? "-",
+  ].join("|");
+}
+
 function mergeGrid(state: WizardState, patch: GridPatch) {
   const serviceType =
     patch.serviceType ??
@@ -226,6 +242,8 @@ export const useWizardStore = create<WizardState>()(
       setMainFuse: (amp) =>
         set((state) => ({
           mainFuseAmp: amp,
+          // Changing the stated rating invalidates an earlier confirmation.
+          gridConfirmed: amp === state.mainFuseAmp ? state.gridConfirmed : false,
           connectionSource: "custom" as const,
           connectionOptionId: null,
           connectionCapacity: amperageCapacity(amp, {
@@ -247,6 +265,10 @@ export const useWizardStore = create<WizardState>()(
           connectionOptionId: optionId,
           connectionSource: "country-option" as const,
           mainFuseAmp: capacity.type === "amperage" ? capacity.amperageA : null,
+          gridConfirmed:
+            capacitySignature(capacity) === capacitySignature(state.connectionCapacity)
+              ? state.gridConfirmed
+              : false,
           gridProfileIsUserSet: false,
           ...(capacity.serviceType && capacity.voltageV
             ? mergeGrid(state, {
@@ -267,6 +289,10 @@ export const useWizardStore = create<WizardState>()(
           connectionOptionId: null,
           connectionSource: capacity ? ("custom" as const) : null,
           mainFuseAmp: capacity?.type === "amperage" ? capacity.amperageA : null,
+          gridConfirmed:
+            capacitySignature(capacity) === capacitySignature(state.connectionCapacity)
+              ? state.gridConfirmed
+              : false,
           ...(capacity && capacity.serviceType && capacity.voltageV
             ? mergeGrid(state, {
                 serviceType: capacity.serviceType,
@@ -294,10 +320,13 @@ export const useWizardStore = create<WizardState>()(
             grid.gridFrequencyHz === state.gridFrequencyHz;
           if (unchanged) return { ...grid, gridProfileIsUserSet: true };
 
+          // Phase model, voltage or frequency changed: whatever the user
+          // confirmed earlier no longer describes the calculation premise.
           if (state.connectionSource === "country-option") {
             return {
               ...grid,
               gridProfileIsUserSet: true,
+              gridConfirmed: false,
               connectionCapacity: null,
               connectionOptionId: null,
               connectionSource: null,
@@ -308,6 +337,7 @@ export const useWizardStore = create<WizardState>()(
           return {
             ...grid,
             gridProfileIsUserSet: true,
+            gridConfirmed: false,
             connectionCapacity:
               state.connectionCapacity?.type === "amperage"
                 ? amperageCapacity(state.connectionCapacity.amperageA, {
