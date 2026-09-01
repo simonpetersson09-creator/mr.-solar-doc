@@ -100,3 +100,53 @@ export function calculateMaxInvestment(
     method: "simple",
   };
 }
+
+/**
+ * Investment level at an alternative payback time.
+ * Same model as `calculateMaxInvestment` — no parallel simplified maths.
+ */
+export interface PaybackScenario {
+  paybackYears: number;
+  maxInvestment: number;
+  maxInvestmentRounded: number;
+  /** True for the payback time the user actually selected. */
+  selected: boolean;
+}
+
+/**
+ * Builds the "selected − offset / selected / selected + offset" scenarios,
+ * clamped to the allowed payback range. Duplicates (when the selection sits
+ * on a bound) are collapsed, so the selected value always appears once.
+ */
+export function buildPaybackScenarios(params: {
+  annualEconomicValue: number;
+  acceptedPaybackYears: number;
+  annualValues?: readonly number[] | null;
+  offsetYears?: number;
+  minYears: number;
+  maxYears: number;
+}): PaybackScenario[] {
+  const offset = params.offsetYears ?? 2;
+  const clamp = (years: number) =>
+    Math.min(params.maxYears, Math.max(params.minYears, years));
+  const selected = clamp(params.acceptedPaybackYears);
+  const candidates = [selected - offset, selected, selected + offset]
+    .map(clamp)
+    .filter((years, index, all) => all.indexOf(years) === index)
+    .sort((a, b) => a - b);
+
+  return candidates.map((years) => {
+    const scenario = calculateMaxInvestment(
+      params.annualEconomicValue,
+      years,
+      null,
+      params.annualValues,
+    );
+    return {
+      paybackYears: years,
+      maxInvestment: scenario.maxInvestment,
+      maxInvestmentRounded: scenario.maxInvestmentRounded,
+      selected: years === selected,
+    };
+  });
+}

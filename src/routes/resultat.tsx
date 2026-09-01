@@ -395,6 +395,38 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
             </p>
           )}
 
+          {!economicValuesMissing && result.investmentScenarios.length > 1 ? (
+            <div className="mt-3 rounded-2xl border border-white/15 bg-white/10 p-2.5">
+              <h3 className="text-center text-[12px] font-semibold text-white">
+                {t("result.paybackScenariosTitle")}
+              </h3>
+              <dl className="mt-2 space-y-1">
+                {result.investmentScenarios.map((scenario) => (
+                  <div
+                    key={scenario.paybackYears}
+                    className={`flex items-center justify-between rounded-xl px-2.5 py-1.5 text-[12px] ${
+                      scenario.selected
+                        ? "bg-white/20 font-semibold text-white"
+                        : "text-white/75"
+                    }`}
+                  >
+                    <dt>
+                      {t("result.paybackYears", {
+                        years: formatNumber(scenario.paybackYears, locale),
+                      })}
+                      {scenario.selected ? ` · ${t("result.paybackScenarioSelected")}` : ""}
+                    </dt>
+                    <dd className="tabular-nums">
+                      {formatCurrency(scenario.maxInvestmentRounded, locale, currency)}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+              <p className="mt-2 text-center text-[11px] leading-relaxed text-white/60">
+                {t("result.paybackScenariosHelp")}
+              </p>
+            </div>
+          ) : null}
         </section>
 
 

@@ -374,6 +374,9 @@ export const pt = {
     priceExplainer:
       "A solar autoconsumida substitui eletricidade que de outro modo teria sido comprada à rede. A solar exportada, em contrapartida, gera compensação pela eletricidade injetada na rede.",
     paybackYears: "{{years}} anos",
+    "paybackScenariosTitle": "Nível de investimento com diferentes prazos de retorno",
+    "paybackScenarioSelected": "A sua escolha",
+    "paybackScenariosHelp": "Um prazo de retorno mais curto significa um investimento possível menor. Aqui vê como o nível de investimento muda se aceitar um prazo mais curto ou mais longo.",
     paybackInfo:
       "O retorno simples mostra a quantos anos corresponde o valor económico anual estimado face ao investimento. Não tem em conta futuras alterações do preço da eletricidade, custo de financiamento, inflação, manutenção ou atualização financeira.",
     maxInvestment: "Nível de investimento no período de retorno escolhido",
@@ -657,6 +660,9 @@ export const pt = {
       savings: "Valor económico por ano",
       tilt: "Inclinação do telhado",
       yearsUnit: "anos",
+      "paybackScenariosTitle": "Nível de investimento com diferentes prazos de retorno",
+      "paybackScenarioSelected": "A sua escolha",
+      "paybackScenariosHelp": "Um prazo de retorno mais curto significa um investimento possível menor. Aqui vê como o nível de investimento muda se aceitar um prazo mais curto ou mais longo.",
       acceptedPayback: "Período de retorno escolhido",
       maxInvestment: "Nível de investimento no período de retorno escolhido",
       quotePrice: "Preço de orçamento indicado",
