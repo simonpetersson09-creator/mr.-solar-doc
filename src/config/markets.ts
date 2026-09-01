@@ -7,7 +7,12 @@ import {
 import type { SupportedLanguage } from "@/i18n/languages";
 import { getConnectionConfig } from "./connections";
 
-export type GridConnectionType = "eu-three-phase-400v";
+export type GridConnectionType =
+  | "eu-three-phase-400v"
+  | "eu-single-phase-230v"
+  | "eu-three-phase-230v"
+  | "split-phase-120-240v"
+  | "split-phase-100-200v";
 
 export interface MarketConfig {
   /** ISO 3166-1 alpha-2 country code. */
@@ -84,6 +89,26 @@ const baseEuMarket = {
   exportElectricityValue: null,
 };
 
+/** Technical grid presets for markets that are not 3N~400 V. */
+const singlePhase230: Partial<MarketConfig> = {
+  gridConnectionType: "eu-single-phase-230v",
+  gridVoltageV: 230,
+  gridPhases: 1,
+  kwPerAmp: 0.23,
+};
+const threePhase230: Partial<MarketConfig> = {
+  gridConnectionType: "eu-three-phase-230v",
+  gridVoltageV: 230,
+  gridPhases: 3,
+  kwPerAmp: (Math.sqrt(3) * 230) / 1000,
+};
+const splitPhase240: Partial<MarketConfig> = {
+  gridConnectionType: "split-phase-120-240v",
+  gridVoltageV: 240,
+  gridPhases: 1,
+  kwPerAmp: 0.24,
+};
+
 function market(
   countryCode: string,
   currency: string,
@@ -131,9 +156,56 @@ export const MARKETS: Record<string, MarketConfig> = {
   LT: market("LT", "EUR", ["lt"], prices(0.19, 0.05)),
   /** Switzerland: the user picks the language separately; currency stays CHF. */
   CH: market("CH", "CHF", ["de", "fr", "it"], prices(0.22, 0.07)),
-  /** Neighbouring markets kept for address results outside the launch list. */
-  NO: market("NO", "NOK", ["en"]),
-  NL: market("NL", "EUR", ["en"]),
+  /**
+   * Markets with a verified connection profile but outside the launch list.
+   * They get their own technical defaults so nothing silently borrows the
+   * Swedish grid model or fuse ladder.
+   */
+  NO: market("NO", "NOK", ["no"], {
+    ...threePhase230,
+    mainFuseOptionsAmp: [25, 32, 40, 63],
+  }),
+  NL: market("NL", "EUR", ["nl"], {
+    mainFuseOptionsAmp: [25, 35, 50, 63, 80],
+  }),
+  GB: market("GB", "GBP", ["en"], {
+    ...singlePhase230,
+    mainFuseOptionsAmp: [60, 80, 100],
+  }),
+  BE: market("BE", "EUR", ["nl", "fr"], {
+    mainFuseOptionsAmp: [25, 32, 40, 63],
+  }),
+  FR: market("FR", "EUR", ["fr"], {
+    ...singlePhase230,
+    mainFuseOptionsAmp: [25, 32, 40, 63],
+  }),
+  PT: market("PT", "EUR", ["pt"], {
+    ...singlePhase230,
+    mainFuseOptionsAmp: [20, 25, 32, 40, 50, 63],
+  }),
+  ES: market("ES", "EUR", ["es"], {
+    ...singlePhase230,
+    mainFuseOptionsAmp: [20, 25, 32, 40, 50, 63],
+  }),
+  IT: market("IT", "EUR", ["it"], {
+    ...singlePhase230,
+    mainFuseOptionsAmp: [16, 20, 25, 32, 40, 50],
+  }),
+  US: market("US", "USD", ["en"], {
+    ...splitPhase240,
+    mainFuseOptionsAmp: [60, 100, 150, 200, 400],
+  }),
+  CA: market("CA", "CAD", ["en"], {
+    ...splitPhase240,
+    mainFuseOptionsAmp: [100, 200, 400],
+  }),
+  JP: market("JP", "JPY", ["en"], {
+    gridConnectionType: "split-phase-100-200v",
+    gridVoltageV: 200,
+    gridPhases: 1,
+    kwPerAmp: 0.2,
+    mainFuseOptionsAmp: [10, 15, 20, 30, 40, 50, 60],
+  }),
 };
 
 /** The 13 countries Mr. Solar Doc actively supports. */
