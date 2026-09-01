@@ -9,7 +9,7 @@ export const sv = {
     tagline: "Dimensionera din solcellsanläggning på några minuter",
   },
   welcome: {
-    title: "Välkommen till Mr. Solar Doc",
+    title: "Mr. Solar Doc",
     subtitle: "Ta reda på vilken solcellsanläggning som passar din fastighet och vad den får kosta.",
     body1: "Vi utgår från din fastighet, elanvändning och lokala solförutsättningar för att beräkna lämplig anläggningsstorlek och förväntad produktion.",
     body2: "Du väljer vilken återbetalningstid som känns rimlig för dig. Mr. Solar Doc räknar sedan ut vad anläggningen maximalt kan kosta för att nå den återbetalningstiden.",

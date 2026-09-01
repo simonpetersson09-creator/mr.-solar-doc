@@ -9,7 +9,7 @@ export const hu = {
     tagline: "Méretezze napelemrendszerét néhány perc alatt",
   },
   welcome: {
-    title: "Üdvözlünk a Mr. Solar Doc-nál",
+    title: "Mr. Solar Doc",
     subtitle: "Tudja meg, melyik napelemes rendszer illik az ingatlanához, és mennyibe kerülhet.",
     body1: "Az ingatlana, az áramfogyasztása és a helyi napsütési viszonyok alapján kiszámítjuk a megfelelő rendszerméretet és a várható termelést.",
     body2: "Kiválaszt egy megtérülési időt, amely megfelel Önnek. A Mr. Solar Doc ezután kiszámítja, hogy a rendszer legfeljebb mennyit kerülhet ahhoz, hogy ez a megtérülési idő teljesüljön.",

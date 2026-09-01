@@ -9,7 +9,7 @@ export const fi = {
     "tagline": "Mitoita aurinkosähköjärjestelmäsi muutamassa minuutissa"
   },
   "welcome": {
-    "title": "Tervetuloa Mr. Solar Doc -palveluun",
+    "title": "Mr. Solar Doc",
     "subtitle": "Selvitä, mikä aurinkosähköjärjestelmä sopii kiinteistöllesi ja mitä se voisi maksaa.",
     "body1": "Käytämme kiinteistöäsi, sähkönkulutustasi ja paikallisia aurinko-olosuhteita sopivan järjestelmäkoon ja odotetun tuotannon laskemiseen.",
     "body2": "Valitset itsellesi sopivan takaisinmaksuajan. Mr. Solar Doc laskee tämän jälkeen, kuinka paljon järjestelmä voi enintään maksaa, jotta takaisinmaksuaika toteutuu.",
