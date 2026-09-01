@@ -154,7 +154,7 @@ function SettingsPage() {
         </header>
 
         {/* Premium section */}
-        <section className="flex flex-col gap-1.5">
+        <section className="flex flex-col gap-3">
           {/* One-off unlock */}
           <div className="glass-primary relative overflow-hidden rounded-2xl p-3">
             <div className="relative z-10 flex flex-col gap-1">
