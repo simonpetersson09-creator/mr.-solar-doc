@@ -15,7 +15,7 @@ export const cs = {
     "point1Body": "Na základě vaší polohy, střechy a místních solárních podmínek.",
     "point2Title": "Dimenzuje instalaci",
     "point2Body": "Vaše spotřeba elektřiny, připojení a solární produkce se spojí, aby našly vhodnou velikost.",
-    "point3Title": "Počítá, kolik může stát",
+    "point3Title": "Počítá, kolik může stát podle požadované doby návratnosti",
     "point3Body": "Vyberete požadovanou dobu návratnosti. Mr. Solar Doc spočítá potřebnou úroveň investice.",
     "point4Title": "Dává vám jasný podklad pro rozhodnutí",
     "point4Body": "Vidíte produkci, ekonomiku a různé doby návratnosti v přehledné zprávě.",

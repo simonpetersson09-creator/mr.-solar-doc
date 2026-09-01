@@ -15,7 +15,7 @@ export const et = {
     "point1Body": "Teie asukoha, katuse ja kohalike päikeseolude põhjal.",
     "point2Title": "Dimensioonib paigalduse",
     "point2Body": "Teie elekutarve, võrguühendus ja päikese tootmine ühendatakse, et leida sobiv suurus.",
-    "point3Title": "Arvutab, mida see maksma võib minna",
+    "point3Title": "Arvutab, mida see maksma võib minna soovitud tasuvusaja põhjal",
     "point3Body": "Te valite soovitud tasuvusaja. Mr. Solar Doc arvutab vajaliku investeeringutaseme.",
     "point4Title": "Annab teile selge otsusaluse",
     "point4Body": "Vaata tootmist, majandust ja erinevaid tasuvusaegu ühes aruandes.",

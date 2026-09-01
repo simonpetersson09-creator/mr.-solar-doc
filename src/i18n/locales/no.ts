@@ -15,7 +15,7 @@ export const no = {
     "point1Body": "Ut fra din plassering, ditt tak og de lokale solforholdene.",
     "point2Title": "Dimensjonerer anlegget",
     "point2Body": "Ditt strømforbruk, netttilkobling og solprodukt avveies for å finne en passende størrelse.",
-    "point3Title": "Beregner hva det kan koste",
+    "point3Title": "Beregner hva det kan koste etter ønsket tilbakebetalingstid",
     "point3Body": "Du velger ønsket tilbakebetalingstid. Mr. Solar Doc beregner nødvendig investeringsnivå.",
     "point4Title": "Gir deg et tydelig beslutningsgrunnlag",
     "point4Body": "Se produksjon, økonomi og ulike tilbakebetalingstider i en rapport.",

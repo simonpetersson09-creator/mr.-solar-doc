@@ -15,7 +15,7 @@ export const sv = {
     point1Body: "",
     point2Title: "Dimensionerar anläggningen",
     point2Body: "Din elanvändning, nätanslutning och solproduktion vägs samman för att hitta en lämplig storlek.",
-    point3Title: "Räknar fram vad den får kosta",
+    point3Title: "Räknar fram vad den får kosta efter önskad återbetalningstid",
     point3Body: "Du väljer önskad återbetalningstid. Mr. Solar Doc räknar ut vilken investeringsnivå som krävs för att nå den.",
     point4Title: "Ger dig ett tydligt beslutsunderlag",
     point4Body: "Se produktion, ekonomi och olika återbetalningstider samlat i en rapport.",

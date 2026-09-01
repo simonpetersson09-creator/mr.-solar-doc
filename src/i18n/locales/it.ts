@@ -15,7 +15,7 @@ export const it = {
     "point1Body": "In base alla tua posizione, al tuo tetto e alle condizioni solari locali.",
     "point2Title": "Dimensiona l'impianto",
     "point2Body": "I tuoi consumi, la connessione alla rete e la produzione solare vengono combinati per trovare la giusta dimensione.",
-    "point3Title": "Calcola quanto può costare",
+    "point3Title": "Calcola quanto può costare in base al periodo di ammortamento desiderato",
     "point3Body": "Scegli il periodo di ammortamento desiderato. Mr. Solar Doc calcola il livello di investimento necessario.",
     "point4Title": "Ti dà una base decisionale chiara",
     "point4Body": "Produzione, economia e diversi periodi di ammortamento raccolti in un rapporto.",

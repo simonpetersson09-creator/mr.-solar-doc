@@ -15,7 +15,7 @@ export const pl = {
     "point1Body": "Na podstawie twojej lokalizacji, dachu i lokalnych warunków słonecznych.",
     "point2Title": "Wymiaruje instalację",
     "point2Body": "Twoje zużycie prądu, podłączenie do sieci i produkcja słoneczna są łączone, by znaleźć odpowiedni rozmiar.",
-    "point3Title": "Oblicza, ile może kosztować",
+    "point3Title": "Oblicza, ile może kosztować według pożądanego okresu zwrotu",
     "point3Body": "Wybierasz pożądany okres zwrotu. Mr. Solar Doc oblicza wymagany poziom inwestycji.",
     "point4Title": "Daje ci jasną podstawę decyzji",
     "point4Body": "Zobacz produkcję, ekonomię i różne okresy zwrotu w raporcie.",

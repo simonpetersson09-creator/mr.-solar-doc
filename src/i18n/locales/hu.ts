@@ -15,7 +15,7 @@ export const hu = {
     point1Body: "",
     point2Title: "Méretezi a rendszert",
     point2Body: "Áramfogyasztását, hálózati csatlakozását és napelemes termelését összesúlyozza a megfelelő mérethez.",
-    point3Title: "Kiszámítja, mennyit fizethet érte",
+    point3Title: "Kiszámítja, mennyit fizethet érte a kívánt megtérülési idő alapján",
     point3Body: "Ön választja a kívánt megtérülési időt. A Mr. Solar Doc kiszámítja a szükséges befektetési szintet.",
     point4Title: "Egyértelmű döntési alapot ad",
     point4Body: "Lásd a termelést, a gazdaságot és a különböző megtérülési időket egy jelentésben.",

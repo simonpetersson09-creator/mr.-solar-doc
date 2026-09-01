@@ -15,7 +15,7 @@ export const de = {
     "point1Body": "Auf Basis Ihres Standorts, Ihres Dachs und der lokalen Sonnenverhältnisse.",
     "point2Title": "Dimensioniert die Anlage",
     "point2Body": "Ihr Stromverbrauch, Netzanschluss und Solarerzeugung werden kombiniert, um eine passende Größe zu finden.",
-    "point3Title": "Berechnet, was sie kosten darf",
+    "point3Title": "Berechnet, was sie kosten darf nach gewünschter Amortisationszeit",
     "point3Body": "Sie wählen die gewünschte Amortisationszeit. Mr. Solar Doc berechnet die nötige Investitionshöhe.",
     "point4Title": "Gibt Ihnen eine klare Entscheidungsgrundlage",
     "point4Body": "Produktion, Wirtschaftlichkeit und verschiedene Amortisationszeiten in einem Bericht.",
