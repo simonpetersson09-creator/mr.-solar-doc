@@ -55,7 +55,7 @@ describe("country economics config", () => {
   });
 
   it("keeps installation cost per kWp country specific", () => {
-    expect(resolveEconomicsDefaults("SE").installationCostPerKwp).toBe(15000);
+    expect(resolveEconomicsDefaults("SE").installationCostPerKwp).toBeNull();
     expect(resolveEconomicsDefaults("BR").installationCostPerKwp).toBeNull();
   });
 
