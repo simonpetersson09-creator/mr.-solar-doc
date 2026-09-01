@@ -233,9 +233,12 @@ export type SizingBasis =
 export interface CalculationResult {
   location: SiteLocation;
   resource: SolarResource;
+  /** Physical DC power: always exactly panelCount x panelPowerKwp. */
   installedKwp: number;
-  /** Estimated number of modules for the recommended array. */
+  /** Whole number of modules in the recommended array. Source of truth. */
   panelCount: number;
+  /** Nameplate power of one module (kWp) behind `installedKwp`. */
+  panelPowerKwp: number;
   sizingBasis: SizingBasis;
   /** Chosen inverter's rated AC power. */
   inverterKw: number;
