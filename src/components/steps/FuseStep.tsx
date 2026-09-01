@@ -385,6 +385,15 @@ const [showGridInfo, setShowGridInfo] = useState(false);
             </p>
           </div>
         ) : null}
+
+        {showGridInfo ? (
+          <p className="text-[11px] leading-relaxed text-white/60">
+            {`${t("fuse.gridAssumptionDynamic", {
+              service: serviceLabel(serviceType),
+              voltage: voltageLabel(voltageV),
+            })} ${t("fuse.gridCheckHint")}`}
+          </p>
+        ) : null}
       </div>
 
       {/* 2. Säkring — capacity selection */}
