@@ -588,5 +588,5 @@ html[data-native="true"] {
 /* Decorative glow inside yellow cards must not muddy the surface. */
 .glass-primary .glow-amber,
 .hero-metric .glow-amber {
-  background-color: oklch(1 1 0 / 0.35);
+  background-color: oklch(1 0 0 / 0.35);
 }
