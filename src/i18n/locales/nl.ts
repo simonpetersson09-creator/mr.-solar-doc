@@ -409,6 +409,9 @@ export const nl = {
     showCalculation: "Berekening tonen",
     hideCalculation: "Berekening verbergen",
     adjustSplit: "Zelfverbruik aanpassen",
+    selfConsumptionEstimatedLabel: "Berekend eigen verbruik",
+    selfConsumptionEstimatedHelp: "Geschat op basis van uw elektriciteitsverbruik en de berekende opbrengst van de installatie. U kunt de waarde handmatig aanpassen.",
+    selfConsumptionUserAssumption: "Uw aanname",
     selfConsumptionAssumption:
       "Zelfverbruik is een aanname op basis van het gekozen aandeel en kan handmatig worden aangepast.",
     selfConsumptionInfo:

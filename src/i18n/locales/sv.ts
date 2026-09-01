@@ -413,6 +413,9 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
     showCalculation: "Visa beräkning",
     hideCalculation: "Dölj beräkning",
     adjustSplit: "Justera egenanvändning",
+    selfConsumptionEstimatedLabel: "Beräknad egenanvändning",
+    selfConsumptionEstimatedHelp: "Uppskattad utifrån din elanvändning och anläggningens beräknade produktion. Du kan justera värdet manuellt.",
+    selfConsumptionUserAssumption: "Ditt antagande",
     selfConsumptionAssumption:
       "Egenanvändningen är ett antagande baserat på vald andel och kan justeras manuellt.",
     selfConsumptionInfo:
