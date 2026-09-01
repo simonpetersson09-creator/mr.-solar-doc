@@ -21,6 +21,7 @@ import {
   isValidConnectionCapacity,
   type ConnectionCapacity,
 } from "@/config/connection-capacity";
+import { connectionOptionLabel } from "@/lib/connection-display";
 import {
   GRID_FREQUENCY_OPTIONS,
   SERVICE_TYPE_OPTIONS,
@@ -159,14 +160,12 @@ const [showGridInfo, setShowGridInfo] = useState(false);
       })
     : 0;
 
-  const optionLabel = (option: ConnectionOption) => {
-    const amount = connectionCapacityAmount(option.capacity);
-    const decimals = Number.isInteger(amount) ? 0 : 2;
-    // A per-phase prefix ("3 x ") is only meaningful for amperes. Contracted
-    // kVA/kW are totals and must never be rendered as a per-phase product.
-    const prefix = option.capacity.type === "amperage" ? (option.phasePrefix ?? "") : "";
-    return `${prefix}${formatDecimal(amount, locale, decimals)} ${connectionCapacityUnit(option.capacity.type)}`;
-  };
+  // A per-phase prefix ("3 x ") is only meaningful for amperes. Contracted
+  // kVA/kW are totals and must never be rendered as a per-phase product.
+  const optionLabel = (option: ConnectionOption) =>
+    connectionOptionLabel(option, (amount, decimals) =>
+      formatDecimal(amount, locale, decimals),
+    );
 
 
   const serviceLabel = (type: ServiceType) =>
