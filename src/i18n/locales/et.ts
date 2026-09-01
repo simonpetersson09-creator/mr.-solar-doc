@@ -22,6 +22,7 @@ export const et = {
     point4Title: "Aruanne ja otsuse alus",
     point4Body: "Vaata tootmist, majandust ja erinevaid tasuvusaegu ühes aruandes.",
     cta: "Alusta arvutust",
+    disclaimer: "Arvutus on suunav ega ole pakkumine.",
   },
   common: {
     back: "Tagasi",

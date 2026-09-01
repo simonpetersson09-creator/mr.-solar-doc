@@ -22,6 +22,7 @@ export const pl = {
     point4Title: "Raport i podstawa decyzji",
     point4Body: "Zobacz produkcję, ekonomię i różne okresy zwrotu w raporcie.",
     cta: "Zacznij obliczenia",
+    disclaimer: "Obliczenia mają charakter orientacyjny i nie są ofertą.",
   },
   common: {
     back: "Wstecz",

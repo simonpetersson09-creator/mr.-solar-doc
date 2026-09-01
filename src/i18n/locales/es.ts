@@ -22,6 +22,7 @@ export const es = {
     point4Title: "Informe y base para decidir",
     point4Body: "Producción, economía y distintos períodos de amortización reunidos en un informe.",
     cta: "Iniciar el cálculo",
+    disclaimer: "El cálculo es orientativo y no es una oferta.",
   },
   common: {
     back: "Atrás",

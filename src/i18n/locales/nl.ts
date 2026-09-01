@@ -22,6 +22,7 @@ export const nl = {
     point4Title: "Rapport en beslisbasis",
     point4Body: "Zie productie, economie en verschillende terugverdientijden in een rapport.",
     cta: "Start de berekening",
+    disclaimer: "De berekening is richtinggevend en geen offerte.",
   },
   common: {
     back: "Terug",

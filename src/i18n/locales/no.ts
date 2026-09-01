@@ -22,6 +22,7 @@ export const no = {
     point4Title: "Rapport og beslutningsgrunnlag",
     point4Body: "Se produksjon, økonomi og ulike tilbakebetalingstider i en rapport.",
     cta: "Start beregningen",
+    disclaimer: "Beregningen er veiledende og er ikke et tilbud.",
   },
   common: {
     back: "Tilbake",

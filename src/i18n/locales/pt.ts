@@ -22,6 +22,7 @@ export const pt = {
     point4Title: "Relatório e base de decisão",
     point4Body: "Veja produção, economia e diferentes períodos de retorno num relatório.",
     cta: "Iniciar o cálculo",
+    disclaimer: "O cálculo é indicativo e não é uma proposta.",
   },
   common: {
     back: "Voltar",

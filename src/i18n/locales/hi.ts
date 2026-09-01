@@ -21,6 +21,7 @@ export const hi = {
     point4Title: "रिपोर्ट और निर्णय आधार",
     point4Body: "उत्पादन, अर्थशास्त्र और विभिन्न वापसी अवधियाँ एक रिपोर्ट में देखें।",
     cta: "गणना शुरू करें",
+    disclaimer: "The calculation is indicative and is not a quote.",
   },
   common: {
     back: "पीछे",

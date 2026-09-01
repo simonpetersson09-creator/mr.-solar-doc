@@ -19,6 +19,7 @@ export const id = {
     point4Title: "Laporan dan dasar keputusan",
     point4Body: "Lihat produksi, ekonomi dan berbagai periode pengembalian dalam satu laporan.",
     cta: "Mulai perhitungan",
+    disclaimer: "Perhitungan bersifat petunjuk dan bukan penawaran.",
   },
   common: {
     back: "Kembali",

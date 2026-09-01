@@ -24,6 +24,7 @@ export const fr = {
     point4Body:
       "Production, économie et différents délais de remboursement réunis dans un rapport.",
     cta: "Démarrer le calcul",
+    disclaimer: "Le calcul est indicatif et ne constitue pas un devis.",
   },
   common: {
     back: "Retour",

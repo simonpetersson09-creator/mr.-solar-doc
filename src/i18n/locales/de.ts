@@ -23,6 +23,7 @@ export const de = {
     point4Body:
       "Produktion, Wirtschaftlichkeit und verschiedene Amortisationszeiten in einem Bericht.",
     cta: "Berechnung starten",
+    disclaimer: "Die Berechnung ist richtungsweisend und kein Angebot.",
   },
   common: {
     back: "Zurück",

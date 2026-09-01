@@ -22,6 +22,7 @@ export const tr = {
     point4Title: "Rapor ve karar temeli",
     point4Body: "Üretimi, ekonomiyi ve farklı geri ödeme sürelerini bir raporda görün.",
     cta: "Hesaplamayı başlat",
+    disclaimer: "Hesaplama yol göstericidir ve bir teklif değildir.",
   },
   common: {
     back: "Geri",

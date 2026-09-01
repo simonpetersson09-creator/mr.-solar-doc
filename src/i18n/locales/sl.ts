@@ -20,6 +20,7 @@ export const sl = {
     point4Title: "Poročilo in podlaga za odločitev",
     point4Body: "Glejte proizvodnjo, ekonomijo in različne čase povračila v poročilu.",
     cta: "Začni izračun",
+    disclaimer: "Izračun je orientacijski in ni ponudba.",
   },
   common: {
     back: "Nazaj",

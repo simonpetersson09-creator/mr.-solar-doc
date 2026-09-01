@@ -22,6 +22,7 @@ export const it = {
     point4Title: "Report e base decisionale",
     point4Body: "Produzione, economia e diversi periodi di ammortamento raccolti in un rapporto.",
     cta: "Avvia il calcolo",
+    disclaimer: "Il calcolo è indicativo e non è un preventivo.",
   },
   common: {
     back: "Indietro",

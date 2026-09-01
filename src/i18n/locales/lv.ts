@@ -22,6 +22,7 @@ export const lv = {
     point4Title: "Ziņojums un lēmumu pamats",
     point4Body: "Skatiet ražošanu, ekonomiku un dažādus atmaksāšanās laikus atskaitē.",
     cta: "Sākt aprēķinu",
+    disclaimer: "Aprēķins ir orientējošs un nav piedāvājums.",
   },
   common: {
     back: "Atpakaļ",
