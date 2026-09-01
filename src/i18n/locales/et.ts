@@ -156,6 +156,11 @@ export const et = {
         "label": "Peakaitse",
         "help": "Amprid faasi kohta, näidatud pealülitil või arvel."
       },
+      "service": {
+        "title": "Elektriliitumise suurus",
+        "label": "Elektriliitumise suurus",
+        "help": "Amprite arvu leiate pealülitilt või elektrikilbilt."
+      },
       "contracted-kva": {
         "title": "Milline on teie lepinguline võimsus?",
         "label": "Lepinguline võimsus",

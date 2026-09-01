@@ -156,6 +156,11 @@ export const fr = {
         "label": "Disjoncteur principal",
         "help": "Ampères par phase, indiqués sur le disjoncteur ou la facture."
       },
+      "service": {
+        "title": "Calibre du branchement électrique",
+        "label": "Calibre du branchement électrique",
+        "help": "L'intensité en ampères figure sur votre disjoncteur principal ou votre tableau électrique."
+      },
       "contracted-kva": {
         "title": "Quelle est votre puissance souscrite ?",
         "label": "Puissance souscrite",

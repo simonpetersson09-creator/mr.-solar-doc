@@ -176,6 +176,11 @@ export const es = {
         label: "Interruptor general",
         help: "Amperios por fase, indicados en el interruptor general o en la factura.",
       },
+      service: {
+        title: "Tamaño del servicio eléctrico",
+        label: "Tamaño del servicio eléctrico",
+        help: "Encuentra el amperaje en el interruptor principal o en el panel eléctrico.",
+      },
       "contracted-kva": {
         title: "¿Cuál es tu potencia contratada?",
         label: "Potencia contratada",

@@ -176,6 +176,11 @@ export const hu = {
         label: "Fő biztosíték",
         help: "Ampere fázisonként, a fő megszakítón vagy a számlán található.",
       },
+      service: {
+        title: "Az elektromos csatlakozás mérete",
+        label: "Az elektromos csatlakozás mérete",
+        help: "Az amperértéket a főkapcsolón vagy az elosztószekrényben találja.",
+      },
       "contracted-kva": {
         title: "Mekkora a szerződött teljesítménye?",
         label: "Szerződött teljesítmény",

@@ -179,6 +179,11 @@ error: "Address search failed.",
         label: "Main fuse",
         help: "Amperes per phase, shown on your main breaker or bill.",
       },
+      service: {
+        title: "Electrical service size",
+        label: "Electrical service size",
+        help: "Find the amp rating on your main breaker or electrical panel.",
+      },
       "contracted-kva": {
         title: "What is your contracted power?",
         label: "Contracted power",

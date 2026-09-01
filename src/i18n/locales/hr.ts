@@ -176,6 +176,11 @@ export const hr = {
         label: "Glavni osigurač",
         help: "Amperi po fazi, navedeno na glavnoj sklopki ili računu.",
       },
+      service: {
+        title: "Veličina električnog priključka",
+        label: "Veličina električnog priključka",
+        help: "Vrijednost u amperima pronađite na glavnoj sklopki ili u razdjelnom ormariću.",
+      },
       "contracted-kva": {
         title: "Kolika je vaša ugovorena snaga?",
         label: "Ugovorena snaga",
