@@ -6,7 +6,7 @@
 
 /*
  * Mr. Solar Doc design system.
- * Brand yellow #FFDC38 + brand black #1D191A on light neutral surfaces.
+ * Brand yellow #FFDC38 + ink #323232 on light neutral surfaces.
  * Primary CTAs use a slightly deeper yellow (#F3CB0C) so they read as more
  * clickable than a plain yellow card. All colors are tokens — never hardcode
  * colors in components.
@@ -91,7 +91,7 @@
   --brand-yellow-hover: oklch(0.8577 0.1723 94.3);   /* #F5CD18 */
   --brand-yellow-pressed: oklch(0.8296 0.1697 91.8); /* #EFC200 */
   --brand-yellow-light: oklch(0.9277 0.1337 97.8);   /* #FFE879 */
-  --brand-black: oklch(0.2185 0.0066 0.7);           /* #1D191A */
+  --brand-black: oklch(0.3172 0 0);                   /* #323232 */
   --brand-black-soft: oklch(0.2678 0.0097 355.6);    /* #2A2426 */
   /* Warm off-white used for unselected controls, inputs and badges. */
   --surface-cream: oklch(0.988 0.012 96);
@@ -157,7 +157,7 @@
   --brand-yellow-hover: oklch(0.8577 0.1723 94.3);
   --brand-yellow-pressed: oklch(0.8296 0.1697 91.8);
   --brand-yellow-light: oklch(0.9277 0.1337 97.8);
-  --brand-black: oklch(0.2185 0.0066 0.7);
+  --brand-black: oklch(0.3172 0 0);
   --brand-black-soft: oklch(0.2678 0.0097 355.6);
 
   --background: oklch(0.17 0.005 0.7);
