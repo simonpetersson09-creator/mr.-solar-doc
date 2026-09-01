@@ -20,6 +20,8 @@ import {
 } from "@/lib/purchase.functions";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
+import { isDevUnlock } from "@/lib/dev-unlock";
+
 
 export const Route = createFileRoute("/betalning")({
   head: () => ({
