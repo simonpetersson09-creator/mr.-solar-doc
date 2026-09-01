@@ -232,198 +232,11 @@ const [showGridInfo, setShowGridInfo] = useState(false);
         </Button>
       }
     >
-      <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
-        {showPhaseChoice ? (
-          <div className="space-y-1.5">
-            <Label className="text-xs text-white">{t("fuse.grid.serviceType")}</Label>
-            <div className="grid grid-cols-2 gap-1.5">
-              {PHASE_CHOICE_OPTIONS.map((option) => (
-                <button
-                  key={option}
-                  type="button"
-                  onClick={() => {
-                    void haptic("light");
-                    setCustomVoltage(false);
-                    // An explicit phase choice always snaps the voltage to that
-                    // service's nominal value: 230 V LN / 400 V LL.
-                    setGridProfile({
-                      serviceType: option,
-                      voltageV: voltageForPhaseChoice(option),
-                    });
-                  }}
-                  className={chipClass(serviceType === option)}
-                >
-                  {serviceLabel(option)}
-                </button>
-              ))}
-            </div>
-          </div>
-        ) : null}
-
-        <div>
-          <Label className="text-xs text-white">
-            {connection.localTerm && isVerified
-              ? connection.localTerm
-              : t(`fuse.capacity.${inputType}.label`)}
-          </Label>
-          <p className="text-[11px] text-white/70">{t(connection.helpTextKey)}</p>
-        </div>
-
-
-        <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-4">
-          {connection.connectionOptions.map((option) => (
-            <button
-              key={option.id}
-              type="button"
-              onClick={() => {
-                void haptic("light");
-                setCustom(false);
-                setSelectedId(option.id);
-                selectConnectionOption(
-                  option.id,
-                  capacityFor(connectionCapacityAmount(option.capacity), option),
-                );
-              }}
-              className={chipClass(!custom && selectedId === option.id)}
-            >
-              {optionLabel(option)}
-            </button>
-          ))}
-          <button
-            type="button"
-            onClick={() => {
-              void haptic("light");
-              // "Other" always opens an EMPTY field in the country's own unit —
-              // never prefilled with a previous or standard value.
-              setSelectedId(null);
-              setCustomValue("");
-              setCustom(true);
-            }}
-            className={chipClass(custom)}
-          >
-            {t("fuse.other")}
-          </button>
-        </div>
-
-        {!isVerified ? (
-          <div className="space-y-2 rounded-2xl border border-accent/40 bg-accent/10 px-3 py-2">
-            <p className="text-[11px] leading-relaxed text-white/80">
-              {t("fuse.unverifiedCountryNotice")}
-            </p>
-            <button
-              type="button"
-              onClick={() => {
-                void haptic("light");
-                setGridConfirmed(!gridConfirmed);
-              }}
-              className={chipClass(!gridConfirmed)}
-            >
-              {gridConfirmed ? (
-                <span className="flex items-center justify-center gap-1.5">
-                  <Check className="size-3.5" strokeWidth={3} />
-                  {t("fuse.confirmedGrid")}
-                </span>
-              ) : (
-                t("fuse.confirmGrid")
-              )}
-            </button>
-          </div>
-        ) : null}
-
-        {custom ? (
-          <div className="flex items-center gap-2">
-            <Label htmlFor="custom-capacity" className="text-xs text-white/70">
-              {t("fuse.capacity.otherLabel")}
-            </Label>
-            <Input
-              id="custom-capacity"
-              type="text"
-              inputMode="decimal"
-              value={customValue}
-              onChange={(event) => setCustomValue(sanitizeNumericInput(event.target.value))}
-              className="h-8 w-20 rounded-full border-white/25 bg-white/15 text-xs text-white placeholder:text-white/50"
-            />
-            <span className="text-xs text-white/60">{unit}</span>
-          </div>
-        ) : null}
-
-        {custom && customValue !== "" && !capacityValid ? (
-          <p className="text-xs text-red-200">
-            {t("fuse.capacity.invalid", { min: bounds.min, max: bounds.max, unit })}
-          </p>
-        ) : null}
-
-        {capacityValid ? (
-          <div className="space-y-1.5 rounded-xl bg-white/10 px-3.5 py-2.5">
-            {resolvedConnectionLabel ? (
-              <p
-                data-testid="resolved-connection"
-                className="text-[11px] font-semibold text-white/75"
-              >
-                {resolvedConnectionLabel}
-              </p>
-            ) : null}
-            <div className="flex items-center justify-between gap-3">
-              <span className="flex items-center gap-1.5 text-xs text-white/60">
-                <Zap className="size-3.5 text-accent" />
-                {t("fuse.maxAc")}
-              </span>
-              <span className="text-base font-bold text-white">
-                {formatDecimal(maxAc, locale, 2)}{" "}
-                <span className="text-[11px] font-normal text-white/60">kW</span>
-              </span>
-            </div>
-          </div>
-        ) : null}
-
-<div className="border-t border-white/15 pt-3">
-          <button
-            type="button"
-            onClick={() => setShowGridInfo((open) => !open)}
-            className="flex items-start gap-2 text-left text-xs text-white/60"
-          >
-            <Info className="mt-0.5 size-3.5 shrink-0" />
-            <span>
-              {t("fuse.gridAssumptionDynamic", {
-                service: serviceLabel(serviceType),
-                voltage: voltageLabel(voltageV),
-              })}
-            </span>
-          </button>
-          {showGridInfo ? (
-            <p className="mt-2 pl-5 text-[11px] leading-relaxed text-white/60">
-              {/* Always describes the CURRENT grid settings — never a fixed
-                  400 V three-phase assumption. */}
-              {`${t("fuse.gridAssumptionDynamic", {
-                service: serviceLabel(serviceType),
-                voltage: voltageLabel(voltageV),
-              })} ${t("fuse.gridCheckHint")}`}
-            </p>
-          ) : null}
-
-        </div>
-
-        <div className="border-t border-white/15 pt-3">
-          <button
-            type="button"
-            onClick={() => setShowDisclaimer((open) => !open)}
-            className="flex items-start gap-2 text-left text-xs text-white/60"
-          >
-            <CircleAlert className="mt-0.5 size-3.5 shrink-0 text-accent" />
-            <span>{t("fuse.disclaimerTitle")}</span>
-          </button>
-          {showDisclaimer ? (
-            <p className="mt-2 pl-5 text-[11px] leading-relaxed whitespace-pre-line text-white/60">
-              {t("fuse.disclaimer")}
-            </p>
-          ) : null}
-        </div>
-      </div>
-
       <h2 className="text-xs font-bold tracking-widest text-primary/70 uppercase">
         {t("fuse.grid.advanced")}
       </h2>
 
+      {/* 1. Nätinställningar — grid profile first */}
       <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
         <div className="flex items-center justify-between gap-3">
           <div className="min-w-0">
@@ -444,7 +257,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                 <span className="max-w-[90px] truncate">{countryName}</span>
               </button>
             ) : null}
-<button
+            <button
               type="button"
               onClick={() => {
                 void haptic("light");
@@ -455,7 +268,6 @@ const [showGridInfo, setShowGridInfo] = useState(false);
               {editGrid ? t("fuse.grid.done") : t("fuse.grid.change")}
             </button>
           </div>
-
         </div>
 
         {editGrid ? (
@@ -558,6 +370,196 @@ const [showGridInfo, setShowGridInfo] = useState(false);
               {isVerified ? t("fuse.grid.hint") : t("fuse.grid.unverifiedHint")}
             </p>
           </div>
+        ) : null}
+      </div>
+
+      {/* 2. Säkring — capacity selection */}
+      <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
+        {showPhaseChoice ? (
+          <div className="space-y-1.5">
+            <Label className="text-xs text-white">{t("fuse.grid.serviceType")}</Label>
+            <div className="grid grid-cols-2 gap-1.5">
+              {PHASE_CHOICE_OPTIONS.map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => {
+                    void haptic("light");
+                    setCustomVoltage(false);
+                    // An explicit phase choice always snaps the voltage to that
+                    // service's nominal value: 230 V LN / 400 V LL.
+                    setGridProfile({
+                      serviceType: option,
+                      voltageV: voltageForPhaseChoice(option),
+                    });
+                  }}
+                  className={chipClass(serviceType === option)}
+                >
+                  {serviceLabel(option)}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
+        <div>
+          <Label className="text-xs text-white">
+            {connection.localTerm && isVerified
+              ? connection.localTerm
+              : t(`fuse.capacity.${inputType}.label`)}
+          </Label>
+          <p className="text-[11px] text-white/70">{t(connection.helpTextKey)}</p>
+        </div>
+
+        <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-4">
+          {connection.connectionOptions.map((option) => (
+            <button
+              key={option.id}
+              type="button"
+              onClick={() => {
+                void haptic("light");
+                setCustom(false);
+                setSelectedId(option.id);
+                selectConnectionOption(
+                  option.id,
+                  capacityFor(connectionCapacityAmount(option.capacity), option),
+                );
+              }}
+              className={chipClass(!custom && selectedId === option.id)}
+            >
+              {optionLabel(option)}
+            </button>
+          ))}
+          <button
+            type="button"
+            onClick={() => {
+              void haptic("light");
+              // "Other" always opens an EMPTY field in the country's own unit —
+              // never prefilled with a previous or standard value.
+              setSelectedId(null);
+              setCustomValue("");
+              setCustom(true);
+            }}
+            className={chipClass(custom)}
+          >
+            {t("fuse.other")}
+          </button>
+        </div>
+
+        {!isVerified ? (
+          <div className="space-y-2 rounded-2xl border border-accent/40 bg-accent/10 px-3 py-2">
+            <p className="text-[11px] leading-relaxed text-white/80">
+              {t("fuse.unverifiedCountryNotice")}
+            </p>
+            <button
+              type="button"
+              onClick={() => {
+                void haptic("light");
+                setGridConfirmed(!gridConfirmed);
+              }}
+              className={chipClass(!gridConfirmed)}
+            >
+              {gridConfirmed ? (
+                <span className="flex items-center justify-center gap-1.5">
+                  <Check className="size-3.5" strokeWidth={3} />
+                  {t("fuse.confirmedGrid")}
+                </span>
+              ) : (
+                t("fuse.confirmGrid")
+              )}
+            </button>
+          </div>
+        ) : null}
+
+        {custom ? (
+          <div className="flex items-center gap-2">
+            <Label htmlFor="custom-capacity" className="text-xs text-white/70">
+              {t("fuse.capacity.otherLabel")}
+            </Label>
+            <Input
+              id="custom-capacity"
+              type="text"
+              inputMode="decimal"
+              value={customValue}
+              onChange={(event) => setCustomValue(sanitizeNumericInput(event.target.value))}
+              className="h-8 w-20 rounded-full border-white/25 bg-white/15 text-xs text-white placeholder:text-white/50"
+            />
+            <span className="text-xs text-white/60">{unit}</span>
+          </div>
+        ) : null}
+
+        {custom && customValue !== "" && !capacityValid ? (
+          <p className="text-xs text-red-200">
+            {t("fuse.capacity.invalid", { min: bounds.min, max: bounds.max, unit })}
+          </p>
+        ) : null}
+      </div>
+
+      {/* 3. Resultat — own card */}
+      {capacityValid ? (
+        <div className="glass-primary space-y-1.5 rounded-[28px] px-4 py-3.5">
+          {resolvedConnectionLabel ? (
+            <p
+              data-testid="resolved-connection"
+              className="text-[11px] font-semibold text-white/75"
+            >
+              {resolvedConnectionLabel}
+            </p>
+          ) : null}
+          <div className="flex items-center justify-between gap-3">
+            <span className="flex items-center gap-1.5 text-xs text-white/60">
+              <Zap className="size-3.5 text-accent" />
+              {t("fuse.maxAc")}
+            </span>
+            <span className="text-base font-bold text-white">
+              {formatDecimal(maxAc, locale, 2)}{" "}
+              <span className="text-[11px] font-normal text-white/60">kW</span>
+            </span>
+          </div>
+        </div>
+      ) : null}
+
+      {/* 4. Beräkningen utgår från — own card */}
+      <div className="glass-primary rounded-[28px] px-4 py-3">
+        <button
+          type="button"
+          onClick={() => setShowGridInfo((open) => !open)}
+          className="flex items-start gap-2 text-left text-xs text-white/60"
+        >
+          <Info className="mt-0.5 size-3.5 shrink-0" />
+          <span>
+            {t("fuse.gridAssumptionDynamic", {
+              service: serviceLabel(serviceType),
+              voltage: voltageLabel(voltageV),
+            })}
+          </span>
+        </button>
+        {showGridInfo ? (
+          <p className="mt-2 pl-5 text-[11px] leading-relaxed text-white/60">
+            {/* Always describes the CURRENT grid settings — never a fixed
+                400 V three-phase assumption. */}
+            {`${t("fuse.gridAssumptionDynamic", {
+              service: serviceLabel(serviceType),
+              voltage: voltageLabel(voltageV),
+            })} ${t("fuse.gridCheckHint")}`}
+          </p>
+        ) : null}
+      </div>
+
+      {/* 5. Viktigt att veta — own card */}
+      <div className="glass-primary rounded-[28px] px-4 py-3">
+        <button
+          type="button"
+          onClick={() => setShowDisclaimer((open) => !open)}
+          className="flex items-start gap-2 text-left text-xs text-white/60"
+        >
+          <CircleAlert className="mt-0.5 size-3.5 shrink-0 text-accent" />
+          <span>{t("fuse.disclaimerTitle")}</span>
+        </button>
+        {showDisclaimer ? (
+          <p className="mt-2 pl-5 text-[11px] leading-relaxed whitespace-pre-line text-white/60">
+            {t("fuse.disclaimer")}
+          </p>
         ) : null}
       </div>
     </StepShell>
