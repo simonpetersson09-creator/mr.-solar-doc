@@ -215,6 +215,33 @@ const [showGridInfo, setShowGridInfo] = useState(false);
       }
     >
       <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
+        {showPhaseChoice ? (
+          <div className="space-y-1.5">
+            <Label className="text-xs text-white">{t("fuse.grid.serviceType")}</Label>
+            <div className="grid grid-cols-2 gap-1.5">
+              {PHASE_CHOICE_OPTIONS.map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => {
+                    void haptic("light");
+                    setCustomVoltage(false);
+                    // An explicit phase choice always snaps the voltage to that
+                    // service's nominal value: 230 V LN / 400 V LL.
+                    setGridProfile({
+                      serviceType: option,
+                      voltageV: voltageForPhaseChoice(option),
+                    });
+                  }}
+                  className={chipClass(serviceType === option)}
+                >
+                  {serviceLabel(option)}
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         <div>
           <Label className="text-xs text-white">
             {connection.localTerm && isVerified
@@ -223,6 +250,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           </Label>
           <p className="text-[11px] text-white/70">{t(connection.helpTextKey)}</p>
         </div>
+
 
         <div className="grid grid-cols-3 gap-1.5 sm:grid-cols-4">
           {connection.connectionOptions.map((option) => (
