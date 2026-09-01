@@ -59,10 +59,6 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
 
         <div className="min-h-6 flex-1" />
 
-        <p className="text-center text-xs leading-relaxed opacity-55">
-          {t("welcome.disclaimer")}
-        </p>
-
         <button
           type="button"
           onClick={() => {
@@ -74,6 +70,10 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           {t("welcome.cta")}
           <ArrowRight className="size-4 rtl:-scale-x-100" />
         </button>
+
+        <p className="mt-3 text-center text-[11px] leading-snug opacity-55">
+          {t("welcome.disclaimer")}
+        </p>
       </main>
     </div>
   );
