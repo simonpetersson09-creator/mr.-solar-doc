@@ -130,8 +130,8 @@ describe("currency hardening", () => {
   it("carries the country currency into the calculation result (result page, PDF, snapshot)", () => {
     for (const country of ["SE", "NO", "JP", "US", "IS", "HU", "TR", "IL", "DE"]) {
       const outcome = runForCountry(country);
-      expect(outcome.ok, country).toBe(true);
-      if (!outcome.ok) continue;
+      expect(outcome.status, country).toBe("success");
+      if (outcome.status !== "success") continue;
       expect(outcome.result.economics.currency, country).toBe(CURRENCY_BY_COUNTRY[country]);
     }
   });
