@@ -48,7 +48,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           </p>
         </section>
 
-        <ul className="mt-12 space-y-3">
+        <ul className="mt-4 space-y-3">
           {POINTS.map(({ icon: Icon, titleKey }) => (
             <li key={titleKey} className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-3 text-start">
               <Icon className="size-5 shrink-0 opacity-80" strokeWidth={1.75} aria-hidden="true" />
