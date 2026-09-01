@@ -75,6 +75,14 @@ function PaywallPage() {
     if (!pending) void navigate({ to: "/" });
   }, [pending, navigate]);
 
+  // Development: skip the paywall entirely so the result and PDF can be tested.
+  useEffect(() => {
+    if (isDevUnlock() && pending) {
+      rememberToken(pending);
+      void navigate({ to: "/resultat" });
+    }
+  }, [pending, rememberToken, navigate]);
+
   // Premium already active: the calculation is unlocked, no paywall needed.
   useEffect(() => {
     if (premium.active && pending) {

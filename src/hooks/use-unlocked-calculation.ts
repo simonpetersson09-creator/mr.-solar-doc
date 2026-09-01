@@ -20,7 +20,15 @@ export function useUnlockedCalculation(): {
   market: ReturnType<typeof getMarketConfig>;
 } {
   const active = usePurchaseStore((s) => s.active);
-  const stored = useCalculationStore((s) => (active ? (s.items[active.id] ?? null) : null));
+  const items = useCalculationStore((s) => s.items);
+  const devUnlock = isDevUnlock();
+  // In development, fall back to the most recent locally stored calculation so
+  // the result page and PDF can be exercised without a purchase receipt.
+  const stored = active
+    ? (items[active.id] ?? null)
+    : devUnlock
+      ? (Object.values(items).sort((a, b) => b.createdAt.localeCompare(a.createdAt))[0] ?? null)
+      : null;
 
   const query = useQuery({
     queryKey: ["purchase-status", active?.id ?? null],
@@ -34,7 +42,6 @@ export function useUnlockedCalculation(): {
   });
 
   const premium = usePremium();
-  const devUnlock = isDevUnlock();
   // Unlocked when the calculation itself is paid (one-off consumable), the
   // device has an active, server-verified Premium subscription, or the dev
   // bypass is active (local development only).
