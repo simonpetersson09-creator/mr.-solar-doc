@@ -542,33 +542,6 @@ const [showGridInfo, setShowGridInfo] = useState(false);
         </div>
       ) : null}
 
-      {/* 4. Beräkningen utgår från — own card */}
-      <div className="glass-primary rounded-[28px] px-4 py-3">
-        <button
-          type="button"
-          onClick={() => setShowGridInfo((open) => !open)}
-          className="flex items-start gap-2 text-left text-xs text-white/60"
-        >
-          <Info className="mt-0.5 size-3.5 shrink-0" />
-          <span>
-            {t("fuse.gridAssumptionDynamic", {
-              service: serviceLabel(serviceType),
-              voltage: voltageLabel(voltageV),
-            })}
-          </span>
-        </button>
-        {showGridInfo ? (
-          <p className="mt-2 pl-5 text-[11px] leading-relaxed text-white/60">
-            {/* Always describes the CURRENT grid settings — never a fixed
-                400 V three-phase assumption. */}
-            {`${t("fuse.gridAssumptionDynamic", {
-              service: serviceLabel(serviceType),
-              voltage: voltageLabel(voltageV),
-            })} ${t("fuse.gridCheckHint")}`}
-          </p>
-        ) : null}
-      </div>
-
       {/* 5. Viktigt att veta — own card */}
       <div className="glass-primary rounded-[28px] px-4 py-3">
         <button
