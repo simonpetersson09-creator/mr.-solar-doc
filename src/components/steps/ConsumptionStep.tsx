@@ -288,9 +288,20 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         ) : null}
 
         <div className="flex items-center justify-between gap-4 border-t border-white/15 pt-3">
-          <Label htmlFor="monthly-toggle" className="text-xs leading-snug text-white/85">
-            {t("consumption.useMonthly")}
-          </Label>
+          <div className="flex items-center gap-2">
+            <span
+              className={`flex size-5 shrink-0 items-center justify-center rounded-full transition-colors ${
+                useMonthly
+                  ? "bg-[var(--brand-black)] text-accent"
+                  : "bg-white/15 text-white/50"
+              }`}
+            >
+              {useMonthly ? <CheckCircle2 className="size-3.5" /> : <Minus className="size-3.5" />}
+            </span>
+            <Label htmlFor="monthly-toggle" className="text-xs leading-snug text-white/85">
+              {t("consumption.useMonthly")}
+            </Label>
+          </div>
           <Switch
             id="monthly-toggle"
             checked={useMonthly}
@@ -298,7 +309,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               void haptic("light");
               setUseMonthly(checked);
             }}
-            className="data-[state=checked]:bg-accent data-[state=unchecked]:bg-white/25"
+            className="data-[state=checked]:bg-[var(--brand-black)] data-[state=unchecked]:bg-black/30"
           />
         </div>
 
