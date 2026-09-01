@@ -5,6 +5,7 @@ import {
   EU_THREE_PHASE_KW_PER_AMP,
 } from "./constants";
 import type { SupportedLanguage } from "@/i18n/languages";
+import { getConnectionConfig } from "./connections";
 
 export type GridConnectionType = "eu-three-phase-400v";
 
@@ -168,11 +169,18 @@ export function isFallbackMarket(countryCode?: string | null): boolean {
   return MARKETS[code] === undefined;
 }
 
+const warnedMarkets = new Set<string>();
+
 export function getMarketConfig(countryCode?: string | null): MarketConfig {
   const code = (countryCode ?? "").toUpperCase();
   const config = MARKETS[code];
   if (config) return config;
-  if (import.meta.env.DEV && code !== "") {
+  // Countries with their own connection profile (verified or generic) get
+  // correct grid data and a currency of their own via `@/config/countries`;
+  // only the technical EU defaults are borrowed, so no warning is warranted.
+  const hasOwnConnectionProfile = getConnectionConfig(code).status !== "unsupported";
+  if (import.meta.env.DEV && code !== "" && !hasOwnConnectionProfile && !warnedMarkets.has(code)) {
+    warnedMarkets.add(code);
     console.warn(
       `[markets] No configuration for "${code}" - falling back to ${FALLBACK_MARKET_CODE}. ` +
         "Currency and standard values shown will not match this country.",

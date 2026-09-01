@@ -1,4 +1,9 @@
 export const lt = {
+  notFound: {
+    title: "Puslapis nerastas",
+    description: "Ieškomas puslapis neegzistuoja arba buvo perkeltas.",
+    home: "Į pradžią",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Apskaičiuokite savo saulės elektrinės dydį per kelias minutes"

@@ -1,4 +1,9 @@
 export const it = {
+  notFound: {
+    title: "Pagina non trovata",
+    description: "La pagina che cerchi non esiste o è stata spostata.",
+    home: "Vai alla home",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Dimensiona il tuo impianto solare in pochi minuti"

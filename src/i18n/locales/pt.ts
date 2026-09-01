@@ -1,4 +1,9 @@
 export const pt = {
+  notFound: {
+    title: "Página não encontrada",
+    description: "A página que procura não existe ou foi movida.",
+    home: "Ir para o início",
+  },
   app: {
     name: "Mr. Solar Doc",
     tagline: "Dimensione o seu sistema solar em poucos minutos",

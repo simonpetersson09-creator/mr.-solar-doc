@@ -1,4 +1,9 @@
 export const fi = {
+  notFound: {
+    title: "Sivua ei löytynyt",
+    description: "Etsimääsi sivua ei ole olemassa tai se on siirretty.",
+    home: "Etusivulle",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Mitoita aurinkosähköjärjestelmäsi muutamassa minuutissa"

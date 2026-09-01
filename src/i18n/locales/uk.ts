@@ -1,4 +1,9 @@
 export const uk = {
+  notFound: {
+    title: "Сторінку не знайдено",
+    description: "Сторінка, яку ви шукаєте, не існує або була переміщена.",
+    home: "На головну",
+  },
   "app": { "name": "Mr. Solar Doc", "tagline": "Розрахуйте свою сонячну систему за кілька хвилин" },
   "common": { "back": "Назад", "next": "Далі", "retry": "Спробувати ще раз", "loading": "Завантаження…", "optional": "Необов'язково", "kwh": "kWh", "kwp": "kWp", "kw": "kW", "perYear": "/рік", "dontKnow": "Не знаю", "startOver": "Почати спочатку", "close": "Закрити" },
   "steps": { "address": "Адреса", "roof": "Дах і сонце", "consumption": "Споживання електроенергії", "fuse": "Головний запобіжник", "stepOf": "Крок {{current}} з {{total}}" },

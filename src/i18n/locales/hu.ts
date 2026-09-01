@@ -1,4 +1,9 @@
 export const hu = {
+  notFound: {
+    title: "Az oldal nem található",
+    description: "A keresett oldal nem létezik vagy áthelyezésre került.",
+    home: "Vissza a kezdőlapra",
+  },
   app: {
     name: "Mr. Solar Doc",
     tagline: "Méretezze napelemrendszerét néhány perc alatt",

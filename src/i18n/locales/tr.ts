@@ -1,4 +1,9 @@
 export const tr = {
+  notFound: {
+    title: "Sayfa bulunamadı",
+    description: "Aradığınız sayfa mevcut değil veya taşınmış.",
+    home: "Ana sayfaya git",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Güneş enerjisi sisteminizi birkaç dakikada boyutlandırın"

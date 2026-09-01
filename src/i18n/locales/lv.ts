@@ -1,4 +1,9 @@
 export const lv = {
+  notFound: {
+    title: "Lapa nav atrasta",
+    description: "Meklētā lapa neeksistē vai ir pārvietota.",
+    home: "Uz sākumlapu",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Daudās minūtēs izmēriet savu saules elektrostaciju"

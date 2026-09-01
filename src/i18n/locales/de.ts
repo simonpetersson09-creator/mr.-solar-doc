@@ -1,4 +1,9 @@
 export const de = {
+  notFound: {
+    title: "Seite nicht gefunden",
+    description: "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    home: "Zur Startseite",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Dimensionieren Sie Ihre Photovoltaikanlage in wenigen Minuten"

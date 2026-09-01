@@ -1,4 +1,9 @@
 export const id = {
+  notFound: {
+    title: "Halaman tidak ditemukan",
+    description: "Halaman yang Anda cari tidak ada atau telah dipindahkan.",
+    home: "Ke halaman utama",
+  },
   "app": { "name": "Mr. Solar Doc", "tagline": "Hitung ukuran sistem solar Anda dalam beberapa menit" },
   "common": { "back": "Kembali", "next": "Lanjut", "retry": "Coba lagi", "loading": "Memuat…", "optional": "Opsional", "kwh": "kWh", "kwp": "kWp", "kw": "kW", "perYear": "/thn", "dontKnow": "Tidak tahu", "startOver": "Mulai lagi", "close": "Tutup" },
   "steps": { "address": "Alamat", "roof": "Atap & matahari", "consumption": "Pemakaian listrik", "fuse": "Sekring utama", "stepOf": "Langkah {{current}} dari {{total}}" },

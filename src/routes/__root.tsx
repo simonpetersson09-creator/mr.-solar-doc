@@ -7,7 +7,8 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
-import { useEffect, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { useNativeShell } from "@/hooks/use-native-shell";
 import { usePurchaseRecovery } from "@/hooks/use-purchase-recovery";
 import { Toaster } from "@/components/ui/sonner";
@@ -19,21 +20,37 @@ import { isRtlLanguage, normaliseLanguage } from "../i18n/languages";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+/** English copy used for SSR and the first client render (i18n boots async). */
+const NOT_FOUND_FALLBACK = {
+  title: "Page not found",
+  description: "The page you are looking for does not exist or has been moved.",
+  home: "Go to start",
+};
+
 function NotFoundComponent() {
+  const { t } = useTranslation();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+  const copy = mounted
+    ? {
+        title: t("notFound.title"),
+        description: t("notFound.description"),
+        home: t("notFound.home"),
+      }
+    : NOT_FOUND_FALLBACK;
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
+      <title>{`${copy.title} — Mr. Solar Doc`}</title>
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">{copy.title}</h2>
+        <p className="mt-2 text-sm text-muted-foreground">{copy.description}</p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            {copy.home}
           </Link>
         </div>
       </div>

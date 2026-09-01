@@ -69,10 +69,14 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
     );
   }
 
-  if (!unlocked || !result) {
+  if (!result || !unlocked) {
+    // No result at all is a missing-data state, not a paywall. Showing the
+    // locked copy here made users think they had to pay again.
     return (
       <div className="flex min-h-dvh flex-col items-center justify-center gap-4 surface-sun px-6 text-center">
-        <p className="text-muted-foreground">{t("result.locked")}</p>
+        <p className="text-muted-foreground">
+          {result ? t("result.locked") : t("result.noCalculation")}
+        </p>
         <Button asChild>
           <Link to="/">{t("common.startOver")}</Link>
         </Button>
