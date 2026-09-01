@@ -21,6 +21,7 @@ import {
   isValidConnectionCapacity,
   type ConnectionCapacity,
 } from "@/config/connection-capacity";
+import { connectionOptionLabel } from "@/config/connection-display";
 import {
   GRID_FREQUENCY_OPTIONS,
   SERVICE_TYPE_OPTIONS,
