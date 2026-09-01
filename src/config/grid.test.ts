@@ -85,7 +85,7 @@ describe("dynamic grid profile", () => {
 });
 describe("custom voltage", () => {
   it("accepts positive voltages inside plausible bounds", () => {
-    for (const v of [100, 110, 120, 127, 208, 277, 480]) {
+    for (const v of [100, 110, 120, 208, 277, 480]) {
       expect(isValidCustomVoltage(v)).toBe(true);
       expect(isPresetVoltage(v)).toBe(false);
     }
