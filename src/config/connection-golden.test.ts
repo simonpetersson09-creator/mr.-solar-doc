@@ -353,9 +353,9 @@ describe("step 4 help text always describes the current grid settings", () => {
 
   it("the contracted PDF note never describes the fuse formula", () => {
     for (const note of [
-      sv.pdf.gridMethodNoteContracted,
-      en.pdf.gridMethodNoteContracted,
-      fr.pdf.gridMethodNoteContracted,
+      sv.report.fields.gridMethodNoteContracted,
+      en.report.fields.gridMethodNoteContracted,
+      fr.report.fields.gridMethodNoteContracted,
     ]) {
       expect(note).not.toMatch(/1[,.]73|400\s*V|kVA\s*[x×]/i);
     }
