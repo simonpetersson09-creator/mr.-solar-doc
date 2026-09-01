@@ -412,6 +412,9 @@ systemSizeInfo: "The calculation is an estimate and should be used as guidance. 
     showCalculation: "Show calculation",
     hideCalculation: "Hide calculation",
     adjustSplit: "Adjust self-consumption",
+    selfConsumptionEstimatedLabel: "Estimated self-consumption",
+    selfConsumptionEstimatedHelp: "Estimated from your electricity use and the system's calculated production. You can adjust the value manually.",
+    selfConsumptionUserAssumption: "Your assumption",
     selfConsumptionAssumption:
       "Self-consumption is an assumption based on the selected share and can be adjusted manually.",
     selfConsumptionInfo:

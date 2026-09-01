@@ -407,6 +407,9 @@ export const hr = {
     showCalculation: "Prikaži izračun",
     hideCalculation: "Sakrij izračun",
     adjustSplit: "Prilagodi samopotrošnju",
+    selfConsumptionEstimatedLabel: "Procijenjena vlastita potrošnja",
+    selfConsumptionEstimatedHelp: "Procijenjeno na temelju vaše potrošnje struje i izračunate proizvodnje sustava. Vrijednost možete ručno prilagoditi.",
+    selfConsumptionUserAssumption: "Vaša pretpostavka",
     selfConsumptionAssumption:
       "Samopotrošnja je pretpostavka na temelju odabranog udjela i može se ručno prilagoditi.",
     selfConsumptionInfo:

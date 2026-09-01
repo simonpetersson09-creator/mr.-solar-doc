@@ -407,6 +407,9 @@ export const hu = {
     showCalculation: "Számítás megjelenítése",
     hideCalculation: "Számítás elrejtése",
     adjustSplit: "Saját fogyasztás módosítása",
+    selfConsumptionEstimatedLabel: "Becsült saját felhasználás",
+    selfConsumptionEstimatedHelp: "Az áramfogyasztása és a rendszer számított termelése alapján becsülve. Az értéket kézzel módosíthatja.",
+    selfConsumptionUserAssumption: "Az Ön feltételezése",
     selfConsumptionAssumption:
       "A saját fogyasztás a kiválasztott arányon alapuló feltételezés, és kézzel módosítható.",
     selfConsumptionInfo:

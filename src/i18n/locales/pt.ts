@@ -409,6 +409,9 @@ export const pt = {
     showCalculation: "Mostrar cálculo",
     hideCalculation: "Ocultar cálculo",
     adjustSplit: "Ajustar autoconsumo",
+    selfConsumptionEstimatedLabel: "Autoconsumo estimado",
+    selfConsumptionEstimatedHelp: "Estimado a partir do seu consumo de eletricidade e da produção calculada do sistema. Pode ajustar o valor manualmente.",
+    selfConsumptionUserAssumption: "A sua suposição",
     selfConsumptionAssumption:
       "O autoconsumo é um pressuposto baseado na quota selecionada e pode ser ajustado manualmente.",
     selfConsumptionInfo:

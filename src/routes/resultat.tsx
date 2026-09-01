@@ -134,6 +134,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
 
   const currency = result.economics.currency;
   const p = result.presentation;
+  const selfConsumptionIsUserSet = result.selfConsumptionSource === "user-override";
   const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
   // null !== 0: a missing price is never shown as a number.
   const availability = result.economics.availability;
@@ -316,8 +317,14 @@ const cost = result.productionCost;
                   : formatCurrency(p.selfConsumptionValue, locale, currency)}
               </dd>
               <dd className="text-[11px] text-white/60">
+                {selfConsumptionIsUserSet ? "" : "\u2248 "}
                 {formatNumber(p.selfConsumptionPercent, locale)} % ·{" "}
                 {formatNumber(p.selfConsumptionKwh, locale)} kWh
+              </dd>
+              <dd className="text-[10px] text-white/45">
+                {selfConsumptionIsUserSet
+                  ? t("result.selfConsumptionUserAssumption")
+                  : t("result.selfConsumptionEstimatedLabel")}
               </dd>
             </div>
             <div className="rounded-2xl bg-white/10 p-2.5 text-center">
