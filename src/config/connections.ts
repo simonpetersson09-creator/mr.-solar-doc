@@ -626,6 +626,113 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     localTerm: "Bağlantı gücü",
   }),
 
+  /**
+   * Iceland: the house connection ("tengi") is rated by the main breaker in
+   * amperes per phase on 3N~400 V / 50 Hz (Samorka LV technical terms). LV is
+   * 230/400 V. No single national customer ladder is documented, so the
+   * user enters the actual per-phase rating. Source: Samorka / Orkuveitur.
+   */
+  IS: config("IS", "amperage", [], EU_THREE_PHASE_400, {
+    localTerm: "Tengi (A/fasa)",
+  }),
+
+  /**
+   * Luxembourg: the connection is rated by the "disjoncteur de branchement"
+   * (main breaker) in amperes per phase on 3N~400 V / 50 Hz (Creos). Creos
+   * bills via a "puissance de référence" but the physical connection is the
+   * breaker; no national customer ladder is claimed, so the value is entered
+   * freely. Source: Creos connection catalogue.
+   */
+  LU: config("LU", "amperage", [], EU_THREE_PHASE_400, {
+    localTerm: "Disjoncteur de branchement",
+  }),
+
+  /**
+   * Malta: Enemalta LV is 230 V phase-to-neutral, 50 Hz. Residential supply is
+   * overwhelmingly single-phase; three-phase (400 V) is available on request.
+   * Enemalta documents residential services "up to 60 A/phase" — a verified
+   * service level but not a full national customer ladder, so the user enters
+   * the actual rating. Source: Enemalta technical service specifications.
+   */
+  MT: config("MT", "amperage", [], SINGLE_PHASE_230, {
+    localTerm: "Service capacity (A/phase)",
+  }),
+
+  /**
+   * Cyprus: EAC LV is 230 V phase-to-neutral (harmonised EN 50160, historically
+   * 240 V), 50 Hz. Residential supply is single-phase; three-phase (400 V) is
+   * available for larger loads. The connection is rated by the main breaker in
+   * amperes; no national customer ladder is documented, so the value is entered
+   * freely. Source: EAC distribution network / supply of additional load.
+   */
+  CY: config("CY", "amperage", [], SINGLE_PHASE_230, {
+    localTerm: "Connection capacity (A/phase)",
+  }),
+
+  /**
+   * North Macedonia: the house connection is rated by the main breaker in
+   * amperes per phase on 3N~400 V / 50 Hz (EVN Macedonia / Elektrodistribucija).
+   * No single national customer ladder is documented, so the user enters the
+   * actual per-phase rating. Source: EVN / MEPSO distribution rules.
+   */
+  MK: config("MK", "amperage", [], EU_THREE_PHASE_400, {
+    localTerm: "Приклучна снага (A/faza)",
+  }),
+
+  /**
+   * Albania: the house connection is rated by the main breaker in amperes per
+   * phase on 3N~400 V / 50 Hz (OSHEE). No national customer ladder is
+   * documented, so the user enters the actual per-phase rating.
+   * Source: OSHEE / ERE connection regulation.
+   */
+  AL: config("AL", "amperage", [], EU_THREE_PHASE_400, {
+    localTerm: "Fuqia e lidhjes (A/fazë)",
+  }),
+
+  /**
+   * Bosnia and Herzegovina: the house connection is rated by the main breaker
+   * in amperes per phase on 3N~400 V / 50 Hz (EPBiH / ERS / EP HZHB). No single
+   * national customer ladder is documented, so the user enters the actual
+   * per-phase rating. Source: FERK general conditions / EPBiH.
+   */
+  BA: config("BA", "amperage", [], EU_THREE_PHASE_400, {
+    localTerm: "Priključna snaga (A/faza)",
+  }),
+
+  /**
+   * Montenegro: the house connection is rated by the main breaker in amperes
+   * per phase on 3N~400 V / 50 Hz (CEDIS). No national customer ladder is
+   * documented, so the user enters the actual per-phase rating.
+   * Source: CEDIS connection conditions.
+   */
+  ME: config("ME", "amperage", [], EU_THREE_PHASE_400, {
+    localTerm: "Priključna snaga (A/faza)",
+  }),
+
+  /**
+   * Australia: AS 60038 nominal is 230 V single-phase / 400 V three-phase,
+   * 50 Hz. The house supply is rated by the main switch / service capacity in
+   * amperes; 63 A single-phase is a documented standard service capacity
+   * (e.g. Western Power SWIS), with 80 A and three-phase also common, but no
+   * single national customer ladder is claimed — the user enters the actual
+   * rating. Source: AS/NZS 3000, AS 60038, Western Power.
+   */
+  AU: config("AU", "amperage", [], SINGLE_PHASE_230, {
+    localTerm: "Main switch / service capacity (A/phase)",
+  }),
+
+  /**
+   * South Africa: SANS/NRS nominal is 230 V single-phase / 400 V three-phase,
+   * 50 Hz (NRS 049 / SANS 1019). The house supply is rated by the main
+   * fuse/breaker in amperes; 60 A and 80 A single-phase are common Eskom
+   * residential supplies, three-phase available, but no single national
+   * customer ladder is claimed — the user enters the actual rating.
+   * Source: NRS 049, NRS 034-1, Eskom.
+   */
+  ZA: config("ZA", "amperage", [], SINGLE_PHASE_230, {
+    localTerm: "Supply capacity / main fuse (A/phase)",
+  }),
+
 
 
 };
