@@ -7,6 +7,8 @@ import {
   gridMethodNoteKind,
 } from "@/lib/connection-display";
 
+import { BRAND_RGB } from "@/config/brand";
+
 import { shareFile } from "./native-service";
 
 /**
@@ -94,13 +96,23 @@ export interface ReportOptions {
 }
 
 const PAGE = { width: 210, height: 297, margin: 18 };
-/** Palette mirrors the app design tokens: forest green primary, solar orange accent, cream surfaces. */
-const INK: [number, number, number] = [17, 38, 26];
-const MUTED: [number, number, number] = [108, 122, 114];
-const PRIMARY: [number, number, number] = [22, 65, 45];
-const ACCENT: [number, number, number] = [245, 164, 32];
-const CREAM: [number, number, number] = [252, 250, 241];
-const LINE: [number, number, number] = [225, 226, 218];
+/**
+ * The report uses the same brand palette as the app (see `@/config/brand`):
+ * brand black as the primary ink/surface, brand yellow as the accent for
+ * summary cards and key figures, on a near-white paper background so the PDF
+ * stays print-friendly.
+ */
+const INK: [number, number, number] = BRAND_RGB.black;
+const MUTED: [number, number, number] = BRAND_RGB.muted;
+const PRIMARY: [number, number, number] = BRAND_RGB.black;
+const ACCENT: [number, number, number] = BRAND_RGB.yellow;
+/** Very light neutral used for card fills — never a full-page yellow. */
+const CREAM: [number, number, number] = BRAND_RGB.paper;
+const LINE: [number, number, number] = BRAND_RGB.line;
+/** Slightly deeper yellow, matching the app's primary CTA. */
+const ACCENT_DEEP: [number, number, number] = BRAND_RGB.yellowCta;
+/** Soft yellow tint for highlighted rows that must stay readable in print. */
+const ACCENT_TINT: [number, number, number] = [255, 246, 209];
 
 
 interface Row {
