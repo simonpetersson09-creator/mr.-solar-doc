@@ -183,8 +183,8 @@ function SettingsPage() {
           </div>
 
           {/* Premium subscription */}
-          <div className="glass-primary relative overflow-hidden rounded-3xl p-5 ring-2 ring-brand-black/15">
-            <div className="relative z-10 flex flex-col gap-2.5">
+          <div className="glass-primary relative overflow-hidden rounded-3xl p-4 ring-2 ring-brand-black/15">
+            <div className="relative z-10 flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <span className="inline-flex w-fit items-center rounded-full bg-brand-black/15 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-black">
                   {t("settings.subscription")}
