@@ -354,18 +354,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     lifetimeValuesScaledToPresentation,
   );
 
-  // What the installation is estimated to cost (not what it may be worth).
-  const estimatedInstallationCost =
-    input.economics.installationCostPerKwp != null && installedKwp > 0
-      ? input.economics.installationCostPerKwp * installedKwp
-      : null;
-  const quotedOrEstimatedCost = investmentResult.quotePrice ?? estimatedInstallationCost;
-  const costBasis: "quote" | "installation-cost" | "none" =
-    investmentResult.quotePrice != null
-      ? "quote"
-      : estimatedInstallationCost != null
-        ? "installation-cost"
-        : "none";
+  // Lifetime totals consistent with the investment level: the same scaled
+  // year values that back `maxInvestment` are also the value numerator.
+  const totalLifetimeEconomicValue = lifetimeValuesScaledToPresentation.reduce(
+    (sum, value) => sum + value,
+    0,
+  );
+
 
   const gridProfileStatus = input.electrical.gridProfileStatus ?? "verified";
   if (gridProfileStatus !== "verified") notes.push(`grid-profile-${gridProfileStatus}`);
@@ -426,18 +421,15 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     lifetime,
     investment: investmentResult,
     productionCost: calculateProductionCost({
-      // Cost per kWh must come from what the system COSTS: the user's quote,
-      // otherwise the country's installation cost per kWp. The maximum
-      // justifiable investment is derived from the accepted payback time and
-      // would make the cost track the user's payback slider instead of reality.
-      investment: quotedOrEstimatedCost ?? 0,
-      investmentFromQuote: investmentResult.quotePrice != null,
-      investmentBasis: costBasis,
+      // Works in every market: no CAPEX database, no quote required. The
+      // investment level comes from the engine's max justifiable investment,
+      // the value side from the same lifetime years.
+      maxInvestment: investmentResult.maxInvestment,
       totalProductionKwh: lifetime.totalProductionKwh,
+      totalEconomicValue: totalLifetimeEconomicValue,
       periodYears: lifetime.periodYears,
       selfConsumptionShare: split.selfConsumptionShare,
-      selfConsumedValuePerKwh,
-      exportValuePerKwh,
+      quotePrice: investmentResult.quotePrice,
     }),
     economicsStatus: availability.totalsComplete ? "complete" : "incomplete",
     presentation,

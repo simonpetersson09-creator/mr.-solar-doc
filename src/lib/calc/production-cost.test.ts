@@ -25,34 +25,49 @@ describe("weightedValuePerKwh", () => {
 
 describe("calculateProductionCost", () => {
   const base = {
-    investment: 100_000,
+    maxInvestment: 100_000,
     totalProductionKwh: 270_000,
+    totalEconomicValue: 270_000,
     periodYears: 30,
-    selfConsumedValuePerKwh: 1.5,
-    exportValuePerKwh: 0.5,
+    selfConsumptionShare: 0.25,
   };
 
-  it("divides investment by total lifetime production", () => {
-    const result = calculateProductionCost({ ...base, selfConsumptionShare: 0.5 });
+  it("divides the max investment by total lifetime production", () => {
+    const result = calculateProductionCost(base);
+    expect(result.investmentBasis).toBe("max-investment");
     expect(result.costPerKwh).toBeCloseTo(0.3704, 4);
     expect(result.valuePerKwh).toBeCloseTo(1.0, 10);
     expect(result.differencePerKwh).toBeCloseTo(0.6296, 4);
   });
 
-  it("keeps the production cost independent of the self-consumption share", () => {
-    const low = calculateProductionCost({ ...base, selfConsumptionShare: 0.2 });
-    const high = calculateProductionCost({ ...base, selfConsumptionShare: 0.9 });
-    expect(low.costPerKwh).toBeCloseTo(high.costPerKwh!, 10);
-    expect(high.valuePerKwh).toBeGreaterThan(low.valuePerKwh);
+  it("never lets a quote replace the max investment", () => {
+    const result = calculateProductionCost({ ...base, quotePrice: 250_000 });
+    expect(result.investment).toBe(100_000);
+    expect(result.investmentFromQuote).toBe(false);
+    expect(result.costPerKwh).toBeCloseTo(100_000 / 270_000, 10);
+    expect(result.quoteCostPerKwh).toBeCloseTo(250_000 / 270_000, 10);
   });
 
   it("returns null when production or investment is missing", () => {
-    expect(
-      calculateProductionCost({ ...base, totalProductionKwh: 0, selfConsumptionShare: 0.5 })
-        .costPerKwh,
-    ).toBeNull();
-    expect(
-      calculateProductionCost({ ...base, investment: 0, selfConsumptionShare: 0.5 }).costPerKwh,
-    ).toBeNull();
+    expect(calculateProductionCost({ ...base, totalProductionKwh: 0 }).costPerKwh).toBeNull();
+    expect(calculateProductionCost({ ...base, maxInvestment: 0 }).costPerKwh).toBeNull();
+  });
+
+  it("produces no NaN or Infinity for invalid inputs", () => {
+    const result = calculateProductionCost({
+      ...base,
+      maxInvestment: Number.NaN,
+      totalProductionKwh: Number.POSITIVE_INFINITY,
+      totalEconomicValue: Number.NaN,
+    });
+    expect(result.costPerKwh).toBeNull();
+    expect(Number.isFinite(result.valuePerKwh)).toBe(true);
+    expect(result.differencePerKwh).toBeNull();
+  });
+
+  it("uses the same denominator for cost and value", () => {
+    const result = calculateProductionCost({ ...base, totalEconomicValue: 405_000 });
+    expect(result.valuePerKwh).toBeCloseTo(1.5, 10);
+    expect(result.differencePerKwh).toBeCloseTo(1.5 - 100_000 / 270_000, 10);
   });
 });

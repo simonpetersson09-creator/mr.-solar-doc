@@ -362,22 +362,22 @@ export const es = {
     paybackInfo:
       "La amortización simple muestra a cuántos años corresponde el valor económico anual estimado respecto a la inversión. No tiene en cuenta cambios futuros del precio de la electricidad, coste de financiación, inflación, mantenimiento ni descuento financiero.",
     maxInvestment: "Nivel de inversión en el plazo de amortización elegido",
-    productionCostTitle: "¿Cuánto cuesta la energía solar de tu tejado?",
+    productionCostTitle: "¿Cuánto puede costar el kWh solar?",
     investmentLevelInfoLabel: "Más información",
     investmentLevelInfo: "Muestra aproximadamente a qué coste de inversión corresponde el plazo de amortización que has elegido. No es una estimación de lo que costará realmente la instalación. El precio real depende, entre otras cosas, del tejado, la instalación, los componentes y el proveedor.",
     systemSizeInfoLabel: "Más información",
     systemSizeInfo: "El cálculo es una estimación y debe usarse como orientación. La producción real, el autoconsumo, el precio de la electricidad, la compensación, el coste de instalación y el resultado económico pueden variar. El resultado no constituye un presupuesto ni una garantía.",
     productionCostInfoLabel: "Más información",
-    productionCostInfo: "El coste de producción es un coste medio calculado por kWh producido durante la vida útil de la instalación. El coste real puede verse afectado por la producción, la degradación, el mantenimiento y otros costes futuros.",
+    productionCostInfo: "La cifra se basa en la inversión máxima compatible con el plazo de amortización elegido, repartida entre toda la electricidad que se espera producir durante el periodo de cálculo. No es un precio de mercado de la instalación.",
 
 
     productionCostExplainer: "Dividimos el coste del sistema entre la producción estimada durante todo el periodo de cálculo.",
-    productionCostLabel: "Coste de producir",
+    productionCostLabel: "Puede costar",
     productionCostValueLabel: "Valor para ti",
     productionCostDifference: "Diferencia",
     productionCostBasis: "Basado en {{investment}} y {{production}} kWh durante {{years}} años.",
     productionCostHigherValue: "En este cálculo, cada kWh vale más de lo que cuesta producirlo.",
-    productionCostUnavailable: "No podemos calcular el coste de producción con los datos actuales.",
+    productionCostUnavailable: "No podemos calcular esto con los datos actuales.",
     perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "aprox. {{amount}}",
     maxInvestmentExplainer:
