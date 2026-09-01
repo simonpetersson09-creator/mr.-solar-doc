@@ -2,7 +2,7 @@ import { ArrowRight, BarChart3, FileText, Sun, Timer } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { haptic } from "@/services/native-service";
-import brandIcon from "@/assets/mr-solar-doc-icon.png.asset.json";
+import brandIcon from "@/assets/mr-solar-doc-icon.png";
 
 interface WelcomePageProps {
   onStart: () => void;
@@ -31,7 +31,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
       <main className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-y-auto overscroll-contain px-5 pt-[calc(1rem+env(safe-area-inset-top))] pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
         <div className="flex justify-center pt-6">
           <img
-            src={brandIcon.url}
+            src={brandIcon}
             alt=""
             aria-hidden="true"
             className="w-40 select-none drop-shadow-sm sm:w-44"
