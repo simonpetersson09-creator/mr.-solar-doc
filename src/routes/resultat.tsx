@@ -134,6 +134,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
 
   const currency = result.economics.currency;
   const p = result.presentation;
+  const selfConsumptionIsUserSet = result.selfConsumptionSource === "user-override";
   const investmentAmount = formatCurrency(result.investment.maxInvestmentRounded, locale, currency);
   // null !== 0: a missing price is never shown as a number.
   const availability = result.economics.availability;
