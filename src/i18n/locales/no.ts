@@ -1,4 +1,9 @@
 export const no = {
+  notFound: {
+    title: "Siden ble ikke funnet",
+    description: "Siden du leter etter finnes ikke eller er flyttet.",
+    home: "Til forsiden",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Dimensjoner solcelleanlegget ditt på noen minutter"

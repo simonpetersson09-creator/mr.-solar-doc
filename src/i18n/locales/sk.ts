@@ -1,4 +1,9 @@
 export const sk = {
+  notFound: {
+    title: "Stránka sa nenašla",
+    description: "Hľadaná stránka neexistuje alebo bola presunutá.",
+    home: "Na úvodnú stránku",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Nadimenzujte si svoju fotovoltickú elektráreň za pár minút"

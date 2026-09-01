@@ -1,4 +1,9 @@
 export const sl = {
+  notFound: {
+    title: "Strani ni mogoče najti",
+    description: "Iskana stran ne obstaja ali je bila premaknjena.",
+    home: "Na začetno stran",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Dimenzionirajte svojo sončno elektrarno v nekaj minutah"

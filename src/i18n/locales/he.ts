@@ -1,4 +1,9 @@
 export const he = {
+  notFound: {
+    title: "הדף לא נמצא",
+    description: "הדף שחיפשת אינו קיים או שהועבר.",
+    home: "למסך הפתיחה",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "תכננו את מערכת הסולארית שלכם בכמה דקות"

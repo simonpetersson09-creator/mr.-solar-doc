@@ -1,4 +1,9 @@
 export const et = {
+  notFound: {
+    title: "Lehte ei leitud",
+    description: "Otsitavat lehte ei ole olemas või see on teisaldatud.",
+    home: "Avalehele",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Mõõduta oma päikesesüsteem mõne minutiga"

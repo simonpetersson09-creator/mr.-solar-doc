@@ -1,4 +1,9 @@
 export const ro = {
+  notFound: {
+    title: "Pagina nu a fost găsită",
+    description: "Pagina căutată nu există sau a fost mutată.",
+    home: "Mergi la pagina principală",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Dimensionează sistemul tău solar în câteva minute"

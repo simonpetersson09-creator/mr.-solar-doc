@@ -1,4 +1,9 @@
 export const hr = {
+  notFound: {
+    title: "Stranica nije pronađena",
+    description: "Tražena stranica ne postoji ili je premještena.",
+    home: "Na početnu stranicu",
+  },
   app: {
     name: "Mr. Solar Doc",
     tagline: "Dimenzionirajte svoj solarni sustav u nekoliko minuta",

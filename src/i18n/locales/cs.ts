@@ -1,4 +1,9 @@
 export const cs = {
+  notFound: {
+    title: "Stránka nenalezena",
+    description: "Hledaná stránka neexistuje nebo byla přesunuta.",
+    home: "Na úvodní stránku",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Navrhněte si fotovoltaickou elektrárnu za pár minut"

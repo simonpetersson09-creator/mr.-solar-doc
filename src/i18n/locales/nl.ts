@@ -1,4 +1,9 @@
 export const nl = {
+  notFound: {
+    title: "Pagina niet gevonden",
+    description: "De pagina die je zoekt bestaat niet of is verplaatst.",
+    home: "Naar de startpagina",
+  },
   app: {
     name: "Mr. Solar Doc",
     tagline: "Bereken je zonnesysteem in een paar minuten",

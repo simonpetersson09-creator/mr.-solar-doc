@@ -1,4 +1,9 @@
 export const fr = {
+  notFound: {
+    title: "Page introuvable",
+    description: "La page que vous cherchez n existe pas ou a été déplacée.",
+    home: "Aller à l accueil",
+  },
   "app": {
     "name": "Mr. Solar Doc",
     "tagline": "Dimensionnez votre installation solaire en quelques minutes"
