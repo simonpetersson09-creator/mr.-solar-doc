@@ -615,3 +615,12 @@ html[data-native="true"] {
 .hero-metric .glow-amber {
   background-color: oklch(1 0 0 / 0.35);
 }
+
+/* Monthly chart bars on the brand-yellow cards: solid ink for production,
+   soft ink for consumption, so both read clearly against the yellow. */
+@utility chart-bar-production {
+  background-color: oklch(0.2185 0.0066 0.7 / 0.92);
+}
+@utility chart-bar-consumption {
+  background-color: oklch(0.2185 0.0066 0.7 / 0.38);
+}
