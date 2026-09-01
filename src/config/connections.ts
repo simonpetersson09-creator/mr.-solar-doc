@@ -77,6 +77,13 @@ export interface CountryConnectionConfig {
   defaultFrequencyHz: number;
   /** Override of the documented kVA -> kW assumption, when verified locally. */
   contractedKvaPowerFactor?: number;
+  /**
+   * True when both 1-phase and 3-phase are normal residential possibilities and
+   * the connection is stated in amperes. The step then asks for the phase model
+   * EXPLICITLY before the ampere value, because an ampere figure has no correct
+   * AC meaning on its own: 35 A is 8.05 kW on 1~230 V and 24.25 kW on 3~400 V.
+   */
+  phaseChoice?: boolean;
   /** Explicit knowledge level. Drives the UI, never the maths. */
   status: ConnectionProfileStatus;
   /** Convenience mirror of `status === "verified"`. Never set by hand. */
