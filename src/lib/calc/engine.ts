@@ -43,6 +43,24 @@ import type {
 } from "./types";
 
 /**
+ * The grid connection cannot carry even the smallest supported inverter.
+ * A real-world situation, not a broken calculation: it is surfaced as its own
+ * outcome so the UI can explain it instead of showing a technical error.
+ */
+export class GridTooSmallError extends Error {
+  readonly maxAcPowerKw: number;
+  readonly minimumSupportedInverterKw: number;
+  constructor(maxAcPowerKw: number, minimumSupportedInverterKw: number) {
+    super(
+      `Grid connection ${maxAcPowerKw} kW is below the smallest supported inverter ${minimumSupportedInverterKw} kW`,
+    );
+    this.name = "GridTooSmallError";
+    this.maxAcPowerKw = maxAcPowerKw;
+    this.minimumSupportedInverterKw = minimumSupportedInverterKw;
+  }
+}
+
+/**
  * Pure calculation entry point.
  * Calculation Engine -> Calculation Result -> UI / Report Service
  */
