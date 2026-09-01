@@ -117,6 +117,7 @@ function market(
   overrides: Partial<MarketConfig> = {},
 ): MarketConfig {
   const defaultLanguage = languageOptions[0] ?? "en";
+  const priceDefaults = getElectricityPriceDefaults(countryCode);
   return {
     ...baseEuMarket,
     countryCode,
@@ -124,27 +125,19 @@ function market(
     languageOptions,
     defaultLanguage,
     locale: `${defaultLanguage}-${countryCode}`,
+    // Editable schablon values from the single country price table.
+    selfConsumedElectricityValue: priceDefaults?.selfConsumed ?? null,
+    exportElectricityValue: priceDefaults?.exported ?? null,
     ...overrides,
   };
 }
 
 /**
- * Version of the standard electricity values below. Bump when the schablon
- * values are revised. Internal only — not shown to the user.
+ * Version of the standard electricity values. Bump when the schablon values
+ * are revised. Internal only — not shown to the user.
  */
-export const ELECTRICITY_PRICE_DEFAULTS_VERSION = "2026-08";
+export const ELECTRICITY_PRICE_DEFAULTS_VERSION = ELECTRICITY_PRICE_DEFAULTS_REVISION;
 
-/**
- * Standard values per market, sourced from the single country price table in
- * `./electricity-price-defaults`. Editable schablon values, not tariffs.
- */
-function prices(countryCode: string): Partial<MarketConfig> {
-  const defaults = getElectricityPriceDefaults(countryCode);
-  return {
-    selfConsumedElectricityValue: defaults?.selfConsumed ?? null,
-    exportElectricityValue: defaults?.exported ?? null,
-  };
-}
 
 export const MARKETS: Record<string, MarketConfig> = {
   SE: market("SE", "SEK", ["sv"], prices("SE")),
