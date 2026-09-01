@@ -332,4 +332,10 @@ export interface CalculationResult {
 /** Explicit calculation outcome. A result only exists on "success". */
 export type CalculationOutcome =
   | { status: "success"; result: CalculationResult }
+  /** Controlled domain outcome: the connection is too small for any inverter. */
+  | {
+      status: "grid-too-small";
+      maxAcPowerKw: number;
+      minimumSupportedInverterKw: number;
+    }
   | { status: "validation-error"; phase: "input" | "result"; issues: CalculationIssue[] };
