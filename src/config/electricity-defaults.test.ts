@@ -9,7 +9,7 @@ import type { CalculationInput } from "@/lib/calc/types";
 
 /** Standard values ("schablonvärden"), currency, per active market. */
 const EXPECTED: Record<string, { currency: string; self: number; export: number }> = {
-  SE: { currency: "SEK", self: 1.5, export: 0.5 },
+  SE: { currency: "SEK", self: 1.44, export: 0.6 },
   FI: { currency: "EUR", self: 0.18, export: 0.05 },
   DK: { currency: "DKK", self: 2.8, export: 0.35 },
   DE: { currency: "EUR", self: 0.35, export: 0.08 },
@@ -47,8 +47,8 @@ function baseInput(overrides: Partial<CalculationInput> = {}): CalculationInput 
     consumption: { annualKwh: 10000, monthlyKwh: null },
     electrical: { mainFuseAmp: 25, kwPerAmp: 0.69 },
     economics: {
-      selfConsumedValuePerKwh: 1.5,
-      exportValuePerKwh: 0.5,
+      selfConsumedValuePerKwh: 1.44,
+      exportValuePerKwh: 0.6,
       currency: "SEK",
     },
     selfConsumptionShare: 0.5,
@@ -153,8 +153,8 @@ describe("price values in the calculation", () => {
     expect(result.presentation.annualSavings).toBe(
       result.presentation.selfConsumptionValue + result.presentation.exportValue,
     );
-    expect(result.economics.selfConsumedValuePerKwh).toBe(1.5);
-    expect(result.economics.exportValuePerKwh).toBe(0.5);
+    expect(result.economics.selfConsumedValuePerKwh).toBe(1.44);
+    expect(result.economics.exportValuePerKwh).toBe(0.6);
   });
 
   it("assumes 0 % annual price change over the 30-year period", () => {
