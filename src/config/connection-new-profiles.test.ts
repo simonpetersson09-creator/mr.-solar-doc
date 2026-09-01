@@ -148,11 +148,13 @@ describe("LT — leistinoji naudoti galia in kW", () => {
   });
 });
 
-describe("only CH remains generic", () => {
-  it("keeps the confirmation gate for CH and for unknown countries", () => {
-    expect(Object.keys(GENERIC_CONNECTION_CONFIGS)).toEqual(["CH"]);
-    expect(getConnectionConfig("CH").status).toBe("generic");
-    expect(requiresGridConfirmation(getConnectionConfig("CH"))).toBe(true);
+describe("no generic profiles remain", () => {
+  it("keeps the confirmation gate for unverified and unknown countries", () => {
+    // CH is now a verified national profile; the generic bucket is empty.
+    expect(Object.keys(GENERIC_CONNECTION_CONFIGS)).toEqual([]);
+    expect(getConnectionConfig("CH").status).toBe("verified");
+    expect(requiresGridConfirmation(getConnectionConfig("AU"))).toBe(true);
+    expect(requiresGridConfirmation(getConnectionConfig("BR"))).toBe(true);
     expect(requiresGridConfirmation(getConnectionConfig("ZZ"))).toBe(true);
   });
 });
