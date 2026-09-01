@@ -155,55 +155,29 @@ function SettingsPage() {
 
         {/* Premium section */}
         <section className="flex flex-col gap-3">
-          {/* One-off unlock */}
-          <div className="glass-primary relative overflow-hidden rounded-2xl p-3">
-            <div className="relative z-10 flex flex-col gap-1">
-              <span className="inline-flex w-fit items-center rounded-full bg-brand-black px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-brand-yellow">
-                {t("paywall.eyebrow")}
-              </span>
-              <div className="flex flex-col">
-                <h2 className="text-sm font-black leading-tight text-brand-black">
-                  {t("paywall.single.title")}
-                </h2>
-                <p className="text-[11px] font-medium text-brand-black/75">
-                  {t("paywall.single.body")}
-                </p>
-              </div>
-              <p className="text-base font-black tabular-nums text-brand-black">
-                {unlockPrice ?? t("paywall.priceLoading")}
-              </p>
-              <Button disabled className="h-8 w-full text-xs font-semibold">
-                {t("settings.singleCta")}
-              </Button>
-              <p className="text-[10px] leading-snug text-brand-black/60">
-                {t("settings.singleNote")}
-              </p>
-            </div>
-            <div className="pointer-events-none absolute -right-6 -top-6 size-20 rounded-full border-[8px] border-brand-black/5" />
-          </div>
-
-          {/* Premium subscription */}
+          {/* Premium subscription (primary) */}
           <div className="glass-primary relative overflow-hidden rounded-2xl p-3 ring-2 ring-brand-black/15">
-            <div className="relative z-10 flex flex-col gap-1">
-              <div className="flex items-center justify-between">
-                <span className="inline-flex w-fit items-center rounded-full bg-brand-black/15 px-2 py-0.5 text-[8px] font-bold uppercase tracking-wider text-brand-black">
-                  {t("settings.subscription")}
-                </span>
-                <span className="text-[8px] font-bold uppercase tracking-widest text-brand-black/75">
-                  {t("settings.popular")}
-                </span>
+            <div className="relative z-10 flex flex-col gap-2">
+              {/* Title + price on one row */}
+              <div className="flex items-center justify-between gap-2">
+                <div className="flex min-w-0 items-center gap-1.5">
+                  <Crown className="size-4 shrink-0 text-brand-black" />
+                  <h2 className="truncate text-base font-black leading-none text-brand-black">
+                    {t("paywall.premium.title")}
+                  </h2>
+                </div>
+                <div className="flex shrink-0 flex-col items-end">
+                  <span className="text-[8px] font-bold uppercase tracking-widest text-brand-black/55">
+                    {t("settings.popular")}
+                  </span>
+                  <span className="whitespace-nowrap text-sm font-black tabular-nums text-brand-black">
+                    {premiumPrice
+                      ? t("paywall.premium.price", { price: premiumPrice })
+                      : t("paywall.priceLoading")}
+                  </span>
+                </div>
               </div>
-              <div className="flex items-center gap-1.5">
-                <Crown className="size-3.5 text-brand-black" />
-                <h2 className="text-sm font-black leading-tight text-brand-black">
-                  {t("paywall.premium.title")}
-                </h2>
-              </div>
-              <p className="text-base font-black tabular-nums text-brand-black">
-                {premiumPrice
-                  ? t("paywall.premium.price", { price: premiumPrice })
-                  : t("paywall.priceLoading")}
-              </p>
+              {/* Benefits */}
               <ul className="flex flex-col gap-0.5">
                 {["calculations", "pdf", "result"].map((key) => (
                   <li key={key} className="flex items-start gap-1.5 text-[11px] text-brand-black/85">
@@ -212,6 +186,7 @@ function SettingsPage() {
                   </li>
                 ))}
               </ul>
+              {/* CTA */}
               {premium.active ? (
                 <div className="flex items-center gap-1.5 rounded-lg bg-brand-black/10 px-2 py-1">
                   <Crown className="size-3 text-brand-black" />
@@ -238,8 +213,34 @@ function SettingsPage() {
                   )}
                 </Button>
               )}
-              <p className="text-[10px] leading-snug text-brand-black/60">
+              {/* Centered renewal note */}
+              <p className="text-center text-[10px] leading-snug text-brand-black/60">
                 {t("paywall.premium.renewal")}
+              </p>
+            </div>
+            <div className="pointer-events-none absolute -right-6 -top-6 size-20 rounded-full border-[8px] border-brand-black/5" />
+          </div>
+
+          {/* One-off unlock */}
+          <div className="glass-primary relative overflow-hidden rounded-2xl p-3">
+            <div className="relative z-10 flex flex-col gap-2">
+              {/* Title + price on one row */}
+              <div className="flex items-center justify-between gap-2">
+                <h2 className="min-w-0 truncate text-base font-black leading-none text-brand-black">
+                  {t("paywall.single.title")}
+                </h2>
+                <span className="shrink-0 whitespace-nowrap text-sm font-black tabular-nums text-brand-black">
+                  {unlockPrice ?? t("paywall.priceLoading")}
+                </span>
+              </div>
+              <p className="text-[11px] font-medium text-brand-black/75">
+                {t("paywall.single.body")}
+              </p>
+              <Button disabled className="h-8 w-full text-xs font-semibold">
+                {t("settings.singleCta")}
+              </Button>
+              <p className="text-center text-[10px] leading-snug text-brand-black/60">
+                {t("settings.singleNote")}
               </p>
             </div>
             <div className="pointer-events-none absolute -right-6 -top-6 size-20 rounded-full border-[8px] border-brand-black/5" />
