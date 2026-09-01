@@ -395,21 +395,6 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
             </p>
           )}
 
-          {!economicValuesMissing && result.installedKwp > 0 ? (
-            <div className="mt-3 rounded-2xl bg-white/10 p-3 text-center">
-              <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
-                {t("result.investmentPerKwLabel")}
-              </p>
-              <p className="mt-0.5 text-lg font-bold text-white tabular-nums">
-                {formatCurrency(
-                  Math.round(result.investment.maxInvestmentRounded / result.installedKwp),
-                  locale,
-                  currency,
-                )}{" "}
-                <span className="text-[11px] font-semibold text-white/60">/kW</span>
-              </p>
-            </div>
-          ) : null}
 
           {!economicValuesMissing && result.investmentScenarios.length > 1 ? (
             <div className="mt-3 rounded-2xl border border-white/15 bg-white/10 p-2.5">
