@@ -247,9 +247,9 @@ function SettingsPage() {
         </section>
 
         {/* Settings groups */}
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col gap-2.5">
           {/* Restore / Manage */}
-          <div className="glass-primary rounded-3xl p-2">
+          <div className="glass-primary flex flex-col gap-1.5 rounded-3xl p-2">
             <button
               type="button"
               disabled={restoring}
