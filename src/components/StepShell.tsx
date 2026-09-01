@@ -30,7 +30,7 @@ export function StepShell({
   const swipe = useRef<{ x: number; y: number } | null>(null);
   const onTouchStart = (e: React.TouchEvent) => {
     const touch = e.changedTouches[0];
-    if (touch.clientX <= 32) {
+    if (touch && touch.clientX <= 32) {
       swipe.current = { x: touch.clientX, y: touch.clientY };
     }
   };
@@ -39,6 +39,7 @@ export function StepShell({
     swipe.current = null;
     if (!start || !onBack) return;
     const touch = e.changedTouches[0];
+    if (!touch) return;
     const dx = touch.clientX - start.x;
     const dy = touch.clientY - start.y;
     if (dx > 60 && dx > Math.abs(dy) * 1.5) {
