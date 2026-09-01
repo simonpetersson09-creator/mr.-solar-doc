@@ -8,11 +8,11 @@ interface WelcomePageProps {
   onStart: () => void;
 }
 
-const POINTS: { icon: LucideIcon; titleKey: string; bodyKey: string }[] = [
-  { icon: Sun, titleKey: "welcome.point1Title", bodyKey: "welcome.point1Body" },
-  { icon: BarChart3, titleKey: "welcome.point2Title", bodyKey: "welcome.point2Body" },
-  { icon: Timer, titleKey: "welcome.point3Title", bodyKey: "welcome.point3Body" },
-  { icon: FileText, titleKey: "welcome.point4Title", bodyKey: "welcome.point4Body" },
+const POINTS: { icon: LucideIcon; titleKey: string }[] = [
+  { icon: Sun, titleKey: "welcome.point1Title" },
+  { icon: BarChart3, titleKey: "welcome.point2Title" },
+  { icon: Timer, titleKey: "welcome.point3Title" },
+  { icon: FileText, titleKey: "welcome.point4Title" },
 ];
 
 /**
