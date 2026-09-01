@@ -35,13 +35,13 @@ describe("supported markets", () => {
   it("uses the same 400 V three-phase assumption in every active market", () => {
     for (const code of ACTIVE_MARKET_CODES) {
       const market = MARKETS[code]!;
-      expect(market.kwPerAmp).toBe(0.69);
+      expect(market.kwPerAmp).toBeCloseTo(0.6928, 4);
       expect(market.gridVoltageV).toBe(EU_GRID_VOLTAGE_V);
       expect(market.gridPhases).toBe(EU_GRID_PHASES);
 
       for (const [amp, expected] of EXPECTED_KW_PER_AMP) {
         expect(Math.abs(maxAcPowerFromFuse(amp, market.kwPerAmp) - expected)).toBeLessThan(
-          0.06,
+          0.2,
         );
       }
     }

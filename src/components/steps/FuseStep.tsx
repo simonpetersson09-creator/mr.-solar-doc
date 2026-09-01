@@ -25,10 +25,10 @@ import { connectionOptionLabel } from "@/lib/connection-display";
 import {
   GRID_FREQUENCY_OPTIONS,
   SERVICE_TYPE_OPTIONS,
-  SPLIT_PHASE_LINE_TO_LINE_V,
   isPresetVoltage,
   isValidCustomVoltage,
   splitPhaseLineToNeutral,
+  voltageForServiceSwitch,
   voltageOptionsForService,
   type ServiceType,
 } from "@/config/grid";
@@ -413,11 +413,10 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                     type="button"
                     onClick={() => {
                       setCustomVoltage(false);
-                      setGridProfile(
-                        option === "split-phase"
-                          ? { serviceType: option, voltageV: SPLIT_PHASE_LINE_TO_LINE_V }
-                          : { serviceType: option },
-                      );
+                      setGridProfile({
+                        serviceType: option,
+                        voltageV: voltageForServiceSwitch(option, voltageV),
+                      });
                     }}
                     className={chipClass(serviceType === option)}
                   >

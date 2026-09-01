@@ -12,9 +12,10 @@ export const EU_GRID_PHASES = 3;
 
 /**
  * European three-phase 400 V: kW allowed per ampere of main fuse.
- * P(kW) = sqrt(3) x 400 x A / 1000 ~= 0.69 x A.
+ * Derived from the single physics rule, never a rounded shortcut:
+ * P(kW) = sqrt(3) x 400 x A / 1000 = 0.6928 x A.
  */
-export const EU_THREE_PHASE_KW_PER_AMP = 0.69;
+export const EU_THREE_PHASE_KW_PER_AMP = (Math.sqrt(3) * EU_GRID_VOLTAGE_V) / 1000;
 
 /** Hard ceiling for automatic oversizing. Never a goal — only a limit. */
 export const ABSOLUTE_MAX_DC_AC_RATIO = 1.3;

@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import {
   DEFAULT_GRID_PROFILE,
-  GRID_VOLTAGE_OPTIONS,
+  SINGLE_PHASE_VOLTAGE_OPTIONS,
+  THREE_PHASE_VOLTAGE_OPTIONS,
   isPresetVoltage,
   isValidCustomVoltage,
   kwPerAmpFor,
@@ -31,9 +32,9 @@ describe("dynamic grid profile", () => {
     expect(DEFAULT_GRID_PROFILE).toEqual({ phaseCount: 3, voltageV: 400, frequencyHz: 50 });
   });
 
-  it("offers the extended European voltage set with 400 V first", () => {
-    expect(GRID_VOLTAGE_OPTIONS).toEqual([127, 220, 230, 240, 380, 400, 415]);
-    expect(GRID_VOLTAGE_OPTIONS).toContain(DEFAULT_GRID_PROFILE.voltageV);
+  it("offers line-to-line presets for three-phase and includes the default", () => {
+    expect(THREE_PHASE_VOLTAGE_OPTIONS).toEqual([208, 220, 230, 380, 400, 415]);
+    expect(THREE_PHASE_VOLTAGE_OPTIONS).toContain(DEFAULT_GRID_PROFILE.voltageV);
   });
 
   it("3-phase 400 V yields ~0.693 kW per ampere", () => {
@@ -85,7 +86,7 @@ describe("dynamic grid profile", () => {
 });
 describe("custom voltage", () => {
   it("accepts positive voltages inside plausible bounds", () => {
-    for (const v of [100, 110, 120, 208, 277, 480]) {
+    for (const v of [100, 110, 277, 480]) {
       expect(isValidCustomVoltage(v)).toBe(true);
       expect(isPresetVoltage(v)).toBe(false);
     }
@@ -100,7 +101,9 @@ describe("custom voltage", () => {
   });
 
   it("still recognises the predefined options", () => {
-    for (const v of GRID_VOLTAGE_OPTIONS) expect(isPresetVoltage(v)).toBe(true);
+    for (const v of THREE_PHASE_VOLTAGE_OPTIONS) expect(isPresetVoltage(v)).toBe(true);
+    for (const v of SINGLE_PHASE_VOLTAGE_OPTIONS)
+      expect(isPresetVoltage(v, "single-phase")).toBe(true);
   });
 
   it("feeds a custom voltage through the existing power formula", () => {
