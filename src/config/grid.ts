@@ -118,6 +118,18 @@ export function voltageForServiceSwitch(serviceType: ServiceType, currentVoltage
     : DEFAULT_VOLTAGE_FOR_SERVICE[serviceType];
 }
 
+/**
+ * The voltage an EXPLICIT phase choice sets. Unlike `voltageForServiceSwitch`
+ * (advanced editing, which keeps a still-valid voltage), picking "1-phase" or
+ * "3-phase" always snaps to that service's nominal voltage: 230 V line-to-
+ * neutral or 400 V line-to-line. Otherwise a 230 V line-to-neutral value would
+ * silently survive a switch to three-phase and be reused as 230 V line-to-line.
+ * The user may still set another physically valid voltage afterwards.
+ */
+export function voltageForPhaseChoice(serviceType: ServiceType): number {
+  return DEFAULT_VOLTAGE_FOR_SERVICE[serviceType];
+}
+
 
 
 /** Bounds for a user-entered custom voltage (V). */
