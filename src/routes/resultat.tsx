@@ -395,21 +395,6 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
             </p>
           )}
 
-          {!economicValuesMissing && result.installedKwp > 0 ? (
-            <div className="mt-3 rounded-2xl bg-white/10 p-3 text-center">
-              <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
-                {t("result.investmentPerKwLabel")}
-              </p>
-              <p className="mt-0.5 text-lg font-bold text-white tabular-nums">
-                {formatCurrency(
-                  Math.round(result.investment.maxInvestmentRounded / result.installedKwp),
-                  locale,
-                  currency,
-                )}{" "}
-                <span className="text-[11px] font-semibold text-white/60">/kW</span>
-              </p>
-            </div>
-          ) : null}
 
           {!economicValuesMissing && result.investmentScenarios.length > 1 ? (
             <div className="mt-3 rounded-2xl border border-white/15 bg-white/10 p-2.5">
@@ -444,6 +429,27 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
             </div>
           ) : null}
         </section>
+
+{!economicValuesMissing && result.installedKwp > 0 ? (
+  <section className="rounded-[28px] border border-primary-foreground/20 glass-primary surface-strong p-3.5 text-center text-primary-foreground shadow-hero">
+    <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+      {t("result.investmentPerKwLabel")}
+    </p>
+    <p className="mt-0.5 text-2xl font-extrabold tracking-tight text-white tabular-nums">
+      {formatCurrency(
+        Math.round(result.investment.maxInvestmentRounded / result.installedKwp),
+        locale,
+        currency,
+      )}{" "}
+      <span className="text-[11px] font-semibold text-white/60">/kW</span>
+    </p>
+    <p className="mt-1 text-[11px] leading-relaxed text-white/60">
+      {formatDecimal(result.installedKwp, locale)} kWp · panel (DC)
+    </p>
+  </section>
+) : null}
+
+
 
 
 
