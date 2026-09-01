@@ -54,7 +54,9 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
               <Icon className="mt-0.5 size-4 shrink-0 opacity-80" strokeWidth={1.75} aria-hidden="true" />
               <div className="min-w-0">
                 <p className="text-xs font-bold leading-snug">{t(titleKey)}</p>
-                <p className="mt-1 text-xs leading-relaxed opacity-70">{t(bodyKey)}</p>
+                {t(bodyKey) ? (
+                  <p className="mt-1 text-xs leading-relaxed opacity-70">{t(bodyKey)}</p>
+                ) : null}
               </div>
             </li>
           ))}

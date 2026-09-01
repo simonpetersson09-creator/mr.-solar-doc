@@ -12,7 +12,7 @@ export const pt = {
     title: "Mr. Solar Doc",
     subtitle: "Que tamanho de sistema solar precisa e qual o seu valor para si?",
     point1Title: "Calcula o seu potencial solar",
-    point1Body: "Com base na sua localização, telhado e nas condições solares locais.",
+    point1Body: "",
     point2Title: "Dimensiona o sistema",
     point2Body: "O seu consumo de eletricidade, ligação à rede e produção solar são combinados para encontrar o tamanho adequado.",
     point3Title: "Calcula quanto pode custar",

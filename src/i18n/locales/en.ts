@@ -12,7 +12,7 @@ export const en = {
     title: "Mr. Solar Doc",
     subtitle: "How big a solar system do you need, and what is it worth to you?",
     point1Title: "Calculates your solar potential",
-    point1Body: "Based on your location, your roof and the local solar conditions.",
+    point1Body: "",
     point2Title: "Sizes the system",
     point2Body: "Your electricity use, grid connection and solar production are weighed together to find a suitable size.",
     point3Title: "Works out what it can cost",

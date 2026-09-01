@@ -12,7 +12,7 @@ export const hr = {
     title: "Mr. Solar Doc",
     subtitle: "Koju veličinu solarnog sustava trebate i koliko vrijedi za vas?",
     point1Title: "Računa vaš solarni potencijal",
-    point1Body: "Na temelju vaše lokacije, krova i lokalnih solarnih uvjeta.",
+    point1Body: "",
     point2Title: "Dimenzionira sustav",
     point2Body: "Vaša potrošnja struje, mrežni priključak i solarna proizvodnja se kombiniraju za odgovarajuću veličinu.",
     point3Title: "Računa koliko smije koštati",

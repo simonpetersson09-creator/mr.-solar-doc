@@ -12,7 +12,7 @@ export const hu = {
     title: "Mr. Solar Doc",
     subtitle: "Mekkora napelemes rendszert kell, és mennyit ér Önnek?",
     point1Title: "Kiszámítja a napenergia-potenciálját",
-    point1Body: "A helye, a tető és a helyi napviszonyok alapján.",
+    point1Body: "",
     point2Title: "Méretezi a rendszert",
     point2Body: "Áramfogyasztását, hálózati csatlakozását és napelemes termelését összesúlyozza a megfelelő mérethez.",
     point3Title: "Kiszámítja, mennyit fizethet érte",
