@@ -251,14 +251,22 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     { localTerm: "Hausanschlusssicherung" },
   ),
 
-  /** Great Britain: single-phase 230 V cut-out fuse. */
+  /**
+   * Great Britain: the cut-out fuse on a single-phase 230 V supply. 60/80 A are
+   * common on older services, 100 A is the modern standard. Three-phase
+   * 400 V services exist on larger homes and are offered explicitly.
+   */
   GB: config(
     "GB",
     "amperage",
-    [60, 80, 100].map((a) => ampOption(a, SINGLE_PHASE_230)),
+    [
+      ...[60, 80, 100].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+      ...[60, 80, 100].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × 400 V · ")),
+    ],
     SINGLE_PHASE_230,
     { localTerm: "Main fuse (cut-out)" },
   ),
+
   /**
    * Belgium: the network type must be part of the choice — 3x230 V without
    * neutral is a fundamentally different capacity than 3N400 V.
