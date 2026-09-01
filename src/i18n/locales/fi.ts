@@ -21,6 +21,7 @@ export const fi = {
     point4Title: "Raportti ja päätöspohja",
     point4Body: "Katso tuotanto, talous ja eri takaisinmaksuajat koottuna raporttiin.",
     cta: "Aloita laskenta",
+    disclaimer: "Laskelma on ohjeellinen eikä se ole tarjous.",
   },
   common: {
     back: "Takaisin",

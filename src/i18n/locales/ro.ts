@@ -22,6 +22,7 @@ export const ro = {
     point4Title: "Raport și bază de decizie",
     point4Body: "Vezi producția, economia și diferite perioade de retur într-un raport.",
     cta: "Începe calculul",
+    disclaimer: "Calculul este orientativ și nu este o ofertă.",
   },
   common: {
     back: "Înapoi",

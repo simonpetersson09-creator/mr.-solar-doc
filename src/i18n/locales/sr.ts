@@ -21,6 +21,7 @@ export const sr = {
     point4Title: "Извештај и основ за одлуку",
     point4Body: "Погледајте производњу, економију и различите периоде поврата у извештају.",
     cta: "Покрени прорачун",
+    disclaimer: "Izračun je orijentacioni i nije ponuda.",
   },
   common: {
     back: "Назад",

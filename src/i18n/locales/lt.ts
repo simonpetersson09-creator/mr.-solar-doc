@@ -22,6 +22,7 @@ export const lt = {
     point4Title: "Ataskaita ir sprendimo pagrindas",
     point4Body: "Matykite gamybą, ekonomiką ir skirtingus atsiperkamumo laikus ataskaitoje.",
     cta: "Pradėti skaičiavimą",
+    disclaimer: "Skaičiavimas yra orientacinis ir nėra pasiūlymas.",
   },
   common: {
     back: "Atgal",

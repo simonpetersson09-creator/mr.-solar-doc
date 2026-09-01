@@ -22,6 +22,7 @@ export const hr = {
     point4Title: "Izvještaj i podloga za odluku",
     point4Body: "Vidite proizvodnju, ekonomiju i različita razdoblja povrata u izvješću.",
     cta: "Pokreni izračun",
+    disclaimer: "Izračun je orijentacijski i nije ponuda.",
   },
   common: {
     back: "Natrag",

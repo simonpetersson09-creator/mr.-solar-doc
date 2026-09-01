@@ -22,6 +22,7 @@ export const sk = {
     point4Title: "Správa a podklad pre rozhodnutie",
     point4Body: "Pozrite si produkciu, ekonomiku a rôzne doby návratnosti v správe.",
     cta: "Spustiť výpočet",
+    disclaimer: "Výpočet je orientačný a nie je ponukou.",
   },
   common: {
     back: "Späť",

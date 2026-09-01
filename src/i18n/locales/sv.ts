@@ -22,6 +22,7 @@ export const sv = {
     point4Title: "Rapport och beslutsunderlag",
     point4Body: "Se produktion, ekonomi och olika återbetalningstider samlat i en rapport.",
     cta: "Starta beräkningen",
+    disclaimer: "Beräkningen är vägledande och är inte en offert.",
   },
   common: {
     back: "Tillbaka",

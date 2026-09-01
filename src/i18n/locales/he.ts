@@ -20,6 +20,7 @@ export const he = {
     point4Title: "דוח ובסיס החלטה",
     point4Body: "ראה ייצור, כלכלה ותקופות החזר שונות בדוח אחד.",
     cta: "התחל את החישוב",
+    disclaimer: "The calculation is indicative and is not a quote.",
   },
   common: {
     back: "חזרה",
