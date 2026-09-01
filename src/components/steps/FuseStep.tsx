@@ -36,6 +36,9 @@ import {
 import { useWizardStore } from "@/state/wizard-store";
 import { haptic } from "@/services/native-service";
 
+/** Phase models offered by the explicit phase choice (ampere markets). */
+const PHASE_CHOICE_OPTIONS: readonly ServiceType[] = ["single-phase", "three-phase"];
+
 interface FuseStepProps {
   totalSteps: number;
   onBack: () => void;
