@@ -439,7 +439,66 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     { localTerm: "Priključna moč" },
   ),
 
+  /**
+   * Latvia: the connection is stated as connection current per phase
+   * ("pieslēguma strāva"), 1 x 16-32 A for single-phase homes and
+   * 3 x 16-63 A for three-phase. Source: Sadales tīkls tariff table.
+   */
+  LV: config(
+    "LV",
+    "amperage",
+    [
+      ...[16, 20, 25, 32].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+      ...[16, 20, 25, 32, 40, 50, 63].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × ")),
+    ],
+    EU_THREE_PHASE_400,
+    { localTerm: "Pieslēguma strāva" },
+  ),
+
+  /* --- contracted kVA markets (continued) --- */
+  /**
+   * Ireland: the connection is the Maximum Import Capacity (MIC) in kVA — a
+   * TOTAL for the connection, identical on 230 V single-phase and 400 V
+   * three-phase. ESB Networks lists 12 kVA (standard) and 16 kVA (enhanced)
+   * for domestic connections. MIC is import capacity and says nothing about
+   * permitted PV export — micro-generation has its own rules.
+   */
+  IE: config(
+    "IE",
+    "contracted-kva",
+    [12, 16].map((kva) => kvaOption(kva)),
+    SINGLE_PHASE_230,
+    { localTerm: "Maximum Import Capacity (MIC)" },
+  ),
+
+  /* --- contracted kW markets (continued) --- */
+  /**
+   * Croatia: "priključna snaga" in kW (total). HEP ODS publishes the standard
+   * ladder: single-phase 4.60 / 5.75 / 7.36 / 9.20 / 11.50 kW and symmetrical
+   * three-phase 11.04 / 13.80 / 17.25 / 22.00 kW.
+   */
+  HR: config(
+    "HR",
+    "contracted-kw",
+    [4.6, 5.75, 7.36, 9.2, 11.5, 11.04, 13.8, 17.25, 22].map((kw) => kwOption(kw)),
+    EU_THREE_PHASE_400,
+    { localTerm: "Priključna snaga" },
+  ),
+  /**
+   * Lithuania: "leistinoji naudoti galia" in kW (total permitted power).
+   * ESO lists 3-5 kW single-phase and 7-60 kW three-phase, and recommends a
+   * three-phase connection above 6 kW.
+   */
+  LT: config(
+    "LT",
+    "contracted-kw",
+    [3, 4, 5, 7, 9, 11, 14, 18, 22, 28, 35, 45, 60].map((kw) => kwOption(kw)),
+    EU_THREE_PHASE_400,
+    { localTerm: "Leistinoji naudoti galia" },
+  ),
+
 };
+
 
 /**
  * GENERIC (unverified) continental-European profile.
@@ -459,7 +518,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
  */
 const GENERIC_EU_AMPERE_LEVELS = [16, 20, 25, 32, 35, 40, 50, 63];
 
-const GENERIC_EU_MARKET_CODES = ["CH", "LV", "LT"] as const;
+const GENERIC_EU_MARKET_CODES = ["CH"] as const;
 
 function genericEuConfig(countryCode: string): CountryConnectionConfig {
   return config(
