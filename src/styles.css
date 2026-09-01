@@ -63,9 +63,13 @@
   /* Brand palette — the single source of truth for the yellow/black identity.
      The same hex values are mirrored in src/config/brand.ts for the PDF. */
   --color-brand-yellow: var(--brand-yellow);
+  --color-brand-yellow-soft: var(--brand-yellow-soft);
+  --color-brand-yellow-selected: var(--brand-yellow-selected);
+  --color-surface-cream: var(--surface-cream);
   --color-brand-yellow-cta: var(--brand-yellow-cta);
   --color-brand-yellow-hover: var(--brand-yellow-hover);
   --color-brand-yellow-pressed: var(--brand-yellow-pressed);
+
   --color-brand-black: var(--brand-black);
   --color-brand-black-soft: var(--brand-black-soft);
 
