@@ -288,14 +288,14 @@ function SettingsPage() {
           </div>
 
           {/* History */}
-          <div className="glass-primary rounded-3xl p-2">
+          <div className="glass-primary flex flex-col gap-1.5 rounded-3xl p-2">
             <button
               type="button"
               onClick={() => {
                 void haptic("light");
                 void navigate({ to: "/historik" });
               }}
-              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-4 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-3.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-3">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
