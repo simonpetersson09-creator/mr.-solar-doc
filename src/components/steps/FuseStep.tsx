@@ -583,14 +583,6 @@ const [showGridInfo, setShowGridInfo] = useState(false);
       {/* 3. Resultat — own card */}
       {capacityValid ? (
         <div className="glass-primary space-y-1.5 rounded-[28px] px-4 py-3.5">
-          {resolvedConnectionLabel ? (
-            <p
-              data-testid="resolved-connection"
-              className="text-[11px] font-semibold text-white/75"
-            >
-              {resolvedConnectionLabel}
-            </p>
-          ) : null}
           <div className="flex items-center justify-between gap-3">
             <span className="flex items-center gap-1.5 text-xs text-white/60">
               <Zap className="size-3.5 text-accent" />
