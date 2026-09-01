@@ -1,4 +1,4 @@
-import { ArrowRight, BarChart3, FileText, Home, Timer } from "lucide-react";
+import { ArrowRight, BarChart3, FileText, Sun, Timer } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { haptic } from "@/services/native-service";
@@ -9,7 +9,7 @@ interface WelcomePageProps {
 }
 
 const POINTS: { icon: LucideIcon; titleKey: string; bodyKey: string }[] = [
-  { icon: Home, titleKey: "welcome.point1Title", bodyKey: "welcome.point1Body" },
+  { icon: Sun, titleKey: "welcome.point1Title", bodyKey: "welcome.point1Body" },
   { icon: BarChart3, titleKey: "welcome.point2Title", bodyKey: "welcome.point2Body" },
   { icon: Timer, titleKey: "welcome.point3Title", bodyKey: "welcome.point3Body" },
   { icon: FileText, titleKey: "welcome.point4Title", bodyKey: "welcome.point4Body" },
