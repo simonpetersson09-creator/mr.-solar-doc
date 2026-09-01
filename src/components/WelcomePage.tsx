@@ -1,8 +1,26 @@
 import { ArrowRight, BarChart3, FileText, Sun, Timer } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { Fragment, type ReactNode } from "react";
 import { haptic } from "@/services/native-service";
 import brandIcon from "@/assets/mr-solar-doc-icon.png";
+
+/**
+ * Renders a translated string where a `[[...]]`-wrapped fragment should be
+ * underlined. Used for the "efter önskad återbetalningstid" phrase on point 3.
+ */
+function renderWithUnderline(text: string): ReactNode {
+  const parts = text.split(/\[\[|\]\]/);
+  return parts.map((part, i) =>
+    i % 2 === 1 ? (
+      <span key={i} className="underline decoration-2 underline-offset-2">
+        {part}
+      </span>
+    ) : (
+      <Fragment key={i}>{part}</Fragment>
+    ),
+  );
+}
 
 interface WelcomePageProps {
   onStart: () => void;
