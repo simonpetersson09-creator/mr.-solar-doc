@@ -9,7 +9,7 @@ export const ro = {
     "tagline": "Dimensionează sistemul tău solar în câteva minute"
   },
   "welcome": {
-    "title": "Bine ai venit la Mr. Solar Doc",
+    "title": "Mr. Solar Doc",
     "subtitle": "Descoperă ce sistem solar se potrivește proprietății tale și cât ar putea costa.",
     "body1": "Folosim proprietatea ta, consumul de electricitate și condițiile solare locale pentru a calcula o dimensiune adecvată a sistemului și producția estimată.",
     "body2": "Alegi o perioadă de amortizare care ți se pare potrivită. Mr. Solar Doc calculează apoi costul maxim pe care sistemul îl poate avea pentru a atinge această perioadă de amortizare.",

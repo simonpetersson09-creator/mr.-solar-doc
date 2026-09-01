@@ -9,7 +9,7 @@ export const da = {
     "tagline": "Dimensioner dit solcelleanlæg på få minutter"
   },
   "welcome": {
-    "title": "Velkommen til Mr. Solar Doc",
+    "title": "Mr. Solar Doc",
     "subtitle": "Find ud af, hvilket solcelleanlæg der passer til din bolig, og hvad det kan koste.",
     "body1": "Vi bruger din bolig, dit elforbrug og de lokale solforhold til at beregne en passende anlægsstørrelse og forventet produktion.",
     "body2": "Du vælger en tilbagebetalingstid, der føles rigtig for dig. Mr. Solar Doc beregner derefter den maksimale pris, anlægget kan have for at nå denne tilbagebetalingstid.",

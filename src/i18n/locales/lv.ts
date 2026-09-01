@@ -9,7 +9,7 @@ export const lv = {
     "tagline": "Daudās minūtēs izmēriet savu saules elektrostaciju"
   },
   "welcome": {
-    "title": "Sveicināti Mr. Solar Doc",
+    "title": "Mr. Solar Doc",
     "subtitle": "Noskaidrojiet, kāda saules sistēma piemērota jūsu īpašumam un cik tā varētu izmaksāt.",
     "body1": "Mēs izmantojam jūsu īpašuma datus, elektrības patēriņu un vietējos saules apstākļus, lai aprēķinātu piemērotu sistēmas izmēru un paredzamo ražošanu.",
     "body2": "Jūs izvēlaties atmaksāšanās periodu, kas jums šķiet piemērots. Mr. Solar Doc pēc tam aprēķina maksimālo cenu, ko sistēma var maksāt, lai sasniegtu šo atmaksāšanās periodu.",

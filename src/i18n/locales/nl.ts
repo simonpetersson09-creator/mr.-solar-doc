@@ -9,7 +9,7 @@ export const nl = {
     tagline: "Bereken je zonnesysteem in een paar minuten",
   },
   welcome: {
-    title: "Welkom bij Mr. Solar Doc",
+    title: "Mr. Solar Doc",
     subtitle: "Ontdek welk zonnesysteem past bij jouw woning en wat het kan kosten.",
     body1: "We gebruiken je woning, elektriciteitsverbruik en de lokale zonneomstandigheden om een geschikte systeemgrootte en verwachte opbrengst te berekenen.",
     body2: "Je kiest een terugbetalingsperiode die voor jou goed voelt. Mr. Solar Doc berekent vervolgens wat het systeem maximaal mag kosten om die terugbetalingsperiode te halen.",
