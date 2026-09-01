@@ -305,33 +305,64 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     SINGLE_PHASE_230,
     { localTerm: "Puissance souscrite" },
   ),
-  /** Portugal: regulated "potência contratada" steps in kVA (total). */
+  /**
+   * Portugal: regulated "potência contratada" steps in kVA (total). The BTN
+   * ladder continues above 10.35 kVA (13.8 / 17.25 / 20.7 kVA), which is where
+   * households with a heat pump or an EV charger sit.
+   */
   PT: config(
     "PT",
     "contracted-kva",
-    [1.15, 2.3, 3.45, 4.6, 5.75, 6.9, 10.35].map((kva) => kvaOption(kva)),
+    [1.15, 2.3, 3.45, 4.6, 5.75, 6.9, 10.35, 13.8, 17.25, 20.7].map((kva) => kvaOption(kva)),
     SINGLE_PHASE_230,
     { localTerm: "Potência contratada" },
   ),
 
   /* --- contracted kW markets --- */
-  /** Spain: "potencia contratada" in kW, free in 0.1 kW steps. */
+  /**
+   * Spain: "potencia contratada" in kW. The regulated BOE ladder — 9.2 and
+   * 11.5 kW are the common levels for homes with an EV or a heat pump.
+   */
   ES: config(
     "ES",
     "contracted-kw",
-    [3.45, 4.6, 5.75, 6.9].map((kw) => kwOption(kw)),
+    [1.15, 2.3, 3.45, 4.6, 5.75, 6.9, 8.05, 9.2, 10.35, 11.5, 14.49].map((kw) => kwOption(kw)),
     SINGLE_PHASE_230,
     { localTerm: "Potencia contratada" },
   ),
-  /** Italy: "potenza impegnata" in kW. */
+  /** Italy: "potenza impegnata" in kW. 1.5 kW covers holiday homes. */
   IT: config(
     "IT",
     "contracted-kw",
-    [3, 4.5, 6, 10, 15].map((kw) => kwOption(kw)),
+    [1.5, 3, 4.5, 6, 10, 15].map((kw) => kwOption(kw)),
     SINGLE_PHASE_230,
-
     { localTerm: "Potenza impegnata" },
   ),
+  /**
+   * Poland: the connection is contracted as "moc umowna" in kW — the figure
+   * printed on the bill. Asking for amperes would force the consumer to
+   * convert from something they never see.
+   */
+  PL: config(
+    "PL",
+    "contracted-kw",
+    [3, 4, 5, 6, 8, 10, 12, 14, 17, 20, 25, 30].map((kw) => kwOption(kw)),
+    SINGLE_PHASE_230,
+    { localTerm: "Moc umowna" },
+  ),
+  /**
+   * Slovenia: "priključna moč" is officially stated in kW, with a fixed
+   * kW <-> fuse table held by the operator. Single-phase homes sit at 4-8 kW,
+   * three-phase homes from 11 kW upwards.
+   */
+  SI: config(
+    "SI",
+    "contracted-kw",
+    [4, 5, 6, 7, 8, 11, 14, 17, 22, 24, 35, 43].map((kw) => kwOption(kw)),
+    EU_THREE_PHASE_400,
+    { localTerm: "Priključna moč" },
+  ),
+
 };
 
 /**
