@@ -14,7 +14,7 @@ import { analyzeConsumptionProfile, determineTargetDcAcRange } from "./consumpti
 import { selectRecommendedSystem } from "./candidate-selection";
 import { buildPresentationValues } from "./presentation";
 import { calculateEconomicValue, nonNegative } from "./electricity-price";
-import { calculateMaxInvestment } from "./payback";
+import { buildPaybackScenarios, calculateMaxInvestment } from "./payback";
 import { calculateProductionCost } from "./production-cost";
 import { buildLifetimeProjection } from "./degradation";
 import { dcAcRatio, oversizingPercent } from "./inverter-sizing";
@@ -421,6 +421,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     },
     lifetime,
     investment: investmentResult,
+    investmentScenarios: buildPaybackScenarios({
+      annualEconomicValue: presentation.annualSavings,
+      acceptedPaybackYears: input.acceptedPaybackYears,
+      annualValues: lifetimeValuesScaledToPresentation,
+      minYears: MIN_PAYBACK_YEARS,
+      maxYears: MAX_PAYBACK_YEARS,
+    }),
     productionCost: calculateProductionCost({
       // Works in every market: no CAPEX database, no quote required. The
       // investment level comes from the engine's max justifiable investment,
