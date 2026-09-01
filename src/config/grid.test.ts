@@ -8,7 +8,8 @@ import {
   SERVICE_TYPE_AC_FACTOR,
   SERVICE_TYPE_FOR_PHASE_COUNT,
 } from "./grid";
-import { maxAcPowerFromFuse, recommendInverter } from "@/lib/calc/inverter-sizing";
+import { maxAcPowerFromFuse } from "@/lib/calc/inverter-sizing";
+import { selectRecommendedSystem } from "@/lib/calc/candidate-selection";
 
 const CASES = [
   // Three-phase: P = sqrt(3) x U x I / 1000
@@ -58,18 +59,26 @@ describe("dynamic grid profile", () => {
 
   it("keeps inverter sizing bounded by the dynamic AC limit", () => {
     const sizes = [1.5, 2, 3, 4, 5, 6, 8, 10, 12, 15];
-    const singlePhase = recommendInverter({
-      installedKwp: 10,
-      maxAcPowerKw: maxAcPowerFromFuse(16, kwPerAmpFor(1, 230)),
-      inverterSizesKw: sizes,
-    });
+    const pick = (maxAcPowerKw: number) => {
+      const outcome = selectRecommendedSystem({
+        targetKwp: 10,
+        maxAcPowerKw,
+        inverterSizesKw: sizes,
+        panelPowerKwp: 0.43,
+        targetRange: { min: 1.1, max: 1.15 },
+        monthlyKwhPerKwp: Array.from({ length: 12 }, () => 80),
+        annualConsumptionKwh: 9000,
+        monthlyConsumptionKwh: null,
+        solarSeasonProductionShare: 0.65,
+      });
+      if (outcome.status !== "ok") throw new Error("expected a system");
+      return outcome.best;
+    };
+
+    const singlePhase = pick(maxAcPowerFromFuse(16, kwPerAmpFor(1, 230)));
     expect(singlePhase.inverterKw).toBeLessThanOrEqual(3.68);
 
-    const threePhase = recommendInverter({
-      installedKwp: 10,
-      maxAcPowerKw: maxAcPowerFromFuse(25, kwPerAmpFor(3, 400)),
-      inverterSizesKw: sizes,
-    });
+    const threePhase = pick(maxAcPowerFromFuse(25, kwPerAmpFor(3, 400)));
     expect(threePhase.inverterKw).toBeGreaterThanOrEqual(8);
     expect(threePhase.inverterKw).toBeLessThanOrEqual(17.32);
   });
