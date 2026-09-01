@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import { useNativeShell } from "@/hooks/use-native-shell";
 import { usePurchaseRecovery } from "@/hooks/use-purchase-recovery";
 import { Toaster } from "@/components/ui/sonner";
