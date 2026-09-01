@@ -1,4 +1,4 @@
-import { ArrowRight, Sun } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { haptic } from "@/services/native-service";
 import brandIcon from "@/assets/mr-solar-doc-icon.png.asset.json";
@@ -10,7 +10,9 @@ interface WelcomePageProps {
 /**
  * First-run welcome screen shown before the wizard. Full-bleed brand-yellow
  * surface with dark ink text, matching the glass-primary cards used in the
- * wizard steps. The CTA is the dark ink "knappfärg" used elsewhere in the app.
+ * wizard steps. The CTA uses the same `cta-primary` surface as the wizard
+ * "Beräkna" button. The brand icon's yellow is recolored to match the page
+ * background so only the ink outline reads against the surface.
  */
 export function WelcomePage({ onStart }: WelcomePageProps) {
   const { t } = useTranslation();
@@ -20,27 +22,20 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
       className="flex h-dvh max-h-dvh flex-col overflow-hidden bg-brand-yellow text-brand-black"
       style={{ backgroundImage: "var(--yellow-sheen)" }}
     >
-      <main className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-y-auto overscroll-contain px-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
-        <header className="pt-safe flex items-center gap-3">
-          <span className="flex size-9 items-center justify-center rounded-full bg-brand-black text-brand-yellow shadow-sm">
-            <Sun className="size-5" />
-          </span>
-          <span className="text-sm font-semibold tracking-tight">
-            {t("app.name")}
-          </span>
-        </header>
-
-        {/* Centered brand icon — sits slightly above the title and blends with the yellow surface */}
-        <div className="mt-2 flex justify-center">
+      <main className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col overflow-y-auto overscroll-contain px-5 pt-[calc(1.5rem+env(safe-area-inset-top))] pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
+        {/* Brand icon — centered, sits a bit above the title. The yellow body
+            is the same #FFDC38 as the page, so it melts into the surface and
+            only the ink outline shows. */}
+        <div className="mt-3 flex justify-center">
           <img
             src={brandIcon.url}
             alt="Mr. Solar Doc"
-            className="w-40 select-none drop-shadow-sm opacity-90 mix-blend-multiply"
+            className="w-44 select-none drop-shadow-sm"
             draggable={false}
           />
         </div>
 
-        <section className="mt-3 text-center">
+        <section className="mt-4 text-center">
           <h1 className="font-display text-2xl font-bold leading-tight tracking-tight">
             {t("welcome.title")}
           </h1>
@@ -54,7 +49,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           <p>{t("welcome.body2")}</p>
         </div>
 
-        <p className="mt-4 text-xs leading-relaxed opacity-60">
+        <p className="mt-4 text-sm leading-relaxed opacity-60">
           {t("welcome.disclaimer")}
         </p>
 
@@ -66,10 +61,10 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
             void haptic("light");
             onStart();
           }}
-          className="mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-2xl border border-brand-black/50 bg-brand-black text-brand-yellow text-base font-semibold shadow-lg shadow-brand-black/40 transition-transform active:scale-[0.98]"
+          className="cta-primary mt-6 flex h-12 w-full items-center justify-center gap-2 rounded-[24px] text-base font-bold shadow-cta transition-transform active:translate-y-px"
         >
           {t("welcome.cta")}
-          <ArrowRight className="size-5" />
+          <ArrowRight className="size-4" />
         </button>
       </main>
     </div>
