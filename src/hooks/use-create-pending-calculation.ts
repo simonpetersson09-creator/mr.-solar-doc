@@ -8,6 +8,8 @@ import { usePurchaseStore } from "@/state/purchase-store";
 import { useCalculationStore } from "@/state/calculation-store";
 import { PRICE_SCENARIO_RATES } from "@/config/constants";
 import { SNAPSHOT_VERSION, type CalculationSnapshot } from "@/lib/calculation-snapshot";
+import { isDevUnlock } from "@/lib/dev-unlock";
+
 
 /**
  * Stores the finished calculation locally on the device and creates the
