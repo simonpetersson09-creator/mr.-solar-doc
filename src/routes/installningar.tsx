@@ -133,10 +133,10 @@ function SettingsPage() {
   return (
     <div className="surface-sun flex h-dvh max-h-dvh flex-col overflow-hidden">
       <main
-        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-3 overflow-y-auto overscroll-contain px-4 pb-[calc(1.5rem+env(safe-area-inset-bottom))]"
-        style={{ paddingTop: "max(var(--safe-top-min), calc(0.5rem + env(safe-area-inset-top)))" }}
+        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-2.5 overflow-y-auto overscroll-contain px-4 pb-[calc(1rem+env(safe-area-inset-bottom))]"
+        style={{ paddingTop: "max(var(--safe-top-min), calc(0.25rem + env(safe-area-inset-top)))" }}
       >
-        <header className="flex items-center gap-2.5 pt-1">
+        <header className="flex items-center gap-2 pt-0.5">
           <button
             type="button"
             aria-label={t("common.back")}
@@ -144,93 +144,93 @@ function SettingsPage() {
               void haptic("light");
               void navigate({ to: "/" });
             }}
-            className="flex size-9 shrink-0 items-center justify-center rounded-full border border-brand-black/22 bg-brand-black text-brand-yellow shadow-lg shadow-brand-black/25 transition-transform active:scale-90"
+            className="flex size-8 shrink-0 items-center justify-center rounded-full border border-brand-black/22 bg-brand-black text-brand-yellow shadow-lg shadow-brand-black/25 transition-transform active:scale-90"
           >
-            <ArrowLeft className="size-4" />
+            <ArrowLeft className="size-3.5" />
           </button>
-          <h1 className="text-xl font-bold tracking-tight text-brand-black">
+          <h1 className="text-lg font-bold tracking-tight text-brand-black">
             {t("settings.title")}
           </h1>
         </header>
 
         {/* Premium section */}
-        <section className="flex flex-col gap-2.5">
+        <section className="flex flex-col gap-2">
           {/* One-off unlock */}
-          <div className="glass-primary relative overflow-hidden rounded-3xl p-4">
-            <div className="relative z-10 flex flex-col gap-2">
-              <span className="inline-flex w-fit items-center rounded-full bg-brand-black px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-yellow">
+          <div className="glass-primary relative overflow-hidden rounded-2xl p-3.5">
+            <div className="relative z-10 flex flex-col gap-1.5">
+              <span className="inline-flex w-fit items-center rounded-full bg-brand-black px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-brand-yellow">
                 {t("paywall.eyebrow")}
               </span>
               <div className="flex flex-col">
-                <h2 className="text-xl font-black leading-tight text-brand-black">
+                <h2 className="text-base font-black leading-tight text-brand-black">
                   {t("paywall.single.title")}
                 </h2>
-                <p className="text-sm font-medium text-brand-black/75">
+                <p className="text-xs font-medium text-brand-black/75">
                   {t("paywall.single.body")}
                 </p>
               </div>
-              <p className="text-2xl font-black tabular-nums text-brand-black">
+              <p className="text-lg font-black tabular-nums text-brand-black">
                 {unlockPrice ?? t("paywall.priceLoading")}
               </p>
-              <Button disabled className="w-full font-bold">
+              <Button disabled className="h-9 w-full text-sm font-semibold">
                 {t("settings.singleCta")}
               </Button>
-              <p className="text-[11px] leading-snug text-brand-black/60">
+              <p className="text-[10px] leading-snug text-brand-black/60">
                 {t("settings.singleNote")}
               </p>
             </div>
-            <div className="pointer-events-none absolute -right-8 -top-8 size-28 rounded-full border-[12px] border-brand-black/5" />
+            <div className="pointer-events-none absolute -right-8 -top-8 size-24 rounded-full border-[10px] border-brand-black/5" />
           </div>
 
           {/* Premium subscription */}
-          <div className="glass-primary relative overflow-hidden rounded-3xl p-4 ring-2 ring-brand-black/15">
-            <div className="relative z-10 flex flex-col gap-2">
+          <div className="glass-primary relative overflow-hidden rounded-2xl p-3.5 ring-2 ring-brand-black/15">
+            <div className="relative z-10 flex flex-col gap-1.5">
               <div className="flex items-center justify-between">
-                <span className="inline-flex w-fit items-center rounded-full bg-brand-black/15 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-black">
+                <span className="inline-flex w-fit items-center rounded-full bg-brand-black/15 px-2.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-brand-black">
                   {t("settings.subscription")}
                 </span>
-                <span className="text-[10px] font-bold uppercase tracking-widest text-brand-black/75">
+                <span className="text-[9px] font-bold uppercase tracking-widest text-brand-black/75">
                   {t("settings.popular")}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <Crown className="size-5 text-brand-black" />
-                <h2 className="text-xl font-black leading-tight text-brand-black">
+              <div className="flex items-center gap-1.5">
+                <Crown className="size-4 text-brand-black" />
+                <h2 className="text-base font-black leading-tight text-brand-black">
                   {t("paywall.premium.title")}
                 </h2>
               </div>
-              <p className="text-2xl font-black tabular-nums text-brand-black">
+              <p className="text-lg font-black tabular-nums text-brand-black">
                 {premiumPrice
                   ? t("paywall.premium.price", { price: premiumPrice })
                   : t("paywall.priceLoading")}
               </p>
-              <ul className="flex flex-col gap-1.5">
+              <ul className="flex flex-col gap-1">
                 {["calculations", "pdf", "result"].map((key) => (
-                  <li key={key} className="flex items-start gap-2 text-xs text-brand-black/85">
-                    <Check className="mt-0.5 size-3.5 shrink-0 text-brand-black" />
+                  <li key={key} className="flex items-start gap-1.5 text-[11px] text-brand-black/85">
+                    <Check className="mt-0.5 size-3 shrink-0 text-brand-black" />
                     <span>{t(`paywall.premium.includes.${key}`)}</span>
                   </li>
                 ))}
               </ul>
               {premium.active ? (
-                <div className="flex items-center gap-2 rounded-2xl bg-brand-black/10 px-3 py-2">
-                  <Crown className="size-4 text-brand-black" />
+                <div className="flex items-center gap-1.5 rounded-xl bg-brand-black/10 px-2.5 py-1.5">
+                  <Crown className="size-3.5 text-brand-black" />
                   <span className="flex flex-col">
-                    <span className="text-sm font-bold text-brand-black">
+                    <span className="text-xs font-bold text-brand-black">
                       {t("premium.active")}
                     </span>
-                    <span className="text-xs text-brand-black/70">{t("premium.activeHint")}</span>
+                    <span className="text-[11px] text-brand-black/70">{t("premium.activeHint")}</span>
                   </span>
                 </div>
               ) : (
                 <Button
                   disabled={buying}
                   onClick={() => void handleBuyPremium()}
-                  className="w-full font-bold"
+                  className="h-9 w-full text-sm font-semibold"
                 >
                   {buying ? (
                     <>
-                      <Loader2 className="size-4 animate-spin" />
+                      <Loader2 className="size-3.5 animate-spin" />
                       {t("paywall.purchasing")}
                     </>
                   ) : (
@@ -238,112 +238,112 @@ function SettingsPage() {
                   )}
                 </Button>
               )}
-              <p className="text-[11px] leading-snug text-brand-black/60">
+              <p className="text-[10px] leading-snug text-brand-black/60">
                 {t("paywall.premium.renewal")}
               </p>
             </div>
-            <div className="pointer-events-none absolute -right-8 -top-8 size-28 rounded-full border-[12px] border-brand-black/5" />
+            <div className="pointer-events-none absolute -right-8 -top-8 size-24 rounded-full border-[10px] border-brand-black/5" />
           </div>
         </section>
 
         {/* Settings groups */}
-        <section className="flex flex-col gap-2.5">
+        <section className="flex flex-col gap-2">
           {/* Restore / Manage */}
-          <div className="glass-primary flex flex-col gap-1.5 rounded-3xl p-2">
+          <div className="glass-primary flex flex-col gap-1 rounded-2xl p-1.5">
             <button
               type="button"
               disabled={restoring}
               onClick={() => void handleRestore()}
-              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-3.5 text-left shadow-sm transition-transform active:scale-[0.98] disabled:opacity-60"
+              className="flex w-full items-center justify-between rounded-xl bg-card px-4 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98] disabled:opacity-60"
             >
-              <span className="flex items-center gap-3">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+              <span className="flex items-center gap-2.5">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
                   {restoring ? (
-                    <Loader2 className="size-4 animate-spin" />
+                    <Loader2 className="size-3.5 animate-spin" />
                   ) : (
-                    <RefreshCw className="size-4" />
+                    <RefreshCw className="size-3.5" />
                   )}
                 </span>
-                <span className="text-sm font-bold text-brand-black">
+                <span className="text-[13px] font-semibold text-brand-black">
                   {t("premium.restore")}
                 </span>
               </span>
-              <ChevronRight className="size-4 text-brand-black/40" />
+              <ChevronRight className="size-3.5 text-brand-black/40" />
             </button>
             <a
               href={MANAGE_SUBSCRIPTION_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => void haptic("light")}
-              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-3.5 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl bg-card px-4 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
-              <span className="flex items-center gap-3">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
-                  <Settings2 className="size-4" />
+              <span className="flex items-center gap-2.5">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                  <Settings2 className="size-3.5" />
                 </span>
-                <span className="text-sm font-bold text-brand-black">{t("premium.manage")}</span>
+                <span className="text-[13px] font-semibold text-brand-black">{t("premium.manage")}</span>
               </span>
-              <ChevronRight className="size-4 text-brand-black/40" />
+              <ChevronRight className="size-3.5 text-brand-black/40" />
             </a>
           </div>
 
           {/* History */}
-          <div className="glass-primary flex flex-col gap-1.5 rounded-3xl p-2">
+          <div className="glass-primary flex flex-col gap-1 rounded-2xl p-1.5">
             <button
               type="button"
               onClick={() => {
                 void haptic("light");
                 void navigate({ to: "/historik" });
               }}
-              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-3.5 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl bg-card px-4 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
-              <span className="flex items-center gap-3">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
-                  <History className="size-4" />
+              <span className="flex items-center gap-2.5">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                  <History className="size-3.5" />
                 </span>
-                <span className="text-sm font-bold text-brand-black">{t("settings.history")}</span>
+                <span className="text-[13px] font-semibold text-brand-black">{t("settings.history")}</span>
               </span>
-              <ChevronRight className="size-4 text-brand-black/40" />
+              <ChevronRight className="size-3.5 text-brand-black/40" />
             </button>
           </div>
 
           {/* Legal */}
-          <div className="glass-primary flex flex-col gap-1.5 rounded-3xl p-2">
+          <div className="glass-primary flex flex-col gap-1 rounded-2xl p-1.5">
             <a
               href={LEGAL_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => void haptic("light")}
-              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-3.5 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl bg-card px-4 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
-              <span className="flex items-center gap-3">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
-                  <FileText className="size-4" />
+              <span className="flex items-center gap-2.5">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                  <FileText className="size-3.5" />
                 </span>
-                <span className="text-sm font-bold text-brand-black">{t("settings.terms")}</span>
+                <span className="text-[13px] font-semibold text-brand-black">{t("settings.terms")}</span>
               </span>
-              <ChevronRight className="size-4 text-brand-black/40" />
+              <ChevronRight className="size-3.5 text-brand-black/40" />
             </a>
             <a
               href={PRIVACY_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => void haptic("light")}
-              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-3.5 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl bg-card px-4 py-2.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
-              <span className="flex items-center gap-3">
-                <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
-                  <ShieldCheck className="size-4" />
+              <span className="flex items-center gap-2.5">
+                <span className="flex size-7 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                  <ShieldCheck className="size-3.5" />
                 </span>
-                <span className="text-sm font-bold text-brand-black">{t("settings.privacy")}</span>
+                <span className="text-[13px] font-semibold text-brand-black">{t("settings.privacy")}</span>
               </span>
-              <ChevronRight className="size-4 text-brand-black/40" />
+              <ChevronRight className="size-3.5 text-brand-black/40" />
             </a>
           </div>
         </section>
 
-        <footer className="pt-2 text-center">
-          <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-brand-black/30">
+        <footer className="pt-1 text-center">
+          <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-black/30">
             Mr. Solar Doc · v{CALCULATION_VERSION}
           </p>
         </footer>
