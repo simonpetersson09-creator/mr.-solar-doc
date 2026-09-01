@@ -15,10 +15,10 @@ export const BRAND_HEX = {
   yellowLight: "#FFE879",
   /** Soft yellow for secondary information areas (cards, tints). */
   yellowSoft: "#FFF0AE",
-  black: "#1D191A",
+  black: "#323232",
   blackSoft: "#2A2426",
   paper: "#FCFBF7",
-  /** #1D191A softened toward paper — never a separate grey hue. */
+  /** #323232 softened toward paper — never a separate grey hue. */
   muted: "#6E6A6B",
   line: "#E4E2DD",
 } as const;
