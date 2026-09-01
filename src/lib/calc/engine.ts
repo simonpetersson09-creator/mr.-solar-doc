@@ -354,18 +354,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     lifetimeValuesScaledToPresentation,
   );
 
-  // What the installation is estimated to cost (not what it may be worth).
-  const estimatedInstallationCost =
-    input.economics.installationCostPerKwp != null && installedKwp > 0
-      ? input.economics.installationCostPerKwp * installedKwp
-      : null;
-  const quotedOrEstimatedCost = investmentResult.quotePrice ?? estimatedInstallationCost;
-  const costBasis: "quote" | "installation-cost" | "none" =
-    investmentResult.quotePrice != null
-      ? "quote"
-      : estimatedInstallationCost != null
-        ? "installation-cost"
-        : "none";
+  // Lifetime totals consistent with the investment level: the same scaled
+  // year values that back `maxInvestment` are also the value numerator.
+  const totalLifetimeEconomicValue = lifetimeValuesScaledToPresentation.reduce(
+    (sum, value) => sum + value,
+    0,
+  );
+
 
   const gridProfileStatus = input.electrical.gridProfileStatus ?? "verified";
   if (gridProfileStatus !== "verified") notes.push(`grid-profile-${gridProfileStatus}`);
