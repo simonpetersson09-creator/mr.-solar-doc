@@ -387,6 +387,7 @@ export const hu = {
       "Ön dönti el, milyen gyorsan szeretné visszakapni a befektetést. Kiszámítjuk, ez mekkora telepítési költségnek felel meg.",
     paybackYearsUnit: "év",
     investmentLevelTitle: "Ár a kiválasztott megtérülési idő után",
+    investmentPerKwLabel: "Beruházási költség kW-onként",
     panelPowerLabel: "Panel teljesítménye",
     investmentLevelBasis: "A kiválasztott {{years}} éves megtérülési idő alapján",
     investmentLevelNote:

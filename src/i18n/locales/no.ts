@@ -380,6 +380,7 @@ export const no = {
       "Du bestemmer hvor raskt du vil ha investeringen tilbakebetalt. Vi beregner hva det tilsvarer i installasjonskostnad.",
     paybackYearsUnit: "år",
     investmentLevelTitle: "Pris etter valgt nedbetalingstid",
+    investmentPerKwLabel: "Investeringskostnad per kW",
     panelPowerLabel: "Paneleffekt",
     investmentLevelBasis: "Basert på din valgte nedbetalingstid på {{years}} år",
     investmentLevelNote:

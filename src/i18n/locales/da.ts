@@ -369,6 +369,7 @@ export const da = {
     paybackSubtitle:
       "Se hvilket investeringsniveau, der svarer til forskellige tilbagebetalingstider.",
     investmentLevelTitle: "Pris efter din valgte tilbagebetalingstid",
+    investmentPerKwLabel: "Investeringsomkostning pr. kW",
     panelPowerLabel: "Paneleffekt",
     investmentLevelBasis: "Baseret på din valgte tilbagebetalingstid på {{years}} år",
     investmentLevelNote:

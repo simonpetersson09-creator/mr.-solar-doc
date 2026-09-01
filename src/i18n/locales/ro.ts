@@ -388,6 +388,7 @@ export const ro = {
       "Tu decizi cât de repede vrei ca investiția să fie amortizată. Calculăm ce corespunde acest lucru în costul instalației.",
     paybackYearsUnit: "ani",
     investmentLevelTitle: "Preț după perioada de amortizare selectată",
+    investmentPerKwLabel: "Cost de investiție pe kW",
     panelPowerLabel: "Puterea panoului",
     investmentLevelBasis: "Bazat pe perioada de amortizare selectată de {{years}} ani",
     investmentLevelNote:

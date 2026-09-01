@@ -387,6 +387,7 @@ export const es = {
       "Tú decides cuánto tiempo quieres que tarde en amortizarse la inversión. Calculamos a qué coste de instalación corresponde.",
     paybackYearsUnit: "años",
     investmentLevelTitle: "Precio según el plazo de amortización seleccionado",
+    investmentPerKwLabel: "Coste de inversión por kW",
     panelPowerLabel: "Potencia de los paneles",
     investmentLevelBasis: "Basado en tu plazo de amortización seleccionado de {{years}} años",
     investmentLevelNote:

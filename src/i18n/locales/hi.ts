@@ -377,6 +377,7 @@ export const hi = {
       "आप तय करते हैं कि आप निवेश कितनी जल्दी वापस पाना चाहते हैं। हम गणना करते हैं कि इसका मतलब इंस्टॉलेशन लागत में क्या है।",
     paybackYearsUnit: "वर्ष",
     investmentLevelTitle: "आपकी चुनी गई पेबैक अवधि के बाद कीमत",
+    investmentPerKwLabel: "प्रति kW निवेश लागत",
     panelPowerLabel: "पैनल पावर",
     investmentLevelBasis: "आपकी चुनी गई पेबैक अवधि {{years}} वर्ष के आधार पर",
     investmentLevelNote:

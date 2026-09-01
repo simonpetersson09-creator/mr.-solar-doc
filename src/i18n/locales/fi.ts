@@ -367,6 +367,7 @@ export const fi = {
     paybackSubtitle:
       "Katso, mikä investointitaso vastaa erilaisia yksinkertaisia takaisinmaksuaikoja.",
     investmentLevelTitle: "Hinta valitsemasi takaisinmaksuajan mukaan",
+    investmentPerKwLabel: "Investointikustannus per kW",
     panelPowerLabel: "Paneelien teho",
     investmentLevelBasis: "Perustuu valittuun {{years}} vuoden takaisinmaksuaikaan",
     investmentLevelNote:

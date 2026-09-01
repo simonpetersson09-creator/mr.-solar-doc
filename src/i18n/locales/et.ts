@@ -371,6 +371,7 @@ export const et = {
     paybackSubtitle:
       "Vaata, milline investeeringu tase vastab erinevatele lihtsatele tasuvusaegadele.",
     investmentLevelTitle: "Hind vastavalt teie valitud tasuvusajale",
+    investmentPerKwLabel: "Investeeringu maksumus kW kohta",
     panelPowerLabel: "Paneelide võimsus",
     investmentLevelBasis: "Põhineb valitud {{years}} aasta tasuvusajal",
     investmentLevelNote:

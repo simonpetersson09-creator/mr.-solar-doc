@@ -378,6 +378,7 @@ export const uk = {
       "Ви вирішуєте, наскільки швидко хочете окупити інвестицію. Ми розраховуємо, якій вартості встановлення це відповідає.",
     paybackYearsUnit: "років",
     investmentLevelTitle: "Ціна після обраного вами терміну окупності",
+    investmentPerKwLabel: "Вартість інвестиції на кВт",
     panelPowerLabel: "Потужність панелі",
     investmentLevelBasis: "На основі обраного вами терміну окупності {{years}} років",
     investmentLevelNote:

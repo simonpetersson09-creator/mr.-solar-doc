@@ -384,6 +384,7 @@ export const pt = {
       "Decide o quão depressa quer o investimento recuperado. Calculamos a que custo de instalação isso corresponde.",
     paybackYearsUnit: "anos",
     investmentLevelTitle: "Preço com base no período de retorno selecionado",
+    investmentPerKwLabel: "Custo de investimento por kW",
     panelPowerLabel: "Potência dos painéis",
     investmentLevelBasis: "Baseado no período de retorno selecionado de {{years}} anos",
     investmentLevelNote:

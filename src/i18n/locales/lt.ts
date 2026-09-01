@@ -373,6 +373,7 @@ export const lt = {
     paybackSubtitle:
       "Pažiūrėkite, koks investicijos lygis atitinka skirtingus atsipirkimo terminus.",
     investmentLevelTitle: "Kaina pagal jūsų pasirinktą atsipirkimo laikotarpį",
+    investmentPerKwLabel: "Investicijų kaina už kW",
     panelPowerLabel: "Plokščių galia",
     investmentLevelBasis: "Pagal pasirinktą {{years}} metų atsipirkimo laikotarpį",
     investmentLevelNote:

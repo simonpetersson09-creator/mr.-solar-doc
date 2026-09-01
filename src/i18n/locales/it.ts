@@ -374,6 +374,7 @@ export const it = {
     paybackSubtitle:
       "Vedi quale livello di investimento corrisponde a diversi tempi di ritorno semplici.",
     investmentLevelTitle: "Prezzo in base al periodo di ammortamento scelto",
+    investmentPerKwLabel: "Costo di investimento per kW",
     panelPowerLabel: "Potenza dei pannelli",
     investmentLevelBasis: "In base al periodo di ritorno scelto di {{years}} anni",
     investmentLevelNote:
