@@ -144,7 +144,7 @@ return (
                   ))}
                 </div>
               </div>
-              <LanguageSwitcher className="h-8 w-auto gap-2 rounded-full chip-unselected px-3 text-xs font-bold shadow-sm" />
+              <LanguageSwitcher className="h-8 w-auto gap-2 rounded-full border border-brand-black/22 bg-surface-cream px-3 text-xs font-bold text-brand-black shadow-sm" />
             </div>
 
 <div className="relative mb-4">
