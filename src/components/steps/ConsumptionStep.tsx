@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, CheckCircle2, FileUp, Loader2, X } from "lucide-react";
+import { ArrowRight, CheckCircle2, FileUp, Loader2, Minus, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
