@@ -346,11 +346,10 @@ const cost = result.productionCost;
               {t("result.economicsRequiresPrice")}
             </p>
           ) : null}
-          {selfConsumedMissing || exportMissing || installationCostMissing ? (
+          {selfConsumedMissing || exportMissing ? (
             <div className="space-y-1.5 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] text-white/70">
               {selfConsumedMissing ? <p>{t("result.missingSelfConsumedValue")}</p> : null}
               {exportMissing ? <p>{t("result.missingExportValue")}</p> : null}
-              {installationCostMissing ? <p>{t("result.missingInstallationCost")}</p> : null}
             </div>
           ) : null}
 
