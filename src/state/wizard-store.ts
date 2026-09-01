@@ -454,3 +454,7 @@ export const useWizardStore = create<WizardState>()(
     },
   ),
 );
+
+if (import.meta.env.DEV && typeof window !== "undefined") {
+  (window as unknown as Record<string, unknown>).__wizardStore = useWizardStore;
+}
