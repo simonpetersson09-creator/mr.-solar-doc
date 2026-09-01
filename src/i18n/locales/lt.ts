@@ -8,6 +8,14 @@ export const lt = {
     "name": "Mr. Solar Doc",
     "tagline": "Apskaičiuokite savo saulės elektrinės dydį per kelias minutes"
   },
+  "welcome": {
+    "title": "Sveiki atvykę į Mr. Solar Doc",
+    "subtitle": "Sužinokite, kokia saulės sistema tinka jūsų nekilnojamajam turtui ir kiek ji gali kainuoti.",
+    "body1": "Naudojame jūsų nekilnojamojo turto duomenis, elektros suvartojimą ir vietines saulės sąlygas, kad apskaičiuotume tinkamą sistemos dydį ir tikėtiną gamybą.",
+    "body2": "Jūs pasirenkate atsipirkimo laikotarpį, kuris jums atrodo priimtinas. Mr. Solar Doc tuomet apskaičiuoja maksimalią kainą, kurią sistema gali kainuoti, kad būtų pasiektas šis atsipirkimo laikotarpis.",
+    "disclaimer": "Rezultatas yra orientacinis, o ne pasiūlymas. Tikros kainos, gamyba ir finansinis rezultatas gali skirtis atsižvelgiant į montavimą, elektros kainas ir rinkos sąlygas.",
+    "cta": "Pradėti skaičiavimą",
+  },
   "common": {
     "back": "Atgal",
     "next": "Kitas",

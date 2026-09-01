@@ -8,6 +8,14 @@ export const en = {
     name: "Mr. Solar Doc",
     tagline: "Size your solar system in a few minutes",
   },
+  welcome: {
+    title: "Welcome to Mr. Solar Doc",
+    subtitle: "Find out which solar system suits your property and what it can cost.",
+    body1: "We use your property, electricity usage and local solar conditions to work out a suitable system size and expected production.",
+    body2: "You choose a payback period that feels right. Mr. Solar Doc then calculates the maximum the system can cost to meet that payback period.",
+    disclaimer: "The result is guidance, not a quote. Actual prices, production and financial outcome may differ depending on installation, electricity prices and market conditions.",
+    cta: "Start the calculation",
+  },
   common: {
     back: "Back",
     next: "Next",

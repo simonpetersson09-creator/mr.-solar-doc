@@ -8,6 +8,14 @@ export const de = {
     "name": "Mr. Solar Doc",
     "tagline": "Dimensionieren Sie Ihre Photovoltaikanlage in wenigen Minuten"
   },
+  "welcome": {
+    "title": "Willkommen bei Mr. Solar Doc",
+    "subtitle": "Finden Sie heraus, welche Solaranlage zu Ihrer Immobilie passt und was sie kosten kann.",
+    "body1": "Wir nutzen Ihre Immobilie, Ihren Stromverbrauch und die lokalen Solarbedingungen, um eine passende Anlagengröße und die erwartete Produktion zu berechnen.",
+    "body2": "Sie wählen eine Amortisationszeit, die sich für Sie richtig anfühlt. Mr. Solar Doc berechnet dann, was die Anlage höchstens kosten darf, um diese Amortisationszeit zu erreichen.",
+    "disclaimer": "Das Ergebnis ist eine Orientierung, kein Angebot. Die tatsächlichen Preise, die Produktion und das finanzielle Ergebnis können je nach Installation, Strompreisen und Marktbedingungen abweichen.",
+    "cta": "Berechnung starten",
+  },
   "common": {
     "back": "Zurück",
     "next": "Weiter",

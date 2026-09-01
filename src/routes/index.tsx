@@ -11,6 +11,7 @@ import { usePurchaseStore } from "@/state/purchase-store";
 import { useWizardStore } from "@/state/wizard-store";
 import { isValidConnectionCapacity } from "@/config/connection-capacity";
 import { isDevUnlock } from "@/lib/dev-unlock";
+import { WelcomePage } from "@/components/WelcomePage";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,6 +33,8 @@ function WizardPage() {
   const navigate = useNavigate();
   const createPending = useCreatePendingCalculation();
   const premium = usePremium();
+  const hasStarted = useWizardStore((s) => s.hasStarted);
+  const setStarted = useWizardStore((s) => s.setStarted);
   // Country never drives the UI language; only technical/economic profiles.
   const persistedStep = useWizardStore((s) => s.currentStep);
   const setStep = useWizardStore((s) => s.setCurrentStep);
@@ -52,6 +55,10 @@ function WizardPage() {
           ? 4
           : 5;
   const step = Math.min(persistedStep, maxReachableStep);
+
+  if (!hasStarted) {
+    return <WelcomePage onStart={() => setStarted(true)} />;
+  }
 
   if (step === 1) {
     return <AddressStep totalSteps={TOTAL_STEPS} onNext={() => setStep(2)} />;

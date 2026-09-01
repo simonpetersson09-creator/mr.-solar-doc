@@ -12,6 +12,7 @@
  *   1 -> 2                   : cached PVGIS resource dropped (new yield logic)
  *   2 -> 3                   : mainFuseAmp rebuilt into a ConnectionCapacity
  *   3 -> 4                   : normalisation + country revalidation on load
+ *   4 -> 5                   : welcome screen gate (hasStarted)
  *   > current                : fail safe, fresh state
  */
 
@@ -111,7 +112,14 @@ function toV4(state: Loose): Loose {
   return { ...state, gridConfirmed: verified ? true : state["gridConfirmed"] === true };
 }
 
-const MIGRATIONS: Array<(state: Loose) => Loose> = [toV1, toV2, toV3, toV4];
+function toV5(state: Loose): Loose {
+  // v5 adds the welcome-screen gate. Any existing session has already passed
+  // it, so returning users resume directly in the wizard instead of seeing the
+  // welcome page again.
+  return { ...state, hasStarted: true };
+}
+
+const MIGRATIONS: Array<(state: Loose) => Loose> = [toV1, toV2, toV3, toV4, toV5];
 
 /* ----------------------------------------------------------- normalisation */
 
@@ -230,6 +238,7 @@ export function normalizeWizardState(loose: Loose): WizardData {
   base.quotePrice = quote !== null && quote >= 0 ? quote : null;
   const step = num(loose["currentStep"]);
   base.currentStep = step !== null && step >= 1 && step <= 5 ? Math.round(step) : 1;
+  base.hasStarted = loose["hasStarted"] === true;
 
   return base;
 }

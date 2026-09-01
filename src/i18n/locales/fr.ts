@@ -8,6 +8,14 @@ export const fr = {
     "name": "Mr. Solar Doc",
     "tagline": "Dimensionnez votre installation solaire en quelques minutes"
   },
+  "welcome": {
+    "title": "Bienvenue sur Mr. Solar Doc",
+    "subtitle": "Découvrez quel système solaire convient à votre propriété et ce qu'il pourrait coûter.",
+    "body1": "Nous utilisons votre propriété, votre consommation d'électricité et les conditions solaires locales pour calculer une taille de système adaptée et la production attendue.",
+    "body2": "Vous choisissez une période de retour sur investissement qui vous convient. Mr. Solar Doc calcule ensuite le coût maximal que le système peut avoir pour respecter cette période de retour.",
+    "disclaimer": "Le résultat est indicatif et ne constitue pas un devis. Les prix réels, la production et le résultat financier peuvent varier selon l'installation, les prix de l'électricité et les conditions du marché.",
+    "cta": "Démarrer le calcul",
+  },
   "common": {
     "back": "Retour",
     "next": "Suivant",
