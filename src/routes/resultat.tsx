@@ -143,7 +143,10 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
   // S5: the engine decides; the UI never re-derives economic completeness.
   const economicValuesMissing = result.economicsStatus === "incomplete";
   // S6: grid knowledge level travels with the result, from step 4 to the PDF.
-  const gridUnverified = result.grid.profileStatus !== "verified";
+  // profileConfirmed is true once the user presses "I have checked the grid
+  // details" in step 4, so the warning disappears after confirmation — not just
+  // for intrinsically-verified countries.
+  const gridUnverified = !result.grid.profileConfirmed;
   const gridStatusLabel = t(
     result.grid.profileStatus === "verified"
       ? "result.gridProfileStatusVerified"
