@@ -18,7 +18,8 @@ export const BRAND_HEX = {
   black: "#1D191A",
   blackSoft: "#2A2426",
   paper: "#FCFBF7",
-  muted: "#6B6663",
+  /** #1D191A softened toward paper — never a separate grey hue. */
+  muted: "#6E6A6B",
   line: "#E4E2DD",
 } as const;
 

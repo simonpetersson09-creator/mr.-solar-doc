@@ -114,7 +114,7 @@
   --secondary-foreground: var(--brand-black);
 
   --muted: oklch(0.962 0.006 95);
-  --muted-foreground: oklch(0.5139 0.0079 53.3);
+  --muted-foreground: oklch(0.5139 0.0066 0.7);
 
   /* Accent = brand yellow: badges, selected states, key figures, charts. */
   --accent: var(--brand-yellow);
