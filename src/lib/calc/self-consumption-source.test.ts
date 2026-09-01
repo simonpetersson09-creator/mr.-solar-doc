@@ -15,7 +15,7 @@ function summaryFor(share: number, isUserSet: boolean) {
 }
 
 describe("selfConsumptionSource", () => {
-  it("is a standard assumption at 50 % when the user never touched the slider", () => {
+  it("is a standard assumption at 40 % when the user never touched the slider", () => {
     expect(summaryFor(DEFAULT_SELF_CONSUMPTION_SHARE, false).selfConsumptionSource).toBe(
       "standard-assumption",
     );

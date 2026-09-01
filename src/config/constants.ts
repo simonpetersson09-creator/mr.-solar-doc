@@ -68,8 +68,10 @@ export const CONSUMPTION_SHAPE_WEIGHTS = {
   default: [11, 10, 9.5, 8, 6.5, 5.5, 5.5, 5.5, 7, 9, 10, 12],
 } as const satisfies Record<string, readonly number[]>;
 
-/** Default split between self-consumed and exported solar electricity. */
-export const DEFAULT_SELF_CONSUMPTION_SHARE = 0.5;
+/** Default self-consumption share (40 %), used as the standard for every
+ *  market and as a safe fallback. The dynamic model also resolves to 40 %
+ *  at its neutral point (mixed load, production = consumption). */
+export const DEFAULT_SELF_CONSUMPTION_SHARE = 0.4;
 
 
 /** Smallest / largest plausible residential array (kWp). */
