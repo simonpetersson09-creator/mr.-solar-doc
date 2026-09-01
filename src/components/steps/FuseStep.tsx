@@ -270,7 +270,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                 void haptic("light");
                 setGridConfirmed(!gridConfirmed);
               }}
-              className={chipClass(gridConfirmed)}
+              className={chipClass(!gridConfirmed)}
             >
               {gridConfirmed ? t("fuse.confirmedGrid") : t("fuse.confirmGrid")}
             </button>
@@ -375,7 +375,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                 type="button"
                 disabled
                 aria-disabled="true"
-                className="flex cursor-default items-center gap-1 rounded-full border border-white/20 bg-white/10 px-2 py-1 text-[10px] font-semibold text-white/80"
+                className="flex cursor-default items-center gap-1 rounded-full border border-brand-black/22 bg-surface-cream px-2 py-1 text-[10px] font-semibold text-brand-black"
               >
                 <span aria-hidden="true">{countryFlag}</span>
                 <span className="max-w-[90px] truncate">{countryName}</span>
