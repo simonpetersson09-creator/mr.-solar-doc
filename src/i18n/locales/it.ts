@@ -11,9 +11,9 @@ export const it = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Di quale dimensione di impianto solare hai bisogno e quanto vale per te?",
-    point1Title: "Calcola il tuo potenziale solare",
+    point1Title: "Analizza le tue condizioni",
     point1Body: "In base alla tua posizione, al tuo tetto e alle condizioni solari locali.",
-    point2Title: "Dimensiona l'impianto",
+    point2Title: "Trova la dimensione giusta per te",
     point2Body:
       "I tuoi consumi, la connessione alla rete e la produzione solare vengono combinati per trovare la giusta dimensione.",
     point3Title: "Calcola quanto può costare in base al periodo di ammortamento desiderato",

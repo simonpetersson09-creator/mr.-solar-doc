@@ -11,9 +11,9 @@ export const sv = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Hur stor solcellsanläggning behöver du och vad är den värd för dig?",
-    point1Title: "Beräknar din solpotential",
+    point1Title: "Analyserar dina förutsättningar",
     point1Body: "",
-    point2Title: "Dimensionerar anläggningen",
+    point2Title: "Hittar rätt storlek för dig",
     point2Body:
       "Din elanvändning, nätanslutning och solproduktion vägs samman för att hitta en lämplig storlek.",
     point3Title: "Räknar fram vad den får kosta efter önskad återbetalningstid",

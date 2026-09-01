@@ -11,9 +11,9 @@ export const sl = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Kako velik solarni sistem potrebujete in koliko je vreden za vas?",
-    point1Title: "Izračuna vaš solarni potencial",
+    point1Title: "Analizira vaše pogoje",
     point1Body: "Na podlagi vaše lokacije, strehe in lokalnih solarnih razmer.",
-    point2Title: "Dimenzionira sistem",
+    point2Title: "Najde pravo velikost za vas",
     point2Body: "Vaša poraba, omrežna povezava in proizvodnja se združijo za primerno velikost.",
     point3Title: "Izračuna, koliko sme stalno glede na želeni čas povračila",
     point3Body: "Izberite želeni čas povračila. Mr. Solar Doc izračuna potrebno raven naložbe.",

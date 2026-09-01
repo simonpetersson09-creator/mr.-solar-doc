@@ -11,9 +11,9 @@ export const fi = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Kuinka suuren aurinkovoimalan tarvitset ja mikä on sen arvo sinulle?",
-    point1Title: "Laskee aurinkopotentiaalisi",
+    point1Title: "Analysoi edellytyksesi",
     point1Body: "Sijaintisi, kattosi ja paikallisten aurinko-olojen perusteella.",
-    point2Title: "Mitoittaa voimalan",
+    point2Title: "Etsii sinulle oikean koon",
     point2Body:
       "Sähkönkäyttösi, verkkoliitäntäsi ja aurinkotuotanto yhdistetään sopivan koon löytämiseksi.",
     point3Title: "Laskee, mihin hintaan se saa maksaa halutun takaisinmaksuajan perusteella",

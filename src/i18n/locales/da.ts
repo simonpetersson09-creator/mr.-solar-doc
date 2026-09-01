@@ -11,9 +11,9 @@ export const da = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Hvor stor en solcelleanlægning har du brug for, og hvad er den værd for dig?",
-    point1Title: "Beregner dit solpotentiale",
+    point1Title: "Analyserer dine forudsætninger",
     point1Body: "Ud fra din placering, dit tag og de lokale solforhold.",
-    point2Title: "Dimensionerer anlægget",
+    point2Title: "Finder den rigtige størrelse til dig",
     point2Body:
       "Dit elforbrug, nettilslutning og solproduktion afvejes for at finde en passende størrelse.",
     point3Title: "Udregner hvad det må koste efter ønsket tilbagebetalingstid",

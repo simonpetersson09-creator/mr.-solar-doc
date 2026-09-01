@@ -11,9 +11,9 @@ export const pt = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Que tamanho de sistema solar precisa e qual o seu valor para si?",
-    point1Title: "Calcula o seu potencial solar",
+    point1Title: "Analisa as suas condições",
     point1Body: "",
-    point2Title: "Dimensiona o sistema",
+    point2Title: "Encontra o tamanho certo para si",
     point2Body:
       "O seu consumo de eletricidade, ligação à rede e produção solar são combinados para encontrar o tamanho adequado.",
     point3Title: "Calcula quanto pode custar conforme o período de retorno pretendido",

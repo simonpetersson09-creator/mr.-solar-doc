@@ -11,9 +11,9 @@ export const ro = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Ce dimensiune de sistem solar aveți nevoie și cât valorează pentru dvs.?",
-    point1Title: "Calculează potențialul tău solar",
+    point1Title: "Îți analizează condițiile",
     point1Body: "Pe baza locației, acoperișului și condițiilor solare locale.",
-    point2Title: "Dimensionează sistemul",
+    point2Title: "Găsește dimensiunea potrivită pentru tine",
     point2Body:
       "Consumul de curent, conexiunea la rețea și producția solară se combină pentru a găsi o dimensiune potrivită.",
     point3Title: "Calculează cât poate costa după perioada de retur dorită",

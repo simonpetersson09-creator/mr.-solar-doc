@@ -11,9 +11,9 @@ export const hr = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Koju veličinu solarnog sustava trebate i koliko vrijedi za vas?",
-    point1Title: "Računa vaš solarni potencijal",
+    point1Title: "Analizira vaše uvjete",
     point1Body: "",
-    point2Title: "Dimenzionira sustav",
+    point2Title: "Pronalazi pravu veličinu za vas",
     point2Body:
       "Vaša potrošnja struje, mrežni priključak i solarna proizvodnja se kombiniraju za odgovarajuću veličinu.",
     point3Title: "Računa koliko smije koštati prema željenom razdoblju povrata",

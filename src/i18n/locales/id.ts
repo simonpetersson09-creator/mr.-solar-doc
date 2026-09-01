@@ -8,9 +8,9 @@ export const id = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Seberapa besar instalasi surya yang Anda butuhkan dan apa nilainya bagi Anda?",
-    point1Title: "Menghitung potensi surya Anda",
+    point1Title: "Menganalisis kondisi Anda",
     point1Body: "Berdasarkan lokasi, atap dan kondisi matahari lokal Anda.",
-    point2Title: "Menentukan ukuran sistem",
+    point2Title: "Menemukan ukuran yang tepat untuk Anda",
     point2Body:
       "Pemakaian listrik, koneksi jaringan dan produksi surya Anda dipadukan untuk menemukan ukuran yang sesuai.",
     point3Title: "Menghitung berapa harganya berdasarkan periode pengembalian yang diinginkan",

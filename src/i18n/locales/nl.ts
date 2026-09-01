@@ -11,9 +11,9 @@ export const nl = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Hoe groot moet uw zonnepanelensysteem zijn en wat is het u waard?",
-    point1Title: "Berekent uw zonnepotentieel",
+    point1Title: "Analyseert uw omstandigheden",
     point1Body: "",
-    point2Title: "Dimensioneert de installatie",
+    point2Title: "Vindt de juiste maat voor u",
     point2Body:
       "Uw stroomverbruik, netaansluiting en zon-opbrengst worden gecombineerd voor een geschikte grootte.",
     point3Title: "Berekent wat het mag kosten na gewenste terugverdientijd",
