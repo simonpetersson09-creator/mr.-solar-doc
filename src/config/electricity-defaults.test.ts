@@ -10,18 +10,18 @@ import type { CalculationInput } from "@/lib/calc/types";
 /** Standard values ("schablonvärden"), currency, per active market. */
 const EXPECTED: Record<string, { currency: string; self: number; export: number }> = {
   SE: { currency: "SEK", self: 1.5, export: 0.5 },
-  FI: { currency: "EUR", self: 0.15, export: 0.045 },
-  DK: { currency: "DKK", self: 2.0, export: 0.35 },
-  DE: { currency: "EUR", self: 0.3, export: 0.08 },
-  AT: { currency: "EUR", self: 0.22, export: 0.055 },
-  CZ: { currency: "CZK", self: 5.0, export: 1.3 },
-  PL: { currency: "PLN", self: 0.8, export: 0.25 },
-  SK: { currency: "EUR", self: 0.17, export: 0.05 },
-  SI: { currency: "EUR", self: 0.18, export: 0.05 },
-  EE: { currency: "EUR", self: 0.18, export: 0.05 },
-  LV: { currency: "EUR", self: 0.18, export: 0.05 },
-  LT: { currency: "EUR", self: 0.19, export: 0.05 },
-  CH: { currency: "CHF", self: 0.22, export: 0.07 },
+  FI: { currency: "EUR", self: 0.18, export: 0.05 },
+  DK: { currency: "DKK", self: 2.8, export: 0.35 },
+  DE: { currency: "EUR", self: 0.35, export: 0.08 },
+  AT: { currency: "EUR", self: 0.35, export: 0.06 },
+  CZ: { currency: "CZK", self: 7.5, export: 1.3 },
+  PL: { currency: "PLN", self: 0.95, export: 0.25 },
+  SK: { currency: "EUR", self: 0.2, export: 0.05 },
+  SI: { currency: "EUR", self: 0.2, export: 0.05 },
+  EE: { currency: "EUR", self: 0.23, export: 0.05 },
+  LV: { currency: "EUR", self: 0.24, export: 0.05 },
+  LT: { currency: "EUR", self: 0.24, export: 0.05 },
+  CH: { currency: "CHF", self: 0.31, export: 0.07 },
 };
 
 function baseInput(overrides: Partial<CalculationInput> = {}): CalculationInput {
@@ -64,7 +64,7 @@ describe("electricity price standard values", () => {
   });
 
   it("has a versioned defaults identifier", () => {
-    expect(ELECTRICITY_PRICE_DEFAULTS_VERSION).toBe("2026-08");
+    expect(ELECTRICITY_PRICE_DEFAULTS_VERSION).toBe("2026-09");
   });
 
   it("has the exact standard values and currency in every active market", () => {

@@ -13,6 +13,7 @@
 import { getMarketConfig, MARKETS, type MarketConfig } from "./markets";
 import { PHASE_COUNT_FOR_SERVICE_TYPE } from "./grid";
 import { getConnectionConfig, type CountryConnectionConfig } from "./connections";
+import { getElectricityPriceDefaults } from "./electricity-price-defaults";
 
 export type { CurrencyCode } from "./currencies";
 import {
@@ -195,6 +196,8 @@ export function getCountryConfig(countryCode?: string | null): CountryConfig {
 
   const fallback = buildCountry(getMarketConfig(code));
   const connection = getConnectionConfig(code);
+  // Countries without a market config can still have verified price defaults.
+  const priceDefaults = getElectricityPriceDefaults(code);
   return {
     ...fallback,
     countryCode: code || fallback.countryCode,
@@ -213,13 +216,13 @@ export function getCountryConfig(countryCode?: string | null): CountryConfig {
       // Currency is a verifiable fact; prices are not. Never assume SEK.
       currencyCode: currencyForCountry(code),
       electricity: {
-        selfConsumedValuePerKwh: money(null),
-        exportPricePerKwh: money(null),
+        selfConsumedValuePerKwh: money(priceDefaults?.selfConsumed ?? null),
+        exportPricePerKwh: money(priceDefaults?.exported ?? null),
       },
       gridCompensation: { enabled: false, defaultValuePerKwh: money(null) },
       incentives: [],
       installation: { defaultCostPerKwp: money(null, "currency/kWp") },
-      hasVerifiedDefaults: false,
+      hasVerifiedDefaults: priceDefaults !== null,
     },
   };
 }

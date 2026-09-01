@@ -94,7 +94,7 @@ export const CURRENCY_BY_COUNTRY: Record<string, CurrencyCode> = {
   // ---- Europe: own currencies ----
   AL: "ALL",
   BA: "BAM",
-  BG: "BGN",
+  BG: "EUR", // Euro area since 2026-01-01.
   BY: "BYN",
   CH: "CHF",
   CZ: "CZK",

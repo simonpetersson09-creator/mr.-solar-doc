@@ -81,7 +81,7 @@ describe("global currency mapping", () => {
   });
 
   it("never invents economic defaults from currency knowledge", () => {
-    for (const country of ["MX", "KE", "AR", "TH", "ID", "TR", "CL", "EC", "ME"]) {
+    for (const country of ["KE", "AR", "TH", "ID", "CL", "EC"]) {
       const economics = resolveEconomicsDefaults(country);
       expect(economics.currencyCode).toBe(currencyForCountryCode(country));
       expect(economics.selfConsumedValuePerKwh).toBeNull();

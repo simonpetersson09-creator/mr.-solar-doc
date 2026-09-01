@@ -6,6 +6,10 @@ import {
 } from "./constants";
 import type { SupportedLanguage } from "@/i18n/languages";
 import { getConnectionConfig } from "./connections";
+import {
+  ELECTRICITY_PRICE_DEFAULTS_REVISION,
+  getElectricityPriceDefaults,
+} from "./electricity-price-defaults";
 
 export type GridConnectionType =
   | "eu-three-phase-400v"
@@ -116,6 +120,7 @@ function market(
   overrides: Partial<MarketConfig> = {},
 ): MarketConfig {
   const defaultLanguage = languageOptions[0] ?? "en";
+  const priceDefaults = getElectricityPriceDefaults(countryCode);
   return {
     ...baseEuMarket,
     countryCode,
@@ -123,39 +128,35 @@ function market(
     languageOptions,
     defaultLanguage,
     locale: `${defaultLanguage}-${countryCode}`,
+    // Editable schablon values from the single country price table.
+    selfConsumedElectricityValue: priceDefaults?.selfConsumed ?? null,
+    exportElectricityValue: priceDefaults?.exported ?? null,
     ...overrides,
   };
 }
 
 /**
- * Version of the standard electricity values below. Bump when the schablon
- * values are revised. Internal only — not shown to the user.
+ * Version of the standard electricity values. Bump when the schablon values
+ * are revised. Internal only — not shown to the user.
  */
-export const ELECTRICITY_PRICE_DEFAULTS_VERSION = "2026-08";
+export const ELECTRICITY_PRICE_DEFAULTS_VERSION = ELECTRICITY_PRICE_DEFAULTS_REVISION;
 
-/** Standard values per market: [self-consumed, exported] in market currency. */
-function prices(selfConsumed: number, exported: number): Partial<MarketConfig> {
-  return {
-    selfConsumedElectricityValue: selfConsumed,
-    exportElectricityValue: exported,
-  };
-}
 
 export const MARKETS: Record<string, MarketConfig> = {
-  SE: market("SE", "SEK", ["sv"], prices(1.5, 0.5)),
-  FI: market("FI", "EUR", ["fi"], prices(0.15, 0.045)),
-  DK: market("DK", "DKK", ["da"], prices(2.0, 0.35)),
-  DE: market("DE", "EUR", ["de"], prices(0.3, 0.08)),
-  AT: market("AT", "EUR", ["de"], prices(0.22, 0.055)),
-  CZ: market("CZ", "CZK", ["cs"], prices(5.0, 1.3)),
-  PL: market("PL", "PLN", ["pl"], prices(0.8, 0.25)),
-  SK: market("SK", "EUR", ["sk"], prices(0.17, 0.05)),
-  SI: market("SI", "EUR", ["sl"], prices(0.18, 0.05)),
-  EE: market("EE", "EUR", ["et"], prices(0.18, 0.05)),
-  LV: market("LV", "EUR", ["lv"], prices(0.18, 0.05)),
-  LT: market("LT", "EUR", ["lt"], prices(0.19, 0.05)),
+  SE: market("SE", "SEK", ["sv"]),
+  FI: market("FI", "EUR", ["fi"]),
+  DK: market("DK", "DKK", ["da"]),
+  DE: market("DE", "EUR", ["de"]),
+  AT: market("AT", "EUR", ["de"]),
+  CZ: market("CZ", "CZK", ["cs"]),
+  PL: market("PL", "PLN", ["pl"]),
+  SK: market("SK", "EUR", ["sk"]),
+  SI: market("SI", "EUR", ["sl"]),
+  EE: market("EE", "EUR", ["et"]),
+  LV: market("LV", "EUR", ["lv"]),
+  LT: market("LT", "EUR", ["lt"]),
   /** Switzerland: the user picks the language separately; currency stays CHF. */
-  CH: market("CH", "CHF", ["de", "fr", "it"], prices(0.22, 0.07)),
+  CH: market("CH", "CHF", ["de", "fr", "it"]),
   /**
    * Markets with a verified connection profile but outside the launch list.
    * They get their own technical defaults so nothing silently borrows the
