@@ -487,28 +487,28 @@ html[data-native="true"] {
   color: oklch(0.2185 0.0066 0.7 / 0.5);
 }
 
-/* Inputs, chips and inner panels: warm-white instead of translucent white. */
+/* Inputs, chips and inner panels: warm cream instead of translucent white. */
 .glass-primary .bg-white\/5,
 .hero-metric .bg-white\/5 {
-  background-color: oklch(1 0.02 96 / 0.3);
+  background-color: oklch(0.995 0.008 96 / 0.5);
 }
 .glass-primary .bg-white\/10,
 .hero-metric .bg-white\/10 {
-  background-color: oklch(1 0.02 96 / 0.42);
+  background-color: oklch(0.995 0.008 96 / 0.68);
 }
 .glass-primary .bg-white\/15,
 .hero-metric .bg-white\/15 {
-  background-color: oklch(1 0.02 96 / 0.58);
+  background-color: var(--surface-cream);
 }
 .glass-primary .bg-white\/20,
 .glass-primary .bg-white\/25,
 .hero-metric .bg-white\/20,
 .hero-metric .bg-white\/25 {
-  background-color: oklch(1 0.02 96 / 0.72);
+  background-color: var(--surface-cream-strong);
 }
 .glass-primary .hover\:bg-white\/25:hover,
 .hero-metric .hover\:bg-white\/25:hover {
-  background-color: oklch(1 0.02 96 / 0.85);
+  background-color: oklch(0.955 0.02 96);
 }
 .glass-primary .bg-white\/35,
 .glass-primary .bg-white\/40,
@@ -516,6 +516,7 @@ html[data-native="true"] {
 .hero-metric .bg-white\/40 {
   background-color: oklch(0.2185 0.0066 0.7 / 0.35);
 }
+
 
 .glass-primary [class*="border-white/"],
 .hero-metric [class*="border-white/"] {
