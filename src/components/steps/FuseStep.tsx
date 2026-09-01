@@ -183,6 +183,20 @@ const [showGridInfo, setShowGridInfo] = useState(false);
       ? `${splitPhaseLineToNeutral(value)}/${value} V`
       : `${value} V`;
 
+  // Ampere markets where both 1- and 3-phase are normal ask for the phase
+  // model explicitly: an ampere figure alone has no correct AC meaning.
+  const showPhaseChoice = inputType === "amperage" && (connection.phaseChoice ?? false);
+
+  /** The premise the calculation actually uses, e.g. "3-phase · 400 V · 35 A". */
+  const resolvedConnectionLabel =
+    capacity && capacity.type === "amperage"
+      ? `${serviceLabel(serviceType)} · ${voltageLabel(voltageV)} · ${formatDecimal(
+          connectionCapacityAmount(capacity),
+          locale,
+          0,
+        )} A`
+      : null;
+
   const chipClass = (active: boolean) =>
     active
       ? "chip-selected min-h-11 rounded-[10px] px-2 py-1.5 text-xs font-bold text-brand-black shadow-sm transition-colors"
