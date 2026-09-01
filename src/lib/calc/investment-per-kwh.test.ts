@@ -41,6 +41,7 @@ function makeInput(
       // Deliberately absent: the KPI must not depend on it.
       installationCostPerKwp: null,
     },
+    selfConsumptionShare: 0.5,
     acceptedPaybackYears: 12,
     inverterSizesKw: market.inverterSizesKw,
     ...overrides,
