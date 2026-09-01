@@ -19,7 +19,7 @@ function makeInput(
       latitude: 55,
       longitude: 12,
       countryCode,
-      region: null,
+      region: undefined,
     },
     resource: {
       annualKwhPerKwp: MONTHLY_KWH_PER_KWP.reduce((a, b) => a + b, 0),
