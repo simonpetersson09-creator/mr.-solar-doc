@@ -6,7 +6,10 @@ import {
 } from "./constants";
 import type { SupportedLanguage } from "@/i18n/languages";
 import { getConnectionConfig } from "./connections";
-import { getElectricityPriceDefaults } from "./electricity-price-defaults";
+import {
+  ELECTRICITY_PRICE_DEFAULTS_REVISION,
+  getElectricityPriceDefaults,
+} from "./electricity-price-defaults";
 
 export type GridConnectionType =
   | "eu-three-phase-400v"
@@ -140,20 +143,20 @@ export const ELECTRICITY_PRICE_DEFAULTS_VERSION = ELECTRICITY_PRICE_DEFAULTS_REV
 
 
 export const MARKETS: Record<string, MarketConfig> = {
-  SE: market("SE", "SEK", ["sv"], prices("SE")),
-  FI: market("FI", "EUR", ["fi"], prices("FI")),
-  DK: market("DK", "DKK", ["da"], prices("DK")),
-  DE: market("DE", "EUR", ["de"], prices("DE")),
-  AT: market("AT", "EUR", ["de"], prices("AT")),
-  CZ: market("CZ", "CZK", ["cs"], prices("CZ")),
-  PL: market("PL", "PLN", ["pl"], prices("PL")),
-  SK: market("SK", "EUR", ["sk"], prices("SK")),
-  SI: market("SI", "EUR", ["sl"], prices("SI")),
-  EE: market("EE", "EUR", ["et"], prices("EE")),
-  LV: market("LV", "EUR", ["lv"], prices("LV")),
-  LT: market("LT", "EUR", ["lt"], prices("LT")),
+  SE: market("SE", "SEK", ["sv"]),
+  FI: market("FI", "EUR", ["fi"]),
+  DK: market("DK", "DKK", ["da"]),
+  DE: market("DE", "EUR", ["de"]),
+  AT: market("AT", "EUR", ["de"]),
+  CZ: market("CZ", "CZK", ["cs"]),
+  PL: market("PL", "PLN", ["pl"]),
+  SK: market("SK", "EUR", ["sk"]),
+  SI: market("SI", "EUR", ["sl"]),
+  EE: market("EE", "EUR", ["et"]),
+  LV: market("LV", "EUR", ["lv"]),
+  LT: market("LT", "EUR", ["lt"]),
   /** Switzerland: the user picks the language separately; currency stays CHF. */
-  CH: market("CH", "CHF", ["de", "fr", "it"], prices("CH")),
+  CH: market("CH", "CHF", ["de", "fr", "it"]),
   /**
    * Markets with a verified connection profile but outside the launch list.
    * They get their own technical defaults so nothing silently borrows the
