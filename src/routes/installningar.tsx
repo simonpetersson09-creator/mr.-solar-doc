@@ -133,7 +133,7 @@ function SettingsPage() {
   return (
     <div className="surface-sun flex h-dvh max-h-dvh flex-col overflow-hidden">
       <main
-        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-4 overflow-y-auto overscroll-contain px-4 pb-[calc(1.5rem+env(safe-area-inset-bottom))]"
+        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-3 overflow-y-auto overscroll-contain px-4 pb-[calc(1.5rem+env(safe-area-inset-bottom))]"
         style={{ paddingTop: "max(var(--safe-top-min), calc(0.5rem + env(safe-area-inset-top)))" }}
       >
         <header className="flex items-center gap-2.5 pt-1">
@@ -154,10 +154,10 @@ function SettingsPage() {
         </header>
 
         {/* Premium section */}
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col gap-2.5">
           {/* One-off unlock */}
-          <div className="glass-primary relative overflow-hidden rounded-3xl p-5">
-            <div className="relative z-10 flex flex-col gap-2.5">
+          <div className="glass-primary relative overflow-hidden rounded-3xl p-4">
+            <div className="relative z-10 flex flex-col gap-2">
               <span className="inline-flex w-fit items-center rounded-full bg-brand-black px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-yellow">
                 {t("paywall.eyebrow")}
               </span>
@@ -183,8 +183,8 @@ function SettingsPage() {
           </div>
 
           {/* Premium subscription */}
-          <div className="glass-primary relative overflow-hidden rounded-3xl p-5 ring-2 ring-brand-black/15">
-            <div className="relative z-10 flex flex-col gap-2.5">
+          <div className="glass-primary relative overflow-hidden rounded-3xl p-4 ring-2 ring-brand-black/15">
+            <div className="relative z-10 flex flex-col gap-2">
               <div className="flex items-center justify-between">
                 <span className="inline-flex w-fit items-center rounded-full bg-brand-black/15 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-black">
                   {t("settings.subscription")}
@@ -247,14 +247,14 @@ function SettingsPage() {
         </section>
 
         {/* Settings groups */}
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col gap-2.5">
           {/* Restore / Manage */}
-          <div className="glass-primary rounded-3xl p-2">
+          <div className="glass-primary flex flex-col gap-1.5 rounded-3xl p-2">
             <button
               type="button"
               disabled={restoring}
               onClick={() => void handleRestore()}
-              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-4 text-left shadow-sm transition-transform active:scale-[0.98] disabled:opacity-60"
+              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-3.5 text-left shadow-sm transition-transform active:scale-[0.98] disabled:opacity-60"
             >
               <span className="flex items-center gap-3">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -275,7 +275,7 @@ function SettingsPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => void haptic("light")}
-              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-4 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-3.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-3">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -288,14 +288,14 @@ function SettingsPage() {
           </div>
 
           {/* History */}
-          <div className="glass-primary rounded-3xl p-2">
+          <div className="glass-primary flex flex-col gap-1.5 rounded-3xl p-2">
             <button
               type="button"
               onClick={() => {
                 void haptic("light");
                 void navigate({ to: "/historik" });
               }}
-              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-4 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-3.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-3">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -308,13 +308,13 @@ function SettingsPage() {
           </div>
 
           {/* Legal */}
-          <div className="glass-primary rounded-3xl p-2">
+          <div className="glass-primary flex flex-col gap-1.5 rounded-3xl p-2">
             <a
               href={LEGAL_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => void haptic("light")}
-              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-4 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-3.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-3">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -329,7 +329,7 @@ function SettingsPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => void haptic("light")}
-              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-4 text-left shadow-sm transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-2xl bg-card px-5 py-3.5 text-left shadow-sm transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-3">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
