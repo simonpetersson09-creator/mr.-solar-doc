@@ -29,6 +29,7 @@ import {
 } from "@/config/grid";
 import {
   amperageCapacity,
+  connectionCapacityAmount,
   isValidConnectionCapacity,
   type ConnectionCapacity,
 } from "@/config/connection-capacity";
