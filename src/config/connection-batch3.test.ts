@@ -7,9 +7,14 @@
 import { describe, expect, it } from "vitest";
 import { getConnectionConfig } from "./connections";
 import {
+  connectionCapacityAmount,
   connectionCapacityToMaxAcPowerKw,
+  connectionCapacityUnit,
   type ConnectionCapacity,
 } from "./connection-capacity";
+import { calculateSolarSystem, GridTooSmallError } from "@/lib/calc/engine";
+import { MARKETS } from "./markets";
+import type { CalculationInput } from "@/lib/calc/types";
 
 const SINGLE_230 = { serviceType: "single-phase", voltageV: 230, frequencyHz: 50 } as const;
 const THREE_400 = { serviceType: "three-phase", voltageV: 400, frequencyHz: 50 } as const;
