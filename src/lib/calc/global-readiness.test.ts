@@ -63,7 +63,7 @@ describe("connection configuration", () => {
     expect(config.defaultVoltage).toBe(240);
     expect(config.defaultLineToNeutralVoltage).toBe(120);
     expect(config.defaultFrequencyHz).toBe(60);
-    const expected = code === "US" ? [60, 100, 125, 150, 200, 400] : [100, 200, 400];
+    const expected = code === "US" ? [60, 100, 150, 200, 400] : [100, 200, 400];
     expect(config.connectionOptions.map((o) => connectionCapacityAmount(o.capacity))).toEqual(
       expected,
     );
