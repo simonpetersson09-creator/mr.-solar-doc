@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { AlertTriangle, ArrowRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -28,7 +28,7 @@ interface AssumptionsStepProps {
 export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsStepProps) {
   const { t } = useTranslation();
   const { locale } = useAppLocale();
-  const { result, market } = useCalculation();
+  const { result, outcome, market } = useCalculation();
   const setSelfConsumptionShare = useWizardStore((s) => s.setSelfConsumptionShare);
   const setSelfConsumedValue = useWizardStore((s) => s.setSelfConsumedValue);
   const setExportValue = useWizardStore((s) => s.setExportValue);
@@ -79,6 +79,10 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
     </span>
   );
 
+  // A connection smaller than the smallest supported inverter is a real-world
+  // domain outcome, not a technical error: say so and block the calculation.
+  const gridTooSmall = outcome?.status === "grid-too-small" ? outcome : null;
+
   return (
     <StepShell
       step={5}
@@ -90,7 +94,9 @@ title={t("result.adjustAssumptions")}
 className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           variant="cta"
           size="lg"
+          disabled={Boolean(gridTooSmall)}
           onClick={() => {
+            if (gridTooSmall) return;
             void haptic("success");
             onSubmit();
           }}
@@ -100,6 +106,23 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         </Button>
       }
     >
+      {gridTooSmall ? (
+        <div className="flex gap-3 rounded-[28px] border border-destructive/30 bg-destructive/10 px-4 py-4">
+          <AlertTriangle className="mt-0.5 size-4 shrink-0 text-destructive" />
+          <div className="space-y-1">
+            <p className="text-xs font-semibold text-destructive">
+              {t("result.gridTooSmallTitle")}
+            </p>
+            <p className="text-xs text-muted-foreground">
+              {t("result.gridTooSmallBody", {
+                maxKw: formatNumber(gridTooSmall.maxAcPowerKw, locale, 1),
+                minKw: formatNumber(gridTooSmall.minimumSupportedInverterKw, locale, 1),
+              })}
+            </p>
+          </div>
+        </div>
+      ) : null}
+
       {/* ── Card 1: self-consumption split ── */}
       <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">
         <div className="flex items-center justify-between gap-3">
