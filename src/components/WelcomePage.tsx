@@ -34,7 +34,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
             src={brandIcon.url}
             alt=""
             aria-hidden="true"
-            className="w-32 select-none drop-shadow-sm sm:w-36"
+            className="w-44 select-none drop-shadow-sm sm:w-52"
             draggable={false}
           />
         </div>
