@@ -226,7 +226,7 @@ function PaywallPage() {
             </span>
             <div className="flex flex-1 flex-col">
               <p className="text-sm font-bold">{t("paywall.premium.title")}</p>
-              <p className="text-2xl font-bold tabular-nums">
+              <p className="text-xl font-bold tabular-nums">
                 {premiumPrice
                   ? t("paywall.premium.price", { price: premiumPrice })
                   : t("paywall.priceLoading")}
