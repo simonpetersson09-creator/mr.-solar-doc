@@ -593,7 +593,8 @@ const cost = result.productionCost;
         <div className="pb-safe flex flex-col gap-2 pt-2">
           <Button
             size="lg"
-            className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+            variant="outline"
+            className="w-full"
             asChild
             onClick={() => reset()}
           >
@@ -603,6 +604,7 @@ const cost = result.productionCost;
           <Button
             className="w-full"
             size="lg"
+            variant="cta"
             disabled={exporting}
             onClick={() => void handleExport()}
           >
