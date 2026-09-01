@@ -190,11 +190,12 @@ function config(
 }
 
 /**
- * US service sizes. 100/150/200/400 A are the standard residential steps;
- * 60 A only exists on legacy services and is kept so those homes can answer.
- * 125 A is not a residential service size and is deliberately absent.
+ * North American service sizes. 100/125/150/200/400 A are the standard
+ * residential steps; 60 A only exists on legacy services and is kept so those
+ * homes can answer. Sizes above 400 A are not residential.
  */
-const NORTH_AMERICAN_RATINGS = [60, 100, 150, 200, 400];
+const NORTH_AMERICAN_RATINGS = [60, 100, 125, 150, 200, 400];
+
 
 
 /** Verified country profiles. Add a country only when its data is confirmed. */
@@ -250,14 +251,22 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     { localTerm: "Hausanschlusssicherung" },
   ),
 
-  /** Great Britain: single-phase 230 V cut-out fuse. */
+  /**
+   * Great Britain: the cut-out fuse on a single-phase 230 V supply. 60/80 A are
+   * common on older services, 100 A is the modern standard. Three-phase
+   * 400 V services exist on larger homes and are offered explicitly.
+   */
   GB: config(
     "GB",
     "amperage",
-    [60, 80, 100].map((a) => ampOption(a, SINGLE_PHASE_230)),
+    [
+      ...[60, 80, 100].map((a) => ampOption(a, SINGLE_PHASE_230, "1 × ")),
+      ...[60, 80, 100].map((a) => ampOption(a, EU_THREE_PHASE_400, "3 × 400 V · ")),
+    ],
     SINGLE_PHASE_230,
     { localTerm: "Main fuse (cut-out)" },
   ),
+
   /**
    * Belgium: the network type must be part of the choice — 3x230 V without
    * neutral is a fundamentally different capacity than 3N400 V.
@@ -283,10 +292,11 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   CA: config(
     "CA",
     "amperage",
-    [100, 200, 400].map((a) => ampOption(a, SPLIT_PHASE_120_240)),
+    NORTH_AMERICAN_RATINGS.map((a) => ampOption(a, SPLIT_PHASE_120_240)),
     SPLIT_PHASE_120_240,
     { localTerm: "Electrical service size" },
   ),
+
   /** Japan: contract amperage on a 100/200 V single-phase three-wire supply. */
   JP: config(
     "JP",
