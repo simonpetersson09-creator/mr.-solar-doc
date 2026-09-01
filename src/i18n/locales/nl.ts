@@ -14,9 +14,11 @@ export const nl = {
     point1Title: "Berekent uw zonnepotentieel",
     point1Body: "",
     point2Title: "Dimensioneert de installatie",
-    point2Body: "Uw stroomverbruik, netaansluiting en zon-opbrengst worden gecombineerd voor een geschikte grootte.",
+    point2Body:
+      "Uw stroomverbruik, netaansluiting en zon-opbrengst worden gecombineerd voor een geschikte grootte.",
     point3Title: "Berekent wat het mag kosten na gewenste terugverdientijd",
-    point3Body: "U kiest de gewenste terugverdientijd. Mr. Solar Doc berekent het benodigde investeringsniveau.",
+    point3Body:
+      "U kiest de gewenste terugverdientijd. Mr. Solar Doc berekent het benodigde investeringsniveau.",
     point4Title: "Rapport en beslisbasis",
     point4Body: "Zie productie, economie en verschillende terugverdientijden in een rapport.",
     cta: "Start de berekening",
@@ -51,7 +53,8 @@ export const nl = {
     noResults: "Geen resultaten. Probeer een preciezer adres.",
     selected: "Geselecteerde locatie",
     adjustHint: "Sleep de marker als de positie niet klopt.",
-    marketUnsupported: "Mr. Solar Doc ondersteunt dit land nog niet. Kies een adres in een ondersteund land om verder te gaan.",
+    marketUnsupported:
+      "Mr. Solar Doc ondersteunt dit land nog niet. Kies een adres in een ondersteund land om verder te gaan.",
     coordinates: "Coördinaten",
     country: "Land",
     region: "Regio",
@@ -99,7 +102,8 @@ export const nl = {
     fetching: "Zonnegegevens ophalen bij PVGIS…",
     result: "Geschatte zonopbrengst op deze locatie",
     unit: "kWh/kWp/jaar",
-    error: "We konden geen zonnegegevens voor deze locatie ophalen. Er worden geen waarden geschat.",
+    error:
+      "We konden geen zonnegegevens voor deze locatie ophalen. Er worden geen waarden geschat.",
     errorOverSea:
       "Deze locatie lijkt boven water te liggen. Verplaats de marker naar het gebouw op land en probeer het opnieuw.",
     errorOutsideCoverage:
@@ -131,7 +135,8 @@ export const nl = {
       },
       "summer-heavy": {
         title: "Hoger in de zomer",
-        description: "Je gebruikt meer stroom in de zomer, bijvoorbeeld voor een zwembad of koeling.",
+        description:
+          "Je gebruikt meer stroom in de zomer, bijvoorbeeld voor een zwembad of koeling.",
       },
       default: {
         title: "Ik weet het niet",
@@ -141,7 +146,8 @@ export const nl = {
     upload: {
       title: "Voeg 12 maanden verbruiksgegevens toe",
       sectionTitle: "Scan je energierekening",
-      sectionHint: "Voeg je energierekening of verbruiksgegevens van 12 maanden toe en wij vullen de waarden voor je in.",
+      sectionHint:
+        "Voeg je energierekening of verbruiksgegevens van 12 maanden toe en wij vullen de waarden voor je in.",
       description:
         "Upload een energierekening of je eigen verbruiksgegevens (PDF, Excel, CSV of een afbeelding zoals PNG/JPEG) en we vullen de jaar- en maandwaarden automatisch in.",
       button: "Bestand kiezen",
@@ -161,7 +167,10 @@ export const nl = {
     title: "Hoeveel stroom gebruik je?",
     subtitle: "Bekijk je energierekening of contract.",
     or: "of",
-    manual: { sectionTitle: "Handmatig invoeren", sectionHint: "Vul je jaarverbruik in — bekijk je energierekening of contract." },
+    manual: {
+      sectionTitle: "Handmatig invoeren",
+      sectionHint: "Vul je jaarverbruik in — bekijk je energierekening of contract.",
+    },
     annual: "Jaarverbruik",
     annualPlaceholder: "bijv. 18.000",
     useMonthly: "Verbruik per maand invoeren (12 maanden)",
@@ -180,7 +189,12 @@ export const nl = {
         title: "Wat is je hoofdzekering?",
         label: "Hoofdzekering",
         help: "Ampère per fase, te vinden op je hoofdschakelaar of energierekening.",
-      }, service: { title: "Grootte van de elektrische aansluiting", label: "Grootte van de elektrische aansluiting", help: "De ampèrewaarde staat op je hoofdschakelaar of in de meterkast." },
+      },
+      service: {
+        title: "Grootte van de elektrische aansluiting",
+        label: "Grootte van de elektrische aansluiting",
+        help: "De ampèrewaarde staat op je hoofdschakelaar of in de meterkast.",
+      },
       "contracted-kva": {
         title: "Wat is je gecontracteerd vermogen?",
         label: "Gecontracteerd vermogen",
@@ -193,7 +207,8 @@ export const nl = {
       },
     },
     gridAssumption: "De berekening gaat uit van een driefasenaansluiting van 400 V.",
-    gridAssumptionInfo: "Het theoretische vermogen van de hoofdzekering wordt berekend op basis van een driefasenaansluiting van 400 V. Controleer je werkelijke netaansluiting als je twijfelt.",
+    gridAssumptionInfo:
+      "Het theoretische vermogen van de hoofdzekering wordt berekend op basis van een driefasenaansluiting van 400 V. Controleer je werkelijke netaansluiting als je twijfelt.",
     gridCheckHint: "Controleer je werkelijke netaansluiting als je twijfelt.",
     disclaimerTitle: "Belangrijk om te weten",
     grid: {
@@ -206,7 +221,8 @@ export const nl = {
       serviceType: "Type aansluiting",
       twoPhase: "Tweefasig (fase–fase)",
       splitPhase: "Split-phase",
-      unverifiedHint: "We hebben geen geverifieerde netgegevens voor dit land. Controleer je gegevens op je meter of groepenkast.",
+      unverifiedHint:
+        "We hebben geen geverifieerde netgegevens voor dit land. Controleer je gegevens op je meter of groepenkast.",
       phase1: "1-fase",
       phase3: "3-fase",
       voltage: "Spanning",
@@ -218,9 +234,11 @@ export const nl = {
     },
     genericTitle: "Welke elektrische aansluiting heb je?",
     title: "Welke hoofdzekering heb je?",
-    subtitle: "De hoofdzekering wordt gebruikt om in te schatten hoe groot een omvormer normaal gesproken kan zijn. Het werkelijk toegestane vermogen wordt bepaald door de netbeheerder.",
+    subtitle:
+      "De hoofdzekering wordt gebruikt om in te schatten hoe groot een omvormer normaal gesproken kan zijn. Het werkelijk toegestane vermogen wordt bepaald door de netbeheerder.",
     label: "Hoofdzekering",
-    noCountryOptions: "We hebben nog geen geverifieerde aansluitopties voor dit land. Vul je hoofdzekering in ampère in en pas de netinstellingen hieronder eventueel aan.",
+    noCountryOptions:
+      "We hebben nog geen geverifieerde aansluitopties voor dit land. Vul je hoofdzekering in ampère in en pas de netinstellingen hieronder eventueel aan.",
     unverifiedCountryNotice:
       "We hebben de netnorm van dit land niet geverifieerd. Controleer spanning, fasen en aansluitgrootte op je energierekening of bij je netbeheerder en bevestig hieronder.",
     confirmGrid: "Ik heb de netgegevens gecontroleerd",
@@ -290,7 +308,8 @@ export const nl = {
     resetToStandard: "Terugzetten naar standaardwaarde",
     userValueBadge: "Door jou ingevoerd",
     priceScenarioTitle: "Hoe denk je dat de elektriciteitsprijzen zich zullen ontwikkelen?",
-    priceScenarioHint: "Een aanname over de jaarlijkse verandering, geen voorspelling. De prijs wordt jaar na jaar verhoogd over de berekeningsperiode.",
+    priceScenarioHint:
+      "Een aanname over de jaarlijkse verandering, geen voorspelling. De prijs wordt jaar na jaar verhoogd over de berekeningsperiode.",
     priceScenarioFlat: "Ongewijzigd",
     priceScenarioCautious: "Voorzichtig",
     priceScenarioNormal: "Normaal",
@@ -301,8 +320,10 @@ export const nl = {
     priceScenarioCustomLabel: "Eigen verandering (%/jaar)",
     degradationAssumption: "Technische degradatie",
     priceScenarioAssumption: "Aangenomen ontwikkeling elektriciteitsprijs",
-    standardValueHint: "Standaardwaarden voor de berekening. Wijzig deze naar de waarden van je eigen energiecontract voor een individueler resultaat.",
-    "exportValueInfo": "Geef de totale vergoeding per kWh op voor stroom die je aan het net levert, inclusief eventuele netvoordelen of andere exportgerelateerde vergoedingen.",
+    standardValueHint:
+      "Standaardwaarden voor de berekening. Wijzig deze naar de waarden van je eigen energiecontract voor een individueler resultaat.",
+    exportValueInfo:
+      "Geef de totale vergoeding per kWh op voor stroom die je aan het net levert, inclusief eventuele netvoordelen of andere exportgerelateerde vergoedingen.",
     editable: "Aanpasbaar",
     editableTooltip: "Aanname wijzigen",
     fuseLimit: "Theoretische vermogenslimiet van hoofdzekering",
@@ -321,7 +342,8 @@ export const nl = {
         "Je stroomverbruik is duidelijk geconcentreerd in de zonnige maanden, waardoor een hoger paneelvermogen ten opzichte van de omvormer wordt voorgesteld.",
       gridLimit:
         "Het systeem wordt beperkt door je hoofdzekering — je netaansluiting staat niet meer vermogen toe.",
-      minimumSize: "Je stroomverbruik is laag, daarom stellen we het kleinst zinvolle systeem voor.",
+      minimumSize:
+        "Je stroomverbruik is laag, daarom stellen we het kleinst zinvolle systeem voor.",
       maximumSize: "Het voorstel is beperkt tot de grootste omvang waarvoor deze app berekent.",
     },
     monthlyDataNote:
@@ -343,7 +365,8 @@ export const nl = {
         "Het systeem wordt beperkt door je hoofdzekering — je netaansluiting staat niet meer vermogen toe.",
       inverterLimit:
         "De grootte is afgestemd op de grootste geschikte omvormer voor je aansluiting.",
-      minimumSize: "Je stroomverbruik is laag, daarom stellen we het kleinst zinvolle systeem voor.",
+      minimumSize:
+        "Je stroomverbruik is laag, daarom stellen we het kleinst zinvolle systeem voor.",
       maximumSize: "Het voorstel is beperkt tot de grootste omvang waarvoor deze app berekent.",
     },
     selfConsumption: "Zelf verbruikte zonne-energie",
@@ -353,7 +376,8 @@ export const nl = {
     selfConsumedValueHelp:
       "Zelf verbruikte zonne-energie vervangt stroom die je anders van het net had gekocht.",
     exportValueLabel: "Vergoeding voor teruggeleverde zonne-energie ({{currency}}/kWh)",
-    exportValueHelp: "De geschatte prijs die je ontvangt voor stroom die je terug op het net levert.",
+    exportValueHelp:
+      "De geschatte prijs die je ontvangt voor stroom die je terug op het net levert.",
     selfConsumptionValue: "Zelf verbruikte zonne-energie",
     exportValue: "Teruggeleverde zonne-energie",
     totalAnnualBenefit: "Totaal geschat jaarlijks voordeel",
@@ -377,27 +401,32 @@ export const nl = {
     priceExplainer:
       "Zelf verbruikte zonne-energie vervangt stroom die anders van het net zou zijn gekocht. Teruggeleverde zonne-energie levert daarentegen een vergoeding op voor stroom die op het net wordt teruggeleverd.",
     paybackYears: "{{years}} jaar",
-    "paybackScenariosTitle": "Investeringsniveau bij verschillende terugverdientijden",
-    "paybackScenarioSelected": "Jouw keuze",
-    "paybackScenariosHelp": "Een kortere terugverdientijd betekent een lagere mogelijke investering. Hier zie je hoe het investeringsniveau verandert als je een kortere of langere terugverdientijd accepteert.",
+    paybackScenariosTitle: "Investeringsniveau bij verschillende terugverdientijden",
+    paybackScenarioSelected: "Jouw keuze",
+    paybackScenariosHelp:
+      "Een kortere terugverdientijd betekent een lagere mogelijke investering. Hier zie je hoe het investeringsniveau verandert als je een kortere of langere terugverdientijd accepteert.",
     paybackInfo:
       "Het investeringsniveau laat ongeveer zien welke investering overeenkomt met de gekozen terugverdientijd, gebaseerd op de economische waarden die de berekening over die periode voorspelt. Het is geen geschatte marktprijs of offerte.",
     maxInvestment: "Investeringsniveau bij gekozen terugverdientijd",
     productionCostTitle: "Wat mag zonnestroom per kWh kosten?",
     investmentLevelInfoLabel: "Meer informatie",
-    investmentLevelInfo: "Toont ongeveer welke investeringskosten overeenkomen met de door jou gekozen terugverdientijd. Het is geen schatting van de werkelijke installatiekosten. De werkelijke prijs hangt onder andere af van het dak, de installatie, de componenten en de leverancier.",
+    investmentLevelInfo:
+      "Toont ongeveer welke investeringskosten overeenkomen met de door jou gekozen terugverdientijd. Het is geen schatting van de werkelijke installatiekosten. De werkelijke prijs hangt onder andere af van het dak, de installatie, de componenten en de leverancier.",
     systemSizeInfoLabel: "Meer informatie",
-    systemSizeInfo: "De berekening is een schatting en moet als richtlijn worden gebruikt. Werkelijke productie, zelfverbruik, elektriciteitsprijs, vergoeding, installatiekosten en financieel resultaat kunnen afwijken. Het resultaat is geen offerte of garantie.",
+    systemSizeInfo:
+      "De berekening is een schatting en moet als richtlijn worden gebruikt. Werkelijke productie, zelfverbruik, elektriciteitsprijs, vergoeding, installatiekosten en financieel resultaat kunnen afwijken. Het resultaat is geen offerte of garantie.",
     productionCostInfoLabel: "Meer informatie",
-    productionCostInfo: "Het bedrag is gebaseerd op de maximale investering die past bij uw gekozen terugverdientijd, verdeeld over alle stroom die de installatie naar verwachting produceert in de rekenperiode. Het is geen marktprijs voor de installatie.",
+    productionCostInfo:
+      "Het bedrag is gebaseerd op de maximale investering die past bij uw gekozen terugverdientijd, verdeeld over alle stroom die de installatie naar verwachting produceert in de rekenperiode. Het is geen marktprijs voor de installatie.",
 
-
-    productionCostExplainer: "We delen de kosten van het systeem door de geschatte productie over de hele berekeningsperiode.",
+    productionCostExplainer:
+      "We delen de kosten van het systeem door de geschatte productie over de hele berekeningsperiode.",
     productionCostLabel: "Mag kosten",
     productionCostValueLabel: "Waarde voor jou",
     productionCostDifference: "Verschil",
     productionCostBasis: "Gebaseerd op {{investment}} en {{production}} kWh over {{years}} jaar.",
-    productionCostHigherValue: "In deze berekening is elke kWh meer waard dan hij kost om te produceren.",
+    productionCostHigherValue:
+      "In deze berekening is elke kWh meer waard dan hij kost om te produceren.",
     productionCostUnavailable: "We kunnen dit niet berekenen met de huidige gegevens.",
     perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "ong. {{amount}}",
@@ -405,33 +434,41 @@ export const nl = {
       "Om ongeveer {{years}} jaar terugverdientijd te bereiken, mag de installatie hooguit ongeveer {{amount}} kosten.",
     maxInvestmentNote:
       "Het bedrag wordt berekend op basis van je invoer en berekeningsaannames — geen offerte of marktprijsraming.",
-    missingSelfConsumedValue: "Elektriciteitsprijs ontbreekt. Vul in wat je per kWh betaalt om de waarde van zelf verbruikte zonne-energie te zien.",
-    missingExportValue: "Terugleveringsvergoeding ontbreekt. Vul in wat je per teruggeleverde kWh ontvangt om de teruggeleverde inkomsten te berekenen.",
-    missingInstallationCost: "Installatiekosten ontbreken. Vul je offerte of geschatte investering in.",
+    missingSelfConsumedValue:
+      "Elektriciteitsprijs ontbreekt. Vul in wat je per kWh betaalt om de waarde van zelf verbruikte zonne-energie te zien.",
+    missingExportValue:
+      "Terugleveringsvergoeding ontbreekt. Vul in wat je per teruggeleverde kWh ontvangt om de teruggeleverde inkomsten te berekenen.",
+    missingInstallationCost:
+      "Installatiekosten ontbreken. Vul je offerte of geschatte investering in.",
     economicsIncomplete: "Onvolledige basis",
     enterValues: "Waarden invoeren",
     missingMarketValues:
       "We hebben geen geverifieerde standaardwaarde voor dit land. Vul de waarden hieronder zelf in.",
-    economicsRequiresPrice: "Voor de economische berekening is een elektriciteitsprijs nodig. Vul je prijzen in om besparing, terugverdientijd en productiekosten te zien.",
+    economicsRequiresPrice:
+      "Voor de economische berekening is een elektriciteitsprijs nodig. Vul je prijzen in om besparing, terugverdientijd en productiekosten te zien.",
     economicsRequiresPriceShort: "Elektriciteitsprijs vereist",
     gridUnverifiedTitle: "Netgegevens niet geverifieerd",
-    gridUnverifiedWarning: "Netaannames zijn gebaseerd op generieke waarden en moeten lokaal worden geverifieerd voordat je installeert.",
+    gridUnverifiedWarning:
+      "Netaannames zijn gebaseerd op generieke waarden en moeten lokaal worden geverifieerd voordat je installeert.",
     gridProfileStatusLabel: "Netprofiel",
     gridProfileStatusVerified: "Geverifieerd",
     gridProfileStatusGeneric: "Generiek (niet geverifieerd)",
     gridProfileStatusUnsupported: "Handmatig (niet geverifieerd)",
     calcErrorTitle: "De berekening kan niet worden voltooid",
-    calcErrorBody: "Sommige gegevens kunnen niet worden berekend. Ga terug en controleer verbruik, netaansluiting en aannames.",
+    calcErrorBody:
+      "Sommige gegevens kunnen niet worden berekend. Ga terug en controleer verbruik, netaansluiting en aannames.",
     currency: "Valuta",
     economicValue: "Basiseconomische waarde",
     perYear: "per jaar",
     adjustAssumptions: "Aannames aanpassen",
-    adjustAssumptionsHint: "Wijzig zelfverbruik, elektriciteitsprijzen en gewenste terugverdientijd.",
+    adjustAssumptionsHint:
+      "Wijzig zelfverbruik, elektriciteitsprijzen en gewenste terugverdientijd.",
     showCalculation: "Berekening tonen",
     hideCalculation: "Berekening verbergen",
     adjustSplit: "Zelfverbruik aanpassen",
     selfConsumptionEstimatedLabel: "Berekend eigen verbruik",
-    selfConsumptionEstimatedHelp: "Geschat op basis van uw elektriciteitsverbruik en de berekende opbrengst van de installatie. U kunt de waarde handmatig aanpassen.",
+    selfConsumptionEstimatedHelp:
+      "Geschat op basis van uw elektriciteitsverbruik en de berekende opbrengst van de installatie. U kunt de waarde handmatig aanpassen.",
     selfConsumptionUserAssumption: "Uw aanname",
     selfConsumptionAssumption:
       "Zelfverbruik is een aanname op basis van het gekozen aandeel en kan handmatig worden aangepast.",
@@ -453,9 +490,11 @@ export const nl = {
     calculatedAt: "Berekeningsdatum",
     noCalculation: "Geen berekening gevonden. Begin opnieuw vanaf het adres.",
     locked: "Deze berekening is vergrendeld. Rond de aankoop af om het resultaat te zien.",
-    calculationUnavailable: "The calculation could not be completed. Please check the roof details and try again.",
+    calculationUnavailable:
+      "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "De aansluiting is te klein",
-    gridTooSmallBody: "Uw huidige aansluiting ({{maxKw}} kW) is te klein voor de kleinste ondersteunde systeemgrootte ({{minKw}} kW omvormer). Verhoog de hoofdzekering of het gecontracteerde vermogen om verder te gaan.",
+    gridTooSmallBody:
+      "Uw huidige aansluiting ({{maxKw}} kW) is te klein voor de kleinste ondersteunde systeemgrootte ({{minKw}} kW omvormer). Verhoog de hoofdzekering of het gecontracteerde vermogen om verder te gaan.",
   },
   units: {
     kwhPerYear: "kWh/jaar",
@@ -496,8 +535,10 @@ export const nl = {
     verifying: "Je aankoop wordt bevestigd…",
     cancelled: "De aankoop is geannuleerd. Je kunt het opnieuw proberen.",
     failed: "De aankoop kon niet worden voltooid. Er is niets in rekening gebracht.",
-    retry: "We konden de aankoop nu niet bevestigen. Er gaat niets verloren — deze wordt automatisch ontgrendeld zodra de verbinding weer werkt.",
-    appOnly: "De aankoop wordt in de app gedaan met je Apple-account en is niet beschikbaar in de browser.",
+    retry:
+      "We konden de aankoop nu niet bevestigen. Er gaat niets verloren — deze wordt automatisch ontgrendeld zodra de verbinding weer werkt.",
+    appOnly:
+      "De aankoop wordt in de app gedaan met je Apple-account en is niet beschikbaar in de browser.",
     appleNote: "Wordt afgehandeld door de App Store.",
   },
   history: {
@@ -514,7 +555,8 @@ export const nl = {
     subscription: "Abonnement",
     popular: "Meest populair",
     singleCta: "Gekocht bij je volgende berekening",
-    singleNote: "De eenmalige aankoop wordt gedaan wanneer je een nieuwe berekening start — niet hier.",
+    singleNote:
+      "De eenmalige aankoop wordt gedaan wanneer je een nieuwe berekening start — niet hier.",
     terms: "Gebruiksvoorwaarden",
     privacy: "Privacybeleid",
   },
@@ -562,8 +604,10 @@ export const nl = {
         "Het theoretische AC-vermogen is gebaseerd op je gekozen netaansluiting: {{phases}}-fase, {{voltage}} V, berekend als {{factor}} × {{voltage}} V × hoofdzekering. Het werkelijk toegestane aansluit- of terugleververmogen kan worden beperkt door de netbeheerder of de specifieke installatie.",
       gridMethodNote:
         "Het theoretische AC-vermogen is gebaseerd op 400 V driefasen, berekend als 1,73 × 400 V × hoofdzekering. Het werkelijk toegestane aansluit- of terugleververmogen kan worden beperkt door de netbeheerder of de specifieke installatie.",
-      gridMethodNoteContracted: "Het werkelijk toegestane aansluit- of terugleververmogen kan worden beperkt door de netbeheerder of de specifieke installatie.",
-      savings30Short: "Berekend met {{degradation}} % jaarlijkse productiedegradatie en ongewijzigde elektriciteitswaarden.",
+      gridMethodNoteContracted:
+        "Het werkelijk toegestane aansluit- of terugleververmogen kan worden beperkt door de netbeheerder of de specifieke installatie.",
+      savings30Short:
+        "Berekend met {{degradation}} % jaarlijkse productiedegradatie en ongewijzigde elektriciteitswaarden.",
       solarShareTitle: "Je zonne-energie",
       selfConsumptionRate: "Zelfverbruikspercentage (aandeel van zonneproductie)",
       selfSufficiencyRate: "Zelfvoorzieningspercentage (aandeel van stroomverbruik)",
@@ -578,7 +622,8 @@ export const nl = {
       selfConsumptionSource_simulated: "geschat op basis van verbruiksprofiel",
       longTermChartTitle: "Economische waarde over tijd",
       keyAssumptions: "Belangrijkste berekeningsaannames",
-      priceMethodNote: "De elektriciteitswaarden zijn berekeningsaannames. De werkelijke waarde van zelf verbruikte en teruggeleverde zonne-energie hangt af van je energiecontract, kosten, belastingen, regels en marktomstandigheden.",
+      priceMethodNote:
+        "De elektriciteitswaarden zijn berekeningsaannames. De werkelijke waarde van zelf verbruikte en teruggeleverde zonne-energie hangt af van je energiecontract, kosten, belastingen, regels en marktomstandigheden.",
       "valueSource_standard-value": "Standaardwaarde",
       "valueSource_user-override": "Door jou ingevoerd",
       priceChange: "Verandering elektriciteitsprijs",
@@ -598,28 +643,37 @@ export const nl = {
       lifetimeColProduction: "Productie (kWh)",
       lifetimeColValue: "Waarde/jaar",
       lifetimeColCumulative: "Cumulatief",
-      lifetimeNote: "De berekening toont de geschatte ontwikkeling over {{years}} jaar op basis van de geschatte productie, de aangenomen degradatie en de gekozen ontwikkeling van de elektriciteitsprijs. Het werkelijke economische resultaat en de productie kunnen na verloop van tijd afwijken.",
+      lifetimeNote:
+        "De berekening toont de geschatte ontwikkeling over {{years}} jaar op basis van de geschatte productie, de aangenomen degradatie en de gekozen ontwikkeling van de elektriciteitsprijs. Het werkelijke economische resultaat en de productie kunnen na verloop van tijd afwijken.",
       yearShort: "Jaar",
       reportId: "Rapport-ID",
       uncertaintyTitle: "Wat kan het resultaat beïnvloeden?",
       uncertaintyText:
         "De werkelijke zonneproductie en het economische resultaat kunnen afwijken van de berekening. Het resultaat wordt beïnvloed door weersvariatie, schaduw, oriëntatie en helling van de panelen, werkelijk stroomverbruik en wanneer dit plaatsvindt, elektriciteitsprijzen, terugleveringsvergoeding en systeemprestaties na verloop van tijd.",
       panelPower: "Paneelvermogen",
-      summaryMethodFlat: "Berekend met {{degradation}} % jaarlijkse productiedegradatie en ongewijzigde waarden voor zelf verbruikte en teruggeleverde zonne-energie.",
-      summaryMethodTrend: "Berekend met {{degradation}} % jaarlijkse productiedegradatie en een aangenomen jaarlijkse verandering van {{priceChange}} % in de waarde van zonne-energie.",
-      specificYieldNote: "De locatiespecifieke opbrengst is de berekende opbrengst per geïnstalleerde kWp op deze locatie, voor de oriëntatie en helling van je dak. Het is niet de totale jaarlijkse productie van het systeem.",
-      investmentNote: "Het investeringsniveau laat ongeveer zien welke investering overeenkomt met de gekozen terugverdientijd, gebaseerd op de opgebouwde economische waarde die de berekening tot dat jaar voorspelt. Het wordt beïnvloed door de aangenomen verandering in de elektriciteitswaarde en door productiedegradatie, en is geen geschatte marktprijs of offerte.",
+      summaryMethodFlat:
+        "Berekend met {{degradation}} % jaarlijkse productiedegradatie en ongewijzigde waarden voor zelf verbruikte en teruggeleverde zonne-energie.",
+      summaryMethodTrend:
+        "Berekend met {{degradation}} % jaarlijkse productiedegradatie en een aangenomen jaarlijkse verandering van {{priceChange}} % in de waarde van zonne-energie.",
+      specificYieldNote:
+        "De locatiespecifieke opbrengst is de berekende opbrengst per geïnstalleerde kWp op deze locatie, voor de oriëntatie en helling van je dak. Het is niet de totale jaarlijkse productie van het systeem.",
+      investmentNote:
+        "Het investeringsniveau laat ongeveer zien welke investering overeenkomt met de gekozen terugverdientijd, gebaseerd op de opgebouwde economische waarde die de berekening tot dat jaar voorspelt. Het wordt beïnvloed door de aangenomen verandering in de elektriciteitswaarde en door productiedegradatie, en is geen geschatte marktprijs of offerte.",
       assumptionsProduction: "Productie",
       assumptionsEconomy: "Economie",
       assumptionsTechnical: "Techniek",
       lifetimeYearOne: "Economische waarde, jaar 1",
-      lifetimeInvestmentLink: "De opgebouwde economische waarde tot en met jaar {{years}} is waarop het investeringsniveau van ongeveer {{amount}} is gebaseerd - het is dezelfde berekening, alleen afgerond.",
+      lifetimeInvestmentLink:
+        "De opgebouwde economische waarde tot en met jaar {{years}} is waarop het investeringsniveau van ongeveer {{amount}} is gebaseerd - het is dezelfde berekening, alleen afgerond.",
       annualValue: "Economische waarde, jaar 1",
       savings30: "Opgebouwde economische waarde over {{years}} jaar",
-      savings30Method: "Berekeningsperiode: {{years}} jaar. Productiedegradatie: {{degradation}} %/jaar. Verandering elektriciteitsprijs: {{priceChange}} %/jaar.",
-      savings30Note: "De langetermijn economische waarde wordt jaar na jaar berekend met {{degradation}} % jaarlijkse productiedegradatie. De berekening gaat uit van ongewijzigde waarden voor zelf verbruikte en teruggeleverde zonne-energie.",
+      savings30Method:
+        "Berekeningsperiode: {{years}} jaar. Productiedegradatie: {{degradation}} %/jaar. Verandering elektriciteitsprijs: {{priceChange}} %/jaar.",
+      savings30Note:
+        "De langetermijn economische waarde wordt jaar na jaar berekend met {{degradation}} % jaarlijkse productiedegradatie. De berekening gaat uit van ongewijzigde waarden voor zelf verbruikte en teruggeleverde zonne-energie.",
       degradation: "Productiedegradatie",
-      degradationNote: "Het paneelrendement wordt geacht jaarlijks met {{degradation}} % af te nemen. Dit is een berekeningsaanname; de werkelijke degradatie varieert per paneeltype, merk en gebruiksomstandigheden.",
+      degradationNote:
+        "Het paneelrendement wordt geacht jaarlijks met {{degradation}} % af te nemen. Dit is een berekeningsaanname; de werkelijke degradatie varieert per paneeltype, merk en gebruiksomstandigheden.",
       investment: "Investeringsniveau bij gekozen terugverdientijd",
       returnRate: "Rendement %",
       balanceTitle: "Jaarlijkse balans",
@@ -663,9 +717,10 @@ export const nl = {
       savings: "Economische waarde per jaar",
       tilt: "Dakhelling",
       yearsUnit: "jaar",
-      "paybackScenariosTitle": "Investeringsniveau bij verschillende terugverdientijden",
-      "paybackScenarioSelected": "Jouw keuze",
-      "paybackScenariosHelp": "Een kortere terugverdientijd betekent een lagere mogelijke investering. Hier zie je hoe het investeringsniveau verandert als je een kortere of langere terugverdientijd accepteert.",
+      paybackScenariosTitle: "Investeringsniveau bij verschillende terugverdientijden",
+      paybackScenarioSelected: "Jouw keuze",
+      paybackScenariosHelp:
+        "Een kortere terugverdientijd betekent een lagere mogelijke investering. Hier zie je hoe het investeringsniveau verandert als je een kortere of langere terugverdientijd accepteert.",
       acceptedPayback: "Gekozen terugverdientijd",
       maxInvestment: "Investeringsniveau bij gekozen terugverdientijd",
       quotePrice: "Opgegeven offerteprijs",
@@ -696,16 +751,36 @@ export const nl = {
       external: "Externe gegevensbron",
     },
     generated: "Gegenereerd",
-    faqTitle: 'Veelgestelde vragen',
+    faqTitle: "Veelgestelde vragen",
     faqItems: [
-      { q: 'Hoe betrouwbaar is de geschatte zonneproductie?', a: "De berekening is gebaseerd op de zoninstraling op de locatie en de oriëntatie en helling van het dak. De werkelijke productie wordt beïnvloed door factoren zoals weer, schaduw en de technische omstandigheden van de installatie." },
-      { q: 'Wat betekent zelfverbruik?', a: 'Het aandeel zonne-energie dat direct in huis wordt gebruikt. De resterende productie wordt teruggeleverd aan het elektriciteitsnet.' },
-      { q: 'Waarom is zelf verbruikte zonne-energie meer waard dan verkochte zonne-energie?', a: 'Zelf verbruikte zonne-energie vervangt stroom die anders van het net zou zijn gekocht, terwijl verkochte zonne-energie wordt vergoed volgens de voorwaarden voor teruggeleverde stroom.' },
-      { q: 'Wat betekent de prijs bij de gekozen terugverdientijd?', a: "Het laat ongeveer zien hoeveel de installatie mag kosten om overeen te komen met de door jou gekozen terugverdientijd, op basis van de aannames van de berekening. Het is geen geschatte marktprijs." },
-      { q: 'Waarom kan de berekening van de installateur afwijken?', a: 'Verschillende aannames over productie, zelfverbruik, elektriciteitsprijzen, systeemverliezen en toekomstige prijsontwikkeling kunnen tot andere resultaten leiden.' },
-      { q: 'Is de berekening een offerte?', a: 'Nee. Het resultaat is een schatting en dient als basis voor besluitvorming. De werkelijke prijs, productie en het economisch resultaat kunnen afwijken.' },
-      { q: 'Waarom neemt de productie af na verloop van tijd?', a: 'Het rendement van zonnepanelen neemt normaal gesproken elk jaar iets af. De berekening gaat uit van een jaarlijkse degradatie van 0,5 %, waardoor de geschatte productie geleidelijk afneemt over de berekeningsperiode.' }
+      {
+        q: "Hoe betrouwbaar is de geschatte zonneproductie?",
+        a: "De berekening is gebaseerd op de zoninstraling op de locatie en de oriëntatie en helling van het dak. De werkelijke productie wordt beïnvloed door factoren zoals weer, schaduw en de technische omstandigheden van de installatie.",
+      },
+      {
+        q: "Wat betekent zelfverbruik?",
+        a: "Het aandeel zonne-energie dat direct in huis wordt gebruikt. De resterende productie wordt teruggeleverd aan het elektriciteitsnet.",
+      },
+      {
+        q: "Waarom is zelf verbruikte zonne-energie meer waard dan verkochte zonne-energie?",
+        a: "Zelf verbruikte zonne-energie vervangt stroom die anders van het net zou zijn gekocht, terwijl verkochte zonne-energie wordt vergoed volgens de voorwaarden voor teruggeleverde stroom.",
+      },
+      {
+        q: "Wat betekent de prijs bij de gekozen terugverdientijd?",
+        a: "Het laat ongeveer zien hoeveel de installatie mag kosten om overeen te komen met de door jou gekozen terugverdientijd, op basis van de aannames van de berekening. Het is geen geschatte marktprijs.",
+      },
+      {
+        q: "Waarom kan de berekening van de installateur afwijken?",
+        a: "Verschillende aannames over productie, zelfverbruik, elektriciteitsprijzen, systeemverliezen en toekomstige prijsontwikkeling kunnen tot andere resultaten leiden.",
+      },
+      {
+        q: "Is de berekening een offerte?",
+        a: "Nee. Het resultaat is een schatting en dient als basis voor besluitvorming. De werkelijke prijs, productie en het economisch resultaat kunnen afwijken.",
+      },
+      {
+        q: "Waarom neemt de productie af na verloop van tijd?",
+        a: "Het rendement van zonnepanelen neemt normaal gesproken elk jaar iets af. De berekening gaat uit van een jaarlijkse degradatie van 0,5 %, waardoor de geschatte productie geleidelijk afneemt over de berekeningsperiode.",
+      },
     ],
-
   },
 } as const;

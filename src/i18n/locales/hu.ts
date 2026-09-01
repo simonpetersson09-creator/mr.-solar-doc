@@ -14,9 +14,11 @@ export const hu = {
     point1Title: "Kiszámítja a napenergia-potenciálját",
     point1Body: "",
     point2Title: "Méretezi a rendszert",
-    point2Body: "Áramfogyasztását, hálózati csatlakozását és napelemes termelését összesúlyozza a megfelelő mérethez.",
+    point2Body:
+      "Áramfogyasztását, hálózati csatlakozását és napelemes termelését összesúlyozza a megfelelő mérethez.",
     point3Title: "Kiszámítja, mennyit fizethet érte a kívánt megtérülési idő alapján",
-    point3Body: "Ön választja a kívánt megtérülési időt. A Mr. Solar Doc kiszámítja a szükséges befektetési szintet.",
+    point3Body:
+      "Ön választja a kívánt megtérülési időt. A Mr. Solar Doc kiszámítja a szükséges befektetési szintet.",
     point4Title: "Jelentés és döntési alap",
     point4Body: "Lásd a termelést, a gazdaságot és a különböző megtérülési időket egy jelentésben.",
     cta: "Számítás indítása",
@@ -51,7 +53,8 @@ export const hu = {
     noResults: "Nincs találat. Próbáljon meg pontosabb címet megadni.",
     selected: "Kiválasztott helyszín",
     adjustHint: "Húzza el a jelölőt, ha a pozíció nem pontos.",
-    marketUnsupported: "A Mr. Solar Doc egyelőre nem támogatja ezt az országot. A folytatáshoz válasszon egy támogatott országban lévő címet.",
+    marketUnsupported:
+      "A Mr. Solar Doc egyelőre nem támogatja ezt az országot. A folytatáshoz válasszon egy támogatott országban lévő címet.",
     coordinates: "Koordináták",
     country: "Ország",
     region: "Régió",
@@ -102,8 +105,7 @@ export const hu = {
     error: "Nem sikerült napenergia-adatot lekérnünk ehhez a helyszínhez. Nem becsülünk értékeket.",
     errorOverSea:
       "Úgy tűnik, ez a helyszín víz felett van. Helyezze a jelölőt a szárazföldön lévő épületre, és próbálja újra.",
-    errorOutsideCoverage:
-      "Nincs napenergia-adatunk erre a helyszínre. Próbáljon egy közeli címet.",
+    errorOutsideCoverage: "Nincs napenergia-adatunk erre a helyszínre. Próbáljon egy közeli címet.",
     errorSource: "PVGIS: {{message}}",
   },
   consumption: {
@@ -141,14 +143,16 @@ export const hu = {
     upload: {
       title: "Csatolja 12 hónap fogyasztási adatát",
       sectionTitle: "Olvassa be villanyszámláját",
-      sectionHint: "Csatolja villanyszámláját vagy 12 havi fogyasztási adatait, és mi kitöltjük az értékeket Ön helyett.",
+      sectionHint:
+        "Csatolja villanyszámláját vagy 12 havi fogyasztási adatait, és mi kitöltjük az értékeket Ön helyett.",
       description:
         "Töltse fel villanyszámláját vagy saját fogyasztási adatait (PDF, Excel, CSV vagy kép, pl. PNG/JPEG), és automatikusan kitöltjük az éves és havi értékeket.",
       button: "Fájl kiválasztása",
       loading: "Dokumentum beolvasása…",
       successMonthly: "12 havi értéket találtunk, és kitöltöttük Önnek.",
       successAnnual: "Éves fogyasztást találtunk a dokumentumban.",
-      error: "Nem találtunk fogyasztási adatot a dokumentumban. Kérjük, adja meg kézzel az értékeket.",
+      error:
+        "Nem találtunk fogyasztási adatot a dokumentumban. Kérjük, adja meg kézzel az értékeket.",
       fileTypes: "PDF, XLSX, XLS, CSV, TXT vagy kép (PNG, JPEG)",
       dropHint: "Húzza ide a fájlt, vagy",
       dropActive: "Engedje el a fájlt a beolvasáshoz",
@@ -161,7 +165,10 @@ export const hu = {
     title: "Mennyi villamos energiát használ?",
     subtitle: "Nézze meg a villanyszámláját vagy szerződését.",
     or: "vagy",
-    manual: { sectionTitle: "Kézi megadás", sectionHint: "Adja meg éves fogyasztását – nézze meg villanyszámláját vagy szerződését." },
+    manual: {
+      sectionTitle: "Kézi megadás",
+      sectionHint: "Adja meg éves fogyasztását – nézze meg villanyszámláját vagy szerződését.",
+    },
     annual: "Éves fogyasztás",
     annualPlaceholder: "pl. 18 000",
     useMonthly: "Fogyasztás megadása havonta (12 hónap)",
@@ -198,7 +205,8 @@ export const hu = {
       },
     },
     gridAssumption: "A számítás 400 V-os háromfázisú csatlakozást feltételez.",
-    gridAssumptionInfo: "A fő biztosíték elméleti teljesítménye 400 V-os háromfázisú csatlakozásból számítódik. Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
+    gridAssumptionInfo:
+      "A fő biztosíték elméleti teljesítménye 400 V-os háromfázisú csatlakozásból számítódik. Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
     gridCheckHint: "Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
     disclaimerTitle: "Fontos tudnivaló",
     grid: {
@@ -211,7 +219,8 @@ export const hu = {
       serviceType: "Csatlakozás típusa",
       twoPhase: "2-phase (phase-to-phase)",
       splitPhase: "Osztott fázis",
-      unverifiedHint: "Erre az országra nincs ellenőrzött hálózati adatunk. Kérjük, ellenőrizze adatait a mérőóra vagy az elosztószekrény alapján.",
+      unverifiedHint:
+        "Erre az országra nincs ellenőrzött hálózati adatunk. Kérjük, ellenőrizze adatait a mérőóra vagy az elosztószekrény alapján.",
       phase1: "1 fázis",
       phase3: "3 fázis",
       voltage: "Feszültség",
@@ -223,9 +232,11 @@ export const hu = {
     },
     genericTitle: "Milyen elektromos csatlakozása van?",
     title: "Mekkora a fő biztosítéka?",
-    subtitle: "A fő biztosítékot használjuk annak becslésére, hogy normál esetben mekkora inverter csatlakoztatható. A tényleges engedélyezett teljesítményt az áramszolgáltató határozza meg.",
+    subtitle:
+      "A fő biztosítékot használjuk annak becslésére, hogy normál esetben mekkora inverter csatlakoztatható. A tényleges engedélyezett teljesítményt az áramszolgáltató határozza meg.",
     label: "Fő biztosíték",
-    noCountryOptions: "Erre az országra még nincsenek ellenőrzött csatlakozási opcióink. Adja meg fő biztosítékát amperben, és szükség esetén állítsa be alább a hálózati beállításokat.",
+    noCountryOptions:
+      "Erre az országra még nincsenek ellenőrzött csatlakozási opcióink. Adja meg fő biztosítékát amperben, és szükség esetén állítsa be alább a hálózati beállításokat.",
     unverifiedCountryNotice:
       "Ennek az országnak a hálózati szabványát nem ellenőriztük. Ellenőrizze a feszültséget, a fázisokat és a csatlakozás méretét a villanyszámláján vagy az áramszolgáltatónál, majd erősítse meg alább.",
     confirmGrid: "Ellenőriztem a hálózati adatokat",
@@ -295,7 +306,8 @@ export const hu = {
     resetToStandard: "Visszaállítás alapértékre",
     userValueBadge: "Ön adta meg",
     priceScenarioTitle: "Hogyan gondolja, hogy alakulnak a villamosenergia-árak?",
-    priceScenarioHint: "Feltételezés az éves változásról, nem előrejelzés. Az árat a számítási időszak minden évében léptetjük.",
+    priceScenarioHint:
+      "Feltételezés az éves változásról, nem előrejelzés. Az árat a számítási időszak minden évében léptetjük.",
     priceScenarioFlat: "Változatlan",
     priceScenarioCautious: "Óvatos",
     priceScenarioNormal: "Normál",
@@ -306,8 +318,10 @@ export const hu = {
     priceScenarioCustomLabel: "Saját változás (%/év)",
     degradationAssumption: "Technikai degradáció",
     priceScenarioAssumption: "Feltételezett villamosenergia-ár-alakulás",
-    standardValueHint: "A számításhoz használt alapértékek. Módosítsa saját villanyszerződésének értékeire az egyénibb eredményért.",
-    "exportValueInfo": "Add meg a teljes díjazást kWh-ként a hálózatra leadott áramért, beleértve a hálózati előnyöket vagy az exporttal kapcsolatos egyéb díjazást.",
+    standardValueHint:
+      "A számításhoz használt alapértékek. Módosítsa saját villanyszerződésének értékeire az egyénibb eredményért.",
+    exportValueInfo:
+      "Add meg a teljes díjazást kWh-ként a hálózatra leadott áramért, beleértve a hálózati előnyöket vagy az exporttal kapcsolatos egyéb díjazást.",
     editable: "Módosítható",
     editableTooltip: "Feltételezés módosítása",
     fuseLimit: "A fő biztosítékból adódó elméleti teljesítménykorlát",
@@ -326,8 +340,10 @@ export const hu = {
         "Fogyasztása egyértelműen a napos hónapokra koncentrálódik, ezért magasabb panelteljesítmény javasolt az inverterhez képest.",
       gridLimit:
         "A rendszert a fő biztosítéka korlátozza – hálózati csatlakozása nem tesz lehetővé nagyobb teljesítményt.",
-      minimumSize: "Villamosenergia-fogyasztása alacsony, ezért a legkisebb ésszerű rendszert javasoljuk.",
-      maximumSize: "A javaslat a legnagyobb méretre van korlátozva, amelyre ez az alkalmazás méretez.",
+      minimumSize:
+        "Villamosenergia-fogyasztása alacsony, ezért a legkisebb ésszerű rendszert javasoljuk.",
+      maximumSize:
+        "A javaslat a legnagyobb méretre van korlátozva, amelyre ez az alkalmazás méretez.",
     },
     monthlyDataNote:
       "A havi értékek nem mutatják, hogy a villamos energiát nappal vagy éjjel használják-e. Méretezési jelzésként szolgálnak, nem bizonyítékként arra, mennyi napenergiát tud saját maga felhasználni.",
@@ -348,8 +364,10 @@ export const hu = {
         "A rendszert a fő biztosítéka korlátozza – hálózati csatlakozása nem tesz lehetővé nagyobb teljesítményt.",
       inverterLimit:
         "A méret a csatlakozásához legjobban illeszkedő legnagyobb inverterhez igazodik.",
-      minimumSize: "Villamosenergia-fogyasztása alacsony, ezért a legkisebb ésszerű rendszert javasoljuk.",
-      maximumSize: "A javaslat a legnagyobb méretre van korlátozva, amelyre ez az alkalmazás méretez.",
+      minimumSize:
+        "Villamosenergia-fogyasztása alacsony, ezért a legkisebb ésszerű rendszert javasoljuk.",
+      maximumSize:
+        "A javaslat a legnagyobb méretre van korlátozva, amelyre ez az alkalmazás méretez.",
     },
     selfConsumption: "Saját fogyasztású napenergia",
     exported: "Visszatáplált napenergia",
@@ -362,8 +380,7 @@ export const hu = {
     selfConsumptionValue: "Saját fogyasztású napenergia",
     exportValue: "Visszatáplált napenergia",
     totalAnnualBenefit: "Becsült teljes éves haszon",
-    economicsDisclaimer:
-      "Ezek az összegek számítási feltételezések, nem garantált jövőbeli árak.",
+    economicsDisclaimer: "Ezek az összegek számítási feltételezések, nem garantált jövőbeli árak.",
     paybackTitle: "Válassza ki a megtérülési időt",
     paybackSubtitle:
       "Ön dönti el, milyen gyorsan szeretné visszakapni a befektetést. Kiszámítjuk, ez mekkora telepítési költségnek felel meg.",
@@ -382,25 +399,31 @@ export const hu = {
     priceExplainer:
       "A saját fogyasztású napenergia kiváltja azt az áramot, amelyet egyébként a hálózatból vásárolt volna. A visszatáplált napenergia ezzel szemben kompenzációt kap a hálózatba táplált áramért.",
     paybackYears: "{{years}} év",
-    "paybackScenariosTitle": "Beruházási szint különböző megtérülési idők mellett",
-    "paybackScenarioSelected": "A te választásod",
-    "paybackScenariosHelp": "A rövidebb megtérülési idő alacsonyabb lehetséges beruházást jelent. Itt láthatod, hogyan változik a beruházási szint, ha rövidebb vagy hosszabb megtérülési időt fogadsz el.",
+    paybackScenariosTitle: "Beruházási szint különböző megtérülési idők mellett",
+    paybackScenarioSelected: "A te választásod",
+    paybackScenariosHelp:
+      "A rövidebb megtérülési idő alacsonyabb lehetséges beruházást jelent. Itt láthatod, hogyan változik a beruházási szint, ha rövidebb vagy hosszabb megtérülési időt fogadsz el.",
     paybackInfo:
       "Az egyszerű megtérülés megmutatja, hány évnek felel meg a becsült éves gazdasági érték a befektetéshez képest. Nem veszi figyelembe a jövőbeli áramár-változásokat, a finanszírozási költséget, az inflációt, a karbantartást vagy a diszkontálást.",
     maxInvestment: "Befektetési szint a választott megtérülési időnél",
     productionCostTitle: "Mennyibe kerülhet a napenergia kWh-ja?",
     investmentLevelInfoLabel: "További információ",
-    investmentLevelInfo: "Megmutatja, hozzávetőlegesen milyen befektetési költség felel meg a kiválasztott megtérülési időnek. Nem a telepítés tényleges költségének becslése. A tényleges ár többek között a tetőtől, a telepítéstől, a komponensektől és a beszállítótól függ.",
+    investmentLevelInfo:
+      "Megmutatja, hozzávetőlegesen milyen befektetési költség felel meg a kiválasztott megtérülési időnek. Nem a telepítés tényleges költségének becslése. A tényleges ár többek között a tetőtől, a telepítéstől, a komponensektől és a beszállítótól függ.",
     systemSizeInfoLabel: "További információ",
-    systemSizeInfo: "A számítás becslés, és iránymutatásként kell kezelni. A tényleges termelés, saját fogyasztás, villamosenergia-ár, kompenzáció, telepítési költség és pénzügyi eredmény eltérhet. Az eredmény nem minősül árajánlatnak vagy garanciának.",
+    systemSizeInfo:
+      "A számítás becslés, és iránymutatásként kell kezelni. A tényleges termelés, saját fogyasztás, villamosenergia-ár, kompenzáció, telepítési költség és pénzügyi eredmény eltérhet. Az eredmény nem minősül árajánlatnak vagy garanciának.",
     productionCostInfoLabel: "További információ",
-    productionCostInfo: "Az érték a választott megtérülési időhöz illeszkedő maximális beruházáson alapul, elosztva a rendszer által a számítási időszakban várhatóan termelt összes árammal. Ez nem a telepítés piaci ára.",
-    productionCostExplainer: "A rendszer költségét elosztjuk a teljes számítási időszakra becsült termeléssel.",
+    productionCostInfo:
+      "Az érték a választott megtérülési időhöz illeszkedő maximális beruházáson alapul, elosztva a rendszer által a számítási időszakban várhatóan termelt összes árammal. Ez nem a telepítés piaci ára.",
+    productionCostExplainer:
+      "A rendszer költségét elosztjuk a teljes számítási időszakra becsült termeléssel.",
     productionCostLabel: "Kerülhet",
     productionCostValueLabel: "Érték Önnek",
     productionCostDifference: "Különbség",
     productionCostBasis: "{{investment}} és {{production}} kWh alapján, {{years}} év alatt.",
-    productionCostHigherValue: "Ebben a számításban minden kWh többet ér, mint amennyibe a termelése kerül.",
+    productionCostHigherValue:
+      "Ebben a számításban minden kWh többet ér, mint amennyibe a termelése kerül.",
     productionCostUnavailable: "A jelenlegi adatokkal ezt nem tudjuk kiszámítani.",
     perKwh: "{{amount}}/kWh",
     maxInvestmentApprox: "kb. {{amount}}",
@@ -408,33 +431,41 @@ export const hu = {
       "Ahhoz, hogy nagyjából {{years}} év egyszerű megtérülést érjen el, a telepítés legfeljebb kb. {{amount}}-ba kerülhet.",
     maxInvestmentNote:
       "Az összeg az Ön megadott adatai és a számítási feltételezések alapján készül – nem árajánlat vagy piaci árbecslés.",
-    missingSelfConsumedValue: "Hiányzik a villamosenergia-ár. Adja meg, mennyit fizet kWh-nként, hogy megtekinthesse a saját fogyasztású napenergia értékét.",
-    missingExportValue: "Hiányzik a visszatáplálási kompenzáció. Adja meg, mennyit kap visszatáplált kWh-nként a visszatáplálási bevétel kiszámításához.",
-    missingInstallationCost: "Hiányzik a telepítési költség. Adja meg árajánlatát vagy becsült befektetését.",
+    missingSelfConsumedValue:
+      "Hiányzik a villamosenergia-ár. Adja meg, mennyit fizet kWh-nként, hogy megtekinthesse a saját fogyasztású napenergia értékét.",
+    missingExportValue:
+      "Hiányzik a visszatáplálási kompenzáció. Adja meg, mennyit kap visszatáplált kWh-nként a visszatáplálási bevétel kiszámításához.",
+    missingInstallationCost:
+      "Hiányzik a telepítési költség. Adja meg árajánlatát vagy becsült befektetését.",
     economicsIncomplete: "Hiányos alap",
     enterValues: "Értékek megadása",
     missingMarketValues:
       "Erre az országra nincs ellenőrzött alapértékünk. Kérjük, adja meg alább saját maga az értékeket.",
-    economicsRequiresPrice: "A gazdasági számításhoz villamosenergia-ár szükséges. Adja meg árait a megtakarítás, a megtérülés és a termelési költség megtekintéséhez.",
+    economicsRequiresPrice:
+      "A gazdasági számításhoz villamosenergia-ár szükséges. Adja meg árait a megtakarítás, a megtérülés és a termelési költség megtekintéséhez.",
     economicsRequiresPriceShort: "Villamosenergia-ár szükséges",
     gridUnverifiedTitle: "Hálózati adatok nincsenek ellenőrizve",
-    gridUnverifiedWarning: "A hálózati feltételezések általános értékeken alapulnak, és telepítés előtt helyben ellenőrizni kell őket.",
+    gridUnverifiedWarning:
+      "A hálózati feltételezések általános értékeken alapulnak, és telepítés előtt helyben ellenőrizni kell őket.",
     gridProfileStatusLabel: "Hálózati profil",
     gridProfileStatusVerified: "Ellenőrzött",
     gridProfileStatusGeneric: "Általános (nem ellenőrzött)",
     gridProfileStatusUnsupported: "Kézi (nem ellenőrzött)",
     calcErrorTitle: "A számítás nem végezhető el",
-    calcErrorBody: "Néhány megadott adattal nem lehet számolni. Menjen vissza, és ellenőrizze a fogyasztást, a hálózati csatlakozást és a feltételezéseket.",
+    calcErrorBody:
+      "Néhány megadott adattal nem lehet számolni. Menjen vissza, és ellenőrizze a fogyasztást, a hálózati csatlakozást és a feltételezéseket.",
     currency: "Pénznem",
     economicValue: "Alapvető gazdasági érték",
     perYear: "évente",
     adjustAssumptions: "Feltételezések módosítása",
-    adjustAssumptionsHint: "Módosítsa a saját fogyasztást, a villamosenergia-árakat és a kívánt megtérülési időt.",
+    adjustAssumptionsHint:
+      "Módosítsa a saját fogyasztást, a villamosenergia-árakat és a kívánt megtérülési időt.",
     showCalculation: "Számítás megjelenítése",
     hideCalculation: "Számítás elrejtése",
     adjustSplit: "Saját fogyasztás módosítása",
     selfConsumptionEstimatedLabel: "Becsült saját felhasználás",
-    selfConsumptionEstimatedHelp: "Az áramfogyasztása és a rendszer számított termelése alapján becsülve. Az értéket kézzel módosíthatja.",
+    selfConsumptionEstimatedHelp:
+      "Az áramfogyasztása és a rendszer számított termelése alapján becsülve. Az értéket kézzel módosíthatja.",
     selfConsumptionUserAssumption: "Az Ön feltételezése",
     selfConsumptionAssumption:
       "A saját fogyasztás a kiválasztott arányon alapuló feltételezés, és kézzel módosítható.",
@@ -456,9 +487,11 @@ export const hu = {
     calculatedAt: "Számítás dátuma",
     noCalculation: "Nem található számítás. Kezdje újra a címtől.",
     locked: "Ez a számítás zárolva van. Az eredmény megtekintéséhez fejezze be a vásárlást.",
-    calculationUnavailable: "The calculation could not be completed. Please check the roof details and try again.",
+    calculationUnavailable:
+      "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "A csatlakozás túl kicsi",
-    gridTooSmallBody: "A jelenlegi csatlakozása ({{maxKw}} kW) túl kicsi a legkisebb támogatott rendszermérethez ({{minKw}} kW inverter). A folytatáshoz növelje a főbiztosítékot vagy a szerződött teljesítményt.",
+    gridTooSmallBody:
+      "A jelenlegi csatlakozása ({{maxKw}} kW) túl kicsi a legkisebb támogatott rendszermérethez ({{minKw}} kW inverter). A folytatáshoz növelje a főbiztosítékot vagy a szerződött teljesítményt.",
   },
   units: {
     kwhPerYear: "kWh/év",
@@ -499,7 +532,8 @@ export const hu = {
     verifying: "Vásárlásának megerősítése…",
     cancelled: "A vásárlás megszakadt. Próbálja újra.",
     failed: "A vásárlás nem sikerült. Nem terheltük meg.",
-    retry: "Most nem tudtuk megerősíteni a vásárlást. Semmi sem veszett el – automatikusan feloldódik, amint a kapcsolat helyreáll.",
+    retry:
+      "Most nem tudtuk megerősíteni a vásárlást. Semmi sem veszett el – automatikusan feloldódik, amint a kapcsolat helyreáll.",
     appOnly: "A vásárlás az alkalmazásban, az Apple-fiókjával történik, böngészőben nem érhető el.",
     appleNote: "Az App Store kezeli.",
   },
@@ -565,8 +599,10 @@ export const hu = {
         "Az elméleti AC-teljesítmény az Ön kiválasztott hálózati csatlakozásán alapul: {{phases}} fázis, {{voltage}} V, számítás: {{factor}} × {{voltage}} V × fő biztosíték. A ténylegesen engedélyezett csatlakozási vagy visszatáplálási teljesítményt az áramszolgáltató vagy az adott telepítés korlátozhatja.",
       gridMethodNote:
         "Az elméleti AC-teljesítmény 400 V-os háromfázisú alapon számított: 1,73 × 400 V × fő biztosíték. A ténylegesen engedélyezett csatlakozási vagy visszatáplálási teljesítményt az áramszolgáltató vagy az adott telepítés korlátozhatja.",
-      gridMethodNoteContracted: "A ténylegesen engedélyezett csatlakozási vagy visszatáplálási teljesítményt az áramszolgáltató vagy az adott telepítés korlátozhatja.",
-      savings30Short: "{{degradation}} %-os éves termelési degradációval és változatlan villamosenergia-értékekkel számítva.",
+      gridMethodNoteContracted:
+        "A ténylegesen engedélyezett csatlakozási vagy visszatáplálási teljesítményt az áramszolgáltató vagy az adott telepítés korlátozhatja.",
+      savings30Short:
+        "{{degradation}} %-os éves termelési degradációval és változatlan villamosenergia-értékekkel számítva.",
       solarShareTitle: "Az Ön napenergiája",
       selfConsumptionRate: "Saját fogyasztási arány (a napelemes termelés aránya)",
       selfSufficiencyRate: "Önellátási arány (a fogyasztás aránya)",
@@ -581,7 +617,8 @@ export const hu = {
       selfConsumptionSource_simulated: "fogyasztási profilból becsülve",
       longTermChartTitle: "Gazdasági érték idővel",
       keyAssumptions: "Fő számítási feltételezések",
-      priceMethodNote: "A villamosenergia-értékek számítási feltételezések. A saját fogyasztású és visszatáplált napenergia tényleges értéke villanyszerződésétől, díjaitól, adóitól, szabályaitól és a piaci feltételektől függ.",
+      priceMethodNote:
+        "A villamosenergia-értékek számítási feltételezések. A saját fogyasztású és visszatáplált napenergia tényleges értéke villanyszerződésétől, díjaitól, adóitól, szabályaitól és a piaci feltételektől függ.",
       "valueSource_standard-value": "Alapérték",
       "valueSource_user-override": "Ön adta meg",
       priceChange: "Villamosenergia-ár változása",
@@ -601,28 +638,37 @@ export const hu = {
       lifetimeColProduction: "Termelés (kWh)",
       lifetimeColValue: "Érték/év",
       lifetimeColCumulative: "Halmozott",
-      lifetimeNote: "A számítás a becsült termelés, a feltételezett degradáció és a választott villamosenergia-ár-alakulás alapján mutatja be a becsült alakulást {{years}} év alatt. A tényleges gazdasági eredmény és termelés idővel eltérhet.",
+      lifetimeNote:
+        "A számítás a becsült termelés, a feltételezett degradáció és a választott villamosenergia-ár-alakulás alapján mutatja be a becsült alakulást {{years}} év alatt. A tényleges gazdasági eredmény és termelés idővel eltérhet.",
       yearShort: "Év",
       reportId: "Jelentésazonosító",
       uncertaintyTitle: "Mi befolyásolhatja az eredményt?",
       uncertaintyText:
         "A tényleges napelemes termelés és gazdasági eredmény eltérhet a számítástól. Az eredményt befolyásolja az időjárási ingadozás, az árnyékolás, a panelek tájolása és dőlésszöge, a tényleges villamosenergia-fogyasztás és annak időzítése, a villamosenergia-árak, a visszatáplálási kompenzáció és a rendszer teljesítménye idővel.",
       panelPower: "Panel teljesítménye",
-      summaryMethodFlat: "Számítva {{degradation}} % éves termeléscsökkenéssel és változatlan értékkel a saját felhasználású és az eladott napenergiára.",
-      summaryMethodTrend: "Számítva {{degradation}} % éves termeléscsökkenéssel és a napenergia értékének feltételezett {{priceChange}} %-os éves változásával.",
-      specificYieldNote: "A termelési potenciál az adott helyszín számított termelése telepített kWp-onként, a tető tájolása és dőlése mellett. Ez nem a rendszer teljes éves termelése.",
-      investmentNote: "A beruházási szint azt mutatja, hozzávetőleg mekkora beruházás felel meg a választott megtérülési időnek a számítás adott évig felhalmozott gazdasági értéke alapján. Ez nem becsült piaci ár és nem árajánlat.",
+      summaryMethodFlat:
+        "Számítva {{degradation}} % éves termeléscsökkenéssel és változatlan értékkel a saját felhasználású és az eladott napenergiára.",
+      summaryMethodTrend:
+        "Számítva {{degradation}} % éves termeléscsökkenéssel és a napenergia értékének feltételezett {{priceChange}} %-os éves változásával.",
+      specificYieldNote:
+        "A termelési potenciál az adott helyszín számított termelése telepített kWp-onként, a tető tájolása és dőlése mellett. Ez nem a rendszer teljes éves termelése.",
+      investmentNote:
+        "A beruházási szint azt mutatja, hozzávetőleg mekkora beruházás felel meg a választott megtérülési időnek a számítás adott évig felhalmozott gazdasági értéke alapján. Ez nem becsült piaci ár és nem árajánlat.",
       assumptionsProduction: "Termelés",
       assumptionsEconomy: "Gazdaság",
       assumptionsTechnical: "Műszaki adatok",
       lifetimeYearOne: "Gazdasági érték, 1. év",
-      lifetimeInvestmentLink: "A {{years}}. évig felhalmozott gazdasági érték az alapja a körülbelül {{amount}} beruházási szintnek - ugyanaz a számítás, csak kerekítve.",
+      lifetimeInvestmentLink:
+        "A {{years}}. évig felhalmozott gazdasági érték az alapja a körülbelül {{amount}} beruházási szintnek - ugyanaz a számítás, csak kerekítve.",
       annualValue: "Becsült gazdasági érték",
       savings30: "Teljes gazdasági érték {{years}} év alatt",
-      savings30Method: "Számítási időszak: {{years}} év. Termelési degradáció: {{degradation}} %/év. Villamosenergia-ár-változás: {{priceChange}} %/év.",
-      savings30Note: "A hosszú távú gazdasági érték évről évre {{degradation}} %-os éves termeléscsökkenéssel van kiszámítva. A számítás a saját fogyasztású és visszatáplált napenergia változatlan értékeit feltételezi.",
+      savings30Method:
+        "Számítási időszak: {{years}} év. Termelési degradáció: {{degradation}} %/év. Villamosenergia-ár-változás: {{priceChange}} %/év.",
+      savings30Note:
+        "A hosszú távú gazdasági érték évről évre {{degradation}} %-os éves termeléscsökkenéssel van kiszámítva. A számítás a saját fogyasztású és visszatáplált napenergia változatlan értékeit feltételezi.",
       degradation: "Termelési degradáció",
-      degradationNote: "A panelek teljesítménye évente {{degradation}} %-kal csökken feltételezésünk szerint. Ez számítási feltételezés; a tényleges degradáció panel típusonként, márkánként és üzemeltetési körülményenként eltér.",
+      degradationNote:
+        "A panelek teljesítménye évente {{degradation}} %-kal csökken feltételezésünk szerint. Ez számítási feltételezés; a tényleges degradáció panel típusonként, márkánként és üzemeltetési körülményenként eltér.",
       investment: "Befektetési szint a választott megtérülési időnél",
       returnRate: "Hozam %",
       balanceTitle: "Éves mérleg",
@@ -666,9 +712,10 @@ export const hu = {
       savings: "Éves gazdasági érték",
       tilt: "Tető dőlésszöge",
       yearsUnit: "év",
-      "paybackScenariosTitle": "Beruházási szint különböző megtérülési idők mellett",
-      "paybackScenarioSelected": "A te választásod",
-      "paybackScenariosHelp": "A rövidebb megtérülési idő alacsonyabb lehetséges beruházást jelent. Itt láthatod, hogyan változik a beruházási szint, ha rövidebb vagy hosszabb megtérülési időt fogadsz el.",
+      paybackScenariosTitle: "Beruházási szint különböző megtérülési idők mellett",
+      paybackScenarioSelected: "A te választásod",
+      paybackScenariosHelp:
+        "A rövidebb megtérülési idő alacsonyabb lehetséges beruházást jelent. Itt láthatod, hogyan változik a beruházási szint, ha rövidebb vagy hosszabb megtérülési időt fogadsz el.",
       acceptedPayback: "Választott megtérülési idő",
       maxInvestment: "Befektetési szint a választott megtérülési időnél",
       quotePrice: "Megadott árajánlat",
@@ -699,16 +746,36 @@ export const hu = {
       external: "Külső adatforrás",
     },
     generated: "Létrehozva",
-    faqTitle: 'Gyakran ismételt kérdések',
+    faqTitle: "Gyakran ismételt kérdések",
     faqItems: [
-      { q: 'Mennyire megbízható a becsült napelemes termelés?', a: "A számítás a helyszín napsugárzásán, valamint a tető tájolásán és dőlésszögén alapul. A tényleges termelést olyan tényezők befolyásolják, mint az időjárás, az árnyékolás és a telepítés műszaki állapota." },
-      { q: 'Mit jelent a saját fogyasztás?', a: 'A napenergia azon része, amelyet közvetlenül az otthonban használnak fel. A fennmaradó termelést a villamosenergia-hálózatba táplálják.' },
-      { q: 'Miért ér többet a saját fogyasztású napenergia, mint az eladott napenergia?', a: 'A saját fogyasztású napenergia kiváltja azt az áramot, amelyet egyébként a hálózatból vásárolt volna, míg az eladott napenergiát a visszatáplálásra vonatkozó feltételek szerint kompenzálják.' },
-      { q: 'Mit jelent a választott megtérülési időhöz tartozó ár?', a: "Megközelítőleg megmutatja, mennyibe kerülhet a telepítés ahhoz, hogy megfeleljen a kiválasztott megtérülési időnek, a számítás feltételezései alapján. Nem becsült piaci ár." },
-      { q: "Miért térhet el a kivitelező számítása?", a: 'A termelésre, a saját fogyasztásra, a villamosenergia-árakra, a rendszerveszteségekre és a jövőbeli áralakulásra vonatkozó eltérő feltételezések eltérő eredményt adhatnak.' },
-      { q: 'A számítás árajánlat?', a: 'Nem. Az eredmény egy becslés, és döntéshozatali alapként szolgál. A tényleges ár, termelés és gazdasági eredmény eltérhet.' },
-      { q: 'Miért csökken a termelés idővel?', a: 'A napelemek hatásfoka az évek során általában kismértékben csökken. A számítás évi 0,5 %-os degradációt feltételez, ami azt jelenti, hogy a becsült termelés fokozatosan csökken a számítási időszak alatt.' }
+      {
+        q: "Mennyire megbízható a becsült napelemes termelés?",
+        a: "A számítás a helyszín napsugárzásán, valamint a tető tájolásán és dőlésszögén alapul. A tényleges termelést olyan tényezők befolyásolják, mint az időjárás, az árnyékolás és a telepítés műszaki állapota.",
+      },
+      {
+        q: "Mit jelent a saját fogyasztás?",
+        a: "A napenergia azon része, amelyet közvetlenül az otthonban használnak fel. A fennmaradó termelést a villamosenergia-hálózatba táplálják.",
+      },
+      {
+        q: "Miért ér többet a saját fogyasztású napenergia, mint az eladott napenergia?",
+        a: "A saját fogyasztású napenergia kiváltja azt az áramot, amelyet egyébként a hálózatból vásárolt volna, míg az eladott napenergiát a visszatáplálásra vonatkozó feltételek szerint kompenzálják.",
+      },
+      {
+        q: "Mit jelent a választott megtérülési időhöz tartozó ár?",
+        a: "Megközelítőleg megmutatja, mennyibe kerülhet a telepítés ahhoz, hogy megfeleljen a kiválasztott megtérülési időnek, a számítás feltételezései alapján. Nem becsült piaci ár.",
+      },
+      {
+        q: "Miért térhet el a kivitelező számítása?",
+        a: "A termelésre, a saját fogyasztásra, a villamosenergia-árakra, a rendszerveszteségekre és a jövőbeli áralakulásra vonatkozó eltérő feltételezések eltérő eredményt adhatnak.",
+      },
+      {
+        q: "A számítás árajánlat?",
+        a: "Nem. Az eredmény egy becslés, és döntéshozatali alapként szolgál. A tényleges ár, termelés és gazdasági eredmény eltérhet.",
+      },
+      {
+        q: "Miért csökken a termelés idővel?",
+        a: "A napelemek hatásfoka az évek során általában kismértékben csökken. A számítás évi 0,5 %-os degradációt feltételez, ami azt jelenti, hogy a becsült termelés fokozatosan csökken a számítási időszak alatt.",
+      },
     ],
-
   },
 } as const;
