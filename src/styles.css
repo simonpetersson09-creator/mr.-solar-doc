@@ -260,29 +260,29 @@ html[data-native="true"] {
   box-shadow: var(--shadow-card);
 }
 
-/* Lacquered brand-yellow hero surface: a barely-there sheen, no 3D. */
+/* Saturated brand-yellow result surface: #FFDC38 with a barely-there sheen. */
 @utility hero-metric {
   position: relative;
   overflow: hidden;
   background-color: var(--brand-yellow);
   background-image: linear-gradient(
-    160deg,
-    oklch(1 1 0 / 0.32) 0%,
-    oklch(1 0 0 / 0) 45%,
-    oklch(0.2185 0.0066 0.7 / 0.06) 100%
+    170deg,
+    oklch(1 0 0 / 0.16) 0%,
+    oklch(1 0 0 / 0) 46%,
+    oklch(0.2185 0.0066 0.7 / 0.05) 100%
   );
   color: var(--brand-black);
-  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.55);
+  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
   box-shadow:
-    inset 0 1px 0 oklch(1 0 0 / 0.4),
-    0 18px 44px -20px oklch(0.2185 0.0066 0.7 / 0.35);
+    inset 0 1px 0 oklch(1 0 0 / 0.35),
+    0 18px 44px -20px oklch(0.2185 0.0066 0.7 / 0.3);
 }
 
 /* Frosted panel that sits on top of the yellow hero and card surfaces. */
 @utility glass-panel {
-  background-color: oklch(1 1 0 / 0.42);
-  backdrop-filter: blur(16px) saturate(140%);
-  border: 1px solid oklch(0.2185 0.0066 0.7 / 0.12);
+  background-color: var(--surface-cream-strong);
+  backdrop-filter: blur(16px) saturate(120%);
+  border: 1px solid oklch(0.2185 0.0066 0.7 / 0.1);
 }
 
 /* Frosted floating sheet used over the full-bleed map on the first page. */
@@ -293,23 +293,28 @@ html[data-native="true"] {
   box-shadow: 0 8px 32px oklch(0.2185 0.0066 0.7 / 0.1);
 }
 
-/* Primary information card: one clean #FFDC38 plane with a discreet top
-   highlight and a soft shadow. The sheen is felt, not seen. */
+/* Input card: a softer, lighter yellow so it sits one level below the
+   saturated #FFDC38 result cards. The gradient stays within yellow. */
 @utility glass-primary {
-  background-color: var(--brand-yellow);
+  background-color: var(--brand-yellow-soft);
   background-image: linear-gradient(
     170deg,
-    oklch(1 1 0 / 0.3) 0%,
-    oklch(1 0 0 / 0) 44%,
-    oklch(0.2185 0.0066 0.7 / 0.05) 100%
+    oklch(1 0 0 / 0.18) 0%,
+    oklch(1 0 0 / 0) 48%,
+    oklch(0.2185 0.0066 0.7 / 0.04) 100%
   );
   color: var(--brand-black);
-  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.6);
+  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.4);
   box-shadow:
     inset 0 1px 0 oklch(1 0 0 / 0.4),
-    0 14px 34px -18px oklch(0.2185 0.0066 0.7 / 0.32);
+    0 14px 34px -20px oklch(0.2185 0.0066 0.7 / 0.26);
 }
 
+/* Promotes an input-level surface to a saturated #FFDC38 result surface. */
+@utility surface-strong {
+  background-color: var(--brand-yellow);
+  border-color: oklch(0.8296 0.1697 91.8 / 0.5);
+}
 
 /* Lacquered brand-yellow surface for key figures, summary cards and info
    boxes. Reads as one clean yellow plane; the sheen is felt, not seen. */
@@ -318,16 +323,17 @@ html[data-native="true"] {
   background-color: var(--brand-yellow);
   background-image: linear-gradient(
     170deg,
-    oklch(1 1 0 / 0.28) 0%,
-    oklch(1 0 0 / 0) 42%,
+    oklch(1 0 0 / 0.16) 0%,
+    oklch(1 0 0 / 0) 44%,
     oklch(0.2185 0.0066 0.7 / 0.05) 100%
   );
   color: var(--brand-black);
-  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.55);
+  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
   box-shadow:
-    inset 0 1px 0 oklch(1 0 0 / 0.35),
-    0 10px 28px -12px oklch(0.2185 0.0066 0.7 / 0.28);
+    inset 0 1px 0 oklch(1 0 0 / 0.32),
+    0 10px 28px -14px oklch(0.2185 0.0066 0.7 / 0.24);
 }
+
 
 /* Very subtle lacquer for large black graphic elements and display numbers.
    Body copy never uses this — plain foreground keeps maximum legibility. */
