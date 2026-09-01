@@ -388,6 +388,51 @@ export function validateCalculationResult(result: CalculationResult): Calculatio
     );
   }
 
+  // The recommended system must be physically buildable: a whole number of
+  // modules, and a DC power that is exactly that number times the module size.
+  if (finite(result.panelCount) && !Number.isInteger(result.panelCount)) {
+    issues.push(
+      issue("invalid-panel-quantisation", "panelCount", "Panel count must be a whole number"),
+    );
+  }
+  if (
+    finite(result.panelCount) &&
+    finite(result.panelPowerKwp) &&
+    finite(result.installedKwp)
+  ) {
+    if (result.panelPowerKwp <= 0) {
+      issues.push(
+        issue("invalid-panel-quantisation", "panelPowerKwp", "Panel power must be > 0"),
+      );
+    } else if (
+      Math.abs(result.installedKwp - result.panelCount * result.panelPowerKwp) >
+      PANEL_QUANTISATION_TOLERANCE_KWP
+    ) {
+      issues.push(
+        issue(
+          "invalid-panel-quantisation",
+          "installedKwp",
+          `installedKwp ${result.installedKwp} does not equal ${result.panelCount} x ${result.panelPowerKwp}`,
+        ),
+      );
+    }
+  }
+  if (
+    finite(result.dcAcRatio) &&
+    finite(result.installedKwp) &&
+    finite(result.inverterKw) &&
+    result.inverterKw > 0 &&
+    Math.abs(result.dcAcRatio - result.installedKwp / result.inverterKw) > RATIO_TOLERANCE
+  ) {
+    issues.push(
+      issue(
+        "dc-ac-above-absolute-max",
+        "dcAcRatio",
+        "dcAcRatio must equal installedKwp / inverterKw",
+      ),
+    );
+  }
+
   // --- energy --------------------------------------------------------------
   const production = result.annualProductionKwh;
   const selfConsumed = result.selfConsumption.kwh;
