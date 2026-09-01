@@ -415,6 +415,13 @@ export function runCalculation(input: CalculationInput): CalculationOutcome {
   try {
     return { status: "success", result: calculateSolarSystem(input) };
   } catch (error) {
+    if (error instanceof GridTooSmallError) {
+      return {
+        status: "grid-too-small",
+        maxAcPowerKw: error.maxAcPowerKw,
+        minimumSupportedInverterKw: error.minimumSupportedInverterKw,
+      };
+    }
     if (error instanceof CalculationValidationError) {
       const phase = error.message.startsWith("Calculation input") ? "input" : "result";
       return { status: "validation-error", phase, issues: error.issues };
