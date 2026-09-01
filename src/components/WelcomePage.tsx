@@ -43,19 +43,19 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           <h1 className="font-display text-xl font-bold leading-tight tracking-tight">
             {t("welcome.title")}
           </h1>
-          <p className="mx-auto mt-2 max-w-md text-xs font-medium leading-relaxed opacity-80">
+          <p className="mx-auto mt-1.5 max-w-md text-xs font-medium leading-snug opacity-80">
             {t("welcome.subtitle")}
           </p>
         </section>
 
-        <ul className="mt-6 space-y-4">
+        <ul className="mt-4 space-y-2.5">
           {POINTS.map(({ icon: Icon, titleKey, bodyKey }) => (
-            <li key={titleKey} className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-3 text-start">
+            <li key={titleKey} className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-2.5 text-start">
               <Icon className="mt-0.5 size-4 shrink-0 opacity-80" strokeWidth={1.75} aria-hidden="true" />
               <div className="min-w-0">
-                <p className="text-xs font-bold leading-snug">{t(titleKey)}</p>
+                <p className="text-xs font-bold leading-tight">{t(titleKey)}</p>
                 {t(bodyKey) ? (
-                  <p className="mt-1 text-xs leading-relaxed opacity-70">{t(bodyKey)}</p>
+                  <p className="mt-0.5 text-xs leading-snug opacity-70">{t(bodyKey)}</p>
                 ) : null}
               </div>
             </li>
