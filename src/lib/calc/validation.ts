@@ -23,6 +23,8 @@ export const ENERGY_BALANCE_TOLERANCE_KWH = 1e-3;
 export const RATIO_TOLERANCE = 1e-6;
 /** Grid ceiling slack in kW: inverter catalogues are rounded, the grid is not. */
 export const GRID_LIMIT_TOLERANCE_KW = 1e-6;
+/** Slack when checking installedKwp against panelCount x panelPowerKwp. */
+export const PANEL_QUANTISATION_TOLERANCE_KWP = 1e-6;
 
 /**
  * Specific yield sanity window, kWh per kWp and year.
@@ -60,6 +62,7 @@ export type CalculationIssueCode =
   | "invalid-inverter-power"
   | "inverter-above-grid-limit"
   | "dc-ac-above-absolute-max"
+  | "invalid-panel-quantisation"
   | "negative-energy"
   | "energy-balance-mismatch"
   | "currency-mismatch"
