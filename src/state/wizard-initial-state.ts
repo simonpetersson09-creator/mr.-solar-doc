@@ -21,7 +21,7 @@ import type { ConnectionCapacity } from "@/config/connection-capacity";
  * Persisted schema version. Bump whenever the shape or the meaning of a
  * persisted field changes, and add the matching step in `wizard-migrations`.
  */
-export const WIZARD_STORAGE_VERSION = 4;
+export const WIZARD_STORAGE_VERSION = 5;
 
 export interface WizardData {
   location: SiteLocation | null;
@@ -53,6 +53,8 @@ export interface WizardData {
   customPriceChangePercent: number;
   quotePrice: number | null;
   currentStep: number;
+  /** True once the user has passed the welcome screen and entered the wizard. */
+  hasStarted: boolean;
 }
 
 export const initialWizardState: WizardData = {
@@ -85,4 +87,5 @@ export const initialWizardState: WizardData = {
   customPriceChangePercent: 2,
   quotePrice: null,
   currentStep: 1,
+  hasStarted: false,
 };

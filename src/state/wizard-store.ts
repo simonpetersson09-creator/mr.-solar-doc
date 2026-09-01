@@ -94,6 +94,7 @@ export interface WizardState {
   /** Current wizard step (1–4). Persists across navigation so the user can
    *  return from the result page to the exact step they want to edit. */
   currentStep: number;
+  hasStarted: boolean;
   setLocation: (location: SiteLocation | null) => void;
   setRoof: (
     orientation: Orientation,
@@ -141,6 +142,7 @@ export interface WizardState {
   setCustomPriceChangePercent: (percent: number) => void;
   setQuotePrice: (price: number | null) => void;
   setCurrentStep: (step: number) => void;
+  setStarted: (started: boolean) => void;
   reset: () => void;
 }
 
@@ -335,6 +337,7 @@ export const useWizardStore = create<WizardState>()(
         }),
       setQuotePrice: (price) => set({ quotePrice: price }),
       setCurrentStep: (step) => set({ currentStep: step }),
+      setStarted: (started) => set({ hasStarted: started }),
       reset: () => set({ ...initialState }),
     }),
     {
@@ -385,6 +388,7 @@ export const useWizardStore = create<WizardState>()(
         priceScenario,
         customPriceChangePercent,
         currentStep,
+        hasStarted,
       }) => ({
         location,
         orientation,
@@ -414,6 +418,7 @@ export const useWizardStore = create<WizardState>()(
         priceScenario,
         customPriceChangePercent,
         currentStep,
+        hasStarted,
       }),
     },
   ),
