@@ -24,8 +24,35 @@ export function StepShell({
 }: StepShellProps) {
   const { t } = useTranslation();
 
+  // Edge-swipe from the left edge → go back, iOS-style. Only fires when the
+  // gesture starts within ~32px of the left edge and moves rightward enough
+  // that it cannot be mistaken for a vertical scroll.
+  const swipe = useRef<{ x: number; y: number } | null>(null);
+  const onTouchStart = (e: React.TouchEvent) => {
+    const touch = e.changedTouches[0];
+    if (touch.clientX <= 32) {
+      swipe.current = { x: touch.clientX, y: touch.clientY };
+    }
+  };
+  const onTouchEnd = (e: React.TouchEvent) => {
+    const start = swipe.current;
+    swipe.current = null;
+    if (!start || !onBack) return;
+    const touch = e.changedTouches[0];
+    const dx = touch.clientX - start.x;
+    const dy = touch.clientY - start.y;
+    if (dx > 60 && dx > Math.abs(dy) * 1.5) {
+      void haptic("light");
+      onBack();
+    }
+  };
+
   return (
-    <div className="flex h-dvh max-h-dvh flex-col overflow-hidden surface-sun">
+    <div
+      className="flex h-dvh max-h-dvh flex-col overflow-hidden surface-sun"
+      onTouchStart={onTouchStart}
+      onTouchEnd={onTouchEnd}
+    >
       <main className="scrollbar-hidden mx-auto w-full max-w-2xl flex-1 overflow-y-auto overflow-x-hidden overscroll-contain px-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))]">
         <header className="pt-safe mx-auto flex w-full items-start gap-3">
         {onBack ? (
