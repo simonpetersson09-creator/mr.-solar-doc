@@ -91,7 +91,7 @@ export const id = {
     "priceExplainer": "Solar yang dipakai sendiri menggantikan listrik yang seharusnya dibeli dari jaringan. Solar yang diekspor sebaliknya mendapatkan kompensasi untuk listrik yang dialirkan ke jaringan.",
     "paybackYears": "{{years}} tahun",
     "paybackInfo": "Pengembalian modal sederhana menunjukkan berapa tahun nilai ekonomi tahunan yang diperkirakan setara dengan investasi. Ini tidak memperhitungkan perubahan harga listrik di masa depan, biaya pembiayaan, inflasi, pemeliharaan, atau diskonto.",
-    "maxInvestment": "Tingkat investasi pada waktu pengembalian modal yang dipilih", "productionCostTitle": "Berapa biaya listrik solar dari atap Anda?",
+    "maxInvestment": "Tingkat investasi pada waktu pengembalian modal yang dipilih", "productionCostTitle": "Berapa harga listrik surya per kWh?",
     "investmentLevelInfoLabel": "Info lebih lanjut",
     "investmentLevelInfo": "Menunjukkan perkiraan biaya investasi yang sesuai dengan periode pengembalian modal yang Anda pilih. Ini bukan perkiraan biaya instalasi yang sebenarnya. Harga sebenarnya bergantung pada, antara lain, atap, instalasi, komponen, dan pemasok.",
     "systemSizeInfoLabel": "Info lebih lanjut",
