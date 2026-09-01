@@ -185,7 +185,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
   const chipClass = (active: boolean) =>
     active
       ? "chip-selected min-h-11 rounded-[10px] px-2 py-1.5 text-xs font-bold text-brand-black shadow-sm transition-colors"
-      : "min-h-11 rounded-[10px] border border-white/25 bg-white/15 px-2 py-1.5 text-xs font-medium text-white transition-colors hover:bg-white/25";
+      : "chip-unselected min-h-11 rounded-[10px] px-2 py-1.5 text-xs font-medium transition-colors";
 
   return (
     <StepShell
@@ -270,7 +270,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                 void haptic("light");
                 setGridConfirmed(!gridConfirmed);
               }}
-              className={chipClass(gridConfirmed)}
+              className={chipClass(!gridConfirmed)}
             >
               {gridConfirmed ? t("fuse.confirmedGrid") : t("fuse.confirmGrid")}
             </button>
@@ -375,7 +375,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                 type="button"
                 disabled
                 aria-disabled="true"
-                className="flex cursor-default items-center gap-1 rounded-full border border-white/20 bg-white/10 px-2 py-1 text-[10px] font-semibold text-white/80"
+                className="flex cursor-default items-center gap-1 rounded-full border border-brand-black/22 bg-surface-cream px-2 py-1 text-[10px] font-semibold text-brand-black"
               >
                 <span aria-hidden="true">{countryFlag}</span>
                 <span className="max-w-[90px] truncate">{countryName}</span>

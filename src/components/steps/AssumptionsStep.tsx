@@ -255,15 +255,15 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
                 onClick={() => setPriceScenario(scenario.id)}
                 aria-pressed={active}
                 className={cn(
-                  "rounded-[10px] border px-3 py-1.5 text-[11px] font-semibold transition-colors",
+                  "rounded-[10px] px-3 py-1.5 text-[11px] font-semibold transition-colors",
                   active
-                    ? "border-accent bg-accent text-accent-foreground"
-                    : "border-white/25 bg-white/10 text-white/80",
+                    ? "chip-selected"
+                    : "chip-unselected",
                 )}
               >
                 {scenario.label}
                 {scenario.rateLabel ? (
-                  <span className={cn("ml-1 font-normal", active ? "" : "text-white/60")}>
+                  <span className={cn("ml-1 font-normal", active ? "" : "text-brand-black/55")}>
                     {scenario.rateLabel}
                   </span>
                 ) : null}

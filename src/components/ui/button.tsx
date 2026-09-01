@@ -13,7 +13,7 @@ default: "bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:b
         cta: "cta-primary text-brand-black font-semibold",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
-          "border border-brand-yellow-pressed/60 bg-card text-brand-black shadow-sm hover:bg-brand-yellow/15",
+          "border border-brand-black/22 bg-surface-cream text-brand-black shadow-sm hover:bg-brand-black/5",
         secondary: "bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80",
         ghost: "hover:bg-accent/15 hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
