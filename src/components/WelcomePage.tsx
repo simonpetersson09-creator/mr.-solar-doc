@@ -49,15 +49,10 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
         </section>
 
         <ul className="mt-4 space-y-2.5">
-          {POINTS.map(({ icon: Icon, titleKey, bodyKey }) => (
-            <li key={titleKey} className="grid grid-cols-[auto_minmax(0,1fr)] items-start gap-2.5 text-start">
-              <Icon className="mt-0.5 size-4 shrink-0 opacity-80" strokeWidth={1.75} aria-hidden="true" />
-              <div className="min-w-0">
-                <p className="text-xs font-bold leading-tight">{t(titleKey)}</p>
-                {t(bodyKey) ? (
-                  <p className="mt-0.5 text-xs leading-snug opacity-70">{t(bodyKey)}</p>
-                ) : null}
-              </div>
+          {POINTS.map(({ icon: Icon, titleKey }) => (
+            <li key={titleKey} className="grid grid-cols-[auto_minmax(0,1fr)] items-center gap-2.5 text-start">
+              <Icon className="size-4 shrink-0 opacity-80" strokeWidth={1.75} aria-hidden="true" />
+              <p className="min-w-0 text-xs font-bold leading-tight">{t(titleKey)}</p>
             </li>
           ))}
         </ul>
