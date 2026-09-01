@@ -407,7 +407,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
                     className={`flex items-center justify-between rounded-xl px-2.5 py-1.5 text-[12px] ${
                       scenario.selected
                         ? "bg-white/20 font-semibold text-white"
-                        : "text-white/75"
+                        : "text-white/70"
                     }`}
                   >
                     <dt>
