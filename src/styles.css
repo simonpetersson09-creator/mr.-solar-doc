@@ -290,7 +290,7 @@ html[data-native="true"] {
   background-color: #ffdc38;
   background-image: var(--yellow-sheen);
   color: var(--brand-black);
-  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
+  border: 1px solid oklch(0.3172 0 0 / 0.22);
   box-shadow:
     0 16px 34px oklch(0.3172 0 0 / 0.18),
     0 5px 12px oklch(0.3172 0 0 / 0.12);
