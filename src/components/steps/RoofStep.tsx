@@ -133,7 +133,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               onChange={(degrees) => setRoof(orientation, degrees, azimuthDegrees)}
             />
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-1.5">
+          <div className="flex flex-wrap items-center justify-center gap-1.5 rounded-2xl bg-white/10 p-2.5">
             {TILT_PRESETS.map((preset) => (
               <button
                 key={preset}
