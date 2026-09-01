@@ -158,6 +158,10 @@ describe("verified country profiles match the connection audit", () => {
     { country: "HR", inputType: "contracted-kw", amounts: [4.6, 5.75, 7.36, 9.2, 11.5, 11.04, 13.8, 17.25, 22], serviceType: "three-phase", voltageV: 400, frequencyHz: 50 },
     { country: "LV", inputType: "amperage", amounts: [16, 20, 25, 32, 16, 20, 25, 32, 40, 50, 63], serviceType: "three-phase", voltageV: 400, frequencyHz: 50 },
     { country: "LT", inputType: "contracted-kw", amounts: [3, 4, 5, 7, 9, 11, 14, 18, 22, 28, 35, 45, 60], serviceType: "three-phase", voltageV: 400, frequencyHz: 50 },
+    { country: "HU", inputType: "amperage", amounts: [], serviceType: "three-phase", voltageV: 400, frequencyHz: 50 },
+    { country: "RO", inputType: "contracted-kw", amounts: [], serviceType: "three-phase", voltageV: 400, frequencyHz: 50 },
+    { country: "GR", inputType: "contracted-kva", amounts: [8, 12, 15, 25, 35, 55], serviceType: "single-phase", voltageV: 230, frequencyHz: 50 },
+
 
   ];
 
