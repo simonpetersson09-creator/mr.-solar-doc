@@ -128,8 +128,11 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
       {/* ── Card 1: self-consumption split ── */}
       <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">
         <div className="flex items-center justify-between gap-3">
-          <Label className="text-xs font-semibold text-white">{t("result.adjustSplit")}</Label>
+          <Label className="text-xs font-semibold text-white">
+            {isUserSetShare ? t("result.adjustSplit") : t("result.selfConsumptionEstimatedLabel")}
+          </Label>
           <span className="rounded-full bg-white/15 px-2.5 py-1 text-xs font-bold text-white">
+            {isUserSetShare ? "" : "\u2248 "}
             {formatNumber(sharePercent, locale)} %
           </span>
         </div>
@@ -145,7 +148,9 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           thumbClassName="border-accent bg-white"
         />
         <p className="text-[11px] leading-snug text-white/60">
-          {t("result.selfConsumptionAssumption")}
+          {isUserSetShare
+            ? t("result.selfConsumptionAssumption")
+            : t("result.selfConsumptionEstimatedHelp")}
         </p>
         {result?.presentation.selfConsumptionCapped ? (
           <p className="text-[11px] font-medium leading-snug text-white/85">
