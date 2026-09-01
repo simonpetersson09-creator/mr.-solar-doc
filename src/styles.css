@@ -289,6 +289,12 @@ html[data-native="true"] {
   overflow: hidden;
   background-color: #ffdc38;
   background-image: var(--yellow-sheen);
+  color: var(--brand-black);
+  border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
+  box-shadow:
+    0 16px 34px oklch(0.3172 0 0 / 0.18),
+    0 5px 12px oklch(0.3172 0 0 / 0.12);
+}
 
 /* Frosted panel that sits on top of the yellow hero and card surfaces. */
 @utility glass-panel {
@@ -309,7 +315,7 @@ html[data-native="true"] {
    saturated #FFDC38 result cards. The gradient stays within yellow. */
 @utility glass-primary {
   background-color: #ffdc38;
-  background-image: none;
+  background-image: var(--yellow-sheen);
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.4);
   box-shadow:
@@ -320,6 +326,7 @@ html[data-native="true"] {
 /* Promotes an input-level surface to a saturated #FFDC38 result surface. */
 @utility surface-strong {
   background-color: #ffdc38;
+  background-image: var(--yellow-sheen);
   border-color: oklch(0.8296 0.1697 91.8 / 0.5);
 }
 
@@ -328,7 +335,7 @@ html[data-native="true"] {
 @utility card-yellow {
   position: relative;
   background-color: #ffdc38;
-  background-image: none;
+  background-image: var(--yellow-sheen);
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.5);
   box-shadow:
