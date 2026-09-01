@@ -5,6 +5,7 @@ import {
   EU_THREE_PHASE_KW_PER_AMP,
 } from "./constants";
 import type { SupportedLanguage } from "@/i18n/languages";
+import { getConnectionConfig } from "./connections";
 
 export type GridConnectionType = "eu-three-phase-400v";
 
