@@ -126,8 +126,10 @@ describe("IL — Israel (amperes per phase, verified options)", () => {
 });
 
 describe("regional markets stay unverified", () => {
-  it.each(["AU", "BR", "ZA"])("%s keeps a non-verified profile requiring confirmation", (code) => {
-    const config = getConnectionConfig(code);
+  // AU and ZA were promoted to verified profiles in batch 4 — only BR remains a
+  // regional/dual-unit special case requiring manual confirmation.
+  it("BR keeps a non-verified profile requiring confirmation", () => {
+    const config = getConnectionConfig("BR");
     expect(config.verified).toBe(false);
     expect(config.status).not.toBe("verified");
     // Manual entry must still be possible: no forced preset.
