@@ -164,7 +164,8 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             />
           </div>
         </div>
-      </div>
+
+
 
 
       {/* Fixed result card: only the number swaps while a new value loads. */}
