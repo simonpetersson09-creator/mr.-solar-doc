@@ -494,6 +494,8 @@ export const nl = {
     languageHint: "De valuta volgt het land in je adres, niet de taal.",
     history: "Geschiedenis",
     plansTitle: "Aankopen en abonnement",
+    subscription: "Abonnement",
+    popular: "Meest populair",
     singleCta: "Gekocht bij je volgende berekening",
     singleNote: "De eenmalige aankoop wordt gedaan wanneer je een nieuwe berekening start — niet hier.",
     terms: "Gebruiksvoorwaarden",

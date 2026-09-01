@@ -400,6 +400,8 @@ export const lt = {
     "languageHint": "Valiuta priklauso nuo jūsų adreso šalies, o ne nuo kalbos.",
     "history": "Istorija",
     "plansTitle": "Pirkiniai ir prenumerata",
+    subscription: "Prenumerata",
+    popular: "Populiariausias",
     "singleCta": "Perkama su kitu skaičiavimu",
     "singleNote": "Vienkartinis pirkimas atliekamas pradedant naują skaičiavimą — ne čia.",
     "terms": "Naudojimo sąlygos",

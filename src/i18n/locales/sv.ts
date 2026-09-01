@@ -499,6 +499,8 @@ systemSizeInfo: "Beräkningen är en uppskattning och ska användas som vägledn
     languageHint: "Valutan styrs av landet i din adress, inte av språket.",
     history: "Historik",
     plansTitle: "Köp och prenumeration",
+    subscription: "Prenumeration",
+    popular: "Mest populär",
     singleCta: "Köps vid din nästa beräkning",
     singleNote: "Engångsköpet görs i samband med att du startar en ny beräkning – inte härifrån.",
     terms: "Användarvillkor",

@@ -400,6 +400,8 @@ export const de = {
     "languageHint": "Die Währung richtet sich nach dem Land Ihrer Adresse, nicht nach der Sprache.",
     "history": "Verlauf",
     "plansTitle": "Käufe und Abo",
+    subscription: "Abonnement",
+    popular: "Am beliebtesten",
     "singleCta": "Wird bei deiner nächsten Berechnung gekauft",
     "singleNote": "Der Einmalkauf erfolgt, wenn du eine neue Berechnung startest — nicht von hier aus.",
     "terms": "Nutzungsbedingungen",

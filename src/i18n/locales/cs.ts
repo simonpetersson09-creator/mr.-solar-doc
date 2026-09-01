@@ -400,6 +400,8 @@ export const cs = {
     "languageHint": "Měna se řídí zemí ve vaší adrese, nikoli jazykem.",
     "history": "Historie",
     "plansTitle": "Nákupy a předplatné",
+    subscription: "Předplatné",
+    popular: "Nejoblíbenější",
     "singleCta": "Zakoupí se při vašem dalším výpočtu",
     "singleNote": "Jednorázový nákup se provede při zahájení nového výpočtu — ne odsud.",
     "terms": "Podmínky užívání",

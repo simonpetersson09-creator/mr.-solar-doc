@@ -458,6 +458,8 @@ export const tr = {
     "languageHint": "Para birimi dile değil, adresinizdeki ülkeye göre belirlenir.",
     "history": "Geçmiş",
     "plansTitle": "Satın alımlar ve abonelik",
+    subscription: "Abonelik",
+    popular: "En popüler",
     "singleCta": "Bir sonraki hesaplamanızla satın alınır",
     "singleNote": "Tek seferlik satın alım, yeni bir hesaplama başlattığınızda gerçekleşir — buradan değil.",
     "terms": "Kullanım koşulları",

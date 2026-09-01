@@ -494,6 +494,8 @@ export const es = {
     languageHint: "La moneda depende del país de tu dirección, no del idioma.",
     history: "Historial",
     plansTitle: "Compras y suscripción",
+    subscription: "Suscripción",
+    popular: "Más popular",
     singleCta: "Se compra con tu próximo cálculo",
     singleNote: "La compra única se realiza al iniciar un nuevo cálculo — no desde aquí.",
     terms: "Condiciones de uso",

@@ -400,6 +400,8 @@ export const sk = {
     "languageHint": "Mena sa riadi krajinou vo vašej adrese, nie jazykom.",
     "history": "História",
     "plansTitle": "Nákupy a predplatné",
+    subscription: "Predplatné",
+    popular: "Najpopulárnejšie",
     "singleCta": "Zakúpené pri ďalšom výpočte",
     "singleNote": "Jednorazový nákup sa uskutoční, keď začnete nový výpočet — nie odtiaľto.",
     "terms": "Podmienky používania",

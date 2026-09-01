@@ -400,6 +400,8 @@ export const sl = {
     "languageHint": "Valuta je določena z državo v vašem naslovu, ne z jezikom.",
     "history": "Zgodovina",
     "plansTitle": "Nakupi in naročnina",
+    subscription: "Naročnina",
+    popular: "Najpopularnejše",
     "singleCta": "Kupljeno ob naslednjem izračunu",
     "singleNote": "Enkraten nakup se izvede, ko začnete nov izračun — ne od tukaj.",
     "terms": "Pogoji uporabe",

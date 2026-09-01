@@ -494,6 +494,8 @@ export const pt = {
     languageHint: "A moeda segue o país da sua morada, não o idioma.",
     history: "Histórico",
     plansTitle: "Compras e subscrição",
+    subscription: "Assinatura",
+    popular: "Mais popular",
     singleCta: "Comprado com o seu próximo cálculo",
     singleNote: "A compra única é feita ao iniciar um novo cálculo — não aqui.",
     terms: "Termos de utilização",

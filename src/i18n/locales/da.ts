@@ -400,6 +400,8 @@ export const da = {
     "languageHint": "Valutaen styres af landet i din adresse, ikke af sproget.",
     "history": "Historik",
     "plansTitle": "Køb og abonnement",
+    subscription: "Abonnement",
+    popular: "Mest populære",
     "singleCta": "Købes ved din næste beregning",
     "singleNote": "Engangskøbet foretages, når du starter en ny beregning — ikke herfra.",
     "terms": "Brugsvilkår",

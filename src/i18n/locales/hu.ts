@@ -492,6 +492,8 @@ export const hu = {
     languageHint: "A pénznem a cím szerinti országtól függ, nem a nyelvtől.",
     history: "Előzmények",
     plansTitle: "Vásárlások és előfizetés",
+    subscription: "Előfizetés",
+    popular: "Legnépszerűbb",
     singleCta: "A következő számításnál megvásárolva",
     singleNote: "Az egyszeri vásárlás új számítás indításakor történik – nem innen.",
     terms: "Felhasználási feltételek",

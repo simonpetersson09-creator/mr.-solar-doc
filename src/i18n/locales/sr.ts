@@ -458,6 +458,8 @@ export const sr = {
     "languageHint": "Валута прати земљу у вашој адреси, а не језик.",
     "history": "Историја",
     "plansTitle": "Куповине и претплата",
+    subscription: "Pretplata",
+    popular: "Najpopularnije",
     "singleCta": "Плаћа се уз ваш следећи прорачун",
     "singleNote": "Једнократна куповина се обавља када започнете нови прорачун — не одавде.",
     "terms": "Услови коришћења",

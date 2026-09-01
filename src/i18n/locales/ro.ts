@@ -458,6 +458,8 @@ export const ro = {
     "languageHint": "Moneda urmează țara din adresa ta, nu limba.",
     "history": "Istoric",
     "plansTitle": "Achiziții și abonament",
+    subscription: "Abonament",
+    popular: "Cel mai popular",
     "singleCta": "Achiziționat cu următorul tău calcul",
     "singleNote": "Achiziția unică se face atunci când începi un calcul nou — nu de aici.",
     "terms": "Termeni de utilizare",

@@ -400,6 +400,8 @@ export const it = {
     "languageHint": "La valuta è determinata dal paese del tuo indirizzo, non dalla lingua.",
     "history": "Cronologia",
     "plansTitle": "Acquisti e abbonamento",
+    subscription: "Abbonamento",
+    popular: "Più popolare",
     "singleCta": "Acquistato con il tuo prossimo calcolo",
     "singleNote": "L'acquisto singolo viene effettuato quando avvii un nuovo calcolo — non da qui.",
     "terms": "Termini di utilizzo",

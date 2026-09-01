@@ -400,6 +400,8 @@ export const lv = {
     "languageHint": "Valūta tiek noteikta pēc valsts jūsu adresē, nevis valodas.",
     "history": "Vēsture",
     "plansTitle": "Pirkumi un abonements",
+    subscription: "Abonements",
+    popular: "Populārākais",
     "singleCta": "Nopērkams ar nākamo aprēķinu",
     "singleNote": "Vienreizējais pirkums tiek veikts, sākot jaunu aprēķinu, — nevis šeit.",
     "terms": "Lietošanas noteikumi",

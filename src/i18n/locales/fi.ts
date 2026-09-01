@@ -400,6 +400,8 @@ export const fi = {
     "languageHint": "Valuutta määräytyy osoitteesi maan, ei kielen, mukaan.",
     "history": "Historia",
     "plansTitle": "Ostot ja tilaus",
+    subscription: "Tilaus",
+    popular: "Suosituin",
     "singleCta": "Ostetaan seuraavan laskelman yhteydessä",
     "singleNote": "Kertaosto tehdään, kun aloitat uuden laskelman — ei täältä.",
     "terms": "Käyttöehdot",
