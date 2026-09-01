@@ -102,11 +102,12 @@ const rad = (value * Math.PI) / 180;
         onPointerMove={handlePointerMove}
       >
 {/* Outer ring */}
-<circle
+        <circle
           cx={CENTER}
           cy={CENTER}
           r={DIAL_RADIUS}
-          className="fill-white/10 stroke-white/25"
+          className="stroke-white/25"
+          style={{ fill: "rgba(255, 252, 235, 0.6)" }}
           strokeWidth={1.5}
         />
         {/* Faint dashed rotation path — hints the arrow can be dragged around */}
