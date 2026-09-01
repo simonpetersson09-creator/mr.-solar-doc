@@ -84,11 +84,13 @@ export function buildLifetimeProjection(params: {
   for (let year = 1; year <= periodYears; year += 1) {
     const performanceFactor = performanceFactorForYear(year, annualDegradationRate);
     const productionKwh = params.firstYearProductionKwh * performanceFactor;
-    const split = splitProduction(
-      productionKwh,
-      params.selfConsumptionShare,
-      params.annualConsumptionKwh,
-    );
+    // The share may itself depend on the year's (degraded) production: as the
+    // array ages, production/consumption falls and self-consumption rises
+    // slightly. A single resolver is passed in by the engine so the model
+    // lives in exactly one place; without it the fixed share is used.
+    const shareForYear =
+      params.selfConsumptionShareForProduction?.(productionKwh) ?? params.selfConsumptionShare;
+    const split = splitProduction(productionKwh, shareForYear, params.annualConsumptionKwh);
     // Compound electricity price development: year 1 uses today's price.
     const priceFactor = Math.pow(1 + annualPriceChangeRate, year - 1);
     const economics = calculateEconomicValue({
