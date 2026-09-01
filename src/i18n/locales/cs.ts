@@ -156,6 +156,11 @@ export const cs = {
         "label": "Hlavní jistič",
         "help": "Ampéry na fázi, uvedeno na hlavním jističi nebo na faktuře."
       },
+      "service": {
+        "title": "Velikost elektrické přípojky",
+        "label": "Velikost elektrické přípojky",
+        "help": "Hodnotu v ampérech najdete na hlavním jističi nebo v rozvaděči."
+      },
       "contracted-kva": {
         "title": "Jaký máte sjednaný příkon?",
         "label": "Sjednaný příkon",

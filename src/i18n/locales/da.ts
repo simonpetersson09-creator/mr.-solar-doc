@@ -156,6 +156,11 @@ export const da = {
         "label": "Hovedsikring",
         "help": "Ampere pr. fase, står på hovedafbryderen eller regningen."
       },
+      "service": {
+        "title": "Elinstallationens størrelse",
+        "label": "Elinstallationens størrelse",
+        "help": "Find amperetallet på hovedafbryderen eller eltavlen."
+      },
       "contracted-kva": {
         "title": "Hvilken abonneret effekt har du?",
         "label": "Abonneret effekt",

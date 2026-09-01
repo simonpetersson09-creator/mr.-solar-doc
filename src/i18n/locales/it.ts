@@ -155,7 +155,7 @@ export const it = {
         "title": "Qual è il tuo interruttore generale?",
         "label": "Interruttore generale",
         "help": "Ampere per fase, indicati sull'interruttore generale o in bolletta."
-      },
+      }, "service": { "title": "Dimensione dell'allacciamento elettrico", "label": "Dimensione dell'allacciamento elettrico", "help": "Trova l'amperaggio sull'interruttore generale o nel quadro elettrico." },
       "contracted-kva": {
         "title": "Qual è la tua potenza impegnata?",
         "label": "Potenza impegnata",

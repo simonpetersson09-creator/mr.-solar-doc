@@ -190,11 +190,21 @@ function config(
 }
 
 /**
- * North American service sizes. 100/125/150/200/400 A are the standard
- * residential steps; 60 A only exists on legacy services and is kept so those
- * homes can answer. Sizes above 400 A are not residential.
+ * Canadian service sizes. 100/125/150/200/400 A are the standard residential
+ * steps; 60 A only exists on legacy services and is kept so those homes can
+ * answer. Sizes above 400 A are not residential.
  */
-const NORTH_AMERICAN_RATINGS = [60, 100, 125, 150, 200, 400];
+const CANADIAN_RATINGS = [60, 100, 125, 150, 200, 400];
+
+/**
+ * US residential electrical service sizes (NEC-style panel ratings). 60 A is
+ * dropped: it is not offered on modern US services. 225 A is a common panel
+ * rating and is included. 200 A is the pre-selected default because it is the
+ * dominant modern US service size. Anything else is entered under "Other".
+ */
+const US_SERVICE_RATINGS = [100, 125, 150, 200, 225, 400];
+/** Pre-selected US service size, in amperes. */
+const US_DEFAULT_SERVICE_AMPS = 200;
 
 
 
@@ -282,17 +292,30 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
     SINGLE_PHASE_230,
     { localTerm: "Aansluitvermogen / Puissance de raccordement" },
   ),
+  /**
+   * United States: split-phase 120/240 V, 60 Hz. The user states the panel /
+   * main-breaker rating in amperes for the whole service (NOT per phase), so
+   * the question and help text use the US "electrical service size" wording
+   * instead of the European per-phase fuse wording. Power always follows the
+   * split-phase rule P(kW) = 240 V x I / 1000 — never the sqrt(3) three-phase
+   * formula and never the 120 V leg.
+   */
   US: config(
     "US",
     "amperage",
-    NORTH_AMERICAN_RATINGS.map((a) => ampOption(a, SPLIT_PHASE_120_240)),
+    US_SERVICE_RATINGS.map((a) => ampOption(a, SPLIT_PHASE_120_240)),
     SPLIT_PHASE_120_240,
-    { localTerm: "Electrical service size" },
+    {
+      localTerm: "Electrical service size",
+      questionKey: "fuse.capacity.service.title",
+      helpTextKey: "fuse.capacity.service.help",
+      defaultConnection: ampOption(US_DEFAULT_SERVICE_AMPS, SPLIT_PHASE_120_240).id,
+    },
   ),
   CA: config(
     "CA",
     "amperage",
-    NORTH_AMERICAN_RATINGS.map((a) => ampOption(a, SPLIT_PHASE_120_240)),
+    CANADIAN_RATINGS.map((a) => ampOption(a, SPLIT_PHASE_120_240)),
     SPLIT_PHASE_120_240,
     { localTerm: "Electrical service size" },
   ),

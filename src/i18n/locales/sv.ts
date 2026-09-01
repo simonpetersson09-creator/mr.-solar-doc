@@ -179,7 +179,7 @@ error: "Adressökningen misslyckades.",
         title: "Vilken huvudsäkring har du?",
         label: "Huvudsäkring",
         help: "Ampere per fas, står på huvudbrytaren eller elräkningen.",
-      },
+      }, service: { title: "Elservicens storlek", label: "Elservicens storlek", help: "Hitta amperetalet på huvudbrytaren eller elcentralen." },
       "contracted-kva": {
         title: "Vilken abonnerad effekt har du?",
         label: "Abonnerad effekt",

@@ -156,6 +156,11 @@ export const fi = {
         "label": "Pääsulake",
         "help": "Ampeeria vaihetta kohti, näkyy pääkytkimessä tai laskussa."
       },
+      "service": {
+        "title": "Sähköliittymän koko",
+        "label": "Sähköliittymän koko",
+        "help": "Katso ampeeriluku pääkytkimestä tai sähkökeskuksesta."
+      },
       "contracted-kva": {
         "title": "Mikä on sopimustehosi?",
         "label": "Sopimusteho",

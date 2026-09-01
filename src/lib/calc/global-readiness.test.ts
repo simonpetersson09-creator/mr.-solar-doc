@@ -63,13 +63,15 @@ describe("connection configuration", () => {
     expect(config.defaultVoltage).toBe(240);
     expect(config.defaultLineToNeutralVoltage).toBe(120);
     expect(config.defaultFrequencyHz).toBe(60);
-    const expected = [60, 100, 125, 150, 200, 400];
+    // US drops legacy 60 A and adds 225 A; CA keeps the legacy ladder.
+    const expected =
+      code === "US" ? [100, 125, 150, 200, 225, 400] : [60, 100, 125, 150, 200, 400];
     expect(config.connectionOptions.map((o) => connectionCapacityAmount(o.capacity))).toEqual(
       expected,
     );
 
-    // No service rating is preselected: we cannot know the user's panel.
-    expect(config.defaultConnection).toBeNull();
+    // US pre-selects the dominant 200 A service; CA preselects nothing.
+    expect(config.defaultConnection).toBe(code === "US" ? "a1x200@240" : null);
   });
 
   it("unknown country falls back without Swedish fuse options", () => {

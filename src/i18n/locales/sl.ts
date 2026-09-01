@@ -155,7 +155,7 @@ export const sl = {
         "title": "Kakšno glavno varovalko imate?",
         "label": "Glavna varovalka",
         "help": "Amperi na fazo, navedeni na glavnem stikalu ali računu."
-      },
+      }, "service": { "title": "Velikost električnega priključka", "label": "Velikost električnega priključka", "help": "Vrednost v amperih najdete na glavnem odklopniku ali v razdelilni omarici." },
       "contracted-kva": {
         "title": "Kakšno dogovorjeno moč imate?",
         "label": "Dogovorjena moč",

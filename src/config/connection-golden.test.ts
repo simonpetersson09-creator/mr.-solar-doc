@@ -176,8 +176,14 @@ describe("golden connection invariants — every market profile", () => {
     },
   );
 
-  it.each(ALL_PROFILES)("%s: no forced preselected connection", (_code, config) => {
-    expect(config.defaultConnection).toBeNull();
+  it.each(ALL_PROFILES)("%s: no forced preselected connection", (code, config) => {
+    // The US is the one documented exception: 200 A is the dominant service.
+    if (code === "US") {
+      expect(config.defaultConnection).toBe("a1x200@240");
+      expect(config.connectionOptions.some((o) => o.id === config.defaultConnection)).toBe(true);
+    } else {
+      expect(config.defaultConnection).toBeNull();
+    }
     const ids = config.connectionOptions.map((o) => o.id);
     expect(new Set(ids).size).toBe(ids.length);
   });

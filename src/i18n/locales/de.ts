@@ -156,6 +156,11 @@ export const de = {
         "label": "Hausanschlusssicherung",
         "help": "Ampere pro Phase, steht am Hauptschalter oder auf der Rechnung."
       },
+      "service": {
+        "title": "Größe des Hausanschlusses",
+        "label": "Größe des Hausanschlusses",
+        "help": "Die Amperezahl steht auf dem Hauptschalter oder im Zählerschrank."
+      },
       "contracted-kva": {
         "title": "Welche vereinbarte Leistung haben Sie?",
         "label": "Vereinbarte Leistung",

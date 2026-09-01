@@ -170,7 +170,7 @@ export const no = {
         "title": "Hva er hovedsikringen din?",
         "label": "Hovedsikring",
         "help": "Ampere per fase, står på hovedtavlen eller strømregningen."
-      },
+      }, "service": { "title": "Elektrisk servicestørrelse", "label": "Elektrisk servicestørrelse", "help": "Finn amperetallet på hovedbryteren eller sikringsskapet." },
       "contracted-kva": {
         "title": "Hva er din avtalte effekt?",
         "label": "Avtalt effekt",

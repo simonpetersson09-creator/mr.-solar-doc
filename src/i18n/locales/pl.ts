@@ -155,7 +155,7 @@ export const pl = {
         "title": "Jaki masz bezpiecznik główny?",
         "label": "Bezpiecznik główny",
         "help": "Ampery na fazę, podane na wyłączniku głównym lub rachunku."
-      },
+      }, "service": { "title": "Wielkość przyłącza elektrycznego", "label": "Wielkość przyłącza elektrycznego", "help": "Znajdź wartość w amperach na wyłączniku głównym lub w rozdzielnicy." },
       "contracted-kva": {
         "title": "Jaka jest Twoja moc umowna?",
         "label": "Moc umowna",

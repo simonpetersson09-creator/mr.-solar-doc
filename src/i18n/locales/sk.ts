@@ -155,7 +155,7 @@ export const sk = {
         "title": "Aký máte hlavný istič?",
         "label": "Hlavný istič",
         "help": "Ampéry na fázu, uvedené na hlavnom ističi alebo faktúre."
-      },
+      }, "service": { "title": "Veľkosť elektrickej prípojky", "label": "Veľkosť elektrickej prípojky", "help": "Hodnotu v ampéroch nájdete na hlavnom ističi alebo v rozvádzači." },
       "contracted-kva": {
         "title": "Aký máte dohodnutý príkon?",
         "label": "Dohodnutý príkon",

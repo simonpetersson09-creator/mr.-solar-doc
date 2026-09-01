@@ -170,7 +170,7 @@ export const ro = {
         "title": "Care este siguranța ta principală?",
         "label": "Siguranță principală",
         "help": "Amperi per fază, indicați pe tabloul principal sau pe factură."
-      },
+      }, "service": { "title": "Dimensiunea branșamentului electric", "label": "Dimensiunea branșamentului electric", "help": "Găsiți amperajul pe întrerupătorul general sau în tabloul electric." },
       "contracted-kva": {
         "title": "Care este puterea ta contractată?",
         "label": "Putere contractată",
