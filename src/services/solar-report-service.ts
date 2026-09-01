@@ -233,11 +233,11 @@ class ReportDocument {
   }
 
   header(title: string, appName: string, subtitle: string, generated: string) {
-    this.doc.setFillColor(...PRIMARY);
-    this.doc.rect(0, 0, PAGE.width, 30, "F");
     this.doc.setFillColor(...ACCENT);
+    this.doc.rect(0, 0, PAGE.width, 30, "F");
+    this.doc.setFillColor(...ACCENT_DEEP);
     this.doc.rect(0, 30, PAGE.width, 1.6, "F");
-    this.doc.setTextColor(...CREAM);
+    this.doc.setTextColor(...INK);
     this.doc.setFont("helvetica", "bold");
     this.doc.setFontSize(18);
     this.doc.text(title, PAGE.margin, 15);
