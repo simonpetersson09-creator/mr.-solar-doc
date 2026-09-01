@@ -419,3 +419,129 @@ html[data-native="true"] {
 .leaflet-container .leaflet-marker-pane {
   will-change: transform;
 }
+
+/* ── On-yellow surface mapping ────────────────────────────────────────────
+   The primary cards are brand yellow, so the "on-dark" white utilities used
+   inside them are remapped to near-black ink and warm-white fills. Purely a
+   colour mapping: no layout, spacing or structure is affected. */
+.glass-primary,
+.hero-metric {
+  --ink: var(--brand-black);
+}
+
+.glass-primary .text-white,
+.hero-metric .text-white {
+  color: var(--brand-black);
+}
+.glass-primary .text-white\/85,
+.glass-primary .text-white\/80,
+.hero-metric .text-white\/85,
+.hero-metric .text-white\/80 {
+  color: oklch(0.2185 0.0066 0.7 / 0.88);
+}
+.glass-primary .text-white\/70,
+.hero-metric .text-white\/70 {
+  color: oklch(0.2185 0.0066 0.7 / 0.78);
+}
+.glass-primary .text-white\/60,
+.glass-primary .text-white\/50,
+.glass-primary .text-white\/45,
+.hero-metric .text-white\/60,
+.hero-metric .text-white\/50,
+.hero-metric .text-white\/45 {
+  color: oklch(0.2185 0.0066 0.7 / 0.68);
+}
+.glass-primary .placeholder\:text-white\/50::placeholder,
+.hero-metric .placeholder\:text-white\/50::placeholder {
+  color: oklch(0.2185 0.0066 0.7 / 0.5);
+}
+
+/* Inputs, chips and inner panels: warm-white instead of translucent white. */
+.glass-primary .bg-white\/5,
+.hero-metric .bg-white\/5 {
+  background-color: oklch(1 0.02 96 / 0.3);
+}
+.glass-primary .bg-white\/10,
+.hero-metric .bg-white\/10 {
+  background-color: oklch(1 0.02 96 / 0.42);
+}
+.glass-primary .bg-white\/15,
+.hero-metric .bg-white\/15 {
+  background-color: oklch(1 0.02 96 / 0.58);
+}
+.glass-primary .bg-white\/20,
+.glass-primary .bg-white\/25,
+.hero-metric .bg-white\/20,
+.hero-metric .bg-white\/25 {
+  background-color: oklch(1 0.02 96 / 0.72);
+}
+.glass-primary .hover\:bg-white\/25:hover,
+.hero-metric .hover\:bg-white\/25:hover {
+  background-color: oklch(1 0.02 96 / 0.85);
+}
+.glass-primary .bg-white\/35,
+.glass-primary .bg-white\/40,
+.hero-metric .bg-white\/35,
+.hero-metric .bg-white\/40 {
+  background-color: oklch(0.2185 0.0066 0.7 / 0.35);
+}
+
+.glass-primary [class*="border-white/"],
+.hero-metric [class*="border-white/"] {
+  border-color: oklch(0.2185 0.0066 0.7 / 0.22);
+}
+.glass-primary .divide-white\/10 > * + *,
+.hero-metric .divide-white\/10 > * + * {
+  border-color: oklch(0.2185 0.0066 0.7 / 0.15);
+}
+.glass-primary [class*="stroke-white"],
+.hero-metric [class*="stroke-white"] {
+  stroke: oklch(0.2185 0.0066 0.7 / 0.45);
+}
+.glass-primary [class*="fill-white"],
+.hero-metric [class*="fill-white"] {
+  fill: oklch(0.2185 0.0066 0.7 / 0.6);
+}
+
+/* Selected states must read as a deeper yellow than the card itself. */
+.glass-primary .bg-accent,
+.hero-metric .bg-accent {
+  background-color: var(--brand-yellow-pressed);
+}
+.glass-primary .border-accent,
+.hero-metric .border-accent {
+  border-color: var(--brand-yellow-pressed);
+}
+.glass-primary .text-accent,
+.hero-metric .text-accent {
+  color: var(--brand-black);
+}
+.glass-primary .bg-accent\/10,
+.hero-metric .bg-accent\/10 {
+  background-color: oklch(1 0.02 96 / 0.5);
+}
+.glass-primary .bg-accent\/25,
+.hero-metric .bg-accent\/25 {
+  background-color: oklch(0.8296 0.1697 91.8 / 0.5);
+}
+
+/* Slider on a yellow card: ink range, translucent ink track, cream thumb. */
+.glass-primary .bg-accent[data-slot="slider-range"],
+.hero-metric .bg-accent[data-slot="slider-range"] {
+  background-color: var(--brand-black);
+}
+.glass-primary [data-slot="slider-track"],
+.hero-metric [data-slot="slider-track"] {
+  background-color: oklch(0.2185 0.0066 0.7 / 0.18);
+}
+.glass-primary [data-slot="slider-thumb"],
+.hero-metric [data-slot="slider-thumb"] {
+  background-color: oklch(0.995 0.01 96);
+  border-color: var(--brand-black);
+}
+
+/* Decorative glow inside yellow cards must not muddy the surface. */
+.glass-primary .glow-amber,
+.hero-metric .glow-amber {
+  background-color: oklch(1 1 0 / 0.35);
+}
