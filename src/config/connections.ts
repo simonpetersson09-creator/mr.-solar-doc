@@ -469,6 +469,21 @@ export const GENERIC_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   Object.fromEntries(GENERIC_EU_MARKET_CODES.map((code) => [code, genericEuConfig(code)]));
 
 /**
+ * Mains frequency is a well documented physical fact even for countries whose
+ * connection ladder we have not verified, so an unknown country still gets the
+ * right frequency instead of a blanket 50 Hz. Nothing else is claimed.
+ */
+const SIXTY_HZ_COUNTRIES = new Set([
+  "US", "CA", "MX", "BR", "CO", "VE", "PE", "EC", "GT", "CR", "PA", "DO", "CU", "HN",
+  "NI", "SV", "PR", "KR", "TW", "PH", "SA", "AE", "KW", "LR", "GU",
+]);
+
+/** 50 Hz unless the country is a documented 60 Hz market. */
+export function defaultFrequencyForCountry(countryCode?: string | null): number {
+  return SIXTY_HZ_COUNTRIES.has((countryCode ?? "").toUpperCase()) ? 60 : 50;
+}
+
+/**
  * Last-resort profile for countries we know nothing about: no options, manual
  * entry only, `status: "unsupported"`. Never presented as a local standard.
  */
@@ -485,7 +500,7 @@ export function fallbackConnectionConfig(countryCode = ""): CountryConnectionCon
     defaultServiceType: "single-phase",
     defaultVoltage: 230,
     defaultLineToNeutralVoltage: null,
-    defaultFrequencyHz: DEFAULT_GRID_FREQUENCY_HZ,
+    defaultFrequencyHz: defaultFrequencyForCountry(countryCode),
     status: "unsupported",
     verified: false,
     source: "fallback",
