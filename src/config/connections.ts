@@ -627,7 +627,8 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
  */
 const GENERIC_EU_AMPERE_LEVELS = [16, 20, 25, 32, 35, 40, 50, 63];
 
-const GENERIC_EU_MARKET_CODES = ["CH"] as const;
+/** Empty today: CH is now a verified national profile. Kept for future use. */
+const GENERIC_EU_MARKET_CODES: readonly string[] = [];
 
 function genericEuConfig(countryCode: string): CountryConnectionConfig {
   return config(
