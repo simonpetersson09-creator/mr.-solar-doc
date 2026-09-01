@@ -17,7 +17,7 @@ export const lt = {
     "point2Body": "Jūsų elektros suvartojimas, tinklo prijungimas ir saulės gamyba derinami tinkamam dydžiui rasti.",
     "point3Title": "Skaičiuoja, kiek tai gali kainuoti pagal pageidaujamą atsiperkamumo laiką",
     "point3Body": "Jūs renkatės pageidaujamą atsiperkamumo laiką. Mr. Solar Doc apskaičiuoja reikalingą investicijų lygį.",
-    "point4Title": "Suteikia aiškų sprendimo pagrindą",
+    "point4Title": "Ataskaita ir sprendimo pagrindas",
     "point4Body": "Matykite gamybą, ekonomiką ir skirtingus atsiperkamumo laikus ataskaitoje.",
     "disclaimer": "Skaičiavimas yra orientacinis ir nėra pasiūlymas. Faktinis rezultatas gali skirtis priklausomai nuo įrengimo, elektros kainų ir rinkos sąlygų.",
     "cta": "Pradėti skaičiavimą",

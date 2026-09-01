@@ -17,7 +17,7 @@ export const tr = {
     "point2Body": "Elektrik tüketiminiz, şebeke bağlantınız ve güneş üretimi uygun boyutu bulmak için birleştirilir.",
     "point3Title": "Ne kadar mal olabileceğini hesaplar istenen geri ödeme süresine göre",
     "point3Body": "İstediğiniz geri ödeme süresini seçersiniz. Mr. Solar Doc gerekli yatırım seviyesini hesaplar.",
-    "point4Title": "Size net bir karar temeli verir",
+    "point4Title": "Rapor ve karar temeli",
     "point4Body": "Üretimi, ekonomiyi ve farklı geri ödeme sürelerini bir raporda görün.",
     "disclaimer": "Hesaplama yol göstericidir ve teklif değildir. Gerçek sonuç kurulum, elektrik fiyatları ve piyasa koşullarına göre değişebilir.",
     "cta": "Hesaplamayı başlat",

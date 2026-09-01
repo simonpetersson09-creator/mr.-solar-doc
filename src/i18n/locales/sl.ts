@@ -17,7 +17,7 @@ export const sl = {
     "point2Body": "Vaša poraba, omrežna povezava in proizvodnja se združijo za primerno velikost.",
     "point3Title": "Izračuna, koliko sme stalno glede na želeni čas povračila",
     "point3Body": "Izberite želeni čas povračila. Mr. Solar Doc izračuna potrebno raven naložbe.",
-    "point4Title": "Daje vam jasno podlago za odločitev",
+    "point4Title": "Poročilo in podlaga za odločitev",
     "point4Body": "Glejte proizvodnjo, ekonomijo in različne čase povračila v poročilu.",
     "disclaimer": "Izračun je informativen in ni ponudba. Dejanski rezultat se lahko razlikuje glede na izvedbo, cene elektrike in razmere na trgu.",
     "cta": "Začni izračun",
