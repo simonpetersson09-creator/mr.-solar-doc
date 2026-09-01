@@ -213,6 +213,7 @@ export const cs = {
     "confirmedGrid": "Síťové údaje potvrzeny"
   },
   "result": {
+    "calculationUnavailable": "Výpočet se nepodařilo dokončit. Zkontrolujte údaje o střeše a zkuste to znovu.",
     "connection": {
       "contractedKva": "Sjednaný příkon (kVA)",
       "contractedKw": "Sjednaný příkon (kW)"

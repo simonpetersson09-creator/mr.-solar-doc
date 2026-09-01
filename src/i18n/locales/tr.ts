@@ -223,6 +223,7 @@ export const tr = {
     "invalid": "6 ile 400 A arasında bir ana sigorta girin."
   },
   "result": {
+    "calculationUnavailable": "Hesaplama tamamlanamadı. Çatı bilgilerini kontrol edip tekrar deneyin.",
     "connection": {
       "contractedKva": "Sözleşmeli güç (kVA)",
       "contractedKw": "Sözleşmeli güç (kW)"

@@ -46,6 +46,7 @@ export const id = {
     "confirmGrid": "Saya telah memeriksa data jaringan", "confirmedGrid": "Data jaringan dikonfirmasi", "other": "Lainnya", "otherLabel": "Ampere", "maxAc": "Daya AC maksimum yang dihitung", "calculate": "Hitung", "invalid": "Masukkan sekring utama antara 6 dan 400 A."
   },
   "result": {
+    "calculationUnavailable": "Perhitungan tidak dapat diselesaikan. Periksa detail atap dan coba lagi.",
     "connection": { "contractedKva": "Daya kontrak (kVA)", "contractedKw": "Daya kontrak (kW)" },
     "gridConnection": "Sambungan jaringan", "gridConnectionValue": "{{voltage}} V, {{phases}}-fase", "title": "Hasil perhitungan Anda",
     "consumptionSourceLabel": "Sumber data konsumsi",

@@ -213,6 +213,7 @@ export const fr = {
     "confirmedGrid": "Données réseau confirmées"
   },
   "result": {
+    "calculationUnavailable": "Le calcul n"a pas pu être effectué. Vérifiez les informations sur la toiture et réessayez.",
     "connection": {
       "contractedKva": "Puissance souscrite (kVA)",
       "contractedKw": "Puissance souscrite (kW)"

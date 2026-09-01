@@ -213,6 +213,7 @@ export const da = {
     "confirmedGrid": "Netdata bekræftet"
   },
   "result": {
+    "calculationUnavailable": "Beregningen kunne ikke fuldføres. Tjek tagoplysningerne, og prøv igen.",
     "connection": {
       "contractedKva": "Abonneret effekt (kVA)",
       "contractedKw": "Aftalt effekt (kW)"

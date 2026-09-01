@@ -208,6 +208,7 @@ export const pl = {
     "confirmedGrid": "Dane sieciowe potwierdzone"
   },
   "result": {
+    "calculationUnavailable": "Nie udało się ukończyć obliczeń. Sprawdź dane dachu i spróbuj ponownie.",
     "connection": {
       "contractedKva": "Moc umowna (kVA)",
       "contractedKw": "Moc umowna (kW)"

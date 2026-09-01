@@ -208,6 +208,7 @@ export const sl = {
     "confirmedGrid": "Omrežni podatki potrjeni"
   },
   "result": {
+    "calculationUnavailable": "Izračuna ni bilo mogoče dokončati. Preverite podatke o strehi in poskusite znova.",
     "connection": {
       "contractedKva": "Dogovorjena moč (kVA)",
       "contractedKw": "Dogovorjena moč (kW)"

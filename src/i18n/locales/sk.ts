@@ -208,6 +208,7 @@ export const sk = {
     "confirmedGrid": "Sieťové údaje potvrdené"
   },
   "result": {
+    "calculationUnavailable": "Výpočet sa nepodarilo dokončiť. Skontrolujte údaje o streche a skúste to znova.",
     "connection": {
       "contractedKva": "Dohodnutý príkon (kVA)",
       "contractedKw": "Dohodnutý príkon (kW)"
