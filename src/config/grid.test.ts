@@ -32,9 +32,9 @@ describe("dynamic grid profile", () => {
     expect(DEFAULT_GRID_PROFILE).toEqual({ phaseCount: 3, voltageV: 400, frequencyHz: 50 });
   });
 
-  it("offers the extended European voltage set with 400 V first", () => {
-    expect(GRID_VOLTAGE_OPTIONS).toEqual([127, 220, 230, 240, 380, 400, 415]);
-    expect(GRID_VOLTAGE_OPTIONS).toContain(DEFAULT_GRID_PROFILE.voltageV);
+  it("offers line-to-line presets for three-phase and includes the default", () => {
+    expect(THREE_PHASE_VOLTAGE_OPTIONS).toEqual([208, 220, 230, 380, 400, 415]);
+    expect(THREE_PHASE_VOLTAGE_OPTIONS).toContain(DEFAULT_GRID_PROFILE.voltageV);
   });
 
   it("3-phase 400 V yields ~0.693 kW per ampere", () => {
