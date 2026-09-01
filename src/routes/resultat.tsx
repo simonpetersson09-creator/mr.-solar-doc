@@ -56,7 +56,7 @@ const [exporting, setExporting] = useState(false);
 const [exportError, setExportError] = useState(false);
 const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
   const [showSystemSizeInfo, setShowSystemSizeInfo] = useState(false);
-  const [showProductionCostInfo, setShowProductionCostInfo] = useState(false);
+  
 
   const shortMonths = i18n.t("months.short", { returnObjects: true }) as string[];
 
