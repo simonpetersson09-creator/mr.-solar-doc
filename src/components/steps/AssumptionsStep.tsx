@@ -115,8 +115,8 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             </p>
             <p className="text-xs text-muted-foreground">
               {t("result.gridTooSmallBody", {
-                maxKw: formatNumber(gridTooSmall.maxAcPowerKw, locale, 1),
-                minKw: formatNumber(gridTooSmall.minimumSupportedInverterKw, locale, 1),
+                maxKw: formatNumber(gridTooSmall.maxAcPowerKw, locale, { maximumFractionDigits: 1 }),
+                minKw: formatNumber(gridTooSmall.minimumSupportedInverterKw, locale, { maximumFractionDigits: 1 }),
               })}
             </p>
           </div>
