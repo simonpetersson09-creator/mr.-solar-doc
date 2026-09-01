@@ -184,8 +184,8 @@ const [showGridInfo, setShowGridInfo] = useState(false);
 
   const chipClass = (active: boolean) =>
     active
-      ? "rounded-xl bg-accent px-2 py-2 text-xs font-bold text-accent-foreground shadow-md shadow-accent/30"
-      : "rounded-xl border border-white/25 bg-white/15 px-2 py-2 text-xs font-medium text-white transition-colors hover:bg-white/25";
+      ? "min-h-11 rounded-[10px] bg-accent px-2 py-1.5 text-xs font-bold text-accent-foreground shadow-sm transition-colors"
+      : "min-h-11 rounded-[10px] border border-white/25 bg-white/15 px-2 py-1.5 text-xs font-medium text-white transition-colors hover:bg-white/25";
 
   return (
     <StepShell
@@ -375,7 +375,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                 type="button"
                 disabled
                 aria-disabled="true"
-                className="flex cursor-default items-center gap-1 rounded-full border border-white/20 bg-white/10 px-2.5 py-1.5 text-[11px] font-semibold text-white/80"
+                className="flex cursor-default items-center gap-1 rounded-full border border-white/20 bg-white/10 px-2 py-1 text-[10px] font-semibold text-white/80"
               >
                 <span aria-hidden="true">{countryFlag}</span>
                 <span className="max-w-[90px] truncate">{countryName}</span>
@@ -387,7 +387,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                 void haptic("light");
                 setEditGrid((open) => !open);
               }}
-              className="shrink-0 rounded-full bg-accent px-3 py-1.5 text-[11px] font-bold text-accent-foreground shadow-md shadow-accent/30"
+              className="shrink-0 rounded-lg bg-accent px-3 py-1.5 text-[11px] font-bold text-accent-foreground shadow-sm"
             >
               {editGrid ? t("fuse.grid.done") : t("fuse.grid.change")}
             </button>
