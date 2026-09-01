@@ -84,11 +84,40 @@ export const GRID_PHASE_OPTIONS: readonly PhaseCount[] = [1, 3];
 /** 127 V covers Latin-American 127/220 V services (MX, BR). */
 export const GRID_VOLTAGE_OPTIONS: readonly number[] = [127, 220, 230, 240, 380, 400, 415];
 
+/**
+ * Single-phase presets are LINE-TO-NEUTRAL voltages only. A 400 V line-to-line
+ * voltage can never be a single-phase service voltage, so it is not offered.
+ */
+export const SINGLE_PHASE_VOLTAGE_OPTIONS: readonly number[] = [120, 127, 220, 230, 240];
+
+/** Three-phase presets are LINE-TO-LINE voltages only. */
+export const THREE_PHASE_VOLTAGE_OPTIONS: readonly number[] = [208, 220, 230, 380, 400, 415];
 
 /** Voltage presets for a given service type. */
 export function voltageOptionsForService(serviceType: ServiceType): readonly number[] {
-  return serviceType === "split-phase" ? SPLIT_PHASE_VOLTAGE_OPTIONS : GRID_VOLTAGE_OPTIONS;
+  if (serviceType === "split-phase") return SPLIT_PHASE_VOLTAGE_OPTIONS;
+  if (serviceType === "single-phase") return SINGLE_PHASE_VOLTAGE_OPTIONS;
+  return THREE_PHASE_VOLTAGE_OPTIONS;
 }
+
+/** Default voltages per service type, used when a service switch invalidates the current one. */
+export const DEFAULT_VOLTAGE_FOR_SERVICE: Record<ServiceType, number> = {
+  "single-phase": 230,
+  "three-phase": 400,
+  "split-phase": SPLIT_PHASE_LINE_TO_LINE_V,
+};
+
+/**
+ * The voltage to keep when switching service type: the current one when it is a
+ * valid preset for the new service, otherwise that service's nominal default.
+ * Prevents impossible combinations such as "1-phase 400 V".
+ */
+export function voltageForServiceSwitch(serviceType: ServiceType, currentVoltageV: number): number {
+  return voltageOptionsForService(serviceType).includes(currentVoltageV)
+    ? currentVoltageV
+    : DEFAULT_VOLTAGE_FOR_SERVICE[serviceType];
+}
+
 
 
 /** Bounds for a user-entered custom voltage (V). */
