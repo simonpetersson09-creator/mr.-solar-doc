@@ -7,9 +7,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  LANGUAGE_DEFAULT_REGION,
   LANGUAGE_NAMES,
   SUPPORTED_LANGUAGES,
-  languageFlagEmoji,
   normaliseLanguage,
 } from "@/i18n/languages";
 import { updateSettings } from "@/services/settings-service";
@@ -50,16 +50,23 @@ export function LanguageSwitcher({ className }: { className?: string }) {
         <SelectValue />
       </SelectTrigger>
       <SelectContent className="max-h-72">
-        {options.map((lang) => (
-          <SelectItem key={lang} value={lang} className="text-sm">
-            <span className="flex items-center gap-2">
-              <span aria-hidden className="text-base leading-none">
-                {languageFlagEmoji(lang)}
+        {options.map((lang) => {
+          const region = LANGUAGE_DEFAULT_REGION[lang].toLowerCase();
+          return (
+            <SelectItem key={lang} value={lang} className="text-sm">
+              <span className="flex items-center gap-2">
+                <img
+                  src={`https://flagcdn.com/w40/${region}.png`}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-3 w-5 shrink-0 rounded-[2px] object-cover"
+                  loading="lazy"
+                />
+                {LANGUAGE_NAMES[lang]}
               </span>
-              {LANGUAGE_NAMES[lang]}
-            </span>
-          </SelectItem>
-        ))}
+            </SelectItem>
+          );
+        })}
       </SelectContent>
     </Select>
   );
