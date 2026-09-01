@@ -163,7 +163,7 @@ const cost = result.productionCost;
 
   return (
 <div className="flex h-dvh max-h-dvh flex-col overflow-hidden surface-sun">
-      <main className="scrollbar-hidden mx-auto w-full max-w-2xl flex-1 space-y-2.5 overflow-y-auto overflow-x-hidden overscroll-contain px-5 pt-safe pb-2">
+      <main className="scrollbar-hidden mx-auto w-full max-w-2xl flex-1 space-y-3 overflow-y-auto overflow-x-hidden overscroll-contain px-5 pt-safe pb-2">
         <header className="flex items-center gap-3 pt-3">
           <button
             type="button"
@@ -189,7 +189,7 @@ const cost = result.productionCost;
           </div>
         ) : null}
         {/* Group: the system */}
-        <p className="px-1 pt-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+        <p className="px-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
           {t("result.groupSystem")}
         </p>
         {/* 1. Recommendation */}
@@ -291,7 +291,7 @@ const cost = result.productionCost;
         </section>
 
 {/* Group: economics */}
-        <p className="px-1 pt-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+        <p className="px-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
           {t("result.groupEconomy")}
         </p>
 {/* 3. What you get out of it — plain numbers, no controls */}
@@ -477,7 +477,7 @@ const cost = result.productionCost;
 
 
         {/* Group: details */}
-        <p className="px-1 pt-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+        <p className="px-1 text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
           {t("result.groupDetails")}
         </p>
         {/* 6. Technical details */}
