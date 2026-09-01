@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { ArrowRight, Check, CircleAlert, Info, Zap } from "lucide-react";
+import { ArrowRight, Check, CircleAlert, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -259,8 +259,24 @@ const [showGridInfo, setShowGridInfo] = useState(false);
       </h2>
 
       {/* 1. Nätinställningar — grid profile first */}
-      <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
-        <div className="flex items-center justify-between gap-3">
+      <div className="glass-primary relative space-y-3 rounded-[28px] px-4 py-4">
+        {/* Same info affordance as the other steps: top-right corner of the card. */}
+        <button
+          type="button"
+          onClick={() => {
+            void haptic("light");
+            setShowGridInfo((open) => !open);
+          }}
+          aria-label={t("fuse.gridAssumptionDynamic", {
+            service: serviceLabel(serviceType),
+            voltage: voltageLabel(voltageV),
+          })}
+          aria-expanded={showGridInfo}
+          className="absolute top-3 right-3 flex size-6 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
+        >
+          <CircleAlert className="size-3.5" />
+        </button>
+        <div className="flex items-center justify-between gap-3 pr-7">
           <div className="min-w-0">
             <p className="text-xs font-semibold text-white">{t("fuse.grid.section")}</p>
             <p className="truncate text-[11px] text-white/70">
@@ -289,22 +305,9 @@ const [showGridInfo, setShowGridInfo] = useState(false);
             >
               {editGrid ? t("fuse.grid.done") : t("fuse.grid.change")}
             </button>
-            <button
-              type="button"
-              onClick={() => {
-                void haptic("light");
-                setShowGridInfo((open) => !open);
-              }}
-              aria-label={t("fuse.gridAssumptionDynamic", {
-                service: serviceLabel(serviceType),
-                voltage: voltageLabel(voltageV),
-              })}
-              className="shrink-0 rounded-full bg-white/15 p-1.5 text-white"
-            >
-              <Info className="size-3.5" />
-            </button>
           </div>
         </div>
+
 
         {editGrid ? (
           <div className="space-y-3 rounded-2xl bg-white/10 px-3 py-3">
