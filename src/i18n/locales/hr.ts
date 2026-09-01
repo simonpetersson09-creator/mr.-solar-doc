@@ -11,9 +11,15 @@ export const hr = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Otkrijte koji solarni sustav odgovara vašoj nekretnini i koliko bi mogao koštati.",
-    body1: "Koristimo podatke o vašoj nekretnini, potrošnji električne energije i lokalnim solarnim uvjetima za izračun odgovarajuće veličine sustava i očekivane proizvodnje.",
-    body2: "Odaberete rok povrata investicije koji vam odgovara. Mr. Solar Doc zatim izračunava maksimalnu cijenu koju sustav može imati da bi se postigao taj rok povrata.",
-    disclaimer: "Rezultat je informativan, a ne ponuda. Stvarne cijene, proizvodnja i financijski rezultat mogu se razlikovati ovisno o instalaciji, cijenama električne energije i tržišnim uvjetima.",
+    point1Title: "Prilagođeno vašoj nekretnini",
+    point1Body: "Računamo na temelju potrošnje struje, sunčanih uvjeta i vašeg priključka.",
+    point2Title: "Prava veličina sustava",
+    point2Body: "Dobivate preporučenu snagu i izračunatu godišnju proizvodnju.",
+    point3Title: "Vi birate rok povrata",
+    point3Body: "Izračunavamo koliko sustav najviše smije koštati da postigne odabrani rok povrata.",
+    point4Title: "Jasan izvještaj",
+    point4Body: "Rezultat dobivate u izvještaju koji pomaže procijeniti ulaganje u solare.",
+    disclaimer: "Izračun je okviran i nije ponuda. Stvarni rezultat može se razlikovati ovisno o izvedbi, cijenama struje i tržišnim uvjetima.",
     cta: "Pokreni izračun",
   },
   common: {
