@@ -311,8 +311,8 @@ html[data-native="true"] {
   color: var(--brand-black);
   border: 1px solid oklch(0.8296 0.1697 91.8 / 0.4);
   box-shadow:
-    inset 0 1px 0 oklch(1 0 0 / 0.4),
-    0 14px 34px -20px oklch(0.2185 0.0066 0.7 / 0.26);
+    0 8px 20px oklch(0.3172 0 0 / 0.1),
+    0 2px 5px oklch(0.3172 0 0 / 0.06);
 }
 
 /* Promotes an input-level surface to a saturated #FFDC38 result surface. */
