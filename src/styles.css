@@ -348,14 +348,16 @@ html[data-native="true"] {
    inactive/confirmed status. Button type is told apart by border weight,
    font weight and shadow — never by a second color. All button text is ink. */
 
-/* Unselected option chip / inactive status button: cream surface + ink. */
+/* Unselected option chip / inactive status button: same translucent white
+   surface as the inner info cards on a yellow card, with an ink border so the
+   control stays clearly tappable. */
 @utility chip-unselected {
-  background-color: var(--surface-cream);
+  background-color: oklch(1 0 0 / 0.15);
   border: 1px solid oklch(0.3172 0 0 / 0.22);
   color: var(--brand-black);
 }
 .chip-unselected:hover:not(:disabled) {
-  background-color: oklch(0.965 0.01 96);
+  background-color: oklch(1 0 0 / 0.22);
 }
 
 /* Selected option chip: brand yellow + ink, set apart from a yellow card by a
