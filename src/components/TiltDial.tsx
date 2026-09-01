@@ -123,7 +123,7 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
         {/* Roof surface fill between ground and the tilted line */}
         <path
           d={`M ${PIVOT_X} ${PIVOT_Y} L ${armEnd.x} ${armEnd.y} L ${armEnd.x} ${PIVOT_Y} Z`}
-          className="fill-white/10"
+          style={{ fill: "rgba(255, 252, 235, 0.6)" }}
         />
 
         {/* Angle arc */}
