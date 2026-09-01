@@ -343,14 +343,31 @@ html[data-native="true"] {
     0 5px 12px oklch(0.3172 0 0 / 0.12);
 }
 
-/* Selected chip on a yellow card: a light translucent gray, mirroring the
-   subtle frosted look of the CompassDial ring (fill-white/10) rather than
-   the saturated brand yellow. Reads as a quiet "on" state, not a second
-   yellow block. */
-@utility chip-selected {
-  background-color: oklch(0.62 0 0 / 0.22);
-  border: 1px solid oklch(0.3172 0 0 / 0.24);
+/* Unified button system — only two surfaces: brand yellow (#FFDC38) for
+   selected options and action buttons, cream/off-white for unselected and
+   inactive/confirmed status. Button type is told apart by border weight,
+   font weight and shadow — never by a second color. All button text is ink. */
+
+/* Unselected option chip / inactive status button: cream surface + ink. */
+@utility chip-unselected {
+  background-color: var(--surface-cream);
+  border: 1px solid oklch(0.3172 0 0 / 0.22);
   color: var(--brand-black);
+}
+.chip-unselected:hover:not(:disabled) {
+  background-color: oklch(0.965 0.01 96);
+}
+
+/* Selected option chip: brand yellow + ink, set apart from a yellow card by a
+   stronger ink border and a soft shadow. */
+@utility chip-selected {
+  background-color: var(--brand-yellow);
+  border: 1px solid oklch(0.3172 0 0 / 0.34);
+  color: var(--brand-black);
+  box-shadow: 0 2px 6px oklch(0.3172 0 0 / 0.14);
+}
+.chip-selected:hover:not(:disabled) {
+  background-color: var(--brand-yellow);
 }
 
 /* Very subtle lacquer for large black graphic elements and display numbers.
