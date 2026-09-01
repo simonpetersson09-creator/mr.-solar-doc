@@ -154,10 +154,10 @@ function SettingsPage() {
         </header>
 
         {/* Premium section */}
-        <section className="flex flex-col gap-3">
+        <section className="flex flex-col gap-2.5">
           {/* One-off unlock */}
-          <div className="glass-primary relative overflow-hidden rounded-3xl p-5">
-            <div className="relative z-10 flex flex-col gap-2.5">
+          <div className="glass-primary relative overflow-hidden rounded-3xl p-4">
+            <div className="relative z-10 flex flex-col gap-2">
               <span className="inline-flex w-fit items-center rounded-full bg-brand-black px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-brand-yellow">
                 {t("paywall.eyebrow")}
               </span>
