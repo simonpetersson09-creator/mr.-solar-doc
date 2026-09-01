@@ -11,9 +11,15 @@ export const lv = {
   "welcome": {
     "title": "Mr. Solar Doc",
     "subtitle": "Noskaidrojiet, kāda saules sistēma piemērota jūsu īpašumam un cik tā varētu izmaksāt.",
-    "body1": "Mēs izmantojam jūsu īpašuma datus, elektrības patēriņu un vietējos saules apstākļus, lai aprēķinātu piemērotu sistēmas izmēru un paredzamo ražošanu.",
-    "body2": "Jūs izvēlaties atmaksāšanās periodu, kas jums šķiet piemērots. Mr. Solar Doc pēc tam aprēķina maksimālo cenu, ko sistēma var maksāt, lai sasniegtu šo atmaksāšanās periodu.",
-    "disclaimer": "Rezultāts ir orientējošs, nevis piedāvājums. Faktiskās cenas, ražošana un finansiālais rezultāts var atšķirties atkarībā no uzstādīšanas, elektrības cenām un tirgus apstākļiem.",
+    "point1Title": "Pielāgots jūsu īpašumam",
+    "point1Body": "Rēķinām, ņemot vērā elektrības patēriņu, saules apstākļus un pieslēgumu.",
+    "point2Title": "Pareizais sistēmas izmērs",
+    "point2Body": "Saņemat ieteicamo jaudu un aprēķināto gada izstrādi.",
+    "point3Title": "Jūs izvēlaties atmaksāšanās laiku",
+    "point3Body": "Aprēķinām, cik daudz sistēma drīkst maksāt, lai sasniegtu izvēlēto atmaksāšanās laiku.",
+    "point4Title": "Skaidrs pārskats",
+    "point4Body": "Rezultātu saņemat pārskatā, kas palīdz izvērtēt ieguldījumu saules enerģijā.",
+    "disclaimer": "Aprēķins ir orientējošs un nav piedāvājums. Faktiskais rezultāts var atšķirties atkarībā no uzstādīšanas, elektrības cenām un tirgus apstākļiem.",
     "cta": "Sākt aprēķinu",
   },
   "common": {

@@ -11,9 +11,15 @@ export const sv = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Ta reda på vilken solcellsanläggning som passar din fastighet och vad den får kosta.",
-    body1: "Vi utgår från din fastighet, elanvändning och lokala solförutsättningar för att beräkna lämplig anläggningsstorlek och förväntad produktion.",
-    body2: "Du väljer vilken återbetalningstid som känns rimlig för dig. Mr. Solar Doc räknar sedan ut vad anläggningen maximalt kan kosta för att nå den återbetalningstiden.",
-    disclaimer: "Resultatet är en vägledning, inte en offert. Faktiska priser, produktion och ekonomiskt utfall kan skilja sig beroende på installation, elpriser och marknadsförutsättningar.",
+    point1Title: "Anpassat efter din fastighet",
+    point1Body: "Vi räknar på elanvändning, solförutsättningar och din nätanslutning.",
+    point2Title: "Rätt storlek på anläggningen",
+    point2Body: "Du får en rekommenderad anläggningsstorlek och beräknad årsproduktion.",
+    point3Title: "Du väljer återbetalningstid",
+    point3Body: "Vi räknar ut vad anläggningen maximalt kan kosta för att nå den återbetalningstid du valt.",
+    point4Title: "En tydlig rapport",
+    point4Body: "Du får resultatet samlat i en rapport som hjälper dig att bedöma din solcellsinvestering.",
+    disclaimer: "Beräkningen är vägledande och är inte en offert. Faktiskt utfall kan skilja sig beroende på installation, elpriser och marknadsförutsättningar.",
     cta: "Starta beräkningen",
   },
   common: {

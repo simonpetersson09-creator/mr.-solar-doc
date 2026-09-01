@@ -11,9 +11,15 @@ export const it = {
   "welcome": {
     "title": "Mr. Solar Doc",
     "subtitle": "Scopri quale impianto solare è adatto alla tua proprietà e quanto potrebbe costare.",
-    "body1": "Utilizziamo la tua proprietà, il consumo di elettricità e le condizioni solari locali per calcolare una dimensione dell'impianto adeguata e la produzione prevista.",
-    "body2": "Scegli un periodo di rientro dell'investimento che ti sembra giusto. Mr. Solar Doc calcola quindi il costo massimo che l'impianto può avere per rispettare questo periodo di rientro.",
-    "disclaimer": "Il risultato è indicativo, non un'offerta. I prezzi reali, la produzione e il risultato finanziario possono variare in base all'installazione, ai prezzi dell'elettricità e alle condizioni di mercato.",
+    "point1Title": "Su misura per il tuo immobile",
+    "point1Body": "Calcoliamo in base a consumi elettrici, condizioni solari e connessione alla rete.",
+    "point2Title": "La giusta dimensione dell'impianto",
+    "point2Body": "Ottieni una potenza consigliata e la produzione annua stimata.",
+    "point3Title": "Scegli tu il tempo di ritorno",
+    "point3Body": "Calcoliamo quanto può costare al massimo l'impianto per rientrare nei tempi scelti.",
+    "point4Title": "Un report chiaro",
+    "point4Body": "Ricevi il risultato in un report che ti aiuta a valutare il tuo investimento solare.",
+    "disclaimer": "Il calcolo è indicativo e non è un preventivo. Il risultato effettivo può variare in base a installazione, prezzi dell'energia e condizioni di mercato.",
     "cta": "Avvia il calcolo",
   },
   "common": {

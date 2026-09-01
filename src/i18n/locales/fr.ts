@@ -11,9 +11,15 @@ export const fr = {
   "welcome": {
     "title": "Mr. Solar Doc",
     "subtitle": "Découvrez quel système solaire convient à votre propriété et ce qu'il pourrait coûter.",
-    "body1": "Nous utilisons votre propriété, votre consommation d'électricité et les conditions solaires locales pour calculer une taille de système adaptée et la production attendue.",
-    "body2": "Vous choisissez une période de retour sur investissement qui vous convient. Mr. Solar Doc calcule ensuite le coût maximal que le système peut avoir pour respecter cette période de retour.",
-    "disclaimer": "Le résultat est indicatif et ne constitue pas un devis. Les prix réels, la production et le résultat financier peuvent varier selon l'installation, les prix de l'électricité et les conditions du marché.",
+    "point1Title": "Adapté à votre bien",
+    "point1Body": "Nous calculons selon votre consommation, l'ensoleillement et votre raccordement au réseau.",
+    "point2Title": "La bonne taille d'installation",
+    "point2Body": "Vous obtenez une puissance recommandée et la production annuelle estimée.",
+    "point3Title": "Vous choisissez le temps de retour",
+    "point3Body": "Nous calculons le coût maximal de l'installation pour atteindre le temps de retour choisi.",
+    "point4Title": "Un rapport clair",
+    "point4Body": "Vous recevez le résultat dans un rapport qui vous aide à évaluer votre investissement solaire.",
+    "disclaimer": "Le calcul est indicatif et ne constitue pas un devis. Le résultat réel peut varier selon l'installation, les prix de l'électricité et les conditions du marché.",
     "cta": "Démarrer le calcul",
   },
   "common": {

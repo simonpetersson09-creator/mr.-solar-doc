@@ -11,9 +11,15 @@ export const tr = {
   "welcome": {
     "title": "Mr. Solar Doc",
     "subtitle": "Mülkünüze hangi güneş enerjisi sisteminin uygun olduğunu ve maliyetini öğrenin.",
-    "body1": "Uygun sistem boyutunu ve tahmini üretimi hesaplamak için mülkünüzü, elektrik tüketiminizi ve yerel güneşlenme koşullarını kullanıyoruz.",
-    "body2": "Size uygun gelen bir geri ödeme süresi seçersiniz. Mr. Solar Doc ardından bu geri ödeme süresine ulaşmak için sistemin en fazla ne kadara mal olabileceğini hesaplar.",
-    "disclaimer": "Sonuç bir rehberdir, teklif değildir. Gerçek fiyatlar, üretim ve finansal sonuç kurulum, elektrik fiyatları ve piyasa koşullarına göre farklılık gösterebilir.",
+    "point1Title": "Mülkünüze göre uyarlanır",
+    "point1Body": "Elektrik tüketiminiz, güneş koşulları ve şebeke bağlantınıza göre hesaplarız.",
+    "point2Title": "Doğru sistem boyutu",
+    "point2Body": "Önerilen sistem gücünü ve hesaplanan yıllık üretimi alırsınız.",
+    "point3Title": "Geri ödeme süresini siz seçersiniz",
+    "point3Body": "Seçtiğiniz geri ödeme süresine ulaşmak için sistemin en fazla ne kadar tutabileceğini hesaplarız.",
+    "point4Title": "Anlaşılır bir rapor",
+    "point4Body": "Sonucu, güneş yatırımınızı değerlendirmenize yardımcı olan bir raporda alırsınız.",
+    "disclaimer": "Hesaplama yol göstericidir ve teklif değildir. Gerçek sonuç kurulum, elektrik fiyatları ve piyasa koşullarına göre değişebilir.",
     "cta": "Hesaplamayı başlat",
   },
   "common": {

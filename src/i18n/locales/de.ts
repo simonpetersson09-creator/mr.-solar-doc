@@ -11,9 +11,15 @@ export const de = {
   "welcome": {
     "title": "Mr. Solar Doc",
     "subtitle": "Finden Sie heraus, welche Solaranlage zu Ihrer Immobilie passt und was sie kosten kann.",
-    "body1": "Wir nutzen Ihre Immobilie, Ihren Stromverbrauch und die lokalen Solarbedingungen, um eine passende Anlagengröße und die erwartete Produktion zu berechnen.",
-    "body2": "Sie wählen eine Amortisationszeit, die sich für Sie richtig anfühlt. Mr. Solar Doc berechnet dann, was die Anlage höchstens kosten darf, um diese Amortisationszeit zu erreichen.",
-    "disclaimer": "Das Ergebnis ist eine Orientierung, kein Angebot. Die tatsächlichen Preise, die Produktion und das finanzielle Ergebnis können je nach Installation, Strompreisen und Marktbedingungen abweichen.",
+    "point1Title": "Auf Ihre Immobilie zugeschnitten",
+    "point1Body": "Wir rechnen mit Stromverbrauch, Sonneneinstrahlung und Ihrem Netzanschluss.",
+    "point2Title": "Die richtige Anlagengröße",
+    "point2Body": "Sie erhalten eine empfohlene Anlagengröße und die berechnete Jahresproduktion.",
+    "point3Title": "Sie wählen die Amortisationszeit",
+    "point3Body": "Wir berechnen, was die Anlage maximal kosten darf, um Ihre gewählte Amortisationszeit zu erreichen.",
+    "point4Title": "Ein klarer Bericht",
+    "point4Body": "Sie erhalten das Ergebnis in einem Bericht, der die Bewertung Ihrer Solarinvestition erleichtert.",
+    "disclaimer": "Die Berechnung ist eine Orientierung und kein Angebot. Das tatsächliche Ergebnis kann je nach Installation, Strompreisen und Marktbedingungen abweichen.",
     "cta": "Berechnung starten",
   },
   "common": {

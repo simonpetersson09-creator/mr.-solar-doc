@@ -11,9 +11,15 @@ export const es = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Descubre qué sistema solar se adapta a tu propiedad y cuánto puede costar.",
-    body1: "Utilizamos tu propiedad, tu consumo eléctrico y las condiciones solares locales para calcular un tamaño de sistema adecuado y la producción esperada.",
-    body2: "Eliges un período de amortización que te parezca adecuado. Mr. Solar Doc calcula entonces el coste máximo que puede tener el sistema para cumplir ese período de amortización.",
-    disclaimer: "El resultado es orientativo, no una oferta. Los precios reales, la producción y el resultado financiero pueden variar según la instalación, los precios de la electricidad y las condiciones del mercado.",
+    point1Title: "Adaptado a tu vivienda",
+    point1Body: "Calculamos con tu consumo eléctrico, las condiciones solares y tu conexión a red.",
+    point2Title: "El tamaño adecuado",
+    point2Body: "Obtienes una potencia recomendada y la producción anual estimada.",
+    point3Title: "Tú eliges el periodo de amortización",
+    point3Body: "Calculamos cuánto puede costar como máximo la instalación para lograr ese periodo.",
+    point4Title: "Un informe claro",
+    point4Body: "Recibes el resultado en un informe que te ayuda a valorar tu inversión solar.",
+    disclaimer: "El cálculo es orientativo y no es un presupuesto. El resultado real puede variar según la instalación, los precios de la electricidad y el mercado.",
     cta: "Iniciar el cálculo",
   },
   common: {

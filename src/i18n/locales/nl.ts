@@ -11,9 +11,15 @@ export const nl = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Ontdek welk zonnesysteem past bij jouw woning en wat het kan kosten.",
-    body1: "We gebruiken je woning, elektriciteitsverbruik en de lokale zonneomstandigheden om een geschikte systeemgrootte en verwachte opbrengst te berekenen.",
-    body2: "Je kiest een terugbetalingsperiode die voor jou goed voelt. Mr. Solar Doc berekent vervolgens wat het systeem maximaal mag kosten om die terugbetalingsperiode te halen.",
-    disclaimer: "Het resultaat is een richtlijn, geen offerte. De werkelijke prijzen, opbrengst en financiële resultaat kunnen afwijken afhankelijk van de installatie, elektriciteitsprijzen en marktomstandigheden.",
+    point1Title: "Afgestemd op uw woning",
+    point1Body: "We rekenen met uw stroomverbruik, zonomstandigheden en netaansluiting.",
+    point2Title: "De juiste systeemgrootte",
+    point2Body: "U krijgt een aanbevolen systeemgrootte en de berekende jaarproductie.",
+    point3Title: "U kiest de terugverdientijd",
+    point3Body: "We berekenen wat het systeem maximaal mag kosten om die terugverdientijd te halen.",
+    point4Title: "Een duidelijk rapport",
+    point4Body: "U krijgt het resultaat gebundeld in een rapport dat helpt bij het beoordelen van uw zonne-investering.",
+    disclaimer: "De berekening is indicatief en geen offerte. Het werkelijke resultaat kan afwijken afhankelijk van installatie, stroomprijzen en marktomstandigheden.",
     cta: "Start de berekening",
   },
   common: {

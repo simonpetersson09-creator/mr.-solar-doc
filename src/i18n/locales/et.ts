@@ -11,9 +11,15 @@ export const et = {
   "welcome": {
     "title": "Mr. Solar Doc",
     "subtitle": "Selgita, milline päikeseenergiasüsteem sobib sinu kinnisvarale ja kui palju see võiks maksma minna.",
-    "body1": "Kasutame sinu kinnisvara, elektritarbimist ja kohalikke päikesetingimusi, et arvutada sobiv süsteemi suurus ja oodatav tootlus.",
-    "body2": "Valid tasuvusaja, mis sulle sobib. Mr. Solar Doc arvutab seejärel, kui palju süsteem võib maksimaalselt maksta, et see tasuvusaeg saavutada.",
-    "disclaimer": "Tulemus on suunav, mitte pakkumine. Tegelikud hinnad, tootlus ja finantstulemus võivad erineda sõltuvalt paigaldusest, elektrihindadest ja turutingimustest.",
+    "point1Title": "Kohandatud sinu kinnistule",
+    "point1Body": "Arvutame sinu elektritarbimise, päikesetingimuste ja võrguühenduse põhjal.",
+    "point2Title": "Õige süsteemi suurus",
+    "point2Body": "Saad soovitatud süsteemi suuruse ja arvutusliku aastatoodangu.",
+    "point3Title": "Sina valid tasuvusaja",
+    "point3Body": "Arvutame, kui palju võib süsteem maksimaalselt maksta valitud tasuvusaja saavutamiseks.",
+    "point4Title": "Selge aruanne",
+    "point4Body": "Saad tulemuse aruandena, mis aitab hinnata päikeseinvesteeringut.",
+    "disclaimer": "Arvutus on suunav ega ole pakkumine. Tegelik tulemus võib erineda sõltuvalt paigaldusest, elektrihindadest ja turuolukorrast.",
     "cta": "Alusta arvutust",
   },
   "common": {

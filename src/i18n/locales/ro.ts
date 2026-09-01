@@ -11,9 +11,15 @@ export const ro = {
   "welcome": {
     "title": "Mr. Solar Doc",
     "subtitle": "Descoperă ce sistem solar se potrivește proprietății tale și cât ar putea costa.",
-    "body1": "Folosim proprietatea ta, consumul de electricitate și condițiile solare locale pentru a calcula o dimensiune adecvată a sistemului și producția estimată.",
-    "body2": "Alegi o perioadă de amortizare care ți se pare potrivită. Mr. Solar Doc calculează apoi costul maxim pe care sistemul îl poate avea pentru a atinge această perioadă de amortizare.",
-    "disclaimer": "Rezultatul este orientativ, nu o ofertă. Prețurile reale, producția și rezultatul financiar pot varia în funcție de instalare, prețurile energiei electrice și condițiile de piață.",
+    "point1Title": "Adaptat proprietății tale",
+    "point1Body": "Calculăm pe baza consumului de energie, condițiilor solare și racordului la rețea.",
+    "point2Title": "Dimensiunea potrivită a sistemului",
+    "point2Body": "Primești o putere recomandată și producția anuală estimată.",
+    "point3Title": "Tu alegi perioada de amortizare",
+    "point3Body": "Calculăm cât poate costa maximum sistemul pentru a atinge perioada aleasă.",
+    "point4Title": "Un raport clar",
+    "point4Body": "Primești rezultatul într-un raport care te ajută să evaluezi investiția solară.",
+    "disclaimer": "Calculul este orientativ și nu este o ofertă. Rezultatul real poate diferi în funcție de instalare, prețurile la energie și piață.",
     "cta": "Începe calculul",
   },
   "common": {

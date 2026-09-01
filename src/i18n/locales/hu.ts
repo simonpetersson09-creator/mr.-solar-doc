@@ -11,9 +11,15 @@ export const hu = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Tudja meg, melyik napelemes rendszer illik az ingatlanához, és mennyibe kerülhet.",
-    body1: "Az ingatlana, az áramfogyasztása és a helyi napsütési viszonyok alapján kiszámítjuk a megfelelő rendszerméretet és a várható termelést.",
-    body2: "Kiválaszt egy megtérülési időt, amely megfelel Önnek. A Mr. Solar Doc ezután kiszámítja, hogy a rendszer legfeljebb mennyit kerülhet ahhoz, hogy ez a megtérülési idő teljesüljön.",
-    disclaimer: "Az eredmény tájékoztató jellegű, nem ajánlat. A valós árak, a termelés és a pénzügyi eredmény a telepítéstől, az áram árától és a piaci feltételektől függően eltérhetnek.",
+    point1Title: "A te ingatlanodra szabva",
+    point1Body: "Az áramfogyasztás, a napsütési viszonyok és a hálózati csatlakozás alapján számolunk.",
+    point2Title: "A megfelelő rendszerméret",
+    point2Body: "Ajánlott rendszerméretet és becsült éves termelést kapsz.",
+    point3Title: "Te választod a megtérülési időt",
+    point3Body: "Kiszámoljuk, mennyibe kerülhet legfeljebb a rendszer a választott megtérülési időhöz.",
+    point4Title: "Áttekinthető riport",
+    point4Body: "Az eredményt riportban kapod meg, amely segít értékelni a napelemes beruházást.",
+    disclaimer: "A számítás tájékoztató jellegű, nem árajánlat. A tényleges eredmény eltérhet a kivitelezéstől, az árampáraktól és a piaci helyzettől függően.",
     cta: "Számítás indítása",
   },
   common: {
