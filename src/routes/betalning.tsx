@@ -20,6 +20,8 @@ import {
 } from "@/lib/purchase.functions";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
+import { isDevUnlock } from "@/lib/dev-unlock";
+
 
 export const Route = createFileRoute("/betalning")({
   head: () => ({
@@ -265,6 +267,21 @@ function PaywallPage() {
             {t("paywall.appOnly")}
           </p>
         ) : null}
+
+        {isDevUnlock() ? (
+          <Button
+            size="lg"
+            variant="outline"
+            className="w-full"
+            onClick={() => {
+              if (pending) rememberToken(pending);
+              void navigate({ to: "/resultat" });
+            }}
+          >
+            Dev: fortsätt utan betalning
+          </Button>
+        ) : null}
+
 
         {phase === "cancelled" ? (
           <p className="text-sm text-muted-foreground">{t("paywall.cancelled")}</p>
