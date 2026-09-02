@@ -242,7 +242,11 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           onClick={() => {
             void haptic("success");
             if (!custom && selectedOption) {
-              selectConnectionOption(selectedOption.id, capacity!);
+              selectConnectionOption(
+                selectedOption.id,
+                capacity!,
+                selectedOption.impliedServiceType,
+              );
             } else {
               setConnectionCapacity(capacity);
             }
@@ -500,6 +504,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                 selectConnectionOption(
                   option.id,
                   capacityFor(connectionCapacityAmount(option.capacity), option),
+                  option.impliedServiceType,
                 );
               }}
               className={chipClass(!custom && selectedId === option.id)}
