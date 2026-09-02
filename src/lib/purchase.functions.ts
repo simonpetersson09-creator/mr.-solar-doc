@@ -12,7 +12,12 @@
 
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
-import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
+import {
+  PREMIUM_PRODUCT_ID,
+  REVISION_LIMIT,
+  REVISION_WINDOW_HOURS,
+  UNLOCK_PRODUCT_ID,
+} from "@/config/purchase";
 import type { PurchaseReceipt, PurchaseStatus } from "@/lib/calculation-snapshot";
 
 const deviceIdSchema = z.string().min(8).max(128);
