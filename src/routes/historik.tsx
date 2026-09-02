@@ -5,7 +5,7 @@ import { ArrowLeft, ChevronRight, History, Loader2 } from "lucide-react";
 import { haptic } from "@/services/native-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { useCalculationStore } from "@/state/calculation-store";
-import { listPurchasedCalculations } from "@/lib/purchase.functions";
+import { fetchPurchasedCalculations } from "@/services/purchase-service";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatDate, formatDecimal, formatNumber } from "@/lib/format";
 
@@ -36,7 +36,7 @@ function HistoryPage() {
   // (address, size, production) is read from the local snapshot on this device.
   const query = useQuery({
     queryKey: ["purchased-calculations"],
-    queryFn: async () => listPurchasedCalculations({ data: { deviceId: ensureDeviceId() } }),
+    queryFn: async () => fetchPurchasedCalculations({ data: { deviceId: ensureDeviceId() } }),
   });
 
   const items = (query.data?.items ?? []).flatMap((receipt) => {

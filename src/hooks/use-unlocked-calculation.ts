@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPurchaseStatus } from "@/lib/purchase.functions";
+import { fetchPurchaseStatus } from "@/services/purchase-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { usePremium } from "@/hooks/use-premium";
 import { useCalculationStore } from "@/state/calculation-store";
@@ -38,7 +38,7 @@ export function useUnlockedCalculation(): {
     staleTime: Infinity,
     retry: 1,
     queryFn: async () =>
-      getPurchaseStatus({
+      fetchPurchaseStatus({
         data: { id: active!.id, accessToken: active!.accessToken },
       }),
   });

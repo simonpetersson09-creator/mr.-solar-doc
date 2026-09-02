@@ -25,7 +25,7 @@ import {
   purchasePremium,
   refreshPurchases,
 } from "@/services/iap-service";
-import { verifyApplePremium } from "@/lib/purchase.functions";
+import { fetchPremiumStatus, verifyPremium } from "@/services/purchase-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
@@ -72,7 +72,7 @@ function SettingsPage() {
     setBuying(true);
     try {
       const { transactionId, finish } = await purchasePremium();
-      const verified = await verifyApplePremium({
+      const verified = await verifyPremium({
         data: { deviceId: usePurchaseStore.getState().ensureDeviceId(), transactionId },
       });
       if (verified.status === "active") {
