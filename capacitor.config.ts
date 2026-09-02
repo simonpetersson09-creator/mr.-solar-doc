@@ -16,8 +16,13 @@ const config: CapacitorConfig = {
   appId: "se.shiningdays.mrsolardoc",
   appName: "Mr. Solar Doc",
   webDir: "capacitor-www",
+  // `contentInset: "always"` made WKWebView inset its content by the safe area
+  // and exposed the (black) native view behind the status bar and home
+  // indicator. "never" lets the web content paint edge to edge; safe areas are
+  // handled in CSS via env(safe-area-inset-*).
   ios: {
-    contentInset: "always",
+    contentInset: "never",
+    backgroundColor: "#FBF9F3",
     limitsNavigationsToAppBoundDomains: false,
   },
   android: {
@@ -26,7 +31,7 @@ const config: CapacitorConfig = {
   plugins: {
     SplashScreen: {
       launchShowDuration: 1200,
-      backgroundColor: "#0B1220",
+      backgroundColor: "#FBF9F3",
       showSpinner: false,
     },
   },
