@@ -87,6 +87,7 @@ export const tr = {
     manual: "Manuel – tam yön",
     manualHint: "Oku çatının yönünü gösterecek şekilde sürükleyin. 180° = tam güney.",
     tilt: "Çatı eğimi",
+    dataSourceNote: "AB PVGIS veri tabanından güneş ışınımı",
     tiltDegrees: "Derece",
     disclaimer: "Hesaplama, konumunuza ait güneş ışınımı verilerini kullanır. Gerçek üretim farklılık gösterebilir.",
     compass: {
@@ -401,6 +402,7 @@ export const tr = {
     paybackYearsUnit: "yıl",
     investmentLevelTitle: "Seçtiğiniz geri ödeme süresine göre fiyat",
     investmentPerKwLabel: "Kw başına yatırım maliyeti",
+    investmentPerKwHelp: "Kurulu kW başına azami yatırımın karşılığı budur.",
     panelPowerLabel: "Panel gücü",
     investmentLevelBasis: "Seçtiğiniz {{years}} yıllık geri ödeme süresine dayanarak",
     investmentLevelNote:

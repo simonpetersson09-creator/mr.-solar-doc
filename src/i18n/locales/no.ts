@@ -87,6 +87,7 @@ export const no = {
     manual: "Manuell – eksakt retning",
     manualHint: "Dra pilen slik at den peker i takets retning. 180° = rett sør.",
     tilt: "Takvinkel",
+    dataSourceNote: "Solinnstråling fra EUs PVGIS-database",
     tiltDegrees: "Grader",
     disclaimer: "Beregningen bruker solinnstrålingsdata for stedet ditt. Faktisk produksjon kan avvike.",
     compass: {
@@ -397,6 +398,7 @@ export const no = {
     paybackYearsUnit: "år",
     investmentLevelTitle: "Pris etter valgt nedbetalingstid",
     investmentPerKwLabel: "Investeringskostnad per kW",
+    investmentPerKwHelp: "Så mye per installert kW tilsvarer maksinvesteringen.",
     panelPowerLabel: "Paneleffekt",
     investmentLevelBasis: "Basert på din valgte nedbetalingstid på {{years}} år",
     investmentLevelNote:

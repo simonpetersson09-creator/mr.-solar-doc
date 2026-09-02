@@ -86,6 +86,7 @@ export const sr = {
     manual: "Ручно – тачан правац",
     manualHint: "Превуците стрелицу тако да показује правац крова. 180° = тачно југ.",
     tilt: "Нагиб крова",
+    dataSourceNote: "Sunčevo zračenje iz baze podataka PVGIS EU",
     tiltDegrees: "Степени",
     disclaimer: "Прорачун користи податке о сунчевом зрачењу за вашу локацију. Стварна производња може да одступа.",
     compass: {
@@ -398,6 +399,7 @@ export const sr = {
     paybackYearsUnit: "година",
     investmentLevelTitle: "Цена после изабраног периода отплате",
     investmentPerKwLabel: "Трошак инвестиције по kW",
+    investmentPerKwHelp: "Toliko iznosi maksimalna investicija po instaliranom kW.",
     panelPowerLabel: "Снага панела",
     investmentLevelBasis: "На основу вашег изабраног периода отплате од {{years}} година",
     investmentLevelNote:

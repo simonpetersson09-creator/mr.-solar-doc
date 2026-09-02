@@ -72,6 +72,7 @@ export const da = {
     manual: "Manuelt – præcis retning",
     manualHint: "Træk pilen, så den peger i tagets retning. 180° = stik syd.",
     tilt: "Taghældning",
+    dataSourceNote: "Solindstråling fra EU's PVGIS-database",
     tiltDegrees: "Grader",
     disclaimer: "Beregningen bruger solindstrålingsdata for din placering. Faktisk produktion kan afvige.",
     compass: {
@@ -386,6 +387,7 @@ export const da = {
       "Se hvilket investeringsniveau, der svarer til forskellige tilbagebetalingstider.",
     investmentLevelTitle: "Pris efter din valgte tilbagebetalingstid",
     investmentPerKwLabel: "Investeringsomkostning pr. kW",
+    investmentPerKwHelp: "Så meget per installeret kW svarer maksinvesteringen til.",
     panelPowerLabel: "Paneleffekt",
     investmentLevelBasis: "Baseret på din valgte tilbagebetalingstid på {{years}} år",
     investmentLevelNote:

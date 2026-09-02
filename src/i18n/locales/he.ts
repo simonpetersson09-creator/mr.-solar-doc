@@ -84,6 +84,7 @@ export const he = {
     manual: "ידני – כיוון מדויק",
     manualHint: "גררו את החץ כך שיצביע לכיוון הגג. 180° = דרום מדויק.",
     tilt: "זווית הגג",
+    dataSourceNote: "קרינה סולארית ממאגר PVGIS של האיחוד האירופי",
     tiltDegrees: "מעלות",
     disclaimer: "החישוב מבוסס על נתוני קרינת שמש עבור המיקום שלך. הייצור בפועל עשוי להשתנות.",
     compass: {
@@ -389,6 +390,7 @@ export const he = {
     paybackYearsUnit: "שנים",
     investmentLevelTitle: "מחיר לפי תקופת ההחזר שבחרתם",
     investmentPerKwLabel: "עלות השקעה לכל kW",
+    investmentPerKwHelp: "זהו הסכום שההשקעה המרבית מייצגת לכל kW מותקן.",
     panelPowerLabel: "הספק הפאנל",
     investmentLevelBasis: "מבוסס על תקופת ההחזר שבחרתם של {{years}} שנים",
     investmentLevelNote:

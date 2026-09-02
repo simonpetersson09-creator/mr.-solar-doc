@@ -72,6 +72,7 @@ export const cs = {
     manual: "Manuálně – přesný směr",
     manualHint: "Přetáhněte šipku tak, aby ukazovala směr střechy. 180° = přesně na jih.",
     tilt: "Sklon střechy",
+    dataSourceNote: "Sluneční záření z databáze EU PVGIS",
     tiltDegrees: "Stupně",
     disclaimer: "Výpočet vychází z dat o slunečním záření pro vaši lokalitu. Skutečná výroba se může lišit.",
     compass: {
@@ -384,6 +385,7 @@ export const cs = {
     paybackSubtitle: "Podívejte se, jaká úroveň investice odpovídá různým dobám návratnosti.",
     investmentLevelTitle: "Cena podle vámi zvolené doby návratnosti",
     investmentPerKwLabel: "Investiční náklady na kW",
+    investmentPerKwHelp: "Tolik odpovídá maximální investice na instalovaný kW.",
     panelPowerLabel: "Výkon panelů",
     investmentLevelBasis: "Na základě zvolené doby návratnosti {{years}} let",
     investmentLevelNote:

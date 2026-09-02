@@ -87,6 +87,7 @@ export const nl = {
     manual: "Handmatig – exacte richting",
     manualHint: "Sleep de pijl zodat deze in de richting van het dak wijst. 180° = pal zuid.",
     tilt: "Dakhelling",
+    dataSourceNote: "Zonnestraling uit de PVGIS-database van de EU",
     tiltDegrees: "Graden",
     disclaimer: "De berekening gebruikt instralingsgegevens voor uw locatie. De werkelijke opbrengst kan afwijken.",
     compass: {
@@ -406,6 +407,7 @@ export const nl = {
     paybackYearsUnit: "jaar",
     investmentLevelTitle: "Prijs op basis van je gekozen terugverdientijd",
     investmentPerKwLabel: "Investering per kW",
+    investmentPerKwHelp: "Zoveel komt de maximale investering neer per geïnstalleerde kW.",
     panelPowerLabel: "Paneelvermogen",
     investmentLevelBasis: "Gebaseerd op je gekozen terugverdientijd van {{years}} jaar",
     investmentLevelNote:

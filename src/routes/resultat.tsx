@@ -209,6 +209,10 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
           </button>
           <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
         </header>
+        <p className="text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
+          {t("report.paybackTime")} · {t("result.paybackYears", { years: formatNumber(paybackYears, locale) })}
+        </p>
+
         {gridUnverified ? (
           <div className="flex items-start gap-2 rounded-2xl border border-accent/40 bg-accent/10 p-3 text-[11px] leading-relaxed text-foreground/80">
             <CircleAlert className="mt-0.5 size-3.5 shrink-0 text-accent" />
@@ -282,6 +286,10 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
             <p className="mt-3 text-center text-sm font-bold text-white">
               {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
             </p>
+            <p className="mt-1 text-center text-[11px] leading-relaxed text-white/60">
+              {t("result.coverageNote")}
+            </p>
+
 
             {result.notes.includes("minimum-system-size") ? (
               <p className="mt-1.5 text-center text-[11px] text-white/60">{t("result.minimumSizeNote")}</p>
@@ -489,8 +497,9 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
       <span className="text-[11px] font-semibold text-white/60">/kW</span>
     </p>
     <p className="mt-1 text-[11px] leading-relaxed text-white/60">
-      {formatDecimal(result.installedKwp, locale)} kWp · panel (DC)
+      {t("result.investmentPerKwHelp")}
     </p>
+
   </section>
 ) : null}
 

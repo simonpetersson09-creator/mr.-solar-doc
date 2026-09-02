@@ -73,6 +73,7 @@ export const it = {
     manualHint:
       "Trascina la freccia in modo che punti nella direzione del tetto. 180° = esattamente a sud.",
     tilt: "Inclinazione del tetto",
+    dataSourceNote: "Irraggiamento solare dal database PVGIS dell'UE",
     tiltDegrees: "Gradi",
     disclaimer: "Il calcolo usa i dati di irraggiamento della tua posizione. La produzione reale può variare.",
     compass: {
@@ -391,6 +392,7 @@ export const it = {
       "Vedi quale livello di investimento corrisponde a diversi tempi di ritorno semplici.",
     investmentLevelTitle: "Prezzo in base al periodo di ammortamento scelto",
     investmentPerKwLabel: "Costo di investimento per kW",
+    investmentPerKwHelp: "Questo è quanto corrisponde l'investimento massimo per kW installato.",
     panelPowerLabel: "Potenza dei pannelli",
     investmentLevelBasis: "In base al periodo di ritorno scelto di {{years}} anni",
     investmentLevelNote:

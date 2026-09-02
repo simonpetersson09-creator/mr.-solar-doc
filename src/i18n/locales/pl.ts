@@ -74,6 +74,7 @@ export const pl = {
     manualHint:
       "Przeciągnij strzałkę tak, aby wskazywała kierunek dachu. 180° = prosto na południe.",
     tilt: "Kąt nachylenia dachu",
+    dataSourceNote: "Nasłonecznienie z unijnej bazy PVGIS",
     tiltDegrees: "Stopnie",
     disclaimer: "Obliczenia korzystają z danych nasłonecznienia dla Twojej lokalizacji. Rzeczywista produkcja może się różnić.",
     compass: {
@@ -395,6 +396,7 @@ export const pl = {
     paybackSubtitle: "Sprawdź, jaki poziom inwestycji odpowiada różnym czasom zwrotu.",
     investmentLevelTitle: "Cena po wybranym okresie zwrotu",
     investmentPerKwLabel: "Koszt inwestycji za kW",
+    investmentPerKwHelp: "Tyle wynosi maksymalna inwestycja na zainstalowany kW.",
     panelPowerLabel: "Moc paneli",
     investmentLevelBasis: "Na podstawie wybranego okresu zwrotu {{years}} lat",
     investmentLevelNote:

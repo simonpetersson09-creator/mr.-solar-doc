@@ -74,6 +74,7 @@ export const de = {
     manual: "Manuell – exakte Richtung",
     manualHint: "Ziehen Sie den Pfeil, sodass er in Dachrichtung zeigt. 180° = exakt Süden.",
     tilt: "Dachneigung",
+    dataSourceNote: "Solareinstrahlung aus der PVGIS-Datenbank der EU",
     tiltDegrees: "Grad",
     disclaimer: "Die Berechnung nutzt Einstrahlungsdaten für Ihren Standort. Der tatsächliche Ertrag kann abweichen.",
     compass: {
@@ -394,6 +395,7 @@ export const de = {
       "Sehen Sie, welches Investitionsniveau zu verschiedenen Amortisationszeiten passt.",
     investmentLevelTitle: "Preis nach Ihrer gewählten Amortisationszeit",
     investmentPerKwLabel: "Investitionskosten pro kW",
+    investmentPerKwHelp: "So viel entspricht die maximale Investition je installiertem kW.",
     panelPowerLabel: "Modulleistung",
     investmentLevelBasis: "Basierend auf der gewählten Amortisationszeit von {{years}} Jahren",
     investmentLevelNote:

@@ -75,6 +75,7 @@ export const fr = {
     manualHint:
       "Faites glisser la flèche pour qu'elle pointe dans la direction du toit. 180° = plein sud.",
     tilt: "Inclinaison du toit",
+    dataSourceNote: "Rayonnement solaire issu de la base PVGIS de l'UE",
     tiltDegrees: "Degrés",
     disclaimer: "Le calcul utilise les données d'ensoleillement de votre emplacement. La production réelle peut varier.",
     compass: {
@@ -399,6 +400,7 @@ export const fr = {
       "Voyez quel niveau d'investissement correspond à différents temps de retour sur investissement.",
     investmentLevelTitle: "Prix selon la période de remboursement choisie",
     investmentPerKwLabel: "Coût d\'investissement par kW",
+    investmentPerKwHelp: "Voici ce que représente l'investissement maximal par kW installé.",
     panelPowerLabel: "Puissance des panneaux",
     investmentLevelBasis: "Basé sur la période de retour choisie de {{years}} ans",
     investmentLevelNote:

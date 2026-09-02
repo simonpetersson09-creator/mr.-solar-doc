@@ -86,6 +86,7 @@ export const hi = {
     manual: "मैन्युअल – सटीक दिशा",
     manualHint: "तीर को खींचें ताकि वह छत की दिशा में इंगित करे। 180° = दक्षिण की ओर।",
     tilt: "छत का झुकाव",
+    dataSourceNote: "EU के PVGIS डेटाबेस से सौर विकिरण",
     tiltDegrees: "डिग्री",
     disclaimer: "गणना आपके स्थान के सौर विकिरण डेटा पर आधारित है। वास्तविक उत्पादन भिन्न हो सकता है।",
     compass: {
@@ -394,6 +395,7 @@ export const hi = {
     paybackYearsUnit: "वर्ष",
     investmentLevelTitle: "आपकी चुनी गई पेबैक अवधि के बाद कीमत",
     investmentPerKwLabel: "प्रति kW निवेश लागत",
+    investmentPerKwHelp: "प्रति स्थापित kW अधिकतम निवेश इतना बैठता है।",
     panelPowerLabel: "पैनल पावर",
     investmentLevelBasis: "आपकी चुनी गई पेबैक अवधि {{years}} वर्ष के आधार पर",
     investmentLevelNote:

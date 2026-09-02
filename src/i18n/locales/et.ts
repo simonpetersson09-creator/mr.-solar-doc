@@ -72,6 +72,7 @@ export const et = {
     manual: "Käsitsi – täpne suund",
     manualHint: "Lohista noolt nii, et see osutaks katuse suunale. 180° = otse lõunasse.",
     tilt: "Katusekalle",
+    dataSourceNote: "Päikesekiirgus ELi PVGIS-i andmebaasist",
     tiltDegrees: "Kraadi",
     disclaimer: "Arvutus kasutab teie asukoha kiirgusandmeid. Tegelik toodang võib erineda.",
     compass: {
@@ -388,6 +389,7 @@ export const et = {
       "Vaata, milline investeeringu tase vastab erinevatele lihtsatele tasuvusaegadele.",
     investmentLevelTitle: "Hind vastavalt teie valitud tasuvusajale",
     investmentPerKwLabel: "Investeeringu maksumus kW kohta",
+    investmentPerKwHelp: "Nii palju vastab maksimaalne investeering paigaldatud kW kohta.",
     panelPowerLabel: "Paneelide võimsus",
     investmentLevelBasis: "Põhineb valitud {{years}} aasta tasuvusajal",
     investmentLevelNote:
