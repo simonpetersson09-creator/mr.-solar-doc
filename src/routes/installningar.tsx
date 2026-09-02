@@ -115,11 +115,9 @@ function SettingsPage() {
       const status = await queryClient.fetchQuery({
         queryKey: PREMIUM_QUERY_KEY,
         queryFn: () =>
-          import("@/lib/purchase.functions").then((m) =>
-            m.getPremiumStatus({
-              data: { deviceId: usePurchaseStore.getState().ensureDeviceId() },
-            }),
-          ),
+          fetchPremiumStatus({
+            data: { deviceId: usePurchaseStore.getState().ensureDeviceId() },
+          }),
       });
       await queryClient.invalidateQueries({ queryKey: ["purchase-status"] });
       if (status.active) toast.success(t("premium.restoredPremium"));
