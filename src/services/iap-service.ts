@@ -469,7 +469,7 @@ export async function refreshPurchases(): Promise<void> {
 /** Human-readable, untranslated failure detail for logs and outcome reporting. */
 export function describePurchaseError(error: unknown): string {
   if (error instanceof PurchaseError) {
-    const parts = [error.reason];
+    const parts: string[] = [error.reason];
     if (error.code !== null) parts.push(`code=${error.code}`);
     if (error.detail && error.detail !== error.reason) parts.push(error.detail);
     return parts.join(" | ").slice(0, 300);
