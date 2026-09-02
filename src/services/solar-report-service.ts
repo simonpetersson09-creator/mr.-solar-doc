@@ -1368,8 +1368,27 @@ export function generateReportBlob(options: ReportOptions): Blob {
     `${f["uncertaintyText"] ?? ""} ${labels.disclaimer}`,
   );
 
+  // Installer checklist gets its own page: it is the last hands-on takeaway
+  // before the explanatory FAQ page.
+  if (labels.installerChecklistItems.length > 0) {
+    report.pageBreak();
+    report.checklist(
+      labels.installerChecklistTitle,
+      labels.installerChecklistItems.map((item) =>
+        item
+          .replaceAll("{{acPower}}", `${formatDecimal(result.presentation.maxAcPowerKw, locale, 1)} kW AC`)
+          .replaceAll(
+            "{{production}}",
+            `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh/${f["perYearShort"]?.replace(/^\//, "") ?? "år"}`,
+          )
+          .replaceAll("{{kwp}}", `${formatDecimal(result.installedKwp, locale)} kWp`)
+          .replaceAll("{{investment}}", money(result.investment.maxInvestmentRounded)),
+      ),
+    );
+  }
+
   // FAQ closes the report; the metadata is a discreet closing line, not a page.
-  report.softBreak(60);
+  report.pageBreak();
   report.faq(labels.faqTitle, labels.faqItems);
 
   const reportId = buildReportId(result);
