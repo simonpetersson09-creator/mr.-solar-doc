@@ -975,7 +975,9 @@ export function generateReportBlob(options: ReportOptions): Blob {
     labels.origin,
   );
 
-  report.softBreak(80);
+  // Page 3 starts with production.
+  report.pageBreak();
+
   report.sectionTitle(labels.production);
   report.rows(
     [
