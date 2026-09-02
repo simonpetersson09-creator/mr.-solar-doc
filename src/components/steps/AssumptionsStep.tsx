@@ -10,6 +10,7 @@ import { useCalculation } from "@/hooks/use-calculation";
 import { useWizardStore } from "@/state/wizard-store";
 import { formatNumber } from "@/lib/format";
 import { NumericField } from "@/components/NumericField";
+import { maxPlausiblePricePerKwh } from "@/config/electricity-price-bounds";
 import { cn } from "@/lib/utils";
 import {
   MAX_CUSTOM_PRICE_CHANGE_PERCENT,
@@ -199,6 +200,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               value={selfConsumedValue}
               onCommit={setSelfConsumedValue}
               min={0}
+              {...(maxPricePerKwh === null ? {} : { max: maxPricePerKwh })}
               decimals={4}
               className="mt-1 h-9 rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
             />
@@ -225,6 +227,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               value={exportValue}
               onCommit={setExportValue}
               min={0}
+              {...(maxPricePerKwh === null ? {} : { max: maxPricePerKwh })}
               decimals={4}
               className="mt-1 h-9 rounded-full border-white/25 bg-white/15 text-white placeholder:text-white/50"
             />
