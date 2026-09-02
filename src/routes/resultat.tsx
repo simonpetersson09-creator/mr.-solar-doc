@@ -232,8 +232,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
                   <Zap className="size-3" /> {t("result.recommendedInverter")}
                 </p>
                 <p className="mt-0.5 text-lg font-bold text-white tabular-nums">
-                  {formatNumber(result.inverterKw, locale)}{" "}
-                  <span className="text-[11px] font-semibold text-white/60">kW</span>
+                  {formatInverterPower(result, locale)}
                 </p>
               </div>
               <div className="rounded-2xl bg-white/10 p-2.5 text-center">
@@ -474,7 +473,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
               {[
                 [t("result.installedDc"), `${formatDecimal(result.installedKwp, locale)} kWp`],
                 [t("result.panelsUnit"), formatNumber(result.panelCount, locale)],
-                [t("result.inverterPower"), `${formatNumber(result.inverterKw, locale)} kW`],
+                [t("result.inverterPower"), formatInverterPower(result, locale)],
                 [t("result.dcAcRatio"), formatDecimal(result.dcAcRatio, locale, 2)],
                 [t("result.oversizing"), `${formatDecimal(result.oversizingPercent, locale)} %`],
                 [
