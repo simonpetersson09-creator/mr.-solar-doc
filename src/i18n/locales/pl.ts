@@ -205,7 +205,7 @@ export const pl = {
     gridCheckHint: "W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
     disclaimerTitle: "Ważne informacje",
     disclaimer:
-      "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
+      "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
     grid: {
       advanced: "Ustawienia zaawansowane",
       section: "Ustawienia sieci",

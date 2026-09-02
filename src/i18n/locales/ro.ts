@@ -216,7 +216,7 @@ export const ro = {
     gridCheckHint: "Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
     disclaimerTitle: "Important de știut",
     disclaimer:
-      "Puterea teoretică a siguranței principale este calculată pentru o conexiune trifazată de 400 V. Verifică-ți conexiunea reală la rețea dacă nu ești sigur. Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
+      "Puterea teoretică a siguranței principale este calculată pentru o conexiune trifazată de 400 V. Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
     grid: {
       advanced: "Setări avansate",
       section: "Setări rețea",

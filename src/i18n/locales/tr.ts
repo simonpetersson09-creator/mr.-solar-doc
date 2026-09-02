@@ -216,7 +216,7 @@ export const tr = {
     gridCheckHint: "Emin değilseniz gerçek şebeke bağlantınızı kontrol edin.",
     disclaimerTitle: "Bilinmesi gerekenler",
     disclaimer:
-      "Ana sigortanın teorik gücü, 400 V üç fazlı bir bağlantıdan hesaplanır. Emin değilseniz gerçek şebeke bağlantınızı kontrol edin. Emin değilseniz gerçek şebeke bağlantınızı kontrol edin.",
+      "Ana sigortanın teorik gücü, 400 V üç fazlı bir bağlantıdan hesaplanır. Emin değilseniz gerçek şebeke bağlantınızı kontrol edin.",
     grid: {
       advanced: "Gelişmiş ayarlar",
       section: "Şebeke ayarları",

@@ -204,7 +204,7 @@ export const lt = {
     gridCheckHint: "Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
     disclaimerTitle: "Svarbu žinoti",
     disclaimer:
-      "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
+      "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
     grid: {
       advanced: "Išplėstiniai nustatymai",
       section: "Tinklo nustatymai",

@@ -215,7 +215,7 @@ export const no = {
     gridCheckHint: "Sjekk din faktiske nettilkobling hvis du er usikker.",
     disclaimerTitle: "Viktig å vite",
     disclaimer:
-      "Den teoretiske effekten fra hovedsikringen beregnes ut fra en 400 V trefaset tilkobling. Sjekk din faktiske nettilkobling hvis du er usikker. Sjekk din faktiske nettilkobling hvis du er usikker.",
+      "Den teoretiske effekten fra hovedsikringen beregnes ut fra en 400 V trefaset tilkobling. Sjekk din faktiske nettilkobling hvis du er usikker.",
     grid: {
       advanced: "Avanserte innstillinger",
       section: "Nettinnstillinger",

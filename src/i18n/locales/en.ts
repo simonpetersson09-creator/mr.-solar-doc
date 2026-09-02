@@ -215,7 +215,7 @@ export const en = {
     gridCheckHint: "Check your actual grid connection if you are unsure.",
     disclaimerTitle: "Important to know",
     disclaimer:
-      "The theoretical power of the main fuse is calculated from a 400 V three-phase connection. Check your actual grid connection if you are unsure. Check your actual grid connection if you are unsure.",
+      "The theoretical power of the main fuse is calculated from a 400 V three-phase connection. Check your actual grid connection if you are unsure.",
     grid: {
       advanced: "Advanced settings",
       section: "Grid settings",

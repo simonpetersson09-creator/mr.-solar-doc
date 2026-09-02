@@ -215,7 +215,7 @@ export const sv = {
     gridCheckHint: "Kontrollera din faktiska nätanslutning om du är osäker.",
     disclaimerTitle: "Viktigt att veta",
     disclaimer:
-      "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker. Kontrollera din faktiska nätanslutning om du är osäker.",
+      "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
     grid: {
       advanced: "Avancerade inställningar",
       section: "Nätinställningar",

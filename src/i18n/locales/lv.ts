@@ -202,7 +202,7 @@ export const lv = {
     gridCheckHint: "Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     disclaimerTitle: "Svarīgi zināt",
     disclaimer:
-      "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
+      "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     grid: {
       advanced: "Papildu iestatījumi",
       section: "Tīkla iestatījumi",

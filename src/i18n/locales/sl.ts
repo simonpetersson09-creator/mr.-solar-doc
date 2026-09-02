@@ -199,7 +199,7 @@ export const sl = {
     gridCheckHint: "Če niste prepričani, preverite svoj dejanski omrežni priključek.",
     disclaimerTitle: "Pomembno je vedeti",
     disclaimer:
-      "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
+      "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
     grid: {
       advanced: "Napredne nastavitve",
       section: "Nastavitve omrežja",

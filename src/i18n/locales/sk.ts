@@ -201,7 +201,7 @@ export const sk = {
     gridCheckHint: "Ak si nie ste istí, overte si skutočnú prípojku.",
     disclaimerTitle: "Dôležité vedieť",
     disclaimer:
-      "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku. Ak si nie ste istí, overte si skutočnú prípojku.",
+      "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
     grid: {
       advanced: "Pokročilé nastavenia",
       section: "Nastavenia siete",

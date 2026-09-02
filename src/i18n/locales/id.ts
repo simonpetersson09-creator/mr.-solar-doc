@@ -208,7 +208,7 @@ export const id = {
     gridCheckHint: "Periksa sambungan jaringan Anda yang sebenarnya jika ragu.",
     disclaimerTitle: "Penting untuk diketahui",
     disclaimer:
-      "Daya teoretis sekring utama dihitung dari sambungan tiga fase 400 V. Periksa sambungan jaringan Anda yang sebenarnya jika ragu. Periksa sambungan jaringan Anda yang sebenarnya jika ragu.",
+      "Daya teoretis sekring utama dihitung dari sambungan tiga fase 400 V. Periksa sambungan jaringan Anda yang sebenarnya jika ragu.",
     grid: {
       advanced: "Pengaturan lanjutan",
       section: "Pengaturan jaringan",

@@ -202,7 +202,7 @@ export const et = {
     gridCheckHint: "Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
     disclaimerTitle: "Oluline teada",
     disclaimer:
-      "Peakaitsme teoreetiline võimsus arvutatakse 400 V kolmefaasilise liitumise alusel. Kui te pole kindel, kontrollige oma tegelikku võrguühendust. Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
+      "Peakaitsme teoreetiline võimsus arvutatakse 400 V kolmefaasilise liitumise alusel. Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
     grid: {
       advanced: "Täpsemad seaded",
       section: "Võrgu seaded",

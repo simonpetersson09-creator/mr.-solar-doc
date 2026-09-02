@@ -201,7 +201,7 @@ export const cs = {
     gridCheckHint: "Pokud si nejste jisti, ověřte si skutečnou přípojku.",
     disclaimerTitle: "Důležité vědět",
     disclaimer:
-      "Teoretický výkon hlavního jističe se počítá z třífázové přípojky 400 V. Pokud si nejste jisti, ověřte si skutečnou přípojku. Pokud si nejste jisti, ověřte si skutečnou přípojku.",
+      "Teoretický výkon hlavního jističe se počítá z třífázové přípojky 400 V. Pokud si nejste jisti, ověřte si skutečnou přípojku.",
     grid: {
       advanced: "Pokročilá nastavení",
       section: "Nastavení sítě",

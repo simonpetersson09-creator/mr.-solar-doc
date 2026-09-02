@@ -201,7 +201,7 @@ export const da = {
     gridCheckHint: "Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
     disclaimerTitle: "Vigtigt at vide",
     disclaimer:
-      "Hovedsikringens teoretiske effekt beregnes ud fra en 400 V trefaset tilslutning. Kontrollér din faktiske nettilslutning, hvis du er i tvivl. Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
+      "Hovedsikringens teoretiske effekt beregnes ud fra en 400 V trefaset tilslutning. Kontrollér din faktiske nettilslutning, hvis du er i tvivl.",
     grid: {
       advanced: "Avancerede indstillinger",
       section: "Netsindstillinger",

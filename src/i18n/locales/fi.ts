@@ -200,7 +200,7 @@ export const fi = {
     gridCheckHint: "Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     disclaimerTitle: "Hyvä tietää",
     disclaimer:
-      "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
+      "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     grid: {
       advanced: "Lisäasetukset",
       section: "Verkkoasetukset",

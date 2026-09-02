@@ -210,7 +210,7 @@ export const fr = {
     gridCheckHint: "Vérifiez votre raccordement réel en cas de doute.",
     disclaimerTitle: "Bon à savoir",
     disclaimer:
-      "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute. Vérifiez votre raccordement réel en cas de doute.",
+      "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute.",
     grid: {
       advanced: "Réglages avancés",
       section: "Réglages du réseau",
