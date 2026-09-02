@@ -1,6 +1,8 @@
 import { fetchPvgis } from "@/lib/pvgis.functions";
 import type { Orientation, SolarResource } from "@/lib/calc/types";
 import { defaultPvgisAzimuthForLatitude } from "@/lib/geo/hemisphere";
+import { isNativePlatform } from "@/services/native-service";
+import { executeNativePvgis } from "@/services/native-pvgis";
 
 /** PVGIS azimuth convention: 0 = south, negative = east, positive = west. */
 const ORIENTATION_AZIMUTH: Record<Exclude<Orientation, "unknown">, number> = {
@@ -46,15 +48,18 @@ export async function getSolarResource(
       ? compassToPvgisAzimuth(request.azimuthDegrees)
       : ORIENTATION_AZIMUTH[request.orientation as Exclude<Orientation, "unknown">];
 
-  const pvgis = await fetchPvgis({
-    data: {
-      latitude: request.latitude,
-      longitude: request.longitude,
-      azimuth,
-      // Optimal angles are only used when the user has no tilt at all.
-      tilt: request.tiltDegrees,
-    },
-  });
+  const payload = {
+    latitude: request.latitude,
+    longitude: request.longitude,
+    azimuth,
+    // Optimal angles are only used when the user has no tilt at all.
+    tilt: request.tiltDegrees,
+  };
+
+  // Native runs against a stable REST route; RPC ids drift between bundles.
+  const pvgis = isNativePlatform()
+    ? await executeNativePvgis(payload)
+    : await fetchPvgis({ data: payload });
 
   return {
     annualKwhPerKwp: pvgis.annualKwhPerKwp,
