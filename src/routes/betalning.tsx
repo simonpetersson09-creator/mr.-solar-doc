@@ -8,6 +8,7 @@ import { haptic } from "@/services/native-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import {
   PurchaseError,
+  describePurchaseError,
   purchasePremium,
   purchaseUnlock,
 } from "@/services/iap-service";
@@ -283,6 +284,8 @@ function PaywallPage() {
           </Button>
         ) : null}
 
+
+        <PurchaseDiagnosticsPanel diagnostics={store.diagnostics} />
 
         {phase === "cancelled" ? (
           <p className="text-sm text-muted-foreground">{t("paywall.cancelled")}</p>
