@@ -1197,34 +1197,6 @@ export function generateReportBlob(options: ReportOptions): Blob {
     report.paragraph(f["paybackScenariosHelp"] ?? "");
   }
 
-  // LCOE: what a produced kWh may cost, and what it is worth.
-  if (!economicsIncomplete && result.productionCost.costPerKwh != null) {
-    report.subheading(labels.productionCostTitle ?? "");
-    report.rows(
-      [
-        {
-          label: labels.productionCostLabel ?? "",
-          value: `${formatCurrencyPrecise(result.productionCost.costPerKwh, locale, currency)}/kWh`,
-          origin: "calculated" as const,
-        },
-        {
-          label: labels.productionCostValueLabel ?? "",
-          value: `${formatCurrencyPrecise(result.productionCost.valuePerKwh, locale, currency)}/kWh`,
-          origin: "calculated" as const,
-        },
-      ],
-      labels.origin,
-    );
-    if (labels.productionCostBasis) {
-      report.paragraph(
-        labels.productionCostBasis
-          .replace("{{investment}}", money(result.productionCost.investment))
-          .replace("{{production}}", formatNumber(result.productionCost.totalProductionKwh, locale))
-          .replace("{{years}}", formatNumber(result.productionCost.periodYears, locale)),
-      );
-    }
-  }
-
   report.paragraph(f["investmentNote"] ?? "");
   if (result.investment.quotePrice != null) report.paragraph(labels.quoteNote);
   report.softBreak(60);
