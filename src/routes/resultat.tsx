@@ -145,6 +145,10 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
                 limit: formatDecimal(result.simplifiedProcessLimitKw, locale),
               })
             : null,
+        installerChecklistTitle: t("report.installerChecklistTitle"),
+        installerChecklistItems: i18n.t("report.installerChecklistItems", {
+          returnObjects: true,
+        }) as string[],
         faqTitle: t("report.faqTitle"),
         faqItems: i18n.t("report.faqItems", { returnObjects: true }) as ReportLabels["faqItems"],
       };
