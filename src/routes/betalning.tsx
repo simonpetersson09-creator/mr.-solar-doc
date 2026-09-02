@@ -14,10 +14,10 @@ import {
   purchaseUnlock,
 } from "@/services/iap-service";
 import {
-  markPurchaseOutcome,
-  verifyApplePremium,
-  verifyApplePurchase,
-} from "@/lib/purchase.functions";
+  reportPurchaseOutcome,
+  verifyPremium,
+  verifyPurchase,
+} from "@/services/purchase-service";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import { isDevUnlock } from "@/lib/dev-unlock";
@@ -99,7 +99,7 @@ function PaywallPage() {
     try {
       const { transactionId, finish } = await purchaseUnlock();
       setPhase("verifying");
-      const verified = await verifyApplePurchase({
+      const verified = await verifyPurchase({
         data: { id: pending.id, accessToken: pending.accessToken, transactionId },
       });
       if (verified.status === "paid") {
@@ -115,7 +115,7 @@ function PaywallPage() {
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
       if (reason !== "unavailable") {
-        await markPurchaseOutcome({
+        await reportPurchaseOutcome({
           data: {
             id: pending.id,
             accessToken: pending.accessToken,
@@ -135,7 +135,7 @@ function PaywallPage() {
     try {
       const { transactionId, finish } = await purchasePremium();
       setPhase("verifying");
-      const verified = await verifyApplePremium({
+      const verified = await verifyPremium({
         data: {
           deviceId: usePurchaseStore.getState().ensureDeviceId(),
           transactionId,

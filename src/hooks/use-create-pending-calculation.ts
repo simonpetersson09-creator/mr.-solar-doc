@@ -1,9 +1,9 @@
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import {
-  claimCalculationRevision,
-  createPendingCalculation,
-} from "@/lib/purchase.functions";
+  claimRevision,
+  startPendingCalculation,
+} from "@/services/purchase-service";
 import { useCalculation } from "@/hooks/use-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { useWizardStore } from "@/state/wizard-store";
@@ -81,7 +81,7 @@ export function useCreatePendingCalculation(): () => Promise<CreateCalculationOu
     // A paid one-off calculation may be recalculated a few times within its
     // window without paying again. Premium never needs this.
     if (active && !premium.active) {
-      const claim = await claimCalculationRevision({
+      const claim = await claimRevision({
         data: { id: active.id, accessToken: active.accessToken },
       }).catch(() => null);
       if (claim?.granted) {
@@ -99,7 +99,7 @@ export function useCreatePendingCalculation(): () => Promise<CreateCalculationOu
 
     // In development the purchase backend may be unavailable; fall back to a
     // local-only receipt so the result page can still be exercised.
-    const created = await createPendingCalculation({
+    const created = await startPendingCalculation({
       data: { deviceId: ensureDeviceId() },
     }).catch((error: unknown) => {
       if (!isDevUnlock()) throw error;

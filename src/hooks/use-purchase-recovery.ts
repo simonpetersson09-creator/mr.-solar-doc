@@ -5,7 +5,7 @@ import {
   isPurchaseAvailable,
   takeUnclaimedTransactions,
 } from "@/services/iap-service";
-import { verifyApplePremium, verifyApplePurchase } from "@/lib/purchase.functions";
+import { verifyPremium, verifyPurchase } from "@/services/purchase-service";
 import { PREMIUM_PRODUCT_ID } from "@/config/purchase";
 import { usePurchaseStore } from "@/state/purchase-store";
 
@@ -33,7 +33,7 @@ export function usePurchaseRecovery(): void {
           // Subscription transactions (first purchase, renewal, restore/sync)
           // are bound to the device, not to a single calculation.
           if (transaction.productId === PREMIUM_PRODUCT_ID) {
-            const premium = await verifyApplePremium({
+            const premium = await verifyPremium({
               data: {
                 deviceId: store.ensureDeviceId(),
                 transactionId: transaction.transactionId,
@@ -51,7 +51,7 @@ export function usePurchaseRecovery(): void {
 
           const ref = store.pending ?? store.active;
           if (!ref) continue;
-          const verified = await verifyApplePurchase({
+          const verified = await verifyPurchase({
             data: {
               id: ref.id,
               accessToken: ref.accessToken,

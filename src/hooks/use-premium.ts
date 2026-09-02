@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getPremiumStatus } from "@/lib/purchase.functions";
+import { fetchPremiumStatus } from "@/services/purchase-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 
 export const PREMIUM_QUERY_KEY = ["premium-status"] as const;
@@ -20,7 +20,7 @@ export function usePremium(): {
     queryKey: PREMIUM_QUERY_KEY,
     staleTime: 60_000,
     retry: 1,
-    queryFn: () => getPremiumStatus({ data: { deviceId: ensureDeviceId() } }),
+    queryFn: () => fetchPremiumStatus({ data: { deviceId: ensureDeviceId() } }),
   });
 
   return {
