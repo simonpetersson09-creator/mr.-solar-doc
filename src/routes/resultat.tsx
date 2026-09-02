@@ -159,6 +159,15 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
   // details" in step 4, so the warning disappears after confirmation — not just
   // for intrinsically-verified countries.
   const gridUnverified = !result.grid.profileConfirmed;
+  const bindingLimitLabel = t(
+    result.pvLimitBinding === "busbar-rule"
+      ? "result.bindingBusbar"
+      : result.pvLimitBinding === "capacity-share"
+        ? "result.bindingCapacityShare"
+        : result.pvLimitBinding === "connection-capacity"
+          ? "result.bindingConnectionCapacity"
+          : "result.bindingPvRule",
+  );
   const gridStatusLabel = t(
     result.grid.profileStatus === "verified"
       ? "result.gridProfileStatusVerified"
@@ -600,6 +609,11 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
                 ],
                 [t("result.gridProfileStatusLabel"), gridStatusLabel],
                 [t("result.fuseLimit"), `${formatDecimal(p.maxAcPowerKw, locale)} kW`],
+                [
+                  t("result.pvLimitLabel"),
+                  `${formatDecimal(result.pvPowerLimitKw, locale)} kW`,
+                ],
+                [t("result.bindingLimitLabel"), bindingLimitLabel],
                 [
                   t("result.specificYield"),
                   `${formatNumber(result.resource.annualKwhPerKwp, locale)} ${t("units.kwhPerKwp")}`,
