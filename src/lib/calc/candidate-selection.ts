@@ -16,6 +16,7 @@ import {
   MIN_RECOMMENDED_KWP,
   SCORE_WEIGHTS,
 } from "@/config/constants";
+import type { InverterOption } from "@/config/inverter-catalog";
 import { annualProduction, monthlyProduction } from "./energy-production";
 import { dcAcRatio } from "./inverter-sizing";
 import { calculateSolarSeasonConsumption } from "./consumption-profile";
@@ -31,7 +32,12 @@ export interface SystemCandidate {
   panelPowerKwp: number;
   /** Always exactly panelCount x panelPowerKwp. */
   installedKwp: number;
+  /** Total AC power of the inverter configuration (unitKw x unitCount). */
   inverterKw: number;
+  /** Rated AC power of ONE inverter unit — a real product for this service. */
+  unitKw: number;
+  /** Number of identical units. 1 for every single-inverter system. */
+  unitCount: number;
   dcAcRatio: number;
   annualProductionKwh: number;
   monthlyProductionKwh: number[];
@@ -47,6 +53,8 @@ export function evaluateSystemCandidate(params: {
   panelCount: number;
   panelPowerKwp: number;
   inverterKw: number;
+  unitKw?: number;
+  unitCount?: number;
   targetKwp: number;
   targetRange: DcAcTargetRange;
   monthlyKwhPerKwp: number[];
@@ -99,6 +107,8 @@ export function evaluateSystemCandidate(params: {
     panelPowerKwp: params.panelPowerKwp,
     installedKwp,
     inverterKw: params.inverterKw,
+    unitKw: params.unitKw ?? params.inverterKw,
+    unitCount: params.unitCount ?? 1,
     dcAcRatio: ratio,
     annualProductionKwh,
     monthlyProductionKwh,
@@ -159,6 +169,9 @@ function compareCandidates(
   if (Math.abs(a.installedKwp - b.installedKwp) > SELECTION_TOLERANCE) {
     return a.installedKwp - b.installedKwp;
   }
+  // A single unit beats a multi-unit configuration of the same total power:
+  // fewer products, fewer failure points, lower installation cost.
+  if (a.unitCount !== b.unitCount) return a.unitCount - b.unitCount;
   return a.inverterKw - b.inverterKw;
 }
 
@@ -167,7 +180,13 @@ export function selectRecommendedSystem(params: {
   /** Continuous energy-parity anchor; used only for tie-breaking. */
   referenceKwp?: number;
   maxAcPowerKw: number;
-  inverterSizesKw: number[];
+  /**
+   * Buildable AC configurations for the actual electrical service. Preferred
+   * over `inverterSizesKw`, which is kept for callers that only know a flat
+   * ladder (every entry is then treated as one single unit).
+   */
+  inverterOptions?: InverterOption[];
+  inverterSizesKw?: number[];
   panelPowerKwp: number;
   targetRange: DcAcTargetRange;
   monthlyKwhPerKwp: number[];
@@ -176,16 +195,22 @@ export function selectRecommendedSystem(params: {
   solarSeasonProductionShare: number;
 }): SelectionOutcome {
   const panel = params.panelPowerKwp;
-  const positiveSizes = params.inverterSizesKw.filter((kw) => kw > 0);
-  const inverters = positiveSizes
-    .filter((kw) => kw <= params.maxAcPowerKw + SELECTION_TOLERANCE)
-    .sort((a, b) => a - b);
+  const allOptions: InverterOption[] =
+    params.inverterOptions ??
+    (params.inverterSizesKw ?? [])
+      .filter((kw) => kw > 0)
+      .map((kw) => ({ unitKw: kw, unitCount: 1, totalAcKw: kw }));
+  const inverters = allOptions
+    .filter((option) => option.totalAcKw > 0)
+    .filter((option) => option.totalAcKw <= params.maxAcPowerKw + SELECTION_TOLERANCE)
+    .sort((a, b) => a.totalAcKw - b.totalAcKw);
 
   if (inverters.length === 0 || panel <= 0) {
     return {
       status: "grid-too-small",
       maxAcPowerKw: params.maxAcPowerKw,
-      minimumSupportedInverterKw: positiveSizes.length > 0 ? Math.min(...positiveSizes) : 0,
+      minimumSupportedInverterKw:
+        allOptions.length > 0 ? Math.min(...allOptions.map((o) => o.totalAcKw)) : 0,
     };
   }
 
@@ -206,7 +231,8 @@ export function selectRecommendedSystem(params: {
   const candidates: SystemCandidate[] = [];
   let best: SystemCandidate | null = null;
 
-  for (const inverterKw of inverters) {
+  for (const option of inverters) {
+    const inverterKw = option.totalAcKw;
     // Hard DC/AC ceiling expressed in whole panels.
     const ratioMaxPanels = Math.floor(
       (inverterKw * ABSOLUTE_MAX_DC_AC_RATIO + SELECTION_TOLERANCE) / panel,
@@ -225,6 +251,8 @@ export function selectRecommendedSystem(params: {
         panelCount,
         panelPowerKwp: panel,
         inverterKw,
+        unitKw: option.unitKw,
+        unitCount: option.unitCount,
         targetKwp: params.targetKwp,
         targetRange: params.targetRange,
         monthlyKwhPerKwp: params.monthlyKwhPerKwp,
@@ -246,7 +274,7 @@ export function selectRecommendedSystem(params: {
     return {
       status: "grid-too-small",
       maxAcPowerKw: params.maxAcPowerKw,
-      minimumSupportedInverterKw: inverters[0]!,
+      minimumSupportedInverterKw: inverters[0]!.totalAcKw,
     };
   }
 
