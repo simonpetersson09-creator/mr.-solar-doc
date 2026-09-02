@@ -1225,21 +1225,8 @@ export function generateReportBlob(options: ReportOptions): Blob {
       labels.origin,
     );
   }
-  // Payback scenarios: identical values to the result page (engine-provided).
-  if (!economicsIncomplete && result.investmentScenarios.length > 1) {
-    report.subheading(f["paybackScenariosTitle"] ?? "");
-    report.rows(
-      result.investmentScenarios.map((scenario) => ({
-        label: `${formatNumber(scenario.paybackYears, locale)} ${f["yearsUnit"] ?? ""}${
-          scenario.selected ? ` \u00b7 ${f["paybackScenarioSelected"] ?? ""}` : ""
-        }`,
-        value: money(scenario.maxInvestmentRounded),
-        origin: "calculated" as const,
-      })),
-      labels.origin,
-    );
-    report.paragraph(f["paybackScenariosHelp"] ?? "");
-  }
+  // Payback scenarios are presented as cards on page 1, not repeated here.
+
 
   report.paragraph(f["investmentNote"] ?? "");
   if (result.investment.quotePrice != null) report.paragraph(labels.quoteNote);
