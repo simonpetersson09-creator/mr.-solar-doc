@@ -90,6 +90,17 @@ export const GENERIC_PV_CONNECTION_RULES: Omit<PvConnectionRules, "countryCode">
 };
 
 
+/** Shorthand so each entry only states the fields it really has a rule for. */
+function verified(
+  rules: Partial<Omit<PvConnectionRules, "countryCode" | "status">> & { noteKeys: string[] },
+): Omit<PvConnectionRules, "countryCode" | "status"> {
+  const { countryCode: _ignored, status: _status, ...generic } = {
+    countryCode: "",
+    ...GENERIC_PV_CONNECTION_RULES,
+  };
+  return { ...generic, ...rules };
+}
+
 /**
  * Verified national rules only. A country belongs here when its rule has been
  * checked against the national regulation, not when a plausible number exists.
@@ -100,51 +111,74 @@ const VERIFIED_PV_CONNECTION_RULES: Record<
 > = {
   // Sweden: micro-production is defined by a 100 A / 43.5 kW connection point;
   // above that the normal (fee-bearing) production connection process applies.
-  SE: {
+  SE: verified({
     maxPvAcKw: 43.5,
     simplifiedProcessLimitKw: 43.5,
-    maxShareOfConnectionCapacity: null,
-    exportPowerLimitShare: null,
     noteKeys: ["pvRules.se.microproduction"],
-  },
+  }),
   // Germany: simplified handling for plants up to 30 kW on a consumer
-  // connection; larger plants take the full connection assessment.
-  DE: {
+  // connection; larger plants take the full connection assessment. Single-phase
+  // feed-in is limited to 4.6 kVA (VDE-AR-N 4105 unbalanced-load limit).
+  DE: verified({
     maxPvAcKw: 30,
+    maxPvAcKwByService: { "single-phase": 4.6, "two-phase": 4.6 },
     simplifiedProcessLimitKw: 30,
-    maxShareOfConnectionCapacity: null,
-    exportPowerLimitShare: null,
     noteKeys: ["pvRules.de.simplified"],
-  },
+  }),
   // Austria: simplified notification up to 20 kW peak on a consumer connection.
-  AT: {
+  // The same 4.6 kVA unbalanced-load limit applies to single-phase feed-in.
+  AT: verified({
     maxPvAcKw: 20,
+    maxPvAcKwByService: { "single-phase": 4.6, "two-phase": 4.6 },
     simplifiedProcessLimitKw: 20,
-    maxShareOfConnectionCapacity: null,
-    exportPowerLimitShare: null,
     noteKeys: ["pvRules.at.simplified"],
-  },
+  }),
   // Denmark: consumer plants are handled up to 11 kW under the simple scheme,
   // and that ceiling is what a consumer installation may be sized against.
-  DK: {
+  DK: verified({
     maxPvAcKw: 11,
     simplifiedProcessLimitKw: 11,
-    maxShareOfConnectionCapacity: null,
-    exportPowerLimitShare: null,
     noteKeys: ["pvRules.dk.simplified"],
-  },
+  }),
+  // United Kingdom: no national kW cap, but G98 gives fast-track connection at
+  // 16 A/phase (3.68 kW single-phase, 11.04 kW three-phase); above that a G99
+  // application to the DNO is required. Informational, never enforced.
+  GB: verified({
+    simplifiedProcessLimitKwByService: { "single-phase": 3.68, "three-phase": 11.04 },
+    noteKeys: ["pvRules.gb.g98"],
+  }),
+  IE: verified({
+    simplifiedProcessLimitKwByService: { "single-phase": 6, "three-phase": 11.04 },
+    noteKeys: ["pvRules.ie.nc6"],
+  }),
+  // United States / Canada: the binding constraint is the busbar/backfeed rule,
+  // not the service capacity. 120 % of a busbar rated at the service amperage
+  // leaves 20 % of it for PV.
+  US: verified({
+    busbarBackfeedRule: { busbarFactor: 1.2 },
+    noteKeys: ["pvRules.us.busbar"],
+  }),
+  CA: verified({
+    busbarBackfeedRule: { busbarFactor: 1.2 },
+    noteKeys: ["pvRules.ca.busbar"],
+  }),
 };
 
 /** Rules for a country. Always returns a value; unknown countries are generic. */
 export function getPvConnectionRules(countryCode?: string | null): PvConnectionRules {
   const code = (countryCode ?? "").toUpperCase();
-  const verified = VERIFIED_PV_CONNECTION_RULES[code];
-  if (!verified) return { countryCode: code, ...GENERIC_PV_CONNECTION_RULES };
-  return { countryCode: code, status: "verified", ...verified };
+  const rules = VERIFIED_PV_CONNECTION_RULES[code];
+  if (!rules) return { countryCode: code, ...GENERIC_PV_CONNECTION_RULES };
+  return { countryCode: code, status: "verified", ...rules };
 }
 
 /** Which rule actually caps the system. Drives the explanation, not just math. */
-export type PvLimitBinding = "connection-capacity" | "pv-rule" | "capacity-share";
+export type PvLimitBinding =
+  | "connection-capacity"
+  | "pv-rule"
+  | "capacity-share"
+  | "service-pv-rule"
+  | "busbar-rule";
 
 export interface ResolvedPvPowerLimit {
   /** The AC ceiling the sizing engine must respect (kW). */
@@ -154,6 +188,10 @@ export interface ResolvedPvPowerLimit {
   connectionCapacityKw: number;
   /** The PV rule ceiling, when the country has one. */
   pvRuleLimitKw: number | null;
+  /** The busbar/backfeed ceiling, when the market has such a rule. */
+  busbarLimitKw: number | null;
+  /** Simplified-process ceiling that applies to this service. Informational. */
+  simplifiedProcessLimitKw: number | null;
   rulesStatus: PvRulesStatus;
   noteKeys: string[];
 }
@@ -165,19 +203,41 @@ export interface ResolvedPvPowerLimit {
 export function resolvePvPowerLimit(params: {
   connectionCapacityKw: number;
   rules: PvConnectionRules;
+  /** Phase model of the service — required for service-specific rules. */
+  serviceType?: ServiceType | null;
+  /** Service overcurrent rating (A), for the busbar rule. */
+  serviceAmperageA?: number | null;
+  /** Line-to-line reference voltage (V), for the busbar rule. */
+  voltageV?: number | null;
 }): ResolvedPvPowerLimit {
-  const { connectionCapacityKw, rules } = params;
+  const { connectionCapacityKw, rules, serviceType = null } = params;
 
   const shareLimitKw =
     rules.maxShareOfConnectionCapacity != null
       ? connectionCapacityKw * rules.maxShareOfConnectionCapacity
       : null;
 
+  const serviceLimitKw =
+    serviceType && rules.maxPvAcKwByService
+      ? (rules.maxPvAcKwByService[serviceType] ?? null)
+      : null;
+
+  // Busbar rule: (factor - 1) x service amperage x service voltage.
+  const busbarLimitKw =
+    rules.busbarBackfeedRule && params.serviceAmperageA && params.voltageV
+      ? ((rules.busbarBackfeedRule.busbarFactor - 1) *
+          params.serviceAmperageA *
+          params.voltageV) /
+        1000
+      : null;
+
   const candidates: Array<{ kw: number; binding: PvLimitBinding }> = [
     { kw: connectionCapacityKw, binding: "connection-capacity" },
   ];
   if (rules.maxPvAcKw != null) candidates.push({ kw: rules.maxPvAcKw, binding: "pv-rule" });
+  if (serviceLimitKw != null) candidates.push({ kw: serviceLimitKw, binding: "service-pv-rule" });
   if (shareLimitKw != null) candidates.push({ kw: shareLimitKw, binding: "capacity-share" });
+  if (busbarLimitKw != null) candidates.push({ kw: busbarLimitKw, binding: "busbar-rule" });
 
   // Ties resolve to the connection capacity: it is the physical constraint and
   // the one a consumer can actually recognise.
@@ -186,12 +246,22 @@ export function resolvePvPowerLimit(params: {
     if (candidate.kw < winner.kw - 1e-9) winner = candidate;
   }
 
+  const simplifiedProcessLimitKw =
+    (serviceType && rules.simplifiedProcessLimitKwByService?.[serviceType]) ??
+    rules.simplifiedProcessLimitKw ??
+    null;
+
   return {
     maxPvAcKw: winner.kw,
     binding: winner.binding,
     connectionCapacityKw,
-    pvRuleLimitKw: rules.maxPvAcKw,
+    pvRuleLimitKw: serviceLimitKw ?? rules.maxPvAcKw,
+    busbarLimitKw,
+    simplifiedProcessLimitKw,
     rulesStatus: rules.status,
     noteKeys: rules.noteKeys,
+  };
+}
+
   };
 }
