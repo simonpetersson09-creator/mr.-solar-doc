@@ -437,7 +437,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
     </p>
     <p className="mt-0.5 text-2xl font-extrabold tracking-tight text-white tabular-nums">
       {formatCurrency(
-        Math.round(result.investment.maxInvestmentRounded / result.installedKwp),
+        Math.round(result.investment.maxInvestment / result.installedKwp),
         locale,
         currency,
       )}{" "}
@@ -448,6 +448,77 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
     </p>
   </section>
 ) : null}
+
+{/* LCOE — what solar power may cost per produced kWh */}
+<section className="relative rounded-[28px] border border-primary-foreground/20 glass-primary surface-strong p-3.5 text-primary-foreground shadow-hero">
+  <button
+    type="button"
+    aria-label={t("result.productionCostInfoLabel")}
+    aria-expanded={showProductionCostInfo}
+    onClick={() => setShowProductionCostInfo((open) => !open)}
+    className="absolute top-3 right-3 flex size-6 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
+  >
+    <CircleAlert className="size-3.5" />
+  </button>
+  <h2 className="text-center text-sm font-semibold text-white">
+    {t("result.productionCostTitle")}
+  </h2>
+  {showProductionCostInfo ? (
+    <p className="mt-2 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
+      {t("result.productionCostInfo")}
+    </p>
+  ) : null}
+  {economicValuesMissing || result.productionCost.costPerKwh === null ? (
+    <p className="mt-2 text-center text-[11px] leading-relaxed text-white/70">
+      {t("result.productionCostUnavailable")}
+    </p>
+  ) : (
+    <>
+      <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-white tabular-nums">
+        {t("result.perKwh", {
+          amount: formatCurrency(result.productionCost.costPerKwh, locale, currency, 2),
+        })}
+      </p>
+      <div className="mt-3 grid grid-cols-2 gap-2.5">
+        <div className="rounded-2xl bg-white/10 p-2.5 text-center">
+          <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+            {t("result.productionCostLabel")}
+          </p>
+          <p className="mt-0.5 text-base font-bold text-white tabular-nums">
+            {t("result.perKwh", {
+              amount: formatCurrency(result.productionCost.costPerKwh, locale, currency, 2),
+            })}
+          </p>
+        </div>
+        <div className="rounded-2xl bg-white/10 p-2.5 text-center">
+          <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+            {t("result.productionCostValueLabel")}
+          </p>
+          <p className="mt-0.5 text-base font-bold text-white tabular-nums">
+            {t("result.perKwh", {
+              amount: formatCurrency(result.productionCost.valuePerKwh, locale, currency, 2),
+            })}
+          </p>
+        </div>
+      </div>
+      <p className="mt-2 text-center text-[11px] leading-relaxed text-white/60">
+        {t("result.productionCostBasis", {
+          investment: formatCurrency(result.productionCost.investment, locale, currency),
+          production: formatNumber(result.productionCost.totalProductionKwh, locale),
+          years: formatNumber(result.productionCost.periodYears, locale),
+        })}
+      </p>
+      {result.productionCost.differencePerKwh !== null &&
+      result.productionCost.differencePerKwh > 0 ? (
+        <p className="mt-1 text-center text-[11px] leading-relaxed text-white/70">
+          {t("result.productionCostHigherValue")}
+        </p>
+      ) : null}
+    </>
+  )}
+</section>
+
+
 
 
 
