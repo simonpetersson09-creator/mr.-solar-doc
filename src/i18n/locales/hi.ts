@@ -61,6 +61,8 @@ export const hi = {
     error: "पता खोज विफल रही।",
     info: "पते का उपयोग केवल आपके स्थान पर सौर विकिरण की गणना के लिए किया जाता है।",
     infoLabel: "पते के बारे में अधिक जानकारी",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "प्रीमियम",
@@ -84,7 +86,8 @@ export const hi = {
     manual: "मैन्युअल – सटीक दिशा",
     manualHint: "तीर को खींचें ताकि वह छत की दिशा में इंगित करे। 180° = दक्षिण की ओर।",
     tilt: "छत का झुकाव",
-    tiltDegrees: ".*",
+    tiltDegrees: "डिग्री",
+    disclaimer: "गणना आपके स्थान के सौर विकिरण डेटा पर आधारित है। वास्तविक उत्पादन भिन्न हो सकता है।",
     compass: {
       n: "उ",
       e: "पू",
@@ -114,6 +117,8 @@ export const hi = {
       required: "गणना जारी रखने के लिए अपनी बिजली खपत दर्ज करें।",
       tooLow: "यह बहुत कम लग रहा है। कम से कम {{min}} kWh प्रति वर्ष दर्ज करें।",
       tooHigh: "यह बहुत ज़्यादा लग रहा है। अधिकतम {{max}} kWh प्रति वर्ष दर्ज करें।",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "आपकी बिजली खपत आमतौर पर पूरे साल कैसे बंटी होती है?",
@@ -494,6 +499,7 @@ export const hi = {
       ctaNoPrice: "अनलॉक करें",
     },
     priceLoading: "कीमत प्राप्त की जा रही है…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "प्रीमियम",
       price: "{{price}}/वर्ष",
@@ -560,6 +566,12 @@ export const hi = {
       description:
         "गणना किया गया kWp, इनवर्टर आकार, DC/AC अनुपात, मासिक उत्पादन और आर्थिक मूल्य देखें - और रिपोर्ट PDF के रूप में डाउनलोड करें।",
       ogDescription: "PDF रिपोर्ट के साथ आपके सोलर सिस्टम की गणना की गई साइज़िंग।",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

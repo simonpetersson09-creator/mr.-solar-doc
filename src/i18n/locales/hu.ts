@@ -12,7 +12,7 @@ export const hu = {
     title: "Mr. Solar Doc",
     subtitle: "Mekkora napelemes rendszert kell, és mennyit ér Önnek?",
     point1Title: "Elemzi a feltételeit",
-    point1Body: "",
+    point1Body: "A helyszín, a tájolás és a tetődőlés határozza meg, mennyi napfényt kap a tető.",
     point2Title: "Megtalálja a megfelelő méretet",
     point2Body:
       "Áramfogyasztását, hálózati csatlakozását és napelemes termelését összesúlyozza a megfelelő mérethez.",
@@ -62,6 +62,8 @@ export const hu = {
     error: "A címkeresés nem sikerült.",
     info: "A cím kizárólag a helyszín napsugárzásának kiszámításához szükséges.",
     infoLabel: "További információ a címről",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Prémium",
@@ -85,7 +87,8 @@ export const hu = {
     manual: "Kézi – pontos irány",
     manualHint: "Húzza a nyilat úgy, hogy a tető irányába mutasson. 180° = pontosan dél.",
     tilt: "Tető dőlésszöge",
-    tiltDegrees: ".*",
+    tiltDegrees: "Fok",
+    disclaimer: "A számítás a helyszínre vonatkozó napsugárzási adatokat használja. A tényleges termelés eltérhet.",
     compass: {
       n: "É",
       e: "K",
@@ -114,6 +117,8 @@ export const hu = {
       required: "Adja meg villamosenergia-fogyasztását a számítás folytatásához.",
       tooLow: "Ez túl alacsonynak tűnik. Adjon meg legalább {{min}} kWh-t évente.",
       tooHigh: "Ez túl magasnak tűnik. Adjon meg legfeljebb {{max}} kWh-t évente.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Hogyan oszlik meg jellemzően a villamosenergia-fogyasztása az év során?",
@@ -508,6 +513,7 @@ export const hu = {
       ctaNoPrice: "Feloldás",
     },
     priceLoading: "Ár lekérése…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Prémium",
       price: "{{price}}/év",
@@ -574,6 +580,12 @@ export const hu = {
       description:
         "Tekintse meg a számított kWp-t, inverterméretet, DC/AC arányt, havi termelést és gazdasági értéket - és töltse le a jelentést PDF-ként.",
       ogDescription: "Napelemrendszerének kiszámított méretezése PDF-jelentéssel.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

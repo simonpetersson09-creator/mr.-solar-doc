@@ -12,7 +12,7 @@ export const sv = {
     title: "Mr. Solar Doc",
     subtitle: "Hur stor solcellsanläggning behöver du och vad är den värd för dig?",
     point1Title: "Analyserar dina förutsättningar",
-    point1Body: "",
+    point1Body: "Plats, väderstreck och taklutning avgör hur mycket sol ditt tak faktiskt får.",
     point2Title: "Hittar rätt storlek för dig",
     point2Body:
       "Din elanvändning, nätanslutning och solproduktion vägs samman för att hitta en lämplig storlek.",
@@ -62,6 +62,8 @@ export const sv = {
     error: "Adressökningen misslyckades.",
     info: "Adressen används enbart för att få fram solinstrålningen på din plats.",
     infoLabel: "Mer information om adressen",
+    zoomIn: "Zooma in",
+    zoomOut: "Zooma ut",
   },
   premium: {
     title: "Premium",
@@ -85,7 +87,8 @@ export const sv = {
     manual: "Manuellt – exakt riktning",
     manualHint: "Dra pilen så att den pekar i takets riktning. 180° = rakt söderut.",
     tilt: "Taklutning",
-    tiltDegrees: ".*",
+    tiltDegrees: "Grader",
+    disclaimer: "Beräkningen bygger på solinstrålningsdata för din plats. Verklig produktion kan avvika.",
     compass: {
       n: "N",
       e: "Ö",
@@ -114,6 +117,8 @@ export const sv = {
       required: "Ange din elförbrukning för att kunna räkna vidare.",
       tooLow: "Förbrukningen verkar för låg. Ange minst {{min}} kWh per år.",
       tooHigh: "Förbrukningen verkar för hög. Ange högst {{max}} kWh per år.",
+      monthOutOfRange: "En månad är mycket högre än de övriga. Kontrollera dina månadsvärden innan du går vidare.",
+      monthUneven: "En månad sticker ut från de övriga. Dubbelkolla värdet om det inte stämmer.",
     },
     shape: {
       question: "Hur brukar din elanvändning vara fördelad över året?",
@@ -503,6 +508,7 @@ export const sv = {
       ctaNoPrice: "Lås upp",
     },
     priceLoading: "Hämtar pris…",
+    devContinue: "Dev: fortsätt utan betalning",
     premium: {
       title: "Premium",
       price: "{{price}}/år",
@@ -569,6 +575,12 @@ export const sv = {
       description:
         "Se beräknad kWp, växelriktarstorlek, DC/AC-ratio, månadsproduktion och ekonomiskt värde – och ladda ner rapporten som PDF.",
       ogDescription: "Beräknad dimensionering av din solcellsanläggning med PDF-rapport.",
+    },
+    paywall: {
+      title: "Lås upp din beräkning — Mr. Solar Doc",
+      description:
+        "Lås upp din solcellsberäkning med ett engångsköp eller bli Premium med obegränsade beräkningar.",
+      ogDescription: "Lås upp hela solcellsberäkningen och PDF-rapporten.",
     },
   },
   months: {

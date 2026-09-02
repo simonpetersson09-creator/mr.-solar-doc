@@ -62,6 +62,8 @@ export const el = {
     error: "Η αναζήτηση διεύθυνσης απέτυχε.",
     info: "Η διεύθυνση χρησιμοποιείται μόνο για τον υπολογισμό της ηλιακής ακτινοβολίας στην τοποθεσία σας.",
     infoLabel: "Περισσότερες πληροφορίες για τη διεύθυνση",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Premium",
@@ -86,7 +88,8 @@ export const el = {
     manualHint:
       "Σύρετε το βέλος ώστε να δείχνει προς την κατεύθυνση της στέγης. 180° = ακριβώς νότος.",
     tilt: "Κλίση στέγης",
-    tiltDegrees: ".*",
+    tiltDegrees: "Μοίρες",
+    disclaimer: "Ο υπολογισμός χρησιμοποιεί δεδομένα ηλιακής ακτινοβολίας για την τοποθεσία σας. Η πραγματική παραγωγή μπορεί να διαφέρει.",
     compass: {
       n: "Β",
       e: "Α",
@@ -117,6 +120,8 @@ export const el = {
       required: "Εισαγάγετε την κατανάλωση ρεύματός σας για να συνεχίσετε τον υπολογισμό.",
       tooLow: "Αυτό φαίνεται πολύ χαμηλό. Εισαγάγετε τουλάχιστον {{min}} kWh ετησίως.",
       tooHigh: "Αυτό φαίνεται πολύ υψηλό. Εισαγάγετε το πολύ {{max}} kWh ετησίως.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Πώς κατανέμεται συνήθως η κατανάλωση ρεύματός σας κατά τη διάρκεια του έτους;",
@@ -516,6 +521,7 @@ export const el = {
       ctaNoPrice: "Ξεκλείδωμα",
     },
     priceLoading: "Ανάκτηση τιμής…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
       price: "{{price}}/έτος",
@@ -584,6 +590,12 @@ export const el = {
         "Δείτε τα υπολογισμένα kWp, το μέγεθος inverter, τον λόγο DC/AC, τη μηνιαία παραγωγή και την οικονομική αξία - και κατεβάστε την αναφορά ως PDF.",
       ogDescription:
         "Υπολογισμένη διαστασιολόγηση του φωτοβολταϊκού σας συστήματος με αναφορά PDF.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

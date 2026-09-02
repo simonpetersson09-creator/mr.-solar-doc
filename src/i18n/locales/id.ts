@@ -59,6 +59,8 @@ export const id = {
     error: "Pencarian alamat gagal.",
     info: "Alamat hanya digunakan untuk menghitung radiasi matahari di lokasi Anda.",
     infoLabel: "Info lebih lanjut tentang alamat",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Premium",
@@ -82,7 +84,8 @@ export const id = {
     manual: "Manual – arah pasti",
     manualHint: "Geser panah agar mengarah ke arah atap. 180° = tepat selatan.",
     tilt: "Kemiringan atap",
-    tiltDegrees: ".*",
+    tiltDegrees: "Derajat",
+    disclaimer: "Perhitungan menggunakan data radiasi matahari untuk lokasi Anda. Produksi aktual dapat berbeda.",
     compass: { n: "U", e: "T", s: "S", w: "B" },
     orientations: {
       unknown: "Tidak tahu",
@@ -107,6 +110,8 @@ export const id = {
       required: "Masukkan pemakaian listrik Anda untuk melanjutkan perhitungan.",
       tooLow: "Sepertinya terlalu rendah. Masukkan minimal {{min}} kWh per tahun.",
       tooHigh: "Sepertinya terlalu tinggi. Masukkan maksimal {{max}} kWh per tahun.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Bagaimana biasanya pemakaian listrik Anda tersebar sepanjang tahun?",
@@ -493,6 +498,7 @@ export const id = {
       ctaNoPrice: "Buka",
     },
     priceLoading: "Mengambil harga…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
       price: "{{price}}/tahun",
@@ -557,6 +563,12 @@ export const id = {
       description:
         "Lihat kWp yang dihitung, ukuran inverter, rasio DC/AC, produksi bulanan, dan nilai ekonomi - lalu unduh laporan sebagai PDF.",
       ogDescription: "Perhitungan ukuran sistem solar Anda dengan laporan PDF.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

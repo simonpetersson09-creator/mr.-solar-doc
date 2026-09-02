@@ -62,6 +62,8 @@ export const no = {
     error: "Adressesøket mislyktes.",
     info: "Adressen brukes kun til å beregne solinnstrålingen på stedet ditt.",
     infoLabel: "Mer informasjon om adressen",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Premium",
@@ -85,7 +87,8 @@ export const no = {
     manual: "Manuell – eksakt retning",
     manualHint: "Dra pilen slik at den peker i takets retning. 180° = rett sør.",
     tilt: "Takvinkel",
-    tiltDegrees: ".*",
+    tiltDegrees: "Grader",
+    disclaimer: "Beregningen bruker solinnstrålingsdata for stedet ditt. Faktisk produksjon kan avvike.",
     compass: {
       n: "N",
       e: "Ø",
@@ -114,6 +117,8 @@ export const no = {
       required: "Angi strømforbruket ditt for å fortsette beregningen.",
       tooLow: "Det ser for lavt ut. Angi minst {{min}} kWh per år.",
       tooHigh: "Det ser for høyt ut. Angi maks {{max}} kWh per år.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Hvordan fordeler strømforbruket ditt seg vanligvis gjennom året?",
@@ -498,6 +503,7 @@ export const no = {
       ctaNoPrice: "Lås opp",
     },
     priceLoading: "Henter pris…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
       price: "{{price}}/år",
@@ -564,6 +570,12 @@ export const no = {
       description:
         "Se beregnet kWp, inverterstørrelse, DC/AC-forhold, månedlig produksjon og økonomisk verdi - og last ned rapporten som PDF.",
       ogDescription: "Beregnet dimensjonering av solcelleanlegget ditt med PDF-rapport.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

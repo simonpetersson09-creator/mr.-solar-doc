@@ -61,6 +61,8 @@ export const fi = {
     error: "Osoitehaku epäonnistui.",
     info: "Osoitetta käytetään vain auringon säteilyn laskemiseen sijainnissasi.",
     infoLabel: "Lisätietoja osoitteesta",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   roof: {
     title: "Kattosi",
@@ -69,7 +71,8 @@ export const fi = {
     manual: "Manuaalisesti – tarkka suunta",
     manualHint: "Vedä nuolta niin, että se osoittaa katon suuntaan. 180° = suoraan etelään.",
     tilt: "Kattokaltevuus",
-    tiltDegrees: ".*",
+    tiltDegrees: "Astetta",
+    disclaimer: "Laskelma perustuu sijaintisi säteilytietoihin. Todellinen tuotanto voi poiketa.",
     compass: {
       n: "P",
       e: "I",
@@ -99,6 +102,8 @@ export const fi = {
       required: "Anna sähkönkulutuksesi, jotta laskenta voi jatkua.",
       tooLow: "Kulutus vaikuttaa liian pieneltä. Anna vähintään {{min}} kWh vuodessa.",
       tooHigh: "Kulutus vaikuttaa liian suurelta. Anna enintään {{max}} kWh vuodessa.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Miten sähkönkulutuksesi jakaantuu yleensä vuoden aikana?",
@@ -509,6 +514,12 @@ export const fi = {
         "Näe laskettu kWp, invertterin koko, DC/AC-suhde, kuukausituotanto ja taloudellinen arvo – ja lataa raportti PDF-muodossa.",
       ogDescription: "Aurinkosähköjärjestelmäsi laskettu mitoitus PDF-raportilla.",
     },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
+    },
   },
   months: {
     short: ["Tam", "Hel", "Maa", "Huh", "Tou", "Kes", "Hei", "Elo", "Syy", "Lok", "Mar", "Jou"],
@@ -768,6 +779,7 @@ export const fi = {
       "Ostos tehdään sovelluksessa Apple-tunnuksellasi eikä se ole käytettävissä selaimessa.",
     appleNote: "App Storen hoitama.",
     priceLoading: "Haetaan hintaa…",
+    devContinue: "Dev: continue without payment",
   },
   history: {
     empty: "Sinulla ei ole vielä tallennettuja laskelmia.",

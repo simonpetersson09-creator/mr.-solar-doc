@@ -62,6 +62,8 @@ export const it = {
     error: "La ricerca dell'indirizzo è fallita.",
     info: "L'indirizzo viene utilizzato solo per calcolare l'irraggiamento solare nella tua posizione.",
     infoLabel: "Maggiori informazioni sull'indirizzo",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   roof: {
     title: "Il tuo tetto",
@@ -71,7 +73,8 @@ export const it = {
     manualHint:
       "Trascina la freccia in modo che punti nella direzione del tetto. 180° = esattamente a sud.",
     tilt: "Inclinazione del tetto",
-    tiltDegrees: ".*",
+    tiltDegrees: "Gradi",
+    disclaimer: "Il calcolo usa i dati di irraggiamento della tua posizione. La produzione reale può variare.",
     compass: {
       n: "N",
       e: "E",
@@ -102,6 +105,8 @@ export const it = {
       required: "Inserisci il tuo consumo di elettricità per proseguire il calcolo.",
       tooLow: "Il consumo sembra troppo basso. Inserisci almeno {{min}} kWh all'anno.",
       tooHigh: "Il consumo sembra troppo alto. Inserisci al massimo {{max}} kWh all'anno.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Come si distribuisce solitamente il tuo consumo elettrico durante l'anno?",
@@ -517,6 +522,12 @@ export const it = {
         "Visualizza kWp calcolati, dimensioni dell'inverter, rapporto CC/CA, produzione mensile e valore economico – e scarica il rapporto in PDF.",
       ogDescription: "Dimensionamento calcolato del tuo impianto fotovoltaico con un rapporto PDF.",
     },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
+    },
   },
   months: {
     short: ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"],
@@ -776,6 +787,7 @@ export const it = {
       "L'acquisto viene effettuato nell'app con il tuo account Apple e non è disponibile nel browser.",
     appleNote: "Gestito dall'App Store.",
     priceLoading: "Caricamento del prezzo…",
+    devContinue: "Dev: continue without payment",
   },
   history: {
     empty: "Non hai ancora calcoli salvati.",

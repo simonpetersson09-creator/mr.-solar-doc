@@ -12,7 +12,7 @@ export const nl = {
     title: "Mr. Solar Doc",
     subtitle: "Hoe groot moet uw zonnepanelensysteem zijn en wat is het u waard?",
     point1Title: "Analyseert uw omstandigheden",
-    point1Body: "",
+    point1Body: "Locatie, oriëntatie en dakhelling bepalen hoeveel zon uw dak echt krijgt.",
     point2Title: "Vindt de juiste maat voor u",
     point2Body:
       "Uw stroomverbruik, netaansluiting en zon-opbrengst worden gecombineerd voor een geschikte grootte.",
@@ -62,6 +62,8 @@ export const nl = {
     error: "Adres zoeken is mislukt.",
     info: "Het adres wordt uitsluitend gebruikt om de zoninstraling op je locatie te berekenen.",
     infoLabel: "Meer informatie over het adres",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Premium",
@@ -85,7 +87,8 @@ export const nl = {
     manual: "Handmatig – exacte richting",
     manualHint: "Sleep de pijl zodat deze in de richting van het dak wijst. 180° = pal zuid.",
     tilt: "Dakhelling",
-    tiltDegrees: ".*",
+    tiltDegrees: "Graden",
+    disclaimer: "De berekening gebruikt instralingsgegevens voor uw locatie. De werkelijke opbrengst kan afwijken.",
     compass: {
       n: "N",
       e: "O",
@@ -116,6 +119,8 @@ export const nl = {
       required: "Vul je stroomverbruik in om de berekening voort te zetten.",
       tooLow: "Dat lijkt te laag. Vul minstens {{min}} kWh per jaar in.",
       tooHigh: "Dat lijkt te hoog. Vul maximaal {{max}} kWh per jaar in.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Hoe is je stroomverbruik meestal verdeeld over het jaar?",
@@ -511,6 +516,7 @@ export const nl = {
       ctaNoPrice: "Ontgrendelen",
     },
     priceLoading: "Prijs ophalen…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
       price: "{{price}}/jaar",
@@ -579,6 +585,12 @@ export const nl = {
       description:
         "Bekijk berekende kWp, omvormergrootte, DC/AC-verhouding, maandelijkse productie en economische waarde - en download het rapport als PDF.",
       ogDescription: "Berekende dimensionering van je zonnesysteem met een PDF-rapport.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

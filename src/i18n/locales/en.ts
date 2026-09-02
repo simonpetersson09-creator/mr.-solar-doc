@@ -12,7 +12,7 @@ export const en = {
     title: "Mr. Solar Doc",
     subtitle: "How big a solar system do you need, and what is it worth to you?",
     point1Title: "Analyzes your conditions",
-    point1Body: "",
+    point1Body: "Location, orientation and roof tilt decide how much sun your roof actually gets.",
     point2Title: "Finds the right size for you",
     point2Body:
       "Your electricity use, grid connection and solar production are weighed together to find a suitable size.",
@@ -62,6 +62,8 @@ export const en = {
     error: "Address search failed.",
     info: "The address is used only to calculate the solar irradiation at your location.",
     infoLabel: "More information about the address",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Premium",
@@ -85,7 +87,8 @@ export const en = {
     manual: "Manual – exact direction",
     manualHint: "Drag the arrow so it points in the roof's direction. 180° = due south.",
     tilt: "Roof tilt",
-    tiltDegrees: ".*",
+    tiltDegrees: "Degrees",
+    disclaimer: "The calculation uses solar irradiation data for your location. Actual production may vary.",
     compass: {
       n: "N",
       e: "E",
@@ -114,6 +117,8 @@ export const en = {
       required: "Enter your electricity use to continue the calculation.",
       tooLow: "That looks too low. Enter at least {{min}} kWh per year.",
       tooHigh: "That looks too high. Enter at most {{max}} kWh per year.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "How is your electricity use usually spread across the year?",
@@ -500,6 +505,7 @@ export const en = {
       ctaNoPrice: "Unlock",
     },
     priceLoading: "Fetching price…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
       price: "{{price}}/year",
@@ -567,6 +573,12 @@ export const en = {
       description:
         "See calculated kWp, inverter size, DC/AC ratio, monthly production and economic value - and download the report as a PDF.",
       ogDescription: "Calculated sizing of your solar system with a PDF report.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

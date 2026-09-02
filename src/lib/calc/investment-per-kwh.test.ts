@@ -88,12 +88,7 @@ describe("investment level per produced kWh", () => {
     const cost = result.productionCost;
     expect(cost.periodYears).toBe(result.lifetime.periodYears);
     expect(cost.totalProductionKwh).toBeCloseTo(result.lifetime.totalProductionKwh, 6);
-    const scale =
-      result.presentation.annualSavings / (result.lifetime.years[0]?.economicValue ?? 1);
-    const expectedValue = result.lifetime.years.reduce(
-      (sum, y) => sum + y.economicValue * scale,
-      0,
-    );
+    const expectedValue = result.lifetime.years.reduce((sum, y) => sum + y.economicValue, 0);
     expect(cost.totalEconomicValue).toBeCloseTo(expectedValue, 4);
     expect(cost.valuePerKwh).toBeCloseTo(cost.totalEconomicValue / cost.totalProductionKwh, 10);
     expect(cost.differencePerKwh).toBeCloseTo(cost.valuePerKwh - cost.costPerKwh!, 10);

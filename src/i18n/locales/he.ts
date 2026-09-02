@@ -12,7 +12,7 @@ export const he = {
     title: "Mr. Solar Doc",
     subtitle: "איזה גודל של מערכת סולארית אתה צריך ומה היא שווה עבורך?",
     point1Title: "מנתח את התנאים שלך",
-    point1Body: "",
+    point1Body: "המיקום, כיוון הגג ושיפועו קובעים כמה שמש הגג שלך באמת מקבל.",
     point2Title: "מוצא את הגודל הנכון עבורך",
     point2Body: "צריכת החשמל, חיבור לרשת וייצור הסולארי שלך משולבים למציאת גודל מתאים.",
     point3Title: "מחשב כמה זה יכול לעלות [[לפי תקופת ההחזר הרצויה]]",
@@ -59,6 +59,8 @@ export const he = {
     error: "חיפוש הכתובת נכשל.",
     info: "הכתובת משמשת רק לחישוב עוצמת הקרינה הסולארית במיקום שלכם.",
     infoLabel: "מידע נוסף על הכתובת",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "פרימיום",
@@ -82,7 +84,8 @@ export const he = {
     manual: "ידני – כיוון מדויק",
     manualHint: "גררו את החץ כך שיצביע לכיוון הגג. 180° = דרום מדויק.",
     tilt: "זווית הגג",
-    tiltDegrees: ".*",
+    tiltDegrees: "מעלות",
+    disclaimer: "החישוב מבוסס על נתוני קרינת שמש עבור המיקום שלך. הייצור בפועל עשוי להשתנות.",
     compass: {
       n: "צ",
       e: "מ",
@@ -110,6 +113,8 @@ export const he = {
       required: "הזינו את צריכת החשמל שלכם כדי להמשיך בחישוב.",
       tooLow: "זה נראה נמוך מדי. הזינו לפחות {{min}} kWh בשנה.",
       tooHigh: "זה נראה גבוה מדי. הזינו לכל היותר {{max}} kWh בשנה.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "כיצד מתפלגת צריכת החשמל שלכם בדרך כלל לאורך השנה?",
@@ -483,6 +488,7 @@ export const he = {
       ctaNoPrice: "פתיחה",
     },
     priceLoading: "מביא מחיר…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "פרימיום",
       price: "{{price}}/שנה",
@@ -548,6 +554,12 @@ export const he = {
       description:
         "ראו kWp מחושב, גודל ממיר, יחס DC/AC, תפוקה חודשית וערך כלכלי - והורידו את הדוח כ-PDF.",
       ogDescription: "תכנון מחושב של המערכת הסולארית שלכם עם דוח PDF.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

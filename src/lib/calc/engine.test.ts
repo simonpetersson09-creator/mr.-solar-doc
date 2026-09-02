@@ -68,20 +68,26 @@ describe("calculateSolarSystem – self-consumption invariants", () => {
 });
 
 describe("calculateSolarSystem – rounding consistency", () => {
-  it("derives the investment level from exactly the presented annual value", () => {
+  it("derives the investment level from the unrounded annual value", () => {
     for (const annualKwh of [2_000, 5_000, 8_000, 13_777, 21_000]) {
       const result = calculateSolarSystem(
         makeInput({ consumption: { annualKwh, monthlyKwh: null } }),
       );
-      expect(result.investment.annualEconomicValue).toBe(result.presentation.annualSavings);
+      // Internal maths stay unrounded; presentation rounds only for display.
+      expect(result.investment.annualEconomicValue).toBeCloseTo(
+        result.lifetime.years[0]!.economicValue,
+        6,
+      );
+      expect(result.investment.annualEconomicValue).toBeCloseTo(
+        result.presentation.annualSavings,
+        0,
+      );
       // Accumulated value over the accepted payback time (degradation +
-      // electricity price scenario), scaled so year 1 equals the presented value.
+      // electricity price scenario), unrounded.
       const years = result.investment.acceptedPaybackYears;
-      const scale =
-        result.presentation.annualSavings / (result.lifetime.years[0]?.economicValue ?? 1);
       const expected = result.lifetime.years
         .slice(0, years)
-        .reduce((sum, y) => sum + y.economicValue * scale, 0);
+        .reduce((sum, y) => sum + y.economicValue, 0);
       expect(result.investment.maxInvestment).toBeCloseTo(expected, 6);
 
     }

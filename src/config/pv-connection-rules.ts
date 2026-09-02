@@ -97,9 +97,10 @@ const VERIFIED_PV_CONNECTION_RULES: Record<
     exportPowerLimitShare: null,
     noteKeys: ["pvRules.at.simplified"],
   },
-  // Denmark: consumer plants are handled up to 11 kW under the simple scheme.
+  // Denmark: consumer plants are handled up to 11 kW under the simple scheme,
+  // and that ceiling is what a consumer installation may be sized against.
   DK: {
-    maxPvAcKw: null,
+    maxPvAcKw: 11,
     simplifiedProcessLimitKw: 11,
     maxShareOfConnectionCapacity: null,
     exportPowerLimitShare: null,

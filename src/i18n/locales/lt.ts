@@ -63,6 +63,8 @@ export const lt = {
     error: "Adreso paieška nepavyko.",
     info: "Adresas naudojamas tik saulės spinduliuotei jūsų vietovėje apskaičiuoti.",
     infoLabel: "Daugiau informacijos apie adresą",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   roof: {
     title: "Jūsų stogas",
@@ -71,7 +73,8 @@ export const lt = {
     manual: "Rankinis – tiksli kryptis",
     manualHint: "Vilkite rodyklę, kad ji rodytų stogo kryptį. 180° = tiesiai į pietus.",
     tilt: "Stogo nuolydis",
-    tiltDegrees: ".*",
+    tiltDegrees: "Laipsniai",
+    disclaimer: "Skaičiavimas naudoja jūsų vietovės saulės spinduliuotės duomenis. Tikroji gamyba gali skirtis.",
     compass: {
       n: "Š",
       e: "R",
@@ -102,6 +105,8 @@ export const lt = {
       required: "Įveskite savo elektros suvartojimą, kad skaičiavimas galėtų tęstis.",
       tooLow: "Suvartojimas atrodo per mažas. Įveskite bent {{min}} kWh per metus.",
       tooHigh: "Suvartojimas atrodo per didelis. Įveskite ne daugiau kaip {{max}} kWh per metus.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Kaip paprastai pasiskirsto jūsų elektros suvartojimas per metus?",
@@ -516,6 +521,12 @@ export const lt = {
         "Peržiūrėkite apskaičiuotą kWp, keitiklio dydį, nuolatinės srovės ir kintamosios srovės santykį, mėnesinę gamybą ir ekonominę vertę – ir atsisiųskite ataskaitą PDF formatu.",
       ogDescription: "Apskaičiuotas jūsų saulės energijos sistemos dydis su PDF ataskaita.",
     },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
+    },
   },
   months: {
     short: ["Sau", "Vas", "Kov", "Bal", "Geg", "Bir", "Lie", "Rgp", "Rgs", "Spa", "Lap", "Gru"],
@@ -774,6 +785,7 @@ export const lt = {
     appOnly: "Pirkimas atliekamas programėlėje su jūsų Apple paskyra ir naršyklėje neprieinamas.",
     appleNote: "Tvarko App Store.",
     priceLoading: "Gaunama kaina…",
+    devContinue: "Dev: continue without payment",
   },
   history: {
     empty: "Kol kas neturite išsaugotų skaičiavimų.",

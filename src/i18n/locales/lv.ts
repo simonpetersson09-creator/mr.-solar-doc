@@ -62,6 +62,8 @@ export const lv = {
     error: "Adreses meklēšana neizdevās.",
     info: "Adrese tiek izmantota tikai saules starojuma aprēķināšanai jūsu atrašanās vietā.",
     infoLabel: "Vairāk informācijas par adresi",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   roof: {
     title: "Jūsu jumts",
@@ -70,7 +72,8 @@ export const lv = {
     manual: "Manuāli – precīzs virziens",
     manualHint: "Velciet bultiņu tā, lai tā rāda jumta virzienā. 180° = tieši uz dienvidiem.",
     tilt: "Jumta slīpums",
-    tiltDegrees: ".*",
+    tiltDegrees: "Grādi",
+    disclaimer: "Aprēķins izmanto jūsu atrašanās vietas saules starojuma datus. Faktiskā ražošana var atšķirties.",
     compass: {
       n: "Z",
       e: "A",
@@ -100,6 +103,8 @@ export const lv = {
       required: "Ievadiet savu elektroenerģijas patēriņu, lai turpinātu aprēķinu.",
       tooLow: "Patēriņš šķiet pārāk mazs. Ievadiet vismaz {{min}} kWh gadā.",
       tooHigh: "Patēriņš šķiet pārāk liels. Ievadiet ne vairāk kā {{max}} kWh gadā.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Kā parasti sadalās jūsu elektroenerģijas patēriņš visa gada garumā?",
@@ -511,6 +516,12 @@ export const lv = {
         "Skatiet aprēķināto kWp, invertora izmēru, DC/AC attiecību, mēneša ražošanu un ekonomisko vērtību – un lejupielādējiet atskaiti PDF formātā.",
       ogDescription: "Aprēķināta jūsu saules elektrostacijas dimensionēšana ar PDF atskaiti.",
     },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
+    },
   },
   months: {
     short: ["Jan", "Feb", "Mar", "Apr", "Mai", "Jūn", "Jūl", "Aug", "Sep", "Okt", "Nov", "Dec"],
@@ -769,6 +780,7 @@ export const lv = {
     appOnly: "Pirkums tiek veikts lietotnē ar jūsu Apple kontu un nav pieejams pārlūkā.",
     appleNote: "To nodrošina App Store.",
     priceLoading: "Notiek cenas ielāde…",
+    devContinue: "Dev: continue without payment",
   },
   history: {
     empty: "Jums vēl nav saglabātu aprēķinu.",

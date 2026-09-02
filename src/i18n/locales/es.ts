@@ -12,7 +12,7 @@ export const es = {
     title: "Mr. Solar Doc",
     subtitle: "¿Qué tamaño de instalación solar necesitas y qué valor tiene para ti?",
     point1Title: "Analiza tus condiciones",
-    point1Body: "",
+    point1Body: "La ubicación, la orientación y la inclinación deciden cuánto sol recibe tu tejado.",
     point2Title: "Encuentra el tamaño adecuado para ti",
     point2Body:
       "Tu consumo eléctrico, conexión a red y producción solar se combinan para encontrar el tamaño adecuado.",
@@ -62,6 +62,8 @@ export const es = {
     error: "No se pudo buscar la dirección.",
     info: "La dirección se usa únicamente para calcular la irradiación solar en tu ubicación.",
     infoLabel: "Más información sobre la dirección",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Premium",
@@ -85,7 +87,8 @@ export const es = {
     manual: "Manual – dirección exacta",
     manualHint: "Arrastra la flecha para que apunte en la dirección del tejado. 180° = sur exacto.",
     tilt: "Inclinación del tejado",
-    tiltDegrees: ".*",
+    tiltDegrees: "Grados",
+    disclaimer: "El cálculo usa datos de irradiación solar de tu ubicación. La producción real puede variar.",
     compass: {
       n: "N",
       e: "E",
@@ -115,6 +118,8 @@ export const es = {
       required: "Introduce tu consumo eléctrico para continuar con el cálculo.",
       tooLow: "Ese valor parece demasiado bajo. Introduce al menos {{min}} kWh al año.",
       tooHigh: "Ese valor parece demasiado alto. Introduce como máximo {{max}} kWh al año.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "¿Cómo se reparte normalmente tu consumo eléctrico a lo largo del año?",
@@ -508,6 +513,7 @@ export const es = {
       ctaNoPrice: "Desbloquear",
     },
     priceLoading: "Obteniendo precio…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
       price: "{{price}}/año",
@@ -575,6 +581,12 @@ export const es = {
       description:
         "Consulta los kWp calculados, el tamaño del inversor, el ratio DC/AC, la producción mensual y el valor económico - y descarga el informe en PDF.",
       ogDescription: "Dimensionado calculado de tu instalación solar con informe en PDF.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

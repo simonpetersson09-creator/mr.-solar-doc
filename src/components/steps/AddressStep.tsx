@@ -227,7 +227,7 @@ return (
           >
             <button
               type="button"
-              aria-label="Zooma in"
+              aria-label={t("address.zoomIn")}
               className="flex size-12 items-center justify-center rounded-2xl border border-primary/50 bg-primary text-primary-foreground shadow-lg shadow-primary/40 transition-transform active:scale-90"
               onClick={() => {
                 void haptic("light");
@@ -238,7 +238,7 @@ return (
             </button>
             <button
               type="button"
-              aria-label="Zooma ut"
+              aria-label={t("address.zoomOut")}
               className="flex size-12 items-center justify-center rounded-2xl border border-primary/50 bg-primary text-primary-foreground shadow-lg shadow-primary/40 transition-transform active:scale-90"
               onClick={() => {
                 void haptic("light");

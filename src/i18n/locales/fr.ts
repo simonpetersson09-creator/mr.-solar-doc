@@ -64,6 +64,8 @@ export const fr = {
     error: "La recherche d'adresse a échoué.",
     info: "L'adresse sert uniquement à calculer l'ensoleillement à votre emplacement.",
     infoLabel: "Plus d'informations sur l'adresse",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   roof: {
     title: "Votre toit",
@@ -73,7 +75,8 @@ export const fr = {
     manualHint:
       "Faites glisser la flèche pour qu'elle pointe dans la direction du toit. 180° = plein sud.",
     tilt: "Inclinaison du toit",
-    tiltDegrees: ".*",
+    tiltDegrees: "Degrés",
+    disclaimer: "Le calcul utilise les données d'ensoleillement de votre emplacement. La production réelle peut varier.",
     compass: {
       n: "N",
       e: "E",
@@ -104,6 +107,8 @@ export const fr = {
       required: "Saisissez votre consommation d'électricité pour poursuivre le calcul.",
       tooLow: "La consommation semble trop faible. Indiquez au moins {{min}} kWh par an.",
       tooHigh: "La consommation semble trop élevée. Indiquez au maximum {{max}} kWh par an.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question:
@@ -525,6 +530,12 @@ export const fr = {
         "Consultez le kWp calculé, la taille de l'onduleur, le ratio DC/AC, la production mensuelle et la valeur économique – et téléchargez le rapport au format PDF.",
       ogDescription: "Dimensionnement calculé de votre installation solaire avec un rapport PDF.",
     },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
+    },
   },
   months: {
     short: ["Jan", "Fév", "Mar", "Avr", "Mai", "Juin", "Juil", "Août", "Sep", "Oct", "Nov", "Déc"],
@@ -784,6 +795,7 @@ export const fr = {
       "L'achat se fait dans l'application avec votre compte Apple et n'est pas disponible dans le navigateur.",
     appleNote: "Géré par l'App Store.",
     priceLoading: "Récupération du prix…",
+    devContinue: "Dev: continue without payment",
   },
   history: {
     empty: "Vous n'avez encore aucun calcul enregistré.",
