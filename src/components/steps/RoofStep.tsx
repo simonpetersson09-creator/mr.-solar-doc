@@ -179,8 +179,9 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               {t("roof.result")}
             </div>
             <p className="mt-0.5 min-h-4 text-[11px] text-white/70">
-              {query.data?.dataSource ?? ""}
+              {query.data ? t("roof.dataSourceNote") : ""}
             </p>
+
           </div>
           <div className="flex min-h-[44px] flex-col items-center justify-center text-center">
             {query.isError && !query.data ? (
