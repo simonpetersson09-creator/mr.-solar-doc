@@ -46,7 +46,7 @@ export const Route = createFileRoute("/installningar")({
   component: SettingsPage,
 });
 
-const LEGAL_URL = "https://solar-doc-terms.lovable.app";
+const LEGAL_URL = "https://solar-doc-terms.lovable.app/integritetspolicy";
 const PRIVACY_URL = "https://solar-doc-terms.lovable.app/integritetspolicy";
 const MANAGE_SUBSCRIPTION_URL = "https://apps.apple.com/account/subscriptions";
 
