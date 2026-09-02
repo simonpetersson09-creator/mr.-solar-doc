@@ -343,26 +343,23 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     annualPriceChangeRate: input.annualPriceChangeRate,
   });
 
-  // Keep the investment level consistent with the presented year-1 savings.
-  const firstYearValue = lifetime.years[0]?.economicValue ?? 0;
-  const valueScale = firstYearValue > 0 ? presentation.annualSavings / firstYearValue : 1;
-  const lifetimeValuesScaledToPresentation = lifetime.years.map(
-    (year) => year.economicValue * valueScale,
-  );
+  // Investment level, lifetime totals and payback scenarios are built on the
+  // UNROUNDED year values. Rounding happens only at presentation time, so a
+  // very small first-year value can never scale (or zero out) the projection.
+  const unroundedAnnualEconomicValue = economics.selfConsumptionValue + economics.exportValue;
+  const lifetimeValues = lifetime.years.map((year) => year.economicValue);
 
   const investmentResult = calculateMaxInvestment(
-    presentation.annualSavings,
+    unroundedAnnualEconomicValue,
     input.acceptedPaybackYears,
     input.quotePrice,
-    lifetimeValuesScaledToPresentation,
+    lifetimeValues,
   );
 
-  // Lifetime totals consistent with the investment level: the same scaled
+  // Lifetime totals consistent with the investment level: the same unrounded
   // year values that back `maxInvestment` are also the value numerator.
-  const totalLifetimeEconomicValue = lifetimeValuesScaledToPresentation.reduce(
-    (sum, value) => sum + value,
-    0,
-  );
+  const totalLifetimeEconomicValue = lifetimeValues.reduce((sum, value) => sum + value, 0);
+
 
 
   const gridProfileStatus = input.electrical.gridProfileStatus ?? "verified";
