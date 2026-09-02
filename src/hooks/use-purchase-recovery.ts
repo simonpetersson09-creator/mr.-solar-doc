@@ -73,6 +73,8 @@ export function usePurchaseRecovery(): void {
       }
     }
 
+    let appStateHandle: { remove: () => void } | undefined;
+
     void (async () => {
       await initializePurchases();
       if (cancelled) return;
@@ -82,10 +84,25 @@ export function usePurchaseRecovery(): void {
         if (cancelled) return;
         await drain();
       }
+
+      // Apple may deliver/finish a transaction while the app is backgrounded
+      // (renewal, pending purchase, restore). Re-drain whenever the app returns
+      // to the foreground so premium/purchase status refreshes without a cold
+      // start. No-op in the browser (plugin unavailable).
+      try {
+        const { App } = await import("@capacitor/app");
+        if (cancelled) return;
+        appStateHandle = await App.addListener("appStateChange", ({ isActive }) => {
+          if (isActive && !cancelled) void drain();
+        });
+      } catch {
+        /* @capacitor/app unavailable (web) — resume handling is native-only */
+      }
     })();
 
     return () => {
       cancelled = true;
+      appStateHandle?.remove();
     };
   }, [queryClient]);
 }

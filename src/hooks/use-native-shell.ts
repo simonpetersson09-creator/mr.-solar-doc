@@ -24,7 +24,9 @@ export function useNativeShell() {
 
       try {
         const { StatusBar, Style } = await import("@capacitor/status-bar");
-        await StatusBar.setStyle({ style: Style.Dark });
+        // Style.Light = dark text. The app background is cream/white, so dark
+        // status-bar text (clock, battery) stays legible on notch/Dynamic Island.
+        await StatusBar.setStyle({ style: Style.Light });
       } catch {
         /* status bar unavailable on this platform */
       }
