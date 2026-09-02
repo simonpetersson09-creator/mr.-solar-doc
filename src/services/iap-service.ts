@@ -466,6 +466,17 @@ export async function refreshPurchases(): Promise<void> {
   await cdv.store.restorePurchases();
 }
 
+/** Human-readable, untranslated failure detail for logs and outcome reporting. */
+export function describePurchaseError(error: unknown): string {
+  if (error instanceof PurchaseError) {
+    const parts = [error.reason];
+    if (error.code !== null) parts.push(`code=${error.code}`);
+    if (error.detail && error.detail !== error.reason) parts.push(error.detail);
+    return parts.join(" | ").slice(0, 300);
+  }
+  return (error instanceof Error ? error.message : String(error)).slice(0, 300);
+}
+
 /** Test-only: clears module state so each test starts from a clean store. */
 export function __resetIapServiceForTests() {
   initialized = false;
