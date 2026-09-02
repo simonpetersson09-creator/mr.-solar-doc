@@ -200,6 +200,8 @@ export const sk = {
       "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
     gridCheckHint: "Ak si nie ste istí, overte si skutočnú prípojku.",
     disclaimerTitle: "Dôležité vedieť",
+    disclaimer:
+      "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
     grid: {
       advanced: "Pokročilé nastavenia",
       section: "Nastavenia siete",
@@ -549,6 +551,7 @@ export const sk = {
     ],
   },
   report: {
+    disclaimer: "Výpočet je orientačný a nie je ponukou.",
     fields: {
       gridConnection: "Pripojenie do siete",
       gridConnectionValue: "{{voltage}} V, {{phases}} fázy",

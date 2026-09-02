@@ -204,6 +204,8 @@ export const it = {
       "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
     gridCheckHint: "In caso di dubbio verifica il tuo allacciamento reale.",
     disclaimerTitle: "Importante da sapere",
+    disclaimer:
+      "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
     grid: {
       advanced: "Impostazioni avanzate",
       section: "Impostazioni di rete",
@@ -556,6 +558,7 @@ export const it = {
     ],
   },
   report: {
+    disclaimer: "Il calcolo è indicativo e non è un preventivo.",
     fields: {
       gridConnection: "Allacciamento alla rete",
       gridConnectionValue: "{{voltage}} V, {{phases}} fasi",

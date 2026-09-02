@@ -215,6 +215,8 @@ export const hu = {
       "A fő biztosíték elméleti teljesítménye 400 V-os háromfázisú csatlakozásból számítódik. Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
     gridCheckHint: "Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
     disclaimerTitle: "Fontos tudnivaló",
+    disclaimer:
+      "A fő biztosíték elméleti teljesítménye 400 V-os háromfázisú csatlakozásból számítódik. Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
     grid: {
       advanced: "Speciális beállítások",
       section: "Hálózati beállítások",
@@ -615,6 +617,7 @@ export const hu = {
     ],
   },
   report: {
+    disclaimer: "A számítás tájékoztató jellegű, nem ajánlat.",
     fields: {
       gridConnection: "Hálózati csatlakozás",
       gridConnectionValue: "{{voltage}} V, {{phases}} fázis",

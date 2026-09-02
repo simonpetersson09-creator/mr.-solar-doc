@@ -199,6 +199,8 @@ export const fi = {
       "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     gridCheckHint: "Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     disclaimerTitle: "Hyvä tietää",
+    disclaimer:
+      "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     grid: {
       advanced: "Lisäasetukset",
       section: "Verkkoasetukset",
@@ -548,6 +550,7 @@ export const fi = {
     ],
   },
   report: {
+    disclaimer: "Laskelma on ohjeellinen eikä se ole tarjous.",
     fields: {
       gridConnection: "Verkkoliittymä",
       gridConnectionValue: "{{voltage}} V, {{phases}}-vaihe",

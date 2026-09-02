@@ -215,6 +215,8 @@ export const ro = {
       "Puterea teoretică a siguranței principale este calculată pentru o conexiune trifazată de 400 V. Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
     gridCheckHint: "Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
     disclaimerTitle: "Important de știut",
+    disclaimer:
+      "Puterea teoretică a siguranței principale este calculată pentru o conexiune trifazată de 400 V. Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
     grid: {
       advanced: "Setări avansate",
       section: "Setări rețea",
@@ -616,6 +618,7 @@ export const ro = {
     ],
   },
   report: {
+    disclaimer: "Calculul este orientativ și nu este o ofertă.",
     fields: {
       gridConnection: "Conexiune la rețea",
       gridConnectionValue: "{{voltage}} V, {{phases}} faze",
