@@ -21,23 +21,16 @@ import {
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import { isDevUnlock } from "@/lib/dev-unlock";
+import i18nInstance from "@/i18n";
 
 
 export const Route = createFileRoute("/betalning")({
   head: () => ({
     meta: [
-      { title: "Lås upp din beräkning — Mr. Solar Doc" },
-      {
-        name: "description",
-        content:
-          "Lås upp din solcellsberäkning med ett engångsköp eller bli Premium med obegränsade beräkningar.",
-      },
-      { property: "og:title", content: "Lås upp din beräkning — Mr. Solar Doc" },
-      {
-        property: "og:description",
-        content:
-          "Lås upp din solcellsberäkning med ett engångsköp eller bli Premium med obegränsade beräkningar.",
-      },
+      { title: i18nInstance.t("meta.paywall.title") },
+      { name: "description", content: i18nInstance.t("meta.paywall.description") },
+      { property: "og:title", content: i18nInstance.t("meta.paywall.title") },
+      { property: "og:description", content: i18nInstance.t("meta.paywall.ogDescription") },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -286,7 +279,7 @@ function PaywallPage() {
               void navigate({ to: "/resultat" });
             }}
           >
-            Dev: fortsätt utan betalning
+            {t("paywall.devContinue")}
           </Button>
         ) : null}
 
