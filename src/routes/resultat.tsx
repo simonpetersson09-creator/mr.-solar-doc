@@ -497,8 +497,9 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
       <span className="text-[11px] font-semibold text-white/60">/kW</span>
     </p>
     <p className="mt-1 text-[11px] leading-relaxed text-white/60">
-      {formatDecimal(result.installedKwp, locale)} kWp · panel (DC)
+      {t("result.investmentPerKwHelp")}
     </p>
+
   </section>
 ) : null}
 
