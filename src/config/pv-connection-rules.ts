@@ -17,6 +17,8 @@
  * engine must never contain country-specific numbers.
  */
 
+import type { ServiceType } from "./grid";
+
 /** How well the PV rules for a country are known. Never hidden from the UI. */
 export type PvRulesStatus = "verified" | "generic";
 
@@ -94,10 +96,7 @@ export const GENERIC_PV_CONNECTION_RULES: Omit<PvConnectionRules, "countryCode">
 function verified(
   rules: Partial<Omit<PvConnectionRules, "countryCode" | "status">> & { noteKeys: string[] },
 ): Omit<PvConnectionRules, "countryCode" | "status"> {
-  const { countryCode: _ignored, status: _status, ...generic } = {
-    countryCode: "",
-    ...GENERIC_PV_CONNECTION_RULES,
-  };
+  const { status: _status, ...generic } = GENERIC_PV_CONNECTION_RULES;
   return { ...generic, ...rules };
 }
 
