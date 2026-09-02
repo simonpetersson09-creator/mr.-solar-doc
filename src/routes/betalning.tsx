@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -8,20 +8,20 @@ import { haptic } from "@/services/native-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import {
   PurchaseError,
-  getStorePrice,
-  isPurchaseAvailable,
   purchasePremium,
   purchaseUnlock,
 } from "@/services/iap-service";
+import { useStorePrices } from "@/hooks/use-store-prices";
+import { PurchaseDiagnosticsPanel } from "@/components/PurchaseDiagnosticsPanel";
 import {
   reportPurchaseOutcome,
   verifyPremium,
   verifyPurchase,
 } from "@/services/purchase-service";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
-import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import { isDevUnlock } from "@/lib/dev-unlock";
 import i18nInstance from "@/i18n";
+
 
 
 export const Route = createFileRoute("/betalning")({
