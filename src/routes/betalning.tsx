@@ -50,18 +50,11 @@ function PaywallPage() {
   const premium = usePremium();
   const [phase, setPhase] = useState<Phase>("idle");
   const [choice, setChoice] = useState<Choice | null>(null);
-  const available = useMemo(() => isPurchaseAvailable(), []);
-  const [prices, setPrices] = useState<{ unlock: string | null; premium: string | null }>({
-    unlock: null,
-    premium: null,
-  });
+  // Boots StoreKit (also when /betalning is opened directly) and keeps prices
+  // reactive: the plugin and its products arrive after the first render.
+  const store = useStorePrices();
+  const available = store.available;
 
-  useEffect(() => {
-    setPrices({
-      unlock: getStorePrice(UNLOCK_PRODUCT_ID),
-      premium: getStorePrice(PREMIUM_PRODUCT_ID),
-    });
-  }, []);
 
   // No calculation to unlock — send the user back to the wizard.
   useEffect(() => {
