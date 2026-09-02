@@ -1,6 +1,8 @@
 import { fetchPvgis } from "@/lib/pvgis.functions";
 import type { Orientation, SolarResource } from "@/lib/calc/types";
 import { defaultPvgisAzimuthForLatitude } from "@/lib/geo/hemisphere";
+import { isNativePlatform } from "@/services/native-service";
+import { executeNativePvgis } from "@/services/native-pvgis";
 
 /** PVGIS azimuth convention: 0 = south, negative = east, positive = west. */
 const ORIENTATION_AZIMUTH: Record<Exclude<Orientation, "unknown">, number> = {

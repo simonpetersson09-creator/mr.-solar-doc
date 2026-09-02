@@ -17,6 +17,7 @@ import { Route as InstallningarRouteImport } from './routes/installningar'
 import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
 import { Route as ResultatRouteImport } from './routes/resultat'
 import { Route as ApiPublicGeocodeRouteImport } from './routes/api/public/geocode'
+import { Route as ApiPublicPvgisRouteImport } from './routes/api/public/pvgis'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +59,11 @@ const ApiPublicGeocodeRoute = ApiPublicGeocodeRouteImport.update({
   path: '/api/public/geocode',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicPvgisRoute = ApiPublicPvgisRouteImport.update({
+  id: '/api/public/pvgis',
+  path: '/api/public/pvgis',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
   '/api/public/geocode': typeof ApiPublicGeocodeRoute
+  '/api/public/pvgis': typeof ApiPublicPvgisRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
   '/api/public/geocode': typeof ApiPublicGeocodeRoute
+  '/api/public/pvgis': typeof ApiPublicPvgisRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
   '/api/public/geocode': typeof ApiPublicGeocodeRoute
+  '/api/public/pvgis': typeof ApiPublicPvgisRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/integritetspolicy'
     | '/resultat'
     | '/api/public/geocode'
+    | '/api/public/pvgis'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/integritetspolicy'
     | '/resultat'
     | '/api/public/geocode'
+    | '/api/public/pvgis'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/integritetspolicy'
     | '/resultat'
     | '/api/public/geocode'
+    | '/api/public/pvgis'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,6 +144,7 @@ export interface RootRouteChildren {
   IntegritetspolicyRoute: typeof IntegritetspolicyRoute
   ResultatRoute: typeof ResultatRoute
   ApiPublicGeocodeRoute: typeof ApiPublicGeocodeRoute
+  ApiPublicPvgisRoute: typeof ApiPublicPvgisRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicGeocodeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/pvgis': {
+      id: '/api/public/pvgis'
+      path: '/api/public/pvgis'
+      fullPath: '/api/public/pvgis'
+      preLoaderRoute: typeof ApiPublicPvgisRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   IntegritetspolicyRoute: IntegritetspolicyRoute,
   ResultatRoute: ResultatRoute,
   ApiPublicGeocodeRoute: ApiPublicGeocodeRoute,
+  ApiPublicPvgisRoute: ApiPublicPvgisRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
