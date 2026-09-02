@@ -1379,7 +1379,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
           .replaceAll("{{acPower}}", `${formatDecimal(result.presentation.maxAcPowerKw, locale, 1)} kW AC`)
           .replaceAll(
             "{{production}}",
-            `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh/${f["perYearShort"]?.replace(/^\//, "") ?? "år"}`,
+            `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh ${f["perYearShort"] ?? ""}`.trim(),
           )
           .replaceAll("{{kwp}}", `${formatDecimal(result.installedKwp, locale)} kWp`)
           .replaceAll("{{investment}}", money(result.investment.maxInvestmentRounded)),
