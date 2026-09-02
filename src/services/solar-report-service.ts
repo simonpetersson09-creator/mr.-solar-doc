@@ -84,6 +84,19 @@ origin: Record<ValueOrigin, string>;
   gridUnverifiedWarning: string;
   /** Heading for the unverified grid warning. */
   gridUnverifiedTitle: string;
+  /** LCOE block: heading, cost/value labels and the basis sentence. */
+  productionCostTitle?: string;
+  productionCostLabel?: string;
+  productionCostValueLabel?: string;
+  productionCostBasis?: string;
+  /** Allowed PV power and which rule binds it. */
+  pvLimitLabel?: string;
+  bindingLimitLabel?: string;
+  bindingLimitValue?: string;
+  /** Explanation shown when a PV rule, not the fuse, sets the size. */
+  limitReason?: string | null;
+  /** Note shown when the system exceeds the simplified process ceiling. */
+  simplifiedProcessNote?: string | null;
   /** Heading for the FAQ page. */
   faqTitle: string;
   /** FAQ entries rendered on their own page at the end of the report. */
@@ -1176,6 +1189,34 @@ export function generateReportBlob(options: ReportOptions): Blob {
       labels.origin,
     );
     report.paragraph(f["paybackScenariosHelp"] ?? "");
+  }
+
+  // LCOE: what a produced kWh may cost, and what it is worth.
+  if (!economicsIncomplete && result.productionCost.costPerKwh != null) {
+    report.subheading(labels.productionCostTitle ?? "");
+    report.rows(
+      [
+        {
+          label: labels.productionCostLabel ?? "",
+          value: `${formatCurrencyPrecise(result.productionCost.costPerKwh, locale, currency)}/kWh`,
+          origin: "calculated" as const,
+        },
+        {
+          label: labels.productionCostValueLabel ?? "",
+          value: `${formatCurrencyPrecise(result.productionCost.valuePerKwh, locale, currency)}/kWh`,
+          origin: "calculated" as const,
+        },
+      ],
+      labels.origin,
+    );
+    if (labels.productionCostBasis) {
+      report.paragraph(
+        labels.productionCostBasis
+          .replace("{{investment}}", money(result.productionCost.investment))
+          .replace("{{production}}", formatNumber(result.productionCost.totalProductionKwh, locale))
+          .replace("{{years}}", formatNumber(result.productionCost.periodYears, locale)),
+      );
+    }
   }
 
   report.paragraph(f["investmentNote"] ?? "");
