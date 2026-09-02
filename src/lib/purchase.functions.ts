@@ -55,6 +55,33 @@ export const createPendingCalculation = createServerFn({ method: "POST" })
     return { id: row.id as string, accessToken: row.access_token as string };
   });
 
+/**
+ * How many recalculations a paid one-off calculation still has, and when the
+ * window closes. Never trusts the client: both the counter and the clock live
+ * on the server.
+ */
+function revisionState(row: {
+  status?: string | null;
+  purchased_at?: string | null;
+  created_at?: string | null;
+  revisions_used?: number | null;
+}): { revisionsLeft: number; revisionsUsed: number; revisionWindowEndsAt: string | null } {
+  const used = Math.max(0, Number(row.revisions_used ?? 0));
+  const startedAt = row.purchased_at ?? row.created_at ?? null;
+  if (row.status !== "paid" || !startedAt) {
+    return { revisionsLeft: 0, revisionsUsed: used, revisionWindowEndsAt: null };
+  }
+  const endsAt = new Date(
+    new Date(startedAt).getTime() + REVISION_WINDOW_HOURS * 60 * 60 * 1000,
+  );
+  const open = endsAt.getTime() > Date.now();
+  return {
+    revisionsUsed: used,
+    revisionsLeft: open ? Math.max(0, REVISION_LIMIT - used) : 0,
+    revisionWindowEndsAt: endsAt.toISOString(),
+  };
+}
+
 /** Current payment status for one calculation. */
 export const getPurchaseStatus = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => accessSchema.parse(input))
@@ -62,7 +89,7 @@ export const getPurchaseStatus = createServerFn({ method: "POST" })
     const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
     const { data: row } = await supabaseAdmin
       .from("calculations")
-      .select("status, purchased_at, created_at")
+      .select("status, purchased_at, created_at, revisions_used")
       .eq("id", data.id)
       .eq("access_token", data.accessToken)
       .maybeSingle();
@@ -71,6 +98,55 @@ export const getPurchaseStatus = createServerFn({ method: "POST" })
       found: Boolean(row),
       purchasedAt:
         ((row?.purchased_at as string | null) ?? (row?.created_at as string | null)) ?? null,
+      ...revisionState(row ?? {}),
+    };
+  });
+
+/**
+ * Spends one recalculation on an already paid calculation. The same receipt is
+ * reused, so the user is not charged again — up to REVISION_LIMIT times within
+ * REVISION_WINDOW_HOURS of the purchase.
+ */
+export const claimCalculationRevision = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) => accessSchema.parse(input))
+  .handler(async ({ data }) => {
+    const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+    const { data: row } = await supabaseAdmin
+      .from("calculations")
+      .select("status, purchased_at, created_at, revisions_used")
+      .eq("id", data.id)
+      .eq("access_token", data.accessToken)
+      .maybeSingle();
+    if (!row) return { granted: false as const, reason: "not-found", revisionsLeft: 0 };
+
+    const state = revisionState(row);
+    if (row.status !== "paid") {
+      return { granted: false as const, reason: "not-paid", revisionsLeft: 0 };
+    }
+    if (state.revisionsLeft <= 0) {
+      return {
+        granted: false as const,
+        reason: state.revisionWindowEndsAt && new Date(state.revisionWindowEndsAt) <= new Date()
+          ? "window-closed"
+          : "limit-reached",
+        revisionsLeft: 0,
+      };
+    }
+
+    const nextUsed = state.revisionsUsed + 1;
+    const { error } = await supabaseAdmin
+      .from("calculations")
+      .update({ revisions_used: nextUsed, last_revision_at: new Date().toISOString() } as never)
+      .eq("id", data.id)
+      .eq("access_token", data.accessToken)
+      .eq("status", "paid")
+      .eq("revisions_used", state.revisionsUsed);
+    if (error) return { granted: false as const, reason: "retry", revisionsLeft: 0 };
+
+    return {
+      granted: true as const,
+      revisionsLeft: Math.max(0, REVISION_LIMIT - nextUsed),
+      revisionWindowEndsAt: state.revisionWindowEndsAt,
     };
   });
 
