@@ -16,6 +16,7 @@ import { Route as HistorikRouteImport } from './routes/historik'
 import { Route as InstallningarRouteImport } from './routes/installningar'
 import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
 import { Route as ResultatRouteImport } from './routes/resultat'
+import { Route as ApiPublicGeocodeRouteImport } from './routes/api/public/geocode'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +53,11 @@ const ResultatRoute = ResultatRouteImport.update({
   path: '/resultat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicGeocodeRoute = ApiPublicGeocodeRouteImport.update({
+  id: '/api/public/geocode',
+  path: '/api/public/geocode',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +67,7 @@ export interface FileRoutesByFullPath {
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
+  '/api/public/geocode': typeof ApiPublicGeocodeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +77,7 @@ export interface FileRoutesByTo {
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
+  '/api/public/geocode': typeof ApiPublicGeocodeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,6 +88,7 @@ export interface FileRoutesById {
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
+  '/api/public/geocode': typeof ApiPublicGeocodeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -91,6 +100,7 @@ export interface FileRouteTypes {
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
+    | '/api/public/geocode'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -100,6 +110,7 @@ export interface FileRouteTypes {
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
+    | '/api/public/geocode'
   id:
     | '__root__'
     | '/'
@@ -109,6 +120,7 @@ export interface FileRouteTypes {
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
+    | '/api/public/geocode'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -119,6 +131,7 @@ export interface RootRouteChildren {
   InstallningarRoute: typeof InstallningarRoute
   IntegritetspolicyRoute: typeof IntegritetspolicyRoute
   ResultatRoute: typeof ResultatRoute
+  ApiPublicGeocodeRoute: typeof ApiPublicGeocodeRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -172,6 +185,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResultatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/geocode': {
+      id: '/api/public/geocode'
+      path: '/api/public/geocode'
+      fullPath: '/api/public/geocode'
+      preLoaderRoute: typeof ApiPublicGeocodeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -183,6 +203,7 @@ const rootRouteChildren: RootRouteChildren = {
   InstallningarRoute: InstallningarRoute,
   IntegritetspolicyRoute: IntegritetspolicyRoute,
   ResultatRoute: ResultatRoute,
+  ApiPublicGeocodeRoute: ApiPublicGeocodeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
