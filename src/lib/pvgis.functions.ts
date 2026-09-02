@@ -9,7 +9,7 @@ import {
 import { encodePvgisError, extractPvgisMessage } from "@/lib/pvgis-error";
 import { readDataSource, type PvgisJson } from "@/lib/pvgis-response";
 
-const pvgisInput = z.object({
+export const pvgisInput = z.object({
   latitude: z.number().min(-90).max(90),
   longitude: z.number().min(-180).max(180),
   /** Azimuth in PVGIS convention: 0 = south, -90 = east, 90 = west. */
@@ -36,10 +36,11 @@ async function requestPvgis(plan: PvgisRequestPlan): Promise<Response> {
   });
 }
 
-/** PVGIS PVcalc for a 1 kWp reference system. Results scale linearly with kWp. */
-export const fetchPvgis = createServerFn({ method: "GET" })
-  .inputValidator((data: unknown) => pvgisInput.parse(data))
-  .handler(async ({ data }): Promise<PvgisResponse> => {
+export type PvgisInput = z.infer<typeof pvgisInput>;
+
+/** Shared provider: used by the server fn (web) and the stable native route. */
+export async function pvgisProvider(data: PvgisInput): Promise<PvgisResponse> {
+  {
     let plan = buildPvgisRequest(data);
     let response = await requestPvgis(plan);
 
