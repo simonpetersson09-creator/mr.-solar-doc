@@ -1,3 +1,5 @@
+import { Capacitor } from "@capacitor/core";
+
 /**
  * Single typed interface for native capabilities.
  * UI -> Native Service -> Capacitor/Native (with web fallback).
@@ -17,18 +19,16 @@ function getCapacitor(): CapacitorGlobal | null {
 }
 
 export function isNativePlatform(): boolean {
-  const capacitor = getCapacitor();
-  if (capacitor?.isNativePlatform?.()) return true;
+  if (Capacitor.isNativePlatform()) return true;
   if (typeof window === "undefined") return false;
 
-  // Capacitor can register its JS bridge after the first application modules
-  // have evaluated. The local iOS/Android bundle still has an unambiguous
-  // native origin, so server-function routing must not depend on bridge timing.
+  // Keep protocol detection as a fallback for the first instant before the
+  // native bridge has finished registering itself.
   return window.location.protocol === "capacitor:" || window.location.protocol === "ionic:";
 }
 
 export function getPlatform(): "ios" | "android" | "web" {
-  const platform = getCapacitor()?.getPlatform?.() ?? "web";
+  const platform = Capacitor.getPlatform();
   if (platform === "ios" || platform === "android") return platform;
   return "web";
 }
