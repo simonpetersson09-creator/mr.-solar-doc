@@ -218,7 +218,12 @@ export interface CalculationInput {
   annualPriceChangeRate?: number;
   /** Optional quote price entered by the user, for the reverse calculation. */
   quotePrice?: number | null;
-  inverterSizesKw: number[];
+  /**
+   * Explicit inverter ladder override. Normally omitted: the engine derives
+   * the buildable products from the electrical service via
+   * `@/config/inverter-catalog`.
+   */
+  inverterSizesKw?: number[];
   /** Module nameplate power (kWp). Defaults to PANEL_WATTAGE_KWP. */
   panelPowerKwp?: number;
 }
@@ -243,8 +248,14 @@ export interface CalculationResult {
   /** Nameplate power of one module (kWp) behind `installedKwp`. */
   panelPowerKwp: number;
   sizingBasis: SizingBasis;
-  /** Chosen inverter's rated AC power. */
+  /** Chosen inverter configuration's TOTAL rated AC power. */
   inverterKw: number;
+  /** Rated AC power of one inverter unit — a real product for this service. */
+  inverterUnitKw: number;
+  /** Number of identical inverter units. 1 for a normal single-inverter system. */
+  inverterUnitCount: number;
+  /** Which product family the units come from (audit/debug, never shown raw). */
+  inverterCatalogId: string;
   /** The grid connection's AC ceiling (from the connection capacity). */
   maxAcPowerKw: number;
   /**

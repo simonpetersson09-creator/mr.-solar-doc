@@ -67,9 +67,17 @@ export function useCalculation(): {
     const maxAcPowerKw = connectionCapacityToMaxAcPowerKw(connectionCapacity!, {
       ...(kvaPowerFactor === undefined ? {} : { contractedKvaPowerFactor: kvaPowerFactor }),
     });
+    // The PV rule layer needs the physical service too: some rules are per
+    // phase model (DE/AT 4.6 kVA single-phase) and the US/CA busbar rule is a
+    // function of the service overcurrent rating, not of its kW capacity.
+    const serviceAmperageA =
+      connectionCapacity!.type === "amperage" ? connectionCapacity!.amperageA : null;
     const pvLimit = resolvePvPowerLimit({
       connectionCapacityKw: maxAcPowerKw,
       rules: getPvConnectionRules(location.countryCode),
+      serviceType: gridServiceType as ServiceType,
+      serviceAmperageA,
+      voltageV: connectionCapacity!.voltageV ?? gridVoltageV,
     });
     return runCalculation({
       location,
@@ -116,7 +124,8 @@ export function useCalculation(): {
       acceptedPaybackYears,
       annualPriceChangeRate,
       quotePrice,
-      inverterSizesKw: market.inverterSizesKw,
+      // No ladder is passed: the engine derives the buildable inverter
+      // products from the electrical service (see @/config/inverter-catalog).
     });
   }, [
     location,

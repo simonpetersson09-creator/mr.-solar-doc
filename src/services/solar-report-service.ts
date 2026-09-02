@@ -1,6 +1,7 @@
 import { jsPDF } from "jspdf";
 import type { CalculationResult, ValueOrigin } from "@/lib/calc/types";
 import { formatCurrency, formatDecimal, formatNumber, isoDateOnly } from "@/lib/format";
+import { formatInverterPower } from "@/lib/inverter-display";
 import {
   formatConnectionCapacity,
   gridAcDisplayFactor,
@@ -783,7 +784,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
       ),
       value: money(Math.round(result.lifetime.totalEconomicValue)),
     },
-    { label: f.inverter, value: `${formatNumber(result.inverterKw, locale)} kW` },
+    { label: f.inverter, value: formatInverterPower(result, locale) },
   ]);
   if (economicsIncomplete) report.paragraph(labels.economicsRequiresPrice);
 
@@ -843,7 +844,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
       },
       {
         label: f.inverter,
-        value: `${formatNumber(result.inverterKw, locale)} kW`,
+        value: formatInverterPower(result, locale),
         origin: "calculated",
       },
       {
