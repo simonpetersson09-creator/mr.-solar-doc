@@ -102,7 +102,6 @@ function WizardPage() {
             // The engine had no usable result (e.g. the cached solar data was
             // dropped): say so instead of leaving a dead button.
             toast.error(i18n.t("result.calculationUnavailable"));
-            setStep(2);
             return;
           }
           // Premium (and dev bypass) skip the paywall: the calculation opens directly.

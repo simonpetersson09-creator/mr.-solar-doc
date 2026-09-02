@@ -482,7 +482,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
     </p>
     <p className="mt-0.5 text-2xl font-extrabold tracking-tight text-white tabular-nums">
       {formatCurrency(
-        Math.round(result.investment.maxInvestment / result.installedKwp),
+        Math.round(result.investment.maxInvestmentRounded / result.installedKwp),
         locale,
         currency,
       )}{" "}
