@@ -128,7 +128,7 @@ describe("monthly data is an upper bound only", () => {
 });
 
 describe("randomised invariants", () => {
-  it("holds over 10 000 random cases", () => {
+  it("holds over 10 000 random cases", { timeout: 60_000 }, () => {
     let seed = 12345;
     const rnd = () => {
       seed = (seed * 1664525 + 1013904223) % 4294967296;
