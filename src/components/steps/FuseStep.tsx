@@ -253,7 +253,7 @@ const [showGridInfo, setShowGridInfo] = useState(false);
             onSubmit();
           }}
         >
-          {t("fuse.calculate")}
+          {t("common.next")}
           <ArrowRight className="size-4 text-accent" />
         </Button>
       }
