@@ -155,8 +155,10 @@ function PaywallPage() {
       setPhase("retry");
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
+      console.warn("[iap] premium purchase failed", describePurchaseError(error));
       setPhase(reason === "cancelled" ? "cancelled" : "failed");
     }
+
   }
 
   function busyLabel() {
