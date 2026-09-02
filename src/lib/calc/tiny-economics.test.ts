@@ -54,7 +54,7 @@ describe("very small economic values", () => {
     expect(result.lifetime.years[0]!.economicValue).toBeGreaterThan(0);
     expect(result.investment.annualEconomicValue).toBeGreaterThan(0);
     expect(result.investment.maxInvestment).toBeGreaterThan(0);
-    expect(result.productionCost.selfConsumedValuePerKwh ?? 1).toBeGreaterThanOrEqual(0);
+    expect(result.productionCost.totalEconomicValue).toBeGreaterThan(0);
   });
 
   it("does not magnify the projection when the year-1 value rounds up", () => {
