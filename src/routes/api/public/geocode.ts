@@ -32,19 +32,26 @@ function responseHeaders(origin: string): HeadersInit {
   };
 }
 
+// WKWebView pages loaded from capacitor:// have an opaque web origin and can
+// therefore send the literal Origin header "null". This exception is kept on
+// this read-only endpoint instead of weakening CSRF protection for server fns.
+function isAllowedGeocodingOrigin(origin: string | null): origin is string {
+  return origin === "null" || isNativeAppOrigin(origin);
+}
+
 export const Route = createFileRoute("/api/public/geocode")({
   server: {
     handlers: {
       OPTIONS: async ({ request }) => {
         const origin = request.headers.get("Origin");
-        if (origin === null || !isNativeAppOrigin(origin)) {
+        if (!isAllowedGeocodingOrigin(origin)) {
           return new Response(null, { status: 403 });
         }
         return new Response(null, { status: 204, headers: responseHeaders(origin) });
       },
       GET: async ({ request }) => {
         const origin = request.headers.get("Origin");
-        if (origin === null || !isNativeAppOrigin(origin)) {
+        if (!isAllowedGeocodingOrigin(origin)) {
           return Response.json({ error: "forbidden" }, { status: 403 });
         }
 
