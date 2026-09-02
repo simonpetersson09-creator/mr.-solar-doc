@@ -70,7 +70,8 @@ export const lv = {
     manual: "Manuāli – precīzs virziens",
     manualHint: "Velciet bultiņu tā, lai tā rāda jumta virzienā. 180° = tieši uz dienvidiem.",
     tilt: "Jumta slīpums",
-    tiltDegrees: ".*",
+    tiltDegrees: "Grādi",
+    disclaimer: "Aprēķins izmanto jūsu atrašanās vietas saules starojuma datus. Faktiskā ražošana var atšķirties.",
     compass: {
       n: "Z",
       e: "A",

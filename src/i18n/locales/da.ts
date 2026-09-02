@@ -70,7 +70,8 @@ export const da = {
     manual: "Manuelt – præcis retning",
     manualHint: "Træk pilen, så den peger i tagets retning. 180° = stik syd.",
     tilt: "Taghældning",
-    tiltDegrees: ".*",
+    tiltDegrees: "Grader",
+    disclaimer: "Beregningen bruger solindstrålingsdata for din placering. Faktisk produktion kan afvige.",
     compass: {
       n: "N",
       e: "Ø",

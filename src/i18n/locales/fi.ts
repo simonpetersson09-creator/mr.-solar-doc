@@ -69,7 +69,8 @@ export const fi = {
     manual: "Manuaalisesti – tarkka suunta",
     manualHint: "Vedä nuolta niin, että se osoittaa katon suuntaan. 180° = suoraan etelään.",
     tilt: "Kattokaltevuus",
-    tiltDegrees: ".*",
+    tiltDegrees: "Astetta",
+    disclaimer: "Laskelma perustuu sijaintisi säteilytietoihin. Todellinen tuotanto voi poiketa.",
     compass: {
       n: "P",
       e: "I",

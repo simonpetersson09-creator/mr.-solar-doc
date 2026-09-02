@@ -85,7 +85,8 @@ export const no = {
     manual: "Manuell – eksakt retning",
     manualHint: "Dra pilen slik at den peker i takets retning. 180° = rett sør.",
     tilt: "Takvinkel",
-    tiltDegrees: ".*",
+    tiltDegrees: "Grader",
+    disclaimer: "Beregningen bruker solinnstrålingsdata for stedet ditt. Faktisk produksjon kan avvike.",
     compass: {
       n: "N",
       e: "Ø",

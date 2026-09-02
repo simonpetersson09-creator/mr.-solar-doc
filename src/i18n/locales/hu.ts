@@ -12,7 +12,7 @@ export const hu = {
     title: "Mr. Solar Doc",
     subtitle: "Mekkora napelemes rendszert kell, és mennyit ér Önnek?",
     point1Title: "Elemzi a feltételeit",
-    point1Body: "",
+    point1Body: "A helyszín, a tájolás és a tetődőlés határozza meg, mennyi napfényt kap a tető.",
     point2Title: "Megtalálja a megfelelő méretet",
     point2Body:
       "Áramfogyasztását, hálózati csatlakozását és napelemes termelését összesúlyozza a megfelelő mérethez.",
@@ -85,7 +85,8 @@ export const hu = {
     manual: "Kézi – pontos irány",
     manualHint: "Húzza a nyilat úgy, hogy a tető irányába mutasson. 180° = pontosan dél.",
     tilt: "Tető dőlésszöge",
-    tiltDegrees: ".*",
+    tiltDegrees: "Fok",
+    disclaimer: "A számítás a helyszínre vonatkozó napsugárzási adatokat használja. A tényleges termelés eltérhet.",
     compass: {
       n: "É",
       e: "K",

@@ -73,7 +73,8 @@ export const fr = {
     manualHint:
       "Faites glisser la flèche pour qu'elle pointe dans la direction du toit. 180° = plein sud.",
     tilt: "Inclinaison du toit",
-    tiltDegrees: ".*",
+    tiltDegrees: "Degrés",
+    disclaimer: "Le calcul utilise les données d'ensoleillement de votre emplacement. La production réelle peut varier.",
     compass: {
       n: "N",
       e: "E",

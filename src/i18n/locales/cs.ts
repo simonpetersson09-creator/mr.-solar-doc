@@ -70,7 +70,8 @@ export const cs = {
     manual: "Manuálně – přesný směr",
     manualHint: "Přetáhněte šipku tak, aby ukazovala směr střechy. 180° = přesně na jih.",
     tilt: "Sklon střechy",
-    tiltDegrees: ".*",
+    tiltDegrees: "Stupně",
+    disclaimer: "Výpočet vychází z dat o slunečním záření pro vaši lokalitu. Skutečná výroba se může lišit.",
     compass: {
       n: "S",
       e: "V",

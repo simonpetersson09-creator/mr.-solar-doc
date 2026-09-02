@@ -85,7 +85,8 @@ export const tr = {
     manual: "Manuel – tam yön",
     manualHint: "Oku çatının yönünü gösterecek şekilde sürükleyin. 180° = tam güney.",
     tilt: "Çatı eğimi",
-    tiltDegrees: ".*",
+    tiltDegrees: "Derece",
+    disclaimer: "Hesaplama, konumunuza ait güneş ışınımı verilerini kullanır. Gerçek üretim farklılık gösterebilir.",
     compass: {
       n: "K",
       e: "D",

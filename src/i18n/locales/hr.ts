@@ -12,7 +12,7 @@ export const hr = {
     title: "Mr. Solar Doc",
     subtitle: "Koju veličinu solarnog sustava trebate i koliko vrijedi za vas?",
     point1Title: "Analizira vaše uvjete",
-    point1Body: "",
+    point1Body: "Lokacija, orijentacija i nagib krova određuju koliko sunca vaš krov stvarno dobiva.",
     point2Title: "Pronalazi pravu veličinu za vas",
     point2Body:
       "Vaša potrošnja struje, mrežni priključak i solarna proizvodnja se kombiniraju za odgovarajuću veličinu.",
@@ -85,7 +85,8 @@ export const hr = {
     manual: "Ručno – točan smjer",
     manualHint: "Povucite strelicu tako da pokazuje smjer krova. 180° = točno jug.",
     tilt: "Nagib krova",
-    tiltDegrees: ".*",
+    tiltDegrees: "Stupnjevi",
+    disclaimer: "Izračun se temelji na podacima o sunčevom zračenju za vašu lokaciju. Stvarna proizvodnja može odstupati.",
     compass: {
       n: "S",
       e: "I",

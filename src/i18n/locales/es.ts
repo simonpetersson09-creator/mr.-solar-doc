@@ -12,7 +12,7 @@ export const es = {
     title: "Mr. Solar Doc",
     subtitle: "¿Qué tamaño de instalación solar necesitas y qué valor tiene para ti?",
     point1Title: "Analiza tus condiciones",
-    point1Body: "",
+    point1Body: "La ubicación, la orientación y la inclinación deciden cuánto sol recibe tu tejado.",
     point2Title: "Encuentra el tamaño adecuado para ti",
     point2Body:
       "Tu consumo eléctrico, conexión a red y producción solar se combinan para encontrar el tamaño adecuado.",
@@ -85,7 +85,8 @@ export const es = {
     manual: "Manual – dirección exacta",
     manualHint: "Arrastra la flecha para que apunte en la dirección del tejado. 180° = sur exacto.",
     tilt: "Inclinación del tejado",
-    tiltDegrees: ".*",
+    tiltDegrees: "Grados",
+    disclaimer: "El cálculo usa datos de irradiación solar de tu ubicación. La producción real puede variar.",
     compass: {
       n: "N",
       e: "E",

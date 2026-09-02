@@ -71,7 +71,8 @@ export const it = {
     manualHint:
       "Trascina la freccia in modo che punti nella direzione del tetto. 180° = esattamente a sud.",
     tilt: "Inclinazione del tetto",
-    tiltDegrees: ".*",
+    tiltDegrees: "Gradi",
+    disclaimer: "Il calcolo usa i dati di irraggiamento della tua posizione. La produzione reale può variare.",
     compass: {
       n: "N",
       e: "E",

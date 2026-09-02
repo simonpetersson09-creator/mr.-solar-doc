@@ -12,7 +12,7 @@ export const en = {
     title: "Mr. Solar Doc",
     subtitle: "How big a solar system do you need, and what is it worth to you?",
     point1Title: "Analyzes your conditions",
-    point1Body: "",
+    point1Body: "Location, orientation and roof tilt decide how much sun your roof actually gets.",
     point2Title: "Finds the right size for you",
     point2Body:
       "Your electricity use, grid connection and solar production are weighed together to find a suitable size.",
@@ -85,7 +85,8 @@ export const en = {
     manual: "Manual – exact direction",
     manualHint: "Drag the arrow so it points in the roof's direction. 180° = due south.",
     tilt: "Roof tilt",
-    tiltDegrees: ".*",
+    tiltDegrees: "Degrees",
+    disclaimer: "The calculation uses solar irradiation data for your location. Actual production may vary.",
     compass: {
       n: "N",
       e: "E",

@@ -85,7 +85,8 @@ export const ro = {
     manual: "Manual – direcție exactă",
     manualHint: "Trage săgeata astfel încât să indice direcția acoperișului. 180° = exact sud.",
     tilt: "Înclinare acoperiș",
-    tiltDegrees: ".*",
+    tiltDegrees: "Grade",
+    disclaimer: "Calculul folosește date de radiație solară pentru locația ta. Producția reală poate diferi.",
     compass: {
       n: "N",
       e: "E",

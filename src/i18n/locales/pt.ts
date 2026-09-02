@@ -12,7 +12,7 @@ export const pt = {
     title: "Mr. Solar Doc",
     subtitle: "Que tamanho de sistema solar precisa e qual o seu valor para si?",
     point1Title: "Analisa as suas condições",
-    point1Body: "",
+    point1Body: "A localização, a orientação e a inclinação determinam quanto sol o seu telhado recebe.",
     point2Title: "Encontra o tamanho certo para si",
     point2Body:
       "O seu consumo de eletricidade, ligação à rede e produção solar são combinados para encontrar o tamanho adequado.",
@@ -85,7 +85,8 @@ export const pt = {
     manual: "Manual – direção exata",
     manualHint: "Arraste a seta para que aponte na direção do telhado. 180° = sul exato.",
     tilt: "Inclinação do telhado",
-    tiltDegrees: ".*",
+    tiltDegrees: "Graus",
+    disclaimer: "O cálculo usa dados de irradiação solar da sua localização. A produção real pode variar.",
     compass: {
       n: "N",
       e: "E",

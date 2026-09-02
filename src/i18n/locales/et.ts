@@ -70,7 +70,8 @@ export const et = {
     manual: "Käsitsi – täpne suund",
     manualHint: "Lohista noolt nii, et see osutaks katuse suunale. 180° = otse lõunasse.",
     tilt: "Katusekalle",
-    tiltDegrees: ".*",
+    tiltDegrees: "Kraadi",
+    disclaimer: "Arvutus kasutab teie asukoha kiirgusandmeid. Tegelik toodang võib erineda.",
     compass: {
       n: "N",
       e: "I",

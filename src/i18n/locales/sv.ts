@@ -12,7 +12,7 @@ export const sv = {
     title: "Mr. Solar Doc",
     subtitle: "Hur stor solcellsanläggning behöver du och vad är den värd för dig?",
     point1Title: "Analyserar dina förutsättningar",
-    point1Body: "",
+    point1Body: "Plats, väderstreck och taklutning avgör hur mycket sol ditt tak faktiskt får.",
     point2Title: "Hittar rätt storlek för dig",
     point2Body:
       "Din elanvändning, nätanslutning och solproduktion vägs samman för att hitta en lämplig storlek.",
@@ -85,7 +85,8 @@ export const sv = {
     manual: "Manuellt – exakt riktning",
     manualHint: "Dra pilen så att den pekar i takets riktning. 180° = rakt söderut.",
     tilt: "Taklutning",
-    tiltDegrees: ".*",
+    tiltDegrees: "Grader",
+    disclaimer: "Beräkningen bygger på solinstrålningsdata för din plats. Verklig produktion kan avvika.",
     compass: {
       n: "N",
       e: "Ö",

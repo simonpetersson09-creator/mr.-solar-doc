@@ -82,7 +82,8 @@ export const id = {
     manual: "Manual – arah pasti",
     manualHint: "Geser panah agar mengarah ke arah atap. 180° = tepat selatan.",
     tilt: "Kemiringan atap",
-    tiltDegrees: ".*",
+    tiltDegrees: "Derajat",
+    disclaimer: "Perhitungan menggunakan data radiasi matahari untuk lokasi Anda. Produksi aktual dapat berbeda.",
     compass: { n: "U", e: "T", s: "S", w: "B" },
     orientations: {
       unknown: "Tidak tahu",

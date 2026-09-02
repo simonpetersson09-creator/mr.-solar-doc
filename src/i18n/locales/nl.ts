@@ -12,7 +12,7 @@ export const nl = {
     title: "Mr. Solar Doc",
     subtitle: "Hoe groot moet uw zonnepanelensysteem zijn en wat is het u waard?",
     point1Title: "Analyseert uw omstandigheden",
-    point1Body: "",
+    point1Body: "Locatie, oriëntatie en dakhelling bepalen hoeveel zon uw dak echt krijgt.",
     point2Title: "Vindt de juiste maat voor u",
     point2Body:
       "Uw stroomverbruik, netaansluiting en zon-opbrengst worden gecombineerd voor een geschikte grootte.",
@@ -85,7 +85,8 @@ export const nl = {
     manual: "Handmatig – exacte richting",
     manualHint: "Sleep de pijl zodat deze in de richting van het dak wijst. 180° = pal zuid.",
     tilt: "Dakhelling",
-    tiltDegrees: ".*",
+    tiltDegrees: "Graden",
+    disclaimer: "De berekening gebruikt instralingsgegevens voor uw locatie. De werkelijke opbrengst kan afwijken.",
     compass: {
       n: "N",
       e: "O",
