@@ -115,7 +115,7 @@ const JP_SPLIT_PHASE_CATALOG: InverterCatalog = {
 /** The catalogue that applies to a service type in a given country. */
 export function inverterCatalogFor(params: {
   serviceType: ServiceType;
-  countryCode?: string | null;
+  countryCode?: string | null | undefined;
 }): InverterCatalog {
   const code = (params.countryCode ?? "").toUpperCase();
   switch (params.serviceType) {
@@ -171,7 +171,7 @@ export function buildInverterOptions(
 export function isInverterCompatible(
   unitKw: number,
   serviceType: ServiceType,
-  countryCode?: string | null,
+  countryCode?: string | null | undefined,
 ): boolean {
   return inverterCatalogFor({ serviceType, countryCode }).unitSizesKw.some(
     (kw) => Math.abs(kw - unitKw) < 1e-9,
