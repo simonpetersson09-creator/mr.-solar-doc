@@ -204,7 +204,7 @@ export const cs = {
     disclaimer:
       "Teoretický výkon hlavního jističe se počítá z třífázové přípojky 400 V. Pokud si nejste jisti, ověřte si skutečnou přípojku.",
     grid: {
-      advanced: "Pokročilá nastavení",
+      advanced: "Vaše elektrické připojení",
       section: "Nastavení sítě",
       change: "Změnit",
       done: "Hotovo",

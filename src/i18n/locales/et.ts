@@ -205,7 +205,7 @@ export const et = {
     disclaimer:
       "Peakaitsme teoreetiline võimsus arvutatakse 400 V kolmefaasilise liitumise alusel. Kui te pole kindel, kontrollige oma tegelikku võrguühendust.",
     grid: {
-      advanced: "Täpsemad seaded",
+      advanced: "Sinu elektriside",
       section: "Võrgu seaded",
       change: "Muuda",
       done: "Valmis",

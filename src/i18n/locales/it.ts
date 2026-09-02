@@ -208,7 +208,7 @@ export const it = {
     disclaimer:
       "La potenza teorica del fusibile principale è calcolata per un allacciamento trifase a 400 V. In caso di dubbio verifica il tuo allacciamento reale.",
     grid: {
-      advanced: "Impostazioni avanzate",
+      advanced: "La tua connessione elettrica",
       section: "Impostazioni di rete",
       change: "Modifica",
       done: "Fatto",

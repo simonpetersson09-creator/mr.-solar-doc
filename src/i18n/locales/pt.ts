@@ -222,7 +222,7 @@ export const pt = {
     disclaimer:
       "A potência teórica do disjuntor geral é calculada a partir de uma ligação trifásica de 400 V. Verifique a sua ligação real à rede em caso de dúvida.",
     grid: {
-      advanced: "Definições avançadas",
+      advanced: "Sua conexão elétrica",
       section: "Definições de rede",
       change: "Alterar",
       done: "Concluído",

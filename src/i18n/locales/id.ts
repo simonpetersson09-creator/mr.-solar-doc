@@ -211,7 +211,7 @@ export const id = {
     disclaimer:
       "Daya teoretis sekring utama dihitung dari sambungan tiga fase 400 V. Periksa sambungan jaringan Anda yang sebenarnya jika ragu.",
     grid: {
-      advanced: "Pengaturan lanjutan",
+      advanced: "Koneksi listrik Anda",
       section: "Pengaturan jaringan",
       change: "Ubah",
       done: "Selesai",

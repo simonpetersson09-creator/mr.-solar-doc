@@ -204,7 +204,7 @@ export const sk = {
     disclaimer:
       "Teoretický výkon hlavného ističa sa počíta z trojfázovej prípojky 400 V. Ak si nie ste istí, overte si skutočnú prípojku.",
     grid: {
-      advanced: "Pokročilé nastavenia",
+      advanced: "Vaše elektrické pripojenie",
       section: "Nastavenia siete",
       change: "Zmeniť",
       done: "Hotovo",

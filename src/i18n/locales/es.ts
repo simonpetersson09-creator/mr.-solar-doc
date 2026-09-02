@@ -221,7 +221,7 @@ export const es = {
     disclaimer:
       "La potencia teórica del interruptor general se calcula a partir de una conexión trifásica de 400 V. Comprueba tu conexión real a la red si tienes dudas.",
     grid: {
-      advanced: "Ajustes avanzados",
+      advanced: "Tu conexión eléctrica",
       section: "Ajustes de red",
       change: "Cambiar",
       done: "Hecho",

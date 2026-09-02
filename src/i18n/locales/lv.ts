@@ -205,7 +205,7 @@ export const lv = {
     disclaimer:
       "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     grid: {
-      advanced: "Papildu iestatījumi",
+      advanced: "Tavs elektriskais pieslēgums",
       section: "Tīkla iestatījumi",
       change: "Mainīt",
       done: "Gatavs",

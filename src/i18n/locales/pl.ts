@@ -208,7 +208,7 @@ export const pl = {
     disclaimer:
       "Teoretyczna moc zabezpieczenia głównego jest obliczana dla przyłącza trójfazowego 400 V. W razie wątpliwości sprawdź swoje rzeczywiste przyłącze.",
     grid: {
-      advanced: "Ustawienia zaawansowane",
+      advanced: "Twoje podłączenie elektryczne",
       section: "Ustawienia sieci",
       change: "Zmień",
       done: "Gotowe",

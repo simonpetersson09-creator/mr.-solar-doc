@@ -202,7 +202,7 @@ export const sl = {
     disclaimer:
       "Teoretična moč glavne varovalke se izračuna za trifazni priključek 400 V. Če niste prepričani, preverite svoj dejanski omrežni priključek.",
     grid: {
-      advanced: "Napredne nastavitve",
+      advanced: "Vaša električna povezava",
       section: "Nastavitve omrežja",
       change: "Spremeni",
       done: "Končano",

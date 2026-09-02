@@ -213,7 +213,7 @@ export const fr = {
     disclaimer:
       "La puissance théorique du fusible principal est calculée pour un raccordement triphasé 400 V. Vérifiez votre raccordement réel en cas de doute.",
     grid: {
-      advanced: "Réglages avancés",
+      advanced: "Votre raccordement électrique",
       section: "Réglages du réseau",
       change: "Modifier",
       done: "Terminé",

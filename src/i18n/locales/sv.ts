@@ -218,7 +218,7 @@ export const sv = {
     disclaimer:
       "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
     grid: {
-      advanced: "Avancerade inställningar",
+      advanced: "Din elanslutning",
       section: "Nätinställningar",
       change: "Ändra",
       done: "Klar",
