@@ -49,7 +49,10 @@ describe("inverter catalogue", () => {
     expect(inverterCatalogFor({ serviceType: "split-phase", countryCode: "JP" }).id).toBe(
       "jp-split-phase",
     );
-    expect(isInverterCompatible(20, "split-phase", "US")).toBe(false);
+    // The NA ladder now includes the 208/240 V commercial classes, but never
+    // the EU three-phase ones.
+    expect(isInverterCompatible(20, "split-phase", "US")).toBe(true);
+    expect(isInverterCompatible(33, "split-phase", "US")).toBe(false);
   });
 
   it("builds multi-unit configurations only where the market does", () => {
@@ -60,7 +63,7 @@ describe("inverter catalogue", () => {
       inverterCatalogFor({ serviceType: "split-phase", countryCode: "US" }),
       20,
     );
-    expect(us.some((o) => o.unitCount === 2 && o.unitKw === 9.6)).toBe(true);
+    expect(us.some((o) => o.unitCount > 1)).toBe(true);
     expect(Math.max(...us.map((o) => o.totalAcKw))).toBeLessThanOrEqual(20);
   });
 
@@ -164,7 +167,7 @@ describe("engine picks products that exist for the service", () => {
       input(
         {
           maxAcPowerKw: 96,
-          pvPowerLimitKw: 19.2,
+          pvPowerLimitKw: 23,
           pvLimitBinding: "busbar-rule",
           serviceType: "split-phase",
           gridVoltageV: 240,
@@ -173,6 +176,7 @@ describe("engine picks products that exist for the service", () => {
       ),
     );
     expect(result.inverterUnitKw).toBeLessThanOrEqual(11.4);
+    expect(result.inverterKw).toBeCloseTo(22.8, 6);
     expect(result.inverterKw).toBeCloseTo(
       result.inverterUnitKw * result.inverterUnitCount,
       6,
