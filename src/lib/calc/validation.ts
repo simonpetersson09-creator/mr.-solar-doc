@@ -13,6 +13,10 @@
  */
 
 import { ABSOLUTE_MAX_DC_AC_RATIO } from "@/config/constants";
+import {
+  isImplausiblePricePerKwh,
+  maxPlausiblePricePerKwh,
+} from "@/config/electricity-price-bounds";
 import type { CalculationInput, CalculationResult } from "./types";
 
 /** Relative tolerance used for floating point comparisons (energy balance). */
@@ -56,6 +60,7 @@ export type CalculationIssueCode =
   | "missing-inverter-sizes"
   | "invalid-self-consumption-share"
   | "negative-price"
+  | "implausible-price"
   | "invalid-payback-years"
   | "invalid-grid-profile"
   | "unconfirmed-grid-profile"
