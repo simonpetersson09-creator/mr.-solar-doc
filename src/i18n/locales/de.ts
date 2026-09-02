@@ -205,6 +205,8 @@ export const de = {
       "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
     gridCheckHint: "Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
     disclaimerTitle: "Wichtig zu wissen",
+    disclaimer:
+      "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
     grid: {
       advanced: "Erweiterte Einstellungen",
       section: "Netzeinstellungen",
@@ -561,6 +563,7 @@ export const de = {
     ],
   },
   report: {
+    disclaimer: "Die Berechnung ist richtungsweisend und kein Angebot.",
     fields: {
       gridConnection: "Netzanschluss",
       gridConnectionValue: "{{voltage}} V, {{phases}}-phasig",

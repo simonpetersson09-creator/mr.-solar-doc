@@ -217,6 +217,8 @@ export const nl = {
       "Het theoretische vermogen van de hoofdzekering wordt berekend op basis van een driefasenaansluiting van 400 V. Controleer je werkelijke netaansluiting als je twijfelt.",
     gridCheckHint: "Controleer je werkelijke netaansluiting als je twijfelt.",
     disclaimerTitle: "Belangrijk om te weten",
+    disclaimer:
+      "Het theoretische vermogen van de hoofdzekering wordt berekend op basis van een driefasenaansluiting van 400 V. Controleer je werkelijke netaansluiting als je twijfelt. Controleer je werkelijke netaansluiting als je twijfelt.",
     grid: {
       advanced: "Geavanceerde instellingen",
       section: "Netinstellingen",
@@ -620,6 +622,7 @@ export const nl = {
     ],
   },
   report: {
+    disclaimer: "De berekening is richtinggevend en geen offerte.",
     fields: {
       gridConnection: "Netaansluiting",
       gridConnectionValue: "{{voltage}} V, {{phases}}-fase",

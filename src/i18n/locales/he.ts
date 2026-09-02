@@ -210,6 +210,8 @@ export const he = {
       'ההספק התיאורטי של המאמ"ת הראשי מחושב מחיבור תלת-פאזי של 400 V. בדקו את חיבור הרשת בפועל אם אינכם בטוחים.',
     gridCheckHint: "בדקו את חיבור הרשת בפועל אם אינכם בטוחים.",
     disclaimerTitle: "חשוב לדעת",
+    disclaimer:
+      "ההספק התיאורטי של המאמ\"ת הראשי מחושב מחיבור תלת-פאזי של 400 V. בדקו את חיבור הרשת בפועל אם אינכם בטוחים. בדקו את חיבור הרשת בפועל אם אינכם בטוחים.",
     grid: {
       advanced: "הגדרות מתקדמות",
       section: "הגדרות רשת",
@@ -589,6 +591,7 @@ export const he = {
     ],
   },
   report: {
+    disclaimer: "The calculation is indicative and is not a quote.",
     fields: {
       gridConnection: "חיבור לרשת",
       gridConnectionValue: "{{voltage}} V, {{phases}} פאזות",

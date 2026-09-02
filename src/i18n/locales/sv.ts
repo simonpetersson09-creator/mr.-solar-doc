@@ -214,6 +214,8 @@ export const sv = {
       "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker.",
     gridCheckHint: "Kontrollera din faktiska nätanslutning om du är osäker.",
     disclaimerTitle: "Viktigt att veta",
+    disclaimer:
+      "Säkringens teoretiska effekt beräknas utifrån 400 V trefas. Kontrollera din faktiska nätanslutning om du är osäker. Kontrollera din faktiska nätanslutning om du är osäker.",
     grid: {
       advanced: "Avancerade inställningar",
       section: "Nätinställningar",
@@ -610,6 +612,7 @@ export const sv = {
     ],
   },
   report: {
+    disclaimer: "Beräkningen är vägledande och är inte en offert.",
     fields: {
       gridConnection: "Nätanslutning",
       gridConnectionValue: "{{voltage}} V, {{phases}}-fas",

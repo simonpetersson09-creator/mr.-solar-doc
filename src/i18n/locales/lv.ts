@@ -201,6 +201,8 @@ export const lv = {
       "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     gridCheckHint: "Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     disclaimerTitle: "Svarīgi zināt",
+    disclaimer:
+      "Galvenā drošinātāja teorētisko jaudu aprēķina, pieņemot 400 V trīsfāžu pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu. Ja neesat pārliecināts, pārbaudiet savu faktisko tīkla pieslēgumu.",
     grid: {
       advanced: "Papildu iestatījumi",
       section: "Tīkla iestatījumi",
@@ -550,6 +552,7 @@ export const lv = {
     ],
   },
   report: {
+    disclaimer: "Aprēķins ir orientējošs un nav piedāvājums.",
     fields: {
       gridConnection: "Tīkla pieslēgums",
       gridConnectionValue: "{{voltage}} V, {{phases}} fāzes",

@@ -215,6 +215,8 @@ export const hr = {
       "Teoretska snaga glavnog osigurača izračunava se iz trofaznog priključka od 400 V. Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
     gridCheckHint: "Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
     disclaimerTitle: "Važno je znati",
+    disclaimer:
+      "Teoretska snaga glavnog osigurača izračunava se iz trofaznog priključka od 400 V. Provjerite svoj stvarni mrežni priključak ako niste sigurni. Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
     grid: {
       advanced: "Napredne postavke",
       section: "Postavke mreže",
@@ -609,6 +611,7 @@ export const hr = {
     ],
   },
   report: {
+    disclaimer: "Izračun je orijentacijski i nije ponuda.",
     fields: {
       gridConnection: "Mrežni priključak",
       gridConnectionValue: "{{voltage}} V, {{phases}}-fazno",
