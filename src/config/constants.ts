@@ -53,6 +53,15 @@ export const SCORE_WEIGHTS = {
    * Kept below arrayShortfall so quantisation to whole modules may round up.
    */
   arrayOversize: 2,
+  /**
+   * Penalty for landing BELOW the desired DC/AC window when the smallest
+   * inverter that exists for the service is already chosen. A low DC/AC ratio
+   * is then a product-availability fact, not a design flaw, and penalising it
+   * at full weight would grow a small household's array only to reach the
+   * window. Over the window the full `ratioOutsideRange` weight always applies,
+   * and ABSOLUTE_MAX_DC_AC_RATIO still caps every candidate.
+   */
+  ratioBelowRangeAtSmallestInverter: 1,
 } as const;
 
 

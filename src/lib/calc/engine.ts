@@ -142,7 +142,14 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     annualKwhPerKwp: input.resource.annualKwhPerKwp,
     maxAcPowerKw: acCeilingKw,
   });
-  if (sizing.limitedByGrid) notes.push("limited-by-main-fuse");
+  // Only say "limited by the main fuse" when the connection capacity really is
+  // the binding ceiling. When a national PV rule or the busbar rule binds, the
+  // consumer must be told THAT instead — changing the fuse would not help.
+  if (sizing.limitedByGrid) {
+    notes.push(
+      pvLimitBinding === "connection-capacity" ? "limited-by-main-fuse" : "limited-by-pv-rule",
+    );
+  }
 
   // Consumption + PVGIS -> profile analysis -> dynamic DC/AC target window.
   const consumptionProfile = analyzeConsumptionProfile({
@@ -223,6 +230,14 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   if (input.consumption.annualKwh < MIN_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH) {
     notes.push("consumption-below-minimum");
   }
+
+  // Simplified/fast-track process threshold (e.g. GB G98 at 3.68 kW). This is
+  // an INFORMATION limit, never a technical cap: a larger system stays
+  // recommendable, the consumer just needs the full application.
+  const simplifiedProcessLimitKw = input.electrical.simplifiedProcessLimitKw ?? null;
+  const aboveSimplifiedProcessLimit =
+    simplifiedProcessLimitKw != null && inverterKw > simplifiedProcessLimitKw + 1e-9;
+  if (aboveSimplifiedProcessLimit) notes.push("above-simplified-process-limit");
 
 
   let recommendationReason: RecommendationReason = `profile-${consumptionProfile.category}` as RecommendationReason;
@@ -401,6 +416,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     pvPowerLimitKw: acCeilingKw,
     pvLimitBinding,
     pvRulesStatus: input.electrical.pvRulesStatus ?? "generic",
+    simplifiedProcessLimitKw,
+    aboveSimplifiedProcessLimit,
     dcAcRatio: dcAcRatio(installedKwp, inverterKw),
     oversizingPercent: oversizingPercent(installedKwp, inverterKw),
     targetDcAcRange,

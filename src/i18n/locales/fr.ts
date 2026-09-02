@@ -358,6 +358,15 @@ export const fr = {
       "very-high-solar-season": "Très élevée pendant les mois ensoleillés",
     },
     targetDcAcRange: "Plage cible CC/CA",
+    pvLimitLabel: "Puissance PV autorisée (AC)",
+    bindingLimitLabel: "Limité par",
+    bindingConnectionCapacity: "Capacité du raccordement",
+    bindingPvRule: "Règle nationale PV",
+    bindingCapacityShare: "Part de la capacité de raccordement",
+    bindingBusbar: "Règle de jeu de barres / réinjection",
+    reasonPvRuleLimit: "La taille de l'installation est fixée par la règle nationale de raccordement PV, et non par le disjoncteur principal.",
+    reasonBusbarLimit: "La taille de l'installation est fixée par la règle de réinjection de votre tableau, et non par le disjoncteur principal.",
+    simplifiedProcessNote: "Les installations de plus de {{limit}} kW ne relèvent pas de la procédure simplifiée de raccordement. L'installation reste possible, mais nécessite normalement une demande et l'accord de votre gestionnaire de réseau.",
     summerShare: "Part de consommation avr-sep",
     rationale: {
       consumption:

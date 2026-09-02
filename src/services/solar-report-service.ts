@@ -1,6 +1,12 @@
 import { jsPDF } from "jspdf";
 import type { CalculationResult, ValueOrigin } from "@/lib/calc/types";
-import { formatCurrency, formatDecimal, formatNumber, isoDateOnly } from "@/lib/format";
+import {
+  formatCurrency,
+  formatCurrencyPrecise,
+  formatDecimal,
+  formatNumber,
+  isoDateOnly,
+} from "@/lib/format";
 import { formatInverterPower } from "@/lib/inverter-display";
 import {
   formatConnectionCapacity,
@@ -84,6 +90,19 @@ origin: Record<ValueOrigin, string>;
   gridUnverifiedWarning: string;
   /** Heading for the unverified grid warning. */
   gridUnverifiedTitle: string;
+  /** LCOE block: heading, cost/value labels and the basis sentence. */
+  productionCostTitle?: string;
+  productionCostLabel?: string;
+  productionCostValueLabel?: string;
+  productionCostBasis?: string;
+  /** Allowed PV power and which rule binds it. */
+  pvLimitLabel?: string;
+  bindingLimitLabel?: string;
+  bindingLimitValue?: string;
+  /** Explanation shown when a PV rule, not the fuse, sets the size. */
+  limitReason?: string | null;
+  /** Note shown when the system exceeds the simplified process ceiling. */
+  simplifiedProcessNote?: string | null;
   /** Heading for the FAQ page. */
   faqTitle: string;
   /** FAQ entries rendered on their own page at the end of the report. */
@@ -1178,6 +1197,34 @@ export function generateReportBlob(options: ReportOptions): Blob {
     report.paragraph(f["paybackScenariosHelp"] ?? "");
   }
 
+  // LCOE: what a produced kWh may cost, and what it is worth.
+  if (!economicsIncomplete && result.productionCost.costPerKwh != null) {
+    report.subheading(labels.productionCostTitle ?? "");
+    report.rows(
+      [
+        {
+          label: labels.productionCostLabel ?? "",
+          value: `${formatCurrencyPrecise(result.productionCost.costPerKwh, locale, currency)}/kWh`,
+          origin: "calculated" as const,
+        },
+        {
+          label: labels.productionCostValueLabel ?? "",
+          value: `${formatCurrencyPrecise(result.productionCost.valuePerKwh, locale, currency)}/kWh`,
+          origin: "calculated" as const,
+        },
+      ],
+      labels.origin,
+    );
+    if (labels.productionCostBasis) {
+      report.paragraph(
+        labels.productionCostBasis
+          .replace("{{investment}}", money(result.productionCost.investment))
+          .replace("{{production}}", formatNumber(result.productionCost.totalProductionKwh, locale))
+          .replace("{{years}}", formatNumber(result.productionCost.periodYears, locale)),
+      );
+    }
+  }
+
   report.paragraph(f["investmentNote"] ?? "");
   if (result.investment.quotePrice != null) report.paragraph(labels.quoteNote);
   report.softBreak(60);
@@ -1190,6 +1237,25 @@ export function generateReportBlob(options: ReportOptions): Blob {
 
   // Grouped so a reader can tell production, economics and technical
   // assumptions apart instead of scanning one long list.
+  if (labels.pvLimitLabel && labels.bindingLimitLabel) {
+    report.rows(
+      [
+        {
+          label: labels.pvLimitLabel,
+          value: `${formatDecimal(result.pvPowerLimitKw, locale)} kW`,
+          origin: "external" as const,
+        },
+        {
+          label: labels.bindingLimitLabel,
+          value: labels.bindingLimitValue ?? "",
+          origin: "external" as const,
+        },
+      ],
+      labels.origin,
+    );
+    if (labels.limitReason) report.paragraph(labels.limitReason);
+    if (labels.simplifiedProcessNote) report.paragraph(labels.simplifiedProcessNote);
+  }
   report.subheading(f["assumptionsProduction"] ?? "");
   report.rows(
     [

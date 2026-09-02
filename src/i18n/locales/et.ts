@@ -349,6 +349,15 @@ export const et = {
       "very-high-solar-season": "Väga kõrge päikselistel kuudel",
     },
     targetDcAcRange: "DC/AC sihtvahemik",
+    pvLimitLabel: "Lubatud päikeseenergia võimsus (AC)",
+    bindingLimitLabel: "Piirab",
+    bindingConnectionCapacity: "Liitumise võimsus",
+    bindingPvRule: "Riiklik päikeseenergia reegel",
+    bindingCapacityShare: "Osa liitumisvõimsusest",
+    bindingBusbar: "Kogumislati / tagasisöötmise reegel",
+    reasonPvRuleLimit: "Süsteemi suuruse määrab riigi päikeseelektri liitumisreegel, mitte peakaitse.",
+    reasonBusbarLimit: "Süsteemi suuruse määrab teie jaotuskilbi tagasisöötmise reegel, mitte peakaitse.",
+    simplifiedProcessNote: "Üle {{limit}} kW süsteemid ei kuulu lihtsustatud liitumisprotsessi alla. Süsteem on endiselt võimalik, kuid eeldab tavaliselt taotlust ja võrguettevõtja nõusolekut.",
     summerShare: "Tarbimise osakaal apr-sep",
     rationale: {
       consumption:

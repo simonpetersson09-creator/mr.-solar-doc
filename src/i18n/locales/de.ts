@@ -353,6 +353,15 @@ export const de = {
       "very-high-solar-season": "Sehr hoch in sonnenreichen Monaten",
     },
     targetDcAcRange: "Ziel-DC/AC-Bereich",
+    pvLimitLabel: "Zulässige PV-Leistung (AC)",
+    bindingLimitLabel: "Begrenzt durch",
+    bindingConnectionCapacity: "Anschlusskapazität",
+    bindingPvRule: "Nationale PV-Regel",
+    bindingCapacityShare: "Anteil der Anschlusskapazität",
+    bindingBusbar: "Sammelschienen-/Rückspeiseregel",
+    reasonPvRuleLimit: "Die Anlagengröße wird durch die PV-Anschlussregel Ihres Landes bestimmt, nicht durch die Hauptsicherung.",
+    reasonBusbarLimit: "Die Anlagengröße wird durch die Rückspeiseregel Ihrer Verteilung bestimmt, nicht durch die Hauptsicherung.",
+    simplifiedProcessNote: "Anlagen über {{limit}} kW fallen nicht unter das vereinfachte Anschlussverfahren. Die Anlage ist weiterhin möglich, erfordert aber in der Regel einen Antrag und die Zustimmung Ihres Netzbetreibers.",
     summerShare: "Verbrauchsanteil April–Sept",
     rationale: {
       consumption:

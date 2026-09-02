@@ -363,6 +363,15 @@ export const nl = {
       "very-high-solar-season": "Zeer hoog tijdens zonnige maanden",
     },
     targetDcAcRange: "Streefbereik DC/AC",
+    pvLimitLabel: "Toegestaan pv-vermogen (AC)",
+    bindingLimitLabel: "Beperkt door",
+    bindingConnectionCapacity: "Capaciteit van de aansluiting",
+    bindingPvRule: "Nationale pv-regel",
+    bindingCapacityShare: "Aandeel van de aansluitcapaciteit",
+    bindingBusbar: "Rail-/terugleveringsregel",
+    reasonPvRuleLimit: "De omvang van het systeem wordt bepaald door de nationale pv-aansluitregel, niet door de hoofdzekering.",
+    reasonBusbarLimit: "De omvang van het systeem wordt bepaald door de terugleveringsregel van uw verdeelkast, niet door de hoofdzekering.",
+    simplifiedProcessNote: "Systemen boven {{limit}} kW vallen buiten de vereenvoudigde aansluitprocedure. Het systeem blijft mogelijk, maar vereist doorgaans een aanvraag en goedkeuring van uw netbeheerder.",
     summerShare: "Aandeel verbruik apr-sep",
     rationale: {
       consumption:

@@ -360,6 +360,15 @@ export const hr = {
       "very-high-solar-season": "Vrlo visoko tijekom sunčanih mjeseci",
     },
     targetDcAcRange: "Ciljani DC/AC raspon",
+    pvLimitLabel: "Dopuštena snaga FN (AC)",
+    bindingLimitLabel: "Ograničeno",
+    bindingConnectionCapacity: "Kapacitet priključka",
+    bindingPvRule: "Nacionalno pravilo za FN",
+    bindingCapacityShare: "Udio kapaciteta priključka",
+    bindingBusbar: "Pravilo sabirnice / povratnog napajanja",
+    reasonPvRuleLimit: "Veličinu sustava određuje nacionalno pravilo priključenja FN, a ne glavni osigurač.",
+    reasonBusbarLimit: "Veličinu sustava određuje pravilo povratnog napajanja vašeg razdjelnika, a ne glavni osigurač.",
+    simplifiedProcessNote: "Sustavi iznad {{limit}} kW nisu obuhvaćeni pojednostavljenim postupkom priključenja. Sustav je i dalje moguć, ali obično zahtijeva zahtjev i odobrenje operatora mreže.",
     summerShare: "Udio potrošnje trav–ruj",
     rationale: {
       consumption:

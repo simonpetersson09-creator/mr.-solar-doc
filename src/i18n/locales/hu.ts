@@ -362,6 +362,15 @@ export const hu = {
       "very-high-solar-season": "Nagyon magas a napos hónapokban",
     },
     targetDcAcRange: "Cél DC/AC tartomány",
+    pvLimitLabel: "Engedélyezett napelemes teljesítmény (AC)",
+    bindingLimitLabel: "Korlátozza",
+    bindingConnectionCapacity: "A csatlakozás kapacitása",
+    bindingPvRule: "Nemzeti napelemes szabály",
+    bindingCapacityShare: "A csatlakozási kapacitás hányada",
+    bindingBusbar: "Gyűjtősín / visszatáplálási szabály",
+    reasonPvRuleLimit: "A rendszer méretét az ország napelemes csatlakozási szabálya határozza meg, nem a főbiztosíték.",
+    reasonBusbarLimit: "A rendszer méretét az elosztószekrény visszatáplálási szabálya határozza meg, nem a főbiztosíték.",
+    simplifiedProcessNote: "A {{limit}} kW feletti rendszerek nem tartoznak az egyszerűsített csatlakozási eljárás alá. A rendszer továbbra is lehetséges, de általában kérelmet és hálózati engedélyt igényel.",
     summerShare: "Fogyasztási arány ápr–szept",
     rationale: {
       consumption:

@@ -9,7 +9,13 @@ import { useUnlockedCalculation } from "@/hooks/use-unlocked-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { connectionLabelKey, formatConnectionCapacity } from "@/lib/connection-display";
 import { useWizardStore } from "@/state/wizard-store";
-import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";
+import {
+  formatCurrency,
+  formatCurrencyPrecise,
+  formatDate,
+  formatDecimal,
+  formatNumber,
+} from "@/lib/format";
 import { formatInverterPower } from "@/lib/inverter-display";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
@@ -57,6 +63,7 @@ const [exporting, setExporting] = useState(false);
 const [exportError, setExportError] = useState(false);
 const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
   const [showSystemSizeInfo, setShowSystemSizeInfo] = useState(false);
+  const [showProductionCostInfo, setShowProductionCostInfo] = useState(false);
   
 
   const shortMonths = i18n.t("months.short", { returnObjects: true }) as string[];
@@ -124,6 +131,24 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
         economicsRequiresPriceShort: t("result.economicsRequiresPriceShort"),
         gridUnverifiedTitle: t("result.gridUnverifiedTitle"),
         gridUnverifiedWarning: t("result.gridUnverifiedWarning"),
+        productionCostTitle: t("result.productionCostTitle"),
+        productionCostLabel: t("result.productionCostLabel"),
+        productionCostValueLabel: t("result.productionCostValueLabel"),
+        productionCostBasis: t("result.productionCostBasis"),
+        pvLimitLabel: t("result.pvLimitLabel"),
+        bindingLimitLabel: t("result.bindingLimitLabel"),
+        bindingLimitValue: bindingLimitLabel,
+        limitReason: result.notes.includes("limited-by-pv-rule")
+          ? result.pvLimitBinding === "busbar-rule"
+            ? t("result.reasonBusbarLimit")
+            : t("result.reasonPvRuleLimit")
+          : null,
+        simplifiedProcessNote:
+          result.aboveSimplifiedProcessLimit && result.simplifiedProcessLimitKw
+            ? t("result.simplifiedProcessNote", {
+                limit: formatDecimal(result.simplifiedProcessLimitKw, locale),
+              })
+            : null,
         faqTitle: t("report.faqTitle"),
         faqItems: i18n.t("report.faqItems", { returnObjects: true }) as ReportLabels["faqItems"],
       };
@@ -152,6 +177,15 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
   // details" in step 4, so the warning disappears after confirmation — not just
   // for intrinsically-verified countries.
   const gridUnverified = !result.grid.profileConfirmed;
+  const bindingLimitLabel = t(
+    result.pvLimitBinding === "busbar-rule"
+      ? "result.bindingBusbar"
+      : result.pvLimitBinding === "capacity-share"
+        ? "result.bindingCapacityShare"
+        : result.pvLimitBinding === "connection-capacity"
+          ? "result.bindingConnectionCapacity"
+          : "result.bindingPvRule",
+  );
   const gridStatusLabel = t(
     result.grid.profileStatus === "verified"
       ? "result.gridProfileStatusVerified"
@@ -261,6 +295,21 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
                 {t("result.consumptionTooLowNote")}
               </p>
             ) : null}
+            {result.notes.includes("limited-by-pv-rule") ? (
+              <p className="mt-1.5 text-center text-[11px] text-white/60">
+                {result.pvLimitBinding === "busbar-rule"
+                  ? t("result.reasonBusbarLimit")
+                  : t("result.reasonPvRuleLimit")}
+              </p>
+            ) : null}
+            {result.aboveSimplifiedProcessLimit && result.simplifiedProcessLimitKw ? (
+              <p className="mt-1.5 text-center text-[11px] text-white/60">
+                {t("result.simplifiedProcessNote", {
+                  limit: formatDecimal(result.simplifiedProcessLimitKw, locale),
+                })}
+              </p>
+            ) : null}
+
 
           </div>
         </section>
@@ -437,7 +486,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
     </p>
     <p className="mt-0.5 text-2xl font-extrabold tracking-tight text-white tabular-nums">
       {formatCurrency(
-        Math.round(result.investment.maxInvestmentRounded / result.installedKwp),
+        Math.round(result.investment.maxInvestment / result.installedKwp),
         locale,
         currency,
       )}{" "}
@@ -448,6 +497,77 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
     </p>
   </section>
 ) : null}
+
+{/* LCOE — what solar power may cost per produced kWh */}
+<section className="relative rounded-[28px] border border-primary-foreground/20 glass-primary surface-strong p-3.5 text-primary-foreground shadow-hero">
+  <button
+    type="button"
+    aria-label={t("result.productionCostInfoLabel")}
+    aria-expanded={showProductionCostInfo}
+    onClick={() => setShowProductionCostInfo((open) => !open)}
+    className="absolute top-3 right-3 flex size-6 items-center justify-center rounded-full text-white/80 transition-colors hover:text-white"
+  >
+    <CircleAlert className="size-3.5" />
+  </button>
+  <h2 className="text-center text-sm font-semibold text-white">
+    {t("result.productionCostTitle")}
+  </h2>
+  {showProductionCostInfo ? (
+    <p className="mt-2 rounded-xl border border-white/15 bg-white/10 p-2.5 text-[11px] leading-relaxed text-white/70">
+      {t("result.productionCostInfo")}
+    </p>
+  ) : null}
+  {economicValuesMissing || result.productionCost.costPerKwh === null ? (
+    <p className="mt-2 text-center text-[11px] leading-relaxed text-white/70">
+      {t("result.productionCostUnavailable")}
+    </p>
+  ) : (
+    <>
+      <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-white tabular-nums">
+        {t("result.perKwh", {
+          amount: formatCurrencyPrecise(result.productionCost.costPerKwh, locale, currency),
+        })}
+      </p>
+      <div className="mt-3 grid grid-cols-2 gap-2.5">
+        <div className="rounded-2xl bg-white/10 p-2.5 text-center">
+          <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+            {t("result.productionCostLabel")}
+          </p>
+          <p className="mt-0.5 text-base font-bold text-white tabular-nums">
+            {t("result.perKwh", {
+              amount: formatCurrencyPrecise(result.productionCost.costPerKwh, locale, currency),
+            })}
+          </p>
+        </div>
+        <div className="rounded-2xl bg-white/10 p-2.5 text-center">
+          <p className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
+            {t("result.productionCostValueLabel")}
+          </p>
+          <p className="mt-0.5 text-base font-bold text-white tabular-nums">
+            {t("result.perKwh", {
+              amount: formatCurrencyPrecise(result.productionCost.valuePerKwh, locale, currency),
+            })}
+          </p>
+        </div>
+      </div>
+      <p className="mt-2 text-center text-[11px] leading-relaxed text-white/60">
+        {t("result.productionCostBasis", {
+          investment: formatCurrency(result.productionCost.investment, locale, currency),
+          production: formatNumber(result.productionCost.totalProductionKwh, locale),
+          years: formatNumber(result.productionCost.periodYears, locale),
+        })}
+      </p>
+      {result.productionCost.differencePerKwh !== null &&
+      result.productionCost.differencePerKwh > 0 ? (
+        <p className="mt-1 text-center text-[11px] leading-relaxed text-white/70">
+          {t("result.productionCostHigherValue")}
+        </p>
+      ) : null}
+    </>
+  )}
+</section>
+
+
 
 
 
@@ -507,6 +627,11 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
                 ],
                 [t("result.gridProfileStatusLabel"), gridStatusLabel],
                 [t("result.fuseLimit"), `${formatDecimal(p.maxAcPowerKw, locale)} kW`],
+                [
+                  t("result.pvLimitLabel"),
+                  `${formatDecimal(result.pvPowerLimitKw, locale)} kW`,
+                ],
+                [t("result.bindingLimitLabel"), bindingLimitLabel],
                 [
                   t("result.specificYield"),
                   `${formatNumber(result.resource.annualKwhPerKwp, locale)} ${t("units.kwhPerKwp")}`,

@@ -346,6 +346,15 @@ export const sl = {
       "very-high-solar-season": "Zelo visoka v sončnih mesecih",
     },
     targetDcAcRange: "Ciljno DC/AC območje",
+    pvLimitLabel: "Dovoljena moč sončne elektrarne (AC)",
+    bindingLimitLabel: "Omejeno z",
+    bindingConnectionCapacity: "Zmogljivost priključka",
+    bindingPvRule: "Nacionalno pravilo za sončne elektrarne",
+    bindingCapacityShare: "Delež zmogljivosti priključka",
+    bindingBusbar: "Pravilo zbiralke / vračanja energije",
+    reasonPvRuleLimit: "Velikost sistema določa nacionalno pravilo za priklop sončne elektrarne, ne glavna varovalka.",
+    reasonBusbarLimit: "Velikost sistema določa pravilo vračanja energije v vaši omarici, ne glavna varovalka.",
+    simplifiedProcessNote: "Sistemi nad {{limit}} kW niso zajeti v poenostavljenem postopku priklopa. Sistem je še vedno mogoč, a običajno zahteva vlogo in soglasje operaterja omrežja.",
     summerShare: "Delež porabe april–september",
     rationale: {
       consumption:

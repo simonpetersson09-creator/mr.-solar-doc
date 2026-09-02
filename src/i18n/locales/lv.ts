@@ -349,6 +349,15 @@ export const lv = {
       "very-high-solar-season": "Ļoti augsts saulainos mēnešos",
     },
     targetDcAcRange: "Mērķa DC/AC diapazons",
+    pvLimitLabel: "Atļautā saules jauda (AC)",
+    bindingLimitLabel: "Ierobežo",
+    bindingConnectionCapacity: "Pieslēguma jauda",
+    bindingPvRule: "Nacionālais saules enerģijas noteikums",
+    bindingCapacityShare: "Daļa no pieslēguma jaudas",
+    bindingBusbar: "Kopnes / atpakaļpadeves noteikums",
+    reasonPvRuleLimit: "Sistēmas lielumu nosaka valsts saules enerģijas pieslēguma noteikums, nevis galvenais drošinātājs.",
+    reasonBusbarLimit: "Sistēmas lielumu nosaka jūsu sadalnes atpakaļpadeves noteikums, nevis galvenais drošinātājs.",
+    simplifiedProcessNote: "Sistēmām, kas pārsniedz {{limit}} kW, vienkāršotā pieslēguma kārtība nav piemērojama. Sistēma joprojām ir iespējama, taču parasti nepieciešams iesniegums un tīkla operatora piekrišana.",
     summerShare: "Patēriņa daļa aprīlis–septembris",
     rationale: {
       consumption:

@@ -138,6 +138,11 @@ export interface ElectricalInput {
   pvLimitBinding?: PvLimitBinding;
   /** Status of the country's PV rules. */
   pvRulesStatus?: PvRulesStatus;
+  /**
+   * Simplified/fast-track process ceiling for this service (kW), when the
+   * market has one. Informational only — it never resizes the array.
+   */
+  simplifiedProcessLimitKw?: number | null;
   /** True when the user confirmed unverified grid data (required in step 4). */
   gridProfileConfirmed?: boolean;
 }
@@ -273,6 +278,14 @@ export interface CalculationResult {
   pvLimitBinding: PvLimitBinding;
   /** Whether the country's PV rules are verified or a generic fallback. */
   pvRulesStatus: PvRulesStatus;
+  /**
+   * Simplified-process ceiling that applies to this service (kW), e.g. G98 in
+   * GB. Purely informational: above it the consumer needs an application, but
+   * the system is not capped. Null when the market has no such threshold.
+   */
+  simplifiedProcessLimitKw: number | null;
+  /** True when the recommended AC power exceeds `simplifiedProcessLimitKw`. */
+  aboveSimplifiedProcessLimit: boolean;
 
   dcAcRatio: number;
   oversizingPercent: number;

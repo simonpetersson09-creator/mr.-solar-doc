@@ -363,6 +363,15 @@ export const es = {
       "very-high-solar-season": "Muy alto durante los meses soleados",
     },
     targetDcAcRange: "Rango objetivo DC/AC",
+    pvLimitLabel: "Potencia FV permitida (AC)",
+    bindingLimitLabel: "Limitado por",
+    bindingConnectionCapacity: "Capacidad de la conexión",
+    bindingPvRule: "Norma nacional FV",
+    bindingCapacityShare: "Porcentaje de la capacidad de conexión",
+    bindingBusbar: "Regla de embarrado / reinyección",
+    reasonPvRuleLimit: "El tamaño de la instalación lo fija la norma nacional de conexión FV, no el interruptor general.",
+    reasonBusbarLimit: "El tamaño de la instalación lo fija la regla de reinyección de tu cuadro, no el interruptor general.",
+    simplifiedProcessNote: "Las instalaciones de más de {{limit}} kW quedan fuera del procedimiento simplificado de conexión. La instalación sigue siendo posible, pero normalmente requiere solicitud y aprobación de tu distribuidora.",
     summerShare: "Cuota de consumo abr-sep",
     rationale: {
       consumption:
