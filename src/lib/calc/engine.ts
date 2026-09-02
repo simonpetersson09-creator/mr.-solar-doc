@@ -118,6 +118,24 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     pvRuleLimitKw != null ? Math.min(maxAcPowerKw, pvRuleLimitKw) : maxAcPowerKw;
   if (pvLimitBinding !== "connection-capacity") notes.push(`pv-limit-${pvLimitBinding}`);
 
+  // Which inverter products actually exist for THIS service. A scalar kW
+  // ceiling cannot tell a 1-phase 230 V supply from a 3-phase 400 V one, so
+  // without the catalogue the engine would offer three-phase-only products on
+  // a single-phase house.
+  const inverterCatalog = inverterCatalogFor({
+    serviceType,
+    countryCode: input.location.countryCode,
+  });
+  const inverterOptions =
+    input.inverterSizesKw && input.inverterSizesKw.length > 0
+      ? input.inverterSizesKw
+          .filter((kw) => kw > 0)
+          .map((kw) => ({ unitKw: kw, unitCount: 1, totalAcKw: kw }))
+      : buildInverterOptions(inverterCatalog, acCeilingKw);
+  if (inverterCatalog.serviceType !== "three-phase") {
+    notes.push(`inverter-catalog-${inverterCatalog.id}`);
+  }
+
   const sizing = recommendArraySize({
     desiredAnnualKwh: input.consumption.annualKwh,
     annualKwhPerKwp: input.resource.annualKwhPerKwp,
@@ -150,7 +168,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     targetKwp: sizing.recommendedKwp,
     referenceKwp: sizing.referenceKwp,
     maxAcPowerKw: acCeilingKw,
-    inverterSizesKw: input.inverterSizesKw,
+    inverterOptions,
     panelPowerKwp,
     targetRange: targetDcAcRange,
     monthlyKwhPerKwp: input.resource.monthlyKwhPerKwp,
@@ -194,7 +212,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   // therefore requires BOTH that the floor is actually binding (the smallest
   // inverter was chosen) and that the array clearly overshoots the target -
   // otherwise ordinary panel quantisation would trip it for normal households.
-  const smallestInverterKw = Math.min(...input.inverterSizesKw);
+  const smallestInverterKw = Math.min(...inverterOptions.map((o) => o.totalAcKw));
   if (
     inverterKw <= smallestInverterKw + 1e-9 &&
     installedKwp > sizing.recommendedKwp * MINIMUM_SIZE_NOTE_FACTOR + 1e-9
