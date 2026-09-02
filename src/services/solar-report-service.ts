@@ -1,6 +1,12 @@
 import { jsPDF } from "jspdf";
 import type { CalculationResult, ValueOrigin } from "@/lib/calc/types";
-import { formatCurrency, formatDecimal, formatNumber, isoDateOnly } from "@/lib/format";
+import {
+  formatCurrency,
+  formatCurrencyPrecise,
+  formatDecimal,
+  formatNumber,
+  isoDateOnly,
+} from "@/lib/format";
 import { formatInverterPower } from "@/lib/inverter-display";
 import {
   formatConnectionCapacity,
@@ -1231,6 +1237,25 @@ export function generateReportBlob(options: ReportOptions): Blob {
 
   // Grouped so a reader can tell production, economics and technical
   // assumptions apart instead of scanning one long list.
+  if (labels.pvLimitLabel && labels.bindingLimitLabel) {
+    report.rows(
+      [
+        {
+          label: labels.pvLimitLabel,
+          value: `${formatDecimal(result.pvPowerLimitKw, locale)} kW`,
+          origin: "external" as const,
+        },
+        {
+          label: labels.bindingLimitLabel,
+          value: labels.bindingLimitValue ?? "",
+          origin: "external" as const,
+        },
+      ],
+      labels.origin,
+    );
+    if (labels.limitReason) report.paragraph(labels.limitReason);
+    if (labels.simplifiedProcessNote) report.paragraph(labels.simplifiedProcessNote);
+  }
   report.subheading(f["assumptionsProduction"] ?? "");
   report.rows(
     [

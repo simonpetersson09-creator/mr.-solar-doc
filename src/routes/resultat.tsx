@@ -131,6 +131,24 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
         economicsRequiresPriceShort: t("result.economicsRequiresPriceShort"),
         gridUnverifiedTitle: t("result.gridUnverifiedTitle"),
         gridUnverifiedWarning: t("result.gridUnverifiedWarning"),
+        productionCostTitle: t("result.productionCostTitle"),
+        productionCostLabel: t("result.productionCostLabel"),
+        productionCostValueLabel: t("result.productionCostValueLabel"),
+        productionCostBasis: t("result.productionCostBasis"),
+        pvLimitLabel: t("result.pvLimitLabel"),
+        bindingLimitLabel: t("result.bindingLimitLabel"),
+        bindingLimitValue: bindingLimitLabel,
+        limitReason: result.notes.includes("limited-by-pv-rule")
+          ? result.pvLimitBinding === "busbar-rule"
+            ? t("result.reasonBusbarLimit")
+            : t("result.reasonPvRuleLimit")
+          : null,
+        simplifiedProcessNote:
+          result.aboveSimplifiedProcessLimit && result.simplifiedProcessLimitKw
+            ? t("result.simplifiedProcessNote", {
+                limit: formatDecimal(result.simplifiedProcessLimitKw, locale),
+              })
+            : null,
         faqTitle: t("report.faqTitle"),
         faqItems: i18n.t("report.faqItems", { returnObjects: true }) as ReportLabels["faqItems"],
       };
