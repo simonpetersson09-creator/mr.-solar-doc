@@ -14,7 +14,7 @@
 /** Deployed backend used by the native app. Overridable at build time. */
 export const NATIVE_BACKEND_URL: string = (
   import.meta.env["VITE_NATIVE_BACKEND_URL"] ??
-  "https://project--68a192c2-c6ae-462b-8fcb-cc89c8e860cc.lovable.app"
+  "https://ray-design-app.lovable.app"
 ).replace(/\/+$/, "");
 
 /**
