@@ -13,3 +13,11 @@ export const PREMIUM_PRODUCT_ID = "com.mrsolardoc.premium.yearly";
  * neutral "fetching price" text instead of a fabricated amount or currency.
  */
 export const PRICE_UNAVAILABLE = null;
+
+/**
+ * A one-off purchase may be recalculated a few times, so a typo or a changed
+ * assumption does not force a new purchase. The window starts at the purchase
+ * and the server is the only place the counter is kept.
+ */
+export const REVISION_LIMIT = 3;
+export const REVISION_WINDOW_HOURS = 24;
