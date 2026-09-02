@@ -100,6 +100,7 @@ export function useCalculation(): {
         pvPowerLimitKw: pvLimit.maxPvAcKw,
         pvLimitBinding: pvLimit.binding,
         pvRulesStatus: pvLimit.rulesStatus,
+        simplifiedProcessLimitKw: pvLimit.simplifiedProcessLimitKw,
         gridProfileStatus: getConnectionConfig(location.countryCode).status,
         gridProfileConfirmed: gridConfirmed,
       },

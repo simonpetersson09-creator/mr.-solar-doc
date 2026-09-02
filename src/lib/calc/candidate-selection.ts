@@ -61,6 +61,8 @@ export function evaluateSystemCandidate(params: {
   annualConsumptionKwh: number;
   monthlyConsumptionKwh: number[] | null;
   solarSeasonProductionShare: number;
+  /** Total AC power of the smallest buildable option for this service (kW). */
+  smallestInverterKw?: number;
 }): SystemCandidate | null {
   const installedKwp = params.panelCount * params.panelPowerKwp;
   const ratio = dcAcRatio(installedKwp, params.inverterKw);
@@ -84,10 +86,23 @@ export function evaluateSystemCandidate(params: {
 
   // Distance outside the desired window is the dominant penalty.
   const outside = ratio < min ? min - ratio : ratio > max ? ratio - max : 0;
-  const ratioPenalty = outside * SCORE_WEIGHTS.ratioOutsideRange;
+  // Below the window with the smallest available inverter the ratio cannot be
+  // improved by choosing a different product — only by adding panels the
+  // household does not need. That case is scored softly; everything above the
+  // window keeps the full weight.
+  const belowWithSmallestInverter =
+    ratio < min &&
+    params.smallestInverterKw != null &&
+    params.inverterKw <= params.smallestInverterKw + SELECTION_TOLERANCE;
+  const ratioWeight = belowWithSmallestInverter
+    ? SCORE_WEIGHTS.ratioBelowRangeAtSmallestInverter
+    : SCORE_WEIGHTS.ratioOutsideRange;
+  const ratioPenalty = outside * ratioWeight;
   // Small pull towards the middle of the window so 1.30 is never a "goal"
   // and the smallest allowed inverter is not picked by default.
-  const centeringPenalty = Math.abs(ratio - mid) * SCORE_WEIGHTS.ratioCentering;
+  const centeringPenalty =
+    Math.abs(ratio - mid) *
+    (belowWithSmallestInverter ? 0 : SCORE_WEIGHTS.ratioCentering);
 
   // Stay as close as possible to the motivated array size: undershooting wastes
   // roof potential, overshooting sells the household a system it cannot use.
@@ -227,6 +242,7 @@ export function selectRecommendedSystem(params: {
   const { min, max } = params.targetRange;
   const mid = (min + max) / 2;
   const referenceKwp = params.referenceKwp ?? params.targetKwp;
+  const smallestInverterKw = inverters[0]!.totalAcKw;
 
   const candidates: SystemCandidate[] = [];
   let best: SystemCandidate | null = null;
@@ -259,6 +275,7 @@ export function selectRecommendedSystem(params: {
         annualConsumptionKwh: params.annualConsumptionKwh,
         monthlyConsumptionKwh: params.monthlyConsumptionKwh,
         solarSeasonProductionShare: params.solarSeasonProductionShare,
+        smallestInverterKw,
       });
       if (!candidate) continue;
       candidates.push(candidate);
