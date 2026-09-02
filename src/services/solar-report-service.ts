@@ -103,6 +103,10 @@ origin: Record<ValueOrigin, string>;
   limitReason?: string | null;
   /** Note shown when the system exceeds the simplified process ceiling. */
   simplifiedProcessNote?: string | null;
+  /** Heading for the installer checklist page. */
+  installerChecklistTitle: string;
+  /** Checklist lines; may contain {{acPower}}, {{production}}, {{kwp}}, {{investment}}. */
+  installerChecklistItems: string[];
   /** Heading for the FAQ page. */
   faqTitle: string;
   /** FAQ entries rendered on their own page at the end of the report. */
