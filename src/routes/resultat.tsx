@@ -210,7 +210,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
           <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
         </header>
         <p className="text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
-          {t("report.paybackTime")} · {t("result.paybackYears", { years: formatNumber(paybackYears, locale) })}
+          {t("report.fields.paybackTime")} · {t("result.paybackYears", { years: formatNumber(paybackYears, locale) })}
         </p>
 
         {gridUnverified ? (
