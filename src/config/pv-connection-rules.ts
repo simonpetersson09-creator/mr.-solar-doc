@@ -20,6 +20,20 @@
 /** How well the PV rules for a country are known. Never hidden from the UI. */
 export type PvRulesStatus = "verified" | "generic";
 
+/**
+ * NEC 705.12(B)(3)(2)-style busbar rule (US/CA). The sum of the service
+ * overcurrent device and the PV backfeed breaker may not exceed
+ * `busbarFactor` x the busbar rating. With a busbar rated at the service
+ * amperage this leaves (factor - 1) x A for PV:
+ *
+ *   200 A service -> 0.2 x 200 A x 240 V = 9.6 kW of allowable PV AC
+ *
+ * This is why a 200 A / 48 kW service capacity is NOT 48 kW of allowable PV.
+ */
+export interface BusbarBackfeedRule {
+  busbarFactor: number;
+}
+
 export interface PvConnectionRules {
   countryCode: string;
   status: PvRulesStatus;
@@ -30,15 +44,24 @@ export interface PvConnectionRules {
    */
   maxPvAcKw: number | null;
   /**
+   * Service-type dependent ceilings, where the national rule is expressed per
+   * phase model. Takes precedence over `maxPvAcKw` for that service type.
+   */
+  maxPvAcKwByService: Partial<Record<ServiceType, number>> | null;
+  /**
    * Ceiling for the simplified/registration-only process, when the country has
    * one that differs from `maxPvAcKw`. Informational: shown, never enforced.
    */
   simplifiedProcessLimitKw: number | null;
+  /** Simplified-process ceiling per service type (e.g. GB G98). Informational. */
+  simplifiedProcessLimitKwByService: Partial<Record<ServiceType, number>> | null;
   /**
    * Permitted PV AC power as a share of the connection capacity, where the
    * market expresses its rule that way. `null` = no such rule.
    */
   maxShareOfConnectionCapacity: number | null;
+  /** Busbar/backfeed rule (US/CA). `null` where the market has none. */
+  busbarBackfeedRule: BusbarBackfeedRule | null;
   /**
    * Feed-in (export) power limitation as a share of PV DC power, where the
    * market applies one. Informational for now — it does not resize the array.
@@ -57,11 +80,15 @@ export interface PvConnectionRules {
 export const GENERIC_PV_CONNECTION_RULES: Omit<PvConnectionRules, "countryCode"> = {
   status: "generic",
   maxPvAcKw: null,
+  maxPvAcKwByService: null,
   simplifiedProcessLimitKw: null,
+  simplifiedProcessLimitKwByService: null,
   maxShareOfConnectionCapacity: null,
+  busbarBackfeedRule: null,
   exportPowerLimitShare: null,
   noteKeys: ["pvRules.generic"],
 };
+
 
 /**
  * Verified national rules only. A country belongs here when its rule has been
