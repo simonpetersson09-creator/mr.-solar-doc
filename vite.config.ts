@@ -12,6 +12,8 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 const nativeBuild = process.env["CAP_BUILD"] === "1";
 
 export default defineConfig({
+  // The native bundle is static; no deploy target is built for it.
+  ...(nativeBuild ? { nitro: false as const } : {}),
   tanstackStart: nativeBuild
     ? // The native bundle has no server of its own, so the SSR error wrapper is
       // not used; the prerenderer requires the default server entry.
