@@ -15,6 +15,46 @@ export type ConsumptionShape = "even" | "winter-heavy" | "summer-heavy" | "defau
 export type ConsumptionInputType = "imported" | "monthly-manual" | "annual-profile" | "annual-only";
 
 /**
+ * Climate-band profiles for the "I don't know" case (Jan..Dec, northern
+ * hemisphere). A single Nordic heating profile is wrong outside the cold
+ * band: in Spain, Australia or Japan the load peaks in summer because of
+ * cooling, which lands in the SAME months as the production peak. Rotating a
+ * heating curve southwards would move the peak the wrong way there, so the
+ * band is chosen from latitude first and only then rotated per hemisphere.
+ * Values are relative; they are normalised before use.
+ */
+const CLIMATE_BAND_WEIGHTS = {
+  /** |lat| >= 50 — heating dominated (Nordics, Baltics, Canada, Scotland). */
+  cold: [11, 10, 9.5, 8, 6.5, 5.5, 5.5, 5.5, 7, 9, 10, 12],
+  /** 40-50 — heating dominated with a small cooling bump. */
+  temperate: [10.5, 9.8, 9.2, 8, 7, 6.3, 6.5, 6.5, 7.3, 8.6, 9.7, 10.6],
+  /** 30-40 — Mediterranean/US south: two peaks, summer roughly as high. */
+  warm: [9.2, 8.5, 8, 7.4, 7.6, 8.8, 10.4, 10.6, 8.9, 7.6, 7.7, 8.6],
+  /** 23-30 — cooling dominated (Gulf states, southern AU, north Africa). */
+  subtropical: [7.4, 7.2, 7.4, 7.8, 9, 10.6, 11.6, 11.6, 10, 8.4, 7.4, 7.6],
+  /** < 23 — tropical: near-constant cooling load, hardly any season. */
+  tropical: [8.1, 8.1, 8.4, 8.6, 8.8, 8.6, 8.4, 8.4, 8.4, 8.4, 8.1, 8.1],
+} as const;
+
+/** Picks the climate band from absolute latitude. */
+function climateBandWeights(latitude: number): number[] {
+  const abs = Math.abs(latitude);
+  if (abs >= 50) return [...CLIMATE_BAND_WEIGHTS.cold];
+  if (abs >= 40) return [...CLIMATE_BAND_WEIGHTS.temperate];
+  if (abs >= 30) return [...CLIMATE_BAND_WEIGHTS.warm];
+  if (abs >= 23) return [...CLIMATE_BAND_WEIGHTS.subtropical];
+  return [...CLIMATE_BAND_WEIGHTS.tropical];
+}
+
+/** True when the market simply carries the generic default weights. */
+function isGenericDefault(weights: number[] | null | undefined): boolean {
+  if (!weights || weights.length !== 12) return true;
+  return weights.every(
+    (w, index) => Math.abs(w - (CONSUMPTION_SHAPE_WEIGHTS.default[index] ?? 0)) < 1e-9,
+  );
+}
+
+/**
  * The stock weights describe a northern-hemisphere year (January = winter).
  * South of the equator the seasons are six months out of phase, so the shape
  * has to be rotated — otherwise the estimated consumption peak lands in the
@@ -42,10 +82,20 @@ export function getShapeWeights(
   marketDefaultWeights?: number[] | null,
   latitude?: number | null,
 ): number[] {
+  const hasLatitude =
+    latitude !== undefined && latitude !== null && Number.isFinite(latitude);
+  // "I don't know" resolves to the climate band of the actual site, unless the
+  // market defines its own measured profile. Explicit user choices
+  // (winter/summer/even) are never re-classified, only rotated.
+  const climateDefault =
+    shape === "default" && hasLatitude && isGenericDefault(marketDefaultWeights)
+      ? climateBandWeights(latitude as number)
+      : null;
   const raw =
-    shape === "default"
+    climateDefault ??
+    (shape === "default"
       ? (marketDefaultWeights ?? CONSUMPTION_SHAPE_WEIGHTS.default)
-      : CONSUMPTION_SHAPE_WEIGHTS[shape];
+      : CONSUMPTION_SHAPE_WEIGHTS[shape]);
   const safe = (raw ?? CONSUMPTION_SHAPE_WEIGHTS.even).slice(0, 12);
   while (safe.length < 12) safe.push(0);
   const total = safe.reduce((sum, v) => sum + (Number.isFinite(v) && v > 0 ? v : 0), 0);
@@ -55,6 +105,7 @@ export function getShapeWeights(
   const adjustedTotal = adjusted.reduce((sum, v) => sum + v, 0) || 1;
   return adjusted.map((v) => v / adjustedTotal);
 }
+
 
 /**
  * Distributes an annual consumption over 12 months.
