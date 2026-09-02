@@ -272,8 +272,11 @@ export function validateCalculationInput(input: CalculationInput): CalculationIs
   }
 
   // --- inverter catalogue --------------------------------------------------
+  // Optional: when no explicit ladder is given the engine derives the buildable
+  // products from the electrical service (@/config/inverter-catalog). An
+  // explicitly supplied ladder must still be usable.
   const sizes = input.inverterSizesKw;
-  if (!Array.isArray(sizes) || sizes.length === 0 || !sizes.every((s) => finite(s) && s > 0)) {
+  if (sizes !== undefined && (!Array.isArray(sizes) || sizes.length === 0 || !sizes.every((s) => finite(s) && s > 0))) {
     issues.push(
       issue(
         "missing-inverter-sizes",
