@@ -30,7 +30,6 @@ import { PurchaseDiagnosticsPanel } from "@/components/PurchaseDiagnosticsPanel"
 import { fetchPremiumStatus, verifyPremium } from "@/services/purchase-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
-import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import { CALCULATION_VERSION } from "@/config/constants";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
