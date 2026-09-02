@@ -530,6 +530,29 @@ class ReportDocument {
 this.y += height + 6;
   }
 
+  /** Installer checklist: drawn checkboxes plus wrapped text, one item per row. */
+  checklist(title: string, items: string[]) {
+    this.sectionTitle(title);
+    const width = PAGE.width - PAGE.margin * 2;
+    const boxSize = 3.6;
+    const textX = PAGE.margin + boxSize + 4;
+    const textWidth = width - boxSize - 6;
+    items.forEach((item) => {
+      this.doc.setFont("helvetica", "normal");
+      this.doc.setFontSize(9);
+      const lines = this.doc.splitTextToSize(item, textWidth) as string[];
+      const height = lines.length * 4.6 + 4;
+      this.ensureSpace(height + 2);
+      this.doc.setDrawColor(...ACCENT_DEEP);
+      this.doc.setLineWidth(0.35);
+      this.doc.rect(PAGE.margin + 1, this.y - 3.2, boxSize, boxSize, "D");
+      this.doc.setTextColor(...INK);
+      this.doc.text(lines, textX, this.y);
+      this.y += height;
+    });
+    this.y += 2;
+  }
+
   /** FAQ page: question in bold primary, answer in muted, on cream blocks. */
   faq(title: string, items: Array<{ q: string; a: string }>) {
     this.sectionTitle(title);
