@@ -9,7 +9,13 @@ import { useUnlockedCalculation } from "@/hooks/use-unlocked-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { connectionLabelKey, formatConnectionCapacity } from "@/lib/connection-display";
 import { useWizardStore } from "@/state/wizard-store";
-import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";
+import {
+  formatCurrency,
+  formatCurrencyPrecise,
+  formatDate,
+  formatDecimal,
+  formatNumber,
+} from "@/lib/format";
 import { formatInverterPower } from "@/lib/inverter-display";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
@@ -57,6 +63,7 @@ const [exporting, setExporting] = useState(false);
 const [exportError, setExportError] = useState(false);
 const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
   const [showSystemSizeInfo, setShowSystemSizeInfo] = useState(false);
+  const [showProductionCostInfo, setShowProductionCostInfo] = useState(false);
   
 
   const shortMonths = i18n.t("months.short", { returnObjects: true }) as string[];
@@ -476,7 +483,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
     <>
       <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-white tabular-nums">
         {t("result.perKwh", {
-          amount: formatCurrency(result.productionCost.costPerKwh, locale, currency, 2),
+          amount: formatCurrencyPrecise(result.productionCost.costPerKwh, locale, currency),
         })}
       </p>
       <div className="mt-3 grid grid-cols-2 gap-2.5">
@@ -486,7 +493,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
           </p>
           <p className="mt-0.5 text-base font-bold text-white tabular-nums">
             {t("result.perKwh", {
-              amount: formatCurrency(result.productionCost.costPerKwh, locale, currency, 2),
+              amount: formatCurrencyPrecise(result.productionCost.costPerKwh, locale, currency),
             })}
           </p>
         </div>
@@ -496,7 +503,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
           </p>
           <p className="mt-0.5 text-base font-bold text-white tabular-nums">
             {t("result.perKwh", {
-              amount: formatCurrency(result.productionCost.valuePerKwh, locale, currency, 2),
+              amount: formatCurrencyPrecise(result.productionCost.valuePerKwh, locale, currency),
             })}
           </p>
         </div>
