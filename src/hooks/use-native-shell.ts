@@ -24,6 +24,10 @@ export function useNativeShell() {
 
       try {
         const { StatusBar, Style } = await import("@capacitor/status-bar");
+        // The web content must draw *under* the status bar so the page
+        // background (or the map) reaches the physical top edge instead of the
+        // native black bar. Safe-area padding keeps controls clear of it.
+        await StatusBar.setOverlaysWebView({ overlay: true });
         // Style.Light = dark text. The app background is cream/white, so dark
         // status-bar text (clock, battery) stays legible on notch/Dynamic Island.
         await StatusBar.setStyle({ style: Style.Light });
