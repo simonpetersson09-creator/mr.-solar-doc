@@ -119,6 +119,9 @@ T = {
  "מערכות מעל {{limit}} kW אינן נכללות בתהליך החיבור המפושט. המערכת עדיין אפשרית, אך בדרך כלל נדרשת בקשה ואישור מחברת החשמל."],
 }
 
+def tsstr(v):
+    return '"' + v.replace("\\", "\\\\").replace('"', '\\"') + '"'
+
 NAMES = ["pvLimitLabel","bindingLimitLabel","bindingConnectionCapacity","bindingPvRule",
          "bindingCapacityShare","bindingBusbar","reasonPvRuleLimit","reasonBusbarLimit",
          "simplifiedProcessNote"]
@@ -130,7 +133,6 @@ for lang, values in T.items():
     if "pvLimitLabel:" in src:
         continue
     block = "".join(
-        f'    {name}:\n      {values[i]!r},\n'.replace("'", '"') if False else
         f'    {name}: {tsstr(values[i])},\n'
         for i, name in enumerate(NAMES)
     )

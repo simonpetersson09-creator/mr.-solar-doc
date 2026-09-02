@@ -346,6 +346,15 @@ export const fi = {
       "very-high-solar-season": "Erittäin korkea aurinkoisina kuukausina",
     },
     targetDcAcRange: "DC/AC-tavoitealue",
+    pvLimitLabel: "Sallittu aurinkosähkön teho (AC)",
+    bindingLimitLabel: "Rajoittava tekijä",
+    bindingConnectionCapacity: "Liittymän kapasiteetti",
+    bindingPvRule: "Kansallinen aurinkosähkösääntö",
+    bindingCapacityShare: "Osuus liittymän kapasiteetista",
+    bindingBusbar: "Kiskosto-/takasyöttösääntö",
+    reasonPvRuleLimit: "Järjestelmän koon määrää maasi aurinkosähkön liittymissääntö, ei pääsulake.",
+    reasonBusbarLimit: "Järjestelmän koon määrää sähkökeskuksesi takasyöttösääntö, ei pääsulake.",
+    simplifiedProcessNote: "Yli {{limit}} kW:n järjestelmät eivät kuulu yksinkertaistettuun liittymismenettelyyn. Järjestelmä on yhä mahdollinen, mutta se edellyttää yleensä hakemusta ja verkkoyhtiön hyväksyntää.",
     summerShare: "Kulutuksen osuus huhti–syyskuu",
     rationale: {
       consumption:

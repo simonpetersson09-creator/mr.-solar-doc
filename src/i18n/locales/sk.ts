@@ -347,6 +347,15 @@ export const sk = {
       "very-high-solar-season": "Veľmi vysoká počas slnečných mesiacov",
     },
     targetDcAcRange: "Cieľový rozsah DC/AC",
+    pvLimitLabel: "Povolený výkon FV (AC)",
+    bindingLimitLabel: "Obmedzené",
+    bindingConnectionCapacity: "Kapacita prípojky",
+    bindingPvRule: "Národné pravidlo pre FV",
+    bindingCapacityShare: "Podiel kapacity prípojky",
+    bindingBusbar: "Pravidlo prípojnice / spätného napájania",
+    reasonPvRuleLimit: "Veľkosť systému určuje národné pravidlo pripojenia FV, nie hlavný istič.",
+    reasonBusbarLimit: "Veľkosť systému určuje pravidlo spätného napájania vášho rozvádzača, nie hlavný istič.",
+    simplifiedProcessNote: "Systémy nad {{limit}} kW nespadajú do zjednodušeného procesu pripojenia. Systém je stále možný, zvyčajne však vyžaduje žiadosť a súhlas prevádzkovateľa siete.",
     summerShare: "Podiel spotreby apríl – september",
     rationale: {
       consumption:

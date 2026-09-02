@@ -361,6 +361,15 @@ export const pt = {
       "very-high-solar-season": "Muito alto durante os meses de sol",
     },
     targetDcAcRange: "Intervalo alvo DC/AC",
+    pvLimitLabel: "Potência FV permitida (AC)",
+    bindingLimitLabel: "Limitado por",
+    bindingConnectionCapacity: "Capacidade da ligação",
+    bindingPvRule: "Regra nacional FV",
+    bindingCapacityShare: "Parte da capacidade de ligação",
+    bindingBusbar: "Regra do barramento / injeção",
+    reasonPvRuleLimit: "A dimensão do sistema é definida pela regra nacional de ligação FV, não pelo disjuntor principal.",
+    reasonBusbarLimit: "A dimensão do sistema é definida pela regra de injeção do seu quadro, não pelo disjuntor principal.",
+    simplifiedProcessNote: "Sistemas acima de {{limit}} kW ficam fora do processo simplificado de ligação. O sistema continua possível, mas exige normalmente pedido e aprovação do operador de rede.",
     summerShare: "Quota de consumo abr-set",
     rationale: {
       consumption:

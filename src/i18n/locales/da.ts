@@ -347,6 +347,15 @@ export const da = {
       "very-high-solar-season": "Meget høj i solrige måneder",
     },
     targetDcAcRange: "Målinterval DC/AC",
+    pvLimitLabel: "Tilladt solcelleeffekt (AC)",
+    bindingLimitLabel: "Begrænses af",
+    bindingConnectionCapacity: "Tilslutningens kapacitet",
+    bindingPvRule: "National solcelleregel",
+    bindingCapacityShare: "Andel af tilslutningens kapacitet",
+    bindingBusbar: "Skinne-/tilbagefødningsregel",
+    reasonPvRuleLimit: "Anlæggets størrelse bestemmes af dit lands regler for solcelletilslutning, ikke af hovedsikringen.",
+    reasonBusbarLimit: "Anlæggets størrelse bestemmes af tilbagefødningsreglen for din eltavle, ikke af hovedsikringen.",
+    simplifiedProcessNote: "Anlæg over {{limit}} kW er ikke omfattet af den forenklede tilslutningsproces. Anlægget er stadig muligt, men kræver normalt ansøgning og godkendelse fra dit netselskab.",
     summerShare: "Andel forbrug apr–sep",
     rationale: {
       consumption:

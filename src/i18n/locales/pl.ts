@@ -353,6 +353,15 @@ export const pl = {
       "very-high-solar-season": "Bardzo wysokie w miesiącach słonecznych",
     },
     targetDcAcRange: "Docelowy zakres DC/AC",
+    pvLimitLabel: "Dozwolona moc PV (AC)",
+    bindingLimitLabel: "Ograniczone przez",
+    bindingConnectionCapacity: "Moc przyłącza",
+    bindingPvRule: "Krajowa zasada dla PV",
+    bindingCapacityShare: "Udział mocy przyłącza",
+    bindingBusbar: "Zasada szyny / oddawania mocy",
+    reasonPvRuleLimit: "Wielkość instalacji wynika z krajowych zasad przyłączania PV, a nie z bezpiecznika głównego.",
+    reasonBusbarLimit: "Wielkość instalacji wynika z zasady oddawania mocy w rozdzielnicy, a nie z bezpiecznika głównego.",
+    simplifiedProcessNote: "Instalacje powyżej {{limit}} kW nie podlegają uproszczonej procedurze przyłączenia. Instalacja jest nadal możliwa, ale zwykle wymaga wniosku i zgody operatora sieci.",
     summerShare: "Udział zużycia kwiecień–wrzesień",
     rationale: {
       consumption:

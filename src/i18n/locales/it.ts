@@ -352,6 +352,15 @@ export const it = {
       "very-high-solar-season": "Molto alto durante i mesi soleggiati",
     },
     targetDcAcRange: "Intervallo target DC/AC",
+    pvLimitLabel: "Potenza FV consentita (AC)",
+    bindingLimitLabel: "Limitato da",
+    bindingConnectionCapacity: "Capacità della connessione",
+    bindingPvRule: "Regola nazionale FV",
+    bindingCapacityShare: "Quota della capacità di connessione",
+    bindingBusbar: "Regola della sbarra / reimmissione",
+    reasonPvRuleLimit: "La dimensione dell'impianto è determinata dalla regola nazionale di connessione FV, non dall'interruttore generale.",
+    reasonBusbarLimit: "La dimensione dell'impianto è determinata dalla regola di reimmissione del tuo quadro, non dall'interruttore generale.",
+    simplifiedProcessNote: "Gli impianti oltre {{limit}} kW non rientrano nella procedura semplificata di connessione. L'impianto resta possibile, ma richiede di norma una domanda e l'approvazione del gestore di rete.",
     summerShare: "Quota consumo aprile-settembre",
     rationale: {
       consumption:

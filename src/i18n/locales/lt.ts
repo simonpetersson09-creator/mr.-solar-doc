@@ -351,6 +351,15 @@ export const lt = {
       "very-high-solar-season": "Labai didelis saulėtais mėnesiais",
     },
     targetDcAcRange: "Tikslinis DC/AC diapazonas",
+    pvLimitLabel: "Leistina saulės elektrinės galia (AC)",
+    bindingLimitLabel: "Riboja",
+    bindingConnectionCapacity: "Prijungimo galia",
+    bindingPvRule: "Nacionalinė saulės elektrinių taisyklė",
+    bindingCapacityShare: "Prijungimo galios dalis",
+    bindingBusbar: "Šynos / atgalinio tiekimo taisyklė",
+    reasonPvRuleLimit: "Sistemos dydį lemia šalies saulės elektrinių prijungimo taisyklė, o ne pagrindinis saugiklis.",
+    reasonBusbarLimit: "Sistemos dydį lemia jūsų skydo atgalinio tiekimo taisyklė, o ne pagrindinis saugiklis.",
+    simplifiedProcessNote: "Didesnėms nei {{limit}} kW sistemoms supaprastinta prijungimo tvarka netaikoma. Sistema vis tiek galima, tačiau paprastai reikia paraiškos ir tinklo operatoriaus pritarimo.",
     summerShare: "Suvartojimo dalis balandžio–rugsėjo mėn.",
     rationale: {
       consumption:

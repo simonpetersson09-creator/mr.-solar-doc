@@ -359,6 +359,15 @@ export const sv = {
       "very-high-solar-season": "Mycket hög under solrika månader",
     },
     targetDcAcRange: "Målintervall DC/AC",
+    pvLimitLabel: "Tillåten solcellseffekt (AC)",
+    bindingLimitLabel: "Begränsas av",
+    bindingConnectionCapacity: "Anslutningens kapacitet",
+    bindingPvRule: "Nationell solcellsregel",
+    bindingCapacityShare: "Andel av anslutningens kapacitet",
+    bindingBusbar: "Backfeed-/samlingsskeneregel",
+    reasonPvRuleLimit: "Anläggningens storlek styrs av ditt lands regler för solcellsanslutning, inte av huvudsäkringen.",
+    reasonBusbarLimit: "Anläggningens storlek styrs av backfeed-regeln för din elcentral, inte av huvudsäkringen.",
+    simplifiedProcessNote: "Anläggningar över {{limit}} kW omfattas inte av den förenklade anslutningsprocessen. Systemet är fortfarande möjligt, men kräver normalt ansökan och godkännande från din nätägare.",
     summerShare: "Andel förbrukning apr–sep",
     rationale: {
       consumption:
