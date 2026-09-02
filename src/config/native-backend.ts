@@ -35,3 +35,21 @@ export const NATIVE_APP_ORIGINS: readonly string[] = [
 export function isNativeAppOrigin(origin: string | null | undefined): boolean {
   return origin != null && NATIVE_APP_ORIGINS.includes(origin);
 }
+
+/**
+ * Rewrites a server-function URL from the bundled native frontend to the
+ * deployed backend. Custom-scheme URLs have an opaque `origin` (often
+ * reported as "null"), so compare protocols/hosts as well as normal origins.
+ */
+export function resolveNativeBackendUrl(inputUrl: string, frontendUrl: string): string {
+  const frontend = new URL(frontendUrl);
+  const input = new URL(inputUrl, frontend);
+  const isBundledNativeUrl =
+    input.protocol === "capacitor:" ||
+    input.protocol === "ionic:" ||
+    (input.hostname === frontend.hostname && input.protocol === frontend.protocol) ||
+    input.origin === frontend.origin;
+
+  if (!isBundledNativeUrl) return input.href;
+  return `${NATIVE_BACKEND_URL}${input.pathname}${input.search}${input.hash}`;
+}
