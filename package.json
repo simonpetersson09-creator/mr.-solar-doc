@@ -10,12 +10,13 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "cap:sync": "cap sync",
+    "cap:sync": "bash scripts/build-native.sh && cap sync",
     "ios:icons": "mkdir -p ios/App/App/Assets.xcassets/AppIcon.appiconset && cp resources/AppIcon.appiconset/* ios/App/App/Assets.xcassets/AppIcon.appiconset/",
     "cap:add:ios": "cap add ios",
     "cap:add:android": "cap add android",
     "cap:open:ios": "cap open ios",
-    "cap:open:android": "cap open android"
+    "cap:open:android": "cap open android",
+    "build:native": "bash scripts/build-native.sh"
   },
   "overrides": {
     "rolldown": "1.2.1"
