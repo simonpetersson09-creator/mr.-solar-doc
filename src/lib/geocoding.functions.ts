@@ -127,50 +127,60 @@ async function fetchNominatim(url: string, errorPrefix: string): Promise<unknown
   return response.json();
 }
 
+export async function searchGeocodingProvider(
+  input: z.infer<typeof searchInput>,
+): Promise<GeocodeSuggestion[]> {
+  const data = searchInput.parse(input);
+  const normalised = normaliseQuery(data.query);
+  const cacheKey = `search:${data.language}:${normalised}`;
+  const cached = readCache<GeocodeSuggestion[]>(cacheKey);
+  if (cached) return cached;
+
+  const params = new URLSearchParams({
+    q: normalised,
+    format: "jsonv2",
+    addressdetails: "1",
+    limit: "6",
+    "accept-language": data.language,
+  });
+  const json = (await fetchNominatim(
+    `https://nominatim.openstreetmap.org/search?${params.toString()}`,
+    "GEOCODING_FAILED",
+  )) as NominatimPlace[];
+  const suggestions = json.map(toSuggestion);
+  writeCache(cacheKey, suggestions);
+  return suggestions;
+}
+
 export const searchAddress = createServerFn({ method: "GET" })
   .inputValidator((data: unknown) => searchInput.parse(data))
-  .handler(async ({ data }): Promise<GeocodeSuggestion[]> => {
-    const normalised = normaliseQuery(data.query);
-    const cacheKey = `search:${data.language}:${normalised}`;
-    const cached = readCache<GeocodeSuggestion[]>(cacheKey);
-    if (cached) return cached;
+  .handler(async ({ data }): Promise<GeocodeSuggestion[]> => searchGeocodingProvider(data));
 
-    const params = new URLSearchParams({
-      q: normalised,
-      format: "jsonv2",
-      addressdetails: "1",
-      limit: "6",
-      "accept-language": data.language,
-    });
-    const json = (await fetchNominatim(
-      `https://nominatim.openstreetmap.org/search?${params.toString()}`,
-      "GEOCODING_FAILED",
-    )) as NominatimPlace[];
-    const suggestions = json.map(toSuggestion);
-    writeCache(cacheKey, suggestions);
-    return suggestions;
+export async function reverseGeocodingProvider(
+  input: z.infer<typeof reverseInput>,
+): Promise<GeocodeSuggestion | null> {
+  const data = reverseInput.parse(input);
+  // ~11 m grid: repeated map nudges reuse one upstream call.
+  const cacheKey = `reverse:${data.language}:${data.latitude.toFixed(4)}:${data.longitude.toFixed(4)}`;
+  const cached = readCache<GeocodeSuggestion | null>(cacheKey);
+  if (cached !== undefined) return cached;
+
+  const params = new URLSearchParams({
+    lat: String(data.latitude),
+    lon: String(data.longitude),
+    format: "jsonv2",
+    addressdetails: "1",
+    "accept-language": data.language,
   });
+  const json = (await fetchNominatim(
+    `https://nominatim.openstreetmap.org/reverse?${params.toString()}`,
+    "REVERSE_GEOCODING_FAILED",
+  )) as NominatimPlace & { error?: string };
+  const result = json.error || !json.lat ? null : toSuggestion(json);
+  writeCache(cacheKey, result);
+  return result;
+}
 
 export const reverseGeocode = createServerFn({ method: "GET" })
   .inputValidator((data: unknown) => reverseInput.parse(data))
-  .handler(async ({ data }): Promise<GeocodeSuggestion | null> => {
-    // ~11 m grid: repeated map nudges reuse one upstream call.
-    const cacheKey = `reverse:${data.language}:${data.latitude.toFixed(4)}:${data.longitude.toFixed(4)}`;
-    const cached = readCache<GeocodeSuggestion | null>(cacheKey);
-    if (cached !== undefined) return cached;
-
-    const params = new URLSearchParams({
-      lat: String(data.latitude),
-      lon: String(data.longitude),
-      format: "jsonv2",
-      addressdetails: "1",
-      "accept-language": data.language,
-    });
-    const json = (await fetchNominatim(
-      `https://nominatim.openstreetmap.org/reverse?${params.toString()}`,
-      "REVERSE_GEOCODING_FAILED",
-    )) as NominatimPlace & { error?: string };
-    const result = json.error || !json.lat ? null : toSuggestion(json);
-    writeCache(cacheKey, result);
-    return result;
-  });
+  .handler(async ({ data }): Promise<GeocodeSuggestion | null> => reverseGeocodingProvider(data));
