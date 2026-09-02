@@ -142,7 +142,7 @@ export async function claimCalculationRevisionProvider(data: AccessInput) {
 
 /** Records a cancelled or failed purchase attempt without losing the row. */
 export async function markPurchaseOutcomeProvider(
-  data: AccessInput & { status: "failed" | "cancelled"; reason?: string },
+  data: AccessInput & { status: "failed" | "cancelled"; reason?: string | undefined },
 ) {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
   await supabaseAdmin
