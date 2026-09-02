@@ -90,20 +90,37 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const monthlyNumbers = monthly.map((value) => parseLocaleNumber(value, locale) ?? 0);
   const monthlyTotal = sumMonthly(monthlyNumbers);
   const effectiveAnnual = useMonthly ? monthlyTotal : (parseLocaleNumber(annual, locale) ?? 0);
-  const valid = effectiveAnnual >= MIN_ANNUAL_KWH && effectiveAnnual <= MAX_ANNUAL_KWH;
+  /**
+   * Sanity check on the monthly split, expressed as each month's share of the
+   * yearly total instead of an absolute kWh limit — a legitimately
+   * high-consumption property is never blocked, only an impossible shape is.
+   */
+  const maxMonthShare =
+    useMonthly && monthlyTotal > 0 ? Math.max(...monthlyNumbers) / monthlyTotal : 0;
+  const monthShapeImplausible = maxMonthShare > 0.75;
+  const monthShapeUneven = !monthShapeImplausible && maxMonthShare > 0.45;
+  const valid =
+    effectiveAnnual >= MIN_ANNUAL_KWH && effectiveAnnual <= MAX_ANNUAL_KWH && !monthShapeImplausible;
   const showEstimatedProfile = !useMonthly && valid;
   /**
    * Explain *why* the user cannot continue instead of only disabling the
    * button. Stays hidden until something has actually been entered.
    */
   const touched = useMonthly ? monthly.some((value) => value !== "") : annual !== "";
-  const validationKey = !touched || valid
+  const validationKey = !touched
     ? null
-    : effectiveAnnual <= 0
-      ? "consumption.validation.required"
-      : effectiveAnnual < MIN_ANNUAL_KWH
-        ? "consumption.validation.tooLow"
-        : "consumption.validation.tooHigh";
+    : monthShapeImplausible
+      ? "consumption.validation.monthOutOfRange"
+      : valid
+        ? monthShapeUneven
+          ? "consumption.validation.monthUneven"
+          : null
+        : effectiveAnnual <= 0
+          ? "consumption.validation.required"
+          : effectiveAnnual < MIN_ANNUAL_KWH
+            ? "consumption.validation.tooLow"
+            : "consumption.validation.tooHigh";
+
   const estimatedMonthly = showEstimatedProfile
     ? estimateMonthlyConsumption(
         effectiveAnnual,
