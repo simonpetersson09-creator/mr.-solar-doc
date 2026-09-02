@@ -14,7 +14,7 @@ import { usePurchaseRecovery } from "@/hooks/use-purchase-recovery";
 import { Toaster } from "@/components/ui/sonner";
 
 
-import i18n from "../i18n";
+import i18n, { applyInitialLanguage } from "../i18n";
 import { isRtlLanguage, normaliseLanguage } from "../i18n/languages";
 
 import appCss from "../styles.css?url";
@@ -131,6 +131,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   errorComponent: ErrorComponent,
 });
 
+/** useLayoutEffect on the client, no-op during SSR. */
+const useIsomorphicLayoutEffect =
+  typeof window === "undefined" ? useEffect : useLayoutEffect;
+
 function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
@@ -153,6 +157,11 @@ function PurchaseRecovery() {
 
 /** Keeps <html lang> and text direction in sync with the chosen language. */
 function useDocumentLanguage() {
+  // Layout effect: the detected/saved language is applied after hydration but
+  // before paint, so there is no mismatch and no visible language flicker.
+  useIsomorphicLayoutEffect(() => {
+    applyInitialLanguage();
+  }, []);
   useEffect(() => {
     const apply = () => {
       const language = normaliseLanguage(i18n.language);
