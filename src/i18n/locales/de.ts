@@ -209,7 +209,7 @@ export const de = {
     disclaimer:
       "Die theoretische Leistung der Hauptsicherung wird auf Basis eines 400-V-Dreiphasenanschlusses berechnet. Prüfen Sie im Zweifel Ihren tatsächlichen Netzanschluss.",
     grid: {
-      advanced: "Erweiterte Einstellungen",
+      advanced: "Dein Stromanschluss",
       section: "Netzeinstellungen",
       change: "Ändern",
       done: "Fertig",

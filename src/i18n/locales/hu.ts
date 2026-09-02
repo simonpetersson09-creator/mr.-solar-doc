@@ -219,7 +219,7 @@ export const hu = {
     disclaimer:
       "A fő biztosíték elméleti teljesítménye 400 V-os háromfázisú csatlakozásból számítódik. Ha nem biztos benne, ellenőrizze a tényleges hálózati csatlakozását.",
     grid: {
-      advanced: "Speciális beállítások",
+      advanced: "Az Ön áramszolgáltatása",
       section: "Hálózati beállítások",
       change: "Módosítás",
       done: "Kész",

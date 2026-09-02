@@ -203,7 +203,7 @@ export const fi = {
     disclaimer:
       "Pääsulakkeen teoreettinen teho lasketaan 400 V:n kolmivaiheliittymän perusteella. Tarkista todellinen verkkoliittymäsi, jos olet epävarma.",
     grid: {
-      advanced: "Lisäasetukset",
+      advanced: "Sähköliitäntäsi",
       section: "Verkkoasetukset",
       change: "Muuta",
       done: "Valmis",

@@ -219,7 +219,7 @@ export const ro = {
     disclaimer:
       "Puterea teoretică a siguranței principale este calculată pentru o conexiune trifazată de 400 V. Verifică-ți conexiunea reală la rețea dacă nu ești sigur.",
     grid: {
-      advanced: "Setări avansate",
+      advanced: "Conexiunea ta electrică",
       section: "Setări rețea",
       change: "Schimbă",
       done: "Gata",

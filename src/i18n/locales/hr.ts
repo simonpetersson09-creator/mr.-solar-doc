@@ -219,7 +219,7 @@ export const hr = {
     disclaimer:
       "Teoretska snaga glavnog osigurača izračunava se iz trofaznog priključka od 400 V. Provjerite svoj stvarni mrežni priključak ako niste sigurni.",
     grid: {
-      advanced: "Napredne postavke",
+      advanced: "Vaša električna veza",
       section: "Postavke mreže",
       change: "Promijeni",
       done: "Gotovo",

@@ -221,7 +221,7 @@ export const nl = {
     disclaimer:
       "Het theoretische vermogen van de hoofdzekering wordt berekend op basis van een driefasenaansluiting van 400 V. Controleer je werkelijke netaansluiting als je twijfelt.",
     grid: {
-      advanced: "Geavanceerde instellingen",
+      advanced: "Jouw stroomaansluiting",
       section: "Netinstellingen",
       change: "Wijzigen",
       done: "Klaar",

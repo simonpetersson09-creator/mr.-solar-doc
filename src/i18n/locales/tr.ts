@@ -219,7 +219,7 @@ export const tr = {
     disclaimer:
       "Ana sigortanın teorik gücü, 400 V üç fazlı bir bağlantıdan hesaplanır. Emin değilseniz gerçek şebeke bağlantınızı kontrol edin.",
     grid: {
-      advanced: "Gelişmiş ayarlar",
+      advanced: "Elektrik bağlantınız",
       section: "Şebeke ayarları",
       change: "Değiştir",
       done: "Bitti",

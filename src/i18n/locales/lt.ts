@@ -207,7 +207,7 @@ export const lt = {
     disclaimer:
       "Teorinė pagrindinio saugiklio galia skaičiuojama pagal 400 V trifazę jungtį. Jei abejojate, patikrinkite savo tikrąjį tinklo prijungimą.",
     grid: {
-      advanced: "Išplėstiniai nustatymai",
+      advanced: "Jūsų elektros jungtis",
       section: "Tinklo nustatymai",
       change: "Keisti",
       done: "Atlikta",
