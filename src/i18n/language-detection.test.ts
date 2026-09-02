@@ -1,3 +1,4 @@
+// @vitest-environment jsdom
 import { beforeEach, describe, expect, it } from "vitest";
 import { detectInitialLanguage } from "./languages";
 import { DEFAULT_SETTINGS, resolveInitialLanguage, saveSettings } from "@/services/settings-service";
