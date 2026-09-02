@@ -17,7 +17,14 @@ function getCapacitor(): CapacitorGlobal | null {
 }
 
 export function isNativePlatform(): boolean {
-  return getCapacitor()?.isNativePlatform?.() ?? false;
+  const capacitor = getCapacitor();
+  if (capacitor?.isNativePlatform?.()) return true;
+  if (typeof window === "undefined") return false;
+
+  // Capacitor can register its JS bridge after the first application modules
+  // have evaluated. The local iOS/Android bundle still has an unambiguous
+  // native origin, so server-function routing must not depend on bridge timing.
+  return window.location.protocol === "capacitor:" || window.location.protocol === "ionic:";
 }
 
 export function getPlatform(): "ios" | "android" | "web" {

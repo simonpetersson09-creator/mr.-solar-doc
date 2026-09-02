@@ -80,7 +80,10 @@ const nativeServerFnFetch: typeof fetch = (input, init) => {
     url.startsWith("/") ? `${NATIVE_BACKEND_URL}${url}` : url;
 
   if (typeof input === "string") return fetch(rewrite(input), init);
-  if (input instanceof URL) return fetch(input, init);
+  if (input instanceof URL) {
+    const relative = `${input.pathname}${input.search}${input.hash}`;
+    return fetch(input.origin === window.location.origin ? rewrite(relative) : input, init);
+  }
   const absolute = rewrite(new URL(input.url, "http://localhost").pathname + new URL(input.url, "http://localhost").search);
   return fetch(new Request(absolute, input), init);
 };
