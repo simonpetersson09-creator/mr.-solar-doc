@@ -12,8 +12,7 @@ import { useAppLocale } from "@/hooks/use-app-locale";
 import { resolvePosition } from "@/services/geocoding-service";
 import { useWizardStore } from "@/state/wizard-store";
 import { getCurrencyCode, NEUTRAL_CURRENCY_CODE } from "@/config/countries";
-import { haptic } from "@/services/native-service";
-import { isNativePlatform } from "@/services/native-service";
+import { haptic, isNativePlatform } from "@/services/native-service";
 import { nativeGeocodingDiagnostic } from "@/services/native-geocoding";
 
 const MapPicker = lazy(() => import("@/components/MapPicker"));

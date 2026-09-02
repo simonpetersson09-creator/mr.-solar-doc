@@ -32,7 +32,7 @@ export interface NativeGeocodingRequest {
 export class NativeGeocodingError extends Error {
   readonly endpoint = NATIVE_GEOCODING_PATH;
   readonly status: number | "NETWORK" | "INVALID_RESPONSE";
-  readonly backendCode?: string;
+  readonly backendCode: string | undefined;
 
   constructor(
     status: number | "NETWORK" | "INVALID_RESPONSE",
