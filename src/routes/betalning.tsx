@@ -80,9 +80,10 @@ function PaywallPage() {
   // Only the StoreKit price is ever shown: it is already localised for the
   // user's storefront. Without it we show a neutral text — never a fabricated
   // amount or currency.
-  const unlockPrice = prices.unlock;
-  const premiumPrice = prices.premium;
+  const unlockPrice = store.unlock;
+  const premiumPrice = store.premium;
   const busy = phase === "purchasing" || phase === "verifying";
+
 
   async function handleUnlock() {
     if (!pending || busy) return;
