@@ -501,6 +501,8 @@ export const hr = {
     calculatedAt: "Datum izračuna",
     noCalculation: "Izračun nije pronađen. Počnite ponovno od adrese.",
     locked: "Ovaj je izračun zaključan. Dovršite kupnju kako biste vidjeli rezultat.",
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "Priključak je premalen",

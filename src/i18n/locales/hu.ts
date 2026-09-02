@@ -507,6 +507,8 @@ export const hu = {
     calculatedAt: "Számítás dátuma",
     noCalculation: "Nem található számítás. Kezdje újra a címtől.",
     locked: "Ez a számítás zárolva van. Az eredmény megtekintéséhez fejezze be a vásárlást.",
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "A csatlakozás túl kicsi",

@@ -507,6 +507,8 @@ export const es = {
     calculatedAt: "Fecha del cálculo",
     noCalculation: "No se ha encontrado ningún cálculo. Empieza de nuevo desde la dirección.",
     locked: "Este cálculo está bloqueado. Completa la compra para ver el resultado.",
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "La conexión es demasiado pequeña",

@@ -52,7 +52,7 @@ function ResultPage() {
   const { locale } = useAppLocale();
   // Paid content only: the server returns a snapshot exclusively for unlocked
   // calculations, so a direct visit or refresh can never reveal the result.
-  const { result, snapshot, market, isLoading, unlocked } = useUnlockedCalculation();
+  const { result, snapshot, market, isLoading, unlocked, revisionsLeft } = useUnlockedCalculation();
   const reset = useWizardStore((s) => s.reset);
   const setCurrentStep = useWizardStore((s) => s.setCurrentStep);
   const navigate = useNavigate();
@@ -216,6 +216,12 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
         <p className="text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
           {t("report.fields.paybackTime")} · {t("result.paybackYears", { years: formatNumber(paybackYears, locale) })}
         </p>
+
+        {revisionsLeft > 0 ? (
+          <p className="text-center text-[11px] leading-relaxed text-foreground/60">
+            {t("result.revisionsLeft", { left: revisionsLeft })}
+          </p>
+        ) : null}
 
         {gridUnverified ? (
           <div className="flex items-start gap-2 rounded-2xl border border-accent/40 bg-accent/10 p-3 text-[11px] leading-relaxed text-foreground/80">

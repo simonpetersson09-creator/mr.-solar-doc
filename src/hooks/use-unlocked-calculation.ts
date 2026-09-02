@@ -17,6 +17,8 @@ export function useUnlockedCalculation(): {
   unlocked: boolean;
   result: CalculationResult | null;
   snapshot: CalculationSnapshot | null;
+  /** Free recalculations left on this one-off purchase (0 for Premium). */
+  revisionsLeft: number;
   market: ReturnType<typeof getMarketConfig>;
 } {
   const active = usePurchaseStore((s) => s.active);
@@ -54,6 +56,7 @@ export function useUnlockedCalculation(): {
     unlocked: Boolean(snapshot),
     result,
     snapshot,
+    revisionsLeft: premium.active ? 0 : (query.data?.revisionsLeft ?? 0),
     market: getMarketConfig(result?.location.countryCode ?? null),
   };
 }

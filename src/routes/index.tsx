@@ -98,10 +98,18 @@ function WizardPage() {
       onSubmit={() => {
         void (async () => {
           const created = await createPending();
-          if (!created) {
+          if (!created.ok) {
             // The engine had no usable result (e.g. the cached solar data was
             // dropped): say so instead of leaving a dead button.
             toast.error(i18n.t("result.calculationUnavailable"));
+            return;
+          }
+          // A free recalculation on an already paid calculation opens directly.
+          if (created.reused) {
+            toast.success(
+              i18n.t("result.revisionUsed", { left: created.revisionsLeft }),
+            );
+            void navigate({ to: "/resultat" });
             return;
           }
           // Premium (and dev bypass) skip the paywall: the calculation opens directly.

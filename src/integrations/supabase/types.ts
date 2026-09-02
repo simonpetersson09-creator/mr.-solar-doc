@@ -24,10 +24,12 @@ export type Database = {
           device_id: string
           failure_reason: string | null
           id: string
+          last_revision_at: string | null
           price_amount: number | null
           price_currency: string | null
           product_id: string | null
           purchased_at: string | null
+          revisions_used: number
           status: string
           updated_at: string
         }
@@ -40,10 +42,12 @@ export type Database = {
           device_id: string
           failure_reason?: string | null
           id?: string
+          last_revision_at?: string | null
           price_amount?: number | null
           price_currency?: string | null
           product_id?: string | null
           purchased_at?: string | null
+          revisions_used?: number
           status?: string
           updated_at?: string
         }
@@ -56,10 +60,12 @@ export type Database = {
           device_id?: string
           failure_reason?: string | null
           id?: string
+          last_revision_at?: string | null
           price_amount?: number | null
           price_currency?: string | null
           product_id?: string | null
           purchased_at?: string | null
+          revisions_used?: number
           status?: string
           updated_at?: string
         }

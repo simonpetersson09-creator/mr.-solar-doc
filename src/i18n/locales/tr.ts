@@ -257,6 +257,8 @@ export const tr = {
     invalid: "6 ile 400 A arasında bir ana sigorta girin.",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Hesaplama tamamlanamadı. Çatı bilgilerini kontrol edip tekrar deneyin.",
     connection: {

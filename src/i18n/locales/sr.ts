@@ -256,6 +256,8 @@ export const sr = {
     invalid: "Унесите главни осигурач између 6 и 400 A.",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Izračun nije mogao biti dovršen. Proverite podatke o krovu i pokušajte ponovo.",
     connection: {

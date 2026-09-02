@@ -243,6 +243,8 @@ export const lv = {
     confirmedGrid: "Tīkla dati apstiprināti",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Aprēķinu neizdevās pabeigt. Pārbaudiet jumta datus un mēģiniet vēlreiz.",
     connection: {

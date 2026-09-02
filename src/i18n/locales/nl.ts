@@ -510,6 +510,8 @@ export const nl = {
     calculatedAt: "Berekeningsdatum",
     noCalculation: "Geen berekening gevonden. Begin opnieuw vanaf het adres.",
     locked: "Deze berekening is vergrendeld. Rond de aankoop af om het resultaat te zien.",
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "De aansluiting is te klein",
