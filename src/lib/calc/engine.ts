@@ -29,6 +29,7 @@ import {
 } from "@/config/grid";
 import { recommendArraySize } from "./solar-sizing";
 import type { PvLimitBinding } from "@/config/pv-connection-rules";
+import { buildInverterOptions, inverterCatalogFor } from "@/config/inverter-catalog";
 import {
   clampShare,
   resolveSelfConsumptionShare,
