@@ -299,10 +299,14 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         ) : null}
 
         {validationKey ? (
-          <p role="alert" className="text-xs text-red-200">
+          <p
+            role="alert"
+            className={monthShapeUneven ? "text-xs text-amber-200" : "text-xs text-red-200"}
+          >
             {t(validationKey, { min: MIN_ANNUAL_KWH, max: MAX_ANNUAL_KWH })}
           </p>
         ) : null}
+
 
         <div className="flex items-center justify-between gap-4 border-t border-white/15 pt-3">
           <div className="flex items-center gap-2">
