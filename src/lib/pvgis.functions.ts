@@ -99,4 +99,10 @@ export async function pvgisProvider(data: PvgisInput): Promise<PvgisResponse> {
       tiltDegrees:
         json.inputs?.mounting_system?.fixed?.slope?.value ?? (data.tilt ?? null),
     };
-  });
+  }
+}
+
+/** PVGIS PVcalc for a 1 kWp reference system. Results scale linearly with kWp. */
+export const fetchPvgis = createServerFn({ method: "GET" })
+  .inputValidator((data: unknown) => pvgisInput.parse(data))
+  .handler(async ({ data }): Promise<PvgisResponse> => pvgisProvider(data));
