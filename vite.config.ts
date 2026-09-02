@@ -6,10 +6,16 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+// The native (Capacitor) bundle is built with CAP_BUILD=1. That build runs in
+// SPA mode so the whole frontend can ship inside the iOS app bundle; the web
+// build is untouched and keeps SSR.
+const nativeBuild = process.env["CAP_BUILD"] === "1";
+
 export default defineConfig({
   tanstackStart: {
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },
+    ...(nativeBuild ? { spa: { enabled: true } } : {}),
   },
 });
