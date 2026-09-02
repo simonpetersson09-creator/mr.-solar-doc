@@ -7,7 +7,12 @@ import {
 } from "@/lib/geocoding.functions";
 import { isNativeAppOrigin } from "@/config/native-backend";
 
+const GEOCODING_API_VERSION = "2026-09-02.1";
+
 const querySchema = z.discriminatedUnion("mode", [
+  z.object({
+    mode: z.literal("health"),
+  }),
   z.object({
     mode: z.literal("search"),
     query: z.string().min(3).max(200),
@@ -32,6 +37,10 @@ function responseHeaders(origin: string): HeadersInit {
   };
 }
 
+function forbiddenHeaders(origin: string | null): HeadersInit | undefined {
+  return isAllowedGeocodingOrigin(origin) ? responseHeaders(origin) : undefined;
+}
+
 // WKWebView pages loaded from capacitor:// have an opaque web origin and can
 // therefore send the literal Origin header "null". This exception is kept on
 // this read-only endpoint instead of weakening CSRF protection for server fns.
@@ -45,14 +54,17 @@ export const Route = createFileRoute("/api/public/geocode")({
       OPTIONS: async ({ request }) => {
         const origin = request.headers.get("Origin");
         if (!isAllowedGeocodingOrigin(origin)) {
-          return new Response(null, { status: 403 });
+          return new Response(null, { status: 403, headers: forbiddenHeaders(origin) });
         }
         return new Response(null, { status: 204, headers: responseHeaders(origin) });
       },
       GET: async ({ request }) => {
         const origin = request.headers.get("Origin");
         if (!isAllowedGeocodingOrigin(origin)) {
-          return Response.json({ error: "forbidden" }, { status: 403 });
+          return Response.json(
+            { error: "forbidden" },
+            { status: 403, headers: forbiddenHeaders(origin) },
+          );
         }
 
         const url = new URL(request.url);
@@ -61,6 +73,13 @@ export const Route = createFileRoute("/api/public/geocode")({
           return Response.json(
             { error: "invalid_request" },
             { status: 400, headers: responseHeaders(origin) },
+          );
+        }
+
+        if (parsed.data.mode === "health") {
+          return Response.json(
+            { ok: true, service: "native-geocoding", version: GEOCODING_API_VERSION },
+            { headers: responseHeaders(origin) },
           );
         }
 
