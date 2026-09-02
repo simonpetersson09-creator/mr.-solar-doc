@@ -2,7 +2,7 @@ import { createStart, createCsrfMiddleware, createMiddleware } from "@tanstack/r
 
 import { renderErrorPage } from "./lib/error-page";
 import { attachSupabaseAuth } from "@/integrations/supabase/auth-attacher";
-import { NATIVE_BACKEND_URL, isNativeAppOrigin } from "@/config/native-backend";
+import { isNativeAppOrigin, resolveNativeBackendUrl } from "@/config/native-backend";
 import { isNativePlatform } from "@/services/native-service";
 
 const errorMiddleware = createMiddleware().server(async ({ next }) => {
@@ -76,16 +76,14 @@ const csrfMiddleware = createCsrfMiddleware({
 const nativeServerFnFetch: typeof fetch = (input, init) => {
   if (!isNativePlatform()) return fetch(input, init);
 
-  const rewrite = (url: string): string =>
-    url.startsWith("/") ? `${NATIVE_BACKEND_URL}${url}` : url;
-
-  if (typeof input === "string") return fetch(rewrite(input), init);
-  if (input instanceof URL) {
-    const relative = `${input.pathname}${input.search}${input.hash}`;
-    return fetch(input.origin === window.location.origin ? rewrite(relative) : input, init);
+  const frontendUrl = window.location.href;
+  if (typeof input === "string") {
+    return fetch(resolveNativeBackendUrl(input, frontendUrl), init);
   }
-  const absolute = rewrite(new URL(input.url, "http://localhost").pathname + new URL(input.url, "http://localhost").search);
-  return fetch(new Request(absolute, input), init);
+  if (input instanceof URL) {
+    return fetch(resolveNativeBackendUrl(input.href, frontendUrl), init);
+  }
+  return fetch(new Request(resolveNativeBackendUrl(input.url, frontendUrl), input), init);
 };
 
 export const startInstance = createStart(() => ({
