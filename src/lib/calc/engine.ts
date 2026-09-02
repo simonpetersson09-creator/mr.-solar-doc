@@ -392,6 +392,9 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     panelPowerKwp,
     sizingBasis,
     inverterKw,
+    inverterUnitKw: selection.best.unitKw,
+    inverterUnitCount: selection.best.unitCount,
+    inverterCatalogId: inverterCatalog.id,
     maxAcPowerKw,
     /** The grid connection's AC ceiling — a grid limit, not an inverter spec. */
     gridConnectionLimitKw: maxAcPowerKw,
