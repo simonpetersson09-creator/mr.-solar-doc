@@ -30,6 +30,7 @@ import { usePurchaseStore } from "@/state/purchase-store";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import { CALCULATION_VERSION } from "@/config/constants";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 export const Route = createFileRoute("/installningar")({
   head: () => ({
@@ -152,6 +153,15 @@ function SettingsPage() {
             {t("settings.title")}
           </h1>
         </header>
+
+        {/* Language — always changeable, independent of the analysed country */}
+        <section className="glass-primary rounded-2xl p-3">
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="text-sm font-black text-brand-black">{t("settings.language")}</h2>
+            <LanguageSwitcher />
+          </div>
+          <p className="mt-1 text-[10px] text-brand-black/70">{t("settings.languageHint")}</p>
+        </section>
 
         {/* Premium section */}
         <section className="flex flex-col gap-3">

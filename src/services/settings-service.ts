@@ -1,11 +1,21 @@
+import {
+  detectInitialLanguage,
+  isSupportedLanguage,
+  normaliseLanguage,
+  type SupportedLanguage,
+} from "@/i18n/languages";
+
 /**
  * Central app settings: language, theme, notifications, premium, feature flags.
  * Components must never read or write global settings ad hoc.
  */
 
 export interface AppSettings {
-  /** UI language code (see src/i18n/languages.ts). Independent of currency. */
-  language: string;
+  /**
+   * UI language code (see src/i18n/languages.ts). Independent of currency.
+   * `null` means "not decided yet" — the device language is used instead.
+   */
+  language: string | null;
   /** True once the user picked a language manually — country no longer overrides it. */
   languageChosenManually: boolean;
   theme: "light" | "dark" | "system";
@@ -14,7 +24,9 @@ export interface AppSettings {
 }
 
 export const DEFAULT_SETTINGS: AppSettings = {
-  language: "sv",
+  // Deliberately not hardcoded to "sv": a missing value lets the device
+  // language decide (see resolveInitialLanguage below).
+  language: null,
   languageChosenManually: false,
   theme: "light",
   notificationsEnabled: false,
@@ -52,4 +64,16 @@ export function updateSettings(patch: Partial<AppSettings>): AppSettings {
   const next = { ...loadSettings(), ...patch };
   saveSettings(next);
   return next;
+}
+
+/**
+ * UI language priority: manually saved language → device language → English.
+ * Settings saved by older versions always carry a language string, so they
+ * keep working unchanged.
+ */
+export function resolveInitialLanguage(): SupportedLanguage {
+  const saved = loadSettings().language;
+  if (isSupportedLanguage(saved)) return saved;
+  if (typeof saved === "string" && saved) return normaliseLanguage(saved);
+  return detectInitialLanguage();
 }

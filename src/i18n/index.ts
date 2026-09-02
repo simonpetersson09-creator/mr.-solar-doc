@@ -39,7 +39,7 @@ import {
   resolveLocale,
   type SupportedLanguage,
 } from "./languages";
-import { loadSettings } from "@/services/settings-service";
+import { resolveInitialLanguage } from "@/services/settings-service";
 
 export {
   SUPPORTED_LANGUAGES,
@@ -93,13 +93,29 @@ const resources = {
 if (!i18n.isInitialized) {
   void i18n.use(initReactI18next).init({
     resources,
-    lng: normaliseLanguage(loadSettings().language),
+    // Always boot in the fallback language so the server render and the first
+    // client render are identical (no hydration mismatch). The real language
+    // is applied synchronously before paint by applyInitialLanguage().
+    lng: FALLBACK_LANGUAGE,
     // English is always the safety net when a translation is missing.
     fallbackLng: FALLBACK_LANGUAGE,
     supportedLngs: [...SUPPORTED_LANGUAGES],
     interpolation: { escapeValue: false },
     returnObjects: true,
   });
+}
+
+/**
+ * Applies the resolved UI language (manual choice → device language →
+ * English). Client-only: call it from a layout effect so the switch happens
+ * before the browser paints and no language flicker is visible.
+ */
+export function applyInitialLanguage(): void {
+  if (typeof window === "undefined") return;
+  const language = resolveInitialLanguage();
+  if (normaliseLanguage(i18n.language) !== language) {
+    void i18n.changeLanguage(language);
+  }
 }
 
 export default i18n;

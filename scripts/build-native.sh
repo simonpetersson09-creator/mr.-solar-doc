@@ -16,4 +16,7 @@ cp -R dist/client capacitor-www
 # Capacitor loads index.html; TanStack Start emits the SPA shell as _shell.html.
 cp capacitor-www/_shell.html capacitor-www/index.html
 
+# Keep the iOS bundle's declared languages in sync with SUPPORTED_LANGUAGES.
+node scripts/patch-ios-localizations.mjs
+
 echo "Native bundle ready in capacitor-www/"

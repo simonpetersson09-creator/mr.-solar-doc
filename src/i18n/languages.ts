@@ -128,6 +128,36 @@ export function normaliseLanguage(value?: string | null): SupportedLanguage {
 }
 
 /**
+ * Best-effort UI language for a brand new install, based on the device's
+ * preferred languages (WKWebView exposes the iOS language list through
+ * `navigator.languages`, so no native plugin is needed).
+ *
+ * Matching order: each preferred locale is tried as a full tag first
+ * (`sv-SE`), then as its base language (`de-AT` → `de`). Unsupported or
+ * missing values fall back to English. The analysed country never takes part
+ * here — currency and grid rules stay a separate concern.
+ */
+export function detectInitialLanguage(
+  preferred?: readonly string[] | null,
+): SupportedLanguage {
+  const nav = typeof navigator === "undefined" ? undefined : navigator;
+  const candidates: string[] =
+    preferred && preferred.length > 0
+      ? [...preferred]
+      : [...(nav?.languages ?? []), ...(nav?.language ? [nav.language] : [])];
+
+  for (const raw of candidates) {
+    if (typeof raw !== "string") continue;
+    const tag = raw.trim().toLowerCase();
+    if (!tag) continue;
+    if (isSupportedLanguage(tag)) return tag;
+    const base = tag.split(/[-_]/)[0] ?? "";
+    if (isSupportedLanguage(base)) return base;
+  }
+  return FALLBACK_LANGUAGE;
+}
+
+/**
  * BCP47 locale for Intl formatting: chosen language + the user's country when
  * known (de-CH keeps German text with Swiss number formatting).
  */
