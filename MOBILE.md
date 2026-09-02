@@ -1,25 +1,28 @@
 # Mr. Solar Doc – native app (Capacitor)
 
-Appen är en TanStack Start-app med serverfunktioner (PVGIS + geokodning). Den kan
-alltså inte paketeras som en helt statisk bundle – den native skalappen laddar den
-publicerade webbappen över https och lägger native-lager (status bar, splash,
-App Store-distribution) ovanpå.
+Hela frontend-appen ligger nu **inuti** app-paketet. Ingen `server.url`, ingen
+webbvy mot en fjärr-URL. Backend-anropen (PVGIS, geokodning, köp) går fortsatt
+till den publicerade backenden över https via serverfunktioner.
+
+- Bundlen byggs till `capacitor-www/` med `npm run build:native`.
+- Backend-URL sätts i `src/config/native-backend.ts`, eller vid bygg med
+  `VITE_NATIVE_BACKEND_URL=https://din-domän.se npm run build:native`.
+- Tillåtna native-origins (CORS + CSRF) är allowlistade i samma fil.
 
 ## Engångsuppsättning (på din Mac)
 
 ```bash
 git clone <ditt repo> && cd <repo>
 npm install                # eller bun install
+npm run build:native
 npx cap add ios            # kräver Xcode + CocoaPods
 npx cap add android        # kräver Android Studio
 ```
 
-## Peka appen mot rätt URL
-
-Standard är preview-URL:en. Inför TestFlight/App Store, använd den publicerade domänen:
+## Bygg och synka
 
 ```bash
-CAP_SERVER_URL=https://din-domän.se npx cap sync
+npm run cap:sync           # bygger native-bundlen + cap sync
 ```
 
 ## Kör
@@ -28,6 +31,7 @@ CAP_SERVER_URL=https://din-domän.se npx cap sync
 npx cap open ios       # Xcode → välj enhet → Run
 npx cap open android   # Android Studio → Run
 ```
+
 
 ## Inför App Store
 
