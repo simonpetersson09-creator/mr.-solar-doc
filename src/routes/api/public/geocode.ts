@@ -37,12 +37,14 @@ export const Route = createFileRoute("/api/public/geocode")({
     handlers: {
       OPTIONS: async ({ request }) => {
         const origin = request.headers.get("Origin");
-        if (!isNativeAppOrigin(origin)) return new Response(null, { status: 403 });
+        if (origin === null || !isNativeAppOrigin(origin)) {
+          return new Response(null, { status: 403 });
+        }
         return new Response(null, { status: 204, headers: responseHeaders(origin) });
       },
       GET: async ({ request }) => {
         const origin = request.headers.get("Origin");
-        if (!isNativeAppOrigin(origin)) {
+        if (origin === null || !isNativeAppOrigin(origin)) {
           return Response.json({ error: "forbidden" }, { status: 403 });
         }
 
