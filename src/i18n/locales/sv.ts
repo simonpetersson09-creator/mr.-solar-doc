@@ -397,8 +397,8 @@ export const sv = {
     paybackSubtitle:
       "Du bestämmer hur snabbt du vill ha investeringen tillbaka. Vi räknar ut vad det motsvarar i installationskostnad.",
     paybackYearsUnit: "år",
-    investmentLevelTitle: "Pris efter din valda återbetalningstid",
-    investmentPerKwLabel: "Investeringskostnad per kW",
+    investmentLevelTitle: "Maxinvestering vid din valda återbetalningstid",
+    investmentPerKwLabel: "Maxinvestering per kW",
     panelPowerLabel: "Paneleffekt",
     investmentLevelBasis: "Baserat på din valda återbetalningstid på {{years}} år",
     investmentLevelNote:
@@ -412,17 +412,17 @@ export const sv = {
     priceExplainer:
       "Egenanvänd solel ersätter el som annars hade behövt köpas från elnätet. Såld solel ger istället en ersättning för den el som matas ut på nätet.",
     paybackYears: "{{years}} år",
-    paybackScenariosTitle: "Investeringsnivå vid olika återbetalningstider",
+    paybackScenariosTitle: "Maxinvestering vid olika återbetalningstider",
     paybackScenarioSelected: "Ditt val",
     paybackScenariosHelp:
-      "Kortare återbetalningstid innebär en lägre möjlig investering. Här ser du hur investeringsnivån förändras om du accepterar en kortare eller längre återbetalningstid.",
+      "Kortare återbetalningstid innebär en lägre maxinvestering. Här ser du hur maxinvesteringen förändras om du accepterar en kortare eller längre återbetalningstid.",
     paybackInfo:
-      "Investeringsnivån visar ungefär vilken investering som motsvarar den valda återbetalningstiden utifrån kalkylens beräknade ekonomiska värden under perioden. Beloppet är inte ett uppskattat marknadspris eller en offert.",
-    maxInvestment: "Investeringsnivå vid vald återbetalningstid",
+      "Maxinvesteringen visar ungefär hur mycket anläggningen får kosta för att motsvara den valda återbetalningstiden utifrån kalkylens beräknade ekonomiska värden under perioden. Beloppet är inte ett uppskattat marknadspris eller en offert.",
+    maxInvestment: "Maxinvestering vid din valda återbetalningstid",
     productionCostTitle: "Vad får solelen kosta per kWh?",
     investmentLevelInfoLabel: "Mer information",
     investmentLevelInfo:
-      "Visar ungefär vilken investeringskostnad som motsvarar den återbetalningstid du valt. Det är inte en uppskattning av vad installationen faktiskt kostar. Faktiskt pris beror på bland annat tak, installation, komponenter och leverantör.",
+      "Visar ungefär hur mycket anläggningen får kosta för att motsvara den återbetalningstid du valt. Det är inte en uppskattning av vad installationen faktiskt kostar. Faktiskt pris beror på bland annat tak, installation, komponenter och leverantör.",
     systemSizeInfoLabel: "Mer information",
     systemSizeInfo:
       "Beräkningen är en uppskattning och ska användas som vägledning. Faktisk produktion, egenanvändning, elpris, ersättning, installationskostnad och ekonomiskt utfall kan avvika. Resultatet utgör inte en offert eller garanti.",
@@ -674,7 +674,7 @@ export const sv = {
       specificYieldNote:
         "Produktionspotentialen är platsens beräknade produktion per installerad kWp, för ditt taks riktning och lutning. Det är inte anläggningens totala årsproduktion.",
       investmentNote:
-        "Investeringsnivån visar ungefär vilken investering som motsvarar den valda återbetalningstiden utifrån det ackumulerade ekonomiska värde kalkylen räknar fram fram till det året. Beräkningen påverkas bland annat av antagen förändring av elvärden och av produktionsdegradering. Beloppet är inte ett uppskattat marknadspris eller en offert.",
+        "Maxinvesteringen visar ungefär hur mycket anläggningen får kosta för att motsvara den valda återbetalningstiden utifrån det ackumulerade ekonomiska värde kalkylen räknar fram fram till det året. Beräkningen påverkas bland annat av antagen förändring av elvärden och av produktionsdegradering. Beloppet är inte ett uppskattat marknadspris eller en offert.",
       assumptionsProduction: "Produktion",
       assumptionsEconomy: "Ekonomi",
       assumptionsTechnical: "Teknik",
@@ -690,7 +690,7 @@ export const sv = {
       degradation: "Produktionsdegradering",
       degradationNote:
         "Solpanelernas produktion antas minska med {{degradation}} % per år. Det är ett kalkylantagande och faktisk degradering kan variera mellan paneltyper, fabrikat och driftförhållanden.",
-      investment: "Investeringsnivå vid vald återbetalningstid",
+      investment: "Maxinvestering vid din valda återbetalningstid",
       returnRate: "Avkastning %",
       balanceTitle: "Årsbalans",
       balanceConsumption: "Årsförbrukning",
@@ -733,12 +733,12 @@ export const sv = {
       savings: "Ekonomiskt värde per år",
       tilt: "Taklutning",
       yearsUnit: "år",
-      paybackScenariosTitle: "Investeringsnivå vid olika återbetalningstider",
+      paybackScenariosTitle: "Maxinvestering vid olika återbetalningstider",
       paybackScenarioSelected: "Ditt val",
       paybackScenariosHelp:
-        "Kortare återbetalningstid innebär en lägre möjlig investering. Här ser du hur investeringsnivån förändras om du accepterar en kortare eller längre återbetalningstid.",
+        "Kortare återbetalningstid innebär en lägre maxinvestering. Här ser du hur maxinvesteringen förändras om du accepterar en kortare eller längre återbetalningstid.",
       acceptedPayback: "Vald återbetalningstid",
-      maxInvestment: "Investeringsnivå vid vald återbetalningstid",
+      maxInvestment: "Maxinvestering vid din valda återbetalningstid",
       quotePrice: "Angivet offertpris",
       quotePayback: "Återbetalningstid utifrån offertpriset",
       calculationVersion: "Beräkningsversion",
