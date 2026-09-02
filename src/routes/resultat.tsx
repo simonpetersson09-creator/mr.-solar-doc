@@ -10,6 +10,7 @@ import { useAppLocale } from "@/hooks/use-app-locale";
 import { connectionLabelKey, formatConnectionCapacity } from "@/lib/connection-display";
 import { useWizardStore } from "@/state/wizard-store";
 import { formatCurrency, formatDate, formatDecimal, formatNumber } from "@/lib/format";
+import { formatInverterPower } from "@/lib/inverter-display";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
 

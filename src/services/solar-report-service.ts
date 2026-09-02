@@ -1,6 +1,7 @@
 import { jsPDF } from "jspdf";
 import type { CalculationResult, ValueOrigin } from "@/lib/calc/types";
 import { formatCurrency, formatDecimal, formatNumber, isoDateOnly } from "@/lib/format";
+import { formatInverterPower } from "@/lib/inverter-display";
 import {
   formatConnectionCapacity,
   gridAcDisplayFactor,
