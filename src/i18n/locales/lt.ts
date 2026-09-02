@@ -409,7 +409,7 @@ export const lt = {
       "Trumpesnis atsipirkimo laikas reiškia mažesnę galimą investiciją. Čia matote, kaip keičiasi investicijos lygis, jei sutinkate su trumpesniu ar ilgesniu atsipirkimo laiku.",
     paybackInfo:
       "Atsipirkimo laikas rodo, kiek metų numatoma metinė ekonominė vertė atitinka investiciją. Atsipirkimas neatsižvelgia į tokius veiksnius kaip būsimi elektros kainų pokyčiai, finansavimo išlaidos, infliacija, priežiūra ar diskontavimas.",
-    maxInvestment: "Investicijos lygis pasirinktu atsipirkimo laiku",
+    maxInvestment: "Kaina pagal jūsų pasirinktą atsipirkimo laikotarpį",
     maxInvestmentApprox: "apie {{amount}}",
     investmentLevelInfoLabel: "Daugiau informacijos",
     investmentLevelInfo:
@@ -629,7 +629,7 @@ export const lt = {
       degradation: "Gamybos degradacija",
       degradationNote:
         "Manoma, kad saulės panelių gamyba kasmet sumažėja {{degradation}} %. Tai yra skaičiavimo prielaida; faktinė degradacija skiriasi priklausomai nuo panelių tipų, prekės ženklų ir veikimo sąlygų.",
-      investment: "Investicijos lygis pasirinktu atsipirkimo laiku",
+      investment: "Kaina pagal jūsų pasirinktą atsipirkimo laikotarpį",
       returnRate: "Grąža %",
       balanceTitle: "Metinis balansas",
       balanceConsumption: "Metinis suvartojimas",
@@ -677,7 +677,7 @@ export const lt = {
       paybackScenariosHelp:
         "Trumpesnis atsipirkimo laikas reiškia mažesnę galimą investiciją. Čia matote, kaip keičiasi investicijos lygis, jei sutinkate su trumpesniu ar ilgesniu atsipirkimo laiku.",
       acceptedPayback: "Pasirinktas atsipirkimo laikas",
-      maxInvestment: "Investicijos lygis pasirinktu atsipirkimo laiku",
+      maxInvestment: "Kaina pagal jūsų pasirinktą atsipirkimo laikotarpį",
       quotePrice: "Nurodyta pasiūlymo kaina",
       quotePayback: "Atsipirkimo laikas pagal pasiūlymo kainą",
       calculationVersion: "Skaičiavimo versija",

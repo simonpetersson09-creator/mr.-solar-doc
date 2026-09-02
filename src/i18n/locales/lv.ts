@@ -406,7 +406,7 @@ export const lv = {
       "Īsāks atmaksāšanās laiks nozīmē zemāku iespējamo ieguldījumu. Šeit redzi, kā ieguldījuma līmenis mainās, ja pieņem īsāku vai garāku atmaksāšanās laiku.",
     paybackInfo:
       "Atmaksas periods parāda, cik gados aprēķinātā gada ekonomiskā vērtība atbilst investīcijai. Aprēķins neņem vērā, piemēram, nākotnes elektroenerģijas cenu izmaiņas, finansēšanas izmaksas, inflāciju, uzturēšanu vai diskontēšanu.",
-    maxInvestment: "Investīciju līmenis izvēlētajā atmaksas periodā",
+    maxInvestment: "Cena atbilstoši jūsu izvēlētajam atmaksāšanās periodam",
     maxInvestmentApprox: "apmēram {{amount}}",
     investmentLevelInfoLabel: "Vairāk informācijas",
     investmentLevelInfo:
@@ -624,7 +624,7 @@ export const lv = {
       degradation: "Ražošanas degradācija",
       degradationNote:
         "Tiek pieņemts, ka saules paneļu ražošana samazināsies par {{degradation}} % gadā. Tas ir aprēķina pieņēmums, un faktiskā degradācija var atšķirties atkarībā no paneļu veidiem, zīmoliem un darbības apstākļiem.",
-      investment: "Investīciju līmenis izvēlētajā atmaksas periodā",
+      investment: "Cena atbilstoši jūsu izvēlētajam atmaksāšanās periodam",
       returnRate: "Atdeve %",
       balanceTitle: "Gada bilance",
       balanceConsumption: "Gada patēriņš",
@@ -672,7 +672,7 @@ export const lv = {
       paybackScenariosHelp:
         "Īsāks atmaksāšanās laiks nozīmē zemāku iespējamo ieguldījumu. Šeit redzi, kā ieguldījuma līmenis mainās, ja pieņem īsāku vai garāku atmaksāšanās laiku.",
       acceptedPayback: "Izvēlētais atmaksas laiks",
-      maxInvestment: "Investīciju līmenis izvēlētajā atmaksas periodā",
+      maxInvestment: "Cena atbilstoši jūsu izvēlētajam atmaksāšanās periodam",
       quotePrice: "Norādītā piedāvājuma cena",
       quotePayback: "Atmaksas laiks, pamatojoties uz piedāvājuma cenu",
       calculationVersion: "Aprēķina versija",

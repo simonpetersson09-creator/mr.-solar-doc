@@ -405,7 +405,7 @@ export const da = {
       "Kortere tilbagebetalingstid betyder en lavere mulig investering. Her ser du, hvordan investeringsniveauet ændrer sig, hvis du accepterer en kortere eller længere tilbagebetalingstid.",
     paybackInfo:
       "Investeringsniveauet viser omtrent, hvilken investering der svarer til den valgte tilbagebetalingstid, baseret på de økonomiske værdier, som beregningen forudser over den periode. Det er ikke en anslået markedspris eller et tilbud.",
-    maxInvestment: "Investeringsniveau ved valgt tilbagebetalingstid",
+    maxInvestment: "Pris efter din valgte tilbagebetalingstid",
     maxInvestmentApprox: "ca. {{amount}}",
     investmentLevelInfoLabel: "Mere information",
     investmentLevelInfo:
@@ -624,7 +624,7 @@ export const da = {
       degradation: "Produktionsdegradering",
       degradationNote:
         "Solpanelernes produktion antages at falde med {{degradation}} % per år. Dette er en kalkulationsantagelse, og faktisk degradering kan variere mellem paneltyper, fabrikater og driftsforhold.",
-      investment: "Investeringsniveau ved valgt tilbagebetalingstid",
+      investment: "Pris efter din valgte tilbagebetalingstid",
       returnRate: "Afkast %",
       balanceTitle: "Årsbalance",
       balanceConsumption: "Årsforbrug",
@@ -672,7 +672,7 @@ export const da = {
       paybackScenariosHelp:
         "Kortere tilbagebetalingstid betyder en lavere mulig investering. Her ser du, hvordan investeringsniveauet ændrer sig, hvis du accepterer en kortere eller længere tilbagebetalingstid.",
       acceptedPayback: "Valgt tilbagebetalingstid",
-      maxInvestment: "Investeringsniveau ved valgt tilbagebetalingstid",
+      maxInvestment: "Pris efter din valgte tilbagebetalingstid",
       quotePrice: "Angivet tilbudspris",
       quotePayback: "Tilbagebetalingstid baseret på tilbudsprisen",
       calculationVersion: "Beregningsversion",

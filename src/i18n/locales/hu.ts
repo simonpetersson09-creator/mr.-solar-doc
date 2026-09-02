@@ -423,7 +423,7 @@ export const hu = {
       "A rövidebb megtérülési idő alacsonyabb lehetséges beruházást jelent. Itt láthatod, hogyan változik a beruházási szint, ha rövidebb vagy hosszabb megtérülési időt fogadsz el.",
     paybackInfo:
       "Az egyszerű megtérülés megmutatja, hány évnek felel meg a becsült éves gazdasági érték a befektetéshez képest. Nem veszi figyelembe a jövőbeli áramár-változásokat, a finanszírozási költséget, az inflációt, a karbantartást vagy a diszkontálást.",
-    maxInvestment: "Befektetési szint a választott megtérülési időnél",
+    maxInvestment: "Ár a kiválasztott megtérülési idő után",
     productionCostTitle: "Mennyibe kerülhet a napenergia kWh-ja?",
     investmentLevelInfoLabel: "További információ",
     investmentLevelInfo:
@@ -695,7 +695,7 @@ export const hu = {
       degradation: "Termelési degradáció",
       degradationNote:
         "A panelek teljesítménye évente {{degradation}} %-kal csökken feltételezésünk szerint. Ez számítási feltételezés; a tényleges degradáció panel típusonként, márkánként és üzemeltetési körülményenként eltér.",
-      investment: "Befektetési szint a választott megtérülési időnél",
+      investment: "Ár a kiválasztott megtérülési idő után",
       returnRate: "Hozam %",
       balanceTitle: "Éves mérleg",
       balanceConsumption: "Éves fogyasztás",
@@ -743,7 +743,7 @@ export const hu = {
       paybackScenariosHelp:
         "A rövidebb megtérülési idő alacsonyabb lehetséges beruházást jelent. Itt láthatod, hogyan változik a beruházási szint, ha rövidebb vagy hosszabb megtérülési időt fogadsz el.",
       acceptedPayback: "Választott megtérülési idő",
-      maxInvestment: "Befektetési szint a választott megtérülési időnél",
+      maxInvestment: "Ár a kiválasztott megtérülési idő után",
       quotePrice: "Megadott árajánlat",
       quotePayback: "Az árajánlaton alapuló egyszerű megtérülés",
       calculationVersion: "Számítási verzió",

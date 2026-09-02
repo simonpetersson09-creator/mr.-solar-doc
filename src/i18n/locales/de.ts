@@ -413,7 +413,7 @@ export const de = {
       "Eine kürzere Amortisationszeit bedeutet eine geringere mögliche Investition. Hier sehen Sie, wie sich das Investitionsniveau ändert, wenn Sie eine kürzere oder längere Amortisationszeit akzeptieren.",
     paybackInfo:
       "Das Investitionsniveau zeigt ungefähr, welche Investition der gewählten Amortisationszeit entspricht, basierend auf den wirtschaftlichen Werten, die die Berechnung über diesen Zeitraum prognostiziert. Es handelt sich nicht um einen geschätzten Marktpreis oder ein Angebot.",
-    maxInvestment: "Investitionsniveau bei gewählter Amortisationszeit",
+    maxInvestment: "Preis nach Ihrer gewählten Amortisationszeit",
     maxInvestmentApprox: "ca. {{amount}}",
     investmentLevelInfoLabel: "Weitere Informationen",
     investmentLevelInfo:
@@ -635,7 +635,7 @@ export const de = {
       degradation: "Produktionsminderung",
       degradationNote:
         "Die Produktion der Solarmodule wird voraussichtlich um {{degradation}} % pro Jahr sinken. Dies ist eine Kalkulationsannahme; die tatsächliche Minderung kann je nach Modultypen, Marken und Betriebsbedingungen variieren.",
-      investment: "Investitionsniveau bei gewählter Amortisationszeit",
+      investment: "Preis nach Ihrer gewählten Amortisationszeit",
       returnRate: "Rendite %",
       balanceTitle: "Jahresbilanz",
       balanceConsumption: "Jahresverbrauch",
@@ -683,7 +683,7 @@ export const de = {
       paybackScenariosHelp:
         "Eine kürzere Amortisationszeit bedeutet eine geringere mögliche Investition. Hier sehen Sie, wie sich das Investitionsniveau ändert, wenn Sie eine kürzere oder längere Amortisationszeit akzeptieren.",
       acceptedPayback: "Gewählte Amortisationszeit",
-      maxInvestment: "Investitionsniveau bei gewählter Amortisationszeit",
+      maxInvestment: "Preis nach Ihrer gewählten Amortisationszeit",
       quotePrice: "Angegebener Angebotspreis",
       quotePayback: "Amortisationszeit basierend auf dem Angebotspreis",
       calculationVersion: "Berechnungsversion",

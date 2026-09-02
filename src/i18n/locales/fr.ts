@@ -418,7 +418,7 @@ export const fr = {
       "Un temps de retour plus court implique un investissement possible plus faible. Vous voyez ici comment le niveau d'investissement évolue si vous acceptez un temps de retour plus court ou plus long.",
     paybackInfo:
       "Le niveau d'investissement indique approximativement quel investissement correspond au temps de retour choisi, sur la base des valeurs économiques que le calcul projette sur cette période. Il ne s'agit pas d'un prix de marché estimé ni d'un devis.",
-    maxInvestment: "Niveau d'investissement pour le temps de retour sur investissement choisi",
+    maxInvestment: "Prix selon la période de remboursement choisie",
     maxInvestmentApprox: "environ {{amount}}",
     investmentLevelInfoLabel: "Plus d'informations",
     investmentLevelInfo:
@@ -638,7 +638,7 @@ export const fr = {
       degradation: "Dégradation de la production",
       degradationNote:
         "La production des panneaux solaires est supposée diminuer de {{degradation}} % par an. Il s'agit d'une hypothèse de calcul et la dégradation réelle peut varier selon les types de panneaux, les marques et les conditions d'exploitation.",
-      investment: "Niveau d'investissement pour le temps de retour sur investissement choisi",
+      investment: "Prix selon la période de remboursement choisie",
       returnRate: "Rendement %",
       balanceTitle: "Bilan annuel",
       balanceConsumption: "Consommation annuelle",
@@ -686,7 +686,7 @@ export const fr = {
       paybackScenariosHelp:
         "Un temps de retour plus court implique un investissement possible plus faible. Vous voyez ici comment le niveau d'investissement évolue si vous acceptez un temps de retour plus court ou plus long.",
       acceptedPayback: "Temps de retour sur investissement choisi",
-      maxInvestment: "Niveau d'investissement pour le temps de retour sur investissement choisi",
+      maxInvestment: "Prix selon la période de remboursement choisie",
       quotePrice: "Prix du devis fourni",
       quotePayback: "Temps de retour sur investissement basé sur le prix du devis",
       calculationVersion: "Version du calcul",

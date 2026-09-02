@@ -418,7 +418,7 @@ export const hr = {
       "Kraće razdoblje povrata znači niže moguće ulaganje. Ovdje vidiš kako se razina ulaganja mijenja ako prihvatiš kraće ili dulje razdoblje povrata.",
     paybackInfo:
       "Jednostavni povrat pokazuje koliko godina odgovara procijenjena godišnja ekonomska vrijednost u odnosu na investiciju. Ne uzima u obzir buduće promjene cijena struje, trošak financiranja, inflaciju, održavanje ili diskontiranje.",
-    maxInvestment: "Razina investicije za odabrano razdoblje povrata",
+    maxInvestment: "Cijena nakon odabranog razdoblja povrata",
     productionCostTitle: "Koliko smije koštati solarni kWh?",
     investmentLevelInfoLabel: "Više informacija",
     investmentLevelInfo:
@@ -689,7 +689,7 @@ export const hr = {
       degradation: "Degradacija proizvodnje",
       degradationNote:
         "Pretpostavlja se da snaga panela opada za {{degradation}} % godišnje. Ovo je pretpostavka izračuna; stvarna degradacija varira ovisno o tipu panela, marki i uvjetima rada.",
-      investment: "Razina investicije za odabrano razdoblje povrata",
+      investment: "Cijena nakon odabranog razdoblja povrata",
       returnRate: "Povrat %",
       balanceTitle: "Godišnja bilanca",
       balanceConsumption: "Godišnja potrošnja",
@@ -737,7 +737,7 @@ export const hr = {
       paybackScenariosHelp:
         "Kraće razdoblje povrata znači niže moguće ulaganje. Ovdje vidiš kako se razina ulaganja mijenja ako prihvatiš kraće ili dulje razdoblje povrata.",
       acceptedPayback: "Odabrano razdoblje povrata",
-      maxInvestment: "Razina investicije za odabrano razdoblje povrata",
+      maxInvestment: "Cijena nakon odabranog razdoblja povrata",
       quotePrice: "Navedena ponuđena cijena",
       quotePayback: "Jednostavni povrat na temelju ponuđene cijene",
       calculationVersion: "Verzija izračuna",

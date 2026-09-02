@@ -413,7 +413,7 @@ export const id = {
       "Waktu pengembalian yang lebih singkat berarti investasi yang mungkin lebih rendah. Di sini Anda melihat bagaimana tingkat investasi berubah jika Anda menerima waktu pengembalian yang lebih singkat atau lebih panjang.",
     paybackInfo:
       "Pengembalian modal sederhana menunjukkan berapa tahun nilai ekonomi tahunan yang diperkirakan setara dengan investasi. Ini tidak memperhitungkan perubahan harga listrik di masa depan, biaya pembiayaan, inflasi, pemeliharaan, atau diskonto.",
-    maxInvestment: "Tingkat investasi pada waktu pengembalian modal yang dipilih",
+    maxInvestment: "Harga setelah periode pengembalian modal yang Anda pilih",
     productionCostTitle: "Berapa harga listrik surya per kWh?",
     investmentLevelInfoLabel: "Info lebih lanjut",
     investmentLevelInfo:
@@ -678,7 +678,7 @@ export const id = {
       degradation: "Degradasi produksi",
       degradationNote:
         "Output panel diasumsikan menurun {{degradation}} % per tahun. Ini adalah asumsi perhitungan; degradasi aktual bervariasi antara jenis panel, merek, dan kondisi operasi.",
-      investment: "Tingkat investasi pada waktu pengembalian modal yang dipilih",
+      investment: "Harga setelah periode pengembalian modal yang Anda pilih",
       returnRate: "% Pengembalian",
       balanceTitle: "Keseimbangan tahunan",
       balanceConsumption: "Konsumsi tahunan",
@@ -726,7 +726,7 @@ export const id = {
       paybackScenariosHelp:
         "Waktu pengembalian yang lebih singkat berarti investasi yang mungkin lebih rendah. Di sini Anda melihat bagaimana tingkat investasi berubah jika Anda menerima waktu pengembalian yang lebih singkat atau lebih panjang.",
       acceptedPayback: "Waktu pengembalian modal yang dipilih",
-      maxInvestment: "Tingkat investasi pada waktu pengembalian modal yang dipilih",
+      maxInvestment: "Harga setelah periode pengembalian modal yang Anda pilih",
       quotePrice: "Harga penawaran yang diberikan",
       quotePayback: "Pengembalian modal sederhana berdasarkan harga penawaran",
       calculationVersion: "Versi perhitungan",
