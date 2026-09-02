@@ -268,6 +268,21 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
                 {t("result.consumptionTooLowNote")}
               </p>
             ) : null}
+            {result.notes.includes("limited-by-pv-rule") ? (
+              <p className="mt-1.5 text-center text-[11px] text-white/60">
+                {result.pvLimitBinding === "busbar-rule"
+                  ? t("result.reasonBusbarLimit")
+                  : t("result.reasonPvRuleLimit")}
+              </p>
+            ) : null}
+            {result.aboveSimplifiedProcessLimit && result.simplifiedProcessLimitKw ? (
+              <p className="mt-1.5 text-center text-[11px] text-white/60">
+                {t("result.simplifiedProcessNote", {
+                  limit: formatDecimal(result.simplifiedProcessLimitKw, locale),
+                })}
+              </p>
+            ) : null}
+
 
           </div>
         </section>
