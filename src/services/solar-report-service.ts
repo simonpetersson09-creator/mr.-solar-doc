@@ -103,6 +103,10 @@ origin: Record<ValueOrigin, string>;
   limitReason?: string | null;
   /** Note shown when the system exceeds the simplified process ceiling. */
   simplifiedProcessNote?: string | null;
+  /** Heading for the installer checklist page. */
+  installerChecklistTitle: string;
+  /** Checklist lines; may contain {{acPower}}, {{production}}, {{kwp}}, {{investment}}. */
+  installerChecklistItems: string[];
   /** Heading for the FAQ page. */
   faqTitle: string;
   /** FAQ entries rendered on their own page at the end of the report. */
@@ -524,6 +528,29 @@ class ReportDocument {
     this.doc.setTextColor(...INK);
     this.doc.text(lines, PAGE.margin + 4, this.y + 11);
 this.y += height + 6;
+  }
+
+  /** Installer checklist: drawn checkboxes plus wrapped text, one item per row. */
+  checklist(title: string, items: string[]) {
+    this.sectionTitle(title);
+    const width = PAGE.width - PAGE.margin * 2;
+    const boxSize = 3.6;
+    const textX = PAGE.margin + boxSize + 4;
+    const textWidth = width - boxSize - 6;
+    items.forEach((item) => {
+      this.doc.setFont("helvetica", "normal");
+      this.doc.setFontSize(9);
+      const lines = this.doc.splitTextToSize(item, textWidth) as string[];
+      const height = lines.length * 4.6 + 4;
+      this.ensureSpace(height + 2);
+      this.doc.setDrawColor(...ACCENT_DEEP);
+      this.doc.setLineWidth(0.35);
+      this.doc.rect(PAGE.margin + 1, this.y - 3.2, boxSize, boxSize, "D");
+      this.doc.setTextColor(...INK);
+      this.doc.text(lines, textX, this.y);
+      this.y += height;
+    });
+    this.y += 2;
   }
 
   /** FAQ page: question in bold primary, answer in muted, on cream blocks. */
@@ -1341,8 +1368,27 @@ export function generateReportBlob(options: ReportOptions): Blob {
     `${f["uncertaintyText"] ?? ""} ${labels.disclaimer}`,
   );
 
+  // Installer checklist gets its own page: it is the last hands-on takeaway
+  // before the explanatory FAQ page.
+  if (labels.installerChecklistItems.length > 0) {
+    report.pageBreak();
+    report.checklist(
+      labels.installerChecklistTitle,
+      labels.installerChecklistItems.map((item) =>
+        item
+          .replaceAll("{{acPower}}", `${formatDecimal(result.presentation.maxAcPowerKw, locale, 1)} kW AC`)
+          .replaceAll(
+            "{{production}}",
+            `${formatNumber(result.presentation.annualProductionKwh, locale)} kWh ${f["perYearShort"] ?? ""}`.trim(),
+          )
+          .replaceAll("{{kwp}}", `${formatDecimal(result.installedKwp, locale)} kWp`)
+          .replaceAll("{{investment}}", money(result.investment.maxInvestmentRounded)),
+      ),
+    );
+  }
+
   // FAQ closes the report; the metadata is a discreet closing line, not a page.
-  report.softBreak(60);
+  report.pageBreak();
   report.faq(labels.faqTitle, labels.faqItems);
 
   const reportId = buildReportId(result);

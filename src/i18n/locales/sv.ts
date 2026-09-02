@@ -769,6 +769,20 @@ export const sv = {
       external: "Extern datakälla",
     },
     generated: "Skapad",
+    installerChecklistTitle: "Att gå igenom med installatören",
+    installerChecklistItems: [
+      "Bekräfta takets riktning, lutning och eventuell skuggning på plats.",
+      "Kontrollera huvudsäkring och anslutningsvillkor med nätföretaget.",
+      "Bekräfta att växelriktarens effekt på {{acPower}} passar din elanslutning.",
+      "Jämför installatörens beräknade årsproduktion med rapportens {{production}}. Beräkningar kan skilja beroende på förutsättningar och beräkningsmetod.",
+      "Fråga om växelriktaren är förberedd för framtida batterilagring, om det kan bli aktuellt.",
+      "Säkerställ att elcentralen och den befintliga elanläggningen är lämpliga för installationen.",
+      "Gå igenom vad som ingår i offerten, exempelvis kablage, montage, skydd och övrigt installationsmaterial.",
+      "Fråga vem som ansvarar för eventuella skador på taket i samband med installationen.",
+      "Gå igenom produktionsövervakning, garantier och service.",
+      "Begär offert utifrån rapportens dimensionering: {{kwp}} · {{production}}.",
+      "Jämför offertpriset med rapportens beräknade nivå på {{investment}}. Priset kan skilja beroende på utrustning, installationsförutsättningar och vad som ingår i leveransen.",
+    ],
     faqTitle: "Vanliga frågor",
     faqItems: [
       {
