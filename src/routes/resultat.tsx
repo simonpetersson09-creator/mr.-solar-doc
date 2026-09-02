@@ -282,6 +282,10 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
             <p className="mt-3 text-center text-sm font-bold text-white">
               {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
             </p>
+            <p className="mt-1 text-center text-[11px] leading-relaxed text-white/60">
+              {t("result.coverageNote")}
+            </p>
+
 
             {result.notes.includes("minimum-system-size") ? (
               <p className="mt-1.5 text-center text-[11px] text-white/60">{t("result.minimumSizeNote")}</p>
