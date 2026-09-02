@@ -62,6 +62,8 @@ export const cs = {
     error: "Vyhledávání adresy selhalo.",
     info: "Adresa se používá pouze pro výpočet slunečního záření ve vaší lokalitě.",
     infoLabel: "Více informací o adrese",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   roof: {
     title: "Vaše střecha",
@@ -101,6 +103,8 @@ export const cs = {
       required: "Zadejte svou spotřebu elektřiny, aby výpočet mohl pokračovat.",
       tooLow: "Spotřeba vypadá příliš nízká. Zadejte alespoň {{min}} kWh za rok.",
       tooHigh: "Spotřeba vypadá příliš vysoká. Zadejte nejvýše {{max}} kWh za rok.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Jak je vaše spotřeba elektřiny obvykle rozdělena v průběhu roku?",
@@ -511,6 +515,12 @@ export const cs = {
         "Zobrazte vypočtený kWp, velikost střídače, poměr DC/AC, měsíční výrobu a ekonomickou hodnotu – a stáhněte si zprávu jako PDF.",
       ogDescription: "Vypočtené dimenzování vaší fotovoltaické elektrárny s PDF zprávou.",
     },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
+    },
   },
   months: {
     short: ["Led", "Úno", "Bře", "Dub", "Kvě", "Čvn", "Čvc", "Srp", "Zář", "Říj", "Lis", "Pro"],
@@ -770,6 +780,7 @@ export const cs = {
       "Nákup se provádí v aplikaci pomocí vašeho účtu Apple a v prohlížeči není k dispozici.",
     appleNote: "Zajišťuje App Store.",
     priceLoading: "Načítání ceny…",
+    devContinue: "Dev: continue without payment",
   },
   history: {
     empty: "Zatím nemáte žádné uložené výpočty.",

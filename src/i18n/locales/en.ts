@@ -62,6 +62,8 @@ export const en = {
     error: "Address search failed.",
     info: "The address is used only to calculate the solar irradiation at your location.",
     infoLabel: "More information about the address",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Premium",
@@ -115,6 +117,8 @@ export const en = {
       required: "Enter your electricity use to continue the calculation.",
       tooLow: "That looks too low. Enter at least {{min}} kWh per year.",
       tooHigh: "That looks too high. Enter at most {{max}} kWh per year.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "How is your electricity use usually spread across the year?",
@@ -501,6 +505,7 @@ export const en = {
       ctaNoPrice: "Unlock",
     },
     priceLoading: "Fetching price…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
       price: "{{price}}/year",
@@ -568,6 +573,12 @@ export const en = {
       description:
         "See calculated kWp, inverter size, DC/AC ratio, monthly production and economic value - and download the report as a PDF.",
       ogDescription: "Calculated sizing of your solar system with a PDF report.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

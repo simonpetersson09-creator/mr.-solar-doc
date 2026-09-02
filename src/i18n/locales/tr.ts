@@ -62,6 +62,8 @@ export const tr = {
     error: "Adres araması başarısız oldu.",
     info: "Adres yalnızca konumunuzdaki güneş ışınımını hesaplamak için kullanılır.",
     infoLabel: "Adres hakkında daha fazla bilgi",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Premium",
@@ -115,6 +117,8 @@ export const tr = {
       required: "Hesaplamaya devam etmek için elektrik kullanımınızı girin.",
       tooLow: "Bu çok düşük görünüyor. Yılda en az {{min}} kWh girin.",
       tooHigh: "Bu çok yüksek görünüyor. Yılda en fazla {{max}} kWh girin.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Elektrik kullanımınız yıl boyunca genellikle nasıl dağılıyor?",
@@ -506,6 +510,7 @@ export const tr = {
       ctaNoPrice: "Aç",
     },
     priceLoading: "Fiyat alınıyor…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
       price: "{{price}}/yıl",
@@ -573,6 +578,12 @@ export const tr = {
       description:
         "Hesaplanan kWp, inverter boyutu, DC/AC oranı, aylık üretim ve ekonomik değeri görün - ve raporu PDF olarak indirin.",
       ogDescription: "PDF raporuyla güneş enerjisi sisteminizin hesaplanmış boyutlandırması.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

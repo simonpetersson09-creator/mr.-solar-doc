@@ -64,6 +64,8 @@ export const de = {
     error: "Die Adresssuche ist fehlgeschlagen.",
     info: "Die Adresse wird ausschließlich verwendet, um die Sonneneinstrahlung an Ihrem Standort zu berechnen.",
     infoLabel: "Weitere Informationen zur Adresse",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   roof: {
     title: "Ihr Dach",
@@ -104,6 +106,8 @@ export const de = {
       required: "Geben Sie Ihren Stromverbrauch ein, um die Berechnung fortzusetzen.",
       tooLow: "Der Verbrauch scheint zu niedrig. Geben Sie mindestens {{min}} kWh pro Jahr an.",
       tooHigh: "Der Verbrauch scheint zu hoch. Geben Sie höchstens {{max}} kWh pro Jahr an.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Wie verteilt sich Ihr Stromverbrauch normalerweise über das Jahr?",
@@ -523,6 +527,12 @@ export const de = {
         "Sehen Sie die berechnete kWp, Wechselrichtergröße, DC/AC-Verhältnis, monatliche Produktion und den wirtschaftlichen Wert – und laden Sie den Bericht als PDF herunter.",
       ogDescription: "Berechnete Dimensionierung Ihrer Solaranlage mit PDF-Bericht.",
     },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
+    },
   },
   months: {
     short: ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
@@ -782,6 +792,7 @@ export const de = {
       "Der Kauf erfolgt in der App mit deinem Apple-Konto und ist im Browser nicht verfügbar.",
     appleNote: "Wird vom App Store abgewickelt.",
     priceLoading: "Preis wird geladen…",
+    devContinue: "Dev: continue without payment",
   },
   history: {
     empty: "Du hast noch keine gespeicherten Berechnungen.",

@@ -62,6 +62,8 @@ export const pt = {
     error: "A pesquisa de morada falhou.",
     info: "A morada é utilizada apenas para calcular a irradiação solar na sua localização.",
     infoLabel: "Mais informação sobre a morada",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Premium",
@@ -116,6 +118,8 @@ export const pt = {
       required: "Introduza o seu consumo elétrico para continuar o cálculo.",
       tooLow: "Esse valor parece demasiado baixo. Introduza pelo menos {{min}} kWh por ano.",
       tooHigh: "Esse valor parece demasiado alto. Introduza no máximo {{max}} kWh por ano.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Como se distribui normalmente o seu consumo elétrico ao longo do ano?",
@@ -507,6 +511,7 @@ export const pt = {
       ctaNoPrice: "Desbloquear",
     },
     priceLoading: "A obter preço…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
       price: "{{price}}/ano",
@@ -573,6 +578,12 @@ export const pt = {
       description:
         "Veja os kWp calculados, a dimensão do inversor, o rácio DC/AC, a produção mensal e o valor económico - e descarregue o relatório em PDF.",
       ogDescription: "Dimensionamento calculado do seu sistema solar com relatório em PDF.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

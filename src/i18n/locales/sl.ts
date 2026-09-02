@@ -60,6 +60,8 @@ export const sl = {
     error: "Iskanje naslova ni uspelo.",
     info: "Naslov se uporablja izključno za izračun sončnega sevanja na vaši lokaciji.",
     infoLabel: "Več informacij o naslovu",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   roof: {
     title: "Vaša streha",
@@ -99,6 +101,8 @@ export const sl = {
       required: "Vnesite svojo porabo elektrike, da lahko izračun nadaljuje.",
       tooLow: "Poraba se zdi prenizka. Vnesite vsaj {{min}} kWh na leto.",
       tooHigh: "Poraba se zdi previsoka. Vnesite največ {{max}} kWh na leto.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Kako je vaša poraba električne energije običajno porazdeljena skozi leto?",
@@ -508,6 +512,12 @@ export const sl = {
         "Oglejte si izračunani kWp, velikost razsmernika, razmerje DC/AC, mesečno proizvodnjo in ekonomsko vrednost – ter prenesite poročilo kot PDF.",
       ogDescription: "Izračunana dimenzioniranje vašega sončnega sistema s poročilom PDF.",
     },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
+    },
   },
   months: {
     short: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Avg", "Sep", "Okt", "Nov", "Dec"],
@@ -766,6 +776,7 @@ export const sl = {
     appOnly: "Nakup se izvede v aplikaciji z vašim Apple računom in ni na voljo v brskalniku.",
     appleNote: "Obravnava App Store.",
     priceLoading: "Pridobivanje cene…",
+    devContinue: "Dev: continue without payment",
   },
   history: {
     empty: "Nimate še shranjenih izračunov.",

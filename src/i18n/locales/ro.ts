@@ -62,6 +62,8 @@ export const ro = {
     error: "Căutarea adresei a eșuat.",
     info: "Adresa este folosită doar pentru a calcula radiația solară de la locația ta.",
     infoLabel: "Mai multe informații despre adresă",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Premium",
@@ -116,6 +118,8 @@ export const ro = {
       required: "Introdu consumul tău de energie pentru a continua calculul.",
       tooLow: "Pare prea mic. Introdu cel puțin {{min}} kWh pe an.",
       tooHigh: "Pare prea mare. Introdu cel mult {{max}} kWh pe an.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Cum se distribuie de obicei consumul tău de energie pe parcursul anului?",
@@ -509,6 +513,7 @@ export const ro = {
       ctaNoPrice: "Deblochează",
     },
     priceLoading: "Se preia prețul…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
       price: "{{price}}/an",
@@ -576,6 +581,12 @@ export const ro = {
       description:
         "Vezi kWp calculat, dimensiunea invertorului, raportul DC/AC, producția lunară și valoarea economică - și descarcă raportul ca PDF.",
       ogDescription: "Dimensionarea calculată a sistemului tău solar cu un raport PDF.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

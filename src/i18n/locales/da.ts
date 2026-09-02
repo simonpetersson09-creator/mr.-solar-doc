@@ -62,6 +62,8 @@ export const da = {
     error: "Adressesøgningen mislykkedes.",
     info: "Adressen bruges udelukkende til at beregne solindstrålingen på din placering.",
     infoLabel: "Mere information om adressen",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   roof: {
     title: "Dit tag",
@@ -101,6 +103,8 @@ export const da = {
       required: "Angiv dit elforbrug for at fortsætte beregningen.",
       tooLow: "Forbruget ser for lavt ud. Angiv mindst {{min}} kWh om året.",
       tooHigh: "Forbruget ser for højt ud. Angiv højst {{max}} kWh om året.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Hvordan er dit elforbrug normalt fordelt over året?",
@@ -512,6 +516,12 @@ export const da = {
         "Se beregnet kWp, inverterstørrelse, DC/AC-forhold, månedlig produktion og økonomisk værdi – og download rapporten som PDF.",
       ogDescription: "Beregnet dimensionering af dit solcelleanlæg med PDF-rapport.",
     },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
+    },
   },
   months: {
     short: ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
@@ -770,6 +780,7 @@ export const da = {
     appOnly: "Købet foretages i appen med din Apple-konto og er ikke tilgængeligt i browseren.",
     appleNote: "Håndteres af App Store.",
     priceLoading: "Henter pris…",
+    devContinue: "Dev: continue without payment",
   },
   history: {
     empty: "Du har endnu ingen gemte beregninger.",

@@ -63,6 +63,8 @@ export const pl = {
     error: "Wyszukiwanie adresu nie powiodło się.",
     info: "Adres jest używany wyłącznie do obliczenia nasłonecznienia w Twojej lokalizacji.",
     infoLabel: "Więcej informacji o adresie",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   roof: {
     title: "Twój dach",
@@ -104,6 +106,8 @@ export const pl = {
       required: "Podaj swoje zużycie energii, aby kontynuować obliczenia.",
       tooLow: "Zużycie wydaje się zbyt niskie. Podaj co najmniej {{min}} kWh rocznie.",
       tooHigh: "Zużycie wydaje się zbyt wysokie. Podaj najwyżej {{max}} kWh rocznie.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Jak zazwyczaj rozkłada się Twoje zużycie energii elektrycznej w ciągu roku?",
@@ -522,6 +526,12 @@ export const pl = {
         "Sprawdź obliczone kWp, rozmiar inwertera, współczynnik DC/AC, miesięczną produkcję i wartość ekonomiczną – i pobierz raport jako PDF.",
       ogDescription: "Obliczone wymiarowanie Twojej instalacji fotowoltaicznej z raportem PDF.",
     },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
+    },
   },
   months: {
     short: ["Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"],
@@ -783,6 +793,7 @@ export const pl = {
       "Zakup jest realizowany w aplikacji za pomocą Twojego konta Apple i nie jest dostępny w przeglądarce.",
     appleNote: "Obsługiwane przez App Store.",
     priceLoading: "Pobieranie ceny…",
+    devContinue: "Dev: continue without payment",
   },
   history: {
     empty: "Nie masz jeszcze żadnych zapisanych obliczeń.",

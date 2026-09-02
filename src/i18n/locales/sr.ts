@@ -61,6 +61,8 @@ export const sr = {
     error: "Претрага адресе није успела.",
     info: "Адреса се користи само за израчунавање сунчевог зрачења на вашој локацији.",
     infoLabel: "Више информација о адреси",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Премијум",
@@ -115,6 +117,8 @@ export const sr = {
       required: "Унесите своју потрошњу струје да бисте наставили прорачун.",
       tooLow: "То изгледа превише ниско. Унесите најмање {{min}} kWh годишње.",
       tooHigh: "То изгледа превише високо. Унесите највише {{max}} kWh годишње.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Како је ваша потрошња струје обично распоређена током године?",
@@ -500,6 +504,7 @@ export const sr = {
       ctaNoPrice: "Откључај",
     },
     priceLoading: "Преузимање цене…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Премијум",
       price: "{{price}}/год",
@@ -566,6 +571,12 @@ export const sr = {
       description:
         "Погледајте израчунате kWp, величину инвертора, DC/AC однос, месечну производњу и економску вредност - и преузмите извештај као PDF.",
       ogDescription: "Израчунато димензионисање вашег соларног система са PDF извештајем.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

@@ -62,6 +62,8 @@ export const et = {
     error: "Aadressi otsing ebaõnnestus.",
     info: "Aadressi kasutatakse ainult päikesekiirguse arvutamiseks teie asukohas.",
     infoLabel: "Rohkem teavet aadressi kohta",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   roof: {
     title: "Sinu katus",
@@ -102,6 +104,8 @@ export const et = {
       required: "Sisestage oma elektritarbimine, et arvutust jätkata.",
       tooLow: "Tarbimine tundub liiga väike. Sisestage vähemalt {{min}} kWh aastas.",
       tooHigh: "Tarbimine tundub liiga suur. Sisestage kõige rohkem {{max}} kWh aastas.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Kuidas jaotub sinu elektritarbimine tavaliselt aasta lõikes?",
@@ -514,6 +518,12 @@ export const et = {
         "Vaadake arvutatud kWp, inverteri suurust, DC/AC suhet, kuutoodangut ja majanduslikku väärtust – ning laadige aruanne PDF-ina alla.",
       ogDescription: "Teie päikesesüsteemi arvutatud dimensionering koos PDF-aruandega.",
     },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
+    },
   },
   months: {
     short: [
@@ -785,6 +795,7 @@ export const et = {
     appOnly: "Ost tehakse rakenduses teie Apple kontoga ega ole brauseris saadaval.",
     appleNote: "Käsitleb App Store.",
     priceLoading: "Hinna laadimine…",
+    devContinue: "Dev: continue without payment",
   },
   history: {
     empty: "Teil pole veel salvestatud arvutusi.",

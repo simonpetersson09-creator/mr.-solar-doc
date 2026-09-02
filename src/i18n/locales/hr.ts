@@ -62,6 +62,8 @@ export const hr = {
     error: "Pretraga adrese nije uspjela.",
     info: "Adresa se koristi isključivo za izračun sunčevog zračenja na vašoj lokaciji.",
     infoLabel: "Više informacija o adresi",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Premium",
@@ -116,6 +118,8 @@ export const hr = {
       required: "Unesite potrošnju struje za nastavak izračuna.",
       tooLow: "To izgleda premalo. Unesite najmanje {{min}} kWh godišnje.",
       tooHigh: "To izgleda previše. Unesite najviše {{max}} kWh godišnje.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Kako je vaša potrošnja struje obično raspoređena tijekom godine?",
@@ -503,6 +507,7 @@ export const hr = {
       ctaNoPrice: "Otključaj",
     },
     priceLoading: "Dohvaćanje cijene…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
       price: "{{price}}/god",
@@ -569,6 +574,12 @@ export const hr = {
       description:
         "Pogledajte izračunati kWp, veličinu invertora, DC/AC omjer, mjesečnu proizvodnju i ekonomsku vrijednost - i preuzmite izvještaj kao PDF.",
       ogDescription: "Izračunato dimenzioniranje vašeg solarnog sustava s PDF izvještajem.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {

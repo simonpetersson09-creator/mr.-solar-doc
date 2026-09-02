@@ -62,6 +62,8 @@ export const sv = {
     error: "Adressökningen misslyckades.",
     info: "Adressen används enbart för att få fram solinstrålningen på din plats.",
     infoLabel: "Mer information om adressen",
+    zoomIn: "Zooma in",
+    zoomOut: "Zooma ut",
   },
   premium: {
     title: "Premium",
@@ -115,6 +117,8 @@ export const sv = {
       required: "Ange din elförbrukning för att kunna räkna vidare.",
       tooLow: "Förbrukningen verkar för låg. Ange minst {{min}} kWh per år.",
       tooHigh: "Förbrukningen verkar för hög. Ange högst {{max}} kWh per år.",
+      monthOutOfRange: "En månad är mycket högre än de övriga. Kontrollera dina månadsvärden innan du går vidare.",
+      monthUneven: "En månad sticker ut från de övriga. Dubbelkolla värdet om det inte stämmer.",
     },
     shape: {
       question: "Hur brukar din elanvändning vara fördelad över året?",
@@ -504,6 +508,7 @@ export const sv = {
       ctaNoPrice: "Lås upp",
     },
     priceLoading: "Hämtar pris…",
+    devContinue: "Dev: fortsätt utan betalning",
     premium: {
       title: "Premium",
       price: "{{price}}/år",
@@ -570,6 +575,12 @@ export const sv = {
       description:
         "Se beräknad kWp, växelriktarstorlek, DC/AC-ratio, månadsproduktion och ekonomiskt värde – och ladda ner rapporten som PDF.",
       ogDescription: "Beräknad dimensionering av din solcellsanläggning med PDF-rapport.",
+    },
+    paywall: {
+      title: "Lås upp din beräkning — Mr. Solar Doc",
+      description:
+        "Lås upp din solcellsberäkning med ett engångsköp eller bli Premium med obegränsade beräkningar.",
+      ogDescription: "Lås upp hela solcellsberäkningen och PDF-rapporten.",
     },
   },
   months: {

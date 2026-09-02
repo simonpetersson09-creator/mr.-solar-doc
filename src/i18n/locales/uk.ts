@@ -59,6 +59,8 @@ export const uk = {
     error: "Не вдалося виконати пошук адреси.",
     info: "Адреса використовується лише для розрахунку сонячного випромінювання у вашому місці розташування.",
     infoLabel: "Більше інформації про адресу",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
   },
   premium: {
     title: "Преміум",
@@ -108,6 +110,8 @@ export const uk = {
       required: "Введіть своє споживання електроенергії, щоб продовжити розрахунок.",
       tooLow: "Це виглядає занадто низьким. Введіть щонайменше {{min}} kWh на рік.",
       tooHigh: "Це виглядає занадто високим. Введіть щонайбільше {{max}} kWh на рік.",
+      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
+      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
     },
     shape: {
       question: "Як зазвичай розподіляється ваше споживання електроенергії протягом року?",
@@ -494,6 +498,7 @@ export const uk = {
       ctaNoPrice: "Розблокувати",
     },
     priceLoading: "Отримання ціни…",
+    devContinue: "Dev: continue without payment",
     premium: {
       title: "Преміум",
       price: "{{price}}/рік",
@@ -558,6 +563,12 @@ export const uk = {
       description:
         "Перегляньте розраховані kWp, розмір інвертора, співвідношення DC/AC, місячне виробництво та економічну вартість - і завантажте звіт у форматі PDF.",
       ogDescription: "Розрахований розмір вашої сонячної системи з PDF-звітом.",
+    },
+    paywall: {
+      title: "Unlock your calculation - Mr. Solar Doc",
+      description:
+        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
+      ogDescription: "Unlock the full solar calculation and the PDF report.",
     },
   },
   months: {
