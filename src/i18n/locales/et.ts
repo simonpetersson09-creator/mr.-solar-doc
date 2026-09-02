@@ -243,6 +243,8 @@ export const et = {
     confirmedGrid: "Võrguandmed kinnitatud",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Arvutust ei õnnestunud lõpetada. Kontrollige katuse andmeid ja proovige uuesti.",
     connection: {

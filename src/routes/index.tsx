@@ -107,7 +107,7 @@ function WizardPage() {
           // A free recalculation on an already paid calculation opens directly.
           if (created.reused) {
             toast.success(
-              i18n.t("result.revisionUsed", { count: created.revisionsLeft }),
+              i18n.t("result.revisionUsed", { left: created.revisionsLeft }),
             );
             void navigate({ to: "/resultat" });
             return;

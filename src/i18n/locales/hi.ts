@@ -255,6 +255,8 @@ export const hi = {
     invalid: "6 और 400 A के बीच मुख्य फ्यूज़ दर्ज करें।",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable: "गणना पूरी नहीं हो सकी। कृपया छत का विवरण जांचें और पुनः प्रयास करें।",
     connection: {
       contractedKva: "अनुबंधित पावर (kVA)",

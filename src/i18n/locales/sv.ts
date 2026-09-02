@@ -502,6 +502,8 @@ export const sv = {
     calculatedAt: "Beräkningsdatum",
     noCalculation: "Ingen beräkning hittades. Börja om från adressen.",
     locked: "Beräkningen är låst. Slutför köpet för att se resultatet.",
+    revisionUsed: "Ändringen ingår i ditt köp. {{left}} ändringar kvar inom 24 timmar.",
+    revisionsLeft: "Du kan ändra den här beräkningen {{left}} gånger till inom 24 timmar efter köpet.",
     calculationUnavailable:
       "Beräkningen kunde inte slutföras. Kontrollera takuppgifterna och försök igen.",
     gridTooSmallTitle: "Anslutningen är för liten",

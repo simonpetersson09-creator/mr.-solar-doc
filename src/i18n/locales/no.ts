@@ -256,6 +256,8 @@ export const no = {
     invalid: "Angi en hovedsikring mellom 6 og 400 A.",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Beregningen kunne ikke fullføres. Kontroller takopplysningene og prøv igjen.",
     connection: {

@@ -247,6 +247,8 @@ export const de = {
     confirmedGrid: "Netzdaten bestätigt",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Die Berechnung konnte nicht abgeschlossen werden. Bitte prüfen Sie die Dachangaben und versuchen Sie es erneut.",
     connection: {

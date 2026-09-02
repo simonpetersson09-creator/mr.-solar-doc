@@ -499,6 +499,8 @@ export const en = {
     calculatedAt: "Calculation date",
     noCalculation: "No calculation found. Start again from the address.",
     locked: "This calculation is locked. Complete the purchase to see the result.",
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "The calculation could not be completed. Please check the roof details and try again.",
     gridTooSmallTitle: "The connection is too small",

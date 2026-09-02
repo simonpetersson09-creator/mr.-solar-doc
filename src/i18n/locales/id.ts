@@ -249,6 +249,8 @@ export const id = {
     invalid: "Masukkan sekring utama antara 6 dan 400 A.",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Perhitungan tidak dapat diselesaikan. Periksa detail atap dan coba lagi.",
     connection: { contractedKva: "Daya kontrak (kVA)", contractedKw: "Daya kontrak (kW)" },

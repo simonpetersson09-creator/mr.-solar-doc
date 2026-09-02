@@ -252,6 +252,8 @@ export const he = {
     invalid: 'הזינו מאמ"ת ראשי בין 6 ל-400 A.',
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable: "לא ניתן היה להשלים את החישוב. בדוק את פרטי הגג ונסה שוב.",
     connection: {
       contractedKva: "הספק מוסכם (kVA)",

@@ -251,6 +251,8 @@ export const fr = {
     confirmedGrid: "Données réseau confirmées",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Le calcul n'a pas pu être effectué. Vérifiez les informations sur la toiture et réessayez.",
     connection: {

@@ -242,6 +242,8 @@ export const sk = {
     confirmedGrid: "Sieťové údaje potvrdené",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Výpočet sa nepodarilo dokončiť. Skontrolujte údaje o streche a skúste to znova.",
     connection: {

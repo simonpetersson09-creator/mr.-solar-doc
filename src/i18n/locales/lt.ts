@@ -245,6 +245,8 @@ export const lt = {
     confirmedGrid: "Tinklo duomenys patvirtinti",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Skaičiavimo nepavyko užbaigti. Patikrinkite stogo duomenis ir bandykite dar kartą.",
     connection: {

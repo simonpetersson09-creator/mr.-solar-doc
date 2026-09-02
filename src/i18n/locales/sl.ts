@@ -240,6 +240,8 @@ export const sl = {
     confirmedGrid: "Omrežni podatki potrjeni",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Izračuna ni bilo mogoče dokončati. Preverite podatke o strehi in poskusite znova.",
     connection: {

@@ -257,6 +257,8 @@ export const ro = {
     invalid: "Introdu o siguranță principală între 6 și 400 A.",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Calculul nu a putut fi finalizat. Verificați detaliile acoperișului și încercați din nou.",
     connection: {

@@ -248,6 +248,8 @@ export const uk = {
     invalid: "Введіть головний запобіжник від 6 до 400 A.",
   },
   result: {
+    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
+    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
       "Не вдалося завершити розрахунок. Перевірте дані даху та спробуйте ще раз.",
     connection: {
