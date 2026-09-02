@@ -20,6 +20,9 @@ import {
   SPLIT_PHASE_LINE_TO_NEUTRAL_V,
   type ServiceType,
 } from "./grid";
+import {
+  connectionCapacityAmount,
+} from "./connection-capacity";
 import type {
   ConnectionCapacity,
   ConnectionCapacityInputType,
@@ -40,6 +43,14 @@ export interface ConnectionOption {
   capacity: ConnectionCapacity;
   /** e.g. "3 x " — amperage options only; prepended to the formatted amount. */
   phasePrefix?: string;
+  /**
+   * Phase model this subscription necessarily implies in the local market,
+   * e.g. a French subscription above 12 kVA is always triphasé. This is NOT
+   * part of the capacity (the kVA/kW figure is a total either way) — it only
+   * tells the app which service the household actually has, which decides
+   * which inverter products exist for it.
+   */
+  impliedServiceType?: ServiceType;
 }
 
 
@@ -165,6 +176,24 @@ function kvaOption(kva: number): ConnectionOption {
 /** Contracted active power (kW) is likewise a total, never per phase. */
 function kwOption(kw: number): ConnectionOption {
   return { id: `kw${kw}`, capacity: { type: "contracted-kw", kw } };
+}
+
+/**
+ * Marks the contracted options that can only exist on a three-phase service.
+ * Every market that sells contracted power has a single-phase ceiling; above
+ * it the household is on three phases whether or not it knows the term.
+ * The capacity itself is untouched — only the implied service is recorded.
+ */
+function threePhaseAbove(
+  options: ConnectionOption[],
+  thresholdKw: number,
+): ConnectionOption[] {
+  return options.map((option) => {
+    const amount = connectionCapacityAmount(option.capacity);
+    return amount > thresholdKw + 1e-9
+      ? { ...option, impliedServiceType: "three-phase" as ServiceType }
+      : option;
+  });
 }
 
 
@@ -407,7 +436,8 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   FR: config(
     "FR",
     "contracted-kva",
-    [3, 6, 9, 12, 15, 18, 24, 30, 36].map((kva) => kvaOption(kva)),
+    // Monophasé stops at 12 kVA; every larger subscription is triphasé.
+    threePhaseAbove([3, 6, 9, 12, 15, 18, 24, 30, 36].map((kva) => kvaOption(kva)), 12),
     SINGLE_PHASE_230,
     { localTerm: "Puissance souscrite" },
   ),
@@ -452,7 +482,8 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   PL: config(
     "PL",
     "contracted-kw",
-    [3, 4, 5, 6, 8, 10, 12, 14, 17, 20, 25, 30].map((kw) => kwOption(kw)),
+    // A Polish single-phase connection tops out around 11 kW.
+    threePhaseAbove([3, 4, 5, 6, 8, 10, 12, 14, 17, 20, 25, 30].map((kw) => kwOption(kw)), 11),
     SINGLE_PHASE_230,
     { localTerm: "Moc umowna" },
   ),
@@ -496,7 +527,8 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
   IE: config(
     "IE",
     "contracted-kva",
-    [12, 16].map((kva) => kvaOption(kva)),
+    // 12 kVA is the Irish single-phase domestic maximum.
+    threePhaseAbove([12, 16].map((kva) => kvaOption(kva)), 12),
     SINGLE_PHASE_230,
     { localTerm: "Maximum Import Capacity (MIC)" },
   ),
@@ -557,7 +589,7 @@ export const COUNTRY_CONNECTION_CONFIGS: Record<string, CountryConnectionConfig>
    * (85 / 135 / 250 kVA) exist but are not residential; any other value can
    * still be typed manually.
    */
-  GR: config("GR", "contracted-kva", [8, 12, 15, 25, 35, 55].map((kva) => kvaOption(kva)), SINGLE_PHASE_230, {
+  GR: config("GR", "contracted-kva", threePhaseAbove([8, 12, 15, 25, 35, 55].map((kva) => kvaOption(kva)), 15), SINGLE_PHASE_230, {
     localTerm: "Ισχύς παροχής",
   }),
 

@@ -24,6 +24,7 @@ import {
   PHASE_COUNT_FOR_SERVICE_TYPE,
   SERVICE_TYPE_FOR_PHASE_COUNT,
   splitPhaseLineToNeutral,
+  voltageForServiceSwitch,
   type PhaseCount,
   type ServiceType,
 } from "@/config/grid";
@@ -115,7 +116,11 @@ export interface WizardState {
    * profile is authoritative and is applied together with the capacity, so a
    * "63 A" choice always means what the country says it means.
    */
-  selectConnectionOption: (optionId: string, capacity: ConnectionCapacity) => void;
+  selectConnectionOption: (
+    optionId: string,
+    capacity: ConnectionCapacity,
+    impliedServiceType?: ServiceType,
+  ) => void;
   /** Manually stated capacity (custom mode); uses the manual grid profile. */
   setConnectionCapacity: (capacity: ConnectionCapacity | null) => void;
   setGridConfirmed: (confirmed: boolean) => void;
@@ -260,7 +265,7 @@ export const useWizardStore = create<WizardState>()(
        * always 3 x 400 V — never whatever the user last tried in the
        * advanced settings.
        */
-      selectConnectionOption: (optionId, capacity) =>
+      selectConnectionOption: (optionId, capacity, impliedServiceType) =>
         set((state) => ({
           connectionCapacity: capacity,
           connectionOptionId: optionId,
@@ -278,7 +283,14 @@ export const useWizardStore = create<WizardState>()(
                 lineToNeutralVoltageV: capacity.lineToNeutralVoltageV ?? null,
                 frequencyHz: capacity.frequencyHz ?? state.gridFrequencyHz,
               })
-            : {}),
+            : // A contracted kVA/kW option carries no grid profile, but the
+              // subscription level can still imply the phase model.
+              impliedServiceType
+              ? mergeGrid(state, {
+                  serviceType: impliedServiceType,
+                  voltageV: voltageForServiceSwitch(impliedServiceType, state.gridVoltageV),
+                })
+              : {}),
         })),
       /**
        * Manually stated capacity (custom mode). `mainFuseAmp` is kept in sync
