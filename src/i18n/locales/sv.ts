@@ -87,6 +87,7 @@ export const sv = {
     manual: "Manuellt – exakt riktning",
     manualHint: "Dra pilen så att den pekar i takets riktning. 180° = rakt söderut.",
     tilt: "Taklutning",
+    dataSourceNote: "Solinstrålning från EU:s PVGIS-databas",
     tiltDegrees: "Grader",
     disclaimer: "Beräkningen bygger på solinstrålningsdata för din plats. Verklig produktion kan avvika.",
     compass: {
@@ -399,6 +400,7 @@ export const sv = {
     paybackYearsUnit: "år",
     investmentLevelTitle: "Maxinvestering vid din valda återbetalningstid",
     investmentPerKwLabel: "Maxinvestering per kW",
+    investmentPerKwHelp: "Så mycket per installerad kW motsvarar maxinvesteringen.",
     panelPowerLabel: "Paneleffekt",
     investmentLevelBasis: "Baserat på din valda återbetalningstid på {{years}} år",
     investmentLevelNote:

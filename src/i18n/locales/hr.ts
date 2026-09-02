@@ -87,6 +87,7 @@ export const hr = {
     manual: "Ručno – točan smjer",
     manualHint: "Povucite strelicu tako da pokazuje smjer krova. 180° = točno jug.",
     tilt: "Nagib krova",
+    dataSourceNote: "Sunčevo zračenje iz baze podataka PVGIS EU-a",
     tiltDegrees: "Stupnjevi",
     disclaimer: "Izračun se temelji na podacima o sunčevom zračenju za vašu lokaciju. Stvarna proizvodnja može odstupati.",
     compass: {
@@ -399,6 +400,7 @@ export const hr = {
     paybackYearsUnit: "godina",
     investmentLevelTitle: "Cijena nakon odabranog razdoblja povrata",
     investmentPerKwLabel: "Trošak investicije po kW",
+    investmentPerKwHelp: "Toliko iznosi najveća investicija po instaliranom kW.",
     panelPowerLabel: "Snaga panela",
     investmentLevelBasis: "Na temelju odabranog razdoblja povrata od {{years}} godina",
     investmentLevelNote:

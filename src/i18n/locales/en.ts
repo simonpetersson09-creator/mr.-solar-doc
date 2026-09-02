@@ -87,6 +87,7 @@ export const en = {
     manual: "Manual – exact direction",
     manualHint: "Drag the arrow so it points in the roof's direction. 180° = due south.",
     tilt: "Roof tilt",
+    dataSourceNote: "Solar irradiation from the EU PVGIS database",
     tiltDegrees: "Degrees",
     disclaimer: "The calculation uses solar irradiation data for your location. Actual production may vary.",
     compass: {
@@ -397,6 +398,7 @@ export const en = {
     paybackYearsUnit: "years",
     investmentLevelTitle: "Price after your selected payback period",
     investmentPerKwLabel: "Investment cost per kW",
+    investmentPerKwHelp: "This is what the maximum investment corresponds to per installed kW.",
     panelPowerLabel: "Panel power",
     investmentLevelBasis: "Based on your selected payback period of {{years}} years",
     investmentLevelNote:

@@ -87,6 +87,7 @@ export const hu = {
     manual: "Kézi – pontos irány",
     manualHint: "Húzza a nyilat úgy, hogy a tető irányába mutasson. 180° = pontosan dél.",
     tilt: "Tető dőlésszöge",
+    dataSourceNote: "Napsugárzás az EU PVGIS adatbázisából",
     tiltDegrees: "Fok",
     disclaimer: "A számítás a helyszínre vonatkozó napsugárzási adatokat használja. A tényleges termelés eltérhet.",
     compass: {
@@ -404,6 +405,7 @@ export const hu = {
     paybackYearsUnit: "év",
     investmentLevelTitle: "Ár a kiválasztott megtérülési idő után",
     investmentPerKwLabel: "Beruházási költség kW-onként",
+    investmentPerKwHelp: "Ennyit jelent a maximális beruházás telepített kW-onként.",
     panelPowerLabel: "Panel teljesítménye",
     investmentLevelBasis: "A kiválasztott {{years}} éves megtérülési idő alapján",
     investmentLevelNote:

@@ -85,6 +85,7 @@ export const uk = {
     manualHint:
       "Перетягніть стрілку так, щоб вона вказувала напрямок даху. 180° = точно на південь.",
     tilt: "Кут нахилу даху",
+    dataSourceNote: "Сонячна радіація з бази даних PVGIS ЄС",
     tiltDegrees: "Градуси",
     disclaimer: "Розрахунок використовує дані сонячної радіації для вашого місця. Фактичне виробництво може відрізнятися.",
     compass: { n: "Пн", e: "Сх", s: "Пд", w: "Зх" },
@@ -395,6 +396,7 @@ export const uk = {
     paybackYearsUnit: "років",
     investmentLevelTitle: "Ціна після обраного вами терміну окупності",
     investmentPerKwLabel: "Вартість інвестиції на кВт",
+    investmentPerKwHelp: "Стільки становить максимальна інвестиція на встановлений кВт.",
     panelPowerLabel: "Потужність панелі",
     investmentLevelBasis: "На основі обраного вами терміну окупності {{years}} років",
     investmentLevelNote:

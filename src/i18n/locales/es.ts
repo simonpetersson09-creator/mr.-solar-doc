@@ -87,6 +87,7 @@ export const es = {
     manual: "Manual – dirección exacta",
     manualHint: "Arrastra la flecha para que apunte en la dirección del tejado. 180° = sur exacto.",
     tilt: "Inclinación del tejado",
+    dataSourceNote: "Irradiación solar de la base de datos PVGIS de la UE",
     tiltDegrees: "Grados",
     disclaimer: "El cálculo usa datos de irradiación solar de tu ubicación. La producción real puede variar.",
     compass: {
@@ -404,6 +405,7 @@ export const es = {
     paybackYearsUnit: "años",
     investmentLevelTitle: "Precio según el plazo de amortización seleccionado",
     investmentPerKwLabel: "Coste de inversión por kW",
+    investmentPerKwHelp: "Esto es lo que supone la inversión máxima por kW instalado.",
     panelPowerLabel: "Potencia de los paneles",
     investmentLevelBasis: "Basado en tu plazo de amortización seleccionado de {{years}} años",
     investmentLevelNote:

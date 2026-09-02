@@ -88,6 +88,7 @@ export const el = {
     manualHint:
       "Σύρετε το βέλος ώστε να δείχνει προς την κατεύθυνση της στέγης. 180° = ακριβώς νότος.",
     tilt: "Κλίση στέγης",
+    dataSourceNote: "Ηλιακή ακτινοβολία από τη βάση δεδομένων PVGIS της ΕΕ",
     tiltDegrees: "Μοίρες",
     disclaimer: "Ο υπολογισμός χρησιμοποιεί δεδομένα ηλιακής ακτινοβολίας για την τοποθεσία σας. Η πραγματική παραγωγή μπορεί να διαφέρει.",
     compass: {
@@ -412,6 +413,7 @@ export const el = {
     paybackYearsUnit: "έτη",
     investmentLevelTitle: "Τιμή μετά τον επιλεγμένο χρόνο απόσβεσης",
     investmentPerKwLabel: "Κόστος επένδυσης ανά kW",
+    investmentPerKwHelp: "Τόσο αντιστοιχεί η μέγιστη επένδυση ανά εγκατεστημένο kW.",
     panelPowerLabel: "Ισχύς πάνελ",
     investmentLevelBasis: "Βάσει του επιλεγμένου χρόνου απόσβεσης {{years}} ετών",
     investmentLevelNote:

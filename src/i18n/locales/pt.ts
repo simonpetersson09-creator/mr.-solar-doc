@@ -87,6 +87,7 @@ export const pt = {
     manual: "Manual – direção exata",
     manualHint: "Arraste a seta para que aponte na direção do telhado. 180° = sul exato.",
     tilt: "Inclinação do telhado",
+    dataSourceNote: "Irradiação solar da base de dados PVGIS da UE",
     tiltDegrees: "Graus",
     disclaimer: "O cálculo usa dados de irradiação solar da sua localização. A produção real pode variar.",
     compass: {
@@ -401,6 +402,7 @@ export const pt = {
     paybackYearsUnit: "anos",
     investmentLevelTitle: "Preço com base no período de retorno selecionado",
     investmentPerKwLabel: "Custo de investimento por kW",
+    investmentPerKwHelp: "É isto que o investimento máximo representa por kW instalado.",
     panelPowerLabel: "Potência dos painéis",
     investmentLevelBasis: "Baseado no período de retorno selecionado de {{years}} anos",
     investmentLevelNote:

@@ -87,6 +87,7 @@ export const bg = {
     manual: "Ръчно – точна посока",
     manualHint: "Преместете стрелката така, че да сочи посоката на покрива. 180° = точно юг.",
     tilt: "Наклон на покрива",
+    dataSourceNote: "Слънчева радиация от базата данни PVGIS на ЕС",
     tiltDegrees: "Градуси",
     disclaimer: "Изчислението използва данни за слънчевата радиация за вашето местоположение. Реалното производство може да се различава.",
     compass: {
@@ -404,6 +405,7 @@ export const bg = {
     paybackYearsUnit: "години",
     investmentLevelTitle: "Цена след избрания от вас период на изплащане",
     investmentPerKwLabel: "Инвестиционна цена на kW",
+    investmentPerKwHelp: "Толкова се пада от максималната инвестиция на инсталиран kW.",
     panelPowerLabel: "Мощност на панела",
     investmentLevelBasis: "На база избрания от вас период на изплащане от {{years}} години",
     investmentLevelNote:

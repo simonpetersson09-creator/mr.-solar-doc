@@ -71,6 +71,7 @@ export const fi = {
     manual: "Manuaalisesti – tarkka suunta",
     manualHint: "Vedä nuolta niin, että se osoittaa katon suuntaan. 180° = suoraan etelään.",
     tilt: "Kattokaltevuus",
+    dataSourceNote: "Auringonsäteily EU:n PVGIS-tietokannasta",
     tiltDegrees: "Astetta",
     disclaimer: "Laskelma perustuu sijaintisi säteilytietoihin. Todellinen tuotanto voi poiketa.",
     compass: {
@@ -384,6 +385,7 @@ export const fi = {
       "Katso, mikä investointitaso vastaa erilaisia yksinkertaisia takaisinmaksuaikoja.",
     investmentLevelTitle: "Hinta valitsemasi takaisinmaksuajan mukaan",
     investmentPerKwLabel: "Investointikustannus per kW",
+    investmentPerKwHelp: "Näin paljon asennettua kW kohti enimmäisinvestointi vastaa.",
     panelPowerLabel: "Paneelien teho",
     investmentLevelBasis: "Perustuu valittuun {{years}} vuoden takaisinmaksuaikaan",
     investmentLevelNote:

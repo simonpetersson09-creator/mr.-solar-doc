@@ -72,6 +72,7 @@ export const lv = {
     manual: "Manuāli – precīzs virziens",
     manualHint: "Velciet bultiņu tā, lai tā rāda jumta virzienā. 180° = tieši uz dienvidiem.",
     tilt: "Jumta slīpums",
+    dataSourceNote: "Saules starojums no ES PVGIS datubāzes",
     tiltDegrees: "Grādi",
     disclaimer: "Aprēķins izmanto jūsu atrašanās vietas saules starojuma datus. Faktiskā ražošana var atšķirties.",
     compass: {
@@ -387,6 +388,7 @@ export const lv = {
     paybackSubtitle: "Skatiet, kāds investīciju līmenis atbilst dažādiem atmaksas periodiem.",
     investmentLevelTitle: "Cena atbilstoši jūsu izvēlētajam atmaksāšanās periodam",
     investmentPerKwLabel: "Investīciju izmaksas uz kW",
+    investmentPerKwHelp: "Tik daudz atbilst maksimālā investīcija uz uzstādīto kW.",
     panelPowerLabel: "Paneļu jauda",
     investmentLevelBasis: "Balstīts uz izvēlēto {{years}} gadu atmaksas laiku",
     investmentLevelNote:

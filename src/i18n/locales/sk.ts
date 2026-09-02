@@ -72,6 +72,7 @@ export const sk = {
     manual: "Manuálne – presný smer",
     manualHint: "Potiahnite šípku tak, aby ukazovala smer strechy. 180° = priamo na juh.",
     tilt: "Sklon strechy",
+    dataSourceNote: "Slnečné žiarenie z databázy EÚ PVGIS",
     tiltDegrees: "Stupne",
     disclaimer: "Výpočet vychádza z údajov o slnečnom žiarení pre vašu lokalitu. Skutočná výroba sa môže líšiť.",
     compass: {
@@ -384,6 +385,7 @@ export const sk = {
     paybackSubtitle: "Pozrite si, aká úroveň investície zodpovedá rôznym dobám návratnosti.",
     investmentLevelTitle: "Cena podľa vami zvolenej doby návratnosti",
     investmentPerKwLabel: "Investičné náklady na kW",
+    investmentPerKwHelp: "Toľko zodpovedá maximálna investícia na inštalovaný kW.",
     panelPowerLabel: "Výkon panelov",
     investmentLevelBasis: "Na základe zvolenej návratnosti {{years}} rokov",
     investmentLevelNote:

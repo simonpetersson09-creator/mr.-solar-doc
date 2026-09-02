@@ -70,6 +70,7 @@ export const sl = {
     manual: "Ročno – natančna smer",
     manualHint: "Povlecite puščico tako, da kaže v smer strehe. 180° = točno jug.",
     tilt: "Naklon strehe",
+    dataSourceNote: "Sončno obsevanje iz zbirke PVGIS EU",
     tiltDegrees: "Stopinje",
     disclaimer: "Izračun temelji na podatkih o sončnem obsevanju za vašo lokacijo. Dejanska proizvodnja lahko odstopa.",
     compass: {
@@ -384,6 +385,7 @@ export const sl = {
     paybackSubtitle: "Poglejte, katera raven investicije ustreza različnim dobam vračila.",
     investmentLevelTitle: "Cena po izbranem obdobju vračila",
     investmentPerKwLabel: "Strošek naložbe na kW",
+    investmentPerKwHelp: "Toliko znaša najvišja naložba na nameščen kW.",
     panelPowerLabel: "Moč panelov",
     investmentLevelBasis: "Na podlagi izbrane dobe vračila {{years}} let",
     investmentLevelNote:

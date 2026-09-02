@@ -73,6 +73,7 @@ export const lt = {
     manual: "Rankinis – tiksli kryptis",
     manualHint: "Vilkite rodyklę, kad ji rodytų stogo kryptį. 180° = tiesiai į pietus.",
     tilt: "Stogo nuolydis",
+    dataSourceNote: "Saulės spinduliuotė iš ES PVGIS duomenų bazės",
     tiltDegrees: "Laipsniai",
     disclaimer: "Skaičiavimas naudoja jūsų vietovės saulės spinduliuotės duomenis. Tikroji gamyba gali skirtis.",
     compass: {
@@ -390,6 +391,7 @@ export const lt = {
       "Pažiūrėkite, koks investicijos lygis atitinka skirtingus atsipirkimo terminus.",
     investmentLevelTitle: "Kaina pagal jūsų pasirinktą atsipirkimo laikotarpį",
     investmentPerKwLabel: "Investicijų kaina už kW",
+    investmentPerKwHelp: "Tiek atitinka maksimali investicija vienam įrengtam kW.",
     panelPowerLabel: "Plokščių galia",
     investmentLevelBasis: "Pagal pasirinktą {{years}} metų atsipirkimo laikotarpį",
     investmentLevelNote:

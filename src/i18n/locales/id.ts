@@ -84,6 +84,7 @@ export const id = {
     manual: "Manual – arah pasti",
     manualHint: "Geser panah agar mengarah ke arah atap. 180° = tepat selatan.",
     tilt: "Kemiringan atap",
+    dataSourceNote: "Radiasi surya dari basis data PVGIS Uni Eropa",
     tiltDegrees: "Derajat",
     disclaimer: "Perhitungan menggunakan data radiasi matahari untuk lokasi Anda. Produksi aktual dapat berbeda.",
     compass: { n: "U", e: "T", s: "S", w: "B" },
@@ -392,6 +393,7 @@ export const id = {
     paybackYearsUnit: "tahun",
     investmentLevelTitle: "Harga setelah periode pengembalian modal yang Anda pilih",
     investmentPerKwLabel: "Biaya investasi per kW",
+    investmentPerKwHelp: "Sebesar inilah investasi maksimum per kW terpasang.",
     panelPowerLabel: "Daya panel",
     investmentLevelBasis:
       "Berdasarkan periode pengembalian modal pilihan Anda selama {{years}} tahun",

@@ -87,6 +87,7 @@ export const ro = {
     manual: "Manual – direcție exactă",
     manualHint: "Trage săgeata astfel încât să indice direcția acoperișului. 180° = exact sud.",
     tilt: "Înclinare acoperiș",
+    dataSourceNote: "Radiație solară din baza de date PVGIS a UE",
     tiltDegrees: "Grade",
     disclaimer: "Calculul folosește date de radiație solară pentru locația ta. Producția reală poate diferi.",
     compass: {
@@ -405,6 +406,7 @@ export const ro = {
     paybackYearsUnit: "ani",
     investmentLevelTitle: "Preț după perioada de amortizare selectată",
     investmentPerKwLabel: "Cost de investiție pe kW",
+    investmentPerKwHelp: "Atât reprezintă investiția maximă pe kW instalat.",
     panelPowerLabel: "Puterea panoului",
     investmentLevelBasis: "Bazat pe perioada de amortizare selectată de {{years}} ani",
     investmentLevelNote:
