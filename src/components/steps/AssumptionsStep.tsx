@@ -59,7 +59,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   const currency = result?.economics.currency ?? market.currency;
   // Hard plausibility ceiling on the price fields: catches decimal/unit slips
   // (144 instead of 1,44) that would otherwise look like a normal result.
-  const countryCode = useWizardStore.getState().location?.countryCode ?? null;
+  const countryCode = useWizardStore((s) => s.location?.countryCode ?? null);
   const maxPricePerKwh = maxPlausiblePricePerKwh(countryCode);
   // Provenance drives the wording: an automatic estimate is shown with "≈",
   // a manual choice is presented as the user's own assumption.
