@@ -863,6 +863,22 @@ export function generateReportBlob(options: ReportOptions): Blob {
     (f["balanceNote"] ?? "").replace("{{percent}}", formatNumber(ratioPercent, locale)),
   );
 
+  // Payback scenarios as cards, directly under the annual balance: the reader
+  // sees the investment ceiling for each payback time before any technical
+  // detail. Same engine values as the results page.
+  if (!economicsIncomplete && result.investmentScenarios.length > 1) {
+    report.sectionTitle(f["paybackScenariosTitle"] ?? "");
+    report.highlights(
+      result.investmentScenarios.map((scenario) => ({
+        label: `${formatNumber(scenario.paybackYears, locale)} ${f["yearsUnit"] ?? ""}${
+          scenario.selected ? ` \u00b7 ${f["paybackScenarioSelected"] ?? ""}` : ""
+        }`,
+        value: money(scenario.maxInvestmentRounded),
+      })),
+    );
+    report.paragraph(f["paybackScenariosHelp"] ?? "");
+  }
+
   // Method line: mirrors the assumptions actually used, so the summary can never
   // claim "unchanged values" while the projection applies a yearly change.
   report.paragraph(
@@ -874,8 +890,9 @@ export function generateReportBlob(options: ReportOptions): Blob {
       .replace("{{priceChange}}", formatDecimal(priceChangePercent, locale, 1)),
   );
 
+  // Page 2 starts with the recommended sizing.
+  report.pageBreak();
 
-  report.softBreak(70);
 
   if (gridUnverified) {
     report.paragraph(`${labels.gridUnverifiedTitle}: ${labels.gridUnverifiedWarning}`);
@@ -958,7 +975,9 @@ export function generateReportBlob(options: ReportOptions): Blob {
     labels.origin,
   );
 
-  report.softBreak(80);
+  // Page 3 starts with production.
+  report.pageBreak();
+
   report.sectionTitle(labels.production);
   report.rows(
     [
@@ -1208,21 +1227,8 @@ export function generateReportBlob(options: ReportOptions): Blob {
       labels.origin,
     );
   }
-  // Payback scenarios: identical values to the result page (engine-provided).
-  if (!economicsIncomplete && result.investmentScenarios.length > 1) {
-    report.subheading(f["paybackScenariosTitle"] ?? "");
-    report.rows(
-      result.investmentScenarios.map((scenario) => ({
-        label: `${formatNumber(scenario.paybackYears, locale)} ${f["yearsUnit"] ?? ""}${
-          scenario.selected ? ` \u00b7 ${f["paybackScenarioSelected"] ?? ""}` : ""
-        }`,
-        value: money(scenario.maxInvestmentRounded),
-        origin: "calculated" as const,
-      })),
-      labels.origin,
-    );
-    report.paragraph(f["paybackScenariosHelp"] ?? "");
-  }
+  // Payback scenarios are presented as cards on page 1, not repeated here.
+
 
   report.paragraph(f["investmentNote"] ?? "");
   if (result.investment.quotePrice != null) report.paragraph(labels.quoteNote);
