@@ -62,14 +62,28 @@ export const EU_THREE_PHASE_INVERTER_SIZES_KW = [
  * product family from the EU one — a "5 kW EU three-phase" unit cannot be
  * installed on a 120/240 V service.
  */
-export const NA_SPLIT_PHASE_INVERTER_SIZES_KW = [3, 3.8, 5, 6, 7.6, 9.6, 11.4];
+export const NA_SPLIT_PHASE_INVERTER_SIZES_KW = [
+  3, 3.8, 5, 6, 7.6, 9.6, 11.4,
+  // Above 11.4 kW the North-American market moves to the 208/240 V commercial
+  // classes (e.g. SolarEdge SE14.4K/SE20K US, SMA Tripower X). Without them
+  // the catalogue has a hole between 11.4 and 22.8 kW and a realistic 15 kW
+  // installation cannot be represented at all.
+  14.4, 15, 17.3, 19.2, 20, 24, 30,
+];
 
 /**
  * Japan: single-phase three-wire 100/200 V. Residential power conditioners are
  * sold in fixed classes; 9.9 kW is the top of the ordinary residential range
  * (the 10 kW threshold is a regulatory boundary in Japan).
  */
-export const JP_SPLIT_PHASE_INVERTER_SIZES_KW = [2, 2.75, 4, 4.4, 5.5, 5.9, 9.9];
+export const JP_SPLIT_PHASE_INVERTER_SIZES_KW = [
+  2, 2.75, 4, 4.4, 5.5, 5.9, 9.9,
+  // At and above 10 kW a Japanese installation is a low-voltage (低圧)
+  // connection with three-phase 200 V power conditioners, sold in these
+  // classes up to the 50 kW low-voltage boundary. Without them the catalogue
+  // stops at 2 x 9.9 kW even where the connection allows far more.
+  10, 12.5, 15, 20, 25, 30, 40, 49.5,
+];
 
 /** Countries whose split-phase product market is the Japanese one. */
 const JP_SPLIT_PHASE_COUNTRIES = new Set(["JP"]);
@@ -100,16 +114,16 @@ const NA_SPLIT_PHASE_CATALOG: InverterCatalog = {
   id: "na-split-phase",
   serviceType: "split-phase",
   unitSizesKw: NA_SPLIT_PHASE_INVERTER_SIZES_KW,
-  // Larger North-American residential arrays are built as 2 x 7.6 / 2 x 9.6 kW,
-  // never as one oversized split-phase product.
-  maxUnitCount: 2,
+  // Residential arrays are commonly built as 2 x 7.6 / 2 x 9.6 kW; three units
+  // is the practical ceiling before the design becomes a commercial one.
+  maxUnitCount: 3,
 };
 
 const JP_SPLIT_PHASE_CATALOG: InverterCatalog = {
   id: "jp-split-phase",
   serviceType: "split-phase",
   unitSizesKw: JP_SPLIT_PHASE_INVERTER_SIZES_KW,
-  maxUnitCount: 2,
+  maxUnitCount: 3,
 };
 
 /** The catalogue that applies to a service type in a given country. */
