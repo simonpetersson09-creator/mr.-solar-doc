@@ -12,10 +12,13 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 const nativeBuild = process.env["CAP_BUILD"] === "1";
 
 export default defineConfig({
-  tanstackStart: {
-    // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
-    // nitro/vite builds from this
-    server: { entry: "server" },
-    ...(nativeBuild ? { spa: { enabled: true } } : {}),
-  },
+  tanstackStart: nativeBuild
+    ? // The native bundle has no server of its own, so the SSR error wrapper is
+      // not used; the prerenderer requires the default server entry.
+      { spa: { enabled: true } }
+    : {
+        // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
+        // nitro/vite builds from this
+        server: { entry: "server" },
+      },
 });
