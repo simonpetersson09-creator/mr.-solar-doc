@@ -787,6 +787,7 @@ export const el = {
     installerChecklistTitle: "To go through with your installer",
     installerChecklistItems: [
       "Confirm the roof's orientation, tilt and any shading on site.",
+      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
       "Check the main fuse and connection terms with your grid operator.",
       "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
       "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
