@@ -720,6 +720,20 @@ export const de = {
       external: "Externe Datenquelle",
     },
     generated: "Erstellt",
+    installerChecklistTitle: "To go through with your installer",
+    installerChecklistItems: [
+      "Confirm the roof's orientation, tilt and any shading on site.",
+      "Check the main fuse and connection terms with your grid operator.",
+      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
+      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
+      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
+      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
+      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
+      "Ask who is responsible for any damage to the roof during the installation.",
+      "Go through production monitoring, warranties and service.",
+      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
+      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+    ],
     faqTitle: "Häufig gestellte Fragen",
     faqItems: [
       {
