@@ -422,9 +422,10 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     lifetime,
     investment: investmentResult,
     investmentScenarios: buildPaybackScenarios({
-      annualEconomicValue: presentation.annualSavings,
+      annualEconomicValue: unroundedAnnualEconomicValue,
       acceptedPaybackYears: input.acceptedPaybackYears,
-      annualValues: lifetimeValuesScaledToPresentation,
+      annualValues: lifetimeValues,
+
       minYears: MIN_PAYBACK_YEARS,
       maxYears: MAX_PAYBACK_YEARS,
     }),
