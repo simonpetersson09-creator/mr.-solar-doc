@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -8,20 +8,21 @@ import { haptic } from "@/services/native-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import {
   PurchaseError,
-  getStorePrice,
-  isPurchaseAvailable,
+  describePurchaseError,
   purchasePremium,
   purchaseUnlock,
 } from "@/services/iap-service";
+import { useStorePrices } from "@/hooks/use-store-prices";
+import { PurchaseDiagnosticsPanel } from "@/components/PurchaseDiagnosticsPanel";
 import {
   reportPurchaseOutcome,
   verifyPremium,
   verifyPurchase,
 } from "@/services/purchase-service";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
-import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import { isDevUnlock } from "@/lib/dev-unlock";
 import i18nInstance from "@/i18n";
+
 
 
 export const Route = createFileRoute("/betalning")({
@@ -50,18 +51,11 @@ function PaywallPage() {
   const premium = usePremium();
   const [phase, setPhase] = useState<Phase>("idle");
   const [choice, setChoice] = useState<Choice | null>(null);
-  const available = useMemo(() => isPurchaseAvailable(), []);
-  const [prices, setPrices] = useState<{ unlock: string | null; premium: string | null }>({
-    unlock: null,
-    premium: null,
-  });
+  // Boots StoreKit (also when /betalning is opened directly) and keeps prices
+  // reactive: the plugin and its products arrive after the first render.
+  const store = useStorePrices();
+  const available = store.available;
 
-  useEffect(() => {
-    setPrices({
-      unlock: getStorePrice(UNLOCK_PRODUCT_ID),
-      premium: getStorePrice(PREMIUM_PRODUCT_ID),
-    });
-  }, []);
 
   // No calculation to unlock — send the user back to the wizard.
   useEffect(() => {
@@ -87,9 +81,10 @@ function PaywallPage() {
   // Only the StoreKit price is ever shown: it is already localised for the
   // user's storefront. Without it we show a neutral text — never a fabricated
   // amount or currency.
-  const unlockPrice = prices.unlock;
-  const premiumPrice = prices.premium;
+  const unlockPrice = store.unlock;
+  const premiumPrice = store.premium;
   const busy = phase === "purchasing" || phase === "verifying";
+
 
   async function handleUnlock() {
     if (!pending || busy) return;
@@ -114,17 +109,21 @@ function PaywallPage() {
       setPhase(verified.status === "pending" ? "retry" : "failed");
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
+      const detail = describePurchaseError(error);
+      console.warn("[iap] unlock purchase failed", detail);
       if (reason !== "unavailable") {
         await reportPurchaseOutcome({
           data: {
             id: pending.id,
             accessToken: pending.accessToken,
             status: reason === "cancelled" ? "cancelled" : "failed",
+            reason: detail,
           },
         }).catch(() => undefined);
       }
       setPhase(reason === "cancelled" ? "cancelled" : "failed");
     }
+
   }
 
   async function handlePremium() {
@@ -157,8 +156,10 @@ function PaywallPage() {
       setPhase("retry");
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
+      console.warn("[iap] premium purchase failed", describePurchaseError(error));
       setPhase(reason === "cancelled" ? "cancelled" : "failed");
     }
+
   }
 
   function busyLabel() {
@@ -283,6 +284,8 @@ function PaywallPage() {
           </Button>
         ) : null}
 
+
+        <PurchaseDiagnosticsPanel diagnostics={store.diagnostics} />
 
         {phase === "cancelled" ? (
           <p className="text-sm text-muted-foreground">{t("paywall.cancelled")}</p>

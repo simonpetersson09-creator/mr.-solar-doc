@@ -20,15 +20,16 @@ import { Button } from "@/components/ui/button";
 import { haptic } from "@/services/native-service";
 import {
   PurchaseError,
-  getStorePrice,
+  describePurchaseError,
   isPurchaseAvailable,
   purchasePremium,
   refreshPurchases,
 } from "@/services/iap-service";
+import { useStorePrices } from "@/hooks/use-store-prices";
+import { PurchaseDiagnosticsPanel } from "@/components/PurchaseDiagnosticsPanel";
 import { fetchPremiumStatus, verifyPremium } from "@/services/purchase-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
-import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import { CALCULATION_VERSION } from "@/config/constants";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
@@ -57,9 +58,11 @@ function SettingsPage() {
   const premium = usePremium();
   const [restoring, setRestoring] = useState(false);
   const [buying, setBuying] = useState(false);
-  // StoreKit prices only — no hardcoded fallback amount or currency.
-  const premiumPrice = getStorePrice(PREMIUM_PRODUCT_ID);
-  const unlockPrice = getStorePrice(UNLOCK_PRODUCT_ID);
+  // StoreKit prices only — no hardcoded fallback amount or currency. The hook
+  // boots StoreKit and updates when products/prices arrive after mount.
+  const store = useStorePrices();
+  const premiumPrice = store.premium;
+  const unlockPrice = store.unlock;
 
   /** Buys the yearly subscription. Verification is always server-side. */
   async function handleBuyPremium() {
@@ -90,6 +93,7 @@ function SettingsPage() {
       }
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
+      console.warn("[iap] settings premium purchase failed", describePurchaseError(error));
       if (reason === "cancelled") toast.info(t("paywall.cancelled"));
       else if (reason === "unavailable") toast.info(t("premium.unavailable"));
       else toast.error(t("paywall.failed"));
@@ -122,7 +126,8 @@ function SettingsPage() {
       await queryClient.invalidateQueries({ queryKey: ["purchase-status"] });
       if (status.active) toast.success(t("premium.restoredPremium"));
       else toast.info(t("premium.nothingToRestore"));
-    } catch {
+    } catch (error) {
+      console.warn("[iap] restore failed", describePurchaseError(error));
       toast.error(t("premium.restoreFailed"));
     } finally {
       setRestoring(false);
@@ -254,6 +259,8 @@ function SettingsPage() {
             <div className="pointer-events-none absolute -right-6 -top-6 size-20 rounded-full border-[8px] border-brand-black/5" />
           </div>
         </section>
+
+        <PurchaseDiagnosticsPanel diagnostics={store.diagnostics} />
 
         {/* Settings groups */}
         <section className="flex flex-col gap-2.5">

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import {
   initializePurchases,
-  isPurchaseAvailable,
+  isPurchaseSupported,
   takeUnclaimedTransactions,
 } from "@/services/iap-service";
 import { verifyPremium, verifyPurchase } from "@/services/purchase-service";
@@ -23,7 +23,7 @@ export function usePurchaseRecovery(): void {
   const queryClient = useQueryClient();
 
   useEffect(() => {
-    if (!isPurchaseAvailable()) return;
+    if (!isPurchaseSupported()) return;
     let cancelled = false;
 
     async function drain() {
