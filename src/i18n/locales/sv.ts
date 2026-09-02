@@ -771,6 +771,7 @@ export const sv = {
     generated: "Skapad",
     installerChecklistTitle: "Att gå igenom med installatören",
     installerChecklistItems: [
+      "Observera att anläggningens storlek kan behöva justeras efter takets faktiska förutsättningar, till exempel skorstenar, ventiler eller begränsad yta.",
       "Bekräfta takets riktning, lutning och eventuell skuggning på plats.",
       "Kontrollera huvudsäkring och anslutningsvillkor med nätföretaget.",
       "Bekräfta att växelriktarens effekt på {{acPower}} passar din elanslutning.",
