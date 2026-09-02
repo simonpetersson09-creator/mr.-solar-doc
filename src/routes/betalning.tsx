@@ -108,17 +108,21 @@ function PaywallPage() {
       setPhase(verified.status === "pending" ? "retry" : "failed");
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
+      const detail = describePurchaseError(error);
+      console.warn("[iap] unlock purchase failed", detail);
       if (reason !== "unavailable") {
         await reportPurchaseOutcome({
           data: {
             id: pending.id,
             accessToken: pending.accessToken,
             status: reason === "cancelled" ? "cancelled" : "failed",
+            reason: detail,
           },
         }).catch(() => undefined);
       }
       setPhase(reason === "cancelled" ? "cancelled" : "failed");
     }
+
   }
 
   async function handlePremium() {
