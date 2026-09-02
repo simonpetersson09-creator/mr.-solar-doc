@@ -7,7 +7,12 @@ import {
 } from "@/lib/geocoding.functions";
 import { isNativeAppOrigin } from "@/config/native-backend";
 
+const GEOCODING_API_VERSION = "2026-09-02.1";
+
 const querySchema = z.discriminatedUnion("mode", [
+  z.object({
+    mode: z.literal("health"),
+  }),
   z.object({
     mode: z.literal("search"),
     query: z.string().min(3).max(200),
@@ -52,7 +57,10 @@ export const Route = createFileRoute("/api/public/geocode")({
       GET: async ({ request }) => {
         const origin = request.headers.get("Origin");
         if (!isAllowedGeocodingOrigin(origin)) {
-          return Response.json({ error: "forbidden" }, { status: 403 });
+          return Response.json(
+            { error: "forbidden" },
+            { status: 403 },
+          );
         }
 
         const url = new URL(request.url);
@@ -61,6 +69,13 @@ export const Route = createFileRoute("/api/public/geocode")({
           return Response.json(
             { error: "invalid_request" },
             { status: 400, headers: responseHeaders(origin) },
+          );
+        }
+
+        if (parsed.data.mode === "health") {
+          return Response.json(
+            { ok: true, service: "native-geocoding", version: GEOCODING_API_VERSION },
+            { headers: responseHeaders(origin) },
           );
         }
 

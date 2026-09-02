@@ -12,7 +12,8 @@ import { useAppLocale } from "@/hooks/use-app-locale";
 import { resolvePosition } from "@/services/geocoding-service";
 import { useWizardStore } from "@/state/wizard-store";
 import { getCurrencyCode, NEUTRAL_CURRENCY_CODE } from "@/config/countries";
-import { haptic } from "@/services/native-service";
+import { haptic, isNativePlatform } from "@/services/native-service";
+import { nativeGeocodingDiagnostic } from "@/services/native-geocoding";
 
 const MapPicker = lazy(() => import("@/components/MapPicker"));
 
@@ -42,7 +43,14 @@ const [map, setMap] = useState<L.Map | null>(null);
 
   // Skip searching for the already-resolved address (avoids a call on load).
   const searchQuery = debounced && debounced === location?.address ? "" : debounced;
-  const { data: suggestions, isFetching, isError } = useAddressSearch(searchQuery, language);
+  const { data: suggestions, isFetching, isError, error: searchError } = useAddressSearch(searchQuery, language);
+  const nativeDiagnostic = isNativePlatform()
+    ? nativeGeocodingDiagnostic(searchError)
+    : null;
+
+  useEffect(() => {
+    if (nativeDiagnostic) console.error(`[Native geocoding] ${nativeDiagnostic}`);
+  }, [nativeDiagnostic]);
 
   const handlePositionChange = async (latitude: number, longitude: number) => {
     const resolved = await resolvePosition(latitude, longitude, language).catch(() => null);
@@ -211,7 +219,14 @@ return (
             </div>
 
             {isError ? (
-              <p className="mt-2 text-sm font-semibold text-accent">{t("address.error")}</p>
+              <div className="mt-2">
+                <p className="text-sm font-semibold text-accent">{t("address.error")}</p>
+                {nativeDiagnostic ? (
+                  <p className="mt-1 font-mono text-[10px] text-white/70">
+                    {nativeDiagnostic}
+                  </p>
+                ) : null}
+              </div>
             ) : null}
             {showResults && !isFetching && debounced.length >= 3 && suggestions?.length === 0 ? (
               <p className="mt-2 text-sm text-white/70">{t("address.noResults")}</p>
