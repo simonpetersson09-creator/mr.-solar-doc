@@ -101,9 +101,9 @@ title={t("result.adjustAssumptions")}
 className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           variant="cta"
           size="lg"
-          disabled={Boolean(gridTooSmall)}
+          disabled={Boolean(gridTooSmall) || !result}
           onClick={() => {
-            if (gridTooSmall) return;
+            if (gridTooSmall || !result) return;
             void haptic("success");
             onSubmit();
           }}

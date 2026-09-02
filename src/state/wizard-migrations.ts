@@ -269,7 +269,7 @@ export function revalidateCountryDependentState(state: WizardData): WizardData {
   }
 
   // Unverified markets can never inherit a silent confirmation.
-  if (config.status !== "verified" && !state.gridConfirmed) {
+  if (config.status !== "verified") {
     return { ...state, gridConfirmed: false };
   }
   if (config.status === "verified" && state.connectionCapacity) {

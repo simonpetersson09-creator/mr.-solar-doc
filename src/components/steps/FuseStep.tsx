@@ -69,9 +69,9 @@ const [showGridInfo, setShowGridInfo] = useState(false);
   const connection = getConnectionConfig(location?.countryCode);
   const storedCapacityType = storedCapacity?.type ?? null;
   const countryCode = location?.countryCode?.toUpperCase();
-  const countryFlag = countryCode
-    ? String.fromCodePoint(...[...countryCode].map((c) => 0x1f1e6 + c.charCodeAt(0) - 65))
-    : "";
+  const countryFlagUrl = countryCode
+    ? `https://flagcdn.com/w40/${countryCode.toLowerCase()}.png`
+    : null;
   const countryName = (() => {
     if (!countryCode) return "";
     try {
@@ -295,7 +295,15 @@ const [showGridInfo, setShowGridInfo] = useState(false);
                 aria-disabled="true"
                 className="flex cursor-default items-center gap-1 rounded-full border border-brand-black/22 bg-surface-cream px-2 py-1 text-[10px] font-semibold text-brand-black"
               >
-                <span aria-hidden="true">{countryFlag}</span>
+                {countryFlagUrl ? (
+                  <img
+                    src={countryFlagUrl}
+                    alt=""
+                    aria-hidden="true"
+                    className="h-3 w-5 shrink-0 rounded-[2px] object-cover"
+                    loading="lazy"
+                  />
+                ) : null}
                 <span className="max-w-[90px] truncate">{countryName}</span>
               </button>
             ) : null}
