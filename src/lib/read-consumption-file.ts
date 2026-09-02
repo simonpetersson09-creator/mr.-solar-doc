@@ -1,5 +1,24 @@
 import { parseConsumptionText, type ParsedConsumption } from "@/lib/parse-consumption-document";
 
+/**
+ * OCR (tesseract.js) loads its worker/core/traineddata from a CDN and, under a
+ * Capacitor `capacitor://` origin, blob-worker + cross-origin fetch can stall
+ * silently instead of throwing. Cap every OCR step so a native hang surfaces as
+ * a clean error (→ the upload form shows "could not read file") instead of an
+ * infinite spinner.
+ */
+const OCR_TIMEOUT_MS = 30_000;
+
+function raceTimeout<T>(promise: Promise<T>, ms = OCR_TIMEOUT_MS): Promise<T> {
+  let timer: ReturnType<typeof setTimeout> | undefined;
+  const timeout = new Promise<never>((_, reject) => {
+    timer = setTimeout(() => reject(new Error("ocr-timeout")), ms);
+  });
+  return Promise.race([promise, timeout]).finally(() => {
+    if (timer) clearTimeout(timer);
+  });
+}
+
 async function loadPdf(file: File) {
   const pdfjs = await import("pdfjs-dist");
   const workerSrc = (await import("pdfjs-dist/build/pdf.worker.min.mjs?url")).default;
