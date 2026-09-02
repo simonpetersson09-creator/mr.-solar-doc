@@ -13,6 +13,10 @@
  */
 
 import { ABSOLUTE_MAX_DC_AC_RATIO } from "@/config/constants";
+import {
+  isImplausiblePricePerKwh,
+  maxPlausiblePricePerKwh,
+} from "@/config/electricity-price-bounds";
 import type { CalculationInput, CalculationResult } from "./types";
 
 /** Relative tolerance used for floating point comparisons (energy balance). */
@@ -56,6 +60,7 @@ export type CalculationIssueCode =
   | "missing-inverter-sizes"
   | "invalid-self-consumption-share"
   | "negative-price"
+  | "implausible-price"
   | "invalid-payback-years"
   | "invalid-grid-profile"
   | "unconfirmed-grid-profile"
@@ -324,13 +329,33 @@ export function validateCalculationInput(input: CalculationInput): CalculationIs
     [input.economics.installationCostPerKwp, "economics.installationCostPerKwp"],
     [input.economics.gridCompensationPerKwh, "economics.gridCompensationPerKwh"],
   ];
-  // Per-kWh rates are CLAMPED to >= 0 by the engine (documented assumption:
-  // a negative price is not meaningful in this model), so a negative rate is
-  // not fatal — only a non-finite one is.
+  // A negative price is NOT silently clamped any more: it is an explicit error,
+  // because a clamped-to-zero rate produces a credible-looking but wrong
+  // economy. A price far above the country's verified magnitude is rejected
+  // too — that is a decimal or unit slip, not a real tariff.
   for (const [value, field] of priceFields) {
     if (value === null || value === undefined) continue;
-    requireFinite(issues, value, field);
+    if (!requireFinite(issues, value, field)) continue;
+    if (value < 0) {
+      issues.push(issue("negative-price", field, `${field} cannot be negative`));
+      continue;
+    }
+    if (
+      field !== "economics.installationCostPerKwp" &&
+      isImplausiblePricePerKwh(value, input.location?.countryCode)
+    ) {
+      issues.push(
+        issue(
+          "implausible-price",
+          field,
+          `${field} is above the plausible maximum ${maxPlausiblePricePerKwh(
+            input.location?.countryCode,
+          )} per kWh for this market`,
+        ),
+      );
+    }
   }
+
   if (input.quotePrice !== null && input.quotePrice !== undefined) {
     if (requireFinite(issues, input.quotePrice, "quotePrice") && input.quotePrice < 0) {
       issues.push(issue("negative-price", "quotePrice", "Quote price cannot be negative"));

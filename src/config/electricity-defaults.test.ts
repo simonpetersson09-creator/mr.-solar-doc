@@ -123,13 +123,13 @@ describe("price values in the calculation", () => {
   });
 
   it("rejects negative prices but accepts 0 as a manual value", () => {
-    const negative = calculateSolarSystem(
-      baseInput({
-        economics: { selfConsumedValuePerKwh: -2, exportValuePerKwh: -1, currency: "SEK" },
-      }),
-    );
-    expect(negative.economics.selfConsumedValuePerKwh).toBe(0);
-    expect(negative.economics.exportValuePerKwh).toBe(0);
+    expect(() =>
+      calculateSolarSystem(
+        baseInput({
+          economics: { selfConsumedValuePerKwh: -2, exportValuePerKwh: -1, currency: "SEK" },
+        }),
+      ),
+    ).toThrow(/negative-price/);
 
     const zero = calculateSolarSystem(
       baseInput({

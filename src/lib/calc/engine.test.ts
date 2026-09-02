@@ -95,22 +95,32 @@ describe("calculateSolarSystem – rounding consistency", () => {
 });
 
 describe("calculateSolarSystem – negative economic inputs", () => {
-  it("clamps negative per-kWh values at the calculation layer", () => {
-    const result = calculateSolarSystem(
-      makeInput({
-        economics: {
-          selfConsumedValuePerKwh: -1.5,
-          exportValuePerKwh: -0.6,
-          currency: "SEK",
-        },
-      }),
-    );
-    expect(result.economics.selfConsumedValuePerKwh).toBe(0);
-    expect(result.economics.exportValuePerKwh).toBe(0);
-    expect(result.economics.totalValue).toBe(0);
-    expect(result.presentation.annualSavings).toBe(0);
-    expect(result.investment.maxInvestment).toBe(0);
-    expect(result.lifetime.totalEconomicValue).toBe(0);
+  it("rejects negative per-kWh values instead of silently clamping them", () => {
+    expect(() =>
+      calculateSolarSystem(
+        makeInput({
+          economics: {
+            selfConsumedValuePerKwh: -1.5,
+            exportValuePerKwh: -0.6,
+            currency: "SEK",
+          },
+        }),
+      ),
+    ).toThrow(/negative-price/);
+  });
+
+  it("rejects a price far above the market's plausible ceiling", () => {
+    expect(() =>
+      calculateSolarSystem(
+        makeInput({
+          economics: {
+            selfConsumedValuePerKwh: 144,
+            exportValuePerKwh: 0.6,
+            currency: "SEK",
+          },
+        }),
+      ),
+    ).toThrow(/implausible-price/);
   });
 });
 
