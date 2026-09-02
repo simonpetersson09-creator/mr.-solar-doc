@@ -407,7 +407,7 @@ export const et = {
       "Lühem tasuvusaeg tähendab väiksemat võimalikku investeeringut. Siin näed, kuidas investeeringu tase muutub, kui nõustud lühema või pikema tasuvusajaga.",
     paybackInfo:
       "Tasuvusaeg näitab, mitu aastat kulub investeeringu tagasiteenimiseks hinnangulise aastase majandusliku väärtusega. Arvutus ei arvesta näiteks tulevaste elektrihinnamuutuste, finantseerimiskulude, inflatsiooni, hoolduse ega diskonteerimisega.",
-    maxInvestment: "Investeeringu tase valitud tasuvusajal",
+    maxInvestment: "Hind vastavalt teie valitud tasuvusajale",
     maxInvestmentApprox: "umbes {{amount}}",
     investmentLevelInfoLabel: "Rohkem teavet",
     investmentLevelInfo:
@@ -639,7 +639,7 @@ export const et = {
       degradation: "Tootluse langus",
       degradationNote:
         "Eeldatakse, et päikesepaneelide tootlus väheneb {{degradation}} % aastas. See on arvutuseeldus; tegelik langus võib varieeruda paneelitüüpide, tootjate ja töötingimuste vahel.",
-      investment: "Investeeringu tase valitud tasuvusajal",
+      investment: "Hind vastavalt teie valitud tasuvusajale",
       returnRate: "Tootlus %",
       balanceTitle: "Aastane bilanss",
       balanceConsumption: "Aastatarbimine",
@@ -687,7 +687,7 @@ export const et = {
       paybackScenariosHelp:
         "Lühem tasuvusaeg tähendab väiksemat võimalikku investeeringut. Siin näed, kuidas investeeringu tase muutub, kui nõustud lühema või pikema tasuvusajaga.",
       acceptedPayback: "Valitud tasuvusaeg",
-      maxInvestment: "Investeeringu tase valitud tasuvusajal",
+      maxInvestment: "Hind vastavalt teie valitud tasuvusajale",
       quotePrice: "Esitatud pakkumise hind",
       quotePayback: "Tasuvusaeg pakkumise hinna alusel",
       calculationVersion: "Arvutuse versioon",

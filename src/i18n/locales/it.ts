@@ -410,7 +410,7 @@ export const it = {
       "Un tempo di ritorno più breve significa un investimento possibile più basso. Qui vedi come cambia il livello di investimento se accetti un tempo di ritorno più breve o più lungo.",
     paybackInfo:
       "Il livello di investimento mostra approssimativamente quale investimento corrisponde al tempo di ritorno scelto, in base ai valori economici che il calcolo proietta in quel periodo. Non è un prezzo di mercato stimato o un'offerta.",
-    maxInvestment: "Livello di investimento al tempo di ritorno scelto",
+    maxInvestment: "Prezzo in base al periodo di ammortamento scelto",
     maxInvestmentApprox: "circa {{amount}}",
     investmentLevelInfoLabel: "Maggiori informazioni",
     investmentLevelInfo:
@@ -630,7 +630,7 @@ export const it = {
       degradation: "Degrado della produzione",
       degradationNote:
         "Si presume che la produzione dei pannelli solari diminuisca del {{degradation}} % all'anno. Questa è un'ipotesi di calcolo e il degrado effettivo può variare tra tipi di pannelli, marche e condizioni operative.",
-      investment: "Livello di investimento al tempo di ritorno scelto",
+      investment: "Prezzo in base al periodo di ammortamento scelto",
       returnRate: "Rendimento %",
       balanceTitle: "Bilancio annuale",
       balanceConsumption: "Consumo annuo",
@@ -678,7 +678,7 @@ export const it = {
       paybackScenariosHelp:
         "Un tempo di ritorno più breve significa un investimento possibile più basso. Qui vedi come cambia il livello di investimento se accetti un tempo di ritorno più breve o più lungo.",
       acceptedPayback: "Tempo di ritorno accettato",
-      maxInvestment: "Livello di investimento al tempo di ritorno scelto",
+      maxInvestment: "Prezzo in base al periodo di ammortamento scelto",
       quotePrice: "Prezzo da offerta fornito",
       quotePayback: "Tempo di ritorno basato sul prezzo di offerta",
       calculationVersion: "Versione del calcolo",

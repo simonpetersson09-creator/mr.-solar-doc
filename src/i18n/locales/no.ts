@@ -416,7 +416,7 @@ export const no = {
       "Kortere nedbetalingstid betyr en lavere mulig investering. Her ser du hvordan investeringsnivået endrer seg hvis du aksepterer en kortere eller lengre nedbetalingstid.",
     paybackInfo:
       "Investeringsnivået viser omtrent hvilken investering som tilsvarer den valgte nedbetalingstiden, basert på de økonomiske verdiene beregningen anslår over den perioden. Det er ikke en anslått markedspris eller et tilbud.",
-    maxInvestment: "Investeringsnivå ved valgt nedbetalingstid",
+    maxInvestment: "Pris etter valgt nedbetalingstid",
     productionCostTitle: "Hva kan solstrømmen koste per kWh?",
     investmentLevelInfoLabel: "Mer informasjon",
     investmentLevelInfo:
@@ -685,7 +685,7 @@ export const no = {
       degradation: "Produksjonsdegradering",
       degradationNote:
         "Paneleffekten antas å synke med {{degradation}} % per år. Dette er en beregningsforutsetning; faktisk degradering varierer mellom paneltyper, merker og driftsforhold.",
-      investment: "Investeringsnivå ved valgt nedbetalingstid",
+      investment: "Pris etter valgt nedbetalingstid",
       returnRate: "Avkastning %",
       balanceTitle: "Årlig balanse",
       balanceConsumption: "Årsforbruk",
@@ -733,7 +733,7 @@ export const no = {
       paybackScenariosHelp:
         "Kortere nedbetalingstid betyr en lavere mulig investering. Her ser du hvordan investeringsnivået endrer seg hvis du aksepterer en kortere eller lengre nedbetalingstid.",
       acceptedPayback: "Valgt nedbetalingstid",
-      maxInvestment: "Investeringsnivå ved valgt nedbetalingstid",
+      maxInvestment: "Pris etter valgt nedbetalingstid",
       quotePrice: "Oppgitt tilbudspris",
       quotePayback: "Nedbetalingstid basert på tilbudsprisen",
       calculationVersion: "Beregningsversjon",

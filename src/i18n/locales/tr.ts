@@ -421,7 +421,7 @@ export const tr = {
       "Daha kısa geri ödeme süresi daha düşük bir olası yatırım anlamına gelir. Burada daha kısa veya daha uzun bir geri ödeme süresini kabul ederseniz yatırım düzeyinin nasıl değiştiğini görürsünüz.",
     paybackInfo:
       "Basit geri ödeme, tahmini yıllık ekonomik değerin yatırıma kaç yıl karşılık geldiğini gösterir. Gelecekteki elektrik fiyatı değişimlerini, finansman maliyetini, enflasyonu, bakımı veya iskontoyu hesaba katmaz.",
-    maxInvestment: "Seçilen geri ödeme süresindeki yatırım düzeyi",
+    maxInvestment: "Seçtiğiniz geri ödeme süresine göre fiyat",
     productionCostTitle: "Güneş elektriği kWh başına ne kadara mal olabilir?",
     investmentLevelInfoLabel: "Daha fazla bilgi",
     investmentLevelInfo:
@@ -693,7 +693,7 @@ export const tr = {
       degradation: "Üretim verim kaybı",
       degradationNote:
         "Panel çıktısının yılda %{{degradation}} azalacağı varsayılmıştır. Bu bir hesaplama varsayımıdır; gerçek verim kaybı panel türlerine, markalara ve çalışma koşullarına göre değişir.",
-      investment: "Seçilen geri ödeme süresindeki yatırım düzeyi",
+      investment: "Seçtiğiniz geri ödeme süresine göre fiyat",
       returnRate: "Getiri %",
       balanceTitle: "Yıllık bilanço",
       balanceConsumption: "Yıllık tüketim",
@@ -741,7 +741,7 @@ export const tr = {
       paybackScenariosHelp:
         "Daha kısa geri ödeme süresi daha düşük bir olası yatırım anlamına gelir. Burada daha kısa veya daha uzun bir geri ödeme süresini kabul ederseniz yatırım düzeyinin nasıl değiştiğini görürsünüz.",
       acceptedPayback: "Seçilen geri ödeme süresi",
-      maxInvestment: "Seçilen geri ödeme süresindeki yatırım düzeyi",
+      maxInvestment: "Seçtiğiniz geri ödeme süresine göre fiyat",
       quotePrice: "Sağlanan teklif fiyatı",
       quotePayback: "Teklif edilen fiyata dayalı basit geri ödeme süresi",
       calculationVersion: "Hesaplama sürümü",

@@ -424,7 +424,7 @@ export const ro = {
       "O perioadă de amortizare mai scurtă înseamnă o investiție posibilă mai mică. Aici vezi cum se schimbă nivelul investiției dacă accepți o perioadă mai scurtă sau mai lungă.",
     paybackInfo:
       "Amortizarea simplă arată câți ani corespunde valoarea economică anuală estimată investiției. Nu ține cont de schimbările viitoare ale prețului energiei, costul finanțării, inflație, întreținere sau actualizare.",
-    maxInvestment: "Nivelul investiției la perioada de amortizare aleasă",
+    maxInvestment: "Preț după perioada de amortizare selectată",
     productionCostTitle: "Cât poate costa kWh-ul solar?",
     investmentLevelInfoLabel: "Mai multe informații",
     investmentLevelInfo:
@@ -696,7 +696,7 @@ export const ro = {
       degradation: "Degradarea producției",
       degradationNote:
         "Se presupune că producția panoului scade cu {{degradation}} % pe an. Aceasta este o presupunere de calcul; degradarea reală variază între tipurile de panouri, mărci și condiții de funcționare.",
-      investment: "Nivelul investiției la perioada de amortizare aleasă",
+      investment: "Preț după perioada de amortizare selectată",
       returnRate: "Randament %",
       balanceTitle: "Bilanț anual",
       balanceConsumption: "Consum anual",
@@ -744,7 +744,7 @@ export const ro = {
       paybackScenariosHelp:
         "O perioadă de amortizare mai scurtă înseamnă o investiție posibilă mai mică. Aici vezi cum se schimbă nivelul investiției dacă accepți o perioadă mai scurtă sau mai lungă.",
       acceptedPayback: "Perioada de amortizare aleasă",
-      maxInvestment: "Nivelul investiției la perioada de amortizare aleasă",
+      maxInvestment: "Preț după perioada de amortizare selectată",
       quotePrice: "Preț ofertat furnizat",
       quotePayback: "Amortizare simplă pe baza prețului ofertat",
       calculationVersion: "Versiunea calculului",

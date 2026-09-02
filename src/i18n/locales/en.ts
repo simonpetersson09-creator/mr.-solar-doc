@@ -416,7 +416,7 @@ export const en = {
       "A shorter payback time means a lower possible investment. Here you see how the investment level changes if you accept a shorter or longer payback time.",
     paybackInfo:
       "The investment level shows roughly what investment matches the chosen payback time, based on the economic values the calculation projects over that period. It is not an estimated market price or a quote.",
-    maxInvestment: "Investment level at chosen payback time",
+    maxInvestment: "Price after your selected payback period",
     productionCostTitle: "What may solar power cost per kWh?",
     investmentLevelInfoLabel: "More information",
     investmentLevelInfo:
@@ -688,7 +688,7 @@ export const en = {
       degradation: "Production degradation",
       degradationNote:
         "Panel output is assumed to decline by {{degradation}} % per year. This is a calculation assumption; actual degradation varies between panel types, brands and operating conditions.",
-      investment: "Investment level at chosen payback time",
+      investment: "Price after your selected payback period",
       returnRate: "Return %",
       balanceTitle: "Annual balance",
       balanceConsumption: "Annual consumption",
@@ -736,7 +736,7 @@ export const en = {
       paybackScenariosHelp:
         "A shorter payback time means a lower possible investment. Here you see how the investment level changes if you accept a shorter or longer payback time.",
       acceptedPayback: "Chosen payback time",
-      maxInvestment: "Investment level at chosen payback time",
+      maxInvestment: "Price after your selected payback period",
       quotePrice: "Quoted price provided",
       quotePayback: "Payback time based on the quoted price",
       calculationVersion: "Calculation version",

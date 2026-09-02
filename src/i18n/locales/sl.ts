@@ -403,7 +403,7 @@ export const sl = {
       "Krajša doba vračila pomeni nižjo možno naložbo. Tukaj vidite, kako se raven naložbe spremeni, če sprejmete krajšo ali daljšo dobo vračila.",
     paybackInfo:
       "Doba vračila prikazuje, koliko let ocenjena letna ekonomska vrednost ustreza investiciji. Izračun ne upošteva na primer prihodnjih sprememb cen električne energije, stroškov financiranja, inflacije, vzdrževanja ali diskontiranja.",
-    maxInvestment: "Raven investicije pri izbrani dobi vračila",
+    maxInvestment: "Cena po izbranem obdobju vračila",
     maxInvestmentApprox: "pribl. {{amount}}",
     investmentLevelInfoLabel: "Več informacij",
     investmentLevelInfo:
@@ -620,7 +620,7 @@ export const sl = {
       degradation: "Degradacija proizvodnje",
       degradationNote:
         "Predpostavlja se, da se proizvodnja sončnih panelov zmanjša za {{degradation}} % na leto. To je kalkulacijska predpostavka in dejanska degradacija se lahko razlikuje med vrstami panelov, proizvajalci in obratovalnimi pogoji.",
-      investment: "Raven investicije pri izbrani dobi vračila",
+      investment: "Cena po izbranem obdobju vračila",
       returnRate: "Donos %",
       balanceTitle: "Letna bilanca",
       balanceConsumption: "Letna poraba",
@@ -668,7 +668,7 @@ export const sl = {
       paybackScenariosHelp:
         "Krajša doba vračila pomeni nižjo možno naložbo. Tukaj vidite, kako se raven naložbe spremeni, če sprejmete krajšo ali daljšo dobo vračila.",
       acceptedPayback: "Izbrana doba vračila",
-      maxInvestment: "Raven investicije pri izbrani dobi vračila",
+      maxInvestment: "Cena po izbranem obdobju vračila",
       quotePrice: "Navedena ponudbena cena",
       quotePayback: "Doba vračila na podlagi ponudbene cene",
       calculationVersion: "Različica izračuna",

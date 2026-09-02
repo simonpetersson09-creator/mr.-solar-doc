@@ -403,7 +403,7 @@ export const cs = {
       "Kratší doba návratnosti znamená nižší možnou investici. Zde vidíte, jak se úroveň investice mění, pokud přijmete kratší nebo delší dobu návratnosti.",
     paybackInfo:
       "Doba návratnosti ukazuje, za kolik let se odhadovaná roční ekonomická hodnota rovná investici. Nepočítá s budoucími změnami cen elektřiny, náklady na financování, inflací, údržbou ani diskontováním.",
-    maxInvestment: "Úroveň investice při zvolené době návratnosti",
+    maxInvestment: "Cena podle vámi zvolené doby návratnosti",
     maxInvestmentApprox: "cca {{amount}}",
     investmentLevelInfoLabel: "Více informací",
     investmentLevelInfo:
@@ -623,7 +623,7 @@ export const cs = {
       degradation: "Degradace výroby",
       degradationNote:
         "Předpokládá se, že výroba solárních panelů klesá o {{degradation}} % ročně. Jedná se o předpoklad výpočtu; skutečná degradace se liší mezi typy panelů, značkami a provozními podmínkami.",
-      investment: "Úroveň investice při zvolené době návratnosti",
+      investment: "Cena podle vámi zvolené doby návratnosti",
       returnRate: "Výnos %",
       balanceTitle: "Roční bilance",
       balanceConsumption: "Roční spotřeba",
@@ -671,7 +671,7 @@ export const cs = {
       paybackScenariosHelp:
         "Kratší doba návratnosti znamená nižší možnou investici. Zde vidíte, jak se úroveň investice mění, pokud přijmete kratší nebo delší dobu návratnosti.",
       acceptedPayback: "Zvolená doba návratnosti",
-      maxInvestment: "Úroveň investice při zvolené době návratnosti",
+      maxInvestment: "Cena podle vámi zvolené doby návratnosti",
       quotePrice: "Poskytnutá nabídková cena",
       quotePayback: "Doba návratnosti na základě nabídkové ceny",
       calculationVersion: "Verze výpočtu",

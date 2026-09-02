@@ -425,7 +425,7 @@ export const nl = {
       "Een kortere terugverdientijd betekent een lagere mogelijke investering. Hier zie je hoe het investeringsniveau verandert als je een kortere of langere terugverdientijd accepteert.",
     paybackInfo:
       "Het investeringsniveau laat ongeveer zien welke investering overeenkomt met de gekozen terugverdientijd, gebaseerd op de economische waarden die de berekening over die periode voorspelt. Het is geen geschatte marktprijs of offerte.",
-    maxInvestment: "Investeringsniveau bij gekozen terugverdientijd",
+    maxInvestment: "Prijs op basis van je gekozen terugverdientijd",
     productionCostTitle: "Wat mag zonnestroom per kWh kosten?",
     investmentLevelInfoLabel: "Meer informatie",
     investmentLevelInfo:
@@ -700,7 +700,7 @@ export const nl = {
       degradation: "Productiedegradatie",
       degradationNote:
         "Het paneelrendement wordt geacht jaarlijks met {{degradation}} % af te nemen. Dit is een berekeningsaanname; de werkelijke degradatie varieert per paneeltype, merk en gebruiksomstandigheden.",
-      investment: "Investeringsniveau bij gekozen terugverdientijd",
+      investment: "Prijs op basis van je gekozen terugverdientijd",
       returnRate: "Rendement %",
       balanceTitle: "Jaarlijkse balans",
       balanceConsumption: "Jaarverbruik",
@@ -748,7 +748,7 @@ export const nl = {
       paybackScenariosHelp:
         "Een kortere terugverdientijd betekent een lagere mogelijke investering. Hier zie je hoe het investeringsniveau verandert als je een kortere of langere terugverdientijd accepteert.",
       acceptedPayback: "Gekozen terugverdientijd",
-      maxInvestment: "Investeringsniveau bij gekozen terugverdientijd",
+      maxInvestment: "Prijs op basis van je gekozen terugverdientijd",
       quotePrice: "Opgegeven offerteprijs",
       quotePayback: "Terugverdientijd op basis van de offerteprijs",
       calculationVersion: "Berekeningsversie",

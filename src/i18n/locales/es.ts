@@ -423,7 +423,7 @@ export const es = {
       "Un plazo de amortización más corto implica una inversión posible menor. Aquí ves cómo cambia el nivel de inversión si aceptas un plazo más corto o más largo.",
     paybackInfo:
       "La amortización simple muestra a cuántos años corresponde el valor económico anual estimado respecto a la inversión. No tiene en cuenta cambios futuros del precio de la electricidad, coste de financiación, inflación, mantenimiento ni descuento financiero.",
-    maxInvestment: "Nivel de inversión en el plazo de amortización elegido",
+    maxInvestment: "Precio según el plazo de amortización seleccionado",
     productionCostTitle: "¿Cuánto puede costar el kWh solar?",
     investmentLevelInfoLabel: "Más información",
     investmentLevelInfo:
@@ -696,7 +696,7 @@ export const es = {
       degradation: "Degradación de producción",
       degradationNote:
         "Se asume que el rendimiento de los paneles disminuye un {{degradation}} % al año. Es un supuesto de cálculo; la degradación real varía según el tipo de panel, la marca y las condiciones de funcionamiento.",
-      investment: "Nivel de inversión en el plazo de amortización elegido",
+      investment: "Precio según el plazo de amortización seleccionado",
       returnRate: "Rentabilidad %",
       balanceTitle: "Balance anual",
       balanceConsumption: "Consumo anual",
@@ -744,7 +744,7 @@ export const es = {
       paybackScenariosHelp:
         "Un plazo de amortización más corto implica una inversión posible menor. Aquí ves cómo cambia el nivel de inversión si aceptas un plazo más corto o más largo.",
       acceptedPayback: "Plazo de amortización elegido",
-      maxInvestment: "Nivel de inversión en el plazo de amortización elegido",
+      maxInvestment: "Precio según el plazo de amortización seleccionado",
       quotePrice: "Precio de presupuesto indicado",
       quotePayback: "Amortización simple según el presupuesto indicado",
       calculationVersion: "Versión del cálculo",

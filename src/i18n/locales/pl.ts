@@ -414,7 +414,7 @@ export const pl = {
       "Krótszy okres zwrotu oznacza niższą możliwą inwestycję. Tutaj zobaczysz, jak zmienia się poziom inwestycji, jeśli zaakceptujesz krótszy lub dłuższy okres zwrotu.",
     paybackInfo:
       "Czas zwrotu pokazuje, ile lat szacowana roczna wartość ekonomiczna odpowiada inwestycji. Kalkulacja nie uwzględnia np. przyszłych zmian cen energii elektrycznej, kosztów finansowania, inflacji, konserwacji ani dyskontowania.",
-    maxInvestment: "Poziom inwestycji przy wybranym czasie zwrotu",
+    maxInvestment: "Cena po wybranym okresie zwrotu",
     maxInvestmentApprox: "ok. {{amount}}",
     investmentLevelInfoLabel: "Więcej informacji",
     investmentLevelInfo:
@@ -636,7 +636,7 @@ export const pl = {
       degradation: "Degradacja produkcji",
       degradationNote:
         "Przyjmuje się, że produkcja paneli słonecznych spada o {{degradation}} % rocznie. Jest to założenie kalkulacyjne, a rzeczywista degradacja może się różnić w zależności od typów paneli, producentów i warunków eksploatacji.",
-      investment: "Poziom inwestycji przy wybranym czasie zwrotu",
+      investment: "Cena po wybranym okresie zwrotu",
       returnRate: "Zwrot %",
       balanceTitle: "Bilans roczny",
       balanceConsumption: "Roczne zużycie",
@@ -684,7 +684,7 @@ export const pl = {
       paybackScenariosHelp:
         "Krótszy okres zwrotu oznacza niższą możliwą inwestycję. Tutaj zobaczysz, jak zmienia się poziom inwestycji, jeśli zaakceptujesz krótszy lub dłuższy okres zwrotu.",
       acceptedPayback: "Wybrany czas zwrotu",
-      maxInvestment: "Poziom inwestycji przy wybranym czasie zwrotu",
+      maxInvestment: "Cena po wybranym okresie zwrotu",
       quotePrice: "Podana cena ofertowa",
       quotePayback: "Czas zwrotu na podstawie ceny ofertowej",
       calculationVersion: "Wersja kalkulacji",

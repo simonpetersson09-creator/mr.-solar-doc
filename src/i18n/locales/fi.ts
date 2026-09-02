@@ -403,7 +403,7 @@ export const fi = {
       "Lyhyempi takaisinmaksuaika tarkoittaa pienempää mahdollista investointia. Tässä näet, miten investointitaso muuttuu, jos hyväksyt lyhyemmän tai pidemmän takaisinmaksuajan.",
     paybackInfo:
       "Investointitaso näyttää suunnilleen, kuinka suuri investointi vastaa valittua takaisinmaksuaikaa, perustuen laskelman ennustamiin taloudellisiin arvoihin kyseisellä ajanjaksolla. Se ei ole arvioitu markkinahinta tai tarjous.",
-    maxInvestment: "Investointitaso valitulla takaisinmaksuajalla",
+    maxInvestment: "Hinta valitsemasi takaisinmaksuajan mukaan",
     maxInvestmentApprox: "n. {{amount}}",
     investmentLevelInfoLabel: "Lisätietoja",
     investmentLevelInfo:
@@ -622,7 +622,7 @@ export const fi = {
       degradation: "Tuotannon heikkeneminen",
       degradationNote:
         "Aurinkopaneelien tuotannon oletetaan vähenevän {{degradation}} % vuodessa. Tämä on laskentaoletus, ja todellinen heikkeneminen voi vaihdella paneelityyppien, valmistajien ja käyttöolosuhteiden mukaan.",
-      investment: "Investointitaso valitulla takaisinmaksuajalla",
+      investment: "Hinta valitsemasi takaisinmaksuajan mukaan",
       returnRate: "Tuotto %",
       balanceTitle: "Vuositasapaino",
       balanceConsumption: "Vuosikulutus",
@@ -670,7 +670,7 @@ export const fi = {
       paybackScenariosHelp:
         "Lyhyempi takaisinmaksuaika tarkoittaa pienempää mahdollista investointia. Tässä näet, miten investointitaso muuttuu, jos hyväksyt lyhyemmän tai pidemmän takaisinmaksuajan.",
       acceptedPayback: "Valittu takaisinmaksuaika",
-      maxInvestment: "Investointitaso valitulla takaisinmaksuajalla",
+      maxInvestment: "Hinta valitsemasi takaisinmaksuajan mukaan",
       quotePrice: "Ilmoitettu tarjoushinta",
       quotePayback: "Takaisinmaksuaika tarjoushinnan perusteella",
       calculationVersion: "Laskentajärjestelmäversio",

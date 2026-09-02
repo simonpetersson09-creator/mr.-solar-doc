@@ -420,7 +420,7 @@ export const pt = {
       "Um prazo de retorno mais curto significa um investimento possível menor. Aqui vê como o nível de investimento muda se aceitar um prazo mais curto ou mais longo.",
     paybackInfo:
       "O retorno simples mostra a quantos anos corresponde o valor económico anual estimado face ao investimento. Não tem em conta futuras alterações do preço da eletricidade, custo de financiamento, inflação, manutenção ou atualização financeira.",
-    maxInvestment: "Nível de investimento no período de retorno escolhido",
+    maxInvestment: "Preço com base no período de retorno selecionado",
     productionCostTitle: "Quanto pode custar o kWh solar?",
     investmentLevelInfoLabel: "Mais informação",
     investmentLevelInfo:
@@ -693,7 +693,7 @@ export const pt = {
       degradation: "Degradação de produção",
       degradationNote:
         "Assume-se que o rendimento dos painéis diminui {{degradation}} % ao ano. É um pressuposto de cálculo; a degradação real varia entre tipos de painéis, marcas e condições de funcionamento.",
-      investment: "Nível de investimento no período de retorno escolhido",
+      investment: "Preço com base no período de retorno selecionado",
       returnRate: "Rentabilidade %",
       balanceTitle: "Balanço anual",
       balanceConsumption: "Consumo anual",
@@ -741,7 +741,7 @@ export const pt = {
       paybackScenariosHelp:
         "Um prazo de retorno mais curto significa um investimento possível menor. Aqui vê como o nível de investimento muda se aceitar um prazo mais curto ou mais longo.",
       acceptedPayback: "Período de retorno escolhido",
-      maxInvestment: "Nível de investimento no período de retorno escolhido",
+      maxInvestment: "Preço com base no período de retorno selecionado",
       quotePrice: "Preço de orçamento indicado",
       quotePayback: "Retorno simples com base no orçamento indicado",
       calculationVersion: "Versão do cálculo",
