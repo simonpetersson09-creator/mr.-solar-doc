@@ -203,7 +203,7 @@ function PaywallPage() {
             <div className="flex flex-1 flex-col">
               <p className="text-sm font-bold">{t("paywall.single.title")}</p>
               <p className="text-xl font-bold tabular-nums">
-                {unlockPrice ?? t("paywall.priceLoading")}
+                {unlockPrice ?? (priceStalled ? t("paywall.failed") : t("paywall.priceLoading"))}
               </p>
               <p className="text-sm text-primary-foreground/80">{t("paywall.single.body")}</p>
             </div>
