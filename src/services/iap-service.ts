@@ -419,10 +419,22 @@ export async function purchaseProduct(productId: string): Promise<{
   finish: () => Promise<void>;
 }> {
   await initializePurchases();
-  const cdv = getCdv();
+  let cdv = getCdv();
   if (!isPurchaseSupported() || !cdv) {
     throw new PurchaseError("unavailable", "StoreKit plugin unavailable");
   }
+
+  // The tap can land before StoreKit delivered the product (slow Sandbox, fresh
+  // launch, iPad review device). Ask again and wait briefly instead of failing
+  // immediately, which is what made the button look unresponsive.
+  const offerReady = () => Boolean(cdv?.store.get(productId, cdv.Platform.APPLE_APPSTORE)?.getOffer?.());
+  if (!offerReady()) {
+    await refreshStoreProducts();
+    await waitForProduct(productId);
+    cdv = getCdv();
+    if (!cdv) throw new PurchaseError("unavailable", "StoreKit plugin unavailable");
+  }
+
 
   return new Promise((resolve, reject) => {
     let settled = false;
