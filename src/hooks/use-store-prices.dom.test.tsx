@@ -80,3 +80,32 @@ describe("useStorePrices", () => {
     );
   });
 });
+
+describe("useStorePrices stalled state", () => {
+  it("stops loading forever and exposes a retry that re-asks StoreKit", async () => {
+    vi.useFakeTimers();
+    const { store } = makeStore();
+    const update = vi.fn(async () => undefined);
+    (store as unknown as { update: () => Promise<void> }).update = update;
+    (window as unknown as { CdvPurchase?: unknown }).CdvPurchase = {
+      store,
+      ProductType: { CONSUMABLE: "consumable", PAID_SUBSCRIPTION: "paid subscription" },
+      Platform: { APPLE_APPSTORE: "ios-appstore" },
+    };
+
+    let latest: import("@/hooks/use-store-prices").StorePricesState | null = null;
+    function Capture() {
+      latest = useStorePrices();
+      return null;
+    }
+    render(<Capture />);
+
+    await vi.advanceTimersByTimeAsync(25_000);
+    expect(latest!.status).toBe("unavailable");
+
+    latest!.retry();
+    await vi.advanceTimersByTimeAsync(100);
+    expect(update).toHaveBeenCalled();
+    vi.useRealTimers();
+  });
+});
