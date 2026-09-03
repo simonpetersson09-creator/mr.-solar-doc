@@ -116,6 +116,9 @@ export interface PurchaseDiagnostics {
   lastErrorMessage: string | null;
 }
 
+/** Products registered with the plugin — must happen at most once per session. */
+let registered = false;
+/** True only when `store.initialize()` has actually succeeded. */
 let initialized = false;
 let initPromise: Promise<void> | null = null;
 let storeReady = false;
