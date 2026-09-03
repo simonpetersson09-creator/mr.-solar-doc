@@ -198,3 +198,66 @@ describe("purchase errors", () => {
     expect(iap.describePurchaseError(error)).toContain("Unable to process");
   });
 });
+
+describe("recovery after a failed initialisation", () => {
+  it("retries initialize() instead of locking the store as initialised", async () => {
+    let failNext = true;
+    const handlers: Record<string, ((arg?: unknown) => void) | undefined> = {};
+    const store = {
+      products: [] as unknown[],
+      register: () => undefined,
+      initialize: vi.fn(async () => {
+        if (failNext) {
+          failNext = false;
+          throw new Error("init boom");
+        }
+        return undefined;
+      }),
+      when: () => ({
+        approved: (cb: (t: unknown) => void) => (handlers["approved"] = cb),
+        cancelled: (cb: () => void) => (handlers["cancelled"] = cb),
+        productUpdated: (cb: () => void) => (handlers["productUpdated"] = cb),
+      }),
+      ready: (cb: () => void) => (handlers["ready"] = cb),
+      error: () => undefined,
+      get: () => undefined,
+      restorePurchases: async () => undefined,
+    };
+    install(store);
+
+    await iap.initializePurchases();
+    expect(iap.getPurchaseDiagnostics().initialized).toBe(false);
+
+    await iap.initializePurchases();
+    expect(store.initialize).toHaveBeenCalledTimes(2);
+    expect(iap.getPurchaseDiagnostics().initialized).toBe(true);
+  });
+});
+
+describe("purchase with a late product", () => {
+  it("waits for StoreKit to deliver the product before failing", async () => {
+    const order = vi.fn(async () => undefined);
+    const { store } = makeStore({ offer: null });
+    const late = store as unknown as {
+      products: unknown[];
+      get: () => { getOffer: () => unknown } | undefined;
+      update?: () => Promise<void>;
+    };
+    late.update = async () => {
+      late.products = [{ id: PREMIUM_PRODUCT_ID, pricing: { price: "299,00 kr" } }];
+      late.get = () => ({ getOffer: () => ({ order }) });
+    };
+    install(store);
+
+    const promise = iap.purchasePremium();
+    await new Promise((resolve) => setTimeout(resolve, 400));
+    expect(order).toHaveBeenCalled();
+    void promise.catch(() => undefined);
+  });
+
+  it("reports unavailable with diagnostics when the product never arrives", async () => {
+    const { store } = makeStore({ offer: null });
+    install(store);
+    await expect(iap.purchaseUnlock()).rejects.toMatchObject({ reason: "unavailable" });
+  }, 20000);
+});
