@@ -469,7 +469,7 @@ export async function purchaseProduct(productId: string): Promise<{
         reject(new PurchaseError("failed", message, { code, detail: message })),
       );
 
-    const offer = cdv.store.get(productId, cdv.Platform.APPLE_APPSTORE)?.getOffer?.();
+    const offer = active.store.get(productId, active.Platform.APPLE_APPSTORE)?.getOffer?.();
     if (!offer) {
       const detail = `No offer for ${productId} (products: ${
         getPurchaseDiagnostics().productIds.join(",") || "none"
