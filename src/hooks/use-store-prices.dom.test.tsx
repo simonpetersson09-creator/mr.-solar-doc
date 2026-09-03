@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, waitFor, cleanup } from "@testing-library/react";
+import { render, screen, waitFor, cleanup, act } from "@testing-library/react";
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 
 vi.mock("@/services/native-service", () => ({
@@ -100,11 +100,15 @@ describe("useStorePrices stalled state", () => {
     }
     render(<Capture />);
 
-    await vi.advanceTimersByTimeAsync(35_000);
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(35_000);
+    });
     expect(latest!.status).toBe("unavailable");
 
-    latest!.retry();
-    await vi.advanceTimersByTimeAsync(100);
+    await act(async () => {
+      latest!.retry();
+      await vi.advanceTimersByTimeAsync(100);
+    });
     expect(update).toHaveBeenCalled();
     vi.useRealTimers();
   });
