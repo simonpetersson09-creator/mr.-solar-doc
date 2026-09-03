@@ -58,17 +58,22 @@ function SettingsPage() {
   const premium = usePremium();
   const [restoring, setRestoring] = useState(false);
   const [buying, setBuying] = useState(false);
+  /** Visible, non-transient failure text — a toast alone can be missed. */
+  const [purchaseError, setPurchaseError] = useState<string | null>(null);
   // StoreKit prices only — no hardcoded fallback amount or currency. The hook
   // boots StoreKit and updates when products/prices arrive after mount.
   const store = useStorePrices();
   const premiumPrice = store.premium;
   const unlockPrice = store.unlock;
+  const priceStalled = store.status === "unavailable";
 
   /** Buys the yearly subscription. Verification is always server-side. */
   async function handleBuyPremium() {
     if (buying || premium.active) return;
     void haptic("medium");
+    setPurchaseError(null);
     if (!isPurchaseAvailable()) {
+      setPurchaseError(t("premium.unavailable"));
       toast.info(t("premium.unavailable"));
       return;
     }
@@ -89,14 +94,21 @@ function SettingsPage() {
         toast.info(t("paywall.retry"));
       } else {
         await finish();
+        setPurchaseError(t("paywall.failed"));
         toast.error(t("paywall.failed"));
       }
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
       console.warn("[iap] settings premium purchase failed", describePurchaseError(error));
-      if (reason === "cancelled") toast.info(t("paywall.cancelled"));
-      else if (reason === "unavailable") toast.info(t("premium.unavailable"));
-      else toast.error(t("paywall.failed"));
+      if (reason === "cancelled") {
+        toast.info(t("paywall.cancelled"));
+      } else if (reason === "unavailable") {
+        setPurchaseError(t("premium.unavailable"));
+        toast.info(t("premium.unavailable"));
+      } else {
+        setPurchaseError(t("paywall.failed"));
+        toast.error(t("paywall.failed"));
+      }
     } finally {
       setBuying(false);
     }
@@ -186,7 +198,9 @@ function SettingsPage() {
                   <span className="whitespace-nowrap text-sm font-black tabular-nums text-brand-black">
                     {premiumPrice
                       ? t("paywall.premium.price", { price: premiumPrice })
-                      : t("paywall.priceLoading")}
+                      : priceStalled
+                        ? t("paywall.failed")
+                        : t("paywall.priceLoading")}
                   </span>
                 </div>
               </div>
@@ -226,6 +240,24 @@ function SettingsPage() {
                   )}
                 </Button>
               )}
+              {/* Never silent: a failed or unavailable purchase is visible and retryable */}
+              {!premium.active && (purchaseError || priceStalled) ? (
+                <div className="flex flex-col gap-1">
+                  <p role="alert" className="text-[11px] font-semibold text-destructive">
+                    {purchaseError ?? t("paywall.failed")}
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="h-7 w-full text-[11px] font-semibold"
+                    onClick={() => {
+                      setPurchaseError(null);
+                      store.retry();
+                    }}
+                  >
+                    {t("common.retry")}
+                  </Button>
+                </div>
+              ) : null}
               {/* Centered renewal note */}
               <p className="text-center text-[10px] leading-snug text-brand-black/60">
                 {t("paywall.premium.renewal")}
@@ -243,7 +275,7 @@ function SettingsPage() {
                   {t("paywall.single.title")}
                 </h2>
                 <span className="shrink-0 whitespace-nowrap text-sm font-black tabular-nums text-brand-black">
-                  {unlockPrice ?? t("paywall.priceLoading")}
+                  {unlockPrice ?? (priceStalled ? t("paywall.failed") : t("paywall.priceLoading"))}
                 </span>
               </div>
               <p className="text-[11px] font-medium text-brand-black/75">

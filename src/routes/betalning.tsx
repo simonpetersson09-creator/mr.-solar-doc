@@ -55,6 +55,11 @@ function PaywallPage() {
   // reactive: the plugin and its products arrive after the first render.
   const store = useStorePrices();
   const available = store.available;
+  // On iOS the buttons stay tappable even before StoreKit answered: a disabled
+  // button is indistinguishable from a broken one. Only the web build, where no
+  // purchase can ever start, keeps them disabled.
+  const canAttempt = store.diagnostics.supported || available;
+  const priceStalled = store.status === "unavailable";
 
 
   // No calculation to unlock — send the user back to the wizard.
@@ -198,7 +203,7 @@ function PaywallPage() {
             <div className="flex flex-1 flex-col">
               <p className="text-sm font-bold">{t("paywall.single.title")}</p>
               <p className="text-xl font-bold tabular-nums">
-                {unlockPrice ?? t("paywall.priceLoading")}
+                {unlockPrice ?? (priceStalled ? t("paywall.failed") : t("paywall.priceLoading"))}
               </p>
               <p className="text-sm text-primary-foreground/80">{t("paywall.single.body")}</p>
             </div>
@@ -206,7 +211,7 @@ function PaywallPage() {
           <Button
             size="lg"
             className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-            disabled={!available || busy}
+            disabled={!canAttempt || busy}
             onClick={() => void handleUnlock()}
           >
             {busy && choice === "unlock" ? (
@@ -233,7 +238,9 @@ function PaywallPage() {
               <p className="text-xl font-bold tabular-nums">
                 {premiumPrice
                   ? t("paywall.premium.price", { price: premiumPrice })
-                  : t("paywall.priceLoading")}
+                  : priceStalled
+                    ? t("paywall.failed")
+                    : t("paywall.priceLoading")}
               </p>
               <p className="text-sm text-primary-foreground/80">{t("paywall.premium.body")}</p>
             </div>
@@ -249,7 +256,7 @@ function PaywallPage() {
           <Button
             size="lg"
             className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-            disabled={!available || busy}
+            disabled={!canAttempt || busy}
             onClick={() => void handlePremium()}
           >
             {busy && choice === "premium" ? (
@@ -264,7 +271,7 @@ function PaywallPage() {
           <p className="text-[11px] text-primary-foreground/70">{t("paywall.premium.renewal")}</p>
         </section>
 
-        {!available ? (
+        {!canAttempt ? (
           <p className="rounded-2xl bg-card px-4 py-3 text-sm text-foreground shadow-sm">
             {t("paywall.appOnly")}
           </p>
@@ -290,8 +297,23 @@ function PaywallPage() {
         {phase === "cancelled" ? (
           <p className="text-sm text-muted-foreground">{t("paywall.cancelled")}</p>
         ) : null}
-        {phase === "failed" ? (
-          <p className="text-sm text-destructive">{t("paywall.failed")}</p>
+        {phase === "failed" || (canAttempt && priceStalled) ? (
+          <div className="flex flex-col gap-2">
+            <p role="alert" className="text-sm text-destructive">
+              {t("paywall.failed")}
+            </p>
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full"
+              onClick={() => {
+                setPhase("idle");
+                store.retry();
+              }}
+            >
+              {t("common.retry")}
+            </Button>
+          </div>
         ) : null}
         {phase === "retry" ? (
           <p className="text-sm text-foreground">{t("paywall.retry")}</p>
