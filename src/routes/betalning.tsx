@@ -238,7 +238,9 @@ function PaywallPage() {
               <p className="text-xl font-bold tabular-nums">
                 {premiumPrice
                   ? t("paywall.premium.price", { price: premiumPrice })
-                  : t("paywall.priceLoading")}
+                  : priceStalled
+                    ? t("paywall.failed")
+                    : t("paywall.priceLoading")}
               </p>
               <p className="text-sm text-primary-foreground/80">{t("paywall.premium.body")}</p>
             </div>
