@@ -275,7 +275,7 @@ function SettingsPage() {
                   {t("paywall.single.title")}
                 </h2>
                 <span className="shrink-0 whitespace-nowrap text-sm font-black tabular-nums text-brand-black">
-                  {unlockPrice ?? t("paywall.priceLoading")}
+                  {unlockPrice ?? (priceStalled ? t("paywall.failed") : t("paywall.priceLoading"))}
                 </span>
               </div>
               <p className="text-[11px] font-medium text-brand-black/75">
