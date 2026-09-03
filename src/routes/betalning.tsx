@@ -271,7 +271,7 @@ function PaywallPage() {
           <p className="text-[11px] text-primary-foreground/70">{t("paywall.premium.renewal")}</p>
         </section>
 
-        {!available ? (
+        {!canAttempt ? (
           <p className="rounded-2xl bg-card px-4 py-3 text-sm text-foreground shadow-sm">
             {t("paywall.appOnly")}
           </p>
