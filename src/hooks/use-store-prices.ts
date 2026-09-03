@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   getPurchaseDiagnostics,
   getStorePrices,
   initializePurchases,
   isPurchaseAvailable,
+  isPurchaseSupported,
+  refreshStoreProducts,
   subscribeToStore,
   type PurchaseDiagnostics,
 } from "@/services/iap-service";
@@ -13,12 +15,20 @@ export interface StorePricesState {
   available: boolean;
   unlock: string | null;
   premium: string | null;
+  /**
+   * `loading` while StoreKit is still delivering products, `ready` once at least
+   * one price arrived, `unavailable` when the lookup gave up. The UI must never
+   * stay in `loading` forever — that is what looked like a frozen paywall.
+   */
+  status: "loading" | "ready" | "unavailable";
   diagnostics: PurchaseDiagnostics;
+  /** Re-asks StoreKit for products; used by the visible retry action. */
+  retry: () => void;
 }
 
 /** Bounded polling so the UI can never get stuck on "fetching price" forever. */
 const POLL_INTERVAL_MS = 500;
-const POLL_TIMEOUT_MS = 30_000;
+const POLL_TIMEOUT_MS = 20_000;
 
 /**
  * Boots StoreKit for whichever screen shows prices (paywall opened directly,
