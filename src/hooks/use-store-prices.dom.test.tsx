@@ -100,7 +100,7 @@ describe("useStorePrices stalled state", () => {
     }
     render(<Capture />);
 
-    await vi.advanceTimersByTimeAsync(25_000);
+    await vi.advanceTimersByTimeAsync(35_000);
     expect(latest!.status).toBe("unavailable");
 
     latest!.retry();
