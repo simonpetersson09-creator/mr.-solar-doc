@@ -60,6 +60,12 @@ function PaywallPage() {
   // purchase can ever start, keeps them disabled.
   const canAttempt = store.diagnostics.supported || available;
   const priceStalled = store.status === "unavailable";
+  // On the web there is no App Store, so a missing price is expected, not an error.
+  const priceFallback = !store.diagnostics.supported
+    ? "—"
+    : priceStalled
+      ? t("paywall.failed")
+      : t("paywall.priceLoading");
 
 
   // No calculation to unlock — send the user back to the wizard.
@@ -203,7 +209,7 @@ function PaywallPage() {
             <div className="flex flex-1 flex-col">
               <p className="text-sm font-bold">{t("paywall.single.title")}</p>
               <p className="text-xl font-bold tabular-nums">
-                {unlockPrice ?? (priceStalled ? t("paywall.failed") : t("paywall.priceLoading"))}
+                {unlockPrice ?? priceFallback}
               </p>
               <p className="text-sm text-primary-foreground/80">{t("paywall.single.body")}</p>
             </div>
@@ -238,9 +244,7 @@ function PaywallPage() {
               <p className="text-xl font-bold tabular-nums">
                 {premiumPrice
                   ? t("paywall.premium.price", { price: premiumPrice })
-                  : priceStalled
-                    ? t("paywall.failed")
-                    : t("paywall.priceLoading")}
+                  : priceFallback}
               </p>
               <p className="text-sm text-primary-foreground/80">{t("paywall.premium.body")}</p>
             </div>

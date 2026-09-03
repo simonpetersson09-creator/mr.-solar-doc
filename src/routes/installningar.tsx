@@ -66,6 +66,12 @@ function SettingsPage() {
   const premiumPrice = store.premium;
   const unlockPrice = store.unlock;
   const priceStalled = store.status === "unavailable";
+  // On the web there is no App Store, so a missing price is expected, not an error.
+  const priceFallback = !store.diagnostics.supported
+    ? "—"
+    : priceStalled
+      ? t("paywall.failed")
+      : t("paywall.priceLoading");
 
   /** Buys the yearly subscription. Verification is always server-side. */
   async function handleBuyPremium() {
@@ -198,9 +204,7 @@ function SettingsPage() {
                   <span className="whitespace-nowrap text-sm font-black tabular-nums text-brand-black">
                     {premiumPrice
                       ? t("paywall.premium.price", { price: premiumPrice })
-                      : priceStalled
-                        ? t("paywall.failed")
-                        : t("paywall.priceLoading")}
+                      : priceFallback}
                   </span>
                 </div>
               </div>
@@ -275,7 +279,7 @@ function SettingsPage() {
                   {t("paywall.single.title")}
                 </h2>
                 <span className="shrink-0 whitespace-nowrap text-sm font-black tabular-nums text-brand-black">
-                  {unlockPrice ?? (priceStalled ? t("paywall.failed") : t("paywall.priceLoading"))}
+                  {unlockPrice ?? priceFallback}
                 </span>
               </div>
               <p className="text-[11px] font-medium text-brand-black/75">

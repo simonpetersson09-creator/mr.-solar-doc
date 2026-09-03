@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { render, screen, waitFor, cleanup } from "@testing-library/react";
+import { render, screen, waitFor, cleanup, act } from "@testing-library/react";
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 
 vi.mock("@/services/native-service", () => ({
@@ -78,5 +78,38 @@ describe("useStorePrices", () => {
       },
       { timeout: 4000 },
     );
+  });
+});
+
+describe("useStorePrices stalled state", () => {
+  it("stops loading forever and exposes a retry that re-asks StoreKit", async () => {
+    vi.useFakeTimers();
+    const { store } = makeStore();
+    const update = vi.fn(async () => undefined);
+    (store as unknown as { update: () => Promise<void> }).update = update;
+    (window as unknown as { CdvPurchase?: unknown }).CdvPurchase = {
+      store,
+      ProductType: { CONSUMABLE: "consumable", PAID_SUBSCRIPTION: "paid subscription" },
+      Platform: { APPLE_APPSTORE: "ios-appstore" },
+    };
+
+    let latest: import("@/hooks/use-store-prices").StorePricesState | null = null;
+    function Capture() {
+      latest = useStorePrices();
+      return null;
+    }
+    render(<Capture />);
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(35_000);
+    });
+    expect(latest!.status).toBe("unavailable");
+
+    await act(async () => {
+      latest!.retry();
+      await vi.advanceTimersByTimeAsync(100);
+    });
+    expect(update).toHaveBeenCalled();
+    vi.useRealTimers();
   });
 });
