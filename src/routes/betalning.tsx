@@ -55,6 +55,11 @@ function PaywallPage() {
   // reactive: the plugin and its products arrive after the first render.
   const store = useStorePrices();
   const available = store.available;
+  // On iOS the buttons stay tappable even before StoreKit answered: a disabled
+  // button is indistinguishable from a broken one. Only the web build, where no
+  // purchase can ever start, keeps them disabled.
+  const canAttempt = store.diagnostics.supported || available;
+  const priceStalled = store.status === "unavailable";
 
 
   // No calculation to unlock — send the user back to the wizard.
