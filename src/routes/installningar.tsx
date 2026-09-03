@@ -240,6 +240,24 @@ function SettingsPage() {
                   )}
                 </Button>
               )}
+              {/* Never silent: a failed or unavailable purchase is visible and retryable */}
+              {!premium.active && (purchaseError || priceStalled) ? (
+                <div className="flex flex-col gap-1">
+                  <p role="alert" className="text-[11px] font-semibold text-destructive">
+                    {purchaseError ?? t("paywall.failed")}
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="h-7 w-full text-[11px] font-semibold"
+                    onClick={() => {
+                      setPurchaseError(null);
+                      store.retry();
+                    }}
+                  >
+                    {t("common.retry")}
+                  </Button>
+                </div>
+              ) : null}
               {/* Centered renewal note */}
               <p className="text-center text-[10px] leading-snug text-brand-black/60">
                 {t("paywall.premium.renewal")}
