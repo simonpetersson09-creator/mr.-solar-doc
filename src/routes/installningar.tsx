@@ -58,17 +58,22 @@ function SettingsPage() {
   const premium = usePremium();
   const [restoring, setRestoring] = useState(false);
   const [buying, setBuying] = useState(false);
+  /** Visible, non-transient failure text — a toast alone can be missed. */
+  const [purchaseError, setPurchaseError] = useState<string | null>(null);
   // StoreKit prices only — no hardcoded fallback amount or currency. The hook
   // boots StoreKit and updates when products/prices arrive after mount.
   const store = useStorePrices();
   const premiumPrice = store.premium;
   const unlockPrice = store.unlock;
+  const priceStalled = store.status === "unavailable";
 
   /** Buys the yearly subscription. Verification is always server-side. */
   async function handleBuyPremium() {
     if (buying || premium.active) return;
     void haptic("medium");
+    setPurchaseError(null);
     if (!isPurchaseAvailable()) {
+      setPurchaseError(t("premium.unavailable"));
       toast.info(t("premium.unavailable"));
       return;
     }
@@ -89,14 +94,21 @@ function SettingsPage() {
         toast.info(t("paywall.retry"));
       } else {
         await finish();
+        setPurchaseError(t("paywall.failed"));
         toast.error(t("paywall.failed"));
       }
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
       console.warn("[iap] settings premium purchase failed", describePurchaseError(error));
-      if (reason === "cancelled") toast.info(t("paywall.cancelled"));
-      else if (reason === "unavailable") toast.info(t("premium.unavailable"));
-      else toast.error(t("paywall.failed"));
+      if (reason === "cancelled") {
+        toast.info(t("paywall.cancelled"));
+      } else if (reason === "unavailable") {
+        setPurchaseError(t("premium.unavailable"));
+        toast.info(t("premium.unavailable"));
+      } else {
+        setPurchaseError(t("paywall.failed"));
+        toast.error(t("paywall.failed"));
+      }
     } finally {
       setBuying(false);
     }
