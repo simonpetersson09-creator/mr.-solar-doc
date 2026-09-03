@@ -198,7 +198,9 @@ function SettingsPage() {
                   <span className="whitespace-nowrap text-sm font-black tabular-nums text-brand-black">
                     {premiumPrice
                       ? t("paywall.premium.price", { price: premiumPrice })
-                      : t("paywall.priceLoading")}
+                      : priceStalled
+                        ? t("paywall.failed")
+                        : t("paywall.priceLoading")}
                   </span>
                 </div>
               </div>
