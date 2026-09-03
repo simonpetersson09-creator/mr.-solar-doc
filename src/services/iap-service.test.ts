@@ -160,7 +160,7 @@ describe("purchase errors", () => {
     const { store } = makeStore({ offer: null });
     install(store);
     await expect(iap.purchaseUnlock()).rejects.toMatchObject({ reason: "unavailable" });
-  });
+  }, 20000);
 
   it("keeps the StoreKit code and message on a purchase error", async () => {
     const { store, handlers } = makeStore({
@@ -254,10 +254,4 @@ describe("purchase with a late product", () => {
     expect(order).toHaveBeenCalled();
     void promise.catch(() => undefined);
   });
-
-  it("reports unavailable with diagnostics when the product never arrives", async () => {
-    const { store } = makeStore({ offer: null });
-    install(store);
-    await expect(iap.purchaseUnlock()).rejects.toMatchObject({ reason: "unavailable" });
-  }, 20000);
 });
