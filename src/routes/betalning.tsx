@@ -297,8 +297,23 @@ function PaywallPage() {
         {phase === "cancelled" ? (
           <p className="text-sm text-muted-foreground">{t("paywall.cancelled")}</p>
         ) : null}
-        {phase === "failed" ? (
-          <p className="text-sm text-destructive">{t("paywall.failed")}</p>
+        {phase === "failed" || (canAttempt && priceStalled) ? (
+          <div className="flex flex-col gap-2">
+            <p role="alert" className="text-sm text-destructive">
+              {t("paywall.failed")}
+            </p>
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full"
+              onClick={() => {
+                setPhase("idle");
+                store.retry();
+              }}
+            >
+              {t("common.retry")}
+            </Button>
+          </div>
         ) : null}
         {phase === "retry" ? (
           <p className="text-sm text-foreground">{t("paywall.retry")}</p>
