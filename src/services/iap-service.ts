@@ -71,6 +71,8 @@ interface CdvStore {
     platform?: string,
   ) => { getOffer?: () => { order: () => Promise<unknown> } } | undefined;
   restorePurchases: () => Promise<unknown>;
+  /** Re-queries the App Store for products/prices (v13 `store.update()`). */
+  update?: () => Promise<unknown> | unknown;
   products?: CdvProduct[];
 }
 
