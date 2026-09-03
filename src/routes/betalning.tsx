@@ -211,7 +211,7 @@ function PaywallPage() {
           <Button
             size="lg"
             className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-            disabled={!available || busy}
+            disabled={!canAttempt || busy}
             onClick={() => void handleUnlock()}
           >
             {busy && choice === "unlock" ? (
