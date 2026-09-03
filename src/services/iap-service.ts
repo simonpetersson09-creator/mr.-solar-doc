@@ -434,7 +434,7 @@ export async function purchaseProduct(productId: string): Promise<{
     cdv = getCdv();
     if (!cdv) throw new PurchaseError("unavailable", "StoreKit plugin unavailable");
   }
-
+  const active = cdv;
 
   return new Promise((resolve, reject) => {
     let settled = false;
