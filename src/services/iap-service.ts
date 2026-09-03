@@ -534,6 +534,7 @@ export function describePurchaseError(error: unknown): string {
 /** Test-only: clears module state so each test starts from a clean store. */
 export function __resetIapServiceForTests() {
   initialized = false;
+  registered = false;
   initPromise = null;
   storeReady = false;
   lastErrorCode = null;
