@@ -26,7 +26,7 @@ import {
   refreshPurchases,
 } from "@/services/iap-service";
 import { useStorePrices } from "@/hooks/use-store-prices";
-import { PurchaseDiagnosticsPanel } from "@/components/PurchaseDiagnosticsPanel";
+
 import { fetchPremiumStatus, verifyPremium } from "@/services/purchase-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { drainPurchaseTransactions } from "@/services/purchase-recovery";

@@ -13,7 +13,7 @@ import {
   purchaseUnlock,
 } from "@/services/iap-service";
 import { useStorePrices } from "@/hooks/use-store-prices";
-import { PurchaseDiagnosticsPanel } from "@/components/PurchaseDiagnosticsPanel";
+
 import {
   reportPurchaseOutcome,
   unlockCalculationWithPremium,
