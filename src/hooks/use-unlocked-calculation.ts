@@ -35,7 +35,10 @@ export function useUnlockedCalculation(): {
   const query = useQuery({
     queryKey: ["purchase-status", active?.id ?? null],
     enabled: Boolean(active),
-    staleTime: Infinity,
+    // Not cached forever: the revision window and the entitlement behind it can
+    // change while the app stays open.
+    staleTime: 5 * 60_000,
+    refetchOnWindowFocus: true,
     retry: 1,
     queryFn: async () =>
       fetchPurchaseStatus({
