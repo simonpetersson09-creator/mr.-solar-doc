@@ -52,6 +52,9 @@ function PaywallPage() {
   const premium = usePremium();
   const [phase, setPhase] = useState<Phase>("idle");
   const [choice, setChoice] = useState<Choice | null>(null);
+  /** Re-runs verification for a purchase Apple has not propagated yet. */
+  const resumeRef = useRef<(() => Promise<void>) | null>(null);
+  const autoResumes = useRef(0);
   // Boots StoreKit (also when /betalning is opened directly) and keeps prices
   // reactive: the plugin and its products arrive after the first render.
   const store = useStorePrices();
@@ -104,6 +107,23 @@ function PaywallPage() {
   const unlockPrice = store.unlock;
   const premiumPrice = store.premium;
   const busy = phase === "purchasing" || phase === "verifying";
+
+  // A completed purchase that Apple has not made visible yet must never be a
+  // dead end: keep re-checking in the background (the user can also tap retry).
+  useEffect(() => {
+    if (phase !== "retry" || !resumeRef.current) return;
+    if (autoResumes.current >= 6) return;
+    let cancelled = false;
+    const timer = window.setTimeout(() => {
+      if (cancelled) return;
+      autoResumes.current += 1;
+      void resumeRef.current?.();
+    }, 5000);
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+    };
+  }, [phase]);
 
   /**
    * Apple needs a moment before a fresh transaction is visible to the server
@@ -395,7 +415,22 @@ function PaywallPage() {
           </div>
         ) : null}
         {phase === "retry" ? (
-          <p className="text-sm text-foreground">{t("paywall.retry")}</p>
+          <div className="flex flex-col gap-2">
+            <p role="status" className="text-sm text-foreground">
+              {t("paywall.retry")}
+            </p>
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full"
+              onClick={() => {
+                autoResumes.current = 0;
+                void resumeRef.current?.();
+              }}
+            >
+              {t("common.retry")}
+            </Button>
+          </div>
         ) : null}
 
         <p className="flex items-center justify-center gap-1.5 pb-1 text-center text-[11px] text-muted-foreground">
