@@ -26,7 +26,7 @@ import {
   refreshPurchases,
 } from "@/services/iap-service";
 import { useStorePrices } from "@/hooks/use-store-prices";
-import { PurchaseDiagnosticsPanel } from "@/components/PurchaseDiagnosticsPanel";
+
 import { fetchPremiumStatus, verifyPremium } from "@/services/purchase-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { drainPurchaseTransactions } from "@/services/purchase-recovery";
@@ -312,8 +312,6 @@ function SettingsPage() {
             <div className="pointer-events-none absolute -right-6 -top-6 size-20 rounded-full border-[8px] border-brand-black/5" />
           </div>
         </section>
-
-        <PurchaseDiagnosticsPanel diagnostics={store.diagnostics} />
 
         {/* Settings groups */}
         <section className="flex flex-col gap-2.5">

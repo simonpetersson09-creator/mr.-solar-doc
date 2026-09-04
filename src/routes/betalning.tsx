@@ -13,7 +13,7 @@ import {
   purchaseUnlock,
 } from "@/services/iap-service";
 import { useStorePrices } from "@/hooks/use-store-prices";
-import { PurchaseDiagnosticsPanel } from "@/components/PurchaseDiagnosticsPanel";
+
 import {
   reportPurchaseOutcome,
   unlockCalculationWithPremium,
@@ -391,7 +391,7 @@ function PaywallPage() {
         ) : null}
 
 
-        <PurchaseDiagnosticsPanel diagnostics={store.diagnostics} />
+        
 
         {phase === "cancelled" ? (
           <p className="text-sm text-muted-foreground">{t("paywall.cancelled")}</p>
