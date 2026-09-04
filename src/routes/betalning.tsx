@@ -21,6 +21,7 @@ import {
   verifyPurchase,
 } from "@/services/purchase-service";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
+import { drainPurchaseTransactions } from "@/services/purchase-recovery";
 import { isDevUnlock } from "@/lib/dev-unlock";
 import i18nInstance from "@/i18n";
 
@@ -50,6 +51,7 @@ function PaywallPage() {
   const pending = usePurchaseStore((s) => s.pending);
   const rememberToken = usePurchaseStore((s) => s.rememberToken);
   const premium = usePremium();
+  const unclaimedUnlock = usePurchaseStore((s) => s.unclaimedUnlock);
   const [phase, setPhase] = useState<Phase>("idle");
   const [choice, setChoice] = useState<Choice | null>(null);
   /** Re-runs verification for a purchase Apple has not propagated yet. */
@@ -71,6 +73,14 @@ function PaywallPage() {
       ? t("paywall.failed")
       : t("paywall.priceLoading");
 
+
+  // A paid unlock may be waiting in StoreKit's queue with no calculation to
+  // apply to (reinstall, cleared local state). Now that a pending calculation
+  // exists, drain the queue so the user is not charged twice.
+  useEffect(() => {
+    if (!pending || !unclaimedUnlock) return;
+    void drainPurchaseTransactions(queryClient);
+  }, [pending, unclaimedUnlock, queryClient]);
 
   // No calculation to unlock — send the user back to the wizard.
   useEffect(() => {

@@ -13,6 +13,7 @@ import { takeUnclaimedTransactions } from "@/services/iap-service";
 import { verifyPremium, verifyPurchase } from "@/services/purchase-service";
 import { PREMIUM_PRODUCT_ID } from "@/config/purchase";
 import { usePurchaseStore } from "@/state/purchase-store";
+import { PREMIUM_QUERY_KEY } from "@/hooks/use-premium";
 
 /** Verifies every pending transaction. Returns true if anything was activated. */
 export async function drainPurchaseTransactions(queryClient: QueryClient): Promise<boolean> {
@@ -33,7 +34,7 @@ export async function drainPurchaseTransactions(queryClient: QueryClient): Promi
         if (premium.status === "active" || premium.status === "inactive") {
           await transaction.finish();
           activated = activated || premium.status === "active";
-          await queryClient.invalidateQueries({ queryKey: ["premium-status"] });
+          await queryClient.invalidateQueries({ queryKey: PREMIUM_QUERY_KEY });
           await queryClient.invalidateQueries({ queryKey: ["purchase-status"] });
         } else if (premium.status === "failed") {
           await transaction.finish();
@@ -44,8 +45,15 @@ export async function drainPurchaseTransactions(queryClient: QueryClient): Promi
         continue;
       }
 
-      const ref = store.pending ?? store.active;
+      // A one-off unlock may only be applied to the calculation the paywall is
+      // currently open for. Falling back to `active` could attach an old,
+      // unverified transaction to a different calculation than the one it was
+      // paid for. With no pending calculation the transaction stays unfinished
+      // and queued as a credit — the next drain (right after the user creates a
+      // calculation) applies it, and StoreKit keeps redelivering it meanwhile.
+      const ref = store.pending;
       if (!ref) {
+        store.setUnclaimedUnlock(true);
         transaction.requeue();
         continue;
       }
@@ -59,12 +67,14 @@ export async function drainPurchaseTransactions(queryClient: QueryClient): Promi
       if (verified.status === "paid") {
         await transaction.finish();
         activated = true;
+        usePurchaseStore.getState().setUnclaimedUnlock(false);
         usePurchaseStore.getState().rememberToken(ref);
         await queryClient.invalidateQueries({ queryKey: ["purchase-status"] });
         await queryClient.invalidateQueries({ queryKey: ["purchased-calculations"] });
       } else if (verified.status === "failed") {
         // Apple rejected it for good — finishing stops endless redelivery.
         await transaction.finish();
+        usePurchaseStore.getState().setUnclaimedUnlock(false);
       } else {
         transaction.requeue();
       }

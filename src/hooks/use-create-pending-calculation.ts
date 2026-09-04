@@ -1,4 +1,5 @@
 import { useCallback } from "react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import {
   claimRevision,
@@ -12,7 +13,7 @@ import { useCalculationStore } from "@/state/calculation-store";
 import { PRICE_SCENARIO_RATES } from "@/config/constants";
 import { SNAPSHOT_VERSION, type CalculationSnapshot } from "@/lib/calculation-snapshot";
 import { isDevUnlock } from "@/lib/dev-unlock";
-import { usePremium } from "@/hooks/use-premium";
+import { fetchFreshPremium } from "@/hooks/use-premium";
 
 
 /**
@@ -26,6 +27,8 @@ export interface CreateCalculationOutcome {
   reused: boolean;
   /** Recalculations left on the reused purchase. */
   revisionsLeft: number;
+  /** Server-fresh Premium entitlement at the moment of the decision. */
+  premiumActive: boolean;
 }
 
 export function useCreatePendingCalculation(): () => Promise<CreateCalculationOutcome> {
@@ -38,10 +41,15 @@ export function useCreatePendingCalculation(): () => Promise<CreateCalculationOu
   const saveLocal = useCalculationStore((s) => s.save);
   const active = usePurchaseStore((s) => s.active);
   const rememberToken = usePurchaseStore((s) => s.rememberToken);
-  const premium = usePremium();
+  const queryClient = useQueryClient();
 
   return useCallback(async () => {
-    if (!result) return { ok: false, reused: false, revisionsLeft: 0 };
+    if (!result) return { ok: false, reused: false, revisionsLeft: 0, premiumActive: false };
+
+    // Ask the server right now instead of trusting a cached answer: a stale
+    // "not premium" would send a subscriber to the paywall and burn a free
+    // recalculation.
+    const premiumActive = await fetchFreshPremium(queryClient);
 
     const annualPriceChangeRate =
       wizard.priceScenario === "custom"
@@ -80,7 +88,7 @@ export function useCreatePendingCalculation(): () => Promise<CreateCalculationOu
 
     // A paid one-off calculation may be recalculated a few times within its
     // window without paying again. Premium never needs this.
-    if (active && !premium.active) {
+    if (active && !premiumActive) {
       const claim = await claimRevision({
         data: { id: active.id, accessToken: active.accessToken },
       }).catch(() => null);
@@ -93,7 +101,7 @@ export function useCreatePendingCalculation(): () => Promise<CreateCalculationOu
         });
         setPending(null);
         rememberToken(active);
-        return { ok: true, reused: true, revisionsLeft: claim.revisionsLeft };
+        return { ok: true, reused: true, revisionsLeft: claim.revisionsLeft, premiumActive };
       }
     }
 
@@ -118,7 +126,7 @@ export function useCreatePendingCalculation(): () => Promise<CreateCalculationOu
       snapshot,
     });
     setPending({ id: created.id, accessToken: created.accessToken });
-    return { ok: true, reused: false, revisionsLeft: 0 };
+    return { ok: true, reused: false, revisionsLeft: 0, premiumActive };
   }, [
     result,
     wizard,
@@ -128,7 +136,7 @@ export function useCreatePendingCalculation(): () => Promise<CreateCalculationOu
     setPending,
     saveLocal,
     active,
-    premium.active,
+    queryClient,
     rememberToken,
   ]);
 }
