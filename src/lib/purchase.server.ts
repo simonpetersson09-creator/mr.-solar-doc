@@ -409,3 +409,43 @@ export async function verifyApplePremiumProvider(data: {
     return { status: terminal ? "failed" : "pending", reason: code };
   }
 }
+
+/**
+ * Marks one calculation as unlocked by an active Premium subscription.
+ *
+ * Premium buyers previously only got a local token, so the receipt row stayed
+ * "pending": the calculation was missing from "purchased calculations" after a
+ * reinstall or device change. Entitlement is re-checked with Apple here — the
+ * client can never grant itself access.
+ */
+export async function unlockWithPremiumProvider(
+  data: AccessInput & { deviceId: string },
+): Promise<{ status: PurchaseStatus; reason?: string }> {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+
+  const { data: row } = await supabaseAdmin
+    .from("calculations")
+    .select("id, status")
+    .eq("id", data.id)
+    .eq("access_token", data.accessToken)
+    .maybeSingle();
+  if (!row) return { status: "failed" as PurchaseStatus, reason: "not-found" };
+  if (row.status === "paid") return { status: "paid" as PurchaseStatus };
+
+  const premium = await getPremiumStatusProvider({ deviceId: data.deviceId });
+  if (!premium.active) return { status: "pending" as PurchaseStatus, reason: "no-premium" };
+
+  const { error } = await supabaseAdmin
+    .from("calculations")
+    .update({
+      status: "paid",
+      failure_reason: null,
+      product_id: PREMIUM_PRODUCT_ID,
+      purchased_at: new Date().toISOString(),
+    } as never)
+    .eq("id", data.id)
+    .eq("access_token", data.accessToken)
+    .neq("status", "paid");
+  if (error) return { status: "pending" as PurchaseStatus, reason: "retry" };
+  return { status: "paid" as PurchaseStatus };
+}

@@ -16,6 +16,7 @@ import {
   getPurchaseStatus,
   listPurchasedCalculations,
   markPurchaseOutcome,
+  unlockWithPremium,
   verifyApplePremium,
   verifyApplePurchase,
   type PremiumStatus,
@@ -90,5 +91,13 @@ export const verifyPremium = route(
   verifyApplePremium as Fn<
     { deviceId: string; transactionId: string },
     Awaited<ReturnType<typeof verifyApplePremium>>
+  >,
+);
+
+export const unlockCalculationWithPremium = route(
+  "unlockWithPremium",
+  unlockWithPremium as Fn<
+    { id: string; accessToken: string; deviceId: string },
+    Awaited<ReturnType<typeof unlockWithPremium>>
   >,
 );

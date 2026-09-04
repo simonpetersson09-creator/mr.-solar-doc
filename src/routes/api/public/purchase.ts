@@ -6,6 +6,7 @@ import {
   accessSchema,
   createSchema,
   premiumSchema,
+  premiumUnlockSchema,
   premiumVerifySchema,
   statusSchema,
   verifySchema,
@@ -30,6 +31,7 @@ const bodySchema = z.discriminatedUnion("action", [
   z.object({ action: z.literal("listPurchasedCalculations"), payload: createSchema }),
   z.object({ action: z.literal("getPremiumStatus"), payload: premiumSchema }),
   z.object({ action: z.literal("verifyApplePremium"), payload: premiumVerifySchema }),
+  z.object({ action: z.literal("unlockWithPremium"), payload: premiumUnlockSchema }),
 ]);
 
 function responseHeaders(origin: string): HeadersInit {
@@ -107,6 +109,9 @@ export const Route = createFileRoute("/api/public/purchase")({
               break;
             case "verifyApplePremium":
               result = await providers.verifyApplePremiumProvider(body.payload);
+              break;
+            case "unlockWithPremium":
+              result = await providers.unlockWithPremiumProvider(body.payload);
               break;
           }
           return Response.json(result, { headers: responseHeaders(origin) });
