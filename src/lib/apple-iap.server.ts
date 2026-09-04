@@ -18,6 +18,8 @@ export interface VerifiedTransaction {
   bundleId: string;
   environment: "Production" | "Sandbox";
   purchasedAt: string;
+  /** Subscription expiry from the signed transaction, when Apple provides one. */
+  expiresAt: string | null;
 }
 
 export class AppleVerificationError extends Error {
@@ -232,6 +234,7 @@ export async function verifyAppleTransaction(
         ? payload.environment
         : environmentHint,
     purchasedAt: new Date(payload.purchaseDate ?? Date.now()).toISOString(),
+    expiresAt: payload.expiresDate ? new Date(payload.expiresDate).toISOString() : null,
   };
 }
 
@@ -297,6 +300,18 @@ export async function getAppleSubscriptionState(
   if (result.status === 404) {
     environment = "Sandbox";
     result = await fetchSubscriptionStatuses(SANDBOX_BASE, originalTransactionId, token);
+  }
+  // Same Sandbox propagation delay as for single transactions.
+  for (const delay of LOOKUP_RETRY_DELAYS_MS) {
+    if (result.status !== 404) break;
+    await wait(delay);
+    result = await fetchSubscriptionStatuses(PRODUCTION_BASE, originalTransactionId, token);
+    if (result.status === 404) {
+      environment = "Sandbox";
+      result = await fetchSubscriptionStatuses(SANDBOX_BASE, originalTransactionId, token);
+    } else {
+      environment = "Production";
+    }
   }
   if (result.status === 404) {
     throw new AppleVerificationError("not-found", "Subscription not found at Apple.");
