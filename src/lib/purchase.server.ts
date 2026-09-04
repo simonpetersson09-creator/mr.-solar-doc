@@ -349,10 +349,35 @@ export async function verifyApplePremiumProvider(data: {
 
   try {
     const verified = await verifyAppleTransaction(data.transactionId, PREMIUM_PRODUCT_ID);
+    // The subscription status endpoint can lag behind a just-completed purchase
+    // (typical in Sandbox / App Review). The signed transaction itself is proof
+    // enough for the first period, so fall back to it instead of telling the
+    // buyer the purchase failed.
     const state = await getAppleSubscriptionState(
       verified.originalTransactionId,
       PREMIUM_PRODUCT_ID,
-    );
+    ).catch((error: unknown) => {
+      const code = error instanceof AppleVerificationError ? error.code : "apple-error";
+      const notExpired = verified.expiresAt
+        ? new Date(verified.expiresAt).getTime() > Date.now()
+        : false;
+      if ((code === "not-found" || code === "apple-error") && notExpired) {
+        return {
+          active: true,
+          appleStatus: 1,
+          productId: verified.productId,
+          originalTransactionId: verified.originalTransactionId,
+          transactionId: verified.transactionId,
+          environment: verified.environment,
+          expiresAt: verified.expiresAt,
+          autoRenew: true,
+          revokedAt: null,
+        };
+      }
+      throw error;
+    });
+
+
 
     const { error } = await supabaseAdmin.from("premium_subscriptions").upsert(
       {

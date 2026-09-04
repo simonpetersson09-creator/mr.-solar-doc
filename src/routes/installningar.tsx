@@ -86,9 +86,19 @@ function SettingsPage() {
     setBuying(true);
     try {
       const { transactionId, finish } = await purchasePremium();
-      const verified = await verifyPremium({
+      // Apple's server API needs a moment before a brand new transaction is
+      // visible (seconds, in Sandbox/App Review), so retry a pending answer.
+      let verified = await verifyPremium({
         data: { deviceId: usePurchaseStore.getState().ensureDeviceId(), transactionId },
       });
+      for (const delay of [1500, 2500, 4000, 6000]) {
+        if (verified.status !== "pending") break;
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        verified = await verifyPremium({
+          data: { deviceId: usePurchaseStore.getState().ensureDeviceId(), transactionId },
+        });
+      }
+
       if (verified.status === "active") {
         await finish();
         await queryClient.invalidateQueries({ queryKey: PREMIUM_QUERY_KEY });

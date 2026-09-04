@@ -96,6 +96,23 @@ function PaywallPage() {
   const premiumPrice = store.premium;
   const busy = phase === "purchasing" || phase === "verifying";
 
+  /**
+   * Apple needs a moment before a fresh transaction is visible to the server
+   * API (seconds, in Sandbox/App Review). Retrying a "pending" verification is
+   * what turns a scary "purchase failed" into a completed purchase.
+   */
+  async function verifyWithRetry<T extends { status: string }>(
+    run: () => Promise<T>,
+    isPending: (result: T) => boolean,
+  ): Promise<T> {
+    let result = await run();
+    for (const delay of [1500, 2500, 4000, 6000]) {
+      if (!isPending(result)) return result;
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      result = await run();
+    }
+    return result;
+  }
 
   async function handleUnlock() {
     if (!pending || busy) return;
@@ -105,9 +122,13 @@ function PaywallPage() {
     try {
       const { transactionId, finish } = await purchaseUnlock();
       setPhase("verifying");
-      const verified = await verifyPurchase({
-        data: { id: pending.id, accessToken: pending.accessToken, transactionId },
-      });
+      const verified = await verifyWithRetry(
+        () =>
+          verifyPurchase({
+            data: { id: pending.id, accessToken: pending.accessToken, transactionId },
+          }),
+        (result) => result.status === "pending",
+      );
       if (verified.status === "paid") {
         await finish();
         rememberToken(pending);
@@ -145,12 +166,16 @@ function PaywallPage() {
     try {
       const { transactionId, finish } = await purchasePremium();
       setPhase("verifying");
-      const verified = await verifyPremium({
-        data: {
-          deviceId: usePurchaseStore.getState().ensureDeviceId(),
-          transactionId,
-        },
-      });
+      const verified = await verifyWithRetry(
+        () =>
+          verifyPremium({
+            data: {
+              deviceId: usePurchaseStore.getState().ensureDeviceId(),
+              transactionId,
+            },
+          }),
+        (result) => result.status === "pending",
+      );
       if (verified.status === "active") {
         await finish();
         await queryClient.invalidateQueries({ queryKey: PREMIUM_QUERY_KEY });
