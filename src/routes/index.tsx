@@ -7,7 +7,6 @@ import { ConsumptionStep } from "@/components/steps/ConsumptionStep";
 import { FuseStep } from "@/components/steps/FuseStep";
 import { AssumptionsStep } from "@/components/steps/AssumptionsStep";
 import { useCreatePendingCalculation } from "@/hooks/use-create-pending-calculation";
-import { usePremium } from "@/hooks/use-premium";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { useWizardStore } from "@/state/wizard-store";
 import { isValidConnectionCapacity } from "@/config/connection-capacity";
@@ -33,7 +32,6 @@ const TOTAL_STEPS = 5;
 function WizardPage() {
   const navigate = useNavigate();
   const createPending = useCreatePendingCalculation();
-  const premium = usePremium();
   const hasStarted = useWizardStore((s) => s.hasStarted);
   const setStarted = useWizardStore((s) => s.setStarted);
   // Country never drives the UI language; only technical/economic profiles.

@@ -21,10 +21,17 @@ interface PurchaseState {
   tokens: Record<string, string>;
   /** The calculation the result page should show. */
   active: PendingCalculationRef | null;
+  /**
+   * True when StoreKit holds a paid, unfinished unlock that has no calculation
+   * to apply to (reinstall, cleared local state). It is applied as soon as a
+   * new calculation is created.
+   */
+  unclaimedUnlock: boolean;
   ensureDeviceId: () => string;
   setPending: (ref: PendingCalculationRef | null) => void;
   setActive: (ref: PendingCalculationRef | null) => void;
   rememberToken: (ref: PendingCalculationRef) => void;
+  setUnclaimedUnlock: (value: boolean) => void;
 }
 
 function randomId(): string {
@@ -39,6 +46,7 @@ export const usePurchaseStore = create<PurchaseState>()(
       pending: null,
       tokens: {},
       active: null,
+      unclaimedUnlock: false,
       ensureDeviceId: () => {
         const existing = get().deviceId;
         if (existing) return existing;
@@ -47,6 +55,7 @@ export const usePurchaseStore = create<PurchaseState>()(
         return created;
       },
       setPending: (pending) => set({ pending }),
+      setUnclaimedUnlock: (unclaimedUnlock) => set({ unclaimedUnlock }),
       setActive: (active) => set({ active }),
       rememberToken: (ref) =>
         set((state) => ({
