@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -16,6 +16,7 @@ import { useStorePrices } from "@/hooks/use-store-prices";
 import { PurchaseDiagnosticsPanel } from "@/components/PurchaseDiagnosticsPanel";
 import {
   reportPurchaseOutcome,
+  unlockCalculationWithPremium,
   verifyPremium,
   verifyPurchase,
 } from "@/services/purchase-service";
@@ -82,11 +83,19 @@ function PaywallPage() {
   }, [pending, rememberToken, navigate]);
 
   // Premium already active: the calculation is unlocked, no paywall needed.
+  // The receipt row is marked paid server-side as well, so the calculation is
+  // still listed as purchased after a reinstall or on another device.
   useEffect(() => {
-    if (premium.active && pending) {
-      rememberToken(pending);
-      void navigate({ to: "/resultat" });
-    }
+    if (!premium.active || !pending) return;
+    void unlockCalculationWithPremium({
+      data: {
+        id: pending.id,
+        accessToken: pending.accessToken,
+        deviceId: usePurchaseStore.getState().ensureDeviceId(),
+      },
+    }).catch(() => undefined);
+    rememberToken(pending);
+    void navigate({ to: "/resultat" });
   }, [premium.active, pending, rememberToken, navigate]);
 
   // Only the StoreKit price is ever shown: it is already localised for the
@@ -114,14 +123,17 @@ function PaywallPage() {
     return result;
   }
 
-  async function handleUnlock() {
-    if (!pending || busy) return;
-    void haptic("medium");
+  /**
+   * Finishes an already approved unlock: verification only. Kept separate so a
+   * purchase that Apple has not propagated yet can be re-checked from the
+   * "retry" state instead of leaving the buyer stranded on the paywall.
+   */
+  async function settleUnlock(transactionId: string, finish: () => Promise<void>) {
+    if (!pending) return;
+    resumeRef.current = () => settleUnlock(transactionId, finish);
     setChoice("unlock");
-    setPhase("purchasing");
+    setPhase("verifying");
     try {
-      const { transactionId, finish } = await purchaseUnlock();
-      setPhase("verifying");
       const verified = await verifyWithRetry(
         () =>
           verifyPurchase({
@@ -131,6 +143,7 @@ function PaywallPage() {
       );
       if (verified.status === "paid") {
         await finish();
+        resumeRef.current = null;
         rememberToken(pending);
         void haptic("success");
         void navigate({ to: "/resultat" });
@@ -138,7 +151,22 @@ function PaywallPage() {
       }
       // Pending: leave the transaction unfinished so StoreKit redelivers it and
       // the recovery hook can verify it again.
+      if (verified.status !== "pending") resumeRef.current = null;
       setPhase(verified.status === "pending" ? "retry" : "failed");
+    } catch (error) {
+      console.warn("[iap] unlock verification failed", describePurchaseError(error));
+      setPhase("retry");
+    }
+  }
+
+  async function handleUnlock() {
+    if (!pending || busy) return;
+    void haptic("medium");
+    setChoice("unlock");
+    setPhase("purchasing");
+    try {
+      const { transactionId, finish } = await purchaseUnlock();
+      await settleUnlock(transactionId, finish);
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
       const detail = describePurchaseError(error);
@@ -155,17 +183,15 @@ function PaywallPage() {
       }
       setPhase(reason === "cancelled" ? "cancelled" : "failed");
     }
-
   }
 
-  async function handlePremium() {
-    if (!pending || busy) return;
-    void haptic("medium");
+  /** Verification half of the Premium purchase; re-runnable from "retry". */
+  async function settlePremium(transactionId: string, finish: () => Promise<void>) {
+    if (!pending) return;
+    resumeRef.current = () => settlePremium(transactionId, finish);
     setChoice("premium");
-    setPhase("purchasing");
+    setPhase("verifying");
     try {
-      const { transactionId, finish } = await purchasePremium();
-      setPhase("verifying");
       const verified = await verifyWithRetry(
         () =>
           verifyPremium({
@@ -178,7 +204,17 @@ function PaywallPage() {
       );
       if (verified.status === "active") {
         await finish();
+        resumeRef.current = null;
         await queryClient.invalidateQueries({ queryKey: PREMIUM_QUERY_KEY });
+        // Record the receipt server-side too, so this calculation stays
+        // available after a reinstall instead of only in local state.
+        await unlockCalculationWithPremium({
+          data: {
+            id: pending.id,
+            accessToken: pending.accessToken,
+            deviceId: usePurchaseStore.getState().ensureDeviceId(),
+          },
+        }).catch(() => undefined);
         rememberToken(pending);
         void haptic("success");
         void navigate({ to: "/resultat" });
@@ -186,16 +222,30 @@ function PaywallPage() {
       }
       if (verified.status === "inactive" || verified.status === "failed") {
         await finish();
+        resumeRef.current = null;
         setPhase("failed");
         return;
       }
       setPhase("retry");
     } catch (error) {
+      console.warn("[iap] premium verification failed", describePurchaseError(error));
+      setPhase("retry");
+    }
+  }
+
+  async function handlePremium() {
+    if (!pending || busy) return;
+    void haptic("medium");
+    setChoice("premium");
+    setPhase("purchasing");
+    try {
+      const { transactionId, finish } = await purchasePremium();
+      await settlePremium(transactionId, finish);
+    } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
       console.warn("[iap] premium purchase failed", describePurchaseError(error));
       setPhase(reason === "cancelled" ? "cancelled" : "failed");
     }
-
   }
 
   function busyLabel() {
