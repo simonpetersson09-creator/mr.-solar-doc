@@ -29,6 +29,7 @@ import { useStorePrices } from "@/hooks/use-store-prices";
 import { PurchaseDiagnosticsPanel } from "@/components/PurchaseDiagnosticsPanel";
 import { fetchPremiumStatus, verifyPremium } from "@/services/purchase-service";
 import { usePurchaseStore } from "@/state/purchase-store";
+import { drainPurchaseTransactions } from "@/services/purchase-recovery";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
 import { CALCULATION_VERSION } from "@/config/constants";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -141,8 +142,14 @@ function SettingsPage() {
     setRestoring(true);
     try {
       await refreshPurchases();
-      // Give StoreKit a moment to redeliver, then re-read entitlement.
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // StoreKit redelivers the entitlement as an approved transaction. It has
+      // to be verified here and now: the background recovery only runs at app
+      // start and on foreground, so a foreground restore would otherwise find
+      // nothing. Retry briefly because redelivery is asynchronous.
+      for (const delay of [800, 1500, 2500, 4000]) {
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        if (await drainPurchaseTransactions(queryClient)) break;
+      }
       await queryClient.invalidateQueries({ queryKey: PREMIUM_QUERY_KEY });
       const status = await queryClient.fetchQuery({
         queryKey: PREMIUM_QUERY_KEY,

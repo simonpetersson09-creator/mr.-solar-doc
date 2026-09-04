@@ -255,3 +255,65 @@ describe("purchase with a late product", () => {
     void promise.catch(() => undefined);
   });
 });
+
+describe("transaction routing during a purchase", () => {
+  it("does not resolve a purchase with an unrelated product's transaction", async () => {
+    const { store, handlers } = makeStore({ offer: { order: async () => undefined } });
+    install(store);
+    await iap.initializePurchases();
+
+    const promise = iap.purchasePremium();
+    await Promise.resolve();
+    // A renewal/restore of the consumable arrives mid-flow.
+    handlers.approved?.({
+      transactionId: "other-1",
+      products: [{ id: UNLOCK_PRODUCT_ID }],
+      finish: () => undefined,
+    });
+    let settled = false;
+    void promise.then(
+      () => (settled = true),
+      () => (settled = true),
+    );
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    expect(settled).toBe(false);
+
+    handlers.approved?.({
+      transactionId: "premium-1",
+      products: [{ id: PREMIUM_PRODUCT_ID }],
+      finish: () => undefined,
+    });
+    await expect(promise).resolves.toMatchObject({ transactionId: "premium-1" });
+    // The unrelated one is queued for the recovery drain, not lost.
+    expect(iap.takeUnclaimedTransactions().map((t) => t.transactionId)).toEqual(["other-1"]);
+  });
+
+  it("ignores store errors that arrive before the order is placed", async () => {
+    const { store, handlers } = makeStore();
+    install(store);
+    await iap.initializePurchases();
+
+    handlers.error?.({ code: 6777001, message: "product load failed" });
+    expect(iap.getPurchaseDiagnostics().lastErrorMessage).toBe("product load failed");
+  });
+});
+
+describe("unclaimed transaction queue", () => {
+  it("can requeue a transaction that could not be verified", async () => {
+    const { store, handlers } = makeStore();
+    install(store);
+    await iap.initializePurchases();
+
+    handlers.approved?.({
+      transactionId: "t-1",
+      products: [{ id: PREMIUM_PRODUCT_ID }],
+      finish: () => undefined,
+    });
+    const [first] = iap.takeUnclaimedTransactions();
+    expect(first?.transactionId).toBe("t-1");
+    expect(iap.takeUnclaimedTransactions()).toHaveLength(0);
+
+    first!.requeue();
+    expect(iap.takeUnclaimedTransactions().map((t) => t.transactionId)).toEqual(["t-1"]);
+  });
+});

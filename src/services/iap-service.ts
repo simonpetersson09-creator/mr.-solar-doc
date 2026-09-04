@@ -217,9 +217,13 @@ export function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurchaseGl
  * Initialisation
  * ------------------------------------------------------------------ */
 
-let approvedHandler: ((transaction: CdvTransaction) => void) | null = null;
+/** Set only while a purchase flow is waiting for its own product. */
+let approvedHandler: { productId: string; handle: (transaction: CdvTransaction) => void } | null =
+  null;
 let cancelledHandler: (() => void) | null = null;
 let errorHandler: ((message: string, code: number | null) => void) | null = null;
+/** True between `offer.order()` and the flow settling. Scopes store errors. */
+let orderPlaced = false;
 
 /**
  * Transactions StoreKit approved while no purchase flow was listening — for
@@ -228,9 +232,17 @@ let errorHandler: ((message: string, code: number | null) => void) | null = null
 const unclaimed: CdvTransaction[] = [];
 
 function handleApproved(transaction: CdvTransaction) {
-  if (approvedHandler) {
-    approvedHandler(transaction);
+  const deliveredProductId = transaction.products?.[0]?.id ?? null;
+  // Only hand the transaction to the active purchase flow when it is actually
+  // the product being bought. StoreKit also redelivers renewals, restores and
+  // unfinished transactions mid-flow; resolving the flow with one of those made
+  // the server verify the wrong product and report a failed purchase.
+  if (approvedHandler && (deliveredProductId === null || deliveredProductId === approvedHandler.productId)) {
+    approvedHandler.handle(transaction);
     return;
+  }
+  if (approvedHandler) {
+    log("unrelated transaction queued during purchase", { deliveredProductId });
   }
   unclaimed.push(transaction);
 }
@@ -262,7 +274,9 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
     });
     store.error((error) => {
       recordError(error.code ?? null, error.message ?? null);
-      errorHandler?.(error.message ?? "store-error", error.code ?? null);
+      // Errors that arrive before the order was placed (product loading, an
+      // unrelated transaction) must not fail the user's purchase.
+      if (orderPlaced) errorHandler?.(error.message ?? "store-error", error.code ?? null);
       emit();
     });
     registered = true;
@@ -349,6 +363,12 @@ export interface UnclaimedTransaction {
   transactionId: string;
   productId: string | null;
   finish: () => Promise<void>;
+  /**
+   * Puts the transaction back in the queue when verification did not reach a
+   * final answer, so the next drain retries it instead of losing it until the
+   * app is restarted.
+   */
+  requeue: () => void;
 }
 
 /** Hands over transactions StoreKit delivered outside an active purchase flow. */
@@ -363,6 +383,9 @@ export function takeUnclaimedTransactions(): UnclaimedTransaction[] {
         productId: transaction.products?.[0]?.id ?? null,
         finish: async () => {
           await transaction.finish?.();
+        },
+        requeue: () => {
+          if (!unclaimed.includes(transaction)) unclaimed.push(transaction);
         },
       },
     ];
@@ -444,10 +467,11 @@ export async function purchaseProduct(productId: string): Promise<{
       approvedHandler = null;
       cancelledHandler = null;
       errorHandler = null;
+      orderPlaced = false;
       fn();
     };
 
-    approvedHandler = (transaction) => {
+    approvedHandler = { productId, handle: (transaction) => {
       const transactionId = transaction.transactionId;
       if (!transactionId) {
         settle(() => reject(new PurchaseError("failed", "Missing transaction id")));
@@ -462,7 +486,7 @@ export async function purchaseProduct(productId: string): Promise<{
           },
         }),
       );
-    };
+    } };
     cancelledHandler = () => settle(() => reject(new PurchaseError("cancelled")));
     errorHandler = (message, code) =>
       settle(() =>
@@ -478,6 +502,7 @@ export async function purchaseProduct(productId: string): Promise<{
       settle(() => reject(new PurchaseError("unavailable", detail, { detail })));
       return;
     }
+    orderPlaced = true;
     offer.order().catch((error: unknown) => {
       const message = error instanceof Error ? error.message : String(error);
       const code =
@@ -542,6 +567,7 @@ export function __resetIapServiceForTests() {
   approvedHandler = null;
   cancelledHandler = null;
   errorHandler = null;
+  orderPlaced = false;
   unclaimed.length = 0;
   listeners.clear();
 }
