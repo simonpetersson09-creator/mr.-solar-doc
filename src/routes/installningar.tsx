@@ -313,8 +313,6 @@ function SettingsPage() {
           </div>
         </section>
 
-        <PurchaseDiagnosticsPanel diagnostics={store.diagnostics} />
-
         {/* Settings groups */}
         <section className="flex flex-col gap-2.5">
           {/* Restore / Manage */}

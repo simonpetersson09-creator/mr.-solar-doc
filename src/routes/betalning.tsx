@@ -391,7 +391,7 @@ function PaywallPage() {
         ) : null}
 
 
-        <PurchaseDiagnosticsPanel diagnostics={store.diagnostics} />
+        
 
         {phase === "cancelled" ? (
           <p className="text-sm text-muted-foreground">{t("paywall.cancelled")}</p>
