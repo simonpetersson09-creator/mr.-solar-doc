@@ -161,9 +161,19 @@ async function fetchTransaction(
     : { status: response.status };
 }
 
+const LOOKUP_RETRY_DELAYS_MS = [700, 1500, 2500, 4000];
+
+const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
 /**
  * Verifies one transaction id against Apple. Production is checked first, then
  * sandbox, so TestFlight and App Review purchases work without configuration.
+ *
+ * Apple does not expose a brand new transaction to the App Store Server API
+ * instantly — in Sandbox (TestFlight and App Review) the first lookups often
+ * return 404 for a few seconds. Without retries that raced the reviewer's tap
+ * and surfaced as "unable to complete the purchase", so we poll briefly before
+ * giving up.
  */
 export async function verifyAppleTransaction(
   transactionId: string,
@@ -179,9 +189,21 @@ export async function verifyAppleTransaction(
     environmentHint = "Sandbox";
     result = await fetchTransaction(SANDBOX_BASE, transactionId, token);
   }
+  for (const delay of LOOKUP_RETRY_DELAYS_MS) {
+    if (result.status !== 404) break;
+    await wait(delay);
+    result = await fetchTransaction(PRODUCTION_BASE, transactionId, token);
+    if (result.status === 404) {
+      environmentHint = "Sandbox";
+      result = await fetchTransaction(SANDBOX_BASE, transactionId, token);
+    } else {
+      environmentHint = "Production";
+    }
+  }
   if (result.status === 404) {
     throw new AppleVerificationError("not-found", "Transaction not found at Apple.");
   }
+
   if (!result.signedTransactionInfo) {
     throw new AppleVerificationError(
       "apple-error",
