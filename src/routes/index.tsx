@@ -112,10 +112,10 @@ function WizardPage() {
             void navigate({ to: "/resultat" });
             return;
           }
-          // Premium (and dev bypass) skip the paywall: the calculation opens directly.
+          // Premium (and dev bypass) skip the paywall: the calculation opens
+          // directly. Uses the server-fresh entitlement from the call above.
           const pending = usePurchaseStore.getState().pending;
-          if ((premium.active || isDevUnlock()) && pending) {
-
+          if ((created.premiumActive || isDevUnlock()) && pending) {
             usePurchaseStore.getState().rememberToken(pending);
             void navigate({ to: "/resultat" });
             return;
