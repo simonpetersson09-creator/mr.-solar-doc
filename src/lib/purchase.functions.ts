@@ -40,6 +40,7 @@ export const statusSchema = accessSchema.extend({
 });
 
 export const premiumSchema = z.object({ deviceId: deviceIdSchema });
+export const premiumUnlockSchema = accessSchema.extend({ deviceId: deviceIdSchema });
 export const premiumVerifySchema = premiumSchema.extend({
   transactionId: z.string().min(1).max(200),
 });
@@ -106,4 +107,12 @@ export const verifyApplePremium = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { verifyApplePremiumProvider } = await import("@/lib/purchase.server");
     return verifyApplePremiumProvider(data);
+  });
+
+/** Unlocks one calculation for a device with an active Premium subscription. */
+export const unlockWithPremium = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) => premiumUnlockSchema.parse(input))
+  .handler(async ({ data }): Promise<{ status: PurchaseStatus; reason?: string }> => {
+    const { unlockWithPremiumProvider } = await import("@/lib/purchase.server");
+    return unlockWithPremiumProvider(data);
   });

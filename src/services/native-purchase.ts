@@ -16,7 +16,8 @@ export type NativePurchaseAction =
   | "verifyApplePurchase"
   | "listPurchasedCalculations"
   | "getPremiumStatus"
-  | "verifyApplePremium";
+  | "verifyApplePremium"
+  | "unlockWithPremium";
 
 export class NativePurchaseError extends Error {
   readonly endpoint = NATIVE_PURCHASE_PATH;
