@@ -252,11 +252,19 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           </button>
         )}
 
+        {/*
+          Not `hidden`: on iPad WKWebView anchors the native "Take Photo /
+          Photo Library" popover to the input's own rect, and a display:none
+          input has no rect. The input stays invisible but keeps a real
+          on-screen position inside the upload card.
+        */}
         <input
           ref={fileInputRef}
           type="file"
           accept=".pdf,.xlsx,.xls,.csv,.txt,application/pdf,image/*,.png,.jpg,.jpeg,.webp,.heic"
-          className="hidden"
+          tabIndex={-1}
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-4 left-1/2 size-px -translate-x-1/2 opacity-0"
           onChange={(event) => {
             const file = event.target.files?.[0];
             event.target.value = "";
