@@ -19,4 +19,8 @@ cp capacitor-www/_shell.html capacitor-www/index.html
 # Keep the iOS bundle's declared languages in sync with SUPPORTED_LANGUAGES.
 node scripts/patch-ios-localizations.mjs
 
+# Camera/photo-library usage descriptions — without them iOS terminates the app
+# when the web view's "Take Photo" option opens the camera.
+node scripts/patch-ios-permissions.mjs
+
 echo "Native bundle ready in capacitor-www/"

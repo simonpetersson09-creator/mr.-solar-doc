@@ -57,6 +57,19 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const [parseStatus, setParseStatus] = useState<"monthly" | "annual" | "error" | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
 
+  /**
+   * Opening the native file/camera menu is a native call: if it throws (or the
+   * user denied camera access and the web view reports an error), it must never
+   * take the app down — show the retry state instead.
+   */
+  const openFilePicker = () => {
+    try {
+      fileInputRef.current?.click();
+    } catch {
+      setParseStatus("error");
+    }
+  };
+
   const handleFile = async (file: File) => {
     setParsing(true);
     setParseStatus(null);
@@ -172,7 +185,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
       }
     >
       {/* ── Upload card ── separate from manual entry ── */}
-      <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
+      <div className="glass-primary relative space-y-3 rounded-[28px] px-4 py-4">
         <div className="flex items-start gap-3">
           <span className="flex size-9 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-accent">
             <FileUp className="size-4" />
@@ -231,7 +244,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               variant="outline"
               size="sm"
               className="h-7 shrink-0 border-red-300/40 bg-white/10 px-2.5 text-xs text-red-50 hover:bg-white/20 hover:text-white"
-              onClick={() => fileInputRef.current?.click()}
+              onClick={openFilePicker}
             >
               {t("consumption.upload.retry")}
             </Button>
@@ -239,7 +252,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         ) : (
           <button
             type="button"
-            onClick={() => fileInputRef.current?.click()}
+            onClick={openFilePicker}
             className="flex w-full flex-col items-center gap-1 rounded-2xl border border-dashed border-white/35 bg-white/10 px-4 py-5 text-center transition-colors hover:bg-white/20"
           >
             <FileUp className="size-5 text-accent" />
@@ -252,11 +265,19 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           </button>
         )}
 
+        {/*
+          Not `hidden`: on iPad WKWebView anchors the native "Take Photo /
+          Photo Library" popover to the input's own rect, and a display:none
+          input has no rect. The input stays invisible but keeps a real
+          on-screen position inside the upload card.
+        */}
         <input
           ref={fileInputRef}
           type="file"
           accept=".pdf,.xlsx,.xls,.csv,.txt,application/pdf,image/*,.png,.jpg,.jpeg,.webp,.heic"
-          className="hidden"
+          tabIndex={-1}
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-4 left-1/2 size-px -translate-x-1/2 opacity-0"
           onChange={(event) => {
             const file = event.target.files?.[0];
             event.target.value = "";
