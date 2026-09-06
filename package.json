@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "cap:sync": "bash scripts/build-native.sh && cap sync",
+    "cap:sync": "bash scripts/build-native.sh && cap sync && node scripts/patch-ios-permissions.mjs",
     "ios:icons": "mkdir -p ios/App/App/Assets.xcassets/AppIcon.appiconset && cp resources/AppIcon.appiconset/* ios/App/App/Assets.xcassets/AppIcon.appiconset/",
     "cap:add:ios": "cap add ios",
     "cap:add:android": "cap add android",

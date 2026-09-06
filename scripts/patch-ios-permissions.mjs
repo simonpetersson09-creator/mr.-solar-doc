@@ -4,6 +4,10 @@
  * the camera or the photo library from a <input type="file" accept="image/*">
  * ("Take Photo" / "Photo Library" in the native menu).
  *
+ * Only two keys: the app records no audio or video and never writes to the
+ * photo library, so NSMicrophoneUsageDescription and
+ * NSPhotoLibraryAddUsageDescription are deliberately NOT declared.
+ *
  * Without NSCameraUsageDescription the system terminates the app the moment
  * the camera is opened — this is what App Store review hit on iPad.
  *
@@ -19,10 +23,6 @@ const KEYS = {
     "Mr. Solar Doc uses the camera so you can photograph an electricity bill or consumption report instead of typing the figures.",
   NSPhotoLibraryUsageDescription:
     "Mr. Solar Doc needs access to your photos so you can pick an existing picture of your electricity bill.",
-  NSPhotoLibraryAddUsageDescription:
-    "Mr. Solar Doc can save your solar report to your photo library.",
-  NSMicrophoneUsageDescription:
-    "The microphone is not used by Mr. Solar Doc; iOS requires this entry for the system camera view.",
 };
 
 if (!existsSync(PLIST)) {
