@@ -244,7 +244,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               variant="outline"
               size="sm"
               className="h-7 shrink-0 border-red-300/40 bg-white/10 px-2.5 text-xs text-red-50 hover:bg-white/20 hover:text-white"
-              onClick={() => fileInputRef.current?.click()}
+              onClick={openFilePicker}
             >
               {t("consumption.upload.retry")}
             </Button>
@@ -252,7 +252,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         ) : (
           <button
             type="button"
-            onClick={() => fileInputRef.current?.click()}
+            onClick={openFilePicker}
             className="flex w-full flex-col items-center gap-1 rounded-2xl border border-dashed border-white/35 bg-white/10 px-4 py-5 text-center transition-colors hover:bg-white/20"
           >
             <FileUp className="size-5 text-accent" />
