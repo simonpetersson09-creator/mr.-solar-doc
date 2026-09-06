@@ -172,7 +172,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
       }
     >
       {/* ── Upload card ── separate from manual entry ── */}
-      <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
+      <div className="glass-primary relative space-y-3 rounded-[28px] px-4 py-4">
         <div className="flex items-start gap-3">
           <span className="flex size-9 shrink-0 items-center justify-center rounded-2xl bg-white/15 text-accent">
             <FileUp className="size-4" />
