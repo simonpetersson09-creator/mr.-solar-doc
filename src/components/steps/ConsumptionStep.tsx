@@ -57,6 +57,19 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const [parseStatus, setParseStatus] = useState<"monthly" | "annual" | "error" | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
 
+  /**
+   * Opening the native file/camera menu is a native call: if it throws (or the
+   * user denied camera access and the web view reports an error), it must never
+   * take the app down — show the retry state instead.
+   */
+  const openFilePicker = () => {
+    try {
+      fileInputRef.current?.click();
+    } catch {
+      setParseStatus("error");
+    }
+  };
+
   const handleFile = async (file: File) => {
     setParsing(true);
     setParseStatus(null);
