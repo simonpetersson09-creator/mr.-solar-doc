@@ -3,8 +3,29 @@
 /** Consumable: unlocks exactly one calculation. */
 export const UNLOCK_PRODUCT_ID = "com.mrsolardoc.calculation.unlock";
 
-/** Auto-renewable yearly subscription: unlimited calculations and reports. */
-export const PREMIUM_PRODUCT_ID = "com.mrsolardoc.premium.yearly";
+/**
+ * Auto-renewable yearly subscription: unlimited calculations and reports.
+ * MUST match the product id in App Store Connect exactly, otherwise StoreKit
+ * never delivers the product and the buy button fails with an error.
+ */
+export const PREMIUM_PRODUCT_ID = "premium.yearly";
+
+/**
+ * Product ids accepted when verifying a subscription transaction with Apple.
+ * Includes the earlier id so a transaction made with an older build is still
+ * honoured instead of being rejected as "wrong product".
+ */
+export const PREMIUM_PRODUCT_IDS = [
+  PREMIUM_PRODUCT_ID,
+  "com.mrsolardoc.premium.yearly",
+] as const;
+
+/** True for any product id that grants the Premium subscription. */
+export function isPremiumProductId(productId: string | null | undefined): boolean {
+  return productId !== null && productId !== undefined
+    ? (PREMIUM_PRODUCT_IDS as readonly string[]).includes(productId)
+    : false;
+}
 
 /**
  * There are no hardcoded fallback prices. The App Store (StoreKit) price is
