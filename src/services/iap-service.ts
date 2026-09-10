@@ -444,6 +444,7 @@ export async function purchaseProduct(productId: string): Promise<{
   productId: string | null;
   finish: () => Promise<void>;
 }> {
+  log("purchase start", { productId, ...getPurchaseDiagnostics() });
   await initializePurchases();
   let cdv = getCdv();
   if (!isPurchaseSupported() || !cdv) {
@@ -459,6 +460,7 @@ export async function purchaseProduct(productId: string): Promise<{
     await waitForProduct(productId);
     cdv = getCdv();
     if (!cdv) throw new PurchaseError("unavailable", "StoreKit plugin unavailable");
+    log("products after refresh", { productId, delivered: getPurchaseDiagnostics().productIds });
   }
   const active = cdv;
 
