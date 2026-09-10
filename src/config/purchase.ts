@@ -12,19 +12,13 @@ export const PREMIUM_PRODUCT_ID = "com.mrsolardoc.premium.yearly";
 
 /**
  * Product ids accepted when verifying a subscription transaction with Apple.
- * Includes the short-lived "premium.yearly" id so a transaction made with a
- * build that used it is still honoured instead of rejected as "wrong product".
+ * Exactly the App Store Connect id — nothing else.
  */
-export const PREMIUM_PRODUCT_IDS = [
-  PREMIUM_PRODUCT_ID,
-  "premium.yearly",
-] as const;
+export const PREMIUM_PRODUCT_IDS = [PREMIUM_PRODUCT_ID] as const;
 
-/** True for any product id that grants the Premium subscription. */
+/** True for the product id that grants the Premium subscription. */
 export function isPremiumProductId(productId: string | null | undefined): boolean {
-  return productId !== null && productId !== undefined
-    ? (PREMIUM_PRODUCT_IDS as readonly string[]).includes(productId)
-    : false;
+  return productId === PREMIUM_PRODUCT_ID;
 }
 
 /**

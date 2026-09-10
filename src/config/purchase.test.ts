@@ -17,10 +17,10 @@ describe("product ids", () => {
     expect(PREMIUM_PRODUCT_ID).toBe("com.mrsolardoc.premium.yearly");
   });
 
-  it("still accepts the legacy subscription id when verifying", () => {
-    expect(PREMIUM_PRODUCT_IDS).toContain("premium.yearly");
+  it("accepts exactly the subscription id when verifying", () => {
+    expect(PREMIUM_PRODUCT_IDS).toEqual(["com.mrsolardoc.premium.yearly"]);
     expect(isPremiumProductId("com.mrsolardoc.premium.yearly")).toBe(true);
-    expect(isPremiumProductId("premium.yearly")).toBe(true);
+    expect(isPremiumProductId("premium.yearly")).toBe(false);
     expect(isPremiumProductId(UNLOCK_PRODUCT_ID)).toBe(false);
     expect(isPremiumProductId(null)).toBe(false);
   });
