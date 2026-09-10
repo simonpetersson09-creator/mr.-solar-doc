@@ -19,6 +19,7 @@ function makeStore(options: {
   products?: unknown[];
   offer?: { order: () => Promise<unknown> } | null;
   initializeRejects?: string;
+  initializeErrors?: { isError: true; code: number; message: string; productId: string | null }[];
 } = {}) {
   const handlers: Handlers = {};
   const registerCalls: unknown[][] = [];
@@ -27,7 +28,7 @@ function makeStore(options: {
     register: (list: unknown[]) => registerCalls.push(list),
     initialize: vi.fn(async () => {
       if (options.initializeRejects) throw new Error(options.initializeRejects);
-      return undefined;
+      return options.initializeErrors ?? [];
     }),
     when: () => ({
       approved: (cb: (t: unknown) => void) => (handlers.approved = cb),
@@ -101,6 +102,21 @@ describe("initialisation", () => {
 
     await expect(iap.initializePurchases()).resolves.toBeUndefined();
     expect(iap.getPurchaseDiagnostics().lastErrorMessage).toContain("init boom");
+  });
+
+  it("records errors returned by StoreKit initialization", async () => {
+    const { store } = makeStore({
+      initializeErrors: [
+        { isError: true, code: 6777002, message: "Failed to load products", productId: null },
+      ],
+    });
+    install(store);
+
+    await iap.initializePurchases();
+
+    expect(iap.getPurchaseDiagnostics().initialized).toBe(true);
+    expect(iap.getPurchaseDiagnostics().lastErrorCode).toBe(6777002);
+    expect(iap.getPurchaseDiagnostics().lastErrorMessage).toBe("Failed to load products");
   });
 
   it("keeps working when the paywall opens before the plugin is ready", async () => {
@@ -190,6 +206,44 @@ describe("purchase errors", () => {
     await Promise.resolve();
     handlers.cancelled?.();
     await expect(promise).rejects.toMatchObject({ reason: "cancelled" });
+  });
+
+  it("handles the v13 resolved IError from order()", async () => {
+    const { store } = makeStore({
+      offer: {
+        order: async () => ({
+          isError: true,
+          code: 6777008,
+          message: "Payments are not allowed",
+          productId: PREMIUM_PRODUCT_ID,
+        }),
+      },
+    });
+    install(store);
+
+    await expect(iap.purchasePremium()).rejects.toMatchObject({
+      reason: "failed",
+      code: 6777008,
+    });
+  });
+
+  it("maps a resolved StoreKit cancellation code to cancelled", async () => {
+    const { store } = makeStore({
+      offer: {
+        order: async () => ({
+          isError: true,
+          code: 6777006,
+          message: "The user closed the payment sheet",
+          productId: PREMIUM_PRODUCT_ID,
+        }),
+      },
+    });
+    install(store);
+
+    await expect(iap.purchasePremium()).rejects.toMatchObject({
+      reason: "cancelled",
+      code: 6777006,
+    });
   });
 
   it("describes errors for logging and outcome reporting", () => {

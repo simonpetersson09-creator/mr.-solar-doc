@@ -43,6 +43,13 @@ interface CdvTransaction {
   products?: { id?: string }[];
 }
 
+interface CdvError {
+  isError?: boolean;
+  code?: number;
+  message?: string;
+  productId?: string | null;
+}
+
 interface CdvPricingPhase {
   price?: string;
   priceMicros?: number;
@@ -57,7 +64,7 @@ interface CdvProduct {
 
 interface CdvStore {
   register: (products: unknown[]) => void;
-  initialize: (platforms?: unknown[]) => Promise<unknown>;
+  initialize: (platforms?: unknown[]) => Promise<CdvError[]>;
   when: () => {
     approved: (cb: (transaction: CdvTransaction) => void) => unknown;
     cancelled: (cb: (product: unknown) => void) => unknown;
@@ -69,7 +76,7 @@ interface CdvStore {
   get: (
     productId: string,
     platform?: string,
-  ) => { getOffer?: () => { order: () => Promise<unknown> } } | undefined;
+  ) => { getOffer?: () => { order: () => Promise<CdvError | undefined> } } | undefined;
   restorePurchases: () => Promise<unknown>;
   /** Re-queries the App Store for products/prices (v13 `store.update()`). */
   update?: () => Promise<unknown> | unknown;
@@ -135,6 +142,11 @@ function recordError(code: number | null, message: string | null) {
   lastErrorCode = code;
   lastErrorMessage = message;
   console.warn("[iap] store error", { code, message });
+}
+
+function isCancellation(code: number | null, message: string): boolean {
+  // cordova-plugin-purchase v13 PAYMENT_CANCELLED.
+  return code === 6_777_006 || /cancel/i.test(message);
 }
 
 export function getPurchaseDiagnostics(): PurchaseDiagnostics {
@@ -287,7 +299,22 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
 
   return store
     .initialize([Platform.APPLE_APPSTORE])
-    .then(() => {
+    .then((errors) => {
+      // v13 resolves initialize() with an error array; it does not reject for
+      // normal StoreKit setup/product-loading failures. Treating every resolved
+      // promise as success left the paywall enabled with no usable products.
+      if (errors.length > 0) {
+        const first = errors[0];
+        const message = first?.message ?? "StoreKit initialization failed";
+        recordError(first?.code ?? null, message);
+        log("store initialization returned errors", {
+          errors: errors.map((error) => ({
+            code: error.code ?? null,
+            message: error.message ?? null,
+            productId: error.productId ?? null,
+          })),
+        });
+      }
       // Only a resolved initialize() counts as initialised. Marking it earlier
       // made a single transient StoreKit failure permanent: every later call
       // short-circuited, products never loaded and the paywall stayed on
@@ -515,16 +542,33 @@ export async function purchaseProduct(productId: string): Promise<{
       return;
     }
     orderPlaced = true;
-    offer.order().catch((error: unknown) => {
+    offer.order().then((result) => {
+      // cordova-plugin-purchase v13 resolves (rather than rejects) with IError
+      // for StoreKit failures, including PAYMENT_CANCELLED. The global error
+      // callback normally mirrors this, but handling the documented return
+      // value removes a race where the UI could remain stuck on "Purchasing".
+      if (!result?.isError) return;
+      const message = result.message ?? "StoreKit purchase failed";
+      const code = result.code ?? null;
+      console.warn("[iap] order failed", { message, code, productId: result.productId ?? productId });
+      settle(() =>
+        reject(
+          new PurchaseError(isCancellation(code, message) ? "cancelled" : "failed", message, {
+            code,
+            detail: message,
+          }),
+        ),
+      );
+    }).catch((error: unknown) => {
       const message = error instanceof Error ? error.message : String(error);
       const code =
         typeof error === "object" && error !== null && "code" in error
           ? Number((error as { code?: unknown }).code) || null
           : null;
-      console.warn("[iap] order failed", { message, code });
+      console.warn("[iap] order threw", { message, code });
       settle(() =>
         reject(
-          new PurchaseError(/cancel/i.test(message) ? "cancelled" : "failed", message, {
+          new PurchaseError(isCancellation(code, message) ? "cancelled" : "failed", message, {
             code,
             detail: message,
           }),
