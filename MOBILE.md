@@ -64,7 +64,7 @@ npx cap open android   # Android Studio → Run
 | Produkt | Typ | Pris |
 | --- | --- | --- |
 | `com.mrsolardoc.calculation.unlock` | Consumable | 49 SEK |
-| `premium.yearly` | Auto-Renewable Subscription, 1 år | 199 SEK/år |
+| `com.mrsolardoc.premium.yearly` | Auto-Renewable Subscription, 1 år | 199 SEK/år |
 
 Abonnemanget behöver en subscription group och lokaliserad beskrivning innan
 det kan testas i sandbox/TestFlight.
