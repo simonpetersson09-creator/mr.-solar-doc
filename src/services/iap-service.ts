@@ -250,6 +250,9 @@ function handleApproved(transaction: CdvTransaction) {
 function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
   const { store, ProductType, Platform } = cdv;
   if (!registered) {
+    // Logged so a TestFlight/App Review device shows exactly which ids were
+    // requested versus which ones the App Store actually returned.
+    log("registering products", { requested: [UNLOCK_PRODUCT_ID, PREMIUM_PRODUCT_ID] });
     store.register([
       {
         id: UNLOCK_PRODUCT_ID,
@@ -441,6 +444,7 @@ export async function purchaseProduct(productId: string): Promise<{
   productId: string | null;
   finish: () => Promise<void>;
 }> {
+  log("purchase start", { productId, ...getPurchaseDiagnostics() });
   await initializePurchases();
   let cdv = getCdv();
   if (!isPurchaseSupported() || !cdv) {
@@ -456,6 +460,7 @@ export async function purchaseProduct(productId: string): Promise<{
     await waitForProduct(productId);
     cdv = getCdv();
     if (!cdv) throw new PurchaseError("unavailable", "StoreKit plugin unavailable");
+    log("products after refresh", { productId, delivered: getPurchaseDiagnostics().productIds });
   }
   const active = cdv;
 
@@ -477,6 +482,10 @@ export async function purchaseProduct(productId: string): Promise<{
         settle(() => reject(new PurchaseError("failed", "Missing transaction id")));
         return;
       }
+      log("purchase approved", {
+        productId: transaction.products?.[0]?.id ?? productId,
+        state: transaction.state ?? null,
+      });
       settle(() =>
         resolve({
           transactionId,
@@ -487,7 +496,10 @@ export async function purchaseProduct(productId: string): Promise<{
         }),
       );
     } };
-    cancelledHandler = () => settle(() => reject(new PurchaseError("cancelled")));
+    cancelledHandler = () => {
+      log("purchase cancelled", { productId });
+      settle(() => reject(new PurchaseError("cancelled")));
+    };
     errorHandler = (message, code) =>
       settle(() =>
         reject(new PurchaseError("failed", message, { code, detail: message })),

@@ -179,11 +179,13 @@ const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
  */
 export async function verifyAppleTransaction(
   transactionId: string,
-  expectedProductId: string | string[],
+  expectedProductId: string | readonly string[],
 ): Promise<VerifiedTransaction> {
   const config = readConfig();
   const token = createAppleJwt(config);
-  const expected = Array.isArray(expectedProductId) ? expectedProductId : [expectedProductId];
+  const expected = Array.isArray(expectedProductId)
+    ? [...(expectedProductId as readonly string[])]
+    : [expectedProductId as string];
 
   let environmentHint: "Production" | "Sandbox" = "Production";
   let result = await fetchTransaction(PRODUCTION_BASE, transactionId, token);
@@ -290,10 +292,13 @@ async function fetchSubscriptionStatuses(
  */
 export async function getAppleSubscriptionState(
   originalTransactionId: string,
-  expectedProductId: string,
+  expectedProductId: string | readonly string[],
 ): Promise<SubscriptionState> {
   const config = readConfig();
   const token = createAppleJwt(config);
+  const expected = Array.isArray(expectedProductId)
+    ? [...(expectedProductId as readonly string[])]
+    : [expectedProductId as string];
 
   let environment: "Production" | "Sandbox" = "Production";
   let result = await fetchSubscriptionStatuses(PRODUCTION_BASE, originalTransactionId, token);
@@ -336,7 +341,7 @@ export async function getAppleSubscriptionState(
   if (payload.bundleId !== config.bundleId) {
     throw new AppleVerificationError("wrong-bundle", "Subscription belongs to another app.");
   }
-  if (payload.productId !== expectedProductId) {
+  if (!payload.productId || !expected.includes(payload.productId)) {
     throw new AppleVerificationError("wrong-product", "Subscription is for another product.");
   }
 

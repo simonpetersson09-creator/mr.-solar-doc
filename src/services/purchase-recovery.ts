@@ -11,7 +11,7 @@
 import type { QueryClient } from "@tanstack/react-query";
 import { takeUnclaimedTransactions } from "@/services/iap-service";
 import { verifyPremium, verifyPurchase } from "@/services/purchase-service";
-import { PREMIUM_PRODUCT_ID } from "@/config/purchase";
+import { isPremiumProductId } from "@/config/purchase";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { PREMIUM_QUERY_KEY } from "@/hooks/use-premium";
 
@@ -24,7 +24,7 @@ export async function drainPurchaseTransactions(queryClient: QueryClient): Promi
     try {
       // Subscription transactions (first purchase, renewal, restore/sync)
       // are bound to the device, not to a single calculation.
-      if (transaction.productId === PREMIUM_PRODUCT_ID) {
+      if (isPremiumProductId(transaction.productId)) {
         const premium = await verifyPremium({
           data: {
             deviceId: store.ensureDeviceId(),
