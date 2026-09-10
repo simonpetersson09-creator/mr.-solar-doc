@@ -250,6 +250,9 @@ function handleApproved(transaction: CdvTransaction) {
 function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
   const { store, ProductType, Platform } = cdv;
   if (!registered) {
+    // Logged so a TestFlight/App Review device shows exactly which ids were
+    // requested versus which ones the App Store actually returned.
+    log("registering products", { requested: [UNLOCK_PRODUCT_ID, PREMIUM_PRODUCT_ID] });
     store.register([
       {
         id: UNLOCK_PRODUCT_ID,
