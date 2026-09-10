@@ -68,11 +68,11 @@ function SettingsPage() {
   const unlockPrice = store.unlock;
   const priceStalled = store.status === "unavailable";
   // On the web there is no App Store, so a missing price is expected, not an error.
-  const priceFallback = !store.diagnostics.supported
-    ? "—"
-    : priceStalled
-      ? t("paywall.failed")
-      : t("paywall.priceLoading");
+  // The price slot must stay compact: a stalled lookup shows a neutral dash
+  // and the full error sentence lives in the alert row below the button —
+  // never inside the price, where a long sentence overflows the card.
+  const priceFallback =
+    !store.diagnostics.supported || priceStalled ? "—" : t("paywall.priceLoading");
 
   /** Buys the yearly subscription. Verification is always server-side. */
   async function handleBuyPremium() {
