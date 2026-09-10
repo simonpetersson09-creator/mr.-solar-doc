@@ -66,12 +66,12 @@ function PaywallPage() {
   // purchase can ever start, keeps them disabled.
   const canAttempt = store.diagnostics.supported || available;
   const priceStalled = store.status === "unavailable";
-  // On the web there is no App Store, so a missing price is expected, not an error.
-  const priceFallback = !store.diagnostics.supported
-    ? "—"
-    : priceStalled
-      ? t("paywall.failed")
-      : t("paywall.priceLoading");
+  // On the web there is no App Store, so a missing price is expected, not an
+  // error. A stalled lookup shows a neutral dash in the compact price slot;
+  // the full error sentence is shown in the alert block further down — never
+  // inside the price, where a long sentence overflows the card.
+  const priceFallback =
+    !store.diagnostics.supported || priceStalled ? "—" : t("paywall.priceLoading");
 
 
   // A paid unlock may be waiting in StoreKit's queue with no calculation to
