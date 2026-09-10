@@ -303,7 +303,7 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
       // v13 resolves initialize() with an error array; it does not reject for
       // normal StoreKit setup/product-loading failures. Treating every resolved
       // promise as success left the paywall enabled with no usable products.
-      if (errors.length > 0) {
+      if (Array.isArray(errors) && errors.length > 0) {
         const first = errors[0];
         const message = first?.message ?? "StoreKit initialization failed";
         recordError(first?.code ?? null, message);
