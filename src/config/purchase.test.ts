@@ -14,13 +14,13 @@ import {
 describe("product ids", () => {
   it("matches the App Store Connect product ids", () => {
     expect(UNLOCK_PRODUCT_ID).toBe("com.mrsolardoc.calculation.unlock");
-    expect(PREMIUM_PRODUCT_ID).toBe("premium.yearly");
+    expect(PREMIUM_PRODUCT_ID).toBe("com.mrsolardoc.premium.yearly");
   });
 
   it("still accepts the legacy subscription id when verifying", () => {
-    expect(PREMIUM_PRODUCT_IDS).toContain("com.mrsolardoc.premium.yearly");
-    expect(isPremiumProductId("premium.yearly")).toBe(true);
+    expect(PREMIUM_PRODUCT_IDS).toContain("premium.yearly");
     expect(isPremiumProductId("com.mrsolardoc.premium.yearly")).toBe(true);
+    expect(isPremiumProductId("premium.yearly")).toBe(true);
     expect(isPremiumProductId(UNLOCK_PRODUCT_ID)).toBe(false);
     expect(isPremiumProductId(null)).toBe(false);
   });

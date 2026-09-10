@@ -8,16 +8,16 @@ export const UNLOCK_PRODUCT_ID = "com.mrsolardoc.calculation.unlock";
  * MUST match the product id in App Store Connect exactly, otherwise StoreKit
  * never delivers the product and the buy button fails with an error.
  */
-export const PREMIUM_PRODUCT_ID = "premium.yearly";
+export const PREMIUM_PRODUCT_ID = "com.mrsolardoc.premium.yearly";
 
 /**
  * Product ids accepted when verifying a subscription transaction with Apple.
- * Includes the earlier id so a transaction made with an older build is still
- * honoured instead of being rejected as "wrong product".
+ * Includes the short-lived "premium.yearly" id so a transaction made with a
+ * build that used it is still honoured instead of rejected as "wrong product".
  */
 export const PREMIUM_PRODUCT_IDS = [
   PREMIUM_PRODUCT_ID,
-  "com.mrsolardoc.premium.yearly",
+  "premium.yearly",
 ] as const;
 
 /** True for any product id that grants the Premium subscription. */
