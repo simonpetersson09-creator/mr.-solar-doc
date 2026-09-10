@@ -290,10 +290,13 @@ async function fetchSubscriptionStatuses(
  */
 export async function getAppleSubscriptionState(
   originalTransactionId: string,
-  expectedProductId: string,
+  expectedProductId: string | readonly string[],
 ): Promise<SubscriptionState> {
   const config = readConfig();
   const token = createAppleJwt(config);
+  const expected = Array.isArray(expectedProductId)
+    ? [...(expectedProductId as readonly string[])]
+    : [expectedProductId as string];
 
   let environment: "Production" | "Sandbox" = "Production";
   let result = await fetchSubscriptionStatuses(PRODUCTION_BASE, originalTransactionId, token);
