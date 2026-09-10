@@ -482,6 +482,10 @@ export async function purchaseProduct(productId: string): Promise<{
         settle(() => reject(new PurchaseError("failed", "Missing transaction id")));
         return;
       }
+      log("purchase approved", {
+        productId: transaction.products?.[0]?.id ?? productId,
+        state: transaction.state ?? null,
+      });
       settle(() =>
         resolve({
           transactionId,
@@ -492,7 +496,10 @@ export async function purchaseProduct(productId: string): Promise<{
         }),
       );
     } };
-    cancelledHandler = () => settle(() => reject(new PurchaseError("cancelled")));
+    cancelledHandler = () => {
+      log("purchase cancelled", { productId });
+      settle(() => reject(new PurchaseError("cancelled")));
+    };
     errorHandler = (message, code) =>
       settle(() =>
         reject(new PurchaseError("failed", message, { code, detail: message })),
