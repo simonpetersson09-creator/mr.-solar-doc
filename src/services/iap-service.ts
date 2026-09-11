@@ -66,7 +66,6 @@ interface CdvStore {
   initialize: (platforms?: unknown[]) => Promise<CdvError[]>;
   when: () => {
     approved: (cb: (transaction: CdvTransaction) => void) => unknown;
-    cancelled: (cb: (product: unknown) => void) => unknown;
     productUpdated?: (cb: (product: unknown) => void) => unknown;
     updated?: (cb: (product: unknown) => void) => unknown;
   };
@@ -275,7 +274,6 @@ export async function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurc
 /** Set only while a purchase flow is waiting for its own product. */
 let approvedHandler: { productId: string; handle: (transaction: CdvTransaction) => void } | null =
   null;
-let cancelledHandler: (() => void) | null = null;
 let errorHandler: ((message: string, code: number | null) => void) | null = null;
 /** True between `offer.order()` and the flow settling. Scopes store errors. */
 let orderPlaced = false;
@@ -321,7 +319,6 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
       },
     ]);
     store.when().approved(handleApproved);
-    store.when().cancelled(() => cancelledHandler?.());
     const when = store.when();
     when.productUpdated?.(() => emit());
     when.updated?.(() => emit());
@@ -404,6 +401,10 @@ export function initializePurchases(): Promise<void> {
   })().catch((error: unknown) => {
     const message = error instanceof Error ? error.message : String(error);
     recordError(lastErrorCode, message);
+    // A synchronous setup error must not pin the session to an already-settled
+    // promise. This remains safe because the plugin's own initialize guard is
+    // tracked separately by `initializationAttempted`.
+    initPromise = null;
   });
   return initPromise;
 }
@@ -610,7 +611,6 @@ export async function purchaseProduct(productId: string): Promise<{
       if (settled) return;
       settled = true;
       approvedHandler = null;
-      cancelledHandler = null;
       errorHandler = null;
       orderPlaced = false;
       fn();
@@ -636,10 +636,6 @@ export async function purchaseProduct(productId: string): Promise<{
         }),
       );
     } };
-    cancelledHandler = () => {
-      log("purchase cancelled", { productId });
-      settle(() => reject(new PurchaseError("cancelled")));
-    };
     errorHandler = (message, code) =>
       settle(() =>
         reject(new PurchaseError("failed", message, { code, detail: message })),
@@ -737,7 +733,6 @@ export function __resetIapServiceForTests() {
   lastErrorCode = null;
   lastErrorMessage = null;
   approvedHandler = null;
-  cancelledHandler = null;
   errorHandler = null;
   orderPlaced = false;
   unclaimed.length = 0;
