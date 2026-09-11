@@ -206,7 +206,7 @@ className="h-auto w-full rounded-[24px] py-3.5 text-base font-bold shadow-cta"
             )}
           </div>
         </div>
-        <p className="mt-2.5 border-t border-white/15 pt-2 text-center text-[10px] leading-relaxed text-white/60">
+        <p className="mt-1.5 border-t border-white/15 pt-1.5 text-center text-[10px] leading-snug text-white/60">
           {query.isError
             ? pvgisError.kind === "over-sea"
               ? t("roof.errorOverSea")
