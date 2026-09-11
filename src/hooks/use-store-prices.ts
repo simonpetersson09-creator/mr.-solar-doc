@@ -27,6 +27,17 @@ export interface StorePricesState {
    * `unavailable` is a product-loading problem, never a failed payment.
    */
   status: "loading" | "ready" | "unavailable";
+  /**
+   * Per-product status, so a missing/unapproved product never blocks the other
+   * one. A product is only `ready` with both a localized price and an offer.
+   */
+  unlockStatus: "loading" | "ready" | "unavailable";
+  premiumStatus: "loading" | "ready" | "unavailable";
+  /**
+   * True when the plugin can still perform a real product reload. False means a
+   * "try again" button would be a no-op, so the UI must not offer one.
+   */
+  canRetry: boolean;
   diagnostics: PurchaseDiagnostics;
   /** Re-asks StoreKit for products; used by the visible retry action. */
   retry: () => void;
