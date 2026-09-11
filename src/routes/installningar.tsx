@@ -71,8 +71,9 @@ function SettingsPage() {
   const priceLoading = store.diagnostics.supported && store.status === "loading";
   const priceUnavailable = store.diagnostics.supported && store.status === "unavailable";
   const priceFallback = priceLoading ? t("paywall.priceLoading") : "—";
-  const canBuyPremium =
-    store.premiumReady || store.premium !== null || priceUnavailable || !store.diagnostics.supported;
+  // Premium is buyable only when its own product has price + offer.
+  const canBuyPremium = store.premiumStatus === "ready" || !store.diagnostics.supported;
+  const canRetryPrices = store.canRetry;
 
 
   /** Buys the yearly subscription. Verification is always server-side. */
