@@ -1,21 +1,22 @@
-# Fixa fastnad prisinhämtning i TestFlight
+# Fixa native prishämtning med rätt Capacitor-brygga
 
-## Orsak
-Den installerade köppluginen tillåter bara `store.initialize()` en gång per session. Dess `store.update()` har samtidigt en standardspärr på tio minuter. Appens nuvarande omförsök efter 7, 18 och 30 sekunder blir därför bortfiltrerade, vilket lämnar priset i “Hämtar pris” när den första StoreKit-laddningen misslyckas eller blir tom.
+## Rotorsak
+Projektet använder `cordova-plugin-purchase@13.18.0` genom Capacitors Cordova-kompatibilitetslager. För Capacitor 6–8 rekommenderar samma pluginprojekt i stället `capacitor-plugin-cdv-purchase`, som registrerar en riktig Capacitor-plugin och använder StoreKit 2. Den nuvarande installationen kan ge JavaScript-objektet `CdvPurchase` utan att den native bryggan laddar produktmetadata, vilket stämmer med att TestFlight stannar på ”Hämtar pris…”.
 
 ## Ändring
-- Anpassa StoreKit-starten till pluginens engångsmodell och skilj adapterstart från lyckad produktladdning.
-- Göra prisomladdningen verklig genom att använda pluginens stödda `store.update()` med en säker, kortare spärr under aktiv produktåterhämtning.
-- Behålla en enda Store-instans, en registrering och en uppsättning listeners.
-- Låta prisvyn lämna loading efter 45 sekunder och visa neutral text med “Försök igen”.
-- Säkerställa att köpknappar endast aktiveras när rätt produkt har ett giltigt erbjudande.
+- Byt endast IAP-paketet från Cordova-varianten till `capacitor-plugin-cdv-purchase@13.18.0`.
+- Importera den dedikerade Store-instansen och typerna direkt i IAP-servicen i stället för att vara beroende av ett sent `window.CdvPurchase`/`deviceready`.
+- Behåll en Store-instans, en produktregistrering och en uppsättning köp-/transaktionslyssnare.
+- Behåll nuvarande Product IDs, produkttyper, serververifiering och transaktionsfinish.
+- Anpassa prisstatus och återhämtning till den riktiga Capacitor/StoreKit 2-bryggans ready- och update-signaler.
+- Lägg till tydlig diagnostik för native-pluginens registrering, StoreKit-initiering och produktresultat utan att visa tekniska fel som betalningsfel.
 
-## Tester
-- Första produktladdningen är tom, senare omladdning ger pris.
-- Omförsök efter långsam Sandbox-respons anropar verkligen StoreKit.
-- Inga dubbla registreringar eller callbacks skapas.
-- Saknad produkt lämnar loading och visar neutral retry-status.
-- Befintliga avbrotts-, köp-, verifierings- och finishflöden fortsätter fungera.
+## Verifiering
+- Testa direkt och fördröjd produktmetadata, tom första laddning följd av lyckad omladdning och 45-sekunders timeout.
+- Testa sen/native initialisering, samtidiga retries, saknat offer, avbrott, köp, verifiering och finish.
+- Kontrollera att inga dubbla Store-instanser eller callbacks skapas.
+- Kör riktade IAP-tester, hela testsviten och byggkontroller.
+- Kontrollera native byggskriptet och dokumentera exakt vad som måste köras på Mac innan en ny TestFlight-build.
 
 ## Avgränsning
-Product IDs, priser, affärsmodell, serververifiering och transaktionsfinish ändras inte.
+Produkt-ID:n, priser, affärsmodell, serververifiering och transaktionsfinish ändras inte. Verklig StoreKit-kontakt kan slutligen verifieras först i en ny signerad TestFlight-build efter `npm run cap:sync` på Mac.
