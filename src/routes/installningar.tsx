@@ -274,13 +274,15 @@ function SettingsPage() {
                   <p role="status" className="text-[11px] font-semibold text-brand-black/75">
                     {t("paywall.priceUnavailable")}
                   </p>
-                  <Button
-                    variant="outline"
-                    className="h-7 w-full text-[11px] font-semibold"
-                    onClick={() => store.retry()}
-                  >
-                    {t("common.retry")}
-                  </Button>
+                  {canRetryPrices ? (
+                    <Button
+                      variant="outline"
+                      className="h-7 w-full text-[11px] font-semibold"
+                      onClick={() => store.retry()}
+                    >
+                      {t("common.retry")}
+                    </Button>
+                  ) : null}
                 </div>
               ) : null}
               {/* Only a real, attempted purchase failure is shown as an error */}
