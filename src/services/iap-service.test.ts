@@ -9,7 +9,6 @@ vi.mock("@/services/native-service", () => ({
 
 type Handlers = {
   approved?: (t: unknown) => void;
-  cancelled?: () => void;
   productUpdated?: () => void;
   ready?: () => void;
   error?: (e: { code?: number; message?: string }) => void;
@@ -36,7 +35,6 @@ function makeStore(options: {
     }),
     when: () => ({
       approved: (cb: (t: unknown) => void) => (handlers.approved = cb),
-      cancelled: (cb: () => void) => (handlers.cancelled = cb),
       productUpdated: (cb: () => void) => (handlers.productUpdated = cb),
     }),
     ready: (cb: () => void) => (handlers.ready = cb),
@@ -81,9 +79,10 @@ describe("plugin availability", () => {
     expect(iap.isPurchaseAvailable()).toBe(true);
   });
 
-  it("returns null when the plugin never appears", async () => {
+  it("loads the official Capacitor runtime when no test global exists", async () => {
     const cdv = await iap.waitForPurchasePlugin(20);
-    expect(cdv).toBeNull();
+    expect(cdv?.store).toBeDefined();
+    expect(cdv?.Platform.APPLE_APPSTORE).toBe("ios-appstore");
   });
 });
 
@@ -108,7 +107,7 @@ describe("initialisation", () => {
     expect(iap.getPurchaseDiagnostics().lastErrorMessage).toContain("init boom");
   });
 
-  it("does not mark the store initialised when StoreKit returns errors", async () => {
+  it("keeps the adapter initialized when StoreKit returns product-loading errors", async () => {
     const { store } = makeStore({
       initializeErrors: [
         { isError: true, code: 6777002, message: "Failed to load products", productId: null },
@@ -118,8 +117,9 @@ describe("initialisation", () => {
 
     await iap.initializePurchases();
 
-    // A resolved-with-errors init must not be cached as ready.
-    expect(iap.getPurchaseDiagnostics().initialized).toBe(false);
+    // The adapter did start; this is a product-status failure. Keeping those
+    // states separate allows valid sibling products and store.update() retries.
+    expect(iap.getPurchaseDiagnostics().initialized).toBe(true);
     expect(iap.getPurchaseDiagnostics().lastErrorCode).toBe(6777002);
     expect(iap.getPurchaseDiagnostics().lastErrorMessage).toBe("Failed to load products");
 
@@ -224,13 +224,18 @@ describe("purchase errors", () => {
   });
 
   it("maps a cancelled order to the cancelled reason", async () => {
-    const { store, handlers } = makeStore({ offer: { order: async () => undefined } });
+    const { store } = makeStore({
+      offer: {
+        order: async () => ({
+          isError: true,
+          code: 6777006,
+          message: "The user closed the payment sheet",
+        }),
+      },
+    });
     install(store);
     await iap.initializePurchases();
-    const promise = iap.purchasePremium();
-    await Promise.resolve();
-    handlers.cancelled?.();
-    await expect(promise).rejects.toMatchObject({ reason: "cancelled" });
+    await expect(iap.purchasePremium()).rejects.toMatchObject({ reason: "cancelled" });
   });
 
   it("handles the v13 resolved IError from order()", async () => {
