@@ -14,7 +14,7 @@ const HEIGHT = 128;
 const PIVOT_X = 44;
 const PIVOT_Y = 110;
 const ARM = 90;
-const GRIP_RADIUS = 11;
+const GRIP_RADIUS = 8;
 const MAX_TILT = 90;
 const TICKS = [0, 15, 30, 45, 60, 75, 90];
 
