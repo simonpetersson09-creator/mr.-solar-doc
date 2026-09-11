@@ -6,3 +6,5 @@
 - [x] Reproducera den fysiska iPhonens request i publicerade produktionsloggar.
 - [x] Lägg till verifierbar route-version, strikt native-parsning och säker diagnostik.
 - [ ] Verifiera produktions- och native-build samt publicerad endpoint.
+- [x] Byt IAP till den officiella Capacitor 8-bryggan med StoreKit 2.
+- [ ] Verifiera StoreKit-priser i en ny signerad TestFlight-build.

@@ -1,17 +1,21 @@
 /**
- * UI -> IAP service -> StoreKit (via cordova-plugin-purchase).
+ * UI -> IAP service -> StoreKit 2 (via capacitor-plugin-cdv-purchase).
  *
  * Purchases are only possible inside the native iOS app. On the web the service
  * reports "unavailable" so the paywall can explain that the unlock is bought in
  * the app with the user's Apple account.
  *
- * Timing is the hard part on device: the Cordova plugin is injected
- * asynchronously (after `deviceready`), which can happen *after* React has
- * mounted. Nothing here may therefore cache "no plugin" as a permanent answer;
- * we wait for the plugin, initialise exactly once, and notify subscribers when
- * StoreKit finally delivers products and localized prices.
+ * The Capacitor package is imported directly, which registers PurchasePlugin
+ * before React starts the store. We still notify subscribers asynchronously
+ * because StoreKit product metadata can arrive well after initialization.
  */
 
+import {
+  CdvPurchase as CapacitorPurchase,
+  Platform as CapacitorPlatform,
+  ProductType as CapacitorProductType,
+  store as capacitorStore,
+} from "capacitor-plugin-cdv-purchase";
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import { getPlatform, isNativePlatform } from "@/services/native-service";
 
@@ -94,8 +98,18 @@ interface CdvPurchaseGlobal {
 }
 
 function getCdv(): CdvPurchaseGlobal | null {
-  if (typeof window === "undefined") return null;
-  return (window as unknown as { CdvPurchase?: CdvPurchaseGlobal }).CdvPurchase ?? null;
+  // The window override keeps browser tests deterministic. On device the
+  // package exports the one Store instance backed by Capacitor PurchasePlugin.
+  const injected =
+    typeof window === "undefined"
+      ? null
+      : (window as unknown as { CdvPurchase?: CdvPurchaseGlobal }).CdvPurchase ?? null;
+  if (injected) return injected;
+  return {
+    store: capacitorStore as unknown as CdvStore,
+    ProductType: CapacitorProductType as unknown as CdvPurchaseGlobal["ProductType"],
+    Platform: CapacitorPlatform as unknown as CdvPurchaseGlobal["Platform"],
+  };
 }
 
 /** True on a platform where StoreKit purchases can exist (plugin may still be loading). */
@@ -131,6 +145,8 @@ export interface PurchaseDiagnostics {
 let registered = false;
 /** True only when `store.initialize()` has actually succeeded. */
 let initialized = false;
+/** Plugin v13 only permits one initialize call per Store instance. */
+let initializationAttempted = false;
 let initPromise: Promise<void> | null = null;
 let storeReady = false;
 let lastErrorCode: number | null = null;
@@ -195,8 +211,9 @@ function emit() {
  * ------------------------------------------------------------------ */
 
 /**
- * Resolves once `window.CdvPurchase` exists. Cordova injects the plugin around
- * `deviceready`, which regularly lands after the first React render.
+ * Compatibility helper retained for callers and tests. The official Capacitor
+ * package is imported synchronously, so native code does not depend on
+ * `deviceready` or a late `window.CdvPurchase` global anymore.
  */
 export function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurchaseGlobal | null> {
   const immediate = getCdv();
@@ -301,6 +318,7 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
     registered = true;
   }
 
+  initializationAttempted = true;
   return store
     .initialize([Platform.APPLE_APPSTORE])
     .then((errors) => {
@@ -320,9 +338,9 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
           })),
         });
         initialized = false;
-        // Allow a later retry; registration/listeners are already in place and
-        // are never repeated, so no double listeners or double callbacks.
-        initPromise = null;
+        // v13 initialize() is one-shot internally. Do not claim a later call is
+        // a real adapter restart; product recovery remains possible only if the
+        // Store reached ready and supports update().
         emit();
         return;
       }
@@ -335,8 +353,6 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
       recordError(null, message);
       initialized = false;
       emit();
-      // Allow a later retry: initialisation failed, registration already ran.
-      initPromise = null;
       throw new PurchaseError("failed", message, { detail: message });
     });
 }
@@ -344,8 +360,8 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
 
 /**
  * Boots StoreKit. Idempotent: products are registered at most once, concurrent
- * callers share the same in-flight promise, and a failed initialisation can
- * always be retried by calling again.
+ * callers share the same in-flight promise. Plugin v13 has a one-shot adapter
+ * initialization; failed adapter startup is therefore reported honestly.
  */
 export function initializePurchases(): Promise<void> {
   if (initPromise) return initPromise;
@@ -361,6 +377,11 @@ export function initializePurchases(): Promise<void> {
       emit();
       return;
     }
+    if (initializationAttempted) {
+      log("adapter initialization cannot be repeated in this session", getPurchaseDiagnostics());
+      emit();
+      return;
+    }
     await registerAndInitialize(cdv);
   })().catch((error: unknown) => {
     const message = error instanceof Error ? error.message : String(error);
@@ -372,8 +393,7 @@ export function initializePurchases(): Promise<void> {
 /**
  * True when a *real* product reload can still happen in this session.
  *
- * cordova-plugin-purchase v13 facts (verified in
- * node_modules/cordova-plugin-purchase/src/ts/store.ts):
+ * capacitor-plugin-cdv-purchase v13 facts (same Store runtime):
  *  - `initialize()` is one-shot (`initializedHasBeenCalled`); later calls warn
  *    and resolve with `[]` without touching StoreKit.
  *  - `update()` returns immediately unless `store.isReady` is true, and is
@@ -513,8 +533,6 @@ export function getStorePrice(productId: string = UNLOCK_PRODUCT_ID): string | n
   const cdv = getCdv();
   const product = cdv?.store.products?.find((item) => item.id === productId);
   if (!product) return null;
-  const direct = product.pricing?.price;
-  if (direct) return direct;
   for (const offer of product.offers ?? []) {
     const phases = offer.pricingPhases ?? [];
     for (let index = phases.length - 1; index >= 0; index -= 1) {
@@ -522,7 +540,7 @@ export function getStorePrice(productId: string = UNLOCK_PRODUCT_ID): string | n
       if (price) return price;
     }
   }
-  return null;
+  return product.pricing?.price ?? null;
 }
 
 /** Both product prices in one read. */
@@ -692,6 +710,7 @@ export function describePurchaseError(error: unknown): string {
 /** Test-only: clears module state so each test starts from a clean store. */
 export function __resetIapServiceForTests() {
   initialized = false;
+  initializationAttempted = false;
   registered = false;
   initPromise = null;
   storeReady = false;
