@@ -431,14 +431,16 @@ function PaywallPage() {
             <p role="status" className="text-sm text-foreground">
               {t("paywall.priceUnavailable")}
             </p>
-            <Button
-              size="lg"
-              variant="outline"
-              className="w-full"
-              onClick={() => store.retry()}
-            >
-              {t("common.retry")}
-            </Button>
+            {canRetryPrices ? (
+              <Button
+                size="lg"
+                variant="outline"
+                className="w-full"
+                onClick={() => store.retry()}
+              >
+                {t("common.retry")}
+              </Button>
+            ) : null}
           </div>
         ) : null}
         {/* Only shown after a real, attempted purchase failed. */}
