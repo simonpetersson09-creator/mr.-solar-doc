@@ -9,8 +9,8 @@ interface CompassDialProps {
   /** Second line under the degrees, e.g. nearest orientation name. */
   caption?: string | undefined;
   disabled?: boolean;
-  /** Rendered footprint. "sm" is used in compact layouts. */
-  size?: "sm" | "md";
+  /** Rendered footprint. "xs"/"sm" are used in compact layouts. */
+  size?: "xs" | "sm" | "md";
 }
 
 const SIZE = 220;
