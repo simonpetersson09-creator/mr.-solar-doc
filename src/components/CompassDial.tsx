@@ -83,12 +83,12 @@ const rad = (value * Math.PI) / 180;
   ];
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-1.5">
       <svg
         ref={svgRef}
         viewBox={`0 0 ${SIZE} ${SIZE}`}
         className={[
-          size === "sm" ? "size-40" : "size-52",
+          size === "xs" ? "size-32" : size === "sm" ? "size-40" : "size-52",
           disabled
             ? "select-none opacity-40"
             : "cursor-grab touch-none select-none active:cursor-grabbing",
