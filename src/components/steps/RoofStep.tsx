@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Loader2, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { NumericField } from "@/components/NumericField";
 import { Label } from "@/components/ui/label";
 import { StepShell } from "@/components/StepShell";
 import { CompassDial } from "@/components/CompassDial";
@@ -14,8 +13,6 @@ import { haptic } from "@/services/native-service";
 import { describePvgisError } from "@/lib/pvgis-error";
 import type { Orientation } from "@/lib/calc/types";
 import { useEffect } from "react";
-
-const TILT_PRESETS = [15, 27, 30, 45];
 
 /** Compass azimuth (0=N, clockwise) for each preset orientation. */
 const ORIENTATION_COMPASS: Record<Exclude<Orientation, "unknown">, number> = {
