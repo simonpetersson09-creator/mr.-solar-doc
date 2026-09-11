@@ -11,6 +11,8 @@ interface CompassDialProps {
   disabled?: boolean;
   /** Rendered footprint. "xs"/"sm" are used in compact layouts. */
   size?: "xs" | "sm" | "md";
+  /** When false, the degree value and caption are not rendered (for side layouts). */
+  showValue?: boolean;
 }
 
 const SIZE = 220;
@@ -34,6 +36,7 @@ export function CompassDial({
   caption,
   disabled = false,
   size = "md",
+  showValue = true,
 }: CompassDialProps) {
   const { t } = useTranslation();
   const svgRef = useRef<SVGSVGElement | null>(null);
@@ -196,10 +199,12 @@ className="fill-white/80 text-[11px] font-semibold"
         <circle cx={CENTER} cy={CENTER} r={14} className="fill-accent" />
         <circle cx={CENTER} cy={CENTER} r={6} className="fill-accent-foreground" />
       </svg>
-<div className="text-center leading-tight">
-        <p className="text-base font-semibold tabular-nums text-white">{value}°</p>
-        {caption ? <p className="text-xs text-white/70">{caption}</p> : null}
-      </div>
+      {showValue ? (
+        <div className="text-center leading-tight">
+          <p className="text-base font-semibold tabular-nums text-white">{value}°</p>
+          {caption ? <p className="text-xs text-white/70">{caption}</p> : null}
+        </div>
+      ) : null}
     </div>
   );
 }
