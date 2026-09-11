@@ -8,9 +8,11 @@ vi.mock("@/services/native-service", () => ({
   getPlatform: () => "ios",
 }));
 
-function makeStore() {
+function makeStore(options: { isReady?: boolean } = {}) {
   const handlers: { productUpdated?: () => void; ready?: () => void } = {};
   const store = {
+    isReady: options.isReady ?? true,
+    minTimeBetweenUpdates: 600_000,
     products: [] as unknown[],
     register: () => undefined,
     initialize: async () => undefined,
