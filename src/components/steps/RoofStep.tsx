@@ -109,7 +109,7 @@ className="h-auto w-full rounded-[24px] py-3.5 text-base font-bold shadow-cta"
             <p className="text-[10px] text-white/70">{t("roof.manualHint")}</p>
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex-1 flex flex-col items-center justify-center leading-tight">
+            <div className="flex-1 flex flex-col items-center justify-center pr-1 leading-tight">
               <p className="text-2xl font-bold tabular-nums text-white">{dialValue}°</p>
               <p className="text-xs text-white/70">{t(`roof.orientations.${nearestOrientation(dialValue)}`)}</p>
             </div>
