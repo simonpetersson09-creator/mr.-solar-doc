@@ -106,32 +106,34 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
       }
     >
 {/* Compass — one card */}
-      <div className="glass-primary rounded-[28px] px-4 py-3">
-          <div className="mb-1 text-center">
+      <div className="glass-primary rounded-[28px] px-4 py-2">
+          <div className="text-center leading-tight">
             <Label className="text-xs text-white">{t("roof.orientation")}</Label>
-            <p className="text-[11px] text-white/70">{t("roof.manualHint")}</p>
+            <p className="text-[10px] text-white/70">{t("roof.manualHint")}</p>
           </div>
           <div className="flex justify-center">
             <CompassDial
               value={dialValue}
               onChange={handleDialChange}
-              size="sm"
+              size="xs"
               caption={t(`roof.orientations.${nearestOrientation(dialValue)}`)}
             />
           </div>
         </div>
 
 {/* Tilt — one card */}
-        <div className="glass-primary rounded-[28px] px-4 py-3">
-<div className="mb-2 text-center">
+        <div className="glass-primary rounded-[28px] px-4 py-2">
+<div className="text-center">
             <Label className="text-xs text-white">{t("roof.tilt")}</Label>
           </div>
           {/* Drag the roof line to set the tilt; presets stay as shortcuts. */}
-          <div className="mb-3 flex justify-center">
-            <TiltDial
-              value={tiltDegrees ?? 30}
-              onChange={(degrees) => setRoof(orientation, degrees, azimuthDegrees)}
-            />
+          <div className="mb-2 flex justify-center">
+            <div className="w-[168px]">
+              <TiltDial
+                value={tiltDegrees ?? 30}
+                onChange={(degrees) => setRoof(orientation, degrees, azimuthDegrees)}
+              />
+            </div>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-1.5">
             {TILT_PRESETS.map((preset) => (
