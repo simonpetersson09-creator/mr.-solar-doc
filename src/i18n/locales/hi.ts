@@ -514,6 +514,7 @@ export const hi = {
       ctaNoPrice: "अनलॉक करें",
     },
     priceLoading: "कीमत प्राप्त की जा रही है…",
+    priceUnavailable: "अभी App Store से कीमत प्राप्त नहीं हो पा रही है। पुनः प्रयास करें।",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "प्रीमियम",

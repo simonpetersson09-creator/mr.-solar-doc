@@ -531,6 +531,7 @@ export const nl = {
       ctaNoPrice: "Ontgrendelen",
     },
     priceLoading: "Prijs ophalen…",
+    priceUnavailable: "De prijs kan nu niet uit de App Store worden opgehaald. Probeer het opnieuw.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",

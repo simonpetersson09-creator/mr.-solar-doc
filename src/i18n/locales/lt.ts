@@ -816,6 +816,7 @@ export const lt = {
     appOnly: "Pirkimas atliekamas programėlėje su jūsų Apple paskyra ir naršyklėje neprieinamas.",
     appleNote: "Tvarko App Store.",
     priceLoading: "Gaunama kaina…",
+    priceUnavailable: "Šiuo metu nepavyksta gauti kainos iš „App Store“. Bandykite dar kartą.",
     devContinue: "Dev: continue without payment",
   },
   history: {

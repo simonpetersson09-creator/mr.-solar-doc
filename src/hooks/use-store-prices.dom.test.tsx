@@ -100,16 +100,27 @@ describe("useStorePrices stalled state", () => {
     }
     render(<Capture />);
 
+    // Slow Sandbox: automatic refreshes run with backoff inside the window.
     await act(async () => {
-      await vi.advanceTimersByTimeAsync(35_000);
+      await vi.advanceTimersByTimeAsync(25_000);
     });
+    expect(latest!.status).toBe("loading");
+    expect(update).toHaveBeenCalled();
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(25_000);
+    });
+    // Give-up only means "price unavailable" — never a failed purchase.
     expect(latest!.status).toBe("unavailable");
 
+    update.mockClear();
     await act(async () => {
       latest!.retry();
       await vi.advanceTimersByTimeAsync(100);
     });
     expect(update).toHaveBeenCalled();
+    expect(latest!.status).toBe("loading");
+
     vi.useRealTimers();
   });
 });

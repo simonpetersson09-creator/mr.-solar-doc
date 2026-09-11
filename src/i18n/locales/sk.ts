@@ -811,6 +811,7 @@ export const sk = {
       "Nákup sa uskutočňuje v aplikácii pomocou vášho účtu Apple a nie je dostupný v prehliadači.",
     appleNote: "Spracúva App Store.",
     priceLoading: "Načítava sa cena…",
+    priceUnavailable: "Cenu sa teraz nedá načítať z App Store. Skúste to znova.",
     devContinue: "Dev: continue without payment",
   },
   history: {

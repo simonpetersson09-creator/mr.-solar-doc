@@ -818,6 +818,7 @@ export const it = {
       "L'acquisto viene effettuato nell'app con il tuo account Apple e non è disponibile nel browser.",
     appleNote: "Gestito dall'App Store.",
     priceLoading: "Caricamento del prezzo…",
+    priceUnavailable: "Al momento non è possibile ottenere il prezzo dall’App Store. Riprova.",
     devContinue: "Dev: continue without payment",
   },
   history: {

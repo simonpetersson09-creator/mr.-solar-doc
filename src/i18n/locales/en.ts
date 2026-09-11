@@ -520,6 +520,7 @@ export const en = {
       ctaNoPrice: "Unlock",
     },
     priceLoading: "Fetching price…",
+    priceUnavailable: "Can’t fetch the price from the App Store right now. Try again.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",

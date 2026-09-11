@@ -811,6 +811,7 @@ export const lv = {
     appOnly: "Pirkums tiek veikts lietotnē ar jūsu Apple kontu un nav pieejams pārlūkā.",
     appleNote: "To nodrošina App Store.",
     priceLoading: "Notiek cenas ielāde…",
+    priceUnavailable: "Pašlaik nevar iegūt cenu no App Store. Mēģiniet vēlreiz.",
     devContinue: "Dev: continue without payment",
   },
   history: {

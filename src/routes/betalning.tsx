@@ -61,17 +61,22 @@ function PaywallPage() {
   // reactive: the plugin and its products arrive after the first render.
   const store = useStorePrices();
   const available = store.available;
-  // On iOS the buttons stay tappable even before StoreKit answered: a disabled
-  // button is indistinguishable from a broken one. Only the web build, where no
-  // purchase can ever start, keeps them disabled.
   const canAttempt = store.diagnostics.supported || available;
-  const priceStalled = store.status === "unavailable";
-  // On the web there is no App Store, so a missing price is expected, not an
-  // error. A stalled lookup shows a neutral dash in the compact price slot;
-  // the full error sentence is shown in the alert block further down — never
-  // inside the price, where a long sentence overflows the card.
-  const priceFallback =
-    !store.diagnostics.supported || priceStalled ? "—" : t("paywall.priceLoading");
+  // Three clearly separated product-loading states. None of them is a payment
+  // failure: StoreKit not having delivered a product must never be shown as
+  // "the purchase could not be completed".
+  const priceLoading = store.diagnostics.supported && store.status === "loading";
+  const priceUnavailable = store.diagnostics.supported && store.status === "unavailable";
+  // On the web there is no App Store, so a missing price is expected.
+  const priceFallback = priceLoading ? t("paywall.priceLoading") : "—";
+  // A purchase is only started when StoreKit actually has the product/offer.
+  // After a give-up we still allow a tap: purchaseProduct() runs the recovery
+  // path (re-init + refresh) before ordering.
+  const canBuyUnlock =
+    canAttempt && (store.unlockReady || store.unlock !== null || priceUnavailable || !store.diagnostics.supported);
+  const canBuyPremium =
+    canAttempt && (store.premiumReady || store.premium !== null || priceUnavailable || !store.diagnostics.supported);
+
 
 
   // A paid unlock may be waiting in StoreKit's queue with no calculation to
@@ -322,7 +327,7 @@ function PaywallPage() {
           <Button
             size="lg"
             className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-            disabled={!canAttempt || busy}
+            disabled={!canBuyUnlock || busy}
             onClick={() => void handleUnlock()}
           >
             {busy && choice === "unlock" ? (
@@ -330,12 +335,18 @@ function PaywallPage() {
                 <Loader2 className="size-4 animate-spin" />
                 {busyLabel()}
               </>
+            ) : !canBuyUnlock && priceLoading ? (
+              <>
+                <Loader2 className="size-4 animate-spin" />
+                {t("paywall.priceLoading")}
+              </>
             ) : (
               unlockPrice
                 ? t("paywall.single.cta", { price: unlockPrice })
                 : t("paywall.single.ctaNoPrice")
             )}
           </Button>
+
         </section>
 
         {/* Option 2 — Premium */}
@@ -365,7 +376,7 @@ function PaywallPage() {
           <Button
             size="lg"
             className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
-            disabled={!canAttempt || busy}
+            disabled={!canBuyPremium || busy}
             onClick={() => void handlePremium()}
           >
             {busy && choice === "premium" ? (
@@ -373,10 +384,16 @@ function PaywallPage() {
                 <Loader2 className="size-4 animate-spin" />
                 {busyLabel()}
               </>
+            ) : !canBuyPremium && priceLoading ? (
+              <>
+                <Loader2 className="size-4 animate-spin" />
+                {t("paywall.priceLoading")}
+              </>
             ) : (
               t("paywall.premium.cta")
             )}
           </Button>
+
           <p className="text-[11px] text-primary-foreground/70">{t("paywall.premium.renewal")}</p>
         </section>
 
@@ -406,7 +423,24 @@ function PaywallPage() {
         {phase === "cancelled" ? (
           <p className="text-sm text-muted-foreground">{t("paywall.cancelled")}</p>
         ) : null}
-        {phase === "failed" || (canAttempt && priceStalled) ? (
+        {/* Product loading problem — neutral, never a payment failure. */}
+        {priceUnavailable && phase !== "failed" ? (
+          <div className="flex flex-col gap-2">
+            <p role="status" className="text-sm text-foreground">
+              {t("paywall.priceUnavailable")}
+            </p>
+            <Button
+              size="lg"
+              variant="outline"
+              className="w-full"
+              onClick={() => store.retry()}
+            >
+              {t("common.retry")}
+            </Button>
+          </div>
+        ) : null}
+        {/* Only shown after a real, attempted purchase failed. */}
+        {phase === "failed" ? (
           <div className="flex flex-col gap-2">
             <p role="alert" className="text-sm text-destructive">
               {t("paywall.failed")}
@@ -424,6 +458,7 @@ function PaywallPage() {
             </Button>
           </div>
         ) : null}
+
         {phase === "retry" ? (
           <div className="flex flex-col gap-2">
             <p role="status" className="text-sm text-foreground">

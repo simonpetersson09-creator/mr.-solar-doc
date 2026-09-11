@@ -824,6 +824,7 @@ export const pl = {
       "Zakup jest realizowany w aplikacji za pomocą Twojego konta Apple i nie jest dostępny w przeglądarce.",
     appleNote: "Obsługiwane przez App Store.",
     priceLoading: "Pobieranie ceny…",
+    priceUnavailable: "Nie można teraz pobrać ceny z App Store. Spróbuj ponownie.",
     devContinue: "Dev: continue without payment",
   },
   history: {

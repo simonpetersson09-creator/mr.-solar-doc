@@ -513,6 +513,7 @@ export const uk = {
       ctaNoPrice: "Розблокувати",
     },
     priceLoading: "Отримання ціни…",
+    priceUnavailable: "Зараз не вдається отримати ціну з App Store. Спробуйте ще раз.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Преміум",

@@ -528,6 +528,7 @@ export const hu = {
       ctaNoPrice: "Feloldás",
     },
     priceLoading: "Ár lekérése…",
+    priceUnavailable: "Az ár jelenleg nem kérhető le az App Store-ból. Próbálja újra.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Prémium",

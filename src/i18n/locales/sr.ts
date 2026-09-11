@@ -519,6 +519,7 @@ export const sr = {
       ctaNoPrice: "Откључај",
     },
     priceLoading: "Преузимање цене…",
+    priceUnavailable: "Тренутно није могуће преузети цену са App Store-а. Покушајте поново.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Премијум",

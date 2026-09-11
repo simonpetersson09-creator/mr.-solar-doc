@@ -528,6 +528,7 @@ export const ro = {
       ctaNoPrice: "Deblochează",
     },
     priceLoading: "Se preia prețul…",
+    priceUnavailable: "Prețul nu poate fi preluat din App Store acum. Încercați din nou.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",
