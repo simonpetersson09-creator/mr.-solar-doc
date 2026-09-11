@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { ArrowRight, Loader2, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { NumericField } from "@/components/NumericField";
 import { Label } from "@/components/ui/label";
 import { StepShell } from "@/components/StepShell";
 import { CompassDial } from "@/components/CompassDial";
@@ -14,8 +13,6 @@ import { haptic } from "@/services/native-service";
 import { describePvgisError } from "@/lib/pvgis-error";
 import type { Orientation } from "@/lib/calc/types";
 import { useEffect } from "react";
-
-const TILT_PRESETS = [15, 27, 30, 45];
 
 /** Compass azimuth (0=N, clockwise) for each preset orientation. */
 const ORIENTATION_COMPASS: Record<Exclude<Orientation, "unknown">, number> = {
@@ -105,65 +102,39 @@ className="h-auto w-full rounded-[24px] py-3.5 text-base font-bold shadow-cta"
         </Button>
       }
     >
-{/* Compass — one card */}
+      {/* Compass — one card */}
       <div className="glass-primary rounded-[28px] px-4 py-2">
-          <div className="text-center leading-tight">
+          <div className="mb-1 text-center leading-tight">
             <Label className="text-xs text-white">{t("roof.orientation")}</Label>
             <p className="text-[10px] text-white/70">{t("roof.manualHint")}</p>
           </div>
-          <div className="flex justify-center">
+          <div className="flex items-center justify-between gap-3">
+            <div className="leading-tight">
+              <p className="text-2xl font-bold tabular-nums text-white">{dialValue}°</p>
+              <p className="text-xs text-white/70">{t(`roof.orientations.${nearestOrientation(dialValue)}`)}</p>
+            </div>
             <CompassDial
               value={dialValue}
               onChange={handleDialChange}
-              size="xs"
-              caption={t(`roof.orientations.${nearestOrientation(dialValue)}`)}
+              size="sm"
+              showValue={false}
             />
           </div>
         </div>
 
-{/* Tilt — one card */}
+      {/* Tilt — one card */}
         <div className="glass-primary rounded-[28px] px-4 py-2">
-<div className="text-center">
+          <div className="text-center">
             <Label className="text-xs text-white">{t("roof.tilt")}</Label>
           </div>
-          {/* Drag the roof line to set the tilt; presets stay as shortcuts. */}
-          <div className="mb-2 flex justify-center">
-            <div className="w-[168px]">
+          {/* Drag the roof line to set the tilt. */}
+          <div className="flex justify-center">
+            <div className="w-[240px]">
               <TiltDial
                 value={tiltDegrees ?? 30}
                 onChange={(degrees) => setRoof(orientation, degrees, azimuthDegrees)}
               />
             </div>
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-1.5">
-            {TILT_PRESETS.map((preset) => (
-              <button
-                key={preset}
-                type="button"
-                onClick={() => {
-                  void haptic("light");
-                  setRoof(orientation, preset, azimuthDegrees);
-                }}
-                className={
-                  tiltDegrees === preset
-                    ? "chip-selected rounded-[10px] px-3 py-1.5 text-[11px] font-semibold text-brand-black shadow-sm"
-                    : "chip-unselected rounded-[10px] px-3 py-1.5 text-[11px] font-medium transition-colors"
-                }
-              >
-                {preset}°
-              </button>
-            ))}
-            {/* Locale-safe: the user may type "30", "30,5" or "30.5". */}
-            <NumericField
-              locale={locale}
-              value={tiltDegrees}
-              min={0}
-              max={90}
-              decimals={1}
-              placeholder={t("roof.tiltDegrees")}
-              onCommit={(value) => setRoof(orientation, value, azimuthDegrees)}
-              className="h-7 w-16 rounded-full border-white/25 bg-white/15 px-2 text-xs text-white placeholder:text-white/50"
-            />
           </div>
         </div>
 
