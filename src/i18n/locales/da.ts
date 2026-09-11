@@ -811,6 +811,7 @@ export const da = {
     appOnly: "Købet foretages i appen med din Apple-konto og er ikke tilgængeligt i browseren.",
     appleNote: "Håndteres af App Store.",
     priceLoading: "Henter pris…",
+    priceUnavailable: "Kan ikke hente prisen fra App Store lige nu. Prøv igen.",
     devContinue: "Dev: continue without payment",
   },
   history: {

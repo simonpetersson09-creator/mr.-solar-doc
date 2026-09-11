@@ -536,6 +536,7 @@ export const el = {
       ctaNoPrice: "Ξεκλείδωμα",
     },
     priceLoading: "Ανάκτηση τιμής…",
+    priceUnavailable: "Δεν είναι δυνατή η λήψη της τιμής από το App Store αυτή τη στιγμή. Δοκιμάστε ξανά.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",

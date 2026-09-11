@@ -525,6 +525,7 @@ export const tr = {
       ctaNoPrice: "Aç",
     },
     priceLoading: "Fiyat alınıyor…",
+    priceUnavailable: "Fiyat şu anda App Store’dan alınamıyor. Tekrar deneyin.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",

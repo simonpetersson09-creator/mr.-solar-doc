@@ -66,13 +66,14 @@ function SettingsPage() {
   const store = useStorePrices();
   const premiumPrice = store.premium;
   const unlockPrice = store.unlock;
-  const priceStalled = store.status === "unavailable";
-  // On the web there is no App Store, so a missing price is expected, not an error.
-  // The price slot must stay compact: a stalled lookup shows a neutral dash
-  // and the full error sentence lives in the alert row below the button —
-  // never inside the price, where a long sentence overflows the card.
-  const priceFallback =
-    !store.diagnostics.supported || priceStalled ? "—" : t("paywall.priceLoading");
+  // Separated states: StoreKit still loading vs. products could not be fetched.
+  // Neither is a failed payment — only `purchaseError` is.
+  const priceLoading = store.diagnostics.supported && store.status === "loading";
+  const priceUnavailable = store.diagnostics.supported && store.status === "unavailable";
+  const priceFallback = priceLoading ? t("paywall.priceLoading") : "—";
+  const canBuyPremium =
+    store.premiumReady || store.premium !== null || priceUnavailable || !store.diagnostics.supported;
+
 
   /** Buys the yearly subscription. Verification is always server-side. */
   async function handleBuyPremium() {
@@ -247,7 +248,7 @@ function SettingsPage() {
                 </div>
               ) : (
                 <Button
-                  disabled={buying}
+                  disabled={buying || !canBuyPremium}
                   onClick={() => void handleBuyPremium()}
                   className="h-8 w-full text-xs font-semibold"
                 >
@@ -256,16 +257,36 @@ function SettingsPage() {
                       <Loader2 className="size-3 animate-spin" />
                       {t("paywall.purchasing")}
                     </>
+                  ) : !canBuyPremium && priceLoading ? (
+                    <>
+                      <Loader2 className="size-3 animate-spin" />
+                      {t("paywall.priceLoading")}
+                    </>
                   ) : (
                     t("paywall.premium.cta")
                   )}
                 </Button>
               )}
-              {/* Never silent: a failed or unavailable purchase is visible and retryable */}
-              {!premium.active && (purchaseError || priceStalled) ? (
+              {/* StoreKit could not deliver the product — neutral, retryable. */}
+              {!premium.active && !purchaseError && priceUnavailable ? (
+                <div className="flex flex-col gap-1">
+                  <p role="status" className="text-[11px] font-semibold text-brand-black/75">
+                    {t("paywall.priceUnavailable")}
+                  </p>
+                  <Button
+                    variant="outline"
+                    className="h-7 w-full text-[11px] font-semibold"
+                    onClick={() => store.retry()}
+                  >
+                    {t("common.retry")}
+                  </Button>
+                </div>
+              ) : null}
+              {/* Only a real, attempted purchase failure is shown as an error */}
+              {!premium.active && purchaseError ? (
                 <div className="flex flex-col gap-1">
                   <p role="alert" className="text-[11px] font-semibold text-destructive">
-                    {purchaseError ?? t("paywall.failed")}
+                    {purchaseError}
                   </p>
                   <Button
                     variant="outline"
@@ -279,6 +300,7 @@ function SettingsPage() {
                   </Button>
                 </div>
               ) : null}
+
               {/* Centered renewal note */}
               <p className="text-center text-[10px] leading-snug text-brand-black/60">
                 {t("paywall.premium.renewal")}

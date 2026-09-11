@@ -513,6 +513,7 @@ export const id = {
       ctaNoPrice: "Buka",
     },
     priceLoading: "Mengambil harga…",
+    priceUnavailable: "Harga tidak dapat diambil dari App Store saat ini. Coba lagi.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",

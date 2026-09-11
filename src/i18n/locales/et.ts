@@ -826,6 +826,7 @@ export const et = {
     appOnly: "Ost tehakse rakenduses teie Apple kontoga ega ole brauseris saadaval.",
     appleNote: "Käsitleb App Store.",
     priceLoading: "Hinna laadimine…",
+    priceUnavailable: "Hinda ei õnnestu praegu App Store’ist laadida. Proovi uuesti.",
     devContinue: "Dev: continue without payment",
   },
   history: {

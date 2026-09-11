@@ -518,6 +518,7 @@ export const no = {
       ctaNoPrice: "Lås opp",
     },
     priceLoading: "Henter pris…",
+    priceUnavailable: "Kan ikke hente prisen fra App Store akkurat nå. Prøv igjen.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",

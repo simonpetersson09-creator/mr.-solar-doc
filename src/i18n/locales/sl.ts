@@ -807,6 +807,7 @@ export const sl = {
     appOnly: "Nakup se izvede v aplikaciji z vašim Apple računom in ni na voljo v brskalniku.",
     appleNote: "Obravnava App Store.",
     priceLoading: "Pridobivanje cene…",
+    priceUnavailable: "Cene trenutno ni mogoče pridobiti iz App Store. Poskusite znova.",
     devContinue: "Dev: continue without payment",
   },
   history: {

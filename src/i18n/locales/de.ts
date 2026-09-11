@@ -823,6 +823,7 @@ export const de = {
       "Der Kauf erfolgt in der App mit deinem Apple-Konto und ist im Browser nicht verfügbar.",
     appleNote: "Wird vom App Store abgewickelt.",
     priceLoading: "Preis wird geladen…",
+    priceUnavailable: "Der Preis kann derzeit nicht aus dem App Store geladen werden. Bitte erneut versuchen.",
     devContinue: "Dev: continue without payment",
   },
   history: {

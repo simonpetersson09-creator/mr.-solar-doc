@@ -526,6 +526,7 @@ export const bg = {
       ctaNoPrice: "Отключи",
     },
     priceLoading: "Извличане на цена…",
+    priceUnavailable: "В момента цената не може да бъде извлечена от App Store. Опитайте отново.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Премиум",

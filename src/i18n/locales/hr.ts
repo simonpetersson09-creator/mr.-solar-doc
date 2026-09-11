@@ -522,6 +522,7 @@ export const hr = {
       ctaNoPrice: "Otključaj",
     },
     priceLoading: "Dohvaćanje cijene…",
+    priceUnavailable: "Trenutačno nije moguće dohvatiti cijenu iz App Storea. Pokušajte ponovno.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",

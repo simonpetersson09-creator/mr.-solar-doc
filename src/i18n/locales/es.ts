@@ -528,6 +528,7 @@ export const es = {
       ctaNoPrice: "Desbloquear",
     },
     priceLoading: "Obteniendo precio…",
+    priceUnavailable: "No se puede obtener el precio de la App Store ahora mismo. Inténtalo de nuevo.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "Premium",

@@ -301,8 +301,9 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
     .initialize([Platform.APPLE_APPSTORE])
     .then((errors) => {
       // v13 resolves initialize() with an error array; it does not reject for
-      // normal StoreKit setup/product-loading failures. Treating every resolved
-      // promise as success left the paywall enabled with no usable products.
+      // normal StoreKit setup/product-loading failures. A resolved-with-errors
+      // initialisation must NOT be cached as initialised: otherwise a single
+      // transient Sandbox failure is permanent and the paywall never recovers.
       if (Array.isArray(errors) && errors.length > 0) {
         const first = errors[0];
         const message = first?.message ?? "StoreKit initialization failed";
@@ -314,11 +315,13 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
             productId: error.productId ?? null,
           })),
         });
+        initialized = false;
+        // Allow a later retry; registration/listeners are already in place and
+        // are never repeated, so no double listeners or double callbacks.
+        initPromise = null;
+        emit();
+        return;
       }
-      // Only a resolved initialize() counts as initialised. Marking it earlier
-      // made a single transient StoreKit failure permanent: every later call
-      // short-circuited, products never loaded and the paywall stayed on
-      // "fetching price" with an unresponsive buy button.
       initialized = true;
       log("store initialized", getPurchaseDiagnostics());
       emit();
@@ -326,12 +329,14 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
     .catch((error: unknown) => {
       const message = error instanceof Error ? error.message : String(error);
       recordError(null, message);
+      initialized = false;
       emit();
       // Allow a later retry: initialisation failed, registration already ran.
       initPromise = null;
       throw new PurchaseError("failed", message, { detail: message });
     });
 }
+
 
 /**
  * Boots StoreKit. Idempotent: products are registered at most once, concurrent
@@ -363,14 +368,25 @@ export function initializePurchases(): Promise<void> {
 /**
  * Asks StoreKit for fresh product data. Used when products are still missing so
  * the UI has a real retry instead of an endless "fetching price".
+ *
+ * Recovery order, all safe to repeat (products are registered once and the
+ * listeners are attached once, so no duplicate transaction callbacks):
+ *  1. re-run initialisation when it never succeeded,
+ *  2. `store.update()` when the plugin exposes it (v13),
+ *  3. otherwise re-run `store.initialize()`, which re-queries the App Store.
  */
 export async function refreshStoreProducts(): Promise<void> {
   await initializePurchases();
   const cdv = getCdv();
   if (!cdv) return;
   try {
-    await cdv.store.update?.();
-    log("store update requested", getPurchaseDiagnostics());
+    if (typeof cdv.store.update === "function") {
+      await cdv.store.update();
+      log("store update requested", getPurchaseDiagnostics());
+    } else if (!hasAnyProduct()) {
+      await cdv.store.initialize([cdv.Platform.APPLE_APPSTORE]);
+      log("store re-initialized for refresh", getPurchaseDiagnostics());
+    }
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     recordError(lastErrorCode, message);
@@ -378,8 +394,23 @@ export async function refreshStoreProducts(): Promise<void> {
   emit();
 }
 
+function hasAnyProduct(): boolean {
+  return (getCdv()?.store.products?.length ?? 0) > 0;
+}
+
+/** True when this product has a purchasable StoreKit offer right now. */
+export function hasPurchasableOffer(productId: string): boolean {
+  const cdv = getCdv();
+  if (!cdv || !initialized) return false;
+  try {
+    return Boolean(cdv.store.get(productId, cdv.Platform.APPLE_APPSTORE)?.getOffer?.());
+  } catch {
+    return false;
+  }
+}
+
 /** Waits (bounded) for a product to appear after initialisation. */
-export async function waitForProduct(productId: string, timeoutMs = 8000): Promise<boolean> {
+export async function waitForProduct(productId: string, timeoutMs = 12_000): Promise<boolean> {
   const deadline = Date.now() + timeoutMs;
   while (Date.now() < deadline) {
     const cdv = getCdv();
@@ -388,6 +419,7 @@ export async function waitForProduct(productId: string, timeoutMs = 8000): Promi
   }
   return getCdv()?.store.products?.some((product) => product.id === productId) ?? false;
 }
+
 
 export interface UnclaimedTransaction {
   transactionId: string;
@@ -479,13 +511,14 @@ export async function purchaseProduct(productId: string): Promise<{
   }
 
   // The tap can land before StoreKit delivered the product (slow Sandbox, fresh
-  // launch, iPad review device). Ask again and wait briefly instead of failing
-  // immediately, which is what made the button look unresponsive.
+  // launch, iPad review device). Run the recovery path — re-init and refresh —
+  // instead of failing immediately with a generic purchase error.
   const offerReady = () => Boolean(cdv?.store.get(productId, cdv.Platform.APPLE_APPSTORE)?.getOffer?.());
-  if (!offerReady()) {
+  for (let attempt = 0; attempt < 2 && !offerReady(); attempt += 1) {
     await refreshStoreProducts();
-    await waitForProduct(productId);
+    await waitForProduct(productId, attempt === 0 ? 8000 : 12_000);
     cdv = getCdv();
+
     if (!cdv) throw new PurchaseError("unavailable", "StoreKit plugin unavailable");
     log("products after refresh", { productId, delivered: getPurchaseDiagnostics().productIds });
   }

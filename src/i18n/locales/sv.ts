@@ -523,6 +523,7 @@ export const sv = {
       ctaNoPrice: "Lås upp",
     },
     priceLoading: "Hämtar pris…",
+    priceUnavailable: "Kan inte hämta pris från App Store just nu. Försök igen.",
     devContinue: "Dev: fortsätt utan betalning",
     premium: {
       title: "Premium",

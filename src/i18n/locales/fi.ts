@@ -810,6 +810,7 @@ export const fi = {
       "Ostos tehdään sovelluksessa Apple-tunnuksellasi eikä se ole käytettävissä selaimessa.",
     appleNote: "App Storen hoitama.",
     priceLoading: "Haetaan hintaa…",
+    priceUnavailable: "Hintaa ei saada App Storesta juuri nyt. Yritä uudelleen.",
     devContinue: "Dev: continue without payment",
   },
   history: {

@@ -503,6 +503,7 @@ export const he = {
       ctaNoPrice: "פתיחה",
     },
     priceLoading: "מביא מחיר…",
+    priceUnavailable: "לא ניתן לקבל כעת את המחיר מה-App Store. נסה שוב.",
     devContinue: "Dev: continue without payment",
     premium: {
       title: "פרימיום",

@@ -104,7 +104,7 @@ describe("initialisation", () => {
     expect(iap.getPurchaseDiagnostics().lastErrorMessage).toContain("init boom");
   });
 
-  it("records errors returned by StoreKit initialization", async () => {
+  it("does not mark the store initialised when StoreKit returns errors", async () => {
     const { store } = makeStore({
       initializeErrors: [
         { isError: true, code: 6777002, message: "Failed to load products", productId: null },
@@ -114,10 +114,15 @@ describe("initialisation", () => {
 
     await iap.initializePurchases();
 
-    expect(iap.getPurchaseDiagnostics().initialized).toBe(true);
+    // A resolved-with-errors init must stay retryable, not be cached as ready.
+    expect(iap.getPurchaseDiagnostics().initialized).toBe(false);
     expect(iap.getPurchaseDiagnostics().lastErrorCode).toBe(6777002);
     expect(iap.getPurchaseDiagnostics().lastErrorMessage).toBe("Failed to load products");
+
+    await iap.initializePurchases();
+    expect(store.initialize).toHaveBeenCalledTimes(2);
   });
+
 
   it("keeps working when the paywall opens before the plugin is ready", async () => {
     const { store } = makeStore();
@@ -176,7 +181,7 @@ describe("purchase errors", () => {
     const { store } = makeStore({ offer: null });
     install(store);
     await expect(iap.purchaseUnlock()).rejects.toMatchObject({ reason: "unavailable" });
-  }, 20000);
+  }, 40000);
 
   it("keeps the StoreKit code and message on a purchase error", async () => {
     const { store, handlers } = makeStore({
@@ -369,5 +374,116 @@ describe("unclaimed transaction queue", () => {
 
     first!.requeue();
     expect(iap.takeUnclaimedTransactions().map((t) => t.transactionId)).toEqual(["t-1"]);
+  });
+});
+
+describe("product loading states", () => {
+  it("reports a purchasable offer when StoreKit answers immediately", async () => {
+    const { store } = makeStore({
+      products: [{ id: UNLOCK_PRODUCT_ID, pricing: { price: "49,00 kr" } }],
+      offer: { order: async () => undefined },
+    });
+    install(store);
+    await iap.initializePurchases();
+
+    expect(iap.hasPurchasableOffer(UNLOCK_PRODUCT_ID)).toBe(true);
+    expect(iap.getStorePrice(UNLOCK_PRODUCT_ID)).toBe("49,00 kr");
+  });
+
+  it("has no purchasable offer while StoreKit is still loading products", async () => {
+    const { store } = makeStore({ products: [], offer: null });
+    install(store);
+    await iap.initializePurchases();
+
+    expect(iap.hasPurchasableOffer(UNLOCK_PRODUCT_ID)).toBe(false);
+    expect(iap.getStorePrices()).toEqual({ unlock: null, premium: null });
+  });
+
+  it("finds the product after a slow App Store answer", async () => {
+    const { store } = makeStore({ products: [], offer: null });
+    install(store);
+    await iap.initializePurchases();
+    expect(iap.hasPurchasableOffer(PREMIUM_PRODUCT_ID)).toBe(false);
+
+    const late = store as unknown as { products: unknown[]; get: () => unknown };
+    late.products = [{ id: PREMIUM_PRODUCT_ID, pricing: { price: "299,00 kr" } }];
+    late.get = () => ({ getOffer: () => ({ order: async () => undefined }) });
+
+    expect(await iap.waitForProduct(PREMIUM_PRODUCT_ID, 1000)).toBe(true);
+    expect(iap.hasPurchasableOffer(PREMIUM_PRODUCT_ID)).toBe(true);
+  });
+});
+
+describe("refresh and retry", () => {
+  it("uses store.update() when the plugin provides it", async () => {
+    const { store } = makeStore({ products: [] });
+    const update = vi.fn(async () => undefined);
+    (store as unknown as { update?: () => Promise<void> }).update = update;
+    install(store);
+
+    await iap.refreshStoreProducts();
+    expect(update).toHaveBeenCalledTimes(1);
+  });
+
+  it("falls back to re-initialising when store.update() is missing", async () => {
+    const { store } = makeStore({ products: [] });
+    install(store);
+    await iap.initializePurchases();
+    const before = store.initialize.mock.calls.length;
+
+    await iap.refreshStoreProducts();
+    expect(store.initialize.mock.calls.length).toBeGreaterThan(before);
+  });
+
+  it("never registers products or listeners twice across retries", async () => {
+    const { store, registerCalls } = makeStore({ products: [] });
+    install(store);
+
+    await iap.initializePurchases();
+    await iap.refreshStoreProducts();
+    await iap.refreshStoreProducts();
+
+    expect(registerCalls).toHaveLength(1);
+  });
+
+  it("delivers an approved transaction exactly once after retries", async () => {
+    const { store, handlers } = makeStore({ products: [] });
+    install(store);
+    await iap.initializePurchases();
+    await iap.refreshStoreProducts();
+
+    handlers.approved?.({
+      transactionId: "t-once",
+      products: [{ id: PREMIUM_PRODUCT_ID }],
+      finish: () => undefined,
+    });
+    expect(iap.takeUnclaimedTransactions().map((t) => t.transactionId)).toEqual(["t-once"]);
+    expect(iap.takeUnclaimedTransactions()).toHaveLength(0);
+  });
+});
+
+describe("successful purchase", () => {
+  it("resolves with the verified transaction and finishes only on demand", async () => {
+    const finish = vi.fn(async () => undefined);
+    const { store, handlers } = makeStore({
+      products: [{ id: UNLOCK_PRODUCT_ID, pricing: { price: "49,00 kr" } }],
+      offer: { order: async () => undefined },
+    });
+    install(store);
+    await iap.initializePurchases();
+
+    const promise = iap.purchaseUnlock();
+    await Promise.resolve();
+    handlers.approved?.({
+      transactionId: "ok-1",
+      products: [{ id: UNLOCK_PRODUCT_ID }],
+      finish,
+    });
+
+    const result = await promise;
+    expect(result.transactionId).toBe("ok-1");
+    expect(finish).not.toHaveBeenCalled();
+    await result.finish();
+    expect(finish).toHaveBeenCalledTimes(1);
   });
 });

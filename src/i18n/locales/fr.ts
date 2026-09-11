@@ -826,6 +826,7 @@ export const fr = {
       "L'achat se fait dans l'application avec votre compte Apple et n'est pas disponible dans le navigateur.",
     appleNote: "Géré par l'App Store.",
     priceLoading: "Récupération du prix…",
+    priceUnavailable: "Impossible de récupérer le prix depuis l’App Store pour le moment. Réessayez.",
     devContinue: "Dev: continue without payment",
   },
   history: {
