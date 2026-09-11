@@ -108,7 +108,7 @@ describe("initialisation", () => {
     expect(iap.getPurchaseDiagnostics().lastErrorMessage).toContain("init boom");
   });
 
-  it("does not mark the store initialised when StoreKit returns errors", async () => {
+  it("keeps the adapter initialized when StoreKit returns product-loading errors", async () => {
     const { store } = makeStore({
       initializeErrors: [
         { isError: true, code: 6777002, message: "Failed to load products", productId: null },
@@ -118,8 +118,9 @@ describe("initialisation", () => {
 
     await iap.initializePurchases();
 
-    // A resolved-with-errors init must not be cached as ready.
-    expect(iap.getPurchaseDiagnostics().initialized).toBe(false);
+    // The adapter did start; this is a product-status failure. Keeping those
+    // states separate allows valid sibling products and store.update() retries.
+    expect(iap.getPurchaseDiagnostics().initialized).toBe(true);
     expect(iap.getPurchaseDiagnostics().lastErrorCode).toBe(6777002);
     expect(iap.getPurchaseDiagnostics().lastErrorMessage).toBe("Failed to load products");
 

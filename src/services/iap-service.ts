@@ -1,13 +1,14 @@
 /**
- * UI -> IAP service -> StoreKit (via cordova-plugin-purchase).
+ * UI -> IAP service -> StoreKit 2 (via capacitor-plugin-cdv-purchase).
  *
  * Purchases are only possible inside the native iOS app. On the web the service
  * reports "unavailable" so the paywall can explain that the unlock is bought in
  * the app with the user's Apple account.
  *
- * Capacitor exposes the Cordova plugin as `window.CdvPurchase` after its bridge
- * is ready. Product metadata can arrive well after initialization, so callers
- * subscribe to store updates rather than treating initialize() as product-ready.
+ * The purchase package registers a native Capacitor plugin and exports the one
+ * shared Store instance. It is imported client-side because its runtime uses
+ * browser globals. Product metadata can arrive after adapter initialization, so
+ * callers subscribe to store updates instead of treating initialize() as ready.
  */
 
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
@@ -91,9 +92,42 @@ interface CdvPurchaseGlobal {
   Platform: { APPLE_APPSTORE: string };
 }
 
+let capacitorPurchase: CdvPurchaseGlobal | null = null;
+let capacitorImportPromise: Promise<CdvPurchaseGlobal | null> | null = null;
+
+/** Loads the browser-only purchase runtime and registers PurchasePlugin. */
+function loadCapacitorPurchase(): Promise<CdvPurchaseGlobal | null> {
+  if (capacitorPurchase) return Promise.resolve(capacitorPurchase);
+  if (capacitorImportPromise) return capacitorImportPromise;
+  if (typeof window === "undefined") return Promise.resolve(null);
+
+  capacitorImportPromise = import("capacitor-plugin-cdv-purchase")
+    .then((module) => {
+      capacitorPurchase = {
+        store: module.store as unknown as CdvStore,
+        ProductType: module.ProductType as unknown as CdvPurchaseGlobal["ProductType"],
+        Platform: module.Platform as unknown as CdvPurchaseGlobal["Platform"],
+      };
+      log("Capacitor PurchasePlugin runtime loaded");
+      return capacitorPurchase;
+    })
+    .catch((error: unknown) => {
+      const message = error instanceof Error ? error.message : String(error);
+      recordError(null, message);
+      capacitorImportPromise = null;
+      return null;
+    });
+  return capacitorImportPromise;
+}
+
 function getCdv(): CdvPurchaseGlobal | null {
   if (typeof window === "undefined") return null;
-  return (window as unknown as { CdvPurchase?: CdvPurchaseGlobal }).CdvPurchase ?? null;
+  // The window override keeps tests deterministic. On device the package export
+  // is the one Store instance backed by the native Capacitor PurchasePlugin.
+  return (
+    (window as unknown as { CdvPurchase?: CdvPurchaseGlobal }).CdvPurchase ??
+    capacitorPurchase
+  );
 }
 
 /** True on a platform where StoreKit purchases can exist (plugin may still be loading). */
@@ -195,14 +229,16 @@ function emit() {
  * ------------------------------------------------------------------ */
 
 /**
- * Waits for Capacitor's Cordova compatibility bridge to expose the plugin.
- * The check is event-driven plus polling because a TestFlight cold start can
- * mount React before `deviceready` and before the global has been installed.
+ * Loads the official Capacitor bridge. The global fallback is retained for
+ * deterministic tests, but native startup no longer depends on `deviceready`.
  */
-export function waitForPurchasePlugin(timeoutMs = 60_000): Promise<CdvPurchaseGlobal | null> {
+export async function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurchaseGlobal | null> {
   const immediate = getCdv();
-  if (immediate) return Promise.resolve(immediate);
-  if (typeof window === "undefined" || !isPurchaseSupported()) return Promise.resolve(null);
+  if (immediate) return immediate;
+  if (typeof window === "undefined" || !isPurchaseSupported()) return null;
+
+  const loaded = await loadCapacitorPurchase();
+  if (loaded) return loaded;
 
   return new Promise((resolve) => {
     let settled = false;
@@ -211,7 +247,6 @@ export function waitForPurchasePlugin(timeoutMs = 60_000): Promise<CdvPurchaseGl
       settled = true;
       window.clearInterval(interval);
       window.clearTimeout(timer);
-      document.removeEventListener("deviceready", onDeviceReady);
       document.removeEventListener("visibilitychange", onVisibilityChange);
       resolve(value);
     };
@@ -219,12 +254,10 @@ export function waitForPurchasePlugin(timeoutMs = 60_000): Promise<CdvPurchaseGl
       const cdv = getCdv();
       if (cdv) finish(cdv);
     };
-    const onDeviceReady = () => check();
     const onVisibilityChange = () => {
       if (document.visibilityState === "visible") check();
     };
 
-    document.addEventListener("deviceready", onDeviceReady, { once: false });
     document.addEventListener("visibilitychange", onVisibilityChange);
     const interval = window.setInterval(check, 500);
     const timer = window.setTimeout(() => {
@@ -311,10 +344,9 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
   return store
     .initialize([Platform.APPLE_APPSTORE])
     .then((errors) => {
-      // v13 resolves initialize() with an error array; it does not reject for
-      // normal StoreKit setup/product-loading failures. A resolved-with-errors
-      // initialisation must NOT be cached as initialised: otherwise a single
-      // transient Sandbox failure is permanent and the paywall never recovers.
+      // v13 returns per-product loading errors after the adapter has started.
+      // Do not conflate those with adapter failure: valid sibling products must
+      // remain purchasable, and store.update() can retry missing metadata.
       if (Array.isArray(errors) && errors.length > 0) {
         const first = errors[0];
         const message = first?.message ?? "StoreKit initialization failed";
@@ -326,10 +358,7 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
             productId: error.productId ?? null,
           })),
         });
-        initialized = false;
-        // v13 initialize() is one-shot internally. Do not claim a later call is
-        // a real adapter restart; product recovery remains possible only if the
-        // Store reached ready and supports update().
+        initialized = true;
         emit();
         return;
       }
@@ -382,7 +411,7 @@ export function initializePurchases(): Promise<void> {
 /**
  * True when a *real* product reload can still happen in this session.
  *
- * cordova-plugin-purchase v13 facts:
+ * capacitor-plugin-cdv-purchase v13 store-runtime facts:
  *  - `initialize()` is one-shot (`initializedHasBeenCalled`); later calls warn
  *    and resolve with `[]` without touching StoreKit.
  *  - `update()` returns immediately unless `store.isReady` is true, and is
@@ -698,6 +727,8 @@ export function describePurchaseError(error: unknown): string {
 
 /** Test-only: clears module state so each test starts from a clean store. */
 export function __resetIapServiceForTests() {
+  capacitorPurchase = null;
+  capacitorImportPromise = null;
   initialized = false;
   initializationAttempted = false;
   registered = false;
