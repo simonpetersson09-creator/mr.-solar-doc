@@ -71,8 +71,9 @@ function SettingsPage() {
   const priceLoading = store.diagnostics.supported && store.status === "loading";
   const priceUnavailable = store.diagnostics.supported && store.status === "unavailable";
   const priceFallback = priceLoading ? t("paywall.priceLoading") : "—";
-  const canBuyPremium =
-    store.premiumReady || store.premium !== null || priceUnavailable || !store.diagnostics.supported;
+  // Premium is buyable only when its own product has price + offer.
+  const canBuyPremium = store.premiumStatus === "ready" || !store.diagnostics.supported;
+  const canRetryPrices = store.canRetry;
 
 
   /** Buys the yearly subscription. Verification is always server-side. */
@@ -273,13 +274,15 @@ function SettingsPage() {
                   <p role="status" className="text-[11px] font-semibold text-brand-black/75">
                     {t("paywall.priceUnavailable")}
                   </p>
-                  <Button
-                    variant="outline"
-                    className="h-7 w-full text-[11px] font-semibold"
-                    onClick={() => store.retry()}
-                  >
-                    {t("common.retry")}
-                  </Button>
+                  {canRetryPrices ? (
+                    <Button
+                      variant="outline"
+                      className="h-7 w-full text-[11px] font-semibold"
+                      onClick={() => store.retry()}
+                    >
+                      {t("common.retry")}
+                    </Button>
+                  ) : null}
                 </div>
               ) : null}
               {/* Only a real, attempted purchase failure is shown as an error */}

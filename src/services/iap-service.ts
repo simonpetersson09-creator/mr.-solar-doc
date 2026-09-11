@@ -80,6 +80,10 @@ interface CdvStore {
   restorePurchases: () => Promise<unknown>;
   /** Re-queries the App Store for products/prices (v13 `store.update()`). */
   update?: () => Promise<unknown> | unknown;
+  /** v13: true once every adapter is initialized and its products loaded. */
+  isReady?: boolean;
+  /** v13 public setting: `update()` is skipped within this many ms. */
+  minTimeBetweenUpdates?: number;
   products?: CdvProduct[];
 }
 
@@ -366,26 +370,66 @@ export function initializePurchases(): Promise<void> {
 }
 
 /**
+ * True when a *real* product reload can still happen in this session.
+ *
+ * cordova-plugin-purchase v13 facts (verified in
+ * node_modules/cordova-plugin-purchase/src/ts/store.ts):
+ *  - `initialize()` is one-shot (`initializedHasBeenCalled`); later calls warn
+ *    and resolve with `[]` without touching StoreKit.
+ *  - `update()` returns immediately unless `store.isReady` is true, and is
+ *    skipped when the previous update happened within `minTimeBetweenUpdates`
+ *    (default 600000 ms).
+ *
+ * So: a *started* adapter can reload products (via `update()`), while an
+ * adapter whose initialisation failed has no supported in-session recovery.
+ * The UI must say that honestly instead of offering a no-op retry.
+ */
+export function canRefreshStoreProducts(): boolean {
+  const store = getCdv()?.store;
+  if (!store) return false;
+  return store.isReady === true && typeof store.update === "function";
+}
+
+/** Single-flight guard: overlapping manual + automatic retries share one load. */
+let refreshPromise: Promise<void> | null = null;
+
+/**
  * Asks StoreKit for fresh product data. Used when products are still missing so
  * the UI has a real retry instead of an endless "fetching price".
  *
- * Recovery order, all safe to repeat (products are registered once and the
- * listeners are attached once, so no duplicate transaction callbacks):
- *  1. re-run initialisation when it never succeeded,
- *  2. `store.update()` when the plugin exposes it (v13),
- *  3. otherwise re-run `store.initialize()`, which re-queries the App Store.
+ * Registration and listeners are attached once, so this never creates duplicate
+ * transaction callbacks or a second Store instance.
  */
-export async function refreshStoreProducts(): Promise<void> {
+export function refreshStoreProducts(): Promise<void> {
+  if (refreshPromise) return refreshPromise;
+  refreshPromise = runRefresh().finally(() => {
+    refreshPromise = null;
+  });
+  return refreshPromise;
+}
+
+async function runRefresh(): Promise<void> {
+  // When initialisation never succeeded this is still the only supported entry
+  // point: the very first call does reach StoreKit. Subsequent calls are no-ops
+  // inside the plugin, which is exactly why `canRefreshStoreProducts()` exists.
   await initializePurchases();
   const cdv = getCdv();
   if (!cdv) return;
+  const { store } = cdv;
   try {
-    if (typeof cdv.store.update === "function") {
-      await cdv.store.update();
+    if (store.isReady === true && typeof store.update === "function") {
+      // Supported configuration, not a private flag: relax the throttle only
+      // for this active recovery, then restore the plugin default.
+      const previous = store.minTimeBetweenUpdates;
+      store.minTimeBetweenUpdates = 0;
+      try {
+        await store.update();
+      } finally {
+        store.minTimeBetweenUpdates = previous ?? 600_000;
+      }
       log("store update requested", getPurchaseDiagnostics());
-    } else if (!hasAnyProduct()) {
-      await cdv.store.initialize([cdv.Platform.APPLE_APPSTORE]);
-      log("store re-initialized for refresh", getPurchaseDiagnostics());
+    } else {
+      log("no supported product reload available", getPurchaseDiagnostics());
     }
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);

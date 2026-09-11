@@ -20,10 +20,14 @@ function makeStore(options: {
   offer?: { order: () => Promise<unknown> } | null;
   initializeRejects?: string;
   initializeErrors?: { isError: true; code: number; message: string; productId: string | null }[];
+  /** Mirrors the plugin's `store.isReady` (adapter started + products loaded). */
+  isReady?: boolean;
 } = {}) {
   const handlers: Handlers = {};
   const registerCalls: unknown[][] = [];
   const store = {
+    isReady: options.isReady ?? true,
+    minTimeBetweenUpdates: 600_000,
     products: options.products ?? [],
     register: (list: unknown[]) => registerCalls.push(list),
     initialize: vi.fn(async () => {
@@ -425,14 +429,59 @@ describe("refresh and retry", () => {
     expect(update).toHaveBeenCalledTimes(1);
   });
 
-  it("falls back to re-initialising when store.update() is missing", async () => {
+  it("bypasses the plugin's update throttle during an active recovery", async () => {
     const { store } = makeStore({ products: [] });
+    const seen: (number | undefined)[] = [];
+    const target = store as unknown as {
+      update?: () => Promise<void>;
+      minTimeBetweenUpdates?: number;
+    };
+    target.update = vi.fn(async () => {
+      seen.push(target.minTimeBetweenUpdates);
+    });
     install(store);
-    await iap.initializePurchases();
-    const before = store.initialize.mock.calls.length;
 
     await iap.refreshStoreProducts();
-    expect(store.initialize.mock.calls.length).toBeGreaterThan(before);
+    await iap.refreshStoreProducts();
+    // The throttle is 0 while loading and restored to the plugin default after.
+    expect(seen).toEqual([0, 0]);
+    expect(target.minTimeBetweenUpdates).toBe(600_000);
+  });
+
+  it("does not pretend a retry is possible when the adapter never became ready", async () => {
+    const { store } = makeStore({ products: [], isReady: false });
+    (store as unknown as { update?: () => Promise<void> }).update = vi.fn(async () => undefined);
+    install(store);
+    await iap.initializePurchases();
+
+    // v13 initialize() is one-shot and update() is ignored before ready, so
+    // there is no supported in-session reload — the UI must not offer one.
+    expect(iap.canRefreshStoreProducts()).toBe(false);
+  });
+
+  it("reports a possible retry once the adapter is ready", async () => {
+    const { store } = makeStore({ products: [] });
+    (store as unknown as { update?: () => Promise<void> }).update = vi.fn(async () => undefined);
+    install(store);
+    await iap.initializePurchases();
+
+    expect(iap.canRefreshStoreProducts()).toBe(true);
+  });
+
+  it("coalesces overlapping refreshes into a single product load", async () => {
+    const { store } = makeStore({ products: [] });
+    const update = vi.fn(
+      () => new Promise<void>((resolve) => setTimeout(resolve, 20)),
+    );
+    (store as unknown as { update?: () => Promise<void> }).update = update;
+    install(store);
+
+    await Promise.all([
+      iap.refreshStoreProducts(),
+      iap.refreshStoreProducts(),
+      iap.refreshStoreProducts(),
+    ]);
+    expect(update).toHaveBeenCalledTimes(1);
   });
 
   it("never registers products or listeners twice across retries", async () => {

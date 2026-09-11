@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import {
+  canRefreshStoreProducts,
   getPurchaseDiagnostics,
   getStorePrices,
   hasPurchasableOffer,
@@ -27,6 +28,17 @@ export interface StorePricesState {
    * `unavailable` is a product-loading problem, never a failed payment.
    */
   status: "loading" | "ready" | "unavailable";
+  /**
+   * Per-product status, so a missing/unapproved product never blocks the other
+   * one. A product is only `ready` with both a localized price and an offer.
+   */
+  unlockStatus: "loading" | "ready" | "unavailable";
+  premiumStatus: "loading" | "ready" | "unavailable";
+  /**
+   * True when the plugin can still perform a real product reload. False means a
+   * "try again" button would be a no-op, so the UI must not offer one.
+   */
+  canRetry: boolean;
   diagnostics: PurchaseDiagnostics;
   /** Re-asks StoreKit for products; used by the visible retry action. */
   retry: () => void;
@@ -53,7 +65,9 @@ export function useStorePrices(): StorePricesState {
   const [gaveUp, setGaveUp] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const readRef = useRef<() => void>(() => undefined);
-  const [state, setState] = useState<Omit<StorePricesState, "status" | "retry">>(() => ({
+  const [state, setState] = useState<
+    Omit<StorePricesState, "status" | "unlockStatus" | "premiumStatus" | "canRetry" | "retry">
+  >(() => ({
     available: false,
     unlock: null,
     premium: null,
@@ -140,6 +154,16 @@ export function useStorePrices(): StorePricesState {
   }, []);
 
 
+  // A late `productUpdated` event still reaches `read()` after the timeout —
+  // the store subscription is only removed on unmount — so a price arriving at
+  // 60 s flips the view back from "unavailable" to "ready" on its own.
+  const productStatus = (
+    price: string | null,
+    offerReady: boolean,
+  ): StorePricesState["status"] => (price !== null && offerReady ? "ready" : gaveUp ? "unavailable" : "loading");
+
+  const unlockStatus = productStatus(state.unlock, state.unlockReady);
+  const premiumStatus = productStatus(state.premium, state.premiumReady);
   const hasPrice = state.unlock !== null || state.premium !== null;
   const status: StorePricesState["status"] = hasPrice
     ? "ready"
@@ -147,5 +171,12 @@ export function useStorePrices(): StorePricesState {
       ? "unavailable"
       : "loading";
 
-  return { ...state, status, retry };
+  return {
+    ...state,
+    status,
+    unlockStatus,
+    premiumStatus,
+    canRetry: canRefreshStoreProducts(),
+    retry,
+  };
 }

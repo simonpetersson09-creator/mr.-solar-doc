@@ -8,9 +8,11 @@ vi.mock("@/services/native-service", () => ({
   getPlatform: () => "ios",
 }));
 
-function makeStore() {
+function makeStore(options: { isReady?: boolean } = {}) {
   const handlers: { productUpdated?: () => void; ready?: () => void } = {};
   const store = {
+    isReady: options.isReady ?? true,
+    minTimeBetweenUpdates: 600_000,
     products: [] as unknown[],
     register: () => undefined,
     initialize: async () => undefined,
@@ -122,5 +124,84 @@ describe("useStorePrices stalled state", () => {
     expect(latest!.status).toBe("loading");
 
     vi.useRealTimers();
+  });
+});
+
+describe("useStorePrices late recovery", () => {
+  it("shows a price that arrives after the give-up timeout", async () => {
+    vi.useFakeTimers();
+    const { store, handlers } = makeStore();
+    (store as unknown as { update: () => Promise<void> }).update = vi.fn(async () => undefined);
+    (window as unknown as { CdvPurchase?: unknown }).CdvPurchase = {
+      store,
+      ProductType: { CONSUMABLE: "consumable", PAID_SUBSCRIPTION: "paid subscription" },
+      Platform: { APPLE_APPSTORE: "ios-appstore" },
+    };
+
+    let latest: import("@/hooks/use-store-prices").StorePricesState | null = null;
+    function Capture() {
+      latest = useStorePrices();
+      return null;
+    }
+    render(<Capture />);
+
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(50_000);
+    });
+    expect(latest!.status).toBe("unavailable");
+    expect(latest!.unlockStatus).toBe("unavailable");
+
+    // A late `productUpdated` still reaches the hook and restores the price.
+    await act(async () => {
+      store.products = [{ id: UNLOCK_PRODUCT_ID, pricing: { price: "49,00 kr" } }];
+      handlers.productUpdated?.();
+      await vi.advanceTimersByTimeAsync(50);
+    });
+    expect(latest!.unlock).toBe("49,00 kr");
+    expect(latest!.status).toBe("ready");
+    vi.useRealTimers();
+  });
+
+  it("does not offer a retry when the adapter never became ready", async () => {
+    const { store } = makeStore({ isReady: false });
+    (store as unknown as { update: () => Promise<void> }).update = vi.fn(async () => undefined);
+    (window as unknown as { CdvPurchase?: unknown }).CdvPurchase = {
+      store,
+      ProductType: { CONSUMABLE: "consumable", PAID_SUBSCRIPTION: "paid subscription" },
+      Platform: { APPLE_APPSTORE: "ios-appstore" },
+    };
+
+    let latest: import("@/hooks/use-store-prices").StorePricesState | null = null;
+    function Capture() {
+      latest = useStorePrices();
+      return null;
+    }
+    render(<Capture />);
+    await waitFor(() => expect(latest!.canRetry).toBe(false));
+  });
+
+  it("keeps one product's status independent of the other", async () => {
+    const { store, handlers } = makeStore();
+    (window as unknown as { CdvPurchase?: unknown }).CdvPurchase = {
+      store,
+      ProductType: { CONSUMABLE: "consumable", PAID_SUBSCRIPTION: "paid subscription" },
+      Platform: { APPLE_APPSTORE: "ios-appstore" },
+    };
+    store.products = [{ id: UNLOCK_PRODUCT_ID, pricing: { price: "49,00 kr" } }];
+    (store as unknown as { get: (id: string) => unknown }).get = (id: string) =>
+      id === UNLOCK_PRODUCT_ID ? { getOffer: () => ({ order: async () => undefined }) } : undefined;
+
+    let latest: import("@/hooks/use-store-prices").StorePricesState | null = null;
+    function Capture() {
+      latest = useStorePrices();
+      return null;
+    }
+    render(<Capture />);
+    handlers.productUpdated?.();
+
+    await waitFor(() => {
+      expect(latest!.unlockStatus).toBe("ready");
+      expect(latest!.premiumStatus).toBe("loading");
+    });
   });
 });
