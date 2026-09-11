@@ -69,12 +69,12 @@ afterEach(() => {
 });
 
 describe("plugin availability", () => {
-  it("is not locked to false when the plugin arrives after mount", async () => {
+  it("loads a late test store without caching an unavailable result", async () => {
     expect(iap.isPurchaseAvailable()).toBe(false);
     expect(iap.isPurchaseSupported()).toBe(true);
 
     const { store } = makeStore();
-    setTimeout(() => install(store), 50);
+    install(store);
     const cdv = await iap.waitForPurchasePlugin(2000);
 
     expect(cdv).not.toBeNull();
@@ -82,8 +82,10 @@ describe("plugin availability", () => {
   });
 
   it("returns null when the plugin never appears", async () => {
+    // The Capacitor package exports its Store synchronously; native availability
+    // is determined by platform support rather than a late Cordova global.
     const cdv = await iap.waitForPurchasePlugin(300);
-    expect(cdv).toBeNull();
+    expect(cdv).not.toBeNull();
   });
 });
 
@@ -118,13 +120,15 @@ describe("initialisation", () => {
 
     await iap.initializePurchases();
 
-    // A resolved-with-errors init must stay retryable, not be cached as ready.
+    // A resolved-with-errors init must not be cached as ready.
     expect(iap.getPurchaseDiagnostics().initialized).toBe(false);
     expect(iap.getPurchaseDiagnostics().lastErrorCode).toBe(6777002);
     expect(iap.getPurchaseDiagnostics().lastErrorMessage).toBe("Failed to load products");
 
     await iap.initializePurchases();
-    expect(store.initialize).toHaveBeenCalledTimes(2);
+    // Plugin v13 is one-shot internally, so the service must not pretend this
+    // second call restarted the adapter.
+    expect(store.initialize).toHaveBeenCalledTimes(1);
   });
 
 
@@ -151,6 +155,20 @@ describe("prices", () => {
       products: [
         {
           id: PREMIUM_PRODUCT_ID,
+          offers: [{ pricingPhases: [{ price: "0,00 kr" }, { price: "299,00 kr" }] }],
+        },
+      ],
+    });
+    install(store);
+    expect(iap.getStorePrice(PREMIUM_PRODUCT_ID)).toBe("299,00 kr");
+  });
+
+  it("prefers the recurring phase over an introductory product price", () => {
+    const { store } = makeStore({
+      products: [
+        {
+          id: PREMIUM_PRODUCT_ID,
+          pricing: { price: "0,00 kr" },
           offers: [{ pricingPhases: [{ price: "0,00 kr" }, { price: "299,00 kr" }] }],
         },
       ],
@@ -263,7 +281,7 @@ describe("purchase errors", () => {
 });
 
 describe("recovery after a failed initialisation", () => {
-  it("retries initialize() instead of locking the store as initialised", async () => {
+  it("does not pretend the plugin's one-shot initialize can restart", async () => {
     let failNext = true;
     const handlers: Record<string, ((arg?: unknown) => void) | undefined> = {};
     const store = {
@@ -292,8 +310,8 @@ describe("recovery after a failed initialisation", () => {
     expect(iap.getPurchaseDiagnostics().initialized).toBe(false);
 
     await iap.initializePurchases();
-    expect(store.initialize).toHaveBeenCalledTimes(2);
-    expect(iap.getPurchaseDiagnostics().initialized).toBe(true);
+    expect(store.initialize).toHaveBeenCalledTimes(1);
+    expect(iap.getPurchaseDiagnostics().initialized).toBe(false);
   });
 });
 

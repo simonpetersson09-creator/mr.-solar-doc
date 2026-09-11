@@ -43,7 +43,8 @@ npx cap open android   # Android Studio → Run
 
 ## In-App Purchase (TestFlight-checklista)
 
-1. `cordova-plugin-purchase` finns i `package.json`. Kör:
+1. `capacitor-plugin-cdv-purchase` finns i `package.json` och registrerar
+   `PurchasePlugin` för StoreKit 2. Kör:
    ```bash
    npx cap add ios          # om ios/ saknas
    npm run build:native && npx cap sync ios
@@ -53,8 +54,8 @@ npx cap open android   # Android Studio → Run
    - Kontrollera att Bundle Identifier är `se.shiningdays.mrsolardoc`.
 3. App Store Connect: produkten `com.mrsolardoc.calculation.unlock`
    (Consumable, 49 SEK) måste vara i minst "Ready to Submit".
-4. Verifiera på riktig enhet att `window.CdvPurchase` finns — annars är
-   köpknappen disabled.
+4. Verifiera efter sync att Xcode visar `CapacitorPluginCdvPurchase` som
+   package/pod och att `PurchasePlugin` registreras vid appstart.
 5. Oavslutade transaktioner återupptas automatiskt vid appstart
    (`src/hooks/use-purchase-recovery.ts`). Testa genom att döda appen mitt i
    ett sandbox-köp och starta om.
