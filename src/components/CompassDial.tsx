@@ -9,8 +9,8 @@ interface CompassDialProps {
   /** Second line under the degrees, e.g. nearest orientation name. */
   caption?: string | undefined;
   disabled?: boolean;
-  /** Rendered footprint. "sm" is used in compact layouts. */
-  size?: "sm" | "md";
+  /** Rendered footprint. "xs"/"sm" are used in compact layouts. */
+  size?: "xs" | "sm" | "md";
 }
 
 const SIZE = 220;
@@ -83,12 +83,12 @@ const rad = (value * Math.PI) / 180;
   ];
 
   return (
-    <div className="flex flex-col items-center gap-2">
+    <div className="flex flex-col items-center gap-1.5">
       <svg
         ref={svgRef}
         viewBox={`0 0 ${SIZE} ${SIZE}`}
         className={[
-          size === "sm" ? "size-40" : "size-52",
+          size === "xs" ? "size-32" : size === "sm" ? "size-40" : "size-52",
           disabled
             ? "select-none opacity-40"
             : "cursor-grab touch-none select-none active:cursor-grabbing",
@@ -196,9 +196,9 @@ className="fill-white/80 text-[11px] font-semibold"
         <circle cx={CENTER} cy={CENTER} r={14} className="fill-accent" />
         <circle cx={CENTER} cy={CENTER} r={6} className="fill-accent-foreground" />
       </svg>
-<div className="text-center">
-        <p className="text-lg font-semibold tabular-nums text-white">{value}°</p>
-        {caption ? <p className="text-sm text-white/70">{caption}</p> : null}
+<div className="text-center leading-tight">
+        <p className="text-base font-semibold tabular-nums text-white">{value}°</p>
+        {caption ? <p className="text-xs text-white/70">{caption}</p> : null}
       </div>
     </div>
   );

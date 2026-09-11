@@ -91,7 +91,7 @@ title={t("roof.title")}
       onBack={onBack}
 footer={
         <Button
-className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
+className="h-auto w-full rounded-[24px] py-3.5 text-base font-bold shadow-cta"
           variant="cta"
           size="lg"
           disabled={!query.data}
@@ -106,32 +106,34 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
       }
     >
 {/* Compass — one card */}
-      <div className="glass-primary rounded-[28px] px-4 py-3">
-          <div className="mb-1 text-center">
+      <div className="glass-primary rounded-[28px] px-4 py-2">
+          <div className="text-center leading-tight">
             <Label className="text-xs text-white">{t("roof.orientation")}</Label>
-            <p className="text-[11px] text-white/70">{t("roof.manualHint")}</p>
+            <p className="text-[10px] text-white/70">{t("roof.manualHint")}</p>
           </div>
           <div className="flex justify-center">
             <CompassDial
               value={dialValue}
               onChange={handleDialChange}
-              size="sm"
+              size="xs"
               caption={t(`roof.orientations.${nearestOrientation(dialValue)}`)}
             />
           </div>
         </div>
 
 {/* Tilt — one card */}
-        <div className="glass-primary rounded-[28px] px-4 py-3">
-<div className="mb-2 text-center">
+        <div className="glass-primary rounded-[28px] px-4 py-2">
+<div className="text-center">
             <Label className="text-xs text-white">{t("roof.tilt")}</Label>
           </div>
           {/* Drag the roof line to set the tilt; presets stay as shortcuts. */}
-          <div className="mb-3 flex justify-center">
-            <TiltDial
-              value={tiltDegrees ?? 30}
-              onChange={(degrees) => setRoof(orientation, degrees, azimuthDegrees)}
-            />
+          <div className="mb-2 flex justify-center">
+            <div className="w-[168px]">
+              <TiltDial
+                value={tiltDegrees ?? 30}
+                onChange={(degrees) => setRoof(orientation, degrees, azimuthDegrees)}
+              />
+            </div>
           </div>
           <div className="flex flex-wrap items-center justify-center gap-1.5">
             {TILT_PRESETS.map((preset) => (
@@ -169,7 +171,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
 
 
       {/* Fixed result card: only the number swaps while a new value loads. */}
-      <div className="glass-primary relative overflow-hidden rounded-[28px] px-4 py-3">
+      <div className="glass-primary relative overflow-hidden rounded-[28px] px-4 py-2">
         <div className="glow-amber -top-10 -right-10 size-32" aria-hidden="true" />
         <div className="flex items-center justify-between gap-4">
           <div className="text-center">
@@ -204,7 +206,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             )}
           </div>
         </div>
-        <p className="mt-2.5 border-t border-white/15 pt-2 text-center text-[10px] leading-relaxed text-white/60">
+        <p className="mt-1.5 border-t border-white/15 pt-1.5 text-center text-[10px] leading-snug text-white/60">
           {query.isError
             ? pvgisError.kind === "over-sea"
               ? t("roof.errorOverSea")
