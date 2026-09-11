@@ -196,16 +196,14 @@ function emit() {
  * ------------------------------------------------------------------ */
 
 /**
- * Loads the official Capacitor bridge. The global fallback is retained for
- * deterministic tests, but native startup no longer depends on `deviceready`.
+ * Waits for Capacitor's Cordova compatibility bridge to expose the plugin.
+ * The check is event-driven plus polling because a TestFlight cold start can
+ * mount React before `deviceready` and before the global has been installed.
  */
-export async function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurchaseGlobal | null> {
+export async function waitForPurchasePlugin(timeoutMs = 60_000): Promise<CdvPurchaseGlobal | null> {
   const immediate = getCdv();
   if (immediate) return immediate;
   if (typeof window === "undefined" || !isPurchaseSupported()) return null;
-
-  const loaded = await loadCapacitorPurchase();
-  if (loaded) return loaded;
 
   return new Promise((resolve) => {
     let settled = false;
