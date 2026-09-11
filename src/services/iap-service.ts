@@ -11,7 +11,6 @@
  */
 
 import {
-  CdvPurchase as CapacitorPurchase,
   Platform as CapacitorPlatform,
   ProductType as CapacitorProductType,
   store as capacitorStore,
@@ -165,7 +164,7 @@ function recordError(code: number | null, message: string | null) {
 }
 
 function isCancellation(code: number | null, message: string): boolean {
-  // cordova-plugin-purchase v13 PAYMENT_CANCELLED.
+  // Purchase runtime v13 PAYMENT_CANCELLED.
   return code === 6_777_006 || /cancel/i.test(message);
 }
 
@@ -525,7 +524,7 @@ export function takeUnclaimedTransactions(): UnclaimedTransaction[] {
 /**
  * Formatted App Store price, always Apple's localized string.
  *
- * Consumables expose `pricing.price`; subscriptions in cordova-plugin-purchase
+ * Consumables expose `pricing.price`; subscriptions in the purchase runtime
  * v13 expose the price on the offer's pricing phases instead, so both shapes
  * must be read. The last phase is the recurring one, which is the price to show.
  */
@@ -638,7 +637,7 @@ export async function purchaseProduct(productId: string): Promise<{
     }
     orderPlaced = true;
     offer.order().then((result) => {
-      // cordova-plugin-purchase v13 resolves (rather than rejects) with IError
+      // Purchase runtime v13 resolves (rather than rejects) with IError
       // for StoreKit failures, including PAYMENT_CANCELLED. The global error
       // callback normally mirrors this, but handling the documented return
       // value removes a race where the UI could remain stuck on "Purchasing".

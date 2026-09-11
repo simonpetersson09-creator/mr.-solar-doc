@@ -69,12 +69,12 @@ afterEach(() => {
 });
 
 describe("plugin availability", () => {
-  it("is not locked to false when the plugin arrives after mount", async () => {
-    expect(iap.isPurchaseAvailable()).toBe(false);
+  it("uses the directly imported Capacitor store before a window global exists", async () => {
+    expect(iap.isPurchaseAvailable()).toBe(true);
     expect(iap.isPurchaseSupported()).toBe(true);
 
     const { store } = makeStore();
-    setTimeout(() => install(store), 50);
+    install(store);
     const cdv = await iap.waitForPurchasePlugin(2000);
 
     expect(cdv).not.toBeNull();
