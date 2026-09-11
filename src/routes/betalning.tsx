@@ -69,13 +69,15 @@ function PaywallPage() {
   const priceUnavailable = store.diagnostics.supported && store.status === "unavailable";
   // On the web there is no App Store, so a missing price is expected.
   const priceFallback = priceLoading ? t("paywall.priceLoading") : "—";
-  // A purchase is only started when StoreKit actually has the product/offer.
-  // After a give-up we still allow a tap: purchaseProduct() runs the recovery
-  // path (re-init + refresh) before ordering.
+  // Per product: a purchase can only start when *that* product has both a
+  // localized price and a purchasable offer. A missing Premium product must not
+  // block the single-calculation unlock, and vice versa.
   const canBuyUnlock =
-    canAttempt && (store.unlockReady || store.unlock !== null || priceUnavailable || !store.diagnostics.supported);
+    canAttempt && (store.unlockStatus === "ready" || !store.diagnostics.supported);
   const canBuyPremium =
-    canAttempt && (store.premiumReady || store.premium !== null || priceUnavailable || !store.diagnostics.supported);
+    canAttempt && (store.premiumStatus === "ready" || !store.diagnostics.supported);
+  // Only offer "try again" when the plugin can actually reload products.
+  const canRetryPrices = store.canRetry;
 
 
 
