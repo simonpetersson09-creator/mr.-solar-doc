@@ -179,7 +179,7 @@ export function CompassDial({
           y1={arrowBaseY}
           x2={stemEndX}
           y2={stemEndY}
-          className="stroke-accent"
+          className="stroke-accent-foreground"
           strokeWidth={4}
           strokeLinecap="round"
         />
@@ -203,7 +203,7 @@ export function CompassDial({
           cy={gripY}
           r={GRIP_RADIUS}
           className="fill-accent-foreground stroke-white drop-shadow-lg"
-          strokeWidth={4}
+          strokeWidth={5}
         />
         {/* Drag chevrons inside the grip ball, aligned with the arrow */}
         <g transform={`rotate(${value} ${gripX} ${gripY})`}>

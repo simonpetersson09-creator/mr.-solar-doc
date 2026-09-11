@@ -160,7 +160,7 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
           y1={PIVOT_Y}
           x2={armEnd.x}
           y2={armEnd.y}
-          className="stroke-accent"
+          className="stroke-accent-foreground"
           strokeWidth={4}
           strokeLinecap="round"
         />
@@ -174,7 +174,7 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
           cy={grip.y}
           r={GRIP_RADIUS}
           className="fill-accent-foreground stroke-white drop-shadow-lg"
-          strokeWidth={2.5}
+          strokeWidth={3.5}
         />
         {/* Chevrons hinting the up/down swing */}
         <g transform={`rotate(${-safeValue} ${grip.x} ${grip.y})`}>
