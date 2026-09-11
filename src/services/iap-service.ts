@@ -199,7 +199,7 @@ function emit() {
  * The check is event-driven plus polling because a TestFlight cold start can
  * mount React before `deviceready` and before the global has been installed.
  */
-export function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurchaseGlobal | null> {
+export function waitForPurchasePlugin(timeoutMs = 60_000): Promise<CdvPurchaseGlobal | null> {
   const immediate = getCdv();
   if (immediate) return Promise.resolve(immediate);
   if (typeof window === "undefined" || !isPurchaseSupported()) return Promise.resolve(null);
@@ -212,6 +212,7 @@ export function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurchaseGl
       window.clearInterval(interval);
       window.clearTimeout(timer);
       document.removeEventListener("deviceready", onDeviceReady);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
       resolve(value);
     };
     const check = () => {
@@ -219,9 +220,13 @@ export function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurchaseGl
       if (cdv) finish(cdv);
     };
     const onDeviceReady = () => check();
+    const onVisibilityChange = () => {
+      if (document.visibilityState === "visible") check();
+    };
 
     document.addEventListener("deviceready", onDeviceReady, { once: false });
-    const interval = window.setInterval(check, 200);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+    const interval = window.setInterval(check, 500);
     const timer = window.setTimeout(() => {
       log("plugin wait timed out", { timeoutMs });
       finish(getCdv());
