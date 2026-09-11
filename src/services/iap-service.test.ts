@@ -69,8 +69,8 @@ afterEach(() => {
 });
 
 describe("plugin availability", () => {
-  it("uses the directly imported Capacitor store before a window global exists", async () => {
-    expect(iap.isPurchaseAvailable()).toBe(true);
+  it("loads a late test store without caching an unavailable result", async () => {
+    expect(iap.isPurchaseAvailable()).toBe(false);
     expect(iap.isPurchaseSupported()).toBe(true);
 
     const { store } = makeStore();

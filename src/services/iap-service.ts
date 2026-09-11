@@ -10,11 +10,6 @@
  * because StoreKit product metadata can arrive well after initialization.
  */
 
-import {
-  Platform as CapacitorPlatform,
-  ProductType as CapacitorProductType,
-  store as capacitorStore,
-} from "capacitor-plugin-cdv-purchase";
 import { PREMIUM_PRODUCT_ID, UNLOCK_PRODUCT_ID } from "@/config/purchase";
 import { getPlatform, isNativePlatform } from "@/services/native-service";
 
@@ -96,6 +91,33 @@ interface CdvPurchaseGlobal {
   Platform: { APPLE_APPSTORE: string };
 }
 
+let capacitorPurchase: CdvPurchaseGlobal | null = null;
+let capacitorImportPromise: Promise<CdvPurchaseGlobal | null> | null = null;
+
+/** Loads the browser-only StoreKit runtime without evaluating it during SSR. */
+function loadCapacitorPurchase(): Promise<CdvPurchaseGlobal | null> {
+  if (capacitorPurchase) return Promise.resolve(capacitorPurchase);
+  if (capacitorImportPromise) return capacitorImportPromise;
+  if (typeof window === "undefined") return Promise.resolve(null);
+  capacitorImportPromise = import("capacitor-plugin-cdv-purchase")
+    .then((module) => {
+      capacitorPurchase = {
+        store: module.store as unknown as CdvStore,
+        ProductType: module.ProductType as unknown as CdvPurchaseGlobal["ProductType"],
+        Platform: module.Platform as unknown as CdvPurchaseGlobal["Platform"],
+      };
+      log("Capacitor PurchasePlugin runtime loaded");
+      return capacitorPurchase;
+    })
+    .catch((error: unknown) => {
+      const message = error instanceof Error ? error.message : String(error);
+      recordError(null, message);
+      capacitorImportPromise = null;
+      return null;
+    });
+  return capacitorImportPromise;
+}
+
 function getCdv(): CdvPurchaseGlobal | null {
   // The window override keeps browser tests deterministic. On device the
   // package exports the one Store instance backed by Capacitor PurchasePlugin.
@@ -104,11 +126,7 @@ function getCdv(): CdvPurchaseGlobal | null {
       ? null
       : (window as unknown as { CdvPurchase?: CdvPurchaseGlobal }).CdvPurchase ?? null;
   if (injected) return injected;
-  return {
-    store: capacitorStore as unknown as CdvStore,
-    ProductType: CapacitorProductType as unknown as CdvPurchaseGlobal["ProductType"],
-    Platform: CapacitorPlatform as unknown as CdvPurchaseGlobal["Platform"],
-  };
+  return capacitorPurchase;
 }
 
 /** True on a platform where StoreKit purchases can exist (plugin may still be loading). */
@@ -219,7 +237,7 @@ export function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurchaseGl
   if (immediate) return Promise.resolve(immediate);
   if (typeof window === "undefined" || !isPurchaseSupported()) return Promise.resolve(null);
 
-  return new Promise((resolve) => {
+  return loadCapacitorPurchase().then((loaded) => loaded ?? new Promise((resolve) => {
     let settled = false;
     const finish = (value: CdvPurchaseGlobal | null) => {
       if (settled) return;
@@ -242,7 +260,7 @@ export function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurchaseGl
       finish(getCdv());
     }, timeoutMs);
     check();
-  });
+  }));
 }
 
 /* ------------------------------------------------------------------ *
@@ -721,4 +739,6 @@ export function __resetIapServiceForTests() {
   orderPlaced = false;
   unclaimed.length = 0;
   listeners.clear();
+  capacitorPurchase = null;
+  capacitorImportPromise = null;
 }
