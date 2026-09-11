@@ -212,6 +212,7 @@ export async function waitForPurchasePlugin(timeoutMs = 60_000): Promise<CdvPurc
       settled = true;
       window.clearInterval(interval);
       window.clearTimeout(timer);
+      document.removeEventListener("deviceready", onDeviceReady);
       document.removeEventListener("visibilitychange", onVisibilityChange);
       resolve(value);
     };
@@ -219,10 +220,12 @@ export async function waitForPurchasePlugin(timeoutMs = 60_000): Promise<CdvPurc
       const cdv = getCdv();
       if (cdv) finish(cdv);
     };
+    const onDeviceReady = () => check();
     const onVisibilityChange = () => {
       if (document.visibilityState === "visible") check();
     };
 
+    document.addEventListener("deviceready", onDeviceReady, { once: false });
     document.addEventListener("visibilitychange", onVisibilityChange);
     const interval = window.setInterval(check, 500);
     const timer = window.setTimeout(() => {
@@ -378,7 +381,7 @@ export function initializePurchases(): Promise<void> {
 /**
  * True when a *real* product reload can still happen in this session.
  *
- * capacitor-plugin-cdv-purchase v13 store-runtime facts:
+ * cordova-plugin-purchase v13 store-runtime facts:
  *  - `initialize()` is one-shot (`initializedHasBeenCalled`); later calls warn
  *    and resolve with `[]` without touching StoreKit.
  *  - `update()` returns immediately unless `store.isReady` is true, and is
