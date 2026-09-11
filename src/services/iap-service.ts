@@ -80,6 +80,10 @@ interface CdvStore {
   restorePurchases: () => Promise<unknown>;
   /** Re-queries the App Store for products/prices (v13 `store.update()`). */
   update?: () => Promise<unknown> | unknown;
+  /** v13: true once every adapter is initialized and its products loaded. */
+  isReady?: boolean;
+  /** v13 public setting: `update()` is skipped within this many ms. */
+  minTimeBetweenUpdates?: number;
   products?: CdvProduct[];
 }
 
