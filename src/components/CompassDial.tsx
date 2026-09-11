@@ -20,6 +20,8 @@ const CENTER = SIZE / 2;
 const DIAL_RADIUS = 88;
 const ARROW_LENGTH = 72;
 const GRIP_RADIUS = 14;
+const ARC_RADIUS = 70;
+const ARC_CIRCUMFERENCE = 2 * Math.PI * ARC_RADIUS;
 const TICKS = Array.from({ length: 36 }, (_, i) => i * 10);
 
 function angleFromEvent(event: React.PointerEvent, element: SVGSVGElement): number {
@@ -68,11 +70,9 @@ export function CompassDial({
     update(event);
   };
 
-// SVG rotation: 0deg points up; CSS rotate is clockwise — same as compass.
-const rad = (value * Math.PI) / 180;
+  const rad = (value * Math.PI) / 180;
   const arrowBaseX = CENTER - 24 * Math.sin(rad);
   const arrowBaseY = CENTER + 24 * Math.cos(rad);
-  // Grip ball sits just beyond the arrow tip; stem ends right before it.
   const gripX = CENTER + (ARROW_LENGTH + 6) * Math.sin(rad);
   const gripY = CENTER - (ARROW_LENGTH + 6) * Math.cos(rad);
   const stemEndX = CENTER + (ARROW_LENGTH - 2) * Math.sin(rad);
@@ -84,6 +84,8 @@ const rad = (value * Math.PI) / 180;
     { label: t("roof.compass.s"), deg: 180 },
     { label: t("roof.compass.w"), deg: 270 },
   ];
+
+  const activeArc = (value / 360) * ARC_CIRCUMFERENCE;
 
   return (
     <div className="flex flex-col items-center gap-1.5">
@@ -104,25 +106,37 @@ const rad = (value * Math.PI) / 180;
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
       >
-{/* Outer ring */}
+        {/* Outer ring — frosted glass border */}
         <circle
           cx={CENTER}
           cy={CENTER}
           r={DIAL_RADIUS}
-          className="stroke-white/25"
-          style={{ fill: "rgba(255, 252, 235, 0.6)" }}
-          strokeWidth={1.5}
+          className="stroke-white/50"
+          style={{ fill: "rgba(255, 255, 255, 0.15)" }}
+          strokeWidth={2}
         />
         {/* Faint dashed rotation path — hints the arrow can be dragged around */}
         <circle
           cx={CENTER}
           cy={CENTER}
-          r={70}
+          r={ARC_RADIUS}
           fill="none"
-          className="stroke-white/25"
+          className="stroke-white/20"
           strokeWidth={1}
           strokeDasharray="2 5"
           strokeLinecap="round"
+        />
+        {/* Active orientation arc — visualizes how far from north */}
+        <circle
+          cx={CENTER}
+          cy={CENTER}
+          r={ARC_RADIUS}
+          fill="none"
+          className="stroke-accent-foreground/25"
+          strokeWidth={6}
+          strokeLinecap="round"
+          strokeDasharray={`${activeArc} ${ARC_CIRCUMFERENCE}`}
+          transform={`rotate(-90 ${CENTER} ${CENTER})`}
         />
         {/* Ticks */}
         {TICKS.map((deg) => {
@@ -137,13 +151,13 @@ const rad = (value * Math.PI) / 180;
               y1={CENTER - inner * Math.cos(rad)}
               x2={CENTER + outer * Math.sin(rad)}
               y2={CENTER - outer * Math.cos(rad)}
-className="stroke-white/50"
+              className="stroke-white/30"
               strokeWidth={major ? 2 : 1}
             />
           );
         })}
         {/* Cardinal labels */}
-{directions.map(({ label, deg }) => {
+        {directions.map(({ label, deg }) => {
           const rad = (deg * Math.PI) / 180;
           const r = DIAL_RADIUS - 38;
           return (
@@ -153,42 +167,49 @@ className="stroke-white/50"
               y={CENTER - r * Math.cos(rad)}
               textAnchor="middle"
               dominantBaseline="central"
-className="fill-white/80 text-[11px] font-semibold"
+              className="fill-white/40 text-[11px] font-semibold"
             >
               {label}
             </text>
           );
         })}
-{/* Arrow */}
+        {/* Arrow */}
         <line
           x1={arrowBaseX}
           y1={arrowBaseY}
           x2={stemEndX}
           y2={stemEndY}
-          className="stroke-accent"
+          className="stroke-accent-foreground"
           strokeWidth={4}
           strokeLinecap="round"
         />
-{/* Pulsing halo behind the grip ball — signals it can be dragged */}
+        {/* Pulsing halo behind the grip ball — signals it can be dragged */}
         <circle
           cx={gripX}
           cy={gripY}
           r={GRIP_RADIUS + 5}
-          className="animate-pulse fill-accent/25"
+          className="animate-pulse fill-accent/20"
+        />
+        {/* Soft ring for floating glassmorphism look */}
+        <circle
+          cx={gripX}
+          cy={gripY}
+          r={GRIP_RADIUS + 2}
+          className="fill-black/5"
         />
         {/* Grip ball — the draggable handle at the arrow tip */}
-<circle
+        <circle
           cx={gripX}
           cy={gripY}
           r={GRIP_RADIUS}
-          className="fill-white stroke-accent drop-shadow-md"
-          strokeWidth={3}
+          className="fill-accent-foreground stroke-white drop-shadow-lg"
+          strokeWidth={5}
         />
         {/* Drag chevrons inside the grip ball, aligned with the arrow */}
         <g transform={`rotate(${value} ${gripX} ${gripY})`}>
           <path
             d={`M ${gripX - 4} ${gripY - 3} L ${gripX} ${gripY - 7} L ${gripX + 4} ${gripY - 3} M ${gripX - 4} ${gripY + 3} L ${gripX} ${gripY + 7} L ${gripX + 4} ${gripY + 3}`}
-            className="stroke-accent"
+            className="stroke-white"
             strokeWidth={2.5}
             strokeLinecap="round"
             strokeLinejoin="round"

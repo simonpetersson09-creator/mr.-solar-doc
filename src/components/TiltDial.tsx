@@ -71,7 +71,6 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
   const arcRadius = 40;
   const arcStart = pointOnArm(0, arcRadius);
   const arcEnd = pointOnArm(safeValue, arcRadius);
-  const labelPoint = pointOnArm(safeValue / 2, arcRadius + 14);
 
   return (
     <div className="flex flex-col items-center gap-2">
@@ -103,7 +102,7 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
               y1={inner.y}
               x2={outer.x}
               y2={outer.y}
-              className="stroke-white/35"
+              className="stroke-white/25"
               strokeWidth={tick % 45 === 0 ? 2 : 1}
             />
           );
@@ -115,33 +114,44 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
           y1={PIVOT_Y}
           x2={PIVOT_X + ARM + 6}
           y2={PIVOT_Y}
-          className="stroke-white/40"
+          className="stroke-white/30"
           strokeWidth={2}
           strokeLinecap="round"
         />
 
-        {/* Roof surface fill between ground and the tilted line */}
+        {/* Roof surface fill — active wedge between ground and the tilted line */}
         <path
           d={`M ${PIVOT_X} ${PIVOT_Y} L ${armEnd.x} ${armEnd.y} L ${armEnd.x} ${PIVOT_Y} Z`}
-          style={{ fill: "rgba(255, 252, 235, 0.6)" }}
+          className="fill-accent/25"
         />
 
         {/* Angle arc */}
         <path
           d={`M ${arcStart.x} ${arcStart.y} A ${arcRadius} ${arcRadius} 0 0 0 ${arcEnd.x} ${arcEnd.y}`}
           fill="none"
-          className="stroke-accent/70"
+          className="stroke-accent/60"
           strokeWidth={2}
           strokeLinecap="round"
         />
+
+        {/* Scale labels */}
         <text
-          x={labelPoint.x}
-          y={labelPoint.y}
+          x={PIVOT_X + 52}
+          y={PIVOT_Y + 2}
+          textAnchor="middle"
+          dominantBaseline="hanging"
+          className="fill-white/40 text-[10px] font-semibold"
+        >
+          0°
+        </text>
+        <text
+          x={PIVOT_X}
+          y={PIVOT_Y - 50}
           textAnchor="middle"
           dominantBaseline="central"
-          className="fill-white/80 text-[11px] font-semibold"
+          className="fill-white/40 text-[10px] font-semibold"
         >
-          {safeValue}°
+          90°
         </text>
 
         {/* Roof line */}
@@ -150,25 +160,27 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
           y1={PIVOT_Y}
           x2={armEnd.x}
           y2={armEnd.y}
-          className="stroke-accent"
+          className="stroke-accent-foreground"
           strokeWidth={4}
           strokeLinecap="round"
         />
 
         {/* Pulsing halo behind the grip — signals it can be dragged */}
-        <circle cx={grip.x} cy={grip.y} r={GRIP_RADIUS + 4} className="animate-pulse fill-accent/25" />
+        <circle cx={grip.x} cy={grip.y} r={GRIP_RADIUS + 4} className="animate-pulse fill-accent/20" />
+        {/* Soft ring for floating glassmorphism look */}
+        <circle cx={grip.x} cy={grip.y} r={GRIP_RADIUS + 2} className="fill-black/5" />
         <circle
           cx={grip.x}
           cy={grip.y}
           r={GRIP_RADIUS}
-          className="fill-white stroke-accent drop-shadow-md"
-          strokeWidth={2.5}
+          className="fill-accent-foreground stroke-white drop-shadow-lg"
+          strokeWidth={3.5}
         />
         {/* Chevrons hinting the up/down swing */}
         <g transform={`rotate(${-safeValue} ${grip.x} ${grip.y})`}>
           <path
             d={`M ${grip.x - 4} ${grip.y - 3} L ${grip.x} ${grip.y - 7} L ${grip.x + 4} ${grip.y - 3} M ${grip.x - 4} ${grip.y + 3} L ${grip.x} ${grip.y + 7} L ${grip.x + 4} ${grip.y + 3}`}
-            className="stroke-accent"
+            className="stroke-white"
             strokeWidth={2.5}
             strokeLinecap="round"
             strokeLinejoin="round"
