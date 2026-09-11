@@ -79,10 +79,9 @@ describe("plugin availability", () => {
     expect(iap.isPurchaseAvailable()).toBe(true);
   });
 
-  it("loads the official Capacitor runtime when no test global exists", async () => {
+  it("resolves to null when the Cordova bridge never installs the global", async () => {
     const cdv = await iap.waitForPurchasePlugin(20);
-    expect(cdv?.store).toBeDefined();
-    expect(cdv?.Platform.APPLE_APPSTORE).toBe("ios-appstore");
+    expect(cdv).toBeNull();
   });
 });
 

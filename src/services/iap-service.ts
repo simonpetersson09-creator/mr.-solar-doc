@@ -1,5 +1,5 @@
 /**
- * UI -> IAP service -> StoreKit 2 (via capacitor-plugin-cdv-purchase).
+ * UI -> IAP service -> StoreKit (via cordova-plugin-purchase).
  *
  * Purchases are only possible inside the native iOS app. On the web the service
  * reports "unavailable" so the paywall can explain that the unlock is bought in
@@ -91,42 +91,10 @@ interface CdvPurchaseGlobal {
   Platform: { APPLE_APPSTORE: string };
 }
 
-let capacitorPurchase: CdvPurchaseGlobal | null = null;
-let capacitorImportPromise: Promise<CdvPurchaseGlobal | null> | null = null;
-
-/** Loads the browser-only purchase runtime and registers PurchasePlugin. */
-function loadCapacitorPurchase(): Promise<CdvPurchaseGlobal | null> {
-  if (capacitorPurchase) return Promise.resolve(capacitorPurchase);
-  if (capacitorImportPromise) return capacitorImportPromise;
-  if (typeof window === "undefined") return Promise.resolve(null);
-
-  capacitorImportPromise = import("capacitor-plugin-cdv-purchase")
-    .then((module) => {
-      capacitorPurchase = {
-        store: module.store as unknown as CdvStore,
-        ProductType: module.ProductType as unknown as CdvPurchaseGlobal["ProductType"],
-        Platform: module.Platform as unknown as CdvPurchaseGlobal["Platform"],
-      };
-      log("Capacitor PurchasePlugin runtime loaded");
-      return capacitorPurchase;
-    })
-    .catch((error: unknown) => {
-      const message = error instanceof Error ? error.message : String(error);
-      recordError(null, message);
-      capacitorImportPromise = null;
-      return null;
-    });
-  return capacitorImportPromise;
-}
-
 function getCdv(): CdvPurchaseGlobal | null {
   if (typeof window === "undefined") return null;
-  // The window override keeps tests deterministic. On device the package export
-  // is the one Store instance backed by the native Capacitor PurchasePlugin.
-  return (
-    (window as unknown as { CdvPurchase?: CdvPurchaseGlobal }).CdvPurchase ??
-    capacitorPurchase
-  );
+  // Capacitor's Cordova compatibility bridge installs the plugin global.
+  return (window as unknown as { CdvPurchase?: CdvPurchaseGlobal }).CdvPurchase ?? null;
 }
 
 /** True on a platform where StoreKit purchases can exist (plugin may still be loading). */
@@ -228,16 +196,14 @@ function emit() {
  * ------------------------------------------------------------------ */
 
 /**
- * Loads the official Capacitor bridge. The global fallback is retained for
- * deterministic tests, but native startup no longer depends on `deviceready`.
+ * Waits for Capacitor's Cordova compatibility bridge to expose the plugin.
+ * The check is event-driven plus polling because a TestFlight cold start can
+ * mount React before `deviceready` and before the global has been installed.
  */
-export async function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurchaseGlobal | null> {
+export async function waitForPurchasePlugin(timeoutMs = 60_000): Promise<CdvPurchaseGlobal | null> {
   const immediate = getCdv();
   if (immediate) return immediate;
   if (typeof window === "undefined" || !isPurchaseSupported()) return null;
-
-  const loaded = await loadCapacitorPurchase();
-  if (loaded) return loaded;
 
   return new Promise((resolve) => {
     let settled = false;
@@ -246,6 +212,7 @@ export async function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurc
       settled = true;
       window.clearInterval(interval);
       window.clearTimeout(timer);
+      document.removeEventListener("deviceready", onDeviceReady);
       document.removeEventListener("visibilitychange", onVisibilityChange);
       resolve(value);
     };
@@ -253,10 +220,12 @@ export async function waitForPurchasePlugin(timeoutMs = 15_000): Promise<CdvPurc
       const cdv = getCdv();
       if (cdv) finish(cdv);
     };
+    const onDeviceReady = () => check();
     const onVisibilityChange = () => {
       if (document.visibilityState === "visible") check();
     };
 
+    document.addEventListener("deviceready", onDeviceReady, { once: false });
     document.addEventListener("visibilitychange", onVisibilityChange);
     const interval = window.setInterval(check, 500);
     const timer = window.setTimeout(() => {
@@ -412,7 +381,7 @@ export function initializePurchases(): Promise<void> {
 /**
  * True when a *real* product reload can still happen in this session.
  *
- * capacitor-plugin-cdv-purchase v13 store-runtime facts:
+ * cordova-plugin-purchase v13 store-runtime facts:
  *  - `initialize()` is one-shot (`initializedHasBeenCalled`); later calls warn
  *    and resolve with `[]` without touching StoreKit.
  *  - `update()` returns immediately unless `store.isReady` is true, and is
@@ -723,8 +692,6 @@ export function describePurchaseError(error: unknown): string {
 
 /** Test-only: clears module state so each test starts from a clean store. */
 export function __resetIapServiceForTests() {
-  capacitorPurchase = null;
-  capacitorImportPromise = null;
   initialized = false;
   initializationAttempted = false;
   registered = false;
