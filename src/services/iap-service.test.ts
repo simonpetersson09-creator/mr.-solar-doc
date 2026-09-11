@@ -20,10 +20,14 @@ function makeStore(options: {
   offer?: { order: () => Promise<unknown> } | null;
   initializeRejects?: string;
   initializeErrors?: { isError: true; code: number; message: string; productId: string | null }[];
+  /** Mirrors the plugin's `store.isReady` (adapter started + products loaded). */
+  isReady?: boolean;
 } = {}) {
   const handlers: Handlers = {};
   const registerCalls: unknown[][] = [];
   const store = {
+    isReady: options.isReady ?? true,
+    minTimeBetweenUpdates: 600_000,
     products: options.products ?? [],
     register: (list: unknown[]) => registerCalls.push(list),
     initialize: vi.fn(async () => {
