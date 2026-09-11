@@ -82,10 +82,8 @@ describe("plugin availability", () => {
   });
 
   it("returns null when the plugin never appears", async () => {
-    // The Capacitor package exports its Store synchronously; native availability
-    // is determined by platform support rather than a late Cordova global.
-    const cdv = await iap.waitForPurchasePlugin(300);
-    expect(cdv).not.toBeNull();
+    const cdv = await iap.waitForPurchasePlugin(20);
+    expect(cdv).toBeNull();
   });
 });
 
