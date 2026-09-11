@@ -161,27 +161,27 @@ export function TiltDial({ value, onChange, disabled = false }: TiltDialProps) {
           x2={armEnd.x}
           y2={armEnd.y}
           className="stroke-accent-foreground"
-          strokeWidth={4}
+          strokeWidth={3}
           strokeLinecap="round"
         />
 
         {/* Pulsing halo behind the grip — signals it can be dragged */}
-        <circle cx={grip.x} cy={grip.y} r={GRIP_RADIUS + 4} className="animate-pulse fill-accent/20" />
+        <circle cx={grip.x} cy={grip.y} r={GRIP_RADIUS + 3} className="animate-pulse fill-accent/20" />
         {/* Soft ring for floating glassmorphism look */}
-        <circle cx={grip.x} cy={grip.y} r={GRIP_RADIUS + 2} className="fill-black/5" />
+        <circle cx={grip.x} cy={grip.y} r={GRIP_RADIUS + 1.5} className="fill-black/5" />
         <circle
           cx={grip.x}
           cy={grip.y}
           r={GRIP_RADIUS}
           className="fill-accent-foreground stroke-white drop-shadow-lg"
-          strokeWidth={3.5}
+          strokeWidth={2.5}
         />
         {/* Chevrons hinting the up/down swing */}
         <g transform={`rotate(${-safeValue} ${grip.x} ${grip.y})`}>
           <path
-            d={`M ${grip.x - 4} ${grip.y - 3} L ${grip.x} ${grip.y - 7} L ${grip.x + 4} ${grip.y - 3} M ${grip.x - 4} ${grip.y + 3} L ${grip.x} ${grip.y + 7} L ${grip.x + 4} ${grip.y + 3}`}
+            d={`M ${grip.x - 3} ${grip.y - 2} L ${grip.x} ${grip.y - 5} L ${grip.x + 3} ${grip.y - 2} M ${grip.x - 3} ${grip.y + 2} L ${grip.x} ${grip.y + 5} L ${grip.x + 3} ${grip.y + 2}`}
             className="stroke-white"
-            strokeWidth={2.5}
+            strokeWidth={1.8}
             strokeLinecap="round"
             strokeLinejoin="round"
             fill="none"
