@@ -1,5 +1,5 @@
 /**
- * UI -> IAP service -> StoreKit 2 (via capacitor-plugin-cdv-purchase).
+ * UI -> IAP service -> StoreKit (via cordova-plugin-purchase).
  *
  * Purchases are only possible inside the native iOS app. On the web the service
  * reports "unavailable" so the paywall can explain that the unlock is bought in
@@ -91,42 +91,10 @@ interface CdvPurchaseGlobal {
   Platform: { APPLE_APPSTORE: string };
 }
 
-let capacitorPurchase: CdvPurchaseGlobal | null = null;
-let capacitorImportPromise: Promise<CdvPurchaseGlobal | null> | null = null;
-
-/** Loads the browser-only purchase runtime and registers PurchasePlugin. */
-function loadCapacitorPurchase(): Promise<CdvPurchaseGlobal | null> {
-  if (capacitorPurchase) return Promise.resolve(capacitorPurchase);
-  if (capacitorImportPromise) return capacitorImportPromise;
-  if (typeof window === "undefined") return Promise.resolve(null);
-
-  capacitorImportPromise = import("capacitor-plugin-cdv-purchase")
-    .then((module) => {
-      capacitorPurchase = {
-        store: module.store as unknown as CdvStore,
-        ProductType: module.ProductType as unknown as CdvPurchaseGlobal["ProductType"],
-        Platform: module.Platform as unknown as CdvPurchaseGlobal["Platform"],
-      };
-      log("Capacitor PurchasePlugin runtime loaded");
-      return capacitorPurchase;
-    })
-    .catch((error: unknown) => {
-      const message = error instanceof Error ? error.message : String(error);
-      recordError(null, message);
-      capacitorImportPromise = null;
-      return null;
-    });
-  return capacitorImportPromise;
-}
-
 function getCdv(): CdvPurchaseGlobal | null {
   if (typeof window === "undefined") return null;
-  // The window override keeps tests deterministic. On device the package export
-  // is the one Store instance backed by the native Capacitor PurchasePlugin.
-  return (
-    (window as unknown as { CdvPurchase?: CdvPurchaseGlobal }).CdvPurchase ??
-    capacitorPurchase
-  );
+  // Capacitor's Cordova compatibility bridge installs the plugin global.
+  return (window as unknown as { CdvPurchase?: CdvPurchaseGlobal }).CdvPurchase ?? null;
 }
 
 /** True on a platform where StoreKit purchases can exist (plugin may still be loading). */
