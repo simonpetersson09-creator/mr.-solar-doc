@@ -151,6 +151,16 @@ export function useStorePrices(): StorePricesState {
   }, []);
 
 
+  // A late `productUpdated` event still reaches `read()` after the timeout —
+  // the store subscription is only removed on unmount — so a price arriving at
+  // 60 s flips the view back from "unavailable" to "ready" on its own.
+  const productStatus = (
+    price: string | null,
+    offerReady: boolean,
+  ): StorePricesState["status"] => (price !== null && offerReady ? "ready" : gaveUp ? "unavailable" : "loading");
+
+  const unlockStatus = productStatus(state.unlock, state.unlockReady);
+  const premiumStatus = productStatus(state.premium, state.premiumReady);
   const hasPrice = state.unlock !== null || state.premium !== null;
   const status: StorePricesState["status"] = hasPrice
     ? "ready"
@@ -158,5 +168,12 @@ export function useStorePrices(): StorePricesState {
       ? "unavailable"
       : "loading";
 
-  return { ...state, status, retry };
+  return {
+    ...state,
+    status,
+    unlockStatus,
+    premiumStatus,
+    canRetry: canRefreshStoreProducts(),
+    retry,
+  };
 }
