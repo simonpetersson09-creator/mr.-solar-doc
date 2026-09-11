@@ -65,7 +65,9 @@ export function useStorePrices(): StorePricesState {
   const [gaveUp, setGaveUp] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const readRef = useRef<() => void>(() => undefined);
-  const [state, setState] = useState<Omit<StorePricesState, "status" | "retry">>(() => ({
+  const [state, setState] = useState<
+    Omit<StorePricesState, "status" | "unlockStatus" | "premiumStatus" | "canRetry" | "retry">
+  >(() => ({
     available: false,
     unlock: null,
     premium: null,
