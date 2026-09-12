@@ -498,6 +498,14 @@ export const bg = {
     showCalculation: "Покажи изчислението",
     hideCalculation: "Скрий изчислението",
     adjustSplit: "Коригирай самопотреблението",
+    selfConsumptionModeLabel: "Собствено потребление – режим",
+    selfConsumptionModeAuto: "Автоматично изчислено",
+    selfConsumptionModeManual: "Въведено ръчно",
+    selfConsumptionManualHelp:
+      "Въвели сте собственото потребление сами. Върнете автоматичната оценка, ако искате приложението да го изчисли.",
+    selfConsumptionResetAuto: "Връщане към автоматична оценка",
+    selfConsumptionManualProfileNote:
+      "Профилът на потребление не влияе на собственото потребление, когато го въвеждате ръчно.",
     selfConsumptionEstimatedLabel: "Изчислено собствено потребление",
     selfConsumptionEstimatedHelp:
       "Оценено спрямо потреблението ви на ток и изчисленото производство на системата. Можете да коригирате стойността ръчно.",

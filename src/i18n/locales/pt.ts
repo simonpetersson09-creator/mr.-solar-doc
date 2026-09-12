@@ -494,6 +494,14 @@ export const pt = {
     showCalculation: "Mostrar cálculo",
     hideCalculation: "Ocultar cálculo",
     adjustSplit: "Ajustar autoconsumo",
+    selfConsumptionModeLabel: "Autoconsumo – modo",
+    selfConsumptionModeAuto: "Estimado automaticamente",
+    selfConsumptionModeManual: "Introduzido manualmente",
+    selfConsumptionManualHelp:
+      "Introduziu o autoconsumo manualmente. Reponha a estimativa automática se quiser que a aplicação o calcule.",
+    selfConsumptionResetAuto: "Repor a estimativa automática",
+    selfConsumptionManualProfileNote:
+      "O perfil de consumo não afeta o autoconsumo quando o introduz manualmente.",
     selfConsumptionEstimatedLabel: "Autoconsumo estimado",
     selfConsumptionEstimatedHelp:
       "Estimado a partir do seu consumo de eletricidade e da produção calculada do sistema. Pode ajustar o valor manualmente.",

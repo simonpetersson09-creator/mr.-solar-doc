@@ -445,6 +445,14 @@ export const sk = {
     showCalculation: "Zobraziť výpočet",
     hideCalculation: "Skryť výpočet",
     adjustSplit: "Upraviť vlastnú spotrebu",
+    selfConsumptionModeLabel: "Vlastná spotreba – režim",
+    selfConsumptionModeAuto: "Automaticky odhadnuté",
+    selfConsumptionModeManual: "Zadané ručne",
+    selfConsumptionManualHelp:
+      "Vlastnú spotrebu ste zadali sami. Obnovte automatický odhad, ak ju má vypočítať aplikácia.",
+    selfConsumptionResetAuto: "Obnoviť automatický odhad",
+    selfConsumptionManualProfileNote:
+      "Profil spotreby neovplyvňuje vlastnú spotrebu, keď ju zadáte ručne.",
     selfConsumptionEstimatedLabel: "Odhadovaná vlastná spotreba",
     selfConsumptionEstimatedHelp:
       "Odhadnuté z vašej spotreby elektriny a vypočítanej výroby systému. Hodnotu môžete upraviť ručne.",

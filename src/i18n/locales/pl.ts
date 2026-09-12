@@ -456,6 +456,14 @@ export const pl = {
     showCalculation: "Pokaż kalkulację",
     hideCalculation: "Ukryj kalkulację",
     adjustSplit: "Dostosuj autokonsumpcję",
+    selfConsumptionModeLabel: "Autokonsumpcja – tryb",
+    selfConsumptionModeAuto: "Oszacowana automatycznie",
+    selfConsumptionModeManual: "Wprowadzona ręcznie",
+    selfConsumptionManualHelp:
+      "Autokonsumpcję wpisałeś samodzielnie. Przywróć szacunek automatyczny, jeśli aplikacja ma ją obliczyć.",
+    selfConsumptionResetAuto: "Przywróć szacunek automatyczny",
+    selfConsumptionManualProfileNote:
+      "Profil zużycia nie wpływa na autokonsumpcję, gdy wpisujesz ją ręcznie.",
     selfConsumptionEstimatedLabel: "Szacowana autokonsumpcja",
     selfConsumptionEstimatedHelp:
       "Oszacowana na podstawie Twojego zużycia energii i obliczonej produkcji instalacji. Możesz ręcznie zmienić wartość.",

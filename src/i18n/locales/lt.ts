@@ -452,6 +452,14 @@ export const lt = {
     showCalculation: "Rodyti skaičiavimą",
     hideCalculation: "Slėpti skaičiavimą",
     adjustSplit: "Reguliuoti savarankišką suvartojimą",
+    selfConsumptionModeLabel: "Savo vartojimas – režimas",
+    selfConsumptionModeAuto: "Automatiškai apskaičiuota",
+    selfConsumptionModeManual: "Įvesta rankiniu būdu",
+    selfConsumptionManualHelp:
+      "Savo vartojimą įvedėte patys. Atkurkite automatinį įvertinimą, jei norite, kad jį apskaičiuotų programa.",
+    selfConsumptionResetAuto: "Atkurti automatinį įvertinimą",
+    selfConsumptionManualProfileNote:
+      "Vartojimo profilis neturi įtakos savo vartojimui, kai jį įvedate rankiniu būdu.",
     selfConsumptionEstimatedLabel: "Apskaičiuotas savas suvartojimas",
     selfConsumptionEstimatedHelp:
       "Įvertinta pagal jūsų elektros suvartojimą ir apskaičiuotą sistemos gamybą. Reikšmę galite pakeisti rankiniu būdu.",

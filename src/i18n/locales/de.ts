@@ -455,6 +455,14 @@ export const de = {
     showCalculation: "Berechnung anzeigen",
     hideCalculation: "Berechnung ausblenden",
     adjustSplit: "Eigenverbrauch anpassen",
+    selfConsumptionModeLabel: "Eigenverbrauch – Modus",
+    selfConsumptionModeAuto: "Automatisch geschätzt",
+    selfConsumptionModeManual: "Manuell eingegeben",
+    selfConsumptionManualHelp:
+      "Sie haben den Eigenverbrauch selbst eingegeben. Setzen Sie ihn auf die automatische Schätzung zurück, wenn die App ihn berechnen soll.",
+    selfConsumptionResetAuto: "Auf automatische Schätzung zurücksetzen",
+    selfConsumptionManualProfileNote:
+      "Das Verbrauchsprofil wirkt sich nicht auf den Eigenverbrauch aus, wenn Sie ihn manuell eingeben.",
     selfConsumptionEstimatedLabel: "Berechneter Eigenverbrauch",
     selfConsumptionEstimatedHelp:
       "Geschätzt aus Ihrem Stromverbrauch und dem berechneten Ertrag der Anlage. Sie können den Wert manuell anpassen.",

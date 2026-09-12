@@ -499,6 +499,14 @@ export const nl = {
     showCalculation: "Berekening tonen",
     hideCalculation: "Berekening verbergen",
     adjustSplit: "Zelfverbruik aanpassen",
+    selfConsumptionModeLabel: "Eigen gebruik – modus",
+    selfConsumptionModeAuto: "Automatisch geschat",
+    selfConsumptionModeManual: "Handmatig ingevoerd",
+    selfConsumptionManualHelp:
+      "U hebt het eigen gebruik zelf ingevoerd. Zet het terug op de automatische schatting als de app het moet berekenen.",
+    selfConsumptionResetAuto: "Terug naar automatische schatting",
+    selfConsumptionManualProfileNote:
+      "Het verbruiksprofiel heeft geen invloed op het eigen gebruik wanneer u dit handmatig invoert.",
     selfConsumptionEstimatedLabel: "Berekend eigen verbruik",
     selfConsumptionEstimatedHelp:
       "Geschat op basis van uw elektriciteitsverbruik en de berekende opbrengst van de installatie. U kunt de waarde handmatig aanpassen.",

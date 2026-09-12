@@ -445,6 +445,14 @@ export const sl = {
     showCalculation: "Prikaži izračun",
     hideCalculation: "Skrij izračun",
     adjustSplit: "Prilagodi lastno porabo",
+    selfConsumptionModeLabel: "Lastna poraba – način",
+    selfConsumptionModeAuto: "Samodejno ocenjeno",
+    selfConsumptionModeManual: "Ročno vneseno",
+    selfConsumptionManualHelp:
+      "Lastno porabo ste vnesli sami. Ponastavite na samodejno oceno, če želite, da jo izračuna aplikacija.",
+    selfConsumptionResetAuto: "Ponastavi na samodejno oceno",
+    selfConsumptionManualProfileNote:
+      "Profil porabe ne vpliva na lastno porabo, kadar jo vnesete ročno.",
     selfConsumptionEstimatedLabel: "Ocenjena lastna poraba",
     selfConsumptionEstimatedHelp:
       "Ocenjeno na podlagi vaše porabe elektrike in izračunane proizvodnje sistema. Vrednost lahko ročno prilagodite.",

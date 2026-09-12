@@ -489,6 +489,14 @@ export const id = {
     showCalculation: "Tampilkan perhitungan",
     hideCalculation: "Sembunyikan perhitungan",
     adjustSplit: "Sesuaikan konsumsi sendiri",
+    selfConsumptionModeLabel: "Konsumsi sendiri – mode",
+    selfConsumptionModeAuto: "Diperkirakan otomatis",
+    selfConsumptionModeManual: "Dimasukkan manual",
+    selfConsumptionManualHelp:
+      "Anda memasukkan konsumsi sendiri secara manual. Setel ulang ke perkiraan otomatis jika ingin aplikasi menghitungnya.",
+    selfConsumptionResetAuto: "Setel ulang ke perkiraan otomatis",
+    selfConsumptionManualProfileNote:
+      "Profil konsumsi tidak mempengaruhi konsumsi sendiri saat Anda memasukkannya secara manual.",
     selfConsumptionEstimatedLabel: "Perkiraan konsumsi sendiri",
     selfConsumptionEstimatedHelp:
       "Diperkirakan dari pemakaian listrik Anda dan produksi sistem yang dihitung. Anda dapat menyesuaikan nilainya secara manual.",

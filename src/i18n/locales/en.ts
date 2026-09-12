@@ -488,6 +488,14 @@ export const en = {
     showCalculation: "Show calculation",
     hideCalculation: "Hide calculation",
     adjustSplit: "Adjust self-consumption",
+    selfConsumptionModeLabel: "Self-consumption mode",
+    selfConsumptionModeAuto: "Automatically estimated",
+    selfConsumptionModeManual: "Entered manually",
+    selfConsumptionManualHelp:
+      "You entered the self-consumption yourself. Reset to the automatic estimate if you want the app to calculate it.",
+    selfConsumptionResetAuto: "Reset to automatic estimate",
+    selfConsumptionManualProfileNote:
+      "The consumption profile does not affect self-consumption when you enter it manually.",
     selfConsumptionEstimatedLabel: "Estimated self-consumption",
     selfConsumptionEstimatedHelp:
       "Estimated from your electricity use and the system's calculated production. You can adjust the value manually.",

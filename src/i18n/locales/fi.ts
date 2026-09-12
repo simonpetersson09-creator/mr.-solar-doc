@@ -445,6 +445,14 @@ export const fi = {
     showCalculation: "Näytä laskelma",
     hideCalculation: "Piilota laskelma",
     adjustSplit: "Säädä omaa kulutusta",
+    selfConsumptionModeLabel: "Omakäyttö – tila",
+    selfConsumptionModeAuto: "Automaattisesti arvioitu",
+    selfConsumptionModeManual: "Syötetty käsin",
+    selfConsumptionManualHelp:
+      "Olet syöttänyt omakäytön itse. Palauta automaattinen arvio, jos haluat sovelluksen laskevan sen.",
+    selfConsumptionResetAuto: "Palauta automaattinen arvio",
+    selfConsumptionManualProfileNote:
+      "Kulutusprofiili ei vaikuta omakäyttöön, kun syötät sen itse.",
     selfConsumptionEstimatedLabel: "Arvioitu oma käyttö",
     selfConsumptionEstimatedHelp:
       "Arvioitu sähkönkulutuksesi ja järjestelmän lasketun tuotannon perusteella. Voit säätää arvoa itse.",

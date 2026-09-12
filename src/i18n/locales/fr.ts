@@ -461,6 +461,14 @@ export const fr = {
     showCalculation: "Afficher le calcul",
     hideCalculation: "Masquer le calcul",
     adjustSplit: "Ajuster l'autoconsommation",
+    selfConsumptionModeLabel: "Autoconsommation – mode",
+    selfConsumptionModeAuto: "Estimée automatiquement",
+    selfConsumptionModeManual: "Saisie manuellement",
+    selfConsumptionManualHelp:
+      "Vous avez saisi vous-même l’autoconsommation. Revenez à l’estimation automatique si vous voulez que l’application la calcule.",
+    selfConsumptionResetAuto: "Revenir à l’estimation automatique",
+    selfConsumptionManualProfileNote:
+      "Le profil de consommation n’influence pas l’autoconsommation lorsque vous la saisissez manuellement.",
     selfConsumptionEstimatedLabel: "Autoconsommation estimée",
     selfConsumptionEstimatedHelp:
       "Estimée à partir de votre consommation d'électricité et de la production calculée de l'installation. Vous pouvez ajuster la valeur manuellement.",

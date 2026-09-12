@@ -477,6 +477,14 @@ export const he = {
     showCalculation: "הצגת חישוב",
     hideCalculation: "הסתרת חישוב",
     adjustSplit: "התאמת צריכה עצמית",
+    selfConsumptionModeLabel: "צריכה עצמית – מצב",
+    selfConsumptionModeAuto: "הערכה אוטומטית",
+    selfConsumptionModeManual: "הוזן ידנית",
+    selfConsumptionManualHelp:
+      "הזנת את הצריכה העצמית בעצמך. אפס להערכה האוטומטית אם ברצונך שהאפליקציה תחשב אותה.",
+    selfConsumptionResetAuto: "אפס להערכה אוטומטית",
+    selfConsumptionManualProfileNote:
+      "פרופיל הצריכה אינו משפיע על הצריכה העצמית כשאתה מזין אותה ידנית.",
     selfConsumptionEstimatedLabel: "צריכה עצמית מוערכת",
     selfConsumptionEstimatedHelp:
       "הערכה על סמך צריכת החשמל שלך והייצור המחושב של המערכת. אפשר לשנות את הערך ידנית.",

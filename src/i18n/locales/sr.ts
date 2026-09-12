@@ -491,6 +491,14 @@ export const sr = {
     showCalculation: "Прикажи прорачун",
     hideCalculation: "Сакриј прорачун",
     adjustSplit: "Прилагоди самопотрошњу",
+    selfConsumptionModeLabel: "Сопствена потрошња – режим",
+    selfConsumptionModeAuto: "Аутоматски процењено",
+    selfConsumptionModeManual: "Ручно унето",
+    selfConsumptionManualHelp:
+      "Сопствену потрошњу сте унели сами. Вратите аутоматску процену ако желите да је апликација израчуна.",
+    selfConsumptionResetAuto: "Врати аутоматску процену",
+    selfConsumptionManualProfileNote:
+      "Профил потрошње не утиче на сопствену потрошњу када је унесете ручно.",
     selfConsumptionEstimatedLabel: "Procenjena sopstvena potrošnja",
     selfConsumptionEstimatedHelp:
       "Procenjeno na osnovu vaše potrošnje struje i izračunate proizvodnje sistema. Vrednost možete ručno da podesite.",

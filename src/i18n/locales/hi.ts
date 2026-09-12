@@ -486,6 +486,14 @@ export const hi = {
     showCalculation: "गणना दिखाएँ",
     hideCalculation: "गणना छिपाएँ",
     adjustSplit: "स्व-उपभोग समायोजित करें",
+    selfConsumptionModeLabel: "स्व-उपभोग – मोड",
+    selfConsumptionModeAuto: "स्वतः अनुमानित",
+    selfConsumptionModeManual: "मैन्युअल रूप से दर्ज",
+    selfConsumptionManualHelp:
+      "आपने स्व-उपभोग स्वयं दर्ज किया है. यदि आप चाहते हैं कि ऐप इसकी गणना करे तो स्वतः अनुमान पर रीसेट करें.",
+    selfConsumptionResetAuto: "स्वतः अनुमान पर रीसेट करें",
+    selfConsumptionManualProfileNote:
+      "जब आप स्व-उपभोग मैन्युअल रूप से दर्ज करते हैं तो उपभोग प्रोफ़ाइल इसे प्रभावित नहीं करती.",
     selfConsumptionEstimatedLabel: "अनुमानित स्व-उपयोग",
     selfConsumptionEstimatedHelp:
       "आपकी बिजली खपत और सिस्टम के परिकलित उत्पादन के आधार पर अनुमानित। आप मान को स्वयं समायोजित कर सकते हैं।",

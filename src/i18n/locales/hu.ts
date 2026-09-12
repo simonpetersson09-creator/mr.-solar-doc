@@ -496,6 +496,14 @@ export const hu = {
     showCalculation: "Számítás megjelenítése",
     hideCalculation: "Számítás elrejtése",
     adjustSplit: "Saját fogyasztás módosítása",
+    selfConsumptionModeLabel: "Saját felhasználás – mód",
+    selfConsumptionModeAuto: "Automatikusan becsült",
+    selfConsumptionModeManual: "Kézzel megadott",
+    selfConsumptionManualHelp:
+      "A saját felhasználást Ön adta meg. Állítsa vissza az automatikus becslést, ha az alkalmazás számolja ki.",
+    selfConsumptionResetAuto: "Vissza az automatikus becsléshez",
+    selfConsumptionManualProfileNote:
+      "A fogyasztási profil nem befolyásolja a saját felhasználást, ha kézzel adja meg.",
     selfConsumptionEstimatedLabel: "Becsült saját felhasználás",
     selfConsumptionEstimatedHelp:
       "Az áramfogyasztása és a rendszer számított termelése alapján becsülve. Az értéket kézzel módosíthatja.",

@@ -490,6 +490,14 @@ export const hr = {
     showCalculation: "Prikaži izračun",
     hideCalculation: "Sakrij izračun",
     adjustSplit: "Prilagodi samopotrošnju",
+    selfConsumptionModeLabel: "Vlastita potrošnja – način",
+    selfConsumptionModeAuto: "Automatski procijenjeno",
+    selfConsumptionModeManual: "Ručno uneseno",
+    selfConsumptionManualHelp:
+      "Vlastitu potrošnju unijeli ste sami. Vratite automatsku procjenu ako želite da je aplikacija izračuna.",
+    selfConsumptionResetAuto: "Vrati automatsku procjenu",
+    selfConsumptionManualProfileNote:
+      "Profil potrošnje ne utječe na vlastitu potrošnju kada je unesete ručno.",
     selfConsumptionEstimatedLabel: "Procijenjena vlastita potrošnja",
     selfConsumptionEstimatedHelp:
       "Procijenjeno na temelju vaše potrošnje struje i izračunate proizvodnje sustava. Vrijednost možete ručno prilagoditi.",
