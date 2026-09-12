@@ -116,6 +116,11 @@ export function splitProduction(
   annualProductionKwh: number,
   selfConsumptionShare: number = DEFAULT_SELF_CONSUMPTION_SHARE,
   annualConsumptionKwh?: number | null,
+  /**
+   * Optional month-by-month bound Σ min(production_m, consumption_m). Applies to
+   * every share, including a manual override — energy cannot move between months.
+   */
+  monthlyOverlapKwh?: number | null,
 ): SelfConsumptionSplit {
   const production = Number.isFinite(annualProductionKwh)
     ? Math.max(0, annualProductionKwh)
@@ -126,16 +131,31 @@ export function splitProduction(
     annualConsumptionKwh != null && Number.isFinite(annualConsumptionKwh)
       ? Math.max(0, annualConsumptionKwh)
       : Number.POSITIVE_INFINITY;
+  const monthlyCap =
+    monthlyOverlapKwh != null && Number.isFinite(monthlyOverlapKwh)
+      ? Math.max(0, monthlyOverlapKwh)
+      : Number.POSITIVE_INFINITY;
 
-  const selfConsumptionKwh = Math.min(production * self, production, consumptionCap);
+  const requestedKwh = production * self;
+  const selfConsumptionKwh = Math.min(requestedKwh, production, consumptionCap, monthlyCap);
   const exportedKwh = production - selfConsumptionKwh;
   const effectiveShare = production > 0 ? selfConsumptionKwh / production : 0;
+
+  // Report the tightest binding limit, so the UI and the PDF can explain the
+  // real reason instead of a generic "annual consumption" message.
+  let capBinding: SelfConsumptionCapBinding = "none";
+  if (selfConsumptionKwh < requestedKwh - 1e-9) {
+    if (monthlyCap <= consumptionCap && monthlyCap <= production) capBinding = "monthly-overlap";
+    else if (consumptionCap <= production) capBinding = "annual-consumption";
+    else capBinding = "production";
+  }
 
   return {
     selfConsumptionShare: effectiveShare,
     exportShare: 1 - effectiveShare,
     selfConsumptionKwh,
     exportedKwh,
+    capBinding,
   };
 }
 
