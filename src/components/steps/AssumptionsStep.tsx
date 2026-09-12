@@ -81,6 +81,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   const maxPricePerKwh = maxPlausiblePricePerKwh(countryCode);
   // Provenance drives the wording: an automatic estimate is shown with "≈",
   // a manual choice is presented as the user's own assumption.
+  const capNoteKey = result ? selfConsumptionCapNoteKey(result.presentation) : null;
   const isUserSetShare =
     result?.selfConsumptionSource === "user-override" || selfConsumptionShareIsUserSet;
   const sharePercent = result
