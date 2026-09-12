@@ -21,6 +21,7 @@ import {
 } from "@/config/constants";
 import { haptic } from "@/services/native-service";
 import type { LoadProfileClass } from "@/lib/calc/self-consumption";
+import { selfConsumptionCapNoteKey } from "@/lib/self-consumption-cap-note";
 
 interface AssumptionsStepProps {
   totalSteps: number;
