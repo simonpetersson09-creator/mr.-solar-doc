@@ -125,7 +125,20 @@ export const tr = {
       question: "Elektrik kullanımınız yıl boyunca genellikle nasıl dağılıyor?",
       help: "Yanıtınızı yıllık tüketiminizin aylık dağılımını tahmin etmek için kullanıyoruz.",
       previewTitle: "Tahmini tüketim profiliniz",
-      estimatedBadge: "Tahmini",
+      loadProfileQuestion: "En çok elektriği ne zaman kullanıyorsunuz?",
+    loadProfileHelp:
+      "Emin değil misiniz? Karışık seçin. Seçiminiz güneş elektriğinin ne kadarını doğrudan kullandığınızı tahmin etmemize yardımcı olur.",
+    loadProfileNote: "Standart varsayım; ölçülmüş tüketim veya saatlik simülasyon değildir.",
+    loadProfileLabel: "Tüketim düzeni",
+    loadProfile: {
+      evening: "Sabah ve akşam",
+      eveningHelp: "Gündüz genellikle evde değil.",
+      mixed: "Karışık",
+      mixedHelp: "Tüketim gün içine dağılmış.",
+      daytime: "Gündüz",
+      daytimeHelp: "Güneş üretirken yüksek tüketim.",
+    },
+    estimatedBadge: "Tahmini",
       estimatedNote:
         "Bu, seçiminize dayalı tahmini bir dağılımdır – gerçek tüketiminiz değildir. Aylık değerler girerseniz veya veri yüklerseniz bu bilgi değiştirilir.",
       defaultNote:

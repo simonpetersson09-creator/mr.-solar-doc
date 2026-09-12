@@ -117,6 +117,13 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
         coverageNote: t("result.coverageNote"),
         paybackNote: `${t("result.paybackInfo")} ${t("result.maxInvestmentNote")}`,
         quoteNote: t("result.quoteNote"),
+        // Standard (schablon) adjustment of the modelled share — never presented
+        // as measured consumption or an hourly simulation.
+        loadProfile: {
+          label: t("result.loadProfileLabel"),
+          value: t(`result.loadProfile.${result.loadProfileClass ?? "mixed"}`),
+          note: t("result.loadProfileNote"),
+        },
         consumptionSource: t(
           `result.consumptionSource.${result.consumption.inputType ?? "annual-only"}`,
         ),
@@ -393,6 +400,12 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
                   ? t("result.selfConsumptionUserAssumption")
                   : t("result.selfConsumptionEstimatedLabel")}
               </dd>
+              {selfConsumptionIsUserSet ? null : (
+                <dd className="text-[10px] text-white/45">
+                  {t("result.loadProfileLabel")}:{" "}
+                  {t(`result.loadProfile.${result.loadProfileClass ?? "mixed"}`)}
+                </dd>
+              )}
             </div>
             <div className="rounded-2xl bg-white/10 p-2.5 text-center">
               <dt className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">

@@ -111,7 +111,20 @@ export const da = {
       question: "Hvordan er dit elforbrug normalt fordelt over året?",
       help: "Vi bruger dit svar til at estimere en månedsfordeling af dit årsforbrug.",
       previewTitle: "Din estimerede forbrugsprofil",
-      estimatedBadge: "Estimeret",
+      loadProfileQuestion: "Hvornår bruger du mest strøm?",
+    loadProfileHelp:
+      "Usikker? Vælg blandet. Valget hjælper os med at vurdere, hvor meget solstrøm du bruger direkte.",
+    loadProfileNote: "Standardantagelse, ikke målt forbrug eller en timesimulering.",
+    loadProfileLabel: "Forbrugsmønster",
+    loadProfile: {
+      evening: "Morgen og aften",
+      eveningHelp: "Oftest væk om dagen.",
+      mixed: "Blandet",
+      mixedHelp: "Forbrug fordelt over dagen.",
+      daytime: "Dagtimer",
+      daytimeHelp: "Meget forbrug, når solen producerer.",
+    },
+    estimatedBadge: "Estimeret",
       estimatedNote:
         "Dette er en estimeret fordeling baseret på dit valg – ikke dit faktiske forbrug. Hvis du indtaster månedsværdier eller uploader data, erstattes den.",
       defaultNote:

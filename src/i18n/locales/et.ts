@@ -112,7 +112,20 @@ export const et = {
       question: "Kuidas jaotub sinu elektritarbimine tavaliselt aasta lõikes?",
       help: "Kasutame sinu vastust, et hinnata sinu aastatarbimise kuupõhist jaotust.",
       previewTitle: "Sinu hinnanguline tarbimise profiil",
-      estimatedBadge: "Hinnanguline",
+      loadProfileQuestion: "Millal tarbite kõige rohkem elektrit?",
+    loadProfileHelp:
+      "Pole kindel? Valige segatud. Valik aitab hinnata, kui palju päikeseelektrit kasutate otse.",
+    loadProfileNote: "Standardeeldus, mitte mõõdetud tarbimine ega tunnipõhine simulatsioon.",
+    loadProfileLabel: "Tarbimismuster",
+    loadProfile: {
+      evening: "Hommik ja õhtu",
+      eveningHelp: "Päeval enamasti kodust ära.",
+      mixed: "Segatud",
+      mixedHelp: "Tarbimine jaotub päeva peale.",
+      daytime: "Päeval",
+      daytimeHelp: "Palju tarbimist ajal, mil päike toodab.",
+    },
+    estimatedBadge: "Hinnanguline",
       estimatedNote:
         "See on sinu valiku põhjal hinnanguline jaotus – mitte sinu tegelik tarbimine. See asendatakse, kui sisestad kuu väärtused või laadid andmed üles.",
       defaultNote:

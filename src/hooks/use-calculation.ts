@@ -38,6 +38,7 @@ export function useCalculation(): {
   const gridFrequencyHz = useWizardStore((s) => s.gridFrequencyHz);
   const selfConsumptionShare = useWizardStore((s) => s.selfConsumptionShare);
   const selfConsumptionShareIsUserSet = useWizardStore((s) => s.selfConsumptionShareIsUserSet);
+  const loadProfileClass = useWizardStore((s) => s.loadProfileClass);
   const selfConsumedValuePerKwh = useWizardStore((s) => s.selfConsumedValuePerKwh);
   const exportValuePerKwh = useWizardStore((s) => s.exportValuePerKwh);
   const acceptedPaybackYears = useWizardStore((s) => s.acceptedPaybackYears);
@@ -122,6 +123,7 @@ export function useCalculation(): {
       },
       selfConsumptionShare,
       selfConsumptionShareIsUserSet,
+      loadProfileClass,
       acceptedPaybackYears,
       annualPriceChangeRate,
       quotePrice,
@@ -144,6 +146,7 @@ export function useCalculation(): {
     gridConfirmed,
     selfConsumptionShare,
     selfConsumptionShareIsUserSet,
+    loadProfileClass,
     selfConsumedValuePerKwh,
     exportValuePerKwh,
     acceptedPaybackYears,

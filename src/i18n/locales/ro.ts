@@ -126,7 +126,20 @@ export const ro = {
       question: "Cum se distribuie de obicei consumul tău de energie pe parcursul anului?",
       help: "Folosim răspunsul tău pentru a estima o distribuție lunară a consumului anual.",
       previewTitle: "Profilul tău estimat de consum",
-      estimatedBadge: "Estimat",
+      loadProfileQuestion: "Când consumați cea mai multă energie electrică?",
+    loadProfileHelp:
+      "Nu sunteți sigur? Alegeți mixt. Alegerea ne ajută să estimăm cât din energia solară folosiți direct.",
+    loadProfileNote: "Ipoteză standard, nu consum măsurat și nici simulare orară.",
+    loadProfileLabel: "Profil de consum",
+    loadProfile: {
+      evening: "Dimineața și seara",
+      eveningHelp: "De obicei plecat în timpul zilei.",
+      mixed: "Mixt",
+      mixedHelp: "Consum distribuit pe parcursul zilei.",
+      daytime: "În timpul zilei",
+      daytimeHelp: "Consum ridicat când soarele produce.",
+    },
+    estimatedBadge: "Estimat",
       estimatedNote:
         "Aceasta este o distribuție estimată pe baza alegerii tale – nu consumul tău real. Este înlocuită dacă introduci valori lunare sau încarci date.",
       defaultNote:

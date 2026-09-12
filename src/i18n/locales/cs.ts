@@ -111,7 +111,20 @@ export const cs = {
       question: "Jak je vaše spotřeba elektřiny obvykle rozdělena v průběhu roku?",
       help: "Vaši odpověď použijeme k odhadu měsíčního rozdělení vaší roční spotřeby.",
       previewTitle: "Váš odhadovaný profil spotřeby",
-      estimatedBadge: "Odhadováno",
+      loadProfileQuestion: "Kdy spotřebováváte nejvíce elektřiny?",
+    loadProfileHelp:
+      "Nejste si jistí? Zvolte smíšený. Volba nám pomůže odhadnout, kolik solární elektřiny spotřebujete přímo.",
+    loadProfileNote: "Standardní předpoklad, nikoli měřená spotřeba ani hodinová simulace.",
+    loadProfileLabel: "Profil spotřeby",
+    loadProfile: {
+      evening: "Ráno a večer",
+      eveningHelp: "Přes den obvykle mimo domov.",
+      mixed: "Smíšený",
+      mixedHelp: "Spotřeba rozložená během dne.",
+      daytime: "Během dne",
+      daytimeHelp: "Velká spotřeba, když slunce vyrábí.",
+    },
+    estimatedBadge: "Odhadováno",
       estimatedNote:
         "Jedná se o odhadované rozdělení na základě vašeho výběru – nikoli o vaši skutečnou spotřebu. Pokud zadáte měsíční hodnoty nebo nahrajete data, bude nahrazeno.",
       defaultNote:

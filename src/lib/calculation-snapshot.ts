@@ -1,6 +1,7 @@
 /** Client-safe types for a stored (purchased) calculation. Pure data. */
 
 import type { CalculationResult, Orientation } from "@/lib/calc/types";
+import type { LoadProfileClass } from "@/lib/calc/self-consumption";
 import type { ConsumptionInputType, ConsumptionShape } from "@/lib/calc/consumption-shape";
 import type { PriceScenarioId } from "@/config/constants";
 import type { ConnectionCapacity } from "@/config/connection-capacity";
@@ -20,6 +21,8 @@ export interface CalculationAssumptions {
   connectionCapacity?: ConnectionCapacity | null;
   selfConsumptionShare: number;
   selfConsumptionShareIsUserSet: boolean;
+  /** Omitted in snapshots taken before the question existed = "mixed". */
+  loadProfileClass?: LoadProfileClass;
   selfConsumedValuePerKwh: number | null;
   exportValuePerKwh: number | null;
   acceptedPaybackYears: number;

@@ -23,6 +23,8 @@ import type { ConnectionCapacity } from "@/config/connection-capacity";
  */
 export const WIZARD_STORAGE_VERSION = 5;
 
+import type { LoadProfileClass } from "@/lib/calc/self-consumption";
+
 export interface WizardData {
   location: SiteLocation | null;
   orientation: Orientation;
@@ -46,6 +48,8 @@ export interface WizardData {
   gridConfirmed: boolean;
   selfConsumptionShare: number;
   selfConsumptionShareIsUserSet: boolean;
+  /** When the household mainly uses electricity. Standard adjustment only. */
+  loadProfileClass: LoadProfileClass;
   selfConsumedValuePerKwh: number | null;
   exportValuePerKwh: number | null;
   acceptedPaybackYears: number;
@@ -80,6 +84,7 @@ export const initialWizardState: WizardData = {
   gridConfirmed: false,
   selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
   selfConsumptionShareIsUserSet: false,
+  loadProfileClass: "mixed",
   selfConsumedValuePerKwh: null,
   exportValuePerKwh: null,
   acceptedPaybackYears: DEFAULT_PAYBACK_YEARS,

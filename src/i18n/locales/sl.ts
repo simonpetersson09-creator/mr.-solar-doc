@@ -109,7 +109,20 @@ export const sl = {
       question: "Kako je vaša poraba električne energije običajno porazdeljena skozi leto?",
       help: "Vaš odgovor uporabimo za oceno mesečne porazdelitve vaše letne porabe.",
       previewTitle: "Vaš ocenjeni profil porabe",
-      estimatedBadge: "Ocenjeno",
+      loadProfileQuestion: "Kdaj porabite največ elektrike?",
+    loadProfileHelp:
+      "Niste prepričani? Izberite mešano. Izbira nam pomaga oceniti, koliko sončne elektrike porabite neposredno.",
+    loadProfileNote: "Standardna predpostavka, ne izmerjena poraba niti urna simulacija.",
+    loadProfileLabel: "Vzorec porabe",
+    loadProfile: {
+      evening: "Zjutraj in zvečer",
+      eveningHelp: "Podnevi običajno zdoma.",
+      mixed: "Mešano",
+      mixedHelp: "Poraba porazdeljena skozi dan.",
+      daytime: "Podnevi",
+      daytimeHelp: "Veliko porabe, ko sonce proizvaja.",
+    },
+    estimatedBadge: "Ocenjeno",
       estimatedNote:
         "To je ocenjena porazdelitev na podlagi vaše izbire – ne vaša dejanska poraba. Če vnesete mesečne vrednosti ali naložite podatke, bo zamenjana.",
       defaultNote:

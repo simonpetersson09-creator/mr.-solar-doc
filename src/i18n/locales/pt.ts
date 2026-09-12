@@ -126,7 +126,20 @@ export const pt = {
       question: "Como se distribui normalmente o seu consumo elétrico ao longo do ano?",
       help: "Usamos a sua resposta para estimar uma distribuição mensal do seu consumo anual.",
       previewTitle: "O seu perfil de consumo estimado",
-      estimatedBadge: "Estimado",
+      loadProfileQuestion: "Quando consome mais eletricidade?",
+    loadProfileHelp:
+      "Não tem certeza? Escolha misto. A escolha ajuda-nos a estimar quanta energia solar usa diretamente.",
+    loadProfileNote: "Pressuposto padrão, não consumo medido nem simulação horária.",
+    loadProfileLabel: "Padrão de consumo",
+    loadProfile: {
+      evening: "Manhã e noite",
+      eveningHelp: "Normalmente fora durante o dia.",
+      mixed: "Misto",
+      mixedHelp: "Consumo distribuído ao longo do dia.",
+      daytime: "Durante o dia",
+      daytimeHelp: "Muito consumo enquanto o sol produz.",
+    },
+    estimatedBadge: "Estimado",
       estimatedNote:
         "Esta é uma distribuição estimada com base na sua escolha – não o seu consumo real. É substituída caso introduza valores mensais ou carregue dados.",
       defaultNote:

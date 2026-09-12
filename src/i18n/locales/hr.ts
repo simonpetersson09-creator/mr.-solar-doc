@@ -126,7 +126,20 @@ export const hr = {
       question: "Kako je vaša potrošnja struje obično raspoređena tijekom godine?",
       help: "Vaš odgovor koristimo za procjenu mjesečne raspodjele vaše godišnje potrošnje.",
       previewTitle: "Vaš procijenjeni profil potrošnje",
-      estimatedBadge: "Procijenjeno",
+      loadProfileQuestion: "Kada trošite najviše električne energije?",
+    loadProfileHelp:
+      "Niste sigurni? Odaberite mješovito. Odabir nam pomaže procijeniti koliko sunčeve energije trošite izravno.",
+    loadProfileNote: "Standardna pretpostavka, a ne izmjerena potrošnja ni satna simulacija.",
+    loadProfileLabel: "Profil potrošnje",
+    loadProfile: {
+      evening: "Jutro i večer",
+      eveningHelp: "Danju najčešće nisu doma.",
+      mixed: "Mješovito",
+      mixedHelp: "Potrošnja raspoređena kroz dan.",
+      daytime: "Tijekom dana",
+      daytimeHelp: "Velika potrošnja dok sunce proizvodi.",
+    },
+    estimatedBadge: "Procijenjeno",
       estimatedNote:
         "Ovo je procijenjena raspodjela temeljena na vašem odabiru – ne vaša stvarna potrošnja. Zamjenjuje se ako unesete mjesečne vrijednosti ili prenesete podatke.",
       defaultNote:

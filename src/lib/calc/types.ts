@@ -5,7 +5,11 @@ import type { PresentationValues } from "./presentation";
 import type { MaxInvestmentResult, PaybackScenario } from "./payback";
 import type { ProductionCostResult } from "./production-cost";
 import type { LifetimeProjection } from "./degradation";
-import type { SelfConsumptionSource, SelfConsumptionSummary } from "./self-consumption";
+import type {
+  LoadProfileClass,
+  SelfConsumptionSource,
+  SelfConsumptionSummary,
+} from "./self-consumption";
 import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
 import type { ServiceType } from "@/config/grid";
 import type { PvLimitBinding, PvRulesStatus } from "@/config/pv-connection-rules";
@@ -215,6 +219,11 @@ export interface CalculationInput {
   selfConsumptionShare: number;
   /** True when the user actively set the share (even if it equals the default). */
   selfConsumptionShareIsUserSet?: boolean;
+  /**
+   * When the household mainly uses electricity. Standard (schablon) adjustment
+   * of the modelled self-consumption only. Omitted = "mixed" (unchanged).
+   */
+  loadProfileClass?: LoadProfileClass;
   /** Simple payback time the user selected, in years. */
   acceptedPaybackYears: number;
   /** Overrides the default annual production degradation (e.g. 0.005). */
@@ -312,6 +321,8 @@ export interface CalculationResult {
   selfConsumptionRate: number;
   selfSufficiencyRate: number;
   selfConsumptionSource: SelfConsumptionSource;
+  /** The load profile the modelled share was based on. Always resolved. */
+  loadProfileClass: LoadProfileClass;
   economics: {
     currency: string;
     selfConsumedValuePerKwh: number;

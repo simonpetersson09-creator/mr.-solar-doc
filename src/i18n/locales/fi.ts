@@ -110,7 +110,20 @@ export const fi = {
       question: "Miten sähkönkulutuksesi jakaantuu yleensä vuoden aikana?",
       help: "Käytämme vastaustasi arvioidaksemme vuotuisen kulutuksesi kuukausijakauman.",
       previewTitle: "Arvioitu kulutusprofiilisi",
-      estimatedBadge: "Arvioitu",
+      loadProfileQuestion: "Milloin käytät eniten sähköä?",
+    loadProfileHelp:
+      "Etkö ole varma? Valitse sekoitettu. Valinta auttaa arvioimaan, kuinka paljon aurinkosähköä käytät suoraan.",
+    loadProfileNote: "Vakio-oletus, ei mitattu kulutus eikä tuntisimulaatio.",
+    loadProfileLabel: "Kulutusmalli",
+    loadProfile: {
+      evening: "Aamu ja ilta",
+      eveningHelp: "Yleensä poissa päiväsaikaan.",
+      mixed: "Sekoitettu",
+      mixedHelp: "Kulutus jakautuu päivän ajalle.",
+      daytime: "Päiväsaika",
+      daytimeHelp: "Paljon kulutusta silloin kun aurinko tuottaa.",
+    },
+    estimatedBadge: "Arvioitu",
       estimatedNote:
         "Tämä on arvioitu jakauma valintasi perusteella – ei todellinen kulutuksesi. Se korvataan, jos syötät kuukausiarvot tai lataat tiedot.",
       defaultNote:
