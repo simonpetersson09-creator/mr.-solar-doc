@@ -1,22 +1,50 @@
 import { describe, expect, it } from "vitest";
 
-import { LANGUAGES } from "./languages";
-import { resources } from "./index";
+import { sv } from "./locales/sv";
+import { en } from "./locales/en";
+import { fi } from "./locales/fi";
+import { da } from "./locales/da";
+import { de } from "./locales/de";
+import { cs } from "./locales/cs";
+import { pl } from "./locales/pl";
+import { sk } from "./locales/sk";
+import { sl } from "./locales/sl";
+import { et } from "./locales/et";
+import { lv } from "./locales/lv";
+import { lt } from "./locales/lt";
+import { fr } from "./locales/fr";
+import { it as itLocale } from "./locales/it";
+import { es } from "./locales/es";
+import { pt } from "./locales/pt";
+import { nl } from "./locales/nl";
+import { no } from "./locales/no";
+import { ro } from "./locales/ro";
+import { el } from "./locales/el";
+import { hu } from "./locales/hu";
+import { hr } from "./locales/hr";
+import { sr } from "./locales/sr";
+import { bg } from "./locales/bg";
+import { uk } from "./locales/uk";
+import { tr } from "./locales/tr";
+import { hi } from "./locales/hi";
+import { id } from "./locales/id";
+import { he } from "./locales/he";
+
+const LOCALES: Record<string, unknown> = {
+  sv, en, fi, da, de, cs, pl, sk, sl, et, lv, lt, fr, it: itLocale,
+  es, pt, nl, no, ro, el, hu, hr, sr, bg, uk, tr, hi, id, he,
+};
 
 /**
  * The load-profile question is read as `result.loadProfile*`. A locale that
- * puts the keys anywhere else renders raw key names in the UI, which plain
- * shape-completeness checks against English cannot catch when English is wrong
- * too. Pin the location explicitly.
+ * places the keys anywhere else renders raw key names in the UI — a
+ * shape-completeness check against English cannot catch it when English has
+ * them in the wrong place too, so pin the exact location here.
  */
 describe("load profile translation keys", () => {
-  for (const language of LANGUAGES) {
-    it(`${language.code} exposes result.loadProfile*`, () => {
-      const bundle = (resources as Record<string, { translation: Record<string, unknown> }>)[
-        language.code
-      ];
-      expect(bundle).toBeTruthy();
-      const result = bundle!.translation["result"] as Record<string, unknown> | undefined;
+  for (const [language, bundle] of Object.entries(LOCALES)) {
+    it(`${language} exposes result.loadProfile*`, () => {
+      const result = (bundle as Record<string, Record<string, unknown>>)["result"];
       expect(result).toBeTruthy();
       for (const key of [
         "loadProfileQuestion",
