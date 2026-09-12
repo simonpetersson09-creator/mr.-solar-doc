@@ -28,6 +28,7 @@ export interface PresentationValues {
    * model-dependent, not a certain limit for the real household.
    */
   selfConsumptionCapIsModelled: boolean;
+  estimatedMonthlyDeviation?: boolean;
   /** Annual consumption, kWh (rounded). */
   annualConsumptionKwh: number;
   /**
@@ -57,6 +58,7 @@ export function buildPresentationValues(params: {
   capBinding?: SelfConsumptionCapBinding;
   /** True when the monthly consumption behind a monthly cap is a generated profile. */
   monthlyConsumptionIsEstimated?: boolean;
+  estimatedMonthlyDeviation?: boolean;
 }): PresentationValues {
   const selfConsumptionValue = Math.round(params.selfConsumptionValue);
   const exportValue = Math.round(params.exportValue);
@@ -97,6 +99,7 @@ export function buildPresentationValues(params: {
     selfConsumptionCapBinding: params.capBinding ?? "none",
     selfConsumptionCapIsModelled:
       params.capBinding === "monthly-overlap" && params.monthlyConsumptionIsEstimated === true,
+    estimatedMonthlyDeviation: params.estimatedMonthlyDeviation === true,
     annualConsumptionKwh: Math.round(params.annualConsumptionKwh),
     productionCoveragePercent:
       params.annualConsumptionKwh > 0

@@ -282,6 +282,8 @@ export const pt = {
     title: "O seu cálculo",
     consumptionSourceLabel: "Origem dos dados de consumo",
     consumptionSource: {
+      "partial-profile": "Os meses são total ou parcialmente estimados, ou a origem é incerta. Não são considerados uma série completa de leituras mensais próprias.",
+      unknown: "Os meses são total ou parcialmente estimados, ou a origem é incerta. Não são considerados uma série completa de leituras mensais próprias.",
       imported: "Dados de consumo importados",
       "monthly-manual": "Valores mensais introduzidos",
       "annual-profile": "Estimado a partir do consumo anual indicado",
@@ -510,6 +512,9 @@ export const pt = {
       "O autoconsumo é um pressuposto baseado na quota selecionada e pode ser ajustado manualmente.",
     selfConsumptionInfo:
       "O autoconsumo real depende de quando a eletricidade é produzida e de quando o agregado familiar a utiliza.",
+    selfConsumptionEstimatedDeviationNote: "O autoconsumo manual supera a sobreposição no perfil mensal estimado. É um aviso, não um limite mensal. Os limites anuais continuam a aplicar-se.",
+    monthlyOriginEstimatedNote: "Os meses são total ou parcialmente estimados, ou a origem é incerta. Não são considerados uma série completa de leituras mensais próprias.",
+    selfConsumptionAnnualAndEstimatedNote: "O autoconsumo foi limitado porque o valor calculado excederia de outra forma o seu consumo elétrico total. Taxa de autoconsumo efetiva: {{effective}} %. O autoconsumo manual supera a sobreposição no perfil mensal estimado. É um aviso, não um limite mensal. Os limites anuais continuam a aplicar-se.",
     selfConsumptionCappedNote:
       "O autoconsumo foi limitado porque o valor calculado excederia de outra forma o seu consumo elétrico total. Taxa de autoconsumo efetiva: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

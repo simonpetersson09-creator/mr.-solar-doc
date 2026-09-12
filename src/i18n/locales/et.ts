@@ -269,6 +269,8 @@ export const et = {
     title: "Sinu arvutus",
     consumptionSourceLabel: "Tarbimisandmete allikas",
     consumptionSource: {
+      "partial-profile": "Kuud on täielikult või osaliselt hinnangulised või nende päritolu on ebakindel. Neid ei käsitleta täieliku oma kuunäitude sarjana.",
+      unknown: "Kuud on täielikult või osaliselt hinnangulised või nende päritolu on ebakindel. Neid ei käsitleta täieliku oma kuunäitude sarjana.",
       imported: "Imporditud tarbimisandmed",
       "monthly-manual": "Sisestatud kuised väärtused",
       "annual-profile": "Hinnanguline määratud aastatarbimise põhjal",
@@ -465,6 +467,9 @@ export const et = {
       "Omatarbimine on eeldus valitud osakaalu põhjal ja seda saab käsitsi muuta.",
     selfConsumptionInfo:
       "Tegelik omatarbimine sõltub sellest, millal elekter toodetakse ja millal leibkond seda kasutab.",
+    selfConsumptionEstimatedDeviationNote: "Käsitsi määratud omatarbimine ületab hinnangulise kuuprofiili kattuvuse. See on teavitus, mitte kuupiirang. Aastapiirangud kehtivad endiselt.",
+    monthlyOriginEstimatedNote: "Kuud on täielikult või osaliselt hinnangulised või nende päritolu on ebakindel. Neid ei käsitleta täieliku oma kuunäitude sarjana.",
+    selfConsumptionAnnualAndEstimatedNote: "Omatarbimist on piiratud, sest arvutatud kogus ületaks muidu teie kogu elektritarbimise. Tegelik omatarbimise määr: {{effective}} %. Käsitsi määratud omatarbimine ületab hinnangulise kuuprofiili kattuvuse. See on teavitus, mitte kuupiirang. Aastapiirangud kehtivad endiselt.",
     selfConsumptionCappedNote:
       "Omatarbimist on piiratud, sest arvutatud kogus ületaks muidu teie kogu elektritarbimise. Tegelik omatarbimise määr: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

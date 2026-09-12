@@ -268,6 +268,8 @@ export const cs = {
     title: "Váš výpočet",
     consumptionSourceLabel: "Zdroj dat spotřeby",
     consumptionSource: {
+      "partial-profile": "Měsíce jsou zcela nebo částečně odhadnuté nebo je jejich původ nejistý. Nejde o úplnou řadu vlastních měsíčních odečtů.",
+      unknown: "Měsíce jsou zcela nebo částečně odhadnuté nebo je jejich původ nejistý. Nejde o úplnou řadu vlastních měsíčních odečtů.",
       imported: "Importovaná data spotřeby",
       "monthly-manual": "Zadané měsíční hodnoty",
       "annual-profile": "Odhadnuto z uvedené roční spotřeby",
@@ -462,6 +464,9 @@ export const cs = {
       "Vlastní spotřeba je předpoklad založený na zvoleném podílu a lze ji upravit ručně.",
     selfConsumptionInfo:
       "Skutečná vlastní spotřeba závisí na tom, kdy se elektřina vyrábí a kdy ji domácnost používá.",
+    selfConsumptionEstimatedDeviationNote: "Ručně zadaná vlastní spotřeba přesahuje překryv v odhadovaném měsíčním profilu. Jde o upozornění, ne měsíční limit. Roční limity nadále platí.",
+    monthlyOriginEstimatedNote: "Měsíce jsou zcela nebo částečně odhadnuté nebo je jejich původ nejistý. Nejde o úplnou řadu vlastních měsíčních odečtů.",
+    selfConsumptionAnnualAndEstimatedNote: "Vlastní spotřeba byla omezena, protože vypočtené množství by jinak překročilo vaši celkovou spotřebu elektřiny. Efektivní míra vlastní spotřeby: {{effective}} %. Ručně zadaná vlastní spotřeba přesahuje překryv v odhadovaném měsíčním profilu. Jde o upozornění, ne měsíční limit. Roční limity nadále platí.",
     selfConsumptionCappedNote:
       "Vlastní spotřeba byla omezena, protože vypočtené množství by jinak překročilo vaši celkovou spotřebu elektřiny. Efektivní míra vlastní spotřeby: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

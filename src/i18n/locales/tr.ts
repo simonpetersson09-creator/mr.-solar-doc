@@ -283,6 +283,8 @@ export const tr = {
     title: "Hesaplamanız",
     consumptionSourceLabel: "Tüketim verisi kaynağı",
     consumptionSource: {
+      "partial-profile": "Aylar tamamen veya kısmen tahminidir ya da kaynağı belirsizdir. Kendi aylık ölçümlerinizin eksiksiz bir dizisi olarak değerlendirilmez.",
+      unknown: "Aylar tamamen veya kısmen tahminidir ya da kaynağı belirsizdir. Kendi aylık ölçümlerinizin eksiksiz bir dizisi olarak değerlendirilmez.",
       imported: "İçe aktarılan tüketim verisi",
       "monthly-manual": "Girilen aylık değerler",
       "annual-profile": "Belirtilen yıllık tüketimden tahmin edildi",
@@ -512,6 +514,9 @@ export const tr = {
       "Öz tüketim, seçilen orana dayalı bir varsayımdır ve manuel olarak ayarlanabilir.",
     selfConsumptionInfo:
       "Gerçek öz tüketim, elektriğin ne zaman üretildiğine ve hane tarafından ne zaman kullanıldığına bağlıdır.",
+    selfConsumptionEstimatedDeviationNote: "Elle girilen öz tüketim, tahmini aylık profildeki örtüşmeyi aşar. Bu bir bilgilendirmedir, aylık sınır değildir. Yıllık sınırlar geçerliliğini korur.",
+    monthlyOriginEstimatedNote: "Aylar tamamen veya kısmen tahminidir ya da kaynağı belirsizdir. Kendi aylık ölçümlerinizin eksiksiz bir dizisi olarak değerlendirilmez.",
+    selfConsumptionAnnualAndEstimatedNote: "Hesaplanan miktar aksi takdirde toplam elektrik kullanımınızı aşacağından öz tüketim sınırlandırılmıştır. Efektif öz tüketim oranı: %{{effective}}. Elle girilen öz tüketim, tahmini aylık profildeki örtüşmeyi aşar. Bu bir bilgilendirmedir, aylık sınır değildir. Yıllık sınırlar geçerliliğini korur.",
     selfConsumptionCappedNote:
       "Hesaplanan miktar aksi takdirde toplam elektrik kullanımınızı aşacağından öz tüketim sınırlandırılmıştır. Efektif öz tüketim oranı: %{{effective}}.",
     selfConsumptionCappedMonthlyNote:

@@ -6,6 +6,7 @@ import { useCalculationStore } from "@/state/calculation-store";
 import { getMarketConfig } from "@/config/markets";
 import { isDevUnlock } from "@/lib/dev-unlock";
 import type { CalculationSnapshot } from "@/lib/calculation-snapshot";
+import { readCalculationSnapshot } from "@/lib/calculation-snapshot";
 import type { CalculationResult } from "@/lib/calc/types";
 
 /**
@@ -51,7 +52,7 @@ export function useUnlockedCalculation(): {
   // device has an active, server-verified Premium subscription, or the dev
   // bypass is active (local development only).
   const paid = devUnlock || query.data?.status === "paid" || premium.active;
-  const snapshot = paid ? (stored?.snapshot ?? null) : null;
+  const snapshot = paid && stored?.snapshot ? readCalculationSnapshot(stored.snapshot) : null;
   const result = snapshot?.result ?? null;
 
   return {

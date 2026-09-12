@@ -13,6 +13,7 @@ import {
   SOLAR_SEASON_MONTH_INDEXES,
 } from "@/config/constants";
 import { analyzeConsumptionProfile, determineTargetDcAcRange } from "./consumption-profile";
+import { isEstimatedConsumption } from "@/lib/consumption-provenance";
 import { selectRecommendedSystem } from "./candidate-selection";
 import { buildPresentationValues } from "./presentation";
 import { calculateEconomicValue, nonNegative } from "./electricity-price";
@@ -286,13 +287,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     profileClass: loadProfileClass,
   });
 
-  /**
-   * Month-by-month physical bound: without storage no energy moves between
-   * months, so Σ min(production_m, consumption_m) limits the self-consumed
-   * energy for EVERY share — including a manual override. Scaled with the
-   * year's production so it stays consistent after degradation.
-   */
+  // Estimated/unknown months remain useful in automatic mode, but are only
+  // advisory for a manual share. The same policy applies in every lifetime year.
+  const monthlyIsEstimated = input.consumption.isEstimated === true ||
+    isEstimatedConsumption(input.consumption.inputType);
+  const advisoryOnly = selfConsumptionEstimate.source === "user-override" && monthlyIsEstimated;
   const monthlyOverlapKwhForProduction = (productionKwh: number): number | null => {
+    if (advisoryOnly) return null;
     const monthly = input.consumption.monthlyKwh ?? null;
     if (!monthly) return null;
     const scale = annualProductionKwh > 0 ? productionKwh / annualProductionKwh : 1;
@@ -367,7 +368,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   if (input.resource.tiltAssumed) notes.push("tilt-assumed");
   if (input.consumption.monthlyKwh) {
     notes.push(
-      input.consumption.isEstimated
+      monthlyIsEstimated
         ? "monthly-consumption-estimated"
         : "monthly-consumption-provided",
     );
@@ -385,7 +386,11 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     selfConsumptionValue: economics.selfConsumptionValue,
     exportValue: economics.exportValue,
     capBinding: split.capBinding,
-    monthlyConsumptionIsEstimated: input.consumption.isEstimated === true,
+    monthlyConsumptionIsEstimated: monthlyIsEstimated,
+    estimatedMonthlyDeviation: advisoryOnly && (() => {
+      const overlap = monthlyOverlapCapKwh(monthlyProductionKwh, input.consumption.monthlyKwh);
+      return overlap !== null && split.selfConsumptionKwh > overlap + 1e-9;
+    })(),
   });
 
   // Year-by-year economics (degradation + electricity price scenario).
@@ -453,7 +458,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     recommendationReason,
     monthlyProductionKwh,
     annualProductionKwh,
-    consumption: input.consumption,
+    consumption: { ...input.consumption, isEstimated: monthlyIsEstimated },
     selfConsumption: { share: split.selfConsumptionShare, kwh: split.selfConsumptionKwh },
     exported: { share: split.exportShare, kwh: split.exportedKwh },
     ...selfConsumptionSummary,

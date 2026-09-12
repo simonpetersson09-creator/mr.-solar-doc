@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { isEstimatedConsumption } from "@/lib/consumption-provenance";
 import { runCalculation } from "@/lib/calc/engine";
 import type { CalculationOutcome, CalculationResult } from "@/lib/calc/types";
 import type { CalculationIssue } from "@/lib/calc/validation";
@@ -88,7 +89,7 @@ export function useCalculation(): {
         monthlyKwh: monthlyConsumptionKwh,
         inputType: consumptionInputType,
         shape: consumptionShape,
-        isEstimated: consumptionInputType === "annual-profile",
+        isEstimated: isEstimatedConsumption(consumptionInputType),
       },
       electrical: {
         mainFuseAmp,

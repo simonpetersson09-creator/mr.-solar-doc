@@ -10,10 +10,14 @@ import type { PresentationValues } from "@/lib/calc/presentation";
 export function selfConsumptionCapNoteKey(
   presentation: Pick<
     PresentationValues,
-    "selfConsumptionCapped" | "selfConsumptionCapBinding" | "selfConsumptionCapIsModelled"
+    "selfConsumptionCapped" | "selfConsumptionCapBinding" | "selfConsumptionCapIsModelled" | "estimatedMonthlyDeviation"
   >,
 ): string | null {
-  if (!presentation.selfConsumptionCapped) return null;
+  if (!presentation.selfConsumptionCapped) return presentation.estimatedMonthlyDeviation
+    ? "result.selfConsumptionEstimatedDeviationNote" : null;
+  if (presentation.estimatedMonthlyDeviation && presentation.selfConsumptionCapBinding === "annual-consumption") {
+    return "result.selfConsumptionAnnualAndEstimatedNote";
+  }
   if (presentation.selfConsumptionCapBinding === "monthly-overlap") {
     return presentation.selfConsumptionCapIsModelled
       ? "result.selfConsumptionCappedMonthlyModelledNote"

@@ -282,6 +282,8 @@ export const sr = {
     title: "Ваш прорачун",
     consumptionSourceLabel: "Извор података о потрошњи",
     consumptionSource: {
+      "partial-profile": "Meseci su potpuno ili delimično procenjeni ili je njihovo poreklo neizvesno. Ne smatraju se potpunim nizom sopstvenih mesečnih očitavanja.",
+      unknown: "Meseci su potpuno ili delimično procenjeni ili je njihovo poreklo neizvesno. Ne smatraju se potpunim nizom sopstvenih mesečnih očitavanja.",
       imported: "Увезени подаци о потрошњи",
       "monthly-manual": "Унете месечне вредности",
       "annual-profile": "Процењено на основу наведене годишње потрошње",
@@ -507,6 +509,9 @@ export const sr = {
       "Самопотрошња је претпоставка заснована на изабраном уделу и може се ручно прилагодити.",
     selfConsumptionInfo:
       "Стварна самопотрошња зависи од тога када се струја производи и када је домаћинство користи.",
+    selfConsumptionEstimatedDeviationNote: "Ručno uneta sopstvena potrošnja premašuje preklapanje u procenjenom mesečnom profilu. Ovo je obaveštenje, ne mesečno ograničenje. Godišnja ograničenja i dalje važe.",
+    monthlyOriginEstimatedNote: "Meseci su potpuno ili delimično procenjeni ili je njihovo poreklo neizvesno. Ne smatraju se potpunim nizom sopstvenih mesečnih očitavanja.",
+    selfConsumptionAnnualAndEstimatedNote: "Самопотрошња је ограничена јер би израчуната количина иначе премашила вашу укупну потрошњу струје. Ефективна стопа самопотрошње: {{effective}} %. Ručno uneta sopstvena potrošnja premašuje preklapanje u procenjenom mesečnom profilu. Ovo je obaveštenje, ne mesečno ograničenje. Godišnja ograničenja i dalje važe.",
     selfConsumptionCappedNote:
       "Самопотрошња је ограничена јер би израчуната количина иначе премашила вашу укупну потрошњу струје. Ефективна стопа самопотрошње: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

@@ -267,6 +267,8 @@ export const fi = {
     title: "Laskelmasi",
     consumptionSourceLabel: "Kulutustietojen lähde",
     consumptionSource: {
+      "partial-profile": "Kuukaudet ovat kokonaan tai osittain arvioituja tai niiden alkuperä on epävarma. Niitä ei käsitellä täydellisenä omien kuukausimittausten sarjana.",
+      unknown: "Kuukaudet ovat kokonaan tai osittain arvioituja tai niiden alkuperä on epävarma. Niitä ei käsitellä täydellisenä omien kuukausimittausten sarjana.",
       imported: "Tuodut kulutustiedot",
       "monthly-manual": "Syötetyt kuukausiarvot",
       "annual-profile": "Arvioitu ilmoitetusta vuosikulutuksesta",
@@ -461,6 +463,9 @@ export const fi = {
       "Oma käyttö on oletus valitun osuuden perusteella ja sitä voi säätää käsin.",
     selfConsumptionInfo:
       "Todellinen oma käyttö riippuu siitä, milloin sähköä tuotetaan ja milloin taloudessa käytetään sähköä.",
+    selfConsumptionEstimatedDeviationNote: "Manuaalinen omakäyttösi ylittää arvioidun kuukausiprofiilin päällekkäisyyden. Tämä on huomautus, ei kuukausiraja. Vuosirajat ovat edelleen voimassa.",
+    monthlyOriginEstimatedNote: "Kuukaudet ovat kokonaan tai osittain arvioituja tai niiden alkuperä on epävarma. Niitä ei käsitellä täydellisenä omien kuukausimittausten sarjana.",
+    selfConsumptionAnnualAndEstimatedNote: "Omaa käyttöä on rajoitettu, koska laskettu määrä ylittäisi muuten koko sähkönkulutuksesi. Tehokas oman käytön aste: {{effective}} %. Manuaalinen omakäyttösi ylittää arvioidun kuukausiprofiilin päällekkäisyyden. Tämä on huomautus, ei kuukausiraja. Vuosirajat ovat edelleen voimassa.",
     selfConsumptionCappedNote:
       "Omaa käyttöä on rajoitettu, koska laskettu määrä ylittäisi muuten koko sähkönkulutuksesi. Tehokas oman käytön aste: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

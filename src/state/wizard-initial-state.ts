@@ -21,7 +21,7 @@ import type { ConnectionCapacity } from "@/config/connection-capacity";
  * Persisted schema version. Bump whenever the shape or the meaning of a
  * persisted field changes, and add the matching step in `wizard-migrations`.
  */
-export const WIZARD_STORAGE_VERSION = 5;
+export const WIZARD_STORAGE_VERSION = 6;
 
 import type { LoadProfileClass } from "@/lib/calc/self-consumption";
 

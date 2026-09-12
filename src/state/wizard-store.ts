@@ -248,7 +248,7 @@ export const useWizardStore = create<WizardState>()(
         set({
           annualConsumptionKwh: annualKwh,
           monthlyConsumptionKwh: monthlyKwh,
-          consumptionInputType: inputType ?? (monthlyKwh ? "monthly-manual" : "annual-only"),
+          consumptionInputType: inputType ?? (monthlyKwh ? "unknown" : "annual-only"),
           consumptionShape: shape ?? null,
         }),
       setMainFuse: (amp) =>

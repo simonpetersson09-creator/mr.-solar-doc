@@ -279,6 +279,8 @@ export const hu = {
     title: "Az Ön számítása",
     consumptionSourceLabel: "Fogyasztási adat forrása",
     consumptionSource: {
+      "partial-profile": "A hónapok teljesen vagy részben becsültek, vagy az eredetük bizonytalan. Nem tekinthetők saját havi mérések teljes sorozatának.",
+      unknown: "A hónapok teljesen vagy részben becsültek, vagy az eredetük bizonytalan. Nem tekinthetők saját havi mérések teljes sorozatának.",
       imported: "Importált fogyasztási adat",
       "monthly-manual": "Kézzel megadott havi értékek",
       "annual-profile": "A megadott éves fogyasztásból becsülve",
@@ -512,6 +514,9 @@ export const hu = {
       "A saját fogyasztás a kiválasztott arányon alapuló feltételezés, és kézzel módosítható.",
     selfConsumptionInfo:
       "A tényleges saját fogyasztás attól függ, mikor termelődik a villamos energia és mikor használja a háztartás.",
+    selfConsumptionEstimatedDeviationNote: "A kézi önfogyasztás meghaladja a becsült havi profil átfedését. Ez tájékoztatás, nem havi korlát. Az éves korlátok továbbra is érvényesek.",
+    monthlyOriginEstimatedNote: "A hónapok teljesen vagy részben becsültek, vagy az eredetük bizonytalan. Nem tekinthetők saját havi mérések teljes sorozatának.",
+    selfConsumptionAnnualAndEstimatedNote: "A saját fogyasztást korlátoztuk, mert a számított érték egyébként meghaladná az Ön teljes villamosenergia-fogyasztását. Tényleges saját fogyasztási arány: {{effective}} %. A kézi önfogyasztás meghaladja a becsült havi profil átfedését. Ez tájékoztatás, nem havi korlát. Az éves korlátok továbbra is érvényesek.",
     selfConsumptionCappedNote:
       "A saját fogyasztást korlátoztuk, mert a számított érték egyébként meghaladná az Ön teljes villamosenergia-fogyasztását. Tényleges saját fogyasztási arány: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

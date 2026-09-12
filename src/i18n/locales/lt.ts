@@ -271,6 +271,8 @@ export const lt = {
     title: "Jūsų apskaičiavimas",
     consumptionSourceLabel: "Suvartojimo duomenų šaltinis",
     consumptionSource: {
+      "partial-profile": "Mėnesiai yra visiškai ar iš dalies apskaičiuoti arba jų kilmė neaiški. Jie nelaikomi visu jūsų mėnesinių rodmenų rinkiniu.",
+      unknown: "Mėnesiai yra visiškai ar iš dalies apskaičiuoti arba jų kilmė neaiški. Jie nelaikomi visu jūsų mėnesinių rodmenų rinkiniu.",
       imported: "Importuoti suvartojimo duomenys",
       "monthly-manual": "Įvestos mėnesio vertės",
       "annual-profile": "Įvertinta iš nurodyto metinio suvartojimo",
@@ -468,6 +470,9 @@ export const lt = {
       "Savo reikmėms suvartojama dalis yra prielaida pagal pasirinktą dalį ir ją galima koreguoti rankiniu būdu.",
     selfConsumptionInfo:
       "Tikrasis suvartojimas savo reikmėms priklauso nuo to, kada elektra pagaminama ir kada namų ūkis ją naudoja.",
+    selfConsumptionEstimatedDeviationNote: "Rankiniu būdu nurodytas savasis vartojimas viršija sutapimą apskaičiuotame mėnesiniame profilyje. Tai informacija, ne mėnesio riba. Metinės ribos tebegalioja.",
+    monthlyOriginEstimatedNote: "Mėnesiai yra visiškai ar iš dalies apskaičiuoti arba jų kilmė neaiški. Jie nelaikomi visu jūsų mėnesinių rodmenų rinkiniu.",
+    selfConsumptionAnnualAndEstimatedNote: "Suvartojimas savo reikmėms buvo apribotas, nes apskaičiuotas kiekis kitaip viršytų visą jūsų elektros suvartojimą. Faktinė dalis: {{effective}} %. Rankiniu būdu nurodytas savasis vartojimas viršija sutapimą apskaičiuotame mėnesiniame profilyje. Tai informacija, ne mėnesio riba. Metinės ribos tebegalioja.",
     selfConsumptionCappedNote:
       "Suvartojimas savo reikmėms buvo apribotas, nes apskaičiuotas kiekis kitaip viršytų visą jūsų elektros suvartojimą. Faktinė dalis: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

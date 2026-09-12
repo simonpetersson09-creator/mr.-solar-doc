@@ -277,6 +277,8 @@ export const fr = {
     title: "Votre calcul",
     consumptionSourceLabel: "Source des données de consommation",
     consumptionSource: {
+      "partial-profile": "Ces mois sont entièrement ou partiellement estimés, ou leur origine est incertaine. Ils ne constituent pas une série complète de vos propres relevés mensuels.",
+      unknown: "Ces mois sont entièrement ou partiellement estimés, ou leur origine est incertaine. Ils ne constituent pas une série complète de vos propres relevés mensuels.",
       imported: "Données de consommation importées",
       "monthly-manual": "Valeurs mensuelles saisies",
       "annual-profile": "Estimé à partir de la consommation annuelle indiquée",
@@ -477,6 +479,9 @@ export const fr = {
       "L'autoconsommation est une hypothèse basée sur la part choisie et peut être ajustée manuellement.",
     selfConsumptionInfo:
       "L'autoconsommation réelle dépend du moment où l'électricité est produite et du moment où le ménage l'utilise.",
+    selfConsumptionEstimatedDeviationNote: "Votre autoconsommation manuelle dépasse le chevauchement du profil mensuel estimé. Il s’agit d’une indication, pas d’une limite mensuelle. Les limites annuelles restent applicables.",
+    monthlyOriginEstimatedNote: "Ces mois sont entièrement ou partiellement estimés, ou leur origine est incertaine. Ils ne constituent pas une série complète de vos propres relevés mensuels.",
+    selfConsumptionAnnualAndEstimatedNote: "L'autoconsommation a été limitée car la quantité calculée dépasserait sinon votre consommation totale d'électricité. Taux d'autoconsommation effectif : {{effective}} %. Votre autoconsommation manuelle dépasse le chevauchement du profil mensuel estimé. Il s’agit d’une indication, pas d’une limite mensuelle. Les limites annuelles restent applicables.",
     selfConsumptionCappedNote:
       "L'autoconsommation a été limitée car la quantité calculée dépasserait sinon votre consommation totale d'électricité. Taux d'autoconsommation effectif : {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

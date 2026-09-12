@@ -266,6 +266,8 @@ export const sl = {
     title: "Vaš izračun",
     consumptionSourceLabel: "Vir podatkov o porabi",
     consumptionSource: {
+      "partial-profile": "Meseci so v celoti ali delno ocenjeni ali pa je njihov izvor negotov. Ne štejejo za popoln niz lastnih mesečnih odčitkov.",
+      unknown: "Meseci so v celoti ali delno ocenjeni ali pa je njihov izvor negotov. Ne štejejo za popoln niz lastnih mesečnih odčitkov.",
       imported: "Uvoženi podatki o porabi",
       "monthly-manual": "Vnesene mesečne vrednosti",
       "annual-profile": "Ocenjeno iz navedene letne porabe",
@@ -461,6 +463,9 @@ export const sl = {
       "Lastna raba je predpostavka na podlagi izbranega deleža in jo lahko ročno prilagodite.",
     selfConsumptionInfo:
       "Dejanska lastna raba je odvisna od tega, kdaj se elektrika proizvaja in kdaj jo gospodinjstvo porabi.",
+    selfConsumptionEstimatedDeviationNote: "Ročno vnesena lastna poraba presega prekrivanje v ocenjenem mesečnem profilu. To je obvestilo, ne mesečna omejitev. Letne omejitve še vedno veljajo.",
+    monthlyOriginEstimatedNote: "Meseci so v celoti ali delno ocenjeni ali pa je njihov izvor negotov. Ne štejejo za popoln niz lastnih mesečnih odčitkov.",
+    selfConsumptionAnnualAndEstimatedNote: "Lastna raba je bila omejena, ker bi izračunana količina sicer presegla vašo celotno porabo elektrike. Učinkovita stopnja lastne rabe: {{effective}} %. Ročno vnesena lastna poraba presega prekrivanje v ocenjenem mesečnem profilu. To je obvestilo, ne mesečna omejitev. Letne omejitve še vedno veljajo.",
     selfConsumptionCappedNote:
       "Lastna raba je bila omejena, ker bi izračunana količina sicer presegla vašo celotno porabo elektrike. Učinkovita stopnja lastne rabe: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:
