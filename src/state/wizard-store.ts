@@ -144,6 +144,8 @@ export interface WizardState {
     frequencyHz?: number;
   }) => void;
   setSelfConsumptionShare: (share: number) => void;
+  /** Drops the manual override so the share is modelled from current inputs again. */
+  resetSelfConsumptionShare: () => void;
   setLoadProfileClass: (profileClass: LoadProfileClass) => void;
   setSelfConsumedValue: (value: number | null) => void;
   setExportValue: (value: number | null) => void;
