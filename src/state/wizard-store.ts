@@ -85,6 +85,8 @@ export interface WizardState {
   selfConsumptionShare: number;
   /** True once the user actively adjusted the share, regardless of its value. */
   selfConsumptionShareIsUserSet: boolean;
+  /** When the household mainly uses electricity (standard adjustment only). */
+  loadProfileClass: LoadProfileClass;
   selfConsumedValuePerKwh: number | null;
   exportValuePerKwh: number | null;
   acceptedPaybackYears: number;
@@ -141,6 +143,7 @@ export interface WizardState {
     frequencyHz?: number;
   }) => void;
   setSelfConsumptionShare: (share: number) => void;
+  setLoadProfileClass: (profileClass: LoadProfileClass) => void;
   setSelfConsumedValue: (value: number | null) => void;
   setExportValue: (value: number | null) => void;
   setAcceptedPaybackYears: (years: number) => void;
@@ -367,6 +370,7 @@ export const useWizardStore = create<WizardState>()(
 
       setSelfConsumptionShare: (share) =>
         set({ selfConsumptionShare: share, selfConsumptionShareIsUserSet: true }),
+      setLoadProfileClass: (profileClass) => set({ loadProfileClass: profileClass }),
       setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
       setExportValue: (value) => set({ exportValuePerKwh: value }),
       setAcceptedPaybackYears: (years) => set({ acceptedPaybackYears: years }),
@@ -425,6 +429,7 @@ export const useWizardStore = create<WizardState>()(
         gridConfirmed,
         selfConsumptionShare,
         selfConsumptionShareIsUserSet,
+        loadProfileClass,
         selfConsumedValuePerKwh,
         exportValuePerKwh,
         acceptedPaybackYears,
@@ -455,6 +460,7 @@ export const useWizardStore = create<WizardState>()(
         gridConfirmed,
         selfConsumptionShare,
         selfConsumptionShareIsUserSet,
+        loadProfileClass,
         selfConsumedValuePerKwh,
         exportValuePerKwh,
         acceptedPaybackYears,
