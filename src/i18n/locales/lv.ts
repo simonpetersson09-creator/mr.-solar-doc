@@ -111,20 +111,7 @@ export const lv = {
       question: "Kā parasti sadalās jūsu elektroenerģijas patēriņš visa gada garumā?",
       help: "Mēs izmantojam jūsu atbildi, lai aplēstu gada patēriņa sadalījumu pa mēnešiem.",
       previewTitle: "Jūsu aplēstais patēriņa profils",
-      loadProfileQuestion: "Kad patērējat visvairāk elektrības?",
-    loadProfileHelp:
-      "Neesat pārliecināts? Izvēlieties jauktu. Izvēle palīdz novērtēt, cik daudz saules elektrības izmantojat tieši.",
-    loadProfileNote: "Standarta pieņēmums, nevis izmērīts patēriņš vai stundu simulācija.",
-    loadProfileLabel: "Patēriņa profils",
-    loadProfile: {
-      evening: "Rīts un vakars",
-      eveningHelp: "Dienā parasti nav mājās.",
-      mixed: "Jaukts",
-      mixedHelp: "Patēriņš sadalīts dienas laikā.",
-      daytime: "Dienas laikā",
-      daytimeHelp: "Liels patēriņš, kamēr saule ražo.",
-    },
-    estimatedBadge: "Aplēsts",
+      estimatedBadge: "Aplēsts",
       estimatedNote:
         "Šis ir aplēstais sadalījums, balstoties uz jūsu izvēli – nevis jūsu faktiskais patēriņš. Tas tiks aizstāts, ja ievadīsiet mēneša vērtības vai augšupielādēsiet datus.",
       defaultNote:
@@ -256,6 +243,19 @@ export const lv = {
     confirmedGrid: "Tīkla dati apstiprināti",
   },
   result: {
+    loadProfileQuestion: "Kad patērējat visvairāk elektrības?",
+    loadProfileHelp:
+      "Neesat pārliecināts? Izvēlieties jauktu. Izvēle palīdz novērtēt, cik daudz saules elektrības izmantojat tieši.",
+    loadProfileNote: "Standarta pieņēmums, nevis izmērīts patēriņš vai stundu simulācija.",
+    loadProfileLabel: "Patēriņa profils",
+    loadProfile: {
+      evening: "Rīts un vakars",
+      eveningHelp: "Dienā parasti nav mājās.",
+      mixed: "Jaukts",
+      mixedHelp: "Patēriņš sadalīts dienas laikā.",
+      daytime: "Dienas laikā",
+      daytimeHelp: "Liels patēriņš, kamēr saule ražo.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:

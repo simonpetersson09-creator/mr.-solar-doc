@@ -127,20 +127,7 @@ export const nl = {
       question: "Hoe is je stroomverbruik meestal verdeeld over het jaar?",
       help: "We gebruiken je antwoord om een maandverdeling van je jaarverbruik te schatten.",
       previewTitle: "Je geschatte verbruiksprofiel",
-      loadProfileQuestion: "Wanneer gebruikt u de meeste stroom?",
-    loadProfileHelp:
-      "Niet zeker? Kies gemengd. Uw keuze helpt ons te schatten hoeveel zonnestroom u direct gebruikt.",
-    loadProfileNote: "Standaardaanname, geen gemeten verbruik of uursimulatie.",
-    loadProfileLabel: "Verbruikspatroon",
-    loadProfile: {
-      evening: "Ochtend en avond",
-      eveningHelp: "Meestal weg tijdens de dag.",
-      mixed: "Gemengd",
-      mixedHelp: "Verbruik verspreid over de dag.",
-      daytime: "Overdag",
-      daytimeHelp: "Veel verbruik terwijl de zon produceert.",
-    },
-    estimatedBadge: "Geschat",
+      estimatedBadge: "Geschat",
       estimatedNote:
         "Dit is een geschatte verdeling op basis van je keuze – niet je werkelijke verbruik. Deze wordt vervangen zodra je maandwaarden invult of gegevens uploadt.",
       defaultNote:
@@ -272,6 +259,19 @@ export const nl = {
     invalid: "Vul een hoofdzekering in tussen 6 en 400 A.",
   },
   result: {
+    loadProfileQuestion: "Wanneer gebruikt u de meeste stroom?",
+    loadProfileHelp:
+      "Niet zeker? Kies gemengd. Uw keuze helpt ons te schatten hoeveel zonnestroom u direct gebruikt.",
+    loadProfileNote: "Standaardaanname, geen gemeten verbruik of uursimulatie.",
+    loadProfileLabel: "Verbruikspatroon",
+    loadProfile: {
+      evening: "Ochtend en avond",
+      eveningHelp: "Meestal weg tijdens de dag.",
+      mixed: "Gemengd",
+      mixedHelp: "Verbruik verspreid over de dag.",
+      daytime: "Overdag",
+      daytimeHelp: "Veel verbruik terwijl de zon produceert.",
+    },
     connection: {
       contractedKva: "Gecontracteerd vermogen (kVA)",
       contractedKw: "Gecontracteerd vermogen (kW)",

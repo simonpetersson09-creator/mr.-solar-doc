@@ -110,20 +110,7 @@ export const fi = {
       question: "Miten sähkönkulutuksesi jakaantuu yleensä vuoden aikana?",
       help: "Käytämme vastaustasi arvioidaksemme vuotuisen kulutuksesi kuukausijakauman.",
       previewTitle: "Arvioitu kulutusprofiilisi",
-      loadProfileQuestion: "Milloin käytät eniten sähköä?",
-    loadProfileHelp:
-      "Etkö ole varma? Valitse sekoitettu. Valinta auttaa arvioimaan, kuinka paljon aurinkosähköä käytät suoraan.",
-    loadProfileNote: "Vakio-oletus, ei mitattu kulutus eikä tuntisimulaatio.",
-    loadProfileLabel: "Kulutusmalli",
-    loadProfile: {
-      evening: "Aamu ja ilta",
-      eveningHelp: "Yleensä poissa päiväsaikaan.",
-      mixed: "Sekoitettu",
-      mixedHelp: "Kulutus jakautuu päivän ajalle.",
-      daytime: "Päiväsaika",
-      daytimeHelp: "Paljon kulutusta silloin kun aurinko tuottaa.",
-    },
-    estimatedBadge: "Arvioitu",
+      estimatedBadge: "Arvioitu",
       estimatedNote:
         "Tämä on arvioitu jakauma valintasi perusteella – ei todellinen kulutuksesi. Se korvataan, jos syötät kuukausiarvot tai lataat tiedot.",
       defaultNote:
@@ -254,6 +241,19 @@ export const fi = {
     confirmedGrid: "Verkkotiedot vahvistettu",
   },
   result: {
+    loadProfileQuestion: "Milloin käytät eniten sähköä?",
+    loadProfileHelp:
+      "Etkö ole varma? Valitse sekoitettu. Valinta auttaa arvioimaan, kuinka paljon aurinkosähköä käytät suoraan.",
+    loadProfileNote: "Vakio-oletus, ei mitattu kulutus eikä tuntisimulaatio.",
+    loadProfileLabel: "Kulutusmalli",
+    loadProfile: {
+      evening: "Aamu ja ilta",
+      eveningHelp: "Yleensä poissa päiväsaikaan.",
+      mixed: "Sekoitettu",
+      mixedHelp: "Kulutus jakautuu päivän ajalle.",
+      daytime: "Päiväsaika",
+      daytimeHelp: "Paljon kulutusta silloin kun aurinko tuottaa.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:

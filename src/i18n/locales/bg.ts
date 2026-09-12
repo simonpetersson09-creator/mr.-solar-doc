@@ -125,20 +125,7 @@ export const bg = {
       question: "Как обикновено е разпределено потреблението ви на ток през годината?",
       help: "Използваме отговора ви, за да оценим месечно разпределение на годишното ви потребление.",
       previewTitle: "Вашият очакван профил на потребление",
-      loadProfileQuestion: "Кога потребявате най-много електроенергия?",
-    loadProfileHelp:
-      "Не сте сигурни? Изберете смесено. Изборът ни помага да преценим колко слънчева енергия използвате директно.",
-    loadProfileNote: "Стандартно допускане, а не измерено потребление или почасова симулация.",
-    loadProfileLabel: "Профил на потребление",
-    loadProfile: {
-      evening: "Сутрин и вечер",
-      eveningHelp: "През деня обикновено ви няма.",
-      mixed: "Смесено",
-      mixedHelp: "Потребление, разпределено през деня.",
-      daytime: "През деня",
-      daytimeHelp: "Голямо потребление, докато слънцето произвежда.",
-    },
-    estimatedBadge: "Оценка",
+      estimatedBadge: "Оценка",
       estimatedNote:
         "Това е приблизително разпределение на база вашия избор – не е реалното ви потребление. Заменя се, ако въведете месечни стойности или качите данни.",
       defaultNote:
@@ -269,6 +256,19 @@ export const bg = {
     invalid: "Въведете главен предпазител между 6 и 400 A.",
   },
   result: {
+    loadProfileQuestion: "Кога потребявате най-много електроенергия?",
+    loadProfileHelp:
+      "Не сте сигурни? Изберете смесено. Изборът ни помага да преценим колко слънчева енергия използвате директно.",
+    loadProfileNote: "Стандартно допускане, а не измерено потребление или почасова симулация.",
+    loadProfileLabel: "Профил на потребление",
+    loadProfile: {
+      evening: "Сутрин и вечер",
+      eveningHelp: "През деня обикновено ви няма.",
+      mixed: "Смесено",
+      mixedHelp: "Потребление, разпределено през деня.",
+      daytime: "През деня",
+      daytimeHelp: "Голямо потребление, докато слънцето произвежда.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:

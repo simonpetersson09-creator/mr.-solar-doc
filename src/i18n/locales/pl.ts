@@ -114,20 +114,7 @@ export const pl = {
       question: "Jak zazwyczaj rozkłada się Twoje zużycie energii elektrycznej w ciągu roku?",
       help: "Wykorzystujemy Twoją odpowiedź do oszacowania miesięcznego rozkładu Twojego rocznego zużycia.",
       previewTitle: "Twój szacowany profil zużycia",
-      loadProfileQuestion: "Kiedy zużywasz najwięcej energii?",
-    loadProfileHelp:
-      "Nie masz pewności? Wybierz mieszany. Wybór pomaga oszacować, ile energii ze słońca zużywasz bezpośrednio.",
-    loadProfileNote: "Założenie standardowe, nie zmierzone zużycie ani symulacja godzinowa.",
-    loadProfileLabel: "Profil zużycia",
-    loadProfile: {
-      evening: "Rano i wieczorem",
-      eveningHelp: "Zwykle poza domem w ciągu dnia.",
-      mixed: "Mieszany",
-      mixedHelp: "Zużycie rozłożone w ciągu dnia.",
-      daytime: "W ciągu dnia",
-      daytimeHelp: "Dużo zużycia, gdy słońce produkuje.",
-    },
-    estimatedBadge: "Szacowany",
+      estimatedBadge: "Szacowany",
       estimatedNote:
         "Jest to szacowany rozkład oparty na Twoim wyborze – nie Twoje faktyczne zużycie. Zostanie on zastąpiony, jeśli wprowadzisz wartości miesięczne lub prześlesz dane.",
       defaultNote:
@@ -259,6 +246,19 @@ export const pl = {
     confirmedGrid: "Dane sieciowe potwierdzone",
   },
   result: {
+    loadProfileQuestion: "Kiedy zużywasz najwięcej energii?",
+    loadProfileHelp:
+      "Nie masz pewności? Wybierz mieszany. Wybór pomaga oszacować, ile energii ze słońca zużywasz bezpośrednio.",
+    loadProfileNote: "Założenie standardowe, nie zmierzone zużycie ani symulacja godzinowa.",
+    loadProfileLabel: "Profil zużycia",
+    loadProfile: {
+      evening: "Rano i wieczorem",
+      eveningHelp: "Zwykle poza domem w ciągu dnia.",
+      mixed: "Mieszany",
+      mixedHelp: "Zużycie rozłożone w ciągu dnia.",
+      daytime: "W ciągu dnia",
+      daytimeHelp: "Dużo zużycia, gdy słońce produkuje.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:

@@ -111,20 +111,7 @@ export const sk = {
       question: "Ako sa zvyčajne rozdeľuje vaša spotreba elektriny počas roka?",
       help: "Vašu odpoveď použijeme na odhad mesačného rozdelenia vašej ročnej spotreby.",
       previewTitle: "Váš odhadovaný profil spotreby",
-      loadProfileQuestion: "Kedy spotrebujete najviac elektriny?",
-    loadProfileHelp:
-      "Nie ste si istí? Vyberte zmiešaný. Voľba nám pomôže odhadnúť, koľko solárnej elektriny spotrebujete priamo.",
-    loadProfileNote: "Štandardný predpoklad, nie meraná spotreba ani hodinová simulácia.",
-    loadProfileLabel: "Profil spotreby",
-    loadProfile: {
-      evening: "Ráno a večer",
-      eveningHelp: "Cez deň zvyčajne mimo domu.",
-      mixed: "Zmiešaný",
-      mixedHelp: "Spotreba rozložená počas dňa.",
-      daytime: "Cez deň",
-      daytimeHelp: "Veľká spotreba, keď slnko vyrába.",
-    },
-    estimatedBadge: "Odhadované",
+      estimatedBadge: "Odhadované",
       estimatedNote:
         "Toto je odhadované rozdelenie na základe vášho výberu – nie vaša skutočná spotreba. Ak zadáte mesačné hodnoty alebo nahráte údaje, nahradí sa.",
       defaultNote:
@@ -255,6 +242,19 @@ export const sk = {
     confirmedGrid: "Sieťové údaje potvrdené",
   },
   result: {
+    loadProfileQuestion: "Kedy spotrebujete najviac elektriny?",
+    loadProfileHelp:
+      "Nie ste si istí? Vyberte zmiešaný. Voľba nám pomôže odhadnúť, koľko solárnej elektriny spotrebujete priamo.",
+    loadProfileNote: "Štandardný predpoklad, nie meraná spotreba ani hodinová simulácia.",
+    loadProfileLabel: "Profil spotreby",
+    loadProfile: {
+      evening: "Ráno a večer",
+      eveningHelp: "Cez deň zvyčajne mimo domu.",
+      mixed: "Zmiešaný",
+      mixedHelp: "Spotreba rozložená počas dňa.",
+      daytime: "Cez deň",
+      daytimeHelp: "Veľká spotreba, keď slnko vyrába.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:

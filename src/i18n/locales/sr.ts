@@ -125,20 +125,7 @@ export const sr = {
       question: "Како је ваша потрошња струје обично распоређена током године?",
       help: "Ваш одговор користимо за процену месечне расподеле ваше годишње потрошње.",
       previewTitle: "Ваш процењени профил потрошње",
-      loadProfileQuestion: "Kada trošite najviše električne energije?",
-    loadProfileHelp:
-      "Nisте sigurni? Izaberite mešovito. Izbor nam pomaže da procenimo koliko solarne energije trošite direktno.",
-    loadProfileNote: "Standardna pretpostavka, a ne izmerena potrošnja ni satna simulacija.",
-    loadProfileLabel: "Profil potrošnje",
-    loadProfile: {
-      evening: "Jutro i veče",
-      eveningHelp: "Danju najčešće niste kod kuće.",
-      mixed: "Mešovito",
-      mixedHelp: "Potrošnja raspoređena tokom dana.",
-      daytime: "Tokom dana",
-      daytimeHelp: "Velika potrošnja dok sunce proizvodi.",
-    },
-    estimatedBadge: "Процењено",
+      estimatedBadge: "Процењено",
       estimatedNote:
         "Ово је процењена расподела на основу вашег избора – а не ваша стварна потрошња. Замењује се уколико унесете месечне вредности или отпремите податке.",
       defaultNote:
@@ -269,6 +256,19 @@ export const sr = {
     invalid: "Унесите главни осигурач између 6 и 400 A.",
   },
   result: {
+    loadProfileQuestion: "Kada trošite najviše električne energije?",
+    loadProfileHelp:
+      "Nisте sigurni? Izaberite mešovito. Izbor nam pomaže da procenimo koliko solarne energije trošite direktno.",
+    loadProfileNote: "Standardna pretpostavka, a ne izmerena potrošnja ni satna simulacija.",
+    loadProfileLabel: "Profil potrošnje",
+    loadProfile: {
+      evening: "Jutro i veče",
+      eveningHelp: "Danju najčešće niste kod kuće.",
+      mixed: "Mešovito",
+      mixedHelp: "Potrošnja raspoređena tokom dana.",
+      daytime: "Tokom dana",
+      daytimeHelp: "Velika potrošnja dok sunce proizvodi.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:

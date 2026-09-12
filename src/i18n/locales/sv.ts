@@ -125,20 +125,7 @@ export const sv = {
       question: "Hur brukar din elanvändning vara fördelad över året?",
       help: "Vi använder ditt svar för att uppskatta en månadsfördelning av din årsförbrukning.",
       previewTitle: "Din uppskattade förbrukningsprofil",
-      loadProfileQuestion: "När använder du mest el?",
-    loadProfileHelp:
-      "Osäker? Välj blandat. Valet hjälper oss att uppskatta hur mycket solel du använder direkt.",
-    loadProfileNote: "Schablonantagande, inte uppmätt förbrukning eller en timsimulering.",
-    loadProfileLabel: "Förbrukningsmönster",
-    loadProfile: {
-      evening: "Morgon och kväll",
-      eveningHelp: "Oftast borta dagtid.",
-      mixed: "Blandat",
-      mixedHelp: "Förbrukning fördelad över dagen.",
-      daytime: "Dagtid",
-      daytimeHelp: "Mycket förbrukning när solen producerar.",
-    },
-    estimatedBadge: "Uppskattad",
+      estimatedBadge: "Uppskattad",
       estimatedNote:
         "Detta är en uppskattad fördelning baserad på ditt val – inte din faktiska förbrukning. Fyller du i månadsvärden eller laddar upp data ersätts den.",
       defaultNote:
@@ -269,6 +256,19 @@ export const sv = {
     invalid: "Ange en huvudsäkring mellan 6 och 400 A.",
   },
   result: {
+    loadProfileQuestion: "När använder du mest el?",
+    loadProfileHelp:
+      "Osäker? Välj blandat. Valet hjälper oss att uppskatta hur mycket solel du använder direkt.",
+    loadProfileNote: "Schablonantagande, inte uppmätt förbrukning eller en timsimulering.",
+    loadProfileLabel: "Förbrukningsmönster",
+    loadProfile: {
+      evening: "Morgon och kväll",
+      eveningHelp: "Oftast borta dagtid.",
+      mixed: "Blandat",
+      mixedHelp: "Förbrukning fördelad över dagen.",
+      daytime: "Dagtid",
+      daytimeHelp: "Mycket förbrukning när solen producerar.",
+    },
     connection: {
       contractedKva: "Abonnerad effekt (kVA)",
       contractedKw: "Avtalad effekt (kW)",

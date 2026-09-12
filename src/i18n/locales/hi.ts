@@ -125,20 +125,7 @@ export const hi = {
       question: "आपकी बिजली खपत आमतौर पर पूरे साल कैसे बंटी होती है?",
       help: "हम आपके जवाब का उपयोग आपकी वार्षिक खपत का मासिक विभाजन अनुमानित करने के लिए करते हैं।",
       previewTitle: "आपका अनुमानित खपत प्रोफ़ाइल",
-      loadProfileQuestion: "आप सबसे ज़्यादा बिजली कब इस्तेमाल करते हैं?",
-    loadProfileHelp:
-      "पक्का नहीं? मिश्रित चुनें। यह चुनाव हमें अनुमान लगाने में मदद करता है कि आप कितनी सौर बिजली सीधे उपयोग करते हैं।",
-    loadProfileNote: "मानक अनुमान, न मापी गई खपत और न घंटेवार सिमुलेशन।",
-    loadProfileLabel: "खपत का स्वरूप",
-    loadProfile: {
-      evening: "सुबह और शाम",
-      eveningHelp: "दिन में आमतौर पर घर से बाहर।",
-      mixed: "मिश्रित",
-      mixedHelp: "खपत दिन भर में बँटी हुई।",
-      daytime: "दिन के समय",
-      daytimeHelp: "जब सूरज उत्पादन करता है तब अधिक खपत।",
-    },
-    estimatedBadge: "अनुमानित",
+      estimatedBadge: "अनुमानित",
       estimatedNote:
         "यह आपकी पसंद पर आधारित एक अनुमानित विभाजन है – आपकी वास्तविक खपत नहीं। यदि आप मासिक मान दर्ज करते हैं या डेटा अपलोड करते हैं तो इसे बदल दिया जाएगा।",
       defaultNote:
@@ -268,6 +255,19 @@ export const hi = {
     invalid: "6 और 400 A के बीच मुख्य फ्यूज़ दर्ज करें।",
   },
   result: {
+    loadProfileQuestion: "आप सबसे ज़्यादा बिजली कब इस्तेमाल करते हैं?",
+    loadProfileHelp:
+      "पक्का नहीं? मिश्रित चुनें। यह चुनाव हमें अनुमान लगाने में मदद करता है कि आप कितनी सौर बिजली सीधे उपयोग करते हैं।",
+    loadProfileNote: "मानक अनुमान, न मापी गई खपत और न घंटेवार सिमुलेशन।",
+    loadProfileLabel: "खपत का स्वरूप",
+    loadProfile: {
+      evening: "सुबह और शाम",
+      eveningHelp: "दिन में आमतौर पर घर से बाहर।",
+      mixed: "मिश्रित",
+      mixedHelp: "खपत दिन भर में बँटी हुई।",
+      daytime: "दिन के समय",
+      daytimeHelp: "जब सूरज उत्पादन करता है तब अधिक खपत।",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable: "गणना पूरी नहीं हो सकी। कृपया छत का विवरण जांचें और पुनः प्रयास करें।",

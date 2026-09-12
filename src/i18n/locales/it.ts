@@ -113,20 +113,7 @@ export const it = {
       question: "Come si distribuisce solitamente il tuo consumo elettrico durante l'anno?",
       help: "Utilizziamo la tua risposta per stimare una ripartizione mensile del tuo consumo annuo.",
       previewTitle: "Il tuo profilo di consumo stimato",
-      loadProfileQuestion: "Quando consumi più elettricità?",
-    loadProfileHelp:
-      "Non sei sicuro? Scegli mista. La scelta ci aiuta a stimare quanta energia solare usi direttamente.",
-    loadProfileNote: "Ipotesi standard, non consumo misurato né simulazione oraria.",
-    loadProfileLabel: "Profilo di consumo",
-    loadProfile: {
-      evening: "Mattina e sera",
-      eveningHelp: "Di solito fuori casa di giorno.",
-      mixed: "Mista",
-      mixedHelp: "Consumo distribuito nella giornata.",
-      daytime: "Di giorno",
-      daytimeHelp: "Molto consumo mentre il sole produce.",
-    },
-    estimatedBadge: "Stimato",
+      estimatedBadge: "Stimato",
       estimatedNote:
         "Questa è una ripartizione stimata basata sulla tua scelta – non il tuo consumo effettivo. Viene sostituita se inserisci valori mensili o carichi i dati.",
       defaultNote:
@@ -259,6 +246,19 @@ export const it = {
     confirmedGrid: "Dati di rete confermati",
   },
   result: {
+    loadProfileQuestion: "Quando consumi più elettricità?",
+    loadProfileHelp:
+      "Non sei sicuro? Scegli mista. La scelta ci aiuta a stimare quanta energia solare usi direttamente.",
+    loadProfileNote: "Ipotesi standard, non consumo misurato né simulazione oraria.",
+    loadProfileLabel: "Profilo di consumo",
+    loadProfile: {
+      evening: "Mattina e sera",
+      eveningHelp: "Di solito fuori casa di giorno.",
+      mixed: "Mista",
+      mixedHelp: "Consumo distribuito nella giornata.",
+      daytime: "Di giorno",
+      daytimeHelp: "Molto consumo mentre il sole produce.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:

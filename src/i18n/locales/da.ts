@@ -111,20 +111,7 @@ export const da = {
       question: "Hvordan er dit elforbrug normalt fordelt over året?",
       help: "Vi bruger dit svar til at estimere en månedsfordeling af dit årsforbrug.",
       previewTitle: "Din estimerede forbrugsprofil",
-      loadProfileQuestion: "Hvornår bruger du mest strøm?",
-    loadProfileHelp:
-      "Usikker? Vælg blandet. Valget hjælper os med at vurdere, hvor meget solstrøm du bruger direkte.",
-    loadProfileNote: "Standardantagelse, ikke målt forbrug eller en timesimulering.",
-    loadProfileLabel: "Forbrugsmønster",
-    loadProfile: {
-      evening: "Morgen og aften",
-      eveningHelp: "Oftest væk om dagen.",
-      mixed: "Blandet",
-      mixedHelp: "Forbrug fordelt over dagen.",
-      daytime: "Dagtimer",
-      daytimeHelp: "Meget forbrug, når solen producerer.",
-    },
-    estimatedBadge: "Estimeret",
+      estimatedBadge: "Estimeret",
       estimatedNote:
         "Dette er en estimeret fordeling baseret på dit valg – ikke dit faktiske forbrug. Hvis du indtaster månedsværdier eller uploader data, erstattes den.",
       defaultNote:
@@ -255,6 +242,19 @@ export const da = {
     confirmedGrid: "Netdata bekræftet",
   },
   result: {
+    loadProfileQuestion: "Hvornår bruger du mest strøm?",
+    loadProfileHelp:
+      "Usikker? Vælg blandet. Valget hjælper os med at vurdere, hvor meget solstrøm du bruger direkte.",
+    loadProfileNote: "Standardantagelse, ikke målt forbrug eller en timesimulering.",
+    loadProfileLabel: "Forbrugsmønster",
+    loadProfile: {
+      evening: "Morgen og aften",
+      eveningHelp: "Oftest væk om dagen.",
+      mixed: "Blandet",
+      mixedHelp: "Forbrug fordelt over dagen.",
+      daytime: "Dagtimer",
+      daytimeHelp: "Meget forbrug, når solen producerer.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
