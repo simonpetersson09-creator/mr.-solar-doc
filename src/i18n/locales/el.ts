@@ -506,6 +506,14 @@ export const el = {
     showCalculation: "Εμφάνιση υπολογισμού",
     hideCalculation: "Απόκρυψη υπολογισμού",
     adjustSplit: "Προσαρμογή ιδιοκατανάλωσης",
+    selfConsumptionModeLabel: "Ιδιοκατανάλωση – λειτουργία",
+    selfConsumptionModeAuto: "Αυτόματη εκτίμηση",
+    selfConsumptionModeManual: "Καταχωρήθηκε χειροκίνητα",
+    selfConsumptionManualHelp:
+      "Καταχωρήσατε μόνοι σας την ιδιοκατανάλωση. Επαναφέρετε την αυτόματη εκτίμηση αν θέλετε να την υπολογίζει η εφαρμογή.",
+    selfConsumptionResetAuto: "Επαναφορά αυτόματης εκτίμησης",
+    selfConsumptionManualProfileNote:
+      "Το προφίλ κατανάλωσης δεν επηρεάζει την ιδιοκατανάλωση όταν την καταχωρείτε χειροκίνητα.",
     selfConsumptionEstimatedLabel: "Εκτιμώμενη ιδιοκατανάλωση",
     selfConsumptionEstimatedHelp:
       "Εκτιμάται από την κατανάλωση ρεύματος και την υπολογισμένη παραγωγή του συστήματος. Μπορείτε να προσαρμόσετε την τιμή χειροκίνητα.",

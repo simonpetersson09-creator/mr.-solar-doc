@@ -489,6 +489,14 @@ export const uk = {
     showCalculation: "Показати розрахунок",
     hideCalculation: "Приховати розрахунок",
     adjustSplit: "Налаштувати самоспоживання",
+    selfConsumptionModeLabel: "Власне споживання – режим",
+    selfConsumptionModeAuto: "Оцінено автоматично",
+    selfConsumptionModeManual: "Введено вручну",
+    selfConsumptionManualHelp:
+      "Ви ввели власне споживання самостійно. Поверніть автоматичну оцінку, якщо хочете, щоб застосунок його розрахував.",
+    selfConsumptionResetAuto: "Повернути автоматичну оцінку",
+    selfConsumptionManualProfileNote:
+      "Профіль споживання не впливає на власне споживання, коли ви вводите його вручну.",
     selfConsumptionEstimatedLabel: "Розрахункове власне споживання",
     selfConsumptionEstimatedHelp:
       "Оцінено за вашим споживанням електроенергії та розрахунковим виробітком системи. Значення можна змінити вручну.",

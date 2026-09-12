@@ -491,6 +491,14 @@ export const sv = {
     showCalculation: "Visa beräkning",
     hideCalculation: "Dölj beräkning",
     adjustSplit: "Justera egenanvändning",
+    selfConsumptionModeLabel: "Egenanvändning – läge",
+    selfConsumptionModeAuto: "Automatiskt uppskattad",
+    selfConsumptionModeManual: "Manuellt angiven",
+    selfConsumptionManualHelp:
+      "Du har angett egenanvändningen själv. Återställ till automatisk uppskattning om du vill att appen räknar ut den.",
+    selfConsumptionResetAuto: "Återställ till automatisk uppskattning",
+    selfConsumptionManualProfileNote:
+      "Förbrukningsprofilen påverkar inte egenanvändningen när du anger den manuellt.",
     selfConsumptionEstimatedLabel: "Beräknad egenanvändning",
     selfConsumptionEstimatedHelp:
       "Uppskattad utifrån din elanvändning och anläggningens beräknade produktion. Du kan justera värdet manuellt.",

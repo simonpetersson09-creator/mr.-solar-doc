@@ -34,6 +34,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   const { result, outcome, market } = useCalculation();
   const [showExportInfo, setShowExportInfo] = useState(false);
   const setSelfConsumptionShare = useWizardStore((s) => s.setSelfConsumptionShare);
+  const resetSelfConsumptionShare = useWizardStore((s) => s.resetSelfConsumptionShare);
   const loadProfileClass = useWizardStore((s) => s.loadProfileClass);
   const setLoadProfileClass = useWizardStore((s) => s.setLoadProfileClass);
   const setSelfConsumedValue = useWizardStore((s) => s.setSelfConsumedValue);
@@ -163,6 +164,11 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             {formatNumber(sharePercent, locale)} %
           </span>
         </div>
+        <span className="inline-flex items-center rounded-full bg-white/15 px-2 py-0.5 text-[10px] font-medium text-white/70">
+          {isUserSetShare
+            ? t("result.selfConsumptionModeManual")
+            : t("result.selfConsumptionModeAuto")}
+        </span>
         <Slider
           className="py-1.5"
           min={0}
@@ -176,9 +182,23 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         />
         <p className="text-[11px] leading-snug text-white/60">
           {isUserSetShare
-            ? t("result.selfConsumptionAssumption")
+            ? t("result.selfConsumptionManualHelp")
             : t("result.selfConsumptionEstimatedHelp")}
         </p>
+        {isUserSetShare ? (
+          <>
+            <button
+              type="button"
+              className="text-[11px] font-medium text-accent underline underline-offset-2"
+              onClick={() => resetSelfConsumptionShare()}
+            >
+              {t("result.selfConsumptionResetAuto")}
+            </button>
+            <p className="text-[11px] leading-snug text-white/50">
+              {t("result.selfConsumptionManualProfileNote")}
+            </p>
+          </>
+        ) : null}
         {result?.presentation.selfConsumptionCapped ? (
           <p className="text-[11px] font-medium leading-snug text-white/85">
             {t("result.selfConsumptionCappedNote", {
@@ -187,6 +207,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           </p>
         ) : null}
       </div>
+
 
       {/* ── Card 2: load profile (standard adjustment of the modelled share) ── */}
       <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">

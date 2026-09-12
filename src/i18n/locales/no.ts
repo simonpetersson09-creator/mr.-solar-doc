@@ -490,6 +490,14 @@ export const no = {
     showCalculation: "Vis beregning",
     hideCalculation: "Skjul beregning",
     adjustSplit: "Juster egenforbruk",
+    selfConsumptionModeLabel: "Egenforbruk – modus",
+    selfConsumptionModeAuto: "Automatisk anslått",
+    selfConsumptionModeManual: "Angitt manuelt",
+    selfConsumptionManualHelp:
+      "Du har angitt egenforbruket selv. Tilbakestill til automatisk anslag hvis appen skal regne det ut.",
+    selfConsumptionResetAuto: "Tilbakestill til automatisk anslag",
+    selfConsumptionManualProfileNote:
+      "Forbruksprofilen påvirker ikke egenforbruket når du angir det manuelt.",
     selfConsumptionEstimatedLabel: "Beregnet egenforbruk",
     selfConsumptionEstimatedHelp:
       "Estimert ut fra strømforbruket ditt og anleggets beregnede produksjon. Du kan justere verdien manuelt.",

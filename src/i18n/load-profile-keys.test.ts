@@ -69,3 +69,28 @@ describe("load profile translation keys", () => {
     });
   }
 });
+
+/**
+ * The self-consumption mode wording (automatic vs manual) plus the reset
+ * control are read as `result.selfConsumption*`. A missing key would render a
+ * raw key name next to a money figure.
+ */
+describe("self-consumption mode translation keys", () => {
+  for (const [language, bundle] of Object.entries(LOCALES)) {
+    it(`${language} exposes result.selfConsumption mode keys`, () => {
+      const result = (bundle as Record<string, Record<string, unknown>>)["result"];
+      expect(result).toBeTruthy();
+      for (const key of [
+        "selfConsumptionModeLabel",
+        "selfConsumptionModeAuto",
+        "selfConsumptionModeManual",
+        "selfConsumptionManualHelp",
+        "selfConsumptionResetAuto",
+        "selfConsumptionManualProfileNote",
+      ]) {
+        expect(typeof result![key]).toBe("string");
+        expect((result![key] as string).length).toBeGreaterThan(0);
+      }
+    });
+  }
+});

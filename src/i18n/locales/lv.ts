@@ -448,6 +448,14 @@ export const lv = {
     showCalculation: "Rādīt aprēķinu",
     hideCalculation: "Slēpt aprēķinu",
     adjustSplit: "Pielāgot pašpatēriņu",
+    selfConsumptionModeLabel: "Pašpatēriņš – režīms",
+    selfConsumptionModeAuto: "Automātiski novērtēts",
+    selfConsumptionModeManual: "Ievadīts manuāli",
+    selfConsumptionManualHelp:
+      "Pašpatēriņu ievadījāt pats. Atjaunojiet automātisko aplēsi, ja vēlaties, lai to aprēķina lietotne.",
+    selfConsumptionResetAuto: "Atjaunot automātisko aplēsi",
+    selfConsumptionManualProfileNote:
+      "Patēriņa profils neietekmē pašpatēriņu, ja to ievadāt manuāli.",
     selfConsumptionEstimatedLabel: "Aprēķinātais pašpatēriņš",
     selfConsumptionEstimatedHelp:
       "Novērtēts, balstoties uz jūsu elektroenerģijas patēriņu un sistēmas aprēķināto ražošanu. Vērtību var pielāgot manuāli.",

@@ -79,6 +79,10 @@ export interface ReportLabels {
    * assumption, not measured consumption. Optional for older callers.
    */
   loadProfile?: { label: string; value: string; note: string };
+  /** Whether the self-consumption share is automatically estimated or entered manually. */
+  selfConsumptionMode?: { label: string; value: string; note: string | null };
+  /** Shown when physical limits capped the requested share. */
+  selfConsumptionCappedNote?: string | null;
   chartProduction: string;
   chartConsumption: string;
   /** Where the consumption data came from (imported / entered / estimated). */
@@ -1297,6 +1301,18 @@ export function generateReportBlob(options: ReportOptions): Blob {
         value: `${formatNumber(result.presentation.selfConsumptionPercent, locale)} % – ${selfConsumptionSourceLabel}`,
         origin: selfConsumptionOrigin,
       },
+      ...(labels.selfConsumptionMode
+        ? [
+            {
+              label: labels.selfConsumptionMode.label,
+              value: labels.selfConsumptionMode.value,
+              origin:
+                result.selfConsumptionSource === "user-override"
+                  ? ("user" as const)
+                  : ("assumed" as const),
+            },
+          ]
+        : []),
       ...(labels.loadProfile && result.selfConsumptionSource !== "user-override"
         ? [
             {
@@ -1334,6 +1350,10 @@ export function generateReportBlob(options: ReportOptions): Blob {
   );
   if (labels.loadProfile && result.selfConsumptionSource !== "user-override") {
     report.paragraph(labels.loadProfile.note);
+  }
+  if (labels.selfConsumptionMode?.note) report.paragraph(labels.selfConsumptionMode.note);
+  if (result.presentation.selfConsumptionCapped && labels.selfConsumptionCappedNote) {
+    report.paragraph(labels.selfConsumptionCappedNote);
   }
   report.paragraph(f["priceMethodNote"] ?? "");
 

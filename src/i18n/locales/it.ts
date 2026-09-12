@@ -453,6 +453,14 @@ export const it = {
     showCalculation: "Mostra calcolo",
     hideCalculation: "Nascondi calcolo",
     adjustSplit: "Regola autoconsumo",
+    selfConsumptionModeLabel: "Autoconsumo – modalità",
+    selfConsumptionModeAuto: "Stimato automaticamente",
+    selfConsumptionModeManual: "Inserito manualmente",
+    selfConsumptionManualHelp:
+      "Hai inserito tu l’autoconsumo. Ripristina la stima automatica se vuoi che l’app lo calcoli.",
+    selfConsumptionResetAuto: "Ripristina la stima automatica",
+    selfConsumptionManualProfileNote:
+      "Il profilo di consumo non influisce sull’autoconsumo quando lo inserisci manualmente.",
     selfConsumptionEstimatedLabel: "Autoconsumo stimato",
     selfConsumptionEstimatedHelp:
       "Stimato in base al tuo consumo elettrico e alla produzione calcolata dell'impianto. Puoi modificare il valore manualmente.",

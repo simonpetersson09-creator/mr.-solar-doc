@@ -449,6 +449,14 @@ export const et = {
     showCalculation: "Näita arvutust",
     hideCalculation: "Peida arvutus",
     adjustSplit: "Kohanda omatarvet",
+    selfConsumptionModeLabel: "Omatarbimine – režiim",
+    selfConsumptionModeAuto: "Automaatselt hinnatud",
+    selfConsumptionModeManual: "Käsitsi sisestatud",
+    selfConsumptionManualHelp:
+      "Sisestasite omatarbimise ise. Lähtestage automaatne hinnang, kui soovite, et rakendus selle arvutaks.",
+    selfConsumptionResetAuto: "Lähtesta automaatsele hinnangule",
+    selfConsumptionManualProfileNote:
+      "Tarbimisprofiil ei mõjuta omatarbimist, kui sisestate selle käsitsi.",
     selfConsumptionEstimatedLabel: "Hinnanguline omatarbimine",
     selfConsumptionEstimatedHelp:
       "Hinnatud teie elektritarbimise ja süsteemi arvutatud toodangu põhjal. Saate väärtust käsitsi muuta.",

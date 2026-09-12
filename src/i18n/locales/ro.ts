@@ -500,6 +500,14 @@ export const ro = {
     showCalculation: "Arată calculul",
     hideCalculation: "Ascunde calculul",
     adjustSplit: "Ajustează autoconsumul",
+    selfConsumptionModeLabel: "Autoconsum – mod",
+    selfConsumptionModeAuto: "Estimat automat",
+    selfConsumptionModeManual: "Introdus manual",
+    selfConsumptionManualHelp:
+      "Ați introdus autoconsumul manual. Reveniți la estimarea automată dacă doriți ca aplicația să îl calculeze.",
+    selfConsumptionResetAuto: "Revenire la estimarea automată",
+    selfConsumptionManualProfileNote:
+      "Profilul de consum nu influențează autoconsumul atunci când îl introduceți manual.",
     selfConsumptionEstimatedLabel: "Autoconsum estimat",
     selfConsumptionEstimatedHelp:
       "Estimat pe baza consumului dvs. de energie și a producției calculate a sistemului. Puteți ajusta valoarea manual.",

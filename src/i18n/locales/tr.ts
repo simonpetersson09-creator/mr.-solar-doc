@@ -496,6 +496,14 @@ export const tr = {
     showCalculation: "Hesaplamayı göster",
     hideCalculation: "Hesaplamayı gizle",
     adjustSplit: "Öz tüketimi ayarla",
+    selfConsumptionModeLabel: "Öz tüketim – mod",
+    selfConsumptionModeAuto: "Otomatik tahmin",
+    selfConsumptionModeManual: "Elle girildi",
+    selfConsumptionManualHelp:
+      "Öz tüketimi kendiniz girdiniz. Uygulamanın hesaplamasını istiyorsanız otomatik tahmine dönün.",
+    selfConsumptionResetAuto: "Otomatik tahmine dön",
+    selfConsumptionManualProfileNote:
+      "Tüketim profili, öz tüketimi elle girdiğinizde etkilemez.",
     selfConsumptionEstimatedLabel: "Tahmini öz tüketim",
     selfConsumptionEstimatedHelp:
       "Elektrik tüketiminiz ve sistemin hesaplanan üretimi temel alınarak tahmin edilmiştir. Değeri elle değiştirebilirsiniz.",
