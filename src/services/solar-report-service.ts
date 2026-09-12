@@ -1354,7 +1354,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
     report.paragraph(labels.loadProfile.note);
   }
   if (labels.selfConsumptionMode?.note) report.paragraph(labels.selfConsumptionMode.note);
-  if (result.presentation.selfConsumptionCapped && labels.selfConsumptionCappedNote) {
+  if (labels.selfConsumptionCappedNote) {
     report.paragraph(labels.selfConsumptionCappedNote);
   }
   if (labels.shadingNote) report.paragraph(labels.shadingNote);
