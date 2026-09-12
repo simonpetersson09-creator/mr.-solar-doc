@@ -91,7 +91,12 @@ export function buildPresentationValues(params: {
     selfConsumptionPercent: displayedSelfConsumptionPercent,
     exportPercent: 100 - displayedSelfConsumptionPercent,
     requestedSelfConsumptionPercent,
-    selfConsumptionCapped: requestedSelfConsumptionPercent > selfConsumptionPercent,
+    selfConsumptionCapped:
+      requestedSelfConsumptionPercent > selfConsumptionPercent ||
+      (params.capBinding != null && params.capBinding !== "none"),
+    selfConsumptionCapBinding: params.capBinding ?? "none",
+    selfConsumptionCapIsModelled:
+      params.capBinding === "monthly-overlap" && params.monthlyConsumptionIsEstimated === true,
     annualConsumptionKwh: Math.round(params.annualConsumptionKwh),
     productionCoveragePercent:
       params.annualConsumptionKwh > 0
