@@ -32,6 +32,7 @@ import type { PvLimitBinding } from "@/config/pv-connection-rules";
 import { buildInverterOptions, inverterCatalogFor } from "@/config/inverter-catalog";
 import {
   clampShare,
+  monthlyOverlapCapKwh,
   resolveSelfConsumptionShare,
   type LoadProfileClass,
   splitProduction,
@@ -383,6 +384,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     maxAcPowerKw,
     selfConsumptionValue: economics.selfConsumptionValue,
     exportValue: economics.exportValue,
+    capBinding: split.capBinding,
+    monthlyConsumptionIsEstimated: input.consumption.isEstimated === true,
   });
 
   // Year-by-year economics (degradation + electricity price scenario).
@@ -395,6 +398,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     selfConsumptionShareForProduction:
       selfConsumptionEstimate.source === "user-override" ? undefined : shareForProduction,
     annualConsumptionKwh: input.consumption.annualKwh,
+    monthlyOverlapKwhForProduction,
     selfConsumedValuePerKwh,
     exportValuePerKwh,
     annualDegradationRate: input.annualDegradationRate,
