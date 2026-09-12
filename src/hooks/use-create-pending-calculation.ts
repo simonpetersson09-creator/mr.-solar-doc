@@ -76,6 +76,7 @@ export function useCreatePendingCalculation(): () => Promise<CreateCalculationOu
         connectionCapacity: wizard.connectionCapacity,
         selfConsumptionShare: wizard.selfConsumptionShare,
         selfConsumptionShareIsUserSet: wizard.selfConsumptionShareIsUserSet,
+        loadProfileClass: wizard.loadProfileClass,
         selfConsumedValuePerKwh: wizard.selfConsumedValuePerKwh,
         exportValuePerKwh: wizard.exportValuePerKwh,
         acceptedPaybackYears: wizard.acceptedPaybackYears,

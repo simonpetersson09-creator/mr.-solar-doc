@@ -10,6 +10,7 @@ import {
   revalidateCountryDependentState,
 } from "@/state/wizard-migrations";
 import type { Orientation, SiteLocation, SolarResource } from "@/lib/calc/types";
+import type { LoadProfileClass } from "@/lib/calc/self-consumption";
 import type { ConsumptionInputType, ConsumptionShape } from "@/lib/calc/consumption-shape";
 import {
   DEFAULT_PAYBACK_YEARS,
