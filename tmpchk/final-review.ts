@@ -170,3 +170,13 @@ console.log(`produktion identisk över profiler: ${prods.size === 1}`);
 
 console.log(`\n=== RESULTAT: ${problems.length === 0 ? "inga avvikelser" : problems.length + " avvikelser"} ===`);
 for (const p of problems) console.log("PROBLEM: " + p);
+
+console.log("\n=== G. Priskänslighet SE (export 0,60 vs 0,40 vs 0,35) ===");
+for (const ex of [0.6, 0.4, 0.35]) {
+  const r = calculateSolarSystem(input({ annualKwh: 11000, economics: { ...input().economics, exportValuePerKwh: ex } as never }));
+  console.log(`export ${ex}: spar ${r.presentation.annualSavings} SEK/år, maxinvestering ${r.investment.maxInvestmentRounded}`);
+}
+for (const imp of [1.44, 1.8, 2.0]) {
+  const r = calculateSolarSystem(input({ annualKwh: 11000, economics: { ...input().economics, selfConsumedValuePerKwh: imp } as never }));
+  console.log(`import ${imp}: spar ${r.presentation.annualSavings} SEK/år, maxinvestering ${r.investment.maxInvestmentRounded}`);
+}
