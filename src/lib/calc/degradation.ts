@@ -73,6 +73,11 @@ export function buildLifetimeProjection(params: {
   exportValuePerKwh: number;
   /** Physical cap: self-consumption can never exceed what the site uses. */
   annualConsumptionKwh?: number | null | undefined;
+  /**
+   * Optional month-by-month cap for a given year's production, in kWh. Keeps the
+   * monthly limit consistent with the degraded production of that year.
+   */
+  monthlyOverlapKwhForProduction?: ((productionKwh: number) => number | null) | undefined;
   periodYears?: number | undefined;
   annualDegradationRate?: number | undefined;
   /** Assumed annual electricity price change, e.g. 0.02 = +2 %/year. */
@@ -95,7 +100,12 @@ export function buildLifetimeProjection(params: {
     // lives in exactly one place; without it the fixed share is used.
     const shareForYear =
       params.selfConsumptionShareForProduction?.(productionKwh) ?? params.selfConsumptionShare;
-    const split = splitProduction(productionKwh, shareForYear, params.annualConsumptionKwh);
+    const split = splitProduction(
+      productionKwh,
+      shareForYear,
+      params.annualConsumptionKwh,
+      params.monthlyOverlapKwhForProduction?.(productionKwh) ?? null,
+    );
     // Compound electricity price development: year 1 uses today's price.
     const priceFactor = Math.pow(1 + annualPriceChangeRate, year - 1);
     const economics = calculateEconomicValue({

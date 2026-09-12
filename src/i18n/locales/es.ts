@@ -514,6 +514,12 @@ export const es = {
       "El autoconsumo real depende de cuándo se produce la electricidad y cuándo la usa el hogar.",
     selfConsumptionCappedNote:
       "El autoconsumo se ha limitado porque el importe calculado superaría tu consumo eléctrico total. Tasa de autoconsumo efectiva: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "El autoconsumo se ha limitado al {{effective}} % (elegiste {{requested}} %), porque en algunos meses la producción supera tu consumo de ese mes. El excedente no puede pasar a otro mes sin batería.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "El autoconsumo se ha limitado al {{effective}} % (elegiste {{requested}} %) con un perfil mensual estimado. El límite depende de esa estimación y no es un límite seguro para tu hogar.",
+    shadingNotIncludedNote:
+      "El sombreado local de árboles, edificios o chimeneas no está incluido en el cálculo.",
     minimumSizeNote:
       "El sistema se ha aumentado hasta el tamaño práctico más pequeño, porque los inversores más pequeños disponibles marcan un límite inferior.",
     consumptionTooLowNote:

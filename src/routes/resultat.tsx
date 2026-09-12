@@ -19,6 +19,7 @@ import {
 import { formatInverterPower } from "@/lib/inverter-display";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
+import { selfConsumptionCapNoteKey } from "@/lib/self-consumption-cap-note";
 
 
 /** Maps the engine's recommendation reason to a consumer-friendly i18n key. */
@@ -94,6 +95,7 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
 
 
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
+  const capNoteKey = selfConsumptionCapNoteKey(result.presentation);
 
   const handleExport = async () => {
     setExporting(true);
@@ -137,9 +139,15 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
               ? t("result.selfConsumptionManualProfileNote")
               : null,
         },
-        selfConsumptionCappedNote: t("result.selfConsumptionCappedNote", {
-          effective: formatNumber(result.presentation.selfConsumptionPercent, locale),
-        }),
+        // The wording follows the binding limit: a monthly limit from a
+        // generated profile is model-dependent, not a certain household limit.
+        selfConsumptionCappedNote: capNoteKey
+          ? t(capNoteKey, {
+              effective: formatNumber(result.presentation.selfConsumptionPercent, locale),
+              requested: formatNumber(result.presentation.requestedSelfConsumptionPercent, locale),
+            })
+          : null,
+        shadingNote: t("result.shadingNotIncludedNote"),
 
         consumptionSource: t(
           `result.consumptionSource.${result.consumption.inputType ?? "annual-only"}`,
@@ -374,6 +382,9 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
             comparisonLabel={t("result.chartConsumption")}
             onDark
           />
+          <p className="mt-2 text-[10px] leading-snug text-white/55">
+            {t("result.shadingNotIncludedNote")}
+          </p>
         </section>
 
 {/* Group: economics */}
@@ -427,10 +438,11 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
                   {t(`result.loadProfile.${result.loadProfileClass ?? "mixed"}`)}
                 </dd>
               )}
-              {p.selfConsumptionCapped ? (
+              {capNoteKey ? (
                 <dd className="mt-1 text-[10px] leading-snug text-white/60">
-                  {t("result.selfConsumptionCappedNote", {
+                  {t(capNoteKey, {
                     effective: formatNumber(p.selfConsumptionPercent, locale),
+                    requested: formatNumber(p.requestedSelfConsumptionPercent, locale),
                   })}
                 </dd>
               ) : null}

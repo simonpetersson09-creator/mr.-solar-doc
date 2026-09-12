@@ -466,6 +466,12 @@ export const lv = {
       "Faktiskais pašpatēriņš ir atkarīgs no tā, kad elektroenerģija tiek ražota un kad mājsaimniecība to izmanto.",
     selfConsumptionCappedNote:
       "Pašpatēriņš ir ierobežots, jo aprēķinātais daudzums citādi pārsniegtu jūsu kopējo elektroenerģijas patēriņu. Faktiskā pašpatēriņa daļa: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Pašpatēriņš ierobežots līdz {{effective}} % (izvēlējāties {{requested}} %), jo dažos mēnešos ražošana pārsniedz jūsu attiecīgā mēneša patēriņu. Pārpalikumu bez baterijas nevar pārnest uz citu mēnesi.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Pašpatēriņš ierobežots līdz {{effective}} % (izvēlējāties {{requested}} %), balstoties uz aptuvenu mēneša profilu. Robeža tādēļ atkarīga no aplēses un nav droša robeža jūsu mājsaimniecībai.",
+    shadingNotIncludedNote:
+      "Vietējā ēnošana no kokiem, ēkām vai skursteņiem nav iekļauta aprēķinā.",
     minimumSizeNote:
       "Sistēma ir palielināta līdz mazākajam praktiskajam izmēram, jo mazākie pieejamie invertori nosaka apakšējo robežu.",
     consumptionTooLowNote:

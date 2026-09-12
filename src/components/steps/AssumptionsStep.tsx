@@ -21,6 +21,7 @@ import {
 } from "@/config/constants";
 import { haptic } from "@/services/native-service";
 import type { LoadProfileClass } from "@/lib/calc/self-consumption";
+import { selfConsumptionCapNoteKey } from "@/lib/self-consumption-cap-note";
 
 interface AssumptionsStepProps {
   totalSteps: number;
@@ -81,6 +82,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   const maxPricePerKwh = maxPlausiblePricePerKwh(countryCode);
   // Provenance drives the wording: an automatic estimate is shown with "≈",
   // a manual choice is presented as the user's own assumption.
+  const capNoteKey = result ? selfConsumptionCapNoteKey(result.presentation) : null;
   const isUserSetShare =
     result?.selfConsumptionSource === "user-override" || selfConsumptionShareIsUserSet;
   const sharePercent = result
@@ -199,13 +201,15 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             </p>
           </>
         ) : null}
-        {result?.presentation.selfConsumptionCapped ? (
+        {capNoteKey && result ? (
           <p className="text-[11px] font-medium leading-snug text-white/85">
-            {t("result.selfConsumptionCappedNote", {
+            {t(capNoteKey, {
               effective: formatNumber(result.presentation.selfConsumptionPercent, locale),
+              requested: formatNumber(result.presentation.requestedSelfConsumptionPercent, locale),
             })}
           </p>
         ) : null}
+        <p className="text-[11px] leading-snug text-white/50">{t("result.shadingNotIncludedNote")}</p>
       </div>
 
 

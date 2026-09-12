@@ -467,6 +467,12 @@ export const et = {
       "Tegelik omatarbimine sõltub sellest, millal elekter toodetakse ja millal leibkond seda kasutab.",
     selfConsumptionCappedNote:
       "Omatarbimist on piiratud, sest arvutatud kogus ületaks muidu teie kogu elektritarbimise. Tegelik omatarbimise määr: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Omatarbimine on piiratud {{effective}} protsendile (valisite {{requested}} %), sest mõnel kuul ületab toodang teie sama kuu tarbimist. Ülejääki ei saa akuta teise kuusse viia.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Omatarbimine on piiratud {{effective}} protsendile (valisite {{requested}} %) hinnangulise kuuprofiili alusel. Piir sõltub seega hinnangust ega ole kindel piir teie leibkonnale.",
+    shadingNotIncludedNote:
+      "Kohalikku varjutust puudest, hoonetest või korstnatest ei ole arvesse võetud.",
     minimumSizeNote:
       "Süsteem on suurendatud väikseima mõistliku suuruseni, kuna väikseimad saadaolevad inverterid seavad alampiiri.",
     consumptionTooLowNote:

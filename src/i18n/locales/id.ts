@@ -507,6 +507,12 @@ export const id = {
       "Konsumsi sendiri aktual bergantung pada kapan listrik diproduksi dan kapan rumah tangga menggunakannya.",
     selfConsumptionCappedNote:
       "Konsumsi sendiri telah dibatasi karena jumlah yang dihitung akan melebihi total pemakaian listrik Anda. Tingkat konsumsi sendiri efektif: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Konsumsi sendiri dibatasi menjadi {{effective}} % (Anda memilih {{requested}} %), karena pada beberapa bulan produksi melebihi konsumsi Anda bulan itu. Kelebihan tidak dapat dipindah ke bulan lain tanpa baterai.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Konsumsi sendiri dibatasi menjadi {{effective}} % (Anda memilih {{requested}} %) berdasarkan profil bulanan perkiraan. Batas ini bergantung pada perkiraan dan bukan batas pasti untuk rumah Anda.",
+    shadingNotIncludedNote:
+      "Naungan lokal dari pohon, bangunan, atau cerobong tidak termasuk dalam perhitungan.",
     minimumSizeNote:
       "Sistem telah diukur ke ukuran praktis terkecil, karena inverter terkecil yang tersedia menetapkan batas bawah.",
     consumptionTooLowNote:

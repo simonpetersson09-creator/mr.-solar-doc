@@ -493,6 +493,12 @@ export const he = {
     selfConsumptionInfo: "הצריכה העצמית בפועל תלויה בזמן ייצור החשמל ובזמן שבו משק הבית צורך אותו.",
     selfConsumptionCappedNote:
       "הצריכה העצמית הוגבלה מכיוון שהכמות המחושבת הייתה עולה על סך צריכת החשמל שלכם. שיעור צריכה עצמית אפקטיבי: {{effective}}%.",
+    selfConsumptionCappedMonthlyNote:
+      "הצריכה העצמית הוגבלה ל-{{effective}} % (בחרת {{requested}} %), כי בחודשים מסוימים הייצור עולה על הצריכה שלך באותו חודש. עודף אינו עובר לחודש אחר ללא סוללה.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "הצריכה העצמית הוגבלה ל-{{effective}} % (בחרת {{requested}} %) לפי פרופיל חודשי משוער. הגבול תלוי בהערכה ואינו גבול ודאי לבית שלך.",
+    shadingNotIncludedNote:
+      "הצללה מקומית מעצים, מבנים או ארובות אינה נכללת בחישוב.",
     minimumSizeNote:
       "המערכת הוגדלה לגודל המעשי הקטן ביותר, מכיוון שהממירים הקטנים הזמינים מציבים מגבלה תחתונה.",
     consumptionTooLowNote:

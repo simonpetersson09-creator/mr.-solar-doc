@@ -32,6 +32,7 @@ import type { PvLimitBinding } from "@/config/pv-connection-rules";
 import { buildInverterOptions, inverterCatalogFor } from "@/config/inverter-catalog";
 import {
   clampShare,
+  monthlyOverlapCapKwh,
   resolveSelfConsumptionShare,
   type LoadProfileClass,
   splitProduction,
@@ -285,12 +286,29 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     profileClass: loadProfileClass,
   });
 
+  /**
+   * Month-by-month physical bound: without storage no energy moves between
+   * months, so Σ min(production_m, consumption_m) limits the self-consumed
+   * energy for EVERY share — including a manual override. Scaled with the
+   * year's production so it stays consistent after degradation.
+   */
+  const monthlyOverlapKwhForProduction = (productionKwh: number): number | null => {
+    const monthly = input.consumption.monthlyKwh ?? null;
+    if (!monthly) return null;
+    const scale = annualProductionKwh > 0 ? productionKwh / annualProductionKwh : 1;
+    return monthlyOverlapCapKwh(
+      monthlyProductionKwh.map((v) => v * scale),
+      monthly,
+    );
+  };
+
   // Self-consumption is capped by what the household actually uses, so the
   // energy amount — not just the displayed percentage — stays physical.
   const split = splitProduction(
     annualProductionKwh,
     selfConsumptionEstimate.share,
     input.consumption.annualKwh,
+    monthlyOverlapKwhForProduction(annualProductionKwh),
   );
 
   // The source follows how the value was determined: an explicit user choice is
@@ -366,6 +384,8 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     maxAcPowerKw,
     selfConsumptionValue: economics.selfConsumptionValue,
     exportValue: economics.exportValue,
+    capBinding: split.capBinding,
+    monthlyConsumptionIsEstimated: input.consumption.isEstimated === true,
   });
 
   // Year-by-year economics (degradation + electricity price scenario).
@@ -378,6 +398,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     selfConsumptionShareForProduction:
       selfConsumptionEstimate.source === "user-override" ? undefined : shareForProduction,
     annualConsumptionKwh: input.consumption.annualKwh,
+    monthlyOverlapKwhForProduction,
     selfConsumedValuePerKwh,
     exportValuePerKwh,
     annualDegradationRate: input.annualDegradationRate,

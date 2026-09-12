@@ -508,6 +508,12 @@ export const no = {
       "Faktisk egenforbruk avhenger av når strømmen produseres og når husstanden bruker den.",
     selfConsumptionCappedNote:
       "Egenforbruket er begrenset fordi den beregnede mengden ellers ville overstige det totale strømforbruket ditt. Effektiv egenforbruksandel: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Egenforbruket er begrenset til {{effective}} % (du valgte {{requested}} %), fordi produksjonen noen måneder overstiger forbruket din den måneden. Overskuddet kan ikke flyttes til en annen måned uten batteri.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Egenforbruket er begrenset til {{effective}} % (du valgte {{requested}} %) basert på en estimert månedsprofil. Grensen avhenger derfor av estimatet og er ingen sikker grense for husholdningen din.",
+    shadingNotIncludedNote:
+      "Lokal skygge fra for eksempel trær, bygninger og pipe er ikke med i beregningen.",
     minimumSizeNote:
       "Anlegget er dimensjonert opp til minste praktiske størrelse, fordi de minste tilgjengelige inverterne setter en nedre grense.",
     consumptionTooLowNote:

@@ -4,6 +4,8 @@
  * the displayed total (no "2 088 + 2 088 = 4 176" artefacts).
  */
 
+import type { SelfConsumptionCapBinding } from "./self-consumption";
+
 export interface PresentationValues {
   /** Rounded annual production, kWh. */
   annualProductionKwh: number;
@@ -16,8 +18,16 @@ export interface PresentationValues {
   exportPercent: number;
   /** Whole percent the user (or the default) asked for, before the physical cap. */
   requestedSelfConsumptionPercent: number;
-  /** True when the physical consumption cap lowered the effective share. */
+  /** True when a physical cap lowered the effective share. */
   selfConsumptionCapped: boolean;
+  /** Which physical limit was binding, so the reason shown is the real one. */
+  selfConsumptionCapBinding: SelfConsumptionCapBinding;
+  /**
+   * True when the binding monthly limit comes from a generated monthly profile
+   * rather than the household's own monthly figures. The limit is then
+   * model-dependent, not a certain limit for the real household.
+   */
+  selfConsumptionCapIsModelled: boolean;
   /** Annual consumption, kWh (rounded). */
   annualConsumptionKwh: number;
   /**
@@ -43,6 +53,10 @@ export function buildPresentationValues(params: {
   maxAcPowerKw: number;
   selfConsumptionValue: number;
   exportValue: number;
+  /** Which physical limit was binding in the split. Defaults to "none". */
+  capBinding?: SelfConsumptionCapBinding;
+  /** True when the monthly consumption behind a monthly cap is a generated profile. */
+  monthlyConsumptionIsEstimated?: boolean;
 }): PresentationValues {
   const selfConsumptionValue = Math.round(params.selfConsumptionValue);
   const exportValue = Math.round(params.exportValue);
@@ -77,7 +91,12 @@ export function buildPresentationValues(params: {
     selfConsumptionPercent: displayedSelfConsumptionPercent,
     exportPercent: 100 - displayedSelfConsumptionPercent,
     requestedSelfConsumptionPercent,
-    selfConsumptionCapped: requestedSelfConsumptionPercent > selfConsumptionPercent,
+    selfConsumptionCapped:
+      requestedSelfConsumptionPercent > selfConsumptionPercent ||
+      (params.capBinding != null && params.capBinding !== "none"),
+    selfConsumptionCapBinding: params.capBinding ?? "none",
+    selfConsumptionCapIsModelled:
+      params.capBinding === "monthly-overlap" && params.monthlyConsumptionIsEstimated === true,
     annualConsumptionKwh: Math.round(params.annualConsumptionKwh),
     productionCoveragePercent:
       params.annualConsumptionKwh > 0

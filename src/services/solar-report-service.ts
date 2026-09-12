@@ -83,6 +83,8 @@ export interface ReportLabels {
   selfConsumptionMode?: { label: string; value: string; note: string | null };
   /** Shown when physical limits capped the requested share. */
   selfConsumptionCappedNote?: string | null;
+  /** States that local shading from trees or buildings is not included. */
+  shadingNote?: string | null;
   chartProduction: string;
   chartConsumption: string;
   /** Where the consumption data came from (imported / entered / estimated). */
@@ -1355,6 +1357,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
   if (result.presentation.selfConsumptionCapped && labels.selfConsumptionCappedNote) {
     report.paragraph(labels.selfConsumptionCappedNote);
   }
+  if (labels.shadingNote) report.paragraph(labels.shadingNote);
   report.paragraph(f["priceMethodNote"] ?? "");
 
   report.paragraph(

@@ -22,11 +22,47 @@ export interface SelfConsumptionSummary {
   selfConsumptionSource: SelfConsumptionSource;
 }
 
+/**
+ * Which physical limit (if any) held the self-consumed energy below the
+ * requested share. "monthly-overlap" is the month-by-month bound
+ * Σ min(production_m, consumption_m).
+ */
+export type SelfConsumptionCapBinding =
+  | "none"
+  | "production"
+  | "annual-consumption"
+  | "monthly-overlap";
+
 export interface SelfConsumptionSplit {
   selfConsumptionShare: number;
   exportShare: number;
   selfConsumptionKwh: number;
   exportedKwh: number;
+  /** The binding physical limit, or "none" when the requested share applied. */
+  capBinding: SelfConsumptionCapBinding;
+}
+
+/**
+ * Month-by-month upper bound on self-consumed energy, in kWh.
+ *
+ * Without storage, no energy moves between months, so a household can never
+ * self-consume more than Σ min(production_m, consumption_m). Returns null when
+ * no usable 12-month pair is available.
+ */
+export function monthlyOverlapCapKwh(
+  monthlyProductionKwh: number[] | null | undefined,
+  monthlyConsumptionKwh: number[] | null | undefined,
+): number | null {
+  if (!monthlyProductionKwh || monthlyProductionKwh.length !== 12) return null;
+  if (!monthlyConsumptionKwh || monthlyConsumptionKwh.length !== 12) return null;
+  let overlap = 0;
+  for (let i = 0; i < 12; i += 1) {
+    const production = monthlyProductionKwh[i];
+    const consumption = monthlyConsumptionKwh[i];
+    if (!Number.isFinite(production) || !Number.isFinite(consumption)) return null;
+    overlap += Math.min(Math.max(0, production as number), Math.max(0, consumption as number));
+  }
+  return overlap;
 }
 
 export function clampShare(share: number): number {
@@ -80,6 +116,11 @@ export function splitProduction(
   annualProductionKwh: number,
   selfConsumptionShare: number = DEFAULT_SELF_CONSUMPTION_SHARE,
   annualConsumptionKwh?: number | null,
+  /**
+   * Optional month-by-month bound Σ min(production_m, consumption_m). Applies to
+   * every share, including a manual override — energy cannot move between months.
+   */
+  monthlyOverlapKwh?: number | null,
 ): SelfConsumptionSplit {
   const production = Number.isFinite(annualProductionKwh)
     ? Math.max(0, annualProductionKwh)
@@ -90,16 +131,31 @@ export function splitProduction(
     annualConsumptionKwh != null && Number.isFinite(annualConsumptionKwh)
       ? Math.max(0, annualConsumptionKwh)
       : Number.POSITIVE_INFINITY;
+  const monthlyCap =
+    monthlyOverlapKwh != null && Number.isFinite(monthlyOverlapKwh)
+      ? Math.max(0, monthlyOverlapKwh)
+      : Number.POSITIVE_INFINITY;
 
-  const selfConsumptionKwh = Math.min(production * self, production, consumptionCap);
+  const requestedKwh = production * self;
+  const selfConsumptionKwh = Math.min(requestedKwh, production, consumptionCap, monthlyCap);
   const exportedKwh = production - selfConsumptionKwh;
   const effectiveShare = production > 0 ? selfConsumptionKwh / production : 0;
+
+  // Report the tightest binding limit, so the UI and the PDF can explain the
+  // real reason instead of a generic "annual consumption" message.
+  let capBinding: SelfConsumptionCapBinding = "none";
+  if (selfConsumptionKwh < requestedKwh - 1e-9) {
+    if (monthlyCap <= consumptionCap && monthlyCap <= production) capBinding = "monthly-overlap";
+    else if (consumptionCap <= production) capBinding = "annual-consumption";
+    else capBinding = "production";
+  }
 
   return {
     selfConsumptionShare: effectiveShare,
     exportShare: 1 - effectiveShare,
     selfConsumptionKwh,
     exportedKwh,
+    capBinding,
   };
 }
 

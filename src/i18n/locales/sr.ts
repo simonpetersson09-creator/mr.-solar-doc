@@ -509,6 +509,12 @@ export const sr = {
       "Стварна самопотрошња зависи од тога када се струја производи и када је домаћинство користи.",
     selfConsumptionCappedNote:
       "Самопотрошња је ограничена јер би израчуната количина иначе премашила вашу укупну потрошњу струје. Ефективна стопа самопотрошње: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Sopstvena potrošnja ograničena je na {{effective}} % (izabrali ste {{requested}} %), jer u nekim mesecima proizvodnja prevazilazi vašu potrošnju tog meseca. Višak se bez baterije ne može preneti u drugi mesec.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Sopstvena potrošnja ograničena je na {{effective}} % (izabrali ste {{requested}} %) na osnovu procenjenog mesečnog profila. Granica zato zavisi od procene i nije sigurna granica za vaše domaćinstvo.",
+    shadingNotIncludedNote:
+      "Lokalno zasenjenje od drveća, zgrada ili dimnjaka nije uključeno u izračun.",
     minimumSizeNote:
       "Систем је повећан на најмању практичну величину, јер најмањи доступни инвертори постављају доњу границу.",
     consumptionTooLowNote:

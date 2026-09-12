@@ -514,6 +514,12 @@ export const tr = {
       "Gerçek öz tüketim, elektriğin ne zaman üretildiğine ve hane tarafından ne zaman kullanıldığına bağlıdır.",
     selfConsumptionCappedNote:
       "Hesaplanan miktar aksi takdirde toplam elektrik kullanımınızı aşacağından öz tüketim sınırlandırılmıştır. Efektif öz tüketim oranı: %{{effective}}.",
+    selfConsumptionCappedMonthlyNote:
+      "Kendi tüketimi {{effective}} % ile sınırlandı ({{requested}} % seçtiniz), çünkü bazı aylarda üretim o ayki tüketiminizi aşıyor. Fazla enerji batarya olmadan başka aya taşınamaz.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Kendi tüketimi tahmini bir aylık profile göre {{effective}} % ile sınırlandı ({{requested}} % seçtiniz). Sınır bu tahmine bağlıdır ve eviniz için kesin bir sınır değildir.",
+    shadingNotIncludedNote:
+      "Ağaç, bina veya baca kaynaklı yerel gölgelenme hesaba katılmamıştır.",
     minimumSizeNote:
       "En küçük mevcut inverterler bir alt sınır belirlediğinden, sistem uygulanabilir en küçük boyuta yükseltilmiştir.",
     consumptionTooLowNote:

@@ -464,6 +464,12 @@ export const cs = {
       "Skutečná vlastní spotřeba závisí na tom, kdy se elektřina vyrábí a kdy ji domácnost používá.",
     selfConsumptionCappedNote:
       "Vlastní spotřeba byla omezena, protože vypočtené množství by jinak překročilo vaši celkovou spotřebu elektřiny. Efektivní míra vlastní spotřeby: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Vlastní spotřeba byla omezena na {{effective}} % (zvolili jste {{requested}} %), protože v některých měsících výroba převyšuje vaši spotřebu daného měsíce. Přebytek nelze bez baterie přenést do jiného měsíce.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Vlastní spotřeba byla omezena na {{effective}} % (zvolili jste {{requested}} %) podle odhadovaného měsíčního profilu. Limit tedy závisí na odhadu a není jistou hranicí pro vaši domácnost.",
+    shadingNotIncludedNote:
+      "Místní zastínění stromy, budovami nebo komíny není ve výpočtu zahrnuto.",
     minimumSizeNote:
       "Systém byl zvětšen na nejmenší praktickou velikost, protože nejmenší dostupné střídače určují spodní hranici.",
     consumptionTooLowNote:
