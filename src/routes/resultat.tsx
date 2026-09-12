@@ -124,6 +124,23 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
           value: t(`result.loadProfile.${result.loadProfileClass ?? "mixed"}`),
           note: t("result.loadProfileNote"),
         },
+        // Same mode wording as step 5 and the result screen, so the PDF cannot
+        // disagree with what the customer saw on screen.
+        selfConsumptionMode: {
+          label: t("result.selfConsumptionModeLabel"),
+          value:
+            result.selfConsumptionSource === "user-override"
+              ? t("result.selfConsumptionModeManual")
+              : t("result.selfConsumptionModeAuto"),
+          note:
+            result.selfConsumptionSource === "user-override"
+              ? t("result.selfConsumptionManualProfileNote")
+              : null,
+        },
+        selfConsumptionCappedNote: t("result.selfConsumptionCappedNote", {
+          effective: formatNumber(result.presentation.selfConsumptionPercent, locale),
+        }),
+
         consumptionSource: t(
           `result.consumptionSource.${result.consumption.inputType ?? "annual-only"}`,
         ),
