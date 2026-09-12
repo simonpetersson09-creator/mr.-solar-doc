@@ -199,13 +199,15 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             </p>
           </>
         ) : null}
-        {result?.presentation.selfConsumptionCapped ? (
+        {capNoteKey && result ? (
           <p className="text-[11px] font-medium leading-snug text-white/85">
-            {t("result.selfConsumptionCappedNote", {
+            {t(capNoteKey, {
               effective: formatNumber(result.presentation.selfConsumptionPercent, locale),
+              requested: formatNumber(result.presentation.requestedSelfConsumptionPercent, locale),
             })}
           </p>
         ) : null}
+        <p className="text-[11px] leading-snug text-white/50">{t("result.shadingNotIncludedNote")}</p>
       </div>
 
 
