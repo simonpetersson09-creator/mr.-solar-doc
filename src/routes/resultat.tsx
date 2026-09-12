@@ -433,10 +433,11 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
                   {t(`result.loadProfile.${result.loadProfileClass ?? "mixed"}`)}
                 </dd>
               )}
-              {p.selfConsumptionCapped ? (
+              {capNoteKey ? (
                 <dd className="mt-1 text-[10px] leading-snug text-white/60">
-                  {t("result.selfConsumptionCappedNote", {
+                  {t(capNoteKey, {
                     effective: formatNumber(p.selfConsumptionPercent, locale),
+                    requested: formatNumber(p.requestedSelfConsumptionPercent, locale),
                   })}
                 </dd>
               ) : null}
