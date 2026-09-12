@@ -1,11 +1,21 @@
 /**
- * Development-only paywall bypass.
+ * Paywall bypass for development and the private Lovable preview.
  *
- * The bypass is gated exclusively on `import.meta.env.DEV`, which Vite
- * replaces with the literal `false` in every production build. It is therefore
- * tree-shaken away and can never be reached on a published site or on a public
- * preview build — no hostname can re-enable it.
+ * Enabled when Vite runs in development (`import.meta.env.DEV`) or when the app
+ * is served from the private Lovable preview hosts:
+ *   - `id-preview--<id>.lovable.app`
+ *   - `*.lovableproject.com`
+ *
+ * The published site (custom domain or `<name>.lovable.app` without the
+ * `id-preview--` prefix) never matches, so real users always see the paywall.
  */
+function isPreviewHost(hostname: string): boolean {
+  if (hostname.endsWith(".lovableproject.com")) return true;
+  return hostname.startsWith("id-preview--") && hostname.endsWith(".lovable.app");
+}
+
 export function isDevUnlock(): boolean {
-  return import.meta.env.DEV === true;
+  if (import.meta.env.DEV === true) return true;
+  if (typeof location === "undefined" || typeof location.hostname !== "string") return false;
+  return isPreviewHost(location.hostname);
 }
