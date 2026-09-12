@@ -125,20 +125,7 @@ export const tr = {
       question: "Elektrik kullanımınız yıl boyunca genellikle nasıl dağılıyor?",
       help: "Yanıtınızı yıllık tüketiminizin aylık dağılımını tahmin etmek için kullanıyoruz.",
       previewTitle: "Tahmini tüketim profiliniz",
-      loadProfileQuestion: "En çok elektriği ne zaman kullanıyorsunuz?",
-    loadProfileHelp:
-      "Emin değil misiniz? Karışık seçin. Seçiminiz güneş elektriğinin ne kadarını doğrudan kullandığınızı tahmin etmemize yardımcı olur.",
-    loadProfileNote: "Standart varsayım; ölçülmüş tüketim veya saatlik simülasyon değildir.",
-    loadProfileLabel: "Tüketim düzeni",
-    loadProfile: {
-      evening: "Sabah ve akşam",
-      eveningHelp: "Gündüz genellikle evde değil.",
-      mixed: "Karışık",
-      mixedHelp: "Tüketim gün içine dağılmış.",
-      daytime: "Gündüz",
-      daytimeHelp: "Güneş üretirken yüksek tüketim.",
-    },
-    estimatedBadge: "Tahmini",
+      estimatedBadge: "Tahmini",
       estimatedNote:
         "Bu, seçiminize dayalı tahmini bir dağılımdır – gerçek tüketiminiz değildir. Aylık değerler girerseniz veya veri yüklerseniz bu bilgi değiştirilir.",
       defaultNote:
@@ -270,6 +257,19 @@ export const tr = {
     invalid: "6 ile 400 A arasında bir ana sigorta girin.",
   },
   result: {
+    loadProfileQuestion: "En çok elektriği ne zaman kullanıyorsunuz?",
+    loadProfileHelp:
+      "Emin değil misiniz? Karışık seçin. Seçiminiz güneş elektriğinin ne kadarını doğrudan kullandığınızı tahmin etmemize yardımcı olur.",
+    loadProfileNote: "Standart varsayım; ölçülmüş tüketim veya saatlik simülasyon değildir.",
+    loadProfileLabel: "Tüketim düzeni",
+    loadProfile: {
+      evening: "Sabah ve akşam",
+      eveningHelp: "Gündüz genellikle evde değil.",
+      mixed: "Karışık",
+      mixedHelp: "Tüketim gün içine dağılmış.",
+      daytime: "Gündüz",
+      daytimeHelp: "Güneş üretirken yüksek tüketim.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:

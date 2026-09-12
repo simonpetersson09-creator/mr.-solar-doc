@@ -125,20 +125,7 @@ export const en = {
       question: "How is your electricity use usually spread across the year?",
       help: "We use your answer to estimate a monthly split of your annual consumption.",
       previewTitle: "Your estimated consumption profile",
-      loadProfileQuestion: "When do you use the most electricity?",
-    loadProfileHelp:
-      "Not sure? Choose mixed. Your choice helps us estimate how much solar electricity you use directly.",
-    loadProfileNote: "Standard assumption, not measured consumption or an hourly simulation.",
-    loadProfileLabel: "Consumption pattern",
-    loadProfile: {
-      evening: "Morning and evening",
-      eveningHelp: "Usually away during the day.",
-      mixed: "Mixed",
-      mixedHelp: "Consumption spread across the day.",
-      daytime: "Daytime",
-      daytimeHelp: "A lot of consumption while the sun is producing.",
-    },
-    estimatedBadge: "Estimated",
+      estimatedBadge: "Estimated",
       estimatedNote:
         "This is an estimated split based on your choice – not your actual consumption. It is replaced if you enter monthly values or upload data.",
       defaultNote:
@@ -269,6 +256,19 @@ export const en = {
     invalid: "Enter a main fuse between 6 and 400 A.",
   },
   result: {
+    loadProfileQuestion: "When do you use the most electricity?",
+    loadProfileHelp:
+      "Not sure? Choose mixed. Your choice helps us estimate how much solar electricity you use directly.",
+    loadProfileNote: "Standard assumption, not measured consumption or an hourly simulation.",
+    loadProfileLabel: "Consumption pattern",
+    loadProfile: {
+      evening: "Morning and evening",
+      eveningHelp: "Usually away during the day.",
+      mixed: "Mixed",
+      mixedHelp: "Consumption spread across the day.",
+      daytime: "Daytime",
+      daytimeHelp: "A lot of consumption while the sun is producing.",
+    },
     connection: {
       contractedKva: "Contracted power (kVA)",
       contractedKw: "Contracted power (kW)",

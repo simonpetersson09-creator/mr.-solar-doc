@@ -128,20 +128,7 @@ export const el = {
       question: "Πώς κατανέμεται συνήθως η κατανάλωση ρεύματός σας κατά τη διάρκεια του έτους;",
       help: "Χρησιμοποιούμε την απάντησή σας για να εκτιμήσουμε τη μηνιαία κατανομή της ετήσιας κατανάλωσής σας.",
       previewTitle: "Το εκτιμώμενο προφίλ κατανάλωσής σας",
-      loadProfileQuestion: "Πότε καταναλώνετε το περισσότερο ρεύμα;",
-    loadProfileHelp:
-      "Δεν είστε βέβαιοι; Επιλέξτε μικτό. Η επιλογή μας βοηθά να εκτιμήσουμε πόση ηλιακή ενέργεια χρησιμοποιείτε άμεσα.",
-    loadProfileNote: "Τυπική παραδοχή, όχι μετρημένη κατανάλωση ούτε ωριαία προσομοίωση.",
-    loadProfileLabel: "Μοτίβο κατανάλωσης",
-    loadProfile: {
-      evening: "Πρωί και βράδυ",
-      eveningHelp: "Συνήθως εκτός σπιτιού την ημέρα.",
-      mixed: "Μικτό",
-      mixedHelp: "Κατανάλωση κατανεμημένη στη μέρα.",
-      daytime: "Μέρα",
-      daytimeHelp: "Μεγάλη κατανάλωση όταν παράγει ο ήλιος.",
-    },
-    estimatedBadge: "Εκτίμηση",
+      estimatedBadge: "Εκτίμηση",
       estimatedNote:
         "Αυτή είναι μια εκτιμώμενη κατανομή βάσει της επιλογής σας – όχι η πραγματική σας κατανάλωση. Αντικαθίσταται αν εισαγάγετε μηνιαίες τιμές ή ανεβάσετε δεδομένα.",
       defaultNote:
@@ -276,6 +263,19 @@ export const el = {
     invalid: "Εισαγάγετε γενική ασφάλεια μεταξύ 6 και 400 A.",
   },
   result: {
+    loadProfileQuestion: "Πότε καταναλώνετε το περισσότερο ρεύμα;",
+    loadProfileHelp:
+      "Δεν είστε βέβαιοι; Επιλέξτε μικτό. Η επιλογή μας βοηθά να εκτιμήσουμε πόση ηλιακή ενέργεια χρησιμοποιείτε άμεσα.",
+    loadProfileNote: "Τυπική παραδοχή, όχι μετρημένη κατανάλωση ούτε ωριαία προσομοίωση.",
+    loadProfileLabel: "Μοτίβο κατανάλωσης",
+    loadProfile: {
+      evening: "Πρωί και βράδυ",
+      eveningHelp: "Συνήθως εκτός σπιτιού την ημέρα.",
+      mixed: "Μικτό",
+      mixedHelp: "Κατανάλωση κατανεμημένη στη μέρα.",
+      daytime: "Μέρα",
+      daytimeHelp: "Μεγάλη κατανάλωση όταν παράγει ο ήλιος.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:

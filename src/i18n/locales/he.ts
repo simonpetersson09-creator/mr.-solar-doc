@@ -121,20 +121,7 @@ export const he = {
       question: "כיצד מתפלגת צריכת החשמל שלכם בדרך כלל לאורך השנה?",
       help: "אנו משתמשים בתשובתכם כדי להעריך פיזור חודשי של הצריכה השנתית שלכם.",
       previewTitle: "פרופיל הצריכה המשוער שלכם",
-      loadProfileQuestion: "מתי אתה משתמש בהכי הרבה חשמל?",
-    loadProfileHelp:
-      "לא בטוח? בחר מעורב. הבחירה עוזרת לנו להעריך כמה חשמל סולארי אתה צורך ישירות.",
-    loadProfileNote: "הנחת ברירת מחדל, לא צריכה נמדדת ולא סימולציה שעתית.",
-    loadProfileLabel: "תבנית צריכה",
-    loadProfile: {
-      evening: "בוקר וערב",
-      eveningHelp: "בדרך כלל לא בבית במהלך היום.",
-      mixed: "מעורב",
-      mixedHelp: "צריכה מפוזרת על פני היום.",
-      daytime: "שעות היום",
-      daytimeHelp: "צריכה גבוהה בזמן שהשמש מייצרת.",
-    },
-    estimatedBadge: "משוער",
+      estimatedBadge: "משוער",
       estimatedNote:
         "זהו פיזור משוער המבוסס על הבחירה שלכם – לא הצריכה בפועל. הוא מוחלף אם תזינו ערכים חודשיים או תעלו נתונים.",
       defaultNote:
@@ -265,6 +252,19 @@ export const he = {
     invalid: 'הזינו מאמ"ת ראשי בין 6 ל-400 A.',
   },
   result: {
+    loadProfileQuestion: "מתי אתה משתמש בהכי הרבה חשמל?",
+    loadProfileHelp:
+      "לא בטוח? בחר מעורב. הבחירה עוזרת לנו להעריך כמה חשמל סולארי אתה צורך ישירות.",
+    loadProfileNote: "הנחת ברירת מחדל, לא צריכה נמדדת ולא סימולציה שעתית.",
+    loadProfileLabel: "תבנית צריכה",
+    loadProfile: {
+      evening: "בוקר וערב",
+      eveningHelp: "בדרך כלל לא בבית במהלך היום.",
+      mixed: "מעורב",
+      mixedHelp: "צריכה מפוזרת על פני היום.",
+      daytime: "שעות היום",
+      daytimeHelp: "צריכה גבוהה בזמן שהשמש מייצרת.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable: "לא ניתן היה להשלים את החישוב. בדוק את פרטי הגג ונסה שוב.",

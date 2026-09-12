@@ -113,20 +113,7 @@ export const lt = {
       question: "Kaip paprastai pasiskirsto jūsų elektros suvartojimas per metus?",
       help: "Naudojame jūsų atsakymą, kad įvertintume jūsų metinio suvartojimo pasiskirstymą mėnesiais.",
       previewTitle: "Numatomas jūsų suvartojimo profilis",
-      loadProfileQuestion: "Kada suvartojate daugiausia elektros?",
-    loadProfileHelp:
-      "Nesate tikri? Pasirinkite mišrų. Pasirinkimas padeda įvertinti, kiek saulės elektros suvartojate tiesiogiai.",
-    loadProfileNote: "Standartinė prielaida, o ne išmatuotas vartojimas ar valandinė simuliacija.",
-    loadProfileLabel: "Vartojimo profilis",
-    loadProfile: {
-      evening: "Rytas ir vakaras",
-      eveningHelp: "Dieną dažniausiai ne namuose.",
-      mixed: "Mišrus",
-      mixedHelp: "Vartojimas paskirstytas per dieną.",
-      daytime: "Dieną",
-      daytimeHelp: "Daug vartojimo, kai saulė gamina.",
-    },
-    estimatedBadge: "Numatoma",
+      estimatedBadge: "Numatoma",
       estimatedNote:
         "Tai yra apytikslis pasiskirstymas, pagrįstas jūsų pasirinkimu – ne jūsų faktinis suvartojimas. Jis bus pakeistas, jei įvesite mėnesio vertes arba įkelsite duomenis.",
       defaultNote:
@@ -258,6 +245,19 @@ export const lt = {
     confirmedGrid: "Tinklo duomenys patvirtinti",
   },
   result: {
+    loadProfileQuestion: "Kada suvartojate daugiausia elektros?",
+    loadProfileHelp:
+      "Nesate tikri? Pasirinkite mišrų. Pasirinkimas padeda įvertinti, kiek saulės elektros suvartojate tiesiogiai.",
+    loadProfileNote: "Standartinė prielaida, o ne išmatuotas vartojimas ar valandinė simuliacija.",
+    loadProfileLabel: "Vartojimo profilis",
+    loadProfile: {
+      evening: "Rytas ir vakaras",
+      eveningHelp: "Dieną dažniausiai ne namuose.",
+      mixed: "Mišrus",
+      mixedHelp: "Vartojimas paskirstytas per dieną.",
+      daytime: "Dieną",
+      daytimeHelp: "Daug vartojimo, kai saulė gamina.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:

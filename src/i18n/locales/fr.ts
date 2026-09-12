@@ -116,20 +116,7 @@ export const fr = {
         "Comment votre consommation électrique est-elle habituellement répartie sur l'année ?",
       help: "Nous utilisons votre réponse pour estimer une répartition mensuelle de votre consommation annuelle.",
       previewTitle: "Votre profil de consommation estimé",
-      loadProfileQuestion: "Quand consommez-vous le plus d'électricité ?",
-    loadProfileHelp:
-      "Vous hésitez ? Choisissez mixte. Ce choix nous aide à estimer la part de solaire que vous consommez directement.",
-    loadProfileNote: "Hypothèse standard, ni consommation mesurée ni simulation horaire.",
-    loadProfileLabel: "Profil de consommation",
-    loadProfile: {
-      evening: "Matin et soir",
-      eveningHelp: "Souvent absent en journée.",
-      mixed: "Mixte",
-      mixedHelp: "Consommation répartie sur la journée.",
-      daytime: "En journée",
-      daytimeHelp: "Beaucoup de consommation quand le soleil produit.",
-    },
-    estimatedBadge: "Estimée",
+      estimatedBadge: "Estimée",
       estimatedNote:
         "Il s'agit d'une répartition estimée basée sur votre choix – pas votre consommation réelle. Elle sera remplacée si vous saisissez des valeurs mensuelles ou téléchargez des données.",
       defaultNote:
@@ -264,6 +251,19 @@ export const fr = {
     confirmedGrid: "Données réseau confirmées",
   },
   result: {
+    loadProfileQuestion: "Quand consommez-vous le plus d'électricité ?",
+    loadProfileHelp:
+      "Vous hésitez ? Choisissez mixte. Ce choix nous aide à estimer la part de solaire que vous consommez directement.",
+    loadProfileNote: "Hypothèse standard, ni consommation mesurée ni simulation horaire.",
+    loadProfileLabel: "Profil de consommation",
+    loadProfile: {
+      evening: "Matin et soir",
+      eveningHelp: "Souvent absent en journée.",
+      mixed: "Mixte",
+      mixedHelp: "Consommation répartie sur la journée.",
+      daytime: "En journée",
+      daytimeHelp: "Beaucoup de consommation quand le soleil produit.",
+    },
     revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
     revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
     calculationUnavailable:
