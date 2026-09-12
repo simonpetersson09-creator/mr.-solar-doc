@@ -517,6 +517,12 @@ export const nl = {
       "Het werkelijke zelfverbruik hangt af van wanneer de stroom wordt geproduceerd en wanneer het huishouden deze gebruikt.",
     selfConsumptionCappedNote:
       "Het zelfverbruik is beperkt omdat de berekende hoeveelheid anders je totale stroomverbruik zou overschrijden. Effectief zelfverbruikspercentage: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Het eigen gebruik is beperkt tot {{effective}} % (u koos {{requested}} %), omdat de productie in sommige maanden hoger is dan uw verbruik in die maand. Overschot kan zonder batterij niet naar een andere maand.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Het eigen gebruik is beperkt tot {{effective}} % (u koos {{requested}} %) op basis van een geschat maandprofiel. De grens hangt dus af van die schatting en is geen zekere grens voor uw huishouden.",
+    shadingNotIncludedNote:
+      "Lokale schaduw van bijvoorbeeld bomen, gebouwen of schoorstenen is niet meegerekend.",
     minimumSizeNote:
       "Het systeem is opgeschaald naar de kleinst praktische omvang, omdat de kleinst beschikbare omvormers een ondergrens bepalen.",
     consumptionTooLowNote:

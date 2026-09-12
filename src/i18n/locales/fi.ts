@@ -463,6 +463,12 @@ export const fi = {
       "Todellinen oma käyttö riippuu siitä, milloin sähköä tuotetaan ja milloin taloudessa käytetään sähköä.",
     selfConsumptionCappedNote:
       "Omaa käyttöä on rajoitettu, koska laskettu määrä ylittäisi muuten koko sähkönkulutuksesi. Tehokas oman käytön aste: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Omakäyttö on rajattu {{effective}} prosenttiin (valitsit {{requested}} %), koska joissakin kuukausissa tuotanto ylittää kulutuksesi. Ylijäämää ei voi siirtää toiseen kuukauteen ilman akkua.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Omakäyttö on rajattu {{effective}} prosenttiin (valitsit {{requested}} %) arvioidun kuukausiprofiilin perusteella. Raja riippuu siis arviosta eikä ole varma raja taloudellesi.",
+    shadingNotIncludedNote:
+      "Paikallista varjostusta esimerkiksi puista, rakennuksista tai savupiipuista ei ole otettu huomioon.",
     minimumSizeNote:
       "Järjestelmä on mitoitettu pienimpään käytännölliseen kokoon, koska pienimmät saatavilla olevat invertterit asettavat alarajan.",
     consumptionTooLowNote:

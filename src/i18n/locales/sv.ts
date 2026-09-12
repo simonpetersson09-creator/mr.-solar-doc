@@ -509,6 +509,12 @@ export const sv = {
       "Faktisk egenanvändning beror på när elen produceras och när hushållet använder el.",
     selfConsumptionCappedNote:
       "Egenanvändningen har begränsats eftersom den beräknade mängden annars skulle överstiga din totala elanvändning. Effektiv egenanvändningsgrad: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Egenanvändningen har begränsats till {{effective}} % (du valde {{requested}} %), eftersom produktionen vissa månader överstiger din förbrukning den månaden. Överskottet kan inte flyttas till en annan månad utan batteri.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Egenanvändningen har begränsats till {{effective}} % (du valde {{requested}} %) utifrån en uppskattad månadsprofil. Gränsen beror därför på den uppskattade profilen och är ingen säker gräns för ditt hushåll.",
+    shadingNotIncludedNote:
+      "Lokal skuggning från till exempel träd, byggnader och skorstenar ingår inte i beräkningen.",
     minimumSizeNote:
       "Anläggningen har dimensionerats upp till minsta rimliga storlek, eftersom de minsta växelriktarna på marknaden sätter en nedre gräns.",
     consumptionTooLowNote:

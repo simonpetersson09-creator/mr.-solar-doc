@@ -508,6 +508,12 @@ export const hr = {
       "Stvarna samopotrošnja ovisi o tome kada se struja proizvodi i kada je kućanstvo koristi.",
     selfConsumptionCappedNote:
       "Samopotrošnja je ograničena jer bi izračunati iznos inače premašio vašu ukupnu potrošnju struje. Stvarna stopa samopotrošnje: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Vlastita potrošnja ograničena je na {{effective}} % (odabrali ste {{requested}} %), jer u nekim mjesecima proizvodnja nadmašuje vašu potrošnju toga mjeseca. Višak se bez baterije ne može prenijeti u drugi mjesec.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Vlastita potrošnja ograničena je na {{effective}} % (odabrali ste {{requested}} %) na temelju procijenjenog mjesečnog profila. Granica time ovisi o procjeni i nije sigurna granica za vaše domaćinstvo.",
+    shadingNotIncludedNote:
+      "Lokalno zasjenjenje od drveća, zgrada ili dimnjaka nije uključeno u izračun.",
     minimumSizeNote:
       "Sustav je dimenzioniran na najmanju praktičnu veličinu jer najmanji dostupni invertori postavljaju donju granicu.",
     consumptionTooLowNote:

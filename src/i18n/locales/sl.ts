@@ -463,6 +463,12 @@ export const sl = {
       "Dejanska lastna raba je odvisna od tega, kdaj se elektrika proizvaja in kdaj jo gospodinjstvo porabi.",
     selfConsumptionCappedNote:
       "Lastna raba je bila omejena, ker bi izračunana količina sicer presegla vašo celotno porabo elektrike. Učinkovita stopnja lastne rabe: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Lastna poraba je omejena na {{effective}} % (izbrali ste {{requested}} %), ker v nekaterih mesecih proizvodnja presega vašo porabo tega meseca. Presežka brez baterije ni mogoče prenesti v drug mesec.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Lastna poraba je omejena na {{effective}} % (izbrali ste {{requested}} %) na podlagi ocenjenega mesečnega profila. Meja je torej odvisna od ocene in ni zanesljiva meja za vaše gospodinjstvo.",
+    shadingNotIncludedNote:
+      "Lokalno senčenje dreves, stavb ali dimnikov ni vključeno v izračun.",
     minimumSizeNote:
       "Sistem je povečan na najmanjšo praktično velikost, saj najmanjši razpoložljivi razsmerniki določajo spodnjo mejo.",
     consumptionTooLowNote: "Vnesena poraba elektrike je zelo nizka, zato je rezultat le okviren.",

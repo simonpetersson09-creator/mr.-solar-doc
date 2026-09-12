@@ -465,6 +465,12 @@ export const da = {
       "Det faktiske egetforbrug afhænger af, hvornår strømmen produceres, og hvornår husstanden bruger den.",
     selfConsumptionCappedNote:
       "Egetforbruget er begrænset, fordi den beregnede mængde ellers ville overstige dit samlede elforbrug. Effektiv egetforbrugsgrad: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Egenforbruget er begrænset til {{effective}} % (du valgte {{requested}} %), fordi produktionen i nogle måneder overstiger dit forbrug den måned. Overskuddet kan ikke flyttes til en anden måned uden batteri.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Egenforbruget er begrænset til {{effective}} % (du valgte {{requested}} %) ud fra en estimeret månedsprofil. Grænsen afhænger derfor af estimatet og er ingen sikker grænse for din husstand.",
+    shadingNotIncludedNote:
+      "Lokal skygge fra fx træer, bygninger og skorstene indgår ikke i beregningen.",
     minimumSizeNote:
       "Anlægget er dimensioneret op til den mindste praktiske størrelse, fordi de mindste tilgængelige invertere sætter en nedre grænse.",
     consumptionTooLowNote:

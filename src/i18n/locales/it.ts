@@ -471,6 +471,12 @@ export const it = {
       "L'autoconsumo effettivo dipende da quando l'elettricità viene prodotta e da quando la famiglia la utilizza.",
     selfConsumptionCappedNote:
       "L'autoconsumo è stato limitato perché la quantità calcolata supererebbe altrimenti il tuo consumo totale di elettricità. Quota di autoconsumo effettiva: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "L'autoconsumo è stato limitato al {{effective}} % (hai scelto {{requested}} %), perché in alcuni mesi la produzione supera il tuo consumo di quel mese. Il surplus non può passare a un altro mese senza batteria.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "L'autoconsumo è stato limitato al {{effective}} % (hai scelto {{requested}} %) usando un profilo mensile stimato. Il limite dipende quindi dalla stima e non è un limite certo per la tua casa.",
+    shadingNotIncludedNote:
+      "L'ombreggiamento locale di alberi, edifici o camini non è incluso nel calcolo.",
     minimumSizeNote:
       "L'impianto è stato portato alla dimensione minima realistica, poiché gli inverter più piccoli disponibili impongono un limite inferiore.",
     consumptionTooLowNote:

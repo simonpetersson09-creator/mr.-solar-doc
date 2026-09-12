@@ -518,6 +518,12 @@ export const ro = {
       "Autoconsumul real depinde de momentul în care este produsă energia și de momentul în care gospodăria o folosește.",
     selfConsumptionCappedNote:
       "Autoconsumul a fost limitat deoarece cantitatea calculată ar depăși altfel consumul tău total de energie. Rata efectivă de autoconsum: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Autoconsumul a fost limitat la {{effective}} % (ați ales {{requested}} %), deoarece în unele luni producția depășește consumul dvs. din luna respectivă. Surplusul nu poate fi mutat în altă lună fără baterie.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Autoconsumul a fost limitat la {{effective}} % (ați ales {{requested}} %) pe baza unui profil lunar estimat. Limita depinde deci de estimare și nu este o limită certă pentru gospodăria dvs.",
+    shadingNotIncludedNote:
+      "Umbrirea locală de la copaci, clădiri sau coșuri de fum nu este inclusă în calcul.",
     minimumSizeNote:
       "Sistemul a fost dimensionat până la cea mai mică dimensiune practică, deoarece cei mai mici invertoare disponibile stabilesc o limită inferioară.",
     consumptionTooLowNote:

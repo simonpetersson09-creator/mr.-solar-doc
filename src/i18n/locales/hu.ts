@@ -514,6 +514,12 @@ export const hu = {
       "A tényleges saját fogyasztás attól függ, mikor termelődik a villamos energia és mikor használja a háztartás.",
     selfConsumptionCappedNote:
       "A saját fogyasztást korlátoztuk, mert a számított érték egyébként meghaladná az Ön teljes villamosenergia-fogyasztását. Tényleges saját fogyasztási arány: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "A saját felhasználást {{effective}} %-ra korlátoztuk (Ön {{requested}} %-ot választott), mert egyes hónapokban a termelés meghaladja az adott hónap fogyasztását. A többlet akkumulátor nélkül nem vihető át másik hónapra.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "A saját felhasználást becsült havi profil alapján {{effective}} %-ra korlátoztuk (Ön {{requested}} %-ot választott). A korlát tehát a becslésen alapul, nem biztos határ az Ön háztartására.",
+    shadingNotIncludedNote:
+      "A fák, épületek vagy kémények helyi árnyékolása nincs beszámítva.",
     minimumSizeNote:
       "A rendszert a legkisebb gyakorlati méretre méreteztük, mivel a legkisebb elérhető inverterek alsó korlátot jelentenek.",
     consumptionTooLowNote:

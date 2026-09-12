@@ -474,6 +474,12 @@ export const pl = {
       "Rzeczywista autokonsumpcja zależy od tego, kiedy energia jest produkowana i kiedy gospodarstwo domowe jej używa.",
     selfConsumptionCappedNote:
       "Autokonsumpcja została ograniczona, ponieważ obliczona ilość przekroczyłaby całkowite zużycie energii. Efektywny wskaźnik autokonsumpcji: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Autokonsumpcję ograniczono do {{effective}} % (wybrano {{requested}} %), ponieważ w niektórych miesiącach produkcja przewyższa zużycie w tym miesiącu. Nadwyżki nie można przenieść na inny miesiąc bez magazynu.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Autokonsumpcję ograniczono do {{effective}} % (wybrano {{requested}} %) na podstawie szacowanego profilu miesięcznego. Granica zależy więc od szacunku i nie jest pewną granicą dla Twojego domu.",
+    shadingNotIncludedNote:
+      "Lokalne zacienienie od drzew, budynków czy kominów nie jest uwzględnione w obliczeniach.",
     minimumSizeNote:
       "Instalacja została powiększona do najmniejszego praktycznego rozmiaru, ponieważ najmniejsze dostępne falowniki wyznaczają dolną granicę.",
     consumptionTooLowNote:

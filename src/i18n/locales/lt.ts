@@ -470,6 +470,12 @@ export const lt = {
       "Tikrasis suvartojimas savo reikmėms priklauso nuo to, kada elektra pagaminama ir kada namų ūkis ją naudoja.",
     selfConsumptionCappedNote:
       "Suvartojimas savo reikmėms buvo apribotas, nes apskaičiuotas kiekis kitaip viršytų visą jūsų elektros suvartojimą. Faktinė dalis: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Savas vartojimas apribotas iki {{effective}} % (pasirinkote {{requested}} %), nes kai kuriais mėnesiais gamyba viršija jūsų to mėnesio vartojimą. Perteklius be baterijos negali būti perkeltas į kitą mėnesį.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Savas vartojimas apribotas iki {{effective}} % (pasirinkote {{requested}} %) pagal apytikrį mėnesio profilį. Todėl riba priklauso nuo įverčio ir nėra tikra riba jūsų namams.",
+    shadingNotIncludedNote:
+      "Vietinis pavėsis nuo medžių, pastatų ar kaminų į skaičiavimą neįtrauktas.",
     minimumSizeNote:
       "Sistema padidinta iki mažiausio praktinio dydžio, nes mažiausi rinkoje esantys inverteriai nustato apatinę ribą.",
     consumptionTooLowNote:

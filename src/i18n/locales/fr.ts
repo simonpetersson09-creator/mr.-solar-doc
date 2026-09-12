@@ -479,6 +479,12 @@ export const fr = {
       "L'autoconsommation réelle dépend du moment où l'électricité est produite et du moment où le ménage l'utilise.",
     selfConsumptionCappedNote:
       "L'autoconsommation a été limitée car la quantité calculée dépasserait sinon votre consommation totale d'électricité. Taux d'autoconsommation effectif : {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "L'autoconsommation a été limitée à {{effective}} % (vous avez choisi {{requested}} %), car certains mois la production dépasse votre consommation du mois. Le surplus ne peut pas être reporté sans batterie.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "L'autoconsommation a été limitée à {{effective}} % (vous avez choisi {{requested}} %) à partir d'un profil mensuel estimé. La limite dépend donc de cette estimation et n'est pas une limite certaine pour votre foyer.",
+    shadingNotIncludedNote:
+      "L'ombrage local dû aux arbres, bâtiments ou cheminées n'est pas pris en compte.",
     minimumSizeNote:
       "L'installation a été augmentée jusqu'à la plus petite taille réaliste, car les onduleurs les plus petits disponibles imposent une limite inférieure.",
     consumptionTooLowNote:

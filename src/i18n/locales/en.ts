@@ -506,6 +506,12 @@ export const en = {
       "Actual self-consumption depends on when the electricity is produced and when the household uses it.",
     selfConsumptionCappedNote:
       "Self-consumption has been limited because the calculated amount would otherwise exceed your total electricity use. Effective self-consumption rate: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Self-consumption has been limited to {{effective}} % (you chose {{requested}} %), because in some months production exceeds your consumption that month. Surplus cannot be moved to another month without a battery.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Self-consumption has been limited to {{effective}} % (you chose {{requested}} %) based on an estimated monthly profile. The limit therefore depends on that estimate and is not a certain limit for your household.",
+    shadingNotIncludedNote:
+      "Local shading from trees, buildings or chimneys is not included in the calculation.",
     minimumSizeNote:
       "The system has been sized up to the smallest practical size, because the smallest available inverters set a lower limit.",
     consumptionTooLowNote:

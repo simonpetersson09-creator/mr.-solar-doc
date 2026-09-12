@@ -473,6 +473,12 @@ export const de = {
       "Der tatsächliche Eigenverbrauch hängt davon ab, wann der Strom erzeugt wird und wann der Haushalt ihn nutzt.",
     selfConsumptionCappedNote:
       "Der Eigenverbrauch wurde begrenzt, da die berechnete Menge sonst Ihren gesamten Stromverbrauch übersteigen würde. Effektive Eigenverbrauchsquote: {{effective}} %.",
+    selfConsumptionCappedMonthlyNote:
+      "Der Eigenverbrauch wurde auf {{effective}} % begrenzt (gewählt: {{requested}} %), weil die Produktion in einzelnen Monaten Ihren Verbrauch dieses Monats übersteigt. Überschuss kann ohne Batterie nicht in andere Monate verschoben werden.",
+    selfConsumptionCappedMonthlyModelledNote:
+      "Der Eigenverbrauch wurde anhand eines geschätzten Monatsprofils auf {{effective}} % begrenzt (gewählt: {{requested}} %). Die Grenze hängt daher von der Schätzung ab und ist keine sichere Grenze für Ihren Haushalt.",
+    shadingNotIncludedNote:
+      "Lokale Verschattung durch Bäume, Gebäude oder Schornsteine ist nicht berücksichtigt.",
     minimumSizeNote:
       "Die Anlage wurde auf die kleinste sinnvolle Größe angehoben, da die kleinsten verfügbaren Wechselrichter eine Untergrenze setzen.",
     consumptionTooLowNote:
