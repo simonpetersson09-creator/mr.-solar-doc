@@ -2,7 +2,8 @@ import { describe, expect, it } from "vitest";
 
 import { calculateSolarSystem } from "./engine";
 import { MARKETS } from "@/config/markets";
-import type { CalculationInput, LoadProfileClass } from "./types";
+import type { CalculationInput } from "./types";
+import type { LoadProfileClass } from "./self-consumption";
 
 /** Stockholm-like PVGIS reference: ~938 kWh/kWp, south, 30 degrees. */
 const MONTHLY_KWH_PER_KWP = [

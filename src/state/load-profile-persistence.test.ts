@@ -10,7 +10,7 @@ describe("load profile persistence", () => {
   });
 
   it("falls back to mixed for older sessions and invalid values", () => {
-    const base = initialWizardState as Record<string, unknown>;
+    const base = initialWizardState as unknown as Record<string, unknown>;
     const { loadProfileClass: _omit, ...legacy } = base;
     expect(migrateWizardState(legacy, WIZARD_STORAGE_VERSION).state?.loadProfileClass).toBe("mixed");
     expect(
