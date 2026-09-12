@@ -397,15 +397,27 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
               </dd>
               <dd className="text-[10px] text-white/45">
                 {selfConsumptionIsUserSet
-                  ? t("result.selfConsumptionUserAssumption")
-                  : t("result.selfConsumptionEstimatedLabel")}
+                  ? t("result.selfConsumptionModeManual")
+                  : t("result.selfConsumptionModeAuto")}
               </dd>
-              {selfConsumptionIsUserSet ? null : (
+              {selfConsumptionIsUserSet ? (
+                <dd className="text-[10px] text-white/45">
+                  {t("result.selfConsumptionManualProfileNote")}
+                </dd>
+              ) : (
                 <dd className="text-[10px] text-white/45">
                   {t("result.loadProfileLabel")}:{" "}
                   {t(`result.loadProfile.${result.loadProfileClass ?? "mixed"}`)}
                 </dd>
               )}
+              {p.selfConsumptionCapped ? (
+                <dd className="mt-1 text-[10px] leading-snug text-white/60">
+                  {t("result.selfConsumptionCappedNote", {
+                    effective: formatNumber(p.selfConsumptionPercent, locale),
+                  })}
+                </dd>
+              ) : null}
+
             </div>
             <div className="rounded-2xl bg-white/10 p-2.5 text-center">
               <dt className="text-[11px] font-semibold tracking-wide text-white/60 uppercase">
