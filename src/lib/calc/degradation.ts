@@ -100,7 +100,12 @@ export function buildLifetimeProjection(params: {
     // lives in exactly one place; without it the fixed share is used.
     const shareForYear =
       params.selfConsumptionShareForProduction?.(productionKwh) ?? params.selfConsumptionShare;
-    const split = splitProduction(productionKwh, shareForYear, params.annualConsumptionKwh);
+    const split = splitProduction(
+      productionKwh,
+      shareForYear,
+      params.annualConsumptionKwh,
+      params.monthlyOverlapKwhForProduction?.(productionKwh) ?? null,
+    );
     // Compound electricity price development: year 1 uses today's price.
     const priceFactor = Math.pow(1 + annualPriceChangeRate, year - 1);
     const economics = calculateEconomicValue({

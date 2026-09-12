@@ -16,8 +16,16 @@ export interface PresentationValues {
   exportPercent: number;
   /** Whole percent the user (or the default) asked for, before the physical cap. */
   requestedSelfConsumptionPercent: number;
-  /** True when the physical consumption cap lowered the effective share. */
+  /** True when a physical cap lowered the effective share. */
   selfConsumptionCapped: boolean;
+  /** Which physical limit was binding, so the reason shown is the real one. */
+  selfConsumptionCapBinding: SelfConsumptionCapBinding;
+  /**
+   * True when the binding monthly limit comes from a generated monthly profile
+   * rather than the household's own monthly figures. The limit is then
+   * model-dependent, not a certain limit for the real household.
+   */
+  selfConsumptionCapIsModelled: boolean;
   /** Annual consumption, kWh (rounded). */
   annualConsumptionKwh: number;
   /**
