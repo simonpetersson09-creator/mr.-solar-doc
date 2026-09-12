@@ -4,6 +4,8 @@
  * the displayed total (no "2 088 + 2 088 = 4 176" artefacts).
  */
 
+import type { SelfConsumptionCapBinding } from "./self-consumption";
+
 export interface PresentationValues {
   /** Rounded annual production, kWh. */
   annualProductionKwh: number;
@@ -51,6 +53,10 @@ export function buildPresentationValues(params: {
   maxAcPowerKw: number;
   selfConsumptionValue: number;
   exportValue: number;
+  /** Which physical limit was binding in the split. Defaults to "none". */
+  capBinding?: SelfConsumptionCapBinding;
+  /** True when the monthly consumption behind a monthly cap is a generated profile. */
+  monthlyConsumptionIsEstimated?: boolean;
 }): PresentationValues {
   const selfConsumptionValue = Math.round(params.selfConsumptionValue);
   const exportValue = Math.round(params.exportValue);
