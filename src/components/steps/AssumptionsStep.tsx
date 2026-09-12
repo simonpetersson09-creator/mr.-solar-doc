@@ -34,6 +34,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   const { result, outcome, market } = useCalculation();
   const [showExportInfo, setShowExportInfo] = useState(false);
   const setSelfConsumptionShare = useWizardStore((s) => s.setSelfConsumptionShare);
+  const resetSelfConsumptionShare = useWizardStore((s) => s.resetSelfConsumptionShare);
   const loadProfileClass = useWizardStore((s) => s.loadProfileClass);
   const setLoadProfileClass = useWizardStore((s) => s.setLoadProfileClass);
   const setSelfConsumedValue = useWizardStore((s) => s.setSelfConsumedValue);
