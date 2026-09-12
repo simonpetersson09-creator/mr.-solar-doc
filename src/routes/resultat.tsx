@@ -382,6 +382,9 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
             comparisonLabel={t("result.chartConsumption")}
             onDark
           />
+          <p className="mt-2 text-[10px] leading-snug text-white/55">
+            {t("result.shadingNotIncludedNote")}
+          </p>
         </section>
 
 {/* Group: economics */}
