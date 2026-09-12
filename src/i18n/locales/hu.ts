@@ -125,7 +125,20 @@ export const hu = {
       question: "Hogyan oszlik meg jellemzően a villamosenergia-fogyasztása az év során?",
       help: "A válaszát arra használjuk, hogy megbecsüljük az éves fogyasztás havi eloszlását.",
       previewTitle: "Az Ön becsült fogyasztási profilja",
-      estimatedBadge: "Becsült",
+      loadProfileQuestion: "Mikor használja a legtöbb áramot?",
+    loadProfileHelp:
+      "Nem biztos? Válassza a vegyes lehetőséget. A választás segít megbecsülni, mennyi napenergiát használ fel közvetlenül.",
+    loadProfileNote: "Átlagos feltételezés, nem mért fogyasztás és nem óránkénti szimuláció.",
+    loadProfileLabel: "Fogyasztási mintázat",
+    loadProfile: {
+      evening: "Reggel és este",
+      eveningHelp: "Napközben többnyire nincs otthon.",
+      mixed: "Vegyes",
+      mixedHelp: "A fogyasztás elosztva a nap során.",
+      daytime: "Napközben",
+      daytimeHelp: "Sok fogyasztás, amikor a nap termel.",
+    },
+    estimatedBadge: "Becsült",
       estimatedNote:
         "Ez egy, az Ön választása alapján becsült eloszlás – nem a tényleges fogyasztása. Ha havi értékeket ad meg vagy adatot tölt fel, ez helyettesíthető.",
       defaultNote:

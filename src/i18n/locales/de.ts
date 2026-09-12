@@ -114,7 +114,20 @@ export const de = {
       question: "Wie verteilt sich Ihr Stromverbrauch normalerweise über das Jahr?",
       help: "Wir verwenden Ihre Antwort, um eine monatliche Verteilung Ihres Jahresverbrauchs zu schätzen.",
       previewTitle: "Ihr geschätztes Verbrauchsprofil",
-      estimatedBadge: "Geschätzt",
+      loadProfileQuestion: "Wann verbrauchen Sie am meisten Strom?",
+    loadProfileHelp:
+      "Unsicher? Wählen Sie gemischt. Die Auswahl hilft uns zu schätzen, wie viel Solarstrom Sie direkt nutzen.",
+    loadProfileNote: "Pauschale Annahme, kein gemessener Verbrauch und keine Stundensimulation.",
+    loadProfileLabel: "Verbrauchsmuster",
+    loadProfile: {
+      evening: "Morgen und Abend",
+      eveningHelp: "Tagsüber meist außer Haus.",
+      mixed: "Gemischt",
+      mixedHelp: "Verbrauch über den Tag verteilt.",
+      daytime: "Tagsüber",
+      daytimeHelp: "Viel Verbrauch, während die Sonne Strom liefert.",
+    },
+    estimatedBadge: "Geschätzt",
       estimatedNote:
         "Dies ist eine geschätzte Verteilung basierend auf Ihrer Wahl – nicht Ihr tatsächlicher Verbrauch. Sie wird ersetzt, wenn Sie Monatswerte eingeben oder Daten hochladen.",
       defaultNote:

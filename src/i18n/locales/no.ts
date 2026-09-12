@@ -125,7 +125,20 @@ export const no = {
       question: "Hvordan fordeler strømforbruket ditt seg vanligvis gjennom året?",
       help: "Vi bruker svaret ditt til å anslå en månedlig fordeling av årsforbruket.",
       previewTitle: "Din estimerte forbruksprofil",
-      estimatedBadge: "Estimert",
+      loadProfileQuestion: "Når bruker du mest strøm?",
+    loadProfileHelp:
+      "Usikker? Velg blandet. Valget hjelper oss å anslå hvor mye solstrøm du bruker direkte.",
+    loadProfileNote: "Standardantakelse, ikke målt forbruk eller en timesimulering.",
+    loadProfileLabel: "Forbruksmønster",
+    loadProfile: {
+      evening: "Morgen og kveld",
+      eveningHelp: "Oftest borte på dagtid.",
+      mixed: "Blandet",
+      mixedHelp: "Forbruk fordelt over dagen.",
+      daytime: "Dagtid",
+      daytimeHelp: "Mye forbruk når sola produserer.",
+    },
+    estimatedBadge: "Estimert",
       estimatedNote:
         "Dette er en estimert fordeling basert på valget ditt – ikke ditt faktiske forbruk. Den erstattes hvis du legger inn månedsverdier eller laster opp data.",
       defaultNote:

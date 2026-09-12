@@ -118,7 +118,20 @@ export const id = {
       question: "Bagaimana biasanya pemakaian listrik Anda tersebar sepanjang tahun?",
       help: "Kami menggunakan jawaban Anda untuk memperkirakan pembagian bulanan dari konsumsi tahunan Anda.",
       previewTitle: "Profil konsumsi perkiraan Anda",
-      estimatedBadge: "Perkiraan",
+      loadProfileQuestion: "Kapan Anda paling banyak memakai listrik?",
+    loadProfileHelp:
+      "Tidak yakin? Pilih campuran. Pilihan ini membantu kami memperkirakan berapa banyak listrik surya yang Anda pakai langsung.",
+    loadProfileNote: "Asumsi standar, bukan konsumsi terukur atau simulasi per jam.",
+    loadProfileLabel: "Pola konsumsi",
+    loadProfile: {
+      evening: "Pagi dan malam",
+      eveningHelp: "Biasanya tidak di rumah pada siang hari.",
+      mixed: "Campuran",
+      mixedHelp: "Konsumsi tersebar sepanjang hari.",
+      daytime: "Siang hari",
+      daytimeHelp: "Banyak konsumsi saat matahari berproduksi.",
+    },
+    estimatedBadge: "Perkiraan",
       estimatedNote:
         "Ini adalah pembagian perkiraan berdasarkan pilihan Anda – bukan konsumsi aktual Anda. Ini akan diganti jika Anda memasukkan nilai bulanan atau mengunggah data.",
       defaultNote:
