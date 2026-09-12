@@ -17,6 +17,8 @@ import { sanitizeNumericInput } from "@/lib/numeric-input";
 import { sumMonthly } from "@/lib/calc/energy-production";
 import { useWizardStore } from "@/state/wizard-store";
 import { haptic } from "@/services/native-service";
+import { editedConsumptionOrigin, isEstimatedConsumption } from "@/lib/consumption-provenance";
+import type { ConsumptionInputType } from "@/lib/calc/consumption-shape";
 
 interface ConsumptionStepProps {
   totalSteps: number;
@@ -45,12 +47,13 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const [useMonthly, setUseMonthly] = useState(Boolean(storedMonthly));
   const [monthly, setMonthly] = useState<string[]>(
     storedMonthly
-      ? storedMonthly.map((value) => String(Math.round(value)))
+      ? storedMonthly.map((value) => String(value))
       : Array.from({ length: 12 }, () => ""),
   );
 
   const [shape, setShape] = useState<ConsumptionShape>(storedShape ?? "default");
-  const [imported, setImported] = useState(storedInputType === "imported");
+  const [origin, setOrigin] = useState<ConsumptionInputType>(storedMonthly ? storedInputType : "monthly-manual");
+  const [monthlyEdited, setMonthlyEdited] = useState(false);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [parsing, setParsing] = useState(false);
@@ -78,15 +81,15 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
       const { readConsumptionFile } = await import("@/lib/read-consumption-file");
       const parsed = await readConsumptionFile(file, i18n.language);
       if (parsed.monthly) {
-        setMonthly(parsed.monthly.map((value) => String(Math.round(value))));
+        setMonthly(parsed.monthly.map((value) => String(value)));
         setUseMonthly(true);
-        setImported(true);
+        setOrigin("imported");
+        setMonthlyEdited(true);
         setAnnual(String(parsed.annual ?? Math.round(sumMonthly(parsed.monthly))));
         setParseStatus("monthly");
         void haptic("medium");
       } else if (parsed.annual) {
         setUseMonthly(false);
-        setImported(false);
         setAnnual(String(Math.round(parsed.annual)));
         setParseStatus("annual");
         void haptic("light");
@@ -113,7 +116,8 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
   const monthShapeImplausible = maxMonthShare > 0.75;
   const monthShapeUneven = !monthShapeImplausible && maxMonthShare > 0.45;
   const valid =
-    effectiveAnnual >= MIN_ANNUAL_KWH && effectiveAnnual <= MAX_ANNUAL_KWH && !monthShapeImplausible;
+    effectiveAnnual >= MIN_ANNUAL_KWH && effectiveAnnual <= MAX_ANNUAL_KWH && !monthShapeImplausible &&
+    (!useMonthly || monthly.every((value) => value.trim() !== "" && parseLocaleNumber(value, locale) !== null));
   const showEstimatedProfile = !useMonthly && valid;
   /**
    * Explain *why* the user cannot continue instead of only disabling the
@@ -160,10 +164,10 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             void haptic("medium");
             if (useMonthly) {
               setConsumption(
-                effectiveAnnual,
+                !monthlyEdited && storedMonthly && storedAnnual ? storedAnnual : effectiveAnnual,
                 monthlyNumbers,
-                imported ? "imported" : "monthly-manual",
-                null,
+                origin,
+                isEstimatedConsumption(origin) ? shape : null,
               );
             } else {
               // Store whole kWh per month — the estimate is a rough split of
@@ -230,7 +234,6 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               onClick={() => {
                 setFileName(null);
                 setParseStatus(null);
-                setImported(false);
               }}
             >
               <X className="size-3.5" />
@@ -364,6 +367,9 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               </span>
             </div>
             <p className="text-[11px] leading-snug text-white/60">{t("consumption.monthlyHint")}</p>
+            {isEstimatedConsumption(origin) ? (
+              <p className="text-xs text-primary-foreground">{t("result.monthlyOriginEstimatedNote")}</p>
+            ) : null}
             <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-6">
               {monthly.map((value, index) => (
                 <div key={monthLabels[index]}>
@@ -378,6 +384,8 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
                       const next = [...monthly];
                       next[index] = sanitizeNumericInput(event.target.value);
                       setMonthly(next);
+                      setMonthlyEdited(true);
+                      setOrigin(editedConsumptionOrigin(origin));
                     }}
                     className="mt-0.5 h-8 rounded-lg border-white/25 bg-white/15 px-1.5 text-[13px] text-white placeholder:text-white/50"
                   />

@@ -268,6 +268,8 @@ export const da = {
     title: "Din beregning",
     consumptionSourceLabel: "Datakilde forbrug",
     consumptionSource: {
+      "partial-profile": "Månederne er helt eller delvist estimerede, eller oprindelsen er usikker. De behandles ikke som et komplet sæt egne månedsmålinger.",
+      unknown: "Månederne er helt eller delvist estimerede, eller oprindelsen er usikker. De behandles ikke som et komplet sæt egne månedsmålinger.",
       imported: "Importerede forbrugsdata",
       "monthly-manual": "Angivne månedsværdier",
       "annual-profile": "Estimeret fra angivet årsforbrug",
@@ -463,6 +465,9 @@ export const da = {
       "Egetforbruget er en antagelse baseret på den valgte andel og kan justeres manuelt.",
     selfConsumptionInfo:
       "Det faktiske egetforbrug afhænger af, hvornår strømmen produceres, og hvornår husstanden bruger den.",
+    selfConsumptionEstimatedDeviationNote: "Dit manuelle egenforbrug overstiger overlappet i den estimerede månedsprofil. Dette er en oplysning, ikke en månedsgrænse. Årsgrænserne gælder stadig.",
+    monthlyOriginEstimatedNote: "Månederne er helt eller delvist estimerede, eller oprindelsen er usikker. De behandles ikke som et komplet sæt egne månedsmålinger.",
+    selfConsumptionAnnualAndEstimatedNote: "Egetforbruget er begrænset, fordi den beregnede mængde ellers ville overstige dit samlede elforbrug. Effektiv egetforbrugsgrad: {{effective}} %. Dit manuelle egenforbrug overstiger overlappet i den estimerede månedsprofil. Dette er en oplysning, ikke en månedsgrænse. Årsgrænserne gælder stadig.",
     selfConsumptionCappedNote:
       "Egetforbruget er begrænset, fordi den beregnede mængde ellers ville overstige dit samlede elforbrug. Effektiv egetforbrugsgrad: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

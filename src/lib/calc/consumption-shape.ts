@@ -12,7 +12,7 @@ import { getHemisphere } from "@/lib/geo/hemisphere";
 export type ConsumptionShape = "even" | "winter-heavy" | "summer-heavy" | "default";
 
 /** Where the monthly consumption used in the calculation came from. */
-export type ConsumptionInputType = "imported" | "monthly-manual" | "annual-profile" | "annual-only";
+export type ConsumptionInputType = "imported" | "monthly-manual" | "annual-profile" | "annual-only" | "partial-profile" | "unknown";
 
 /**
  * Climate-band profiles for the "I don't know" case (Jan..Dec, northern

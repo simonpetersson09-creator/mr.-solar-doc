@@ -278,6 +278,8 @@ export const sv = {
     title: "Din beräkning",
     consumptionSourceLabel: "Datakälla förbrukning",
     consumptionSource: {
+      "partial-profile": "Månaderna är helt eller delvis uppskattade, eller har osäkert ursprung. De behandlas inte som en fullständig serie egna månadsvärden.",
+      unknown: "Månaderna är helt eller delvis uppskattade, eller har osäkert ursprung. De behandlas inte som en fullständig serie egna månadsvärden.",
       imported: "Importerad förbrukningsdata",
       "monthly-manual": "Angivna månadsvärden",
       "annual-profile": "Uppskattad från angiven årsförbrukning",
@@ -507,6 +509,9 @@ export const sv = {
       "Egenanvändningen är ett antagande baserat på vald andel och kan justeras manuellt.",
     selfConsumptionInfo:
       "Faktisk egenanvändning beror på när elen produceras och när hushållet använder el.",
+    selfConsumptionEstimatedDeviationNote: "Din manuella egenanvändning överstiger överlappet i den uppskattade månadsprofilen. Detta är en upplysning, inte en månadsbegränsning. Årsgränserna gäller fortfarande.",
+    monthlyOriginEstimatedNote: "Månaderna är helt eller delvis uppskattade, eller har osäkert ursprung. De behandlas inte som en fullständig serie egna månadsvärden.",
+    selfConsumptionAnnualAndEstimatedNote: "Egenanvändningen har begränsats eftersom den beräknade mängden annars skulle överstiga din totala elanvändning. Effektiv egenanvändningsgrad: {{effective}} %. Din manuella egenanvändning överstiger överlappet i den uppskattade månadsprofilen. Detta är en upplysning, inte en månadsbegränsning. Årsgränserna gäller fortfarande.",
     selfConsumptionCappedNote:
       "Egenanvändningen har begränsats eftersom den beräknade mängden annars skulle överstiga din totala elanvändning. Effektiv egenanvändningsgrad: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

@@ -278,6 +278,8 @@ export const en = {
     title: "Your calculation",
     consumptionSourceLabel: "Consumption data source",
     consumptionSource: {
+      "partial-profile": "These months are fully or partly estimated, or their origin is uncertain. They are not treated as a complete set of your own monthly readings.",
+      unknown: "These months are fully or partly estimated, or their origin is uncertain. They are not treated as a complete set of your own monthly readings.",
       imported: "Imported consumption data",
       "monthly-manual": "Entered monthly values",
       "annual-profile": "Estimated from the stated annual consumption",
@@ -504,6 +506,9 @@ export const en = {
       "Self-consumption is an assumption based on the selected share and can be adjusted manually.",
     selfConsumptionInfo:
       "Actual self-consumption depends on when the electricity is produced and when the household uses it.",
+    selfConsumptionEstimatedDeviationNote: "Your manual self-consumption exceeds the overlap in the estimated monthly profile. This is advisory, not a monthly limit. Annual limits still apply.",
+    monthlyOriginEstimatedNote: "These months are fully or partly estimated, or their origin is uncertain. They are not treated as a complete set of your own monthly readings.",
+    selfConsumptionAnnualAndEstimatedNote: "Self-consumption has been limited because the calculated amount would otherwise exceed your total electricity use. Effective self-consumption rate: {{effective}} %. Your manual self-consumption exceeds the overlap in the estimated monthly profile. This is advisory, not a monthly limit. Annual limits still apply.",
     selfConsumptionCappedNote:
       "Self-consumption has been limited because the calculated amount would otherwise exceed your total electricity use. Effective self-consumption rate: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

@@ -281,6 +281,8 @@ export const es = {
     title: "Tu cálculo",
     consumptionSourceLabel: "Origen de los datos de consumo",
     consumptionSource: {
+      "partial-profile": "Los meses son estimados total o parcialmente, o su origen es incierto. No se consideran una serie completa de lecturas mensuales propias.",
+      unknown: "Los meses son estimados total o parcialmente, o su origen es incierto. No se consideran una serie completa de lecturas mensuales propias.",
       imported: "Datos de consumo importados",
       "monthly-manual": "Valores mensuales introducidos",
       "annual-profile": "Estimado a partir del consumo anual indicado",
@@ -512,6 +514,9 @@ export const es = {
       "El autoconsumo es un supuesto basado en la cuota seleccionada y puede ajustarse manualmente.",
     selfConsumptionInfo:
       "El autoconsumo real depende de cuándo se produce la electricidad y cuándo la usa el hogar.",
+    selfConsumptionEstimatedDeviationNote: "Tu autoconsumo manual supera la coincidencia del perfil mensual estimado. Es un aviso, no un límite mensual. Los límites anuales siguen vigentes.",
+    monthlyOriginEstimatedNote: "Los meses son estimados total o parcialmente, o su origen es incierto. No se consideran una serie completa de lecturas mensuales propias.",
+    selfConsumptionAnnualAndEstimatedNote: "El autoconsumo se ha limitado porque el importe calculado superaría tu consumo eléctrico total. Tasa de autoconsumo efectiva: {{effective}} %. Tu autoconsumo manual supera la coincidencia del perfil mensual estimado. Es un aviso, no un límite mensual. Los límites anuales siguen vigentes.",
     selfConsumptionCappedNote:
       "El autoconsumo se ha limitado porque el importe calculado superaría tu consumo eléctrico total. Tasa de autoconsumo efectiva: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

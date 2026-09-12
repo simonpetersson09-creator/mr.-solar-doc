@@ -6,7 +6,28 @@ import type { ConsumptionInputType, ConsumptionShape } from "@/lib/calc/consumpt
 import type { PriceScenarioId } from "@/config/constants";
 import type { ConnectionCapacity } from "@/config/connection-capacity";
 
-export const SNAPSHOT_VERSION = 1;
+export const SNAPSHOT_VERSION = 2;
+
+import { legacyConsumptionOrigin, isEstimatedConsumption } from "@/lib/consumption-provenance";
+
+/** Historical purchased amounts are immutable; only correct uncertain provenance on read. */
+export function readCalculationSnapshot(snapshot: CalculationSnapshot): CalculationSnapshot {
+  if (snapshot.version >= 2) return snapshot;
+  const inputType = legacyConsumptionOrigin(snapshot.assumptions.consumptionInputType);
+  const isEstimated = isEstimatedConsumption(inputType);
+  return {
+    ...snapshot,
+    assumptions: { ...snapshot.assumptions, consumptionInputType: inputType },
+    result: {
+      ...snapshot.result,
+      consumption: { ...snapshot.result.consumption, inputType, isEstimated },
+      presentation: {
+        ...snapshot.result.presentation,
+        selfConsumptionCapIsModelled: isEstimated && snapshot.result.presentation.selfConsumptionCapBinding === "monthly-overlap",
+      },
+    },
+  };
+}
 
 export interface CalculationAssumptions {
   orientation: Orientation;

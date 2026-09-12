@@ -283,6 +283,8 @@ export const ro = {
     title: "Calculul tău",
     consumptionSourceLabel: "Sursa datelor de consum",
     consumptionSource: {
+      "partial-profile": "Lunile sunt estimate integral sau parțial, ori originea lor este incertă. Nu sunt considerate o serie completă de citiri lunare proprii.",
+      unknown: "Lunile sunt estimate integral sau parțial, ori originea lor este incertă. Nu sunt considerate o serie completă de citiri lunare proprii.",
       imported: "Date de consum importate",
       "monthly-manual": "Valori lunare introduse",
       "annual-profile": "Estimat din consumul anual declarat",
@@ -516,6 +518,9 @@ export const ro = {
       "Autoconsumul este o presupunere bazată pe cota selectată și poate fi ajustat manual.",
     selfConsumptionInfo:
       "Autoconsumul real depinde de momentul în care este produsă energia și de momentul în care gospodăria o folosește.",
+    selfConsumptionEstimatedDeviationNote: "Autoconsumul introdus manual depășește suprapunerea din profilul lunar estimat. Este o informare, nu o limită lunară. Limitele anuale rămân valabile.",
+    monthlyOriginEstimatedNote: "Lunile sunt estimate integral sau parțial, ori originea lor este incertă. Nu sunt considerate o serie completă de citiri lunare proprii.",
+    selfConsumptionAnnualAndEstimatedNote: "Autoconsumul a fost limitat deoarece cantitatea calculată ar depăși altfel consumul tău total de energie. Rata efectivă de autoconsum: {{effective}} %. Autoconsumul introdus manual depășește suprapunerea din profilul lunar estimat. Este o informare, nu o limită lunară. Limitele anuale rămân valabile.",
     selfConsumptionCappedNote:
       "Autoconsumul a fost limitat deoarece cantitatea calculată ar depăși altfel consumul tău total de energie. Rata efectivă de autoconsum: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

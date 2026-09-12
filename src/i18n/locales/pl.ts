@@ -272,6 +272,8 @@ export const pl = {
     title: "Twoja kalkulacja",
     consumptionSourceLabel: "Źródło danych o zużyciu",
     consumptionSource: {
+      "partial-profile": "Miesiące są w całości lub częściowo szacowane albo ich pochodzenie jest niepewne. Nie są traktowane jako pełny zestaw własnych odczytów miesięcznych.",
+      unknown: "Miesiące są w całości lub częściowo szacowane albo ich pochodzenie jest niepewne. Nie są traktowane jako pełny zestaw własnych odczytów miesięcznych.",
       imported: "Importowane dane o zużyciu",
       "monthly-manual": "Wprowadzone wartości miesięczne",
       "annual-profile": "Oszacowano na podstawie podanego rocznego zużycia",
@@ -472,6 +474,9 @@ export const pl = {
       "Autokonsumpcja to założenie oparte na wybranym udziale i można ją zmienić ręcznie.",
     selfConsumptionInfo:
       "Rzeczywista autokonsumpcja zależy od tego, kiedy energia jest produkowana i kiedy gospodarstwo domowe jej używa.",
+    selfConsumptionEstimatedDeviationNote: "Ręcznie podana autokonsumpcja przekracza pokrycie w szacowanym profilu miesięcznym. To informacja, nie limit miesięczny. Limity roczne nadal obowiązują.",
+    monthlyOriginEstimatedNote: "Miesiące są w całości lub częściowo szacowane albo ich pochodzenie jest niepewne. Nie są traktowane jako pełny zestaw własnych odczytów miesięcznych.",
+    selfConsumptionAnnualAndEstimatedNote: "Autokonsumpcja została ograniczona, ponieważ obliczona ilość przekroczyłaby całkowite zużycie energii. Efektywny wskaźnik autokonsumpcji: {{effective}} %. Ręcznie podana autokonsumpcja przekracza pokrycie w szacowanym profilu miesięcznym. To informacja, nie limit miesięczny. Limity roczne nadal obowiązują.",
     selfConsumptionCappedNote:
       "Autokonsumpcja została ograniczona, ponieważ obliczona ilość przekroczyłaby całkowite zużycie energii. Efektywny wskaźnik autokonsumpcji: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

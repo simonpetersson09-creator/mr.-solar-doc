@@ -272,6 +272,8 @@ export const it = {
     title: "Il tuo calcolo",
     consumptionSourceLabel: "Fonte dati consumo",
     consumptionSource: {
+      "partial-profile": "I mesi sono stimati del tutto o in parte, oppure hanno origine incerta. Non sono considerati una serie completa di letture mensili proprie.",
+      unknown: "I mesi sono stimati del tutto o in parte, oppure hanno origine incerta. Non sono considerati una serie completa di letture mensili proprie.",
       imported: "Dati di consumo importati",
       "monthly-manual": "Valori mensili inseriti",
       "annual-profile": "Stimato dal consumo annuo dichiarato",
@@ -469,6 +471,9 @@ export const it = {
       "L'autoconsumo è un'ipotesi basata sulla quota scelta e può essere modificato manualmente.",
     selfConsumptionInfo:
       "L'autoconsumo effettivo dipende da quando l'elettricità viene prodotta e da quando la famiglia la utilizza.",
+    selfConsumptionEstimatedDeviationNote: "L’autoconsumo manuale supera la sovrapposizione nel profilo mensile stimato. È un avviso, non un limite mensile. Restano validi i limiti annuali.",
+    monthlyOriginEstimatedNote: "I mesi sono stimati del tutto o in parte, oppure hanno origine incerta. Non sono considerati una serie completa di letture mensili proprie.",
+    selfConsumptionAnnualAndEstimatedNote: "L'autoconsumo è stato limitato perché la quantità calcolata supererebbe altrimenti il tuo consumo totale di elettricità. Quota di autoconsumo effettiva: {{effective}} %. L’autoconsumo manuale supera la sovrapposizione nel profilo mensile stimato. È un avviso, non un limite mensile. Restano validi i limiti annuali.",
     selfConsumptionCappedNote:
       "L'autoconsumo è stato limitato perché la quantità calcolata supererebbe altrimenti il tuo consumo totale di elettricità. Quota di autoconsumo effettiva: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

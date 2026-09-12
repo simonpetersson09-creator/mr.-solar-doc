@@ -46,6 +46,7 @@ import {
 } from "@/state/wizard-initial-state";
 
 type Loose = Record<string, unknown>;
+import { legacyConsumptionOrigin } from "@/lib/consumption-provenance";
 
 export interface WizardMigrationOutcome {
   state: WizardData;
@@ -119,7 +120,11 @@ function toV5(state: Loose): Loose {
   return { ...state, hasStarted: true };
 }
 
-const MIGRATIONS: Array<(state: Loose) => Loose> = [toV1, toV2, toV3, toV4, toV5];
+function toV6(state: Loose): Loose {
+  return { ...state, consumptionInputType: legacyConsumptionOrigin(state["consumptionInputType"]) };
+}
+
+const MIGRATIONS: Array<(state: Loose) => Loose> = [toV1, toV2, toV3, toV4, toV5, toV6];
 
 /* ----------------------------------------------------------- normalisation */
 
@@ -161,8 +166,10 @@ export function normalizeWizardState(loose: Loose): WizardData {
   const annual = num(loose["annualConsumptionKwh"]);
   base.annualConsumptionKwh = annual !== null && annual > 0 ? annual : null;
   base.monthlyConsumptionKwh = monthly(loose["monthlyConsumptionKwh"]);
-  if (typeof loose["consumptionInputType"] === "string") {
+  if (["imported", "monthly-manual", "annual-profile", "annual-only", "partial-profile", "unknown"].includes(String(loose["consumptionInputType"]))) {
     base.consumptionInputType = loose["consumptionInputType"] as WizardData["consumptionInputType"];
+  } else if (base.monthlyConsumptionKwh) {
+    base.consumptionInputType = "unknown";
   }
   if (!base.monthlyConsumptionKwh && base.consumptionInputType !== "annual-only") {
     base.consumptionInputType = "annual-only";

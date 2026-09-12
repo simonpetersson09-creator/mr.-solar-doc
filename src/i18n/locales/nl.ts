@@ -281,6 +281,8 @@ export const nl = {
     title: "Je berekening",
     consumptionSourceLabel: "Bron verbruiksgegevens",
     consumptionSource: {
+      "partial-profile": "De maanden zijn geheel of deels geschat, of hun herkomst is onzeker. Ze gelden niet als een volledige reeks eigen maandmetingen.",
+      unknown: "De maanden zijn geheel of deels geschat, of hun herkomst is onzeker. Ze gelden niet als een volledige reeks eigen maandmetingen.",
       imported: "Geïmporteerde verbruiksgegevens",
       "monthly-manual": "Ingevoerde maandwaarden",
       "annual-profile": "Geschat op basis van het opgegeven jaarverbruik",
@@ -515,6 +517,9 @@ export const nl = {
       "Zelfverbruik is een aanname op basis van het gekozen aandeel en kan handmatig worden aangepast.",
     selfConsumptionInfo:
       "Het werkelijke zelfverbruik hangt af van wanneer de stroom wordt geproduceerd en wanneer het huishouden deze gebruikt.",
+    selfConsumptionEstimatedDeviationNote: "Uw handmatige eigenverbruik overschrijdt de overlap in het geschatte maandprofiel. Dit is een melding, geen maandlimiet. Jaargrenzen blijven gelden.",
+    monthlyOriginEstimatedNote: "De maanden zijn geheel of deels geschat, of hun herkomst is onzeker. Ze gelden niet als een volledige reeks eigen maandmetingen.",
+    selfConsumptionAnnualAndEstimatedNote: "Het zelfverbruik is beperkt omdat de berekende hoeveelheid anders je totale stroomverbruik zou overschrijden. Effectief zelfverbruikspercentage: {{effective}} %. Uw handmatige eigenverbruik overschrijdt de overlap in het geschatte maandprofiel. Dit is een melding, geen maandlimiet. Jaargrenzen blijven gelden.",
     selfConsumptionCappedNote:
       "Het zelfverbruik is beperkt omdat de berekende hoeveelheid anders je totale stroomverbruik zou overschrijden. Effectief zelfverbruikspercentage: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

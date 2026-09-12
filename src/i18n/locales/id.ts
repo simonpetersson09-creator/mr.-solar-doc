@@ -272,6 +272,8 @@ export const id = {
     title: "Hasil perhitungan Anda",
     consumptionSourceLabel: "Sumber data konsumsi",
     consumptionSource: {
+      "partial-profile": "Bulan-bulan ini sepenuhnya atau sebagian diperkirakan, atau asalnya tidak pasti. Data ini tidak dianggap sebagai rangkaian lengkap pembacaan bulanan Anda sendiri.",
+      unknown: "Bulan-bulan ini sepenuhnya atau sebagian diperkirakan, atau asalnya tidak pasti. Data ini tidak dianggap sebagai rangkaian lengkap pembacaan bulanan Anda sendiri.",
       imported: "Data konsumsi yang diimpor",
       "monthly-manual": "Nilai bulanan yang dimasukkan",
       "annual-profile": "Diperkirakan dari konsumsi tahunan yang dinyatakan",
@@ -505,6 +507,9 @@ export const id = {
       "Konsumsi sendiri adalah asumsi berdasarkan porsi yang dipilih dan dapat disesuaikan secara manual.",
     selfConsumptionInfo:
       "Konsumsi sendiri aktual bergantung pada kapan listrik diproduksi dan kapan rumah tangga menggunakannya.",
+    selfConsumptionEstimatedDeviationNote: "Konsumsi sendiri yang Anda masukkan melebihi tumpang tindih profil bulanan perkiraan. Ini adalah informasi, bukan batas bulanan. Batas tahunan tetap berlaku.",
+    monthlyOriginEstimatedNote: "Bulan-bulan ini sepenuhnya atau sebagian diperkirakan, atau asalnya tidak pasti. Data ini tidak dianggap sebagai rangkaian lengkap pembacaan bulanan Anda sendiri.",
+    selfConsumptionAnnualAndEstimatedNote: "Konsumsi sendiri telah dibatasi karena jumlah yang dihitung akan melebihi total pemakaian listrik Anda. Tingkat konsumsi sendiri efektif: {{effective}} %. Konsumsi sendiri yang Anda masukkan melebihi tumpang tindih profil bulanan perkiraan. Ini adalah informasi, bukan batas bulanan. Batas tahunan tetap berlaku.",
     selfConsumptionCappedNote:
       "Konsumsi sendiri telah dibatasi karena jumlah yang dihitung akan melebihi total pemakaian listrik Anda. Tingkat konsumsi sendiri efektif: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

@@ -273,6 +273,8 @@ export const de = {
     title: "Ihre Berechnung",
     consumptionSourceLabel: "Datenquelle Verbrauch",
     consumptionSource: {
+      "partial-profile": "Die Monatswerte sind ganz oder teilweise geschätzt oder ihre Herkunft ist unklar. Sie gelten nicht als vollständige eigene Monatsmesswerte.",
+      unknown: "Die Monatswerte sind ganz oder teilweise geschätzt oder ihre Herkunft ist unklar. Sie gelten nicht als vollständige eigene Monatsmesswerte.",
       imported: "Importierte Verbrauchsdaten",
       "monthly-manual": "Manuell eingegebene Monatswerte",
       "annual-profile": "Aus angegebenem Jahresverbrauch geschätzt",
@@ -471,6 +473,9 @@ export const de = {
       "Der Eigenverbrauch ist eine Annahme auf Basis des gewählten Anteils und kann manuell angepasst werden.",
     selfConsumptionInfo:
       "Der tatsächliche Eigenverbrauch hängt davon ab, wann der Strom erzeugt wird und wann der Haushalt ihn nutzt.",
+    selfConsumptionEstimatedDeviationNote: "Ihr manueller Eigenverbrauch übersteigt die Überlappung im geschätzten Monatsprofil. Dies ist ein Hinweis, keine monatliche Begrenzung. Jahresgrenzen gelten weiterhin.",
+    monthlyOriginEstimatedNote: "Die Monatswerte sind ganz oder teilweise geschätzt oder ihre Herkunft ist unklar. Sie gelten nicht als vollständige eigene Monatsmesswerte.",
+    selfConsumptionAnnualAndEstimatedNote: "Der Eigenverbrauch wurde begrenzt, da die berechnete Menge sonst Ihren gesamten Stromverbrauch übersteigen würde. Effektive Eigenverbrauchsquote: {{effective}} %. Ihr manueller Eigenverbrauch übersteigt die Überlappung im geschätzten Monatsprofil. Dies ist ein Hinweis, keine monatliche Begrenzung. Jahresgrenzen gelten weiterhin.",
     selfConsumptionCappedNote:
       "Der Eigenverbrauch wurde begrenzt, da die berechnete Menge sonst Ihren gesamten Stromverbrauch übersteigen würde. Effektive Eigenverbrauchsquote: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

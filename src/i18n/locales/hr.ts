@@ -279,6 +279,8 @@ export const hr = {
     title: "Vaš izračun",
     consumptionSourceLabel: "Izvor podataka o potrošnji",
     consumptionSource: {
+      "partial-profile": "Mjeseci su potpuno ili djelomično procijenjeni ili je njihovo podrijetlo neizvjesno. Ne smatraju se potpunim nizom vlastitih mjesečnih očitanja.",
+      unknown: "Mjeseci su potpuno ili djelomično procijenjeni ili je njihovo podrijetlo neizvjesno. Ne smatraju se potpunim nizom vlastitih mjesečnih očitanja.",
       imported: "Uvezeni podaci o potrošnji",
       "monthly-manual": "Unesene mjesečne vrijednosti",
       "annual-profile": "Procijenjeno prema navedenoj godišnjoj potrošnji",
@@ -506,6 +508,9 @@ export const hr = {
       "Samopotrošnja je pretpostavka na temelju odabranog udjela i može se ručno prilagoditi.",
     selfConsumptionInfo:
       "Stvarna samopotrošnja ovisi o tome kada se struja proizvodi i kada je kućanstvo koristi.",
+    selfConsumptionEstimatedDeviationNote: "Ručno unesena vlastita potrošnja premašuje preklapanje u procijenjenom mjesečnom profilu. Ovo je obavijest, a ne mjesečno ograničenje. Godišnja ograničenja i dalje vrijede.",
+    monthlyOriginEstimatedNote: "Mjeseci su potpuno ili djelomično procijenjeni ili je njihovo podrijetlo neizvjesno. Ne smatraju se potpunim nizom vlastitih mjesečnih očitanja.",
+    selfConsumptionAnnualAndEstimatedNote: "Samopotrošnja je ograničena jer bi izračunati iznos inače premašio vašu ukupnu potrošnju struje. Stvarna stopa samopotrošnje: {{effective}} %. Ručno unesena vlastita potrošnja premašuje preklapanje u procijenjenom mjesečnom profilu. Ovo je obavijest, a ne mjesečno ograničenje. Godišnja ograničenja i dalje vrijede.",
     selfConsumptionCappedNote:
       "Samopotrošnja je ograničena jer bi izračunati iznos inače premašio vašu ukupnu potrošnju struje. Stvarna stopa samopotrošnje: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:

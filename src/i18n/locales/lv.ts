@@ -269,6 +269,8 @@ export const lv = {
     title: "Jūsu aprēķins",
     consumptionSourceLabel: "Patēriņa datu avots",
     consumptionSource: {
+      "partial-profile": "Mēneši ir pilnībā vai daļēji aplēsti, vai to izcelsme ir neskaidra. Tie netiek uzskatīti par pilnu pašu mēneša rādījumu kopu.",
+      unknown: "Mēneši ir pilnībā vai daļēji aplēsti, vai to izcelsme ir neskaidra. Tie netiek uzskatīti par pilnu pašu mēneša rādījumu kopu.",
       imported: "Importēti patēriņa dati",
       "monthly-manual": "Ievadītas mēneša vērtības",
       "annual-profile": "Aprēķināts no norādītā gada patēriņa",
@@ -464,6 +466,9 @@ export const lv = {
       "Pašpatēriņš ir pieņēmums, kas balstīts uz izvēlēto daļu, un to var pielāgot manuāli.",
     selfConsumptionInfo:
       "Faktiskais pašpatēriņš ir atkarīgs no tā, kad elektroenerģija tiek ražota un kad mājsaimniecība to izmanto.",
+    selfConsumptionEstimatedDeviationNote: "Manuāli norādītais pašpatēriņš pārsniedz pārklājumu aplēstajā mēnešu profilā. Tas ir paziņojums, nevis mēneša ierobežojums. Gada ierobežojumi joprojām ir spēkā.",
+    monthlyOriginEstimatedNote: "Mēneši ir pilnībā vai daļēji aplēsti, vai to izcelsme ir neskaidra. Tie netiek uzskatīti par pilnu pašu mēneša rādījumu kopu.",
+    selfConsumptionAnnualAndEstimatedNote: "Pašpatēriņš ir ierobežots, jo aprēķinātais daudzums citādi pārsniegtu jūsu kopējo elektroenerģijas patēriņu. Faktiskā pašpatēriņa daļa: {{effective}} %. Manuāli norādītais pašpatēriņš pārsniedz pārklājumu aplēstajā mēnešu profilā. Tas ir paziņojums, nevis mēneša ierobežojums. Gada ierobežojumi joprojām ir spēkā.",
     selfConsumptionCappedNote:
       "Pašpatēriņš ir ierobežots, jo aprēķinātais daudzums citādi pārsniegtu jūsu kopējo elektroenerģijas patēriņu. Faktiskā pašpatēriņa daļa: {{effective}} %.",
     selfConsumptionCappedMonthlyNote:
