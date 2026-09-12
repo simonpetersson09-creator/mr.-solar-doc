@@ -1332,7 +1332,11 @@ export function generateReportBlob(options: ReportOptions): Blob {
     ],
     labels.origin,
   );
+  if (labels.loadProfile && result.selfConsumptionSource !== "user-override") {
+    report.paragraph(labels.loadProfile.note);
+  }
   report.paragraph(f["priceMethodNote"] ?? "");
+
   report.paragraph(
     (priceChangeIsFlat
       ? (f["priceChangeNoteFlat"] ?? "")
