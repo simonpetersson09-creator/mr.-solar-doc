@@ -142,10 +142,12 @@ ok("economic value formula", calculateEconomicValue({ selfConsumptionKwh: 5612, 
 
 console.log("\n== J. Max investment / payback indexing ==");
 const values = proj.years.map((y) => y.economicValue);
-const maxInv = calculateMaxInvestment({ annualEconomicValue: values[0]!, acceptedPaybackYears: 12, annualValues: values });
+const maxInv = calculateMaxInvestment(values[0]!, 12, null, values);
+const roundTrip = calculateMaxInvestment(values[0]!, 12, maxInv.maxInvestment, values);
 const hand12 = values.slice(0, 12).reduce((a, b) => a + b, 0);
 ok("max investment = sum of first 12 escalated years", maxInv.maxInvestment, hand12, 1e-9);
 const flat12 = values[0]! * 12;
+ok("payback of that investment returns 12 years", roundTrip.quotePaybackYears ?? -1, 12, 1e-9);
 console.log(`nominal-escalated 12 y: ${hand12.toFixed(0)} vs flat year-1 x12: ${flat12.toFixed(0)} (+${((hand12 / flat12 - 1) * 100).toFixed(1)} % from escalation, undiscounted)`);
 
 console.log("\n== K. Dynamic share vs degradation direction ==");
