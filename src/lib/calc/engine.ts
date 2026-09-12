@@ -33,6 +33,7 @@ import { buildInverterOptions, inverterCatalogFor } from "@/config/inverter-cata
 import {
   clampShare,
   resolveSelfConsumptionShare,
+  type LoadProfileClass,
   splitProduction,
   summariseSelfConsumption,
 } from "./self-consumption";
@@ -254,6 +255,10 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   // Self-consumption is estimated AFTER the system size is known: the share
   // depends on production/consumption, so it can only be resolved here. The
   // sizing engine above never sees it.
+  // Profile is a standard (schablon) adjustment of the modelled share only; a
+  // missing value behaves exactly like before ("mixed", factor 1).
+  const loadProfileClass: LoadProfileClass = input.loadProfileClass ?? "mixed";
+
   const shareForProduction = (productionKwh: number): number =>
     resolveSelfConsumptionShare({
       annualProductionKwh: productionKwh,
@@ -267,6 +272,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
           ? monthlyProductionKwh.map((v) => v * (productionKwh / annualProductionKwh))
           : monthlyProductionKwh,
       monthlyConsumptionKwh: input.consumption.monthlyKwh ?? null,
+      profileClass: loadProfileClass,
     }).share;
 
   const selfConsumptionEstimate = resolveSelfConsumptionShare({
@@ -276,6 +282,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     userSet: input.selfConsumptionShareIsUserSet ?? false,
     monthlyProductionKwh,
     monthlyConsumptionKwh: input.consumption.monthlyKwh ?? null,
+    profileClass: loadProfileClass,
   });
 
   // Self-consumption is capped by what the household actually uses, so the
@@ -429,6 +436,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     selfConsumption: { share: split.selfConsumptionShare, kwh: split.selfConsumptionKwh },
     exported: { share: split.exportShare, kwh: split.exportedKwh },
     ...selfConsumptionSummary,
+    loadProfileClass,
     economics: {
       currency: input.economics.currency,
       selfConsumedValuePerKwh,

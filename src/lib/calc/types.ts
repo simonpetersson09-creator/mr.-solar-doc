@@ -215,6 +215,11 @@ export interface CalculationInput {
   selfConsumptionShare: number;
   /** True when the user actively set the share (even if it equals the default). */
   selfConsumptionShareIsUserSet?: boolean;
+  /**
+   * When the household mainly uses electricity. Standard (schablon) adjustment
+   * of the modelled self-consumption only. Omitted = "mixed" (unchanged).
+   */
+  loadProfileClass?: LoadProfileClass;
   /** Simple payback time the user selected, in years. */
   acceptedPaybackYears: number;
   /** Overrides the default annual production degradation (e.g. 0.005). */
@@ -312,6 +317,8 @@ export interface CalculationResult {
   selfConsumptionRate: number;
   selfSufficiencyRate: number;
   selfConsumptionSource: SelfConsumptionSource;
+  /** The load profile the modelled share was based on. Always resolved. */
+  loadProfileClass: LoadProfileClass;
   economics: {
     currency: string;
     selfConsumedValuePerKwh: number;
