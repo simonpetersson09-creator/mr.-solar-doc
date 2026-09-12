@@ -5,7 +5,11 @@ import type { PresentationValues } from "./presentation";
 import type { MaxInvestmentResult, PaybackScenario } from "./payback";
 import type { ProductionCostResult } from "./production-cost";
 import type { LifetimeProjection } from "./degradation";
-import type { SelfConsumptionSource, SelfConsumptionSummary } from "./self-consumption";
+import type {
+  LoadProfileClass,
+  SelfConsumptionSource,
+  SelfConsumptionSummary,
+} from "./self-consumption";
 import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
 import type { ServiceType } from "@/config/grid";
 import type { PvLimitBinding, PvRulesStatus } from "@/config/pv-connection-rules";
