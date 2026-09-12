@@ -1301,6 +1301,18 @@ export function generateReportBlob(options: ReportOptions): Blob {
         value: `${formatNumber(result.presentation.selfConsumptionPercent, locale)} % – ${selfConsumptionSourceLabel}`,
         origin: selfConsumptionOrigin,
       },
+      ...(labels.selfConsumptionMode
+        ? [
+            {
+              label: labels.selfConsumptionMode.label,
+              value: labels.selfConsumptionMode.value,
+              origin:
+                result.selfConsumptionSource === "user-override"
+                  ? ("user" as const)
+                  : ("assumed" as const),
+            },
+          ]
+        : []),
       ...(labels.loadProfile && result.selfConsumptionSource !== "user-override"
         ? [
             {
