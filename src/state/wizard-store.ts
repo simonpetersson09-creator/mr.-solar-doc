@@ -373,6 +373,11 @@ export const useWizardStore = create<WizardState>()(
 
       setSelfConsumptionShare: (share) =>
         set({ selfConsumptionShare: share, selfConsumptionShareIsUserSet: true }),
+      resetSelfConsumptionShare: () =>
+        set({
+          selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
+          selfConsumptionShareIsUserSet: false,
+        }),
       setLoadProfileClass: (profileClass) => set({ loadProfileClass: profileClass }),
       setSelfConsumedValue: (value) => set({ selfConsumedValuePerKwh: value }),
       setExportValue: (value) => set({ exportValuePerKwh: value }),
