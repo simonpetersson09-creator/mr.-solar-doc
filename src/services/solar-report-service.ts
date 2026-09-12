@@ -74,6 +74,11 @@ export interface ReportLabels {
   paybackNote: string;
   /** Explains that the quote comparison uses the same calculation assumptions. */
   quoteNote: string;
+  /**
+   * The household load profile behind the modelled self-consumption. A standard
+   * assumption, not measured consumption. Optional for older callers.
+   */
+  loadProfile?: { label: string; value: string; note: string };
   chartProduction: string;
   chartConsumption: string;
   /** Where the consumption data came from (imported / entered / estimated). */
@@ -1292,6 +1297,15 @@ export function generateReportBlob(options: ReportOptions): Blob {
         value: `${formatNumber(result.presentation.selfConsumptionPercent, locale)} % – ${selfConsumptionSourceLabel}`,
         origin: selfConsumptionOrigin,
       },
+      ...(labels.loadProfile && result.selfConsumptionSource !== "user-override"
+        ? [
+            {
+              label: labels.loadProfile.label,
+              value: labels.loadProfile.value,
+              origin: "assumed" as const,
+            },
+          ]
+        : []),
       {
         label: f["selfConsumedValueRate"] ?? f.assumedPrice,
         value: rate(
