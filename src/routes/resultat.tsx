@@ -19,6 +19,7 @@ import {
 import { formatInverterPower } from "@/lib/inverter-display";
 import { exportReport, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
+import { selfConsumptionCapNoteKey } from "@/lib/self-consumption-cap-note";
 
 
 /** Maps the engine's recommendation reason to a consumer-friendly i18n key. */
@@ -94,6 +95,7 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
 
 
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
+  const capNoteKey = selfConsumptionCapNoteKey(result.presentation);
 
   const handleExport = async () => {
     setExporting(true);
