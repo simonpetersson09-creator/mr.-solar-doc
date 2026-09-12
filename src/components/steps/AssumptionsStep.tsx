@@ -20,6 +20,7 @@ import {
   type PriceScenarioId,
 } from "@/config/constants";
 import { haptic } from "@/services/native-service";
+import type { LoadProfileClass } from "@/lib/calc/self-consumption";
 
 interface AssumptionsStepProps {
   totalSteps: number;
@@ -33,6 +34,8 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   const { result, outcome, market } = useCalculation();
   const [showExportInfo, setShowExportInfo] = useState(false);
   const setSelfConsumptionShare = useWizardStore((s) => s.setSelfConsumptionShare);
+  const loadProfileClass = useWizardStore((s) => s.loadProfileClass);
+  const setLoadProfileClass = useWizardStore((s) => s.setLoadProfileClass);
   const setSelfConsumedValue = useWizardStore((s) => s.setSelfConsumedValue);
   const setExportValue = useWizardStore((s) => s.setExportValue);
   const paybackYears = useWizardStore((s) => s.acceptedPaybackYears);
@@ -45,6 +48,20 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
   const setPriceScenario = useWizardStore((s) => s.setPriceScenario);
   const customPriceChangePercent = useWizardStore((s) => s.customPriceChangePercent);
   const setCustomPriceChangePercent = useWizardStore((s) => s.setCustomPriceChangePercent);
+
+  const loadProfiles: { id: LoadProfileClass; label: string; help: string }[] = [
+    {
+      id: "evening",
+      label: t("result.loadProfile.evening"),
+      help: t("result.loadProfile.eveningHelp"),
+    },
+    { id: "mixed", label: t("result.loadProfile.mixed"), help: t("result.loadProfile.mixedHelp") },
+    {
+      id: "daytime",
+      label: t("result.loadProfile.daytime"),
+      help: t("result.loadProfile.daytimeHelp"),
+    },
+  ];
 
   const scenarios: { id: PriceScenarioId; label: string; rateLabel: string | null }[] = [
     { id: "flat", label: t("result.priceScenarioFlat"), rateLabel: "0 %/\u00e5r" },
@@ -171,7 +188,43 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         ) : null}
       </div>
 
-      {/* ── Card 2: assumed prices ── */}
+      {/* ── Card 2: load profile (standard adjustment of the modelled share) ── */}
+      <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">
+        <Label className="text-xs font-semibold text-white">
+          {t("result.loadProfileQuestion")}
+        </Label>
+        <div className="space-y-1.5">
+          {loadProfiles.map((profile) => {
+            const active = loadProfileClass === profile.id;
+            return (
+              <button
+                key={profile.id}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setLoadProfileClass(profile.id)}
+                className={cn(
+                  "w-full rounded-[16px] px-3 py-2 text-left transition-colors",
+                  active ? "chip-selected" : "chip-unselected",
+                )}
+              >
+                <span className="block text-[12px] font-semibold">{profile.label}</span>
+                <span
+                  className={cn(
+                    "mt-0.5 block text-[11px] leading-snug",
+                    active ? "opacity-80" : "text-brand-black/55",
+                  )}
+                >
+                  {profile.help}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+        <p className="text-[11px] leading-snug text-white/60">{t("result.loadProfileHelp")}</p>
+        <p className="text-[11px] leading-snug text-white/50">{t("result.loadProfileNote")}</p>
+      </div>
+
+      {/* ── Card 3: assumed prices ── */}
       <div className="glass-primary space-y-3 rounded-[28px] px-4 py-4">
         <div className="relative">
           <p className="text-xs font-semibold text-white">{t("result.assumedPrices")}</p>
@@ -249,7 +302,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
 <p className="text-[11px] leading-snug text-white/60">{t("result.standardValueHint")}</p>
       </div>
 
-      {/* ── Card 3: electricity price development scenario ── */}
+      {/* ── Card 4: electricity price development scenario ── */}
       <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">
         <p className="text-xs font-semibold text-white">{t("result.priceScenarioTitle")}</p>
         <div className="flex flex-wrap gap-1.5">
@@ -299,7 +352,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
         <p className="text-[11px] leading-snug text-white/60">{t("result.priceScenarioHint")}</p>
       </div>
 
-      {/* ── Card 4: payback time ── */}
+      {/* ── Card 5: payback time ── */}
       <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-4">
         <div className="flex items-start justify-between gap-3">
           <div>
