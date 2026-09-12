@@ -137,9 +137,15 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
               ? t("result.selfConsumptionManualProfileNote")
               : null,
         },
-        selfConsumptionCappedNote: t("result.selfConsumptionCappedNote", {
-          effective: formatNumber(result.presentation.selfConsumptionPercent, locale),
-        }),
+        // The wording follows the binding limit: a monthly limit from a
+        // generated profile is model-dependent, not a certain household limit.
+        selfConsumptionCappedNote: capNoteKey
+          ? t(capNoteKey, {
+              effective: formatNumber(result.presentation.selfConsumptionPercent, locale),
+              requested: formatNumber(result.presentation.requestedSelfConsumptionPercent, locale),
+            })
+          : null,
+        shadingNote: t("result.shadingNotIncludedNote"),
 
         consumptionSource: t(
           `result.consumptionSource.${result.consumption.inputType ?? "annual-only"}`,
