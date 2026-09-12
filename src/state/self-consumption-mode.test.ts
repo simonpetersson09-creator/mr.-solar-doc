@@ -21,7 +21,7 @@ describe("self-consumption mode", () => {
   });
 
   it("re-models the share after a reset instead of keeping the manual value", () => {
-    const common = { productionKwh: 10000, annualConsumptionKwh: 20000, loadProfileClass: "mixed" as const };
+    const common = { annualProductionKwh: 10000, annualConsumptionKwh: 20000, profileClass: "mixed" as const };
     const manual = resolveSelfConsumptionShare({ ...common, userShare: 0.2, userSet: true });
     const automatic = resolveSelfConsumptionShare({ ...common, userShare: 0.2, userSet: false });
     expect(manual.share).toBeCloseTo(0.2, 6);
