@@ -529,6 +529,10 @@ export const ro = {
       "Autoconsumul a fost limitat la {{effective}} % (ați ales {{requested}} %) pe baza unui profil lunar estimat. Limita depinde deci de estimare și nu este o limită certă pentru gospodăria dvs.",
     shadingNotIncludedNote:
       "Umbrirea locală de la copaci, clădiri sau coșuri de fum nu este inclusă în calcul.",
+    clippingModelledNote:
+      "Limita de putere a invertorului elimină {{loss}} % din producția anuală (date orare de la {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Limita de putere a invertorului nu a putut fi calculată pentru acest sistem, deci eventuala limitare nu este inclusă în valorile de producție.",
     minimumSizeNote:
       "Sistemul a fost dimensionat până la cea mai mică dimensiune practică, deoarece cei mai mici invertoare disponibile stabilesc o limită inferioară.",
     consumptionTooLowNote:

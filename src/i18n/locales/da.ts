@@ -476,6 +476,10 @@ export const da = {
       "Egenforbruget er begrænset til {{effective}} % (du valgte {{requested}} %) ud fra en estimeret månedsprofil. Grænsen afhænger derfor af estimatet og er ingen sikker grænse for din husstand.",
     shadingNotIncludedNote:
       "Lokal skygge fra fx træer, bygninger og skorstene indgår ikke i beregningen.",
+    clippingModelledNote:
+      "Inverterens effektgrænse fjerner {{loss}} % af årsproduktionen (timeværdier fra {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Inverterens effektgrænse kunne ikke beregnes for dette anlæg, så eventuel afskæring er ikke medregnet i produktionstallene.",
     minimumSizeNote:
       "Anlægget er dimensioneret op til den mindste praktiske størrelse, fordi de mindste tilgængelige invertere sætter en nedre grænse.",
     consumptionTooLowNote:

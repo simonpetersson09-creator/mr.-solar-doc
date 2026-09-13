@@ -490,6 +490,10 @@ export const fr = {
       "L'autoconsommation a été limitée à {{effective}} % (vous avez choisi {{requested}} %) à partir d'un profil mensuel estimé. La limite dépend donc de cette estimation et n'est pas une limite certaine pour votre foyer.",
     shadingNotIncludedNote:
       "L'ombrage local dû aux arbres, bâtiments ou cheminées n'est pas pris en compte.",
+    clippingModelledNote:
+      "La limite de puissance de l'onduleur retire {{loss}} % de la production annuelle (données horaires de {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "La limite de puissance de l'onduleur n'a pas pu être calculée pour cette installation ; l'écrêtage éventuel n'est donc pas inclus dans les valeurs de production.",
     minimumSizeNote:
       "L'installation a été augmentée jusqu'à la plus petite taille réaliste, car les onduleurs les plus petits disponibles imposent une limite inférieure.",
     consumptionTooLowNote:

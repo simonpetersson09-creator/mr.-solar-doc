@@ -517,6 +517,10 @@ export const en = {
       "Self-consumption has been limited to {{effective}} % (you chose {{requested}} %) based on an estimated monthly profile. The limit therefore depends on that estimate and is not a certain limit for your household.",
     shadingNotIncludedNote:
       "Local shading from trees, buildings or chimneys is not included in the calculation.",
+    clippingModelledNote:
+      "The inverter's AC power limit removes {{loss}} % of the annual production (hourly data from {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "The inverter's power limit could not be calculated for this system, so any clipping is not included in the production figures.",
     minimumSizeNote:
       "The system has been sized up to the smallest practical size, because the smallest available inverters set a lower limit.",
     consumptionTooLowNote:

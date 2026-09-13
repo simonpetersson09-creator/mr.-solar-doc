@@ -474,6 +474,10 @@ export const sk = {
       "Vlastná spotreba bola obmedzená na {{effective}} % (zvolili ste {{requested}} %) podľa odhadovaného mesačného profilu. Limit teda závisí od odhadu a nie je istou hranicou pre vašu domácnosť.",
     shadingNotIncludedNote:
       "Miestne zatienenie stromami, budovami alebo komínmi nie je vo výpočte zahrnuté.",
+    clippingModelledNote:
+      "Výkonový limit meniča odoberie {{loss}} % ročnej výroby (hodinové údaje z {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Výkonový limit meniča sa pre túto inštaláciu nedal vypočítať, preto prípadné obmedzenie nie je zahrnuté v hodnotách výroby.",
     minimumSizeNote:
       "Systém bol zväčšený na najmenšiu praktickú veľkosť, pretože najmenšie dostupné meniče určujú spodnú hranicu.",
     consumptionTooLowNote:

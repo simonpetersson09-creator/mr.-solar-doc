@@ -519,6 +519,10 @@ export const hr = {
       "Vlastita potrošnja ograničena je na {{effective}} % (odabrali ste {{requested}} %) na temelju procijenjenog mjesečnog profila. Granica time ovisi o procjeni i nije sigurna granica za vaše domaćinstvo.",
     shadingNotIncludedNote:
       "Lokalno zasjenjenje od drveća, zgrada ili dimnjaka nije uključeno u izračun.",
+    clippingModelledNote:
+      "Ograničenje snage pretvarača uklanja {{loss}} % godišnje proizvodnje (satni podaci iz {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Ograničenje snage pretvarača nije se moglo izračunati za ovaj sustav, pa moguće ograničavanje nije uključeno u vrijednosti proizvodnje.",
     minimumSizeNote:
       "Sustav je dimenzioniran na najmanju praktičnu veličinu jer najmanji dostupni invertori postavljaju donju granicu.",
     consumptionTooLowNote:

@@ -478,6 +478,10 @@ export const et = {
       "Omatarbimine on piiratud {{effective}} protsendile (valisite {{requested}} %) hinnangulise kuuprofiili alusel. Piir sõltub seega hinnangust ega ole kindel piir teie leibkonnale.",
     shadingNotIncludedNote:
       "Kohalikku varjutust puudest, hoonetest või korstnatest ei ole arvesse võetud.",
+    clippingModelledNote:
+      "Inverteri võimsuspiirang eemaldab {{loss}} % aastatoodangust (tunniandmed allikast {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Inverteri võimsuspiirangut ei õnnestunud selle süsteemi jaoks arvutada, seega võimalik lõikamine ei ole toodangunäitajates arvestatud.",
     minimumSizeNote:
       "Süsteem on suurendatud väikseima mõistliku suuruseni, kuna väikseimad saadaolevad inverterid seavad alampiiri.",
     consumptionTooLowNote:

@@ -518,6 +518,10 @@ export const id = {
       "Konsumsi sendiri dibatasi menjadi {{effective}} % (Anda memilih {{requested}} %) berdasarkan profil bulanan perkiraan. Batas ini bergantung pada perkiraan dan bukan batas pasti untuk rumah Anda.",
     shadingNotIncludedNote:
       "Naungan lokal dari pohon, bangunan, atau cerobong tidak termasuk dalam perhitungan.",
+    clippingModelledNote:
+      "Batas daya inverter menghilangkan {{loss}} % dari produksi tahunan (data per jam dari {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Batas daya inverter tidak dapat dihitung untuk sistem ini, sehingga kemungkinan pemotongan tidak termasuk dalam angka produksi.",
     minimumSizeNote:
       "Sistem telah diukur ke ukuran praktis terkecil, karena inverter terkecil yang tersedia menetapkan batas bawah.",
     consumptionTooLowNote:

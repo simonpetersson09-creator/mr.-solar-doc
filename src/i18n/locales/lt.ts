@@ -481,6 +481,10 @@ export const lt = {
       "Savas vartojimas apribotas iki {{effective}} % (pasirinkote {{requested}} %) pagal apytikrį mėnesio profilį. Todėl riba priklauso nuo įverčio ir nėra tikra riba jūsų namams.",
     shadingNotIncludedNote:
       "Vietinis pavėsis nuo medžių, pastatų ar kaminų į skaičiavimą neįtrauktas.",
+    clippingModelledNote:
+      "Inverterio galios riba pašalina {{loss}} % metinės gamybos (valandiniai duomenys iš {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Inverterio galios ribos šiai sistemai apskaičiuoti nepavyko, todėl galimas apkarpymas neįtrauktas į gamybos rodiklius.",
     minimumSizeNote:
       "Sistema padidinta iki mažiausio praktinio dydžio, nes mažiausi rinkoje esantys inverteriai nustato apatinę ribą.",
     consumptionTooLowNote:
