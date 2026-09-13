@@ -147,6 +147,7 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
               requested: formatNumber(result.presentation.requestedSelfConsumptionPercent, locale),
             })
           : null,
+        clippingNote: clippingNote,
         shadingNote: t("result.shadingNotIncludedNote"),
 
         consumptionSource: t(
@@ -382,6 +383,9 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
             comparisonLabel={t("result.chartConsumption")}
             onDark
           />
+          {clippingNote ? (
+            <p className="mt-2 text-[10px] leading-snug text-white/55">{clippingNote}</p>
+          ) : null}
           <p className="mt-2 text-[10px] leading-snug text-white/55">
             {t("result.shadingNotIncludedNote")}
           </p>
