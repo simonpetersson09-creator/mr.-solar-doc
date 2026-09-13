@@ -276,8 +276,8 @@ export const sv = {
       mixedHelp: "Förbrukning fördelad över dagen.",
       daytime: "Dagtid",
       daytimeHelp: "Mycket förbrukning när solen producerar.",
-even: "Jämnt","
-evenHelp: "Ungefär samma förbrukning dygnet runt.",
+      even: "Jämnt över dygnet",
+      evenHelp: "Ungefär samma förbrukning dygnet runt.",
     },
     connection: {
       contractedKva: "Abonnerad effekt (kVA)",
