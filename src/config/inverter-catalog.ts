@@ -54,6 +54,11 @@ export const EU_SINGLE_PHASE_INVERTER_SIZES_KW = [
  */
 export const EU_THREE_PHASE_INVERTER_SIZES_KW = [
   1.5, 2, 2.5, 3, 3.6, 4, 4.6, 5, 6, 8, 10, 12, 15, 17, 20, 25, 30, 33, 36, 40, 50, 60,
+  // Above 60 kW the market moves to the commercial/utility string classes
+  // (Huawei SUN2000, SMA Sunny Tripower CORE/Highpower, Sungrow SG series).
+  // They are real three-phase 400 V products, so a large roof, farm or small
+  // commercial site can be represented instead of being silently capped.
+  66, 75, 80, 100, 110, 125, 150, 175, 200,
 ];
 
 /**
