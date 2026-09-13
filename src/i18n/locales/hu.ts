@@ -11,6 +11,7 @@ export const hu = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Mekkora napelemes rendszert kell, és mennyit ér Önnek?",
+    capacityNote: "Akár 500 kW teljesítményű rendszereket is támogat",
     point1Title: "Elemzi a feltételeit",
     point1Body: "A helyszín, a tájolás és a tetődőlés határozza meg, mennyi napfényt kap a tető.",
     point2Title: "Megtalálja a megfelelő méretet",
