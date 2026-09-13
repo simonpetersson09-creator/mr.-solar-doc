@@ -590,6 +590,7 @@ export const id = {
     appOnly:
       "Pembelian dilakukan di aplikasi dengan akun Apple Anda dan tidak tersedia di browser.",
     appleNote: "Ditangani oleh App Store.",
+    reportInEnglish: "Laporan PDF disediakan dalam bahasa Inggris.",
   },
   history: {
     empty: "Anda belum memiliki perhitungan tersimpan.",

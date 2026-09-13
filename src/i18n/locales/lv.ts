@@ -854,6 +854,7 @@ export const lv = {
       "Pašlaik neizdevās apstiprināt pirkumu. Nekas nav pazaudēts — tas atbloķēsies automātiski, tiklīdz savienojums atjaunosies.",
     appOnly: "Pirkums tiek veikts lietotnē ar jūsu Apple kontu un nav pieejams pārlūkā.",
     appleNote: "To nodrošina App Store.",
+    reportInEnglish: "PDF atskaite tiek sagatavota angļu valodā.",
     priceLoading: "Notiek cenas ielāde…",
     priceUnavailable: "Pašlaik nevar iegūt cenu no App Store. Mēģiniet vēlreiz.",
     devContinue: "Dev: continue without payment",

@@ -602,6 +602,7 @@ export const pt = {
       "Não conseguimos confirmar a compra neste momento. Nada se perde — desbloqueia automaticamente assim que a ligação voltar a funcionar.",
     appOnly: "A compra é feita na app com a sua conta Apple e não está disponível no navegador.",
     appleNote: "Gerido pela App Store.",
+    reportInEnglish: "O relatório em PDF é fornecido em inglês.",
   },
   history: {
     empty: "Ainda não tem cálculos guardados.",

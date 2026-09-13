@@ -854,6 +854,7 @@ export const da = {
       "Vi kunne ikke bekræfte købet lige nu. Intet går tabt — det låses automatisk op, når forbindelsen virker igen.",
     appOnly: "Købet foretages i appen med din Apple-konto og er ikke tilgængeligt i browseren.",
     appleNote: "Håndteres af App Store.",
+    reportInEnglish: "PDF-rapporten leveres på engelsk.",
     priceLoading: "Henter pris…",
     priceUnavailable: "Kan ikke hente prisen fra App Store lige nu. Prøv igen.",
     devContinue: "Dev: continue without payment",

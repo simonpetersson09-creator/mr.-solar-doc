@@ -604,6 +604,7 @@ export const hu = {
       "Most nem tudtuk megerősíteni a vásárlást. Semmi sem veszett el – automatikusan feloldódik, amint a kapcsolat helyreáll.",
     appOnly: "A vásárlás az alkalmazásban, az Apple-fiókjával történik, böngészőben nem érhető el.",
     appleNote: "Az App Store kezeli.",
+    reportInEnglish: "A PDF-jelentés angol nyelven készül.",
   },
   history: {
     empty: "Még nincs mentett számítása.",

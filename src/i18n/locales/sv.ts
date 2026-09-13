@@ -599,6 +599,7 @@ export const sv = {
       "Vi kunde inte bekräfta köpet just nu. Du har inte förlorat något – köpet bekräftas automatiskt när anslutningen fungerar igen.",
     appOnly: "Köpet görs i appen med ditt Apple-konto och är inte tillgängligt i webbläsaren.",
     appleNote: "Köpet hanteras av App Store.",
+    reportInEnglish: "PDF-rapporten levereras på engelska.",
   },
   history: {
     empty: "Du har inga sparade beräkningar än.",

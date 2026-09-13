@@ -854,6 +854,7 @@ export const cs = {
     appOnly:
       "Nákup se provádí v aplikaci pomocí vašeho účtu Apple a v prohlížeči není k dispozici.",
     appleNote: "Zajišťuje App Store.",
+    reportInEnglish: "PDF report je vytvořen v angličtině.",
     priceLoading: "Načítání ceny…",
     priceUnavailable: "Cenu se nyní nedaří načíst z App Store. Zkuste to znovu.",
     devContinue: "Dev: continue without payment",

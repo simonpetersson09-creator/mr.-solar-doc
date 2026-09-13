@@ -598,6 +598,7 @@ export const hr = {
       "Trenutno nismo mogli potvrditi kupnju. Ništa nije izgubljeno — otključat će se automatski čim veza ponovno proradi.",
     appOnly: "Kupnja se obavlja u aplikaciji s vašim Apple računom i nije dostupna u pregledniku.",
     appleNote: "Obrađuje App Store.",
+    reportInEnglish: "PDF izvještaj dostavlja se na engleskom jeziku.",
   },
   history: {
     empty: "Još nemate spremljenih izračuna.",

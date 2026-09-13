@@ -597,6 +597,7 @@ export const en = {
     appOnly:
       "The purchase is made in the app with your Apple account and is not available in the browser.",
     appleNote: "Handled by the App Store.",
+    reportInEnglish: "The PDF report is delivered in English.",
   },
   history: {
     empty: "You have no saved calculations yet.",

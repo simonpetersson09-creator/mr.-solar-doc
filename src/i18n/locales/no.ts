@@ -594,6 +594,7 @@ export const no = {
       "Vi kunne ikke bekrefte kjøpet akkurat nå. Ingenting går tapt — det låses opp automatisk når forbindelsen fungerer igjen.",
     appOnly: "Kjøpet gjøres i appen med Apple-kontoen din og er ikke tilgjengelig i nettleseren.",
     appleNote: "Håndteres av App Store.",
+    reportInEnglish: "PDF-rapporten leveres på engelsk.",
   },
   history: {
     empty: "Du har ingen lagrede beregninger ennå.",

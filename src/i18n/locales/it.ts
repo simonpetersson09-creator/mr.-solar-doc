@@ -861,6 +861,7 @@ export const it = {
     appOnly:
       "L'acquisto viene effettuato nell'app con il tuo account Apple e non è disponibile nel browser.",
     appleNote: "Gestito dall'App Store.",
+    reportInEnglish: "Il report PDF viene fornito in inglese.",
     priceLoading: "Caricamento del prezzo…",
     priceUnavailable: "Al momento non è possibile ottenere il prezzo dall’App Store. Riprova.",
     devContinue: "Dev: continue without payment",

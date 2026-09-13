@@ -608,6 +608,7 @@ export const nl = {
     appOnly:
       "De aankoop wordt in de app gedaan met je Apple-account en is niet beschikbaar in de browser.",
     appleNote: "Wordt afgehandeld door de App Store.",
+    reportInEnglish: "Het PDF-rapport wordt in het Engels geleverd.",
   },
   history: {
     empty: "Je hebt nog geen opgeslagen berekeningen.",

@@ -605,6 +605,7 @@ export const es = {
     appOnly:
       "La compra se realiza en la app con tu cuenta de Apple y no está disponible en el navegador.",
     appleNote: "Gestionado por la App Store.",
+    reportInEnglish: "El informe PDF se entrega en inglés.",
   },
   history: {
     empty: "Aún no tienes cálculos guardados.",

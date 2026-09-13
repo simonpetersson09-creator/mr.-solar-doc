@@ -605,6 +605,7 @@ export const ro = {
     appOnly:
       "Achiziția se face în aplicație cu contul tău Apple și nu este disponibilă în browser.",
     appleNote: "Gestionat de App Store.",
+    reportInEnglish: "Raportul PDF este furnizat în limba engleză.",
   },
   history: {
     empty: "Nu ai încă niciun calcul salvat.",
