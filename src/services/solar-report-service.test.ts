@@ -1,6 +1,12 @@
 import { describe, expect, it } from "vitest";
 
-import { reportAddress, reportLanguage, reportNeedsUnicodeFont } from "./solar-report-service";
+import {
+  pdfText,
+  reportAddress,
+  reportLanguage,
+  reportLocale,
+  reportNeedsUnicodeFont,
+} from "./solar-report-service";
 import { calculateSolarSystem } from "@/lib/calc/engine";
 import type { CalculationInput } from "@/lib/calc/types";
 import { MARKETS } from "@/config/markets";
@@ -104,5 +110,31 @@ describe("lifetime totals – language may only change the formatting", () => {
     );
     expect(new Set(digits).size).toBe(1);
     expect(digits[0]).toBe(String(rounded));
+  });
+});
+
+describe("fallback report formatting – right-to-left locales must not reverse amounts", () => {
+  it("keeps the region but drops the RTL language for a fallback report", () => {
+    expect(reportLocale("he-IL", "he")).toBe("en-IL");
+    expect(reportLocale("hi-IN", "hi")).toBe("en-IN");
+  });
+
+  it("leaves the locale alone when the report keeps the customer's language", () => {
+    expect(reportLocale("sv-SE", "sv")).toBe("sv-SE");
+    expect(reportLocale("el-GR", "el")).toBe("el-GR");
+    expect(reportLocale("uk-UA", "uk")).toBe("uk-UA");
+  });
+
+  it("strips bidi controls so the currency code cannot come out reversed", () => {
+    expect(pdfText("\u200f472\u00a0603\u00a0SEK\u200e")).toBe("472\u00a0603\u00a0SEK");
+  });
+
+  it("formats the same 30-year total identically in the fallback locale", () => {
+    const result = calculateSolarSystem(makeInput());
+    const rounded = Math.round(result.lifetime.totalEconomicValue);
+    const digits = ["sv-SE", reportLocale("he-IL", "he"), reportLocale("hi-IN", "hi")].map(
+      (locale) => formatCurrency(rounded, locale, "SEK").replace(/\D/g, ""),
+    );
+    expect(new Set(digits).size).toBe(1);
   });
 });
