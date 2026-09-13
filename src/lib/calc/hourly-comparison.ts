@@ -3,7 +3,7 @@ import { resolveSelfConsumptionShare, splitProduction } from './self-consumption
 export type HourlyProfile = 'evening' | 'mixed' | 'daytime' | 'uniform';
 // Authored hypotheses, not calibrated data. Same curve every day; no weekend adjustment.
 export const DAILY_WEIGHTS: Record<HourlyProfile, readonly number[]> = {
- evening: [0.45,0.4,0.38,0.38,0.4,0.55,0.9,1.25,1.35,1.05,0.75,0.65,0.65,0.65,0.7,0.8,1.05,1.45,1.85,2.05,1.95,1.55,1.05,0.65],
+ evening: [0.45,0.4,0.38,0.38,0.4,0.55,0.9,1.25,1.35,1.05,0.75,0.65,0.65,0.65,0.7,0.8,1.05,1.4,1.75,2.05,1.95,1.55,1.05,0.65],
  mixed: [0.55,0.5,0.48,0.48,0.5,0.65,0.9,1.15,1.25,1.15,1.1,1.1,1.15,1.1,1.05,1.05,1.15,1.35,1.5,1.55,1.4,1.15,0.9,0.7],
  daytime: [0.45,0.4,0.38,0.38,0.4,0.5,0.7,0.95,1.2,1.45,1.6,1.7,1.75,1.75,1.7,1.55,1.35,1.1,0.9,0.75,0.65,0.58,0.52,0.48],
  uniform: Array(24).fill(1),
