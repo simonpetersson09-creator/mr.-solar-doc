@@ -309,6 +309,74 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           </button>
         )}
 
+        {/* ── Several years in the file: the user picks, we never mix them ── */}
+        {importYears.length > 1 ? (
+          <div className="space-y-2 rounded-2xl border border-white/25 bg-white/10 p-3">
+            <p className="text-[11px] leading-snug text-white/80">
+              {t("consumption.upload.yearQuestion")}
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {importYears.map((year) => (
+                <Button
+                  key={year}
+                  variant={year === importYear ? "cta" : "outline"}
+                  size="sm"
+                  className={
+                    year === importYear
+                      ? "h-7 rounded-full px-3 text-xs"
+                      : "h-7 rounded-full border-white/30 bg-white/10 px-3 text-xs text-white hover:bg-white/20 hover:text-white"
+                  }
+                  onClick={() => {
+                    void haptic("light");
+                    selectImportYear(year);
+                  }}
+                >
+                  {year}
+                </Button>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
+        {/* ── Stated annual figure disagrees with the monthly sum ── */}
+        {annualConflict && statedAnnual !== null ? (
+          <div className="space-y-2 rounded-2xl border border-amber-300/50 bg-amber-400/15 p-3">
+            <p className="text-[11px] leading-snug text-amber-50">
+              {t("consumption.upload.conflict", {
+                annual: formatNumber(statedAnnual, locale),
+                sum: formatNumber(monthlyTotal, locale),
+              })}
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 rounded-full border-white/30 bg-white/10 px-3 text-xs text-white hover:bg-white/20 hover:text-white"
+                onClick={() => {
+                  setUseMonthly(false);
+                  setAnnual(String(Math.round(statedAnnual)));
+                  setAnnualConflict(false);
+                }}
+              >
+                {t("consumption.upload.useAnnual")}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 rounded-full border-white/30 bg-white/10 px-3 text-xs text-white hover:bg-white/20 hover:text-white"
+                onClick={() => {
+                  setAnnual(String(Math.round(monthlyTotal)));
+                  setMonthlyEdited(true);
+                  setAnnualConflict(false);
+                }}
+              >
+                {t("consumption.upload.useMonthlySum")}
+              </Button>
+            </div>
+          </div>
+        ) : null}
+
+
         {/*
           Not `hidden`: on iPad WKWebView anchors the native "Take Photo /
           Photo Library" popover to the input's own rect, and a display:none
