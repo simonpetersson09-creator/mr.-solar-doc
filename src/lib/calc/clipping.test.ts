@@ -212,8 +212,8 @@ describe("calculateSolarSystem – inverter clipping", () => {
 });
 
 describe("large-system catalogue", () => {
-  it("offers commercial three-phase inverters up to 200 kW", () => {
-    expect(EU_THREE_PHASE_INVERTER_SIZES_KW.at(-1)).toBe(200);
+  it("offers commercial three-phase inverters up to 500 kW", () => {
+    expect(EU_THREE_PHASE_INVERTER_SIZES_KW.at(-1)).toBe(500);
     // Strictly increasing, so the selection ladder stays well defined.
     for (let i = 1; i < EU_THREE_PHASE_INVERTER_SIZES_KW.length; i += 1) {
       expect(EU_THREE_PHASE_INVERTER_SIZES_KW[i]!).toBeGreaterThan(
@@ -223,7 +223,7 @@ describe("large-system catalogue", () => {
   });
 
   it("allows an array that fills the largest inverter at the DC/AC ceiling", () => {
-    expect(MAX_RECOMMENDED_KWP).toBeGreaterThanOrEqual(200 * ABSOLUTE_MAX_DC_AC_RATIO);
+    expect(MAX_RECOMMENDED_KWP).toBeGreaterThanOrEqual(500 * ABSOLUTE_MAX_DC_AC_RATIO);
   });
 
   it("sizes a large consumer with a large connection and stays within the ceiling", () => {
