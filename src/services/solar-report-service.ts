@@ -269,6 +269,19 @@ export function reportNeedsUnicodeFont(text: string): boolean {
 }
 
 /**
+ * Number/currency formatting locale for the report. When the report falls back
+ * to English (Hebrew, Hindi, Arabic …) the formatting locale follows it, keeping
+ * the customer's region. Right-to-left locales otherwise emit bidi controls that
+ * jsPDF cannot lay out, which visually reverses amounts ("SEK" → "KES").
+ * Presentation only: the numbers themselves are untouched.
+ */
+export function reportLocale(locale: string, language: string): string {
+  if (reportLanguage(language) === language) return locale;
+  const region = locale.split("-").slice(1).join("-");
+  return region ? `en-${region}` : "en";
+}
+
+/**
  * Characters the bundled subset (Latin, Greek, Cyrillic) plus the core fonts can
  * actually draw. Everything else — Devanagari, Hebrew, Arabic, CJK — would come
  * out as stray glyphs.
