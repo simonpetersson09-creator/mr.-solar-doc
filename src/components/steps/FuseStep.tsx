@@ -323,27 +323,32 @@ const [showGridInfo, setShowGridInfo] = useState(false);
 
         {editGrid ? (
           <div className="space-y-3 rounded-2xl bg-white/10 px-3 py-3">
-            <div className="space-y-1.5">
-              <Label className="text-[11px] text-white/70">{t("fuse.grid.serviceType")}</Label>
-              <div className="grid grid-cols-2 gap-1.5">
-                {SERVICE_TYPE_OPTIONS.map((option) => (
-                  <button
-                    key={option}
-                    type="button"
-                    onClick={() => {
-                      setCustomVoltage(false);
-                      setGridProfile({
-                        serviceType: option,
-                        voltageV: voltageForServiceSwitch(option, voltageV),
-                      });
-                    }}
-                    className={chipClass(serviceType === option)}
-                  >
-                    {serviceLabel(option)}
-                  </button>
-                ))}
+            {/* Phase is chosen explicitly in the capacity card below for
+                ampere markets with phaseChoice — offering it here too would
+                duplicate the same setting in two places. */}
+            {showPhaseChoice ? null : (
+              <div className="space-y-1.5">
+                <Label className="text-[11px] text-white/70">{t("fuse.grid.serviceType")}</Label>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {SERVICE_TYPE_OPTIONS.map((option) => (
+                    <button
+                      key={option}
+                      type="button"
+                      onClick={() => {
+                        setCustomVoltage(false);
+                        setGridProfile({
+                          serviceType: option,
+                          voltageV: voltageForServiceSwitch(option, voltageV),
+                        });
+                      }}
+                      className={chipClass(serviceType === option)}
+                    >
+                      {serviceLabel(option)}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="space-y-1.5">
               <Label className="text-[11px] text-white/70">{t("fuse.grid.voltage")}</Label>
