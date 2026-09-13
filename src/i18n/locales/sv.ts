@@ -11,6 +11,7 @@ export const sv = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Hur stor solcellsanläggning behöver du och vad är den värd för dig?",
+    capacityNote: "Stödjer anläggningar upp till 500 kW effekt",
     point1Title: "Analyserar dina förutsättningar",
     point1Body: "Plats, väderstreck och taklutning avgör hur mycket sol ditt tak faktiskt får.",
     point2Title: "Hittar rätt storlek för dig",
