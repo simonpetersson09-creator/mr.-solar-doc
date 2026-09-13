@@ -94,4 +94,82 @@ describe("consumption import", () => {
     expect(parsed.monthly?.[0]).toBe(1000);
     expect(parsed.monthly?.[1]).toBe(1100);
   });
+
+  it("keeps monthly values that look like years (1900-2100)", () => {
+    const rows = [
+      "Jan 2025;2100", "Feb 2025;1900", "Mar 2025;1700", "Apr 2025;1400",
+      "Maj 2025;1200", "Jun 2025;1000", "Jul 2025;950", "Aug 2025;1000",
+      "Sep 2025;1250", "Okt 2025;1550", "Nov 2025;1850", "Dec 2025;2100",
+    ];
+    const parsed = parseConsumptionText(["Manad;kWh", ...rows].join("\n"));
+    expect(parsed.monthly).toEqual([
+      2100, 1900, 1700, 1400, 1200, 1000, 950, 1000, 1250, 1550, 1850, 2100,
+    ]);
+    expect(parsed.monthsFilled).toBe(12);
+    expect(parsed.year).toBe(2025);
+    // Same file without a header row, and space separated.
+    expect(parseConsumptionText(rows.join("\n")).monthly).toEqual(parsed.monthly);
+    expect(parseConsumptionText(rows.map((r) => r.replace(";", " ")).join("\n")).monthly).toEqual(
+      parsed.monthly,
+    );
+  });
+
+  it("keeps values just inside and just outside the year-shaped range", () => {
+    const parsed = parseConsumptionText(
+      ["Jan 2025;1899", "Feb 2025;1900", "Mar 2025;2100", "Apr 2025;2101"].join("\n"),
+    );
+    expect(parsed.monthly?.slice(0, 4)).toEqual([1899, 1900, 2100, 2101]);
+  });
+
+  it("separates the date year from a year-shaped consumption value", () => {
+    const parsed = parseConsumptionText("2025-01, 2020 kWh");
+    expect(parsed.year).toBe(2025);
+    expect(parsed.monthly?.[0]).toBe(2020);
+    expect(parsed.monthsFilled).toBe(1);
+  });
+
+  it("reads separate year, month and consumption columns", () => {
+    const parsed = parseConsumptionText(
+      ["Ar;Manad;Forbrukning kWh", "2025;1;2020", "2025;2;1900"].join("\n"),
+    );
+    expect(parsed.year).toBe(2025);
+    expect(parsed.monthly?.slice(0, 2)).toEqual([2020, 1900]);
+  });
+
+  it("never sums a real year as consumption", () => {
+    const parsed = parseConsumptionText(["Rapport 2025", "Jan 2025", "Feb 2025"].join("\n"));
+    expect(parsed.monthly).toBeNull();
+    expect(parsed.monthsFilled).toBe(0);
+    expect(parsed.annual).toBeNull();
+  });
+
+  it("keeps different years apart when values look like years", () => {
+    const parsed = parseConsumptionText(
+      ["Jan 2024;2000", "Jan 2025;2100", "Feb 2025;1900"].join("\n"),
+    );
+    expect(parsed.years).toEqual([2024, 2025]);
+    expect(parsed.monthly?.slice(0, 2)).toEqual([2100, 1900]);
+    expect(parseConsumptionText("Jan 2024;2000\nJan 2025;2100", { year: 2024 }).monthly?.[0]).toBe(
+      2000,
+    );
+  });
+
+  it("leaves missing months unknown rather than zero", () => {
+    const parsed = parseConsumptionText(["Jan 2025;2100", "Mar 2025;1900"].join("\n"));
+    expect(parsed.monthly?.[1]).toBeNull();
+    expect(parsed.monthsFilled).toBe(2);
+  });
+
+  it("still ignores meter readings and does not double count totals", () => {
+    const parsed = parseConsumptionText(
+      [
+        "Jan 2025 Mätarställning 45120 Förbrukning 2100 kWh",
+        "Feb 2025 Mätarställning 47020 Förbrukning 1900 kWh",
+        "Totalt 2025;4000",
+      ].join("\n"),
+    );
+    expect(parsed.monthly?.slice(0, 2)).toEqual([2100, 1900]);
+    expect(parsed.monthlySum).toBe(4000);
+    expect(parsed.annual).toBe(4000);
+  });
 });
