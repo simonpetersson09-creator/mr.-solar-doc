@@ -13,5 +13,5 @@
 - [ ] Uppdatera 29 språk och verifiera beräkning, sparande och rapport. Ingen publicering.
 
 ## Separat timjämförelse
-- [ ] Timmodell, gemensam PVGIS-hämtning och separat fyrprofilsväljare.
-- [ ] Regressionstester, jämförelsetabell och dokumenterade tidsantaganden.
+- [x] Separat timmodell, gemensam PVGIS-cache och fyrprofilsväljare.
+- [x] Regressionstester, jämförelsetabell och dokumenterade UTC-månadsantaganden.
