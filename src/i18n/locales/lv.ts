@@ -477,6 +477,10 @@ export const lv = {
       "Pašpatēriņš ierobežots līdz {{effective}} % (izvēlējāties {{requested}} %), balstoties uz aptuvenu mēneša profilu. Robeža tādēļ atkarīga no aplēses un nav droša robeža jūsu mājsaimniecībai.",
     shadingNotIncludedNote:
       "Vietējā ēnošana no kokiem, ēkām vai skursteņiem nav iekļauta aprēķinā.",
+    clippingModelledNote:
+      "Invertora jaudas ierobežojums noņem {{loss}} % no gada izstrādes (stundu dati no {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Invertora jaudas ierobežojumu šai sistēmai nevarēja aprēķināt, tāpēc iespējamā nogriešana nav iekļauta izstrādes rādītājos.",
     minimumSizeNote:
       "Sistēma ir palielināta līdz mazākajam praktiskajam izmēram, jo mazākie pieejamie invertori nosaka apakšējo robežu.",
     consumptionTooLowNote:

@@ -525,6 +525,10 @@ export const es = {
       "El autoconsumo se ha limitado al {{effective}} % (elegiste {{requested}} %) con un perfil mensual estimado. El límite depende de esa estimación y no es un límite seguro para tu hogar.",
     shadingNotIncludedNote:
       "El sombreado local de árboles, edificios o chimeneas no está incluido en el cálculo.",
+    clippingModelledNote:
+      "El límite de potencia del inversor elimina el {{loss}} % de la producción anual (datos horarios de {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "No se pudo calcular el límite de potencia del inversor para esta instalación, por lo que el recorte posible no se incluye en las cifras de producción.",
     minimumSizeNote:
       "El sistema se ha aumentado hasta el tamaño práctico más pequeño, porque los inversores más pequeños disponibles marcan un límite inferior.",
     consumptionTooLowNote:

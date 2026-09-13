@@ -485,6 +485,10 @@ export const pl = {
       "Autokonsumpcję ograniczono do {{effective}} % (wybrano {{requested}} %) na podstawie szacowanego profilu miesięcznego. Granica zależy więc od szacunku i nie jest pewną granicą dla Twojego domu.",
     shadingNotIncludedNote:
       "Lokalne zacienienie od drzew, budynków czy kominów nie jest uwzględnione w obliczeniach.",
+    clippingModelledNote:
+      "Limit mocy falownika usuwa {{loss}} % produkcji rocznej (dane godzinowe z {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Nie udało się obliczyć limitu mocy falownika dla tej instalacji, dlatego ewentualne obcięcie nie jest uwzględnione w wynikach produkcji.",
     minimumSizeNote:
       "Instalacja została powiększona do najmniejszego praktycznego rozmiaru, ponieważ najmniejsze dostępne falowniki wyznaczają dolną granicę.",
     consumptionTooLowNote:

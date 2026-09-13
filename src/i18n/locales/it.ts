@@ -482,6 +482,10 @@ export const it = {
       "L'autoconsumo è stato limitato al {{effective}} % (hai scelto {{requested}} %) usando un profilo mensile stimato. Il limite dipende quindi dalla stima e non è un limite certo per la tua casa.",
     shadingNotIncludedNote:
       "L'ombreggiamento locale di alberi, edifici o camini non è incluso nel calcolo.",
+    clippingModelledNote:
+      "Il limite di potenza dell'inverter rimuove il {{loss}} % della produzione annua (dati orari da {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Il limite di potenza dell'inverter non ha potuto essere calcolato per questo impianto, quindi l'eventuale taglio non è incluso nei valori di produzione.",
     minimumSizeNote:
       "L'impianto è stato portato alla dimensione minima realistica, poiché gli inverter più piccoli disponibili impongono un limite inferiore.",
     consumptionTooLowNote:

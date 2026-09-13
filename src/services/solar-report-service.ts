@@ -85,6 +85,8 @@ export interface ReportLabels {
   selfConsumptionCappedNote?: string | null;
   /** States that local shading from trees or buildings is not included. */
   shadingNote?: string | null;
+  /** Inverter clipping: either the modelled loss or that it is not modelled. */
+  clippingNote?: string | null;
   chartProduction: string;
   chartConsumption: string;
   /** Where the consumption data came from (imported / entered / estimated). */
@@ -1357,6 +1359,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
   if (labels.selfConsumptionCappedNote) {
     report.paragraph(labels.selfConsumptionCappedNote);
   }
+  if (labels.clippingNote) report.paragraph(labels.clippingNote);
   if (labels.shadingNote) report.paragraph(labels.shadingNote);
   report.paragraph(f["priceMethodNote"] ?? "");
 

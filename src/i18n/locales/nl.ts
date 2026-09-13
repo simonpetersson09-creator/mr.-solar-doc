@@ -528,6 +528,10 @@ export const nl = {
       "Het eigen gebruik is beperkt tot {{effective}} % (u koos {{requested}} %) op basis van een geschat maandprofiel. De grens hangt dus af van die schatting en is geen zekere grens voor uw huishouden.",
     shadingNotIncludedNote:
       "Lokale schaduw van bijvoorbeeld bomen, gebouwen of schoorstenen is niet meegerekend.",
+    clippingModelledNote:
+      "De vermogensgrens van de omvormer neemt {{loss}} % van de jaarproductie weg (uurwaarden van {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "De vermogensgrens van de omvormer kon voor dit systeem niet worden berekend, dus eventuele afkapping is niet in de productiecijfers opgenomen.",
     minimumSizeNote:
       "Het systeem is opgeschaald naar de kleinst praktische omvang, omdat de kleinst beschikbare omvormers een ondergrens bepalen.",
     consumptionTooLowNote:

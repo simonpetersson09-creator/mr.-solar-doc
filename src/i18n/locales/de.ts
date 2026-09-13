@@ -484,6 +484,10 @@ export const de = {
       "Der Eigenverbrauch wurde anhand eines geschätzten Monatsprofils auf {{effective}} % begrenzt (gewählt: {{requested}} %). Die Grenze hängt daher von der Schätzung ab und ist keine sichere Grenze für Ihren Haushalt.",
     shadingNotIncludedNote:
       "Lokale Verschattung durch Bäume, Gebäude oder Schornsteine ist nicht berücksichtigt.",
+    clippingModelledNote:
+      "Die Leistungsgrenze des Wechselrichters entfernt {{loss}} % der Jahresproduktion (Stundenwerte von {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Die Leistungsgrenze des Wechselrichters konnte für diese Anlage nicht berechnet werden, daher ist eine mögliche Abregelung nicht in den Produktionswerten enthalten.",
     minimumSizeNote:
       "Die Anlage wurde auf die kleinste sinnvolle Größe angehoben, da die kleinsten verfügbaren Wechselrichter eine Untergrenze setzen.",
     consumptionTooLowNote:

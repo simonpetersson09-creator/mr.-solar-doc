@@ -474,6 +474,10 @@ export const sl = {
       "Lastna poraba je omejena na {{effective}} % (izbrali ste {{requested}} %) na podlagi ocenjenega mesečnega profila. Meja je torej odvisna od ocene in ni zanesljiva meja za vaše gospodinjstvo.",
     shadingNotIncludedNote:
       "Lokalno senčenje dreves, stavb ali dimnikov ni vključeno v izračun.",
+    clippingModelledNote:
+      "Močnostna omejitev razsmernika odvzame {{loss}} % letne proizvodnje (urni podatki iz {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Močnostne omejitve razsmernika za to napravo ni bilo mogoče izračunati, zato morebitno omejevanje ni vključeno v vrednosti proizvodnje.",
     minimumSizeNote:
       "Sistem je povečan na najmanjšo praktično velikost, saj najmanjši razpoložljivi razsmerniki določajo spodnjo mejo.",
     consumptionTooLowNote: "Vnesena poraba elektrike je zelo nizka, zato je rezultat le okviren.",

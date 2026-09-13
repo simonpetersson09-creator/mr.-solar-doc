@@ -21,6 +21,7 @@ import { buildPaybackScenarios, calculateMaxInvestment } from "./payback";
 import { calculateProductionCost } from "./production-cost";
 import { buildLifetimeProjection } from "./degradation";
 import { dcAcRatio, oversizingPercent } from "./inverter-sizing";
+import { applyClippingLoss, clippingModelMatchesRatio } from "./clipping";
 import {
   DEFAULT_GRID_FREQUENCY_HZ,
   SERVICE_TYPE_FOR_PHASE_COUNT,
@@ -45,6 +46,7 @@ import {
   validateCalculationResult,
 } from "./validation";
 import type {
+  ClippingOutcome,
   CalculationOutcome,
   EconomicsAvailability,
   CalculationInput,
@@ -251,8 +253,45 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
   if (sizingBasis === "minimum-size") recommendationReason = "minimum-size";
   if (sizingBasis === "maximum-size") recommendationReason = "maximum-size";
 
-  const monthlyProductionKwh = selection.best.monthlyProductionKwh;
-  const annualProductionKwh = selection.best.annualProductionKwh;
+  // Inverter clipping: the array's hourly output above the inverter's rated AC
+  // power cannot reach the grid. It is only applied when a real hourly model
+  // exists for THIS location, orientation and DC/AC ratio — never approximated.
+  const unclippedMonthlyProductionKwh = selection.best.monthlyProductionKwh;
+  const unclippedAnnualProductionKwh = selection.best.annualProductionKwh;
+  const selectedDcAcRatio = dcAcRatio(installedKwp, inverterKw);
+  const clippingModel =
+    input.clipping && clippingModelMatchesRatio(input.clipping, selectedDcAcRatio)
+      ? input.clipping
+      : null;
+  const clippingApplied = clippingModel
+    ? applyClippingLoss(unclippedMonthlyProductionKwh, clippingModel.monthlyLossShare)
+    : null;
+  const monthlyProductionKwh =
+    clippingApplied?.monthlyProductionKwh ?? unclippedMonthlyProductionKwh;
+  const annualProductionKwh = clippingApplied
+    ? monthlyProductionKwh.reduce((sum, value) => sum + value, 0)
+    : unclippedAnnualProductionKwh;
+  const clipping: ClippingOutcome = {
+    // Below a DC/AC ratio of 1 the array can never reach the inverter's rated
+    // AC power, so there is nothing to clip — that is not a missing model.
+    applicable: selectedDcAcRatio > 1 + 1e-9,
+    modelled: clippingApplied !== null,
+    lossShare:
+      clippingApplied && unclippedAnnualProductionKwh > 0
+        ? clippingApplied.clippedKwh / unclippedAnnualProductionKwh
+        : 0,
+    clippedKwh: clippingApplied?.clippedKwh ?? 0,
+    unclippedAnnualProductionKwh,
+    dataSource: clippingApplied ? (clippingModel?.dataSource ?? null) : null,
+    year: clippingApplied ? (clippingModel?.year ?? null) : null,
+  };
+  notes.push(
+    !clipping.applicable
+      ? "clipping-not-applicable"
+      : clipping.modelled
+        ? "clipping-modelled"
+        : "clipping-not-modelled",
+  );
 
   // Self-consumption is estimated AFTER the system size is known: the share
   // depends on production/consumption, so it can only be resolved here. The
@@ -458,6 +497,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     recommendationReason,
     monthlyProductionKwh,
     annualProductionKwh,
+    clipping,
     consumption: { ...input.consumption, isEstimated: monthlyIsEstimated },
     selfConsumption: { share: split.selfConsumptionShare, kwh: split.selfConsumptionKwh },
     exported: { share: split.exportShare, kwh: split.exportedKwh },

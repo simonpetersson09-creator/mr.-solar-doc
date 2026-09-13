@@ -474,6 +474,10 @@ export const fi = {
       "Omakäyttö on rajattu {{effective}} prosenttiin (valitsit {{requested}} %) arvioidun kuukausiprofiilin perusteella. Raja riippuu siis arviosta eikä ole varma raja taloudellesi.",
     shadingNotIncludedNote:
       "Paikallista varjostusta esimerkiksi puista, rakennuksista tai savupiipuista ei ole otettu huomioon.",
+    clippingModelledNote:
+      "Invertterin tehoraja poistaa {{loss}} % vuosituotannosta (tuntiarvot lähteestä {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Invertterin tehorajaa ei voitu laskea tälle järjestelmälle, joten mahdollista leikkausta ei ole huomioitu tuotantoluvuissa.",
     minimumSizeNote:
       "Järjestelmä on mitoitettu pienimpään käytännölliseen kokoon, koska pienimmät saatavilla olevat invertterit asettavat alarajan.",
     consumptionTooLowNote:

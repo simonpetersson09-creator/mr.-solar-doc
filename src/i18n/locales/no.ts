@@ -519,6 +519,10 @@ export const no = {
       "Egenforbruket er begrenset til {{effective}} % (du valgte {{requested}} %) basert på en estimert månedsprofil. Grensen avhenger derfor av estimatet og er ingen sikker grense for husholdningen din.",
     shadingNotIncludedNote:
       "Lokal skygge fra for eksempel trær, bygninger og pipe er ikke med i beregningen.",
+    clippingModelledNote:
+      "Vekselretterens effektgrense fjerner {{loss}} % av årsproduksjonen (timesverdier fra {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Vekselretterens effektgrense kunne ikke beregnes for dette anlegget, så eventuell kapping er ikke inkludert i produksjonstallene.",
     minimumSizeNote:
       "Anlegget er dimensjonert opp til minste praktiske størrelse, fordi de minste tilgjengelige inverterne setter en nedre grense.",
     consumptionTooLowNote:

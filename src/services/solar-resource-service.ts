@@ -33,20 +33,33 @@ function compassToPvgisAzimuth(compass: number): number {
  * Only this service talks to PVGIS. UI must never call the API directly.
  * Never invents data: failures propagate so the UI can offer a retry.
  */
-export async function getSolarResource(
-  request: SolarResourceRequest,
-): Promise<SolarResource> {
+/**
+ * The PVGIS orientation actually used for a request. Exported so the clipping
+ * model can be requested for the SAME plane as the yield, instead of guessing.
+ *
+ * Priority: user azimuth > user preset orientation > latitude-based default.
+ * Latitude (not country) decides the hemisphere: south on the northern
+ * hemisphere, north on the southern one, and no assumption near the equator.
+ */
+export function resolvePvgisOrientation(request: SolarResourceRequest): {
+  azimuth: number | null;
+  tilt: number | null;
+} {
   const orientationAssumed = request.orientation === "unknown";
-  const tiltAssumed = request.tiltDegrees === null;
-
-  // Priority: user azimuth > user preset orientation > latitude-based default.
-  // Latitude (not country) decides the hemisphere: south on the northern
-  // hemisphere, north on the southern one, and no assumption near the equator.
   const azimuth = orientationAssumed
     ? defaultPvgisAzimuthForLatitude(request.latitude)
     : request.azimuthDegrees != null
       ? compassToPvgisAzimuth(request.azimuthDegrees)
       : ORIENTATION_AZIMUTH[request.orientation as Exclude<Orientation, "unknown">];
+  return { azimuth, tilt: request.tiltDegrees };
+}
+
+export async function getSolarResource(
+  request: SolarResourceRequest,
+): Promise<SolarResource> {
+  const orientationAssumed = request.orientation === "unknown";
+  const tiltAssumed = request.tiltDegrees === null;
+  const { azimuth } = resolvePvgisOrientation(request);
 
   const payload = {
     latitude: request.latitude,

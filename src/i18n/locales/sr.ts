@@ -520,6 +520,10 @@ export const sr = {
       "Sopstvena potrošnja ograničena je na {{effective}} % (izabrali ste {{requested}} %) na osnovu procenjenog mesečnog profila. Granica zato zavisi od procene i nije sigurna granica za vaše domaćinstvo.",
     shadingNotIncludedNote:
       "Lokalno zasenjenje od drveća, zgrada ili dimnjaka nije uključeno u izračun.",
+    clippingModelledNote:
+      "Ograničenje snage invertera uklanja {{loss}} % godišnje proizvodnje (časovni podaci iz {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Ograničenje snage invertera nije moglo da se izračuna za ovaj sistem, pa moguće ograničavanje nije uključeno u vrednosti proizvodnje.",
     minimumSizeNote:
       "Систем је повећан на најмању практичну величину, јер најмањи доступни инвертори постављају доњу границу.",
     consumptionTooLowNote:

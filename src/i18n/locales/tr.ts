@@ -525,6 +525,10 @@ export const tr = {
       "Kendi tüketimi tahmini bir aylık profile göre {{effective}} % ile sınırlandı ({{requested}} % seçtiniz). Sınır bu tahmine bağlıdır ve eviniz için kesin bir sınır değildir.",
     shadingNotIncludedNote:
       "Ağaç, bina veya baca kaynaklı yerel gölgelenme hesaba katılmamıştır.",
+    clippingModelledNote:
+      "İnverterin güç sınırı yıllık üretimin {{loss}} %'sini ortadan kaldırır (saatlik veriler: {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Bu sistem için inverterin güç sınırı hesaplanamadı; bu nedenle olası kırpma üretim değerlerine dahil edilmemiştir.",
     minimumSizeNote:
       "En küçük mevcut inverterler bir alt sınır belirlediğinden, sistem uygulanabilir en küçük boyuta yükseltilmiştir.",
     consumptionTooLowNote:

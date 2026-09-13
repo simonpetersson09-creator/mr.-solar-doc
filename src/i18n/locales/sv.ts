@@ -520,6 +520,10 @@ export const sv = {
       "Egenanvändningen har begränsats till {{effective}} % (du valde {{requested}} %) utifrån en uppskattad månadsprofil. Gränsen beror därför på den uppskattade profilen och är ingen säker gräns för ditt hushåll.",
     shadingNotIncludedNote:
       "Lokal skuggning från till exempel träd, byggnader och skorstenar ingår inte i beräkningen.",
+    clippingModelledNote:
+      "Växelriktarens effektgräns kapar {{loss}} % av årsproduktionen (timvärden från {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Växelriktarens effektgräns kunde inte beräknas för den här anläggningen, så eventuell kapning ingår inte i produktionssiffrorna.",
     minimumSizeNote:
       "Anläggningen har dimensionerats upp till minsta rimliga storlek, eftersom de minsta växelriktarna på marknaden sätter en nedre gräns.",
     consumptionTooLowNote:

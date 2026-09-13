@@ -525,6 +525,10 @@ export const hu = {
       "A saját felhasználást becsült havi profil alapján {{effective}} %-ra korlátoztuk (Ön {{requested}} %-ot választott). A korlát tehát a becslésen alapul, nem biztos határ az Ön háztartására.",
     shadingNotIncludedNote:
       "A fák, épületek vagy kémények helyi árnyékolása nincs beszámítva.",
+    clippingModelledNote:
+      "Az inverter teljesítménykorlátja az éves termelés {{loss}} %-át veszi el (óránkénti adatok: {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Az inverter teljesítménykorlátját nem sikerült kiszámítani erre a rendszerre, ezért a lehetséges levágás nem szerepel a termelési értékekben.",
     minimumSizeNote:
       "A rendszert a legkisebb gyakorlati méretre méreteztük, mivel a legkisebb elérhető inverterek alsó korlátot jelentenek.",
     consumptionTooLowNote:

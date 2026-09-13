@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 
 import { pvgisProvider } from "@/lib/pvgis.functions";
+import { clippingProvider } from "@/lib/pvgis-clipping.functions";
 import { isNativeAppOrigin } from "@/config/native-backend";
 
 const PVGIS_API_VERSION = "2026-09-02.1";
@@ -15,6 +16,15 @@ const querySchema = z.discriminatedUnion("mode", [
     /** PVGIS convention: 0 = south, negative = east. Empty means "not set". */
     azimuth: z.coerce.number().min(-180).max(180).optional(),
     tilt: z.coerce.number().min(0).max(90).optional(),
+  }),
+  z.object({
+    mode: z.literal("clipping"),
+    latitude: z.coerce.number().min(-90).max(90),
+    longitude: z.coerce.number().min(-180).max(180),
+    azimuth: z.coerce.number().min(-180).max(180).optional(),
+    tilt: z.coerce.number().min(0).max(90).optional(),
+    /** DC/AC ratio of the recommended system. */
+    dcAcRatio: z.coerce.number().min(0.1).max(3),
   }),
 ]);
 
@@ -63,6 +73,26 @@ export const Route = createFileRoute("/api/public/pvgis")({
             { ok: true, service: "native-pvgis", version: PVGIS_API_VERSION },
             { headers: responseHeaders(origin) },
           );
+        }
+
+        if (parsed.data.mode === "clipping") {
+          try {
+            const clipping = await clippingProvider({
+              latitude: parsed.data.latitude,
+              longitude: parsed.data.longitude,
+              azimuth: parsed.data.azimuth ?? null,
+              tilt: parsed.data.tilt ?? null,
+              dcAcRatio: parsed.data.dcAcRatio,
+            });
+            return Response.json(clipping, { headers: responseHeaders(origin) });
+          } catch (error) {
+            console.error("Native PVGIS clipping failed", error);
+            const message = error instanceof Error ? error.message : "";
+            return Response.json(
+              { error: "pvgis_failed", detail: message.slice(0, 200) },
+              { status: 502, headers: responseHeaders(origin) },
+            );
+          }
         }
 
         try {

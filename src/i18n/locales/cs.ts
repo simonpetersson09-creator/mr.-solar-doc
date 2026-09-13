@@ -475,6 +475,10 @@ export const cs = {
       "Vlastní spotřeba byla omezena na {{effective}} % (zvolili jste {{requested}} %) podle odhadovaného měsíčního profilu. Limit tedy závisí na odhadu a není jistou hranicí pro vaši domácnost.",
     shadingNotIncludedNote:
       "Místní zastínění stromy, budovami nebo komíny není ve výpočtu zahrnuto.",
+    clippingModelledNote:
+      "Výkonový limit střídače odebere {{loss}} % roční výroby (hodinová data z {{source}}, {{year}}).",
+    clippingNotModelledNote:
+      "Výkonový limit střídače nebylo možné pro tuto instalaci vypočítat, proto případné omezení není zahrnuto v hodnotách výroby.",
     minimumSizeNote:
       "Systém byl zvětšen na nejmenší praktickou velikost, protože nejmenší dostupné střídače určují spodní hranici.",
     consumptionTooLowNote:
