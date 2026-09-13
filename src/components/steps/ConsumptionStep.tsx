@@ -85,6 +85,34 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
     }
   };
 
+  /**
+   * Applies a parsed document. Unknown months stay empty instead of becoming
+   * a real zero, and the stated annual figure is kept apart from the monthly
+   * sum so a disagreement can be shown rather than silently overwritten.
+   */
+  const applyParsed = (parsed: ParsedConsumption) => {
+    setImportYears(parsed.years);
+    setImportYear(parsed.year);
+    setStatedAnnual(parsed.annual);
+    setAnnualConflict(parsed.annualConflict);
+    if (parsed.monthly) {
+      setMonthly(parsed.monthly.map((value) => (value === null ? "" : String(value))));
+      setUseMonthly(true);
+      setOrigin("imported");
+      setMonthlyEdited(false);
+      setAnnual(String(parsed.annual ?? Math.round(parsed.monthlySum ?? 0)));
+      setParseStatus(parsed.monthsFilled === 12 ? "monthly" : "partial");
+      void haptic("medium");
+    } else if (parsed.annual) {
+      setUseMonthly(false);
+      setAnnual(String(Math.round(parsed.annual)));
+      setParseStatus("annual");
+      void haptic("light");
+    } else {
+      setParseStatus(parsed.ambiguous ? "ambiguous" : "error");
+    }
+  };
+
   const handleFile = async (file: File) => {
     setParsing(true);
     setParseStatus(null);
@@ -92,22 +120,8 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
     try {
       const { readConsumptionFile } = await import("@/lib/read-consumption-file");
       const parsed = await readConsumptionFile(file, i18n.language);
-      if (parsed.monthly) {
-        setMonthly(parsed.monthly.map((value) => String(value)));
-        setUseMonthly(true);
-        setOrigin("imported");
-        setMonthlyEdited(true);
-        setAnnual(String(parsed.annual ?? Math.round(sumMonthly(parsed.monthly))));
-        setParseStatus("monthly");
-        void haptic("medium");
-      } else if (parsed.annual) {
-        setUseMonthly(false);
-        setAnnual(String(Math.round(parsed.annual)));
-        setParseStatus("annual");
-        void haptic("light");
-      } else {
-        setParseStatus("error");
-      }
+      setImportText(parsed.text);
+      applyParsed(parsed);
     } catch {
       setParseStatus("error");
     } finally {
@@ -115,6 +129,14 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
     }
   };
 
+  /** Re-reads the already imported document for one specific year only. */
+  const selectImportYear = (year: number) => {
+    if (!importText) return;
+    applyParsed(parseConsumptionText(importText, { year }));
+  };
+
+  const monthlyFilledCount = monthly.filter((value) => value.trim() !== "").length;
+  const monthlyComplete = !useMonthly || monthlyFilledCount === 12;
   const monthlyNumbers = monthly.map((value) => parseLocaleNumber(value, locale) ?? 0);
   const monthlyTotal = sumMonthly(monthlyNumbers);
   const effectiveAnnual = useMonthly ? monthlyTotal : (parseLocaleNumber(annual, locale) ?? 0);
@@ -122,9 +144,12 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
    * Sanity check on the monthly split, expressed as each month's share of the
    * yearly total instead of an absolute kWh limit — a legitimately
    * high-consumption property is never blocked, only an impossible shape is.
+   * Only meaningful once every month is known.
    */
   const maxMonthShare =
-    useMonthly && monthlyTotal > 0 ? Math.max(...monthlyNumbers) / monthlyTotal : 0;
+    useMonthly && monthlyComplete && monthlyTotal > 0
+      ? Math.max(...monthlyNumbers) / monthlyTotal
+      : 0;
   const monthShapeImplausible = maxMonthShare > 0.75;
   const monthShapeUneven = !monthShapeImplausible && maxMonthShare > 0.45;
   const valid =
