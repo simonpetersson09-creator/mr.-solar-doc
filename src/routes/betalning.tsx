@@ -25,6 +25,7 @@ import { drainPurchaseTransactions } from "@/services/purchase-recovery";
 import { isDevUnlock } from "@/lib/dev-unlock";
 import i18nInstance from "@/i18n";
 import { reportLanguage } from "@/services/solar-report-service";
+import { createVerificationLock } from "@/lib/verification-lock";
 
 
 
@@ -58,6 +59,7 @@ function PaywallPage() {
   /** Re-runs verification for a purchase Apple has not propagated yet. */
   const resumeRef = useRef<(() => Promise<void>) | null>(null);
   const autoResumes = useRef(0);
+  const verificationLock = useRef(createVerificationLock());
   // Boots StoreKit (also when /betalning is opened directly) and keeps prices
   // reactive: the plugin and its products arrive after the first render.
   const store = useStorePrices();
@@ -167,7 +169,7 @@ function PaywallPage() {
    * "retry" state instead of leaving the buyer stranded on the paywall.
    */
   async function settleUnlock(transactionId: string, finish: () => Promise<void>) {
-    if (!pending) return;
+    if (!pending || !verificationLock.current.acquire()) return;
     resumeRef.current = () => settleUnlock(transactionId, finish);
     setChoice("unlock");
     setPhase("verifying");
@@ -194,6 +196,8 @@ function PaywallPage() {
     } catch (error) {
       console.warn("[iap] unlock verification failed", describePurchaseError(error));
       setPhase("retry");
+    } finally {
+      verificationLock.current.release();
     }
   }
 
@@ -225,7 +229,7 @@ function PaywallPage() {
 
   /** Verification half of the Premium purchase; re-runnable from "retry". */
   async function settlePremium(transactionId: string, finish: () => Promise<void>) {
-    if (!pending) return;
+    if (!pending || !verificationLock.current.acquire()) return;
     resumeRef.current = () => settlePremium(transactionId, finish);
     setChoice("premium");
     setPhase("verifying");
@@ -268,6 +272,8 @@ function PaywallPage() {
     } catch (error) {
       console.warn("[iap] premium verification failed", describePurchaseError(error));
       setPhase("retry");
+    } finally {
+      verificationLock.current.release();
     }
   }
 

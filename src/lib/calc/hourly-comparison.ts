@@ -1,12 +1,12 @@
 import type { HourlyPowerSample } from './clipping';
-import { resolveSelfConsumptionShare, splitProduction } from './self-consumption';
-export type HourlyProfile = 'evening' | 'mixed' | 'daytime' | 'uniform';
+import { resolveSelfConsumptionShare, splitProduction, type LoadProfileClass } from './self-consumption';
+export type HourlyProfile = LoadProfileClass;
 // Authored hypotheses, not calibrated data. Same curve every day; no weekend adjustment.
 export const DAILY_WEIGHTS: Record<HourlyProfile, readonly number[]> = {
  evening: [0.45,0.4,0.38,0.38,0.4,0.55,0.9,1.25,1.35,1.05,0.75,0.65,0.65,0.65,0.7,0.8,1.05,1.4,1.75,2.05,1.95,1.55,1.15,0.75],
  mixed: [0.55,0.5,0.48,0.48,0.5,0.65,0.9,1.15,1.25,1.15,1.1,1.1,1.15,1.1,1.05,1.05,1.15,1.35,1.5,1.55,1.4,1.15,0.9,0.7],
  daytime: [0.45,0.4,0.38,0.38,0.4,0.5,0.7,0.95,1.2,1.45,1.6,1.7,1.75,1.75,1.7,1.55,1.35,1.1,0.9,0.75,0.65,0.58,0.52,0.48],
- uniform: Array(24).fill(1),
+ even: Array(24).fill(1),
 };
 /** Percentages rounded to hundredths while preserving an exact displayed total of 100%. */
 export function dailyPercentages(profile: HourlyProfile): number[] {
@@ -88,7 +88,7 @@ export function calculateHourly(production: EnergyHour[], consumption: EnergyHou
 }
 export function compareHourly(production: EnergyHour[], consumption: EnergyHour[], year: number, profile: HourlyProfile, zone: string){
  const hourly=calculateHourly(production,consumption,year,zone);
- if(profile==='uniform')return {hourly,legacy:null};
+ if(profile==='even')return {hourly,legacy:null};
  const estimate=resolveSelfConsumptionShare({annualProductionKwh:hourly.production,annualConsumptionKwh:hourly.consumption,monthlyProductionKwh:hourly.months.map(m=>m.production),monthlyConsumptionKwh:hourly.months.map(m=>m.consumption),profileClass:profile});
  const split=splitProduction(hourly.production,estimate.share,hourly.consumption,hourly.overlap);
  return {hourly,legacy:{self:split.selfConsumptionKwh,rate:hourly.production>0?split.selfConsumptionKwh/hourly.production:0,import:hourly.consumption-split.selfConsumptionKwh,export:split.exportedKwh}};

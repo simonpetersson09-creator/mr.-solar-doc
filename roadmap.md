@@ -21,3 +21,7 @@
 - [x] Separat timmodell, gemensam PVGIS-cache och fyrprofilsväljare.
 - [x] Regressionstester, jämförelsetabell och dokumenterade UTC-månadsantaganden.
 - [x] Begripliga schablonkurvor med diagram, timtabell och exakt dygnsnormalisering.
+
+## Betalningsåterförsök och profilnamn
+- [x] Skydda verifiering mot samtidiga återförsök och testa låset.
+- [x] Använd even för båda profilvägarna utan ändrade beräkningar.

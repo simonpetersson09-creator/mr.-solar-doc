@@ -1,10 +1,10 @@
 import { useTranslation } from "react-i18next";
 import { DAILY_WEIGHTS, dailyPercentages, type HourlyProfile } from "@/lib/calc/hourly-comparison";
 
-const PROFILES: HourlyProfile[] = ["evening", "mixed", "daytime", "uniform"];
+const PROFILES: HourlyProfile[] = ["evening", "mixed", "daytime", "even"];
 
 function profileLabel(profile: HourlyProfile, t: (key: string) => string): string {
-  return profile === "uniform" ? t("hourly.uniform") : t(`result.loadProfile.${profile}`);
+  return profile === "even" ? t("hourly.uniform") : t(`result.loadProfile.${profile}`);
 }
 
 function curvePoints(profile: HourlyProfile): string {

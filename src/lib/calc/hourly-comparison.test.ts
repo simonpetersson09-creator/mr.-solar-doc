@@ -4,7 +4,7 @@ const months=Array.from({length:12},(_,i)=>100*(i+1));
 const zones=['Europe/Stockholm','America/Los_Angeles','Australia/Sydney','UTC'];
 describe('isolated hourly comparison',()=>{
  it('defines smooth, normalized daily standard profiles',()=>{
-  for(const profile of ['evening','mixed','daytime','uniform'] as HourlyProfile[]){
+  for(const profile of ['evening','mixed','daytime','even'] as HourlyProfile[]){
    const weights=DAILY_WEIGHTS[profile];const percentages=dailyPercentages(profile);
    expect(weights).toHaveLength(24);expect(weights.every(value=>Number.isFinite(value)&&value>0)).toBe(true);
    expect(Math.max(...weights.slice(1).map((value,index)=>Math.abs(value-(weights[index]??value))))).toBeLessThanOrEqual(0.4000001);
@@ -15,18 +15,18 @@ describe('isolated hourly comparison',()=>{
   expect(Math.max(...DAILY_WEIGHTS.evening.slice(6,10))).toBeGreaterThan(Math.max(...DAILY_WEIGHTS.evening.slice(10,16)));
   expect(Math.max(...DAILY_WEIGHTS.mixed)/Math.min(...DAILY_WEIGHTS.mixed)).toBeLessThan(3.5);
   expect(sum('daytime',8,18)).toBeGreaterThan(sum('daytime',0,8)+sum('daytime',18,24));
-  expect(new Set(DAILY_WEIGHTS.uniform)).toEqual(new Set([1]));
+  expect(new Set(DAILY_WEIGHTS.even)).toEqual(new Set([1]));
  });
- for(const year of [2019,2020])for(const zone of zones)for(const profile of ['evening','mixed','daytime','uniform'] as HourlyProfile[])it(`${profile} preserves local monthly energy ${zone} ${year}`,()=>{
+ for(const year of [2019,2020])for(const zone of zones)for(const profile of ['evening','mixed','daytime','even'] as HourlyProfile[])it(`${profile} preserves local monthly energy ${zone} ${year}`,()=>{
  const rows=syntheticHours(months,year,zone,profile);expect(rows.length).toBe(year===2020?8784:8760);
  const localOf=localMonthHour(zone);
- for(let m=0;m<12;m++){const values=rows.filter(r=>localOf(r.timestamp).month===m);expect(values.reduce((s,r)=>s+r.kwh,0)).toBeCloseTo(months[m]??0,7);if(profile==='uniform')expect(new Set(values.map(r=>r.kwh)).size).toBe(1);}
+ for(let m=0;m<12;m++){const values=rows.filter(r=>localOf(r.timestamp).month===m);expect(values.reduce((s,r)=>s+r.kwh,0)).toBeCloseTo(months[m]??0,7);if(profile==='even')expect(new Set(values.map(r=>r.kwh)).size).toBe(1);}
  expect(rows.reduce((s,r)=>s+r.kwh,0)).toBeCloseTo(7800,6);
  const result=calculateHourly(rows,[...rows].reverse(),year,zone);expect(result.self).toBeCloseTo(7800,6);expect(result.import).toBeCloseTo(0,7);expect(result.export).toBeCloseTo(0,7);expect(result.self).toBeLessThanOrEqual(result.overlap+1e-7);
  });
  it('rejects gaps duplicates invalid years and unknown months',()=>{const rows=syntheticHours(months,2020,'UTC','mixed');expect(()=>validateYear(rows.slice(1),2020)).toThrow();expect(()=>validateYear([...rows,rows[0] as typeof rows[number]],2020)).toThrow();expect(()=>validateYear(rows,2019)).toThrow();expect(()=>syntheticHours([null,...months.slice(1)],2020,'UTC','mixed')).toThrow();});
- it('zero denominators are explicit; no invented legacy uniform',()=>{const rows=syntheticHours(Array(12).fill(0),2020,'UTC','uniform');const result=compareHourly(rows,rows,2020,'uniform','UTC');expect(result.legacy).toBeNull();expect(result.hourly.selfConsumptionRate).toBe(0);expect(result.hourly.selfSufficiencyRate).toBe(0);});
- it('caps once with no profile multiplier, independently checked flat load',()=>{const load=syntheticHours(Array(12).fill(1000),2020,'UTC','uniform');const samples=load.map(r=>({time:new Date(r.timestamp).toISOString().replace(/[-T]/g,'').slice(0,8)+':'+new Date(r.timestamp).toISOString().slice(11,13)+'10',powerW:2000}));const pv=productionHours(samples,2020,2,3);expect(pv.every(r=>r.kwh===3)).toBe(true);const result=calculateHourly(pv,load,2020,'UTC');expect(result.production).toBe(8784*3);expect(result.self).toBeCloseTo(12000,7);expect(result.import).toBe(0);});
+ it('zero denominators are explicit; no invented legacy uniform',()=>{const rows=syntheticHours(Array(12).fill(0),2020,'UTC','even');const result=compareHourly(rows,rows,2020,'even','UTC');expect(result.legacy).toBeNull();expect(result.hourly.selfConsumptionRate).toBe(0);expect(result.hourly.selfSufficiencyRate).toBe(0);});
+ it('caps once with no profile multiplier, independently checked flat load',()=>{const load=syntheticHours(Array(12).fill(1000),2020,'UTC','even');const samples=load.map(r=>({time:new Date(r.timestamp).toISOString().replace(/[-T]/g,'').slice(0,8)+':'+new Date(r.timestamp).toISOString().slice(11,13)+'10',powerW:2000}));const pv=productionHours(samples,2020,2,3);expect(pv.every(r=>r.kwh===3)).toBe(true);const result=calculateHourly(pv,load,2020,'UTC');expect(result.production).toBe(8784*3);expect(result.self).toBeCloseTo(12000,7);expect(result.import).toBe(0);});
  it('DST: missing hour is absent, repeated hour counted once each, local months keep actual lengths',()=>{
   const rows=syntheticHours(months,2020,'Europe/Stockholm','evening');
   const localOf=localMonthHour('Europe/Stockholm');
