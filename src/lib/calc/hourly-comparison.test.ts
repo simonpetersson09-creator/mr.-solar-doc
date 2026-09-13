@@ -1,8 +1,22 @@
 import {describe,it,expect} from 'vitest';
-import {syntheticHours,calculateHourly,productionHours,compareHourly,validateYear,localMonthHour, type HourlyProfile} from './hourly-comparison';
+import {syntheticHours,calculateHourly,productionHours,compareHourly,validateYear,localMonthHour,DAILY_WEIGHTS,dailyPercentages, type HourlyProfile} from './hourly-comparison';
 const months=Array.from({length:12},(_,i)=>100*(i+1));
 const zones=['Europe/Stockholm','America/Los_Angeles','Australia/Sydney','UTC'];
 describe('isolated hourly comparison',()=>{
+ it('defines smooth, normalized daily standard profiles',()=>{
+  for(const profile of ['evening','mixed','daytime','uniform'] as HourlyProfile[]){
+   const weights=DAILY_WEIGHTS[profile];const percentages=dailyPercentages(profile);
+   expect(weights).toHaveLength(24);expect(weights.every(value=>Number.isFinite(value)&&value>0)).toBe(true);
+   expect(Math.max(...weights.slice(1).map((value,index)=>Math.abs(value-(weights[index]??value))))).toBeLessThanOrEqual(0.4000001);
+   expect(percentages).toHaveLength(24);expect(percentages.reduce((sum,value)=>sum+value,0)).toBeCloseTo(100,10);
+  }
+  const sum=(profile:HourlyProfile,start:number,end:number)=>DAILY_WEIGHTS[profile].slice(start,end).reduce((total,value)=>total+value,0);
+  expect(sum('evening',17,23)).toBeGreaterThan(sum('evening',10,16));
+  expect(Math.max(...DAILY_WEIGHTS.evening.slice(6,10))).toBeGreaterThan(Math.max(...DAILY_WEIGHTS.evening.slice(10,16)));
+  expect(Math.max(...DAILY_WEIGHTS.mixed)/Math.min(...DAILY_WEIGHTS.mixed)).toBeLessThan(3.5);
+  expect(sum('daytime',8,18)).toBeGreaterThan(sum('daytime',0,8)+sum('daytime',18,24));
+  expect(new Set(DAILY_WEIGHTS.uniform)).toEqual(new Set([1]));
+ });
  for(const year of [2019,2020])for(const zone of zones)for(const profile of ['evening','mixed','daytime','uniform'] as HourlyProfile[])it(`${profile} preserves local monthly energy ${zone} ${year}`,()=>{
  const rows=syntheticHours(months,year,zone,profile);expect(rows.length).toBe(year===2020?8784:8760);
  const localOf=localMonthHour(zone);

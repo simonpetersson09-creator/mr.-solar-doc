@@ -3,11 +3,23 @@ import { resolveSelfConsumptionShare, splitProduction } from './self-consumption
 export type HourlyProfile = 'evening' | 'mixed' | 'daytime' | 'uniform';
 // Authored hypotheses, not calibrated data. Same curve every day; no weekend adjustment.
 export const DAILY_WEIGHTS: Record<HourlyProfile, readonly number[]> = {
- evening: [0.5,0.4,0.4,0.4,0.4,0.5,0.9,1.2,0.8,0.6,0.6,0.6,0.7,0.6,0.6,0.7,1,1.5,2,2.2,2,1.7,1.2,0.7],
- mixed: [0.5,0.4,0.4,0.4,0.4,0.5,0.9,1.2,1,1,1,1.1,1.3,1.1,1,1,1.2,1.5,1.7,1.8,1.6,1.3,1,0.7],
- daytime: [0.4,0.4,0.4,0.4,0.4,0.5,0.8,1.1,1.4,1.7,1.8,1.8,1.9,1.8,1.8,1.7,1.5,1.2,1,0.9,0.8,0.7,0.6,0.5],
+ evening: [0.45,0.4,0.38,0.38,0.4,0.55,0.9,1.25,1.35,1.05,0.75,0.65,0.65,0.65,0.7,0.8,1.05,1.4,1.75,2.05,1.95,1.55,1.15,0.75],
+ mixed: [0.55,0.5,0.48,0.48,0.5,0.65,0.9,1.15,1.25,1.15,1.1,1.1,1.15,1.1,1.05,1.05,1.15,1.35,1.5,1.55,1.4,1.15,0.9,0.7],
+ daytime: [0.45,0.4,0.38,0.38,0.4,0.5,0.7,0.95,1.2,1.45,1.6,1.7,1.75,1.75,1.7,1.55,1.35,1.1,0.9,0.75,0.65,0.58,0.52,0.48],
  uniform: Array(24).fill(1),
 };
+/** Percentages rounded to hundredths while preserving an exact displayed total of 100%. */
+export function dailyPercentages(profile: HourlyProfile): number[] {
+ const weights=DAILY_WEIGHTS[profile];
+ const total=weights.reduce((sum,value)=>sum+value,0);
+ if(weights.length!==24||!Number.isFinite(total)||total<=0||weights.some(value=>!Number.isFinite(value)||value<0))throw new Error('invalid-daily-profile');
+ const raw=weights.map(value=>value/total*10000);
+ const basisPoints=raw.map(Math.floor);
+ let remainder=10000-basisPoints.reduce((sum,value)=>sum+value,0);
+ const order=raw.map((value,index)=>({index,fraction:value-Math.floor(value)})).sort((a,b)=>b.fraction-a.fraction||a.index-b.index);
+ for(let i=0;i<remainder;i++)basisPoints[order[i]?.index??0]=(basisPoints[order[i]?.index??0]??0)+1;
+ return basisPoints.map(value=>value/100);
+}
 export interface EnergyHour { timestamp: number; kwh: number }
 const HOUR = 3600000;
 export function validateYear(series: EnergyHour[], year: number): Map<number, number> {

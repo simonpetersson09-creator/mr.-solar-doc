@@ -1,5 +1,6 @@
 import i18n from "i18next";
 import { hourlyTranslations } from "./hourly";
+import { hourlyProfileTranslations } from "./hourly-profiles";
 import { initReactI18next } from "react-i18next";
 import { sv } from "./locales/sv";
 import { en } from "./locales/en";
@@ -107,7 +108,7 @@ if (!i18n.isInitialized) {
 }
 
 for (const [language, hourly] of Object.entries(hourlyTranslations)) {
-  i18n.addResourceBundle(language, "translation", { hourly }, true, true);
+  i18n.addResourceBundle(language, "translation", { hourly: { ...hourly, ...hourlyProfileTranslations[language] } }, true, true);
 }
 
 /**
