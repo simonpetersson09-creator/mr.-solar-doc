@@ -741,7 +741,7 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
 
         {exportError ? <p className="text-sm text-destructive">{t("result.pdfError")}</p> : null}
 
-<HourlyComparison result={result} />
+
 {/* Actions — in the scroll flow at the very bottom */}
         <div className="pb-safe flex flex-col gap-2 pt-2">
           {/* Same notice as before the purchase, for anyone who already has access. */}
