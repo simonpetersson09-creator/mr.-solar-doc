@@ -904,16 +904,26 @@ export function generateReportBlob(options: ReportOptions): Blob {
   /** S6: unverified grid assumptions follow the result into the PDF. */
   const gridUnverified = result.grid.profileStatus !== "verified";
   const currency = result.economics.currency;
+  // The address travels with the report, so a Greek or Cyrillic street name must
+  // also switch on the bundled subset — not just the translated labels.
+  const headerAddress = reportAddress(
+    result.location.address,
+    result.location.latitude,
+    result.location.longitude,
+  );
   // Greek and Cyrillic reports use the bundled Unicode subset; Latin reports keep
   // the core fonts so their layout is untouched.
-  const report = new ReportDocument(reportNeedsUnicodeFont(JSON.stringify(labels)));
+  const report = new ReportDocument(
+    reportNeedsUnicodeFont(`${JSON.stringify(labels)}${headerAddress}`),
+  );
 
   report.header(
     labels.title,
     labels.appName,
-    result.location.address,
+    headerAddress,
     `${labels.generated}: ${isoDateOnly(result.calculatedAt)}`,
   );
+
 
   const investmentValue = result.investment.quotePrice ?? result.investment.maxInvestmentRounded;
   const paybackValue =
