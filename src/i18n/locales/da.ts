@@ -135,6 +135,13 @@ export const da = {
       },
     },
     upload: {
+      yearQuestion: "Filen indeholder flere år. Hvilket år vil du bruge?",
+      partial: "Vi fandt {{count}} af 12 måneder. Udfyld de manglende måneder selv.",
+      ambiguous: "Vi kunne ikke afgøre, hvilken værdi der er forbrug. Indtast værdierne manuelt.",
+      conflict: "Filens årsforbrug ({{annual}} kWh) afviger fra summen af månederne ({{sum}} kWh). Vælg, hvilket grundlag vi skal bruge.",
+      useAnnual: "Brug årsværdien",
+      useMonthlySum: "Brug månedssummen",
+      partialSum: "Delsum for {{count}} måneder",
       title: "Indsæt eller vedhæft dokument",
       description:
         "Upload en elregning eller egne forbrugsdata (PDF, Excel, CSV eller billede som PNG/JPEG), så udfylder vi årsforbrug og månedsværdier automatisk.",

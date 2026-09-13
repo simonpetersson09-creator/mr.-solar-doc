@@ -149,6 +149,13 @@ export const sv = {
       },
     },
     upload: {
+      yearQuestion: "Filen innehåller flera år. Vilket år vill du använda?",
+      partial: "Vi hittade {{count}} av 12 månader. Fyll i de månader som saknas själv.",
+      ambiguous: "Vi kunde inte avgöra vilket värde som är förbrukning i filen. Fyll i värdena manuellt.",
+      conflict: "Filens årsförbrukning ({{annual}} kWh) skiljer sig från summan av månaderna ({{sum}} kWh). Välj vilket underlag vi ska använda.",
+      useAnnual: "Använd årsvärdet",
+      useMonthlySum: "Använd månadssumman",
+      partialSum: "Delsumma för {{count}} månader",
       title: "Bifoga förbrukningsdata för 12 månader",
       sectionTitle: "Läs av din elräkning",
       sectionHint:

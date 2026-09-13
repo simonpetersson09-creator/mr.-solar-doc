@@ -150,6 +150,13 @@ export const hr = {
       },
     },
     upload: {
+      yearQuestion: "Datoteka sadrži više godina. Koju godinu želite koristiti?",
+      partial: "Našli smo {{count}} od 12 mjeseci. Nedostajuće mjesece unesite sami.",
+      ambiguous: "Nismo mogli odrediti koja je vrijednost potrošnja. Unesite vrijednosti ručno.",
+      conflict: "Godišnja potrošnja u datoteci ({{annual}} kWh) razlikuje se od zbroja mjeseci ({{sum}} kWh). Odaberite koje podatke koristimo.",
+      useAnnual: "Koristi godišnju vrijednost",
+      useMonthlySum: "Koristi zbroj mjeseci",
+      partialSum: "Djelomični zbroj za {{count}} mjeseci",
       title: "Priložite podatke o potrošnji za 12 mjeseci",
       sectionTitle: "Skenirajte račun za struju",
       sectionHint:

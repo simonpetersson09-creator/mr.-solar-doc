@@ -141,6 +141,13 @@ export const id = {
       default: { title: "Saya tidak tahu", description: "Gunakan profil perkiraan normal." },
     },
     upload: {
+      yearQuestion: "Berkas berisi beberapa tahun. Tahun mana yang ingin Anda gunakan?",
+      partial: "Kami menemukan {{count}} dari 12 bulan. Isi sendiri bulan yang belum ada.",
+      ambiguous: "Kami tidak dapat menentukan nilai mana yang merupakan konsumsi. Masukkan nilainya secara manual.",
+      conflict: "Konsumsi tahunan dalam berkas ({{annual}} kWh) berbeda dari jumlah bulanan ({{sum}} kWh). Pilih data mana yang kami gunakan.",
+      useAnnual: "Gunakan nilai tahunan",
+      useMonthlySum: "Gunakan jumlah bulanan",
+      partialSum: "Jumlah sebagian untuk {{count}} bulan",
       title: "Lampirkan data konsumsi 12 bulan",
       sectionTitle: "Pindai tagihan listrik Anda",
       sectionHint:

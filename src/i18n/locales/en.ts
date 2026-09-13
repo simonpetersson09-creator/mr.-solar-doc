@@ -149,6 +149,13 @@ export const en = {
       },
     },
     upload: {
+      yearQuestion: "The file contains several years. Which year do you want to use?",
+      partial: "We found {{count}} of 12 months. Please fill in the missing months yourself.",
+      ambiguous: "We could not tell which value is consumption in the file. Please enter the values manually.",
+      conflict: "The annual consumption in the file ({{annual}} kWh) differs from the sum of the months ({{sum}} kWh). Choose which figure we should use.",
+      useAnnual: "Use the annual figure",
+      useMonthlySum: "Use the monthly sum",
+      partialSum: "Partial sum for {{count}} months",
       title: "Attach 12 months of consumption data",
       sectionTitle: "Scan your electricity bill",
       sectionHint:

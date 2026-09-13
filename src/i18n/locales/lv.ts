@@ -136,6 +136,13 @@ export const lv = {
       },
     },
     upload: {
+      yearQuestion: "Failā ir vairāki gadi. Kuru gadu vēlaties izmantot?",
+      partial: "Atradām {{count}} no 12 mēnešiem. Lūdzu, aizpildiet trūkstošos mēnešus pats.",
+      ambiguous: "Nevarējām noteikt, kura vērtība ir patēriņš. Ievadiet vērtības manuāli.",
+      conflict: "Faila gada patēriņš ({{annual}} kWh) atšķiras no mēnešu summas ({{sum}} kWh). Izvēlieties, kurus datus izmantot.",
+      useAnnual: "Izmantot gada vērtību",
+      useMonthlySum: "Izmantot mēnešu summu",
+      partialSum: "Daļsumma par {{count}} mēnešiem",
       title: "Ielīmēt vai pievienot dokumentu",
       description:
         "Augšupielādējiet elektrības rēķinu vai savus patēriņa datus (PDF, Excel, CSV vai attēlu kā PNG/JPEG), un mēs automātiski aizpildīsim gada un mēneša vērtības.",

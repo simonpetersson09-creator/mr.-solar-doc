@@ -136,6 +136,13 @@ export const et = {
       },
     },
     upload: {
+      yearQuestion: "Fail sisaldab mitut aastat. Millist aastat soovite kasutada?",
+      partial: "Leidsime {{count}} kuud 12-st. Palun täitke puuduvad kuud ise.",
+      ambiguous: "Me ei suutnud tuvastada, milline väärtus on tarbimine. Sisestage väärtused käsitsi.",
+      conflict: "Faili aastatarbimine ({{annual}} kWh) erineb kuude summast ({{sum}} kWh). Valige, millist alust kasutame.",
+      useAnnual: "Kasuta aastaväärtust",
+      useMonthlySum: "Kasuta kuude summat",
+      partialSum: "Osasumma {{count}} kuu kohta",
       title: "Kleebi või lisa dokument",
       description:
         "Laadi üles elektriarve või oma tarbimisandmed (PDF, Excel, CSV või pilt nagu PNG/JPEG) ja me täidame aastased ja kuised väärtused automaatselt.",

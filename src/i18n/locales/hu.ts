@@ -149,6 +149,13 @@ export const hu = {
       },
     },
     upload: {
+      yearQuestion: "A fájl több évet tartalmaz. Melyik évet szeretné használni?",
+      partial: "12 hónapból {{count}} hónapot találtunk. A hiányzó hónapokat töltse ki saját maga.",
+      ambiguous: "Nem tudtuk megállapítani, melyik érték a fogyasztás. Adja meg az értékeket kézzel.",
+      conflict: "A fájl éves fogyasztása ({{annual}} kWh) eltér a hónapok összegétől ({{sum}} kWh). Válassza ki, melyik adatot használjuk.",
+      useAnnual: "Éves érték használata",
+      useMonthlySum: "Havi összeg használata",
+      partialSum: "Részösszeg {{count}} hónapra",
       title: "Csatolja 12 hónap fogyasztási adatát",
       sectionTitle: "Olvassa be villanyszámláját",
       sectionHint:

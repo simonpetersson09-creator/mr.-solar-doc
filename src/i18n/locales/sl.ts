@@ -133,6 +133,13 @@ export const sl = {
       },
     },
     upload: {
+      yearQuestion: "Datoteka vsebuje več let. Katero leto želite uporabiti?",
+      partial: "Našli smo {{count}} od 12 mesecev. Manjkajoče mesece vnesite sami.",
+      ambiguous: "Nismo mogli ugotoviti, katera vrednost je poraba. Vrednosti vnesite ročno.",
+      conflict: "Letna poraba v datoteki ({{annual}} kWh) se razlikuje od vsote mesecev ({{sum}} kWh). Izberite, katero podlago naj uporabimo.",
+      useAnnual: "Uporabi letno vrednost",
+      useMonthlySum: "Uporabi vsoto mesecev",
+      partialSum: "Delna vsota za {{count}} mesecev",
       title: "Prilepite ali priložite dokument",
       description:
         "Naložite račun za elektriko ali lastne podatke o porabi (PDF, Excel, CSV ali sliko kot PNG/JPEG) in samodejno bomo izpolnili letne in mesečne vrednosti.",

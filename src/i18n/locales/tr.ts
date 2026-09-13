@@ -149,6 +149,13 @@ export const tr = {
       },
     },
     upload: {
+      yearQuestion: "Dosya birden fazla yıl içeriyor. Hangi yılı kullanmak istiyorsunuz?",
+      partial: "12 ayın {{count}} tanesini bulduk. Eksik ayları kendiniz girin.",
+      ambiguous: "Hangi değerin tüketim olduğunu belirleyemedik. Değerleri elle girin.",
+      conflict: "Dosyadaki yıllık tüketim ({{annual}} kWh), ayların toplamından ({{sum}} kWh) farklı. Hangi verinin kullanılacağını seçin.",
+      useAnnual: "Yıllık değeri kullan",
+      useMonthlySum: "Aylık toplamı kullan",
+      partialSum: "{{count}} ay için kısmi toplam",
       title: "12 aylık tüketim verisi ekleyin",
       sectionTitle: "Elektrik faturanızı tarayın",
       sectionHint:

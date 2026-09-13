@@ -151,6 +151,13 @@ export const pt = {
       },
     },
     upload: {
+      yearQuestion: "O ficheiro contém vários anos. Que ano quer utilizar?",
+      partial: "Encontrámos {{count}} de 12 meses. Preencha os meses em falta.",
+      ambiguous: "Não foi possível determinar qual valor é o consumo. Introduza os valores manualmente.",
+      conflict: "O consumo anual do ficheiro ({{annual}} kWh) difere da soma dos meses ({{sum}} kWh). Escolha que dado devemos usar.",
+      useAnnual: "Usar o valor anual",
+      useMonthlySum: "Usar a soma dos meses",
+      partialSum: "Soma parcial de {{count}} meses",
       title: "Anexe 12 meses de dados de consumo",
       sectionTitle: "Digitalize a sua fatura de eletricidade",
       sectionHint:

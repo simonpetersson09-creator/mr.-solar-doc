@@ -18,6 +18,8 @@ import { sumMonthly } from "@/lib/calc/energy-production";
 import { useWizardStore } from "@/state/wizard-store";
 import { haptic } from "@/services/native-service";
 import { editedConsumptionOrigin, isEstimatedConsumption } from "@/lib/consumption-provenance";
+import { MAX_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH } from "@/lib/calc/validation";
+import { parseConsumptionText, type ParsedConsumption } from "@/lib/parse-consumption-document";
 import type { ConsumptionInputType } from "@/lib/calc/consumption-shape";
 
 interface ConsumptionStepProps {
@@ -27,7 +29,8 @@ interface ConsumptionStepProps {
 }
 
 const MIN_ANNUAL_KWH = 100;
-const MAX_ANNUAL_KWH = 200000;
+/** Same upper bound as the calculation engine, so a valid import is never silently rejected. */
+const MAX_ANNUAL_KWH = MAX_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH;
 
 export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepProps) {
   const { t, i18n } = useTranslation();
@@ -57,8 +60,17 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [parsing, setParsing] = useState(false);
-  const [parseStatus, setParseStatus] = useState<"monthly" | "annual" | "error" | null>(null);
+  const [parseStatus, setParseStatus] = useState<
+    "monthly" | "partial" | "annual" | "ambiguous" | "error" | null
+  >(null);
   const [fileName, setFileName] = useState<string | null>(null);
+  /** Raw imported text, kept so another year can be re-read without a new upload. */
+  const [importText, setImportText] = useState<string | null>(null);
+  const [importYears, setImportYears] = useState<number[]>([]);
+  const [importYear, setImportYear] = useState<number | null>(null);
+  /** Annual figure stated in the document, kept apart from the monthly sum. */
+  const [statedAnnual, setStatedAnnual] = useState<number | null>(null);
+  const [annualConflict, setAnnualConflict] = useState(false);
 
   /**
    * Opening the native file/camera menu is a native call: if it throws (or the
@@ -73,6 +85,34 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
     }
   };
 
+  /**
+   * Applies a parsed document. Unknown months stay empty instead of becoming
+   * a real zero, and the stated annual figure is kept apart from the monthly
+   * sum so a disagreement can be shown rather than silently overwritten.
+   */
+  const applyParsed = (parsed: ParsedConsumption) => {
+    setImportYears(parsed.years);
+    setImportYear(parsed.year);
+    setStatedAnnual(parsed.annual);
+    setAnnualConflict(parsed.annualConflict);
+    if (parsed.monthly) {
+      setMonthly(parsed.monthly.map((value) => (value === null ? "" : String(value))));
+      setUseMonthly(true);
+      setOrigin("imported");
+      setMonthlyEdited(false);
+      setAnnual(String(parsed.annual ?? Math.round(parsed.monthlySum ?? 0)));
+      setParseStatus(parsed.monthsFilled === 12 ? "monthly" : "partial");
+      void haptic("medium");
+    } else if (parsed.annual) {
+      setUseMonthly(false);
+      setAnnual(String(Math.round(parsed.annual)));
+      setParseStatus("annual");
+      void haptic("light");
+    } else {
+      setParseStatus(parsed.ambiguous ? "ambiguous" : "error");
+    }
+  };
+
   const handleFile = async (file: File) => {
     setParsing(true);
     setParseStatus(null);
@@ -80,22 +120,8 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
     try {
       const { readConsumptionFile } = await import("@/lib/read-consumption-file");
       const parsed = await readConsumptionFile(file, i18n.language);
-      if (parsed.monthly) {
-        setMonthly(parsed.monthly.map((value) => String(value)));
-        setUseMonthly(true);
-        setOrigin("imported");
-        setMonthlyEdited(true);
-        setAnnual(String(parsed.annual ?? Math.round(sumMonthly(parsed.monthly))));
-        setParseStatus("monthly");
-        void haptic("medium");
-      } else if (parsed.annual) {
-        setUseMonthly(false);
-        setAnnual(String(Math.round(parsed.annual)));
-        setParseStatus("annual");
-        void haptic("light");
-      } else {
-        setParseStatus("error");
-      }
+      setImportText(parsed.text);
+      applyParsed(parsed);
     } catch {
       setParseStatus("error");
     } finally {
@@ -103,6 +129,14 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
     }
   };
 
+  /** Re-reads the already imported document for one specific year only. */
+  const selectImportYear = (year: number) => {
+    if (!importText) return;
+    applyParsed(parseConsumptionText(importText, { year }));
+  };
+
+  const monthlyFilledCount = monthly.filter((value) => value.trim() !== "").length;
+  const monthlyComplete = !useMonthly || monthlyFilledCount === 12;
   const monthlyNumbers = monthly.map((value) => parseLocaleNumber(value, locale) ?? 0);
   const monthlyTotal = sumMonthly(monthlyNumbers);
   const effectiveAnnual = useMonthly ? monthlyTotal : (parseLocaleNumber(annual, locale) ?? 0);
@@ -110,9 +144,12 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
    * Sanity check on the monthly split, expressed as each month's share of the
    * yearly total instead of an absolute kWh limit — a legitimately
    * high-consumption property is never blocked, only an impossible shape is.
+   * Only meaningful once every month is known.
    */
   const maxMonthShare =
-    useMonthly && monthlyTotal > 0 ? Math.max(...monthlyNumbers) / monthlyTotal : 0;
+    useMonthly && monthlyComplete && monthlyTotal > 0
+      ? Math.max(...monthlyNumbers) / monthlyTotal
+      : 0;
   const monthShapeImplausible = maxMonthShare > 0.75;
   const monthShapeUneven = !monthShapeImplausible && maxMonthShare > 0.45;
   const valid =
@@ -212,7 +249,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               {t("consumption.upload.readingFile", { name: fileName ?? "" })}
             </p>
           </div>
-        ) : parseStatus === "monthly" || parseStatus === "annual" ? (
+        ) : parseStatus === "monthly" || parseStatus === "annual" || parseStatus === "partial" ? (
           <div className="flex items-center gap-2.5 rounded-2xl border border-accent/40 bg-white/15 p-3">
             <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-white/15 text-accent">
               <CheckCircle2 className="size-4" />
@@ -220,11 +257,13 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             <div className="min-w-0 flex-1">
               <p className="truncate text-xs font-medium text-white">{fileName}</p>
               <p className="text-[11px] leading-tight text-white/70">
-                {t(
-                  parseStatus === "monthly"
-                    ? "consumption.upload.successMonthly"
-                    : "consumption.upload.successAnnual",
-                )}
+                {parseStatus === "partial"
+                  ? t("consumption.upload.partial", { count: monthlyFilledCount })
+                  : t(
+                      parseStatus === "monthly"
+                        ? "consumption.upload.successMonthly"
+                        : "consumption.upload.successAnnual",
+                    )}
               </p>
             </div>
             <Button
@@ -240,9 +279,11 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               <span className="sr-only">{t("consumption.upload.remove")}</span>
             </Button>
           </div>
-        ) : parseStatus === "error" ? (
+        ) : parseStatus === "error" || parseStatus === "ambiguous" ? (
           <div className="flex items-center justify-between gap-2 rounded-2xl border border-red-400/50 bg-red-500/15 p-3">
-            <p className="text-[11px] text-red-100">{t("consumption.upload.error")}</p>
+            <p className="text-[11px] text-red-100">
+              {t(parseStatus === "ambiguous" ? "consumption.upload.ambiguous" : "consumption.upload.error")}
+            </p>
             <Button
               variant="outline"
               size="sm"
@@ -267,6 +308,74 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             </span>
           </button>
         )}
+
+        {/* ── Several years in the file: the user picks, we never mix them ── */}
+        {importYears.length > 1 ? (
+          <div className="space-y-2 rounded-2xl border border-white/25 bg-white/10 p-3">
+            <p className="text-[11px] leading-snug text-white/80">
+              {t("consumption.upload.yearQuestion")}
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              {importYears.map((year) => (
+                <Button
+                  key={year}
+                  variant={year === importYear ? "cta" : "outline"}
+                  size="sm"
+                  className={
+                    year === importYear
+                      ? "h-7 rounded-full px-3 text-xs"
+                      : "h-7 rounded-full border-white/30 bg-white/10 px-3 text-xs text-white hover:bg-white/20 hover:text-white"
+                  }
+                  onClick={() => {
+                    void haptic("light");
+                    selectImportYear(year);
+                  }}
+                >
+                  {year}
+                </Button>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
+        {/* ── Stated annual figure disagrees with the monthly sum ── */}
+        {annualConflict && statedAnnual !== null ? (
+          <div className="space-y-2 rounded-2xl border border-amber-300/50 bg-amber-400/15 p-3">
+            <p className="text-[11px] leading-snug text-amber-50">
+              {t("consumption.upload.conflict", {
+                annual: formatNumber(statedAnnual, locale),
+                sum: formatNumber(monthlyTotal, locale),
+              })}
+            </p>
+            <div className="flex flex-wrap gap-1.5">
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 rounded-full border-white/30 bg-white/10 px-3 text-xs text-white hover:bg-white/20 hover:text-white"
+                onClick={() => {
+                  setUseMonthly(false);
+                  setAnnual(String(Math.round(statedAnnual)));
+                  setAnnualConflict(false);
+                }}
+              >
+                {t("consumption.upload.useAnnual")}
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                className="h-7 rounded-full border-white/30 bg-white/10 px-3 text-xs text-white hover:bg-white/20 hover:text-white"
+                onClick={() => {
+                  setAnnual(String(Math.round(monthlyTotal)));
+                  setMonthlyEdited(true);
+                  setAnnualConflict(false);
+                }}
+              >
+                {t("consumption.upload.useMonthlySum")}
+              </Button>
+            </div>
+          </div>
+        ) : null}
+
 
         {/*
           Not `hidden`: on iPad WKWebView anchors the native "Take Photo /
@@ -393,7 +502,11 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               ))}
             </div>
             <div className="flex items-baseline justify-between rounded-xl bg-white/10 px-3 py-2">
-              <p className="text-xs text-white/60">{t("consumption.total")}</p>
+              <p className="text-xs text-white/60">
+                {monthlyComplete
+                  ? t("consumption.total")
+                  : t("consumption.upload.partialSum", { count: monthlyFilledCount })}
+              </p>
               <p className="text-base font-bold text-white">
                 {formatNumber(monthlyTotal, locale)}{" "}
                 <span className="text-[11px] font-normal text-white/60">{t("units.kwhPerYear")}</span>
@@ -402,9 +515,6 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           </div>
         ) : null}
 
-        {((useMonthly && monthlyTotal > 0) || (!useMonthly && annual !== "")) && !valid ? (
-          <p className="text-xs text-red-200">{t("consumption.invalid")}</p>
-        ) : null}
       </div>
 
       {showEstimatedProfile && estimatedMonthly ? (

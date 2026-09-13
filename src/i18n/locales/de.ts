@@ -138,6 +138,13 @@ export const de = {
       },
     },
     upload: {
+      yearQuestion: "Die Datei enthält mehrere Jahre. Welches Jahr möchten Sie verwenden?",
+      partial: "Wir haben {{count}} von 12 Monaten gefunden. Bitte ergänzen Sie die fehlenden Monate selbst.",
+      ambiguous: "Wir konnten nicht erkennen, welcher Wert der Verbrauch ist. Bitte geben Sie die Werte manuell ein.",
+      conflict: "Der Jahresverbrauch in der Datei ({{annual}} kWh) weicht von der Summe der Monate ({{sum}} kWh) ab. Wählen Sie, welche Grundlage wir verwenden sollen.",
+      useAnnual: "Jahreswert verwenden",
+      useMonthlySum: "Monatssumme verwenden",
+      partialSum: "Teilsumme für {{count}} Monate",
       title: "Dokument einfügen oder anhängen",
       description:
         "Laden Sie eine Stromrechnung oder Ihre eigenen Verbrauchsdaten (PDF, Excel, CSV oder Bild als PNG/JPEG) hoch, und wir füllen Jahres- und Monatswerte automatisch aus.",

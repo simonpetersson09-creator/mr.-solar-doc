@@ -135,6 +135,13 @@ export const cs = {
       },
     },
     upload: {
+      yearQuestion: "Soubor obsahuje více let. Který rok chcete použít?",
+      partial: "Našli jsme {{count}} z 12 měsíců. Chybějící měsíce prosím doplňte sami.",
+      ambiguous: "Nepodařilo se určit, která hodnota je spotřeba. Zadejte hodnoty ručně.",
+      conflict: "Roční spotřeba v souboru ({{annual}} kWh) se liší od součtu měsíců ({{sum}} kWh). Vyberte, který údaj použijeme.",
+      useAnnual: "Použít roční hodnotu",
+      useMonthlySum: "Použít součet měsíců",
+      partialSum: "Dílčí součet za {{count}} měsíců",
       title: "Vložte nebo přiložte dokument",
       description:
         "Nahrajte fakturu za elektřinu nebo vlastní data o spotřebě (PDF, Excel, CSV nebo obrázek jako PNG/JPEG) a my automaticky vyplníme roční a měsíční hodnoty.",

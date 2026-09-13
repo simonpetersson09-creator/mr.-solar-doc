@@ -169,7 +169,15 @@ export function ocrLanguagesFor(language?: string): string[] {
   return mapped && mapped !== "eng" ? [mapped, "eng"] : ["eng"];
 }
 
-export async function readConsumptionFile(file: File, language?: string): Promise<ParsedConsumption> {
+export interface ReadConsumptionResult extends ParsedConsumption {
+  /** Raw extracted text, so a different year can be re-parsed without re-reading the file. */
+  text: string;
+}
+
+export async function readConsumptionFile(
+  file: File,
+  language?: string,
+): Promise<ReadConsumptionResult> {
   const name = file.name.toLowerCase();
   const langs = ocrLanguagesFor(language);
   let text: string;
@@ -184,5 +192,5 @@ export async function readConsumptionFile(file: File, language?: string): Promis
     text = await file.text();
   }
 
-  return parseConsumptionText(text);
+  return { ...parseConsumptionText(text), text };
 }

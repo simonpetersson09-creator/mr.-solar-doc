@@ -134,6 +134,13 @@ export const fi = {
       },
     },
     upload: {
+      yearQuestion: "Tiedostossa on useita vuosia. Minkä vuoden haluat käyttää?",
+      partial: "Löysimme {{count}} kuukautta 12:sta. Täytä puuttuvat kuukaudet itse.",
+      ambiguous: "Emme voineet päätellä, mikä arvo on kulutus. Syötä arvot käsin.",
+      conflict: "Tiedoston vuosikulutus ({{annual}} kWh) eroaa kuukausien summasta ({{sum}} kWh). Valitse, kumpaa käytetään.",
+      useAnnual: "Käytä vuosiarvoa",
+      useMonthlySum: "Käytä kuukausisummaa",
+      partialSum: "Osasumma {{count}} kuukaudelta",
       title: "Liitä tai liitä tiedosto",
       description:
         "Lataa sähkölasku tai omat kulutustietosi (PDF, Excel, CSV tai kuva, kuten PNG/JPEG), niin täytämme vuosi- ja kuukausiarvot automaattisesti.",
