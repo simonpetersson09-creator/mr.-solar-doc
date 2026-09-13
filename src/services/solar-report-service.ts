@@ -17,6 +17,10 @@ import {
 import { BRAND_RGB } from "@/config/brand";
 
 import { shareFile } from "./native-service";
+import {
+  NOTO_SANS_BOLD_BASE64,
+  NOTO_SANS_REGULAR_BASE64,
+} from "@/assets/fonts/noto-sans-unicode";
 
 /**
  * Calculation Engine -> Calculation Result -> Report Service -> PDF.
@@ -848,7 +852,9 @@ export function generateReportBlob(options: ReportOptions): Blob {
   /** S6: unverified grid assumptions follow the result into the PDF. */
   const gridUnverified = result.grid.profileStatus !== "verified";
   const currency = result.economics.currency;
-  const report = new ReportDocument();
+  // Greek and Cyrillic reports use the bundled Unicode subset; Latin reports keep
+  // the core fonts so their layout is untouched.
+  const report = new ReportDocument(reportNeedsUnicodeFont(JSON.stringify(labels)));
 
   report.header(
     labels.title,
