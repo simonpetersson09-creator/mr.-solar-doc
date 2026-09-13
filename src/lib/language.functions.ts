@@ -2,13 +2,11 @@ import { createServerFn } from "@tanstack/react-start";
 import { getRequest } from "@tanstack/react-start/server";
 import {
   FALLBACK_LANGUAGE,
+  LANGUAGE_COOKIE,
   isSupportedLanguage,
   normaliseLanguage,
   type SupportedLanguage,
 } from "@/i18n/languages";
-
-/** Mirror of the saved UI language, so the server can render in it. */
-export const LANGUAGE_COOKIE = "msd_lang";
 
 function fromCookie(header: string | null): SupportedLanguage | null {
   if (!header) return null;
