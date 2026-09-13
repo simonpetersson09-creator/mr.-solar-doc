@@ -248,12 +248,16 @@ export function pdfText(value: string, unicode = false): string {
   const base = value
     .replace(/\u2212/g, "-")
     .replace(/[\u202f\u2009]/g, "\u00a0")
+    // Bidi controls (from RTL locales' Intl output) are invisible on screen but
+    // jsPDF has no bidi engine, so they leak in as stray glyphs.
+    .replace(/[\u200e\u200f\u061c\u2066-\u2069]/g, "")
     // Maths symbols outside WinAnsi render as stray quotes in Helvetica.
     .replace(/\u221a3/g, "1,73")
     .replace(/\u221a/g, "sqrt");
   if (unicode) return base;
   return base.replace(/[^\u0000-\u00ff]/g, (char) => WINANSI_FALLBACK[char] ?? char);
 }
+
 
 /** Scripts that need a bundled Unicode font instead of the WinAnsi core fonts. */
 const GREEK_OR_CYRILLIC = /[\u0370-\u03ff\u1f00-\u1fff\u0400-\u052f]/;
