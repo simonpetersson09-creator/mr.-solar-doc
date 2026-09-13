@@ -249,7 +249,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               {t("consumption.upload.readingFile", { name: fileName ?? "" })}
             </p>
           </div>
-        ) : parseStatus === "monthly" || parseStatus === "annual" ? (
+        ) : parseStatus === "monthly" || parseStatus === "annual" || parseStatus === "partial" ? (
           <div className="flex items-center gap-2.5 rounded-2xl border border-accent/40 bg-white/15 p-3">
             <span className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-white/15 text-accent">
               <CheckCircle2 className="size-4" />
@@ -257,11 +257,13 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             <div className="min-w-0 flex-1">
               <p className="truncate text-xs font-medium text-white">{fileName}</p>
               <p className="text-[11px] leading-tight text-white/70">
-                {t(
-                  parseStatus === "monthly"
-                    ? "consumption.upload.successMonthly"
-                    : "consumption.upload.successAnnual",
-                )}
+                {parseStatus === "partial"
+                  ? t("consumption.upload.partial", { count: monthlyFilledCount })
+                  : t(
+                      parseStatus === "monthly"
+                        ? "consumption.upload.successMonthly"
+                        : "consumption.upload.successAnnual",
+                    )}
               </p>
             </div>
             <Button
@@ -277,9 +279,11 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               <span className="sr-only">{t("consumption.upload.remove")}</span>
             </Button>
           </div>
-        ) : parseStatus === "error" ? (
+        ) : parseStatus === "error" || parseStatus === "ambiguous" ? (
           <div className="flex items-center justify-between gap-2 rounded-2xl border border-red-400/50 bg-red-500/15 p-3">
-            <p className="text-[11px] text-red-100">{t("consumption.upload.error")}</p>
+            <p className="text-[11px] text-red-100">
+              {t(parseStatus === "ambiguous" ? "consumption.upload.ambiguous" : "consumption.upload.error")}
+            </p>
             <Button
               variant="outline"
               size="sm"
