@@ -429,11 +429,14 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
             onDark
           />
           {clippingNote ? (
-            <p className="mt-2 text-[10px] leading-snug text-white/55">{clippingNote}</p>
+            <p className="mt-2 rounded-xl bg-surface-cream/90 px-2.5 py-1.5 text-[10px] leading-snug text-brand-black">
+              {clippingNote}
+            </p>
           ) : null}
-          <p className="mt-2 text-[10px] leading-snug text-white/55">
+          <p className="mt-2 rounded-xl bg-surface-cream/90 px-2.5 py-1.5 text-[10px] leading-snug text-brand-black">
             {t("result.shadingNotIncludedNote")}
           </p>
+
         </section>
 
 {/* Group: economics */}

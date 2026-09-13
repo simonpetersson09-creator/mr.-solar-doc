@@ -92,12 +92,22 @@ export async function shareFile(request: ShareFileRequest): Promise<"shared" | "
   }
 
   const url = URL.createObjectURL(request.blob);
+
+  // Inside a sandboxed iframe (the Lovable preview) an <a download> click is
+  // silently dropped, so the file is opened in a real tab instead. If the popup
+  // is blocked we still fall back to the anchor click.
+  const inIframe = window.self !== window.top;
+  if (inIframe) {
+    const opened = window.open(url, "_blank", "noopener");
+    if (opened) {
+      window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
+      return "downloaded";
+    }
+  }
+
   const anchor = document.createElement("a");
   anchor.href = url;
   anchor.download = request.fileName;
-  // Opening in a new context keeps the file reachable when the app runs inside
-  // an iframe (Lovable preview) or a webview where inline downloads are blocked.
-  anchor.target = "_blank";
   anchor.rel = "noopener";
   document.body.appendChild(anchor);
   anchor.click();
@@ -107,4 +117,5 @@ export async function shareFile(request: ShareFileRequest): Promise<"shared" | "
   // revoked immediately, so keep it alive for a while.
   window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
   return "downloaded";
+
 }
