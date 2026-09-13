@@ -167,6 +167,26 @@ export function validateCalculationInput(input: CalculationInput): CalculationIs
           "Monthly consumption cannot contain negative values",
         ),
       );
+    } else if (finite(annualKwh) && annualKwh > 0) {
+      // The monthly series and the annual figure describe the same household.
+      // If they disagree, the monthly-overlap cap silently limits (or zeroes)
+      // self-consumption against a consumption level the user never stated,
+      // which is exactly the kind of credible-looking wrong number this layer
+      // exists to stop. A small slack absorbs rounded monthly values.
+      const monthlySum = input.consumption.monthlyKwh.reduce((sum, v) => sum + v, 0);
+      const tolerance = Math.max(
+        MONTHLY_CONSUMPTION_SUM_TOLERANCE_KWH,
+        annualKwh * MONTHLY_CONSUMPTION_SUM_TOLERANCE,
+      );
+      if (Math.abs(monthlySum - annualKwh) > tolerance) {
+        issues.push(
+          issue(
+            "monthly-consumption-sum-mismatch",
+            "consumption.monthlyKwh",
+            `Monthly consumption sums to ${monthlySum} kWh but annual consumption is ${annualKwh} kWh`,
+          ),
+        );
+      }
     }
   }
 
