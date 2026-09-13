@@ -63,8 +63,8 @@ export const et = {
     error: "Aadressi otsing ebaõnnestus.",
     info: "Aadressi kasutatakse ainult päikesekiirguse arvutamiseks teie asukohas.",
     infoLabel: "Rohkem teavet aadressi kohta",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Suumi sisse",
+    zoomOut: "Suumi välja",
   },
   roof: {
     title: "Sinu katus",
@@ -106,8 +106,8 @@ export const et = {
       required: "Sisestage oma elektritarbimine, et arvutust jätkata.",
       tooLow: "Tarbimine tundub liiga väike. Sisestage vähemalt {{min}} kWh aastas.",
       tooHigh: "Tarbimine tundub liiga suur. Sisestage kõige rohkem {{max}} kWh aastas.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "Üks kuu on teistest palju kõrgem. Kontrollige oma kuuandmeid enne jätkamist.",
+      monthUneven: "Üks kuu erineb teistest. Kontrollige seda, kui see ei ole õige.",
     },
     shape: {
       question: "Kuidas jaotub sinu elektritarbimine tavaliselt aasta lõikes?",
@@ -181,7 +181,7 @@ export const et = {
   fuse: {
     gridAssumptionDynamic: "Arvutus lähtub {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Ühik",
       otherLabel: "Sisestage väärtus",
       invalid: "Sisestage väärtus vahemikus {{min}} kuni {{max}} {{unit}}.",
       amperage: {
@@ -228,7 +228,7 @@ export const et = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       hint: "Muutke ainult siis, kui vaikeväärtused ei vasta teie liitumispunktile.",
       serviceType: "Liitumise tüüp",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "2-faasiline (faasist faasi)",
       splitPhase: "Kahefaasiline (split-phase)",
       unverifiedHint:
         "Meil ei ole selle riigi kohta kinnitatud võrguandmeid. Kontrollige andmeid oma arvestist või kilbist.",
@@ -264,8 +264,8 @@ export const et = {
       daytime: "Päeval",
       daytimeHelp: "Palju tarbimist ajal, mil päike toodab.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Teie muudatus sisaldub teie ostus. {{left}} muudatus(t) jäänud 24 tunni jooksul.",
+    revisionsLeft: "Saate seda arvutust muuta veel {{left}} korda 24 tunni jooksul pärast ostmist.",
     calculationUnavailable:
       "Arvutust ei õnnestunud lõpetada. Kontrollige katuse andmeid ja proovige uuesti.",
     connection: {
@@ -578,10 +578,10 @@ export const et = {
       ogDescription: "Teie päikesesüsteemi arvutatud dimensionering koos PDF-aruandega.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Ava oma arvutus - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Ava oma päikeseenergia arvutus ühekordse ostuga või hangi Premium piiramatuteks arvutusteks.",
+      ogDescription: "Ava kogu päikeseenergia arvutus ja PDF-aruanne.",
     },
   },
   months: {
@@ -770,20 +770,20 @@ export const et = {
       external: "Väline andmeallikas",
     },
     generated: "Loodud",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "Läbimiseks koos paigaldajaga",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Kinnitage kohapeal katuse suund, kalle ja võimalik varjutus.",
+      "Pange tähele, et süsteemi suurust võib olla vaja kohandada vastavalt katuse tegelikele tingimustele, näiteks korstnad, ventilatsiooniavad või piiratud kasutatav pindala.",
+      "Kontrollige peakaitset ja liitumistingimusi oma võrguettevõttega.",
+      "Kinnitage, et inverteri võimsus {{acPower}} sobib teie elektriliitumisega.",
+      "Võrrelge paigaldaja hinnangulist aastatoodangut selle aruande näitajaga {{production}}. Hinnangud võivad tingimustest ja arvutusmeetodist olenevalt erineda.",
+      "Küsige, kas inverter on valmis tulevaseks akupatareide salvestuseks, kui see võib osutuda vajalikuks.",
+      "Veenduge, et jaotuskilp ja olemasolev elektripaigaldis sobivad paigalduseks.",
+      "Vaadake üle, mis kuulub pakkumise sisse, näiteks kaablid, kinnitused, kaitse ja muu paigaldusmaterjal.",
+      "Küsige, kes vastutab katusele paigalduse ajal tekkida võiva kahju eest.",
+      "Vaadake üle toodangu jälgimine, garantiid ja hooldus.",
+      "Küsige pakkumist selle aruande mõõtmete alusel: {{kwp}} · {{production}}.",
+      "Võrrelge pakutud hinda selle aruande arvutatud tasemega {{investment}}. Hind võib erineda sõltuvalt seadmetest, paigaldustingimustest ja tarne sisust.",
     ],
     faqTitle: "Korduma kippuvad küsimused",
     faqItems: [
