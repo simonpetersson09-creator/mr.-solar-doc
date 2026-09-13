@@ -68,6 +68,9 @@ function ResultPage() {
   const paybackYears = snapshot?.assumptions.acceptedPaybackYears ?? wizardPaybackYears;
 const [exporting, setExporting] = useState(false);
 const [exportError, setExportError] = useState(false);
+  // Sandboxed preview: downloads and popups are dropped, so the finished report
+  // is rendered in-app instead of silently disappearing.
+  const [reportUrl, setReportUrl] = useState<string | null>(null);
 const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
   const [showSystemSizeInfo, setShowSystemSizeInfo] = useState(false);
   
@@ -230,7 +233,8 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
         faqTitle: rt("report.faqTitle"),
         faqItems: rt("report.faqItems", { returnObjects: true }) as ReportLabels["faqItems"],
       };
-      await exportReport({ result, labels, locale: reportLoc });
+      const outcome = await exportReport({ result, labels, locale: reportLoc });
+      if (outcome.status === "blocked") setReportUrl(outcome.url);
       void haptic("success");
     } catch {
       setExportError(true);
@@ -743,6 +747,25 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
 
 
         {exportError ? <p className="text-sm text-destructive">{t("result.pdfError")}</p> : null}
+
+        {/* Preview fallback: the generated report shown inline, plus a real link
+            the user can click to open it in a tab. */}
+        {reportUrl ? (
+          <div className="mt-4 flex flex-col gap-2">
+            <div className="overflow-hidden rounded-xl border border-border bg-card">
+              <iframe
+                src={reportUrl}
+                title={t("result.downloadPdf")}
+                className="h-[70vh] w-full"
+              />
+            </div>
+            <Button asChild variant="outline" className="w-full" size="lg">
+              <a href={reportUrl} target="_blank" rel="noopener noreferrer">
+                <Download className="size-4" /> {t("result.downloadPdf")}
+              </a>
+            </Button>
+          </div>
+        ) : null}
 
 
 {/* Actions — in the scroll flow at the very bottom */}
