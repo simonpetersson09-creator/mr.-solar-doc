@@ -18,7 +18,7 @@ import {
   formatNumber,
 } from "@/lib/format";
 import { formatInverterPower } from "@/lib/inverter-display";
-import { exportReport, type ReportLabels } from "@/services/solar-report-service";
+import { exportReport, reportLanguage, type ReportLabels } from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
 import { selfConsumptionCapNoteKey } from "@/lib/self-consumption-cap-note";
 
@@ -115,89 +115,112 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
     setExporting(true);
     setExportError(false);
     try {
+      // The PDF renderer draws glyphs without complex-script shaping, so a Hindi
+      // report would come out reordered. Those languages get an English report
+      // instead of malformed text; every other language is unchanged.
+      const rt = i18n.getFixedT(reportLanguage(i18n.language));
+      const reportRationale = rt(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
+      const reportClippingNote = !result.clipping.applicable
+        ? null
+        : result.clipping.modelled
+          ? rt("result.clippingModelledNote", {
+              loss: formatNumber(result.clipping.lossShare * 100, locale, { maximumFractionDigits: 1 }),
+              source: result.clipping.dataSource ?? "PVGIS",
+              year: String(result.clipping.year ?? ""),
+            })
+          : rt("result.clippingNotModelledNote");
+      const reportBindingLimitLabel = rt(
+        result.pvLimitBinding === "busbar-rule"
+          ? "result.bindingBusbar"
+          : result.pvLimitBinding === "capacity-share"
+            ? "result.bindingCapacityShare"
+            : result.pvLimitBinding === "connection-capacity"
+              ? "result.bindingConnectionCapacity"
+              : "result.bindingPvRule",
+      );
       const labels: ReportLabels = {
-        title: t("report.title"),
-        appName: t("app.name"),
-        summary: t("report.summary"),
-        technical: t("report.technical"),
-        economicSummary: t("report.economicSummary"),
-        sizing: t("report.sizing"),
-        production: t("report.production"),
-        consumption: t("report.consumption"),
-        economics: t("report.economics"),
-        assumptions: t("report.assumptions"),
-        disclaimer: t("report.disclaimer"),
-        generated: t("report.generated"),
-        months: shortMonths,
-        rationale,
-        coverageNote: t("result.coverageNote"),
-        paybackNote: `${t("result.paybackInfo")} ${t("result.maxInvestmentNote")}`,
-        quoteNote: t("result.quoteNote"),
+        title: rt("report.title"),
+        appName: rt("app.name"),
+        summary: rt("report.summary"),
+        technical: rt("report.technical"),
+        economicSummary: rt("report.economicSummary"),
+        sizing: rt("report.sizing"),
+        production: rt("report.production"),
+        consumption: rt("report.consumption"),
+        economics: rt("report.economics"),
+        assumptions: rt("report.assumptions"),
+        disclaimer: rt("report.disclaimer"),
+        generated: rt("report.generated"),
+        months: rt("months.short", { returnObjects: true }) as string[],
+        rationale: reportRationale,
+        coverageNote: rt("result.coverageNote"),
+        paybackNote: `${rt("result.paybackInfo")} ${rt("result.maxInvestmentNote")}`,
+        quoteNote: rt("result.quoteNote"),
         // Standard (schablon) adjustment of the modelled share — never presented
         // as measured consumption or an hourly simulation.
         loadProfile: {
-          label: t("result.loadProfileLabel"),
-          value: t(`result.loadProfile.${result.loadProfileClass ?? "mixed"}`),
-          note: t("result.loadProfileNote"),
+          label: rt("result.loadProfileLabel"),
+          value: rt(`result.loadProfile.${result.loadProfileClass ?? "mixed"}`),
+          note: rt("result.loadProfileNote"),
         },
         // Same mode wording as step 5 and the result screen, so the PDF cannot
         // disagree with what the customer saw on screen.
         selfConsumptionMode: {
-          label: t("result.selfConsumptionModeLabel"),
+          label: rt("result.selfConsumptionModeLabel"),
           value:
             result.selfConsumptionSource === "user-override"
-              ? t("result.selfConsumptionModeManual")
-              : t("result.selfConsumptionModeAuto"),
+              ? rt("result.selfConsumptionModeManual")
+              : rt("result.selfConsumptionModeAuto"),
           note:
             result.selfConsumptionSource === "user-override"
-              ? t("result.selfConsumptionManualProfileNote")
+              ? rt("result.selfConsumptionManualProfileNote")
               : null,
         },
         // The wording follows the binding limit: a monthly limit from a
         // generated profile is model-dependent, not a certain household limit.
         selfConsumptionCappedNote: capNoteKey
-          ? t(capNoteKey, {
+          ? rt(capNoteKey, {
               effective: formatNumber(result.presentation.selfConsumptionPercent, locale),
               requested: formatNumber(result.presentation.requestedSelfConsumptionPercent, locale),
             })
           : null,
-        clippingNote: clippingNote,
-        shadingNote: t("result.shadingNotIncludedNote"),
+        clippingNote: reportClippingNote,
+        shadingNote: rt("result.shadingNotIncludedNote"),
 
-        consumptionSource: t(
+        consumptionSource: rt(
           `result.consumptionSource.${result.consumption.inputType ?? "annual-only"}`,
         ),
         consumptionShape: result.consumption.shape
-          ? t(`result.consumptionShape.${result.consumption.shape}`)
+          ? rt(`result.consumptionShape.${result.consumption.shape}`)
           : null,
-        chartProduction: t("report.chartProduction"),
-        chartConsumption: t("report.chartConsumption"),
-origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin"],
-        fields: i18n.t("report.fields", { returnObjects: true }) as ReportLabels["fields"],
-        economicsRequiresPrice: t("result.economicsRequiresPrice"),
-        economicsRequiresPriceShort: t("result.economicsRequiresPriceShort"),
-        gridUnverifiedTitle: t("result.gridUnverifiedTitle"),
-        gridUnverifiedWarning: t("result.gridUnverifiedWarning"),
-        pvLimitLabel: t("result.pvLimitLabel"),
-        bindingLimitLabel: t("result.bindingLimitLabel"),
-        bindingLimitValue: bindingLimitLabel,
+        chartProduction: rt("report.chartProduction"),
+        chartConsumption: rt("report.chartConsumption"),
+origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
+        fields: rt("report.fields", { returnObjects: true }) as ReportLabels["fields"],
+        economicsRequiresPrice: rt("result.economicsRequiresPrice"),
+        economicsRequiresPriceShort: rt("result.economicsRequiresPriceShort"),
+        gridUnverifiedTitle: rt("result.gridUnverifiedTitle"),
+        gridUnverifiedWarning: rt("result.gridUnverifiedWarning"),
+        pvLimitLabel: rt("result.pvLimitLabel"),
+        bindingLimitLabel: rt("result.bindingLimitLabel"),
+        bindingLimitValue: reportBindingLimitLabel,
         limitReason: result.notes.includes("limited-by-pv-rule")
           ? result.pvLimitBinding === "busbar-rule"
-            ? t("result.reasonBusbarLimit")
-            : t("result.reasonPvRuleLimit")
+            ? rt("result.reasonBusbarLimit")
+            : rt("result.reasonPvRuleLimit")
           : null,
         simplifiedProcessNote:
           result.aboveSimplifiedProcessLimit && result.simplifiedProcessLimitKw
-            ? t("result.simplifiedProcessNote", {
+            ? rt("result.simplifiedProcessNote", {
                 limit: formatDecimal(result.simplifiedProcessLimitKw, locale),
               })
             : null,
-        installerChecklistTitle: t("report.installerChecklistTitle"),
-        installerChecklistItems: i18n.t("report.installerChecklistItems", {
+        installerChecklistTitle: rt("report.installerChecklistTitle"),
+        installerChecklistItems: rt("report.installerChecklistItems", {
           returnObjects: true,
         }) as string[],
-        faqTitle: t("report.faqTitle"),
-        faqItems: i18n.t("report.faqItems", { returnObjects: true }) as ReportLabels["faqItems"],
+        faqTitle: rt("report.faqTitle"),
+        faqItems: rt("report.faqItems", { returnObjects: true }) as ReportLabels["faqItems"],
       };
       await exportReport({ result, labels, locale });
       void haptic("success");

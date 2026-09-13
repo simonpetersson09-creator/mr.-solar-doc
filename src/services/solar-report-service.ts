@@ -17,6 +17,10 @@ import {
 import { BRAND_RGB } from "@/config/brand";
 
 import { shareFile } from "./native-service";
+import {
+  NOTO_SANS_BOLD_BASE64,
+  NOTO_SANS_REGULAR_BASE64,
+} from "@/assets/fonts/noto-sans-unicode";
 
 /**
  * Calculation Engine -> Calculation Result -> Report Service -> PDF.
@@ -235,32 +239,86 @@ const WINANSI_FALLBACK: Record<string, string> = {
   Ľ: "L",
 };
 
-export function pdfText(value: string): string {
-  return value
+/**
+ * Text sanitation for the WinAnsi core fonts. With an embedded Unicode font
+ * (Greek/Cyrillic reports) only the few symbols that are genuinely absent from
+ * the subset are replaced — the letters themselves are kept intact.
+ */
+export function pdfText(value: string, unicode = false): string {
+  const base = value
     .replace(/\u2212/g, "-")
     .replace(/[\u202f\u2009]/g, "\u00a0")
     // Maths symbols outside WinAnsi render as stray quotes in Helvetica.
     .replace(/\u221a3/g, "1,73")
-    .replace(/\u221a/g, "sqrt")
-    .replace(/[^\u0000-\u00ff]/g, (char) => WINANSI_FALLBACK[char] ?? char);
+    .replace(/\u221a/g, "sqrt");
+  if (unicode) return base;
+  return base.replace(/[^\u0000-\u00ff]/g, (char) => WINANSI_FALLBACK[char] ?? char);
 }
 
+/** Scripts that need a bundled Unicode font instead of the WinAnsi core fonts. */
+const GREEK_OR_CYRILLIC = /[\u0370-\u03ff\u1f00-\u1fff\u0400-\u052f]/;
+/** Scripts whose correct rendering needs complex-text shaping jsPDF cannot do. */
+const UNSHAPABLE_SCRIPT = /[\u0900-\u097f\u0600-\u06ff\u0590-\u05ff]/;
+
+export function reportNeedsUnicodeFont(text: string): boolean {
+  return GREEK_OR_CYRILLIC.test(text);
+}
+
+/**
+ * jsPDF draws glyph by glyph without shaping, so Devanagari (and other complex
+ * scripts) would come out reordered and unjoined even with full glyph coverage.
+ * Such a report is written in English instead of printing malformed text.
+ */
+export function reportLanguage(language: string): string {
+  return UNSHAPABLE_SCRIPT.test(language) || /^(hi|he|ar|fa|ur|bn|ta|te|th|my|km)\b/.test(language)
+    ? "en"
+    : language;
+}
+
+const UNICODE_FONT = "NotoSans";
+
+/** Embeds the bundled subset; nothing is fetched at export time. */
+function registerUnicodeFont(doc: jsPDF) {
+  doc.addFileToVFS("NotoSans-Regular.ttf", NOTO_SANS_REGULAR_BASE64);
+  doc.addFont("NotoSans-Regular.ttf", UNICODE_FONT, "normal");
+  doc.addFileToVFS("NotoSans-Bold.ttf", NOTO_SANS_BOLD_BASE64);
+  doc.addFont("NotoSans-Bold.ttf", UNICODE_FONT, "bold");
+}
 
 class ReportDocument {
   readonly doc: jsPDF;
   private y = PAGE.margin;
+  private readonly unicode: boolean;
 
-  constructor() {
+  constructor(unicode = false) {
     this.doc = new jsPDF({ unit: "mm", format: "a4" });
+    this.unicode = unicode;
+    if (unicode) registerUnicodeFont(this.doc);
     // Central text sanitation: core PDF fonts lack a few Unicode glyphs.
     const drawText = this.doc.text.bind(this.doc);
     (this.doc as unknown as { text: unknown }).text = ((value: unknown, ...rest: unknown[]) =>
       (drawText as (...args: unknown[]) => unknown)(
-        Array.isArray(value) ? value.map((line) => pdfText(String(line))) : pdfText(String(value)),
+        Array.isArray(value)
+          ? value.map((line) => pdfText(String(line), unicode))
+          : pdfText(String(value), unicode),
         ...rest,
       )) as unknown as jsPDF["text"];
-    this.doc.setFont("helvetica", "normal");
+    this.useFont("normal");
   }
+
+  /**
+   * One font switch for the whole report. The embedded subset ships regular and
+   * bold only, so italic falls back to regular there — same size and colour, so
+   * the layout is identical.
+   */
+  private useFont(style: "normal" | "bold" | "italic") {
+    if (this.unicode) {
+      this.doc.setFont(UNICODE_FONT, style === "bold" ? "bold" : "normal");
+      return;
+    }
+    this.doc.setFont("helvetica", style);
+  }
+
 
   private ensureSpace(height: number) {
     if (this.y + height > PAGE.height - PAGE.margin) {
@@ -275,17 +333,17 @@ class ReportDocument {
     this.doc.setFillColor(...ACCENT_DEEP);
     this.doc.rect(0, 30, PAGE.width, 1.6, "F");
     this.doc.setTextColor(...INK);
-    this.doc.setFont("helvetica", "bold");
+    this.useFont("bold");
     this.doc.setFontSize(18);
     this.doc.text(title, PAGE.margin, 15);
-    this.doc.setFont("helvetica", "normal");
+    this.useFont("normal");
     this.doc.setFontSize(9);
     this.doc.text(appName, PAGE.margin, 22);
     this.doc.text(generated, PAGE.width - PAGE.margin, 22, { align: "right" });
 
     // Address block sits below the band so it can never overlap the header text.
     this.y = 40;
-    this.doc.setFont("helvetica", "bold");
+    this.useFont("bold");
     this.doc.setFontSize(11);
     this.doc.setTextColor(...INK);
     const lines = this.doc.splitTextToSize(subtitle, PAGE.width - PAGE.margin * 2) as string[];
@@ -317,7 +375,7 @@ class ReportDocument {
     if (!text.trim()) return;
     this.ensureSpace(12);
     this.y += 2;
-    this.doc.setFont("helvetica", "bold");
+    this.useFont("bold");
     this.doc.setFontSize(9.5);
     this.doc.setTextColor(...PRIMARY);
     this.doc.text(text, PAGE.margin, this.y);
@@ -328,7 +386,7 @@ class ReportDocument {
 
     this.ensureSpace(18);
     this.y += 2;
-    this.doc.setFont("helvetica", "bold");
+    this.useFont("bold");
     this.doc.setFontSize(12);
     this.doc.setTextColor(...PRIMARY);
     this.doc.text(text, PAGE.margin, this.y);
@@ -352,10 +410,10 @@ class ReportDocument {
       this.doc.roundedRect(x, this.y, width, 24, 2.5, 2.5, "FD");
       this.doc.setFontSize(8);
       this.doc.setTextColor(...INK);
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       this.doc.text(this.doc.splitTextToSize(item.label, width - 6), x + 3, this.y + 6);
       this.doc.setTextColor(...INK);
-      this.doc.setFont("helvetica", "bold");
+      this.useFont("bold");
       let size = 14;
       this.doc.setFontSize(size);
       while (size > 7 && this.doc.getTextWidth(item.value) > width - 6) {
@@ -378,9 +436,9 @@ class ReportDocument {
     rows.forEach((row, index) => {
       const originText = row.origin && originLabels ? originLabels[row.origin] : "";
       this.doc.setFontSize(9.5);
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       const labelWidth = this.doc.getTextWidth(row.label);
-      this.doc.setFont("helvetica", "bold");
+      this.useFont("bold");
       const valueWidth = this.doc.getTextWidth(row.value);
 
       // Wrap onto a second line when label and value would collide.
@@ -395,11 +453,11 @@ class ReportDocument {
         this.doc.setFillColor(...CREAM);
         this.doc.rect(PAGE.margin, this.y - 4.5, full, height, "F");
       }
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       this.doc.setTextColor(...MUTED);
       this.doc.text(row.label, PAGE.margin + 2, this.y);
       const valueRight = PAGE.width - PAGE.margin - 2 - originColumn;
-      this.doc.setFont("helvetica", "bold");
+      this.useFont("bold");
       this.doc.setTextColor(...INK);
       if (stacked) {
         valueLines.forEach((line, lineIndex) => {
@@ -409,14 +467,28 @@ class ReportDocument {
         this.doc.text(row.value, valueRight, this.y, { align: "right" });
       }
       if (originText) {
-        this.doc.setFont("helvetica", "normal");
-        this.doc.setFontSize(6.8);
+        this.useFont("normal");
+        // The provenance column is fixed width. Longer translations (Greek,
+        // Ukrainian, German) are stepped down and, if still too wide, wrapped
+        // inside the column so they can never run into the value.
+        let originSize = 6.8;
+        this.doc.setFontSize(originSize);
+        const columnWidth = originColumn - 2;
+        while (originSize > 5 && this.doc.getTextWidth(originText) > columnWidth) {
+          originSize -= 0.4;
+          this.doc.setFontSize(originSize);
+        }
+        const originLines = this.doc.splitTextToSize(originText, columnWidth) as string[];
         this.doc.setTextColor(...MUTED);
-        this.doc.text(originText, PAGE.width - PAGE.margin - 2, stacked ? this.y + 5 : this.y, {
-          align: "right",
+        const originTop = stacked ? this.y + 5 : this.y;
+        originLines.slice(0, 2).forEach((line, lineIndex) => {
+          this.doc.text(line, PAGE.width - PAGE.margin - 2, originTop + lineIndex * 2.6, {
+            align: "right",
+          });
         });
         this.doc.setFontSize(9.5);
       }
+
       this.y += height;
     });
     this.y += 4;
@@ -495,7 +567,7 @@ class ReportDocument {
   paragraph(text: string) {
     if (!text.trim()) return;
     const lineHeight = 4;
-    this.doc.setFont("helvetica", "italic");
+    this.useFont("italic");
     this.doc.setFontSize(8.5);
     this.doc.setTextColor(...MUTED);
     let lines = this.doc.splitTextToSize(text, PAGE.width - PAGE.margin * 2) as string[];
@@ -510,7 +582,7 @@ class ReportDocument {
         fitCount = Math.floor((PAGE.height - PAGE.margin * 2) / lineHeight);
       }
       const chunk = lines.slice(0, fitCount);
-      this.doc.setFont("helvetica", "italic");
+      this.useFont("italic");
       this.doc.setFontSize(8.5);
       this.doc.setTextColor(...MUTED);
       this.doc.text(chunk, PAGE.margin, this.y);
@@ -524,7 +596,7 @@ class ReportDocument {
   noteBox(title: string, text: string) {
     const width = PAGE.width - PAGE.margin * 2;
     this.doc.setFontSize(8.5);
-    this.doc.setFont("helvetica", "normal");
+    this.useFont("normal");
     const lines = this.doc.splitTextToSize(text, width - 8) as string[];
     const height = 12 + lines.length * 4;
     this.ensureSpace(height + 4);
@@ -532,11 +604,11 @@ class ReportDocument {
     this.doc.setDrawColor(...ACCENT_DEEP);
     this.doc.setLineWidth(0.3);
     this.doc.roundedRect(PAGE.margin, this.y, width, height, 2.5, 2.5, "FD");
-    this.doc.setFont("helvetica", "bold");
+    this.useFont("bold");
     this.doc.setFontSize(9);
     this.doc.setTextColor(...PRIMARY);
     this.doc.text(title, PAGE.margin + 4, this.y + 6);
-    this.doc.setFont("helvetica", "normal");
+    this.useFont("normal");
     this.doc.setFontSize(8.5);
     this.doc.setTextColor(...INK);
     this.doc.text(lines, PAGE.margin + 4, this.y + 11);
@@ -551,7 +623,7 @@ this.y += height + 6;
     const textX = PAGE.margin + boxSize + 4;
     const textWidth = width - boxSize - 6;
     items.forEach((item) => {
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       this.doc.setFontSize(9);
       const lines = this.doc.splitTextToSize(item, textWidth) as string[];
       const height = lines.length * 4.6 + 4;
@@ -577,11 +649,11 @@ this.y += height + 6;
       this.ensureSpace(blockHeight + 2);
       this.doc.setFillColor(...CREAM);
       this.doc.roundedRect(PAGE.margin, this.y - 5, width, blockHeight, 2.5, 2.5, "F");
-      this.doc.setFont("helvetica", "bold");
+      this.useFont("bold");
       this.doc.setFontSize(9.5);
       this.doc.setTextColor(...PRIMARY);
       this.doc.text(questionLines, PAGE.margin + 3, this.y);
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       this.doc.setFontSize(8.5);
       this.doc.setTextColor(...MUTED);
       this.doc.text(answerLines, PAGE.margin + 3, this.y + questionLines.length * 5 + 2);
@@ -697,7 +769,7 @@ this.y += height + 6;
       // Header
       this.doc.setFillColor(...ACCENT_DEEP);
       this.doc.roundedRect(x, top, columnWidth, 5.4, 1, 1, "F");
-      this.doc.setFont("helvetica", "bold");
+      this.useFont("bold");
       this.doc.setFontSize(6.5);
       this.doc.setTextColor(...INK);
       this.doc.text(head.year, x + 1.5, top + 3.7);
@@ -705,7 +777,7 @@ this.y += height + 6;
         this.doc.text(head[col.key], xAt(index + 1) - 1.5, top + 3.7, { align: "right" });
       });
 
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       columnRows.forEach((row, index) => {
         const rowY = top + 6 + index * rowHeight;
         if (row.highlighted) {
@@ -722,9 +794,9 @@ this.y += height + 6;
         this.doc.text(row.production, xAt(1) - 1.5, rowY + 3.3, { align: "right" });
         this.doc.setTextColor(...(row.highlighted ? PRIMARY : INK));
         this.doc.text(row.value, xAt(2) - 1.5, rowY + 3.3, { align: "right" });
-        this.doc.setFont("helvetica", "bold");
+        this.useFont("bold");
         this.doc.text(row.cumulative, xAt(3) - 1.5, rowY + 3.3, { align: "right" });
-        this.doc.setFont("helvetica", "normal");
+        this.useFont("normal");
       });
     });
 
@@ -736,7 +808,7 @@ this.y += height + 6;
     const pages = this.doc.getNumberOfPages();
     for (let page = 1; page <= pages; page += 1) {
       this.doc.setPage(page);
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       this.doc.setFontSize(8);
       this.doc.setTextColor(...MUTED);
       this.doc.text(appName, PAGE.margin, PAGE.height - 10);
@@ -794,7 +866,9 @@ export function generateReportBlob(options: ReportOptions): Blob {
   /** S6: unverified grid assumptions follow the result into the PDF. */
   const gridUnverified = result.grid.profileStatus !== "verified";
   const currency = result.economics.currency;
-  const report = new ReportDocument();
+  // Greek and Cyrillic reports use the bundled Unicode subset; Latin reports keep
+  // the core fonts so their layout is untouched.
+  const report = new ReportDocument(reportNeedsUnicodeFont(JSON.stringify(labels)));
 
   report.header(
     labels.title,
