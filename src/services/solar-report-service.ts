@@ -468,13 +468,27 @@ class ReportDocument {
       }
       if (originText) {
         this.useFont("normal");
-        this.doc.setFontSize(6.8);
+        // The provenance column is fixed width. Longer translations (Greek,
+        // Ukrainian, German) are stepped down and, if still too wide, wrapped
+        // inside the column so they can never run into the value.
+        let originSize = 6.8;
+        this.doc.setFontSize(originSize);
+        const columnWidth = originColumn - 2;
+        while (originSize > 5 && this.doc.getTextWidth(originText) > columnWidth) {
+          originSize -= 0.4;
+          this.doc.setFontSize(originSize);
+        }
+        const originLines = this.doc.splitTextToSize(originText, columnWidth) as string[];
         this.doc.setTextColor(...MUTED);
-        this.doc.text(originText, PAGE.width - PAGE.margin - 2, stacked ? this.y + 5 : this.y, {
-          align: "right",
+        const originTop = stacked ? this.y + 5 : this.y;
+        originLines.slice(0, 2).forEach((line, lineIndex) => {
+          this.doc.text(line, PAGE.width - PAGE.margin - 2, originTop + lineIndex * 2.6, {
+            align: "right",
+          });
         });
         this.doc.setFontSize(9.5);
       }
+
       this.y += height;
     });
     this.y += 4;
