@@ -11,6 +11,7 @@ export const cs = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Jak velkou solární instalaci potřebujete a kolik za ni stojí?",
+    capacityNote: "Podporuje systémy až do 500 kW výkonu",
     point1Title: "Analyzuje vaše předpoklady",
     point1Body: "Na základě vaší polohy, střechy a místních solárních podmínek.",
     point2Title: "Najde správnou velikost pro vás",

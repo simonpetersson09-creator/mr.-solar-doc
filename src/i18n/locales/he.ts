@@ -11,6 +11,7 @@ export const he = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "איזה גודל של מערכת סולארית אתה צריך ומה היא שווה עבורך?",
+    capacityNote: "תומך במערכות עד 500 kW הספק",
     point1Title: "מנתח את התנאים שלך",
     point1Body: "המיקום, כיוון הגג ושיפועו קובעים כמה שמש הגג שלך באמת מקבל.",
     point2Title: "מוצא את הגודל הנכון עבורך",

@@ -12,6 +12,7 @@ export const fr = {
     title: "Mr. Solar Doc",
     subtitle:
       "De quelle taille d'installation solaire avez-vous besoin et quelle valeur a-t-elle pour vous ?",
+    capacityNote: "Prend en charge des installations jusqu'à 500 kW de puissance",
     point1Title: "Analyse vos conditions",
     point1Body: "À partir de votre emplacement, votre toit et les conditions solaires locales.",
     point2Title: "Trouve la bonne taille pour vous",

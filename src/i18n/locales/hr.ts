@@ -11,6 +11,7 @@ export const hr = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Koju veličinu solarnog sustava trebate i koliko vrijedi za vas?",
+    capacityNote: "Podržava sustave do 500 kW snage",
     point1Title: "Analizira vaše uvjete",
     point1Body: "Lokacija, orijentacija i nagib krova određuju koliko sunca vaš krov stvarno dobiva.",
     point2Title: "Pronalazi pravu veličinu za vas",

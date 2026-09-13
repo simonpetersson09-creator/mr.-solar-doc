@@ -11,6 +11,7 @@ export const es = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "¿Qué tamaño de instalación solar necesitas y qué valor tiene para ti?",
+    capacityNote: "Admite sistemas de hasta 500 kW de potencia",
     point1Title: "Analiza tus condiciones",
     point1Body: "La ubicación, la orientación y la inclinación deciden cuánto sol recibe tu tejado.",
     point2Title: "Encuentra el tamaño adecuado para ti",

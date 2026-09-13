@@ -11,6 +11,7 @@ export const pt = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Que tamanho de sistema solar precisa e qual o seu valor para si?",
+    capacityNote: "Suporta sistemas até 500 kW de potência",
     point1Title: "Analisa as suas condições",
     point1Body: "A localização, a orientação e a inclinação determinam quanto sol o seu telhado recebe.",
     point2Title: "Encontra o tamanho certo para si",

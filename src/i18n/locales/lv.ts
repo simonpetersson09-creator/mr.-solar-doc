@@ -11,6 +11,7 @@ export const lv = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Cik liela saules sistēma jums nepieciešama un kāda tā vērtība jums?",
+    capacityNote: "Atbalsta sistēmas līdz 500 kW jaudai",
     point1Title: "Analizē jūsu nosacījumus",
     point1Body: "Pamatojoties uz jūsu atrašanās vietu, jumtu un vietējiem saules apstākļiem.",
     point2Title: "Atrod jums pareizo izmēru",

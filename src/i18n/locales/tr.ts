@@ -11,6 +11,7 @@ export const tr = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Ne büyüklükte bir güneş sistemine ihtiyacınız var ve sizin için değeri ne?",
+    capacityNote: "500 kW'a kadar güçte sistemleri destekler",
     point1Title: "Koşullarınızı analiz eder",
     point1Body: "Konumunuza, çatınıza ve yerel güneş koşullarına göre.",
     point2Title: "Sizin için doğru boyutu bulur",

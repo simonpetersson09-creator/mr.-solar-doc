@@ -11,6 +11,7 @@ export const it = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Di quale dimensione di impianto solare hai bisogno e quanto vale per te?",
+    capacityNote: "Supporta impianti fino a 500 kW di potenza",
     point1Title: "Analizza le tue condizioni",
     point1Body: "In base alla tua posizione, al tuo tetto e alle condizioni solari locali.",
     point2Title: "Trova la dimensione giusta per te",

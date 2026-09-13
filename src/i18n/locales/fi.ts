@@ -11,6 +11,7 @@ export const fi = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Kuinka suuren aurinkovoimalan tarvitset ja mikä on sen arvo sinulle?",
+    capacityNote: "Tukee järjestelmiä jopa 500 kW tehoon",
     point1Title: "Analysoi edellytyksesi",
     point1Body: "Sijaintisi, kattosi ja paikallisten aurinko-olojen perusteella.",
     point2Title: "Etsii sinulle oikean koon",

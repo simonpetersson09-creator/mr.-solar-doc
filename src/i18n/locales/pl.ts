@@ -11,6 +11,7 @@ export const pl = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Jak dużej instalacji słonecznej potrzebujesz i ile jest dla ciebie warta?",
+    capacityNote: "Obsługuje instalacje do 500 kW mocy",
     point1Title: "Analizuje Twoje warunki",
     point1Body: "Na podstawie twojej lokalizacji, dachu i lokalnych warunków słonecznych.",
     point2Title: "Znajduje odpowiedni rozmiar dla Ciebie",
