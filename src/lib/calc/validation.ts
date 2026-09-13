@@ -47,6 +47,14 @@ export const MAX_PLAUSIBLE_KWH_PER_KWP = 2600;
 /** Upper sanity bound for annual household consumption, kWh. */
 export const MAX_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH = 1_000_000;
 
+/**
+ * Slack when comparing the monthly consumption series to the annual figure.
+ * Monthly values are commonly rounded per month, so a 2 % (or 1 kWh) drift is
+ * accepted; anything larger means the two inputs describe different households.
+ */
+export const MONTHLY_CONSUMPTION_SUM_TOLERANCE = 0.02;
+export const MONTHLY_CONSUMPTION_SUM_TOLERANCE_KWH = 1;
+
 export type CalculationIssueCode =
   | "non-finite-value"
   | "negative-consumption"
@@ -56,6 +64,7 @@ export type CalculationIssueCode =
   | "implausible-solar-yield"
   | "invalid-monthly-profile"
   | "invalid-monthly-consumption"
+  | "monthly-consumption-sum-mismatch"
   | "invalid-grid-limit"
   | "missing-inverter-sizes"
   | "invalid-self-consumption-share"
@@ -167,6 +176,26 @@ export function validateCalculationInput(input: CalculationInput): CalculationIs
           "Monthly consumption cannot contain negative values",
         ),
       );
+    } else if (finite(annualKwh) && annualKwh > 0) {
+      // The monthly series and the annual figure describe the same household.
+      // If they disagree, the monthly-overlap cap silently limits (or zeroes)
+      // self-consumption against a consumption level the user never stated,
+      // which is exactly the kind of credible-looking wrong number this layer
+      // exists to stop. A small slack absorbs rounded monthly values.
+      const monthlySum = input.consumption.monthlyKwh.reduce((sum, v) => sum + v, 0);
+      const tolerance = Math.max(
+        MONTHLY_CONSUMPTION_SUM_TOLERANCE_KWH,
+        annualKwh * MONTHLY_CONSUMPTION_SUM_TOLERANCE,
+      );
+      if (Math.abs(monthlySum - annualKwh) > tolerance) {
+        issues.push(
+          issue(
+            "monthly-consumption-sum-mismatch",
+            "consumption.monthlyKwh",
+            `Monthly consumption sums to ${monthlySum} kWh but annual consumption is ${annualKwh} kWh`,
+          ),
+        );
+      }
     }
   }
 
