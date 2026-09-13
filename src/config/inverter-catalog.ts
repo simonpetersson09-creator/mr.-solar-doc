@@ -59,6 +59,10 @@ export const EU_THREE_PHASE_INVERTER_SIZES_KW = [
   // They are real three-phase 400 V products, so a large roof, farm or small
   // commercial site can be represented instead of being silently capped.
   66, 75, 80, 100, 110, 125, 150, 175, 200,
+  // Utility string classes continue above 200 kW (e.g. Sungrow SG250HX,
+  // Huawei SUN2000-330KTL, SMA Sunny Highpower PEAK3) and cover farms and
+  // commercial rooftops up to 500 kW.
+  250, 275, 300, 330, 350, 400, 450, 500,
 ];
 
 /**

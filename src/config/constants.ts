@@ -87,10 +87,10 @@ export const DEFAULT_SELF_CONSUMPTION_SHARE = 0.4;
  * Smallest / largest plausible array (kWp).
  *
  * The ceiling covers large roofs, farms and small commercial installations up
- * to a 200 kW AC inverter at the absolute DC/AC ceiling (200 x 1.30 = 260).
+ * to a 500 kW AC inverter at the absolute DC/AC ceiling (500 x 1.30 = 650).
  */
 export const MIN_RECOMMENDED_KWP = 1;
-export const MAX_RECOMMENDED_KWP = 260;
+export const MAX_RECOMMENDED_KWP = 650;
 
 /** Lowest annual consumption the engine treats as a realistic household. */
 export const MIN_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH = 100;
