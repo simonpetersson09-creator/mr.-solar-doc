@@ -162,32 +162,43 @@ function consumptionValueInLine(line: string): { value: number | null; ambiguous
   const labelled = tokens.find((token) => token.labelledConsumption);
   if (labelled) return { value: scaled(labelled), ambiguous: false };
 
-  const usable = tokens.filter(
-    (token) => !token.labelledMeter && !token.looksLikeYear && !token.looksLikeClock,
-  );
-  const withUnit = usable.filter((token) => token.unitScale !== null);
+  // Meter readings and clock times are never consumption. A year-shaped number
+  // (1900-2100) is only set aside when the row has another candidate: a real
+  // monthly consumption of 2100 kWh must not disappear.
+  const candidates = tokens.filter((token) => !token.labelledMeter && !token.looksLikeClock);
+  const withUnit = candidates.filter((token) => token.unitScale !== null);
   if (withUnit.length > 0) return { value: scaled(withUnit[0]!), ambiguous: false };
-  if (usable.length === 0) {
+  if (candidates.length === 0) {
     // Only meter readings / dates on this row — refuse to guess.
     return { value: null, ambiguous: tokens.some((token) => token.labelledMeter) };
   }
-  return { value: usable[usable.length - 1]!.value, ambiguous: false };
+  const notYearLike = candidates.filter((token) => !token.looksLikeYear);
+  if (notYearLike.length > 0) return { value: notYearLike[notYearLike.length - 1]!.value, ambiguous: false };
+  // Every candidate is year-shaped. One of them is the value; more than one is
+  // genuinely ambiguous, so say so instead of guessing or dropping it silently.
+  if (candidates.length === 1) return { value: candidates[0]!.value, ambiguous: false };
+  return { value: null, ambiguous: true };
 }
 
 const DELIMITER = /\t|;|\|/;
+
+/** A "kWh" / "MWh" column header states consumption without naming it. */
+const ENERGY_UNIT_HEADER = /^\(?\s*(k?wh|mwh)\b/i;
 
 /** Finds the consumption column of a delimited export from its header row. */
 function consumptionColumn(line: string): number | null {
   if (!DELIMITER.test(line)) return null;
   const cells = line.split(DELIMITER).map((cell) => cell.trim());
   const index = cells.findIndex(
-    (cell) => CONSUMPTION_PATTERN.test(cell) && !METER_PATTERN.test(cell),
+    (cell) =>
+      (CONSUMPTION_PATTERN.test(cell) || ENERGY_UNIT_HEADER.test(cell)) && !METER_PATTERN.test(cell),
   );
   if (index === -1) return null;
   // A header row has no consumption value of its own.
   const looksLikeHeader = cells.every((cell) => !/^\s*[\d.,\s]+$/.test(cell) || cell === "");
   return looksLikeHeader ? index : null;
 }
+
 
 function isPlausibleAnnual(value: number): boolean {
   return value >= 100 && value <= MAX_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH;
