@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft, ChevronDown, CircleAlert, Download, Info, Loader2, Sun, Zap } from "lucide-react";
 import i18nInstance from "@/i18n";
 import { Button } from "@/components/ui/button";
+import { HourlyComparison } from "@/components/HourlyComparison";
 import { MonthlyChart } from "@/components/MonthlyChart";
 import { useUnlockedCalculation } from "@/hooks/use-unlocked-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
@@ -709,6 +710,7 @@ origin: i18n.t("report.origin", { returnObjects: true }) as ReportLabels["origin
 
         {exportError ? <p className="text-sm text-destructive">{t("result.pdfError")}</p> : null}
 
+<HourlyComparison result={result} />
 {/* Actions — in the scroll flow at the very bottom */}
         <div className="pb-safe flex flex-col gap-2 pt-2">
           <Button

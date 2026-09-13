@@ -1,4 +1,5 @@
 import i18n from "i18next";
+import { hourlyTranslations } from "./hourly";
 import { initReactI18next } from "react-i18next";
 import { sv } from "./locales/sv";
 import { en } from "./locales/en";
@@ -103,6 +104,10 @@ if (!i18n.isInitialized) {
     interpolation: { escapeValue: false },
     returnObjects: true,
   });
+}
+
+for (const [language, hourly] of Object.entries(hourlyTranslations)) {
+  i18n.addResourceBundle(language, "translation", { hourly }, true, true);
 }
 
 /**

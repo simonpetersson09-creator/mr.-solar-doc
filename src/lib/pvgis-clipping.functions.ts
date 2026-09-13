@@ -69,7 +69,7 @@ function cacheKey(data: ClippingInput): string {
 }
 
 /** Shared provider: used by the server fn (web) and the stable native route. */
-export async function clippingProvider(data: ClippingInput): Promise<ClippingLossModel> {
+export async function hourlySeriesProvider(data: ClippingInput) {
   const key = cacheKey(data);
   let series = seriesCache.get(key);
 
@@ -102,6 +102,11 @@ export async function clippingProvider(data: ClippingInput): Promise<ClippingLos
     seriesCache.set(key, series);
   }
 
+  return { ...series, year: CLIPPING_REFERENCE_YEAR };
+}
+
+export async function clippingProvider(data: ClippingInput): Promise<ClippingLossModel> {
+  const series = await hourlySeriesProvider(data);
   return computeClippingLoss({
     hourly: series.hourly,
     dcAcRatio: data.dcAcRatio,
@@ -114,3 +119,7 @@ export async function clippingProvider(data: ClippingInput): Promise<ClippingLos
 export const fetchPvgisClipping = createServerFn({ method: "GET" })
   .inputValidator((data: unknown) => clippingInput.parse(data))
   .handler(async ({ data }): Promise<ClippingLossModel> => clippingProvider(data));
+
+export const fetchPvgisHourly = createServerFn({ method: "GET" })
+ .inputValidator((data: unknown) => clippingInput.parse(data))
+ .handler(async ({ data }) => hourlySeriesProvider(data));
