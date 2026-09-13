@@ -43,6 +43,22 @@ describe("consumption origin through navigation and persistence", () => {
     useWizardStore.setState({ consumptionInputType: "imported" }); open(); next();
     expect(useWizardStore.getState().consumptionInputType).toBe("imported");
   });
+  it("marks an edited imported series as manually edited through save and reload", () => {
+    useWizardStore.setState({ consumptionInputType: "imported", monthlyConsumptionKwh: months });
+    open();
+    const firstMonth = screen.getAllByRole("textbox")[0];
+    if (!firstMonth) throw new Error("Missing month input");
+    fireEvent.change(firstMonth, { target: { value: "900" } }); next();
+    const saved = useWizardStore.getState();
+    expect(saved.consumptionInputType).toBe("monthly-manual");
+    expect(isEstimatedConsumption(saved.consumptionInputType)).toBe(false);
+    expect(saved.monthlyConsumptionKwh?.[0]).toBe(900);
+    expect(saved.monthlyConsumptionKwh?.[1]).toBe(months[1]);
+    const restored = migrateWizardState(JSON.parse(JSON.stringify(saved)), WIZARD_STORAGE_VERSION).state;
+    expect(restored.consumptionInputType).toBe("monthly-manual");
+    expect(restored.monthlyConsumptionKwh?.[0]).toBe(900);
+  });
+
   it("does not guess legacy manual months are actual and retains values", () => {
     const old = { ...initialWizardState, monthlyConsumptionKwh: months, consumptionInputType: "monthly-manual" };
     const migrated = migrateWizardState(old, 5).state;
