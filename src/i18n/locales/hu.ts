@@ -277,6 +277,8 @@ export const hu = {
       mixedHelp: "A fogyasztás elosztva a nap során.",
       daytime: "Napközben",
       daytimeHelp: "Sok fogyasztás, amikor a nap termel.",
+even: "Egyenletes",
+evenHelp: "Nagyjából azonos fogyasztás a nap egészében.",
     },
     connection: {
       contractedKva: "Szerződött teljesítmény (kVA)",

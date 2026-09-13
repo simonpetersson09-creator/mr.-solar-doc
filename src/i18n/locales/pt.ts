@@ -280,6 +280,8 @@ export const pt = {
       mixedHelp: "Consumo distribuído ao longo do dia.",
       daytime: "Durante o dia",
       daytimeHelp: "Muito consumo enquanto o sol produz.",
+even: "Uniforme",
+evenHelp: "Consumo aproximadamente igual ao longo do dia.",
     },
     connection: {
       contractedKva: "Potência contratada (kVA)",

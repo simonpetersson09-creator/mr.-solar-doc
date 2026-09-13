@@ -261,6 +261,8 @@ export const fi = {
       mixedHelp: "Kulutus jakautuu päivän ajalle.",
       daytime: "Päiväsaika",
       daytimeHelp: "Paljon kulutusta silloin kun aurinko tuottaa.",
+even: "Tasainen",
+evenHelp: "Saman verran kulutusta ympäri vuorokauden.",
     },
     revisionUsed: "Muutoksesi sisältyy ostoosi. {{left}} muutos(ta) jäljellä 24 tunnin sisällä.",
     revisionsLeft: "Voit muuttaa tätä laskelmaa vielä {{left}} kerta(a) 24 tunnin sisällä ostosta.",

@@ -269,6 +269,8 @@ export const id = {
       mixedHelp: "Konsumsi tersebar sepanjang hari.",
       daytime: "Siang hari",
       daytimeHelp: "Banyak konsumsi saat matahari berproduksi.",
+even: "Merata",
+evenHelp: "Konsumsi kurang lebih sama sepanjang hari.",
     },
     revisionUsed: "Perubahan Anda sudah termasuk dalam pembelian. Tersisa {{left}} perubahan dalam 24 jam.",
     revisionsLeft: "Anda dapat mengubah perhitungan ini {{left}} kali lagi dalam 24 jam sejak pembelian.",

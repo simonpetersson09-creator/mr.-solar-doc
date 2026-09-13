@@ -266,6 +266,8 @@ export const pl = {
       mixedHelp: "Zużycie rozłożone w ciągu dnia.",
       daytime: "W ciągu dnia",
       daytimeHelp: "Dużo zużycia, gdy słońce produkuje.",
+even: "Równomierne",
+evenHelp: "Mniej więcej takie samo zużycie przez całą dobę.",
     },
     revisionUsed: "Twoja zmiana jest wliczona w zakup. Pozostało {{left}} zmian(y) w ciągu 24 godzin.",
     revisionsLeft: "Możesz zmienić te obliczenia jeszcze {{left}} raz(y) w ciągu 24 godzin od zakupu.",

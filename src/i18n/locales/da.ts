@@ -262,6 +262,8 @@ export const da = {
       mixedHelp: "Forbrug fordelt over dagen.",
       daytime: "Dagtimer",
       daytimeHelp: "Meget forbrug, når solen producerer.",
+even: "Jævn",
+evenHelp: "Omtrent samme forbrug hele døgnet.",
     },
     revisionUsed: "Din ændring er inkluderet i dit køb. {{left}} ændring(er) tilbage inden for 24 timer.",
     revisionsLeft: "Du kan ændre denne beregning {{left}} gang(e) mere inden for 24 timer efter købet.",

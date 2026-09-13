@@ -63,6 +63,8 @@ describe("load profile translation keys", () => {
         "mixedHelp",
         "daytime",
         "daytimeHelp",
+        "even",
+        "evenHelp",
       ]) {
         expect(typeof profiles![key]).toBe("string");
       }

@@ -265,6 +265,8 @@ export const lt = {
       mixedHelp: "Vartojimas paskirstytas per dieną.",
       daytime: "Dieną",
       daytimeHelp: "Daug vartojimo, kai saulė gamina.",
+even: "Tolygus",
+evenHelp: "Maždaug vienodas suvartojimas visą parą.",
     },
     revisionUsed: "Jūsų pakeitimas įtrauktas į pirkinį. Liko {{left}} pakeitimas(-ai) per 24 valandas.",
     revisionsLeft: "Šį skaičiavimą galite keisti dar {{left}} kartą(-us) per 24 valandas nuo pirkimo.",

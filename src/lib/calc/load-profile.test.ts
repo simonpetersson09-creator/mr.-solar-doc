@@ -57,17 +57,19 @@ describe("load profile plumbing", () => {
   });
 
   it("carries the choice through to the result", () => {
-    for (const profile of ["evening", "mixed", "daytime"] as LoadProfileClass[]) {
+    for (const profile of ["evening", "mixed", "daytime", "even"] as LoadProfileClass[]) {
       expect(run({ loadProfileClass: profile }).loadProfileClass).toBe(profile);
     }
   });
 
-  it("orders modelled self-consumption evening < mixed < daytime", () => {
+  it("orders modelled self-consumption evening < even < mixed < daytime", () => {
     const evening = run({ loadProfileClass: "evening" });
+    const even = run({ loadProfileClass: "even" });
     const mixed = run({ loadProfileClass: "mixed" });
     const daytime = run({ loadProfileClass: "daytime" });
     expect(evening.selfConsumptionSource).not.toBe("user-override");
-    expect(evening.selfConsumptionRate).toBeLessThan(mixed.selfConsumptionRate);
+    expect(evening.selfConsumptionRate).toBeLessThan(even.selfConsumptionRate);
+    expect(even.selfConsumptionRate).toBeLessThan(mixed.selfConsumptionRate);
     expect(mixed.selfConsumptionRate).toBeLessThan(daytime.selfConsumptionRate);
   });
 

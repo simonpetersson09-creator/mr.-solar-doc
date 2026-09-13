@@ -266,6 +266,8 @@ export const it = {
       mixedHelp: "Consumo distribuito nella giornata.",
       daytime: "Di giorno",
       daytimeHelp: "Molto consumo mentre il sole produce.",
+even: "Uniforme",
+evenHelp: "Consumo più o meno uguale nell’arco delle 24 ore.",
     },
     revisionUsed: "La tua modifica è inclusa nell'acquisto. Restano {{left}} modifica/che entro 24 ore.",
     revisionsLeft: "Puoi modificare questo calcolo altre {{left}} volte entro 24 ore dall'acquisto.",

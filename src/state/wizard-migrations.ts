@@ -226,7 +226,9 @@ export function normalizeWizardState(loose: Loose): WizardData {
     loose["selfConsumptionShareIsUserSet"] === true && share !== null && share >= 0 && share <= 1;
   const profile = loose["loadProfileClass"];
   base.loadProfileClass =
-    profile === "evening" || profile === "daytime" || profile === "mixed" ? profile : "mixed";
+    profile === "evening" || profile === "daytime" || profile === "mixed" || profile === "even"
+      ? profile
+      : "mixed";
   const selfValue = num(loose["selfConsumedValuePerKwh"]);
   base.selfConsumedValuePerKwh = selfValue !== null && selfValue >= 0 ? selfValue : null;
   const exportValue = num(loose["exportValuePerKwh"]);
