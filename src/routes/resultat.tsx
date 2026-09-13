@@ -97,6 +97,19 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
   const rationale = t(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
   const capNoteKey = selfConsumptionCapNoteKey(result.presentation);
 
+  // Inverter clipping is stated exactly as the engine resolved it: a modelled
+  // loss from real hourly data, or an explicit "not modelled". Nothing is
+  // presented when the DC/AC ratio makes clipping physically impossible.
+  const clippingNote = !result.clipping.applicable
+    ? null
+    : result.clipping.modelled
+      ? t("result.clippingModelledNote", {
+          loss: formatNumber(result.clipping.lossShare * 100, locale, 1),
+          source: result.clipping.dataSource ?? "PVGIS",
+          year: String(result.clipping.year ?? ""),
+        })
+      : t("result.clippingNotModelledNote");
+
   const handleExport = async () => {
     setExporting(true);
     setExportError(false);
