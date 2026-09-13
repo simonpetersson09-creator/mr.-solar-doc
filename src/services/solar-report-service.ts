@@ -16,7 +16,7 @@ import {
 
 import { BRAND_RGB } from "@/config/brand";
 
-import { shareFile } from "./native-service";
+import { shareFile, type ShareOutcome } from "./native-service";
 import {
   NOTO_SANS_BOLD_BASE64,
   NOTO_SANS_REGULAR_BASE64,
