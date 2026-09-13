@@ -21,6 +21,7 @@ import { buildPaybackScenarios, calculateMaxInvestment } from "./payback";
 import { calculateProductionCost } from "./production-cost";
 import { buildLifetimeProjection } from "./degradation";
 import { dcAcRatio, oversizingPercent } from "./inverter-sizing";
+import { applyClippingLoss, clippingModelMatchesRatio } from "./clipping";
 import {
   DEFAULT_GRID_FREQUENCY_HZ,
   SERVICE_TYPE_FOR_PHASE_COUNT,
@@ -45,6 +46,7 @@ import {
   validateCalculationResult,
 } from "./validation";
 import type {
+  ClippingOutcome,
   CalculationOutcome,
   EconomicsAvailability,
   CalculationInput,
@@ -486,6 +488,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     recommendationReason,
     monthlyProductionKwh,
     annualProductionKwh,
+    clipping,
     consumption: { ...input.consumption, isEstimated: monthlyIsEstimated },
     selfConsumption: { share: split.selfConsumptionShare, kwh: split.selfConsumptionKwh },
     exported: { share: split.exportShare, kwh: split.exportedKwh },
