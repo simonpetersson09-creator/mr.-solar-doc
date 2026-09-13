@@ -23,5 +23,5 @@
 - [x] Begripliga schablonkurvor med diagram, timtabell och exakt dygnsnormalisering.
 
 ## Betalningsåterförsök och profilnamn
-- [ ] Skydda verifiering mot samtidiga återförsök och testa låset.
-- [ ] Använd even för båda profilvägarna utan ändrade beräkningar.
+- [x] Skydda verifiering mot samtidiga återförsök och testa låset.
+- [x] Använd even för båda profilvägarna utan ändrade beräkningar.
