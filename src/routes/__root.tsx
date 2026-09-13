@@ -148,9 +148,19 @@ const useIsomorphicLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 function RootShell({ children }: { children: ReactNode }) {
-  const language = normaliseLanguage(i18n.language);
+  // During hydration the shell must reproduce exactly what the server sent,
+  // even when the client already knows a different saved language (no cookie
+  // yet on a returning visitor). useDocumentLanguage updates it after mount.
+  const language =
+    typeof document !== "undefined"
+      ? normaliseLanguage(document.documentElement.lang || i18n.language)
+      : normaliseLanguage(i18n.language);
   return (
-    <html lang={language} dir={isRtlLanguage(language) ? "rtl" : "ltr"}>
+    <html
+      lang={language}
+      dir={isRtlLanguage(language) ? "rtl" : "ltr"}
+      suppressHydrationWarning
+    >
       <head>
         <HeadContent />
       </head>
