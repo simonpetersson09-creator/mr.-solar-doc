@@ -92,7 +92,7 @@ export async function shareFile(request: ShareFileRequest): Promise<ShareOutcome
   if (navigatorWithShare.canShare?.({ files: [file] }) && navigatorWithShare.share) {
     try {
       await navigatorWithShare.share({ files: [file], ...(request.title ? { title: request.title } : {}) });
-      return "shared";
+      return { status: "shared" };
     } catch {
       // Fall through to download.
     }
@@ -100,16 +100,11 @@ export async function shareFile(request: ShareFileRequest): Promise<ShareOutcome
 
   const url = URL.createObjectURL(request.blob);
 
-  // Inside a sandboxed iframe (the Lovable preview) an <a download> click is
-  // silently dropped, so the file is opened in a real tab instead. If the popup
-  // is blocked we still fall back to the anchor click.
+  // Inside a sandboxed iframe (the Lovable preview) both an <a download> click and
+  // a popup are silently dropped, so the caller has to render the file in-app.
   const inIframe = window.self !== window.top;
   if (inIframe) {
-    const opened = window.open(url, "_blank", "noopener");
-    if (opened) {
-      window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
-      return "downloaded";
-    }
+    return { status: "blocked", url };
   }
 
   const anchor = document.createElement("a");
@@ -123,6 +118,5 @@ export async function shareFile(request: ShareFileRequest): Promise<ShareOutcome
   // Some engines (iOS WKWebView, Safari) abort the transfer if the object URL is
   // revoked immediately, so keep it alive for a while.
   window.setTimeout(() => URL.revokeObjectURL(url), 60_000);
-  return "downloaded";
-
+  return { status: "downloaded" };
 }
