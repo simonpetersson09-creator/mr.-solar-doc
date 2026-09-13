@@ -63,8 +63,8 @@ export const sk = {
     error: "Vyhľadávanie adresy zlyhalo.",
     info: "Adresa sa používa výlučne na výpočet slnečného žiarenia vo vašej lokalite.",
     infoLabel: "Viac informácií o adrese",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Priblížiť",
+    zoomOut: "Oddialiť",
   },
   roof: {
     title: "Vaša strecha",
@@ -105,8 +105,8 @@ export const sk = {
       required: "Zadajte svoju spotrebu elektriny, aby výpočet mohol pokračovať.",
       tooLow: "Spotreba sa zdá príliš nízka. Zadajte aspoň {{min}} kWh za rok.",
       tooHigh: "Spotreba sa zdá príliš vysoká. Zadajte najviac {{max}} kWh za rok.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "Jeden mesiac je výrazne vyšší než ostatné. Pred pokračovaním skontrolujte svoje mesačné hodnoty.",
+      monthUneven: "Jeden mesiac sa odlišuje od ostatných. Ak to nie je správne, skontrolujte to.",
     },
     shape: {
       question: "Ako sa zvyčajne rozdeľuje vaša spotreba elektriny počas roka?",
@@ -180,7 +180,7 @@ export const sk = {
   fuse: {
     gridAssumptionDynamic: "Výpočet vychádza z {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Jednotka",
       otherLabel: "Zadajte hodnotu",
       invalid: "Zadajte hodnotu medzi {{min}} a {{max}} {{unit}}.",
       amperage: {
@@ -227,7 +227,7 @@ export const sk = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       hint: "Zmeňte iba v prípade, že predvolené hodnoty nezodpovedajú vášmu pripojeniu.",
       serviceType: "Typ pripojenia",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "2-fázové (fáza-fáza)",
       splitPhase: "Dvojfázové (split-phase)",
       unverifiedHint:
         "Pre túto krajinu nemáme overené sieťové hodnoty. Skontrolujte údaje podľa elektromera alebo rozvádzača.",
@@ -263,8 +263,8 @@ export const sk = {
       daytime: "Cez deň",
       daytimeHelp: "Veľká spotreba, keď slnko vyrába.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Vaša zmena je zahrnutá v nákupe. Zostáva {{left}} zmien(a) do 24 hodín.",
+    revisionsLeft: "Tento výpočet môžete zmeniť ešte {{left}}-krát do 24 hodín od nákupu.",
     calculationUnavailable:
       "Výpočet sa nepodarilo dokončiť. Skontrolujte údaje o streche a skúste to znova.",
     connection: {
@@ -575,10 +575,10 @@ export const sk = {
         "Vypočítané dimenzovanie vášho fotovoltického systému so správou vo formáte PDF.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Odomknite si svoj výpočet - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Odomknite si solárny výpočet jednorazovým nákupom, alebo si zaobstarajte Premium pre neobmedzené výpočty.",
+      ogDescription: "Odomknite si kompletný solárny výpočet a PDF report.",
     },
   },
   months: {
@@ -754,20 +754,20 @@ export const sk = {
       external: "Externý zdroj údajov",
     },
     generated: "Vygenerované",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "Na prebratie s vaším inštalatérom",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Na mieste si overte orientáciu, sklon strechy a prípadné tienenie.",
+      "Majte na pamäti, že veľkosť systému môže byť potrebné upraviť podľa skutočného stavu strechy, napríklad komínov, prieduchov alebo obmedzenej využiteľnej plochy.",
+      "Skontrolujte hlavný istič a podmienky pripojenia u svojho prevádzkovateľa siete.",
+      "Overte, že výkon striedača {{acPower}} zodpovedá vášmu elektrickému pripojeniu.",
+      "Porovnajte inštalatérom odhadovanú ročnú výrobu s hodnotou {{production}} z tohto reportu. Odhady sa môžu líšiť v závislosti od podmienok a metódy výpočtu.",
+      "Opýtajte sa, či je striedač pripravený na budúce batériové úložisko, ak by to mohlo byť relevantné.",
+      "Uistite sa, že rozvádzač a existujúca elektrická inštalácia sú vhodné na inštaláciu.",
+      "Prejdite si, čo je súčasťou ponuky, napríklad káblovanie, montáž, ochranu a ďalší inštalačný materiál.",
+      "Opýtajte sa, kto zodpovedá za prípadné poškodenie strechy počas inštalácie.",
+      "Prejdite si monitorovanie výroby, záruky a servis.",
+      "Vyžiadajte si ponuku na základe dimenzovania v tomto reporte: {{kwp}} · {{production}}.",
+      "Porovnajte ponúkanú cenu s vypočítanou úrovňou {{investment}} z tohto reportu. Cena sa môže líšiť v závislosti od vybavenia, podmienok inštalácie a toho, čo je súčasťou dodávky.",
     ],
     faqTitle: "Často kladené otázky",
     faqItems: [
