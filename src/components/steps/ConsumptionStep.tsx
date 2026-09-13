@@ -27,7 +27,8 @@ interface ConsumptionStepProps {
 }
 
 const MIN_ANNUAL_KWH = 100;
-const MAX_ANNUAL_KWH = 200000;
+/** Same upper bound as the calculation engine, so a valid import is never silently rejected. */
+const MAX_ANNUAL_KWH = MAX_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH;
 
 export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepProps) {
   const { t, i18n } = useTranslation();
