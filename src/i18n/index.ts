@@ -34,6 +34,7 @@ import { he } from "./locales/he";
 
 import {
   FALLBACK_LANGUAGE,
+  LANGUAGE_COOKIE,
   LANGUAGE_DEFAULT_REGION,
   SUPPORTED_LANGUAGES,
   isSupportedLanguage,
