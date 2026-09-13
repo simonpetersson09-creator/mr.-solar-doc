@@ -63,8 +63,8 @@ export const lv = {
     error: "Adreses meklēšana neizdevās.",
     info: "Adrese tiek izmantota tikai saules starojuma aprēķināšanai jūsu atrašanās vietā.",
     infoLabel: "Vairāk informācijas par adresi",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Tuvināt",
+    zoomOut: "Tālināt",
   },
   roof: {
     title: "Jūsu jumts",
@@ -105,8 +105,8 @@ export const lv = {
       required: "Ievadiet savu elektroenerģijas patēriņu, lai turpinātu aprēķinu.",
       tooLow: "Patēriņš šķiet pārāk mazs. Ievadiet vismaz {{min}} kWh gadā.",
       tooHigh: "Patēriņš šķiet pārāk liels. Ievadiet ne vairāk kā {{max}} kWh gadā.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "Viens mēnesis ir ievērojami augstāks nekā pārējie. Pirms turpināt, pārbaudiet savas mēneša vērtības.",
+      monthUneven: "Viens mēnesis izceļas no pārējiem. Pārbaudiet to vēlreiz, ja tas nav pareizi.",
     },
     shape: {
       question: "Kā parasti sadalās jūsu elektroenerģijas patēriņš visa gada garumā?",
@@ -181,7 +181,7 @@ export const lv = {
   fuse: {
     gridAssumptionDynamic: "Aprēķina pamatā ir {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Vienība",
       otherLabel: "Ievadiet vērtību",
       invalid: "Ievadiet vērtību no {{min}} līdz {{max}} {{unit}}.",
       amperage: {
@@ -228,7 +228,7 @@ export const lv = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       hint: "Mainiet tikai tad, ja noklusējuma vērtības neatbilst jūsu pieslēgumam.",
       serviceType: "Pieslēguma veids",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "Divfāžu (fāze-fāze)",
       splitPhase: "Divfāžu (split-phase)",
       unverifiedHint:
         "Mums nav pārbaudītu tīkla vērtību šai valstij. Lūdzu, pārbaudiet datus savā skaitītājā vai sadales skapī.",
@@ -264,8 +264,8 @@ export const lv = {
       daytime: "Dienas laikā",
       daytimeHelp: "Liels patēriņš, kamēr saule ražo.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Jūsu izmaiņas ir iekļautas jūsu pirkumā. Atlikušas {{left}} izmaiņa(-s) 24 stundu laikā.",
+    revisionsLeft: "Šo aprēķinu varat mainīt vēl {{left}} reizi(-es) 24 stundu laikā pēc pirkuma.",
     calculationUnavailable:
       "Aprēķinu neizdevās pabeigt. Pārbaudiet jumta datus un mēģiniet vēlreiz.",
     connection: {
@@ -576,10 +576,10 @@ export const lv = {
       ogDescription: "Aprēķināta jūsu saules elektrostacijas dimensionēšana ar PDF atskaiti.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Atbloķējiet savu aprēķinu - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Atbloķējiet savu saules enerģijas aprēķinu ar vienreizēju pirkumu vai iegādājieties Premium neierobežotiem aprēķiniem.",
+      ogDescription: "Atbloķējiet pilnu saules enerģijas aprēķinu un PDF pārskatu.",
     },
   },
   months: {
@@ -755,20 +755,20 @@ export const lv = {
       external: "Ārējs datu avots",
     },
     generated: "Ģenerēts",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "Ko pārrunāt ar uzstādītāju",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Uz vietas apstipriniet jumta orientāciju, slīpumu un iespējamo ēnojumu.",
+      "Ņemiet vērā, ka sistēmas izmērs var būt jāpielāgo atbilstoši jumta faktiskajiem apstākļiem, piemēram, skursteņiem, ventilācijas caurulēm vai ierobežotai izmantojamai platībai.",
+      "Pārbaudiet galveno drošinātāju un pieslēguma nosacījumus pie sava tīkla operatora.",
+      "Pārliecinieties, ka invertora jauda {{acPower}} atbilst jūsu elektrības pieslēgumam.",
+      "Salīdziniet uzstādītāja aplēsto gada ražošanu ar šī pārskata {{production}}. Aplēses var atšķirties atkarībā no apstākļiem un aprēķina metodes.",
+      "Pajautājiet, vai invertors ir gatavs turpmākai bateriju uzkrāšanas sistēmai, ja tas varētu būt aktuāli.",
+      "Pārliecinieties, ka sadales skapis un esošā elektroinstalācija ir piemēroti uzstādīšanai.",
+      "Pārrunājiet, kas iekļauts piedāvājumā, piemēram, kabeļi, stiprinājumi, aizsardzība un citi uzstādīšanas materiāli.",
+      "Pajautājiet, kurš ir atbildīgs par jebkādiem jumta bojājumiem uzstādīšanas laikā.",
+      "Pārrunājiet ražošanas monitoringu, garantijas un apkalpošanu.",
+      "Pieprasiet piedāvājumu, kas balstīts uz šī pārskata izmēru: {{kwp}} · {{production}}.",
+      "Salīdziniet piedāvāto cenu ar šajā pārskatā aprēķināto {{investment}} līmeni. Cena var atšķirties atkarībā no aprīkojuma, uzstādīšanas apstākļiem un piegādes satura.",
     ],
     faqTitle: "Biežāk uzdotie jautājumi",
     faqItems: [

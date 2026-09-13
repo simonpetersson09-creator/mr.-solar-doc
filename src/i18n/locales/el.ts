@@ -63,8 +63,8 @@ export const el = {
     error: "Η αναζήτηση διεύθυνσης απέτυχε.",
     info: "Η διεύθυνση χρησιμοποιείται μόνο για τον υπολογισμό της ηλιακής ακτινοβολίας στην τοποθεσία σας.",
     infoLabel: "Περισσότερες πληροφορίες για τη διεύθυνση",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Μεγέθυνση",
+    zoomOut: "Σμίκρυνση",
   },
   premium: {
     title: "Premium",
@@ -122,8 +122,8 @@ export const el = {
       required: "Εισαγάγετε την κατανάλωση ρεύματός σας για να συνεχίσετε τον υπολογισμό.",
       tooLow: "Αυτό φαίνεται πολύ χαμηλό. Εισαγάγετε τουλάχιστον {{min}} kWh ετησίως.",
       tooHigh: "Αυτό φαίνεται πολύ υψηλό. Εισαγάγετε το πολύ {{max}} kWh ετησίως.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "Ένας μήνας είναι πολύ υψηλότερος από τους υπόλοιπους. Ελέγξτε τις μηνιαίες τιμές σας πριν συνεχίσετε.",
+      monthUneven: "Ένας μήνας ξεχωρίζει από τους υπόλοιπους. Ελέγξτε τον ξανά αν αυτό δεν είναι σωστό.",
     },
     shape: {
       question: "Πώς κατανέμεται συνήθως η κατανάλωση ρεύματός σας κατά τη διάρκεια του έτους;",
@@ -201,7 +201,7 @@ export const el = {
   fuse: {
     gridAssumptionDynamic: "Ο υπολογισμός βασίζεται σε {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Μονάδα",
       otherLabel: "Εισαγωγή τιμής",
       invalid: "Εισαγάγετε μια τιμή μεταξύ {{min}} και {{max}} {{unit}}.",
       amperage: {
@@ -240,7 +240,7 @@ export const el = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "Φάσεις",
       serviceType: "Τύπος σύνδεσης",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "Διφασική (φάση-φάση)",
       splitPhase: "Διφασική (split-phase)",
       unverifiedHint:
         "Δεν έχουμε επιβεβαιωμένες τιμές δικτύου για αυτή τη χώρα. Παρακαλούμε ελέγξτε τα στοιχεία σας με τον μετρητή ή τον ηλεκτρικό πίνακά σας.",
@@ -284,8 +284,8 @@ export const el = {
       daytime: "Μέρα",
       daytimeHelp: "Μεγάλη κατανάλωση όταν παράγει ο ήλιος.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Η αλλαγή σας περιλαμβάνεται στην αγορά σας. Απομένουν {{left}} αλλαγή/-ές εντός 24 ωρών.",
+    revisionsLeft: "Μπορείτε να αλλάξετε αυτόν τον υπολογισμό {{left}} ακόμη φορά/-ές εντός 24 ωρών από την αγορά.",
     calculationUnavailable:
       "Ο υπολογισμός δεν ολοκληρώθηκε. Ελέγξτε τα στοιχεία της στέγης και δοκιμάστε ξανά.",
     connection: {
@@ -653,10 +653,10 @@ export const el = {
         "Υπολογισμένη διαστασιολόγηση του φωτοβολταϊκού σας συστήματος με αναφορά PDF.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Ξεκλειδώστε τον υπολογισμό σας - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Ξεκλειδώστε τον ηλιακό σας υπολογισμό με μία εφάπαξ αγορά ή αποκτήστε το Premium για απεριόριστους υπολογισμούς.",
+      ogDescription: "Ξεκλειδώστε τον πλήρη ηλιακό υπολογισμό και την αναφορά PDF.",
     },
   },
   months: {
@@ -832,20 +832,20 @@ export const el = {
       external: "Εξωτερική πηγή δεδομένων",
     },
     generated: "Δημιουργήθηκε",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "Για να συζητήσετε με τον εγκαταστάτη σας",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Επιβεβαιώστε επιτόπου τον προσανατολισμό, την κλίση και τυχόν σκίαση της στέγης.",
+      "Λάβετε υπόψη ότι το μέγεθος του συστήματος ενδέχεται να χρειαστεί προσαρμογή ανάλογα με τις πραγματικές συνθήκες της στέγης, όπως καπνοδόχους, αεραγωγούς ή περιορισμένη διαθέσιμη επιφάνεια.",
+      "Ελέγξτε τη γενική ασφάλεια και τους όρους σύνδεσης με τον διαχειριστή του δικτύου σας.",
+      "Επιβεβαιώστε ότι η ισχύς του inverter {{acPower}} ταιριάζει με την ηλεκτρική σας σύνδεση.",
+      "Συγκρίνετε την εκτιμώμενη ετήσια παραγωγή του εγκαταστάτη με την παραγωγή {{production}} αυτής της αναφοράς. Οι εκτιμήσεις μπορεί να διαφέρουν ανάλογα με τις συνθήκες και τη μέθοδο υπολογισμού.",
+      "Ρωτήστε αν ο inverter είναι προετοιμασμένος για μελλοντική αποθήκευση μπαταρίας, αν αυτό μπορεί να χρειαστεί.",
+      "Βεβαιωθείτε ότι ο ηλεκτρικός πίνακας και η υπάρχουσα ηλεκτρική εγκατάσταση είναι κατάλληλα για την εγκατάσταση.",
+      "Ελέγξτε τι περιλαμβάνει η προσφορά, για παράδειγμα καλωδίωση, στήριξη, προστασία και άλλο υλικό εγκατάστασης.",
+      "Ρωτήστε ποιος είναι υπεύθυνος για τυχόν ζημιά στη στέγη κατά την εγκατάσταση.",
+      "Ελέγξτε την παρακολούθηση της παραγωγής, τις εγγυήσεις και το σέρβις.",
+      "Ζητήστε προσφορά βάσει της διαστασιολόγησης αυτής της αναφοράς: {{kwp}} · {{production}}.",
+      "Συγκρίνετε την τιμή της προσφοράς με το υπολογισμένο επίπεδο {{investment}} αυτής της αναφοράς. Η τιμή μπορεί να διαφέρει ανάλογα με τον εξοπλισμό, τις συνθήκες εγκατάστασης και το τι περιλαμβάνεται στην παράδοση.",
     ],
     faqTitle: "Συχνές ερωτήσεις",
     faqItems: [

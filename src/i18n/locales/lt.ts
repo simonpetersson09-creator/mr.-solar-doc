@@ -64,8 +64,8 @@ export const lt = {
     error: "Adreso paieška nepavyko.",
     info: "Adresas naudojamas tik saulės spinduliuotei jūsų vietovėje apskaičiuoti.",
     infoLabel: "Daugiau informacijos apie adresą",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Priartinti",
+    zoomOut: "Atitolinti",
   },
   roof: {
     title: "Jūsų stogas",
@@ -107,8 +107,8 @@ export const lt = {
       required: "Įveskite savo elektros suvartojimą, kad skaičiavimas galėtų tęstis.",
       tooLow: "Suvartojimas atrodo per mažas. Įveskite bent {{min}} kWh per metus.",
       tooHigh: "Suvartojimas atrodo per didelis. Įveskite ne daugiau kaip {{max}} kWh per metus.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "Vienas mėnuo yra žymiai didesnis už kitus. Prieš tęsdami patikrinkite savo mėnesines reikšmes.",
+      monthUneven: "Vienas mėnuo išsiskiria iš kitų. Patikrinkite jį dar kartą, jei tai neteisinga.",
     },
     shape: {
       question: "Kaip paprastai pasiskirsto jūsų elektros suvartojimas per metus?",
@@ -183,7 +183,7 @@ export const lt = {
   fuse: {
     gridAssumptionDynamic: "Skaičiavimas remiasi {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Vienetas",
       otherLabel: "Įveskite reikšmę",
       invalid: "Įveskite reikšmę nuo {{min}} iki {{max}} {{unit}}.",
       amperage: {
@@ -230,7 +230,7 @@ export const lt = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       hint: "Keiskite tik tada, jei numatytosios reikšmės neatitinka jūsų jungties.",
       serviceType: "Prijungimo tipas",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "Dvifazė (fazė–fazė)",
       splitPhase: "Dviejų fazių (split-phase)",
       unverifiedHint:
         "Neturime patvirtintų tinklo duomenų šiai šaliai. Patikrinkite duomenis savo skaitiklyje arba skydinėje.",
@@ -266,8 +266,8 @@ export const lt = {
       daytime: "Dieną",
       daytimeHelp: "Daug vartojimo, kai saulė gamina.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Jūsų pakeitimas įtrauktas į pirkinį. Liko {{left}} pakeitimas(-ai) per 24 valandas.",
+    revisionsLeft: "Šį skaičiavimą galite keisti dar {{left}} kartą(-us) per 24 valandas nuo pirkimo.",
     calculationUnavailable:
       "Skaičiavimo nepavyko užbaigti. Patikrinkite stogo duomenis ir bandykite dar kartą.",
     connection: {
@@ -581,10 +581,10 @@ export const lt = {
       ogDescription: "Apskaičiuotas jūsų saulės energijos sistemos dydis su PDF ataskaita.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Atrakinkite savo skaičiavimą - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Atrakinkite savo saulės energijos skaičiavimą už vienkartinį mokestį arba įsigykite Premium neribotam skaičiavimų kiekiui.",
+      ogDescription: "Atrakinkite visą saulės energijos skaičiavimą ir PDF ataskaitą.",
     },
   },
   months: {
@@ -760,20 +760,20 @@ export const lt = {
       external: "Išorinis duomenų šaltinis",
     },
     generated: "Sukurta",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "Ką aptarti su montuotoju",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Vietoje patvirtinkite stogo orientaciją, nuolydį ir galimą užtemdymą.",
+      "Atkreipkite dėmesį, kad sistemos dydį gali reikėti koreguoti atsižvelgiant į faktines stogo sąlygas, pavyzdžiui, kaminus, ventiliacijos angas ar ribotą naudojamą plotą.",
+      "Patikrinkite pagrindinį saugiklį ir prijungimo sąlygas su savo tinklo operatoriumi.",
+      "Patvirtinkite, kad {{acPower}} keitiklio galia tinka jūsų elektros prijungimui.",
+      "Palyginkite montuotojo pateiktą numatomą metinę gamybą su šios ataskaitos {{production}}. Vertinimai gali skirtis priklausomai nuo sąlygų ir skaičiavimo metodo.",
+      "Paklauskite, ar keitiklis paruoštas būsimai baterijų saugyklai, jei tai gali būti aktualu.",
+      "Įsitikinkite, kad skirstomoji spinta ir esama elektros instaliacija tinka montavimui.",
+      "Peržiūrėkite, kas įtraukta į pasiūlymą, pavyzdžiui, kabeliai, tvirtinimo konstrukcijos, apsauga ir kitos montavimo medžiagos.",
+      "Pasiteiraukite, kas atsako už bet kokią stogo žalą montavimo metu.",
+      "Aptarkite gamybos stebėseną, garantijas ir aptarnavimą.",
+      "Paprašykite pasiūlymo, pagrįsto šios ataskaitos dydžiu: {{kwp}} · {{production}}.",
+      "Palyginkite pasiūlyme nurodytą kainą su šioje ataskaitoje apskaičiuotu {{investment}} lygiu. Kaina gali skirtis priklausomai nuo įrangos, montavimo sąlygų ir to, kas įtraukta į pristatymą.",
     ],
     faqTitle: "Dažniausiai užduodami klausimai",
     faqItems: [

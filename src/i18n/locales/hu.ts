@@ -829,7 +829,7 @@ export const hu = {
       "Ellenőrizze a főbiztosítékot és a csatlakozási feltételeket a hálózati üzemeltetőnél.",
       "Erősítse meg, hogy a(z) {{acPower}} inverterteljesítmény megfelel az Ön elektromos csatlakozásának.",
       "Hasonlítsa össze a kivitelező becsült éves termelését a jelentésben szereplő {{production}} értékkel. A becslések eltérhetnek a körülményektől és a számítási módszertől függően.",
-      "Kérdezze meg, hogy az inverter fel van-e készítve jövőbeli akkumulátoros tárolásra, ha ez релевánssá válhat.",
+      "Kérdezze meg, hogy az inverter fel van-e készítve jövőbeli akkumulátoros tárolásra, ha ez relevánssá válhat.",
       "Győződjön meg róla, hogy az elosztószekrény és a meglévő elektromos hálózat alkalmas a telepítésre.",
       "Nézze át, mi tartozik az ajánlathoz, például a kábelezés, a rögzítés, a védelem és más telepítési anyagok.",
       "Kérdezze meg, ki felel a tetőn a telepítés során keletkező esetleges károkért.",
