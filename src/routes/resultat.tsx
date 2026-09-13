@@ -233,7 +233,8 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
         faqTitle: rt("report.faqTitle"),
         faqItems: rt("report.faqItems", { returnObjects: true }) as ReportLabels["faqItems"],
       };
-      await exportReport({ result, labels, locale: reportLoc });
+      const outcome = await exportReport({ result, labels, locale: reportLoc });
+      if (outcome.status === "blocked") setReportUrl(outcome.url);
       void haptic("success");
     } catch {
       setExportError(true);
