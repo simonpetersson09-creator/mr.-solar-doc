@@ -64,6 +64,7 @@ export type CalculationIssueCode =
   | "implausible-solar-yield"
   | "invalid-monthly-profile"
   | "invalid-monthly-consumption"
+  | "monthly-consumption-sum-mismatch"
   | "invalid-grid-limit"
   | "missing-inverter-sizes"
   | "invalid-self-consumption-share"
