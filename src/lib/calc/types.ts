@@ -11,6 +11,7 @@ import type {
   SelfConsumptionSummary,
 } from "./self-consumption";
 import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
+import type { ClippingLossModel } from "./clipping";
 import type { ServiceType } from "@/config/grid";
 import type { PvLimitBinding, PvRulesStatus } from "@/config/pv-connection-rules";
 import type { ConnectionCapacity } from "@/config/connection-capacity";
@@ -327,6 +328,8 @@ export interface CalculationResult {
   /** Consumer-facing explanation key for the chosen dimensioning. */
   recommendationReason: RecommendationReason;
   monthlyProductionKwh: number[];
+  /** Inverter clipping (AC limit) applied to production, and on what basis. */
+  clipping: ClippingOutcome;
   annualProductionKwh: number;
   consumption: ConsumptionInput;
   selfConsumption: {
