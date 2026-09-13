@@ -63,6 +63,7 @@ export function AssumptionsStep({ totalSteps, onBack, onSubmit }: AssumptionsSte
       label: t("result.loadProfile.daytime"),
       help: t("result.loadProfile.daytimeHelp"),
     },
+    { id: "even", label: t("result.loadProfile.even"), help: t("result.loadProfile.evenHelp") },
   ];
 
   const scenarios: { id: PriceScenarioId; label: string; rateLabel: string | null }[] = [

@@ -194,13 +194,18 @@ export function estimateSelfConsumptionShareFromMonthlyData(
  * used, not about lifestyle. Not exposed in the wizard yet — the API exists so
  * an optional step-5 question can be added without touching the engine.
  */
-export type LoadProfileClass = "evening" | "mixed" | "daytime";
+export type LoadProfileClass = "evening" | "mixed" | "daytime" | "even";
 
-/** Multipliers applied to the base curve. Mixed is the neutral default. */
+/**
+ * Multipliers applied to the base curve. Mixed is the neutral default.
+ * "even" (flat load around the clock) sits between evening and mixed: the
+ * hourly synthetic profiles give roughly 0.9x the mixed share.
+ */
 const PROFILE_FACTOR: Record<LoadProfileClass, number> = {
   evening: 0.85,
   mixed: 1,
   daytime: 1.3,
+  even: 0.9,
 };
 
 /**
