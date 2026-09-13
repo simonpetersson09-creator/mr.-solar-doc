@@ -97,6 +97,17 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  // The server must render in the visitor's language, otherwise the client
+  // swaps every string during hydration (React hydration mismatch + a visible
+  // English flash on the first screen).
+  loader: async () => {
+    if (typeof document !== "undefined") {
+      return { language: normaliseLanguage(i18n.language) };
+    }
+    const language = await getRequestLanguage();
+    if (normaliseLanguage(i18n.language) !== language) await i18n.changeLanguage(language);
+    return { language };
+  },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
