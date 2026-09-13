@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft, ChevronDown, CircleAlert, Download, Info, Loader2, Sun, Zap } from "lucide-react";
 import i18nInstance from "@/i18n";
 import { Button } from "@/components/ui/button";
-import { HourlyComparison } from "@/components/HourlyComparison";
+
 import { MonthlyChart } from "@/components/MonthlyChart";
 import { useUnlockedCalculation } from "@/hooks/use-unlocked-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
