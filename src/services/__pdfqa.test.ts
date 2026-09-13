@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { writeFileSync, mkdirSync } from "node:fs";
 
 import { generateReportBlob, type ReportLabels } from "./solar-report-service";
-import { reportLanguage } from "./solar-report-service";
+import { reportLanguage, reportLocale } from "./solar-report-service";
 import i18n from "@/i18n";
 import { calculateSolarSystem } from "@/lib/calc/engine";
 import type { CalculationInput } from "@/lib/calc/types";
@@ -88,7 +88,11 @@ describe("PDF QA", () => {
       ["hi", "hi-IN"],
       ["he", "he-IL"],
     ] as const) {
-      const blob = await generateReportBlob({ result, labels: labelsFor(language), locale });
+      const blob = await generateReportBlob({
+        result,
+        labels: labelsFor(language),
+        locale: reportLocale(locale, language),
+      });
       writeFileSync(`/tmp/pdfqa/${language}.pdf`, Buffer.from(await blob.arrayBuffer()));
     }
     expect(true).toBe(true);
