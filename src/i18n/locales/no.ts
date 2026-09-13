@@ -276,6 +276,8 @@ export const no = {
       mixedHelp: "Forbruk fordelt over dagen.",
       daytime: "Dagtid",
       daytimeHelp: "Mye forbruk når sola produserer.",
+even: "Jevn",
+evenHelp: "Omtrent samme forbruk hele døgnet.",
     },
     revisionUsed: "Endringen din er inkludert i kjøpet. {{left}} endring(er) igjen innen 24 timer.",
     revisionsLeft: "Du kan endre denne beregningen {{left}} gang(er) til innen 24 timer etter kjøpet.",

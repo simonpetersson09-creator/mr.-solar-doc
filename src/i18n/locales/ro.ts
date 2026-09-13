@@ -277,6 +277,8 @@ export const ro = {
       mixedHelp: "Consum distribuit pe parcursul zilei.",
       daytime: "În timpul zilei",
       daytimeHelp: "Consum ridicat când soarele produce.",
+even: "Uniform",
+evenHelp: "Consum aproximativ egal pe tot parcursul zilei.",
     },
     revisionUsed: "Modificarea ta este inclusă în achiziție. Mai ai {{left}} modificare(i) disponibilă(e) în următoarele 24 de ore.",
     revisionsLeft: "Poți modifica acest calcul de încă {{left}} ori în 24 de ore de la achiziție.",

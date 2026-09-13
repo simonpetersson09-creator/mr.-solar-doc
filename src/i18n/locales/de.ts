@@ -267,6 +267,8 @@ export const de = {
       mixedHelp: "Verbrauch über den Tag verteilt.",
       daytime: "Tagsüber",
       daytimeHelp: "Viel Verbrauch, während die Sonne Strom liefert.",
+even: "Gleichmäßig",
+evenHelp: "Etwa gleicher Verbrauch rund um die Uhr.",
     },
     revisionUsed: "Deine Änderung ist in deinem Kauf enthalten. Noch {{left}} Änderung(en) innerhalb von 24 Stunden übrig.",
     revisionsLeft: "Du kannst diese Berechnung noch {{left}} Mal innerhalb von 24 Stunden nach dem Kauf ändern.",

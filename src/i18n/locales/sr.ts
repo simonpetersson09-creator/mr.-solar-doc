@@ -276,6 +276,8 @@ export const sr = {
       mixedHelp: "Potrošnja raspoređena tokom dana.",
       daytime: "Tokom dana",
       daytimeHelp: "Velika potrošnja dok sunce proizvodi.",
+even: "Ravnomerna",
+evenHelp: "Otprilike ista potrošnja tokom celog dana.",
     },
     revisionUsed: "Ваша измена је укључена у куповину. Преостало вам је {{left}} измена у року од 24 сата.",
     revisionsLeft: "Овај прорачун можете изменити још {{left}} пут(а) у року од 24 сата од куповине.",

@@ -263,6 +263,8 @@ export const et = {
       mixedHelp: "Tarbimine jaotub päeva peale.",
       daytime: "Päeval",
       daytimeHelp: "Palju tarbimist ajal, mil päike toodab.",
+even: "Ühtlane",
+evenHelp: "Umbes sama tarbimine ööpäev läbi.",
     },
     revisionUsed: "Teie muudatus sisaldub teie ostus. {{left}} muudatus(t) jäänud 24 tunni jooksul.",
     revisionsLeft: "Saate seda arvutust muuta veel {{left}} korda 24 tunni jooksul pärast ostmist.",

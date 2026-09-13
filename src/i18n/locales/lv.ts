@@ -263,6 +263,8 @@ export const lv = {
       mixedHelp: "Patēriņš sadalīts dienas laikā.",
       daytime: "Dienas laikā",
       daytimeHelp: "Liels patēriņš, kamēr saule ražo.",
+even: "Vienmērīgs",
+evenHelp: "Aptuveni vienāds patēriņš visu diennakti.",
     },
     revisionUsed: "Jūsu izmaiņas ir iekļautas jūsu pirkumā. Atlikušas {{left}} izmaiņa(-s) 24 stundu laikā.",
     revisionsLeft: "Šo aprēķinu varat mainīt vēl {{left}} reizi(-es) 24 stundu laikā pēc pirkuma.",

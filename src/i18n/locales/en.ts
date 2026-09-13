@@ -276,6 +276,8 @@ export const en = {
       mixedHelp: "Consumption spread across the day.",
       daytime: "Daytime",
       daytimeHelp: "A lot of consumption while the sun is producing.",
+even: "Even",
+evenHelp: "About the same consumption around the clock.",
     },
     connection: {
       contractedKva: "Contracted power (kVA)",

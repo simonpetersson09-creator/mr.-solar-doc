@@ -260,6 +260,8 @@ export const sl = {
       mixedHelp: "Poraba porazdeljena skozi dan.",
       daytime: "Podnevi",
       daytimeHelp: "Veliko porabe, ko sonce proizvaja.",
+even: "Enakomerno",
+evenHelp: "Približno enaka poraba ves dan.",
     },
     revisionUsed: "Vaša sprememba je vključena v nakup. Na voljo imate še {{left}} sprememb(o/e) v 24 urah.",
     revisionsLeft: "Ta izračun lahko spremenite še {{left}}-krat v 24 urah po nakupu.",

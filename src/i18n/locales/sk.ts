@@ -262,6 +262,8 @@ export const sk = {
       mixedHelp: "Spotreba rozložená počas dňa.",
       daytime: "Cez deň",
       daytimeHelp: "Veľká spotreba, keď slnko vyrába.",
+even: "Rovnomerné",
+evenHelp: "Približne rovnaká spotreba počas celého dňa.",
     },
     revisionUsed: "Vaša zmena je zahrnutá v nákupe. Zostáva {{left}} zmien(a) do 24 hodín.",
     revisionsLeft: "Tento výpočet môžete zmeniť ešte {{left}}-krát do 24 hodín od nákupu.",

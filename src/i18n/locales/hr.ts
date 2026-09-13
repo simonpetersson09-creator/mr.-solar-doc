@@ -277,6 +277,8 @@ export const hr = {
       mixedHelp: "Potrošnja raspoređena kroz dan.",
       daytime: "Tijekom dana",
       daytimeHelp: "Velika potrošnja dok sunce proizvodi.",
+even: "Ravnomjerna",
+evenHelp: "Otprilike ista potrošnja tijekom cijelog dana.",
     },
     connection: {
       contractedKva: "Ugovorena snaga (kVA)",

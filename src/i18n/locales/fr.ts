@@ -271,6 +271,8 @@ export const fr = {
       mixedHelp: "Consommation répartie sur la journée.",
       daytime: "En journée",
       daytimeHelp: "Beaucoup de consommation quand le soleil produit.",
+even: "Uniforme",
+evenHelp: "Consommation à peu près identique jour et nuit.",
     },
     revisionUsed: "Votre modification est incluse dans votre achat. Il reste {{left}} modification(s) dans les 24 heures.",
     revisionsLeft: "Vous pouvez modifier ce calcul {{left}} fois de plus dans les 24 heures suivant l'achat.",

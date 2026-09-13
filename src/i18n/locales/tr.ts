@@ -277,6 +277,8 @@ export const tr = {
       mixedHelp: "Tüketim gün içine dağılmış.",
       daytime: "Gündüz",
       daytimeHelp: "Güneş üretirken yüksek tüketim.",
+even: "Dengeli",
+evenHelp: "Gün boyunca yaklaşık aynı tüketim.",
     },
     revisionUsed: "Değişikliğiniz satın alımınıza dahildir. 24 saat içinde {{left}} değişiklik hakkınız kaldı.",
     revisionsLeft: "Satın alımdan sonraki 24 saat içinde bu hesaplamayı {{left}} kez daha değiştirebilirsiniz.",

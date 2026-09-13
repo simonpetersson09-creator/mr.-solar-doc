@@ -279,6 +279,8 @@ export const nl = {
       mixedHelp: "Verbruik verspreid over de dag.",
       daytime: "Overdag",
       daytimeHelp: "Veel verbruik terwijl de zon produceert.",
+even: "Gelijkmatig",
+evenHelp: "Ongeveer hetzelfde verbruik over de hele dag.",
     },
     connection: {
       contractedKva: "Gecontracteerd vermogen (kVA)",
