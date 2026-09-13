@@ -251,6 +251,8 @@ export interface CalculationInput {
 
 /** How much production the inverter's AC limit removes, and on what basis. */
 export interface ClippingOutcome {
+  /** False when the DC/AC ratio is <= 1: clipping cannot occur at all. */
+  applicable: boolean;
   /** True when real hourly data was applied to this exact system. */
   modelled: boolean;
   /** Share of the unclipped production removed by the AC limit (0..1). */

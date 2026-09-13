@@ -272,6 +272,9 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     ? monthlyProductionKwh.reduce((sum, value) => sum + value, 0)
     : unclippedAnnualProductionKwh;
   const clipping: ClippingOutcome = {
+    // Below a DC/AC ratio of 1 the array can never reach the inverter's rated
+    // AC power, so there is nothing to clip — that is not a missing model.
+    applicable: selectedDcAcRatio > 1 + 1e-9,
     modelled: clippingApplied !== null,
     lossShare:
       clippingApplied && unclippedAnnualProductionKwh > 0
@@ -282,7 +285,13 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     dataSource: clippingApplied ? (clippingModel?.dataSource ?? null) : null,
     year: clippingApplied ? (clippingModel?.year ?? null) : null,
   };
-  notes.push(clipping.modelled ? "clipping-modelled" : "clipping-not-modelled");
+  notes.push(
+    !clipping.applicable
+      ? "clipping-not-applicable"
+      : clipping.modelled
+        ? "clipping-modelled"
+        : "clipping-not-modelled",
+  );
 
   // Self-consumption is estimated AFTER the system size is known: the share
   // depends on production/consumption, so it can only be resolved here. The
