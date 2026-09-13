@@ -2,7 +2,7 @@ import {
   FALLBACK_LANGUAGE,
   LANGUAGE_COOKIE,
   isSupportedLanguage,
-  normaliseLanguage,
+
   type SupportedLanguage,
 } from "./languages";
 
