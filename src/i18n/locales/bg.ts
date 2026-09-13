@@ -63,8 +63,8 @@ export const bg = {
     error: "Търсенето на адрес не бе успешно.",
     info: "Адресът се използва само за изчисляване на слънчевото облъчване на вашето местоположение.",
     infoLabel: "Повече информация за адреса",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Увеличаване",
+    zoomOut: "Намаляване",
   },
   premium: {
     title: "Премиум",
@@ -119,8 +119,8 @@ export const bg = {
       required: "Въведете електропотреблението си, за да продължите изчислението.",
       tooLow: "Стойността изглежда твърде ниска. Въведете поне {{min}} kWh годишно.",
       tooHigh: "Стойността изглежда твърде висока. Въведете най-много {{max}} kWh годишно.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "Един месец е значително по-висок от останалите. Проверете месечните стойности, преди да продължите.",
+      monthUneven: "Един месец се откроява от останалите. Проверете го, ако това не е вярно.",
     },
     shape: {
       question: "Как обикновено е разпределено потреблението ви на ток през годината?",
@@ -194,7 +194,7 @@ export const bg = {
   fuse: {
     gridAssumptionDynamic: "Изчислението се базира на {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Мерна единица",
       otherLabel: "Въведете стойност",
       invalid: "Въведете стойност между {{min}} и {{max}} {{unit}}.",
       amperage: {
@@ -233,7 +233,7 @@ export const bg = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "Фази",
       serviceType: "Тип на връзката",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "2-фазен (фаза-фаза)",
       splitPhase: "Разделена фаза",
       unverifiedHint:
         "Нямаме проверени мрежови стойности за тази държава. Моля, проверете данните си спрямо електромера или таблото си.",
@@ -277,8 +277,8 @@ export const bg = {
       daytime: "През деня",
       daytimeHelp: "Голямо потребление, докато слънцето произвежда.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Вашата промяна е включена в покупката. Остават ви {{left}} промяна(и) в рамките на 24 часа.",
+    revisionsLeft: "Можете да промените този изчисление още {{left}} пъти в рамките на 24 часа от покупката.",
     calculationUnavailable:
       "Изчислението не можа да бъде завършено. Проверете данните за покрива и опитайте отново.",
     connection: {
@@ -642,10 +642,10 @@ export const bg = {
       ogDescription: "Изчислено оразмеряване на соларната ви система с PDF справка.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Отключете своето изчисление - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Отключете соларното си изчисление с еднократна покупка или вземете Premium за неограничен брой изчисления.",
+      ogDescription: "Отключете пълното соларно изчисление и PDF доклада.",
     },
   },
   months: {
@@ -821,20 +821,20 @@ export const bg = {
       external: "Външен източник на данни",
     },
     generated: "Генерирано",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "За обсъждане с вашия монтажник",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Потвърдете на място ориентацията, наклона и евентуалното засенчване на покрива.",
+      "Имайте предвид, че размерът на системата може да се наложи да бъде коригиран според реалните условия на покрива, като комини, вентилационни отвори или ограничена използваема площ.",
+      "Проверете главния предпазител и условията за връзка с оператора на мрежата.",
+      "Потвърдете, че мощността на инвертора от {{acPower}} отговаря на вашата електрическа връзка.",
+      "Сравнете прогнозното годишно производство на монтажника с производството от {{production}} в този доклад. Оценките могат да варират в зависимост от условията и метода на изчисление.",
+      "Попитайте дали инверторът е подготвен за бъдещо съхранение в батерия, ако това може да стане актуално.",
+      "Уверете се, че разпределителното табло и съществуващата електрическа инсталация са подходящи за монтажа.",
+      "Прегледайте какво е включено в офертата, например кабели, монтаж, защита и друг инсталационен материал.",
+      "Попитайте кой носи отговорност за евентуални щети по покрива по време на монтажа.",
+      "Прегледайте мониторинга на производството, гаранциите и сервиза.",
+      "Поискайте оферта на база оразмеряването от този доклад: {{kwp}} · {{production}}.",
+      "Сравнете предложената цена с изчисленото ниво на инвестицията от {{investment}} в този доклад. Цената може да варира в зависимост от оборудването, условията за монтаж и какво е включено в доставката.",
     ],
     faqTitle: "Често задавани въпроси",
     faqItems: [

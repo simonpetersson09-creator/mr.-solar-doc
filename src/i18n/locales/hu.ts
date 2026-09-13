@@ -63,8 +63,8 @@ export const hu = {
     error: "A címkeresés nem sikerült.",
     info: "A cím kizárólag a helyszín napsugárzásának kiszámításához szükséges.",
     infoLabel: "További információ a címről",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Nagyítás",
+    zoomOut: "Kicsinyítés",
   },
   premium: {
     title: "Prémium",
@@ -119,8 +119,8 @@ export const hu = {
       required: "Adja meg villamosenergia-fogyasztását a számítás folytatásához.",
       tooLow: "Ez túl alacsonynak tűnik. Adjon meg legalább {{min}} kWh-t évente.",
       tooHigh: "Ez túl magasnak tűnik. Adjon meg legfeljebb {{max}} kWh-t évente.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "Az egyik hónap jóval magasabb a többinél. Ellenőrizze a havi értékeket, mielőtt folytatja.",
+      monthUneven: "Az egyik hónap kilóg a többi közül. Ellenőrizze, ha ez nem helyes.",
     },
     shape: {
       question: "Hogyan oszlik meg jellemzően a villamosenergia-fogyasztása az év során?",
@@ -195,7 +195,7 @@ export const hu = {
   fuse: {
     gridAssumptionDynamic: "A számítás a következőn alapul: {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Mértékegység",
       otherLabel: "Érték megadása",
       invalid: "Adjon meg egy {{min}} és {{max}} {{unit}} közötti értéket.",
       amperage: {
@@ -234,7 +234,7 @@ export const hu = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "Fázisok",
       serviceType: "Csatlakozás típusa",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "2 fázisú (fázis-fázis)",
       splitPhase: "Osztott fázis",
       unverifiedHint:
         "Erre az országra nincs ellenőrzött hálózati adatunk. Kérjük, ellenőrizze adatait a mérőóra vagy az elosztószekrény alapján.",
@@ -551,10 +551,10 @@ export const hu = {
     calculatedAt: "Számítás dátuma",
     noCalculation: "Nem található számítás. Kezdje újra a címtől.",
     locked: "Ez a számítás zárolva van. Az eredmény megtekintéséhez fejezze be a vásárlást.",
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "A módosítás benne foglaltatik a vásárlásban. Még {{left}} módosítás áll rendelkezésre 24 órán belül.",
+    revisionsLeft: "Ezt a számítást még {{left}} alkalommal módosíthatja a vásárlástól számított 24 órán belül.",
     calculationUnavailable:
-      "The calculation could not be completed. Please check the roof details and try again.",
+      "A számítást nem sikerült elvégezni. Ellenőrizze a tető adatait, majd próbálja újra.",
     gridTooSmallTitle: "A csatlakozás túl kicsi",
     gridTooSmallBody:
       "A jelenlegi csatlakozása ({{maxKw}} kW) túl kicsi a legkisebb támogatott rendszermérethez ({{minKw}} kW inverter). A folytatáshoz növelje a főbiztosítékot vagy a szerződött teljesítményt.",
@@ -643,10 +643,10 @@ export const hu = {
       ogDescription: "Napelemrendszerének kiszámított méretezése PDF-jelentéssel.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Oldja fel a számítását - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Oldja fel napelemes számítását egyszeri vásárlással, vagy szerezze meg a Premiumot korlátlan számú számításhoz.",
+      ogDescription: "Oldja fel a teljes napelemes számítást és a PDF-jelentést.",
     },
   },
   months: {
@@ -822,20 +822,20 @@ export const hu = {
       external: "Külső adatforrás",
     },
     generated: "Létrehozva",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "Amit érdemes átbeszélni a kivitelezővel",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Helyszínen erősítse meg a tető tájolását, dőlésszögét és az esetleges árnyékolást.",
+      "Vegye figyelembe, hogy a rendszer méretét a tető tényleges adottságai, például kémények, szellőzők vagy korlátozott hasznos terület miatt módosítani kell.",
+      "Ellenőrizze a főbiztosítékot és a csatlakozási feltételeket a hálózati üzemeltetőnél.",
+      "Erősítse meg, hogy a(z) {{acPower}} inverterteljesítmény megfelel az Ön elektromos csatlakozásának.",
+      "Hasonlítsa össze a kivitelező becsült éves termelését a jelentésben szereplő {{production}} értékkel. A becslések eltérhetnek a körülményektől és a számítási módszertől függően.",
+      "Kérdezze meg, hogy az inverter fel van-e készítve jövőbeli akkumulátoros tárolásra, ha ez релевánssá válhat.",
+      "Győződjön meg róla, hogy az elosztószekrény és a meglévő elektromos hálózat alkalmas a telepítésre.",
+      "Nézze át, mi tartozik az ajánlathoz, például a kábelezés, a rögzítés, a védelem és más telepítési anyagok.",
+      "Kérdezze meg, ki felel a tetőn a telepítés során keletkező esetleges károkért.",
+      "Nézze át a termelésfigyelést, a garanciákat és a szervizt.",
+      "Kérjen ajánlatot e jelentés méretezése alapján: {{kwp}} · {{production}}.",
+      "Hasonlítsa össze az ajánlott árat a jelentésben szereplő {{investment}} becsült beruházási szinttel. Az ár eltérhet a felszereléstől, a telepítési körülményektől és a szállítás tartalmától függően.",
     ],
     faqTitle: "Gyakran ismételt kérdések",
     faqItems: [
