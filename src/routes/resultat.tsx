@@ -736,6 +736,13 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
 <HourlyComparison result={result} />
 {/* Actions — in the scroll flow at the very bottom */}
         <div className="pb-safe flex flex-col gap-2 pt-2">
+          {/* Same notice as before the purchase, for anyone who already has access. */}
+          {reportLanguage(i18n.language) !== i18n.language ? (
+            <p className="text-center text-xs text-muted-foreground">
+              {t("paywall.reportInEnglish")}
+            </p>
+          ) : null}
+
           <Button
             size="lg"
             variant="outline"
