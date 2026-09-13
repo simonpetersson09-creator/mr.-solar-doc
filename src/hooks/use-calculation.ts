@@ -15,6 +15,9 @@ import {
 import { getPvConnectionRules, resolvePvPowerLimit } from "@/config/pv-connection-rules";
 import { getConnectionConfig } from "@/config/connections";
 import { getCountryConfig } from "@/config/countries";
+import { resolvePvgisOrientation } from "@/services/solar-resource-service";
+import { useClippingLoss } from "@/hooks/use-clipping-loss";
+import type { CalculationInput } from "@/lib/calc/types";
 
 /** UI -> Hook -> Calculation engine -> Result. No logic lives in components. */
 export function useCalculation(): {
@@ -60,7 +63,7 @@ export function useCalculation(): {
 
   const gridConfirmed = useWizardStore((s) => s.gridConfirmed);
 
-  const outcome = useMemo<CalculationOutcome | null>(() => {
+  const input = useMemo<CalculationInput | null>(() => {
     if (!location || !resource || !annualConsumptionKwh) return null;
     if (!isValidConnectionCapacity(connectionCapacity)) return null;
     // Country config only supplies the documented kVA assumption; the
@@ -81,7 +84,7 @@ export function useCalculation(): {
       serviceAmperageA,
       voltageV: connectionCapacity!.voltageV ?? gridVoltageV,
     });
-    return runCalculation({
+    return {
       location,
       resource,
       consumption: {
@@ -130,7 +133,7 @@ export function useCalculation(): {
       quotePrice,
       // No ladder is passed: the engine derives the buildable inverter
       // products from the electrical service (see @/config/inverter-catalog).
-    });
+    };
   }, [
     location,
     resource,
@@ -156,6 +159,42 @@ export function useCalculation(): {
     market,
     economicsDefaults,
   ]);
+
+  // Pass 1: size the system without clipping, because the DC/AC ratio is only
+  // known after the inverter has been selected.
+  const sizingOutcome = useMemo<CalculationOutcome | null>(
+    () => (input ? runCalculation(input) : null),
+    [input],
+  );
+  const sizedResult = sizingOutcome?.status === "success" ? sizingOutcome.result : null;
+
+  const orientation =
+    location && resource
+      ? resolvePvgisOrientation({
+          latitude: location.latitude,
+          longitude: location.longitude,
+          orientation: resource.orientation,
+          tiltDegrees: resource.tiltDegrees,
+          azimuthDegrees: resource.azimuthDegrees ?? null,
+        })
+      : { azimuth: null, tilt: null };
+
+  const clipping = useClippingLoss({
+    latitude: location?.latitude,
+    longitude: location?.longitude,
+    azimuth: orientation.azimuth,
+    tilt: orientation.tilt,
+    dcAcRatio: sizedResult?.dcAcRatio ?? null,
+  });
+
+  // Pass 2: same inputs, now with the real hourly clipping model. A failed or
+  // pending clipping request keeps pass 1 — the result then states that
+  // clipping is not modelled instead of using an assumed loss.
+  const outcome = useMemo<CalculationOutcome | null>(() => {
+    if (!input) return null;
+    if (!clipping.data) return sizingOutcome;
+    return runCalculation({ ...input, clipping: clipping.data });
+  }, [input, sizingOutcome, clipping.data]);
 
   return {
     result: outcome?.status === "success" ? outcome.result : null,
