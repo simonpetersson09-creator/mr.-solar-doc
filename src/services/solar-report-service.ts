@@ -265,6 +265,44 @@ export function reportNeedsUnicodeFont(text: string): boolean {
 }
 
 /**
+ * Characters the bundled subset (Latin, Greek, Cyrillic) plus the core fonts can
+ * actually draw. Everything else — Devanagari, Hebrew, Arabic, CJK — would come
+ * out as stray glyphs.
+ */
+const UNRENDERABLE_LETTER =
+  /[^\p{Script=Latin}\p{Script=Greek}\p{Script=Cyrillic}\p{Script=Common}\p{Script=Inherited}]/u;
+
+/** Same place, language-neutral: four decimals is roughly 11 m. */
+function coordinateLabel(latitude: number, longitude: number): string {
+  return `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+}
+
+/**
+ * The address is customer data in whatever script the map search returned, so a
+ * Hindi or Hebrew street name would be unreadable even in the English fallback
+ * report. Address parts the PDF can render are kept verbatim; when any part
+ * cannot be rendered the coordinates of the very same saved location are added
+ * (or used alone), so the report never shows broken glyphs and never names a
+ * different place. Works offline: no lookup, nothing fetched at export time.
+ */
+export function reportAddress(
+  address: string,
+  latitude: number,
+  longitude: number,
+): string {
+  const parts = address
+    .split(",")
+    .map((part) => part.trim())
+    .filter((part) => part.length > 0);
+  const renderable = parts.filter((part) => !UNRENDERABLE_LETTER.test(part));
+  const coordinates = coordinateLabel(latitude, longitude);
+  if (renderable.length === parts.length && parts.length > 0) return parts.join(", ");
+  if (renderable.length === 0) return coordinates;
+  return `${renderable.join(", ")} (${coordinates})`;
+}
+
+
+/**
  * jsPDF draws glyph by glyph without shaping, so Devanagari (and other complex
  * scripts) would come out reordered and unjoined even with full glyph coverage.
  * Such a report is written in English instead of printing malformed text.
