@@ -16,6 +16,7 @@ import { Toaster } from "@/components/ui/sonner";
 
 import i18n, { applyInitialLanguage } from "../i18n";
 import { isRtlLanguage, normaliseLanguage } from "../i18n/languages";
+import { getRequestLanguage } from "../lib/language.functions";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -97,6 +98,17 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  // The server must render in the visitor's language, otherwise the client
+  // swaps every string during hydration (React hydration mismatch + a visible
+  // English flash on the first screen).
+  loader: async () => {
+    if (typeof document !== "undefined") {
+      return { language: normaliseLanguage(i18n.language) };
+    }
+    const language = await getRequestLanguage();
+    if (normaliseLanguage(i18n.language) !== language) await i18n.changeLanguage(language);
+    return { language };
+  },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -136,8 +148,9 @@ const useIsomorphicLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 function RootShell({ children }: { children: ReactNode }) {
+  const language = normaliseLanguage(i18n.language);
   return (
-    <html lang="en">
+    <html lang={language} dir={isRtlLanguage(language) ? "rtl" : "ltr"}>
       <head>
         <HeadContent />
       </head>
@@ -177,6 +190,15 @@ function useDocumentLanguage() {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const { language } = Route.useLoaderData();
+
+  // Match the language the server rendered with *before* the tree renders, so
+  // hydration compares identical text. Resources are bundled, so this resolves
+  // synchronously.
+  if (typeof document !== "undefined" && normaliseLanguage(i18n.language) !== language) {
+    void i18n.changeLanguage(language);
+  }
+
   useNativeShell();
   useDocumentLanguage();
 

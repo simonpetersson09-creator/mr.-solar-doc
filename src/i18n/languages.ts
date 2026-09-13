@@ -108,6 +108,12 @@ export const LANGUAGE_DEFAULT_REGION: Record<SupportedLanguage, string> = {
   lv: "LV",
 };
 
+/**
+ * Cookie that mirrors the chosen UI language so the server can render the
+ * first HTML in it (no English flash, no hydration mismatch).
+ */
+export const LANGUAGE_COOKIE = "msd_lang";
+
 /** Languages written right-to-left. Used to set `dir` on the document. */
 export const RTL_LANGUAGES: readonly SupportedLanguage[] = ["he"];
 

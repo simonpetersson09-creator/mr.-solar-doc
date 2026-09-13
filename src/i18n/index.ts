@@ -34,6 +34,7 @@ import { he } from "./locales/he";
 
 import {
   FALLBACK_LANGUAGE,
+  LANGUAGE_COOKIE,
   LANGUAGE_DEFAULT_REGION,
   SUPPORTED_LANGUAGES,
   isSupportedLanguage,
@@ -112,6 +113,24 @@ for (const [language, hourly] of Object.entries(hourlyTranslations)) {
 }
 
 /**
+ * Mirrors the active language into a cookie so the *next* server render starts
+ * in the same language. Without it the server always renders English and the
+ * client swaps text during hydration, which React reports as a mismatch.
+ */
+export function persistLanguageCookie(language: string): void {
+  if (typeof document === "undefined") return;
+  try {
+    document.cookie = `${LANGUAGE_COOKIE}=${encodeURIComponent(language)}; path=/; max-age=31536000; samesite=lax`;
+  } catch {
+    // Cookie storage is best-effort (native shell has no HTTP origin).
+  }
+}
+
+if (typeof document !== "undefined") {
+  i18n.on("languageChanged", (language: string) => persistLanguageCookie(language));
+}
+
+/**
  * Applies the resolved UI language (manual choice → device language →
  * English). Client-only: call it from a layout effect so the switch happens
  * before the browser paints and no language flicker is visible.
@@ -121,6 +140,8 @@ export function applyInitialLanguage(): void {
   const language = resolveInitialLanguage();
   if (normaliseLanguage(i18n.language) !== language) {
     void i18n.changeLanguage(language);
+  } else {
+    persistLanguageCookie(language);
   }
 }
 
