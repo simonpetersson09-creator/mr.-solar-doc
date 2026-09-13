@@ -189,6 +189,15 @@ function useDocumentLanguage() {
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const { language } = Route.useLoaderData();
+
+  // Match the language the server rendered with *before* the tree renders, so
+  // hydration compares identical text. Resources are bundled, so this resolves
+  // synchronously.
+  if (typeof document !== "undefined" && normaliseLanguage(i18n.language) !== language) {
+    void i18n.changeLanguage(language);
+  }
+
   useNativeShell();
   useDocumentLanguage();
 
