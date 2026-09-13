@@ -1,0 +1,12 @@
+import { parseConsumptionText as P } from "../src/lib/parse-consumption-document";
+const show=(n:string,t:string,o?:any)=>{const r=P(t,o??{});console.log(n, JSON.stringify({m:r.monthly,f:r.monthsFilled,a:r.annual,y:r.years,amb:r.ambiguous,c:r.annualConflict}));};
+const rows=["Jan 2025;2100","Feb 2025;1900","Mar 2025;1700","Apr 2025;1400","Maj 2025;1200","Jun 2025;1000","Jul 2025;950","Aug 2025;1000","Sep 2025;1250","Okt 2025;1550","Nov 2025;1850","Dec 2025;2100"];
+show("header kWh", ["Manad;kWh",...rows].join("\n"));
+show("utan header", rows.join("\n"));
+show("mellanslag", rows.map(r=>r.replace(";"," ")).join("\n"));
+show("2025-01 2020 kWh", "2025-01, 2020 kWh\n2025-02, 1899 kWh");
+show("kolumner", ["Ar;Manad;Forbrukning kWh","2025;1;2020","2025;2;1900"].join("\n"));
+show("tva ar", ["Jan 2024;900","Jan 2025;2100","Feb 2025;1900"].join("\n"));
+show("matarstallning", ["Jan 2025 Mätarställning 45120 Förbrukning 2100"].join("\n"));
+show("summa", ["Jan 2025;2100","Totalt 2025;22000"].join("\n"));
+show("bara artal", ["Rapport 2025","Jan 2025"].join("\n"));
