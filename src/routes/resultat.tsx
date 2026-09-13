@@ -104,7 +104,7 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
     ? null
     : result.clipping.modelled
       ? t("result.clippingModelledNote", {
-          loss: formatNumber(result.clipping.lossShare * 100, locale, 1),
+          loss: formatNumber(result.clipping.lossShare * 100, locale, { maximumFractionDigits: 1 }),
           source: result.clipping.dataSource ?? "PVGIS",
           year: String(result.clipping.year ?? ""),
         })
