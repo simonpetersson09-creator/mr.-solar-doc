@@ -259,7 +259,7 @@ class ReportDocument {
         Array.isArray(value) ? value.map((line) => pdfText(String(line))) : pdfText(String(value)),
         ...rest,
       )) as unknown as jsPDF["text"];
-    this.doc.setFont("helvetica", "normal");
+    this.useFont("normal");
   }
 
   private ensureSpace(height: number) {
@@ -275,17 +275,17 @@ class ReportDocument {
     this.doc.setFillColor(...ACCENT_DEEP);
     this.doc.rect(0, 30, PAGE.width, 1.6, "F");
     this.doc.setTextColor(...INK);
-    this.doc.setFont("helvetica", "bold");
+    this.useFont("bold");
     this.doc.setFontSize(18);
     this.doc.text(title, PAGE.margin, 15);
-    this.doc.setFont("helvetica", "normal");
+    this.useFont("normal");
     this.doc.setFontSize(9);
     this.doc.text(appName, PAGE.margin, 22);
     this.doc.text(generated, PAGE.width - PAGE.margin, 22, { align: "right" });
 
     // Address block sits below the band so it can never overlap the header text.
     this.y = 40;
-    this.doc.setFont("helvetica", "bold");
+    this.useFont("bold");
     this.doc.setFontSize(11);
     this.doc.setTextColor(...INK);
     const lines = this.doc.splitTextToSize(subtitle, PAGE.width - PAGE.margin * 2) as string[];
@@ -317,7 +317,7 @@ class ReportDocument {
     if (!text.trim()) return;
     this.ensureSpace(12);
     this.y += 2;
-    this.doc.setFont("helvetica", "bold");
+    this.useFont("bold");
     this.doc.setFontSize(9.5);
     this.doc.setTextColor(...PRIMARY);
     this.doc.text(text, PAGE.margin, this.y);
@@ -328,7 +328,7 @@ class ReportDocument {
 
     this.ensureSpace(18);
     this.y += 2;
-    this.doc.setFont("helvetica", "bold");
+    this.useFont("bold");
     this.doc.setFontSize(12);
     this.doc.setTextColor(...PRIMARY);
     this.doc.text(text, PAGE.margin, this.y);
@@ -352,10 +352,10 @@ class ReportDocument {
       this.doc.roundedRect(x, this.y, width, 24, 2.5, 2.5, "FD");
       this.doc.setFontSize(8);
       this.doc.setTextColor(...INK);
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       this.doc.text(this.doc.splitTextToSize(item.label, width - 6), x + 3, this.y + 6);
       this.doc.setTextColor(...INK);
-      this.doc.setFont("helvetica", "bold");
+      this.useFont("bold");
       let size = 14;
       this.doc.setFontSize(size);
       while (size > 7 && this.doc.getTextWidth(item.value) > width - 6) {
@@ -378,9 +378,9 @@ class ReportDocument {
     rows.forEach((row, index) => {
       const originText = row.origin && originLabels ? originLabels[row.origin] : "";
       this.doc.setFontSize(9.5);
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       const labelWidth = this.doc.getTextWidth(row.label);
-      this.doc.setFont("helvetica", "bold");
+      this.useFont("bold");
       const valueWidth = this.doc.getTextWidth(row.value);
 
       // Wrap onto a second line when label and value would collide.
@@ -395,11 +395,11 @@ class ReportDocument {
         this.doc.setFillColor(...CREAM);
         this.doc.rect(PAGE.margin, this.y - 4.5, full, height, "F");
       }
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       this.doc.setTextColor(...MUTED);
       this.doc.text(row.label, PAGE.margin + 2, this.y);
       const valueRight = PAGE.width - PAGE.margin - 2 - originColumn;
-      this.doc.setFont("helvetica", "bold");
+      this.useFont("bold");
       this.doc.setTextColor(...INK);
       if (stacked) {
         valueLines.forEach((line, lineIndex) => {
@@ -409,7 +409,7 @@ class ReportDocument {
         this.doc.text(row.value, valueRight, this.y, { align: "right" });
       }
       if (originText) {
-        this.doc.setFont("helvetica", "normal");
+        this.useFont("normal");
         this.doc.setFontSize(6.8);
         this.doc.setTextColor(...MUTED);
         this.doc.text(originText, PAGE.width - PAGE.margin - 2, stacked ? this.y + 5 : this.y, {
@@ -495,7 +495,7 @@ class ReportDocument {
   paragraph(text: string) {
     if (!text.trim()) return;
     const lineHeight = 4;
-    this.doc.setFont("helvetica", "italic");
+    this.useFont("italic");
     this.doc.setFontSize(8.5);
     this.doc.setTextColor(...MUTED);
     let lines = this.doc.splitTextToSize(text, PAGE.width - PAGE.margin * 2) as string[];
@@ -510,7 +510,7 @@ class ReportDocument {
         fitCount = Math.floor((PAGE.height - PAGE.margin * 2) / lineHeight);
       }
       const chunk = lines.slice(0, fitCount);
-      this.doc.setFont("helvetica", "italic");
+      this.useFont("italic");
       this.doc.setFontSize(8.5);
       this.doc.setTextColor(...MUTED);
       this.doc.text(chunk, PAGE.margin, this.y);
@@ -524,7 +524,7 @@ class ReportDocument {
   noteBox(title: string, text: string) {
     const width = PAGE.width - PAGE.margin * 2;
     this.doc.setFontSize(8.5);
-    this.doc.setFont("helvetica", "normal");
+    this.useFont("normal");
     const lines = this.doc.splitTextToSize(text, width - 8) as string[];
     const height = 12 + lines.length * 4;
     this.ensureSpace(height + 4);
@@ -532,11 +532,11 @@ class ReportDocument {
     this.doc.setDrawColor(...ACCENT_DEEP);
     this.doc.setLineWidth(0.3);
     this.doc.roundedRect(PAGE.margin, this.y, width, height, 2.5, 2.5, "FD");
-    this.doc.setFont("helvetica", "bold");
+    this.useFont("bold");
     this.doc.setFontSize(9);
     this.doc.setTextColor(...PRIMARY);
     this.doc.text(title, PAGE.margin + 4, this.y + 6);
-    this.doc.setFont("helvetica", "normal");
+    this.useFont("normal");
     this.doc.setFontSize(8.5);
     this.doc.setTextColor(...INK);
     this.doc.text(lines, PAGE.margin + 4, this.y + 11);
@@ -551,7 +551,7 @@ this.y += height + 6;
     const textX = PAGE.margin + boxSize + 4;
     const textWidth = width - boxSize - 6;
     items.forEach((item) => {
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       this.doc.setFontSize(9);
       const lines = this.doc.splitTextToSize(item, textWidth) as string[];
       const height = lines.length * 4.6 + 4;
@@ -577,11 +577,11 @@ this.y += height + 6;
       this.ensureSpace(blockHeight + 2);
       this.doc.setFillColor(...CREAM);
       this.doc.roundedRect(PAGE.margin, this.y - 5, width, blockHeight, 2.5, 2.5, "F");
-      this.doc.setFont("helvetica", "bold");
+      this.useFont("bold");
       this.doc.setFontSize(9.5);
       this.doc.setTextColor(...PRIMARY);
       this.doc.text(questionLines, PAGE.margin + 3, this.y);
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       this.doc.setFontSize(8.5);
       this.doc.setTextColor(...MUTED);
       this.doc.text(answerLines, PAGE.margin + 3, this.y + questionLines.length * 5 + 2);
@@ -697,7 +697,7 @@ this.y += height + 6;
       // Header
       this.doc.setFillColor(...ACCENT_DEEP);
       this.doc.roundedRect(x, top, columnWidth, 5.4, 1, 1, "F");
-      this.doc.setFont("helvetica", "bold");
+      this.useFont("bold");
       this.doc.setFontSize(6.5);
       this.doc.setTextColor(...INK);
       this.doc.text(head.year, x + 1.5, top + 3.7);
@@ -705,7 +705,7 @@ this.y += height + 6;
         this.doc.text(head[col.key], xAt(index + 1) - 1.5, top + 3.7, { align: "right" });
       });
 
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       columnRows.forEach((row, index) => {
         const rowY = top + 6 + index * rowHeight;
         if (row.highlighted) {
@@ -722,9 +722,9 @@ this.y += height + 6;
         this.doc.text(row.production, xAt(1) - 1.5, rowY + 3.3, { align: "right" });
         this.doc.setTextColor(...(row.highlighted ? PRIMARY : INK));
         this.doc.text(row.value, xAt(2) - 1.5, rowY + 3.3, { align: "right" });
-        this.doc.setFont("helvetica", "bold");
+        this.useFont("bold");
         this.doc.text(row.cumulative, xAt(3) - 1.5, rowY + 3.3, { align: "right" });
-        this.doc.setFont("helvetica", "normal");
+        this.useFont("normal");
       });
     });
 
@@ -736,7 +736,7 @@ this.y += height + 6;
     const pages = this.doc.getNumberOfPages();
     for (let page = 1; page <= pages; page += 1) {
       this.doc.setPage(page);
-      this.doc.setFont("helvetica", "normal");
+      this.useFont("normal");
       this.doc.setFontSize(8);
       this.doc.setTextColor(...MUTED);
       this.doc.text(appName, PAGE.margin, PAGE.height - 10);
