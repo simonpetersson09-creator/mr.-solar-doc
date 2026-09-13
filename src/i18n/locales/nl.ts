@@ -152,6 +152,13 @@ export const nl = {
       },
     },
     upload: {
+      yearQuestion: "Het bestand bevat meerdere jaren. Welk jaar wil je gebruiken?",
+      partial: "We vonden {{count}} van 12 maanden. Vul de ontbrekende maanden zelf in.",
+      ambiguous: "We konden niet bepalen welke waarde het verbruik is. Voer de waarden handmatig in.",
+      conflict: "Het jaarverbruik in het bestand ({{annual}} kWh) wijkt af van de som van de maanden ({{sum}} kWh). Kies welke gegevens we gebruiken.",
+      useAnnual: "Gebruik de jaarwaarde",
+      useMonthlySum: "Gebruik de maandsom",
+      partialSum: "Deelsom over {{count}} maanden",
       title: "Voeg 12 maanden verbruiksgegevens toe",
       sectionTitle: "Scan je energierekening",
       sectionHint:

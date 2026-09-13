@@ -149,6 +149,13 @@ export const no = {
       },
     },
     upload: {
+      yearQuestion: "Filen inneholder flere år. Hvilket år vil du bruke?",
+      partial: "Vi fant {{count}} av 12 måneder. Fyll inn de manglende månedene selv.",
+      ambiguous: "Vi kunne ikke avgjøre hvilken verdi som er forbruk. Fyll inn verdiene manuelt.",
+      conflict: "Årsforbruket i filen ({{annual}} kWh) avviker fra summen av månedene ({{sum}} kWh). Velg hvilket grunnlag vi skal bruke.",
+      useAnnual: "Bruk årsverdien",
+      useMonthlySum: "Bruk månedssummen",
+      partialSum: "Delsum for {{count}} måneder",
       title: "Legg ved 12 måneders forbruksdata",
       sectionTitle: "Les av strømregningen",
       sectionHint:

@@ -151,6 +151,13 @@ export const es = {
       },
     },
     upload: {
+      yearQuestion: "El archivo contiene varios años. ¿Qué año quieres usar?",
+      partial: "Encontramos {{count}} de 12 meses. Completa tú los meses que faltan.",
+      ambiguous: "No pudimos determinar qué valor es el consumo. Introduce los valores manualmente.",
+      conflict: "El consumo anual del archivo ({{annual}} kWh) difiere de la suma de los meses ({{sum}} kWh). Elige qué dato usamos.",
+      useAnnual: "Usar el valor anual",
+      useMonthlySum: "Usar la suma mensual",
+      partialSum: "Suma parcial de {{count}} meses",
       title: "Adjunta 12 meses de datos de consumo",
       sectionTitle: "Escanea tu factura",
       sectionHint:

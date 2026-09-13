@@ -137,6 +137,13 @@ export const it = {
       },
     },
     upload: {
+      yearQuestion: "Il file contiene più anni. Quale anno vuoi usare?",
+      partial: "Abbiamo trovato {{count}} mesi su 12. Inserisci tu i mesi mancanti.",
+      ambiguous: "Non è stato possibile capire quale valore sia il consumo. Inserisci i valori manualmente.",
+      conflict: "Il consumo annuo nel file ({{annual}} kWh) differisce dalla somma dei mesi ({{sum}} kWh). Scegli quale dato usare.",
+      useAnnual: "Usa il valore annuo",
+      useMonthlySum: "Usa la somma dei mesi",
+      partialSum: "Somma parziale di {{count}} mesi",
       title: "Incolla o allega un documento",
       description:
         "Carica una fattura elettrica o i tuoi dati di consumo (PDF, Excel, CSV o un'immagine come PNG/JPEG) e compileremo automaticamente i valori annuali e mensili.",

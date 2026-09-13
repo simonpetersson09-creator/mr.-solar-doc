@@ -138,6 +138,13 @@ export const lt = {
       },
     },
     upload: {
+      yearQuestion: "Faile yra keli metai. Kuriuos metus norite naudoti?",
+      partial: "Radome {{count}} iš 12 mėnesių. Trūkstamus mėnesius įrašykite patys.",
+      ambiguous: "Nepavyko nustatyti, kuri vertė yra vartojimas. Įveskite vertes rankiniu būdu.",
+      conflict: "Metinis vartojimas faile ({{annual}} kWh) skiriasi nuo mėnesių sumos ({{sum}} kWh). Pasirinkite, kuriuos duomenis naudoti.",
+      useAnnual: "Naudoti metinę vertę",
+      useMonthlySum: "Naudoti mėnesių sumą",
+      partialSum: "Dalinė {{count}} mėnesių suma",
       title: "Įklijuokite arba pridėkite dokumentą",
       description:
         "Įkelkite elektros sąskaitą arba savo suvartojimo duomenis (PDF, Excel, CSV arba paveikslėlį, pvz., PNG/JPEG), ir mes automatiškai užpildysime metines ir mėnesio vertes.",

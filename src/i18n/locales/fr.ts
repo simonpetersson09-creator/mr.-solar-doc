@@ -142,6 +142,13 @@ export const fr = {
       },
     },
     upload: {
+      yearQuestion: "Le fichier contient plusieurs années. Quelle année voulez-vous utiliser ?",
+      partial: "Nous avons trouvé {{count}} mois sur 12. Complétez vous-même les mois manquants.",
+      ambiguous: "Nous n'avons pas pu déterminer quelle valeur correspond à la consommation. Saisissez les valeurs manuellement.",
+      conflict: "La consommation annuelle du fichier ({{annual}} kWh) diffère de la somme des mois ({{sum}} kWh). Choisissez la base à utiliser.",
+      useAnnual: "Utiliser la valeur annuelle",
+      useMonthlySum: "Utiliser la somme mensuelle",
+      partialSum: "Somme partielle sur {{count}} mois",
       title: "Coller ou joindre un document",
       description:
         "Téléchargez une facture d'électricité ou vos propres données de consommation (PDF, Excel, CSV ou une image comme PNG/JPEG) et nous remplirons automatiquement les valeurs annuelles et mensuelles.",

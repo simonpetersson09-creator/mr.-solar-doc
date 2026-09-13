@@ -139,6 +139,13 @@ export const pl = {
       },
     },
     upload: {
+      yearQuestion: "Plik zawiera kilka lat. Którego roku chcesz użyć?",
+      partial: "Znaleźliśmy {{count}} z 12 miesięcy. Uzupełnij brakujące miesiące samodzielnie.",
+      ambiguous: "Nie udało się ustalić, która wartość jest zużyciem. Wpisz wartości ręcznie.",
+      conflict: "Roczne zużycie w pliku ({{annual}} kWh) różni się od sumy miesięcy ({{sum}} kWh). Wybierz, których danych mamy użyć.",
+      useAnnual: "Użyj wartości rocznej",
+      useMonthlySum: "Użyj sumy miesięcy",
+      partialSum: "Suma częściowa za {{count}} miesięcy",
       title: "Wklej lub załącz dokument",
       description:
         "Prześlij fakturę za energię elektryczną lub własne dane o zużyciu (PDF, Excel, CSV lub obrazek, np. PNG/JPEG), a my automatycznie uzupełnimy wartości roczne i miesięczne.",

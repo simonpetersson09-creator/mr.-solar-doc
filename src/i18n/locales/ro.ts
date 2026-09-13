@@ -150,6 +150,13 @@ export const ro = {
       },
     },
     upload: {
+      yearQuestion: "Fișierul conține mai mulți ani. Care an doriți să folosiți?",
+      partial: "Am găsit {{count}} din 12 luni. Completați singur lunile lipsă.",
+      ambiguous: "Nu am putut determina care valoare este consumul. Introduceți valorile manual.",
+      conflict: "Consumul anual din fișier ({{annual}} kWh) diferă de suma lunilor ({{sum}} kWh). Alegeți ce date să folosim.",
+      useAnnual: "Folosește valoarea anuală",
+      useMonthlySum: "Folosește suma lunară",
+      partialSum: "Sumă parțială pentru {{count}} luni",
       title: "Atașează 12 luni de date de consum",
       sectionTitle: "Scanează factura de energie",
       sectionHint:
