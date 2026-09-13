@@ -240,6 +240,28 @@ export interface CalculationInput {
   inverterSizesKw?: number[];
   /** Module nameplate power (kWp). Defaults to PANEL_WATTAGE_KWP. */
   panelPowerKwp?: number;
+  /**
+   * Inverter clipping model from real PVGIS hourly data for this location,
+   * orientation and DC/AC ratio. Omitted = clipping is not modelled and the
+   * result says so; it is never replaced by an assumed coefficient.
+   */
+  clipping?: ClippingLossModel | null;
+}
+
+/** How much production the inverter's AC limit removes, and on what basis. */
+export interface ClippingOutcome {
+  /** True when real hourly data was applied to this exact system. */
+  modelled: boolean;
+  /** Share of the unclipped production removed by the AC limit (0..1). */
+  lossShare: number;
+  /** Energy removed in the first year (kWh). */
+  clippedKwh: number;
+  /** Production before the AC limit was applied (kWh). */
+  unclippedAnnualProductionKwh: number;
+  /** Hourly data source label, null when clipping was not modelled. */
+  dataSource: string | null;
+  /** Calendar year of the hourly data, null when not modelled. */
+  year: number | null;
 }
 
 /** Why the recommended array ended up at this size. */
