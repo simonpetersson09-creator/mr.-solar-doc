@@ -11,6 +11,7 @@ export const en = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "How big a solar system do you need, and what is it worth to you?",
+    capacityNote: "Supports systems up to 500 kW power",
     point1Title: "Analyzes your conditions",
     point1Body: "Location, orientation and roof tilt decide how much sun your roof actually gets.",
     point2Title: "Finds the right size for you",
