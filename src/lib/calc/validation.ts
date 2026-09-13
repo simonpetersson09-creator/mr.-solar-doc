@@ -47,6 +47,14 @@ export const MAX_PLAUSIBLE_KWH_PER_KWP = 2600;
 /** Upper sanity bound for annual household consumption, kWh. */
 export const MAX_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH = 1_000_000;
 
+/**
+ * Slack when comparing the monthly consumption series to the annual figure.
+ * Monthly values are commonly rounded per month, so a 2 % (or 1 kWh) drift is
+ * accepted; anything larger means the two inputs describe different households.
+ */
+export const MONTHLY_CONSUMPTION_SUM_TOLERANCE = 0.02;
+export const MONTHLY_CONSUMPTION_SUM_TOLERANCE_KWH = 1;
+
 export type CalculationIssueCode =
   | "non-finite-value"
   | "negative-consumption"
