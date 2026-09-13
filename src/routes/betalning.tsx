@@ -312,6 +312,14 @@ function PaywallPage() {
           </h1>
         </header>
 
+        {/* The PDF falls back to English for scripts jsPDF cannot shape. Say so
+            before the purchase, not after. */}
+        {reportLanguage(i18nInstance.language) !== i18nInstance.language ? (
+          <p className="rounded-2xl bg-card px-4 py-3 text-sm text-foreground shadow-sm">
+            {t("paywall.reportInEnglish")}
+          </p>
+        ) : null}
+
         {/* Option 1 — one calculation */}
         <section className="cta-primary flex flex-col gap-3 rounded-3xl p-4 text-primary-foreground">
           <div className="flex items-start gap-3">
