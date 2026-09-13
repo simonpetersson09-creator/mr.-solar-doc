@@ -72,9 +72,16 @@ export interface ShareFileRequest {
   title?: string;
 }
 
+export type ShareOutcome =
+  | { status: "shared" }
+  | { status: "downloaded" }
+  /** Neither share nor download could be delivered (sandboxed preview iframe with
+   * blocked popups). The caller must offer the URL behind a real user click. */
+  | { status: "blocked"; url: string };
+
 /** Share a generated file via the native share sheet, with browser download fallback. */
-export async function shareFile(request: ShareFileRequest): Promise<"shared" | "downloaded"> {
-  if (typeof window === "undefined") return "downloaded";
+export async function shareFile(request: ShareFileRequest): Promise<ShareOutcome> {
+  if (typeof window === "undefined") return { status: "downloaded" };
 
   const file = new File([request.blob], request.fileName, { type: request.mimeType });
   const navigatorWithShare = navigator as Navigator & {
