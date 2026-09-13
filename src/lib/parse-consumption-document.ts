@@ -98,12 +98,33 @@ function periodForLine(line: string): { index: number; year: number | null; rest
     };
   }
   const byName = MONTH_PATTERNS.findIndex((pattern) => pattern.test(line));
-  const namedYear = byName === -1 ? null : Number(line.match(/\b(?:19|20)\d{2}\b/)?.[0] ?? "") || null;
-  // Drop the date's own year token from the value scan, so a month value that
-  // happens to look like a year ("Jan 2025;2100") is not mistaken for one.
-  const rest = namedYear === null ? line : line.replace(/\b(?:19|20)\d{2}\b/, " ");
-  return { index: byName, year: namedYear, rest };
+  if (byName !== -1) {
+    const namedYear = Number(line.match(/\b(?:19|20)\d{2}\b/)?.[0] ?? "") || null;
+    // Drop the date's own year token from the value scan, so a month value that
+    // happens to look like a year ("Jan 2025;2100") is not mistaken for one.
+    const rest = namedYear === null ? line : line.replace(/\b(?:19|20)\d{2}\b/, " ");
+    return { index: byName, year: namedYear, rest };
+  }
+  // Separate year / month / consumption columns ("2025;1;2020").
+  if (DELIMITER.test(line)) {
+    const cells = line.split(DELIMITER).map((cell) => cell.trim());
+    const yearCell = cells.findIndex((cell) => /^(?:19|20)\d{2}$/.test(cell));
+    if (yearCell !== -1 && yearCell < 3) {
+      const monthCell = cells.findIndex(
+        (cell, i) => i !== yearCell && i < 3 && /^(?:0?[1-9]|1[0-2])$/.test(cell),
+      );
+      if (monthCell !== -1) {
+        return {
+          index: Number(cells[monthCell]) - 1,
+          year: Number(cells[yearCell]),
+          rest: cells.filter((_, i) => i !== yearCell && i !== monthCell).join(";"),
+        };
+      }
+    }
+  }
+  return { index: -1, year: null, rest: line };
 }
+
 
 
 // Grouped digits ("1 234,5", "1.234,5") or a plain number — never merging two
