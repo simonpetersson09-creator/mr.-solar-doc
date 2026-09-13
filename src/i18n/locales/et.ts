@@ -869,6 +869,7 @@ export const et = {
       "Praegu ei õnnestunud ostu kinnitada. Miski pole kadunud — see avaneb automaatselt, kui ühendus taastub.",
     appOnly: "Ost tehakse rakenduses teie Apple kontoga ega ole brauseris saadaval.",
     appleNote: "Käsitleb App Store.",
+    reportInEnglish: "PDF-aruanne esitatakse inglise keeles.",
     priceLoading: "Hinna laadimine…",
     priceUnavailable: "Hinda ei õnnestu praegu App Store’ist laadida. Proovi uuesti.",
     devContinue: "Dev: continue without payment",

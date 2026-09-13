@@ -24,6 +24,7 @@ import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
 import { drainPurchaseTransactions } from "@/services/purchase-recovery";
 import { isDevUnlock } from "@/lib/dev-unlock";
 import i18nInstance from "@/i18n";
+import { reportLanguage } from "@/services/solar-report-service";
 
 
 
@@ -45,7 +46,7 @@ type Phase = "idle" | "purchasing" | "verifying" | "failed" | "cancelled" | "ret
 type Choice = "unlock" | "premium";
 
 function PaywallPage() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const pending = usePurchaseStore((s) => s.pending);
@@ -311,6 +312,14 @@ function PaywallPage() {
             {t("paywall.title")}
           </h1>
         </header>
+
+        {/* The PDF falls back to English for scripts jsPDF cannot shape. Say so
+            before the purchase, not after. */}
+        {reportLanguage(i18n.language) !== i18n.language ? (
+          <p className="rounded-2xl bg-card px-4 py-3 text-sm text-foreground shadow-sm">
+            {t("paywall.reportInEnglish")}
+          </p>
+        ) : null}
 
         {/* Option 1 — one calculation */}
         <section className="cta-primary flex flex-col gap-3 rounded-3xl p-4 text-primary-foreground">

@@ -595,6 +595,7 @@ export const sr = {
       "Тренутно нисмо могли да потврдимо куповину. Ништа није изгубљено — откључава се аутоматски када веза поново заради.",
     appOnly: "Куповина се обавља у апликацији уз ваш Apple налог и није доступна у прегледачу.",
     appleNote: "Обрађује App Store.",
+    reportInEnglish: "PDF izveštaj se dostavlja na engleskom jeziku.",
   },
   history: {
     empty: "Још немате сачуваних прорачуна.",

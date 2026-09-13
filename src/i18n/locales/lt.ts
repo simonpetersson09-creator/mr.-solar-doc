@@ -859,6 +859,7 @@ export const lt = {
       "Šiuo metu nepavyko patvirtinti pirkimo. Niekas nedingo — jis atsirakins automatiškai, kai tik atsistatys ryšys.",
     appOnly: "Pirkimas atliekamas programėlėje su jūsų Apple paskyra ir naršyklėje neprieinamas.",
     appleNote: "Tvarko App Store.",
+    reportInEnglish: "PDF ataskaita pateikiama anglų kalba.",
     priceLoading: "Gaunama kaina…",
     priceUnavailable: "Šiuo metu nepavyksta gauti kainos iš „App Store“. Bandykite dar kartą.",
     devContinue: "Dev: continue without payment",

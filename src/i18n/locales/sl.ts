@@ -850,6 +850,7 @@ export const sl = {
       "Trenutno nismo mogli potrditi nakupa. Nič ni izgubljeno — samodejno se bo odklenil, ko bo povezava spet delovala.",
     appOnly: "Nakup se izvede v aplikaciji z vašim Apple računom in ni na voljo v brskalniku.",
     appleNote: "Obravnava App Store.",
+    reportInEnglish: "Poročilo PDF je v angleščini.",
     priceLoading: "Pridobivanje cene…",
     priceUnavailable: "Cene trenutno ni mogoče pridobiti iz App Store. Poskusite znova.",
     devContinue: "Dev: continue without payment",

@@ -601,6 +601,7 @@ export const tr = {
       "Satın alımı şu anda doğrulayamadık. Hiçbir şey kaybolmadı — bağlantı tekrar çalıştığında otomatik olarak açılacaktır.",
     appOnly: "Satın alım, Apple hesabınızla uygulama içinde yapılır ve tarayıcıda kullanılamaz.",
     appleNote: "App Store tarafından işlenir.",
+    reportInEnglish: "PDF raporu İngilizce olarak sunulur.",
   },
   history: {
     empty: "Henüz kaydedilmiş bir hesaplamanız yok.",

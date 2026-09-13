@@ -98,9 +98,34 @@ function periodForLine(line: string): { index: number; year: number | null; rest
     };
   }
   const byName = MONTH_PATTERNS.findIndex((pattern) => pattern.test(line));
-  const namedYear = byName === -1 ? null : Number(line.match(/\b(?:19|20)\d{2}\b/)?.[0] ?? "") || null;
-  return { index: byName, year: namedYear, rest: line };
+  if (byName !== -1) {
+    const namedYear = Number(line.match(/\b(?:19|20)\d{2}\b/)?.[0] ?? "") || null;
+    // Drop the date's own year token from the value scan, so a month value that
+    // happens to look like a year ("Jan 2025;2100") is not mistaken for one.
+    const rest = namedYear === null ? line : line.replace(/\b(?:19|20)\d{2}\b/, " ");
+    return { index: byName, year: namedYear, rest };
+  }
+  // Separate year / month / consumption columns ("2025;1;2020").
+  if (DELIMITER.test(line)) {
+    const cells = line.split(DELIMITER).map((cell) => cell.trim());
+    const yearCell = cells.findIndex((cell) => /^(?:19|20)\d{2}$/.test(cell));
+    if (yearCell !== -1 && yearCell < 3) {
+      const monthCell = cells.findIndex(
+        (cell, i) => i !== yearCell && i < 3 && /^(?:0?[1-9]|1[0-2])$/.test(cell),
+      );
+      if (monthCell !== -1) {
+        return {
+          index: Number(cells[monthCell]) - 1,
+          year: Number(cells[yearCell]),
+          rest: cells.filter((_, i) => i !== yearCell && i !== monthCell).join(";"),
+        };
+      }
+    }
+  }
+  return { index: -1, year: null, rest: line };
 }
+
+
 
 // Grouped digits ("1 234,5", "1.234,5") or a plain number — never merging two
 // separate numbers such as "2025 336,45" into one.
@@ -158,32 +183,43 @@ function consumptionValueInLine(line: string): { value: number | null; ambiguous
   const labelled = tokens.find((token) => token.labelledConsumption);
   if (labelled) return { value: scaled(labelled), ambiguous: false };
 
-  const usable = tokens.filter(
-    (token) => !token.labelledMeter && !token.looksLikeYear && !token.looksLikeClock,
-  );
-  const withUnit = usable.filter((token) => token.unitScale !== null);
+  // Meter readings and clock times are never consumption. A year-shaped number
+  // (1900-2100) is only set aside when the row has another candidate: a real
+  // monthly consumption of 2100 kWh must not disappear.
+  const candidates = tokens.filter((token) => !token.labelledMeter && !token.looksLikeClock);
+  const withUnit = candidates.filter((token) => token.unitScale !== null);
   if (withUnit.length > 0) return { value: scaled(withUnit[0]!), ambiguous: false };
-  if (usable.length === 0) {
+  if (candidates.length === 0) {
     // Only meter readings / dates on this row — refuse to guess.
     return { value: null, ambiguous: tokens.some((token) => token.labelledMeter) };
   }
-  return { value: usable[usable.length - 1]!.value, ambiguous: false };
+  const notYearLike = candidates.filter((token) => !token.looksLikeYear);
+  if (notYearLike.length > 0) return { value: notYearLike[notYearLike.length - 1]!.value, ambiguous: false };
+  // Every candidate is year-shaped. One of them is the value; more than one is
+  // genuinely ambiguous, so say so instead of guessing or dropping it silently.
+  if (candidates.length === 1) return { value: candidates[0]!.value, ambiguous: false };
+  return { value: null, ambiguous: true };
 }
 
 const DELIMITER = /\t|;|\|/;
+
+/** A "kWh" / "MWh" column header states consumption without naming it. */
+const ENERGY_UNIT_HEADER = /^\(?\s*(k?wh|mwh)\b/i;
 
 /** Finds the consumption column of a delimited export from its header row. */
 function consumptionColumn(line: string): number | null {
   if (!DELIMITER.test(line)) return null;
   const cells = line.split(DELIMITER).map((cell) => cell.trim());
   const index = cells.findIndex(
-    (cell) => CONSUMPTION_PATTERN.test(cell) && !METER_PATTERN.test(cell),
+    (cell) =>
+      (CONSUMPTION_PATTERN.test(cell) || ENERGY_UNIT_HEADER.test(cell)) && !METER_PATTERN.test(cell),
   );
   if (index === -1) return null;
   // A header row has no consumption value of its own.
   const looksLikeHeader = cells.every((cell) => !/^\s*[\d.,\s]+$/.test(cell) || cell === "");
   return looksLikeHeader ? index : null;
 }
+
 
 function isPlausibleAnnual(value: number): boolean {
   return value >= 100 && value <= MAX_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH;
