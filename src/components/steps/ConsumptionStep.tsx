@@ -18,6 +18,8 @@ import { sumMonthly } from "@/lib/calc/energy-production";
 import { useWizardStore } from "@/state/wizard-store";
 import { haptic } from "@/services/native-service";
 import { editedConsumptionOrigin, isEstimatedConsumption } from "@/lib/consumption-provenance";
+import { MAX_PLAUSIBLE_ANNUAL_CONSUMPTION_KWH } from "@/lib/calc/validation";
+import { parseConsumptionText, type ParsedConsumption } from "@/lib/parse-consumption-document";
 import type { ConsumptionInputType } from "@/lib/calc/consumption-shape";
 
 interface ConsumptionStepProps {
