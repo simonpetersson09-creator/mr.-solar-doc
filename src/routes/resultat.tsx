@@ -151,7 +151,7 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
         assumptions: rt("report.assumptions"),
         disclaimer: rt("report.disclaimer"),
         generated: rt("report.generated"),
-        months: shortMonths,
+        months: rt("months.short", { returnObjects: true }) as string[],
         rationale: reportRationale,
         coverageNote: rt("result.coverageNote"),
         paybackNote: `${rt("result.paybackInfo")} ${rt("result.maxInvestmentNote")}`,
