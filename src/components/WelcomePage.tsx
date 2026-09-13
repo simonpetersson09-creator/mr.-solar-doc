@@ -78,6 +78,10 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           <p className="mx-auto mt-3 max-w-md text-sm font-semibold leading-snug">
             {t("welcome.subtitle")}
           </p>
+          <span className="mx-auto mt-3 inline-flex items-center gap-1.5 rounded-full border border-brand-black/30 bg-brand-black/5 px-3 py-1 text-[11px] font-bold tracking-tight">
+            <Sun className="size-3 shrink-0 opacity-70" strokeWidth={2} aria-hidden="true" />
+            {t("welcome.capacityNote")}
+          </span>
         </section>
 
         <ul className="mt-6 space-y-4">
