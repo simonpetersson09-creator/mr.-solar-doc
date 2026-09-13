@@ -68,6 +68,9 @@ function ResultPage() {
   const paybackYears = snapshot?.assumptions.acceptedPaybackYears ?? wizardPaybackYears;
 const [exporting, setExporting] = useState(false);
 const [exportError, setExportError] = useState(false);
+  // Sandboxed preview: downloads and popups are dropped, so the finished report
+  // is rendered in-app instead of silently disappearing.
+  const [reportUrl, setReportUrl] = useState<string | null>(null);
 const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
   const [showSystemSizeInfo, setShowSystemSizeInfo] = useState(false);
   
