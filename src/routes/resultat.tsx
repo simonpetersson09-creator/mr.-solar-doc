@@ -18,7 +18,12 @@ import {
   formatNumber,
 } from "@/lib/format";
 import { formatInverterPower } from "@/lib/inverter-display";
-import { exportReport, reportLanguage, type ReportLabels } from "@/services/solar-report-service";
+import {
+  exportReport,
+  reportLanguage,
+  reportLocale,
+  type ReportLabels,
+} from "@/services/solar-report-service";
 import { haptic } from "@/services/native-service";
 import { selfConsumptionCapNoteKey } from "@/lib/self-consumption-cap-note";
 
@@ -119,12 +124,15 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
       // report would come out reordered. Those languages get an English report
       // instead of malformed text; every other language is unchanged.
       const rt = i18n.getFixedT(reportLanguage(i18n.language));
+      // Formatting locale of the report: same numbers, but never a right-to-left
+      // locale in an English fallback report (see reportLocale).
+      const reportLoc = reportLocale(locale, i18n.language);
       const reportRationale = rt(REASON_KEY[result.recommendationReason] ?? "result.reason.profileNormal");
       const reportClippingNote = !result.clipping.applicable
         ? null
         : result.clipping.modelled
           ? rt("result.clippingModelledNote", {
-              loss: formatNumber(result.clipping.lossShare * 100, locale, { maximumFractionDigits: 1 }),
+              loss: formatNumber(result.clipping.lossShare * 100, reportLoc, { maximumFractionDigits: 1 }),
               source: result.clipping.dataSource ?? "PVGIS",
               year: String(result.clipping.year ?? ""),
             })
@@ -180,8 +188,8 @@ const [showInvestmentInfo, setShowInvestmentInfo] = useState(false);
         // generated profile is model-dependent, not a certain household limit.
         selfConsumptionCappedNote: capNoteKey
           ? rt(capNoteKey, {
-              effective: formatNumber(result.presentation.selfConsumptionPercent, locale),
-              requested: formatNumber(result.presentation.requestedSelfConsumptionPercent, locale),
+              effective: formatNumber(result.presentation.selfConsumptionPercent, reportLoc),
+              requested: formatNumber(result.presentation.requestedSelfConsumptionPercent, reportLoc),
             })
           : null,
         clippingNote: reportClippingNote,
@@ -212,7 +220,7 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
         simplifiedProcessNote:
           result.aboveSimplifiedProcessLimit && result.simplifiedProcessLimitKw
             ? rt("result.simplifiedProcessNote", {
-                limit: formatDecimal(result.simplifiedProcessLimitKw, locale),
+                limit: formatDecimal(result.simplifiedProcessLimitKw, reportLoc),
               })
             : null,
         installerChecklistTitle: rt("report.installerChecklistTitle"),
@@ -222,7 +230,7 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
         faqTitle: rt("report.faqTitle"),
         faqItems: rt("report.faqItems", { returnObjects: true }) as ReportLabels["faqItems"],
       };
-      await exportReport({ result, labels, locale });
+      await exportReport({ result, labels, locale: reportLoc });
       void haptic("success");
     } catch {
       setExportError(true);
