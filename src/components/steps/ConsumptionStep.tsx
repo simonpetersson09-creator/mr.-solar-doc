@@ -60,8 +60,17 @@ export function ConsumptionStep({ totalSteps, onBack, onNext }: ConsumptionStepP
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [parsing, setParsing] = useState(false);
-  const [parseStatus, setParseStatus] = useState<"monthly" | "annual" | "error" | null>(null);
+  const [parseStatus, setParseStatus] = useState<
+    "monthly" | "partial" | "annual" | "ambiguous" | "error" | null
+  >(null);
   const [fileName, setFileName] = useState<string | null>(null);
+  /** Raw imported text, kept so another year can be re-read without a new upload. */
+  const [importText, setImportText] = useState<string | null>(null);
+  const [importYears, setImportYears] = useState<number[]>([]);
+  const [importYear, setImportYear] = useState<number | null>(null);
+  /** Annual figure stated in the document, kept apart from the monthly sum. */
+  const [statedAnnual, setStatedAnnual] = useState<number | null>(null);
+  const [annualConflict, setAnnualConflict] = useState(false);
 
   /**
    * Opening the native file/camera menu is a native call: if it throws (or the
