@@ -290,7 +290,7 @@ export function parseConsumptionText(
   const monthlySum =
     monthly === null
       ? null
-      : Math.round(monthly.reduce((sum, value) => sum + (value ?? 0), 0) * 100) / 100;
+      : Math.round(monthly.reduce((sum: number, value) => sum + (value ?? 0), 0) * 100) / 100;
 
   const annualCandidates = [bucket.annual, buckets.get("unknown")?.annual ?? null];
   const annual = annualCandidates.find((value) => value !== null && isPlausibleAnnual(value)) ?? null;
