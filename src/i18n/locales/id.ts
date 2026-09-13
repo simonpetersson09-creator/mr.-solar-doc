@@ -60,8 +60,8 @@ export const id = {
     error: "Pencarian alamat gagal.",
     info: "Alamat hanya digunakan untuk menghitung radiasi matahari di lokasi Anda.",
     infoLabel: "Info lebih lanjut tentang alamat",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Perbesar",
+    zoomOut: "Perkecil",
   },
   premium: {
     title: "Premium",
@@ -112,8 +112,8 @@ export const id = {
       required: "Masukkan pemakaian listrik Anda untuk melanjutkan perhitungan.",
       tooLow: "Sepertinya terlalu rendah. Masukkan minimal {{min}} kWh per tahun.",
       tooHigh: "Sepertinya terlalu tinggi. Masukkan maksimal {{max}} kWh per tahun.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "Satu bulan jauh lebih tinggi dari yang lain. Periksa nilai bulanan Anda sebelum melanjutkan.",
+      monthUneven: "Satu bulan tampak berbeda dari yang lain. Periksa kembali jika itu tidak benar.",
     },
     shape: {
       question: "Bagaimana biasanya pemakaian listrik Anda tersebar sepanjang tahun?",
@@ -187,7 +187,7 @@ export const id = {
   fuse: {
     gridAssumptionDynamic: "Perhitungan didasarkan pada {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Satuan",
       otherLabel: "Masukkan nilai",
       invalid: "Masukkan nilai antara {{min}} dan {{max}} {{unit}}.",
       amperage: {
@@ -270,8 +270,8 @@ export const id = {
       daytime: "Siang hari",
       daytimeHelp: "Banyak konsumsi saat matahari berproduksi.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Perubahan Anda sudah termasuk dalam pembelian. Tersisa {{left}} perubahan dalam 24 jam.",
+    revisionsLeft: "Anda dapat mengubah perhitungan ini {{left}} kali lagi dalam 24 jam sejak pembelian.",
     calculationUnavailable:
       "Perhitungan tidak dapat diselesaikan. Periksa detail atap dan coba lagi.",
     connection: { contractedKva: "Daya kontrak (kVA)", contractedKw: "Daya kontrak (kW)" },
@@ -626,10 +626,10 @@ export const id = {
       ogDescription: "Perhitungan ukuran sistem solar Anda dengan laporan PDF.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Buka kunci perhitungan Anda - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Buka kunci perhitungan surya Anda dengan pembelian satu kali, atau dapatkan Premium untuk perhitungan tanpa batas.",
+      ogDescription: "Buka kunci perhitungan surya lengkap dan laporan PDF.",
     },
   },
   months: {
@@ -805,7 +805,7 @@ export const id = {
       external: "Sumber data eksternal",
     },
     generated: "Dibuat",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "Untuk dibahas dengan instalator Anda",
     installerChecklistItems: [
       "Confirm the roof's orientation, tilt and any shading on site.",
       "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",

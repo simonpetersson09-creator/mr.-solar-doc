@@ -22,7 +22,7 @@ export const hi = {
     point4Title: "रिपोर्ट और निर्णय आधार",
     point4Body: "उत्पादन, अर्थशास्त्र और विभिन्न वापसी अवधियाँ एक रिपोर्ट में देखें।",
     cta: "गणना शुरू करें",
-    disclaimer: "The calculation is indicative and is not a quote.",
+    disclaimer: "यह गणना सांकेतिक है और कोई कोटेशन नहीं है।",
   },
   common: {
     back: "पीछे",
@@ -62,8 +62,8 @@ export const hi = {
     error: "पता खोज विफल रही।",
     info: "पते का उपयोग केवल आपके स्थान पर सौर विकिरण की गणना के लिए किया जाता है।",
     infoLabel: "पते के बारे में अधिक जानकारी",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "ज़ूम इन करें",
+    zoomOut: "ज़ूम आउट करें",
   },
   premium: {
     title: "प्रीमियम",
@@ -119,8 +119,8 @@ export const hi = {
       required: "गणना जारी रखने के लिए अपनी बिजली खपत दर्ज करें।",
       tooLow: "यह बहुत कम लग रहा है। कम से कम {{min}} kWh प्रति वर्ष दर्ज करें।",
       tooHigh: "यह बहुत ज़्यादा लग रहा है। अधिकतम {{max}} kWh प्रति वर्ष दर्ज करें।",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "एक महीना बाकी महीनों की तुलना में काफी अधिक है। आगे बढ़ने से पहले अपने मासिक मान जांचें।",
+      monthUneven: "एक महीना बाकियों से अलग दिखता है। यदि यह सही नहीं है तो दोबारा जांच लें।",
     },
     shape: {
       question: "आपकी बिजली खपत आमतौर पर पूरे साल कैसे बंटी होती है?",
@@ -193,7 +193,7 @@ export const hi = {
   fuse: {
     gridAssumptionDynamic: "गणना {{service}} {{voltage}} पर आधारित है।",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "इकाई",
       otherLabel: "मान दर्ज करें",
       invalid: "{{min}} और {{max}} {{unit}} के बीच मान दर्ज करें।",
       amperage: {
@@ -232,7 +232,7 @@ export const hi = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "फेज़",
       serviceType: "सेवा प्रकार",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "2-फ़ेज़ (फ़ेज़-टू-फ़ेज़)",
       splitPhase: "स्प्लिट-फेज़",
       unverifiedHint:
         "इस देश के लिए हमारे पास सत्यापित ग्रिड मान नहीं हैं। कृपया अपने मीटर या सर्विस पैनल से अपने विवरण जाँचें।",
@@ -276,8 +276,8 @@ export const hi = {
       daytime: "दिन के समय",
       daytimeHelp: "जब सूरज उत्पादन करता है तब अधिक खपत।",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "आपका बदलाव आपकी खरीद में शामिल है। 24 घंटे के भीतर {{left}} बदलाव शेष हैं।",
+    revisionsLeft: "आप खरीद के 24 घंटे के भीतर इस गणना को {{left}} और बार बदल सकते हैं।",
     calculationUnavailable: "गणना पूरी नहीं हो सकी। कृपया छत का विवरण जांचें और पुनः प्रयास करें।",
     connection: {
       contractedKva: "अनुबंधित पावर (kVA)",
@@ -629,10 +629,10 @@ export const hi = {
       ogDescription: "PDF रिपोर्ट के साथ आपके सोलर सिस्टम की गणना की गई साइज़िंग।",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "अपनी गणना अनलॉक करें - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "एकमुश्त खरीद से अपनी सोलर गणना अनलॉक करें, या असीमित गणनाओं के लिए Premium लें।",
+      ogDescription: "पूरी सोलर गणना और PDF रिपोर्ट अनलॉक करें।",
     },
   },
   months: {
@@ -653,7 +653,7 @@ export const hi = {
     ],
   },
   report: {
-    disclaimer: "The calculation is indicative and is not a quote.",
+    disclaimer: "यह गणना सांकेतिक है और कोई कोटेशन नहीं है।",
     fields: {
       gridConnection: "ग्रिड कनेक्शन",
       gridConnectionValue: "{{voltage}} V, {{phases}}-फेज़",
@@ -808,7 +808,7 @@ export const hi = {
       external: "बाहरी डेटा स्रोत",
     },
     generated: "जनरेट किया गया",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "अपने इंस्टॉलर के साथ इन बातों पर चर्चा करें",
     installerChecklistItems: [
       "Confirm the roof's orientation, tilt and any shading on site.",
       "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
