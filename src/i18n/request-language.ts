@@ -10,7 +10,9 @@ function fromCookie(header: string | null): SupportedLanguage | null {
   if (!header) return null;
   const match = new RegExp(`(?:^|;\\s*)${LANGUAGE_COOKIE}=([^;]+)`).exec(header);
   if (!match?.[1]) return null;
-  const value = normaliseLanguage(decodeURIComponent(match[1]));
+  // Checked as-is: normaliseLanguage would silently turn an unsupported value
+  // into English and hide the browser preference.
+  const value = decodeURIComponent(match[1]).slice(0, 2).toLowerCase();
   return isSupportedLanguage(value) ? value : null;
 }
 
