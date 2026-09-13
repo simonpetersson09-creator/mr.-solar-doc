@@ -271,9 +271,13 @@ export function parseConsumptionText(
     key = options.year;
   } else if (yearsWithData.length > 0) {
     // Most complete year wins; the latest year breaks a tie.
-    key = yearsWithData.reduce((best, year) =>
-      filledIn(buckets.get(year)!) > filledIn(buckets.get(best)!) ? year : year > best && filledIn(buckets.get(year)!) === filledIn(buckets.get(best)!) ? year : best,
-    );
+    let best = yearsWithData[0]!;
+    for (const year of yearsWithData) {
+      const count = filledIn(buckets.get(year)!);
+      const bestCount = filledIn(buckets.get(best)!);
+      if (count > bestCount || (count === bestCount && year > best)) best = year;
+    }
+    key = best;
   } else if (buckets.has("unknown")) {
     key = "unknown";
   } else {
