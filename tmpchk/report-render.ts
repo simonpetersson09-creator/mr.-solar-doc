@@ -2,7 +2,7 @@
 import { writeFileSync } from "node:fs";
 import i18n from "../src/i18n";
 import { calculateSolarSystem } from "../src/lib/calc/engine";
-import { generateReportBlob, type ReportLabels } from "../src/services/solar-report-service";
+import { generateReportBlob, reportLanguage, type ReportLabels } from "../src/services/solar-report-service";
 
 const result = calculateSolarSystem({
   location: { address: "Testgatan 1, Stockholm", latitude: 59.33, longitude: 18.06, countryCode: "SE", region: "Stockholm" },
@@ -47,7 +47,7 @@ function labelsFor(language: string): ReportLabels {
 }
 
 for (const [language, locale] of [["sv", "sv-SE"], ["en", "en-GB"], ["el", "el-GR"], ["uk", "uk-UA"], ["hi", "hi-IN"]]) {
-  const blob = generateReportBlob({ result, labels: labelsFor(language!), locale: locale! } as never);
+  const blob = generateReportBlob({ result, labels: labelsFor(reportLanguage(language!)), locale: locale! } as never);
   const bytes = await blob.arrayBuffer();
   writeFileSync(`/tmp/report-${language}.pdf`, Buffer.from(bytes));
   console.log(language, "bytes", bytes.byteLength);
