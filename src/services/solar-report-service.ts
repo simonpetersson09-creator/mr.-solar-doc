@@ -1591,7 +1591,7 @@ export function generateReportBlob(options: ReportOptions): Blob {
 }
 
 /** Generate and hand off to the native share sheet, or download in the browser. */
-export async function exportReport(options: ReportOptions): Promise<"shared" | "downloaded"> {
+export async function exportReport(options: ReportOptions): Promise<ShareOutcome> {
   const blob = generateReportBlob(options);
   return shareFile({
     blob,
