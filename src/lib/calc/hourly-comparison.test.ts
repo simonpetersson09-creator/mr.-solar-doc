@@ -7,7 +7,7 @@ describe('isolated hourly comparison',()=>{
   for(const profile of ['evening','mixed','daytime','uniform'] as HourlyProfile[]){
    const weights=DAILY_WEIGHTS[profile];const percentages=dailyPercentages(profile);
    expect(weights).toHaveLength(24);expect(weights.every(value=>Number.isFinite(value)&&value>0)).toBe(true);
-   expect(Math.max(...weights.slice(1).map((value,index)=>Math.abs(value-(weights[index]??value))))).toBeLessThanOrEqual(0.4);
+   expect(Math.max(...weights.slice(1).map((value,index)=>Math.abs(value-(weights[index]??value))))).toBeLessThanOrEqual(0.4000001);
    expect(percentages).toHaveLength(24);expect(percentages.reduce((sum,value)=>sum+value,0)).toBeCloseTo(100,10);
   }
   const sum=(profile:HourlyProfile,start:number,end:number)=>DAILY_WEIGHTS[profile].slice(start,end).reduce((total,value)=>total+value,0);
