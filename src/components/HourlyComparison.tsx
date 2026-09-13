@@ -11,7 +11,7 @@ import { resolvePvgisOrientation } from '@/services/solar-resource-service';
 import type { CalculationResult } from '@/lib/calc/types';
 export function HourlyComparison({result}:{result:CalculationResult}){
  const {t,i18n}=useTranslation();const [open,setOpen]=useState(false);const [profile,setProfile]=useState<HourlyProfile>(result.loadProfileClass??'mixed');
- const orientation=resolvePvgisOrientation({...result.location,orientation:result.resource.orientation,tiltDegrees:result.resource.tiltDegrees,azimuthDegrees:result.resource.azimuthDegrees});
+ const orientation=resolvePvgisOrientation({...result.location,orientation:result.resource.orientation,tiltDegrees:result.resource.tiltDegrees,azimuthDegrees:result.resource.azimuthDegrees??null});
  const request={latitude:result.location.latitude,longitude:result.location.longitude,...orientation,dcAcRatio:result.installedKwp/result.inverterKw};
  const query=useQuery({queryKey:['hourly-comparison',request],queryFn:()=>getHourlySeries(request),enabled:open,staleTime:86400000,retry:1});
  const comparison=useMemo(()=>{
