@@ -78,6 +78,9 @@ export interface MarketConfig {
  */
 const EU_INVERTER_SIZES_KW = [
   1.5, 2, 2.5, 3, 3.6, 4, 4.6, 5, 6, 8, 10, 12, 15, 17, 20, 25, 30, 33, 36, 40, 50, 60,
+  // Commercial / farm classes, so a large connection is not silently capped at
+  // 60 kW. Kept identical to the three-phase inverter catalogue.
+  66, 75, 80, 100, 110, 125, 150, 175, 200,
 ];
 const EU_MAIN_FUSE_OPTIONS_AMP = [16, 20, 25, 32, 35, 40, 50, 63];
 
