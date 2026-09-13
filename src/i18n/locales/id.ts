@@ -8,6 +8,7 @@ export const id = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Seberapa besar instalasi surya yang Anda butuhkan dan apa nilainya bagi Anda?",
+    capacityNote: "Mendukung sistem hingga 500 kW daya",
     point1Title: "Menganalisis kondisi Anda",
     point1Body: "Berdasarkan lokasi, atap dan kondisi matahari lokal Anda.",
     point2Title: "Menemukan ukuran yang tepat untuk Anda",

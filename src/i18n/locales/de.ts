@@ -11,6 +11,7 @@ export const de = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Wie groß muss Ihre Solaranlage sein und was ist sie Ihnen wert?",
+    capacityNote: "Unterstützt Anlagen bis 500 kW Leistung",
     point1Title: "Analysiert Ihre Voraussetzungen",
     point1Body: "Auf Basis Ihres Standorts, Ihres Dachs und der lokalen Sonnenverhältnisse.",
     point2Title: "Findet die richtige Größe für Sie",

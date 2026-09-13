@@ -11,6 +11,7 @@ export const nl = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Hoe groot moet uw zonnepanelensysteem zijn en wat is het u waard?",
+    capacityNote: "Ondersteunt systemen tot 500 kW vermogen",
     point1Title: "Analyseert uw omstandigheden",
     point1Body: "Locatie, oriëntatie en dakhelling bepalen hoeveel zon uw dak echt krijgt.",
     point2Title: "Vindt de juiste maat voor u",

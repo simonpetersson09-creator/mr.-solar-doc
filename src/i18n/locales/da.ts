@@ -11,6 +11,7 @@ export const da = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Hvor stor en solcelleanlægning har du brug for, og hvad er den værd for dig?",
+    capacityNote: "Understøtter anlæg op til 500 kW effekt",
     point1Title: "Analyserer dine forudsætninger",
     point1Body: "Ud fra din placering, dit tag og de lokale solforhold.",
     point2Title: "Finder den rigtige størrelse til dig",

@@ -11,6 +11,7 @@ export const sl = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Kako velik solarni sistem potrebujete in koliko je vreden za vas?",
+    capacityNote: "Podpira sisteme do 500 kW moči",
     point1Title: "Analizira vaše pogoje",
     point1Body: "Na podlagi vaše lokacije, strehe in lokalnih solarnih razmer.",
     point2Title: "Najde pravo velikost za vas",

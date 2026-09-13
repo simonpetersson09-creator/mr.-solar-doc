@@ -11,6 +11,7 @@ export const et = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Kui suurt päikeseppaigaldust vajate ja mis väärtus see teile on?",
+    capacityNote: "Toetab süsteeme kuni 500 kW võimsusega",
     point1Title: "Analüüsib teie eeldusi",
     point1Body: "Teie asukoha, katuse ja kohalike päikeseolude põhjal.",
     point2Title: "Leiab teie jaoks õige suuruse",

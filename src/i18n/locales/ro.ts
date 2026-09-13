@@ -11,6 +11,7 @@ export const ro = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Ce dimensiune de sistem solar aveți nevoie și cât valorează pentru dvs.?",
+    capacityNote: "Acceptă sisteme de până la 500 kW putere",
     point1Title: "Îți analizează condițiile",
     point1Body: "Pe baza locației, acoperișului și condițiilor solare locale.",
     point2Title: "Găsește dimensiunea potrivită pentru tine",

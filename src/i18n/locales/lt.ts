@@ -11,6 +11,7 @@ export const lt = {
   welcome: {
     title: "Mr. Solar Doc",
     subtitle: "Kokio dydžio saulės sistemą jums reikia ir kiek ji verta?",
+    capacityNote: "Palaiko sistemas iki 500 kW galios",
     point1Title: "Analizuoja jūsų sąlygas",
     point1Body: "Pagal jūsų vietą, stogą ir vietos saulės sąlygas.",
     point2Title: "Randa tinkamą dydį jums",
