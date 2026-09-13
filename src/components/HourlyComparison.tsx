@@ -11,7 +11,7 @@ import { getMarketConfig } from '@/config/markets';
 import { resolvePvgisOrientation } from '@/services/solar-resource-service';
 import type { CalculationResult } from '@/lib/calc/types';
 export function HourlyComparison({result}:{result:CalculationResult}){
- const {t,i18n}=useTranslation();const [open,setOpen]=useState(false);const [profile,setProfile]=useState<HourlyProfile>(result.loadProfileClass==='even'?'uniform':(result.loadProfileClass??'mixed'));
+ const {t,i18n}=useTranslation();const [open,setOpen]=useState(false);const [profile,setProfile]=useState<HourlyProfile>(result.loadProfileClass??'mixed');
  const orientation=resolvePvgisOrientation({...result.location,orientation:result.resource.orientation,tiltDegrees:result.resource.tiltDegrees,azimuthDegrees:result.resource.azimuthDegrees??null});
  const request={latitude:result.location.latitude,longitude:result.location.longitude,...orientation,dcAcRatio:result.installedKwp/result.inverterKw};
  const query=useQuery({queryKey:['hourly-comparison',request],queryFn:()=>getHourlySeries(request),enabled:open,staleTime:86400000,retry:1});
@@ -28,7 +28,7 @@ export function HourlyComparison({result}:{result:CalculationResult}){
  return <section className="border-t border-border py-5 space-y-3">
  <Button variant="outline" onClick={()=>setOpen(!open)} aria-expanded={open}>{t('hourly.title')}</Button>
  {open&&<><p className="text-sm text-muted-foreground">{t('hourly.note')}</p>
- <div className="grid grid-cols-2 gap-2">{(['evening','mixed','daytime','uniform'] as const).map(p=><Button className="h-auto min-h-10 whitespace-normal" key={p} variant={p===profile?'default':'outline'} aria-pressed={p===profile} onClick={()=>setProfile(p)}>{p==='uniform'?t('hourly.uniform'):t(`result.loadProfile.${p}`)}</Button>)}</div>
+ <div className="grid grid-cols-2 gap-2">{(['evening','mixed','daytime','even'] as const).map(p=><Button className="h-auto min-h-10 whitespace-normal" key={p} variant={p===profile?'default':'outline'} aria-pressed={p===profile} onClick={()=>setProfile(p)}>{p==='even'?t('hourly.uniform'):t(`result.loadProfile.${p}`)}</Button>)}</div>
  <p className="text-sm text-muted-foreground">{t(`hourly.profileDescription.${profile}`)}</p>
  <HourlyProfileOverview selected={profile}/>
  {query.isPending&&<p role="status">{t('common.loading')}</p>}
