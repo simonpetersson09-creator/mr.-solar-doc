@@ -21,7 +21,7 @@ export const he = {
     point4Title: "דוח ובסיס החלטה",
     point4Body: "ראה ייצור, כלכלה ותקופות החזר שונות בדוח אחד.",
     cta: "התחל את החישוב",
-    disclaimer: "The calculation is indicative and is not a quote.",
+    disclaimer: "החישוב הוא הערכה בלבד ואינו מהווה הצעת מחיר.",
   },
   common: {
     back: "חזרה",
@@ -60,8 +60,8 @@ export const he = {
     error: "חיפוש הכתובת נכשל.",
     info: "הכתובת משמשת רק לחישוב עוצמת הקרינה הסולארית במיקום שלכם.",
     infoLabel: "מידע נוסף על הכתובת",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "התקרבות",
+    zoomOut: "התרחקות",
   },
   premium: {
     title: "פרימיום",
@@ -115,8 +115,8 @@ export const he = {
       required: "הזינו את צריכת החשמל שלכם כדי להמשיך בחישוב.",
       tooLow: "זה נראה נמוך מדי. הזינו לפחות {{min}} kWh בשנה.",
       tooHigh: "זה נראה גבוה מדי. הזינו לכל היותר {{max}} kWh בשנה.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "חודש אחד גבוה משמעותית מהאחרים. בדוק את הערכים החודשיים שלך לפני שתמשיך.",
+      monthUneven: "חודש אחד בולט ביחס לשאר. בדוק שוב אם זה אינו נכון.",
     },
     shape: {
       question: "כיצד מתפלגת צריכת החשמל שלכם בדרך כלל לאורך השנה?",
@@ -190,7 +190,7 @@ export const he = {
   fuse: {
     gridAssumptionDynamic: "החישוב מבוסס על {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "יחידה",
       otherLabel: "הזנת ערך",
       invalid: "הזינו ערך בין {{min}} ל-{{max}} {{unit}}.",
       amperage: {
@@ -229,7 +229,7 @@ export const he = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "פאזות",
       serviceType: "סוג חיבור",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "דו-פאזי (פאזה לפאזה)",
       splitPhase: "פאזה מפוצלת",
       unverifiedHint:
         "אין לנו ערכי רשת מאומתים למדינה זו. אנא בדקו את הפרטים שלכם מול המונה או לוח החשמל.",
@@ -273,8 +273,8 @@ export const he = {
       daytime: "שעות היום",
       daytimeHelp: "צריכה גבוהה בזמן שהשמש מייצרת.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "השינוי שלך נכלל ברכישה. נותרו {{left}} שינוי/ים תוך 24 שעות.",
+    revisionsLeft: "תוכל לשנות את החישוב הזה עוד {{left}} פעם/ים תוך 24 שעות מהרכישה.",
     calculationUnavailable: "לא ניתן היה להשלים את החישוב. בדוק את פרטי הגג ונסה שוב.",
     connection: {
       contractedKva: "הספק מוסכם (kVA)",
@@ -617,10 +617,10 @@ export const he = {
       ogDescription: "תכנון מחושב של המערכת הסולארית שלכם עם דוח PDF.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "פתח את החישוב שלך - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "פתח את חישוב הסולארי שלך ברכישה חד-פעמית, או קבל Premium לחישובים ללא הגבלה.",
+      ogDescription: "פתח את החישוב הסולארי המלא ואת דוח ה-PDF.",
     },
   },
   months: {
@@ -641,7 +641,7 @@ export const he = {
     ],
   },
   report: {
-    disclaimer: "The calculation is indicative and is not a quote.",
+    disclaimer: "החישוב הוא הערכה בלבד ואינו מהווה הצעת מחיר.",
     fields: {
       gridConnection: "חיבור לרשת",
       gridConnectionValue: "{{voltage}} V, {{phases}} פאזות",
@@ -795,20 +795,20 @@ export const he = {
       external: "מקור נתונים חיצוני",
     },
     generated: "נוצר בתאריך",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "לעבור עם המתקין שלך",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "אשרו במקום את כיוון הגג, הזווית וכל הצללה אפשרית.",
+      "שימו לב שייתכן שיהיה צורך להתאים את גודל המערכת בהתאם לתנאי הגג בפועל, כמו ארובות, פתחי אוורור או שטח שימושי מוגבל.",
+      "בדקו את הביטחון הראשי ואת תנאי החיבור מול חברת החשמל.",
+      "אשרו שהספק הממיר של {{acPower}} מתאים לחיבור החשמלי שלכם.",
+      "השוו בין הערכת התפוקה השנתית של המתקין לבין {{production}} מדוח זה. ההערכות עשויות להיות שונות בהתאם לתנאים ולשיטת החישוב.",
+      "שאלו אם הממיר מוכן לאחסון סוללות עתידי, אם זה עשוי להיות רלוונטי.",
+      "ודאו שלוח החשמל וההתקנה החשמלית הקיימת מתאימים להתקנה.",
+      "עברו על מה שכלול בהצעת המחיר, למשל כבילה, התקנה, הגנה וחומרי התקנה נוספים.",
+      "שאלו מי אחראי על נזק כלשהו לגג במהלך ההתקנה.",
+      "עברו על ניטור התפוקה, האחריות והשירות.",
+      "בקשו הצעת מחיר על בסיס הגודל בדוח זה: {{kwp}} · {{production}}.",
+      "השוו בין המחיר המוצע לבין הרמה המחושבת בדוח זה של {{investment}}. המחיר עשוי להשתנות בהתאם לציוד, לתנאי ההתקנה ולמה שכלול באספקה.",
     ],
     faqTitle: "שאלות נפוצות",
     faqItems: [

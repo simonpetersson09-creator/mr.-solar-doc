@@ -61,8 +61,8 @@ export const sl = {
     error: "Iskanje naslova ni uspelo.",
     info: "Naslov se uporablja izključno za izračun sončnega sevanja na vaši lokaciji.",
     infoLabel: "Več informacij o naslovu",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Približaj",
+    zoomOut: "Oddalji",
   },
   roof: {
     title: "Vaša streha",
@@ -103,8 +103,8 @@ export const sl = {
       required: "Vnesite svojo porabo elektrike, da lahko izračun nadaljuje.",
       tooLow: "Poraba se zdi prenizka. Vnesite vsaj {{min}} kWh na leto.",
       tooHigh: "Poraba se zdi previsoka. Vnesite največ {{max}} kWh na leto.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "En mesec je bistveno višji od ostalih. Preverite mesečne vrednosti, preden nadaljujete.",
+      monthUneven: "En mesec izstopa od ostalih. Preverite ga, če to ni pravilno.",
     },
     shape: {
       question: "Kako je vaša poraba električne energije običajno porazdeljena skozi leto?",
@@ -178,7 +178,7 @@ export const sl = {
   fuse: {
     gridAssumptionDynamic: "Izračun temelji na {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Enota",
       otherLabel: "Vnesite vrednost",
       invalid: "Vnesite vrednost med {{min}} in {{max}} {{unit}}.",
       amperage: {
@@ -225,7 +225,7 @@ export const sl = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       hint: "Spremenite le, če privzete vrednosti ne ustrezajo vašemu priključku.",
       serviceType: "Vrsta priključka",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "2-fazno (faza-faza)",
       splitPhase: "Dvofazni (split-phase)",
       unverifiedHint:
         "Za to državo nimamo preverjenih omrežnih vrednosti. Preverite podatke na števcu ali v elektroomarici.",
@@ -261,8 +261,8 @@ export const sl = {
       daytime: "Podnevi",
       daytimeHelp: "Veliko porabe, ko sonce proizvaja.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Vaša sprememba je vključena v nakup. Na voljo imate še {{left}} sprememb(o/e) v 24 urah.",
+    revisionsLeft: "Ta izračun lahko spremenite še {{left}}-krat v 24 urah po nakupu.",
     calculationUnavailable:
       "Izračuna ni bilo mogoče dokončati. Preverite podatke o strehi in poskusite znova.",
     connection: {
@@ -572,10 +572,10 @@ export const sl = {
       ogDescription: "Izračunana dimenzioniranje vašega sončnega sistema s poročilom PDF.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Odklenite svoj izračun - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Odklenite svoj sončni izračun z enkratnim nakupom ali pridobite Premium za neomejeno število izračunov.",
+      ogDescription: "Odklenite celoten sončni izračun in PDF poročilo.",
     },
   },
   months: {
@@ -751,20 +751,20 @@ export const sl = {
       external: "Zunanji vir podatkov",
     },
     generated: "Ustvarjeno",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "Kar preveriti z izvajalcem",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Na kraju samem preverite orientacijo, naklon strehe in morebitno senčenje.",
+      "Upoštevajte, da bo morda treba prilagoditi velikost sistema glede na dejanske razmere na strehi, kot so dimniki, prezračevalne odprtine ali omejena uporabna površina.",
+      "Preverite glavno varovalko in pogoje priključitve pri operaterju omrežja.",
+      "Potrdite, da moč razsmernika {{acPower}} ustreza vašemu električnemu priključku.",
+      "Primerjajte izvajalčevo ocenjeno letno proizvodnjo s proizvodnjo {{production}} iz tega poročila. Ocene se lahko razlikujejo glede na pogoje in metodo izračuna.",
+      "Vprašajte, ali je razsmernik pripravljen za morebiten prihodnji hranilnik energije, če bi to lahko postalo pomembno.",
+      "Prepričajte se, da sta razdelilna omarica in obstoječa električna napeljava primerni za namestitev.",
+      "Preglejte, kaj je vključeno v ponudbo, na primer kabli, montaža, zaščita in drug montažni material.",
+      "Vprašajte, kdo je odgovoren za morebitno škodo na strehi med namestitvijo.",
+      "Preglejte spremljanje proizvodnje, garancije in servis.",
+      "Zahtevajte ponudbo na podlagi dimenzioniranja iz tega poročila: {{kwp}} · {{production}}.",
+      "Primerjajte ponujeno ceno z izračunano ravnjo naložbe {{investment}} iz tega poročila. Cena se lahko razlikuje glede na opremo, pogoje namestitve in kaj je vključeno v dobavo.",
     ],
     faqTitle: "Pogosta vprašanja",
     faqItems: [

@@ -63,8 +63,8 @@ export const ro = {
     error: "Căutarea adresei a eșuat.",
     info: "Adresa este folosită doar pentru a calcula radiația solară de la locația ta.",
     infoLabel: "Mai multe informații despre adresă",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Mărire",
+    zoomOut: "Micșorare",
   },
   premium: {
     title: "Premium",
@@ -120,8 +120,8 @@ export const ro = {
       required: "Introdu consumul tău de energie pentru a continua calculul.",
       tooLow: "Pare prea mic. Introdu cel puțin {{min}} kWh pe an.",
       tooHigh: "Pare prea mare. Introdu cel mult {{max}} kWh pe an.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "O lună este mult mai mare decât celelalte. Verifică valorile lunare înainte de a continua.",
+      monthUneven: "O lună iese în evidență față de celelalte. Verifică din nou dacă nu este corect.",
     },
     shape: {
       question: "Cum se distribuie de obicei consumul tău de energie pe parcursul anului?",
@@ -195,7 +195,7 @@ export const ro = {
   fuse: {
     gridAssumptionDynamic: "Calculul se bazează pe {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Unitate",
       otherLabel: "Introdu valoare",
       invalid: "Introdu o valoare între {{min}} și {{max}} {{unit}}.",
       amperage: {
@@ -234,7 +234,7 @@ export const ro = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "Faze",
       serviceType: "Tip de conexiune",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "Bifazat (fază-fază)",
       splitPhase: "Fază divizată",
       unverifiedHint:
         "Nu avem valori de rețea verificate pentru această țară. Verifică datele tale cu contorul sau tabloul electric.",
@@ -278,8 +278,8 @@ export const ro = {
       daytime: "În timpul zilei",
       daytimeHelp: "Consum ridicat când soarele produce.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Modificarea ta este inclusă în achiziție. Mai ai {{left}} modificare(i) disponibilă(e) în următoarele 24 de ore.",
+    revisionsLeft: "Poți modifica acest calcul de încă {{left}} ori în 24 de ore de la achiziție.",
     calculationUnavailable:
       "Calculul nu a putut fi finalizat. Verificați detaliile acoperișului și încercați din nou.",
     connection: {
@@ -644,10 +644,10 @@ export const ro = {
       ogDescription: "Dimensionarea calculată a sistemului tău solar cu un raport PDF.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Deblochează-ți calculul - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Deblochează calculul tău solar cu o achiziție unică sau obține Premium pentru calcule nelimitate.",
+      ogDescription: "Deblochează calculul solar complet și raportul PDF.",
     },
   },
   months: {
@@ -823,20 +823,20 @@ export const ro = {
       external: "Sursă externă de date",
     },
     generated: "Generat",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "De verificat cu instalatorul tău",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Confirmă la fața locului orientarea, înclinarea acoperișului și eventualele umbriri.",
+      "Reține că dimensiunea sistemului poate necesita ajustări în funcție de condițiile reale ale acoperișului, precum coșuri, ventilații sau suprafață utilă limitată.",
+      "Verifică siguranța principală și condițiile de conectare cu operatorul tău de rețea.",
+      "Confirmă că puterea invertorului de {{acPower}} este potrivită pentru conexiunea ta electrică.",
+      "Compară producția anuală estimată de instalator cu {{production}} din acest raport. Estimările pot diferi în funcție de condiții și de metoda de calcul.",
+      "Întreabă dacă invertorul este pregătit pentru o viitoare stocare cu baterii, dacă acest lucru ar putea deveni relevant.",
+      "Asigură-te că tabloul electric și instalația electrică existentă sunt potrivite pentru instalare.",
+      "Verifică ce este inclus în ofertă, de exemplu cablare, montaj, protecție și alte materiale de instalare.",
+      "Întreabă cine este responsabil pentru eventualele daune aduse acoperișului în timpul instalării.",
+      "Verifică monitorizarea producției, garanțiile și service-ul.",
+      "Solicită o ofertă bazată pe dimensionarea din acest raport: {{kwp}} · {{production}}.",
+      "Compară prețul din ofertă cu nivelul calculat în acest raport de {{investment}}. Prețul poate diferi în funcție de echipament, condițiile de instalare și ce este inclus în livrare.",
     ],
     faqTitle: "Întrebări frecvente",
     faqItems: [

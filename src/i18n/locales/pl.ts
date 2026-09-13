@@ -64,8 +64,8 @@ export const pl = {
     error: "Wyszukiwanie adresu nie powiodło się.",
     info: "Adres jest używany wyłącznie do obliczenia nasłonecznienia w Twojej lokalizacji.",
     infoLabel: "Więcej informacji o adresie",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Powiększ",
+    zoomOut: "Pomniejsz",
   },
   roof: {
     title: "Twój dach",
@@ -108,8 +108,8 @@ export const pl = {
       required: "Podaj swoje zużycie energii, aby kontynuować obliczenia.",
       tooLow: "Zużycie wydaje się zbyt niskie. Podaj co najmniej {{min}} kWh rocznie.",
       tooHigh: "Zużycie wydaje się zbyt wysokie. Podaj najwyżej {{max}} kWh rocznie.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "Jeden miesiąc jest znacznie wyższy niż pozostałe. Sprawdź swoje wartości miesięczne przed kontynuowaniem.",
+      monthUneven: "Jeden miesiąc odróżnia się od pozostałych. Sprawdź go ponownie, jeśli to nieprawidłowe.",
     },
     shape: {
       question: "Jak zazwyczaj rozkłada się Twoje zużycie energii elektrycznej w ciągu roku?",
@@ -184,7 +184,7 @@ export const pl = {
   fuse: {
     gridAssumptionDynamic: "Obliczenia opierają się na {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Jednostka",
       otherLabel: "Podaj wartość",
       invalid: "Podaj wartość od {{min}} do {{max}} {{unit}}.",
       amperage: {
@@ -231,7 +231,7 @@ export const pl = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       hint: "Zmieniaj tylko wtedy, gdy wartości domyślne nie pasują do Twojego przyłącza.",
       serviceType: "Rodzaj przyłącza",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "2-fazowe (faza-faza)",
       splitPhase: "Dwufazowe (split-phase)",
       unverifiedHint:
         "Nie mamy zweryfikowanych danych sieciowych dla tego kraju. Sprawdź swoje dane na liczniku lub w rozdzielnicy.",
@@ -267,8 +267,8 @@ export const pl = {
       daytime: "W ciągu dnia",
       daytimeHelp: "Dużo zużycia, gdy słońce produkuje.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Twoja zmiana jest wliczona w zakup. Pozostało {{left}} zmian(y) w ciągu 24 godzin.",
+    revisionsLeft: "Możesz zmienić te obliczenia jeszcze {{left}} raz(y) w ciągu 24 godzin od zakupu.",
     calculationUnavailable:
       "Nie udało się ukończyć obliczeń. Sprawdź dane dachu i spróbuj ponownie.",
     connection: {
@@ -586,10 +586,10 @@ export const pl = {
       ogDescription: "Obliczone wymiarowanie Twojej instalacji fotowoltaicznej z raportem PDF.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Odblokuj swoje obliczenia - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Odblokuj swoje obliczenia solarne jednorazowym zakupem lub wybierz Premium dla nieograniczonych obliczeń.",
+      ogDescription: "Odblokuj pełne obliczenia solarne i raport PDF.",
     },
   },
   months: {
@@ -767,20 +767,20 @@ export const pl = {
       external: "Zewnętrzne źródło danych",
     },
     generated: "Wygenerowano",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "Do omówienia z instalatorem",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Potwierdź na miejscu orientację, kąt nachylenia dachu oraz ewentualne zacienienie.",
+      "Pamiętaj, że wielkość systemu może wymagać dostosowania w zależności od rzeczywistych warunków dachu, takich jak kominy, wywietrzniki czy ograniczona powierzchnia użytkowa.",
+      "Sprawdź główny bezpiecznik i warunki przyłączenia u operatora sieci.",
+      "Potwierdź, że moc falownika {{acPower}} odpowiada Twojemu przyłączu elektrycznemu.",
+      "Porównaj szacowaną roczną produkcję podaną przez instalatora z {{production}} z tego raportu. Szacunki mogą się różnić w zależności od warunków i metody obliczeń.",
+      "Zapytaj, czy falownik jest przygotowany na przyszłe magazynowanie energii w baterii, jeśli może to być istotne.",
+      "Upewnij się, że rozdzielnica i istniejąca instalacja elektryczna są odpowiednie do instalacji.",
+      "Przejrzyj, co jest zawarte w ofercie, np. okablowanie, montaż, zabezpieczenia i inne materiały instalacyjne.",
+      "Zapytaj, kto odpowiada za ewentualne uszkodzenia dachu podczas instalacji.",
+      "Omów monitorowanie produkcji, gwarancje i serwis.",
+      "Poproś o wycenę na podstawie doboru z tego raportu: {{kwp}} · {{production}}.",
+      "Porównaj wycenioną cenę z obliczonym w tym raporcie poziomem {{investment}}. Cena może się różnić w zależności od sprzętu, warunków instalacji i zakresu dostawy.",
     ],
     faqTitle: "Często zadawane pytania",
     faqItems: [

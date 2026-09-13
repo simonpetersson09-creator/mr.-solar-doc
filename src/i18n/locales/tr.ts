@@ -63,8 +63,8 @@ export const tr = {
     error: "Adres araması başarısız oldu.",
     info: "Adres yalnızca konumunuzdaki güneş ışınımını hesaplamak için kullanılır.",
     infoLabel: "Adres hakkında daha fazla bilgi",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Yakınlaştır",
+    zoomOut: "Uzaklaştır",
   },
   premium: {
     title: "Premium",
@@ -119,8 +119,8 @@ export const tr = {
       required: "Hesaplamaya devam etmek için elektrik kullanımınızı girin.",
       tooLow: "Bu çok düşük görünüyor. Yılda en az {{min}} kWh girin.",
       tooHigh: "Bu çok yüksek görünüyor. Yılda en fazla {{max}} kWh girin.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "Bir ay diğerlerinden çok daha yüksek. Devam etmeden önce aylık değerlerinizi kontrol edin.",
+      monthUneven: "Bir ay diğerlerinden farklı görünüyor. Doğru değilse tekrar kontrol edin.",
     },
     shape: {
       question: "Elektrik kullanımınız yıl boyunca genellikle nasıl dağılıyor?",
@@ -195,7 +195,7 @@ export const tr = {
   fuse: {
     gridAssumptionDynamic: "Hesaplama {{service}} {{voltage}} temel alınarak yapılmıştır.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Birim",
       otherLabel: "Değer girin",
       invalid: "{{min}} ile {{max}} {{unit}} arasında bir değer girin.",
       amperage: {
@@ -234,7 +234,7 @@ export const tr = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "Fazlar",
       serviceType: "Bağlantı türü",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "2 fazlı (faz-faz)",
       splitPhase: "Bölünmüş faz",
       unverifiedHint:
         "Bu ülke için doğrulanmış şebeke değerlerimiz yok. Lütfen bilgilerinizi sayacınız veya elektrik panonuzla karşılaştırın.",
@@ -278,8 +278,8 @@ export const tr = {
       daytime: "Gündüz",
       daytimeHelp: "Güneş üretirken yüksek tüketim.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Değişikliğiniz satın alımınıza dahildir. 24 saat içinde {{left}} değişiklik hakkınız kaldı.",
+    revisionsLeft: "Satın alımdan sonraki 24 saat içinde bu hesaplamayı {{left}} kez daha değiştirebilirsiniz.",
     calculationUnavailable:
       "Hesaplama tamamlanamadı. Çatı bilgilerini kontrol edip tekrar deneyin.",
     connection: {
@@ -641,10 +641,10 @@ export const tr = {
       ogDescription: "PDF raporuyla güneş enerjisi sisteminizin hesaplanmış boyutlandırması.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Hesaplamanızın kilidini açın - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Tek seferlik bir satın alımla güneş enerjisi hesaplamanızın kilidini açın veya sınırsız hesaplama için Premium'a geçin.",
+      ogDescription: "Tam güneş enerjisi hesaplamasının ve PDF raporunun kilidini açın.",
     },
   },
   months: {
@@ -820,20 +820,20 @@ export const tr = {
       external: "Harici veri kaynağı",
     },
     generated: "Oluşturuldu",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "Montajcınızla görüşülecek konular",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Çatının yönünü, eğimini ve olası gölgelenmeyi yerinde doğrulayın.",
+      "Sistem boyutunun, baca, havalandırma bacaları veya sınırlı kullanılabilir alan gibi çatının gerçek koşullarına göre ayarlanması gerekebileceğini unutmayın.",
+      "Ana sigortayı ve bağlantı koşullarını şebeke operatörünüzle kontrol edin.",
+      "İnvertör gücünün ({{acPower}}) elektrik bağlantınıza uygun olduğunu doğrulayın.",
+      "Montajcının tahmini yıllık üretimini bu rapordaki {{production}} değeriyle karşılaştırın. Tahminler koşullara ve hesaplama yöntemine göre farklılık gösterebilir.",
+      "İleride gerekli olabilecekse invertörün gelecekteki batarya depolamasına hazır olup olmadığını sorun.",
+      "Dağıtım panosunun ve mevcut elektrik tesisatının kurulum için uygun olduğundan emin olun.",
+      "Kablolama, montaj, koruma ve diğer kurulum malzemeleri gibi teklife nelerin dahil olduğunu gözden geçirin.",
+      "Kurulum sırasında çatıda oluşabilecek herhangi bir hasardan kimin sorumlu olduğunu sorun.",
+      "Üretim izleme, garantiler ve servis konularını gözden geçirin.",
+      "Bu raporun boyutlandırmasına dayalı bir teklif isteyin: {{kwp}} · {{production}}.",
+      "Teklif edilen fiyatı bu raporda hesaplanan {{investment}} seviyesiyle karşılaştırın. Fiyat, ekipmana, kurulum koşullarına ve teslimata neyin dahil olduğuna göre değişebilir.",
     ],
     faqTitle: "Sıkça sorulan sorular",
     faqItems: [

@@ -22,7 +22,7 @@ export const hi = {
     point4Title: "रिपोर्ट और निर्णय आधार",
     point4Body: "उत्पादन, अर्थशास्त्र और विभिन्न वापसी अवधियाँ एक रिपोर्ट में देखें।",
     cta: "गणना शुरू करें",
-    disclaimer: "The calculation is indicative and is not a quote.",
+    disclaimer: "यह गणना सांकेतिक है और कोई कोटेशन नहीं है।",
   },
   common: {
     back: "पीछे",
@@ -62,8 +62,8 @@ export const hi = {
     error: "पता खोज विफल रही।",
     info: "पते का उपयोग केवल आपके स्थान पर सौर विकिरण की गणना के लिए किया जाता है।",
     infoLabel: "पते के बारे में अधिक जानकारी",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "ज़ूम इन करें",
+    zoomOut: "ज़ूम आउट करें",
   },
   premium: {
     title: "प्रीमियम",
@@ -119,8 +119,8 @@ export const hi = {
       required: "गणना जारी रखने के लिए अपनी बिजली खपत दर्ज करें।",
       tooLow: "यह बहुत कम लग रहा है। कम से कम {{min}} kWh प्रति वर्ष दर्ज करें।",
       tooHigh: "यह बहुत ज़्यादा लग रहा है। अधिकतम {{max}} kWh प्रति वर्ष दर्ज करें।",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "एक महीना बाकी महीनों की तुलना में काफी अधिक है। आगे बढ़ने से पहले अपने मासिक मान जांचें।",
+      monthUneven: "एक महीना बाकियों से अलग दिखता है। यदि यह सही नहीं है तो दोबारा जांच लें।",
     },
     shape: {
       question: "आपकी बिजली खपत आमतौर पर पूरे साल कैसे बंटी होती है?",
@@ -193,7 +193,7 @@ export const hi = {
   fuse: {
     gridAssumptionDynamic: "गणना {{service}} {{voltage}} पर आधारित है।",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "इकाई",
       otherLabel: "मान दर्ज करें",
       invalid: "{{min}} और {{max}} {{unit}} के बीच मान दर्ज करें।",
       amperage: {
@@ -232,7 +232,7 @@ export const hi = {
       summary: "{{phases}} · {{voltage}} V · {{frequency}} Hz",
       phases: "फेज़",
       serviceType: "सेवा प्रकार",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "2-फ़ेज़ (फ़ेज़-टू-फ़ेज़)",
       splitPhase: "स्प्लिट-फेज़",
       unverifiedHint:
         "इस देश के लिए हमारे पास सत्यापित ग्रिड मान नहीं हैं। कृपया अपने मीटर या सर्विस पैनल से अपने विवरण जाँचें।",
@@ -276,8 +276,8 @@ export const hi = {
       daytime: "दिन के समय",
       daytimeHelp: "जब सूरज उत्पादन करता है तब अधिक खपत।",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "आपका बदलाव आपकी खरीद में शामिल है। 24 घंटे के भीतर {{left}} बदलाव शेष हैं।",
+    revisionsLeft: "आप खरीद के 24 घंटे के भीतर इस गणना को {{left}} और बार बदल सकते हैं।",
     calculationUnavailable: "गणना पूरी नहीं हो सकी। कृपया छत का विवरण जांचें और पुनः प्रयास करें।",
     connection: {
       contractedKva: "अनुबंधित पावर (kVA)",
@@ -629,10 +629,10 @@ export const hi = {
       ogDescription: "PDF रिपोर्ट के साथ आपके सोलर सिस्टम की गणना की गई साइज़िंग।",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "अपनी गणना अनलॉक करें - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "एकमुश्त खरीद से अपनी सोलर गणना अनलॉक करें, या असीमित गणनाओं के लिए Premium लें।",
+      ogDescription: "पूरी सोलर गणना और PDF रिपोर्ट अनलॉक करें।",
     },
   },
   months: {
@@ -653,7 +653,7 @@ export const hi = {
     ],
   },
   report: {
-    disclaimer: "The calculation is indicative and is not a quote.",
+    disclaimer: "यह गणना सांकेतिक है और कोई कोटेशन नहीं है।",
     fields: {
       gridConnection: "ग्रिड कनेक्शन",
       gridConnectionValue: "{{voltage}} V, {{phases}}-फेज़",
@@ -808,20 +808,20 @@ export const hi = {
       external: "बाहरी डेटा स्रोत",
     },
     generated: "जनरेट किया गया",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "अपने इंस्टॉलर के साथ इन बातों पर चर्चा करें",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "साइट पर छत की दिशा, झुकाव और किसी भी छाया की पुष्टि करें।",
+      "ध्यान दें कि छत की वास्तविक स्थितियों, जैसे चिमनी, वेंट, या सीमित उपयोग योग्य क्षेत्र के आधार पर सिस्टम का आकार समायोजित करना पड़ सकता है।",
+      "अपने ग्रिड ऑपरेटर के साथ मुख्य फ़्यूज़ और कनेक्शन शर्तों की जांच करें।",
+      "पुष्टि करें कि {{acPower}} की इनवर्टर पावर आपके बिजली कनेक्शन के लिए उपयुक्त है।",
+      "इंस्टॉलर के अनुमानित वार्षिक उत्पादन की तुलना इस रिपोर्ट के {{production}} से करें। स्थितियों और गणना पद्धति के आधार पर अनुमान भिन्न हो सकते हैं।",
+      "पूछें कि क्या भविष्य में बैटरी स्टोरेज के लिए इनवर्टर तैयार है, अगर यह प्रासंगिक हो सकता है।",
+      "सुनिश्चित करें कि डिस्ट्रीब्यूशन बोर्ड और मौजूदा बिजली की स्थापना इंस्टॉलेशन के लिए उपयुक्त हैं।",
+      "कोटेशन में क्या शामिल है, जैसे केबलिंग, माउंटिंग, सुरक्षा और अन्य इंस्टॉलेशन सामग्री, इसकी समीक्षा करें।",
+      "पूछें कि इंस्टॉलेशन के दौरान छत को किसी भी नुकसान के लिए कौन जिम्मेदार है।",
+      "उत्पादन निगरानी, वारंटी और सेवा के बारे में जानकारी लें।",
+      "इस रिपोर्ट की साइज़िंग के आधार पर कोटेशन मांगें: {{kwp}} · {{production}}.",
+      "कोटेशन की कीमत की तुलना इस रिपोर्ट के गणना किए गए {{investment}} स्तर से करें। उपकरण, इंस्टॉलेशन की स्थितियों और डिलीवरी में क्या शामिल है, इसके आधार पर कीमत भिन्न हो सकती है।",
     ],
     faqTitle: "अक्सर पूछे जाने वाले सवाल",
     faqItems: [

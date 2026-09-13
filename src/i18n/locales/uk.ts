@@ -60,8 +60,8 @@ export const uk = {
     error: "Не вдалося виконати пошук адреси.",
     info: "Адреса використовується лише для розрахунку сонячного випромінювання у вашому місці розташування.",
     infoLabel: "Більше інформації про адресу",
-    zoomIn: "Zoom in",
-    zoomOut: "Zoom out",
+    zoomIn: "Наблизити",
+    zoomOut: "Віддалити",
   },
   premium: {
     title: "Преміум",
@@ -112,8 +112,8 @@ export const uk = {
       required: "Введіть своє споживання електроенергії, щоб продовжити розрахунок.",
       tooLow: "Це виглядає занадто низьким. Введіть щонайменше {{min}} kWh на рік.",
       tooHigh: "Це виглядає занадто високим. Введіть щонайбільше {{max}} kWh на рік.",
-      monthOutOfRange: "One month is far higher than the others. Check your monthly values before continuing.",
-      monthUneven: "One month stands out from the rest. Double-check it if that is not correct.",
+      monthOutOfRange: "Один місяць значно перевищує інші. Перевірте свої місячні значення, перш ніж продовжити.",
+      monthUneven: "Один місяць вирізняється серед інших. Перевірте його ще раз, якщо це не так.",
     },
     shape: {
       question: "Як зазвичай розподіляється ваше споживання електроенергії протягом року?",
@@ -186,7 +186,7 @@ export const uk = {
   fuse: {
     gridAssumptionDynamic: "Розрахунок базується на {{service}} {{voltage}}.",
     capacity: {
-      inputUnit: "Unit",
+      inputUnit: "Одиниця",
       otherLabel: "Введіть значення",
       invalid: "Введіть значення від {{min}} до {{max}} {{unit}}.",
       amperage: {
@@ -225,7 +225,7 @@ export const uk = {
       summary: "{{phases}} · {{voltage}} В · {{frequency}} Гц",
       phases: "Фази",
       serviceType: "Тип підключення",
-      twoPhase: "2-phase (phase-to-phase)",
+      twoPhase: "Двофазна (фаза-фаза)",
       splitPhase: "Розділена фаза",
       unverifiedHint:
         "У нас немає перевірених значень мережі для цієї країни. Будь ласка, звірте свої дані з лічильником або щитком.",
@@ -269,8 +269,8 @@ export const uk = {
       daytime: "Вдень",
       daytimeHelp: "Багато споживання, коли сонце виробляє.",
     },
-    revisionUsed: "Your change is included in your purchase. {{left}} change(s) left within 24 hours.",
-    revisionsLeft: "You can change this calculation {{left}} more time(s) within 24 hours of purchase.",
+    revisionUsed: "Ваша зміна включена у вашу покупку. Залишилося {{left}} зміна(и) протягом 24 годин.",
+    revisionsLeft: "Ви можете змінити цей розрахунок ще {{left}} раз(и) протягом 24 годин після покупки.",
     calculationUnavailable:
       "Не вдалося завершити розрахунок. Перевірте дані даху та спробуйте ще раз.",
     connection: {
@@ -626,10 +626,10 @@ export const uk = {
       ogDescription: "Розрахований розмір вашої сонячної системи з PDF-звітом.",
     },
     paywall: {
-      title: "Unlock your calculation - Mr. Solar Doc",
+      title: "Розблокуйте свій розрахунок - Mr. Solar Doc",
       description:
-        "Unlock your solar calculation with a one-time purchase, or get Premium for unlimited calculations.",
-      ogDescription: "Unlock the full solar calculation and the PDF report.",
+        "Розблокуйте свій сонячний розрахунок за одноразову покупку або отримайте Premium для необмеженої кількості розрахунків.",
+      ogDescription: "Розблокуйте повний сонячний розрахунок та звіт у форматі PDF.",
     },
   },
   months: {
@@ -805,20 +805,20 @@ export const uk = {
       external: "Зовнішнє джерело даних",
     },
     generated: "Створено",
-    installerChecklistTitle: "To go through with your installer",
+    installerChecklistTitle: "Що обговорити з монтажником",
     installerChecklistItems: [
-      "Confirm the roof's orientation, tilt and any shading on site.",
-      "Note that the system size may need to be adjusted based on the roof's actual conditions, such as chimneys, vents, or limited usable area.",
-      "Check the main fuse and connection terms with your grid operator.",
-      "Confirm that the inverter power of {{acPower}} suits your electrical connection.",
-      "Compare the installer's estimated annual production with this report's {{production}}. Estimates can differ depending on conditions and calculation method.",
-      "Ask whether the inverter is prepared for future battery storage, if that may become relevant.",
-      "Make sure the distribution board and the existing electrical installation are suitable for the installation.",
-      "Go through what is included in the quote, for example cabling, mounting, protection and other installation material.",
-      "Ask who is responsible for any damage to the roof during the installation.",
-      "Go through production monitoring, warranties and service.",
-      "Request a quote based on this report's sizing: {{kwp}} · {{production}}.",
-      "Compare the quoted price with this report's calculated level of {{investment}}. The price can differ depending on equipment, installation conditions and what is included in the delivery.",
+      "Підтвердіть на місці орієнтацію, нахил даху та наявність затінення.",
+      "Врахуйте, що розмір системи може потребувати коригування залежно від реальних умов даху, таких як димоходи, вентиляційні отвори або обмежена корисна площа.",
+      "Перевірте головний запобіжник і умови підключення з вашим оператором мережі.",
+      "Переконайтеся, що потужність інвертора {{acPower}} відповідає вашому електричному підключенню.",
+      "Порівняйте оцінену монтажником річну генерацію з показником {{production}} у цьому звіті. Оцінки можуть відрізнятися залежно від умов і методу розрахунку.",
+      "Запитайте, чи готовий інвертор до майбутнього підключення накопичувача енергії, якщо це може бути актуальним.",
+      "Переконайтеся, що розподільний щит і наявна електропроводка підходять для встановлення.",
+      "Уточніть, що входить у комерційну пропозицію, наприклад кабелі, кріплення, захист та інші монтажні матеріали.",
+      "Запитайте, хто несе відповідальність за будь-яке пошкодження даху під час монтажу.",
+      "Обговоріть моніторинг виробництва, гарантії та обслуговування.",
+      "Запросіть комерційну пропозицію на основі розрахунку цього звіту: {{kwp}} · {{production}}.",
+      "Порівняйте запропоновану ціну з розрахованим у цьому звіті рівнем інвестицій {{investment}}. Ціна може відрізнятися залежно від обладнання, умов монтажу та обсягу поставки.",
     ],
     faqTitle: "Часті запитання",
     faqItems: [
