@@ -11,3 +11,7 @@
 ## Avgränsad profilrättning
 - [ ] Bevara ursprung, hantera äldre osäkra månader och skilj manuell upplysning från gräns.
 - [ ] Uppdatera 29 språk och verifiera beräkning, sparande och rapport. Ingen publicering.
+
+## Separat timjämförelse
+- [ ] Timmodell, gemensam PVGIS-hämtning och separat fyrprofilsväljare.
+- [ ] Regressionstester, jämförelsetabell och dokumenterade tidsantaganden.

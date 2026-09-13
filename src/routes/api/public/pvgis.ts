@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { z } from "zod";
 
 import { pvgisProvider } from "@/lib/pvgis.functions";
-import { clippingProvider } from "@/lib/pvgis-clipping.functions";
+import { clippingProvider, hourlySeriesProvider } from "@/lib/pvgis-clipping.functions";
 import { isNativeAppOrigin } from "@/config/native-backend";
 
 const PVGIS_API_VERSION = "2026-09-02.1";
@@ -18,7 +18,7 @@ const querySchema = z.discriminatedUnion("mode", [
     tilt: z.coerce.number().min(0).max(90).optional(),
   }),
   z.object({
-    mode: z.literal("clipping"),
+    mode: z.enum(["clipping", "hourly"]),
     latitude: z.coerce.number().min(-90).max(90),
     longitude: z.coerce.number().min(-180).max(180),
     azimuth: z.coerce.number().min(-180).max(180).optional(),
@@ -75,9 +75,10 @@ export const Route = createFileRoute("/api/public/pvgis")({
           );
         }
 
-        if (parsed.data.mode === "clipping") {
+        if (parsed.data.mode === "clipping" || parsed.data.mode === "hourly") {
           try {
-            const clipping = await clippingProvider({
+            const provider = parsed.data.mode === "hourly" ? hourlySeriesProvider : clippingProvider;
+            const clipping = await provider({
               latitude: parsed.data.latitude,
               longitude: parsed.data.longitude,
               azimuth: parsed.data.azimuth ?? null,
