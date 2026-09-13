@@ -235,32 +235,86 @@ const WINANSI_FALLBACK: Record<string, string> = {
   Ľ: "L",
 };
 
-export function pdfText(value: string): string {
-  return value
+/**
+ * Text sanitation for the WinAnsi core fonts. With an embedded Unicode font
+ * (Greek/Cyrillic reports) only the few symbols that are genuinely absent from
+ * the subset are replaced — the letters themselves are kept intact.
+ */
+export function pdfText(value: string, unicode = false): string {
+  const base = value
     .replace(/\u2212/g, "-")
     .replace(/[\u202f\u2009]/g, "\u00a0")
     // Maths symbols outside WinAnsi render as stray quotes in Helvetica.
     .replace(/\u221a3/g, "1,73")
-    .replace(/\u221a/g, "sqrt")
-    .replace(/[^\u0000-\u00ff]/g, (char) => WINANSI_FALLBACK[char] ?? char);
+    .replace(/\u221a/g, "sqrt");
+  if (unicode) return base;
+  return base.replace(/[^\u0000-\u00ff]/g, (char) => WINANSI_FALLBACK[char] ?? char);
 }
 
+/** Scripts that need a bundled Unicode font instead of the WinAnsi core fonts. */
+const GREEK_OR_CYRILLIC = /[\u0370-\u03ff\u1f00-\u1fff\u0400-\u052f]/;
+/** Scripts whose correct rendering needs complex-text shaping jsPDF cannot do. */
+const UNSHAPABLE_SCRIPT = /[\u0900-\u097f\u0600-\u06ff\u0590-\u05ff]/;
+
+export function reportNeedsUnicodeFont(text: string): boolean {
+  return GREEK_OR_CYRILLIC.test(text);
+}
+
+/**
+ * jsPDF draws glyph by glyph without shaping, so Devanagari (and other complex
+ * scripts) would come out reordered and unjoined even with full glyph coverage.
+ * Such a report is written in English instead of printing malformed text.
+ */
+export function reportLanguage(language: string): string {
+  return UNSHAPABLE_SCRIPT.test(language) || /^(hi|he|ar|fa|ur|bn|ta|te|th|my|km)\b/.test(language)
+    ? "en"
+    : language;
+}
+
+const UNICODE_FONT = "NotoSans";
+
+/** Embeds the bundled subset; nothing is fetched at export time. */
+function registerUnicodeFont(doc: jsPDF) {
+  doc.addFileToVFS("NotoSans-Regular.ttf", NOTO_SANS_REGULAR_BASE64);
+  doc.addFont("NotoSans-Regular.ttf", UNICODE_FONT, "normal");
+  doc.addFileToVFS("NotoSans-Bold.ttf", NOTO_SANS_BOLD_BASE64);
+  doc.addFont("NotoSans-Bold.ttf", UNICODE_FONT, "bold");
+}
 
 class ReportDocument {
   readonly doc: jsPDF;
   private y = PAGE.margin;
+  private readonly unicode: boolean;
 
-  constructor() {
+  constructor(unicode = false) {
     this.doc = new jsPDF({ unit: "mm", format: "a4" });
+    this.unicode = unicode;
+    if (unicode) registerUnicodeFont(this.doc);
     // Central text sanitation: core PDF fonts lack a few Unicode glyphs.
     const drawText = this.doc.text.bind(this.doc);
     (this.doc as unknown as { text: unknown }).text = ((value: unknown, ...rest: unknown[]) =>
       (drawText as (...args: unknown[]) => unknown)(
-        Array.isArray(value) ? value.map((line) => pdfText(String(line))) : pdfText(String(value)),
+        Array.isArray(value)
+          ? value.map((line) => pdfText(String(line), unicode))
+          : pdfText(String(value), unicode),
         ...rest,
       )) as unknown as jsPDF["text"];
     this.useFont("normal");
   }
+
+  /**
+   * One font switch for the whole report. The embedded subset ships regular and
+   * bold only, so italic falls back to regular there — same size and colour, so
+   * the layout is identical.
+   */
+  private useFont(style: "normal" | "bold" | "italic") {
+    if (this.unicode) {
+      this.doc.setFont(UNICODE_FONT, style === "bold" ? "bold" : "normal");
+      return;
+    }
+    this.doc.setFont("helvetica", style);
+  }
+
 
   private ensureSpace(height: number) {
     if (this.y + height > PAGE.height - PAGE.margin) {
