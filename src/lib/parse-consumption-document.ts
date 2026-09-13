@@ -99,8 +99,12 @@ function periodForLine(line: string): { index: number; year: number | null; rest
   }
   const byName = MONTH_PATTERNS.findIndex((pattern) => pattern.test(line));
   const namedYear = byName === -1 ? null : Number(line.match(/\b(?:19|20)\d{2}\b/)?.[0] ?? "") || null;
-  return { index: byName, year: namedYear, rest: line };
+  // Drop the date's own year token from the value scan, so a month value that
+  // happens to look like a year ("Jan 2025;2100") is not mistaken for one.
+  const rest = namedYear === null ? line : line.replace(/\b(?:19|20)\d{2}\b/, " ");
+  return { index: byName, year: namedYear, rest };
 }
+
 
 // Grouped digits ("1 234,5", "1.234,5") or a plain number — never merging two
 // separate numbers such as "2025 336,45" into one.
