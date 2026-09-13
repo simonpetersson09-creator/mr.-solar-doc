@@ -85,7 +85,7 @@ function periodForLine(line: string): { index: number; year: number | null; rest
   if (yearFirst) {
     return {
       index: Number(yearFirst[2]) - 1,
-      year: Number(`${yearFirst[1]}${yearFirst[0].match(/(19|20)(\d{2})/)?.[2] ?? ""}`) || null,
+      year: Number(yearFirst[0].match(/(?:19|20)\d{2}/)?.[0] ?? "") || null,
       rest: line.slice(yearFirst[0].length),
     };
   }
