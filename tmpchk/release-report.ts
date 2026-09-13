@@ -48,11 +48,11 @@ function labelsFor(language: string): ReportLabels {
     fields: proxy(obj("report.fields"), "report.fields"),
     faqItems: t("report.faqItems", { returnObjects: true }),
     installerChecklistItems: t("report.installerChecklistItems", { returnObjects: true }),
-    loadProfile: { label: t("result.loadProfileLabel"), value: t("result.loadProfile.mixed"), note: null },
+    loadProfile: { label: t("result.loadProfileLabel"), value: t("result.loadProfile.mixed"), note: t("result.loadProfileNote") },
     selfConsumptionMode: { label: t("result.selfConsumptionModeLabel"), value: t("result.selfConsumptionModeAuto"), note: null },
-    rationale: null,
-    shadingNote: null,
-    clippingNote: null,
+    rationale: t("result.reason.profileNormal"),
+    shadingNote: t("result.shadingNotIncludedNote"),
+    clippingNote: t("result.clippingNotModelledNote"),
     disclaimer: t("report.disclaimer"),
   };
   return proxy(base, "report") as unknown as ReportLabels;
