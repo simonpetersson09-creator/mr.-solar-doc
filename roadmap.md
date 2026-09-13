@@ -15,3 +15,4 @@
 ## Separat timjämförelse
 - [x] Separat timmodell, gemensam PVGIS-cache och fyrprofilsväljare.
 - [x] Regressionstester, jämförelsetabell och dokumenterade UTC-månadsantaganden.
+- [x] Begripliga schablonkurvor med diagram, timtabell och exakt dygnsnormalisering.

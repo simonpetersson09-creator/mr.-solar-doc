@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useTranslation } from 'react-i18next';
 import tzLookup from 'tz-lookup';
 import { Button } from './ui/button';
+import { HourlyProfileOverview } from './HourlyProfileOverview';
 import { getHourlySeries } from '@/services/hourly-service';
 import { productionHours, syntheticHours, compareHourly, type HourlyProfile } from '@/lib/calc/hourly-comparison';
 import { estimateMonthlyConsumption } from '@/lib/calc/consumption-shape';
@@ -28,7 +29,8 @@ export function HourlyComparison({result}:{result:CalculationResult}){
  <Button variant="outline" onClick={()=>setOpen(!open)} aria-expanded={open}>{t('hourly.title')}</Button>
  {open&&<><p className="text-sm text-muted-foreground">{t('hourly.note')}</p>
  <div className="grid grid-cols-2 gap-2">{(['evening','mixed','daytime','uniform'] as const).map(p=><Button className="h-auto min-h-10 whitespace-normal" key={p} variant={p===profile?'default':'outline'} aria-pressed={p===profile} onClick={()=>setProfile(p)}>{p==='uniform'?t('hourly.uniform'):t(`result.loadProfile.${p}`)}</Button>)}</div>
- {profile==='uniform'&&<p className="text-sm">{t('hourly.uniformHelp')}</p>}
+ <p className="text-sm text-muted-foreground">{t(`hourly.profileDescription.${profile}`)}</p>
+ <HourlyProfileOverview selected={profile}/>
  {query.isPending&&<p role="status">{t('common.loading')}</p>}
  {(query.isError||(comparison&&'error'in comparison))&&<p role="alert">{t('hourly.error')}</p>}
  {comparison&&!('error'in comparison)&&<><p className="text-xs text-muted-foreground">{t('hourly.time',{zone:comparison.zone,year:query.data?.year})}</p>
