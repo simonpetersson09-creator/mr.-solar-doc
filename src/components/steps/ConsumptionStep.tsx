@@ -502,7 +502,11 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
               ))}
             </div>
             <div className="flex items-baseline justify-between rounded-xl bg-white/10 px-3 py-2">
-              <p className="text-xs text-white/60">{t("consumption.total")}</p>
+              <p className="text-xs text-white/60">
+                {monthlyComplete
+                  ? t("consumption.total")
+                  : t("consumption.upload.partialSum", { count: monthlyFilledCount })}
+              </p>
               <p className="text-base font-bold text-white">
                 {formatNumber(monthlyTotal, locale)}{" "}
                 <span className="text-[11px] font-normal text-white/60">{t("units.kwhPerYear")}</span>
@@ -511,9 +515,6 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
           </div>
         ) : null}
 
-        {((useMonthly && monthlyTotal > 0) || (!useMonthly && annual !== "")) && !valid ? (
-          <p className="text-xs text-red-200">{t("consumption.invalid")}</p>
-        ) : null}
       </div>
 
       {showEstimatedProfile && estimatedMonthly ? (
