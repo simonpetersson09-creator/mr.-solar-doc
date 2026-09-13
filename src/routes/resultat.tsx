@@ -748,22 +748,12 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
 
         {exportError ? <p className="text-sm text-destructive">{t("result.pdfError")}</p> : null}
 
-        {/* Preview fallback: the generated report shown inline, plus a real link
-            the user can click to open it in a tab. */}
+        {/* Preview fallback: the report itself, rendered in-app as a data: URL.
+            The embedded viewer carries its own download control; a top-level
+            link to a data: URL is blocked by the browser, so none is offered. */}
         {reportUrl ? (
-          <div className="mt-4 flex flex-col gap-2">
-            <div className="overflow-hidden rounded-xl border border-border bg-card">
-              <iframe
-                src={reportUrl}
-                title={t("result.downloadPdf")}
-                className="h-[70vh] w-full"
-              />
-            </div>
-            <Button asChild variant="outline" className="w-full" size="lg">
-              <a href={reportUrl} target="_blank" rel="noopener noreferrer">
-                <Download className="size-4" /> {t("result.downloadPdf")}
-              </a>
-            </Button>
+          <div className="mt-4 overflow-hidden rounded-xl border border-border bg-card">
+            <iframe src={reportUrl} title={t("result.downloadPdf")} className="h-[70vh] w-full" />
           </div>
         ) : null}
 

@@ -98,14 +98,23 @@ export async function shareFile(request: ShareFileRequest): Promise<ShareOutcome
     }
   }
 
-  const url = URL.createObjectURL(request.blob);
-
-  // Inside a sandboxed iframe (the Lovable preview) both an <a download> click and
-  // a popup are silently dropped, so the caller has to render the file in-app.
+  // Inside a sandboxed iframe (the Lovable preview) an <a download> click and a
+  // popup are both dropped, and a blob: URL cannot be loaded from the sandboxed
+  // document either, so the file is handed back as a data: URL the caller can
+  // render in-app.
   const inIframe = window.self !== window.top;
   if (inIframe) {
-    return { status: "blocked", url };
+    const dataUrl = await new Promise<string>((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(String(reader.result));
+      reader.onerror = () => reject(new Error("read-failed"));
+      reader.readAsDataURL(request.blob);
+    });
+    return { status: "blocked", url: dataUrl };
   }
+
+  const url = URL.createObjectURL(request.blob);
+
 
   const anchor = document.createElement("a");
   anchor.href = url;
