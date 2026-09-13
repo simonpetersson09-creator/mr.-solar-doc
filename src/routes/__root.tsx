@@ -148,8 +148,9 @@ const useIsomorphicLayoutEffect =
   typeof window === "undefined" ? useEffect : useLayoutEffect;
 
 function RootShell({ children }: { children: ReactNode }) {
+  const language = normaliseLanguage(i18n.language);
   return (
-    <html lang="en">
+    <html lang={language} dir={isRtlLanguage(language) ? "rtl" : "ltr"}>
       <head>
         <HeadContent />
       </head>
