@@ -36,32 +36,49 @@ export function productionHours(samples: HourlyPowerSample[], year: number, inst
  });
  validateYear(hours,year); return hours;
 }
-/** Monthly energy is explicitly UTC-calendar energy; only curve hour uses local civil time.
- * This avoids fabricated boundary hours. DST repeated hours remain distinct UTC instants. */
+/** Local civil time drives both the month bucket and the daily curve hour.
+ * Matching between series always uses unambiguous UTC instants, so a missing
+ * spring-forward hour simply does not exist and a repeated autumn hour stays two
+ * distinct instants: no energy is lost and none is counted twice.
+ * The UTC-year window's local boundary hours (local December of the previous
+ * year / local January of the next) are folded into the same-named month bucket:
+ * an explicit cyclic-year assumption that preserves every hour's energy. */
+export function localMonthHour(zone: string): (timestamp: number) => { month: number; hour: number } {
+ const formatter = new Intl.DateTimeFormat('en-GB',{timeZone:zone,month:'2-digit',hour:'2-digit',hourCycle:'h23'});
+ return (timestamp) => {
+  const parts = formatter.formatToParts(new Date(timestamp));
+  const month = Number(parts.find(p=>p.type==='month')?.value);
+  const hour = Number(parts.find(p=>p.type==='hour')?.value);
+  if(!Number.isInteger(month)||month<1||month>12||!Number.isInteger(hour)||hour<0||hour>23)throw new Error('invalid-timezone-mapping');
+  return {month:month-1,hour};
+ };
+}
 export function syntheticHours(months: readonly (number|null)[], year: number, zone: string, profile: HourlyProfile): EnergyHour[] {
  if (months.length!==12 || months.some(x=>x===null || !Number.isFinite(x) || x<0)) throw new Error('incomplete-monthly-consumption');
- const formatter = new Intl.DateTimeFormat('en-GB',{timeZone:zone,hour:'2-digit',hourCycle:'h23'});
- const rows: EnergyHour[]=[]; const totals=Array<number>(12).fill(0);
+ const localOf = localMonthHour(zone);
+ const rows: {timestamp:number;month:number;kwh:number}[]=[]; const totals=Array<number>(12).fill(0);
  for(let timestamp=Date.UTC(year,0,1);timestamp<Date.UTC(year+1,0,1);timestamp+=HOUR){
-  const month=new Date(timestamp).getUTCMonth(); const hour=Number(formatter.format(new Date(timestamp)));
+  const {month,hour}=localOf(timestamp);
   const weight=DAILY_WEIGHTS[profile][hour] ?? 0;
-  totals[month]=(totals[month]??0)+weight; rows.push({timestamp,kwh:weight});
+  totals[month]=(totals[month]??0)+weight; rows.push({timestamp,month,kwh:weight});
  }
- return rows.map(row=>{const m=new Date(row.timestamp).getUTCMonth();return {...row,kwh:row.kwh*(months[m]??0)/(totals[m]??1)};});
+ return rows.map(row=>({timestamp:row.timestamp,kwh:row.kwh*(months[row.month]??0)/(totals[row.month]??1)}));
 }
-export function calculateHourly(production: EnergyHour[], consumption: EnergyHour[], year: number) {
+export function calculateHourly(production: EnergyHour[], consumption: EnergyHour[], year: number, zone: string) {
  const p=validateYear(production,year), c=validateYear(consumption,year);
+ const localOf=localMonthHour(zone);
  const months=Array.from({length:12},()=>({production:0,consumption:0,self:0,import:0,export:0}));
- for(const [time,pv] of p){const load=c.get(time);if(load===undefined)throw new Error('unmatched-hour');const m=months[new Date(time).getUTCMonth()];if(!m)throw new Error('invalid-month');const self=Math.min(pv,load);m.production+=pv;m.consumption+=load;m.self+=self;m.import+=load-self;m.export+=pv-self;}
+ for(const [time,pv] of p){const load=c.get(time);if(load===undefined)throw new Error('unmatched-hour');const m=months[localOf(time).month];if(!m)throw new Error('invalid-month');const self=Math.min(pv,load);m.production+=pv;m.consumption+=load;m.self+=self;m.import+=load-self;m.export+=pv-self;}
  const annual=months.reduce((a,m)=>({production:a.production+m.production,consumption:a.consumption+m.consumption,self:a.self+m.self,import:a.import+m.import,export:a.export+m.export}),{production:0,consumption:0,self:0,import:0,export:0});
  const overlap=months.reduce((s,m)=>s+Math.min(m.production,m.consumption),0);
  if(annual.self>overlap+Math.max(1e-7,overlap*1e-10))throw new Error('monthly-overlap-exceeded');
  return {months,...annual,selfConsumptionRate:annual.production>0?annual.self/annual.production:0,selfSufficiencyRate:annual.consumption>0?annual.self/annual.consumption:0,overlap};
 }
-export function compareHourly(production: EnergyHour[], consumption: EnergyHour[], year: number, profile: HourlyProfile){
- const hourly=calculateHourly(production,consumption,year);
+export function compareHourly(production: EnergyHour[], consumption: EnergyHour[], year: number, profile: HourlyProfile, zone: string){
+ const hourly=calculateHourly(production,consumption,year,zone);
  if(profile==='uniform')return {hourly,legacy:null};
  const estimate=resolveSelfConsumptionShare({annualProductionKwh:hourly.production,annualConsumptionKwh:hourly.consumption,monthlyProductionKwh:hourly.months.map(m=>m.production),monthlyConsumptionKwh:hourly.months.map(m=>m.consumption),profileClass:profile});
  const split=splitProduction(hourly.production,estimate.share,hourly.consumption,hourly.overlap);
  return {hourly,legacy:{self:split.selfConsumptionKwh,rate:hourly.production>0?split.selfConsumptionKwh/hourly.production:0,import:hourly.consumption-split.selfConsumptionKwh,export:split.exportedKwh}};
 }
+

@@ -20,7 +20,7 @@ export function HourlyComparison({result}:{result:CalculationResult}){
    const zone=tzLookup(request.latitude,request.longitude);
    const months=result.consumption.monthlyKwh??estimateMonthlyConsumption(result.consumption.annualKwh,result.consumption.shape??'default',getMarketConfig(result.location.countryCode).defaultConsumptionWeights,result.location.latitude);
    const production=productionHours(query.data.hourly,query.data.year,result.installedKwp,result.inverterKw);
-   return {...compareHourly(production,syntheticHours(months,query.data.year,zone,profile),query.data.year,profile),zone};
+   return {...compareHourly(production,syntheticHours(months,query.data.year,zone,profile),query.data.year,profile,zone),zone};
   }catch{return {error:true};}
  },[query.data,result,profile,request.latitude,request.longitude]);
  const fmt=(v:number)=>v.toLocaleString(i18n.language,{maximumFractionDigits:1});
