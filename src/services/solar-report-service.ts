@@ -248,12 +248,16 @@ export function pdfText(value: string, unicode = false): string {
   const base = value
     .replace(/\u2212/g, "-")
     .replace(/[\u202f\u2009]/g, "\u00a0")
+    // Bidi controls (from RTL locales' Intl output) are invisible on screen but
+    // jsPDF has no bidi engine, so they leak in as stray glyphs.
+    .replace(/[\u200e\u200f\u061c\u2066-\u2069]/g, "")
     // Maths symbols outside WinAnsi render as stray quotes in Helvetica.
     .replace(/\u221a3/g, "1,73")
     .replace(/\u221a/g, "sqrt");
   if (unicode) return base;
   return base.replace(/[^\u0000-\u00ff]/g, (char) => WINANSI_FALLBACK[char] ?? char);
 }
+
 
 /** Scripts that need a bundled Unicode font instead of the WinAnsi core fonts. */
 const GREEK_OR_CYRILLIC = /[\u0370-\u03ff\u1f00-\u1fff\u0400-\u052f]/;
@@ -263,6 +267,57 @@ const UNSHAPABLE_SCRIPT = /[\u0900-\u097f\u0600-\u06ff\u0590-\u05ff]/;
 export function reportNeedsUnicodeFont(text: string): boolean {
   return GREEK_OR_CYRILLIC.test(text);
 }
+
+/**
+ * Number/currency formatting locale for the report. When the report falls back
+ * to English (Hebrew, Hindi, Arabic …) the formatting locale follows it, keeping
+ * the customer's region. Right-to-left locales otherwise emit bidi controls that
+ * jsPDF cannot lay out, which visually reverses amounts ("SEK" → "KES").
+ * Presentation only: the numbers themselves are untouched.
+ */
+export function reportLocale(locale: string, language: string): string {
+  if (reportLanguage(language) === language) return locale;
+  const region = locale.split("-").slice(1).join("-");
+  return region ? `en-${region}` : "en";
+}
+
+/**
+ * Characters the bundled subset (Latin, Greek, Cyrillic) plus the core fonts can
+ * actually draw. Everything else — Devanagari, Hebrew, Arabic, CJK — would come
+ * out as stray glyphs.
+ */
+const UNRENDERABLE_LETTER =
+  /[^\p{Script=Latin}\p{Script=Greek}\p{Script=Cyrillic}\p{Script=Common}\p{Script=Inherited}]/u;
+
+/** Same place, language-neutral: four decimals is roughly 11 m. */
+function coordinateLabel(latitude: number, longitude: number): string {
+  return `${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+}
+
+/**
+ * The address is customer data in whatever script the map search returned, so a
+ * Hindi or Hebrew street name would be unreadable even in the English fallback
+ * report. Address parts the PDF can render are kept verbatim; when any part
+ * cannot be rendered the coordinates of the very same saved location are added
+ * (or used alone), so the report never shows broken glyphs and never names a
+ * different place. Works offline: no lookup, nothing fetched at export time.
+ */
+export function reportAddress(
+  address: string,
+  latitude: number,
+  longitude: number,
+): string {
+  const parts = address
+    .split(",")
+    .map((part) => part.trim())
+    .filter((part) => part.length > 0);
+  const renderable = parts.filter((part) => !UNRENDERABLE_LETTER.test(part));
+  const coordinates = coordinateLabel(latitude, longitude);
+  if (renderable.length === parts.length && parts.length > 0) return parts.join(", ");
+  if (renderable.length === 0) return coordinates;
+  return `${renderable.join(", ")} (${coordinates})`;
+}
+
 
 /**
  * jsPDF draws glyph by glyph without shaping, so Devanagari (and other complex
@@ -866,16 +921,26 @@ export function generateReportBlob(options: ReportOptions): Blob {
   /** S6: unverified grid assumptions follow the result into the PDF. */
   const gridUnverified = result.grid.profileStatus !== "verified";
   const currency = result.economics.currency;
+  // The address travels with the report, so a Greek or Cyrillic street name must
+  // also switch on the bundled subset — not just the translated labels.
+  const headerAddress = reportAddress(
+    result.location.address,
+    result.location.latitude,
+    result.location.longitude,
+  );
   // Greek and Cyrillic reports use the bundled Unicode subset; Latin reports keep
   // the core fonts so their layout is untouched.
-  const report = new ReportDocument(reportNeedsUnicodeFont(JSON.stringify(labels)));
+  const report = new ReportDocument(
+    reportNeedsUnicodeFont(`${JSON.stringify(labels)}${headerAddress}`),
+  );
 
   report.header(
     labels.title,
     labels.appName,
-    result.location.address,
+    headerAddress,
     `${labels.generated}: ${isoDateOnly(result.calculatedAt)}`,
   );
+
 
   const investmentValue = result.investment.quotePrice ?? result.investment.maxInvestmentRounded;
   const paybackValue =
