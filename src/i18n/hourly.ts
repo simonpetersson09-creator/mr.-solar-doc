@@ -9,7 +9,7 @@ export const hourlyTranslations = {
     "new": "Timmodell",
     "import": "Import",
     "sufficiency": "Självförsörjning",
-    "time": "PVGIS {{year}}. Månader räknas i UTC; dygnskurvan följer {{zone}} inklusive sommartid. Båda modellerna använder samma energi, inte den ordinarie långtidsmedelproduktionen."
+    "time": "PVGIS {{year}}. Månader och dygnskurva följer {{zone}} inklusive sommartid. Båda modellerna använder samma energi, inte den ordinarie långtidsmedelproduktionen."
   },
   "en": {
     "title": "Compare hourly model",
@@ -21,7 +21,7 @@ export const hourlyTranslations = {
     "new": "Hourly model",
     "import": "Import",
     "sufficiency": "Self-sufficiency",
-    "time": "PVGIS {{year}}. Months use UTC; the daily curve follows {{zone}}, including daylight saving time. Both models use the same energy, not the standard long-term mean production."
+    "time": "PVGIS {{year}}. Months and the daily curve follow {{zone}}, including daylight saving time. Both models use the same energy, not the standard long-term mean production."
   },
   "fi": {
     "title": "Vertaa tuntimallia",
@@ -33,7 +33,7 @@ export const hourlyTranslations = {
     "new": "Tuntimalli",
     "import": "Tuonti",
     "sufficiency": "Omavaraisuus",
-    "time": "PVGIS {{year}}. Kuukaudet lasketaan UTC-ajassa; vuorokausikäyrä noudattaa aikavyöhykettä {{zone}} kesäaika mukaan lukien. Molemmat mallit käyttävät samaa energiaa, ei pitkän aikavälin keskituotantoa."
+    "time": "PVGIS {{year}}. Kuukaudet ja vuorokausikäyrä noudattavat aikavyöhykettä {{zone}} kesäaika mukaan lukien. Molemmat mallit käyttävät samaa energiaa, ei pitkän aikavälin keskituotantoa."
   },
   "da": {
     "title": "Sammenlign timemodel",
@@ -45,7 +45,7 @@ export const hourlyTranslations = {
     "new": "Timemodel",
     "import": "Import",
     "sufficiency": "Selvforsyning",
-    "time": "PVGIS {{year}}. Måneder bruger UTC; døgnkurven følger {{zone}} inklusive sommertid. Begge modeller bruger samme energi, ikke den langsigtede gennemsnitsproduktion."
+    "time": "PVGIS {{year}}. Måneder og døgnkurve følger {{zone}} inklusive sommertid. Begge modeller bruger samme energi, ikke den langsigtede gennemsnitsproduktion."
   },
   "de": {
     "title": "Stundenmodell vergleichen",
@@ -57,7 +57,7 @@ export const hourlyTranslations = {
     "new": "Stundenmodell",
     "import": "Import",
     "sufficiency": "Autarkie",
-    "time": "PVGIS {{year}}. Monate verwenden UTC; die Tageskurve folgt {{zone}} einschließlich Sommerzeit. Beide Modelle verwenden dieselbe Energie, nicht die langfristige Durchschnittsproduktion."
+    "time": "PVGIS {{year}}. Monate und Tageskurve folgen {{zone}} einschließlich Sommerzeit. Beide Modelle verwenden dieselbe Energie, nicht die langfristige Durchschnittsproduktion."
   },
   "cs": {
     "title": "Porovnat hodinový model",
@@ -69,7 +69,7 @@ export const hourlyTranslations = {
     "new": "Hodinový model",
     "import": "Import",
     "sufficiency": "Soběstačnost",
-    "time": "PVGIS {{year}}. Měsíce používají UTC; denní křivka sleduje {{zone}} včetně letního času. Oba modely využívají stejnou energii, nikoli dlouhodobou průměrnou produkci."
+    "time": "PVGIS {{year}}. Měsíce i denní křivka sledují {{zone}} včetně letního času. Oba modely využívají stejnou energii, nikoli dlouhodobou průměrnou produkci."
   },
   "pl": {
     "title": "Porównaj model godzinowy",
@@ -81,7 +81,7 @@ export const hourlyTranslations = {
     "new": "Model godzinowy",
     "import": "Import",
     "sufficiency": "Samowystarczalność",
-    "time": "PVGIS {{year}}. Miesiące korzystają z UTC; krzywa dobowa odpowiada strefie {{zone}}, uwzględniając czas letni. Oba modele wykorzystują tę samą energię, a nie długoterminową średnią produkcję."
+    "time": "PVGIS {{year}}. Miesiące i krzywa dobowa odpowiadają strefie {{zone}}, uwzględniając czas letni. Oba modele wykorzystują tę samą energię, a nie długoterminową średnią produkcję."
   },
   "sk": {
     "title": "Porovnať hodinový model",
@@ -93,7 +93,7 @@ export const hourlyTranslations = {
     "new": "Hodinový model",
     "import": "Import",
     "sufficiency": "Sebestačnosť",
-    "time": "PVGIS {{year}}. Mesiace používajú UTC; denná krivka nasleduje {{zone}} vrátane letného času. Oba modely používajú rovnakú energiu, nie dlhodobú priemernú produkciu."
+    "time": "PVGIS {{year}}. Mesiace aj denná krivka nasledujú {{zone}} vrátane letného času. Oba modely používajú rovnakú energiu, nie dlhodobú priemernú produkciu."
   },
   "sl": {
     "title": "Primerjaj urni model",
@@ -105,7 +105,7 @@ export const hourlyTranslations = {
     "new": "Urni model",
     "import": "Uvoz",
     "sufficiency": "Samooskrba",
-    "time": "PVGIS {{year}}. Meseci uporabljajo UTC; dnevna krivulja sledi {{zone}}, vključno s poletnim časom. Oba modela uporabljata isto energijo, ne dolgoročne povprečne proizvodnje."
+    "time": "PVGIS {{year}}. Meseci in dnevna krivulja sledijo {{zone}}, vključno s poletnim časom. Oba modela uporabljata isto energijo, ne dolgoročne povprečne proizvodnje."
   },
   "et": {
     "title": "Võrdle tunnimudelit",
@@ -117,7 +117,7 @@ export const hourlyTranslations = {
     "new": "Tunnimudel",
     "import": "Import",
     "sufficiency": "Enesevarustatus",
-    "time": "PVGIS {{year}}. Kuud kasutavad UTC-d; ööpäevane kõver järgib vööndit {{zone}}, sh suveaega. Mõlemad mudelid kasutavad sama energiat, mitte pikaajalist keskmist toodangut."
+    "time": "PVGIS {{year}}. Kuud ja ööpäevane kõver järgivad vööndit {{zone}}, sh suveaega. Mõlemad mudelid kasutavad sama energiat, mitte pikaajalist keskmist toodangut."
   },
   "lv": {
     "title": "Salīdzināt stundas modeli",
@@ -129,7 +129,7 @@ export const hourlyTranslations = {
     "new": "Stundas modelis",
     "import": "Imports",
     "sufficiency": "Pašnodrošinājums",
-    "time": "PVGIS {{year}}. Mēneši izmanto UTC; diennakts līkne seko {{zone}}, ieskaitot vasaras laiku. Abi modeļi izmanto vienu un to pašu enerģiju, nevis ilgtermiņa vidējo produkciju."
+    "time": "PVGIS {{year}}. Mēneši un diennakts līkne seko {{zone}}, ieskaitot vasaras laiku. Abi modeļi izmanto vienu un to pašu enerģiju, nevis ilgtermiņa vidējo produkciju."
   },
   "lt": {
     "title": "Palyginti valandinį modelį",
@@ -141,7 +141,7 @@ export const hourlyTranslations = {
     "new": "Valandinis modelis",
     "import": "Importas",
     "sufficiency": "Savarankiškumas",
-    "time": "PVGIS {{year}}. Mėnesiai naudoja UTC; paros kreivė atitinka {{zone}}, įskaitant vasaros laiką. Abu modeliai naudoja tą pačią energiją, o ne ilgalaikę vidutinę gamybą."
+    "time": "PVGIS {{year}}. Mėnesiai ir paros kreivė atitinka {{zone}}, įskaitant vasaros laiką. Abu modeliai naudoja tą pačią energiją, o ne ilgalaikę vidutinę gamybą."
   },
   "fr": {
     "title": "Comparer le modèle horaire",
@@ -153,7 +153,7 @@ export const hourlyTranslations = {
     "new": "Modèle horaire",
     "import": "Importation",
     "sufficiency": "Autosuffisance",
-    "time": "PVGIS {{year}}. Les mois utilisent UTC ; la courbe quotidienne suit {{zone}}, y compris l’heure d’été. Les deux modèles utilisent la même énergie, et non la production moyenne à long terme."
+    "time": "PVGIS {{year}}. Les mois et la courbe quotidienne suivent {{zone}}, y compris l’heure d’été. Les deux modèles utilisent la même énergie, et non la production moyenne à long terme."
   },
   "it": {
     "title": "Confronta il modello orario",
@@ -165,7 +165,7 @@ export const hourlyTranslations = {
     "new": "Modello orario",
     "import": "Importazione",
     "sufficiency": "Autosufficienza",
-    "time": "PVGIS {{year}}. I mesi utilizzano UTC; la curva giornaliera segue {{zone}}, inclusa l’ora legale. Entrambi i modelli utilizzano la stessa energia, non la produzione media a lungo termine."
+    "time": "PVGIS {{year}}. I mesi e la curva giornaliera seguono {{zone}}, inclusa l’ora legale. Entrambi i modelli utilizzano la stessa energia, non la produzione media a lungo termine."
   },
   "es": {
     "title": "Comparar modelo horario",
@@ -177,7 +177,7 @@ export const hourlyTranslations = {
     "new": "Modelo horario",
     "import": "Importación",
     "sufficiency": "Autosuficiencia",
-    "time": "PVGIS {{year}}. Los meses utilizan UTC; la curva diaria sigue {{zone}}, incluido el horario de verano. Ambos modelos utilizan la misma energía, no la producción media a largo plazo."
+    "time": "PVGIS {{year}}. Los meses y la curva diaria siguen {{zone}}, incluido el horario de verano. Ambos modelos utilizan la misma energía, no la producción media a largo plazo."
   },
   "pt": {
     "title": "Comparar modelo horário",
@@ -189,7 +189,7 @@ export const hourlyTranslations = {
     "new": "Modelo horário",
     "import": "Importação",
     "sufficiency": "Autossuficiência",
-    "time": "PVGIS {{year}}. Os meses utilizam UTC; a curva diária segue {{zone}}, incluindo o horário de verão. Ambos os modelos utilizam a mesma energia, não a produção média de longo prazo."
+    "time": "PVGIS {{year}}. Os meses e a curva diária seguem {{zone}}, incluindo o horário de verão. Ambos os modelos utilizam a mesma energia, não a produção média de longo prazo."
   },
   "nl": {
     "title": "Uurmodel vergelijken",
@@ -201,7 +201,7 @@ export const hourlyTranslations = {
     "new": "Uurmodel",
     "import": "Import",
     "sufficiency": "Zelfvoorziening",
-    "time": "PVGIS {{year}}. Maanden gebruiken UTC; de dagelijkse curve volgt {{zone}} inclusief zomertijd. Beide modellen gebruiken dezelfde energie, niet de langjarige gemiddelde productie."
+    "time": "PVGIS {{year}}. Maanden en de dagelijkse curve volgen {{zone}} inclusief zomertijd. Beide modellen gebruiken dezelfde energie, niet de langjarige gemiddelde productie."
   },
   "no": {
     "title": "Sammenlign timemodell",
@@ -213,7 +213,7 @@ export const hourlyTranslations = {
     "new": "Timemodell",
     "import": "Import",
     "sufficiency": "Selvforsyning",
-    "time": "PVGIS {{year}}. Måneder bruker UTC; døgnkurven følger {{zone}} inkludert sommertid. Begge modeller bruker samme energi, ikke den ordinære langtidsgjennomsnittsproduksjonen."
+    "time": "PVGIS {{year}}. Måneder og døgnkurve følger {{zone}} inkludert sommertid. Begge modeller bruker samme energi, ikke den ordinære langtidsgjennomsnittsproduksjonen."
   },
   "ro": {
     "title": "Compară modelul orar",
@@ -225,7 +225,7 @@ export const hourlyTranslations = {
     "new": "Model orar",
     "import": "Import",
     "sufficiency": "Autosuficiență",
-    "time": "PVGIS {{year}}. Lunile utilizează UTC; curba zilnică urmează {{zone}}, inclusiv ora de vară. Ambele modele folosesc aceeași energie, nu producția medie pe termen lung."
+    "time": "PVGIS {{year}}. Lunile și curba zilnică urmează {{zone}}, inclusiv ora de vară. Ambele modele folosesc aceeași energie, nu producția medie pe termen lung."
   },
   "el": {
     "title": "Σύγκριση ωριαίου μοντέλου",
@@ -237,7 +237,7 @@ export const hourlyTranslations = {
     "new": "Ωριαίο μοντέλο",
     "import": "Εισαγωγή",
     "sufficiency": "Αυτάρκεια",
-    "time": "PVGIS {{year}}. Οι μήνες χρησιμοποιούν UTC. Η ημερήσια καμπύλη ακολουθεί τη ζώνη {{zone}}, συμπεριλαμβανομένης της θερινής ώρας. Και τα δύο μοντέλα χρησιμοποιούν την ίδια ενέργεια, όχι τη μακροπρόθεσμη μέση παραγωγή."
+    "time": "PVGIS {{year}}. Οι μήνες και η ημερήσια καμπύλη ακολουθούν τη ζώνη {{zone}}, συμπεριλαμβανομένης της θερινής ώρας. Και τα δύο μοντέλα χρησιμοποιούν την ίδια ενέργεια, όχι τη μακροπρόθεσμη μέση παραγωγή."
   },
   "hu": {
     "title": "Órás modell összehasonlítása",
@@ -249,7 +249,7 @@ export const hourlyTranslations = {
     "new": "Órás modell",
     "import": "Import",
     "sufficiency": "Önellátás",
-    "time": "PVGIS {{year}}. A hónapok UTC-t használnak; a napi görbe a(z) {{zone}} zónát követi, beleértve a nyári időszámítást is. Mindkét modell ugyanazt az energiát használja, nem a hosszú távú átlagtermelést."
+    "time": "PVGIS {{year}}. A hónapok és a napi görbe a(z) {{zone}} zónát követik, beleértve a nyári időszámítást is. Mindkét modell ugyanazt az energiát használja, nem a hosszú távú átlagtermelést."
   },
   "hr": {
     "title": "Usporedi satni model",
@@ -261,7 +261,7 @@ export const hourlyTranslations = {
     "new": "Satni model",
     "import": "Uvoz",
     "sufficiency": "Samodostatnost",
-    "time": "PVGIS {{year}}. Mjeseci koriste UTC; dnevna krivulja prati {{zone}} uključujući ljetno računanje vremena. Oba modela koriste istu energiju, a ne dugoročnu prosječnu proizvodnju."
+    "time": "PVGIS {{year}}. Mjeseci i dnevna krivulja prate {{zone}} uključujući ljetno računanje vremena. Oba modela koriste istu energiju, a ne dugoročnu prosječnu proizvodnju."
   },
   "sr": {
     "title": "Упореди сатни модел",
@@ -273,7 +273,7 @@ export const hourlyTranslations = {
     "new": "Сатни модел",
     "import": "Увоз",
     "sufficiency": "Самодовољност",
-    "time": "PVGIS {{year}}. Месеци користе UTC; дневна крива прати {{zone}} укључујући летње рачунање времена. Оба модела користе исту енергију, а не дугорочну просечну производњу."
+    "time": "PVGIS {{year}}. Месеци и дневна крива прате {{zone}} укључујући летње рачунање времена. Оба модела користе исту енергију, а не дугорочну просечну производњу."
   },
   "bg": {
     "title": "Сравни часовия модел",
@@ -285,7 +285,7 @@ export const hourlyTranslations = {
     "new": "Часов модел",
     "import": "Внос",
     "sufficiency": "Самодостатъчност",
-    "time": "PVGIS {{year}}. Месеците използват UTC; дневната крива следва {{zone}}, включително лятното часово време. И двата модела използват една и съща енергия, а не дългосрочното средно производство."
+    "time": "PVGIS {{year}}. Месеците и дневната крива следват {{zone}}, включително лятното часово време. И двата модела използват една и съща енергия, а не дългосрочното средно производство."
   },
   "uk": {
     "title": "Порівняти погодинну модель",
@@ -297,7 +297,7 @@ export const hourlyTranslations = {
     "new": "Погодинна модель",
     "import": "Імпорт",
     "sufficiency": "Самодостатність",
-    "time": "PVGIS {{year}}. Місяці використовують UTC; добова крива відповідає {{zone}}, включаючи літній час. Обидві моделі використовують ту саму енергію, а не довгострокове середнє виробництво."
+    "time": "PVGIS {{year}}. Місяці та добова крива відповідають {{zone}}, включаючи літній час. Обидві моделі використовують ту саму енергію, а не довгострокове середнє виробництво."
   },
   "tr": {
     "title": "Saatlik modeli karşılaştır",
@@ -309,7 +309,7 @@ export const hourlyTranslations = {
     "new": "Saatlik model",
     "import": "İthalat",
     "sufficiency": "Kendi kendine yeterlilik",
-    "time": "PVGIS {{year}}. Aylar UTC kullanır; günlük eğri, yaz saati uygulaması dahil {{zone}} saatini takip eder. Her iki model de uzun vadeli ortalama üretimi değil, aynı enerjiyi kullanır."
+    "time": "PVGIS {{year}}. Aylar ve günlük eğri, yaz saati uygulaması dahil {{zone}} saatini takip eder. Her iki model de uzun vadeli ortalama üretimi değil, aynı enerjiyi kullanır."
   },
   "hi": {
     "title": "प्रति घंटा मॉडल की तुलना करें",
@@ -321,7 +321,7 @@ export const hourlyTranslations = {
     "new": "प्रति घंटा मॉडल",
     "import": "आयात",
     "sufficiency": "आत्मनिर्भरता",
-    "time": "PVGIS {{year}}. महीने UTC का उपयोग करते हैं; दैनिक वक्र डेलाइट सेविंग टाइम सहित {{zone}} का अनुसरण करता है। दोनों मॉडल एक ही ऊर्जा का उपयोग करते हैं, दीर्घकालिक औसत उत्पादन का नहीं।"
+    "time": "PVGIS {{year}}. महीने और दैनिक वक्र डेलाइट सेविंग टाइम सहित {{zone}} का अनुसरण करते हैं। दोनों मॉडल एक ही ऊर्जा का उपयोग करते हैं, दीर्घकालिक औसत उत्पादन का नहीं।"
   },
   "id": {
     "title": "Bandingkan model per jam",
@@ -333,7 +333,7 @@ export const hourlyTranslations = {
     "new": "Model per jam",
     "import": "Impor",
     "sufficiency": "Kemandirian energi",
-    "time": "PVGIS {{year}}. Bulan menggunakan UTC; kurva harian mengikuti {{zone}} termasuk waktu musim panas. Kedua model menggunakan energi yang sama, bukan rata-rata produksi jangka panjang."
+    "time": "PVGIS {{year}}. Bulan dan kurva harian mengikuti {{zone}} termasuk waktu musim panas. Kedua model menggunakan energi yang sama, bukan rata-rata produksi jangka panjang."
   },
   "he": {
     "title": "השוואת מודל שעתי",
@@ -345,6 +345,6 @@ export const hourlyTranslations = {
     "new": "מודל שעתי",
     "import": "ייבוא",
     "sufficiency": "עצמאות אנרגטית",
-    "time": "PVGIS {{year}}. החודשים משתמשים ב-UTC; העקומה היומית עוקבת אחר {{zone}} כולל שעון קיץ. שני המודלים משתמשים באותה אנרגיה, ולא בייצור הממוצע לטווח ארוך."
+    "time": "PVGIS {{year}}. החודשים והעקומה היומית עוקבים אחר {{zone}} כולל שעון קיץ. שני המודלים משתמשים באותה אנרגיה, ולא בייצור הממוצע לטווח ארוך."
   }
 };
