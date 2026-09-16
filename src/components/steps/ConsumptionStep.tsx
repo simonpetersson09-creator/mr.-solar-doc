@@ -477,7 +477,9 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
             </div>
             <p className="text-[11px] leading-snug text-white/60">{t("consumption.monthlyHint")}</p>
             {isEstimatedConsumption(origin) ? (
-              <p className="text-xs text-primary-foreground">{t("result.monthlyOriginEstimatedNote")}</p>
+              <p className="rounded-xl bg-surface-cream/90 px-2.5 py-1.5 text-[11px] leading-snug text-brand-black">
+                {t("result.monthlyOriginEstimatedNote")}
+              </p>
             ) : null}
             <div className="grid grid-cols-4 gap-1.5 sm:grid-cols-6">
               {monthly.map((value, index) => (
