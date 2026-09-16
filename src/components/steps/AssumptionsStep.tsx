@@ -227,7 +227,12 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
                 key={profile.id}
                 type="button"
                 aria-pressed={active}
-                onClick={() => setLoadProfileClass(profile.id)}
+                onClick={() => {
+                  setLoadProfileClass(profile.id);
+                  // The slider must follow the chosen profile: a manual share
+                  // would otherwise freeze the estimate on the old value.
+                  if (isUserSetShare) resetSelfConsumptionShare();
+                }}
                 className={cn(
                   "w-full rounded-[16px] px-3 py-2 text-left transition-colors",
                   active ? "chip-selected" : "chip-unselected",
