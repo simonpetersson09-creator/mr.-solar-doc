@@ -70,3 +70,19 @@ npx cap open android   # Android Studio → Run
 
 Abonnemanget behöver en subscription group och lokaliserad beskrivning innan
 det kan testas i sandbox/TestFlight.
+
+## Android (Google Play-förberedelse)
+
+`android/` finns nu i projektet (samma app-id `se.shiningdays.mrsolardoc`).
+
+```bash
+npm run android:assets   # genererar launcher-/adaptiva ikoner + splash från resources/icon.png
+npm run android:sync     # bygger native-bundlen + cap sync android
+npm run android:open     # öppnar Android Studio
+npm run android:run      # bygger, synkar och kör på emulator/enhet
+```
+
+- Köp via Google Play är **inte** implementerade ännu; appen visar att köp inte
+  är tillgängliga i Android-versionen. Apple-köpflödet är oförändrat.
+- PDF delas via Capacitor Filesystem + Share, externa länkar öppnas via
+  Capacitor Browser. iOS och webben använder fortsatt sina tidigare vägar.
