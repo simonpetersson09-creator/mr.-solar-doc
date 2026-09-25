@@ -16,7 +16,11 @@
     "cap:add:android": "cap add android",
     "cap:open:ios": "cap open ios",
     "cap:open:android": "cap open android",
-    "build:native": "bash scripts/build-native.sh"
+    "build:native": "bash scripts/build-native.sh",
+    "android:assets": "python3 scripts/generate-android-assets.py",
+    "android:sync": "bash scripts/build-native.sh && cap sync android",
+    "android:open": "cap open android",
+    "android:run": "bash scripts/build-native.sh && cap sync android && cap run android"
   },
   "overrides": {
     "rolldown": "1.2.1"
@@ -24,9 +28,12 @@
   "dependencies": {
     "@capacitor/android": "^8.5.0",
     "@capacitor/app": "^8.1.1",
+    "@capacitor/browser": "^8",
     "@capacitor/cli": "^8.5.0",
     "@capacitor/core": "^8.5.0",
+    "@capacitor/filesystem": "^8",
     "@capacitor/ios": "^8.5.0",
+    "@capacitor/share": "^8",
     "@capacitor/splash-screen": "^8.0.2",
     "@capacitor/status-bar": "^8.0.3",
     "@hookform/resolvers": "^5.2.2",

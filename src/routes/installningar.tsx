@@ -17,7 +17,8 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { haptic } from "@/services/native-service";
+import { haptic, isAndroidApp, openExternalUrl } from "@/services/native-service";
+import { storeTextKey } from "@/i18n/android-store";
 import {
   PurchaseError,
   describePurchaseError,
@@ -51,6 +52,16 @@ export const Route = createFileRoute("/installningar")({
 const LEGAL_URL = "https://solar-doc-terms.lovable.app/integritetspolicy";
 const PRIVACY_URL = "https://solar-doc-terms.lovable.app/integritetspolicy";
 const MANAGE_SUBSCRIPTION_URL = "https://apps.apple.com/account/subscriptions";
+/** Android only: Google Play's subscription management page. */
+const MANAGE_SUBSCRIPTION_URL_ANDROID = "https://play.google.com/store/account/subscriptions";
+
+/** Keeps the default link on iOS/web; opens the system browser on Android. */
+function handleExternalLink(event: { preventDefault: () => void }, url: string) {
+  void haptic("light");
+  if (!isAndroidApp()) return;
+  event.preventDefault();
+  void openExternalUrl(url);
+}
 
 function SettingsPage() {
   const { t } = useTranslation();
@@ -82,8 +93,8 @@ function SettingsPage() {
     void haptic("medium");
     setPurchaseError(null);
     if (!isPurchaseAvailable()) {
-      setPurchaseError(t("premium.unavailable"));
-      toast.info(t("premium.unavailable"));
+      setPurchaseError(t(storeTextKey(isAndroidApp(), "unavailable", "premium.unavailable")));
+      toast.info(t(storeTextKey(isAndroidApp(), "unavailable", "premium.unavailable")));
       return;
     }
     setBuying(true);
@@ -122,8 +133,8 @@ function SettingsPage() {
       if (reason === "cancelled") {
         toast.info(t("paywall.cancelled"));
       } else if (reason === "unavailable") {
-        setPurchaseError(t("premium.unavailable"));
-        toast.info(t("premium.unavailable"));
+        setPurchaseError(t(storeTextKey(isAndroidApp(), "unavailable", "premium.unavailable")));
+        toast.info(t(storeTextKey(isAndroidApp(), "unavailable", "premium.unavailable")));
       } else {
         setPurchaseError(t("paywall.failed"));
         toast.error(t("paywall.failed"));
@@ -256,7 +267,7 @@ function SettingsPage() {
                   {buying ? (
                     <>
                       <Loader2 className="size-3 animate-spin" />
-                      {t("paywall.purchasing")}
+                      {t(storeTextKey(isAndroidApp(), "purchasing", "paywall.purchasing"))}
                     </>
                   ) : !canBuyPremium && priceLoading ? (
                     <>
@@ -272,7 +283,7 @@ function SettingsPage() {
               {!premium.active && !purchaseError && priceUnavailable ? (
                 <div className="flex flex-col gap-1">
                   <p role="status" className="text-[11px] font-semibold text-brand-black/75">
-                    {t("paywall.priceUnavailable")}
+                    {t(storeTextKey(isAndroidApp(), "priceUnavailable", "paywall.priceUnavailable"))}
                   </p>
                   {canRetryPrices ? (
                     <Button
@@ -363,10 +374,12 @@ function SettingsPage() {
               <ChevronRight className="size-3 text-brand-black/40" />
             </button>
             <a
-              href={MANAGE_SUBSCRIPTION_URL}
+              href={isAndroidApp() ? MANAGE_SUBSCRIPTION_URL_ANDROID : MANAGE_SUBSCRIPTION_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => void haptic("light")}
+              onClick={(e) =>
+                handleExternalLink(e, isAndroidApp() ? MANAGE_SUBSCRIPTION_URL_ANDROID : MANAGE_SUBSCRIPTION_URL)
+              }
               className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
@@ -405,7 +418,7 @@ function SettingsPage() {
               href={LEGAL_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => void haptic("light")}
+              onClick={(e) => handleExternalLink(e, LEGAL_URL)}
               className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
@@ -420,7 +433,7 @@ function SettingsPage() {
               href={PRIVACY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => void haptic("light")}
+              onClick={(e) => handleExternalLink(e, PRIVACY_URL)}
               className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">

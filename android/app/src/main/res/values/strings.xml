@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Mr. Solar Doc</string>
+    <string name="title_activity_main">Mr. Solar Doc</string>
+    <string name="package_name">se.shiningdays.mrsolardoc</string>
+    <string name="custom_url_scheme">se.shiningdays.mrsolardoc</string>
+</resources>
