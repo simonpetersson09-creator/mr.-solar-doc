@@ -33,6 +33,11 @@ export function getPlatform(): "ios" | "android" | "web" {
   return "web";
 }
 
+/** True only inside the native Android app (never on iOS or the web). */
+export function isAndroidApp(): boolean {
+  return isNativePlatform() && getPlatform() === "android";
+}
+
 const WEB_VIBRATION_PATTERN: Record<HapticStyle, number | number[]> = {
   light: 10,
   medium: 20,
