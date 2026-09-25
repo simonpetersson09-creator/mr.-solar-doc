@@ -11,7 +11,7 @@
  * Works in Windows PowerShell, macOS and Linux (no Bash required).
  */
 import { spawnSync } from "node:child_process";
-import { cpSync, copyFileSync, existsSync, rmSync } from "node:fs";
+import { cpSync, copyFileSync, existsSync, readFileSync, rmSync } from "node:fs";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
@@ -20,7 +20,16 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 process.chdir(root);
 
 const require = createRequire(import.meta.url);
-const viteCli = require.resolve("vite/bin/vite.js");
+const vitePackagePath = require.resolve("vite/package.json");
+const vitePackage = JSON.parse(readFileSync(vitePackagePath, "utf8"));
+const viteBin = typeof vitePackage.bin === "string" ? vitePackage.bin : vitePackage.bin?.vite;
+
+if (typeof viteBin !== "string") {
+  console.error("Could not resolve the installed Vite CLI.");
+  process.exit(1);
+}
+
+const viteCli = join(dirname(vitePackagePath), viteBin);
 
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
