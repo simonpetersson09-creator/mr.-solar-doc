@@ -79,9 +79,77 @@ export type ShareOutcome =
    * blocked popups). The caller must offer the URL behind a real user click. */
   | { status: "blocked"; url: string };
 
+function blobToBase64(blob: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = String(reader.result);
+      resolve(result.slice(result.indexOf(",") + 1));
+    };
+    reader.onerror = () => reject(new Error("read-failed"));
+    reader.readAsDataURL(blob);
+  });
+}
+
+/**
+ * Android only: the WebView ignores both the Web Share API with files and
+ * `<a download>`, so the file is written to the app cache and handed to the
+ * system share sheet (which also offers "Save to Files/Drive").
+ * Returns false when the plugins are unavailable so the web path can run.
+ */
+async function shareFileAndroid(request: ShareFileRequest): Promise<boolean> {
+  try {
+    const [{ Filesystem, Directory }, { Share }] = await Promise.all([
+      import("@capacitor/filesystem"),
+      import("@capacitor/share"),
+    ]);
+    const data = await blobToBase64(request.blob);
+    const written = await Filesystem.writeFile({
+      path: request.fileName,
+      data,
+      directory: Directory.Cache,
+      recursive: true,
+    });
+    try {
+      await Share.share({
+        ...(request.title ? { title: request.title, dialogTitle: request.title } : {}),
+        files: [written.uri],
+      });
+    } catch (error) {
+      // Dismissing the share sheet is not a failure.
+      if (/cancel/i.test(String((error as Error)?.message ?? error))) return true;
+      throw error;
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * Opens an external URL. On Android it goes through the Capacitor Browser
+ * (Custom Tab); elsewhere it returns false so the caller keeps the default
+ * link behaviour (iOS and web are unchanged).
+ */
+export async function openExternalUrl(url: string): Promise<boolean> {
+  if (!(isNativePlatform() && getPlatform() === "android")) return false;
+  try {
+    const { Browser } = await import("@capacitor/browser");
+    await Browser.open({ url });
+    return true;
+  } catch {
+    window.open(url, "_system");
+    return true;
+  }
+}
+
 /** Share a generated file via the native share sheet, with browser download fallback. */
 export async function shareFile(request: ShareFileRequest): Promise<ShareOutcome> {
   if (typeof window === "undefined") return { status: "downloaded" };
+
+  if (isNativePlatform() && getPlatform() === "android" && (await shareFileAndroid(request))) {
+    return { status: "shared" };
+  }
 
   const file = new File([request.blob], request.fileName, { type: request.mimeType });
   const navigatorWithShare = navigator as Navigator & {
