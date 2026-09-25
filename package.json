@@ -10,17 +10,17 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "cap:sync": "bash scripts/build-native.sh && cap sync && node scripts/patch-ios-permissions.mjs",
-    "ios:icons": "mkdir -p ios/App/App/Assets.xcassets/AppIcon.appiconset && cp resources/AppIcon.appiconset/* ios/App/App/Assets.xcassets/AppIcon.appiconset/",
+    "cap:sync": "node scripts/build-native.mjs && cap sync && node scripts/patch-ios-permissions.mjs",
+    "ios:icons": "node scripts/copy-ios-icons.mjs",
     "cap:add:ios": "cap add ios",
     "cap:add:android": "cap add android",
     "cap:open:ios": "cap open ios",
     "cap:open:android": "cap open android",
-    "build:native": "bash scripts/build-native.sh",
+    "build:native": "node scripts/build-native.mjs",
     "android:assets": "python3 scripts/generate-android-assets.py",
-    "android:sync": "bash scripts/build-native.sh && cap sync android",
+    "android:sync": "node scripts/build-native.mjs && cap sync android",
     "android:open": "cap open android",
-    "android:run": "bash scripts/build-native.sh && cap sync android && cap run android"
+    "android:run": "node scripts/build-native.mjs && cap sync android && cap run android"
   },
   "overrides": {
     "rolldown": "1.2.1"
