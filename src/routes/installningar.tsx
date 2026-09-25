@@ -82,8 +82,8 @@ function SettingsPage() {
     void haptic("medium");
     setPurchaseError(null);
     if (!isPurchaseAvailable()) {
-      setPurchaseError(t("premium.unavailable"));
-      toast.info(t("premium.unavailable"));
+      setPurchaseError(t(storeTextKey(isAndroidApp, "unavailable", "premium.unavailable")));
+      toast.info(t(storeTextKey(isAndroidApp, "unavailable", "premium.unavailable")));
       return;
     }
     setBuying(true);
@@ -122,8 +122,8 @@ function SettingsPage() {
       if (reason === "cancelled") {
         toast.info(t("paywall.cancelled"));
       } else if (reason === "unavailable") {
-        setPurchaseError(t("premium.unavailable"));
-        toast.info(t("premium.unavailable"));
+        setPurchaseError(t(storeTextKey(isAndroidApp, "unavailable", "premium.unavailable")));
+        toast.info(t(storeTextKey(isAndroidApp, "unavailable", "premium.unavailable")));
       } else {
         setPurchaseError(t("paywall.failed"));
         toast.error(t("paywall.failed"));
@@ -256,7 +256,7 @@ function SettingsPage() {
                   {buying ? (
                     <>
                       <Loader2 className="size-3 animate-spin" />
-                      {t("paywall.purchasing")}
+                      {t(storeTextKey(isAndroidApp, "purchasing", "paywall.purchasing"))}
                     </>
                   ) : !canBuyPremium && priceLoading ? (
                     <>
@@ -272,7 +272,7 @@ function SettingsPage() {
               {!premium.active && !purchaseError && priceUnavailable ? (
                 <div className="flex flex-col gap-1">
                   <p role="status" className="text-[11px] font-semibold text-brand-black/75">
-                    {t("paywall.priceUnavailable")}
+                    {t(storeTextKey(isAndroidApp, "priceUnavailable", "paywall.priceUnavailable"))}
                   </p>
                   {canRetryPrices ? (
                     <Button

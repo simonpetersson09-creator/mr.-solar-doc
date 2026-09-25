@@ -293,7 +293,7 @@ function PaywallPage() {
   }
 
   function busyLabel() {
-    return phase === "verifying" ? t("paywall.verifying") : t("paywall.purchasing");
+    return phase === "verifying" ? t("paywall.verifying") : t(storeTextKey(isAndroidApp, "purchasing", "paywall.purchasing"));
   }
 
   return (
@@ -416,7 +416,7 @@ function PaywallPage() {
 
         {!canAttempt ? (
           <p className="rounded-2xl bg-card px-4 py-3 text-sm text-foreground shadow-sm">
-            {t("paywall.appOnly")}
+            {t(storeTextKey(isAndroidApp, "appOnly", "paywall.appOnly"))}
           </p>
         ) : null}
 
@@ -444,7 +444,7 @@ function PaywallPage() {
         {priceUnavailable && phase !== "failed" ? (
           <div className="flex flex-col gap-2">
             <p role="status" className="text-sm text-foreground">
-              {t("paywall.priceUnavailable")}
+              {t(storeTextKey(isAndroidApp, "priceUnavailable", "paywall.priceUnavailable"))}
             </p>
             {canRetryPrices ? (
               <Button
@@ -498,7 +498,7 @@ function PaywallPage() {
         ) : null}
 
         <p className="flex items-center justify-center gap-1.5 pb-1 text-center text-[11px] text-muted-foreground">
-          <ShieldCheck className="size-3.5" /> {t("paywall.appleNote")}
+          <ShieldCheck className="size-3.5" /> {t(storeTextKey(isAndroidApp, "storeNote", "paywall.appleNote"))}
         </p>
       </main>
     </div>
