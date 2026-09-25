@@ -12,14 +12,15 @@
  */
 import { spawnSync } from "node:child_process";
 import { cpSync, copyFileSync, existsSync, rmSync } from "node:fs";
+import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 process.chdir(root);
 
-const isWindows = process.platform === "win32";
-const npx = isWindows ? "npx.cmd" : "npx";
+const require = createRequire(import.meta.url);
+const viteCli = require.resolve("vite/bin/vite.js");
 
 function run(command, args, options = {}) {
   const result = spawnSync(command, args, {
@@ -37,7 +38,9 @@ function run(command, args, options = {}) {
 }
 
 // 1. Build the SPA bundle.
-run(npx, ["vite", "build"], {
+// Run the installed Vite JavaScript entry point with the current Node binary.
+// This avoids Windows .cmd spawning entirely and works with npm and Bun installs.
+run(process.execPath, [viteCli, "build"], {
   env: { ...process.env, CAP_BUILD: "1" },
 });
 
