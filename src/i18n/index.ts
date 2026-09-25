@@ -1,6 +1,7 @@
 import i18n from "i18next";
 import { hourlyTranslations } from "./hourly";
 import { hourlyProfileTranslations } from "./hourly-profiles";
+import { androidStoreTranslations } from "./android-store";
 import { initReactI18next } from "react-i18next";
 import { sv } from "./locales/sv";
 import { en } from "./locales/en";
@@ -110,6 +111,11 @@ if (!i18n.isInitialized) {
 
 for (const [language, hourly] of Object.entries(hourlyTranslations)) {
   i18n.addResourceBundle(language, "translation", { hourly: { ...hourly, ...hourlyProfileTranslations[language] } }, true, true);
+}
+
+// Google Play wording for the Android app, kept apart from the App Store keys.
+for (const [language, androidStore] of Object.entries(androidStoreTranslations)) {
+  i18n.addResourceBundle(language, "translation", { androidStore }, true, true);
 }
 
 /**
