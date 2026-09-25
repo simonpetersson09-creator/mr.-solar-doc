@@ -16,7 +16,11 @@
     "cap:add:android": "cap add android",
     "cap:open:ios": "cap open ios",
     "cap:open:android": "cap open android",
-    "build:native": "bash scripts/build-native.sh"
+    "build:native": "bash scripts/build-native.sh",
+    "android:assets": "python3 scripts/generate-android-assets.py",
+    "android:sync": "bash scripts/build-native.sh && cap sync android",
+    "android:open": "cap open android",
+    "android:run": "bash scripts/build-native.sh && cap sync android && cap run android"
   },
   "overrides": {
     "rolldown": "1.2.1"
