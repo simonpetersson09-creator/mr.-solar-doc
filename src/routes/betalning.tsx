@@ -238,9 +238,12 @@ function PaywallPage() {
   }
 
   /** Verification half of the Premium purchase; re-runnable from "retry". */
-  async function settlePremium(transactionId: string, finish: () => Promise<void>) {
+  async function settlePremium(
+    receipt: { transactionId: string; purchaseToken: string | null; orderId: string | null },
+    finish: () => Promise<void>,
+  ) {
     if (!pending || !verificationLock.current.acquire()) return;
-    resumeRef.current = () => settlePremium(transactionId, finish);
+    resumeRef.current = () => settlePremium(receipt, finish);
     setChoice("premium");
     setPhase("verifying");
     try {
@@ -249,7 +252,9 @@ function PaywallPage() {
           verifyPremium({
             data: {
               deviceId: usePurchaseStore.getState().ensureDeviceId(),
-              transactionId,
+              transactionId: receipt.transactionId,
+              purchaseToken: receipt.purchaseToken ?? undefined,
+              orderId: receipt.orderId ?? undefined,
             },
           }),
         (result) => result.status === "pending",
@@ -293,8 +298,8 @@ function PaywallPage() {
     setChoice("premium");
     setPhase("purchasing");
     try {
-      const { transactionId, finish } = await purchasePremium();
-      await settlePremium(transactionId, finish);
+      const { transactionId, purchaseToken, orderId, finish } = await purchasePremium();
+      await settlePremium({ transactionId, purchaseToken, orderId }, finish);
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
       console.warn("[iap] premium purchase failed", describePurchaseError(error));
