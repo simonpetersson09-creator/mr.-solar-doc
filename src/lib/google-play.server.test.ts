@@ -99,7 +99,7 @@ describe("mapGoogleSubscriptionState", () => {
       token,
     );
     expect(state.active).toBe(false);
-et   });
+  });
 
   it("treats pending payment as an unpaid period", () => {
     const state = mapGoogleSubscriptionState(

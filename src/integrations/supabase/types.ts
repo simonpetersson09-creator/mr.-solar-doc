@@ -23,6 +23,8 @@ export type Database = {
           created_at: string
           device_id: string
           failure_reason: string | null
+          google_order_id: string | null
+          google_purchase_token: string | null
           id: string
           last_revision_at: string | null
           price_amount: number | null
@@ -31,6 +33,7 @@ export type Database = {
           purchased_at: string | null
           revisions_used: number
           status: string
+          store: string
           updated_at: string
         }
         Insert: {
@@ -41,6 +44,8 @@ export type Database = {
           created_at?: string
           device_id: string
           failure_reason?: string | null
+          google_order_id?: string | null
+          google_purchase_token?: string | null
           id?: string
           last_revision_at?: string | null
           price_amount?: number | null
@@ -49,6 +54,7 @@ export type Database = {
           purchased_at?: string | null
           revisions_used?: number
           status?: string
+          store?: string
           updated_at?: string
         }
         Update: {
@@ -59,6 +65,8 @@ export type Database = {
           created_at?: string
           device_id?: string
           failure_reason?: string | null
+          google_order_id?: string | null
+          google_purchase_token?: string | null
           id?: string
           last_revision_at?: string | null
           price_amount?: number | null
@@ -67,6 +75,7 @@ export type Database = {
           purchased_at?: string | null
           revisions_used?: number
           status?: string
+          store?: string
           updated_at?: string
         }
         Relationships: []
@@ -80,11 +89,13 @@ export type Database = {
           created_at: string
           device_id: string
           expires_at: string | null
+          google_purchase_token: string | null
           id: string
           last_checked_at: string
           product_id: string
           revoked_at: string | null
           status: string
+          store: string
           updated_at: string
         }
         Insert: {
@@ -95,11 +106,13 @@ export type Database = {
           created_at?: string
           device_id: string
           expires_at?: string | null
+          google_purchase_token?: string | null
           id?: string
           last_checked_at?: string
           product_id: string
           revoked_at?: string | null
           status?: string
+          store?: string
           updated_at?: string
         }
         Update: {
@@ -110,11 +123,13 @@ export type Database = {
           created_at?: string
           device_id?: string
           expires_at?: string | null
+          google_purchase_token?: string | null
           id?: string
           last_checked_at?: string
           product_id?: string
           revoked_at?: string | null
           status?: string
+          store?: string
           updated_at?: string
         }
         Relationships: []
