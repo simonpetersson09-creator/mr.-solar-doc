@@ -17,7 +17,7 @@
 - [x] Ursprungskolumnen i rapporten krymper/radbryts så långa översättningar inte krockar med värdet.
 
 ## Google Play-material
-- [ ] Skapa och kontrollera appikon, feature graphic och fem matchande appskärmbilder för sv-SE och en-US.
+- [x] Skapa och kontrollera appikon, feature graphic och fem matchande appskärmbilder för sv-SE och en-US.
 
 
 ## Separat timjämförelse
