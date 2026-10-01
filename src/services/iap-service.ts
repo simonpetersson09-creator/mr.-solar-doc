@@ -516,6 +516,9 @@ export async function waitForProduct(productId: string, timeoutMs = 12_000): Pro
 export interface UnclaimedTransaction {
   transactionId: string;
   productId: string | null;
+  /** Google Play only: the purchase token Google's server API verifies. */
+  purchaseToken: string | null;
+  orderId: string | null;
   finish: () => Promise<void>;
   /**
    * Puts the transaction back in the queue when verification did not reach a
@@ -525,7 +528,7 @@ export interface UnclaimedTransaction {
   requeue: () => void;
 }
 
-/** Hands over transactions StoreKit delivered outside an active purchase flow. */
+/** Hands over transactions the store delivered outside an active purchase flow. */
 export function takeUnclaimedTransactions(): UnclaimedTransaction[] {
   const taken = unclaimed.splice(0, unclaimed.length);
   return taken.flatMap((transaction) => {
@@ -535,6 +538,7 @@ export function takeUnclaimedTransactions(): UnclaimedTransaction[] {
       {
         transactionId,
         productId: transaction.products?.[0]?.id ?? null,
+        ...extractPurchaseReceipt(transaction),
         finish: async () => {
           await transaction.finish?.();
         },
