@@ -348,7 +348,7 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
 
   initializationAttempted = true;
   return store
-    .initialize([Platform.APPLE_APPSTORE])
+    .initialize([platformConstant])
     .then((errors) => {
       // v13 returns per-product loading errors after the adapter has started.
       // Do not conflate those with adapter failure: valid sibling products must
@@ -490,12 +490,12 @@ function hasAnyProduct(): boolean {
   return (getCdv()?.store.products?.length ?? 0) > 0;
 }
 
-/** True when this product has a purchasable StoreKit offer right now. */
+/** True when this product has a purchasable store offer right now. */
 export function hasPurchasableOffer(productId: string): boolean {
   const cdv = getCdv();
   if (!cdv || !initialized) return false;
   try {
-    return Boolean(cdv.store.get(productId, cdv.Platform.APPLE_APPSTORE)?.getOffer?.());
+    return Boolean(cdv.store.get(productId, storePlatformConstant(cdv))?.getOffer?.());
   } catch {
     return false;
   }
