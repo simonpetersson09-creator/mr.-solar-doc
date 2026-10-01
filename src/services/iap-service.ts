@@ -306,21 +306,25 @@ function handleApproved(transaction: CdvTransaction) {
 }
 
 function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
-  const { store, ProductType, Platform } = cdv;
+  const { store, ProductType } = cdv;
+  const platformConstant = storePlatformConstant(cdv);
   if (!registered) {
-    // Logged so a TestFlight/App Review device shows exactly which ids were
-    // requested versus which ones the App Store actually returned.
-    log("registering products", { requested: [UNLOCK_PRODUCT_ID, PREMIUM_PRODUCT_ID] });
+    // Logged so a TestFlight/review device shows exactly which ids were
+    // requested versus which ones the store actually returned.
+    log("registering products", {
+      requested: [UNLOCK_PRODUCT_ID, PREMIUM_PRODUCT_ID],
+      platform: activeStorePlatform(),
+    });
     store.register([
       {
         id: UNLOCK_PRODUCT_ID,
         type: ProductType.CONSUMABLE,
-        platform: Platform.APPLE_APPSTORE,
+        platform: platformConstant,
       },
       {
         id: PREMIUM_PRODUCT_ID,
         type: ProductType.PAID_SUBSCRIPTION,
-        platform: Platform.APPLE_APPSTORE,
+        platform: platformConstant,
       },
     ]);
     store.when().approved(handleApproved);
