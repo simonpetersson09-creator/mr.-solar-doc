@@ -256,7 +256,9 @@ export async function listPurchasedCalculationsProvider(data: { deviceId: string
 
 interface SubscriptionRow {
   device_id: string;
+  store?: string | null;
   apple_original_transaction_id: string;
+  google_purchase_token?: string | null;
   status: string;
   expires_at: string | null;
   auto_renew: boolean;
@@ -319,14 +321,19 @@ export async function getPremiumStatusProvider(data: {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
   const { data: rows } = await supabaseAdmin
     .from("premium_subscriptions")
-    .select("device_id, apple_original_transaction_id, status, expires_at, auto_renew, revoked_at")
+    .select(
+      "device_id, store, apple_original_transaction_id, google_purchase_token, status, expires_at, auto_renew, revoked_at",
+    )
     .eq("device_id", data.deviceId)
     .order("expires_at", { ascending: false })
     .limit(5);
 
   let best: PremiumStatus = { active: false, expiresAt: null, autoRenew: false, stale: false };
   for (const row of (rows ?? []) as unknown as SubscriptionRow[]) {
-    const status = await refreshSubscriptionRow(row, data.deviceId);
+    const status =
+      row.store === "google"
+        ? await refreshGoogleSubscriptionRow(row, data.deviceId)
+        : await refreshSubscriptionRow(row, data.deviceId);
     if (status.active && !best.active) best = status;
     else if (!best.active && !best.expiresAt) best = status;
   }
@@ -449,4 +456,196 @@ export async function unlockWithPremiumProvider(
     .neq("status", "paid");
   if (error) return { status: "pending" as PurchaseStatus, reason: "retry" };
   return { status: "paid" as PurchaseStatus };
+}
+
+/* ------------------------------------------------------------------ */
+/* Google Play Billing                                                 */
+/* ------------------------------------------------------------------ */
+
+/**
+ * Re-checks one stored Google Play subscription against Google and writes back
+ * the result. Google is the source of truth; the row is only a cache so the
+ * app still knows about the subscription when Google is briefly unreachable.
+ */
+async function refreshGoogleSubscriptionRow(
+  row: SubscriptionRow,
+  deviceId: string,
+): Promise<PremiumStatus> {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { getGoogleSubscriptionState } = await import("@/lib/google-play.server");
+  if (!row.google_purchase_token) {
+    return { active: false, expiresAt: null, autoRenew: false, stale: false };
+  }
+  try {
+    const state = await getGoogleSubscriptionState(row.google_purchase_token);
+    await supabaseAdmin
+      .from("premium_subscriptions")
+      .update({
+        device_id: deviceId,
+        status: state.active ? "active" : state.status,
+        expires_at: state.expiresAt,
+        auto_renew: state.autoRenew,
+        revoked_at: state.revokedAt,
+        last_checked_at: new Date().toISOString(),
+      } as never)
+      .eq("google_purchase_token", row.google_purchase_token);
+    return {
+      active: state.active,
+      expiresAt: state.expiresAt,
+      autoRenew: state.autoRenew,
+      stale: false,
+    };
+  } catch {
+    // Google unreachable: fall back to the cached period so a paying user is
+    // not locked out by a network problem, but never past the paid period.
+    const stillPaid =
+      !row.revoked_at && Boolean(row.expires_at) && new Date(row.expires_at!) > new Date();
+    return {
+      active: stillPaid,
+      expiresAt: row.expires_at,
+      autoRenew: row.auto_renew,
+      stale: true,
+    };
+  }
+}
+
+/**
+ * Verifies a Google Play one-off purchase with Google and unlocks on success.
+ * Mirrors `verifyApplePurchaseProvider`, including the one-transaction-per-
+ * calculation rule and the retryable-pending behaviour on soft failures.
+ */
+export async function verifyGooglePurchaseProvider(
+  data: AccessInput & { purchaseToken: string; orderId?: string | undefined; productId?: string | undefined },
+): Promise<{ status: PurchaseStatus; reason?: string }> {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { verifyGoogleProductPurchase, GoogleVerificationError } = await import(
+    "@/lib/google-play.server"
+  );
+
+  const { data: row } = await supabaseAdmin
+    .from("calculations")
+    .select("id, status, product_id")
+    .eq("id", data.id)
+    .eq("access_token", data.accessToken)
+    .maybeSingle();
+  if (!row) throw new Error("Calculation not found");
+  if (row.status === "paid") return { status: "paid" as PurchaseStatus };
+
+  // The client's claimed product id is checked against the unlock product the
+  // server knows; the same App Store/Play transaction may only unlock one
+  // calculation either way.
+  const candidates = [
+    ...new Set(
+      [data.productId, UNLOCK_PRODUCT_ID].filter((id): id is string => Boolean(id)),
+    ),
+  ];
+
+  try {
+    const verified = await verifyGoogleProductPurchase(data.purchaseToken, candidates);
+
+    const { data: usedBy } = await supabaseAdmin
+      .from("calculations")
+      .select("id")
+      .eq("google_purchase_token", verified.purchaseToken)
+      .neq("id", data.id)
+      .maybeSingle();
+    if (usedBy) {
+      await supabaseAdmin
+        .from("calculations")
+        .update({ status: "failed", failure_reason: "already-used" })
+        .eq("id", data.id)
+        .eq("access_token", data.accessToken)
+        .neq("status", "paid");
+      return { status: "failed" as PurchaseStatus, reason: "already-used" };
+    }
+
+    const { error } = await supabaseAdmin
+      .from("calculations")
+      .update({
+        status: "paid",
+        failure_reason: null,
+        store: "google",
+        product_id: verified.productId,
+        google_purchase_token: verified.purchaseToken,
+        google_order_id: data.orderId ?? verified.orderId ?? null,
+        purchased_at: verified.purchasedAt,
+      })
+      .eq("id", data.id)
+      .eq("access_token", data.accessToken);
+    if (error) {
+      // Writing the receipt failed (network/database). The purchase itself is
+      // valid, so keep it retryable instead of burning the transaction.
+      return { status: "pending" as PurchaseStatus, reason: "retry" };
+    }
+    return { status: "paid" as PurchaseStatus };
+  } catch (error) {
+    const code =
+      error instanceof GoogleVerificationError ? error.code : "google-error";
+    // Only Google's definitive answers are terminal. Payment pending, network
+    // problems and outages stay pending and retryable so a paid user never
+    // loses access.
+    const terminal =
+      code === "wrong-product" || code === "revoked" || code === "not-found";
+    if (!terminal) {
+      return { status: "pending" as PurchaseStatus, reason: code };
+    }
+    await supabaseAdmin
+      .from("calculations")
+      .update({ status: "failed", failure_reason: code })
+      .eq("id", data.id)
+      .eq("access_token", data.accessToken)
+      .neq("status", "paid");
+    return { status: "failed" as PurchaseStatus, reason: code };
+  }
+}
+
+/**
+ * Verifies a Google Play subscription and binds it to this device. The same
+ * Play subscription may move between devices (reinstall, new phone) — the row
+ * simply follows the latest verified device.
+ */
+export async function verifyGooglePremiumProvider(
+  data: { deviceId: string; purchaseToken: string; orderId?: string | undefined },
+): Promise<
+  { status: "active" | "inactive" | "failed" | "pending"; reason?: string } & Partial<PremiumStatus>
+> {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const { getGoogleSubscriptionState, GoogleVerificationError } = await import(
+    "@/lib/google-play.server"
+  );
+
+  try {
+    const state = await getGoogleSubscriptionState(data.purchaseToken);
+
+    const { error } = await supabaseAdmin
+      .from("premium_subscriptions")
+      .upsert(
+        {
+          device_id: data.deviceId,
+          product_id: state.productId,
+          store: "google",
+          google_purchase_token: data.purchaseToken,
+          status: state.active ? "active" : state.status,
+          expires_at: state.expiresAt,
+          auto_renew: state.autoRenew,
+          revoked_at: state.revokedAt,
+          last_checked_at: new Date().toISOString(),
+        } as never,
+        { onConflict: "google_purchase_token" },
+      );
+    if (error) return { status: "pending", reason: "retry" };
+
+    return {
+      status: state.active ? "active" : "inactive",
+      active: state.active,
+      expiresAt: state.expiresAt,
+      autoRenew: state.autoRenew,
+      stale: false,
+    };
+  } catch (error) {
+    const code =
+      error instanceof GoogleVerificationError ? error.code : "google-error";
+    const terminal = code === "revoked" || code === "not-found" || code === "not-configured";
+    return { status: terminal ? "failed" : "pending", reason: code };
+  }
 }

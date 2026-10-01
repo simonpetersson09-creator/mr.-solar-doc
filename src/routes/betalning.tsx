@@ -166,19 +166,28 @@ function PaywallPage() {
 
   /**
    * Finishes an already approved unlock: verification only. Kept separate so a
-   * purchase that Apple has not propagated yet can be re-checked from the
+   * purchase the store has not propagated yet can be re-checked from the
    * "retry" state instead of leaving the buyer stranded on the paywall.
    */
-  async function settleUnlock(transactionId: string, finish: () => Promise<void>) {
+  async function settleUnlock(
+    receipt: { transactionId: string; purchaseToken: string | null; orderId: string | null },
+    finish: () => Promise<void>,
+  ) {
     if (!pending || !verificationLock.current.acquire()) return;
-    resumeRef.current = () => settleUnlock(transactionId, finish);
+    resumeRef.current = () => settleUnlock(receipt, finish);
     setChoice("unlock");
     setPhase("verifying");
     try {
       const verified = await verifyWithRetry(
         () =>
           verifyPurchase({
-            data: { id: pending.id, accessToken: pending.accessToken, transactionId },
+            data: {
+              id: pending.id,
+              accessToken: pending.accessToken,
+              transactionId: receipt.transactionId,
+              purchaseToken: receipt.purchaseToken ?? undefined,
+              orderId: receipt.orderId ?? undefined,
+            },
           }),
         (result) => result.status === "pending",
       );
@@ -190,8 +199,8 @@ function PaywallPage() {
         void navigate({ to: "/resultat" });
         return;
       }
-      // Pending: leave the transaction unfinished so StoreKit redelivers it and
-      // the recovery hook can verify it again.
+      // Pending: leave the transaction unfinished so the store redelivers it
+      // and the recovery hook can verify it again.
       if (verified.status !== "pending") resumeRef.current = null;
       setPhase(verified.status === "pending" ? "retry" : "failed");
     } catch (error) {
@@ -208,8 +217,8 @@ function PaywallPage() {
     setChoice("unlock");
     setPhase("purchasing");
     try {
-      const { transactionId, finish } = await purchaseUnlock();
-      await settleUnlock(transactionId, finish);
+      const { transactionId, purchaseToken, orderId, finish } = await purchaseUnlock();
+      await settleUnlock({ transactionId, purchaseToken, orderId }, finish);
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
       const detail = describePurchaseError(error);
@@ -229,9 +238,12 @@ function PaywallPage() {
   }
 
   /** Verification half of the Premium purchase; re-runnable from "retry". */
-  async function settlePremium(transactionId: string, finish: () => Promise<void>) {
+  async function settlePremium(
+    receipt: { transactionId: string; purchaseToken: string | null; orderId: string | null },
+    finish: () => Promise<void>,
+  ) {
     if (!pending || !verificationLock.current.acquire()) return;
-    resumeRef.current = () => settlePremium(transactionId, finish);
+    resumeRef.current = () => settlePremium(receipt, finish);
     setChoice("premium");
     setPhase("verifying");
     try {
@@ -240,7 +252,9 @@ function PaywallPage() {
           verifyPremium({
             data: {
               deviceId: usePurchaseStore.getState().ensureDeviceId(),
-              transactionId,
+              transactionId: receipt.transactionId,
+              purchaseToken: receipt.purchaseToken ?? undefined,
+              orderId: receipt.orderId ?? undefined,
             },
           }),
         (result) => result.status === "pending",
@@ -284,8 +298,8 @@ function PaywallPage() {
     setChoice("premium");
     setPhase("purchasing");
     try {
-      const { transactionId, finish } = await purchasePremium();
-      await settlePremium(transactionId, finish);
+      const { transactionId, purchaseToken, orderId, finish } = await purchasePremium();
+      await settlePremium({ transactionId, purchaseToken, orderId }, finish);
     } catch (error) {
       const reason = error instanceof PurchaseError ? error.reason : "failed";
       console.warn("[iap] premium purchase failed", describePurchaseError(error));

@@ -8,6 +8,16 @@
 - [ ] Verifiera produktions- och native-build samt publicerad endpoint.
 - [x] Byt IAP till pluginets officiella Capacitor 8-brygga med StoreKit 2.
 - [ ] Verifiera StoreKit-priser i en ny signerad TestFlight-build.
+
+## Google Play Billing (Android)
+- [x] Migration: store-, google_purchase_token- och google_order_id-kolumner med unikt index.
+- [x] Serververifiering mot Google Play Developer API (src/lib/google-play.server.ts).
+- [x] Köpflöden på Android: engångsköp + Premium årsvis via Google Play, delar iOS-kvittoflödet.
+- [x] versionCode 2, tester och typkontroll gröna.
+- [x] Köprutten och Google-kopplingen testade i drift: OAuth 200, API svarar.
+- [ ] Väntar på att Play Console-behörigheten sprider (upp till 24 h): 401 permissionDenied just nu.
+- [ ] Signerad AAB byggd på användarens dator och testad mot Googles interna testspår.
+
 ## Avgränsad profilrättning
 - [x] Bevara ursprung, hantera äldre osäkra månader och skilj manuell upplysning från gräns.
 - [x] Uppdatera 29 språk och verifiera beräkning, sparande och rapport. Ingen publicering.

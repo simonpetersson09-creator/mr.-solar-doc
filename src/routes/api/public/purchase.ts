@@ -5,6 +5,8 @@ import { isNativeAppOrigin } from "@/config/native-backend";
 import {
   accessSchema,
   createSchema,
+  googlePremiumVerifySchema,
+  googleVerifySchema,
   premiumSchema,
   premiumUnlockSchema,
   premiumVerifySchema,
@@ -31,6 +33,8 @@ const bodySchema = z.discriminatedUnion("action", [
   z.object({ action: z.literal("listPurchasedCalculations"), payload: createSchema }),
   z.object({ action: z.literal("getPremiumStatus"), payload: premiumSchema }),
   z.object({ action: z.literal("verifyApplePremium"), payload: premiumVerifySchema }),
+  z.object({ action: z.literal("verifyGooglePurchase"), payload: googleVerifySchema }),
+  z.object({ action: z.literal("verifyGooglePremium"), payload: googlePremiumVerifySchema }),
   z.object({ action: z.literal("unlockWithPremium"), payload: premiumUnlockSchema }),
 ]);
 
@@ -109,6 +113,12 @@ export const Route = createFileRoute("/api/public/purchase")({
               break;
             case "verifyApplePremium":
               result = await providers.verifyApplePremiumProvider(body.payload);
+              break;
+            case "verifyGooglePurchase":
+              result = await providers.verifyGooglePurchaseProvider(body.payload);
+              break;
+            case "verifyGooglePremium":
+              result = await providers.verifyGooglePremiumProvider(body.payload);
               break;
             case "unlockWithPremium":
               result = await providers.unlockWithPremiumProvider(body.payload);

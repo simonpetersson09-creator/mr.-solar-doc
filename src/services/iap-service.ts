@@ -1,9 +1,10 @@
 /**
- * UI -> IAP service -> StoreKit (via cordova-plugin-purchase).
+ * UI -> IAP service -> StoreKit / Google Play Billing (via cordova-plugin-purchase).
  *
- * Purchases are only possible inside the native iOS app. On the web the service
- * reports "unavailable" so the paywall can explain that the unlock is bought in
- * the app with the user's Apple account.
+ * Purchases are possible inside the native iOS and Android apps; each store is
+ * verified server-side before anything is unlocked. On the web the service
+ * reports "unavailable" so the paywall can explain that the unlock is bought
+ * in the app with the user's Apple or Google account.
  *
  * The purchase package registers a native Capacitor plugin and exports the one
  * shared Store instance. It is imported client-side because its runtime uses
@@ -37,6 +38,10 @@ export class PurchaseError extends Error {
 
 interface CdvTransaction {
   transactionId?: string;
+  /** Google Play: always the purchase token. */
+  purchaseId?: string;
+  purchaseToken?: string;
+  nativePurchase?: { purchaseToken?: string; orderId?: string } | null;
   finish?: () => Promise<void> | void;
   state?: string;
   products?: { id?: string }[];
@@ -88,7 +93,7 @@ interface CdvStore {
 interface CdvPurchaseGlobal {
   store: CdvStore;
   ProductType: { CONSUMABLE: string; PAID_SUBSCRIPTION: string };
-  Platform: { APPLE_APPSTORE: string };
+  Platform: { APPLE_APPSTORE: string; GOOGLE_PLAY: string };
 }
 
 function getCdv(): CdvPurchaseGlobal | null {
@@ -97,9 +102,40 @@ function getCdv(): CdvPurchaseGlobal | null {
   return (window as unknown as { CdvPurchase?: CdvPurchaseGlobal }).CdvPurchase ?? null;
 }
 
-/** True on a platform where StoreKit purchases can exist (plugin may still be loading). */
+/** Which store the plugin should talk to on this device. */
+export function activeStorePlatform(): "ios" | "android" {
+  return getPlatform() === "android" ? "android" : "ios";
+}
+
+/** The plugin's platform constant for the active store. */
+function storePlatformConstant(cdv: CdvPurchaseGlobal): string {
+  return activeStorePlatform() === "android"
+    ? cdv.Platform.GOOGLE_PLAY
+    : cdv.Platform.APPLE_APPSTORE;
+}
+
+/**
+ * Purchase token + order id for a Google Play transaction. On Android the
+ * plugin keeps the token on the receipt/purchase; the transaction id alone can
+ * be the order id (GPA....), which Google's server API does not accept. On iOS
+ * both come back null and Apple keeps using the transaction id.
+ */
+export function extractPurchaseReceipt(transaction: CdvTransaction): {
+  purchaseToken: string | null;
+  orderId: string | null;
+} {
+  const native = transaction.nativePurchase;
+  const purchaseToken =
+    transaction.purchaseToken ?? transaction.purchaseId ?? native?.purchaseToken ?? null;
+  const orderId = native?.orderId ?? null;
+  return { purchaseToken, orderId };
+}
+
+/** True on a platform where store purchases can exist (plugin may still be loading). */
 export function isPurchaseSupported(): boolean {
-  return isNativePlatform() && getPlatform() === "ios";
+  if (!isNativePlatform()) return false;
+  const platform = getPlatform();
+  return platform === "ios" || platform === "android";
 }
 
 /**
@@ -270,21 +306,25 @@ function handleApproved(transaction: CdvTransaction) {
 }
 
 function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
-  const { store, ProductType, Platform } = cdv;
+  const { store, ProductType } = cdv;
+  const platformConstant = storePlatformConstant(cdv);
   if (!registered) {
-    // Logged so a TestFlight/App Review device shows exactly which ids were
-    // requested versus which ones the App Store actually returned.
-    log("registering products", { requested: [UNLOCK_PRODUCT_ID, PREMIUM_PRODUCT_ID] });
+    // Logged so a TestFlight/review device shows exactly which ids were
+    // requested versus which ones the store actually returned.
+    log("registering products", {
+      requested: [UNLOCK_PRODUCT_ID, PREMIUM_PRODUCT_ID],
+      platform: activeStorePlatform(),
+    });
     store.register([
       {
         id: UNLOCK_PRODUCT_ID,
         type: ProductType.CONSUMABLE,
-        platform: Platform.APPLE_APPSTORE,
+        platform: platformConstant,
       },
       {
         id: PREMIUM_PRODUCT_ID,
         type: ProductType.PAID_SUBSCRIPTION,
-        platform: Platform.APPLE_APPSTORE,
+        platform: platformConstant,
       },
     ]);
     store.when().approved(handleApproved);
@@ -308,7 +348,7 @@ function registerAndInitialize(cdv: CdvPurchaseGlobal): Promise<void> {
 
   initializationAttempted = true;
   return store
-    .initialize([Platform.APPLE_APPSTORE])
+    .initialize([platformConstant])
     .then((errors) => {
       // v13 returns per-product loading errors after the adapter has started.
       // Do not conflate those with adapter failure: valid sibling products must
@@ -450,12 +490,12 @@ function hasAnyProduct(): boolean {
   return (getCdv()?.store.products?.length ?? 0) > 0;
 }
 
-/** True when this product has a purchasable StoreKit offer right now. */
+/** True when this product has a purchasable store offer right now. */
 export function hasPurchasableOffer(productId: string): boolean {
   const cdv = getCdv();
   if (!cdv || !initialized) return false;
   try {
-    return Boolean(cdv.store.get(productId, cdv.Platform.APPLE_APPSTORE)?.getOffer?.());
+    return Boolean(cdv.store.get(productId, storePlatformConstant(cdv))?.getOffer?.());
   } catch {
     return false;
   }
@@ -476,6 +516,9 @@ export async function waitForProduct(productId: string, timeoutMs = 12_000): Pro
 export interface UnclaimedTransaction {
   transactionId: string;
   productId: string | null;
+  /** Google Play only: the purchase token Google's server API verifies. */
+  purchaseToken: string | null;
+  orderId: string | null;
   finish: () => Promise<void>;
   /**
    * Puts the transaction back in the queue when verification did not reach a
@@ -485,7 +528,7 @@ export interface UnclaimedTransaction {
   requeue: () => void;
 }
 
-/** Hands over transactions StoreKit delivered outside an active purchase flow. */
+/** Hands over transactions the store delivered outside an active purchase flow. */
 export function takeUnclaimedTransactions(): UnclaimedTransaction[] {
   const taken = unclaimed.splice(0, unclaimed.length);
   return taken.flatMap((transaction) => {
@@ -495,6 +538,7 @@ export function takeUnclaimedTransactions(): UnclaimedTransaction[] {
       {
         transactionId,
         productId: transaction.products?.[0]?.id ?? null,
+        ...extractPurchaseReceipt(transaction),
         finish: async () => {
           await transaction.finish?.();
         },
@@ -544,26 +588,31 @@ export function getStorePrices(): { unlock: string | null; premium: string | nul
  * ------------------------------------------------------------------ */
 
 /**
- * Starts the App Store purchase and resolves with the transaction id once the
+ * Starts the store purchase and resolves with the transaction id once the
  * user has approved it. The transaction is only finished after the server has
- * verified it with Apple.
+ * verified it with Apple or Google.
  */
 export async function purchaseProduct(productId: string): Promise<{
   transactionId: string;
   productId: string | null;
+  purchaseToken: string | null;
+  orderId: string | null;
   finish: () => Promise<void>;
 }> {
   log("purchase start", { productId, ...getPurchaseDiagnostics() });
   await initializePurchases();
   let cdv = getCdv();
   if (!isPurchaseSupported() || !cdv) {
-    throw new PurchaseError("unavailable", "StoreKit plugin unavailable");
+    throw new PurchaseError("unavailable", "Purchase plugin unavailable");
   }
 
-  // The tap can land before StoreKit delivered the product (slow Sandbox, fresh
-  // launch, iPad review device). Run the recovery path — re-init and refresh —
-  // instead of failing immediately with a generic purchase error.
-  const offerReady = () => Boolean(cdv?.store.get(productId, cdv.Platform.APPLE_APPSTORE)?.getOffer?.());
+  // The tap can land before the store delivered the product (slow Sandbox,
+  // fresh launch, review device). Run the recovery path — re-init and
+  // refresh — instead of failing immediately with a generic purchase error.
+  const offerReady = () => {
+    const current = getCdv();
+    return Boolean(current?.store.get(productId, storePlatformConstant(current))?.getOffer?.());
+  };
   for (let attempt = 0; attempt < 2 && !offerReady(); attempt += 1) {
     await refreshStoreProducts();
     await waitForProduct(productId, attempt === 0 ? 8000 : 12_000);
@@ -595,22 +644,25 @@ export async function purchaseProduct(productId: string): Promise<{
         productId: transaction.products?.[0]?.id ?? productId,
         state: transaction.state ?? null,
       });
-      settle(() =>
+      settle(() => {
+        const receipt = extractPurchaseReceipt(transaction);
         resolve({
           transactionId,
           productId: transaction.products?.[0]?.id ?? productId,
+          purchaseToken: receipt.purchaseToken,
+          orderId: receipt.orderId,
           finish: async () => {
             await transaction.finish?.();
           },
-        }),
-      );
+        });
+      });
     } };
     errorHandler = (message, code) =>
       settle(() =>
         reject(new PurchaseError("failed", message, { code, detail: message })),
       );
 
-    const offer = active.store.get(productId, active.Platform.APPLE_APPSTORE)?.getOffer?.();
+    const offer = active.store.get(productId, storePlatformConstant(active))?.getOffer?.();
     if (!offer) {
       const detail = `No offer for ${productId} (products: ${
         getPurchaseDiagnostics().productIds.join(",") || "none"

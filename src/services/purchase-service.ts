@@ -19,20 +19,30 @@ import {
   unlockWithPremium,
   verifyApplePremium,
   verifyApplePurchase,
+  verifyGooglePremium,
+  verifyGooglePurchase,
   type PremiumStatus,
 } from "@/lib/purchase.functions";
-import { isNativePlatform } from "@/services/native-service";
+import { getPlatform, isNativePlatform } from "@/services/native-service";
 import { callNativePurchase } from "@/services/native-purchase";
 
 type Fn<TIn, TOut> = (args: { data: TIn }) => Promise<TOut>;
 
+type NativeAction = Parameters<typeof callNativePurchase>[0];
+
+/** Picks the Google Play verification action on Android, Apple's elsewhere. */
+function nativeAction(action: NativeAction | { apple: NativeAction; android: NativeAction }): NativeAction {
+  if (typeof action === "string") return action;
+  return getPlatform() === "android" ? action.android : action.apple;
+}
+
 function route<TIn, TOut>(
-  action: Parameters<typeof callNativePurchase>[0],
+  action: NativeAction | { apple: NativeAction; android: NativeAction },
   webFn: Fn<TIn, TOut>,
 ): Fn<TIn, TOut> {
   return async ({ data }) =>
     isNativePlatform()
-      ? await callNativePurchase<TOut>(action, data)
+      ? await callNativePurchase<TOut>(nativeAction(action), data)
       : await webFn({ data });
 }
 
@@ -65,10 +75,21 @@ export const reportPurchaseOutcome = route(
   >,
 );
 
+/**
+ * One-off unlock verification. The Google Play payload carries the purchase
+ * token instead of the App Store transaction id; whichever the device runs is
+ * chosen here so call sites stay transport- and store-agnostic.
+ */
 export const verifyPurchase = route(
-  "verifyApplePurchase",
+  { apple: "verifyApplePurchase", android: "verifyGooglePurchase" },
   verifyApplePurchase as Fn<
-    { id: string; accessToken: string; transactionId: string },
+    {
+      id: string;
+      accessToken: string;
+      transactionId: string;
+      purchaseToken?: string | undefined;
+      orderId?: string | undefined;
+    },
     Awaited<ReturnType<typeof verifyApplePurchase>>
   >,
 );
@@ -87,9 +108,14 @@ export const fetchPremiumStatus = route(
 );
 
 export const verifyPremium = route(
-  "verifyApplePremium",
+  { apple: "verifyApplePremium", android: "verifyGooglePremium" },
   verifyApplePremium as Fn<
-    { deviceId: string; transactionId: string },
+    {
+      deviceId: string;
+      transactionId: string;
+      purchaseToken?: string | undefined;
+      orderId?: string | undefined;
+    },
     Awaited<ReturnType<typeof verifyApplePremium>>
   >,
 );
