@@ -1,9 +1,10 @@
 /**
- * UI -> IAP service -> StoreKit (via cordova-plugin-purchase).
+ * UI -> IAP service -> StoreKit / Google Play Billing (via cordova-plugin-purchase).
  *
- * Purchases are only possible inside the native iOS app. On the web the service
- * reports "unavailable" so the paywall can explain that the unlock is bought in
- * the app with the user's Apple account.
+ * Purchases are possible inside the native iOS and Android apps; each store is
+ * verified server-side before anything is unlocked. On the web the service
+ * reports "unavailable" so the paywall can explain that the unlock is bought
+ * in the app with the user's Apple or Google account.
  *
  * The purchase package registers a native Capacitor plugin and exports the one
  * shared Store instance. It is imported client-side because its runtime uses
@@ -37,6 +38,10 @@ export class PurchaseError extends Error {
 
 interface CdvTransaction {
   transactionId?: string;
+  /** Google Play: always the purchase token. */
+  purchaseId?: string;
+  purchaseToken?: string;
+  nativePurchase?: { purchaseToken?: string; orderId?: string } | null;
   finish?: () => Promise<void> | void;
   state?: string;
   products?: { id?: string }[];
@@ -88,7 +93,7 @@ interface CdvStore {
 interface CdvPurchaseGlobal {
   store: CdvStore;
   ProductType: { CONSUMABLE: string; PAID_SUBSCRIPTION: string };
-  Platform: { APPLE_APPSTORE: string };
+  Platform: { APPLE_APPSTORE: string; GOOGLE_PLAY: string };
 }
 
 function getCdv(): CdvPurchaseGlobal | null {
@@ -97,9 +102,40 @@ function getCdv(): CdvPurchaseGlobal | null {
   return (window as unknown as { CdvPurchase?: CdvPurchaseGlobal }).CdvPurchase ?? null;
 }
 
-/** True on a platform where StoreKit purchases can exist (plugin may still be loading). */
+/** Which store the plugin should talk to on this device. */
+export function activeStorePlatform(): "ios" | "android" {
+  return getPlatform() === "android" ? "android" : "ios";
+}
+
+/** The plugin's platform constant for the active store. */
+function storePlatformConstant(cdv: CdvPurchaseGlobal): string {
+  return activeStorePlatform() === "android"
+    ? cdv.Platform.GOOGLE_PLAY
+    : cdv.Platform.APPLE_APPSTORE;
+}
+
+/**
+ * Purchase token + order id for a Google Play transaction. On Android the
+ * plugin keeps the token on the receipt/purchase; the transaction id alone can
+ * be the order id (GPA....), which Google's server API does not accept. On iOS
+ * both come back null and Apple keeps using the transaction id.
+ */
+export function extractPurchaseReceipt(transaction: CdvTransaction): {
+  purchaseToken: string | null;
+  orderId: string | null;
+} {
+  const native = transaction.nativePurchase;
+  const purchaseToken =
+    transaction.purchaseToken ?? transaction.purchaseId ?? native?.purchaseToken ?? null;
+  const orderId = native?.orderId ?? null;
+  return { purchaseToken, orderId };
+}
+
+/** True on a platform where store purchases can exist (plugin may still be loading). */
 export function isPurchaseSupported(): boolean {
-  return isNativePlatform() && getPlatform() === "ios";
+  if (!isNativePlatform()) return false;
+  const platform = getPlatform();
+  return platform === "ios" || platform === "android";
 }
 
 /**
