@@ -16,6 +16,9 @@
 - [x] Unicode-typsnitt i PDF: grekiska, ukrainska och kyrilliska återges korrekt; hindi-rapport görs på engelska.
 - [x] Ursprungskolumnen i rapporten krymper/radbryts så långa översättningar inte krockar med värdet.
 
+## Google Play-material
+- [x] Skapa och kontrollera appikon, feature graphic och fem matchande appskärmbilder för sv-SE och en-US.
+
 
 ## Separat timjämförelse
 - [x] Separat timmodell, gemensam PVGIS-cache och fyrprofilsväljare.
