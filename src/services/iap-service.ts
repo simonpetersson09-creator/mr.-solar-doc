@@ -588,26 +588,31 @@ export function getStorePrices(): { unlock: string | null; premium: string | nul
  * ------------------------------------------------------------------ */
 
 /**
- * Starts the App Store purchase and resolves with the transaction id once the
+ * Starts the store purchase and resolves with the transaction id once the
  * user has approved it. The transaction is only finished after the server has
- * verified it with Apple.
+ * verified it with Apple or Google.
  */
 export async function purchaseProduct(productId: string): Promise<{
   transactionId: string;
   productId: string | null;
+  purchaseToken: string | null;
+  orderId: string | null;
   finish: () => Promise<void>;
 }> {
   log("purchase start", { productId, ...getPurchaseDiagnostics() });
   await initializePurchases();
   let cdv = getCdv();
   if (!isPurchaseSupported() || !cdv) {
-    throw new PurchaseError("unavailable", "StoreKit plugin unavailable");
+    throw new PurchaseError("unavailable", "Purchase plugin unavailable");
   }
 
-  // The tap can land before StoreKit delivered the product (slow Sandbox, fresh
-  // launch, iPad review device). Run the recovery path — re-init and refresh —
-  // instead of failing immediately with a generic purchase error.
-  const offerReady = () => Boolean(cdv?.store.get(productId, cdv.Platform.APPLE_APPSTORE)?.getOffer?.());
+  // The tap can land before the store delivered the product (slow Sandbox,
+  // fresh launch, review device). Run the recovery path — re-init and
+  // refresh — instead of failing immediately with a generic purchase error.
+  const offerReady = () => {
+    const current = getCdv();
+    return Boolean(current?.store.get(productId, storePlatformConstant(current))?.getOffer?.());
+  };
   for (let attempt = 0; attempt < 2 && !offerReady(); attempt += 1) {
     await refreshStoreProducts();
     await waitForProduct(productId, attempt === 0 ? 8000 : 12_000);
@@ -639,22 +644,25 @@ export async function purchaseProduct(productId: string): Promise<{
         productId: transaction.products?.[0]?.id ?? productId,
         state: transaction.state ?? null,
       });
-      settle(() =>
+      settle(() => {
+        const receipt = extractPurchaseReceipt(transaction);
         resolve({
           transactionId,
           productId: transaction.products?.[0]?.id ?? productId,
+          purchaseToken: receipt.purchaseToken,
+          orderId: receipt.orderId,
           finish: async () => {
             await transaction.finish?.();
           },
-        }),
-      );
+        });
+      });
     } };
     errorHandler = (message, code) =>
       settle(() =>
         reject(new PurchaseError("failed", message, { code, detail: message })),
       );
 
-    const offer = active.store.get(productId, active.Platform.APPLE_APPSTORE)?.getOffer?.();
+    const offer = active.store.get(productId, storePlatformConstant(active))?.getOffer?.();
     if (!offer) {
       const detail = `No offer for ${productId} (products: ${
         getPurchaseDiagnostics().productIds.join(",") || "none"
