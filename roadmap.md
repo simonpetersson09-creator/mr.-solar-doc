@@ -17,6 +17,7 @@
 - [x] Köprutten och Google-kopplingen testade i drift: OAuth 200, API svarar.
 - [ ] Väntar på att Play Console-behörigheten sprider (upp till 24 h): 401 permissionDenied just nu.
 - [ ] Signerad AAB byggd på användarens dator och testad mot Googles interna testspår.
+
 ## Avgränsad profilrättning
 - [x] Bevara ursprung, hantera äldre osäkra månader och skilj manuell upplysning från gräns.
 - [x] Uppdatera 29 språk och verifiera beräkning, sparande och rapport. Ingen publicering.
