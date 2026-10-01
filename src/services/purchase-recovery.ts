@@ -29,6 +29,8 @@ export async function drainPurchaseTransactions(queryClient: QueryClient): Promi
           data: {
             deviceId: store.ensureDeviceId(),
             transactionId: transaction.transactionId,
+            purchaseToken: transaction.purchaseToken ?? undefined,
+            orderId: transaction.orderId ?? undefined,
           },
         });
         if (premium.status === "active" || premium.status === "inactive") {
@@ -62,6 +64,8 @@ export async function drainPurchaseTransactions(queryClient: QueryClient): Promi
           id: ref.id,
           accessToken: ref.accessToken,
           transactionId: transaction.transactionId,
+          purchaseToken: transaction.purchaseToken ?? undefined,
+          orderId: transaction.orderId ?? undefined,
         },
       });
       if (verified.status === "paid") {
