@@ -87,8 +87,8 @@ export const verifyPurchase = route(
       id: string;
       accessToken: string;
       transactionId: string;
-      purchaseToken?: string;
-      orderId?: string;
+      purchaseToken?: string | undefined;
+      orderId?: string | undefined;
     },
     Awaited<ReturnType<typeof verifyApplePurchase>>
   >,
@@ -113,8 +113,8 @@ export const verifyPremium = route(
     {
       deviceId: string;
       transactionId: string;
-      purchaseToken?: string;
-      orderId?: string;
+      purchaseToken?: string | undefined;
+      orderId?: string | undefined;
     },
     Awaited<ReturnType<typeof verifyApplePremium>>
   >,
