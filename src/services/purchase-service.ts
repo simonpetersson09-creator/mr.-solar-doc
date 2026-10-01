@@ -108,9 +108,14 @@ export const fetchPremiumStatus = route(
 );
 
 export const verifyPremium = route(
-  "verifyApplePremium",
+  { apple: "verifyApplePremium", android: "verifyGooglePremium" },
   verifyApplePremium as Fn<
-    { deviceId: string; transactionId: string },
+    {
+      deviceId: string;
+      transactionId: string;
+      purchaseToken?: string;
+      orderId?: string;
+    },
     Awaited<ReturnType<typeof verifyApplePremium>>
   >,
 );
