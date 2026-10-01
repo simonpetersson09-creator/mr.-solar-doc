@@ -256,7 +256,9 @@ export async function listPurchasedCalculationsProvider(data: { deviceId: string
 
 interface SubscriptionRow {
   device_id: string;
+  store?: string | null;
   apple_original_transaction_id: string;
+  google_purchase_token?: string | null;
   status: string;
   expires_at: string | null;
   auto_renew: boolean;
@@ -319,14 +321,19 @@ export async function getPremiumStatusProvider(data: {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
   const { data: rows } = await supabaseAdmin
     .from("premium_subscriptions")
-    .select("device_id, apple_original_transaction_id, status, expires_at, auto_renew, revoked_at")
+    .select(
+      "device_id, store, apple_original_transaction_id, google_purchase_token, status, expires_at, auto_renew, revoked_at",
+    )
     .eq("device_id", data.deviceId)
     .order("expires_at", { ascending: false })
     .limit(5);
 
   let best: PremiumStatus = { active: false, expiresAt: null, autoRenew: false, stale: false };
   for (const row of (rows ?? []) as unknown as SubscriptionRow[]) {
-    const status = await refreshSubscriptionRow(row, data.deviceId);
+    const status =
+      row.store === "google"
+        ? await refreshGoogleSubscriptionRow(row, data.deviceId)
+        : await refreshSubscriptionRow(row, data.deviceId);
     if (status.active && !best.active) best = status;
     else if (!best.active && !best.expiresAt) best = status;
   }
