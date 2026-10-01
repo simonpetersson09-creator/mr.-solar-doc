@@ -45,6 +45,18 @@ export const premiumVerifySchema = premiumSchema.extend({
   transactionId: z.string().min(1).max(200),
 });
 
+/** Google Play: the purchase token replaces the transaction id. */
+export const googleVerifySchema = accessSchema.extend({
+  purchaseToken: z.string().min(10).max(1024),
+  orderId: z.string().max(200).optional(),
+  productId: z.string().min(1).max(200).optional(),
+});
+
+export const googlePremiumVerifySchema = premiumSchema.extend({
+  purchaseToken: z.string().min(10).max(1024),
+  orderId: z.string().max(200).optional(),
+});
+
 /** Creates the pending receipt row that the paywall is shown for. */
 export const createPendingCalculation = createServerFn({ method: "POST" })
   .inputValidator((input: unknown) => createSchema.parse(input))
@@ -107,6 +119,22 @@ export const verifyApplePremium = createServerFn({ method: "POST" })
   .handler(async ({ data }) => {
     const { verifyApplePremiumProvider } = await import("@/lib/purchase.server");
     return verifyApplePremiumProvider(data);
+  });
+
+/** Verifies a Google Play one-off purchase and unlocks on success. */
+export const verifyGooglePurchase = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) => googleVerifySchema.parse(input))
+  .handler(async ({ data }) => {
+    const { verifyGooglePurchaseProvider } = await import("@/lib/purchase.server");
+    return verifyGooglePurchaseProvider(data);
+  });
+
+/** Verifies a Google Play subscription and binds it to this device. */
+export const verifyGooglePremium = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) => googlePremiumVerifySchema.parse(input))
+  .handler(async ({ data }) => {
+    const { verifyGooglePremiumProvider } = await import("@/lib/purchase.server");
+    return verifyGooglePremiumProvider(data);
   });
 
 /** Unlocks one calculation for a device with an active Premium subscription. */

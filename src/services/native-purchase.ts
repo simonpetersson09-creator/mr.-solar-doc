@@ -17,6 +17,8 @@ export type NativePurchaseAction =
   | "listPurchasedCalculations"
   | "getPremiumStatus"
   | "verifyApplePremium"
+  | "verifyGooglePurchase"
+  | "verifyGooglePremium"
   | "unlockWithPremium";
 
 export class NativePurchaseError extends Error {
