@@ -13,6 +13,7 @@ import {
   Loader2,
   Lock,
   RefreshCw,
+  RotateCcw,
   Settings2,
   ShieldCheck,
 } from "lucide-react";
@@ -30,6 +31,7 @@ import { useStorePrices } from "@/hooks/use-store-prices";
 
 import { fetchPremiumStatus, verifyPremium } from "@/services/purchase-service";
 import { usePurchaseStore } from "@/state/purchase-store";
+import { useWizardStore } from "@/state/wizard-store";
 import { drainPurchaseTransactions } from "@/services/purchase-recovery";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
 import { CALCULATION_VERSION } from "@/config/constants";
@@ -69,6 +71,7 @@ function SettingsPage() {
   const queryClient = useQueryClient();
   const premium = usePremium();
   const [restoring, setRestoring] = useState(false);
+  const [confirmReset, setConfirmReset] = useState(false);
   const [buying, setBuying] = useState(false);
   /** Visible, non-transient failure text — a toast alone can be missed. */
   const [purchaseError, setPurchaseError] = useState<string | null>(null);
@@ -412,6 +415,36 @@ function SettingsPage() {
               </span>
               <ChevronRight className="size-3 text-brand-black/40" />
             </button>
+          </div>
+
+          {/* Start over — clears the wizard answers only */}
+          <div className="flex flex-col gap-1">
+            <button
+              type="button"
+              onClick={() => {
+                if (!confirmReset) {
+                  void haptic("light");
+                  setConfirmReset(true);
+                  return;
+                }
+                void haptic("medium");
+                useWizardStore.getState().reset();
+                setConfirmReset(false);
+                void navigate({ to: "/" });
+              }}
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
+            >
+              <span className="flex items-center gap-2">
+                <span className="flex size-6 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                  <RotateCcw className="size-3" />
+                </span>
+                <span className={`text-xs font-semibold ${confirmReset ? "text-destructive" : "text-brand-black"}`}>
+                  {confirmReset ? t("settings.resetConfirm") : t("settings.reset")}
+                </span>
+              </span>
+              <ChevronRight className="size-3 text-brand-black/40" />
+            </button>
+            <p className="px-1 text-[10px] text-brand-black/60">{t("settings.resetHint")}</p>
           </div>
 
           {/* Legal */}
