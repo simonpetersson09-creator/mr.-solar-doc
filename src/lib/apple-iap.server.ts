@@ -96,7 +96,13 @@ function base64Url(input: Buffer | string): string {
     .replace(/=+$/, "");
 }
 
-function createAppleJwt(config: AppleConfig): string {
+/**
+ * Signs the App Store Server API token with Web Crypto. node:crypto's
+ * `sign(..., { dsaEncoding })` works locally but fails in the published
+ * server runtime, which made every live verification an "apple-error".
+ * Web Crypto ECDSA already returns the raw r||s (P1363) signature JWT needs.
+ */
+async function createAppleJwt(config: AppleConfig): Promise<string> {
   const now = Math.floor(Date.now() / 1000);
   const header = base64Url(
     JSON.stringify({ alg: "ES256", kid: config.keyId, typ: "JWT" }),
@@ -111,11 +117,28 @@ function createAppleJwt(config: AppleConfig): string {
     }),
   );
   const signingInput = `${header}.${payload}`;
-  const signature = cryptoSign("sha256", Buffer.from(signingInput), {
-    key: createPrivateKey(config.privateKey),
-    dsaEncoding: "ieee-p1363",
-  });
-  return `${signingInput}.${base64Url(signature)}`;
+  const der = Buffer.from(
+    config.privateKey.replace(/-----[A-Z ]+-----/g, "").replace(/\s+/g, ""),
+    "base64",
+  );
+  let key: CryptoKey;
+  try {
+    key = await crypto.subtle.importKey(
+      "pkcs8",
+      der,
+      { name: "ECDSA", namedCurve: "P-256" },
+      false,
+      ["sign"],
+    );
+  } catch {
+    throw new AppleVerificationError("not-configured", "Apple private key could not be read.");
+  }
+  const signature = await crypto.subtle.sign(
+    { name: "ECDSA", hash: "SHA-256" },
+    key,
+    new TextEncoder().encode(signingInput),
+  );
+  return `${signingInput}.${base64Url(Buffer.from(signature))}`;
 }
 
 interface SignedTransactionPayload {
