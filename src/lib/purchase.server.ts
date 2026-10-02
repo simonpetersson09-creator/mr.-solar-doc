@@ -213,6 +213,7 @@ export async function verifyApplePurchaseProvider(
     return { status: "paid" as PurchaseStatus };
   } catch (error) {
     const code = error instanceof AppleVerificationError ? error.code : "apple-error";
+    console.error("[apple-verify] failed", code, error instanceof Error ? error.message : String(error));
     // Only Apple's definitive answers are terminal. Anything else (network
     // problems, Apple downtime, misconfiguration) stays pending and retryable
     // so a paid user never loses access.
@@ -366,6 +367,7 @@ export async function verifyApplePremiumProvider(data: {
       PREMIUM_PRODUCT_IDS,
     ).catch((error: unknown) => {
       const code = error instanceof AppleVerificationError ? error.code : "apple-error";
+    console.error("[apple-verify] failed", code, error instanceof Error ? error.message : String(error));
       const notExpired = verified.expiresAt
         ? new Date(verified.expiresAt).getTime() > Date.now()
         : false;
@@ -413,6 +415,7 @@ export async function verifyApplePremiumProvider(data: {
     };
   } catch (error) {
     const code = error instanceof AppleVerificationError ? error.code : "apple-error";
+    console.error("[apple-verify] failed", code, error instanceof Error ? error.message : String(error));
     const terminal = code === "wrong-bundle" || code === "wrong-product" || code === "revoked";
     return { status: terminal ? "failed" : "pending", reason: code };
   }
