@@ -289,7 +289,19 @@ let orderPlaced = false;
  */
 const unclaimed: CdvTransaction[] = [];
 
+/**
+ * The purchase plugin adds placeholder transactions on iOS: one for the app
+ * receipt itself ("appstore.application") and "virtual.<productId>" while a
+ * purchase is still in progress. Neither is a real App Store purchase, so they
+ * must never be verified, queued as a credit or resolve a purchase flow.
+ */
+export function isPlaceholderTransactionId(transactionId: string | null | undefined): boolean {
+  if (!transactionId) return false;
+  return transactionId === "appstore.application" || transactionId.startsWith("virtual.");
+}
+
 function handleApproved(transaction: CdvTransaction) {
+  if (isPlaceholderTransactionId(transaction.transactionId)) return;
   const deliveredProductId = transaction.products?.[0]?.id ?? null;
   // Only hand the transaction to the active purchase flow when it is actually
   // the product being bought. StoreKit also redelivers renewals, restores and
@@ -533,7 +545,7 @@ export function takeUnclaimedTransactions(): UnclaimedTransaction[] {
   const taken = unclaimed.splice(0, unclaimed.length);
   return taken.flatMap((transaction) => {
     const transactionId = transaction.transactionId;
-    if (!transactionId) return [];
+    if (!transactionId || isPlaceholderTransactionId(transactionId)) return [];
     return [
       {
         transactionId,
