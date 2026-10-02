@@ -11,7 +11,6 @@
  * verification module with the same error-code contract.
  */
 
-import { createSign } from "node:crypto";
 import { PREMIUM_PRODUCT_ID } from "@/config/purchase";
 
 const ANDROIDPUBLISHER_BASE = "https://androidpublisher.googleapis.com";
@@ -113,9 +112,24 @@ async function getAccessToken(serviceAccount: ServiceAccount): Promise<string> {
   const signerInput = `${header}.${claims}`;
   let signature: string;
   try {
-    signature = base64Url(
-      createSign("RSA-SHA256").update(signerInput).sign(serviceAccount.private_key),
+    // Web Crypto: node:crypto signing is unreliable in the published runtime.
+    const der = Buffer.from(
+      serviceAccount.private_key.replace(/-----[A-Z ]+-----/g, "").replace(/\s+/g, ""),
+      "base64",
     );
+    const key = await crypto.subtle.importKey(
+      "pkcs8",
+      der,
+      { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
+      false,
+      ["sign"],
+    );
+    const raw = await crypto.subtle.sign(
+      "RSASSA-PKCS1-v1_5",
+      key,
+      new TextEncoder().encode(signerInput),
+    );
+    signature = base64Url(Buffer.from(raw));
   } catch (error) {
     throw new GoogleVerificationError(
       "not-configured",
