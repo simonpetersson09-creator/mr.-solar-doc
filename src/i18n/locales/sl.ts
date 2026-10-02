@@ -858,6 +858,8 @@ evenHelp: "Približno enaka poraba ves dan.",
     devContinue: "Dev: continue without payment",
   },
   history: {
+    delete: "Izbriši",
+    confirmDelete: "Izbrišem?",
     empty: "Nimate še shranjenih izračunov.",
     unknownAddress: "Izračun",
     error: "Vaše zgodovine ni bilo mogoče naložiti.",

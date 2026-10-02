@@ -869,6 +869,8 @@ evenHelp: "Consumo più o meno uguale nell’arco delle 24 ore.",
     devContinue: "Dev: continue without payment",
   },
   history: {
+    delete: "Elimina",
+    confirmDelete: "Eliminare?",
     empty: "Non hai ancora calcoli salvati.",
     unknownAddress: "Calcolo",
     error: "Impossibile caricare la tua cronologia.",

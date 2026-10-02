@@ -1,11 +1,16 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
-import { ArrowLeft, ChevronRight, History, Loader2 } from "lucide-react";
+import { ArrowLeft, ChevronRight, History, Loader2, Trash2 } from "lucide-react";
 import { haptic } from "@/services/native-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { useCalculationStore } from "@/state/calculation-store";
-import { fetchPurchasedCalculations } from "@/services/purchase-service";
+import {
+  fetchPurchasedCalculations,
+  unlockCalculationWithPremium,
+} from "@/services/purchase-service";
+import { usePremium } from "@/hooks/use-premium";
 import { useAppLocale } from "@/hooks/use-app-locale";
 import { formatDate, formatDecimal, formatNumber } from "@/lib/format";
 
@@ -31,6 +36,10 @@ function HistoryPage() {
   const setActive = usePurchaseStore((s) => s.setActive);
 
   const stored = useCalculationStore((s) => s.items);
+  const removeLocal = useCalculationStore((s) => s.remove);
+  const premium = usePremium();
+  const [confirmId, setConfirmId] = useState<string | null>(null);
+  const backfilled = useRef(false);
 
   // The server only knows which purchases are verified. Everything shown here
   // (address, size, production) is read from the local snapshot on this device.
@@ -38,6 +47,29 @@ function HistoryPage() {
     queryKey: ["purchased-calculations"],
     queryFn: async () => fetchPurchasedCalculations({ data: { deviceId: ensureDeviceId() } }),
   });
+
+  // Calculations made with Premium before the fix were never marked as paid
+  // on the server. With an active Premium, ask the server (which re-checks the
+  // subscription) to mark them now so they appear here.
+  useEffect(() => {
+    if (backfilled.current || !premium.active || !query.data) return;
+    backfilled.current = true;
+    const known = new Set(query.data.items.map((r) => r.id));
+    const missing = Object.values(stored).filter(
+      (c) => !known.has(c.id) && !c.id.startsWith("dev-"),
+    );
+    if (missing.length === 0) return;
+    void (async () => {
+      let changed = false;
+      for (const c of missing) {
+        const res = await unlockCalculationWithPremium({
+          data: { id: c.id, accessToken: c.accessToken, deviceId: ensureDeviceId() },
+        }).catch(() => null);
+        if (res?.status === "paid") changed = true;
+      }
+      if (changed) void query.refetch();
+    })();
+  }, [premium.active, query.data, stored, ensureDeviceId, query]);
 
   const items = (query.data?.items ?? []).flatMap((receipt) => {
     const local = stored[receipt.id];
@@ -106,15 +138,15 @@ function HistoryPage() {
         ) : (
           <div className="flex flex-col gap-2">
             {items.map((item) => (
+              <div key={item.id} className="flex items-stretch gap-2">
               <button
-                key={item.id}
                 type="button"
                 onClick={() => {
                   void haptic("light");
                   setActive({ id: item.id, accessToken: item.accessToken });
                   void navigate({ to: "/resultat" });
                 }}
-                className="cta-primary flex items-center gap-3 rounded-2xl px-4 py-3 text-left text-primary-foreground transition-transform active:scale-[0.98]"
+                className="cta-primary flex min-w-0 flex-1 items-center gap-3 rounded-2xl px-4 py-3 text-left text-primary-foreground transition-transform active:scale-[0.98]"
               >
                 <span className="flex min-w-0 flex-1 flex-col gap-0.5">
                   <span className="truncate text-sm font-bold">
@@ -128,6 +160,32 @@ function HistoryPage() {
                 </span>
                 <ChevronRight className="size-4 shrink-0 text-primary-foreground/70" />
               </button>
+              {confirmId === item.id ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    void haptic("medium");
+                    removeLocal(item.id);
+                    setConfirmId(null);
+                  }}
+                  className="shrink-0 rounded-2xl bg-destructive px-3 text-xs font-bold text-destructive-foreground transition-transform active:scale-95"
+                >
+                  {t("history.confirmDelete")}
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  aria-label={t("history.delete")}
+                  onClick={() => {
+                    void haptic("light");
+                    setConfirmId(item.id);
+                  }}
+                  className="cta-primary flex w-11 shrink-0 items-center justify-center rounded-2xl text-primary-foreground transition-transform active:scale-95"
+                >
+                  <Trash2 className="size-4" />
+                </button>
+              )}
+              </div>
             ))}
           </div>
         )}

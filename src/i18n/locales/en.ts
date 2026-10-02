@@ -602,6 +602,8 @@ evenHelp: "About the same consumption around the clock.",
     reportInEnglish: "The PDF report is delivered in English.",
   },
   history: {
+    delete: "Delete",
+    confirmDelete: "Delete?",
     empty: "You have no saved calculations yet.",
     unknownAddress: "Calculation",
     error: "Could not load your history.",

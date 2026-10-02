@@ -600,6 +600,8 @@ evenHelp: "Otprilike ista potrošnja tokom celog dana.",
     reportInEnglish: "PDF izveštaj se dostavlja na engleskom jeziku.",
   },
   history: {
+    delete: "Obriši",
+    confirmDelete: "Obrisati?",
     empty: "Још немате сачуваних прорачуна.",
     unknownAddress: "Прорачун",
     error: "Историју није било могуће учитати.",

@@ -8,6 +8,7 @@ import { FuseStep } from "@/components/steps/FuseStep";
 import { AssumptionsStep } from "@/components/steps/AssumptionsStep";
 import { useCreatePendingCalculation } from "@/hooks/use-create-pending-calculation";
 import { usePurchaseStore } from "@/state/purchase-store";
+import { unlockCalculationWithPremium } from "@/services/purchase-service";
 import { useWizardStore } from "@/state/wizard-store";
 import { isValidConnectionCapacity } from "@/config/connection-capacity";
 import { isDevUnlock } from "@/lib/dev-unlock";
@@ -115,6 +116,13 @@ function WizardPage() {
           const pending = usePurchaseStore.getState().pending;
           if ((created.premiumActive || isDevUnlock()) && pending) {
             usePurchaseStore.getState().rememberToken(pending);
+            // Mark the receipt as paid via Premium so it shows up in history.
+            // The server re-checks the entitlement; failure never blocks.
+            if (created.premiumActive) {
+              await unlockCalculationWithPremium({
+                data: { ...pending, deviceId: usePurchaseStore.getState().ensureDeviceId() },
+              }).catch(() => null);
+            }
             void navigate({ to: "/resultat" });
             return;
           }

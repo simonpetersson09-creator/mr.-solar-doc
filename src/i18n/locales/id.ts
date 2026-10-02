@@ -595,6 +595,8 @@ evenHelp: "Konsumsi kurang lebih sama sepanjang hari.",
     reportInEnglish: "Laporan PDF disediakan dalam bahasa Inggris.",
   },
   history: {
+    delete: "Hapus",
+    confirmDelete: "Hapus?",
     empty: "Anda belum memiliki perhitungan tersimpan.",
     unknownAddress: "Perhitungan",
     error: "Tidak dapat memuat riwayat Anda.",

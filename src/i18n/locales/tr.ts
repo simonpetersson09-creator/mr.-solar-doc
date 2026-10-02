@@ -606,6 +606,8 @@ evenHelp: "Gün boyunca yaklaşık aynı tüketim.",
     reportInEnglish: "PDF raporu İngilizce olarak sunulur.",
   },
   history: {
+    delete: "Sil",
+    confirmDelete: "Silinsin mi?",
     empty: "Henüz kaydedilmiş bir hesaplamanız yok.",
     unknownAddress: "Hesaplama",
     error: "Geçmişiniz yüklenemedi.",

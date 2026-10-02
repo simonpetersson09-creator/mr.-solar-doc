@@ -610,6 +610,8 @@ evenHelp: "Consumo prácticamente igual durante todo el día.",
     reportInEnglish: "El informe PDF se entrega en inglés.",
   },
   history: {
+    delete: "Eliminar",
+    confirmDelete: "¿Eliminar?",
     empty: "Aún no tienes cálculos guardados.",
     unknownAddress: "Cálculo",
     error: "No se ha podido cargar tu historial.",

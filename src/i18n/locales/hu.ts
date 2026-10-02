@@ -609,6 +609,8 @@ evenHelp: "Nagyjából azonos fogyasztás a nap egészében.",
     reportInEnglish: "A PDF-jelentés angol nyelven készül.",
   },
   history: {
+    delete: "Törlés",
+    confirmDelete: "Törlöd?",
     empty: "Még nincs mentett számítása.",
     unknownAddress: "Számítás",
     error: "Nem sikerült betölteni az előzményeket.",

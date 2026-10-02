@@ -599,6 +599,8 @@ evenHelp: "Omtrent samme forbruk hele døgnet.",
     reportInEnglish: "PDF-rapporten leveres på engelsk.",
   },
   history: {
+    delete: "Slett",
+    confirmDelete: "Slett?",
     empty: "Du har ingen lagrede beregninger ennå.",
     unknownAddress: "Beregning",
     error: "Kunne ikke laste historikken din.",

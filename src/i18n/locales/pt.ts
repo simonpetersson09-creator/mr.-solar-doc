@@ -607,6 +607,8 @@ evenHelp: "Consumo aproximadamente igual ao longo do dia.",
     reportInEnglish: "O relatório em PDF é fornecido em inglês.",
   },
   history: {
+    delete: "Eliminar",
+    confirmDelete: "Eliminar?",
     empty: "Ainda não tem cálculos guardados.",
     unknownAddress: "Cálculo",
     error: "Não foi possível carregar o seu histórico.",

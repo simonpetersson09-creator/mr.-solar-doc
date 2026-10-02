@@ -877,6 +877,8 @@ evenHelp: "Umbes sama tarbimine ööpäev läbi.",
     devContinue: "Dev: continue without payment",
   },
   history: {
+    delete: "Kustuta",
+    confirmDelete: "Kustutada?",
     empty: "Teil pole veel salvestatud arvutusi.",
     unknownAddress: "Arvutus",
     error: "Teie ajalugu ei õnnestunud laadida.",

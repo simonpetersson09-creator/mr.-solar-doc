@@ -862,6 +862,8 @@ evenHelp: "Približne rovnaká spotreba počas celého dňa.",
     devContinue: "Dev: continue without payment",
   },
   history: {
+    delete: "Odstrániť",
+    confirmDelete: "Odstrániť?",
     empty: "Zatiaľ nemáte žiadne uložené výpočty.",
     unknownAddress: "Výpočet",
     error: "Nepodarilo sa načítať vašu históriu.",
