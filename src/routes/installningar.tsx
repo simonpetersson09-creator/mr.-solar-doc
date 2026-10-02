@@ -190,7 +190,7 @@ function SettingsPage() {
   return (
     <div className="surface-sun flex h-dvh max-h-dvh flex-col overflow-hidden">
       <main
-        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-1.5 overflow-y-auto overscroll-contain px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]"
+        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-1 overflow-y-auto overscroll-contain px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]"
         style={{ paddingTop: "max(var(--safe-top-min), calc(0.25rem + env(safe-area-inset-top)))" }}
       >
         <header className="flex items-center gap-2 pt-0.5">
@@ -211,7 +211,7 @@ function SettingsPage() {
         </header>
 
         {/* Language — always changeable, independent of the analysed country */}
-        <section className="glass-primary rounded-2xl p-2.5">
+        <section className="glass-primary rounded-xl p-2">
           <div className="flex items-center justify-between gap-2">
             <h2 className="text-sm font-black text-brand-black">{t("settings.language")}</h2>
             <LanguageSwitcher />
@@ -220,10 +220,10 @@ function SettingsPage() {
         </section>
 
         {/* Premium section */}
-        <section className="flex flex-col gap-2">
+        <section className="flex flex-col gap-1.5">
           {/* Premium subscription (primary) */}
-          <div className="glass-primary relative overflow-hidden rounded-2xl p-2.5 ring-2 ring-brand-black/15">
-            <div className="relative z-10 flex flex-col gap-1.5">
+          <div className="glass-primary relative overflow-hidden rounded-xl p-2 ring-2 ring-brand-black/15">
+            <div className="relative z-10 flex flex-col gap-1">
               {/* Title + price on one row */}
               <div className="flex items-center justify-between gap-2">
                 <div className="flex min-w-0 items-center gap-1.5">
@@ -246,7 +246,7 @@ function SettingsPage() {
               {/* Benefits */}
               <ul className="flex flex-col gap-0.5">
                 {["calculations", "pdf", "result"].map((key) => (
-                  <li key={key} className="flex items-start gap-1.5 text-[11px] text-brand-black/85">
+                  <li key={key} className="flex items-start gap-1.5 text-[10px] text-brand-black/85">
                     <Check className="mt-0.5 size-3 shrink-0 text-brand-black" />
                     <span>{t(`paywall.premium.includes.${key}`)}</span>
                   </li>
@@ -257,7 +257,7 @@ function SettingsPage() {
                 <div className="flex items-center gap-1.5 rounded-lg bg-brand-black/10 px-2 py-1">
                   <Crown className="size-3 text-brand-black" />
                   <span className="flex flex-col">
-                    <span className="text-[11px] font-bold text-brand-black">
+                    <span className="text-[10px] font-bold text-brand-black">
                       {t("premium.active")}
                     </span>
                     <span className="text-[10px] text-brand-black/70">{t("premium.activeHint")}</span>
@@ -287,13 +287,13 @@ function SettingsPage() {
               {/* StoreKit could not deliver the product — neutral, retryable. */}
               {!premium.active && !purchaseError && priceUnavailable ? (
                 <div className="flex flex-col gap-1">
-                  <p role="status" className="text-[11px] font-semibold text-brand-black/75">
+                  <p role="status" className="text-[10px] font-semibold text-brand-black/75">
                     {t(storeTextKey(isAndroidApp(), "priceUnavailable", "paywall.priceUnavailable"))}
                   </p>
                   {canRetryPrices ? (
                     <Button
                       variant="outline"
-                      className="h-7 w-full text-[11px] font-semibold"
+                      className="h-7 w-full text-[10px] font-semibold"
                       onClick={() => store.retry()}
                     >
                       {t("common.retry")}
@@ -304,12 +304,12 @@ function SettingsPage() {
               {/* Only a real, attempted purchase failure is shown as an error */}
               {!premium.active && purchaseError ? (
                 <div className="flex flex-col gap-1">
-                  <p role="alert" className="text-[11px] font-semibold text-destructive">
+                  <p role="alert" className="text-[10px] font-semibold text-destructive">
                     {purchaseError}
                   </p>
                   <Button
                     variant="outline"
-                    className="h-7 w-full text-[11px] font-semibold"
+                    className="h-7 w-full text-[10px] font-semibold"
                     onClick={() => {
                       setPurchaseError(null);
                       store.retry();
@@ -329,8 +329,8 @@ function SettingsPage() {
           </div>
 
           {/* One-off unlock */}
-          <div className="glass-primary relative overflow-hidden rounded-2xl p-3">
-            <div className="relative z-10 flex flex-col gap-1.5">
+          <div className="glass-primary relative overflow-hidden rounded-xl p-2">
+            <div className="relative z-10 flex flex-col gap-1">
               {/* Title + price on one row */}
               <div className="flex items-center justify-between gap-2">
                 <h2 className="min-w-0 truncate text-base font-black leading-none text-brand-black">
@@ -340,7 +340,7 @@ function SettingsPage() {
                   {unlockPrice ?? priceFallback}
                 </span>
               </div>
-              <p className="text-[11px] font-medium text-brand-black/75">
+              <p className="text-[10px] font-medium text-brand-black/75">
                 {t("paywall.single.body")}
               </p>
               <Button disabled className="h-7 w-full text-xs font-semibold">
@@ -355,17 +355,17 @@ function SettingsPage() {
         </section>
 
         {/* Settings groups */}
-        <section className="flex flex-col gap-2">
+        <section className="flex flex-col gap-1.5">
           {/* Restore / Manage */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1.5">
             <button
               type="button"
               disabled={restoring}
               onClick={() => void handleRestore()}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3 py-2 text-left transition-transform active:scale-[0.98] disabled:opacity-60"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98] disabled:opacity-60"
             >
               <span className="flex items-center gap-2">
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
                   {restoring ? (
                     <Loader2 className="size-3 animate-spin" />
                   ) : (
@@ -385,10 +385,10 @@ function SettingsPage() {
               onClick={(e) =>
                 handleExternalLink(e, isAndroidApp() ? MANAGE_SUBSCRIPTION_URL_ANDROID : MANAGE_SUBSCRIPTION_URL)
               }
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3 py-2 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
                   <Settings2 className="size-3" />
                 </span>
                 <span className="text-xs font-semibold text-brand-black">{t("premium.manage")}</span>
@@ -398,17 +398,17 @@ function SettingsPage() {
           </div>
 
           {/* History */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1.5">
             <button
               type="button"
               onClick={() => {
                 void haptic("light");
                 void navigate({ to: "/historik" });
               }}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3 py-2 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
                   <History className="size-3" />
                 </span>
                 <span className="text-xs font-semibold text-brand-black">{t("settings.history")}</span>
@@ -432,10 +432,10 @@ function SettingsPage() {
                 setConfirmReset(false);
                 void navigate({ to: "/" });
               }}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3 py-2 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
                   <RotateCcw className="size-3" />
                 </span>
                 <span className={`text-xs font-semibold ${confirmReset ? "text-destructive" : "text-brand-black"}`}>
@@ -448,16 +448,16 @@ function SettingsPage() {
           </div>
 
           {/* Legal */}
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1.5">
             <a
               href={LEGAL_URL}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => handleExternalLink(e, LEGAL_URL)}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3 py-2 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
                   <FileText className="size-3" />
                 </span>
                 <span className="text-xs font-semibold text-brand-black">{t("settings.terms")}</span>
@@ -469,10 +469,10 @@ function SettingsPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => handleExternalLink(e, PRIVACY_URL)}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3 py-2 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
-                <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+                <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
                   <ShieldCheck className="size-3" />
                 </span>
                 <span className="text-xs font-semibold text-brand-black">{t("settings.privacy")}</span>
