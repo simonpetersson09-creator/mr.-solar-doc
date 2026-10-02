@@ -10,7 +10,7 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "cap:sync": "node scripts/build-native.mjs && cap sync && node scripts/patch-ios-permissions.mjs",
+    "cap:sync": "node scripts/build-native.mjs && cap sync && node scripts/patch-ios-permissions.mjs && node scripts/patch-ios-localizations.mjs",
     "ios:icons": "node scripts/copy-ios-icons.mjs",
     "cap:add:ios": "cap add ios",
     "cap:add:android": "cap add android",
