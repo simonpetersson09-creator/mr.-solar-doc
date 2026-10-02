@@ -874,6 +874,8 @@ evenHelp: "Etwa gleicher Verbrauch rund um die Uhr.",
     devContinue: "Dev: continue without payment",
   },
   history: {
+    delete: "Löschen",
+    confirmDelete: "Löschen?",
     empty: "Du hast noch keine gespeicherten Berechnungen.",
     unknownAddress: "Berechnung",
     error: "Dein Verlauf konnte nicht geladen werden.",

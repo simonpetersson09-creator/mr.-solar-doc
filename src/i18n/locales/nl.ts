@@ -613,6 +613,8 @@ evenHelp: "Ongeveer hetzelfde verbruik over de hele dag.",
     reportInEnglish: "Het PDF-rapport wordt in het Engels geleverd.",
   },
   history: {
+    delete: "Verwijderen",
+    confirmDelete: "Verwijderen?",
     empty: "Je hebt nog geen opgeslagen berekeningen.",
     unknownAddress: "Berekening",
     error: "Je geschiedenis kon niet worden geladen.",

@@ -584,6 +584,8 @@ evenHelp: "צריכה דומה לאורך כל שעות היממה.",
     reportInEnglish: "דוח ה-PDF מסופק באנגלית.",
   },
   history: {
+    delete: "מחק",
+    confirmDelete: "למחוק?",
     empty: "אין לכם עדיין חישובים שמורים.",
     unknownAddress: "חישוב",
     error: "לא ניתן היה לטעון את ההיסטוריה שלכם.",

@@ -862,6 +862,8 @@ evenHelp: "Aptuveni vienāds patēriņš visu diennakti.",
     devContinue: "Dev: continue without payment",
   },
   history: {
+    delete: "Dzēst",
+    confirmDelete: "Dzēst?",
     empty: "Jums vēl nav saglabātu aprēķinu.",
     unknownAddress: "Aprēķins",
     error: "Neizdevās ielādēt jūsu vēsturi.",

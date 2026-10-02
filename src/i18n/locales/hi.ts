@@ -595,6 +595,8 @@ evenHelp: "दिन भर लगभग समान खपत।",
     reportInEnglish: "PDF रिपोर्ट अंग्रेज़ी में दी जाती है।",
   },
   history: {
+    delete: "हटाएँ",
+    confirmDelete: "हटाएँ?",
     empty: "आपने अभी तक कोई गणना सहेजी नहीं है।",
     unknownAddress: "गणना",
     error: "आपका इतिहास लोड नहीं किया जा सका।",

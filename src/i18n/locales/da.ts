@@ -862,6 +862,8 @@ evenHelp: "Omtrent samme forbrug hele døgnet.",
     devContinue: "Dev: continue without payment",
   },
   history: {
+    delete: "Slet",
+    confirmDelete: "Slet?",
     empty: "Du har endnu ingen gemte beregninger.",
     unknownAddress: "Beregning",
     error: "Kunne ikke indlæse din historik.",

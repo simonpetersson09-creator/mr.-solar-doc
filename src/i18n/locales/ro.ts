@@ -610,6 +610,8 @@ evenHelp: "Consum aproximativ egal pe tot parcursul zilei.",
     reportInEnglish: "Raportul PDF este furnizat în limba engleză.",
   },
   history: {
+    delete: "Șterge",
+    confirmDelete: "Ștergi?",
     empty: "Nu ai încă niciun calcul salvat.",
     unknownAddress: "Calcul",
     error: "Nu am putut încărca istoricul tău.",

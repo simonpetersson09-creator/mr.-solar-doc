@@ -861,6 +861,8 @@ evenHelp: "Saman verran kulutusta ympäri vuorokauden.",
     devContinue: "Dev: continue without payment",
   },
   history: {
+    delete: "Poista",
+    confirmDelete: "Poistetaanko?",
     empty: "Sinulla ei ole vielä tallennettuja laskelmia.",
     unknownAddress: "Laskelma",
     error: "Historiaa ei voitu ladata.",

@@ -877,6 +877,8 @@ evenHelp: "Consommation à peu près identique jour et nuit.",
     devContinue: "Dev: continue without payment",
   },
   history: {
+    delete: "Supprimer",
+    confirmDelete: "Supprimer ?",
     empty: "Vous n'avez encore aucun calcul enregistré.",
     unknownAddress: "Calcul",
     error: "Impossible de charger votre historique.",

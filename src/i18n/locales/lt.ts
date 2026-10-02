@@ -867,6 +867,8 @@ evenHelp: "Maždaug vienodas suvartojimas visą parą.",
     devContinue: "Dev: continue without payment",
   },
   history: {
+    delete: "Ištrinti",
+    confirmDelete: "Ištrinti?",
     empty: "Kol kas neturite išsaugotų skaičiavimų.",
     unknownAddress: "Skaičiavimas",
     error: "Nepavyko įkelti jūsų istorijos.",

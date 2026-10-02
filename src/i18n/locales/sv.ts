@@ -604,6 +604,8 @@ export const sv = {
     reportInEnglish: "PDF-rapporten levereras på engelska.",
   },
   history: {
+    delete: "Ta bort",
+    confirmDelete: "Ta bort?",
     empty: "Du har inga sparade beräkningar än.",
     unknownAddress: "Beräkning",
     error: "Kunde inte hämta din historik.",

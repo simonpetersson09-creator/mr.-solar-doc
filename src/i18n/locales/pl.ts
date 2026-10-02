@@ -875,6 +875,8 @@ evenHelp: "Mniej więcej takie samo zużycie przez całą dobę.",
     devContinue: "Dev: continue without payment",
   },
   history: {
+    delete: "Usuń",
+    confirmDelete: "Usunąć?",
     empty: "Nie masz jeszcze żadnych zapisanych obliczeń.",
     unknownAddress: "Obliczenie",
     error: "Nie udało się wczytać Twojej historii.",
