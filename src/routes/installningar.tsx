@@ -190,7 +190,7 @@ function SettingsPage() {
   return (
     <div className="surface-sun flex h-dvh max-h-dvh flex-col overflow-hidden">
       <main
-        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-1 overflow-y-auto overscroll-contain px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))]"
+        className="scrollbar-hidden mx-auto flex w-full max-w-2xl flex-1 flex-col gap-1.5 overflow-y-auto overscroll-contain px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))]"
         style={{ paddingTop: "max(var(--safe-top-min), calc(0.25rem + env(safe-area-inset-top)))" }}
       >
         <header className="flex items-center gap-2 pt-0.5">
@@ -211,19 +211,19 @@ function SettingsPage() {
         </header>
 
         {/* Language — always changeable, independent of the analysed country */}
-        <section className="glass-primary rounded-xl p-2">
+        <section className="glass-primary rounded-xl p-3.5">
           <div className="flex items-center justify-between gap-2">
             <h2 className="text-sm font-black text-brand-black">{t("settings.language")}</h2>
             <LanguageSwitcher />
           </div>
-          <p className="mt-0.5 text-[10px] text-brand-black/70">{t("settings.languageHint")}</p>
+          <p className="mt-1 text-[11px] text-brand-black/70">{t("settings.languageHint")}</p>
         </section>
 
         {/* Premium section */}
-        <section className="flex flex-col gap-1.5">
+        <section className="flex flex-col gap-2">
           {/* Premium subscription (primary) */}
-          <div className="glass-primary relative overflow-hidden rounded-xl p-2 ring-2 ring-brand-black/15">
-            <div className="relative z-10 flex flex-col gap-1">
+          <div className="glass-primary relative overflow-hidden rounded-xl p-3.5 ring-2 ring-brand-black/15">
+            <div className="relative z-10 flex flex-col gap-1.5">
               {/* Title + price on one row */}
               <div className="flex items-center justify-between gap-2">
                 <div className="flex min-w-0 items-center gap-1.5">
@@ -329,8 +329,8 @@ function SettingsPage() {
           </div>
 
           {/* One-off unlock */}
-          <div className="glass-primary relative overflow-hidden rounded-xl p-2">
-            <div className="relative z-10 flex flex-col gap-1">
+          <div className="glass-primary relative overflow-hidden rounded-xl p-3.5">
+            <div className="relative z-10 flex flex-col gap-1.5">
               {/* Title + price on one row */}
               <div className="flex items-center justify-between gap-2">
                 <h2 className="min-w-0 truncate text-base font-black leading-none text-brand-black">
@@ -355,14 +355,14 @@ function SettingsPage() {
         </section>
 
         {/* Settings groups */}
-        <section className="flex flex-col gap-1.5">
+        <section className="flex flex-col gap-2">
           {/* Restore / Manage */}
-          <div className="flex flex-col gap-1.5">
+          <div className="flex flex-col gap-2">
             <button
               type="button"
               disabled={restoring}
               onClick={() => void handleRestore()}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98] disabled:opacity-60"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98] disabled:opacity-60"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -385,7 +385,7 @@ function SettingsPage() {
               onClick={(e) =>
                 handleExternalLink(e, isAndroidApp() ? MANAGE_SUBSCRIPTION_URL_ANDROID : MANAGE_SUBSCRIPTION_URL)
               }
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -405,7 +405,7 @@ function SettingsPage() {
                 void haptic("light");
                 void navigate({ to: "/historik" });
               }}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -432,7 +432,7 @@ function SettingsPage() {
                 setConfirmReset(false);
                 void navigate({ to: "/" });
               }}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -444,7 +444,7 @@ function SettingsPage() {
               </span>
               <ChevronRight className="size-3 text-brand-black/40" />
             </button>
-            <p className="px-1 text-[10px] text-brand-black/60">{t("settings.resetHint")}</p>
+            <p className="px-1.5 text-[10px] text-brand-black/60">{t("settings.resetHint")}</p>
           </div>
 
           {/* Legal */}
@@ -454,7 +454,7 @@ function SettingsPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => handleExternalLink(e, LEGAL_URL)}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -469,7 +469,7 @@ function SettingsPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => handleExternalLink(e, PRIVACY_URL)}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
