@@ -204,7 +204,7 @@ export async function verifyAppleTransaction(
   expectedProductId: string | readonly string[],
 ): Promise<VerifiedTransaction> {
   const config = readConfig();
-  const token = createAppleJwt(config);
+  const token = await createAppleJwt(config);
   const expected = Array.isArray(expectedProductId)
     ? [...(expectedProductId as readonly string[])]
     : [expectedProductId as string];
@@ -317,7 +317,7 @@ export async function getAppleSubscriptionState(
   expectedProductId: string | readonly string[],
 ): Promise<SubscriptionState> {
   const config = readConfig();
-  const token = createAppleJwt(config);
+  const token = await createAppleJwt(config);
   const expected = Array.isArray(expectedProductId)
     ? [...(expectedProductId as readonly string[])]
     : [expectedProductId as string];
