@@ -545,7 +545,7 @@ export function takeUnclaimedTransactions(): UnclaimedTransaction[] {
   const taken = unclaimed.splice(0, unclaimed.length);
   return taken.flatMap((transaction) => {
     const transactionId = transaction.transactionId;
-    if (!transactionId) return [];
+    if (!transactionId || isPlaceholderTransactionId(transactionId)) return [];
     return [
       {
         transactionId,
