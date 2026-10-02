@@ -8,7 +8,7 @@ import {
   Scripts,
   type ErrorComponentProps,
 } from "@tanstack/react-router";
-import { useEffect, useLayoutEffect, useState, type ReactNode } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 import { useNativeShell } from "@/hooks/use-native-shell";
 import { usePurchaseRecovery } from "@/hooks/use-purchase-recovery";
@@ -206,8 +206,15 @@ function RootComponent() {
   // Match the language the server rendered with *before* the tree renders, so
   // hydration compares identical text. Resources are bundled, so this resolves
   // synchronously.
-  if (typeof document !== "undefined" && normaliseLanguage(i18n.language) !== language) {
-    void i18n.changeLanguage(language);
+  // Only on the very first (hydrating) render. Re-running this on later
+  // renders forced the app back to the first language (English) whenever the
+  // root re-rendered after the device/saved language had been applied.
+  const hydratedLanguage = useRef(false);
+  if (!hydratedLanguage.current) {
+    hydratedLanguage.current = true;
+    if (typeof document !== "undefined" && normaliseLanguage(i18n.language) !== language) {
+      void i18n.changeLanguage(language);
+    }
   }
 
   useNativeShell();

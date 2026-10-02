@@ -48,6 +48,8 @@ npx cap open android   # Android Studio → Run
    ```bash
    npx cap add ios          # om ios/ saknas
    npm run build:native && npx cap sync ios
+   node scripts/patch-ios-permissions.mjs && node scripts/patch-ios-localizations.mjs   # app languages, required or iOS starts in English
+   # (or simply: npm run cap:sync)
    ```
 2. I Xcode-targetet (`se.shiningdays.mrsolardoc`):
    - Signing & Capabilities → **+ Capability → In-App Purchase**.
