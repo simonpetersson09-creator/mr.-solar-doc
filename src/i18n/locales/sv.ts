@@ -611,6 +611,9 @@ export const sv = {
     error: "Kunde inte hämta din historik.",
   },
   settings: {
+    reset: "Börja om",
+    resetHint: "Nollställ alla svar och starta en ny beräkning. Historik och köp påverkas inte.",
+    resetConfirm: "Tryck igen för att bekräfta",
     title: "Inställningar",
     language: "Språk",
     languageHint: "Valutan styrs av landet i din adress, inte av språket.",
