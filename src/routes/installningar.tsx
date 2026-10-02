@@ -362,7 +362,7 @@ function SettingsPage() {
               type="button"
               disabled={restoring}
               onClick={() => void handleRestore()}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98] disabled:opacity-60"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98] disabled:opacity-60"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -385,7 +385,7 @@ function SettingsPage() {
               onClick={(e) =>
                 handleExternalLink(e, isAndroidApp() ? MANAGE_SUBSCRIPTION_URL_ANDROID : MANAGE_SUBSCRIPTION_URL)
               }
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -405,7 +405,7 @@ function SettingsPage() {
                 void haptic("light");
                 void navigate({ to: "/historik" });
               }}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -432,7 +432,7 @@ function SettingsPage() {
                 setConfirmReset(false);
                 void navigate({ to: "/" });
               }}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -444,7 +444,7 @@ function SettingsPage() {
               </span>
               <ChevronRight className="size-3 text-brand-black/40" />
             </button>
-            <p className="px-1 text-[10px] text-brand-black/60">{t("settings.resetHint")}</p>
+            <p className="px-1.5 text-[10px] text-brand-black/60">{t("settings.resetHint")}</p>
           </div>
 
           {/* Legal */}
@@ -454,7 +454,7 @@ function SettingsPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => handleExternalLink(e, LEGAL_URL)}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
@@ -469,7 +469,7 @@ function SettingsPage() {
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => handleExternalLink(e, PRIVACY_URL)}
-              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-2.5 py-1.5 text-left transition-transform active:scale-[0.98]"
+              className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
             >
               <span className="flex items-center gap-2">
                 <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
