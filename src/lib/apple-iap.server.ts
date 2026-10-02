@@ -6,7 +6,6 @@
  * transaction and validates bundle, product and revocation state.
  */
 
-import { createPrivateKey, sign as cryptoSign } from "node:crypto";
 
 const PRODUCTION_BASE = "https://api.storekit.itunes.apple.com";
 const SANDBOX_BASE = "https://api.storekit-sandbox.itunes.apple.com";
