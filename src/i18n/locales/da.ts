@@ -26,6 +26,7 @@ export const da = {
     disclaimer: "Beregningen er vejledende og er ikke et tilbud.",
   },
   common: {
+    simulating: "Simulerer",
     back: "Tilbage",
     next: "Næste",
     retry: "Prøv igen",

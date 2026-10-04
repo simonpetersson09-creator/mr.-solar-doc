@@ -26,6 +26,7 @@ export const en = {
     disclaimer: "The calculation is indicative and is not a quote.",
   },
   common: {
+    simulating: "Simulating",
     back: "Back",
     next: "Next",
     retry: "Try again",

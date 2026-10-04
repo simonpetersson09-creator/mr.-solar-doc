@@ -27,6 +27,7 @@ export const de = {
     disclaimer: "Die Berechnung ist richtungsweisend und kein Angebot.",
   },
   common: {
+    simulating: "Simulation läuft",
     back: "Zurück",
     next: "Weiter",
     retry: "Erneut versuchen",

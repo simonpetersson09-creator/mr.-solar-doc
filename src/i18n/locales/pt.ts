@@ -26,6 +26,7 @@ export const pt = {
     disclaimer: "O cálculo é indicativo e não é uma proposta.",
   },
   common: {
+    simulating: "A simular",
     back: "Voltar",
     next: "Seguinte",
     retry: "Tentar novamente",

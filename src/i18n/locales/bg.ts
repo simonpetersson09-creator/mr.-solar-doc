@@ -26,6 +26,7 @@ export const bg = {
     disclaimer: "Изчислението е ориентировъчно и не е оферта.",
   },
   common: {
+    simulating: "Симулацията тече",
     back: "Назад",
     next: "Напред",
     retry: "Опитай отново",

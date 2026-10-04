@@ -24,6 +24,7 @@ export const sl = {
     disclaimer: "Izračun je orientacijski in ni ponudba.",
   },
   common: {
+    simulating: "Simuliram",
     back: "Nazaj",
     next: "Naprej",
     retry: "Poskusi znova",

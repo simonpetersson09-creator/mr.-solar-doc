@@ -26,6 +26,7 @@ export const lt = {
     disclaimer: "Skaičiavimas yra orientacinis ir nėra pasiūlymas.",
   },
   common: {
+    simulating: "Atliekamas modeliavimas",
     back: "Atgal",
     next: "Kitas",
     retry: "Bandyti dar kartą",

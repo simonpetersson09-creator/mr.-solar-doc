@@ -26,6 +26,7 @@ export const nl = {
     disclaimer: "De berekening is richtinggevend en geen offerte.",
   },
   common: {
+    simulating: "Simuleren",
     back: "Terug",
     next: "Volgende",
     retry: "Opnieuw proberen",

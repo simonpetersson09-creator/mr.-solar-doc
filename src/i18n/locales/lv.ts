@@ -26,6 +26,7 @@ export const lv = {
     disclaimer: "Aprēķins ir orientējošs un nav piedāvājums.",
   },
   common: {
+    simulating: "Notiek modelēšana",
     back: "Atpakaļ",
     next: "Tālāk",
     retry: "Mēģināt vēlreiz",

@@ -25,6 +25,7 @@ export const hi = {
     disclaimer: "यह गणना सांकेतिक है और कोई कोटेशन नहीं है।",
   },
   common: {
+    simulating: "सिमुलेशन चल रहा है",
     back: "पीछे",
     next: "आगे",
     retry: "फिर से कोशिश करें",

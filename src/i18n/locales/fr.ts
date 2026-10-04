@@ -28,6 +28,7 @@ export const fr = {
     disclaimer: "Le calcul est indicatif et ne constitue pas un devis.",
   },
   common: {
+    simulating: "Simulation en cours",
     back: "Retour",
     next: "Suivant",
     retry: "Réessayer",

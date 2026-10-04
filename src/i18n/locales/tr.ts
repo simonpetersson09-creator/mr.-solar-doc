@@ -26,6 +26,7 @@ export const tr = {
     disclaimer: "Hesaplama yol göstericidir ve bir teklif değildir.",
   },
   common: {
+    simulating: "Simülasyon yapılıyor",
     back: "Geri",
     next: "İleri",
     retry: "Tekrar dene",

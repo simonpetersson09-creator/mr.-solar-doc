@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import i18n from "@/i18n";
 import { toast } from "sonner";
@@ -6,6 +7,7 @@ import { RoofStep } from "@/components/steps/RoofStep";
 import { ConsumptionStep } from "@/components/steps/ConsumptionStep";
 import { FuseStep } from "@/components/steps/FuseStep";
 import { AssumptionsStep } from "@/components/steps/AssumptionsStep";
+import { SimulatingOverlay } from "@/components/SimulatingOverlay";
 import { useCreatePendingCalculation } from "@/hooks/use-create-pending-calculation";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { unlockCalculationWithPremium } from "@/services/purchase-service";
@@ -33,6 +35,9 @@ const TOTAL_STEPS = 5;
 function WizardPage() {
   const navigate = useNavigate();
   const createPending = useCreatePendingCalculation();
+  // "Simulerar"-overlay while step 5's calculation runs (Mr. Battery Doc-style).
+  const [simulating, setSimulating] = useState(false);
+  const [simDone, setSimDone] = useState(false);
   const hasStarted = useWizardStore((s) => s.hasStarted);
   const setStarted = useWizardStore((s) => s.setStarted);
   // Country never drives the UI language; only technical/economic profiles.
@@ -91,44 +96,67 @@ function WizardPage() {
     );
   }
   return (
-    <AssumptionsStep
-      totalSteps={TOTAL_STEPS}
-      onBack={() => setStep(4)}
-      onSubmit={() => {
-        void (async () => {
-          const created = await createPending();
-          if (!created.ok) {
-            // The engine had no usable result (e.g. the cached solar data was
-            // dropped): say so instead of leaving a dead button.
-            toast.error(i18n.t("result.calculationUnavailable"));
-            return;
-          }
-          // A free recalculation on an already paid calculation opens directly.
-          if (created.reused) {
-            toast.success(
-              i18n.t("result.revisionUsed", { left: created.revisionsLeft }),
-            );
-            void navigate({ to: "/resultat" });
-            return;
-          }
-          // Premium (and dev bypass) skip the paywall: the calculation opens
-          // directly. Uses the server-fresh entitlement from the call above.
-          const pending = usePurchaseStore.getState().pending;
-          if ((created.premiumActive || isDevUnlock()) && pending) {
-            usePurchaseStore.getState().rememberToken(pending);
-            // Mark the receipt as paid via Premium so it shows up in history.
-            // The server re-checks the entitlement; failure never blocks.
-            if (created.premiumActive) {
-              await unlockCalculationWithPremium({
-                data: { ...pending, deviceId: usePurchaseStore.getState().ensureDeviceId() },
-              }).catch(() => null);
+    <>
+      <SimulatingOverlay active={simulating} done={simDone} />
+      <AssumptionsStep
+        totalSteps={TOTAL_STEPS}
+        onBack={() => setStep(4)}
+        onSubmit={() => {
+          void (async () => {
+            setSimulating(true);
+            setSimDone(false);
+            // Keep the ring visible long enough to read as a real simulation.
+            const startedAt = Date.now();
+            const minShowMs = 1200;
+            // Let the ring visibly reach 100 % before leaving the page.
+            const finish = (to: "/resultat" | "/betalning") => {
+              setSimDone(true);
+              window.setTimeout(() => void navigate({ to }), 480);
+            };
+            try {
+              const created = await createPending();
+              const wait = minShowMs - (Date.now() - startedAt);
+              if (wait > 0) await new Promise((r) => setTimeout(r, wait));
+              if (!created.ok) {
+                // The engine had no usable result (e.g. the cached solar data was
+                // dropped): say so instead of leaving a dead button.
+                setSimulating(false);
+                setSimDone(false);
+                toast.error(i18n.t("result.calculationUnavailable"));
+                return;
+              }
+              // A free recalculation on an already paid calculation opens directly.
+              if (created.reused) {
+                toast.success(
+                  i18n.t("result.revisionUsed", { left: created.revisionsLeft }),
+                );
+                finish("/resultat");
+                return;
+              }
+              // Premium (and dev bypass) skip the paywall: the calculation opens
+              // directly. Uses the server-fresh entitlement from the call above.
+              const pending = usePurchaseStore.getState().pending;
+              if ((created.premiumActive || isDevUnlock()) && pending) {
+                usePurchaseStore.getState().rememberToken(pending);
+                // Mark the receipt as paid via Premium so it shows up in history.
+                // The server re-checks the entitlement; failure never blocks.
+                if (created.premiumActive) {
+                  await unlockCalculationWithPremium({
+                    data: { ...pending, deviceId: usePurchaseStore.getState().ensureDeviceId() },
+                  }).catch(() => null);
+                }
+                finish("/resultat");
+                return;
+              }
+              finish("/betalning");
+            } catch (error) {
+              setSimulating(false);
+              setSimDone(false);
+              throw error;
             }
-            void navigate({ to: "/resultat" });
-            return;
-          }
-          void navigate({ to: "/betalning" });
-        })();
-      }}
-    />
+          })();
+        }}
+      />
+    </>
   );
 }

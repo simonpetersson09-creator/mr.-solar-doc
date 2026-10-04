@@ -26,6 +26,7 @@ export const et = {
     disclaimer: "Arvutus on suunav ega ole pakkumine.",
   },
   common: {
+    simulating: "Simuleeritakse",
     back: "Tagasi",
     next: "Edasi",
     retry: "Proovi uuesti",

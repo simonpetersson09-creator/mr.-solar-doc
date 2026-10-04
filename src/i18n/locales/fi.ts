@@ -25,6 +25,7 @@ export const fi = {
     disclaimer: "Laskelma on ohjeellinen eikä se ole tarjous.",
   },
   common: {
+    simulating: "Simuloidaan",
     back: "Takaisin",
     next: "Seuraava",
     retry: "Yritä uudelleen",

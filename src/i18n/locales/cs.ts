@@ -26,6 +26,7 @@ export const cs = {
     disclaimer: "Výpočet je orientační a nejde o nabídku.",
   },
   common: {
+    simulating: "Simuluji",
     back: "Zpět",
     next: "Další",
     retry: "Zkusit znovu",
