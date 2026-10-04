@@ -21,6 +21,7 @@ import { getRequestLanguage } from "../lib/language.functions";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { trackEvent } from "../services/stats";
 
 /** English copy used for SSR and the first client render (i18n boots async). */
 const NOT_FOUND_FALLBACK = {
@@ -185,6 +186,11 @@ function useDocumentLanguage() {
   // before paint, so there is no mismatch and no visible language flicker.
   useIsomorphicLayoutEffect(() => {
     applyInitialLanguage();
+  }, []);
+  useEffect(() => {
+    // Delay so persisted stores (country) have rehydrated.
+    const t = window.setTimeout(() => trackEvent("app_open"), 1500);
+    return () => window.clearTimeout(t);
   }, []);
   useEffect(() => {
     const apply = () => {
