@@ -190,10 +190,19 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     solarSeasonProductionShare,
   });
   if (selection.status === "grid-too-small") {
-    throw new GridTooSmallError(
-      selection.maxAcPowerKw,
-      selection.minimumSupportedInverterKw,
+    // The options above are already cut at the AC ceiling, so when none fit
+    // the selector only sees an empty list and reports 0 kW. The smallest
+    // product the user would need is the catalogue's smallest unit.
+    const catalogueMinKw = Math.min(
+      ...inverterCatalog.unitSizesKw.filter((kw) => kw > 0),
     );
+    const minimumKw =
+      selection.minimumSupportedInverterKw > 0
+        ? selection.minimumSupportedInverterKw
+        : Number.isFinite(catalogueMinKw)
+          ? catalogueMinKw
+          : 0;
+    throw new GridTooSmallError(selection.maxAcPowerKw, minimumKw);
   }
   if (!selection.withinTargetRange) {
     notes.push(
