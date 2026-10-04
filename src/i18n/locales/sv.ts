@@ -336,6 +336,7 @@ export const sv = {
     panelsUnit: "paneler",
     panelCount: "ca {{count}} paneler",
     inverterPower: "Växelriktareffekt",
+    inverterSizingNote: "Vi väljer storlek på växelriktaren utifrån hur din förbrukning ligger i förhållande till solen.",
     dcAcRatio: "DC/AC-ratio",
     oversizing: "Överdimensionering",
     monthlyProduction: "Produktion januari–december",
