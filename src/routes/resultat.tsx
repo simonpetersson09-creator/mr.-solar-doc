@@ -399,12 +399,12 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
               </p>
             ) : null}
             {result.busbarBasis ? (
-              <div className="mt-2.5 space-y-1 rounded-2xl border border-brand-black/15 bg-surface-cream/70 px-3 py-2 text-left text-brand-black">
-                <p className="text-[11px] font-semibold">
+              <div className="mt-2.5 space-y-1 rounded-2xl bg-white/10 px-3 py-2 text-left">
+                <p className="text-[11px] font-semibold text-white">
                   {t("result.panelAssumption.title")}
                 </p>
                 {panelAssumptionLines(result.busbarBasis, t, locale).map((line) => (
-                  <p key={line} className="text-[11px] leading-relaxed opacity-80">
+                  <p key={line} className="text-[11px] leading-relaxed text-white/70">
                     {line}
                   </p>
                 ))}

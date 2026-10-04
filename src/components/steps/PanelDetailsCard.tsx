@@ -57,7 +57,7 @@ function AmpField({
           }}
           className="h-8 w-20 rounded-full border-white/25 bg-white/15 text-xs text-white placeholder:text-white/50"
         />
-        <span className="text-xs opacity-70">A</span>
+        <span className="text-xs text-white/60">A</span>
         <button
           type="button"
           className={chip(value == null && text === "")}
@@ -90,7 +90,7 @@ export function PanelDetailsCard() {
 
   return (
     <div className="glass-primary space-y-2.5 rounded-[28px] px-4 py-3.5">
-      <p className="flex items-start gap-2 text-[11px] leading-relaxed opacity-80">
+      <p className="flex items-start gap-2 text-[11px] leading-relaxed text-white/80">
         <PanelTop className="mt-0.5 size-3.5 shrink-0 text-accent" />
         <span>{t("fuse.panel.standardNote")}</span>
       </p>
@@ -105,7 +105,7 @@ export function PanelDetailsCard() {
       </button>
       {open ? (
         <div className="space-y-3">
-          <p className="text-[11px] leading-relaxed opacity-80">{t("fuse.panel.help")}</p>
+          <p className="text-[11px] leading-relaxed text-white/80">{t("fuse.panel.help")}</p>
           <AmpField
             id="panel-main-breaker"
             label={t("fuse.panel.mainBreaker")}
