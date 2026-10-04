@@ -14,6 +14,39 @@ export type Database = {
   }
   public: {
     Tables: {
+      app_events: {
+        Row: {
+          country: string | null
+          created_at: string
+          device_id: string
+          event: string
+          id: string
+          language: string | null
+          platform: string | null
+          step: number | null
+        }
+        Insert: {
+          country?: string | null
+          created_at?: string
+          device_id: string
+          event: string
+          id?: string
+          language?: string | null
+          platform?: string | null
+          step?: number | null
+        }
+        Update: {
+          country?: string | null
+          created_at?: string
+          device_id?: string
+          event?: string
+          id?: string
+          language?: string | null
+          platform?: string | null
+          step?: number | null
+        }
+        Relationships: []
+      }
       calculations: {
         Row: {
           access_token: string

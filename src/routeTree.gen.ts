@@ -16,6 +16,7 @@ import { Route as HistorikRouteImport } from './routes/historik'
 import { Route as InstallningarRouteImport } from './routes/installningar'
 import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
 import { Route as ResultatRouteImport } from './routes/resultat'
+import { Route as ApiPublicEventsRouteImport } from './routes/api/public/events'
 import { Route as ApiPublicGeocodeRouteImport } from './routes/api/public/geocode'
 import { Route as ApiPublicPurchaseRouteImport } from './routes/api/public/purchase'
 import { Route as ApiPublicPvgisRouteImport } from './routes/api/public/pvgis'
@@ -55,6 +56,11 @@ const ResultatRoute = ResultatRouteImport.update({
   path: '/resultat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicEventsRoute = ApiPublicEventsRouteImport.update({
+  id: '/api/public/events',
+  path: '/api/public/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiPublicGeocodeRoute = ApiPublicGeocodeRouteImport.update({
   id: '/api/public/geocode',
   path: '/api/public/geocode',
@@ -79,6 +85,7 @@ export interface FileRoutesByFullPath {
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
+  '/api/public/events': typeof ApiPublicEventsRoute
   '/api/public/geocode': typeof ApiPublicGeocodeRoute
   '/api/public/purchase': typeof ApiPublicPurchaseRoute
   '/api/public/pvgis': typeof ApiPublicPvgisRoute
@@ -91,6 +98,7 @@ export interface FileRoutesByTo {
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
+  '/api/public/events': typeof ApiPublicEventsRoute
   '/api/public/geocode': typeof ApiPublicGeocodeRoute
   '/api/public/purchase': typeof ApiPublicPurchaseRoute
   '/api/public/pvgis': typeof ApiPublicPvgisRoute
@@ -104,6 +112,7 @@ export interface FileRoutesById {
   '/installningar': typeof InstallningarRoute
   '/integritetspolicy': typeof IntegritetspolicyRoute
   '/resultat': typeof ResultatRoute
+  '/api/public/events': typeof ApiPublicEventsRoute
   '/api/public/geocode': typeof ApiPublicGeocodeRoute
   '/api/public/purchase': typeof ApiPublicPurchaseRoute
   '/api/public/pvgis': typeof ApiPublicPvgisRoute
@@ -118,6 +127,7 @@ export interface FileRouteTypes {
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
+    | '/api/public/events'
     | '/api/public/geocode'
     | '/api/public/purchase'
     | '/api/public/pvgis'
@@ -130,6 +140,7 @@ export interface FileRouteTypes {
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
+    | '/api/public/events'
     | '/api/public/geocode'
     | '/api/public/purchase'
     | '/api/public/pvgis'
@@ -142,6 +153,7 @@ export interface FileRouteTypes {
     | '/installningar'
     | '/integritetspolicy'
     | '/resultat'
+    | '/api/public/events'
     | '/api/public/geocode'
     | '/api/public/purchase'
     | '/api/public/pvgis'
@@ -155,6 +167,7 @@ export interface RootRouteChildren {
   InstallningarRoute: typeof InstallningarRoute
   IntegritetspolicyRoute: typeof IntegritetspolicyRoute
   ResultatRoute: typeof ResultatRoute
+  ApiPublicEventsRoute: typeof ApiPublicEventsRoute
   ApiPublicGeocodeRoute: typeof ApiPublicGeocodeRoute
   ApiPublicPurchaseRoute: typeof ApiPublicPurchaseRoute
   ApiPublicPvgisRoute: typeof ApiPublicPvgisRoute
@@ -211,6 +224,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResultatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/events': {
+      id: '/api/public/events'
+      path: '/api/public/events'
+      fullPath: '/api/public/events'
+      preLoaderRoute: typeof ApiPublicEventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/public/geocode': {
       id: '/api/public/geocode'
       path: '/api/public/geocode'
@@ -243,6 +263,7 @@ const rootRouteChildren: RootRouteChildren = {
   InstallningarRoute: InstallningarRoute,
   IntegritetspolicyRoute: IntegritetspolicyRoute,
   ResultatRoute: ResultatRoute,
+  ApiPublicEventsRoute: ApiPublicEventsRoute,
   ApiPublicGeocodeRoute: ApiPublicGeocodeRoute,
   ApiPublicPurchaseRoute: ApiPublicPurchaseRoute,
   ApiPublicPvgisRoute: ApiPublicPvgisRoute,
