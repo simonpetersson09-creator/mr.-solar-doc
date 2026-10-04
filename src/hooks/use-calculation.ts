@@ -62,6 +62,8 @@ export function useCalculation(): {
   });
 
   const gridConfirmed = useWizardStore((s) => s.gridConfirmed);
+  const panelMainBreakerA = useWizardStore((s) => s.panelMainBreakerA);
+  const busbarRatingA = useWizardStore((s) => s.busbarRatingA);
 
   const input = useMemo<CalculationInput | null>(() => {
     if (!location || !resource || !annualConsumptionKwh) return null;
@@ -83,6 +85,8 @@ export function useCalculation(): {
       serviceType: gridServiceType as ServiceType,
       serviceAmperageA,
       voltageV: connectionCapacity!.voltageV ?? gridVoltageV,
+      panelMainBreakerA,
+      busbarRatingA,
     });
     return {
       location,
@@ -106,6 +110,7 @@ export function useCalculation(): {
         pvLimitBinding: pvLimit.binding,
         pvRulesStatus: pvLimit.rulesStatus,
         simplifiedProcessLimitKw: pvLimit.simplifiedProcessLimitKw,
+        busbarBasis: pvLimit.busbarBasis,
         gridProfileStatus: getConnectionConfig(location.countryCode).status,
         gridProfileConfirmed: gridConfirmed,
       },
@@ -148,6 +153,8 @@ export function useCalculation(): {
     gridVoltageV,
     gridFrequencyHz,
     gridConfirmed,
+    panelMainBreakerA,
+    busbarRatingA,
     selfConsumptionShare,
     selfConsumptionShareIsUserSet,
     loadProfileClass,

@@ -15,3 +15,4 @@
 - The native app talks to the paywall through the stable REST route `/api/public/purchase`, not server-function RPC ids, because RPC ids drift between bundled builds and the published backend.
 - The Android `store`/token columns must keep their unique index on `premium_subscriptions.google_purchase_token` — the Premium upsert depends on it.
 
+- US/CA busbar limit is computed in `resolvePvPowerLimit` from the panel the PV connects to (main breaker + busbar, optional user input), not the total service; unknown values are assumed and returned in `busbarBasis` so the result page and PDF show the same assumption via `src/lib/panel-assumption.ts`. Why: service size and PV panel differ, and assumptions must be visible.

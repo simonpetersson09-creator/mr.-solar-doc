@@ -13,7 +13,7 @@ import type {
 import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
 import type { ClippingLossModel } from "./clipping";
 import type { ServiceType } from "@/config/grid";
-import type { PvLimitBinding, PvRulesStatus } from "@/config/pv-connection-rules";
+import type { BusbarBasis, PvLimitBinding, PvRulesStatus } from "@/config/pv-connection-rules";
 import type { ConnectionCapacity } from "@/config/connection-capacity";
 import type { ConnectionProfileStatus } from "@/config/connections";
 
@@ -148,6 +148,8 @@ export interface ElectricalInput {
    * market has one. Informational only — it never resizes the array.
    */
   simplifiedProcessLimitKw?: number | null;
+  /** Panel data behind a busbar ceiling (US/CA), incl. assumed values. */
+  busbarBasis?: BusbarBasis | null;
   /** True when the user confirmed unverified grid data (required in step 4). */
   gridProfileConfirmed?: boolean;
 }
@@ -320,6 +322,8 @@ export interface CalculationResult {
   simplifiedProcessLimitKw: number | null;
   /** True when the recommended AC power exceeds `simplifiedProcessLimitKw`. */
   aboveSimplifiedProcessLimit: boolean;
+  /** Panel data behind a busbar ceiling; null where no busbar rule applies. */
+  busbarBasis: BusbarBasis | null;
 
   dcAcRatio: number;
   oversizingPercent: number;

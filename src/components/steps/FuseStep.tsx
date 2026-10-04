@@ -37,6 +37,8 @@ import {
 } from "@/config/grid";
 import { useWizardStore } from "@/state/wizard-store";
 import { haptic } from "@/services/native-service";
+import { PanelDetailsCard } from "@/components/steps/PanelDetailsCard";
+import { getPvConnectionRules } from "@/config/pv-connection-rules";
 
 /** Phase models offered by the explicit phase choice (ampere markets). */
 const PHASE_CHOICE_OPTIONS: readonly ServiceType[] = ["single-phase", "three-phase"];
@@ -613,6 +615,9 @@ const [showGridInfo, setShowGridInfo] = useState(false);
           </div>
         </div>
       ) : null}
+
+      {/* 4. Elcentral (US/CA busbar rule) — optional advanced details */}
+      {getPvConnectionRules(countryCode).busbarBackfeedRule ? <PanelDetailsCard /> : null}
 
       {/* 5. Viktigt att veta — own card */}
       <div className="glass-primary rounded-[28px] px-4 py-3">

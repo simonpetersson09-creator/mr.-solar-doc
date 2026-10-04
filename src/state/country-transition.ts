@@ -35,6 +35,10 @@ export interface CountryDependentState {
   gridFrequencyHz: number;
   gridProfileIsUserSet: boolean;
   gridConfirmed: boolean;
+  /** Main breaker of the panel the PV connects to (A); null = "Don't know". */
+  panelMainBreakerA: number | null;
+  /** Busbar rating of that panel (A); null = "Don't know". */
+  busbarRatingA: number | null;
   selfConsumedValuePerKwh: number | null;
   exportValuePerKwh: number | null;
   quotePrice: number | null;
@@ -70,6 +74,8 @@ export function countryDefaults(countryCode?: string | null): CountryDependentSt
     // A non-verified profile must be confirmed by the user; a verified one
     // needs no confirmation.
     gridConfirmed: connection.status === "verified",
+    panelMainBreakerA: null,
+    busbarRatingA: null,
     selfConsumedValuePerKwh: null,
     exportValuePerKwh: null,
     quotePrice: null,

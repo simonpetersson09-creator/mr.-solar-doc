@@ -46,6 +46,8 @@ export interface WizardData {
   gridFrequencyHz: number;
   gridProfileIsUserSet: boolean;
   gridConfirmed: boolean;
+  panelMainBreakerA: number | null;
+  busbarRatingA: number | null;
   selfConsumptionShare: number;
   selfConsumptionShareIsUserSet: boolean;
   /** When the household mainly uses electricity. Standard adjustment only. */
@@ -82,6 +84,8 @@ export const initialWizardState: WizardData = {
   gridFrequencyHz: DEFAULT_GRID_PROFILE.frequencyHz,
   gridProfileIsUserSet: false,
   gridConfirmed: false,
+  panelMainBreakerA: null,
+  busbarRatingA: null,
   selfConsumptionShare: DEFAULT_SELF_CONSUMPTION_SHARE,
   selfConsumptionShareIsUserSet: false,
   loadProfileClass: "mixed",

@@ -196,6 +196,16 @@ export const es = {
     invalid: "Introduce un consumo anual entre 100 y 200.000 kWh.",
   },
   fuse: {
+    panel: {
+      standardNote: "La potencia solar permitida se basa en una suposición sobre su panel eléctrico y debe confirmarla su instalador.",
+      title: "Avanzado: panel donde se conecta la instalación solar",
+      help: "El servicio total de la vivienda (el tamaño de arriba) y el panel eléctrico donde se conecta la instalación solar pueden ser distintos. La potencia solar permitida depende del interruptor principal de ese panel y de la capacidad de su barra colectora (busbar), indicada en la etiqueta dentro de la puerta del panel. Elija «No lo sé» si no está seguro.",
+      mainBreaker: "Interruptor principal de ese panel",
+      busbar: "Capacidad de la barra colectora (en la etiqueta)",
+      dontKnow: "No lo sé",
+      placeholder: "p. ej. 225",
+      invalid: "Introduzca un valor entre {{min}} y {{max}} A.",
+    },
     gridAssumptionDynamic: "El cálculo se basa en {{service}} {{voltage}}.",
     capacity: {
       inputUnit: "Unidad",
@@ -268,6 +278,14 @@ export const es = {
     invalid: "Introduce un interruptor general entre 6 y 400 A.",
   },
   result: {
+    panelAssumption: {
+      title: "Suposición sobre su panel eléctrico",
+      basis: "Calculado para un interruptor solar en un panel con interruptor principal de {{main}} A y barra colectora de {{busbar}} A: como máximo {{breaker}} A para el interruptor solar, lo que da {{kw}} kW de potencia del inversor.",
+      busbarAssumed: "No se indicó la capacidad de la barra colectora; se supone igual al interruptor principal del panel.",
+      mainAssumed: "No se indicó el interruptor principal del panel; se supone igual al tamaño del servicio.",
+      large: "Un servicio de {{service}} A suele estar repartido en más de un panel. No se indicó el panel, por lo que el cálculo supone de forma preliminar que la instalación solar se conecta a un panel con interruptor principal de {{main}} A. No supone un único panel de {{service}} A ni dos paneles separados.",
+      notMax: "Este es el límite para el método de conexión supuesto, no el mayor sistema solar posible. Otras soluciones pueden dar otra capacidad según la evaluación de su instalador. Pida a su instalador que confirme los datos del panel.",
+    },
     loadProfileQuestion: "¿Cuándo consumes más electricidad?",
     loadProfileHelp:
       "¿No lo sabes? Elige mixto. La elección nos ayuda a estimar cuánta energía solar usas directamente.",

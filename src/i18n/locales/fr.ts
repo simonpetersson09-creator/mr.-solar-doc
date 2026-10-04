@@ -188,6 +188,16 @@ export const fr = {
     monthlyHint: "Indiquez la consommation pour les 12 mois",
   },
   fuse: {
+    panel: {
+      standardNote: "La puissance solaire autorisée repose sur une hypothèse concernant votre panneau électrique et doit être confirmée par votre installateur.",
+      title: "Avancé : panneau où se raccorde l'installation solaire",
+      help: "Le service total du logement (la taille ci-dessus) et le panneau électrique où se raccorde l'installation solaire peuvent différer. La puissance solaire autorisée dépend du disjoncteur principal de ce panneau et du courant nominal de sa barre omnibus, indiqué sur l'étiquette à l'intérieur de la porte du panneau. Choisissez « Je ne sais pas » en cas de doute.",
+      mainBreaker: "Disjoncteur principal de ce panneau",
+      busbar: "Courant nominal de la barre omnibus (sur l'étiquette)",
+      dontKnow: "Je ne sais pas",
+      placeholder: "p. ex. 225",
+      invalid: "Saisissez une valeur entre {{min}} et {{max}} A.",
+    },
     gridAssumptionDynamic: "Le calcul repose sur {{service}} {{voltage}}.",
     capacity: {
       inputUnit: "Unité",
@@ -260,6 +270,14 @@ export const fr = {
     confirmedGrid: "Données réseau confirmées",
   },
   result: {
+    panelAssumption: {
+      title: "Hypothèse sur votre panneau électrique",
+      basis: "Calculé pour un disjoncteur solaire dans un panneau avec disjoncteur principal de {{main}} A et barre omnibus de {{busbar}} A : au plus {{breaker}} A pour le disjoncteur solaire, soit {{kw}} kW de puissance d'onduleur.",
+      busbarAssumed: "Le courant nominal de la barre omnibus n'a pas été indiqué et est supposé égal au disjoncteur principal du panneau.",
+      mainAssumed: "Le disjoncteur principal du panneau n'a pas été indiqué et est supposé égal à la taille du service.",
+      large: "Un service de {{service}} A est souvent réparti sur plusieurs panneaux. Le panneau n'ayant pas été indiqué, le calcul suppose provisoirement que l'installation solaire se raccorde à un panneau avec disjoncteur principal de {{main}} A. Il ne suppose ni un seul panneau de {{service}} A ni deux panneaux distincts.",
+      notMax: "Il s'agit de la limite pour le mode de raccordement supposé, pas de la plus grande installation solaire possible. D'autres solutions peuvent offrir une autre capacité selon l'évaluation de votre installateur. Faites confirmer les données du panneau par votre installateur.",
+    },
     loadProfileQuestion: "Quand consommez-vous le plus d'électricité ?",
     loadProfileHelp:
       "Vous hésitez ? Choisissez mixte. Ce choix nous aide à estimer la part de solaire que vous consommez directement.",

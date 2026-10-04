@@ -499,6 +499,7 @@ export function calculateSolarSystem(input: CalculationInput): CalculationResult
     pvRulesStatus: input.electrical.pvRulesStatus ?? "generic",
     simplifiedProcessLimitKw,
     aboveSimplifiedProcessLimit,
+    busbarBasis: input.electrical.busbarBasis ?? null,
     dcAcRatio: dcAcRatio(installedKwp, inverterKw),
     oversizingPercent: oversizingPercent(installedKwp, inverterKw),
     targetDcAcRange,
