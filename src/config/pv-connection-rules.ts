@@ -184,6 +184,32 @@ export function getPvConnectionRules(countryCode?: string | null): PvConnectionR
   return { countryCode: code, status: "verified", ...rules };
 }
 
+/**
+ * Service amperage above which a residential service is normally split over
+ * more than one panel (e.g. "400 A class" = 320 A continuous meter main with
+ * two 200 A disconnects). Above it the PV panel is never assumed to carry the
+ * whole service rating.
+ */
+export const LARGEST_SINGLE_PANEL_SERVICE_A = 225;
+/** Preliminary PV panel assumed for a split service when the user does not know. */
+export const SPLIT_SERVICE_ASSUMED_PANEL_A = 200;
+
+/**
+ * The panel (load centre) the PV connects to — distinct from the home's total
+ * service. `mainAssumed` / `busbarAssumed` say which values are preliminary.
+ */
+export interface BusbarBasis {
+  serviceAmperageA: number;
+  panelMainBreakerA: number;
+  busbarRatingA: number;
+  mainAssumed: boolean;
+  busbarAssumed: boolean;
+  /** True when the service is above LARGEST_SINGLE_PANEL_SERVICE_A. */
+  largeService: boolean;
+  /** Largest PV backfeed breaker the rule allows (A), >= 0. */
+  maxBackfeedBreakerA: number;
+}
+
 /** Which rule actually caps the system. Drives the explanation, not just math. */
 export type PvLimitBinding =
   | "connection-capacity"
@@ -204,6 +230,8 @@ export interface ResolvedPvPowerLimit {
   busbarLimitKw: number | null;
   /** Simplified-process ceiling that applies to this service. Informational. */
   simplifiedProcessLimitKw: number | null;
+  /** Panel data behind the busbar ceiling, incl. which values were assumed. */
+  busbarBasis: BusbarBasis | null;
   rulesStatus: PvRulesStatus;
   noteKeys: string[];
 }
@@ -221,6 +249,10 @@ export function resolvePvPowerLimit(params: {
   serviceAmperageA?: number | null;
   /** Line-to-line reference voltage (V), for the busbar rule. */
   voltageV?: number | null;
+  /** Main breaker of the panel the PV connects to (A). Null = unknown. */
+  panelMainBreakerA?: number | null;
+  /** Busbar rating of that panel (A). Null = unknown ("Don't know"). */
+  busbarRatingA?: number | null;
 }): ResolvedPvPowerLimit {
   const { connectionCapacityKw, rules, serviceType = null } = params;
 
@@ -234,15 +266,37 @@ export function resolvePvPowerLimit(params: {
       ? (rules.maxPvAcKwByService[serviceType] ?? null)
       : null;
 
-  // Busbar rule: (factor - 1) x service amperage x service voltage.
-  const busbarLimitKw =
-    rules.busbarBackfeedRule && params.serviceAmperageA && params.voltageV
-      ? ((rules.busbarBackfeedRule.busbarFactor - 1) *
-          params.serviceAmperageA *
-          params.voltageV) /
-        (rules.busbarBackfeedRule.outputCurrentFactor ?? 1) /
-        1000
-      : null;
+  // Busbar rule (NEC 705.12(B)(3)(2) / CEC 64-112): the PV backfeed breaker
+  // may use factor x busbar - main breaker of THAT panel; the breaker is sized
+  // at outputCurrentFactor x the inverter output current.
+  let busbarBasis: BusbarBasis | null = null;
+  let busbarLimitKw: number | null = null;
+  const serviceA = params.serviceAmperageA;
+  if (rules.busbarBackfeedRule && serviceA && params.voltageV) {
+    const largeService = serviceA > LARGEST_SINGLE_PANEL_SERVICE_A;
+    const knownMain = params.panelMainBreakerA && params.panelMainBreakerA > 0 ? params.panelMainBreakerA : null;
+    const knownBus = params.busbarRatingA && params.busbarRatingA > 0 ? params.busbarRatingA : null;
+    const panelMainBreakerA =
+      knownMain ?? (largeService ? SPLIT_SERVICE_ASSUMED_PANEL_A : serviceA);
+    const busbarRatingA = knownBus ?? panelMainBreakerA;
+    const maxBackfeedBreakerA = Math.max(
+      0,
+      rules.busbarBackfeedRule.busbarFactor * busbarRatingA - panelMainBreakerA,
+    );
+    busbarLimitKw =
+      (maxBackfeedBreakerA * params.voltageV) /
+      (rules.busbarBackfeedRule.outputCurrentFactor ?? 1) /
+      1000;
+    busbarBasis = {
+      serviceAmperageA: serviceA,
+      panelMainBreakerA,
+      busbarRatingA,
+      mainAssumed: knownMain == null,
+      busbarAssumed: knownBus == null,
+      largeService,
+      maxBackfeedBreakerA,
+    };
+  }
 
   const candidates: Array<{ kw: number; binding: PvLimitBinding }> = [
     { kw: connectionCapacityKw, binding: "connection-capacity" },
@@ -271,6 +325,7 @@ export function resolvePvPowerLimit(params: {
     pvRuleLimitKw: serviceLimitKw ?? rules.maxPvAcKw,
     busbarLimitKw,
     simplifiedProcessLimitKw,
+    busbarBasis,
     rulesStatus: rules.status,
     noteKeys: rules.noteKeys,
   };

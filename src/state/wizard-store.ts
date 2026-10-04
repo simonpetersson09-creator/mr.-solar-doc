@@ -82,6 +82,9 @@ export interface WizardState {
    * countries start true; generic/unsupported ones require the user to confirm.
    */
   gridConfirmed: boolean;
+  /** Advanced, optional: panel the PV connects to. null = "Don't know". */
+  panelMainBreakerA: number | null;
+  busbarRatingA: number | null;
 
   selfConsumptionShare: number;
   /** True once the user actively adjusted the share, regardless of its value. */
@@ -127,6 +130,7 @@ export interface WizardState {
   /** Manually stated capacity (custom mode); uses the manual grid profile. */
   setConnectionCapacity: (capacity: ConnectionCapacity | null) => void;
   setGridConfirmed: (confirmed: boolean) => void;
+  setPanelDetails: (details: { panelMainBreakerA?: number | null; busbarRatingA?: number | null }) => void;
 
   setGridProfile: (profile: {
     phaseCount?: PhaseCount;
@@ -322,6 +326,7 @@ export const useWizardStore = create<WizardState>()(
             : {}),
         })),
       setGridConfirmed: (confirmed) => set({ gridConfirmed: confirmed }),
+      setPanelDetails: (details) => set(details),
       /**
        * Manual expert settings. A country option's technical meaning may never
        * change silently underneath the user, so changing the grid profile
@@ -435,6 +440,8 @@ export const useWizardStore = create<WizardState>()(
         gridFrequencyHz,
         gridProfileIsUserSet,
         gridConfirmed,
+        panelMainBreakerA,
+        busbarRatingA,
         selfConsumptionShare,
         selfConsumptionShareIsUserSet,
         loadProfileClass,
@@ -466,6 +473,8 @@ export const useWizardStore = create<WizardState>()(
         gridFrequencyHz,
         gridProfileIsUserSet,
         gridConfirmed,
+        panelMainBreakerA,
+        busbarRatingA,
         selfConsumptionShare,
         selfConsumptionShareIsUserSet,
         loadProfileClass,
