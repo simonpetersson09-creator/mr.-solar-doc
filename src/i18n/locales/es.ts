@@ -273,7 +273,7 @@ export const es = {
     confirmedGrid: "Datos de red confirmados",
     other: "Otro",
     otherLabel: "Amperios",
-    maxAc: "Potencia AC máxima calculada",
+    maxAc: "Potencia total contratada de la vivienda",
     calculate: "Calcular",
     invalid: "Introduce un interruptor general entre 6 y 400 A.",
   },

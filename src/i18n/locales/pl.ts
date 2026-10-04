@@ -253,7 +253,7 @@ export const pl = {
     label: "Zabezpieczenie główne",
     other: "Inne",
     otherLabel: "Ampery",
-    maxAc: "Maksymalna obliczona moc AC",
+    maxAc: "Całkowita moc przyłączeniowa budynku",
     calculate: "Oblicz",
     invalid: "Podaj zabezpieczenie główne od 6 do 400 A.",
     genericTitle: "Jakie masz przyłącze elektryczne?",

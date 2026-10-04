@@ -273,7 +273,7 @@ export const nl = {
     confirmedGrid: "Netgegevens bevestigd",
     other: "Anders",
     otherLabel: "Ampère",
-    maxAc: "Maximaal berekend AC-vermogen",
+    maxAc: "Totale aansluitingscapaciteit van de woning",
     calculate: "Berekenen",
     invalid: "Vul een hoofdzekering in tussen 6 en 400 A.",
   },

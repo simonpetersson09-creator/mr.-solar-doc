@@ -249,7 +249,7 @@ export const sk = {
     label: "Hlavný istič",
     other: "Iné",
     otherLabel: "Ampére",
-    maxAc: "Maximálny vypočítaný AC výkon",
+    maxAc: "Celkový pripojený výkon domu",
     calculate: "Vypočítať",
     invalid: "Zadajte hlavný istič medzi 6 a 400 A.",
     genericTitle: "Aké máte elektrické pripojenie?",

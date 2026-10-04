@@ -247,7 +247,7 @@ export const sl = {
     label: "Glavna varovalka",
     other: "Drugo",
     otherLabel: "Amperi",
-    maxAc: "Največja izračunana AC moč",
+    maxAc: "Skupna priključna moč hiše",
     calculate: "Izračunaj",
     invalid: "Vnesite glavno varovalko med 6 in 400 A.",
     genericTitle: "Kakšen električni priključek imate?",

@@ -271,7 +271,7 @@ export const hr = {
     confirmedGrid: "Podaci o mreži potvrđeni",
     other: "Drugo",
     otherLabel: "Amperi",
-    maxAc: "Maksimalna izračunata AC snaga",
+    maxAc: "Ukupna priključna snaga kuće",
     calculate: "Izračunaj",
     invalid: "Unesite glavni osigurač između 6 i 400 A.",
   },

@@ -249,7 +249,7 @@ export const cs = {
     label: "Hlavní jistič",
     other: "Jiný",
     otherLabel: "Ampéry",
-    maxAc: "Maximální vypočtený AC výkon",
+    maxAc: "Celkový připojený výkon domu",
     calculate: "Vypočítat",
     invalid: "Zadejte hlavní jistič mezi 6 a 400 A.",
     genericTitle: "Jaké máte elektrické připojení?",

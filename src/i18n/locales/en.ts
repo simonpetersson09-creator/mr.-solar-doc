@@ -270,7 +270,7 @@ export const en = {
     confirmedGrid: "Grid data confirmed",
     other: "Other",
     otherLabel: "Amperes",
-    maxAc: "Maximum calculated AC power",
+    maxAc: "Your home's total connection power",
     calculate: "Calculate",
     invalid: "Enter a main fuse between 6 and 400 A.",
   },

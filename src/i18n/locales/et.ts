@@ -250,7 +250,7 @@ export const et = {
     label: "Peakaitse",
     other: "Muu",
     otherLabel: "Amprit",
-    maxAc: "Maksimaalne arvutatud vahelduvvoolu võimsus",
+    maxAc: "Elamu kogu ühendusvõimsus",
     calculate: "Arvuta",
     invalid: "Sisesta peakaitse vahemikus 6 kuni 400 A.",
     genericTitle: "Milline elektriliitumine teil on?",

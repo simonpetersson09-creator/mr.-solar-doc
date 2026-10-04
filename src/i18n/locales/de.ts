@@ -254,7 +254,7 @@ export const de = {
     label: "Hauptsicherung",
     other: "Andere",
     otherLabel: "Ampere",
-    maxAc: "Maximal berechnete AC-Leistung",
+    maxAc: "Gesamtleistung des Hausanschlusses",
     calculate: "Berechnen",
     invalid: "Geben Sie eine Hauptsicherung zwischen 6 und 400 A ein.",
     genericTitle: "Welchen Netzanschluss haben Sie?",

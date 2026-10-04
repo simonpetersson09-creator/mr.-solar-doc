@@ -271,7 +271,7 @@ export const ro = {
     confirmedGrid: "Date de rețea confirmate",
     other: "Altă valoare",
     otherLabel: "Amperi",
-    maxAc: "Putere AC maximă calculată",
+    maxAc: "Puterea totală de conectare a locuinței",
     calculate: "Calculează",
     invalid: "Introdu o siguranță principală între 6 și 400 A.",
   },

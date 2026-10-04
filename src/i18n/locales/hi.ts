@@ -269,7 +269,7 @@ export const hi = {
     confirmedGrid: "ग्रिड डेटा की पुष्टि हो गई",
     other: "अन्य",
     otherLabel: "एम्पीयर",
-    maxAc: "अधिकतम गणना की गई AC पावर",
+    maxAc: "घर की कुल कनेक्शन शक्ति",
     calculate: "गणना करें",
     invalid: "6 और 400 A के बीच मुख्य फ्यूज़ दर्ज करें।",
   },

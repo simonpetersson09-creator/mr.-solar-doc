@@ -248,7 +248,7 @@ export const fi = {
     label: "Pääsulake",
     other: "Muu",
     otherLabel: "Ampeeria",
-    maxAc: "Maksimi arvioitu AC-teho",
+    maxAc: "Kiinteistön kokonaiskytkentäteho",
     calculate: "Laske",
     invalid: "Anna pääsulake väliltä 6 – 400 A.",
     genericTitle: "Millainen sähköliittymä sinulla on?",
