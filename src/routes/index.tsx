@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import i18n from "@/i18n";
 import { toast } from "sonner";
@@ -6,6 +7,7 @@ import { RoofStep } from "@/components/steps/RoofStep";
 import { ConsumptionStep } from "@/components/steps/ConsumptionStep";
 import { FuseStep } from "@/components/steps/FuseStep";
 import { AssumptionsStep } from "@/components/steps/AssumptionsStep";
+import { SimulatingOverlay } from "@/components/SimulatingOverlay";
 import { useCreatePendingCalculation } from "@/hooks/use-create-pending-calculation";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { unlockCalculationWithPremium } from "@/services/purchase-service";
