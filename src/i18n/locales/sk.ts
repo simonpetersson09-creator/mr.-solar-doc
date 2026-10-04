@@ -26,6 +26,7 @@ export const sk = {
     disclaimer: "Výpočet je orientačný a nie je ponukou.",
   },
   common: {
+    simulating: "Prebieha simulácia",
     back: "Späť",
     next: "Ďalej",
     retry: "Skúsiť znova",

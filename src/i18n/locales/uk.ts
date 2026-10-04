@@ -23,6 +23,7 @@ export const uk = {
     disclaimer: "Розрахунок є орієнтовним і не є пропозицією.",
   },
   common: {
+    simulating: "Симуляція триває",
     back: "Назад",
     next: "Далі",
     retry: "Спробувати ще раз",

@@ -25,6 +25,7 @@ export const sr = {
     disclaimer: "Izračun je orijentacioni i nije ponuda.",
   },
   common: {
+    simulating: "Симулација у току",
     back: "Назад",
     next: "Даље",
     retry: "Покушај поново",

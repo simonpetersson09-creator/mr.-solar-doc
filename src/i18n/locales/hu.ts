@@ -26,6 +26,7 @@ export const hu = {
     disclaimer: "A számítás tájékoztató jellegű, nem ajánlat.",
   },
   common: {
+    simulating: "Szimuláció folyamatban",
     back: "Vissza",
     next: "Tovább",
     retry: "Próbálja újra",

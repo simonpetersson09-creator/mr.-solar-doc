@@ -26,6 +26,7 @@ export const ro = {
     disclaimer: "Calculul este orientativ și nu este o ofertă.",
   },
   common: {
+    simulating: "Se simulează",
     back: "Înapoi",
     next: "Următorul",
     retry: "Încearcă din nou",

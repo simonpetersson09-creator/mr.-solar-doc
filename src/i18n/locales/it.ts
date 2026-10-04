@@ -26,6 +26,7 @@ export const it = {
     disclaimer: "Il calcolo è indicativo e non è un preventivo.",
   },
   common: {
+    simulating: "Simulazione in corso",
     back: "Indietro",
     next: "Avanti",
     retry: "Riprova",

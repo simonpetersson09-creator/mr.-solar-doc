@@ -24,6 +24,7 @@ export const he = {
     disclaimer: "החישוב הוא הערכה בלבד ואינו מהווה הצעת מחיר.",
   },
   common: {
+    simulating: "מבצע סימולציה",
     back: "חזרה",
     next: "הבא",
     retry: "נסה שוב",

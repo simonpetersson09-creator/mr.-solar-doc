@@ -23,6 +23,7 @@ export const id = {
     disclaimer: "Perhitungan bersifat petunjuk dan bukan penawaran.",
   },
   common: {
+    simulating: "Simulasi berlangsung",
     back: "Kembali",
     next: "Lanjut",
     retry: "Coba lagi",

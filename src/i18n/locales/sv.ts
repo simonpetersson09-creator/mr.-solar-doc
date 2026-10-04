@@ -26,6 +26,7 @@ export const sv = {
     disclaimer: "Beräkningen är vägledande och är inte en offert.",
   },
   common: {
+    simulating: "Simulerar",
     back: "Tillbaka",
     next: "Nästa",
     retry: "Försök igen",

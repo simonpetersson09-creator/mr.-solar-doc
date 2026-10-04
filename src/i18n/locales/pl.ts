@@ -26,6 +26,7 @@ export const pl = {
     disclaimer: "Obliczenia mają charakter orientacyjny i nie są ofertą.",
   },
   common: {
+    simulating: "Symulacja w toku",
     back: "Wstecz",
     next: "Dalej",
     retry: "Spróbuj ponownie",
