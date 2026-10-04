@@ -90,9 +90,22 @@ describe("PV rules see the electrical service", () => {
       serviceAmperageA: 200,
       voltageV: 240,
     });
-    // ...but only 20 % of the busbar may be backfed.
-    expect(limit.maxPvAcKw).toBeCloseTo(9.6, 6);
+    // NEC 705.12(B)(3)(2): 40 A breaker share / 1.25 = 32 A inverter output.
+    expect(limit.maxPvAcKw).toBeCloseTo(7.68, 6);
     expect(limit.binding).toBe("busbar-rule");
+  });
+
+  it("Canada CEC 64-112 (125 % dwelling) gives 2.88 kW on 60 A, 9.6 kW on 200 A", () => {
+    const r = (a: number) =>
+      resolvePvPowerLimit({
+        connectionCapacityKw: (a * 240) / 1000,
+        rules: getPvConnectionRules("CA"),
+        serviceType: "split-phase",
+        serviceAmperageA: a,
+        voltageV: 240,
+      }).maxPvAcKw;
+    expect(r(60)).toBeCloseTo(2.88, 6);
+    expect(r(200)).toBeCloseTo(9.6, 6);
   });
 
   it("scales the busbar rule with a 400 A service", () => {
