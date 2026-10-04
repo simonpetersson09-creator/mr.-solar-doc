@@ -274,7 +274,7 @@ export const pt = {
     confirmedGrid: "Dados da rede confirmados",
     other: "Outro",
     otherLabel: "Amperes",
-    maxAc: "Potência AC máxima calculada",
+    maxAc: "Potência total de ligação da habitação",
     calculate: "Calcular",
     invalid: "Introduza um disjuntor geral entre 6 e 400 A.",
   },

@@ -271,7 +271,7 @@ export const tr = {
     confirmedGrid: "Şebeke verileri onaylandı",
     other: "Diğer",
     otherLabel: "Amper",
-    maxAc: "Hesaplanan maksimum AC gücü",
+    maxAc: "Konutun toplam bağlantı gücü",
     calculate: "Hesapla",
     invalid: "6 ile 400 A arasında bir ana sigorta girin.",
   },

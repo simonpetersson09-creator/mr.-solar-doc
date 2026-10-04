@@ -253,7 +253,7 @@ export const it = {
     label: "Limitatore di potenza",
     other: "Altro",
     otherLabel: "Ampere",
-    maxAc: "Potenza AC massima calcolata",
+    maxAc: "Potenza totale di allacciamento dell'abitazione",
     calculate: "Calcola",
     invalid: "Inserisci un limitatore di potenza tra 6 e 400 A.",
     genericTitle: "Che allacciamento elettrico hai?",

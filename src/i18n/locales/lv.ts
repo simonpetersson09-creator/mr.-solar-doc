@@ -250,7 +250,7 @@ export const lv = {
     label: "Galvenais drošinātājs",
     other: "Cits",
     otherLabel: "Ampēri",
-    maxAc: "Maksimālā aprēķinātā maiņstrāvas jauda",
+    maxAc: "Mājas kopējā pieslēguma jauda",
     calculate: "Aprēķināt",
     invalid: "Ievadiet galveno drošinātāju no 6 līdz 400 A.",
     genericTitle: "Kāds ir jūsu elektrības pieslēgums?",

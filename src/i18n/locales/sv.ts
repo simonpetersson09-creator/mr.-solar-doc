@@ -270,7 +270,7 @@ export const sv = {
     confirmedGrid: "Nätuppgifter bekräftade",
     other: "Annan",
     otherLabel: "Ampere",
-    maxAc: "Maximal beräknad AC-effekt",
+    maxAc: "Bostadens totala anslutningseffekt",
     calculate: "Beräkna",
     invalid: "Ange en huvudsäkring mellan 6 och 400 A.",
   },

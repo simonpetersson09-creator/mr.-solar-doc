@@ -258,7 +258,7 @@ export const fr = {
     label: "Fusible principal",
     other: "Autre",
     otherLabel: "Ampères",
-    maxAc: "Puissance CA maximale calculée",
+    maxAc: "Puissance totale de raccordement du logement",
     calculate: "Calculer",
     invalid: "Saisissez un fusible principal entre 6 et 400 A.",
     genericTitle: "Quel raccordement électrique avez-vous ?",

@@ -263,7 +263,7 @@ export const id = {
     confirmedGrid: "Data jaringan dikonfirmasi",
     other: "Lainnya",
     otherLabel: "Ampere",
-    maxAc: "Daya AC maksimum yang dihitung",
+    maxAc: "Daya sambungan total rumah",
     calculate: "Hitung",
     invalid: "Masukkan sekring utama antara 6 dan 400 A.",
   },

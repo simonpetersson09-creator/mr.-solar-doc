@@ -270,7 +270,7 @@ export const no = {
     confirmedGrid: "Nettdata bekreftet",
     other: "Annet",
     otherLabel: "Ampere",
-    maxAc: "Maksimal beregnet AC-effekt",
+    maxAc: "Boligens totale tilkoblingseffekt",
     calculate: "Beregn",
     invalid: "Angi en hovedsikring mellom 6 og 400 A.",
   },

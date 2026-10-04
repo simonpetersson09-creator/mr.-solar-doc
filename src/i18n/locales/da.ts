@@ -249,7 +249,7 @@ export const da = {
     label: "Hovedsikring",
     other: "Anden",
     otherLabel: "Ampere",
-    maxAc: "Maksimal beregnet AC-effekt",
+    maxAc: "Boligens samlede tilslutningseffekt",
     calculate: "Beregn",
     invalid: "Angiv en hovedsikring mellem 6 og 400 A.",
     genericTitle: "Hvilken eltilslutning har du?",

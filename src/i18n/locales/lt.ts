@@ -252,7 +252,7 @@ export const lt = {
     label: "Pagrindinis automatinis jungiklis",
     other: "Kitas",
     otherLabel: "Amperai",
-    maxAc: "Maksimali apskaičiuota kintamosios srovės galia",
+    maxAc: "Visa prijungtoji namo galia",
     calculate: "Apskaičiuoti",
     invalid: "Įveskite pagrindinį automatinį jungiklį nuo 6 iki 400 A.",
     genericTitle: "Kokį elektros prijungimą turite?",

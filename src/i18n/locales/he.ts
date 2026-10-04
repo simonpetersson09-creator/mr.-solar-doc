@@ -266,7 +266,7 @@ export const he = {
     confirmedGrid: "נתוני הרשת אושרו",
     other: "אחר",
     otherLabel: "אמפרים",
-    maxAc: "הספק AC מקסימלי מחושב",
+    maxAc: "הספק החיבור הכולל של הבית",
     calculate: "חישוב",
     invalid: 'הזינו מאמ"ת ראשי בין 6 ל-400 A.',
   },

@@ -271,7 +271,7 @@ export const hu = {
     confirmedGrid: "Hálózati adatok megerősítve",
     other: "Egyéb",
     otherLabel: "Amper",
-    maxAc: "Maximális számított AC-teljesítmény",
+    maxAc: "Az ingatlan teljes csatlakozási teljesítménye",
     calculate: "Számítás",
     invalid: "Adjon meg egy 6 és 400 A közötti fő biztosítékot.",
   },
