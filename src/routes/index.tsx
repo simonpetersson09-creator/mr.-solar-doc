@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { trackEvent } from "@/services/stats";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import i18n from "@/i18n";
 import { toast } from "sonner";
@@ -64,9 +65,22 @@ function WizardPage() {
           : 5;
   const step = Math.min(persistedStep, maxReachableStep);
 
+  const lastTracked = useRef<number | null>(null);
+  useEffect(() => {
+    if (!hasStarted || lastTracked.current === step) return;
+    lastTracked.current = step;
+    trackEvent("step_view", step);
+  }, [hasStarted, step]);
 
   if (!hasStarted) {
-    return <WelcomePage onStart={() => setStarted(true)} />;
+    return (
+      <WelcomePage
+        onStart={() => {
+          trackEvent("wizard_start");
+          setStarted(true);
+        }}
+      />
+    );
   }
 
   if (step === 1) {
@@ -103,6 +117,7 @@ function WizardPage() {
         onBack={() => setStep(4)}
         onSubmit={() => {
           void (async () => {
+            trackEvent("calculate", 5);
             setSimulating(true);
             setSimDone(false);
             // Keep the ring visible long enough to read as a real simulation.
