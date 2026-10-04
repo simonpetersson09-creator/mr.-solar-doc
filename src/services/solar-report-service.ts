@@ -120,6 +120,9 @@ origin: Record<ValueOrigin, string>;
   limitReason?: string | null;
   /** Note shown when the system exceeds the simplified process ceiling. */
   simplifiedProcessNote?: string | null;
+  /** US/CA: heading and sentences for the electrical-panel assumption. */
+  panelAssumptionTitle?: string | null;
+  panelAssumptionLines?: string[];
   /** Heading for the installer checklist page. */
   installerChecklistTitle: string;
   /** Checklist lines; may contain {{acPower}}, {{production}}, {{kwp}}, {{investment}}. */
@@ -1412,6 +1415,10 @@ export function generateReportBlob(options: ReportOptions): Blob {
     );
     if (labels.limitReason) report.paragraph(labels.limitReason);
     if (labels.simplifiedProcessNote) report.paragraph(labels.simplifiedProcessNote);
+    if (labels.panelAssumptionLines?.length) {
+      if (labels.panelAssumptionTitle) report.subheading(labels.panelAssumptionTitle);
+      for (const line of labels.panelAssumptionLines) report.paragraph(line);
+    }
   }
   report.subheading(f["assumptionsProduction"] ?? "");
   report.rows(

@@ -1,4 +1,5 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { panelAssumptionLines } from "@/lib/panel-assumption";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { ArrowLeft, ChevronDown, CircleAlert, Download, Info, Loader2, Sun, Zap } from "lucide-react";
@@ -226,6 +227,8 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
                 limit: formatDecimal(result.simplifiedProcessLimitKw, reportLoc),
               })
             : null,
+        panelAssumptionTitle: result.busbarBasis ? rt("result.panelAssumption.title") : null,
+        panelAssumptionLines: panelAssumptionLines(result.busbarBasis, rt, reportLoc),
         installerChecklistTitle: rt("report.installerChecklistTitle"),
         installerChecklistItems: rt("report.installerChecklistItems", {
           returnObjects: true,
@@ -394,6 +397,18 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
                   ? t("result.reasonBusbarLimit")
                   : t("result.reasonPvRuleLimit")}
               </p>
+            ) : null}
+            {result.busbarBasis ? (
+              <div className="mt-2.5 space-y-1 rounded-2xl border border-white/15 bg-white/5 px-3 py-2 text-left">
+                <p className="text-[11px] font-semibold text-white/85">
+                  {t("result.panelAssumption.title")}
+                </p>
+                {panelAssumptionLines(result.busbarBasis, t, locale).map((line) => (
+                  <p key={line} className="text-[11px] leading-relaxed text-white/65">
+                    {line}
+                  </p>
+                ))}
+              </div>
             ) : null}
             {result.aboveSimplifiedProcessLimit && result.simplifiedProcessLimitKw ? (
               <p className="mt-1.5 text-center text-[11px] text-white/60">
