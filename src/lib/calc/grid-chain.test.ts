@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { maxAcPowerKwFor } from "@/config/grid";
-import { calculateSolarSystem } from "./engine";
+import { calculateSolarSystem, runCalculation } from "./engine";
 import { MARKETS } from "@/config/markets";
 import type { CalculationInput } from "./types";
 
@@ -112,5 +112,22 @@ describe("grid profile drives the whole calculation chain", () => {
     );
     expect(b.maxAcPowerKw).toBeCloseTo(a.maxAcPowerKw, 9);
     expect(b.grid.frequencyHz).toBe(60);
+  });
+});
+
+describe("connection too small for the inverter catalogue", () => {
+  it("reports the catalogue's smallest inverter instead of 0 kW", () => {
+    const { inverterSizesKw: _ladder, ...input } = buildInput({
+      mainFuseAmp: 60,
+      maxAcPowerKw: 14.4,
+      serviceType: "split-phase",
+      gridVoltageV: 240,
+      pvPowerLimitKw: 2.88,
+    } as CalculationInput["electrical"]);
+    const outcome = runCalculation(input as CalculationInput);
+    expect(outcome.status).toBe("grid-too-small");
+    if (outcome.status !== "grid-too-small") return;
+    expect(outcome.maxAcPowerKw).toBeCloseTo(2.88, 2);
+    expect(outcome.minimumSupportedInverterKw).toBe(3);
   });
 });
