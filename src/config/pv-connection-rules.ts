@@ -28,12 +28,20 @@ export type PvRulesStatus = "verified" | "generic";
  * `busbarFactor` x the busbar rating. With a busbar rated at the service
  * amperage this leaves (factor - 1) x A for PV:
  *
- *   200 A service -> 0.2 x 200 A x 240 V = 9.6 kW of allowable PV AC
+ *   US 200 A: 0.2 x 200 A / 1.25 x 240 V = 7.68 kW inverter AC
+ *   CA 200 A: 0.25 x 200 A / 1.25 x 240 V = 9.6 kW inverter AC
  *
  * This is why a 200 A / 48 kW service capacity is NOT 48 kW of allowable PV.
  */
 export interface BusbarBackfeedRule {
   busbarFactor: number;
+  /**
+   * The rule limits the PV backfeed BREAKER, which must be sized at this
+   * multiple of the inverter's continuous output current. The usable inverter
+   * AC power is therefore the breaker share divided by this factor.
+   * NEC 705.12(B)(3)(2) (US): 125 % of the inverter output current.
+   */
+  outputCurrentFactor?: number;
 }
 
 export interface PvConnectionRules {
@@ -153,12 +161,17 @@ const VERIFIED_PV_CONNECTION_RULES: Record<
   // United States / Canada: the binding constraint is the busbar/backfeed rule,
   // not the service capacity. 120 % of a busbar rated at the service amperage
   // leaves 20 % of it for PV.
+  // NEC 705.12(B)(3)(2): 125 % of inverter output current + main breaker
+  // <= 120 % of busbar. Simplification: busbar rated = main breaker = service A.
   US: verified({
-    busbarBackfeedRule: { busbarFactor: 1.2 },
+    busbarBackfeedRule: { busbarFactor: 1.2, outputCurrentFactor: 1.25 },
     noteKeys: ["pvRules.us.busbar"],
   }),
+  // CEC 64-112: sum of supply overcurrent devices <= 125 % of busbar in
+  // dwellings; the inverter breaker is sized at 125 % of continuous output.
+  // Net effect equals 20 % of the busbar as inverter AC (same simplification).
   CA: verified({
-    busbarBackfeedRule: { busbarFactor: 1.2 },
+    busbarBackfeedRule: { busbarFactor: 1.25, outputCurrentFactor: 1.25 },
     noteKeys: ["pvRules.ca.busbar"],
   }),
 };
@@ -227,6 +240,7 @@ export function resolvePvPowerLimit(params: {
       ? ((rules.busbarBackfeedRule.busbarFactor - 1) *
           params.serviceAmperageA *
           params.voltageV) /
+        (rules.busbarBackfeedRule.outputCurrentFactor ?? 1) /
         1000
       : null;
 
