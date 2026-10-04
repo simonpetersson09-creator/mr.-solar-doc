@@ -295,9 +295,6 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
           </button>
           <h1 className="text-2xl font-extrabold tracking-tight text-foreground">{t("result.title")}</h1>
         </header>
-        <p className="text-center text-[11px] font-bold tracking-widest text-foreground/60 uppercase">
-          {t("report.fields.paybackTime")} · {t("result.paybackYears", { years: formatNumber(paybackYears, locale) })}
-        </p>
 
         {revisionsLeft > 0 ? (
           <p className="text-center text-[11px] leading-relaxed text-foreground/60">
