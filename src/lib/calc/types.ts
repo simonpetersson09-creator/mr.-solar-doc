@@ -13,7 +13,7 @@ import type {
 import type { ConsumptionInputType, ConsumptionShape } from "./consumption-shape";
 import type { ClippingLossModel } from "./clipping";
 import type { ServiceType } from "@/config/grid";
-import type { PvLimitBinding, PvRulesStatus } from "@/config/pv-connection-rules";
+import type { BusbarBasis, PvLimitBinding, PvRulesStatus } from "@/config/pv-connection-rules";
 import type { ConnectionCapacity } from "@/config/connection-capacity";
 import type { ConnectionProfileStatus } from "@/config/connections";
 
