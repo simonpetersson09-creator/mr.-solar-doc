@@ -786,6 +786,9 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
               <div className="px-3.5 py-2.5 text-[11px] text-white/60">
                 {t("result.paybackInfo")}
               </div>
+              <div className="px-3.5 py-2.5 text-[11px] text-white/60">
+                {t("result.inverterSizingNote")}
+              </div>
             </dl>
           ) : null}
         </div>
