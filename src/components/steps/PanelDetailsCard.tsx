@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useWizardStore } from "@/state/wizard-store";
 import { useAppLocale } from "@/hooks/use-app-locale";
-import { parseLocaleNumber, sanitizeNumericInput } from "@/lib/numeric-input";
+import { parseLocaleNumber } from "@/lib/format";
+import { sanitizeNumericInput } from "@/lib/numeric-input";
 import { cn } from "@/lib/utils";
 
 const MIN_A = 30;

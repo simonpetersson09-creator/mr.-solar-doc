@@ -183,6 +183,16 @@ export const pl = {
     monthlyHint: "Wprowadź zużycie dla wszystkich 12 miesięcy",
   },
   fuse: {
+    panel: {
+      standardNote: "The allowed solar power is based on an assumption about your electrical panel and must be confirmed by your installer.",
+      title: "Advanced: panel where the solar connects",
+      help: "Your home's total service (the size above) and the electrical panel the solar is connected to can differ. The allowed solar power depends on that panel's main breaker and its busbar rating — the ampere rating of the panel's internal copper bars, printed on the label inside the panel door. Choose “Don't know” if you are unsure.",
+      mainBreaker: "Main breaker in that panel",
+      busbar: "Busbar rating (on the panel label)",
+      dontKnow: "Don't know",
+      placeholder: "e.g. 225",
+      invalid: "Enter a value between {{min}} and {{max}} A.",
+    },
     gridAssumptionDynamic: "Obliczenia opierają się na {{service}} {{voltage}}.",
     capacity: {
       inputUnit: "Jednostka",
@@ -255,6 +265,14 @@ export const pl = {
     confirmedGrid: "Dane sieciowe potwierdzone",
   },
   result: {
+    panelAssumption: {
+      title: "Assumption about your electrical panel",
+      basis: "Calculated for a solar breaker in a panel with a {{main}} A main breaker and a {{busbar}} A busbar: at most {{breaker}} A for the solar breaker, which gives {{kw}} kW inverter power.",
+      busbarAssumed: "The busbar rating was not stated and is assumed to equal the panel's main breaker.",
+      mainAssumed: "The panel's main breaker was not stated and is assumed to equal the service size.",
+      large: "A {{service}} A service is often split over more than one panel. The panel was not stated, so the calculation preliminarily assumes that the solar connects to a panel with a {{main}} A main breaker. It does not assume a single {{service}} A panel or two separate panels.",
+      notMax: "This is the limit for the assumed connection method, not the largest possible solar system. Other solutions can give a different capacity after your installer's assessment. Have your installer confirm the panel details.",
+    },
     loadProfileQuestion: "Kiedy zużywasz najwięcej energii?",
     loadProfileHelp:
       "Nie masz pewności? Wybierz mieszany. Wybór pomaga oszacować, ile energii ze słońca zużywasz bezpośrednio.",

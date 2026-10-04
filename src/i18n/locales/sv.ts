@@ -193,6 +193,16 @@ export const sv = {
     invalid: "Ange en årsförbrukning mellan 100 och 200 000 kWh.",
   },
   fuse: {
+    panel: {
+      standardNote: "Den tillåtna solcellseffekten bygger på ett antagande om din elcentral och behöver bekräftas av installatören.",
+      title: "Avancerat: elcentralen där solcellerna ansluts",
+      help: "Bostadens totala anslutning (storleken ovan) och elcentralen där solcellerna ansluts kan skilja sig åt. Den tillåtna solcellseffekten beror på centralens huvudbrytare och samlingsskenans märkström — strömmen som centralens inre kopparskenor är märkta för, angiven på etiketten innanför luckan. Välj ”Vet inte” om du är osäker.",
+      mainBreaker: "Huvudbrytare i den centralen",
+      busbar: "Samlingsskenans märkström (på centralens etikett)",
+      dontKnow: "Vet inte",
+      placeholder: "t.ex. 225",
+      invalid: "Ange ett värde mellan {{min}} och {{max}} A.",
+    },
     gridAssumptionDynamic: "Beräkningen utgår från {{service}} {{voltage}}.",
     capacity: {
       inputUnit: "Enhet",
@@ -265,6 +275,14 @@ export const sv = {
     invalid: "Ange en huvudsäkring mellan 6 och 400 A.",
   },
   result: {
+    panelAssumption: {
+      title: "Antagande om din elcentral",
+      basis: "Beräknat för en solcellsbrytare i en central med {{main}} A huvudbrytare och {{busbar}} A samlingsskena: högst {{breaker}} A för solcellsbrytaren, vilket ger {{kw}} kW växelriktareffekt.",
+      busbarAssumed: "Samlingsskenans märkström angavs inte och antas vara lika med centralens huvudbrytare.",
+      mainAssumed: "Centralens huvudbrytare angavs inte och antas vara lika med anslutningens storlek.",
+      large: "En anslutning på {{service}} A är ofta uppdelad på flera centraler. Centralen angavs inte, så kalkylen antar preliminärt att solcellerna ansluts till en central med {{main}} A huvudbrytare. Den antar varken en enda central på {{service}} A eller två separata centraler.",
+      notMax: "Det här är gränsen för det antagna anslutningssättet, inte största möjliga solcellsanläggning. Andra lösningar kan ge annan kapacitet efter installatörens bedömning. Låt installatören bekräfta uppgifterna om elcentralen.",
+    },
     loadProfileQuestion: "När använder du mest el?",
     loadProfileHelp:
       "Osäker? Välj blandat. Valet hjälper oss att uppskatta hur mycket solel du använder direkt.",
