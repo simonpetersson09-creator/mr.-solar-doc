@@ -208,6 +208,8 @@ export interface BusbarBasis {
   largeService: boolean;
   /** Largest PV backfeed breaker the rule allows (A), >= 0. */
   maxBackfeedBreakerA: number;
+  /** Inverter AC power (kW) the busbar rule allows on this panel. */
+  limitKw: number;
 }
 
 /** Which rule actually caps the system. Drives the explanation, not just math. */
@@ -295,6 +297,7 @@ export function resolvePvPowerLimit(params: {
       busbarAssumed: knownBus == null,
       largeService,
       maxBackfeedBreakerA,
+      limitKw: busbarLimitKw,
     };
   }
 
