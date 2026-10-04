@@ -42,7 +42,7 @@ export interface InverterCatalog {
  * at 230 V) sold specifically for UK/IE single-phase connections.
  */
 export const EU_SINGLE_PHASE_INVERTER_SIZES_KW = [
-  1.5, 2, 2.5, 3, 3.6, 3.68, 4, 4.6, 5, 6, 8, 10,
+  1.5, 2, 2.5, 3, 3.6, 3.68, 4, 4.6, 5, 6, 8, 8.2, 10,
 ];
 
 /**
@@ -53,7 +53,7 @@ export const EU_SINGLE_PHASE_INVERTER_SIZES_KW = [
  * product and is only reachable on a three-phase service.
  */
 export const EU_THREE_PHASE_INVERTER_SIZES_KW = [
-  1.5, 2, 2.5, 3, 3.6, 4, 4.6, 5, 6, 8, 10, 12, 15, 17, 20, 25, 30, 33, 36, 40, 50, 60,
+  1.5, 2, 2.5, 3, 3.6, 4, 4.6, 5, 6, 7, 8, 10, 12, 15, 17, 20, 25, 30, 33, 36, 40, 50, 60,
   // Above 60 kW the market moves to the commercial/utility string classes
   // (Huawei SUN2000, SMA Sunny Tripower CORE/Highpower, Sungrow SG series).
   // They are real three-phase 400 V products, so a large roof, farm or small
@@ -72,7 +72,7 @@ export const EU_THREE_PHASE_INVERTER_SIZES_KW = [
  * installed on a 120/240 V service.
  */
 export const NA_SPLIT_PHASE_INVERTER_SIZES_KW = [
-  3, 3.8, 5, 6, 7.6, 9.6, 11.4,
+  3, 3.8, 5, 6, 7.6, 9.6, 10, 11.4,
   // Above 11.4 kW the North-American market moves to the 208/240 V commercial
   // classes (e.g. SolarEdge SE14.4K/SE20K US, SMA Tripower X). Without them
   // the catalogue has a hole between 11.4 and 22.8 kW and a realistic 15 kW
