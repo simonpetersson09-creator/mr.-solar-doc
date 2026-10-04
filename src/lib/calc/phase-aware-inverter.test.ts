@@ -108,15 +108,21 @@ describe("PV rules see the electrical service", () => {
     expect(r(200)).toBeCloseTo(9.6, 6);
   });
 
-  it("scales the busbar rule with a 400 A service", () => {
-    const limit = resolvePvPowerLimit({
+  it("scales the busbar rule with a stated 400 A panel, never by assumption", () => {
+    const base = {
       connectionCapacityKw: 96,
       rules: getPvConnectionRules("CA"),
-      serviceType: "split-phase",
+      serviceType: "split-phase" as const,
       serviceAmperageA: 400,
       voltageV: 240,
-    });
-    expect(limit.maxPvAcKw).toBeCloseTo(19.2, 6);
+    };
+    expect(
+      resolvePvPowerLimit({ ...base, panelMainBreakerA: 400, busbarRatingA: 400 }).maxPvAcKw,
+    ).toBeCloseTo(19.2, 6);
+    // Panel unknown: preliminary 200 A panel, flagged as assumed.
+    const unknown = resolvePvPowerLimit(base);
+    expect(unknown.maxPvAcKw).toBeCloseTo(9.6, 6);
+    expect(unknown.busbarBasis?.largeService).toBe(true);
   });
 
   it("caps German single-phase feed-in at 4.6 kW but not three-phase", () => {
