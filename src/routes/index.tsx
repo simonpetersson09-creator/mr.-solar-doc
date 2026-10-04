@@ -35,6 +35,9 @@ const TOTAL_STEPS = 5;
 function WizardPage() {
   const navigate = useNavigate();
   const createPending = useCreatePendingCalculation();
+  // "Simulerar"-overlay while step 5's calculation runs (Mr. Battery Doc-style).
+  const [simulating, setSimulating] = useState(false);
+  const [simDone, setSimDone] = useState(false);
   const hasStarted = useWizardStore((s) => s.hasStarted);
   const setStarted = useWizardStore((s) => s.setStarted);
   // Country never drives the UI language; only technical/economic profiles.
