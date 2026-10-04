@@ -6,6 +6,7 @@ import { ArrowLeft, ChevronDown, CircleAlert, Download, Info, Loader2, Sun, Zap 
 import i18nInstance from "@/i18n";
 import { Button } from "@/components/ui/button";
 
+import { AnimatedNumber } from "@/components/AnimatedNumber";
 import { MonthlyChart } from "@/components/MonthlyChart";
 import { useUnlockedCalculation } from "@/hooks/use-unlocked-calculation";
 import { useAppLocale } from "@/hooks/use-app-locale";
@@ -344,7 +345,10 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
                 {t("result.panelPowerLabel")}
               </p>
               <p className="mt-0.5 text-3xl font-extrabold tracking-tight text-white tabular-nums">
-                {formatDecimal(result.installedKwp, locale)}{" "}
+                <AnimatedNumber
+                  value={result.installedKwp}
+                  format={(v) => formatDecimal(v, locale)}
+                />{" "}
                 <span className="text-base font-semibold text-white/80">kWp</span>
               </p>
               <p className="text-[11px] text-white/60">
@@ -367,7 +371,10 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
                   {t("result.annualProduction")}
                 </p>
                 <p className="mt-0.5 text-lg font-bold text-white tabular-nums">
-                  {formatNumber(p.annualProductionKwh, locale)}{" "}
+                  <AnimatedNumber
+                    value={p.annualProductionKwh}
+                    format={(v) => formatNumber(v, locale)}
+                  />{" "}
                   <span className="text-[11px] font-semibold text-white/60">
                     kWh{t("common.perYear")}
                   </span>
@@ -376,7 +383,10 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
             </div>
 
             <p className="mt-3 text-center text-sm font-bold text-white">
-              {t("result.coverage", { percent: formatNumber(p.productionCoveragePercent, locale) })}
+              <AnimatedNumber
+                value={p.productionCoveragePercent}
+                format={(v) => t("result.coverage", { percent: formatNumber(v, locale) })}
+              />
             </p>
             <p className="mt-1 text-center text-[11px] leading-relaxed text-white/60">
               {t("result.coverageNote")}
