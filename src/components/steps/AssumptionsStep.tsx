@@ -22,6 +22,29 @@ import {
 import { haptic } from "@/services/native-service";
 import type { LoadProfileClass } from "@/lib/calc/self-consumption";
 import { selfConsumptionCapNoteKey } from "@/lib/self-consumption-cap-note";
+import { DAILY_WEIGHTS, type HourlyProfile } from "@/lib/calc/hourly-comparison";
+
+/** 24 bars (00–23) showing when the profile uses electricity. Display only. */
+function ProfileBars({ profile }: { profile: HourlyProfile }) {
+  const values = DAILY_WEIGHTS[profile];
+  const max = Math.max(...values, 1);
+  return (
+    <span className="mt-1.5 block" aria-hidden="true">
+      <span className="flex h-8 items-end gap-[2px]">
+        {values.map((value, hour) => (
+          <span
+            key={hour}
+            className="flex-1 rounded-t-[2px] bg-current opacity-60"
+            style={{ height: `${Math.max((value / max) * 100, 4)}%` }}
+          />
+        ))}
+      </span>
+      <span className="mt-0.5 flex justify-between text-[9px] tabular-nums opacity-60">
+        <span>00</span><span>06</span><span>12</span><span>18</span><span>23</span>
+      </span>
+    </span>
+  );
+}
 
 interface AssumptionsStepProps {
   totalSteps: number;
@@ -247,6 +270,7 @@ className="h-auto w-full rounded-[24px] py-4 text-base font-bold shadow-cta"
                 >
                   {profile.help}
                 </span>
+                <ProfileBars profile={profile.id} />
               </button>
             );
           })}
