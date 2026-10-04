@@ -480,7 +480,14 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
               {t("result.annualSavings")}
             </p>
             <p className="mt-0.5 text-3xl font-extrabold tracking-tight text-white tabular-nums">
-              {economicValuesMissing ? "–" : formatCurrency(p.annualSavings, locale, currency)}{" "}
+              {economicValuesMissing ? (
+                "–"
+              ) : (
+                <AnimatedNumber
+                  value={p.annualSavings}
+                  format={(v) => formatCurrency(v, locale, currency)}
+                />
+              )}{" "}
               <span className="text-[11px] font-semibold text-white/60">{t("result.perYear")}</span>
             </p>
           </div>
@@ -492,9 +499,14 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
                 {t("result.selfConsumption")}
               </dt>
               <dd className="mt-0.5 text-lg font-bold text-white tabular-nums">
-                {selfConsumedMissing
-                  ? "–"
-                  : formatCurrency(p.selfConsumptionValue, locale, currency)}
+                {selfConsumedMissing ? (
+                  "–"
+                ) : (
+                  <AnimatedNumber
+                    value={p.selfConsumptionValue}
+                    format={(v) => formatCurrency(v, locale, currency)}
+                  />
+                )}
               </dd>
               <dd className="text-[11px] text-white/60">
                 {selfConsumptionIsUserSet ? "" : "\u2248 "}
@@ -531,7 +543,14 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
                 {t("result.exported")}
               </dt>
               <dd className="mt-0.5 text-lg font-bold text-white tabular-nums">
-                {exportMissing ? "–" : formatCurrency(p.exportValue, locale, currency)}
+                {exportMissing ? (
+                  "–"
+                ) : (
+                  <AnimatedNumber
+                    value={p.exportValue}
+                    format={(v) => formatCurrency(v, locale, currency)}
+                  />
+                )}
               </dd>
               <dd className="text-[11px] text-white/60">
                 {formatNumber(p.exportPercent, locale)} % · {formatNumber(p.exportedKwh, locale)} kWh
@@ -586,7 +605,14 @@ origin: rt("report.origin", { returnObjects: true }) as ReportLabels["origin"],
             </p>
           ) : (
             <p className="mt-1.5 text-center text-3xl font-extrabold tracking-tight text-white">
-              {t("result.maxInvestmentApprox", { amount: investmentAmount })}
+              <AnimatedNumber
+                value={result.investment.maxInvestmentRounded}
+                format={(v) =>
+                  t("result.maxInvestmentApprox", {
+                    amount: formatCurrency(v, locale, currency),
+                  })
+                }
+              />
             </p>
           )}
 
