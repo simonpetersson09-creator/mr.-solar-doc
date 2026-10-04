@@ -14,6 +14,6 @@ export function formatInverterPower(
 ): string {
   const count = result.inverterUnitCount ?? 1;
   const unitKw = result.inverterUnitKw ?? result.inverterKw;
-  if (count > 1) return `${count} × ${formatNumber(unitKw, locale)} kW`;
-  return `${formatNumber(result.inverterKw, locale)} kW`;
+  if (count > 1) return `${count} × ${formatNumber(unitKw, locale, { maximumFractionDigits: 1 })} kW`;
+  return `${formatNumber(result.inverterKw, locale, { maximumFractionDigits: 1 })} kW`;
 }
