@@ -38,7 +38,7 @@ function build(o: Opts): CalculationInput {
   const cfg = getConnectionConfig(o.cc);
   const opt =
     o.optIdx === undefined || o.optIdx === "default"
-      ? cfg.connectionOptions.find((x) => x.id === cfg.defaultConnection) ?? cfg.connectionOptions[0]!
+      ? cfg.connectionOptions.find((x) => x.id === cfg.defaultConnection) ?? cfg.connectionOptions[Math.floor(cfg.connectionOptions.length / 2)]!
       : cfg.connectionOptions[o.optIdx]!;
   const kva = cfg.contractedKvaPowerFactor;
   const maxAcPowerKw = connectionCapacityToMaxAcPowerKw(opt.capacity, {
@@ -121,6 +121,10 @@ for (const cc of countries) {
   let status = "";
   let y1 = 0;
   let sumOk = true;
+  if (getConnectionConfig(cc).connectionOptions.length === 0) {
+    log(`| ${cc} | inga fasta säkringsval (manuell inmatning) | | | | | | |`);
+    continue;
+  }
   for (const pb of [5, 10, 15]) {
     const o = runCalculation(build({ cc, payback: pb }));
     status = o.status;
