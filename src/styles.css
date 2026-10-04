@@ -630,3 +630,94 @@ html[data-native="true"] {
 @utility chart-bar-consumption {
   background-color: oklch(0.2185 0.0066 0.7 / 0.38);
 }
+
+/* ===== Simulating overlay — compositor-driven circular progress ring =====
+   Shown by SimulatingOverlay while the calculation runs. The ring animates via
+   transform only, fills 0 → ~90 % while the work runs, then snaps to 100 %. */
+.radial-ring {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+}
+.radial-track {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 10px solid color-mix(in oklab, var(--brand-yellow-cta) 30%, transparent);
+}
+/* Right half — rotates 0 → 180 deg (covers 0 → 50 %). */
+.radial-fill-wrap {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  clip-path: inset(0 0 0 50%);
+}
+.radial-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 10px solid var(--brand-yellow-cta);
+  clip-path: inset(0 50% 0 0);
+  transform: rotate(0deg);
+  animation: radial-fill-spin 4s cubic-bezier(0.25, 0.8, 0.3, 1) forwards;
+}
+.radial-fill.is-done {
+  animation: radial-snap-fill 0.45s ease-out forwards;
+}
+/* Left half — rotates 0 → 144 deg (covers 50 → 90 %), starts after 50 %. */
+.radial-mask-wrap {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  clip-path: inset(0 50% 0 0);
+}
+.radial-mask {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 10px solid var(--brand-yellow-cta);
+  clip-path: inset(0 0 0 50%);
+  transform: rotate(0deg);
+  animation: radial-mask-spin 4s cubic-bezier(0.25, 0.8, 0.3, 1) forwards;
+}
+.radial-mask.is-done {
+  animation: radial-snap-mask 0.45s ease-out forwards;
+}
+.radial-inset {
+  position: absolute;
+  inset: 16px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+}
+
+@keyframes radial-fill-spin {
+  0% { transform: rotate(0deg); }
+  55% { transform: rotate(180deg); }
+  100% { transform: rotate(180deg); }
+}
+@keyframes radial-mask-spin {
+  0%, 55% { transform: rotate(0deg); }
+  100% { transform: rotate(144deg); }
+}
+@keyframes radial-snap-fill {
+  to { transform: rotate(180deg); }
+}
+@keyframes radial-snap-mask {
+  to { transform: rotate(180deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .radial-fill,
+  .radial-mask {
+    animation: none;
+    transform: rotate(90deg);
+  }
+  .radial-fill.is-done,
+  .radial-mask.is-done {
+    animation: none;
+    transform: rotate(180deg);
+  }
+}
