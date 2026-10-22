@@ -24,6 +24,8 @@ export const tr = {
     point4Body: "Üretimi, ekonomiyi ve farklı geri ödeme sürelerini bir raporda görün.",
     cta: "Hesaplamayı başlat",
     disclaimer: "Hesaplama yol göstericidir ve bir teklif değildir.",
+    priceUnlock: "Bir hesaplama: {{price}}",
+    pricePremium: "Premium: {{price}}/yıl",
   },
   common: {
     simulating: "Simülasyon yapılıyor",

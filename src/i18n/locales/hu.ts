@@ -23,7 +23,9 @@ export const hu = {
     point4Title: "Jelentés és döntési alap",
     point4Body: "Lásd a termelést, a gazdaságot és a különböző megtérülési időket egy jelentésben.",
     cta: "Számítás indítása",
-    disclaimer: "A számítás tájékoztató jellegű, nem ajánlat.",
+    disclaimer: "A számítás tájékoztató jellegű,
+    priceUnlock: "Egy számítás: {{price}}",
+    pricePremium: "Premium: {{price}}/év",
   },
   common: {
     simulating: "Szimuláció folyamatban",

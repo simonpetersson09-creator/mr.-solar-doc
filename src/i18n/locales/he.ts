@@ -22,6 +22,8 @@ export const he = {
     point4Body: "ראה ייצור, כלכלה ותקופות החזר שונות בדוח אחד.",
     cta: "התחל את החישוב",
     disclaimer: "החישוב הוא הערכה בלבד ואינו מהווה הצעת מחיר.",
+    priceUnlock: "חישוב אחד: {{price}}",
+    pricePremium: "פרימיום: {{price}}/שנה",
   },
   common: {
     simulating: "מבצע סימולציה",

@@ -21,6 +21,8 @@ export const id = {
     point4Body: "Lihat produksi, ekonomi dan berbagai periode pengembalian dalam satu laporan.",
     cta: "Mulai perhitungan",
     disclaimer: "Perhitungan bersifat petunjuk dan bukan penawaran.",
+    priceUnlock: "Satu perhitungan: {{price}}",
+    pricePremium: "Premium: {{price}}/tahun",
   },
   common: {
     simulating: "Simulasi berlangsung",

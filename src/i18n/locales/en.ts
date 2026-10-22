@@ -24,6 +24,8 @@ export const en = {
     point4Body: "See production, economics and different payback periods gathered in a report.",
     cta: "Start the calculation",
     disclaimer: "The calculation is indicative and is not a quote.",
+    priceUnlock: "One calculation: {{price}}",
+    pricePremium: "Premium: {{price}}/yr",
   },
   common: {
     simulating: "Simulating",

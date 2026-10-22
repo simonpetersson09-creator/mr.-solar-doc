@@ -23,6 +23,8 @@ export const fi = {
     point4Body: "Katso tuotanto, talous ja eri takaisinmaksuajat koottuna raporttiin.",
     cta: "Aloita laskenta",
     disclaimer: "Laskelma on ohjeellinen eikä se ole tarjous.",
+    priceUnlock: "Yksi laskelma: {{price}}",
+    pricePremium: "Premium: {{price}}/vuosi",
   },
   common: {
     simulating: "Simuloidaan",

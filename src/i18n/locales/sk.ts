@@ -24,6 +24,8 @@ export const sk = {
     point4Body: "Pozrite si produkciu, ekonomiku a rôzne doby návratnosti v správe.",
     cta: "Spustiť výpočet",
     disclaimer: "Výpočet je orientačný a nie je ponukou.",
+    priceUnlock: "Jeden výpočet: {{price}}",
+    pricePremium: "Premium: {{price}}/rok",
   },
   common: {
     simulating: "Prebieha simulácia",

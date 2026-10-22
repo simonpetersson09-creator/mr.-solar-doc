@@ -24,6 +24,8 @@ export const pl = {
     point4Body: "Zobacz produkcję, ekonomię i różne okresy zwrotu w raporcie.",
     cta: "Zacznij obliczenia",
     disclaimer: "Obliczenia mają charakter orientacyjny i nie są ofertą.",
+    priceUnlock: "Jedna kalkulacja: {{price}}",
+    pricePremium: "Premium: {{price}}/rok",
   },
   common: {
     simulating: "Symulacja w toku",

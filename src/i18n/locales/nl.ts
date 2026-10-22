@@ -24,6 +24,8 @@ export const nl = {
     point4Body: "Zie productie, economie en verschillende terugverdientijden in een rapport.",
     cta: "Start de berekening",
     disclaimer: "De berekening is richtinggevend en geen offerte.",
+    priceUnlock: "Eén berekening: {{price}}",
+    pricePremium: "Premium: {{price}}/jaar",
   },
   common: {
     simulating: "Simuleren",
