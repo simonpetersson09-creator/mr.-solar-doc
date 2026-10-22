@@ -1,10 +1,10 @@
 /**
- * AdMob App Open ad — iOS only, one attempt per cold start.
+ * AdMob App Open ad — iOS and Android, one attempt per cold start.
  *
  * Flow: UMP consent → (ATT, only if consent allows and status undetermined)
  * → initialize → load → show, but only while the user is still on the launch
  * view. Every failure path just ends silently; the app never waits for an ad.
- * Android and the web never load the SDK (dynamic import behind the guard).
+ * The web never loads the SDK (dynamic import behind the native guard).
  */
 import { getPlatform, isNativePlatform } from "@/services/native-service";
 
@@ -13,18 +13,33 @@ export const ADMOB_IOS_APP_ID = "ca-app-pub-7448540924654868~3473619726";
 export const ADMOB_IOS_APP_OPEN_PROD = "ca-app-pub-7448540924654868/9231756595";
 /** Google's official iOS App Open demo unit. */
 export const ADMOB_IOS_APP_OPEN_TEST = "ca-app-pub-3940256099942544/5575463023";
+/** Production ids (Android). The app id lives in AndroidManifest.xml. */
+export const ADMOB_ANDROID_APP_ID = "ca-app-pub-7448540924654868~4461725777";
+export const ADMOB_ANDROID_APP_OPEN_PROD = "ca-app-pub-7448540924654868/4862935040";
+/** Google's official Android App Open demo unit. */
+export const ADMOB_ANDROID_APP_OPEN_TEST = "ca-app-pub-3940256099942544/9257395921";
+
+export type AdPlatform = "ios" | "android";
 
 /** Ads older than this are discarded (Google: app open ads expire after 4 h). */
 const AD_MAX_AGE_MS = 4 * 60 * 60 * 1000;
 /** After this the launch view is considered left even without interaction. */
 const LAUNCH_WINDOW_MS = 5000;
 
-export function appOpenAdUnitId(isProduction: boolean): string {
+export function appOpenAdUnitId(isProduction: boolean, platform: AdPlatform = "ios"): string {
+  if (platform === "android") return isProduction ? ADMOB_ANDROID_APP_OPEN_PROD : ADMOB_ANDROID_APP_OPEN_TEST;
   return isProduction ? ADMOB_IOS_APP_OPEN_PROD : ADMOB_IOS_APP_OPEN_TEST;
 }
 
+/** The native platform that shows ads, or null (web). */
+export function adPlatform(): AdPlatform | null {
+  if (!isNativePlatform()) return null;
+  const p = getPlatform();
+  return p === "ios" || p === "android" ? p : null;
+}
+
 export function adsSupported(): boolean {
-  return isNativePlatform() && getPlatform() === "ios";
+  return adPlatform() !== null;
 }
 
 /** Pure decision used by the flow and the tests. */
@@ -76,8 +91,10 @@ async function run(isPremium: () => Promise<boolean>): Promise<void> {
   }
   if (!consent.canRequestAds) return;
 
-  // 2. ATT (separate from UMP). A "no" only means non-personalised ads.
-  try {
+  const platform = adPlatform() ?? "ios";
+
+  // 2. ATT (iOS only, separate from UMP). A "no" only means non-personalised ads.
+  if (platform === "ios") try {
     const att = await AdMob.trackingAuthorizationStatus();
     if (att.status === "notDetermined") await AdMob.requestTrackingAuthorization();
   } catch {
@@ -90,7 +107,7 @@ async function run(isPremium: () => Promise<boolean>): Promise<void> {
   if (await premiumPromise) return;
   if (userEnteredApp) return; // no point loading an ad that can no longer show
 
-  const adId = appOpenAdUnitId(isProduction);
+  const adId = appOpenAdUnitId(isProduction, platform);
   await AdMob.loadAppOpen({ adId });
   const loadedAt = Date.now();
 
@@ -108,6 +125,7 @@ async function run(isPremium: () => Promise<boolean>): Promise<void> {
 }
 
 export type AdPrivacyState = {
+  platform: AdPlatform;
   optionsRequired: boolean;
   /** UMP consent status: OBTAINED / NOT_REQUIRED / REQUIRED / UNKNOWN. */
   consent: string;
@@ -118,17 +136,19 @@ export type AdPrivacyState = {
 
 /** Current UMP + ATT choices, read live from the SDK (never cached). */
 export async function getAdPrivacyState(): Promise<AdPrivacyState | null> {
-  if (!adsSupported()) return null;
+  const platform = adPlatform();
+  if (!platform) return null;
   try {
     const { AdMob } = await import("@capacitor-community/admob");
     const info = await AdMob.requestConsentInfo();
     let tracking = "unknown";
-    try {
+    if (platform === "ios") try {
       tracking = String((await AdMob.trackingAuthorizationStatus()).status);
     } catch {
       /* ATT unavailable */
     }
     return {
+      platform,
       optionsRequired: String(info.privacyOptionsRequirementStatus) === "REQUIRED",
       consent: String(info.status),
       canRequestAds: !!info.canRequestAds,

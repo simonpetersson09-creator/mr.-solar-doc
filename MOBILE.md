@@ -92,7 +92,7 @@ npm run android:open     # öppnar Android Studio
 npm run android:run      # bygger, synkar och kör på emulator/enhet
 ```
 
-- Köp via Google Play är **inte** implementerade ännu; appen visar att köp inte
+- App Open-annonser (AdMob) visas även på Android; App ID ligger i AndroidManifest.xml.
   är tillgängliga i Android-versionen. Apple-köpflödet är oförändrat.
 - PDF delas via Capacitor Filesystem + Share, externa länkar öppnas via
   Capacitor Browser. iOS och webben använder fortsatt sina tidigare vägar.
