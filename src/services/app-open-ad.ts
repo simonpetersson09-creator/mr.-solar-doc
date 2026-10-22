@@ -111,9 +111,9 @@ async function run(isPremium: () => Promise<boolean>): Promise<void> {
 export async function privacyOptionsRequired(): Promise<boolean> {
   if (!adsSupported()) return false;
   try {
-    const { AdMob, PrivacyOptionsRequirementStatus } = await import("@capacitor-community/admob");
+    const { AdMob } = await import("@capacitor-community/admob");
     const info = await AdMob.requestConsentInfo();
-    return info.privacyOptionsRequirementStatus === PrivacyOptionsRequirementStatus.Required;
+    return String(info.privacyOptionsRequirementStatus) === "REQUIRED";
   } catch {
     return false;
   }
