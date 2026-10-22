@@ -59,10 +59,27 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
   // storefront. On the web there is no store, so the line stays hidden.
   // TEMP: visar butikspriser i förhandsvisningen (återställs efter skärmdump)
   const store = { available: true, unlock: "49 kr", premium: "199 kr", unlockReady: true, premiumReady: true, status: "ready" as const, unlockStatus: "ready" as const, premiumStatus: "ready" as const, canRetry: true, retry: () => undefined, diagnostics: { pluginPresent: true, supported: true, initialized: true, ready: true, productCount: 2, productIds: [], lastErrorCode: null, lastErrorMessage: null } };
-  const priceParts = [
-    store.unlock ? t("welcome.priceUnlock", { price: store.unlock }) : null,
-    store.premium ? t("welcome.pricePremium", { price: store.premium }) : null,
-  ].filter(Boolean);
+  // Prominent price card rows, so the cost is visible before the wizard — not
+  // first on the paywall. Reuses existing paywall strings (already translated).
+  const priceRows = [
+    store.unlock
+      ? {
+          title: t("paywall.single.title"),
+          desc: t("paywall.oneTime"),
+          price: store.unlock,
+          key: "unlock",
+        }
+      : null,
+    store.premium
+      ? {
+          title: t("paywall.premium.title"),
+          desc: t("paywall.premium.body"),
+          price: t("paywall.premium.price", { price: store.premium }),
+          key: "premium",
+        }
+      : null,
+  ].filter(Boolean) as { title: string; desc: string; price: string; key: string }[];
+
 
   return (
     <div
