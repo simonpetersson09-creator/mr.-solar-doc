@@ -511,8 +511,7 @@ function SettingsPage() {
 
 /** iOS only: reopen Google's UMP privacy choices when UMP requires an entry point. */
 function AdPrivacyButton() {
-  const { i18n } = useTranslation();
-  const sv = i18n.language.startsWith("sv");
+  const { t } = useTranslation();
   const [state, setState] = useState<AdPrivacyState | null>(null);
 
   const refresh = useCallback(() => {
