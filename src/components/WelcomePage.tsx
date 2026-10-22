@@ -58,22 +58,27 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
   // Prices come from the App Store / Google Play, localised for the user's
   // storefront. On the web there is no store, so the line stays hidden.
   const store = useStorePrices();
+  // Dev-preview fallback: the web preview has no store, so show the Swedish
+  // storefront prices so the card is reviewable there. Never used in builds.
+  const DEV = import.meta.env.DEV;
+  const unlockPrice = store.unlock ?? (DEV ? "49 kr" : null);
+  const premiumPrice = store.premium ?? (DEV ? "199 kr/år" : null);
   // Prominent price card rows, so the cost is visible before the wizard — not
   // first on the paywall. Reuses existing paywall strings (already translated).
   const priceRows = [
-    store.unlock
+    unlockPrice
       ? {
           title: t("paywall.single.title"),
           desc: t("paywall.oneTime"),
-          price: store.unlock,
+          price: unlockPrice,
           key: "unlock",
         }
       : null,
-    store.premium
+    premiumPrice
       ? {
           title: t("paywall.premium.title"),
           desc: t("paywall.premium.body"),
-          price: t("paywall.premium.price", { price: store.premium }),
+          price: t("paywall.premium.price", { price: premiumPrice }),
           key: "premium",
         }
       : null,
