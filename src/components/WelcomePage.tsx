@@ -57,8 +57,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
   const { t } = useTranslation();
   // Prices come from the App Store / Google Play, localised for the user's
   // storefront. On the web there is no store, so the line stays hidden.
-  // TEMP: visar butikspriser i förhandsvisningen (återställs efter skärmdump)
-  const store = { available: true, unlock: "49 kr", premium: "199 kr", unlockReady: true, premiumReady: true, status: "ready" as const, unlockStatus: "ready" as const, premiumStatus: "ready" as const, canRetry: true, retry: () => undefined, diagnostics: { pluginPresent: true, supported: true, initialized: true, ready: true, productCount: 2, productIds: [], lastErrorCode: null, lastErrorMessage: null } };
+  const store = useStorePrices();
   // Prominent price card rows, so the cost is visible before the wizard — not
   // first on the paywall. Reuses existing paywall strings (already translated).
   const priceRows = [
@@ -149,10 +148,10 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           ))}
         </ul>
 
-        <div className="min-h-2 flex-1" />
+        <div className="min-h-6 flex-1" />
 
         {priceRows.length > 0 && (
-          <div className="mt-3 rounded-2xl border-2 border-brand-black/80 bg-brand-black/5 px-4 py-3">
+          <div className="mt-4 rounded-2xl border-2 border-brand-black/80 bg-brand-black/5 p-4">
             <div className={priceRows.length > 1 ? "divide-y divide-brand-black/20" : undefined}>
               {priceRows.map((row) => (
                 <div
@@ -175,7 +174,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
             void haptic("light");
             onStart();
           }}
-          className="cta-primary mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-[24px] text-base font-bold shadow-cta transition-transform active:translate-y-px"
+          className="cta-primary mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-[24px] text-base font-bold shadow-cta transition-transform active:translate-y-px"
         >
           {t("welcome.cta")}
           <ArrowRight className="size-4 rtl:-scale-x-100" />
