@@ -28,6 +28,16 @@ const config: CapacitorConfig = {
   android: {
     allowMixedContent: false,
     backgroundColor: "#FBF9F3",
+    // AdMob is iOS-only. Leaving it out keeps the Google Mobile Ads SDK (which
+    // crashes without an Android app id) out of the Android build entirely.
+    includePlugins: [
+      "@capacitor/app",
+      "@capacitor/browser",
+      "@capacitor/filesystem",
+      "@capacitor/share",
+      "@capacitor/splash-screen",
+      "@capacitor/status-bar",
+    ],
   },
   plugins: {
     SplashScreen: {
