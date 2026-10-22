@@ -558,7 +558,7 @@ function AdPrivacyButton() {
           <ShieldCheck className="size-3" />
         </span>
         <span className="text-xs font-semibold text-brand-black">
-          {sv ? "Integritetsval för annonser" : "Ad privacy choices"}
+          {t("settings.adsPrivacyTitle")}
         </span>
       </div>
       <dl className="space-y-1">
