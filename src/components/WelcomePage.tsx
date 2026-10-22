@@ -151,6 +151,24 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
 
         <div className="min-h-6 flex-1" />
 
+        {priceRows.length > 0 && (
+          <div className="mt-4 rounded-2xl border-2 border-brand-black/80 bg-brand-black/5 p-4">
+            <div className={priceRows.length > 1 ? "divide-y divide-brand-black/20" : undefined}>
+              {priceRows.map((row) => (
+                <div
+                  key={row.key}
+                  className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 py-1.5 first:pt-0 last:pb-0"
+                >
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold leading-tight">{row.title}</p>
+                    <p className="mt-0.5 text-[11px] font-medium leading-snug opacity-80">{row.desc}</p>
+                  </div>
+                  <p className="text-right text-sm font-bold whitespace-nowrap">{row.price}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
         <button
           type="button"
           onClick={() => {
@@ -162,14 +180,10 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           {t("welcome.cta")}
           <ArrowRight className="size-4 rtl:-scale-x-100" />
         </button>
-        {priceParts.length > 0 && (
-          <p className="mt-2 text-center text-[11px] font-semibold leading-snug opacity-80">
-            {priceParts.join(" · ")}
-          </p>
-        )}
         <p className="mt-2 text-center text-[11px] leading-snug opacity-60">
           {t("welcome.disclaimer")}
         </p>
+
       </main>
     </div>
   );
