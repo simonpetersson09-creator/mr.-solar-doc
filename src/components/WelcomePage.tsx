@@ -149,10 +149,10 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           ))}
         </ul>
 
-        <div className="min-h-6 flex-1" />
+        <div className="min-h-2 flex-1" />
 
         {priceRows.length > 0 && (
-          <div className="mt-4 rounded-2xl border-2 border-brand-black/80 bg-brand-black/5 p-4">
+          <div className="mt-3 rounded-2xl border-2 border-brand-black/80 bg-brand-black/5 px-4 py-3">
             <div className={priceRows.length > 1 ? "divide-y divide-brand-black/20" : undefined}>
               {priceRows.map((row) => (
                 <div
@@ -175,7 +175,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
             void haptic("light");
             onStart();
           }}
-          className="cta-primary mt-4 flex h-12 w-full items-center justify-center gap-2 rounded-[24px] text-base font-bold shadow-cta transition-transform active:translate-y-px"
+          className="cta-primary mt-3 flex h-12 w-full items-center justify-center gap-2 rounded-[24px] text-base font-bold shadow-cta transition-transform active:translate-y-px"
         >
           {t("welcome.cta")}
           <ArrowRight className="size-4 rtl:-scale-x-100" />
