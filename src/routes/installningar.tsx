@@ -603,10 +603,10 @@ function DeleteDataButton() {
       useCalculationStore.getState().clear();
       usePurchaseStore.setState({ deviceId: null, pending: null, tokens: {}, active: null, unclaimedUnlock: false });
       queryClient.clear();
-      toast.success(sv ? "All din data är raderad" : "All your data has been deleted");
+      toast.success(t("settings.deleteDataDone"));
       void navigate({ to: "/" });
     } catch {
-      toast.error(sv ? "Kunde inte radera. Kontrollera nätet och försök igen." : "Could not delete. Check your connection and try again.");
+      toast.error(t("settings.deleteDataError"));
     } finally {
       setBusy(false);
     }
