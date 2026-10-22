@@ -57,8 +57,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
   const { t } = useTranslation();
   // Prices come from the App Store / Google Play, localised for the user's
   // storefront. On the web there is no store, so the line stays hidden.
-  // TEMP: visar butikspriser i förhandsvisningen (återställs efter skärmdump)
-  const store = { available: true, unlock: "49 kr", premium: "199 kr", unlockReady: true, premiumReady: true, status: "ready" as const, unlockStatus: "ready" as const, premiumStatus: "ready" as const, canRetry: true, retry: () => undefined, diagnostics: { pluginPresent: true, supported: true, initialized: true, ready: true, productCount: 2, productIds: [], lastErrorCode: null, lastErrorMessage: null } };
+  const store = useStorePrices();
   // Prominent price card rows, so the cost is visible before the wizard — not
   // first on the paywall. Reuses existing paywall strings (already translated).
   const priceRows = [
