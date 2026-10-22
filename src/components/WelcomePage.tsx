@@ -62,7 +62,7 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
   // storefront prices so the card is reviewable there. Never used in builds.
   const DEV = import.meta.env.DEV;
   const unlockPrice = store.unlock ?? (DEV ? "49 kr" : null);
-  const premiumPrice = store.premium ?? (DEV ? "199 kr/år" : null);
+  const premiumPrice = store.premium ?? (DEV ? "199 kr" : null);
   // Prominent price card rows, so the cost is visible before the wizard — not
   // first on the paywall. Reuses existing paywall strings (already translated).
   const priceRows = [
