@@ -17,6 +17,7 @@ import {
   RotateCcw,
   Settings2,
   ShieldCheck,
+  Trash2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { haptic, isAndroidApp, openExternalUrl } from "@/services/native-service";
@@ -32,6 +33,19 @@ import { useStorePrices } from "@/hooks/use-store-prices";
 
 import { fetchPremiumStatus, verifyPremium } from "@/services/purchase-service";
 import { usePurchaseStore } from "@/state/purchase-store";
+import { useCalculationStore } from "@/state/calculation-store";
+import { eraseDeviceData } from "@/services/purchase-service";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 import { useWizardStore } from "@/state/wizard-store";
 import { drainPurchaseTransactions } from "@/services/purchase-recovery";
 import { PREMIUM_QUERY_KEY, usePremium } from "@/hooks/use-premium";
@@ -481,6 +495,7 @@ function SettingsPage() {
               <ChevronRight className="size-3 text-brand-black/40" />
             </a>
             <AdPrivacyButton />
+            <DeleteDataButton />
           </div>
         </section>
 
@@ -570,5 +585,73 @@ function AdPrivacyButton() {
         </button>
       )}
     </div>
+  );
+}
+
+/** Erases all data for this device: server receipts/stats and everything stored locally. */
+function DeleteDataButton() {
+  const { i18n } = useTranslation();
+  const sv = i18n.language.startsWith("sv");
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
+  const [busy, setBusy] = useState(false);
+
+  const erase = async () => {
+    setBusy(true);
+    try {
+      const deviceId = usePurchaseStore.getState().deviceId;
+      if (deviceId) await eraseDeviceData({ data: { deviceId } });
+      useWizardStore.getState().reset();
+      useCalculationStore.getState().clear();
+      usePurchaseStore.setState({ deviceId: null, pending: null, tokens: {}, active: null, unclaimedUnlock: false });
+      queryClient.clear();
+      toast.success(sv ? "All din data är raderad" : "All your data has been deleted");
+      void navigate({ to: "/" });
+    } catch {
+      toast.error(sv ? "Kunde inte radera. Kontrollera nätet och försök igen." : "Could not delete. Check your connection and try again.");
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <button
+          type="button"
+          disabled={busy}
+          className="flex w-full items-center justify-between rounded-xl border border-destructive/30 bg-destructive/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
+        >
+          <span className="flex items-center gap-2">
+            <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-destructive/10 text-destructive">
+              {busy ? <Loader2 className="size-3 animate-spin" /> : <Trash2 className="size-3" />}
+            </span>
+            <span className="text-xs font-semibold text-destructive">
+              {sv ? "Radera all min data" : "Delete all my data"}
+            </span>
+          </span>
+          <ChevronRight className="size-3 text-destructive/50" />
+        </button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>{sv ? "Radera all data?" : "Delete all data?"}</AlertDialogTitle>
+          <AlertDialogDescription>
+            {sv
+              ? "Dina beräkningar, köpta rapporter, kopplingen till Premium och statistiken från den här enheten raderas. Det går inte att ångra. Köpta rapporter kan inte återställas. Premium kan du få tillbaka med \"Återställ köp\"."
+              : "Your calculations, purchased reports, Premium link and usage statistics from this device will be deleted. This cannot be undone. Purchased reports cannot be recovered. Premium can be brought back with \"Restore purchases\"."}
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>{sv ? "Avbryt" : "Cancel"}</AlertDialogCancel>
+          <AlertDialogAction
+            onClick={() => void erase()}
+            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+          >
+            {sv ? "Radera" : "Delete"}
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
