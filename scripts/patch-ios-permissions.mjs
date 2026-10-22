@@ -23,7 +23,15 @@ const KEYS = {
     "Mr. Solar Doc uses the camera so you can photograph an electricity bill or consumption report instead of typing the figures.",
   NSPhotoLibraryUsageDescription:
     "Mr. Solar Doc needs access to your photos so you can pick an existing picture of your electricity bill.",
+  // AdMob (iOS only). App ID must match the AdMob console.
+  GADApplicationIdentifier: "ca-app-pub-7448540924654868~3473619726",
+  NSUserTrackingUsageDescription:
+    "Your data is used to show you more relevant ads. Saying no still lets you use the whole app.",
 };
+
+// Google's own SKAdNetwork id. Add Google's full third-party buyer list from
+// https://developers.google.com/admob/ios/3p-skadnetworks before release.
+const SKADNETWORK_IDS = ["cstr6suwn9.skadnetwork"];
 
 if (!existsSync(PLIST)) {
   console.log(`[ios] ${PLIST} not found — run "npx cap add ios" first. Skipping.`);
@@ -37,6 +45,15 @@ for (const [key, value] of Object.entries(KEYS)) {
   if (plist.includes(`<key>${key}</key>`)) continue;
   block += `\t<key>${key}</key>\n\t<string>${value}</string>\n`;
   added.push(key);
+}
+
+if (!plist.includes("<key>SKAdNetworkItems</key>")) {
+  block += "\t<key>SKAdNetworkItems</key>\n\t<array>\n";
+  for (const id of SKADNETWORK_IDS) {
+    block += `\t\t<dict>\n\t\t\t<key>SKAdNetworkIdentifier</key>\n\t\t\t<string>${id}</string>\n\t\t</dict>\n`;
+  }
+  block += "\t</array>\n";
+  added.push("SKAdNetworkItems");
 }
 
 if (!block) {
