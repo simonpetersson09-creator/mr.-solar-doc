@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { openPrivacyOptions, privacyOptionsRequired } from "@/services/app-open-ad";
+import { getAdPrivacyState, openPrivacyOptions, type AdPrivacyState } from "@/services/app-open-ad";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
