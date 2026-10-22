@@ -649,6 +649,7 @@ export const sv = {
     privacy: "Integritetspolicy",
     deleteData: "Radera all min data",
     deleteDataTitle: "Radera all data?",
+    deleteDataBody: "Dina beräkningar, köpta rapporter, kopplingen till Premium och statistiken från den här enheten raderas. Det går inte att ångra. Köpta rapporter kan inte återställas. Premium kan du få tillbaka med \"Återställ köp\".",
     deleteDataCancel: "Avbryt",
     deleteDataConfirm: "Radera",
     deleteDataDone: "All din data är raderad",
