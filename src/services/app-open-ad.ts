@@ -107,16 +107,41 @@ async function run(isPremium: () => Promise<boolean>): Promise<void> {
   await AdMob.showAppOpen({ adId });
 }
 
-/** True when UMP says the user must be able to reopen privacy choices. */
-export async function privacyOptionsRequired(): Promise<boolean> {
-  if (!adsSupported()) return false;
+export type AdPrivacyState = {
+  optionsRequired: boolean;
+  /** UMP consent status: OBTAINED / NOT_REQUIRED / REQUIRED / UNKNOWN. */
+  consent: string;
+  canRequestAds: boolean;
+  /** ATT: authorized / denied / restricted / notDetermined / unknown. */
+  tracking: string;
+};
+
+/** Current UMP + ATT choices, read live from the SDK (never cached). */
+export async function getAdPrivacyState(): Promise<AdPrivacyState | null> {
+  if (!adsSupported()) return null;
   try {
     const { AdMob } = await import("@capacitor-community/admob");
     const info = await AdMob.requestConsentInfo();
-    return String(info.privacyOptionsRequirementStatus) === "REQUIRED";
+    let tracking = "unknown";
+    try {
+      tracking = String((await AdMob.trackingAuthorizationStatus()).status);
+    } catch {
+      /* ATT unavailable */
+    }
+    return {
+      optionsRequired: String(info.privacyOptionsRequirementStatus) === "REQUIRED",
+      consent: String(info.status),
+      canRequestAds: !!info.canRequestAds,
+      tracking,
+    };
   } catch {
-    return false;
+    return null;
   }
+}
+
+/** True when UMP says the user must be able to reopen privacy choices. */
+export async function privacyOptionsRequired(): Promise<boolean> {
+  return (await getAdPrivacyState())?.optionsRequired ?? false;
 }
 
 export async function openPrivacyOptions(): Promise<void> {
