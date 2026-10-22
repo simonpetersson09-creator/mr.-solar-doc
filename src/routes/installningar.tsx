@@ -532,24 +532,24 @@ function AdPrivacyButton() {
 
   const consentLabel =
     state.consent === "OBTAINED"
-      ? sv ? "Val gjort" : "Choice made"
+      ? t("settings.adsConsentObtained")
       : state.consent === "NOT_REQUIRED"
-        ? sv ? "Krävs inte i ditt land" : "Not required in your region"
+        ? t("settings.adsConsentNotRequired")
         : state.consent === "REQUIRED"
-          ? sv ? "Inget val gjort" : "No choice made"
-          : sv ? "Okänt" : "Unknown";
+          ? t("settings.adsConsentMissing")
+          : t("settings.adsUnknown");
   const trackingLabel =
     state.tracking === "authorized"
-      ? sv ? "Tillåten (anpassade annonser)" : "Allowed (personalised ads)"
+      ? t("settings.adsTrackingAllowed")
       : state.tracking === "notDetermined"
-        ? sv ? "Inte tillfrågad än" : "Not asked yet"
+        ? t("settings.adsTrackingNotAsked")
         : state.tracking === "denied" || state.tracking === "restricted"
-          ? sv ? "Nekad (icke-anpassade annonser)" : "Denied (non-personalised ads)"
-          : sv ? "Okänd" : "Unknown";
+          ? t("settings.adsTrackingDenied")
+          : t("settings.adsUnknown");
 
-  const rows: [string, string][] = [[sv ? "Samtycke" : "Consent", consentLabel]];
+  const rows: [string, string][] = [[t("settings.adsPrivacyConsent"), consentLabel]];
   // ATT exists only on iOS; Android has no tracking prompt.
-  if (state.platform === "ios") rows.push([sv ? "Spårning" : "Tracking", trackingLabel]);
+  if (state.platform === "ios") rows.push([t("settings.adsPrivacyTracking"), trackingLabel]);
 
   return (
     <div className="space-y-2 rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5">
