@@ -15,7 +15,7 @@ till den publicerade backenden över https via serverfunktioner.
 git clone <ditt repo> && cd <repo>
 npm install                # eller bun install
 npm run build:native
-npx cap add ios            # kräver Xcode + CocoaPods
+npm run cap:add:ios        # kräver Xcode + CocoaPods; återställer iOS-inställningar
 npx cap add android        # kräver Android Studio
 ```
 
@@ -23,7 +23,15 @@ npx cap add android        # kräver Android Studio
 
 ```bash
 npm run cap:sync           # bygger native-bundlen + cap sync
+npm run ios:sync           # endast iOS; bygger, synkar och återställer plist + språk
 ```
+
+`ios:sync` och `cap:sync` kör `scripts/patch-ios-permissions.mjs` efter synkningen.
+Skriptet innehåller Googles 50 SKAdNetwork-ID:n från
+https://developers.google.com/admob/ios/3p-skadnetworks (kontrollerat 2026-10-22).
+Det skapar `SKAdNetworkItems` om det saknas och lägger endast till saknade ID:n.
+Befintliga ID:n och övriga inställningar bevaras; upprepade körningar ändrar inget.
+Om `ios/` skapas om: kör `npm run cap:add:ios && npm run ios:sync`.
 
 ## Kör
 
@@ -46,7 +54,7 @@ npx cap open android   # Android Studio → Run
 1. `cordova-plugin-purchase` finns i `package.json` (samma plugin som Mr.
    Battery Doc) och installeras via Capacitors Cordova-lager. Kör:
    ```bash
-   npx cap add ios          # om ios/ saknas
+   npm run cap:add:ios      # om ios/ saknas
    npm run build:native && npx cap sync ios
    node scripts/patch-ios-permissions.mjs && node scripts/patch-ios-localizations.mjs   # app languages, required or iOS starts in English
    # (or simply: npm run cap:sync)
