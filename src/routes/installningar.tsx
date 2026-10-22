@@ -511,8 +511,7 @@ function SettingsPage() {
 
 /** iOS only: reopen Google's UMP privacy choices when UMP requires an entry point. */
 function AdPrivacyButton() {
-  const { i18n } = useTranslation();
-  const sv = i18n.language.startsWith("sv");
+  const { t } = useTranslation();
   const [state, setState] = useState<AdPrivacyState | null>(null);
 
   const refresh = useCallback(() => {
@@ -533,24 +532,24 @@ function AdPrivacyButton() {
 
   const consentLabel =
     state.consent === "OBTAINED"
-      ? sv ? "Val gjort" : "Choice made"
+      ? t("settings.adsConsentObtained")
       : state.consent === "NOT_REQUIRED"
-        ? sv ? "Krävs inte i ditt land" : "Not required in your region"
+        ? t("settings.adsConsentNotRequired")
         : state.consent === "REQUIRED"
-          ? sv ? "Inget val gjort" : "No choice made"
-          : sv ? "Okänt" : "Unknown";
+          ? t("settings.adsConsentMissing")
+          : t("settings.adsUnknown");
   const trackingLabel =
     state.tracking === "authorized"
-      ? sv ? "Tillåten (anpassade annonser)" : "Allowed (personalised ads)"
+      ? t("settings.adsTrackingAllowed")
       : state.tracking === "notDetermined"
-        ? sv ? "Inte tillfrågad än" : "Not asked yet"
+        ? t("settings.adsTrackingNotAsked")
         : state.tracking === "denied" || state.tracking === "restricted"
-          ? sv ? "Nekad (icke-anpassade annonser)" : "Denied (non-personalised ads)"
-          : sv ? "Okänd" : "Unknown";
+          ? t("settings.adsTrackingDenied")
+          : t("settings.adsUnknown");
 
-  const rows: [string, string][] = [[sv ? "Samtycke" : "Consent", consentLabel]];
+  const rows: [string, string][] = [[t("settings.adsPrivacyConsent"), consentLabel]];
   // ATT exists only on iOS; Android has no tracking prompt.
-  if (state.platform === "ios") rows.push([sv ? "Spårning" : "Tracking", trackingLabel]);
+  if (state.platform === "ios") rows.push([t("settings.adsPrivacyTracking"), trackingLabel]);
 
   return (
     <div className="space-y-2 rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5">
@@ -559,7 +558,7 @@ function AdPrivacyButton() {
           <ShieldCheck className="size-3" />
         </span>
         <span className="text-xs font-semibold text-brand-black">
-          {sv ? "Integritetsval för annonser" : "Ad privacy choices"}
+          {t("settings.adsPrivacyTitle")}
         </span>
       </div>
       <dl className="space-y-1">
@@ -580,7 +579,7 @@ function AdPrivacyButton() {
           }}
           className="flex w-full items-center justify-between rounded-lg bg-brand-black/5 px-3 py-2 text-left text-xs font-semibold text-brand-black transition-transform active:scale-[0.98]"
         >
-          {sv ? "Ändra val" : "Change choices"}
+          {t("settings.adsPrivacyChange")}
           <ChevronRight className="size-3 text-brand-black/40" />
         </button>
       )}
@@ -590,8 +589,7 @@ function AdPrivacyButton() {
 
 /** Erases all data for this device: server receipts/stats and everything stored locally. */
 function DeleteDataButton() {
-  const { i18n } = useTranslation();
-  const sv = i18n.language.startsWith("sv");
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [busy, setBusy] = useState(false);
@@ -605,10 +603,10 @@ function DeleteDataButton() {
       useCalculationStore.getState().clear();
       usePurchaseStore.setState({ deviceId: null, pending: null, tokens: {}, active: null, unclaimedUnlock: false });
       queryClient.clear();
-      toast.success(sv ? "All din data är raderad" : "All your data has been deleted");
+      toast.success(t("settings.deleteDataDone"));
       void navigate({ to: "/" });
     } catch {
-      toast.error(sv ? "Kunde inte radera. Kontrollera nätet och försök igen." : "Could not delete. Check your connection and try again.");
+      toast.error(t("settings.deleteDataError"));
     } finally {
       setBusy(false);
     }
@@ -627,7 +625,7 @@ function DeleteDataButton() {
               {busy ? <Loader2 className="size-3 animate-spin" /> : <Trash2 className="size-3" />}
             </span>
             <span className="text-xs font-semibold text-destructive">
-              {sv ? "Radera all min data" : "Delete all my data"}
+              {t("settings.deleteData")}
             </span>
           </span>
           <ChevronRight className="size-3 text-destructive/50" />
@@ -635,20 +633,16 @@ function DeleteDataButton() {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{sv ? "Radera all data?" : "Delete all data?"}</AlertDialogTitle>
-          <AlertDialogDescription>
-            {sv
-              ? "Dina beräkningar, köpta rapporter, kopplingen till Premium och statistiken från den här enheten raderas. Det går inte att ångra. Köpta rapporter kan inte återställas. Premium kan du få tillbaka med \"Återställ köp\"."
-              : "Your calculations, purchased reports, Premium link and usage statistics from this device will be deleted. This cannot be undone. Purchased reports cannot be recovered. Premium can be brought back with \"Restore purchases\"."}
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t("settings.deleteDataTitle")}</AlertDialogTitle>
+          <AlertDialogDescription>{t("settings.deleteDataBody")}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>{sv ? "Avbryt" : "Cancel"}</AlertDialogCancel>
+          <AlertDialogCancel>{t("settings.deleteDataCancel")}</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => void erase()}
             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
           >
-            {sv ? "Radera" : "Delete"}
+            {t("settings.deleteDataConfirm")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
