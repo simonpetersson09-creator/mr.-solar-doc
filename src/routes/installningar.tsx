@@ -533,10 +533,9 @@ function AdPrivacyButton() {
           ? sv ? "Nekad (icke-anpassade annonser)" : "Denied (non-personalised ads)"
           : sv ? "Okänd" : "Unknown";
 
-  const rows: [string, string][] = [
-    [sv ? "Samtycke" : "Consent", consentLabel],
-    [sv ? "Spårning" : "Tracking", trackingLabel],
-  ];
+  const rows: [string, string][] = [[sv ? "Samtycke" : "Consent", consentLabel]];
+  // ATT exists only on iOS; Android has no tracking prompt.
+  if (state.platform === "ios") rows.push([sv ? "Spårning" : "Tracking", trackingLabel]);
 
   return (
     <div className="space-y-2 rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5">
