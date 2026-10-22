@@ -1,8 +1,8 @@
 # Roadmap
 
 ## iOS SKAdNetwork
-- [ ] Lägg in Googles aktuella lista utan att skriva över befintliga ID:n.
-- [ ] Verifiera upprepade körningar, återskapat projekt och iOS-sync; dokumentera Mac-kommandot.
+- [x] Lägg in Googles aktuella lista utan att skriva över befintliga ID:n.
+- [x] Verifiera upprepade körningar, återskapat projekt och iOS-sync; dokumentera Mac-kommandot (8 tester + XML-kontroll; Xcode-körning görs på Mac).
 
 - [x] Isolera varför adressökning misslyckas i TestFlight.
 - [x] Inför en stabil, versionsoberoende native geocoding-endpoint.
