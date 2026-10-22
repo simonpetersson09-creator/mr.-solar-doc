@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { openPrivacyOptions, privacyOptionsRequired } from "@/services/app-open-ad";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -479,6 +480,7 @@ function SettingsPage() {
               </span>
               <ChevronRight className="size-3 text-brand-black/40" />
             </a>
+            <AdPrivacyButton />
           </div>
         </section>
 
@@ -489,5 +491,36 @@ function SettingsPage() {
         </footer>
       </main>
     </div>
+  );
+}
+
+/** iOS only: reopen Google's UMP privacy choices when UMP requires an entry point. */
+function AdPrivacyButton() {
+  const { t, i18n } = useTranslation();
+  const [required, setRequired] = useState(false);
+  useEffect(() => {
+    void privacyOptionsRequired().then(setRequired);
+  }, []);
+  if (!required) return null;
+  const fallback = i18n.language.startsWith("sv") ? "Integritetsval för annonser" : "Ad privacy choices";
+  return (
+    <button
+      type="button"
+      onClick={() => {
+        void haptic("light");
+        void openPrivacyOptions();
+      }}
+      className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
+    >
+      <span className="flex items-center gap-2">
+        <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
+          <ShieldCheck className="size-3" />
+        </span>
+        <span className="text-xs font-semibold text-brand-black">
+          {t("settings.adPrivacy", { defaultValue: fallback })}
+        </span>
+      </span>
+      <ChevronRight className="size-3 text-brand-black/40" />
+    </button>
   );
 }

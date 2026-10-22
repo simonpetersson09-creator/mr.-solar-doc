@@ -18,3 +18,4 @@
 - US/CA busbar limit is computed in `resolvePvPowerLimit` from the panel the PV connects to (main breaker + busbar, optional user input), not the total service; unknown values are assumed and returned in `busbarBasis` so the result page and PDF show the same assumption via `src/lib/panel-assumption.ts`. Why: service size and PV panel differ, and assumptions must be visible.
 
 - Anonymous usage stats go to `app_events` via the REST route `/api/public/events` (`src/services/stats.ts`, fire-and-forget). Why: the native app needs a stable URL, and stats must never block or break the app.
+- iOS-only AdMob App Open ad lives in `src/services/app-open-ad.ts` (UMP → ATT → load → show once per cold start, never for Premium, never after the user touched the app); the SDK is dynamically imported behind an iOS guard and Info.plist keys are added by `scripts/patch-ios-permissions.mjs`. Why: Android/web must stay ad-free and an ad must never delay startup.
