@@ -19,3 +19,4 @@
 
 - Anonymous usage stats go to `app_events` via the REST route `/api/public/events` (`src/services/stats.ts`, fire-and-forget). Why: the native app needs a stable URL, and stats must never block or break the app.
 - iOS-only AdMob App Open ad lives in `src/services/app-open-ad.ts` (UMP → ATT → load → show once per cold start, never for Premium, never after the user touched the app); the SDK is dynamically imported behind an iOS guard and Info.plist keys are added by `scripts/patch-ios-permissions.mjs`. Why: Android/web must stay ad-free and an ad must never delay startup.
+- iOS creation and sync commands run the privacy/localization patches; SKAdNetwork IDs are a checked-in Google list merged additively into Info.plist. Why: recreated native projects must restore configuration offline without removing custom IDs or touching Android.
