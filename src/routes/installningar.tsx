@@ -524,9 +524,6 @@ function AdPrivacyButton() {
         : state.consent === "REQUIRED"
           ? sv ? "Inget val gjort" : "No choice made"
           : sv ? "Okänt" : "Unknown";
-  const adsLabel = state.canRequestAds
-    ? sv ? "Tillåtna" : "Allowed"
-    : sv ? "Avstängda" : "Off";
   const trackingLabel =
     state.tracking === "authorized"
       ? sv ? "Tillåten (anpassade annonser)" : "Allowed (personalised ads)"
@@ -538,7 +535,6 @@ function AdPrivacyButton() {
 
   const rows: [string, string][] = [
     [sv ? "Samtycke" : "Consent", consentLabel],
-    [sv ? "Annonser" : "Ads", adsLabel],
     [sv ? "Spårning" : "Tracking", trackingLabel],
   ];
 
