@@ -496,31 +496,84 @@ function SettingsPage() {
 
 /** iOS only: reopen Google's UMP privacy choices when UMP requires an entry point. */
 function AdPrivacyButton() {
-  const { t, i18n } = useTranslation();
-  const [required, setRequired] = useState(false);
-  useEffect(() => {
-    void privacyOptionsRequired().then(setRequired);
+  const { i18n } = useTranslation();
+  const sv = i18n.language.startsWith("sv");
+  const [state, setState] = useState<AdPrivacyState | null>(null);
+
+  const refresh = useCallback(() => {
+    void getAdPrivacyState().then(setState);
   }, []);
-  if (!required) return null;
-  const fallback = i18n.language.startsWith("sv") ? "Integritetsval för annonser" : "Ad privacy choices";
+
+  useEffect(() => {
+    refresh();
+    // ATT can be changed in iOS Settings; re-read when the user comes back.
+    const onVisible = () => {
+      if (document.visibilityState === "visible") refresh();
+    };
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, [refresh]);
+
+  if (!state) return null;
+
+  const consentLabel =
+    state.consent === "OBTAINED"
+      ? sv ? "Val gjort" : "Choice made"
+      : state.consent === "NOT_REQUIRED"
+        ? sv ? "Krävs inte i ditt land" : "Not required in your region"
+        : state.consent === "REQUIRED"
+          ? sv ? "Inget val gjort" : "No choice made"
+          : sv ? "Okänt" : "Unknown";
+  const adsLabel = state.canRequestAds
+    ? sv ? "Tillåtna" : "Allowed"
+    : sv ? "Avstängda" : "Off";
+  const trackingLabel =
+    state.tracking === "authorized"
+      ? sv ? "Tillåten (anpassade annonser)" : "Allowed (personalised ads)"
+      : state.tracking === "notDetermined"
+        ? sv ? "Inte tillfrågad än" : "Not asked yet"
+        : state.tracking === "denied" || state.tracking === "restricted"
+          ? sv ? "Nekad (icke-anpassade annonser)" : "Denied (non-personalised ads)"
+          : sv ? "Okänd" : "Unknown";
+
+  const rows: [string, string][] = [
+    [sv ? "Samtycke" : "Consent", consentLabel],
+    [sv ? "Annonser" : "Ads", adsLabel],
+    [sv ? "Spårning" : "Tracking", trackingLabel],
+  ];
+
   return (
-    <button
-      type="button"
-      onClick={() => {
-        void haptic("light");
-        void openPrivacyOptions();
-      }}
-      className="flex w-full items-center justify-between rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5 text-left transition-transform active:scale-[0.98]"
-    >
-      <span className="flex items-center gap-2">
+    <div className="space-y-2 rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5">
+      <div className="flex items-center gap-2">
         <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
           <ShieldCheck className="size-3" />
         </span>
         <span className="text-xs font-semibold text-brand-black">
-          {t("settings.adPrivacy", { defaultValue: fallback })}
+          {sv ? "Integritetsval för annonser" : "Ad privacy choices"}
         </span>
-      </span>
-      <ChevronRight className="size-3 text-brand-black/40" />
-    </button>
+      </div>
+      <dl className="space-y-1">
+        {rows.map(([k, v]) => (
+          <div key={k} className="flex justify-between gap-3 text-xs">
+            <dt className="text-brand-black/60">{k}</dt>
+            <dd className="text-right font-medium text-brand-black">{v}</dd>
+          </div>
+        ))}
+      </dl>
+      {state.optionsRequired && (
+        <button
+          type="button"
+          onClick={async () => {
+            void haptic("light");
+            await openPrivacyOptions();
+            refresh();
+          }}
+          className="flex w-full items-center justify-between rounded-lg bg-brand-black/5 px-3 py-2 text-left text-xs font-semibold text-brand-black transition-transform active:scale-[0.98]"
+        >
+          {sv ? "Ändra val" : "Change choices"}
+          <ChevronRight className="size-3 text-brand-black/40" />
+        </button>
+      )}
+    </div>
   );
 }
