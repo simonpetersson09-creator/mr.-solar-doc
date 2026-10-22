@@ -589,8 +589,7 @@ function AdPrivacyButton() {
 
 /** Erases all data for this device: server receipts/stats and everything stored locally. */
 function DeleteDataButton() {
-  const { i18n } = useTranslation();
-  const sv = i18n.language.startsWith("sv");
+  const { t } = useTranslation();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [busy, setBusy] = useState(false);
