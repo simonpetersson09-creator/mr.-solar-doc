@@ -23,6 +23,8 @@ export const sr = {
     point4Body: "Погледајте производњу, економију и различите периоде поврата у извештају.",
     cta: "Покрени прорачун",
     disclaimer: "Izračun je orijentacioni i nije ponuda.",
+    priceUnlock: "Jedna kalkulacija: {{price}}",
+    pricePremium: "Premium: {{price}}/god",
   },
   common: {
     simulating: "Симулација у току",

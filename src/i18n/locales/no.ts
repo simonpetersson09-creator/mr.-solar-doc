@@ -24,6 +24,8 @@ export const no = {
     point4Body: "Se produksjon, økonomi og ulike tilbakebetalingstider i en rapport.",
     cta: "Start beregningen",
     disclaimer: "Beregningen er veiledende og er ikke et tilbud.",
+    priceUnlock: "Én beregning: {{price}}",
+    pricePremium: "Premium: {{price}}/år",
   },
   common: {
     simulating: "Simulerer",

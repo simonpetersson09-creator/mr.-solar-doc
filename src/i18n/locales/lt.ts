@@ -24,6 +24,8 @@ export const lt = {
     point4Body: "Matykite gamybą, ekonomiką ir skirtingus atsiperkamumo laikus ataskaitoje.",
     cta: "Pradėti skaičiavimą",
     disclaimer: "Skaičiavimas yra orientacinis ir nėra pasiūlymas.",
+    priceUnlock: "Vienas skaičiavimas: {{price}}",
+    pricePremium: "Premium: {{price}}/m",
   },
   common: {
     simulating: "Atliekamas modeliavimas",

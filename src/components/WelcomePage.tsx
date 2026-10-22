@@ -3,6 +3,7 @@ import type { LucideIcon } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { Fragment, type ReactNode } from "react";
 import { haptic } from "@/services/native-service";
+import { useStorePrices } from "@/hooks/use-store-prices";
 import brandIcon from "@/assets/mr-solar-doc-icon.png";
 
 /**
@@ -54,6 +55,13 @@ const POINTS: PointDef[] = [
  */
 export function WelcomePage({ onStart }: WelcomePageProps) {
   const { t } = useTranslation();
+  // Prices come from the App Store / Google Play, localised for the user's
+  // storefront. On the web there is no store, so the line stays hidden.
+  const store = useStorePrices();
+  const priceParts = [
+    store.unlock ? t("welcome.priceUnlock", { price: store.unlock }) : null,
+    store.premium ? t("welcome.pricePremium", { price: store.premium }) : null,
+  ].filter(Boolean);
 
   return (
     <div
@@ -136,6 +144,11 @@ export function WelcomePage({ onStart }: WelcomePageProps) {
           {t("welcome.cta")}
           <ArrowRight className="size-4 rtl:-scale-x-100" />
         </button>
+        {priceParts.length > 0 && (
+          <p className="mt-2 text-center text-[11px] font-semibold leading-snug opacity-80">
+            {priceParts.join(" · ")}
+          </p>
+        )}
         <p className="mt-2 text-center text-[11px] leading-snug opacity-60">
           {t("welcome.disclaimer")}
         </p>

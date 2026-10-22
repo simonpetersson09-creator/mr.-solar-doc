@@ -26,6 +26,8 @@ export const fr = {
       "Production, économie et différents délais de remboursement réunis dans un rapport.",
     cta: "Démarrer le calcul",
     disclaimer: "Le calcul est indicatif et ne constitue pas un devis.",
+    priceUnlock: "Un calcul : {{price}}",
+    pricePremium: "Premium : {{price}}/an",
   },
   common: {
     simulating: "Simulation en cours",

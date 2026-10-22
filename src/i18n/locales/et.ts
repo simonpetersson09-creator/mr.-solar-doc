@@ -24,6 +24,8 @@ export const et = {
     point4Body: "Vaata tootmist, majandust ja erinevaid tasuvusaegu ühes aruandes.",
     cta: "Alusta arvutust",
     disclaimer: "Arvutus on suunav ega ole pakkumine.",
+    priceUnlock: "Üks arvutus: {{price}}",
+    pricePremium: "Premium: {{price}}/aasta",
   },
   common: {
     simulating: "Simuleeritakse",

@@ -22,6 +22,8 @@ export const sl = {
     point4Body: "Glejte proizvodnjo, ekonomijo in različne čase povračila v poročilu.",
     cta: "Začni izračun",
     disclaimer: "Izračun je orientacijski in ni ponudba.",
+    priceUnlock: "En izračun: {{price}}",
+    pricePremium: "Premium: {{price}}/leto",
   },
   common: {
     simulating: "Simuliram",

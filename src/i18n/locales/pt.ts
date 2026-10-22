@@ -24,6 +24,8 @@ export const pt = {
     point4Body: "Veja produção, economia e diferentes períodos de retorno num relatório.",
     cta: "Iniciar o cálculo",
     disclaimer: "O cálculo é indicativo e não é uma proposta.",
+    priceUnlock: "Um cálculo: {{price}}",
+    pricePremium: "Premium: {{price}}/ano",
   },
   common: {
     simulating: "A simular",

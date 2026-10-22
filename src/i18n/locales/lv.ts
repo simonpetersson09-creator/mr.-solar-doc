@@ -24,6 +24,8 @@ export const lv = {
     point4Body: "Skatiet ražošanu, ekonomiku un dažādus atmaksāšanās laikus atskaitē.",
     cta: "Sākt aprēķinu",
     disclaimer: "Aprēķins ir orientējošs un nav piedāvājums.",
+    priceUnlock: "Viens aprēķins: {{price}}",
+    pricePremium: "Premium: {{price}}/gadā",
   },
   common: {
     simulating: "Notiek modelēšana",

@@ -24,6 +24,8 @@ export const it = {
     point4Body: "Produzione, economia e diversi periodi di ammortamento raccolti in un rapporto.",
     cta: "Avvia il calcolo",
     disclaimer: "Il calcolo è indicativo e non è un preventivo.",
+    priceUnlock: "Un calcolo: {{price}}",
+    pricePremium: "Premium: {{price}}/anno",
   },
   common: {
     simulating: "Simulazione in corso",

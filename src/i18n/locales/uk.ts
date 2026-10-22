@@ -21,6 +21,8 @@ export const uk = {
     point4Body: "Дивіться виробництво, економіку та різні терміни окупності у звіті.",
     cta: "Розпочати розрахунок",
     disclaimer: "Розрахунок є орієнтовним і не є пропозицією.",
+    priceUnlock: "Один розрахунок: {{price}}",
+    pricePremium: "Premium: {{price}}/рік",
   },
   common: {
     simulating: "Симуляція триває",

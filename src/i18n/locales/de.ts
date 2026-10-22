@@ -25,6 +25,8 @@ export const de = {
       "Produktion, Wirtschaftlichkeit und verschiedene Amortisationszeiten in einem Bericht.",
     cta: "Berechnung starten",
     disclaimer: "Die Berechnung ist richtungsweisend und kein Angebot.",
+    priceUnlock: "Eine Berechnung: {{price}}",
+    pricePremium: "Premium: {{price}}/Jahr",
   },
   common: {
     simulating: "Simulation läuft",

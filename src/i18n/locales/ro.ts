@@ -24,6 +24,8 @@ export const ro = {
     point4Body: "Vezi producția, economia și diferite perioade de retur într-un raport.",
     cta: "Începe calculul",
     disclaimer: "Calculul este orientativ și nu este o ofertă.",
+    priceUnlock: "Un calcul: {{price}}",
+    pricePremium: "Premium: {{price}}/an",
   },
   common: {
     simulating: "Se simulează",
