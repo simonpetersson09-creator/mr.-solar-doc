@@ -144,3 +144,10 @@ export const unlockWithPremium = createServerFn({ method: "POST" })
     const { unlockWithPremiumProvider } = await import("@/lib/purchase.server");
     return unlockWithPremiumProvider(data);
   });
+
+export const deleteDeviceData = createServerFn({ method: "POST" })
+  .inputValidator((input: unknown) => createSchema.parse(input))
+  .handler(async ({ data }) => {
+    const { deleteDeviceDataProvider } = await import("@/lib/purchase.server");
+    return deleteDeviceDataProvider(data);
+  });

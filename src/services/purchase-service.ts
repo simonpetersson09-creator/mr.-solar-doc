@@ -12,6 +12,7 @@
 import {
   claimCalculationRevision,
   createPendingCalculation,
+  deleteDeviceData,
   getPremiumStatus,
   getPurchaseStatus,
   listPurchasedCalculations,
@@ -126,4 +127,9 @@ export const unlockCalculationWithPremium = route(
     { id: string; accessToken: string; deviceId: string },
     Awaited<ReturnType<typeof unlockWithPremium>>
   >,
+);
+
+export const eraseDeviceData = route(
+  "deleteDeviceData",
+  deleteDeviceData as Fn<{ deviceId: string }, { ok: true }>,
 );

@@ -652,3 +652,22 @@ export async function verifyGooglePremiumProvider(
     return { status: terminal ? "failed" : "pending", reason: code };
   }
 }
+
+/**
+ * Erases everything stored server-side for one device: purchase receipts,
+ * Premium links and anonymous usage events. The random device id is the
+ * capability, same as every other paywall call. Apple/Google keep their own
+ * purchase records, so Premium can be restored later via "Restore purchases".
+ */
+export async function deleteDeviceDataProvider(data: { deviceId: string }) {
+  const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
+  const id = data.deviceId;
+  const results = await Promise.all([
+    supabaseAdmin.from("calculations").delete().eq("device_id", id),
+    supabaseAdmin.from("premium_subscriptions").delete().eq("device_id", id),
+    supabaseAdmin.from("app_events").delete().eq("device_id", id),
+  ]);
+  const failed = results.find((r) => r.error);
+  if (failed?.error) throw new Error("Could not delete data");
+  return { ok: true as const };
+}
