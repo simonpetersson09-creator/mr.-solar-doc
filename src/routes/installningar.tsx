@@ -625,7 +625,7 @@ function DeleteDataButton() {
               {busy ? <Loader2 className="size-3 animate-spin" /> : <Trash2 className="size-3" />}
             </span>
             <span className="text-xs font-semibold text-destructive">
-              {sv ? "Radera all min data" : "Delete all my data"}
+              {t("settings.deleteData")}
             </span>
           </span>
           <ChevronRight className="size-3 text-destructive/50" />
@@ -633,20 +633,16 @@ function DeleteDataButton() {
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{sv ? "Radera all data?" : "Delete all data?"}</AlertDialogTitle>
-          <AlertDialogDescription>
-            {sv
-              ? "Dina beräkningar, köpta rapporter, kopplingen till Premium och statistiken från den här enheten raderas. Det går inte att ångra. Köpta rapporter kan inte återställas. Premium kan du få tillbaka med \"Återställ köp\"."
-              : "Your calculations, purchased reports, Premium link and usage statistics from this device will be deleted. This cannot be undone. Purchased reports cannot be recovered. Premium can be brought back with \"Restore purchases\"."}
-          </AlertDialogDescription>
+          <AlertDialogTitle>{t("settings.deleteDataTitle")}</AlertDialogTitle>
+          <AlertDialogDescription>{t("settings.deleteDataBody")}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel>{sv ? "Avbryt" : "Cancel"}</AlertDialogCancel>
+          <AlertDialogCancel>{t("settings.deleteDataCancel")}</AlertDialogCancel>
           <AlertDialogAction
             onClick={() => void erase()}
             className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
           >
-            {sv ? "Radera" : "Delete"}
+            {t("settings.deleteDataConfirm")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
