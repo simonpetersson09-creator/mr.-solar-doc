@@ -36,6 +36,7 @@ const bodySchema = z.discriminatedUnion("action", [
   z.object({ action: z.literal("verifyGooglePurchase"), payload: googleVerifySchema }),
   z.object({ action: z.literal("verifyGooglePremium"), payload: googlePremiumVerifySchema }),
   z.object({ action: z.literal("unlockWithPremium"), payload: premiumUnlockSchema }),
+  z.object({ action: z.literal("deleteDeviceData"), payload: createSchema }),
 ]);
 
 function responseHeaders(origin: string): HeadersInit {
@@ -119,6 +120,9 @@ export const Route = createFileRoute("/api/public/purchase")({
               break;
             case "verifyGooglePremium":
               result = await providers.verifyGooglePremiumProvider(body.payload);
+              break;
+            case "deleteDeviceData":
+              result = await providers.deleteDeviceDataProvider(body.payload);
               break;
             case "unlockWithPremium":
               result = await providers.unlockWithPremiumProvider(body.payload);

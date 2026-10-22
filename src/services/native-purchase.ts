@@ -19,7 +19,8 @@ export type NativePurchaseAction =
   | "verifyApplePremium"
   | "verifyGooglePurchase"
   | "verifyGooglePremium"
-  | "unlockWithPremium";
+  | "unlockWithPremium"
+  | "deleteDeviceData";
 
 export class NativePurchaseError extends Error {
   readonly endpoint = NATIVE_PURCHASE_PATH;
