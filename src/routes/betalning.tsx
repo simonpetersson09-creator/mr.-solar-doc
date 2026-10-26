@@ -26,6 +26,7 @@ import { drainPurchaseTransactions } from "@/services/purchase-recovery";
 import { isDevUnlock } from "@/lib/dev-unlock";
 import i18nInstance from "@/i18n";
 import { reportLanguage } from "@/services/solar-report-service";
+import { trackEvent } from "@/services/stats";
 import { createVerificationLock } from "@/lib/verification-lock";
 
 
@@ -97,6 +98,12 @@ function PaywallPage() {
   useEffect(() => {
     if (!pending) void navigate({ to: "/" });
   }, [pending, navigate]);
+
+  // Anonymous funnel stat: the paywall was actually shown. Combined with the
+  // purchase_tap events this shows where buyers drop off.
+  useEffect(() => {
+    if (pending) trackEvent("paywall_view");
+  }, [pending]);
 
   // Development: skip the paywall entirely so the result and PDF can be tested.
   useEffect(() => {
@@ -214,6 +221,7 @@ function PaywallPage() {
   async function handleUnlock() {
     if (!pending || busy) return;
     void haptic("medium");
+    trackEvent("purchase_tap_unlock");
     setChoice("unlock");
     setPhase("purchasing");
     try {
@@ -295,6 +303,7 @@ function PaywallPage() {
   async function handlePremium() {
     if (!pending || busy) return;
     void haptic("medium");
+    trackEvent("purchase_tap_premium");
     setChoice("premium");
     setPhase("purchasing");
     try {
