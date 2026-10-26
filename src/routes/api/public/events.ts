@@ -9,7 +9,15 @@ import { isNativeAppOrigin } from "@/config/native-backend";
  */
 const eventSchema = z.object({
   deviceId: z.string().min(1).max(100),
-  event: z.enum(["app_open", "wizard_start", "step_view", "calculate"]),
+  event: z.enum([
+    "app_open",
+    "wizard_start",
+    "step_view",
+    "calculate",
+    "paywall_view",
+    "purchase_tap_unlock",
+    "purchase_tap_premium",
+  ]),
   step: z.number().int().min(1).max(5).optional(),
   country: z.string().regex(/^[A-Z]{2}$/).optional(),
   platform: z.enum(["ios", "android", "web"]),

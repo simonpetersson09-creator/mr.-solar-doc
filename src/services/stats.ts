@@ -7,7 +7,14 @@ import { getPlatform } from "@/services/native-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { useWizardStore } from "@/state/wizard-store";
 
-type StatEvent = "app_open" | "wizard_start" | "step_view" | "calculate";
+type StatEvent =
+  | "app_open"
+  | "wizard_start"
+  | "step_view"
+  | "calculate"
+  | "paywall_view"
+  | "purchase_tap_unlock"
+  | "purchase_tap_premium";
 
 export function trackEvent(event: StatEvent, step?: number): void {
   if (typeof window === "undefined") return;
