@@ -26,3 +26,13 @@ test("unexpected source fails atomically", () => {
   try { writeFileSync(join(root, patch.files.at(-1).path), "unexpected"); assert.throws(() => applyAdMobPatch(root), /Unexpected/); assert.equal(readFileSync(join(root, patch.files[0].path), "utf8"), patch.files[0].before); }
   finally { rmSync(root, { recursive: true, force: true }); }
 });
+test("maintained iOS bridge registers explicit ATT and guards system presentation", () => {
+  const source = patch.files.find((file) => file.path.endsWith("AdMobPlugin.swift"))?.after;
+  assert.ok(source);
+  assert.match(source, /CAPPluginMethod\(name: "requestTrackingAuthorizationExplicit"/);
+  assert.match(source, /trackingAuthorizationStatus == \.notDetermined/);
+  assert.match(source, /UIApplication\.shared\.applicationState == \.active/);
+  assert.match(source, /presentedViewController == nil/);
+  assert.match(source, /guard !self\.trackingRequestPending/);
+  assert.match(source, /generation == trackingGeneration/);
+});
