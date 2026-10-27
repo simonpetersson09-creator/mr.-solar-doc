@@ -64,7 +64,7 @@ function instance(): AdMobCoordinator {
     consentForm: async () => (await sdk()).AdMob.showConsentForm(),
     privacyForm: async () => { await (await sdk()).AdMob.showPrivacyOptionsForm(); },
     tracking: async () => adPlatform() === "ios" ? String((await (await sdk()).AdMob.trackingAuthorizationStatus()).status) : "not_applicable",
-    requestTracking: async () => { if (adPlatform() === "ios") await adMobSafety.requestTrackingAuthorization(); },
+    requestTracking: async () => { if (adPlatform() === "ios") await adMobSafety.requestTrackingAuthorizationExplicit(); },
     waitForeground: async () => {
       const { App } = await import("@capacitor/app");
       const until = Date.now() + 15000;

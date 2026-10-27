@@ -10,7 +10,7 @@ export interface NativeConsent {
 /** Methods supplied by the version-checked, reproducible native patch. */
 interface AdMobSafety {
   getConsentSnapshot(): Promise<NativeConsent>;
-  requestTrackingAuthorization(): Promise<void>;
+  requestTrackingAuthorizationExplicit(): Promise<void>;
   invalidateAppOpen(): Promise<void>;
   getAppOpenState(options: { adId: string }): Promise<{ loadedAt: number | null; foreground: boolean; background: boolean; testBuild: boolean }>;
   setAppOpenEligible(options: { eligible: boolean }): Promise<void>;
