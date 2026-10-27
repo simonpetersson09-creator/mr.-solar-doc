@@ -1,5 +1,11 @@
 # Roadmap
 
+## AdMob release-rättningar
+- [ ] Samordna Premium, samtycke, startbehörighet och integritetsval med permanent diagnostik och tester.
+- [ ] Inför reproducerbara native-rättningar för samtyckesfel, annonsinvalidering och verklig cacheålder; synka Android.
+- [ ] Kontrollera separata annonsdomäner och förbered app-ads.txt utan publicering.
+- [ ] Kör regressionstester och dokumentera fysisk releaseverifiering samt butikskontroll som saknar åtkomst.
+
 ## iOS SKAdNetwork
 - [x] Lägg in Googles aktuella lista utan att skriva över befintliga ID:n.
 - [x] Verifiera upprepade körningar, återskapat projekt och iOS-sync; dokumentera Mac-kommandot (8 tester + XML-kontroll; Xcode-körning görs på Mac).
