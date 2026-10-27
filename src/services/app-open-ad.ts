@@ -64,6 +64,11 @@ function instance(): AdMobCoordinator {
     consentForm: async () => (await sdk()).AdMob.showConsentForm(),
     privacyForm: async () => { await (await sdk()).AdMob.showPrivacyOptionsForm(); },
     tracking: async () => adPlatform() === "ios" ? String((await (await sdk()).AdMob.trackingAuthorizationStatus()).status) : "not_applicable",
+    waitForeground: async () => {
+      const { App } = await import("@capacitor/app");
+      while (!(await App.getState()).isActive) await new Promise((resolve) => setTimeout(resolve, 100));
+      foreground = true;
+    },
     initialize: async () => {
       const adId = await currentUnit();
       const testing = adId === appOpenAdUnitId(false, adPlatform() ?? "ios");
@@ -107,15 +112,23 @@ export function startAppOpenAd(isPremium: () => Promise<boolean | null>): void {
     window.addEventListener(event, () => markAdInteraction(), { capture: true, once: true, passive: true });
   }
   document.addEventListener("visibilitychange", () => {
-    foreground = document.visibilityState === "visible";
-    if (!foreground) markAdInteraction("background");
+    if (document.visibilityState === "hidden") void checkBackground();
   });
+  const checkBackground = async () => {
+    foreground = false;
+    if (adPlatform() === "ios") {
+      try {
+        const state = await adMobSafety.getAppOpenState({ adId: appOpenAdUnitId(false, "ios") });
+        if (state.background) markAdInteraction("background");
+      } catch { markAdInteraction("background_unknown"); }
+    } else markAdInteraction("background");
+  };
   void (async () => {
     try {
       const { App } = await import("@capacitor/app");
       await App.addListener("appStateChange", ({ isActive }) => {
         foreground = isActive;
-        if (!isActive) markAdInteraction("background");
+        if (!isActive) void checkBackground();
         else window.dispatchEvent(new Event("adprivacyrefresh"));
       });
       foreground = (await App.getState()).isActive;

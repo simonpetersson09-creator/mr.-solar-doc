@@ -12,6 +12,7 @@ export interface AdAdapter {
   consentForm(): Promise<NativeConsent>;
   privacyForm(): Promise<void>;
   tracking(): Promise<string>;
+  waitForeground?(): Promise<void>;
   initialize(): Promise<void>;
   load(): Promise<void>;
   show(): Promise<void>;
@@ -38,7 +39,7 @@ export class AdMobCoordinator {
   private queue: Promise<unknown> = Promise.resolve();
   private update: Promise<NativeConsent> | null = null;
   private privacy: Promise<void> | null = null;
-  private consentTimedOut = false;
+  private mutations: Promise<unknown> = Promise.resolve();
   private cleanup: (() => void) | undefined;
   constructor(private readonly ad: AdAdapter) {}
 
@@ -47,10 +48,13 @@ export class AdMobCoordinator {
     // Keep the queue occupied until the actual native call settles, even if a
     // caller's bounded wait has timed out; never overlap native consent calls.
     this.queue = result.catch(() => undefined);
-    return bounded(result, OPERATION_TIMEOUT_MS, "consent").catch((error: unknown) => {
-      if (error instanceof Error && error.message.startsWith("timeout:")) this.consentTimedOut = true;
-      throw error;
-    });
+    return bounded(result, OPERATION_TIMEOUT_MS, "consent");
+  }
+
+  private mutate(operation: () => Promise<void>): Promise<void> {
+    const result = this.mutations.then(operation);
+    this.mutations = result.catch(() => undefined);
+    return bounded(result, OPERATION_TIMEOUT_MS, "native_mutation");
   }
 
   refreshConsent(): Promise<NativeConsent> {
@@ -73,8 +77,7 @@ export class AdMobCoordinator {
     this.cancelled = true;
     this.revision++;
     log("cancelled", reason);
-    void this.ad.setEligible(false).catch(() => log("native_error", "eligibility"));
-    void this.ad.invalidate().catch(() => log("native_error", "invalidate"));
+    void this.mutate(async () => { await this.ad.setEligible(false); await this.ad.invalidate(); }).catch(() => log("native_error", "cancel"));
   }
 
   changePrivacy(): Promise<void> {
@@ -98,7 +101,6 @@ export class AdMobCoordinator {
     if (this.started) return;
     this.started = true;
     const revision = this.revision;
-    let presenting = false;
     try {
       const premium = await bounded(this.ad.premium(), OPERATION_TIMEOUT_MS, "premium");
       log("premium", premium === null ? "unknown" : premium ? "active" : "inactive");
@@ -111,6 +113,7 @@ export class AdMobCoordinator {
           try { return await this.ad.consentForm(); }
           catch { return this.ad.consentSnapshot(); }
         });
+        if (this.ad.waitForeground) await bounded(this.ad.waitForeground(), OPERATION_TIMEOUT_MS, "foreground");
       }
       if (!consent.canRequestAds) { log("skipped", "consent_missing"); return; }
       if (!this.allowed(revision)) return;
@@ -123,8 +126,10 @@ export class AdMobCoordinator {
       if (!this.allowed(revision)) return;
       // Consent/ATT time does not consume the bounded ad load/show budget.
       const deadline = Date.now() + AD_LOAD_WINDOW_MS;
-      await bounded(this.ad.invalidate(), OPERATION_TIMEOUT_MS, "invalidate");
-      await bounded(this.ad.setEligible(true), OPERATION_TIMEOUT_MS, "eligibility");
+      await this.mutate(async () => {
+        await this.ad.invalidate();
+        if (this.allowed(revision)) await this.ad.setEligible(true);
+      });
       if (!this.allowed(revision)) return;
       log("request");
       await bounded(this.ad.load(), AD_LOAD_WINDOW_MS, "load");
@@ -138,7 +143,6 @@ export class AdMobCoordinator {
         return;
       }
       log("show_attempt");
-      presenting = true;
       await this.ad.show(); // resolves at dismissal; not a five-second operation
     } catch (error) {
       const reason = error instanceof Error && error.message.startsWith("timeout:") ? error.message : "operation_failed";
@@ -146,7 +150,7 @@ export class AdMobCoordinator {
     } finally {
       this.cancel("attempt_finished");
       // A native generation token also rejects callbacks after JS timeouts.
-      await bounded(this.ad.invalidate(), OPERATION_TIMEOUT_MS, "invalidate").catch(() => log("native_error", "invalidate"));
+      await this.mutate(() => this.ad.invalidate()).catch(() => log("native_error", "invalidate"));
       this.cleanup?.();
     }
   }
