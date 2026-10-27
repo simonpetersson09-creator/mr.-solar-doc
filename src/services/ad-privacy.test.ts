@@ -1,0 +1,48 @@
+import { afterEach, beforeEach, expect, it, vi } from "vitest";
+const native = vi.hoisted(() => ({
+  platform: "ios", snapshot: vi.fn(), tracking: vi.fn(), update: vi.fn(), form: vi.fn(),
+}));
+vi.mock("@/services/native-service", () => ({ getPlatform: () => native.platform, isNativePlatform: () => native.platform !== "web" }));
+vi.mock("./admob-native", () => ({ adMobSafety: { getConsentSnapshot: native.snapshot } }));
+vi.mock("@capacitor-community/admob", () => ({ AdMob: { trackingAuthorizationStatus: native.tracking, requestConsentInfo: native.update, showPrivacyOptionsForm: native.form } }));
+beforeEach(() => {
+  vi.resetModules(); native.platform = "ios"; vi.clearAllMocks();
+  native.snapshot.mockResolvedValue({ status: "OBTAINED", canRequestAds: true, privacyOptionsRequirementStatus: "REQUIRED" });
+  native.tracking.mockResolvedValue({ status: "restricted" });
+});
+afterEach(() => vi.restoreAllMocks());
+it("obtained consent and authorized ATT never establish personalization", async () => {
+  native.tracking.mockResolvedValue({ status: "authorized" });
+  const { getAdPrivacyState } = await import("./app-open-ad");
+  const before = Date.now(); const value = await getAdPrivacyState();
+  expect(value).toMatchObject({ personalized: "unknown", tracking: "authorized", consent: "OBTAINED", optionsRequired: true });
+  expect(value?.checkedAt).toBeGreaterThanOrEqual(before);
+  expect(native.update).not.toHaveBeenCalled(); expect(native.form).not.toHaveBeenCalled();
+});
+it("Android never reads the plugin's fictitious ATT authorization", async () => {
+  native.platform = "android";
+  const { getAdPrivacyState } = await import("./app-open-ad");
+  expect(await getAdPrivacyState()).toMatchObject({ platform: "android", tracking: "not_applicable", personalized: "unknown" });
+  expect(native.tracking).not.toHaveBeenCalled();
+});
+it("return from system settings reads updated ATT status rather than JS cache", async () => {
+  const { getAdPrivacyState } = await import("./app-open-ad");
+  expect((await getAdPrivacyState())?.tracking).toBe("restricted");
+  native.tracking.mockResolvedValue({ status: "denied" });
+  expect((await getAdPrivacyState())?.tracking).toBe("denied");
+});
+it("failed native reads never return old data as a successful refresh", async () => {
+  const { getAdPrivacyState } = await import("./app-open-ad");
+  await getAdPrivacyState(); native.snapshot.mockRejectedValue(new Error("SDK unavailable"));
+  await expect(getAdPrivacyState()).rejects.toThrow("SDK unavailable");
+});
+it("unsupported privacy options never invoke a form", async () => {
+  native.snapshot.mockResolvedValue({ status: "NOT_REQUIRED", canRequestAds: true, privacyOptionsRequirementStatus: "NOT_REQUIRED" });
+  const { openPrivacyOptions } = await import("./app-open-ad");
+  await expect(openPrivacyOptions()).rejects.toThrow("privacy_options_unavailable"); expect(native.form).not.toHaveBeenCalled();
+});
+it("web settings perform no native consent reads", async () => {
+  native.platform = "web";
+  const { getAdPrivacyState } = await import("./app-open-ad");
+  expect(await getAdPrivacyState()).toBeNull(); expect(native.snapshot).not.toHaveBeenCalled();
+});
