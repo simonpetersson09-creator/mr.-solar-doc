@@ -1,5 +1,10 @@
 # Roadmap
 
+## ATT och samtyckesstatus
+- [ ] Direkt, serialiserad native-ATT efter UMP, utan Premium-frågor eller dubbla dialoger.
+- [ ] Faktiska statusavläsningar och tre samtyckesknappar med översättningar.
+- [ ] Full testsvit och dokumenterad verifiering utan publicering; fysiska telefonprov kräver iPhone/Android.
+
 ## AdMob release-rättningar
 - [x] Samordna Premium, samtycke, startbehörighet och integritetsval med permanent diagnostik och tester.
 - [x] Inför reproducerbara native-rättningar för samtyckesfel, annonsinvalidering och verklig cacheålder; uppdatera Androids native-pluginregistrering och bevara Billing.
