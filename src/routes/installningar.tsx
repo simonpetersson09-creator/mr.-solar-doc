@@ -509,106 +509,87 @@ function SettingsPage() {
   );
 }
 
-/** Both native platforms: keep the last successful state on transient errors. */
+/** Read-only native snapshots; failed reads retain the last successful timestamp. */
 function AdPrivacyButton() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [state, setState] = useState<AdPrivacyState | null>(null);
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [showDetails, setShowDetails] = useState(false);
 
-  const refresh = useCallback(() => {
-    void getAdPrivacyState().then((next) => {
+  const refresh = useCallback(async () => {
+    try {
+      const next = await getAdPrivacyState();
       if (next) setState(next);
       setFailed(!next && adsSupported());
-    }).catch(() => setFailed(true));
+    } catch { setFailed(true); }
   }, []);
 
   useEffect(() => {
-    refresh();
-    // ATT can be changed in iOS Settings; re-read when the user comes back.
-    const onVisible = () => {
-      if (document.visibilityState === "visible") refresh();
-    };
+    void refresh();
+    const onVisible = () => { if (document.visibilityState === "visible") void refresh(); };
     document.addEventListener("visibilitychange", onVisible);
-    window.addEventListener("adprivacyrefresh", refresh);
+    window.addEventListener("adprivacyrefresh", onVisible);
     return () => {
       document.removeEventListener("visibilitychange", onVisible);
-      window.removeEventListener("adprivacyrefresh", refresh);
+      window.removeEventListener("adprivacyrefresh", onVisible);
     };
   }, [refresh]);
 
-  if (!state) return failed ? (
-    <Button variant="ghost" onClick={refresh}>
-      <RefreshCw className="size-3" /> {t("settings.adsPrivacyTitle")} · {t("settings.adsUnknown")}
-    </Button>
-  ) : null;
+  if (!adsSupported()) return null;
+  const consentKey = state?.consent === "OBTAINED" ? "adsConsentObtained"
+    : state?.consent === "NOT_REQUIRED" ? "adsConsentNotRequired"
+    : state?.consent === "REQUIRED" ? "adsConsentMissing" : "adsUnknown";
+  const trackingKey = state?.tracking === "authorized" ? "adsTrackingAllowed"
+    : state?.tracking === "denied" ? "adsTrackingDenied"
+    : state?.tracking === "restricted" ? "adsTrackingRestricted"
+    : state?.tracking === "notDetermined" ? "adsTrackingNotAsked" : "adsUnknown";
+  const rows: [string, string][] = [
+    [t("settings.adsPrivacyConsent"), t(`settings.${consentKey}`)],
+    [t("settings.adsPersonalized"), t("settings.adsCannotDetermine")],
+  ];
+  if (state?.platform === "ios") rows.push([t("settings.adsPrivacyTracking"), t(`settings.${trackingKey}`)]);
+  rows.push([t("settings.adsCheckedAt"), state ? new Date(state.checkedAt).toLocaleString(i18n.resolvedLanguage) : "—"]);
 
-  const consentLabel =
-    state.consent === "OBTAINED"
-      ? t("settings.adsConsentObtained")
-      : state.consent === "NOT_REQUIRED"
-        ? t("settings.adsConsentNotRequired")
-        : state.consent === "REQUIRED"
-          ? t("settings.adsConsentMissing")
-          : t("settings.adsUnknown");
-  const trackingLabel =
-    state.tracking === "authorized"
-      ? t("settings.adsTrackingAllowed")
-      : state.tracking === "notDetermined"
-        ? t("settings.adsTrackingNotAsked")
-        : state.tracking === "denied" || state.tracking === "restricted"
-          ? t("settings.adsTrackingDenied")
-          : t("settings.adsUnknown");
-
-  const rows: [string, string][] = [[t("settings.adsPrivacyConsent"), consentLabel]];
-  // ATT exists only on iOS; Android has no tracking prompt.
-  if (state.platform === "ios") rows.push([t("settings.adsPrivacyTracking"), trackingLabel]);
+  async function action(change: boolean, details = false) {
+    if (busy) return;
+    setBusy(true);
+    try {
+      if (change) await openPrivacyOptions();
+      await refresh();
+      if (details) setShowDetails(true);
+    } catch { setFailed(true); }
+    finally { setBusy(false); }
+  }
 
   return (
-    <div className="space-y-2 rounded-xl border border-brand-black/10 bg-brand-black/5 px-3.5 py-2.5">
-      <div className="flex items-center gap-2">
-        <span className="flex size-4 shrink-0 items-center justify-center rounded-full bg-brand-black/8 text-brand-black">
-          <ShieldCheck className="size-3" />
-        </span>
-        <span className="text-xs font-semibold text-brand-black">
-          {t("settings.adsPrivacyTitle")}
-        </span>
-      </div>
-      <dl className="space-y-1">
+    <section className="space-y-2 border-y border-brand-black/10 px-3.5 py-2.5">
+      <h2 className="flex items-center gap-2 text-xs font-semibold text-brand-black">
+        <ShieldCheck className="size-4 shrink-0" /> {t("settings.adsPrivacyTitle")}
+      </h2>
+      <dl className="space-y-1" aria-live="polite">
         {rows.map(([k, v]) => (
-          <div key={k} className="flex justify-between gap-3 text-xs">
+          <div key={k} className="flex flex-wrap justify-between gap-x-3 gap-y-1 text-xs">
             <dt className="text-brand-black/60">{k}</dt>
-            <dd className="text-right font-medium text-brand-black">{v}</dd>
+            <dd className="min-w-0 break-words text-right font-medium text-brand-black">{v}</dd>
           </div>
         ))}
       </dl>
-      {failed && (
-        <Button variant="ghost" size="sm" onClick={refresh} aria-label={t("settings.adsPrivacyChange")}>
-          <RefreshCw className="size-3" /> {t("settings.adsUnknown")}
+      {showDetails && <p className="text-xs text-brand-black/70">{t("settings.adsDetailsUnavailable")}</p>}
+      {failed && <p role="alert" className="text-xs text-destructive">{t("settings.adsReadFailed")}</p>}
+      <div className="flex flex-col gap-1">
+        <Button variant="ghost" size="sm" disabled={busy} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(false, true)}>
+          <ShieldCheck className="size-3 shrink-0" /> {t("settings.adsViewChoices")}
         </Button>
-      )}
-      {state.optionsRequired && (
-        <Button
-          type="button"
-          variant="ghost"
-          disabled={busy}
-          onClick={async () => {
-            if (busy) return;
-            setBusy(true);
-            void haptic("light");
-            try {
-              await openPrivacyOptions();
-              refresh();
-            } catch { setFailed(true); }
-            finally { setBusy(false); }
-          }}
-          className="flex w-full items-center justify-between rounded-lg bg-brand-black/5 px-3 py-2 text-left text-xs font-semibold text-brand-black transition-transform active:scale-[0.98]"
-        >
-          {t("settings.adsPrivacyChange")}
-          {busy ? <Loader2 className="size-3 animate-spin" /> : <ChevronRight className="size-3 text-brand-black/40" />}
+        <Button variant="ghost" size="sm" disabled={busy || failed || !state?.optionsRequired} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(true)}>
+          <Settings2 className="size-3 shrink-0" /> {t("settings.adsPrivacyChange")}
         </Button>
-      )}
-    </div>
+        <Button variant="ghost" size="sm" disabled={busy} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(false)}>
+          {busy ? <Loader2 className="size-3 animate-spin" /> : <RefreshCw className="size-3 shrink-0" />} {t("settings.adsRefreshStatus")}
+        </Button>
+      </div>
+      {state && !state.optionsRequired && <p className="text-xs text-brand-black/60">{t("settings.adsOptionsUnavailable")}</p>}
+    </section>
   );
 }
 
