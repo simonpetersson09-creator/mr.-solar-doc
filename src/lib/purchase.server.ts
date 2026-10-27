@@ -234,7 +234,7 @@ export async function verifyApplePurchaseProvider(
 /** Receipts for calculations purchased on this device. No calculation data. */
 export async function listPurchasedCalculationsProvider(data: { deviceId: string }) {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data: rows, error } = await supabaseAdmin
+  const { data: rows } = await supabaseAdmin
     .from("calculations")
     .select("id, access_token, created_at, purchased_at")
     .eq("device_id", data.deviceId)
@@ -320,7 +320,7 @@ export async function getPremiumStatusProvider(data: {
   deviceId: string;
 }): Promise<PremiumStatus> {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data: rows } = await supabaseAdmin
+  const { data: rows, error } = await supabaseAdmin
     .from("premium_subscriptions")
     .select(
       "device_id, store, apple_original_transaction_id, google_purchase_token, status, expires_at, auto_renew, revoked_at",

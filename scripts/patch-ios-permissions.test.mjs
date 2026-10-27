@@ -89,5 +89,5 @@ test("both sync flows and iOS creation restore plist after Capacitor", () => {
     assert.ok(cmd.indexOf("scripts/patch-ios-permissions.mjs") > cmd.indexOf("cap "));
     assert.ok(cmd.includes("scripts/patch-ios-localizations.mjs"));
   }
-  assert.equal(packageScripts["android:sync"], "node scripts/build-native.mjs && cap sync android");
+  assert.equal(packageScripts["android:sync"], "node scripts/patch-admob.mjs && node scripts/build-native.mjs && cap sync android");
 });

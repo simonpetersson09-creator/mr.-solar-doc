@@ -16,11 +16,6 @@ export const ADMOB_ANDROID_APP_OPEN_TEST = "ca-app-pub-3940256099942544/92573959
 
 export type AdPlatform = "ios" | "android";
 
-/** Ads older than this are discarded (Google: app open ads expire after 4 h). */
-
-/** After this the launch view is considered left even without interaction. */
-
-
 export function appOpenAdUnitId(isProduction: boolean, platform: AdPlatform = "ios"): string {
   if (platform === "android") return isProduction ? ADMOB_ANDROID_APP_OPEN_PROD : ADMOB_ANDROID_APP_OPEN_TEST;
   return isProduction ? ADMOB_IOS_APP_OPEN_PROD : ADMOB_IOS_APP_OPEN_TEST;
@@ -80,9 +75,15 @@ function instance(): AdMobCoordinator {
     setEligible: async (eligible) => { await adMobSafety.setAppOpenEligible({ eligible: eligible && allowed() }); },
     state: async () => adMobSafety.getAppOpenState({ adId: await currentUnit() }),
     listen: async (event) => {
-      const { AdMob } = await sdk();
-      const events = { appOpenAdLoaded: "loaded", appOpenAdOpened: "opened", appOpenAdClosed: "closed", appOpenAdFailedToLoad: "failed_load", appOpenAdFailedToShow: "failed_show", appOpenAdImpression: "impression" };
-      const handles = await Promise.all(Object.entries(events).map(([name, stage]) => AdMob.addListener(name, (data: { code?: number }) => event(stage, data.code))));
+      const { AdMob, AppOpenAdPluginEvents: events } = await sdk();
+      const handles = await Promise.all([
+        AdMob.addListener(events.Loaded, () => event("loaded")),
+        AdMob.addListener(events.Opened, () => event("opened")),
+        AdMob.addListener(events.Closed, () => event("closed")),
+        AdMob.addListener(events.FailedToLoad, (data) => event("failed_load", data.code)),
+        AdMob.addListener(events.FailedToShow, (data) => event("failed_show", data.code)),
+        AdMob.addListener(events.AdImpression, () => event("impression")),
+      ]);
       return () => { for (const handle of handles) void handle.remove(); };
     },
   });
