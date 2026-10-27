@@ -126,6 +126,8 @@ export function startAppOpenAd(isPremium: () => Promise<boolean | null>): void {
   void (async () => {
     try {
       const { App } = await import("@capacitor/app");
+      // iOS pause means actual background; resign-active can just be ATT.
+      await App.addListener("pause", () => markAdInteraction("background"));
       await App.addListener("appStateChange", ({ isActive }) => {
         foreground = isActive;
         if (!isActive) void checkBackground();

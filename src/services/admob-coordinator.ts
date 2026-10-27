@@ -107,14 +107,15 @@ export class AdMobCoordinator {
       if (premium !== false || !this.allowed(revision)) return;
       this.cleanup = await this.ad.listen((stage, code) => log(stage, stage === "failed_load" && code === 3 ? "no_fill" : undefined, code));
       let consent = await this.refreshConsent();
-      if (!this.allowed(revision)) return;
       if (consent.status === "REQUIRED" && consent.isConsentFormAvailable) {
+        if (!this.allowed(revision)) return;
         consent = await this.serial(async () => {
           try { return await this.ad.consentForm(); }
           catch { return this.ad.consentSnapshot(); }
         });
         if (this.ad.waitForeground) await bounded(this.ad.waitForeground(), OPERATION_TIMEOUT_MS, "foreground");
       }
+      if (this.ad.waitForeground && !this.cancelled) await bounded(this.ad.waitForeground(), OPERATION_TIMEOUT_MS, "foreground");
       if (!consent.canRequestAds) { log("skipped", "consent_missing"); return; }
       if (!this.allowed(revision)) return;
       // UMP owns any configured IDFA explainer/ATT prompt. Reading ATT never

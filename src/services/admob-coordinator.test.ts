@@ -117,4 +117,18 @@ describe("cold-start ad orchestration", () => {
     const { flow, ad } = fixture(); vi.mocked(ad.load).mockRejectedValue(new Error("no-fill")); await flow.start(); await flow.start();
     expect(ad.show).not.toHaveBeenCalled(); expect(ad.load).toHaveBeenCalledTimes(1);
   });
+  it("cancellation during native invalidation never re-enables presentation", async () => {
+    const { flow, ad } = fixture(); const clear = deferred<void>();
+    vi.mocked(ad.invalidate).mockReturnValueOnce(clear.promise);
+    const run = flow.start(); await flush(); flow.cancel("privacy_changed"); clear.resolve(); await run;
+    expect(ad.setEligible).not.toHaveBeenCalledWith(true); expect(ad.load).not.toHaveBeenCalled();
+  });
+  it("consent-owned temporary inactivity waits for foreground without cancelling", async () => {
+    const { flow, ad } = fixture(); let active = true;
+    vi.mocked(ad.eligible).mockImplementation(() => active);
+    vi.mocked(ad.consentUpdate).mockResolvedValue({ ...consent, status: "REQUIRED", isConsentFormAvailable: true });
+    vi.mocked(ad.consentForm).mockImplementation(async () => { active = false; return consent; });
+    ad.waitForeground = vi.fn(async () => { active = true; });
+    await flow.start(); expect(ad.waitForeground).toHaveBeenCalled(); expect(ad.show).toHaveBeenCalledTimes(1);
+  });
 });
