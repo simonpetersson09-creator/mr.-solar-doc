@@ -134,10 +134,10 @@ export class AdMobCoordinator {
         });
         if (this.ad.waitForeground && !this.cancelled) await bounded(this.ad.waitForeground(), OPERATION_TIMEOUT_MS, "foreground");
       }
-      catch { log("tracking", "unknown"); }
+      catch { log("tracking", "unknown"); return; }
       if (!this.allowed(revision)) return;
       if (await bounded(this.ad.premium(), OPERATION_TIMEOUT_MS, "premium") !== false) { log("skipped", "premium_changed_or_unknown"); return; }
-      await bounded(this.ad.initialize(), OPERATION_TIMEOUT_MS, "initialize");
+      await this.serial(async () => { if (this.allowed(revision)) await this.ad.initialize(); });
       if (!this.allowed(revision)) return;
       // Consent/ATT time does not consume the bounded ad load/show budget.
       const deadline = Date.now() + AD_LOAD_WINDOW_MS;
