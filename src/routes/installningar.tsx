@@ -509,13 +509,18 @@ function SettingsPage() {
   );
 }
 
-/** iOS only: reopen Google's UMP privacy choices when UMP requires an entry point. */
+/** Both native platforms: keep the last successful state on transient errors. */
 function AdPrivacyButton() {
   const { t } = useTranslation();
   const [state, setState] = useState<AdPrivacyState | null>(null);
+  const [busy, setBusy] = useState(false);
+  const [failed, setFailed] = useState(false);
 
   const refresh = useCallback(() => {
-    void getAdPrivacyState().then(setState);
+    void getAdPrivacyState().then((next) => {
+      if (next) setState(next);
+      setFailed(!next);
+    }).catch(() => setFailed(true));
   }, []);
 
   useEffect(() => {
@@ -525,7 +530,11 @@ function AdPrivacyButton() {
       if (document.visibilityState === "visible") refresh();
     };
     document.addEventListener("visibilitychange", onVisible);
-    return () => document.removeEventListener("visibilitychange", onVisible);
+    window.addEventListener("adprivacyrefresh", refresh);
+    return () => {
+      document.removeEventListener("visibilitychange", onVisible);
+      window.removeEventListener("adprivacyrefresh", refresh);
+    };
   }, [refresh]);
 
   if (!state) return null;
@@ -569,19 +578,31 @@ function AdPrivacyButton() {
           </div>
         ))}
       </dl>
+      {failed && (
+        <Button variant="ghost" size="sm" onClick={refresh} aria-label={t("settings.adsPrivacyChange")}>
+          <RefreshCw className="size-3" /> {t("settings.adsUnknown")}
+        </Button>
+      )}
       {state.optionsRequired && (
-        <button
+        <Button
           type="button"
+          variant="ghost"
+          disabled={busy}
           onClick={async () => {
+            if (busy) return;
+            setBusy(true);
             void haptic("light");
-            await openPrivacyOptions();
-            refresh();
+            try {
+              await openPrivacyOptions();
+              refresh();
+            } catch { setFailed(true); }
+            finally { setBusy(false); }
           }}
           className="flex w-full items-center justify-between rounded-lg bg-brand-black/5 px-3 py-2 text-left text-xs font-semibold text-brand-black transition-transform active:scale-[0.98]"
         >
           {t("settings.adsPrivacyChange")}
-          <ChevronRight className="size-3 text-brand-black/40" />
-        </button>
+          {busy ? <Loader2 className="size-3 animate-spin" /> : <ChevronRight className="size-3 text-brand-black/40" />}
+        </Button>
       )}
     </div>
   );

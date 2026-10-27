@@ -225,7 +225,7 @@ function RootComponent() {
   }
 
   useNativeShell();
-  useAppOpenAd();
+  useAppOpenAd(queryClient);
   useDocumentLanguage();
 
 
