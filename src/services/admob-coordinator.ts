@@ -84,11 +84,9 @@ export class AdMobCoordinator {
     if (this.privacy) return this.privacy;
     this.cancel("privacy_changed");
     this.privacy = this.serial(async () => {
-      await this.ad.setEligible(false);
-      await this.ad.invalidate();
-      await this.ad.privacyForm();
-      await this.ad.invalidate();
-      log("privacy_updated");
+      await this.mutate(async () => { await this.ad.setEligible(false); await this.ad.invalidate(); });
+      try { await this.ad.privacyForm(); log("privacy_updated"); }
+      finally { await this.mutate(() => this.ad.invalidate()); }
     }).finally(() => { this.privacy = null; });
     return this.privacy;
   }

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { getAdPrivacyState, openPrivacyOptions, type AdPrivacyState } from "@/services/app-open-ad";
+import { adsSupported, getAdPrivacyState, openPrivacyOptions, type AdPrivacyState } from "@/services/app-open-ad";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -519,7 +519,7 @@ function AdPrivacyButton() {
   const refresh = useCallback(() => {
     void getAdPrivacyState().then((next) => {
       if (next) setState(next);
-      setFailed(!next);
+      setFailed(!next && adsSupported());
     }).catch(() => setFailed(true));
   }, []);
 
