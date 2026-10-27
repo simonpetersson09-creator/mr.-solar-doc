@@ -64,6 +64,7 @@ function instance(): AdMobCoordinator {
     consentForm: async () => (await sdk()).AdMob.showConsentForm(),
     privacyForm: async () => { await (await sdk()).AdMob.showPrivacyOptionsForm(); },
     tracking: async () => adPlatform() === "ios" ? String((await (await sdk()).AdMob.trackingAuthorizationStatus()).status) : "not_applicable",
+    requestTracking: async () => { if (adPlatform() === "ios") await adMobSafety.requestTrackingAuthorizationExplicit(); },
     waitForeground: async () => {
       const { App } = await import("@capacitor/app");
       const until = Date.now() + 15000;
@@ -144,25 +145,18 @@ export function startAppOpenAd(isPremium: () => Promise<boolean | null>): void {
   })();
 }
 
-export type AdPrivacyState = { platform: AdPlatform; optionsRequired: boolean; consent: string; canRequestAds: boolean; tracking: string };
-let lastPrivacy: AdPrivacyState | null = null;
+export type AdPrivacyState = { platform: AdPlatform; optionsRequired: boolean; consent: string; canRequestAds: boolean; tracking: string; personalized: "unknown"; checkedAt: number };
 let privacyRead: Promise<AdPrivacyState | null> | undefined;
 function privacyState(info: NativeConsent, platform: AdPlatform, tracking: string): AdPrivacyState {
-  return { platform, optionsRequired: info.privacyOptionsRequirementStatus === "REQUIRED", consent: info.status, canRequestAds: info.canRequestAds, tracking };
+  return { platform, optionsRequired: info.privacyOptionsRequirementStatus === "REQUIRED", consent: info.status, canRequestAds: info.canRequestAds, tracking, personalized: "unknown", checkedAt: Date.now() };
 }
 export async function getAdPrivacyState(): Promise<AdPrivacyState | null> {
   const platform = adPlatform();
   if (!platform) return null;
   if (privacyRead) return privacyRead;
   privacyRead = (async () => {
-    const info = await instance().refreshConsent();
-    let tracking = "not_applicable";
-    if (platform === "ios") {
-      try { tracking = String((await (await sdk()).AdMob.trackingAuthorizationStatus()).status); }
-      catch { tracking = "unknown"; }
-    }
-    lastPrivacy = privacyState(info, platform, tracking);
-    return lastPrivacy;
+    const { consent, tracking } = await instance().readPrivacy();
+    return privacyState(consent, platform, tracking);
   })().catch((error: unknown) => { log("privacy_error", "refresh_failed"); throw error; })
     .finally(() => { privacyRead = undefined; });
   return privacyRead;
@@ -170,5 +164,6 @@ export async function getAdPrivacyState(): Promise<AdPrivacyState | null> {
 export async function privacyOptionsRequired(): Promise<boolean> { return (await getAdPrivacyState())?.optionsRequired ?? false; }
 export async function openPrivacyOptions(): Promise<void> {
   if (!adsSupported()) return;
+  if (!(await getAdPrivacyState())?.optionsRequired) throw new Error("privacy_options_unavailable");
   await instance().changePrivacy();
 }

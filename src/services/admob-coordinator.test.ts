@@ -7,7 +7,7 @@ function fixture() {
   const ad: AdAdapter = {
     premium: vi.fn(async () => false), consentUpdate: vi.fn(async () => ({ ...consent })),
     consentSnapshot: vi.fn(async () => ({ ...consent })), consentForm: vi.fn(async () => ({ ...consent })),
-    privacyForm: vi.fn(async () => undefined), tracking: vi.fn(async () => "denied"),
+    privacyForm: vi.fn(async () => undefined), tracking: vi.fn(async () => "denied"), requestTracking: vi.fn(async () => undefined),
     initialize: vi.fn(async () => undefined), load: vi.fn(async () => undefined), show: vi.fn(async () => undefined),
     invalidate: vi.fn(async () => undefined), setEligible: vi.fn(async () => undefined),
     state: vi.fn(async () => ({ loadedAt: Date.now(), foreground: true })), eligible: vi.fn(() => true),
@@ -25,7 +25,7 @@ describe("cold-start ad orchestration", () => {
   });
   it("Premium performs no UMP, ATT, init or ad request", async () => {
     const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValue(true); await flow.start();
-    for (const fn of [ad.consentUpdate, ad.tracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
+    for (const fn of [ad.consentUpdate, ad.tracking, ad.requestTracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
   });
   it("unknown Premium never becomes free", async () => {
     const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValue(null); await flow.start();
@@ -83,7 +83,7 @@ describe("cold-start ad orchestration", () => {
     expect(ad.privacyForm).toHaveBeenCalledTimes(1); expect(ad.invalidate).toHaveBeenCalled(); expect(ad.show).not.toHaveBeenCalled();
   });
   it("current native consent is rechecked immediately before show", async () => {
-    const { flow, ad } = fixture(); vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, canRequestAds: false });
+    const { flow, ad } = fixture(); vi.mocked(ad.consentSnapshot).mockResolvedValueOnce(consent).mockResolvedValue({ ...consent, canRequestAds: false });
     await flow.start(); expect(ad.load).toHaveBeenCalledTimes(1); expect(ad.show).not.toHaveBeenCalled();
   });
   it("five-second load timeout invalidates late callback with no retry", async () => {
@@ -130,5 +130,55 @@ describe("cold-start ad orchestration", () => {
     vi.mocked(ad.consentForm).mockImplementation(async () => { active = false; return consent; });
     ad.waitForeground = vi.fn(async () => { active = true; });
     await flow.start(); expect(ad.waitForeground).toHaveBeenCalled(); expect(ad.show).toHaveBeenCalledTimes(1);
+  });
+  it("fresh ATT is requested once only after the UMP form completes", async () => {
+    const { flow, ad } = fixture(); const form = deferred<NativeConsent>();
+    vi.mocked(ad.tracking).mockResolvedValue("notDetermined");
+    vi.mocked(ad.consentUpdate).mockResolvedValue({ ...consent, status: "REQUIRED", isConsentFormAvailable: true });
+    vi.mocked(ad.consentForm).mockReturnValue(form.promise);
+    const run = flow.start(); await flush(); expect(ad.requestTracking).not.toHaveBeenCalled();
+    form.resolve(consent); await run; await flow.start();
+    expect(ad.requestTracking).toHaveBeenCalledTimes(1);
+    expect(ad.initialize).toHaveBeenCalledTimes(1);
+  });
+  it.each(["authorized", "denied", "restricted", "not_applicable"])("%s never triggers ATT", async (status) => {
+    const { flow, ad } = fixture(); vi.mocked(ad.tracking).mockResolvedValue(status);
+    await flow.start(); expect(ad.requestTracking).not.toHaveBeenCalled(); expect(ad.show).toHaveBeenCalledTimes(1);
+  });
+  it("Premium activation before ATT prevents the system prompt", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.tracking).mockResolvedValue("notDetermined");
+    vi.mocked(ad.premium).mockResolvedValueOnce(false).mockResolvedValue(true);
+    await flow.start(); expect(ad.requestTracking).not.toHaveBeenCalled(); expect(ad.load).not.toHaveBeenCalled();
+  });
+  it("privacy options wait for actual ATT completion and never cause an ad", async () => {
+    const { flow, ad } = fixture(); const att = deferred<void>(); vi.mocked(ad.tracking).mockResolvedValue("notDetermined");
+    ad.requestTracking = vi.fn(() => att.promise);
+    const run = flow.start(); await flush(); const change = flow.changePrivacy(); await flush();
+    expect(ad.privacyForm).not.toHaveBeenCalled(); att.resolve(); await Promise.all([run, change]);
+    expect(ad.privacyForm).toHaveBeenCalledTimes(1); expect(ad.initialize).not.toHaveBeenCalled();
+  });
+  it("ATT native failure stops init instead of overlapping dialogs", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.tracking).mockResolvedValue("notDetermined");
+    ad.requestTracking = vi.fn(async () => { throw new Error("inactive"); });
+    await flow.start(); expect(ad.initialize).not.toHaveBeenCalled(); expect(ad.show).not.toHaveBeenCalled();
+  });
+  it("ATT timeout cannot initialize while the native request is still pending", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.tracking).mockResolvedValue("notDetermined");
+    const att = deferred<void>(); ad.requestTracking = vi.fn(() => att.promise);
+    const run = flow.start(); await flush(); await vi.advanceTimersByTimeAsync(15000); await run;
+    expect(ad.initialize).not.toHaveBeenCalled(); att.resolve(); await flush(); expect(ad.show).not.toHaveBeenCalled();
+  });
+  it("read-only settings query reads native values without any consent process", async () => {
+    const { flow, ad } = fixture(); const result = await flow.readPrivacy();
+    expect(result).toEqual({ consent, tracking: "denied" });
+    expect(ad.consentUpdate).not.toHaveBeenCalled(); expect(ad.consentForm).not.toHaveBeenCalled(); expect(ad.requestTracking).not.toHaveBeenCalled();
+  });
+  it("settings query rejects a native error instead of marking stale data current", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.consentSnapshot).mockRejectedValue(new Error("offline"));
+    await expect(flow.readPrivacy()).rejects.toThrow("offline"); expect(ad.consentUpdate).not.toHaveBeenCalled();
+  });
+  it("changed native consent blocks every new ad request even after init", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, canRequestAds: false });
+    await flow.start(); expect(ad.load).not.toHaveBeenCalled();
   });
 });
