@@ -66,7 +66,11 @@ function instance(): AdMobCoordinator {
     tracking: async () => adPlatform() === "ios" ? String((await (await sdk()).AdMob.trackingAuthorizationStatus()).status) : "not_applicable",
     waitForeground: async () => {
       const { App } = await import("@capacitor/app");
-      while (!(await App.getState()).isActive) await new Promise((resolve) => setTimeout(resolve, 100));
+      const until = Date.now() + 15000;
+      while (!(await App.getState()).isActive) {
+        if (entered || Date.now() >= until) throw new Error("timeout:foreground");
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
       foreground = true;
     },
     initialize: async () => {

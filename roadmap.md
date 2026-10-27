@@ -1,10 +1,12 @@
 # Roadmap
 
 ## AdMob release-rättningar
-- [ ] Samordna Premium, samtycke, startbehörighet och integritetsval med permanent diagnostik och tester.
-- [ ] Inför reproducerbara native-rättningar för samtyckesfel, annonsinvalidering och verklig cacheålder; synka Android.
-- [ ] Kontrollera separata annonsdomäner och förbered app-ads.txt utan publicering.
-- [ ] Kör regressionstester och dokumentera fysisk releaseverifiering samt butikskontroll som saknar åtkomst.
+- [x] Samordna Premium, samtycke, startbehörighet och integritetsval med permanent diagnostik och tester.
+- [x] Inför reproducerbara native-rättningar för samtyckesfel, annonsinvalidering och verklig cacheålder; uppdatera Androids native-pluginregistrering och bevara Billing.
+- [x] Kontrollera separata annonsdomäner och förbered app-ads.txt utan publicering.
+- [x] Kör regressionstester och dokumentera fysisk releaseverifiering samt butikskontroll som saknar åtkomst.
+- [ ] Full native-sync, signerade byggen och fysiska annons-/Premium-prov: kräver nytt webbundle, Android SDK respektive Mac/Xcode och telefoner.
+- [ ] Verifiera butikernas faktiska Marketing URL/utvecklarwebbplats och AdMob-kontots IDFA-/UMP-/app-ads-status: saknar autentiserad konsolåtkomst.
 
 ## iOS SKAdNetwork
 - [x] Lägg in Googles aktuella lista utan att skriva över befintliga ID:n.
