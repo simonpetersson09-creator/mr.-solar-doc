@@ -31,6 +31,7 @@ const config: CapacitorConfig = {
     // AdMob App Open ads run on Android too; the app id is in AndroidManifest.xml.
     includePlugins: [
       "@capacitor-community/admob",
+      "cordova-plugin-purchase",
       "@capacitor/app",
       "@capacitor/browser",
       "@capacitor/filesystem",

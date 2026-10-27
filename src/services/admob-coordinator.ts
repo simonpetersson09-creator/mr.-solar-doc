@@ -123,8 +123,8 @@ export class AdMobCoordinator {
       if (!this.allowed(revision)) return;
       // Consent/ATT time does not consume the bounded ad load/show budget.
       const deadline = Date.now() + AD_LOAD_WINDOW_MS;
-      await this.ad.invalidate();
-      await this.ad.setEligible(true);
+      await bounded(this.ad.invalidate(), OPERATION_TIMEOUT_MS, "invalidate");
+      await bounded(this.ad.setEligible(true), OPERATION_TIMEOUT_MS, "eligibility");
       if (!this.allowed(revision)) return;
       log("request");
       await bounded(this.ad.load(), AD_LOAD_WINDOW_MS, "load");
@@ -146,8 +146,8 @@ export class AdMobCoordinator {
     } finally {
       this.cancel("attempt_finished");
       // A native generation token also rejects callbacks after JS timeouts.
-      await this.ad.invalidate().catch(() => log("native_error", "invalidate"));
-      if (!presenting || !this.consentTimedOut) this.cleanup?.();
+      await bounded(this.ad.invalidate(), OPERATION_TIMEOUT_MS, "invalidate").catch(() => log("native_error", "invalidate"));
+      this.cleanup?.();
     }
   }
 }
