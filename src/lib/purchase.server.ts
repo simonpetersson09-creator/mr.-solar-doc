@@ -320,7 +320,7 @@ export async function getPremiumStatusProvider(data: {
   deviceId: string;
 }): Promise<PremiumStatus> {
   const { supabaseAdmin } = await import("@/integrations/supabase/client.server");
-  const { data: rows } = await supabaseAdmin
+  const { data: rows, error } = await supabaseAdmin
     .from("premium_subscriptions")
     .select(
       "device_id, store, apple_original_transaction_id, google_purchase_token, status, expires_at, auto_renew, revoked_at",
@@ -328,6 +328,8 @@ export async function getPremiumStatusProvider(data: {
     .eq("device_id", data.deviceId)
     .order("expires_at", { ascending: false })
     .limit(5);
+
+  if (error) throw new Error("Premium status unavailable");
 
   let best: PremiumStatus = { active: false, expiresAt: null, autoRenew: false, stale: false };
   for (const row of (rows ?? []) as unknown as SubscriptionRow[]) {

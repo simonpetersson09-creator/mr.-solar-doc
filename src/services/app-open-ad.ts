@@ -1,12 +1,7 @@
-/**
- * AdMob App Open ad — iOS and Android, one attempt per cold start.
- *
- * Flow: UMP consent → (ATT, only if consent allows and status undetermined)
- * → initialize → load → show, but only while the user is still on the launch
- * view. Every failure path just ends silently; the app never waits for an ad.
- * The web never loads the SDK (dynamic import behind the native guard).
- */
 import { getPlatform, isNativePlatform } from "@/services/native-service";
+import { AdMobCoordinator, AD_MAX_AGE_MS } from "./admob-coordinator";
+import { adMobSafety, type NativeConsent } from "./admob-native";
+import { recordAdDiagnostic as log } from "./ad-diagnostics";
 
 /** Production ids (iOS only). */
 export const ADMOB_IOS_APP_ID = "ca-app-pub-7448540924654868~3473619726";
@@ -21,155 +16,159 @@ export const ADMOB_ANDROID_APP_OPEN_TEST = "ca-app-pub-3940256099942544/92573959
 
 export type AdPlatform = "ios" | "android";
 
-/** Ads older than this are discarded (Google: app open ads expire after 4 h). */
-const AD_MAX_AGE_MS = 4 * 60 * 60 * 1000;
-/** After this the launch view is considered left even without interaction. */
-const LAUNCH_WINDOW_MS = 5000;
-
 export function appOpenAdUnitId(isProduction: boolean, platform: AdPlatform = "ios"): string {
   if (platform === "android") return isProduction ? ADMOB_ANDROID_APP_OPEN_PROD : ADMOB_ANDROID_APP_OPEN_TEST;
   return isProduction ? ADMOB_IOS_APP_OPEN_PROD : ADMOB_IOS_APP_OPEN_TEST;
 }
 
-/** The native platform that shows ads, or null (web). */
+
 export function adPlatform(): AdPlatform | null {
   if (!isNativePlatform()) return null;
-  const p = getPlatform();
-  return p === "ios" || p === "android" ? p : null;
+  const platform = getPlatform();
+  return platform === "ios" || platform === "android" ? platform : null;
+}
+export function adsSupported(): boolean { return adPlatform() !== null; }
+export function shouldShowAppOpen(s: { alreadyShown: boolean; userEnteredApp: boolean; premium: boolean; canRequestAds: boolean; loadedAt: number | null; now: number }): boolean {
+  if (s.alreadyShown || s.userEnteredApp || s.premium || !s.canRequestAds || s.loadedAt === null) return false;
+  const age = s.now - s.loadedAt;
+  return age >= 0 && age < AD_MAX_AGE_MS;
+}
+let coordinator: AdMobCoordinator | undefined;
+let startupPremium: (() => Promise<boolean | null>) | undefined;
+let entered = false;
+let pathname = "/";
+let foreground = true;
+let sdkPromise: Promise<typeof import("@capacitor-community/admob")> | undefined;
+let unitId: string | undefined;
+let nativeReady = false;
+const sdk = () => sdkPromise ??= import("@capacitor-community/admob");
+const allowed = () => !entered && pathname === "/" && foreground && document.visibilityState === "visible";
+
+async function currentUnit(): Promise<string> {
+  if (unitId) return unitId;
+  const platform = adPlatform();
+  if (!platform) throw new Error("native_only");
+  const state = await adMobSafety.getAppOpenState({ adId: appOpenAdUnitId(false, platform) });
+  nativeReady = true;
+  unitId = appOpenAdUnitId(import.meta.env.PROD && !state.testBuild, platform);
+  return unitId;
 }
 
-export function adsSupported(): boolean {
-  return adPlatform() !== null;
-}
-
-/** Pure decision used by the flow and the tests. */
-export function shouldShowAppOpen(s: {
-  alreadyShown: boolean;
-  userEnteredApp: boolean;
-  premium: boolean;
-  canRequestAds: boolean;
-  loadedAt: number | null;
-  now: number;
-}): boolean {
-  if (s.alreadyShown || s.userEnteredApp || s.premium || !s.canRequestAds) return false;
-  if (s.loadedAt == null) return false;
-  return s.now - s.loadedAt < AD_MAX_AGE_MS;
-}
-
-let started = false;
-let shown = false;
-let userEnteredApp = false;
-
-function markEntered() {
-  userEnteredApp = true;
-}
-
-/**
- * Starts the cold-start ad attempt. Safe to call repeatedly — runs once per
- * JS process (= per cold start). `isPremium` resolves the entitlement; a
- * Premium user never sees the ad.
- */
-export function startAppOpenAd(isPremium: () => Promise<boolean>): void {
-  if (started || !adsSupported()) return;
-  started = true;
-
-  // Any touch or the launch window running out means the user is "in" the app.
-  window.addEventListener("pointerdown", markEntered, { once: true, capture: true });
-  window.setTimeout(markEntered, LAUNCH_WINDOW_MS);
-
-  void run(isPremium).catch(() => undefined);
-}
-
-async function run(isPremium: () => Promise<boolean>): Promise<void> {
-  const premiumPromise = isPremium().catch(() => false);
-  const { AdMob, AdmobConsentStatus } = await import("@capacitor-community/admob");
-
-  // 1. UMP: refresh consent every start; show the form only when required.
-  let consent = await AdMob.requestConsentInfo();
-  if (consent.isConsentFormAvailable && consent.status === AdmobConsentStatus.REQUIRED) {
-    consent = await AdMob.showConsentForm();
-  }
-  if (!consent.canRequestAds) return;
-
-  const platform = adPlatform() ?? "ios";
-
-  // 2. ATT (iOS only, separate from UMP). A "no" only means non-personalised ads.
-  if (platform === "ios") try {
-    const att = await AdMob.trackingAuthorizationStatus();
-    if (att.status === "notDetermined") await AdMob.requestTrackingAuthorization();
-  } catch {
-    /* ATT unavailable — continue */
-  }
-
-  // 3. Init + load. Test ads unless this is a production build.
-  const isProduction = import.meta.env.PROD;
-  await AdMob.initialize({ initializeForTesting: !isProduction });
-  if (await premiumPromise) return;
-  if (userEnteredApp) return; // no point loading an ad that can no longer show
-
-  const adId = appOpenAdUnitId(isProduction, platform);
-  await AdMob.loadAppOpen({ adId });
-  const loadedAt = Date.now();
-
-  const ok = shouldShowAppOpen({
-    alreadyShown: shown,
-    userEnteredApp,
-    premium: await premiumPromise,
-    canRequestAds: consent.canRequestAds,
-    loadedAt,
-    now: Date.now(),
+function instance(): AdMobCoordinator {
+  if (coordinator) return coordinator;
+  coordinator = new AdMobCoordinator({
+    premium: async () => startupPremium ? startupPremium() : null,
+    eligible: allowed,
+    consentUpdate: async () => (await sdk()).AdMob.requestConsentInfo(),
+    consentSnapshot: () => adMobSafety.getConsentSnapshot(),
+    consentForm: async () => (await sdk()).AdMob.showConsentForm(),
+    privacyForm: async () => { await (await sdk()).AdMob.showPrivacyOptionsForm(); },
+    tracking: async () => adPlatform() === "ios" ? String((await (await sdk()).AdMob.trackingAuthorizationStatus()).status) : "not_applicable",
+    waitForeground: async () => {
+      const { App } = await import("@capacitor/app");
+      const until = Date.now() + 15000;
+      while (!(await App.getState()).isActive) {
+        if (entered || Date.now() >= until) throw new Error("timeout:foreground");
+        await new Promise((resolve) => setTimeout(resolve, 100));
+      }
+      foreground = true;
+    },
+    initialize: async () => {
+      const adId = await currentUnit();
+      const testing = adId === appOpenAdUnitId(false, adPlatform() ?? "ios");
+      await (await sdk()).AdMob.initialize({ initializeForTesting: testing });
+    },
+    load: async () => { await (await sdk()).AdMob.loadAppOpen({ adId: await currentUnit() }); },
+    show: async () => { await (await sdk()).AdMob.showAppOpen({ adId: await currentUnit() }); },
+    invalidate: async () => { await adMobSafety.invalidateAppOpen(); },
+    setEligible: async (eligible) => { await adMobSafety.setAppOpenEligible({ eligible: eligible && allowed() }); },
+    state: async () => adMobSafety.getAppOpenState({ adId: await currentUnit() }),
+    listen: async (event) => {
+      const { AdMob, AppOpenAdPluginEvents: events } = await sdk();
+      const handles = await Promise.all([
+        AdMob.addListener(events.Loaded, () => event("loaded")),
+        AdMob.addListener(events.Opened, () => event("opened")),
+        AdMob.addListener(events.Closed, () => event("closed")),
+        AdMob.addListener(events.FailedToLoad, (data) => event("failed_load", data.code)),
+        AdMob.addListener(events.FailedToShow, (data) => event("failed_show", data.code)),
+        AdMob.addListener(events.AdImpression, () => event("impression")),
+      ]);
+      return () => { for (const handle of handles) void handle.remove(); };
+    },
   });
-  if (!ok) return;
-  shown = true; // set before await: blocks double presentation
-  await AdMob.showAppOpen({ adId });
+  return coordinator;
 }
 
-export type AdPrivacyState = {
-  platform: AdPlatform;
-  optionsRequired: boolean;
-  /** UMP consent status: OBTAINED / NOT_REQUIRED / REQUIRED / UNKNOWN. */
-  consent: string;
-  canRequestAds: boolean;
-  /** ATT: authorized / denied / restricted / notDetermined / unknown. */
-  tracking: string;
-};
+export function setAdLaunchPath(path: string): void {
+  pathname = path;
+  if (path !== "/") markAdInteraction("navigation");
+}
+export function markAdInteraction(reason = "interaction"): void {
+  entered = true;
+  coordinator?.cancel(reason);
+}
 
-/** Current UMP + ATT choices, read live from the SDK (never cached). */
+export function startAppOpenAd(isPremium: () => Promise<boolean | null>): void {
+  if (!adsSupported() || startupPremium) return;
+  startupPremium = isPremium;
+  pathname = window.location.pathname;
+  for (const event of ["pointerdown", "keydown", "click", "wheel", "touchstart"]) {
+    window.addEventListener(event, () => markAdInteraction(), { capture: true, once: true, passive: true });
+  }
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "hidden") void checkBackground();
+  });
+  const checkBackground = async () => {
+    foreground = false;
+    if (adPlatform() === "ios") {
+      try {
+        const state = await adMobSafety.getAppOpenState({ adId: appOpenAdUnitId(false, "ios") });
+        if (state.background) markAdInteraction("background");
+      } catch { markAdInteraction("background_unknown"); }
+    } else markAdInteraction("background");
+  };
+  void (async () => {
+    try {
+      const { App } = await import("@capacitor/app");
+      // iOS pause means actual background; resign-active can just be ATT.
+      await App.addListener("pause", () => markAdInteraction("background"));
+      await App.addListener("appStateChange", ({ isActive }) => {
+        foreground = isActive;
+        if (!isActive) void checkBackground();
+        else window.dispatchEvent(new Event("adprivacyrefresh"));
+      });
+      foreground = (await App.getState()).isActive;
+      if (!foreground) markAdInteraction("background");
+      await instance().start();
+    } catch { log("error", nativeReady ? "startup_failed" : "native_setup_failed"); }
+  })();
+}
+
+export type AdPrivacyState = { platform: AdPlatform; optionsRequired: boolean; consent: string; canRequestAds: boolean; tracking: string };
+let lastPrivacy: AdPrivacyState | null = null;
+let privacyRead: Promise<AdPrivacyState | null> | undefined;
+function privacyState(info: NativeConsent, platform: AdPlatform, tracking: string): AdPrivacyState {
+  return { platform, optionsRequired: info.privacyOptionsRequirementStatus === "REQUIRED", consent: info.status, canRequestAds: info.canRequestAds, tracking };
+}
 export async function getAdPrivacyState(): Promise<AdPrivacyState | null> {
   const platform = adPlatform();
   if (!platform) return null;
-  try {
-    const { AdMob } = await import("@capacitor-community/admob");
-    const info = await AdMob.requestConsentInfo();
-    let tracking = "unknown";
-    if (platform === "ios") try {
-      tracking = String((await AdMob.trackingAuthorizationStatus()).status);
-    } catch {
-      /* ATT unavailable */
+  if (privacyRead) return privacyRead;
+  privacyRead = (async () => {
+    const info = await instance().refreshConsent();
+    let tracking = "not_applicable";
+    if (platform === "ios") {
+      try { tracking = String((await (await sdk()).AdMob.trackingAuthorizationStatus()).status); }
+      catch { tracking = "unknown"; }
     }
-    return {
-      platform,
-      optionsRequired: String(info.privacyOptionsRequirementStatus) === "REQUIRED",
-      consent: String(info.status),
-      canRequestAds: !!info.canRequestAds,
-      tracking,
-    };
-  } catch {
-    return null;
-  }
+    lastPrivacy = privacyState(info, platform, tracking);
+    return lastPrivacy;
+  })().catch((error: unknown) => { log("privacy_error", "refresh_failed"); throw error; })
+    .finally(() => { privacyRead = undefined; });
+  return privacyRead;
 }
-
-/** True when UMP says the user must be able to reopen privacy choices. */
-export async function privacyOptionsRequired(): Promise<boolean> {
-  return (await getAdPrivacyState())?.optionsRequired ?? false;
-}
-
+export async function privacyOptionsRequired(): Promise<boolean> { return (await getAdPrivacyState())?.optionsRequired ?? false; }
 export async function openPrivacyOptions(): Promise<void> {
   if (!adsSupported()) return;
-  try {
-    const { AdMob } = await import("@capacitor-community/admob");
-    await AdMob.showPrivacyOptionsForm();
-  } catch {
-    /* form unavailable */
-  }
+  await instance().changePrivacy();
 }
