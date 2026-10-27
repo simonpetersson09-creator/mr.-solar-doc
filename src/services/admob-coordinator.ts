@@ -12,6 +12,7 @@ export interface AdAdapter {
   consentForm(): Promise<NativeConsent>;
   privacyForm(): Promise<void>;
   tracking(): Promise<string>;
+  requestTracking?(): Promise<void>;
   waitForeground?(): Promise<void>;
   initialize(): Promise<void>;
   load(): Promise<void>;
@@ -72,6 +73,10 @@ export class AdMobCoordinator {
     return this.update;
   }
 
+  readPrivacy(): Promise<{ consent: NativeConsent; tracking: string }> {
+    return this.serial(async () => ({ consent: await this.ad.consentSnapshot(), tracking: await this.ad.tracking() }));
+  }
+
   cancel(reason: string): void {
     if (this.cancelled) return;
     this.cancelled = true;
@@ -116,9 +121,19 @@ export class AdMobCoordinator {
       if (this.ad.waitForeground && !this.cancelled) await bounded(this.ad.waitForeground(), OPERATION_TIMEOUT_MS, "foreground");
       if (!consent.canRequestAds) { log("skipped", "consent_missing"); return; }
       if (!this.allowed(revision)) return;
-      // UMP owns any configured IDFA explainer/ATT prompt. Reading ATT never
-      // prompts or equates ATT denial with GDPR personalization refusal.
-      try { log("tracking", await bounded(this.ad.tracking(), OPERATION_TIMEOUT_MS, "tracking")); }
+      // UMP must finish first. ATT is a separate, guarded native system prompt;
+      // denial never substitutes for UMP's current ad eligibility.
+      try {
+        await this.serial(async () => {
+          const status = await this.ad.tracking();
+          if (status === "notDetermined" && this.allowed(revision) && this.ad.requestTracking) {
+            if (await this.ad.premium() !== false || !this.allowed(revision)) return;
+            await this.ad.requestTracking();
+          }
+          log("tracking", status);
+        });
+        if (this.ad.waitForeground && !this.cancelled) await bounded(this.ad.waitForeground(), OPERATION_TIMEOUT_MS, "foreground");
+      }
       catch { log("tracking", "unknown"); }
       if (!this.allowed(revision)) return;
       if (await bounded(this.ad.premium(), OPERATION_TIMEOUT_MS, "premium") !== false) { log("skipped", "premium_changed_or_unknown"); return; }
@@ -131,6 +146,8 @@ export class AdMobCoordinator {
         if (this.allowed(revision)) await this.ad.setEligible(true);
       });
       if (!this.allowed(revision)) return;
+      const beforeLoad = await this.serial(() => this.ad.consentSnapshot());
+      if (!beforeLoad.canRequestAds || !this.allowed(revision)) return;
       log("request");
       await bounded(this.ad.load(), AD_LOAD_WINDOW_MS, "load");
       if (!this.allowed(revision)) return;
