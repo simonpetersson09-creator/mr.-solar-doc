@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { QueryClient } from "@tanstack/react-query";
 import { premiumQueryOptions, PREMIUM_QUERY_KEY } from "@/hooks/use-premium";
-import { initializePurchases } from "@/services/iap-service";
+import { initializePurchases, getPurchaseDiagnostics } from "@/services/iap-service";
 import { drainPurchaseTransactions } from "@/services/purchase-recovery";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { useWizardStore } from "@/state/wizard-store";
@@ -23,6 +23,7 @@ export function useAppOpenAd(queryClient: QueryClient) {
         // before the first entitlement check; do not change purchase semantics.
         ready ??= initializePurchases().then(() => drainPurchaseTransactions(queryClient));
         await ready;
+        if (!getPurchaseDiagnostics().initialized) return null;
         const deviceId = usePurchaseStore.getState().ensureDeviceId();
         if (queryClient.getQueryData<{ active: boolean }>(PREMIUM_QUERY_KEY)?.active) return true;
         const res = await queryClient.fetchQuery({ ...premiumQueryOptions(deviceId), staleTime: 0 });

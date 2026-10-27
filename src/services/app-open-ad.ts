@@ -152,10 +152,14 @@ export async function getAdPrivacyState(): Promise<AdPrivacyState | null> {
   if (privacyRead) return privacyRead;
   privacyRead = (async () => {
     const info = await instance().refreshConsent();
-    const tracking = platform === "ios" ? String((await (await sdk()).AdMob.trackingAuthorizationStatus()).status) : "not_applicable";
+    let tracking = "not_applicable";
+    if (platform === "ios") {
+      try { tracking = String((await (await sdk()).AdMob.trackingAuthorizationStatus()).status); }
+      catch { tracking = "unknown"; }
+    }
     lastPrivacy = privacyState(info, platform, tracking);
     return lastPrivacy;
-  })().catch((error: unknown) => { log("privacy_error", "refresh_failed"); if (lastPrivacy) throw error; return null; })
+  })().catch((error: unknown) => { log("privacy_error", "refresh_failed"); throw error; })
     .finally(() => { privacyRead = undefined; });
   return privacyRead;
 }

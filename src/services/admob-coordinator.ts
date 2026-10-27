@@ -120,7 +120,8 @@ export class AdMobCoordinator {
       if (!this.allowed(revision)) return;
       // UMP owns any configured IDFA explainer/ATT prompt. Reading ATT never
       // prompts or equates ATT denial with GDPR personalization refusal.
-      log("tracking", await bounded(this.ad.tracking(), OPERATION_TIMEOUT_MS, "tracking"));
+      try { log("tracking", await bounded(this.ad.tracking(), OPERATION_TIMEOUT_MS, "tracking")); }
+      catch { log("tracking", "unknown"); }
       if (!this.allowed(revision)) return;
       if (await bounded(this.ad.premium(), OPERATION_TIMEOUT_MS, "premium") !== false) { log("skipped", "premium_changed_or_unknown"); return; }
       await bounded(this.ad.initialize(), OPERATION_TIMEOUT_MS, "initialize");

@@ -537,7 +537,11 @@ function AdPrivacyButton() {
     };
   }, [refresh]);
 
-  if (!state) return null;
+  if (!state) return failed ? (
+    <Button variant="ghost" onClick={refresh}>
+      <RefreshCw className="size-3" /> {t("settings.adsPrivacyTitle")} · {t("settings.adsUnknown")}
+    </Button>
+  ) : null;
 
   const consentLabel =
     state.consent === "OBTAINED"
