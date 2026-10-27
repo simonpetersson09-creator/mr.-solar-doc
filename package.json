@@ -4,30 +4,31 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
+    "postinstall": "node scripts/patch-admob.mjs",
     "dev": "vite dev",
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "cap:sync": "node scripts/build-native.mjs && cap sync && node scripts/patch-ios-permissions.mjs && node scripts/patch-ios-localizations.mjs",
+    "cap:sync": "node scripts/patch-admob.mjs && node scripts/build-native.mjs && cap sync && node scripts/patch-ios-permissions.mjs && node scripts/patch-ios-localizations.mjs",
     "ios:icons": "node scripts/copy-ios-icons.mjs",
-    "cap:add:ios": "cap add ios && node scripts/patch-ios-permissions.mjs && node scripts/patch-ios-localizations.mjs",
-    "ios:sync": "node scripts/build-native.mjs && cap sync ios && node scripts/patch-ios-permissions.mjs && node scripts/patch-ios-localizations.mjs",
-    "cap:add:android": "cap add android",
+    "cap:add:ios": "node scripts/patch-admob.mjs && cap add ios && node scripts/patch-ios-permissions.mjs && node scripts/patch-ios-localizations.mjs",
+    "ios:sync": "node scripts/patch-admob.mjs && node scripts/build-native.mjs && cap sync ios && node scripts/patch-ios-permissions.mjs && node scripts/patch-ios-localizations.mjs",
+    "cap:add:android": "node scripts/patch-admob.mjs && cap add android",
     "cap:open:ios": "cap open ios",
     "cap:open:android": "cap open android",
     "build:native": "node scripts/build-native.mjs",
     "android:assets": "python3 scripts/generate-android-assets.py",
-    "android:sync": "node scripts/build-native.mjs && cap sync android",
+    "android:sync": "node scripts/patch-admob.mjs && node scripts/build-native.mjs && cap sync android",
     "android:open": "cap open android",
-    "android:run": "node scripts/build-native.mjs && cap sync android && cap run android"
+    "android:run": "node scripts/patch-admob.mjs && node scripts/build-native.mjs && cap sync android && cap run android"
   },
   "overrides": {
     "rolldown": "1.2.1"
   },
   "dependencies": {
-    "@capacitor-community/admob": "^8.2.0",
+    "@capacitor-community/admob": "8.2.1",
     "@capacitor/android": "^8.5.0",
     "@capacitor/app": "^8.1.1",
     "@capacitor/browser": "^8",
