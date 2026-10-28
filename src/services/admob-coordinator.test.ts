@@ -205,6 +205,16 @@ describe("cold-start ad orchestration", () => {
     const { flow, ad } = fixture(); await flow.changePrivacy();
     expect(ad.privacyForm).toHaveBeenCalledTimes(1); expect(ad.consentUpdate).not.toHaveBeenCalled();
   });
+  it("required initial consent opens the Google form even when privacy options are not required", async () => {
+    const { flow, ad } = fixture();
+    vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, status: "REQUIRED", privacyOptionsRequirementStatus: "NOT_REQUIRED", isConsentFormAvailable: true });
+    await flow.changePrivacy();
+    expect(ad.consentForm).toHaveBeenCalledTimes(1);
+    expect(ad.privacyForm).not.toHaveBeenCalled();
+    expect(ad.consentUpdate).not.toHaveBeenCalled();
+    expect(ad.requestTracking).not.toHaveBeenCalled();
+    expect(ad.load).not.toHaveBeenCalled();
+  });
   it("failed recovery cannot pass unknown consent off as a successful refresh", async () => {
     const { flow, ad } = fixture(); vi.mocked(ad.consentUpdate).mockRejectedValue(new Error("UMP offline"));
     vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, status: "UNKNOWN", privacyOptionsRequirementStatus: "UNKNOWN" });

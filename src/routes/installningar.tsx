@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { adsSupported, getAdPrivacyState, openPrivacyOptions, type AdPrivacyState } from "@/services/app-open-ad";
+import { adsSupported, canOpenPrivacyForm, getAdPrivacyState, openPrivacyOptions, type AdPrivacyState } from "@/services/app-open-ad";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
@@ -555,7 +555,7 @@ function AdPrivacyButton() {
     if (busy) return;
     setBusy(true);
     try {
-      if (change || (details && state?.optionsStatus !== "NOT_REQUIRED")) await openPrivacyOptions();
+      if (change || (details && canOpenPrivacyForm(state))) await openPrivacyOptions();
       await refresh(!change && !details);
       if (details) setShowDetails(true);
     } catch { setFailed(true); }
@@ -581,7 +581,7 @@ function AdPrivacyButton() {
         <Button variant="ghost" size="sm" disabled={busy} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(false, true)}>
           <ShieldCheck className="size-3 shrink-0" /> {t("settings.adsViewChoices")}
         </Button>
-        <Button variant="ghost" size="sm" disabled={busy || (state?.optionsStatus === "NOT_REQUIRED" && state.consent !== "REQUIRED")} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(true)}>
+        <Button variant="ghost" size="sm" disabled={busy || !canOpenPrivacyForm(state)} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(true)}>
           <Settings2 className="size-3 shrink-0" /> {t("settings.adsPrivacyChange")}
         </Button>
         <Button variant="ghost" size="sm" disabled={busy} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(false)}>
