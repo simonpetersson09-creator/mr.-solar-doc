@@ -1,5 +1,9 @@
 # Roadmap
 
+## Premium-orsaker och dold diagnostik
+- [ ] Granska varför Premium blir otillgängligt utan att ändra köp- eller annonsregler.
+- [ ] Begränsa diagnostikpanelen till utvecklings-/native Debug-versioner, aldrig vanliga butiksbyggen; testa begränsningen.
+
 ## Premium-fel vid läsning av annonsintegritet
 - [x] Separera sparad native-status från Premium-fel vid explicit uppdatering; behåll annonsspärr och övrig samtyckeslogik.
 - [x] Spåra senare automatiska avläsningar (utan Premium-kontroll) respektive explicit återförsök; lägg till regressioner för båda och iOS/Android.
