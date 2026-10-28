@@ -11,6 +11,18 @@ beforeEach(() => {
   native.tracking.mockResolvedValue({ status: "restricted" });
 });
 afterEach(() => vi.restoreAllMocks());
+it.each([
+  [{ consent: "REQUIRED", optionsStatus: "NOT_REQUIRED" }, true],
+  [{ consent: "REQUIRED", optionsStatus: "REQUIRED" }, true],
+  [{ consent: "OBTAINED", optionsStatus: "REQUIRED" }, true],
+  [{ consent: "UNKNOWN", optionsStatus: "UNKNOWN" }, true],
+  [{ consent: "OBTAINED", optionsStatus: "NOT_REQUIRED" }, false],
+  [{ consent: "NOT_REQUIRED", optionsStatus: "NOT_REQUIRED" }, false],
+  [null, true],
+] as const)("show and change choices share UMP form eligibility for %j: %s", async (state, expected) => {
+  const { canOpenPrivacyForm } = await import("./app-open-ad");
+  expect(canOpenPrivacyForm(state)).toBe(expected);
+});
 it("obtained consent and authorized ATT never establish personalization", async () => {
   native.tracking.mockResolvedValue({ status: "authorized" });
   const { getAdPrivacyState } = await import("./app-open-ad");

@@ -146,6 +146,10 @@ export function startAppOpenAd(isPremium: () => Promise<boolean | null>): void {
 }
 
 export type AdPrivacyState = { platform: AdPlatform; optionsRequired: boolean; optionsStatus: string; consent: string; canRequestAds: boolean; tracking: string; personalized: "unknown"; checkedAt: number };
+/** Unknown status is recoverable; REQUIRED consent may need the initial UMP form. */
+export function canOpenPrivacyForm(state: Pick<AdPrivacyState, "optionsStatus" | "consent"> | null): boolean {
+  return !(state?.optionsStatus === "NOT_REQUIRED" && state.consent !== "REQUIRED");
+}
 let privacyRead: Promise<AdPrivacyState | null> | undefined;
 function privacyState(info: NativeConsent, platform: AdPlatform, tracking: string): AdPrivacyState {
   return { platform, optionsRequired: info.privacyOptionsRequirementStatus === "REQUIRED", optionsStatus: info.privacyOptionsRequirementStatus, consent: info.status, canRequestAds: info.canRequestAds, tracking, personalized: "unknown", checkedAt: Date.now() };
@@ -169,6 +173,6 @@ export async function privacyOptionsRequired(): Promise<boolean> { return (await
 export async function openPrivacyOptions(): Promise<void> {
   if (!adsSupported()) return;
   const state = await getAdPrivacyState();
-  if (state?.optionsStatus === "NOT_REQUIRED" && state.consent !== "REQUIRED") throw new Error("privacy_options_unavailable");
+  if (!canOpenPrivacyForm(state)) throw new Error("privacy_options_unavailable");
   await instance().changePrivacy();
 }
