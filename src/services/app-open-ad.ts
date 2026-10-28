@@ -145,17 +145,21 @@ export function startAppOpenAd(isPremium: () => Promise<boolean | null>): void {
   })();
 }
 
-export type AdPrivacyState = { platform: AdPlatform; optionsRequired: boolean; consent: string; canRequestAds: boolean; tracking: string; personalized: "unknown"; checkedAt: number };
+export type AdPrivacyState = { platform: AdPlatform; optionsRequired: boolean; optionsStatus: string; consent: string; canRequestAds: boolean; tracking: string; personalized: "unknown"; checkedAt: number };
 let privacyRead: Promise<AdPrivacyState | null> | undefined;
 function privacyState(info: NativeConsent, platform: AdPlatform, tracking: string): AdPrivacyState {
-  return { platform, optionsRequired: info.privacyOptionsRequirementStatus === "REQUIRED", consent: info.status, canRequestAds: info.canRequestAds, tracking, personalized: "unknown", checkedAt: Date.now() };
+  return { platform, optionsRequired: info.privacyOptionsRequirementStatus === "REQUIRED", optionsStatus: info.privacyOptionsRequirementStatus, consent: info.status, canRequestAds: info.canRequestAds, tracking, personalized: "unknown", checkedAt: Date.now() };
 }
-export async function getAdPrivacyState(): Promise<AdPrivacyState | null> {
+export async function getAdPrivacyState(refresh = false): Promise<AdPrivacyState | null> {
   const platform = adPlatform();
   if (!platform) return null;
-  if (privacyRead) return privacyRead;
+  if (privacyRead) {
+    if (!refresh) return privacyRead;
+    try { await privacyRead; } catch { /* Explicit refresh can recover a failed read. */ }
+    return getAdPrivacyState(true);
+  }
   privacyRead = (async () => {
-    const { consent, tracking } = await instance().readPrivacy();
+    const { consent, tracking } = await instance().readPrivacy(refresh);
     return privacyState(consent, platform, tracking);
   })().catch((error: unknown) => { log("privacy_error", "refresh_failed"); throw error; })
     .finally(() => { privacyRead = undefined; });
@@ -164,6 +168,5 @@ export async function getAdPrivacyState(): Promise<AdPrivacyState | null> {
 export async function privacyOptionsRequired(): Promise<boolean> { return (await getAdPrivacyState())?.optionsRequired ?? false; }
 export async function openPrivacyOptions(): Promise<void> {
   if (!adsSupported()) return;
-  if (!(await getAdPrivacyState())?.optionsRequired) throw new Error("privacy_options_unavailable");
   await instance().changePrivacy();
 }

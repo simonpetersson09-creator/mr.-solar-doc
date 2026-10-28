@@ -517,9 +517,9 @@ function AdPrivacyButton() {
   const [failed, setFailed] = useState(false);
   const [showDetails, setShowDetails] = useState(false);
 
-  const refresh = useCallback(async () => {
+  const refresh = useCallback(async (update = false) => {
     try {
-      const next = await getAdPrivacyState();
+      const next = await getAdPrivacyState(update);
       if (next) setState(next);
       setFailed(!next && adsSupported());
     } catch { setFailed(true); }
@@ -555,8 +555,8 @@ function AdPrivacyButton() {
     if (busy) return;
     setBusy(true);
     try {
-      if (change) await openPrivacyOptions();
-      await refresh();
+      if (change || (details && state?.optionsStatus !== "NOT_REQUIRED")) await openPrivacyOptions();
+      await refresh(!change && !details);
       if (details) setShowDetails(true);
     } catch { setFailed(true); }
     finally { setBusy(false); }
@@ -581,14 +581,14 @@ function AdPrivacyButton() {
         <Button variant="ghost" size="sm" disabled={busy} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(false, true)}>
           <ShieldCheck className="size-3 shrink-0" /> {t("settings.adsViewChoices")}
         </Button>
-        <Button variant="ghost" size="sm" disabled={busy || failed || !state?.optionsRequired} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(true)}>
+        <Button variant="ghost" size="sm" disabled={busy || (state?.optionsStatus === "NOT_REQUIRED" && state.consent !== "REQUIRED")} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(true)}>
           <Settings2 className="size-3 shrink-0" /> {t("settings.adsPrivacyChange")}
         </Button>
         <Button variant="ghost" size="sm" disabled={busy} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(false)}>
           {busy ? <Loader2 className="size-3 animate-spin" /> : <RefreshCw className="size-3 shrink-0" />} {t("settings.adsRefreshStatus")}
         </Button>
       </div>
-      {state && !state.optionsRequired && <p className="text-xs text-brand-black/60">{t("settings.adsOptionsUnavailable")}</p>}
+      {state?.optionsStatus === "NOT_REQUIRED" && <p className="text-xs text-brand-black/60">{t("settings.adsOptionsUnavailable")}</p>}
     </section>
   );
 }
