@@ -104,3 +104,13 @@ for (const platform of ["ios", "android"]) {
     } finally { rmSync(root, { recursive: true, force: true }); }
   });
 }
+test("exact reviewed previous safety patches upgrade without losing registrations", () => {
+  const root = fixture();
+  try {
+    applyAdMobPatch(root);
+    for (const file of patch.files) if (file.previous?.[0]) writeFileSync(join(root, file.path), file.previous[0]);
+    assert.equal(applyAdMobPatch(root), 2);
+    for (const platform of ["ios", "android"]) verifyConsentSnapshot(root, platform);
+    assert.equal(applyAdMobPatch(root), 0);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});
