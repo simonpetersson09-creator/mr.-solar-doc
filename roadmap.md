@@ -1,5 +1,9 @@
 # Roadmap
 
+## Annonsintegritet i inställningar
+- [ ] Rätta explicit uppdatering och öppning av samtyckesval när kallstarten inte hann hämta UMP-status.
+- [ ] Bevara okänd personanpassning och skilj okända integritetskrav från att val inte krävs; verifiera med regressionstester.
+
 ## ATT och samtyckesstatus
 - [x] Direkt, serialiserad native-ATT efter UMP, utan Premium-frågor eller dubbla dialoger.
 - [x] Faktiska statusavläsningar och tre samtyckesknappar med översättningar.
