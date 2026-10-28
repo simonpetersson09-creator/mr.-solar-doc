@@ -38,7 +38,7 @@ it("coalesces concurrent callers across initialization, drain, status requests a
   vi.mocked(deps.fetchStatus).mockRejectedValueOnce(new Error("offline")).mockReturnValueOnce(pending);
   const first = resolve(); expect(resolve()).toBe(first);
   await vi.advanceTimersByTimeAsync(1000); expect(resolve()).toBe(first);
-  await vi.advanceTimersByTimeAsync(60000); expect(resolve()).toBe(first);
+  await vi.advanceTimersByTimeAsync(1000); expect(resolve()).toBe(first);
   expect(deps.initialize).toHaveBeenCalledTimes(1); expect(deps.drain).toHaveBeenCalledTimes(1);
   expect(deps.fetchStatus).toHaveBeenCalledTimes(2);
   release({ active: false }); expect(await first).toBe(false);
@@ -83,9 +83,18 @@ it("late entitlement recovery after launch timeout never restarts or permits ads
   };
   const flow = new AdMobCoordinator(ad); const start = flow.start();
   await vi.advanceTimersByTimeAsync(15000); await start;
-  const sameRequest = resolve(); expect(deps.fetchStatus).toHaveBeenCalledTimes(1);
-  finish({ active: false }); expect(await sameRequest).toBe(false);
+  expect(await resolve()).toBeNull(); expect(deps.fetchStatus).toHaveBeenCalledTimes(1);
+  finish({ active: false }); await vi.advanceTimersByTimeAsync(0);
+  vi.mocked(deps.fetchStatus).mockResolvedValue({ active: false });
+  expect(await resolve()).toBe(false);
   await flow.start();
   for (const fn of [ad.consentUpdate, ad.consentForm, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
   expect(ad.setEligible).not.toHaveBeenCalledWith(true);
+});
+it("a hung request times out without releasing the underlying single-flight lock or retrying", async () => {
+  const { deps, resolve } = fixture(); vi.mocked(deps.fetchStatus).mockReturnValue(new Promise(() => undefined));
+  const result = resolve(); await vi.advanceTimersByTimeAsync(15000); expect(await result).toBeNull();
+  await vi.advanceTimersByTimeAsync(60000);
+  for (let index = 0; index < 10; index++) expect(await resolve()).toBeNull();
+  expect(deps.fetchStatus).toHaveBeenCalledTimes(1);
 });
