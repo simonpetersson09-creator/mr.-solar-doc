@@ -1,9 +1,9 @@
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 const native = vi.hoisted(() => ({
-  platform: "ios", snapshot: vi.fn(), tracking: vi.fn(), update: vi.fn(), form: vi.fn(),
+  platform: "ios", snapshot: vi.fn(), tracking: vi.fn(), update: vi.fn(), form: vi.fn(), invalidate: vi.fn(), eligible: vi.fn(),
 }));
 vi.mock("@/services/native-service", () => ({ getPlatform: () => native.platform, isNativePlatform: () => native.platform !== "web" }));
-vi.mock("./admob-native", () => ({ adMobSafety: { getConsentSnapshot: native.snapshot } }));
+vi.mock("./admob-native", () => ({ adMobSafety: { getConsentSnapshot: native.snapshot, invalidateAppOpen: native.invalidate, setAppOpenEligible: native.eligible } }));
 vi.mock("@capacitor-community/admob", () => ({ AdMob: { trackingAuthorizationStatus: native.tracking, requestConsentInfo: native.update, showPrivacyOptionsForm: native.form } }));
 beforeEach(() => {
   vi.resetModules(); native.platform = "ios"; vi.clearAllMocks();
