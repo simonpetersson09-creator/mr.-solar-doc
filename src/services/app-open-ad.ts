@@ -2,6 +2,7 @@ import { getPlatform, isNativePlatform } from "@/services/native-service";
 import { AdMobCoordinator, AD_MAX_AGE_MS } from "./admob-coordinator";
 import { adMobSafety, type NativeConsent } from "./admob-native";
 import { recordAdDiagnostic as log } from "./ad-diagnostics";
+import { readAdConsentChoices, type AdConsentChoices } from "@/lib/ad-consent-choices";
 
 /** Production ids (iOS only). */
 export const ADMOB_IOS_APP_ID = "ca-app-pub-7448540924654868~3473619726";
@@ -145,14 +146,14 @@ export function startAppOpenAd(isPremium: () => Promise<boolean | null>): void {
   })();
 }
 
-export type AdPrivacyState = { platform: AdPlatform; optionsRequired: boolean; optionsStatus: string; consent: string; canRequestAds: boolean; tracking: string; personalized: "unknown"; checkedAt: number };
+export type AdPrivacyState = { platform: AdPlatform; optionsRequired: boolean; optionsStatus: string; consent: string; canRequestAds: boolean; tracking: string; personalized: "unknown"; choices: AdConsentChoices; checkedAt: number };
 /** Unknown status is recoverable; REQUIRED consent may need the initial UMP form. */
 export function canOpenPrivacyForm(state: Pick<AdPrivacyState, "optionsStatus" | "consent"> | null): boolean {
   return !(state?.optionsStatus === "NOT_REQUIRED" && state.consent !== "REQUIRED");
 }
 let privacyRead: Promise<AdPrivacyState | null> | undefined;
 function privacyState(info: NativeConsent, platform: AdPlatform, tracking: string): AdPrivacyState {
-  return { platform, optionsRequired: info.privacyOptionsRequirementStatus === "REQUIRED", optionsStatus: info.privacyOptionsRequirementStatus, consent: info.status, canRequestAds: info.canRequestAds, tracking, personalized: "unknown", checkedAt: Date.now() };
+  return { platform, optionsRequired: info.privacyOptionsRequirementStatus === "REQUIRED", optionsStatus: info.privacyOptionsRequirementStatus, consent: info.status, canRequestAds: info.canRequestAds, tracking, personalized: "unknown", choices: readAdConsentChoices(info.status, info.purposeConsents), checkedAt: Date.now() };
 }
 export async function getAdPrivacyState(refresh = false): Promise<AdPrivacyState | null> {
   const platform = adPlatform();

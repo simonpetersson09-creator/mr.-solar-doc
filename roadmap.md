@@ -1,5 +1,9 @@
 # Roadmap
 
+## Samtyckesupplägg som Mr. B Yatzy
+- [ ] Inför utfällbar ruta, tre native-lästa sparade samtyckesval och gemensam formulärknapp.
+- [ ] Översätt nya texter och verifiera native-patch, regressionstester och exempelvisning utan publicering.
+
 ## Avgränsade samtyckesrättningar
 - [x] Låt Visa val och Ändra samtycke hantera första UMP-formuläret konsekvent.
 - [x] Lägg till permanenta tester för native-läsning, registrering och upprepad patchning på iOS och Android.

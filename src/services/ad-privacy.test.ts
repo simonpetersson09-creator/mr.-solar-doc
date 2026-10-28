@@ -31,6 +31,16 @@ it("obtained consent and authorized ATT never establish personalization", async 
   expect(value?.checkedAt).toBeGreaterThanOrEqual(before);
   expect(native.update).not.toHaveBeenCalled(); expect(native.form).not.toHaveBeenCalled();
 });
+it.each(["ios", "android"])("%s reads saved purpose choices without consent updates or forms", async (platform) => {
+  native.platform = platform;
+  native.snapshot.mockResolvedValue({ status: "OBTAINED", canRequestAds: true, privacyOptionsRequirementStatus: "REQUIRED", purposeConsents: "1001" });
+  const { getAdPrivacyState } = await import("./app-open-ad");
+  expect(await getAdPrivacyState()).toMatchObject({ choices: { storage: "allowed", adProfile: "denied", useAdProfile: "allowed" }, personalized: "unknown" });
+  native.snapshot.mockResolvedValue({ status: "OBTAINED", canRequestAds: true, privacyOptionsRequirementStatus: "REQUIRED", purposeConsents: "0110" });
+  expect(await getAdPrivacyState()).toMatchObject({ choices: { storage: "denied", adProfile: "allowed", useAdProfile: "denied" } });
+  expect(native.update).not.toHaveBeenCalled();
+  expect(native.form).not.toHaveBeenCalled();
+});
 it("Android never reads the plugin's fictitious ATT authorization", async () => {
   native.platform = "android";
   const { getAdPrivacyState } = await import("./app-open-ad");
