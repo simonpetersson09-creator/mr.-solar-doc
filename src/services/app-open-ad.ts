@@ -146,14 +146,15 @@ export function startAppOpenAd(isPremium: () => Promise<boolean | null>): void {
   })();
 }
 
-export type AdPrivacyState = { platform: AdPlatform; optionsRequired: boolean; optionsStatus: string; consent: string; canRequestAds: boolean; tracking: string; personalized: "unknown"; choices: AdConsentChoices; checkedAt: number };
+export type AdPrivacyState = { platform: AdPlatform; optionsRequired: boolean; optionsStatus: string; consent: string; isConsentFormAvailable: boolean; updateFailed?: boolean; canRequestAds: boolean; tracking: string; personalized: "unknown"; choices: AdConsentChoices; checkedAt: number };
 /** Unknown status is recoverable; REQUIRED consent may need the initial UMP form. */
-export function canOpenPrivacyForm(state: Pick<AdPrivacyState, "optionsStatus" | "consent"> | null): boolean {
-  return !(state?.optionsStatus === "NOT_REQUIRED" && state.consent !== "REQUIRED");
+export function canOpenPrivacyForm(state: Pick<AdPrivacyState, "optionsStatus" | "consent"> & { isConsentFormAvailable?: boolean } | null): boolean {
+  if (!state || state.consent === "UNKNOWN" || state.optionsStatus === "UNKNOWN") return true;
+  return state.optionsStatus === "REQUIRED" || (state.consent === "REQUIRED" && state.isConsentFormAvailable === true);
 }
 let privacyRead: Promise<AdPrivacyState | null> | undefined;
 function privacyState(info: NativeConsent, platform: AdPlatform, tracking: string): AdPrivacyState {
-  return { platform, optionsRequired: info.privacyOptionsRequirementStatus === "REQUIRED", optionsStatus: info.privacyOptionsRequirementStatus, consent: info.status, canRequestAds: info.canRequestAds, tracking, personalized: "unknown", choices: readAdConsentChoices(info.status, info.purposeConsents), checkedAt: Date.now() };
+  return { platform, optionsRequired: info.privacyOptionsRequirementStatus === "REQUIRED", optionsStatus: info.privacyOptionsRequirementStatus, consent: info.status, isConsentFormAvailable: info.isConsentFormAvailable === true, canRequestAds: info.canRequestAds, tracking, personalized: "unknown", choices: readAdConsentChoices(info.status, info.purposeConsents), checkedAt: Date.now() };
 }
 export async function getAdPrivacyState(refresh = false): Promise<AdPrivacyState | null> {
   const platform = adPlatform();
@@ -164,8 +165,8 @@ export async function getAdPrivacyState(refresh = false): Promise<AdPrivacyState
     return getAdPrivacyState(true);
   }
   privacyRead = (async () => {
-    const { consent, tracking } = await instance().readPrivacy(refresh);
-    return privacyState(consent, platform, tracking);
+    const { consent, tracking, updateFailed } = await instance().readPrivacy(refresh);
+    return { ...privacyState(consent, platform, tracking), ...(refresh ? { updateFailed } : {}) };
   })().catch((error: unknown) => { log("privacy_error", "refresh_failed"); throw error; })
     .finally(() => { privacyRead = undefined; });
   return privacyRead;

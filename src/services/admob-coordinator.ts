@@ -85,12 +85,22 @@ export class AdMobCoordinator {
     }
   }
 
-  readPrivacy(refresh = false): Promise<{ consent: NativeConsent; tracking: string }> {
+  readPrivacy(refresh = false): Promise<{ consent: NativeConsent; tracking: string; updateFailed?: boolean }> {
     if (refresh) this.cancel("privacy_refresh");
-    return this.serial(async () => ({
-      consent: refresh ? await this.updatePrivacyConsent() : await this.ad.consentSnapshot(),
-      tracking: await this.ad.tracking(),
-    }));
+    return this.serial(async () => {
+      let updateFailed = false;
+      let updateError: unknown;
+      if (refresh) {
+        if (await this.ad.premium() !== false) throw new Error("privacy_entitlement_unavailable");
+        try { await this.ad.consentUpdate(); }
+        catch (error) { updateFailed = true; updateError = error; }
+      }
+      // Update responses do not contain persisted purpose choices. Always read
+      // the current native snapshot after the update has actually completed.
+      const consent = await this.ad.consentSnapshot();
+      if (updateFailed && (consent.status === "UNKNOWN" || consent.privacyOptionsRequirementStatus === "UNKNOWN")) throw updateError;
+      return { consent, tracking: await this.ad.tracking(), ...(refresh ? { updateFailed } : {}) };
+    });
   }
 
   cancel(reason: string): void {

@@ -12,10 +12,13 @@ beforeEach(() => {
 });
 afterEach(() => vi.restoreAllMocks());
 it.each([
-  [{ consent: "REQUIRED", optionsStatus: "NOT_REQUIRED" }, true],
+  [{ consent: "REQUIRED", optionsStatus: "NOT_REQUIRED", isConsentFormAvailable: true }, true],
+  [{ consent: "REQUIRED", optionsStatus: "NOT_REQUIRED", isConsentFormAvailable: false }, false],
+  [{ consent: "REQUIRED", optionsStatus: "NOT_REQUIRED" }, false],
   [{ consent: "REQUIRED", optionsStatus: "REQUIRED" }, true],
   [{ consent: "OBTAINED", optionsStatus: "REQUIRED" }, true],
   [{ consent: "UNKNOWN", optionsStatus: "UNKNOWN" }, true],
+  [{ consent: "UNKNOWN", optionsStatus: "NOT_REQUIRED" }, true],
   [{ consent: "OBTAINED", optionsStatus: "NOT_REQUIRED" }, false],
   [{ consent: "NOT_REQUIRED", optionsStatus: "NOT_REQUIRED" }, false],
   [null, true],
@@ -67,4 +70,13 @@ it("web settings perform no native consent reads", async () => {
   native.platform = "web";
   const { getAdPrivacyState } = await import("./app-open-ad");
   expect(await getAdPrivacyState()).toBeNull(); expect(native.snapshot).not.toHaveBeenCalled();
+});
+it.each(["UNKNOWN", "REQUIRED", "OBTAINED", "NOT_REQUIRED"])("F3 every form availability combination for consent %s", async (consent) => {
+  const { canOpenPrivacyForm } = await import("./app-open-ad");
+  for (const optionsStatus of ["UNKNOWN", "REQUIRED", "NOT_REQUIRED"]) {
+    for (const isConsentFormAvailable of [false, true]) {
+      const expected = consent === "UNKNOWN" || optionsStatus === "UNKNOWN" || optionsStatus === "REQUIRED" || (consent === "REQUIRED" && isConsentFormAvailable);
+      expect(canOpenPrivacyForm({ consent, optionsStatus, isConsentFormAvailable })).toBe(expected);
+    }
+  }
 });

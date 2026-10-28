@@ -1,5 +1,10 @@
 # Roadmap
 
+## Annonsintegritet F1–F4
+- [x] Rätta snapshot efter uppdatering, tydlig uppdateringsvarning, faktisk formulärtillgänglighet och separat formulärfel.
+- [x] Lägg till permanenta regressioner, kör hela testsviten och verifiera båda native-patcharna utan publicering.
+- [ ] Verifiera Googles formulär och sparade val på telefon: kräver nya iOS-/Androidbyggen och fysiska telefoner.
+
 ## Samtyckesupplägg som Mr. B Yatzy
 - [x] Inför utfällbar ruta, tre native-lästa sparade samtyckesval och gemensam formulärknapp.
 - [x] Översätt nya texter i 29 språk och verifiera native-patch, 1 491 apptester, 15 skripttester och exempelvisning utan publicering.
