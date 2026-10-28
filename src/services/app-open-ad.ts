@@ -168,5 +168,7 @@ export async function getAdPrivacyState(refresh = false): Promise<AdPrivacyState
 export async function privacyOptionsRequired(): Promise<boolean> { return (await getAdPrivacyState())?.optionsRequired ?? false; }
 export async function openPrivacyOptions(): Promise<void> {
   if (!adsSupported()) return;
+  const state = await getAdPrivacyState();
+  if (state?.optionsStatus === "NOT_REQUIRED" && state.consent !== "REQUIRED") throw new Error("privacy_options_unavailable");
   await instance().changePrivacy();
 }
