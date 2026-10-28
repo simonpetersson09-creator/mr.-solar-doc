@@ -98,6 +98,20 @@ describe("cold-start ad orchestration", () => {
     const { flow, ad } = fixture(); vi.mocked(ad.premium).mockRejectedValue(new Error("offline")); await flow.start();
     expect(ad.consentUpdate).not.toHaveBeenCalled(); expect(ad.show).not.toHaveBeenCalled();
   });
+  it("early interaction still runs the UI-free UMP update for free users so saved choices become readable", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.eligible).mockReturnValue(false);
+    vi.mocked(ad.consentUpdate).mockResolvedValue({ ...consent, status: "REQUIRED", isConsentFormAvailable: true });
+    await flow.start();
+    expect(ad.consentUpdate).toHaveBeenCalledTimes(1);
+    for (const fn of [ad.consentForm, ad.privacyForm, ad.tracking, ad.requestTracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
+    expect(ad.setEligible).not.toHaveBeenCalledWith(true);
+  });
+  it("cancellation before Premium resolves still updates UMP status for free users without ads", async () => {
+    const { flow, ad } = fixture(); const premium = deferred<boolean | null>(); vi.mocked(ad.premium).mockReturnValue(premium.promise);
+    const run = flow.start(); flow.cancel("wizard_resumed"); premium.resolve(false); await run;
+    expect(ad.consentUpdate).toHaveBeenCalledTimes(1);
+    for (const fn of [ad.consentForm, ad.requestTracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
+  });
   it("Premium activated during loading prevents show", async () => {
     const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValueOnce(false).mockResolvedValueOnce(false).mockResolvedValueOnce(true);
     await flow.start(); expect(ad.load).toHaveBeenCalledTimes(1); expect(ad.show).not.toHaveBeenCalled();
