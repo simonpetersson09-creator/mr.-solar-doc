@@ -30,6 +30,16 @@ export function adPlatform(): AdPlatform | null {
   return platform === "ios" || platform === "android" ? platform : null;
 }
 export function adsSupported(): boolean { return adPlatform() !== null; }
+/** Fail closed: release/TestFlight builds never expose the debug panel. */
+export async function privacyDiagnosticsAvailable(): Promise<boolean> {
+  const platform = adPlatform();
+  if (!platform) return false;
+  if (import.meta.env.DEV) return true;
+  try {
+    const state = await adMobSafety.getAppOpenState({ adId: appOpenAdUnitId(false, platform) });
+    return state.testBuild === true;
+  } catch { return false; }
+}
 export function shouldShowAppOpen(s: { alreadyShown: boolean; userEnteredApp: boolean; premium: boolean; canRequestAds: boolean; loadedAt: number | null; now: number }): boolean {
   if (s.alreadyShown || s.userEnteredApp || s.premium || !s.canRequestAds || s.loadedAt === null) return false;
   const age = s.now - s.loadedAt;

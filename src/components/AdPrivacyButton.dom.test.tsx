@@ -5,14 +5,15 @@ import userEvent from "@testing-library/user-event";
 import { AdPrivacyButton } from "./AdPrivacyButton";
 import { AdMobCoordinator, type AdAdapter } from "@/services/admob-coordinator";
 import { readAdConsentChoices } from "@/lib/ad-consent-choices";
-const api = vi.hoisted(() => ({ read: vi.fn(), open: vi.fn() }));
+import { tracePrivacyStep } from "@/services/ad-privacy-diagnostics";
+const api = vi.hoisted(() => ({ read: vi.fn(), open: vi.fn(), diagnostics: vi.fn() }));
 vi.mock("@/services/app-open-ad", async (original) => {
   const real = await original<typeof import("@/services/app-open-ad")>();
-  return { ...real, adsSupported: () => true, getAdPrivacyState: api.read, openPrivacyOptions: api.open };
+  return { ...real, adsSupported: () => true, getAdPrivacyState: api.read, openPrivacyOptions: api.open, privacyDiagnosticsAvailable: api.diagnostics };
 });
 vi.mock("react-i18next", () => ({ useTranslation: () => ({ t: (key: string) => key }) }));
 const saved = { platform: "ios", consent: "OBTAINED", optionsStatus: "REQUIRED", isConsentFormAvailable: true, choices: { storage: "allowed", adProfile: "denied", useAdProfile: "allowed" } };
-beforeEach(() => { vi.clearAllMocks(); api.read.mockResolvedValue(saved); api.open.mockResolvedValue(undefined); });
+beforeEach(() => { vi.clearAllMocks(); api.read.mockResolvedValue(saved); api.open.mockResolvedValue(undefined); api.diagnostics.mockResolvedValue(true); });
 afterEach(cleanup);
 async function panel() {
   const user = userEvent.setup(); render(<AdPrivacyButton />);
@@ -48,6 +49,14 @@ it("native read failure never presents earlier choices as current", async () => 
   await user.click(screen.getByRole("button", { name: "settings.adsRefreshStatus" }));
   await screen.findByText("settings.adsReadFailed");
   expect(screen.getAllByText("settings.adsChoiceUnknown")).toHaveLength(3);
+});
+it.each([false, true])("diagnostic panel respects native Debug permission=%s even after failures", async (available) => {
+  api.diagnostics.mockResolvedValue(available);
+  await tracePrivacyStep("entitlement", async () => { throw new Error("privacy_entitlement_unavailable"); }).catch(() => undefined);
+  const user = await panel(); api.read.mockRejectedValue(new Error("reader unavailable"));
+  await user.click(screen.getByRole("button", { name: "settings.adsRefreshStatus" }));
+  await screen.findByText("settings.adsReadFailed");
+  expect(screen.queryByText("settings.adsDiagnostics") !== null).toBe(available);
 });
 it("TestFlight unknown Premium refresh reads through the coordinator and keeps choices visible without ads", async () => {
   const ad: AdAdapter = {
