@@ -69,6 +69,7 @@ function verifyConsentSnapshot(root, platform) {
     assert.match(body, /"isConsentFormAvailable": ConsentInformation\.shared\.formStatus == FormStatus\.available/);
     assert.match(body, /"canRequestAds": ConsentInformation\.shared\.canRequestAds/);
     assert.match(body, /"privacyOptionsRequirementStatus": getPrivacyOptionsRequirementStatus\(ConsentInformation\.shared\.privacyOptionsRequirementStatus\)/);
+    assert.match(body, /"purposeConsents": UserDefaults\.standard\.string\(forKey: "IABTCF_PurposeConsents"\) \?\? ""/);
     assert.doesNotMatch(body, /requestConsentInfoUpdate|loadAndPresentIfRequired|presentPrivacyOptionsForm/);
   } else {
     const bridge = read("android/src/main/java/com/getcapacitor/community/admob/AdMob.java");
@@ -84,6 +85,9 @@ function verifyConsentSnapshot(root, platform) {
     assert.match(body, /info\.put\("canRequestAds", consentInformation\.canRequestAds\(\)\)/);
     assert.match(body, /info\.put\("privacyOptionsRequirementStatus", consentInformation\.getPrivacyOptionsRequirementStatus\(\)\.name\(\)\)/);
     assert.match(body, /call\.resolve\(info\)/);
+    assert.match(body, /getSharedPreferences\(contextSupplier\.get\(\)\.getPackageName\(\) \+ "_preferences", Context\.MODE_PRIVATE\)/);
+    assert.match(body, /prefs\.getAll\(\)\.get\("IABTCF_PurposeConsents"\)/);
+    assert.match(body, /info\.put\("purposeConsents", bits instanceof String \? \(String\) bits : ""\)/);
     assert.match(methodBody(executor, "void ensureConsentInfo()"), /UserMessagingPlatform\.getConsentInformation\(/);
     assert.doesNotMatch(body, /requestConsentInfoUpdate|loadAndShowConsentFormIfRequired|showPrivacyOptionsForm/);
   }
