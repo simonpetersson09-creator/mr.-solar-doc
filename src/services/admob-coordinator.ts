@@ -158,9 +158,13 @@ export class AdMobCoordinator {
     try {
       const premium = await bounded(this.ad.premium(), OPERATION_TIMEOUT_MS, "premium");
       log("premium", premium === null ? "unknown" : premium ? "active" : "inactive");
-      if (premium !== false || !this.allowed(revision)) return;
-      this.cleanup = await this.ad.listen((stage, code) => log(stage, stage === "failed_load" && code === 3 ? "no_fill" : undefined, code));
+      if (premium !== false) return;
+      // UMP reports UNKNOWN until its UI-free info update has run in this
+      // session. Run it for confirmed free users even after early interaction,
+      // so saved choices are readable; forms, ATT and ads still require allowed().
       let consent = await this.refreshConsent();
+      if (!this.allowed(revision)) return;
+      this.cleanup = await this.ad.listen((stage, code) => log(stage, stage === "failed_load" && code === 3 ? "no_fill" : undefined, code));
       if (consent.status === "REQUIRED" && consent.isConsentFormAvailable) {
         if (!this.allowed(revision)) return;
         consent = await this.serial(async () => {
