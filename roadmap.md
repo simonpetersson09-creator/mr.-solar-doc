@@ -1,9 +1,10 @@
 # Roadmap
 
 ## Avgränsade samtyckesrättningar
-- [ ] Låt Visa val och Ändra samtycke hantera första UMP-formuläret konsekvent.
-- [ ] Lägg till permanenta tester för native-läsning, registrering och upprepad patchning på iOS och Android.
-- [ ] Kör hela testsviten utan publicering; fysisk formulärvisning kräver nytt telefonbygge och telefon.
+- [x] Låt Visa val och Ändra samtycke hantera första UMP-formuläret konsekvent.
+- [x] Lägg till permanenta tester för native-läsning, registrering och upprepad patchning på iOS och Android.
+- [x] Kör hela testsviten utan publicering: 1 477 apptester och 14 native-skripttester godkända.
+- [ ] Bekräfta formulärvisning på iOS och Android: kräver nytt telefonbygge och fysisk telefon.
 
 ## Annonsintegritet i inställningar
 - [x] Rätta explicit uppdatering och öppning av samtyckesval när kallstarten inte hann hämta UMP-status.
