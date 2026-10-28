@@ -114,3 +114,16 @@ test("exact reviewed previous safety patches upgrade without losing registration
     assert.equal(applyAdMobPatch(root), 0);
   } finally { rmSync(root, { recursive: true, force: true }); }
 });
+test("iOS UMP failures preserve actual numeric codes without raw error descriptions", () => {
+  const root = fixture();
+  try {
+    applyAdMobPatch(root);
+    const source = readFileSync(join(root, "ios/Sources/AdMobPlugin/Consent/ConsentExecutor.swift"), "utf8");
+    for (const signature of ["func requestConsentInfo(", "func showConsentForm(", "func showPrivacyOptionsForm("]) {
+      assert.match(methodBody(source, signature), /String\(\(error as NSError\)\.code\)/);
+    }
+    assert.doesNotMatch(source, /error\.localizedDescription/);
+    assert.equal(applyAdMobPatch(root), 0);
+    verifyConsentSnapshot(root, "ios");
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});

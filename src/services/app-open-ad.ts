@@ -3,6 +3,7 @@ import { AdMobCoordinator, AD_MAX_AGE_MS } from "./admob-coordinator";
 import { adMobSafety, type NativeConsent } from "./admob-native";
 import { recordAdDiagnostic as log } from "./ad-diagnostics";
 import { readAdConsentChoices, type AdConsentChoices } from "@/lib/ad-consent-choices";
+import { tracePrivacyStep as trace } from "./ad-privacy-diagnostics";
 
 /** Production ids (iOS only). */
 export const ADMOB_IOS_APP_ID = "ca-app-pub-7448540924654868~3473619726";
@@ -62,8 +63,8 @@ function instance(): AdMobCoordinator {
     eligible: allowed,
     consentUpdate: async () => (await sdk()).AdMob.requestConsentInfo(),
     consentSnapshot: () => adMobSafety.getConsentSnapshot(),
-    consentForm: async () => (await sdk()).AdMob.showConsentForm(),
-    privacyForm: async () => { await (await sdk()).AdMob.showPrivacyOptionsForm(); },
+    consentForm: () => trace("initial_form", async () => (await sdk()).AdMob.showConsentForm()),
+    privacyForm: () => trace("privacy_form", async () => { await (await sdk()).AdMob.showPrivacyOptionsForm(); }),
     tracking: async () => adPlatform() === "ios" ? String((await (await sdk()).AdMob.trackingAuthorizationStatus()).status) : "not_applicable",
     requestTracking: async () => { if (adPlatform() === "ios") await adMobSafety.requestTrackingAuthorizationExplicit(); },
     waitForeground: async () => {
@@ -82,8 +83,8 @@ function instance(): AdMobCoordinator {
     },
     load: async () => { await (await sdk()).AdMob.loadAppOpen({ adId: await currentUnit() }); },
     show: async () => { await (await sdk()).AdMob.showAppOpen({ adId: await currentUnit() }); },
-    invalidate: async () => { await adMobSafety.invalidateAppOpen(); },
-    setEligible: async (eligible) => { await adMobSafety.setAppOpenEligible({ eligible: eligible && allowed() }); },
+    invalidate: () => trace("native_invalidate", async () => { await adMobSafety.invalidateAppOpen(); }),
+    setEligible: (eligible) => trace("native_eligibility", async () => { await adMobSafety.setAppOpenEligible({ eligible: eligible && allowed() }); }),
     state: async () => adMobSafety.getAppOpenState({ adId: await currentUnit() }),
     listen: async (event) => {
       const { AdMob, AppOpenAdPluginEvents: events } = await sdk();
