@@ -1,5 +1,9 @@
 # Roadmap
 
+## Premium-fel vid läsning av annonsintegritet
+- [ ] Separera sparad native-status från Premium-fel vid explicit uppdatering; behåll annonsspärr och övrig samtyckeslogik.
+- [ ] Spåra varför senare avläsning lyckas och verifiera med permanenta regressionstester.
+
 ## TestFlight statusdiagnostik
 - [x] Spåra uppdatering, native-snapshot, ATT-status, behörighetskontroll och köfel utan ändrad samtyckeslogik.
 - [x] Visa säker lokal stegdiagnostik och bevara faktisk UMP-felkod; 1 511 apptester och 16 native-skripttester godkända, 8/8 patchfiler matchar.
