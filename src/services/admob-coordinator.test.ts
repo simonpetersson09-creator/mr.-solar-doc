@@ -183,8 +183,9 @@ describe("cold-start ad orchestration", () => {
   });
   it("explicit settings refresh recovers unknown UMP after launch cancellation without ads or dialogs", async () => {
     const { flow, ad } = fixture(); flow.cancel("navigation");
-    vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, status: "UNKNOWN", privacyOptionsRequirementStatus: "UNKNOWN" });
-    expect(await flow.readPrivacy(true)).toEqual({ consent, tracking: "denied" });
+    vi.mocked(ad.consentSnapshot).mockResolvedValueOnce({ ...consent, status: "UNKNOWN", privacyOptionsRequirementStatus: "UNKNOWN" }).mockResolvedValue(consent);
+    await flow.readPrivacy();
+    expect(await flow.readPrivacy(true)).toEqual({ consent, tracking: "denied", updateFailed: false });
     expect(ad.consentUpdate).toHaveBeenCalledTimes(1);
     for (const fn of [ad.consentForm, ad.privacyForm, ad.requestTracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
   });
@@ -220,6 +221,31 @@ describe("cold-start ad orchestration", () => {
     vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, status: "UNKNOWN", privacyOptionsRequirementStatus: "UNKNOWN" });
     await expect(flow.readPrivacy(true)).rejects.toThrow("UMP offline");
     expect(ad.privacyForm).not.toHaveBeenCalled(); expect(ad.show).not.toHaveBeenCalled();
+  });
+  it("F1 explicit refresh reads purpose choices from a snapshot after the native update", async () => {
+    const { flow, ad } = fixture(); const order: string[] = [];
+    vi.mocked(ad.consentUpdate).mockImplementation(async () => { order.push("update"); return consent; });
+    vi.mocked(ad.consentSnapshot).mockImplementation(async () => { order.push("snapshot"); return { ...consent, purposeConsents: "1001" }; });
+    const result = await flow.readPrivacy(true);
+    expect(order).toEqual(["update", "snapshot"]);
+    expect(result).toMatchObject({ consent: { purposeConsents: "1001" }, updateFailed: false });
+    for (const fn of [ad.requestTracking, ad.initialize, ad.load, ad.show, ad.consentForm, ad.privacyForm]) expect(fn).not.toHaveBeenCalled();
+  });
+  it("F2 a failed update with readable saved choices is explicitly marked failed", async () => {
+    const { flow, ad } = fixture();
+    vi.mocked(ad.consentUpdate).mockRejectedValue(new Error("offline"));
+    vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, purposeConsents: "0110" });
+    expect(await flow.readPrivacy(true)).toMatchObject({ consent: { purposeConsents: "0110" }, updateFailed: true });
+  });
+  it("F1 a failed post-update native read never substitutes the update response", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.consentSnapshot).mockRejectedValue(new Error("reader unavailable"));
+    await expect(flow.readPrivacy(true)).rejects.toThrow("reader unavailable");
+  });
+  it("F3 required consent without either available form opens no Google form", async () => {
+    const { flow, ad } = fixture();
+    vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, status: "REQUIRED", isConsentFormAvailable: false, privacyOptionsRequirementStatus: "NOT_REQUIRED" });
+    await expect(flow.changePrivacy()).rejects.toThrow("privacy_options_unavailable");
+    expect(ad.consentForm).not.toHaveBeenCalled(); expect(ad.privacyForm).not.toHaveBeenCalled();
   });
   it.each([true, null])("explicit change with Premium=%s never opens a consent dialog", async (premium) => {
     const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValue(premium);

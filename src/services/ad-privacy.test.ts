@@ -12,10 +12,13 @@ beforeEach(() => {
 });
 afterEach(() => vi.restoreAllMocks());
 it.each([
-  [{ consent: "REQUIRED", optionsStatus: "NOT_REQUIRED" }, true],
+  [{ consent: "REQUIRED", optionsStatus: "NOT_REQUIRED", isConsentFormAvailable: true }, true],
+  [{ consent: "REQUIRED", optionsStatus: "NOT_REQUIRED", isConsentFormAvailable: false }, false],
+  [{ consent: "REQUIRED", optionsStatus: "NOT_REQUIRED" }, false],
   [{ consent: "REQUIRED", optionsStatus: "REQUIRED" }, true],
   [{ consent: "OBTAINED", optionsStatus: "REQUIRED" }, true],
   [{ consent: "UNKNOWN", optionsStatus: "UNKNOWN" }, true],
+  [{ consent: "UNKNOWN", optionsStatus: "NOT_REQUIRED" }, true],
   [{ consent: "OBTAINED", optionsStatus: "NOT_REQUIRED" }, false],
   [{ consent: "NOT_REQUIRED", optionsStatus: "NOT_REQUIRED" }, false],
   [null, true],
