@@ -163,16 +163,20 @@ export class AdMobCoordinator {
       // session. Run it for confirmed free users even after early interaction,
       // so saved choices are readable; forms, ATT and ads still require allowed().
       let consent = await this.refreshConsent();
-      if (!this.allowed(revision)) return;
-      this.cleanup = await this.ad.listen((stage, code) => log(stage, stage === "failed_load" && code === 3 ? "no_fill" : undefined, code));
-      if (consent.status === "REQUIRED" && consent.isConsentFormAvailable) {
-        if (!this.allowed(revision)) return;
+      // Google's required consent form is shown once per launch for confirmed
+      // free users even if the user already tapped or resumed the wizard; only
+      // the app-open ad (and ATT) is cancelled by interaction.
+      if (consent.status === "REQUIRED" && consent.isConsentFormAvailable && revision === this.revision) {
+        if (await bounded(this.ad.premium(), OPERATION_TIMEOUT_MS, "premium") !== false) return;
+        if (revision !== this.revision) return;
         consent = await this.serial(async () => {
           try { return await this.ad.consentForm(); }
           catch { return this.ad.consentSnapshot(); }
         });
         if (this.ad.waitForeground) await bounded(this.ad.waitForeground(), OPERATION_TIMEOUT_MS, "foreground");
       }
+      if (!this.allowed(revision)) return;
+      this.cleanup = await this.ad.listen((stage, code) => log(stage, stage === "failed_load" && code === 3 ? "no_fill" : undefined, code));
       if (this.ad.waitForeground && !this.cancelled) await bounded(this.ad.waitForeground(), OPERATION_TIMEOUT_MS, "foreground");
       if (!consent.canRequestAds) { log("skipped", "consent_missing"); return; }
       if (!this.allowed(revision)) return;
