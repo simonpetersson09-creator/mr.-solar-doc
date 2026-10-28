@@ -112,6 +112,19 @@ describe("cold-start ad orchestration", () => {
     expect(ad.consentUpdate).toHaveBeenCalledTimes(1);
     for (const fn of [ad.consentForm, ad.requestTracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
   });
+  it("early interaction still shows Google's required consent form at launch, but no ATT or ad", async () => {
+    const { flow, ad } = fixture(); const premium = deferred<boolean | null>(); vi.mocked(ad.premium).mockReturnValueOnce(premium.promise);
+    vi.mocked(ad.consentUpdate).mockResolvedValue({ status: "REQUIRED", canRequestAds: false, privacyOptionsRequirementStatus: "REQUIRED", isConsentFormAvailable: true });
+    const run = flow.start(); flow.cancel("wizard_resumed"); premium.resolve(false); await run;
+    expect(ad.consentForm).toHaveBeenCalledTimes(1);
+    for (const fn of [ad.requestTracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
+  });
+  it("early interaction never shows the consent form for Premium", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValueOnce(false).mockResolvedValue(true);
+    vi.mocked(ad.consentUpdate).mockResolvedValue({ status: "REQUIRED", canRequestAds: false, privacyOptionsRequirementStatus: "REQUIRED", isConsentFormAvailable: true });
+    flow.cancel("navigation"); await flow.start();
+    expect(ad.consentForm).not.toHaveBeenCalled();
+  });
   it("Premium activated during loading prevents show", async () => {
     const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValueOnce(false).mockResolvedValueOnce(false).mockResolvedValueOnce(true);
     await flow.start(); expect(ad.load).toHaveBeenCalledTimes(1); expect(ad.show).not.toHaveBeenCalled();
