@@ -1,5 +1,6 @@
 import type { NativeConsent } from "./admob-native";
 import { recordAdDiagnostic as log } from "./ad-diagnostics";
+import { tracePrivacyStep as trace } from "./ad-privacy-diagnostics";
 
 export const AD_MAX_AGE_MS = 4 * 60 * 60 * 1000;
 export const AD_LOAD_WINDOW_MS = 5000;
@@ -87,20 +88,23 @@ export class AdMobCoordinator {
 
   readPrivacy(refresh = false): Promise<{ consent: NativeConsent; tracking: string; updateFailed?: boolean }> {
     if (refresh) this.cancel("privacy_refresh");
-    return this.serial(async () => {
+    return trace("settings_read", () => this.serial(async () => {
+      await trace("queue", async () => undefined);
       let updateFailed = false;
       let updateError: unknown;
       if (refresh) {
-        if (await this.ad.premium() !== false) throw new Error("privacy_entitlement_unavailable");
-        try { await this.ad.consentUpdate(); }
+        await trace("entitlement", async () => {
+          if (await this.ad.premium() !== false) throw new Error("privacy_entitlement_unavailable");
+        });
+        try { await trace("ump_update", () => this.ad.consentUpdate()); }
         catch (error) { updateFailed = true; updateError = error; }
       }
       // Update responses do not contain persisted purpose choices. Always read
       // the current native snapshot after the update has actually completed.
-      const consent = await this.ad.consentSnapshot();
+      const consent = await trace("native_snapshot", () => this.ad.consentSnapshot());
       if (updateFailed && (consent.status === "UNKNOWN" || consent.privacyOptionsRequirementStatus === "UNKNOWN")) throw updateError;
-      return { consent, tracking: await this.ad.tracking(), ...(refresh ? { updateFailed } : {}) };
-    });
+      return { consent, tracking: await trace("tracking_status", () => this.ad.tracking()), ...(refresh ? { updateFailed } : {}) };
+    }));
   }
 
   cancel(reason: string): void {

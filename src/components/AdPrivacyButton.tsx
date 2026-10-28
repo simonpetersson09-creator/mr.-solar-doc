@@ -3,6 +3,7 @@ import { useTranslation } from "react-i18next";
 import { ChevronRight, Loader2, RefreshCw, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { adsSupported, canOpenPrivacyForm, getAdPrivacyState, openPrivacyOptions, type AdPrivacyState } from "@/services/app-open-ad";
+import { getPrivacyDiagnostics, subscribePrivacyDiagnostics, PRIVACY_DIAGNOSTICS_VERSION } from "@/services/ad-privacy-diagnostics";
 
 /** Read-only native snapshots; failed reads retain the last successful timestamp. */
 export function AdPrivacyButton() {
@@ -13,6 +14,9 @@ export function AdPrivacyButton() {
   const [updateFailed, setUpdateFailed] = useState(false);
   const [formFailed, setFormFailed] = useState(false);
   const [expanded, setExpanded] = useState(false);
+  const [diagnostics, setDiagnostics] = useState(getPrivacyDiagnostics);
+
+  useEffect(() => subscribePrivacyDiagnostics(() => setDiagnostics(getPrivacyDiagnostics())), []);
 
   const refresh = useCallback(async (update = false) => {
     try {
@@ -77,6 +81,10 @@ export function AdPrivacyButton() {
       {failed && <p role="alert" className="text-xs text-destructive">{t("settings.adsReadFailed")}</p>}
       {updateFailed && <p role="alert" className="text-xs text-destructive">{t("settings.adsUpdateFailed")}</p>}
       {formFailed && <p role="alert" className="text-xs text-destructive">{t("settings.adsFormFailed")}</p>}
+      {(failed || updateFailed || formFailed) && diagnostics.length > 0 && <details className="text-xs text-brand-black/70">
+        <summary className="cursor-pointer">{t("settings.adsDiagnostics", { defaultValue: "Diagnostik / Diagnostics" })}</summary>
+        <pre className="mt-2 whitespace-pre-wrap break-words font-mono text-xs">{PRIVACY_DIAGNOSTICS_VERSION}{"\n"}{diagnostics.map((entry) => `${entry.step}: ${entry.outcome}${entry.code === undefined ? "" : ` | code=${entry.code}`}${entry.reason ? ` | ${entry.reason}` : ""}`).join("\n")}</pre>
+      </details>}
       {!canOpenPrivacyForm(state) && <p className="text-xs text-brand-black/60">{t("settings.adsOptionsUnavailable")}</p>}
       </div>
       <div className="flex flex-col">

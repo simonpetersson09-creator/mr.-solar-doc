@@ -1,5 +1,10 @@
 # Roadmap
 
+## TestFlight statusdiagnostik
+- [ ] Spåra uppdatering, native-snapshot, ATT-status, behörighetskontroll och köfel utan ändrad samtyckeslogik.
+- [ ] Visa säker lokal stegdiagnostik och bevara faktisk UMP-felkod; verifiera tester och native-patchar.
+- [ ] Bekräfta felorsaken på iPhone: kräver nytt TestFlight-bygge och telefonens diagnostik.
+
 ## Annonsintegritet F1–F4
 - [x] Rätta snapshot efter uppdatering, tydlig uppdateringsvarning, faktisk formulärtillgänglighet och separat formulärfel.
 - [x] Lägg till permanenta regressioner, kör hela testsviten och verifiera båda native-patcharna utan publicering.
