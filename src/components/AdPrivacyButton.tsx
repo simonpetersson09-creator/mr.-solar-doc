@@ -19,7 +19,7 @@ export function AdPrivacyButton() {
 
   useEffect(() => {
     let active = true;
-    let unsubscribe = () => undefined;
+    let unsubscribe: () => void = () => undefined;
     void privacyDiagnosticsAvailable().then((available) => {
       if (!active || !available) return;
       setShowDiagnostics(true);
