@@ -1,13 +1,14 @@
 # Roadmap
 
 ## Premium-fel vid läsning av annonsintegritet
-- [ ] Separera sparad native-status från Premium-fel vid explicit uppdatering; behåll annonsspärr och övrig samtyckeslogik.
-- [ ] Spåra varför senare avläsning lyckas och verifiera med permanenta regressionstester.
+- [x] Separera sparad native-status från Premium-fel vid explicit uppdatering; behåll annonsspärr och övrig samtyckeslogik.
+- [x] Spåra senare automatiska avläsningar (utan Premium-kontroll) respektive explicit återförsök; lägg till regressioner för båda och iOS/Android.
+- [ ] Bekräfta rättningen på iPhone: kräver ny TestFlight-version; nuvarande telefonbygge uppdateras inte automatiskt.
 
 ## TestFlight statusdiagnostik
 - [x] Spåra uppdatering, native-snapshot, ATT-status, behörighetskontroll och köfel utan ändrad samtyckeslogik.
 - [x] Visa säker lokal stegdiagnostik och bevara faktisk UMP-felkod; 1 511 apptester och 16 native-skripttester godkända, 8/8 patchfiler matchar.
-- [ ] Bekräfta felorsaken på iPhone: kräver nytt TestFlight-bygge och telefonens diagnostik.
+- [x] Telefonens entitlement_unavailable bekräftar Premium-spärr före snapshot; native-stegen lyckas vid senare läsning.
 
 ## Annonsintegritet F1–F4
 - [x] Rätta snapshot efter uppdatering, tydlig uppdateringsvarning, faktisk formulärtillgänglighet och separat formulärfel.

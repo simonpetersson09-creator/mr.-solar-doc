@@ -91,6 +91,7 @@ export class AdMobCoordinator {
     return trace("settings_read", () => this.serial(async () => {
       await trace("queue", async () => undefined);
       let updateFailed = false;
+      let updateRejected = false;
       let updateError: unknown;
       if (refresh) {
         let canUpdate = false;
@@ -106,13 +107,13 @@ export class AdMobCoordinator {
         }
         if (canUpdate) {
           try { await trace("ump_update", () => this.ad.consentUpdate()); }
-          catch (error) { updateFailed = true; updateError = error; }
+          catch (error) { updateFailed = true; updateRejected = true; updateError = error; }
         }
       }
       // Update responses do not contain persisted purpose choices. Always read
       // the current native snapshot after the update has actually completed.
       const consent = await trace("native_snapshot", () => this.ad.consentSnapshot());
-      if (updateError !== undefined && (consent.status === "UNKNOWN" || consent.privacyOptionsRequirementStatus === "UNKNOWN")) throw updateError;
+      if (updateRejected && (consent.status === "UNKNOWN" || consent.privacyOptionsRequirementStatus === "UNKNOWN")) throw updateError;
       return { consent, tracking: await trace("tracking_status", () => this.ad.tracking()), ...(refresh ? { updateFailed } : {}) };
     }));
   }

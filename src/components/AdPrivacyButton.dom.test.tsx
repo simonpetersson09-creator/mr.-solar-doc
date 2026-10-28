@@ -3,6 +3,8 @@ import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { AdPrivacyButton } from "./AdPrivacyButton";
+import { AdMobCoordinator, type AdAdapter } from "@/services/admob-coordinator";
+import { readAdConsentChoices } from "@/lib/ad-consent-choices";
 const api = vi.hoisted(() => ({ read: vi.fn(), open: vi.fn() }));
 vi.mock("@/services/app-open-ad", async (original) => {
   const real = await original<typeof import("@/services/app-open-ad")>();
@@ -46,4 +48,31 @@ it("native read failure never presents earlier choices as current", async () => 
   await user.click(screen.getByRole("button", { name: "settings.adsRefreshStatus" }));
   await screen.findByText("settings.adsReadFailed");
   expect(screen.getAllByText("settings.adsChoiceUnknown")).toHaveLength(3);
+});
+it("TestFlight unknown Premium refresh reads through the coordinator and keeps choices visible without ads", async () => {
+  const ad: AdAdapter = {
+    premium: vi.fn(async () => null),
+    consentSnapshot: vi.fn(async () => ({ status: "OBTAINED", privacyOptionsRequirementStatus: "REQUIRED", canRequestAds: true, purposeConsents: "1001" })),
+    consentUpdate: vi.fn(), consentForm: vi.fn(), privacyForm: vi.fn(),
+    tracking: vi.fn(async () => "denied"), requestTracking: vi.fn(),
+    initialize: vi.fn(), load: vi.fn(), show: vi.fn(),
+    invalidate: vi.fn(async () => undefined), setEligible: vi.fn(async () => undefined),
+    state: vi.fn(async () => ({ loadedAt: null, foreground: true })),
+    eligible: () => true, listen: vi.fn(async () => () => undefined),
+  };
+  const flow = new AdMobCoordinator(ad);
+  api.read.mockImplementation(async (refresh = false) => {
+    const result = await flow.readPrivacy(refresh);
+    return { ...saved, ...result, choices: readAdConsentChoices(result.consent.status, result.consent.purposeConsents) };
+  });
+  const user = await panel();
+  await user.click(screen.getByRole("button", { name: "settings.adsRefreshStatus" }));
+  await screen.findByText("settings.adsUpdateFailed");
+  expect(screen.queryByText("settings.adsReadFailed")).toBeNull();
+  expect(screen.getAllByText("settings.adsChoiceAllowed")).toHaveLength(2);
+  expect(screen.getAllByText("settings.adsChoiceDenied")).toHaveLength(1);
+  expect(ad.premium).toHaveBeenCalledTimes(1);
+  expect(ad.setEligible).toHaveBeenCalledWith(false);
+  expect(ad.setEligible).not.toHaveBeenCalledWith(true);
+  for (const fn of [ad.consentUpdate, ad.consentForm, ad.privacyForm, ad.requestTracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
 });
