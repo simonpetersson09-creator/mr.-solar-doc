@@ -73,8 +73,24 @@ export class AdMobCoordinator {
     return this.update;
   }
 
-  readPrivacy(): Promise<{ consent: NativeConsent; tracking: string }> {
-    return this.serial(async () => ({ consent: await this.ad.consentSnapshot(), tracking: await this.ad.tracking() }));
+  private async updatePrivacyConsent(): Promise<NativeConsent> {
+    // Explicit settings actions may recover UMP after launch cancellation, but
+    // must never prompt Premium users or treat uncertain entitlement as free.
+    if (await this.ad.premium() !== false) throw new Error("privacy_entitlement_unavailable");
+    try { return await this.ad.consentUpdate(); }
+    catch (error) {
+      const saved = await this.ad.consentSnapshot();
+      if (saved.status === "UNKNOWN" || saved.privacyOptionsRequirementStatus === "UNKNOWN") throw error;
+      return saved;
+    }
+  }
+
+  readPrivacy(refresh = false): Promise<{ consent: NativeConsent; tracking: string }> {
+    if (refresh) this.cancel("privacy_refresh");
+    return this.serial(async () => ({
+      consent: refresh ? await this.updatePrivacyConsent() : await this.ad.consentSnapshot(),
+      tracking: await this.ad.tracking(),
+    }));
   }
 
   cancel(reason: string): void {
@@ -90,7 +106,17 @@ export class AdMobCoordinator {
     this.cancel("privacy_changed");
     this.privacy = this.serial(async () => {
       await this.mutate(async () => { await this.ad.setEligible(false); await this.ad.invalidate(); });
-      try { await this.ad.privacyForm(); log("privacy_updated"); }
+      try {
+        if (await this.ad.premium() !== false) throw new Error("privacy_entitlement_unavailable");
+        let consent = await this.ad.consentSnapshot();
+        if (consent.status === "UNKNOWN" || consent.privacyOptionsRequirementStatus === "UNKNOWN") {
+          consent = await this.updatePrivacyConsent();
+        }
+        if (consent.status === "REQUIRED" && consent.isConsentFormAvailable) await this.ad.consentForm();
+        else if (consent.privacyOptionsRequirementStatus === "REQUIRED") await this.ad.privacyForm();
+        else throw new Error("privacy_options_unavailable");
+        log("privacy_updated");
+      }
       finally { await this.mutate(() => this.ad.invalidate()); }
     }).finally(() => { this.privacy = null; });
     return this.privacy;

@@ -181,4 +181,39 @@ describe("cold-start ad orchestration", () => {
     const { flow, ad } = fixture(); vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, canRequestAds: false });
     await flow.start(); expect(ad.load).not.toHaveBeenCalled();
   });
+  it("explicit settings refresh recovers unknown UMP after launch cancellation without ads or dialogs", async () => {
+    const { flow, ad } = fixture(); flow.cancel("navigation");
+    vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, status: "UNKNOWN", privacyOptionsRequirementStatus: "UNKNOWN" });
+    expect(await flow.readPrivacy(true)).toEqual({ consent, tracking: "denied" });
+    expect(ad.consentUpdate).toHaveBeenCalledTimes(1);
+    for (const fn of [ad.consentForm, ad.privacyForm, ad.requestTracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
+  });
+  it.each([true, null])("explicit settings refresh with Premium=%s never starts UMP", async (premium) => {
+    const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValue(premium);
+    await expect(flow.readPrivacy(true)).rejects.toThrow("privacy_entitlement_unavailable");
+    expect(ad.consentUpdate).not.toHaveBeenCalled();
+  });
+  it("unknown consent opens the required initial form through the explicit change button", async () => {
+    const { flow, ad } = fixture();
+    vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, status: "UNKNOWN", privacyOptionsRequirementStatus: "UNKNOWN" });
+    vi.mocked(ad.consentUpdate).mockResolvedValue({ ...consent, status: "REQUIRED", isConsentFormAvailable: true });
+    await flow.changePrivacy();
+    expect(ad.consentUpdate).toHaveBeenCalledTimes(1); expect(ad.consentForm).toHaveBeenCalledTimes(1);
+    expect(ad.privacyForm).not.toHaveBeenCalled(); expect(ad.requestTracking).not.toHaveBeenCalled(); expect(ad.load).not.toHaveBeenCalled();
+  });
+  it("known choices open the Google privacy form without a redundant UMP update", async () => {
+    const { flow, ad } = fixture(); await flow.changePrivacy();
+    expect(ad.privacyForm).toHaveBeenCalledTimes(1); expect(ad.consentUpdate).not.toHaveBeenCalled();
+  });
+  it("failed recovery cannot pass unknown consent off as a successful refresh", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.consentUpdate).mockRejectedValue(new Error("UMP offline"));
+    vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, status: "UNKNOWN", privacyOptionsRequirementStatus: "UNKNOWN" });
+    await expect(flow.readPrivacy(true)).rejects.toThrow("UMP offline");
+    expect(ad.privacyForm).not.toHaveBeenCalled(); expect(ad.show).not.toHaveBeenCalled();
+  });
+  it.each([true, null])("explicit change with Premium=%s never opens a consent dialog", async (premium) => {
+    const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValue(premium);
+    await expect(flow.changePrivacy()).rejects.toThrow("privacy_entitlement_unavailable");
+    expect(ad.privacyForm).not.toHaveBeenCalled(); expect(ad.consentForm).not.toHaveBeenCalled(); expect(ad.consentUpdate).not.toHaveBeenCalled();
+  });
 });
