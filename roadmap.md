@@ -1,8 +1,9 @@
 # Roadmap
 
 ## Annonsintegritet i inställningar
-- [ ] Rätta explicit uppdatering och öppning av samtyckesval när kallstarten inte hann hämta UMP-status.
-- [ ] Bevara okänd personanpassning och skilj okända integritetskrav från att val inte krävs; verifiera med regressionstester.
+- [x] Rätta explicit uppdatering och öppning av samtyckesval när kallstarten inte hann hämta UMP-status.
+- [x] Bevara okänd personanpassning och skilj okända integritetskrav från att val inte krävs; 1 469 tester godkända och webbsidan utan körfel.
+- [ ] Bekräfta Googles samtyckesruta på fysisk telefon i nytt appbygge: kräver telefon och signerad version.
 
 ## ATT och samtyckesstatus
 - [x] Direkt, serialiserad native-ATT efter UMP, utan Premium-frågor eller dubbla dialoger.
