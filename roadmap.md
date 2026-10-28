@@ -97,3 +97,7 @@
 ## Betalningsåterförsök och profilnamn
 - [x] Skydda verifiering mot samtidiga återförsök och testa låset.
 - [x] Använd even för båda profilvägarna utan ändrade beräkningar.
+
+## Annonsintegritet i TestFlight
+- [x] Sparade val visades som okända när UMP-statusen aldrig uppdaterades efter tidig interaktion; uppdateringen körs nu varje start för gratisanvändare.
+- [ ] Bekräfta i ny TestFlight-build att raderna visar sparade val.
