@@ -69,6 +69,7 @@ function verifyConsentSnapshot(root, platform) {
     assert.match(body, /"isConsentFormAvailable": ConsentInformation\.shared\.formStatus == FormStatus\.available/);
     assert.match(body, /"canRequestAds": ConsentInformation\.shared\.canRequestAds/);
     assert.match(body, /"privacyOptionsRequirementStatus": getPrivacyOptionsRequirementStatus\(ConsentInformation\.shared\.privacyOptionsRequirementStatus\)/);
+    assert.match(body, /"purposeConsents": UserDefaults\.standard\.string\(forKey: "IABTCF_PurposeConsents"\) \?\? ""/);
     assert.doesNotMatch(body, /requestConsentInfoUpdate|loadAndPresentIfRequired|presentPrivacyOptionsForm/);
   } else {
     const bridge = read("android/src/main/java/com/getcapacitor/community/admob/AdMob.java");
@@ -84,6 +85,9 @@ function verifyConsentSnapshot(root, platform) {
     assert.match(body, /info\.put\("canRequestAds", consentInformation\.canRequestAds\(\)\)/);
     assert.match(body, /info\.put\("privacyOptionsRequirementStatus", consentInformation\.getPrivacyOptionsRequirementStatus\(\)\.name\(\)\)/);
     assert.match(body, /call\.resolve\(info\)/);
+    assert.match(body, /getSharedPreferences\(contextSupplier\.get\(\)\.getPackageName\(\) \+ "_preferences", Context\.MODE_PRIVATE\)/);
+    assert.match(body, /prefs\.getAll\(\)\.get\("IABTCF_PurposeConsents"\)/);
+    assert.match(body, /info\.put\("purposeConsents", bits instanceof String \? \(String\) bits : ""\)/);
     assert.match(methodBody(executor, "void ensureConsentInfo()"), /UserMessagingPlatform\.getConsentInformation\(/);
     assert.doesNotMatch(body, /requestConsentInfoUpdate|loadAndShowConsentFormIfRequired|showPrivacyOptionsForm/);
   }
@@ -100,3 +104,13 @@ for (const platform of ["ios", "android"]) {
     } finally { rmSync(root, { recursive: true, force: true }); }
   });
 }
+test("exact reviewed previous safety patches upgrade without losing registrations", () => {
+  const root = fixture();
+  try {
+    applyAdMobPatch(root);
+    for (const file of patch.files) if (file.previous?.[0]) writeFileSync(join(root, file.path), file.previous[0]);
+    assert.equal(applyAdMobPatch(root), 2);
+    for (const platform of ["ios", "android"]) verifyConsentSnapshot(root, platform);
+    assert.equal(applyAdMobPatch(root), 0);
+  } finally { rmSync(root, { recursive: true, force: true }); }
+});

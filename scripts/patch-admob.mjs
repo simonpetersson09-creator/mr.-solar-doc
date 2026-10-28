@@ -9,10 +9,10 @@ export function applyAdMobPatch(packageRoot = resolve(root, "node_modules/@capac
   if (installed.version !== patch.version) throw new Error("Unsupported AdMob version: review native safety patch before upgrading");
   // Validate every file before writing anything; unexpected upstream changes
   // must never produce a partially patched native SDK.
-  const pending = patch.files.map(({ path, before, after }) => {
+  const pending = patch.files.map(({ path, before, after, previous = [] }) => {
     const destination = resolve(packageRoot, path);
     const source = readFileSync(destination, "utf8");
-    if (source !== before && source !== after) throw new Error(`Unexpected AdMob source: ${path}`);
+    if (source !== before && source !== after && !previous.includes(source)) throw new Error(`Unexpected AdMob source: ${path}`);
     return { destination, after, changed: source !== after };
   });
   for (const file of pending) if (file.changed) writeFileSync(file.destination, file.after);

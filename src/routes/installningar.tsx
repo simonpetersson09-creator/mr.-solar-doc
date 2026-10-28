@@ -515,7 +515,7 @@ function AdPrivacyButton() {
   const [state, setState] = useState<AdPrivacyState | null>(null);
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
-  const [showDetails, setShowDetails] = useState(false);
+  const [expanded, setExpanded] = useState(false);
 
   const refresh = useCallback(async (update = false) => {
     try {
@@ -546,28 +546,43 @@ function AdPrivacyButton() {
     : state?.tracking === "notDetermined" ? "adsTrackingNotAsked" : "adsUnknown";
   const rows: [string, string][] = [
     [t("settings.adsPrivacyConsent"), t(`settings.${consentKey}`)],
-    [t("settings.adsPersonalized"), t("settings.adsCannotDetermine")],
   ];
   if (state?.platform === "ios") rows.push([t("settings.adsPrivacyTracking"), t(`settings.${trackingKey}`)]);
   rows.push([t("settings.adsCheckedAt"), state ? new Date(state.checkedAt).toLocaleString(i18n.resolvedLanguage) : "—"]);
 
-  async function action(change: boolean, details = false) {
+  async function action(change: boolean) {
     if (busy) return;
     setBusy(true);
     try {
-      if (change || (details && canOpenPrivacyForm(state))) await openPrivacyOptions();
-      await refresh(!change && !details);
-      if (details) setShowDetails(true);
+      if (change) await openPrivacyOptions();
+      await refresh(!change);
     } catch { setFailed(true); }
     finally { setBusy(false); }
   }
 
   return (
-    <section className="space-y-2 border-y border-brand-black/10 px-3.5 py-2.5">
-      <h2 className="flex items-center gap-2 text-xs font-semibold text-brand-black">
-        <ShieldCheck className="size-4 shrink-0" /> {t("settings.adsPrivacyTitle")}
-      </h2>
-      <dl className="space-y-1" aria-live="polite">
+    <section className="overflow-hidden rounded-lg border border-brand-black/10 bg-brand-black/5">
+      <Button variant="ghost" aria-expanded={expanded} aria-controls="saved-ad-choices" className="h-auto min-h-11 w-full justify-start rounded-none px-3.5 py-3 text-left" onClick={() => { setExpanded((open) => !open); void refresh(); }}>
+        <ShieldCheck className="size-4 shrink-0" />
+        <span className="flex-1 whitespace-normal text-xs font-semibold">{t("settings.adsPrivacyTitle")}</span>
+        <ChevronRight className={`size-4 shrink-0 transition-transform motion-reduce:transition-none ${expanded ? "rotate-90" : ""}`} />
+      </Button>
+      {expanded && <div id="saved-ad-choices" className="border-t border-brand-black/10">
+      <div className="space-y-3 px-3.5 py-3" aria-live="polite">
+      <h3 className="text-xs font-semibold text-brand-black">{t("settings.adsSavedChoices")}</h3>
+      <dl className="space-y-3">
+        {([
+          ["adsStorage", state?.choices.storage],
+          ["adsProfile", state?.choices.adProfile],
+          ["adsUseProfile", state?.choices.useAdProfile],
+        ] as const).map(([label, choice]) => (
+          <div key={label} className="flex items-start gap-3 text-xs">
+            <dt className="min-w-0 flex-1 text-brand-black">{t(`settings.${label}`)}</dt>
+            <dd className="max-w-[40%] break-words text-right font-semibold text-brand-black/70">{t(`settings.${failed || !choice || choice === "unknown" ? "adsChoiceUnknown" : choice === "allowed" ? "adsChoiceAllowed" : "adsChoiceDenied"}`)}</dd>
+          </div>
+        ))}
+      </dl>
+      <dl className="space-y-1 border-t border-brand-black/10 pt-3">
         {rows.map(([k, v]) => (
           <div key={k} className="flex flex-wrap justify-between gap-x-3 gap-y-1 text-xs">
             <dt className="text-brand-black/60">{k}</dt>
@@ -575,20 +590,18 @@ function AdPrivacyButton() {
           </div>
         ))}
       </dl>
-      {showDetails && <p className="text-xs text-brand-black/70">{t("settings.adsDetailsUnavailable")}</p>}
       {failed && <p role="alert" className="text-xs text-destructive">{t("settings.adsReadFailed")}</p>}
-      <div className="flex flex-col gap-1">
-        <Button variant="ghost" size="sm" disabled={busy} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(false, true)}>
-          <ShieldCheck className="size-3 shrink-0" /> {t("settings.adsViewChoices")}
+      {!canOpenPrivacyForm(state) && <p className="text-xs text-brand-black/60">{t("settings.adsOptionsUnavailable")}</p>}
+      </div>
+      <div className="flex flex-col">
+        <Button variant="ghost" disabled={busy || !canOpenPrivacyForm(state)} className="h-auto min-h-11 justify-start rounded-none border-t border-brand-black/10 px-3.5 py-2.5 text-left" onClick={() => void action(true)}>
+          <ShieldCheck className="size-4 shrink-0" /> <span className="flex-1 whitespace-normal text-xs">{t("settings.adsViewOrChange")}</span><ChevronRight className="size-4 shrink-0" />
         </Button>
-        <Button variant="ghost" size="sm" disabled={busy || !canOpenPrivacyForm(state)} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(true)}>
-          <Settings2 className="size-3 shrink-0" /> {t("settings.adsPrivacyChange")}
-        </Button>
-        <Button variant="ghost" size="sm" disabled={busy} className="h-auto justify-start whitespace-normal text-left" onClick={() => void action(false)}>
+        <Button variant="ghost" size="sm" disabled={busy} className="h-auto min-h-9 justify-start whitespace-normal rounded-none px-3.5 text-left" onClick={() => void action(false)}>
           {busy ? <Loader2 className="size-3 animate-spin" /> : <RefreshCw className="size-3 shrink-0" />} {t("settings.adsRefreshStatus")}
         </Button>
       </div>
-      {state?.optionsStatus === "NOT_REQUIRED" && <p className="text-xs text-brand-black/60">{t("settings.adsOptionsUnavailable")}</p>}
+      </div>}
     </section>
   );
 }

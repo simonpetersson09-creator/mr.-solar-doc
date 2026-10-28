@@ -5,6 +5,7 @@ export interface NativeConsent {
   canRequestAds: boolean;
   isConsentFormAvailable?: boolean;
   privacyOptionsRequirementStatus: string;
+  purposeConsents?: string;
 }
 
 /** Methods supplied by the version-checked, reproducible native patch. */
