@@ -44,6 +44,19 @@ it.each(["ios", "android"])("%s reads saved purpose choices without consent upda
   expect(native.update).not.toHaveBeenCalled();
   expect(native.form).not.toHaveBeenCalled();
 });
+it.each(["ios", "android"])("%s explicit refresh with unavailable startup Premium still exposes fresh saved choices", async (platform) => {
+  native.platform = platform;
+  native.snapshot.mockResolvedValue({ status: "OBTAINED", canRequestAds: true, privacyOptionsRequirementStatus: "REQUIRED", purposeConsents: "1001" });
+  // No startup resolver is registered: the adapter returns unknown Premium.
+  const { getAdPrivacyState } = await import("./app-open-ad");
+  expect(await getAdPrivacyState(true)).toMatchObject({ updateFailed: true, choices: { storage: "allowed", adProfile: "denied", useAdProfile: "allowed" } });
+  expect(native.update).not.toHaveBeenCalled(); expect(native.form).not.toHaveBeenCalled();
+  expect(native.eligible).toHaveBeenCalledWith({ eligible: false });
+  expect(native.eligible).not.toHaveBeenCalledWith({ eligible: true });
+  native.snapshot.mockResolvedValue({ status: "OBTAINED", canRequestAds: true, privacyOptionsRequirementStatus: "REQUIRED", purposeConsents: "0110" });
+  expect(await getAdPrivacyState()).toMatchObject({ choices: { storage: "denied", adProfile: "allowed", useAdProfile: "denied" } });
+  expect(native.snapshot).toHaveBeenCalledTimes(2); expect(native.update).not.toHaveBeenCalled();
+});
 it("Android never reads the plugin's fictitious ATT authorization", async () => {
   native.platform = "android";
   const { getAdPrivacyState } = await import("./app-open-ad");
