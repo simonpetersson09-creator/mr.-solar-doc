@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { AdMobCoordinator, type AdAdapter, AD_MAX_AGE_MS } from "./admob-coordinator";
 import type { NativeConsent } from "./admob-native";
+import { getPrivacyDiagnostics } from "./ad-privacy-diagnostics";
 const consent: NativeConsent = { status: "OBTAINED", canRequestAds: true, privacyOptionsRequirementStatus: "REQUIRED" };
 const deferred = <T,>() => { let resolve: (value: T) => void = () => undefined; const promise = new Promise<T>((r) => { resolve = r; }); return { promise, resolve }; };
 function fixture() {
@@ -19,6 +20,30 @@ async function flush() { for (let i = 0; i < 35; i++) await Promise.resolve(); }
 beforeEach(() => { vi.useFakeTimers(); vi.setSystemTime(1000000); vi.spyOn(console, "info").mockImplementation(() => undefined); });
 afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); });
 describe("cold-start ad orchestration", () => {
+  it("diagnoses a tracking failure after successful UMP and snapshot without changing rejection", async () => {
+    const { flow, ad } = fixture();
+    const error = { code: "UNIMPLEMENTED", message: "tracking status not implemented" };
+    vi.mocked(ad.tracking).mockRejectedValue(error);
+    await expect(flow.readPrivacy(true)).rejects.toBe(error);
+    const entries = getPrivacyDiagnostics();
+    expect(entries).toContainEqual({ step: "ump_update", outcome: "ok" });
+    expect(entries).toContainEqual({ step: "native_snapshot", outcome: "ok" });
+    expect(entries.slice(-2)).toEqual([
+      { step: "tracking_status", outcome: "failed", code: "UNIMPLEMENTED", reason: "not_implemented" },
+      { step: "settings_read", outcome: "failed", code: "UNIMPLEMENTED", reason: "not_implemented" },
+    ]);
+  });
+  it("diagnoses the original UMP error even when a readable snapshot succeeds", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.consentUpdate).mockRejectedValue({ code: "3", message: "private SDK details" });
+    expect(await flow.readPrivacy(true)).toMatchObject({ updateFailed: true });
+    expect(getPrivacyDiagnostics()).toContainEqual({ step: "ump_update", outcome: "failed", code: "3", reason: "operation_rejected" });
+  });
+  it("diagnoses entitlement rejection before any UMP or snapshot call", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValue(null);
+    await expect(flow.readPrivacy(true)).rejects.toThrow("privacy_entitlement_unavailable");
+    expect(ad.consentSnapshot).not.toHaveBeenCalled(); expect(ad.consentUpdate).not.toHaveBeenCalled();
+    expect(getPrivacyDiagnostics().slice(-2).map((entry) => entry.step)).toEqual(["entitlement", "settings_read"]);
+  });
   it("one load and show per cold start, including duplicate calls and return", async () => {
     const { flow, ad } = fixture(); await Promise.all([flow.start(), flow.start()]); await flow.start();
     expect(ad.load).toHaveBeenCalledTimes(1); expect(ad.show).toHaveBeenCalledTimes(1);
