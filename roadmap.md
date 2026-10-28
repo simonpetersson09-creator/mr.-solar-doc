@@ -1,8 +1,8 @@
 # Roadmap
 
 ## Annonsintegritet F1–F4
-- [ ] Rätta snapshot efter uppdatering, tydlig uppdateringsvarning, faktisk formulärtillgänglighet och separat formulärfel.
-- [ ] Lägg till permanenta regressioner, kör hela testsviten och verifiera båda native-patcharna utan publicering.
+- [x] Rätta snapshot efter uppdatering, tydlig uppdateringsvarning, faktisk formulärtillgänglighet och separat formulärfel.
+- [x] Lägg till permanenta regressioner, kör hela testsviten och verifiera båda native-patcharna utan publicering.
 - [ ] Verifiera Googles formulär och sparade val på telefon: kräver nya iOS-/Androidbyggen och fysiska telefoner.
 
 ## Samtyckesupplägg som Mr. B Yatzy
