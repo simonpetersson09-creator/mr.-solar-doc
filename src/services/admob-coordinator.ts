@@ -93,16 +93,26 @@ export class AdMobCoordinator {
       let updateFailed = false;
       let updateError: unknown;
       if (refresh) {
-        await trace("entitlement", async () => {
-          if (await this.ad.premium() !== false) throw new Error("privacy_entitlement_unavailable");
-        });
-        try { await trace("ump_update", () => this.ad.consentUpdate()); }
-        catch (error) { updateFailed = true; updateError = error; }
+        let canUpdate = false;
+        try {
+          await trace("entitlement", async () => {
+            if (await this.ad.premium() !== false) throw new Error("privacy_entitlement_unavailable");
+          });
+          canUpdate = true;
+        } catch {
+          // Entitlement protects UMP mutations, not read-only native values.
+          // cancel() has already disabled ads; never interpret this as free.
+          updateFailed = true;
+        }
+        if (canUpdate) {
+          try { await trace("ump_update", () => this.ad.consentUpdate()); }
+          catch (error) { updateFailed = true; updateError = error; }
+        }
       }
       // Update responses do not contain persisted purpose choices. Always read
       // the current native snapshot after the update has actually completed.
       const consent = await trace("native_snapshot", () => this.ad.consentSnapshot());
-      if (updateFailed && (consent.status === "UNKNOWN" || consent.privacyOptionsRequirementStatus === "UNKNOWN")) throw updateError;
+      if (updateError !== undefined && (consent.status === "UNKNOWN" || consent.privacyOptionsRequirementStatus === "UNKNOWN")) throw updateError;
       return { consent, tracking: await trace("tracking_status", () => this.ad.tracking()), ...(refresh ? { updateFailed } : {}) };
     }));
   }

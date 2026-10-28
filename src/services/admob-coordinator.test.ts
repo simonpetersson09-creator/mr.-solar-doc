@@ -38,11 +38,49 @@ describe("cold-start ad orchestration", () => {
     expect(await flow.readPrivacy(true)).toMatchObject({ updateFailed: true });
     expect(getPrivacyDiagnostics()).toContainEqual({ step: "ump_update", outcome: "failed", code: "3", reason: "operation_rejected" });
   });
-  it("diagnoses entitlement rejection before any UMP or snapshot call", async () => {
+  it("diagnoses entitlement rejection but still reads saved native choices without UMP", async () => {
     const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValue(null);
-    await expect(flow.readPrivacy(true)).rejects.toThrow("privacy_entitlement_unavailable");
-    expect(ad.consentSnapshot).not.toHaveBeenCalled(); expect(ad.consentUpdate).not.toHaveBeenCalled();
-    expect(getPrivacyDiagnostics().slice(-2).map((entry) => entry.step)).toEqual(["entitlement", "settings_read"]);
+    vi.mocked(ad.consentSnapshot).mockResolvedValue({ ...consent, purposeConsents: "1001" });
+    expect(await flow.readPrivacy(true)).toEqual({ consent: { ...consent, purposeConsents: "1001" }, tracking: "denied", updateFailed: true });
+    expect(ad.consentSnapshot).toHaveBeenCalledTimes(1); expect(ad.consentUpdate).not.toHaveBeenCalled();
+    expect(getPrivacyDiagnostics()).toContainEqual({ step: "entitlement", outcome: "failed", reason: "entitlement_unavailable" });
+    expect(getPrivacyDiagnostics().at(-1)).toEqual({ step: "settings_read", outcome: "ok" });
+    await flow.start();
+    for (const fn of [ad.initialize, ad.load, ad.show, ad.consentForm, ad.privacyForm, ad.requestTracking]) expect(fn).not.toHaveBeenCalled();
+    expect(ad.setEligible).toHaveBeenCalledWith(false);
+    expect(ad.setEligible).not.toHaveBeenCalledWith(true);
+  });
+  it("Premium lookup rejection preserves a readable snapshot and its diagnostic error code", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.premium).mockRejectedValue({ code: "UNAVAILABLE" });
+    expect(await flow.readPrivacy(true)).toEqual({ consent, tracking: "denied", updateFailed: true });
+    expect(getPrivacyDiagnostics()).toContainEqual({ step: "entitlement", outcome: "failed", code: "UNAVAILABLE", reason: "operation_rejected" });
+    await flow.start();
+    for (const fn of [ad.consentUpdate, ad.consentForm, ad.privacyForm, ad.requestTracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
+    expect(ad.setEligible).not.toHaveBeenCalledWith(true);
+  });
+  it("unknown Premium can read an unknown native status without inventing choices", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValue(null);
+    const unknown = { status: "UNKNOWN", privacyOptionsRequirementStatus: "UNKNOWN", canRequestAds: false };
+    vi.mocked(ad.consentSnapshot).mockResolvedValue(unknown);
+    expect(await flow.readPrivacy(true)).toEqual({ consent: unknown, tracking: "denied", updateFailed: true });
+    expect(ad.consentUpdate).not.toHaveBeenCalled();
+  });
+  it("native read failure still rejects when entitlement is unavailable", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValue(null);
+    const error = { code: "UNIMPLEMENTED" }; vi.mocked(ad.consentSnapshot).mockRejectedValue(error);
+    await expect(flow.readPrivacy(true)).rejects.toBe(error);
+    expect(ad.tracking).not.toHaveBeenCalled(); expect(ad.consentUpdate).not.toHaveBeenCalled();
+  });
+  it("a later automatic read bypasses Premium while later explicit recovery rechecks it without ads", async () => {
+    const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValueOnce(null).mockResolvedValue(false);
+    expect((await flow.readPrivacy(true)).updateFailed).toBe(true);
+    expect(await flow.readPrivacy()).toEqual({ consent, tracking: "denied" });
+    expect(ad.premium).toHaveBeenCalledTimes(1); expect(ad.consentUpdate).not.toHaveBeenCalled();
+    expect((await flow.readPrivacy(true)).updateFailed).toBe(false);
+    expect(ad.premium).toHaveBeenCalledTimes(2); expect(ad.consentUpdate).toHaveBeenCalledTimes(1);
+    await flow.start();
+    for (const fn of [ad.initialize, ad.load, ad.show, ad.consentForm, ad.privacyForm, ad.requestTracking]) expect(fn).not.toHaveBeenCalled();
+    expect(ad.setEligible).not.toHaveBeenCalledWith(true);
   });
   it("one load and show per cold start, including duplicate calls and return", async () => {
     const { flow, ad } = fixture(); await Promise.all([flow.start(), flow.start()]); await flow.start();
@@ -216,7 +254,7 @@ describe("cold-start ad orchestration", () => {
   });
   it.each([true, null])("explicit settings refresh with Premium=%s never starts UMP", async (premium) => {
     const { flow, ad } = fixture(); vi.mocked(ad.premium).mockResolvedValue(premium);
-    await expect(flow.readPrivacy(true)).rejects.toThrow("privacy_entitlement_unavailable");
+    expect(await flow.readPrivacy(true)).toEqual({ consent, tracking: "denied", updateFailed: true });
     expect(ad.consentUpdate).not.toHaveBeenCalled();
   });
   it("unknown consent opens the required initial form through the explicit change button", async () => {
