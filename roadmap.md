@@ -1,5 +1,9 @@
 # Roadmap
 
+## Kontrollerade Premium-återförsök
+- [ ] Ersätt låst misslyckad readiness med delade, begränsade återförsök och fortsatt fail-closed Premium-skydd.
+- [ ] Testa sena butiksstarter, anropsfel, samtidighet, stopp efter maxförsök och oförändrad kallstartsregel.
+
 ## Premium-orsaker och dold diagnostik
 - [x] Granska Premium-kedjan: ofärdig butiksstart, inaktuell serverstatus eller anropsfel ger okänd status; lokal readiness återförsöks inte. Telefonens exakta gren är ännu inte bekräftad; inga köp-/annonsregler ändrade.
 - [x] Begränsa diagnostikpanelen till utvecklings-/native Debug-versioner, aldrig release inklusive TestFlight; 1 522 apptester och 16 native-tester godkända.

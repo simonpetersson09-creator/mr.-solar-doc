@@ -7,6 +7,7 @@ import { usePurchaseStore } from "@/state/purchase-store";
 import { useWizardStore } from "@/state/wizard-store";
 import { startAppOpenAd, setAdLaunchPath, markAdInteraction } from "@/services/app-open-ad";
 import { useRouter } from "@tanstack/react-router";
+import { createAdPremiumResolver } from "@/services/ad-premium-resolver";
 
 /** No advertising work before authoritative entitlement readiness. */
 export function useAppOpenAd(queryClient: QueryClient) {
@@ -16,20 +17,18 @@ export function useAppOpenAd(queryClient: QueryClient) {
     const unsubscribe = router.subscribe("onBeforeNavigate", ({ toLocation }) => setAdLaunchPath(toLocation.pathname));
     if (useWizardStore.getState().hasStarted) markAdInteraction("wizard_resumed");
     const unsubscribeWizard = useWizardStore.subscribe((state) => { if (state.hasStarted) markAdInteraction("wizard_started"); });
-    let ready: Promise<unknown> | undefined;
-    startAppOpenAd(async () => {
-      try {
-        // Reuse the store's initialization lock and drain redelivered purchases
-        // before the first entitlement check; do not change purchase semantics.
-        ready ??= initializePurchases().then(() => drainPurchaseTransactions(queryClient));
-        await ready;
-        if (!getPurchaseDiagnostics().initialized) return null;
+    startAppOpenAd(createAdPremiumResolver({
+      // The purchase service retains its own one-shot adapter guard and lock.
+      initialize: initializePurchases,
+      initialized: () => getPurchaseDiagnostics().initialized,
+      drain: () => drainPurchaseTransactions(queryClient),
+      cachedActive: () => queryClient.getQueryData<{ active: boolean }>(PREMIUM_QUERY_KEY)?.active === true,
+      fetchStatus: async () => {
         const deviceId = usePurchaseStore.getState().ensureDeviceId();
-        if (queryClient.getQueryData<{ active: boolean }>(PREMIUM_QUERY_KEY)?.active) return true;
-        const res = await queryClient.fetchQuery({ ...premiumQueryOptions(deviceId), staleTime: 0 });
-        return res.stale && !res.active ? null : res.active;
-      } catch { return null; }
-    });
+        // The resolver owns the bounded retry budget, not nested query retries.
+        return queryClient.fetchQuery({ ...premiumQueryOptions(deviceId), staleTime: 0, retry: false });
+      },
+    }));
     return () => { unsubscribe(); unsubscribeWizard(); };
   }, [queryClient, router]);
 }
