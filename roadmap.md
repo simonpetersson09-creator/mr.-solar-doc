@@ -1,5 +1,10 @@
 # Roadmap
 
+## Kontrollerade Premium-återförsök
+- [x] Ersätt låst misslyckad readiness med delade, begränsade återförsök: två försök, 1 s paus, 5 s felspärr och 15 s väntetid; låset behålls för pågående arbete efter timeout.
+- [x] Testa sena butiksstarter, anropsfel, samtidighet, stopp efter maxförsök och oförändrad kallstartsregel; 1 532 apptester och 16 native-tester godkända.
+- [ ] Bekräfta återhämtning på iPhone: kräver ny TestFlight-version; köpflödet och native-butiksstartens engångsskydd är orörda.
+
 ## Premium-orsaker och dold diagnostik
 - [x] Granska Premium-kedjan: ofärdig butiksstart, inaktuell serverstatus eller anropsfel ger okänd status; lokal readiness återförsöks inte. Telefonens exakta gren är ännu inte bekräftad; inga köp-/annonsregler ändrade.
 - [x] Begränsa diagnostikpanelen till utvecklings-/native Debug-versioner, aldrig release inklusive TestFlight; 1 522 apptester och 16 native-tester godkända.
