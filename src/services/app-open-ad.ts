@@ -71,7 +71,12 @@ function instance(): AdMobCoordinator {
   coordinator = new AdMobCoordinator({
     premium: async () => startupPremium ? startupPremium() : null,
     eligible: allowed,
-    consentUpdate: async () => (await sdk()).AdMob.requestConsentInfo(),
+    consentUpdate: async () => {
+      const info = await (await sdk()).AdMob.requestConsentInfo();
+      // An open Settings panel re-reads the now-current native snapshot.
+      window.dispatchEvent(new Event("adprivacyrefresh"));
+      return info;
+    },
     consentSnapshot: () => adMobSafety.getConsentSnapshot(),
     consentForm: () => trace("initial_form", async () => (await sdk()).AdMob.showConsentForm()),
     privacyForm: () => trace("privacy_form", async () => { await (await sdk()).AdMob.showPrivacyOptionsForm(); }),
