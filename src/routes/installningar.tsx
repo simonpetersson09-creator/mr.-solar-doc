@@ -511,7 +511,7 @@ function SettingsPage() {
 
 /** Read-only native snapshots; failed reads retain the last successful timestamp. */
 function AdPrivacyButton() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [state, setState] = useState<AdPrivacyState | null>(null);
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
@@ -537,18 +537,6 @@ function AdPrivacyButton() {
   }, [refresh]);
 
   if (!adsSupported()) return null;
-  const consentKey = state?.consent === "OBTAINED" ? "adsConsentObtained"
-    : state?.consent === "NOT_REQUIRED" ? "adsConsentNotRequired"
-    : state?.consent === "REQUIRED" ? "adsConsentMissing" : "adsUnknown";
-  const trackingKey = state?.tracking === "authorized" ? "adsTrackingAllowed"
-    : state?.tracking === "denied" ? "adsTrackingDenied"
-    : state?.tracking === "restricted" ? "adsTrackingRestricted"
-    : state?.tracking === "notDetermined" ? "adsTrackingNotAsked" : "adsUnknown";
-  const rows: [string, string][] = [
-    [t("settings.adsPrivacyConsent"), t(`settings.${consentKey}`)],
-  ];
-  if (state?.platform === "ios") rows.push([t("settings.adsPrivacyTracking"), t(`settings.${trackingKey}`)]);
-  rows.push([t("settings.adsCheckedAt"), state ? new Date(state.checkedAt).toLocaleString(i18n.resolvedLanguage) : "—"]);
 
   async function action(change: boolean) {
     if (busy) return;
@@ -579,14 +567,6 @@ function AdPrivacyButton() {
           <div key={label} className="flex items-start gap-3 text-xs">
             <dt className="min-w-0 flex-1 text-brand-black">{t(`settings.${label}`)}</dt>
             <dd className="max-w-[40%] break-words text-right font-semibold text-brand-black/70">{t(`settings.${failed || !choice || choice === "unknown" ? "adsChoiceUnknown" : choice === "allowed" ? "adsChoiceAllowed" : "adsChoiceDenied"}`)}</dd>
-          </div>
-        ))}
-      </dl>
-      <dl className="space-y-1 border-t border-brand-black/10 pt-3">
-        {rows.map(([k, v]) => (
-          <div key={k} className="flex flex-wrap justify-between gap-x-3 gap-y-1 text-xs">
-            <dt className="text-brand-black/60">{k}</dt>
-            <dd className="min-w-0 break-words text-right font-medium text-brand-black">{v}</dd>
           </div>
         ))}
       </dl>
