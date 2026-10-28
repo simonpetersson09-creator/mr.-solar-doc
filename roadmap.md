@@ -1,8 +1,8 @@
 # Roadmap
 
 ## Premium-orsaker och dold diagnostik
-- [ ] Granska varför Premium blir otillgängligt utan att ändra köp- eller annonsregler.
-- [ ] Begränsa diagnostikpanelen till utvecklings-/native Debug-versioner, aldrig vanliga butiksbyggen; testa begränsningen.
+- [x] Granska Premium-kedjan: ofärdig butiksstart, inaktuell serverstatus eller anropsfel ger okänd status; lokal readiness återförsöks inte. Telefonens exakta gren är ännu inte bekräftad; inga köp-/annonsregler ändrade.
+- [x] Begränsa diagnostikpanelen till utvecklings-/native Debug-versioner, aldrig release inklusive TestFlight; 1 522 apptester och 16 native-tester godkända.
 
 ## Premium-fel vid läsning av annonsintegritet
 - [x] Separera sparad native-status från Premium-fel vid explicit uppdatering; behåll annonsspärr och övrig samtyckeslogik.
