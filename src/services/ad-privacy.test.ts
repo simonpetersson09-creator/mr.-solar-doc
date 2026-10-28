@@ -1,16 +1,28 @@
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 const native = vi.hoisted(() => ({
-  platform: "ios", snapshot: vi.fn(), tracking: vi.fn(), update: vi.fn(), form: vi.fn(), invalidate: vi.fn(), eligible: vi.fn(),
+  platform: "ios", snapshot: vi.fn(), tracking: vi.fn(), update: vi.fn(), form: vi.fn(), invalidate: vi.fn(), eligible: vi.fn(), state: vi.fn(),
 }));
 vi.mock("@/services/native-service", () => ({ getPlatform: () => native.platform, isNativePlatform: () => native.platform !== "web" }));
-vi.mock("./admob-native", () => ({ adMobSafety: { getConsentSnapshot: native.snapshot, invalidateAppOpen: native.invalidate, setAppOpenEligible: native.eligible } }));
+vi.mock("./admob-native", () => ({ adMobSafety: { getConsentSnapshot: native.snapshot, invalidateAppOpen: native.invalidate, setAppOpenEligible: native.eligible, getAppOpenState: native.state } }));
 vi.mock("@capacitor-community/admob", () => ({ AdMob: { trackingAuthorizationStatus: native.tracking, requestConsentInfo: native.update, showPrivacyOptionsForm: native.form } }));
 beforeEach(() => {
   vi.resetModules(); native.platform = "ios"; vi.clearAllMocks();
   native.snapshot.mockResolvedValue({ status: "OBTAINED", canRequestAds: true, privacyOptionsRequirementStatus: "REQUIRED" });
   native.tracking.mockResolvedValue({ status: "restricted" });
 });
-afterEach(() => vi.restoreAllMocks());
+afterEach(() => { vi.restoreAllMocks(); vi.unstubAllEnvs(); });
+it.each(["ios", "android"])("%s production diagnostics remain hidden unless native confirms Debug", async (platform) => {
+  native.platform = platform; vi.stubEnv("DEV", false);
+  const { privacyDiagnosticsAvailable } = await import("./app-open-ad");
+  native.state.mockResolvedValue({ testBuild: false });
+  expect(await privacyDiagnosticsAvailable()).toBe(false);
+  native.state.mockResolvedValue({});
+  expect(await privacyDiagnosticsAvailable()).toBe(false);
+  native.state.mockRejectedValue(new Error("native unavailable"));
+  expect(await privacyDiagnosticsAvailable()).toBe(false);
+  native.state.mockResolvedValue({ testBuild: true });
+  expect(await privacyDiagnosticsAvailable()).toBe(true);
+});
 it.each([
   [{ consent: "REQUIRED", optionsStatus: "NOT_REQUIRED", isConsentFormAvailable: true }, true],
   [{ consent: "REQUIRED", optionsStatus: "NOT_REQUIRED", isConsentFormAvailable: false }, false],
