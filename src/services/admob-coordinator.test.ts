@@ -103,7 +103,8 @@ describe("cold-start ad orchestration", () => {
     vi.mocked(ad.consentUpdate).mockResolvedValue({ ...consent, status: "REQUIRED", isConsentFormAvailable: true });
     await flow.start();
     expect(ad.consentUpdate).toHaveBeenCalledTimes(1);
-    for (const fn of [ad.consentForm, ad.privacyForm, ad.tracking, ad.requestTracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
+    expect(ad.consentForm).toHaveBeenCalledTimes(1);
+    for (const fn of [ad.privacyForm, ad.tracking, ad.requestTracking, ad.initialize, ad.load, ad.show]) expect(fn).not.toHaveBeenCalled();
     expect(ad.setEligible).not.toHaveBeenCalledWith(true);
   });
   it("cancellation before Premium resolves still updates UMP status for free users without ads", async () => {
