@@ -36,3 +36,67 @@ test("maintained iOS bridge registers explicit ATT and guards system presentatio
   assert.match(source, /guard !self\.trackingRequestPending/);
   assert.match(source, /generation == trackingGeneration/);
 });
+
+function methodBody(source, signature) {
+  const start = source.indexOf(signature);
+  assert.notEqual(start, -1, `Missing native method: ${signature}`);
+  const open = source.indexOf("{", start);
+  assert.notEqual(open, -1);
+  let depth = 1;
+  for (let i = open + 1; i < source.length; i++) {
+    if (source[i] === "{") depth++;
+    if (source[i] === "}") depth--;
+    if (depth === 0) return source.slice(open + 1, i);
+  }
+  assert.fail(`Unclosed native method: ${signature}`);
+}
+
+function verifyConsentSnapshot(root, platform) {
+  const read = (path) => readFileSync(join(root, path), "utf8");
+  if (platform === "ios") {
+    const bridge = read("ios/Sources/AdMobPlugin/AdMobPlugin.swift");
+    assert.match(bridge, /public class AdMobPlugin: CAPPlugin, CAPBridgedPlugin/);
+    assert.match(bridge, /public let jsName = "AdMob"/);
+    const methods = bridge.match(/pluginMethods:\s*\[CAPPluginMethod\]\s*=\s*\[([\s\S]*?)\n\s*\]/)?.[1];
+    assert.ok(methods, "Missing CAP method table");
+    assert.match(methods, /CAPPluginMethod\(name: "getConsentSnapshot", returnType: CAPPluginReturnPromise\)/);
+    const delegation = methodBody(bridge, "@objc func getConsentSnapshot(_ call: CAPPluginCall)");
+    assert.match(delegation, /DispatchQueue\.main\.async/);
+    assert.match(delegation, /self\.consentExecutor\.getConsentSnapshot\(call\)/);
+    const body = methodBody(read("ios/Sources/AdMobPlugin/Consent/ConsentExecutor.swift"), "func getConsentSnapshot(_ call: CAPPluginCall)");
+    assert.match(body, /call\.resolve\(/);
+    assert.match(body, /"status": getConsentStatusString\(ConsentInformation\.shared\.consentStatus\)/);
+    assert.match(body, /"isConsentFormAvailable": ConsentInformation\.shared\.formStatus == FormStatus\.available/);
+    assert.match(body, /"canRequestAds": ConsentInformation\.shared\.canRequestAds/);
+    assert.match(body, /"privacyOptionsRequirementStatus": getPrivacyOptionsRequirementStatus\(ConsentInformation\.shared\.privacyOptionsRequirementStatus\)/);
+    assert.doesNotMatch(body, /requestConsentInfoUpdate|loadAndPresentIfRequired|presentPrivacyOptionsForm/);
+  } else {
+    const bridge = read("android/src/main/java/com/getcapacitor/community/admob/AdMob.java");
+    assert.match(bridge, /@CapacitorPlugin\([\s\S]*?\)\s*public class AdMob extends Plugin/);
+    assert.match(bridge, /@PluginMethod\s+public void getConsentSnapshot\(final PluginCall call\)/);
+    const delegation = methodBody(bridge, "public void getConsentSnapshot(final PluginCall call)");
+    assert.match(delegation, /runOnUiThread\(\(\) -> adConsentExecutor\.getConsentSnapshot\(call\)\)/);
+    const executor = read("android/src/main/java/com/getcapacitor/community/admob/consent/AdConsentExecutor.java");
+    const body = methodBody(executor, "public void getConsentSnapshot(final PluginCall call)");
+    assert.match(body, /ensureConsentInfo\(\)/);
+    assert.match(body, /info\.put\("status", getConsentStatusString\(consentInformation\.getConsentStatus\(\)\)\)/);
+    assert.match(body, /info\.put\("isConsentFormAvailable", consentInformation\.isConsentFormAvailable\(\)\)/);
+    assert.match(body, /info\.put\("canRequestAds", consentInformation\.canRequestAds\(\)\)/);
+    assert.match(body, /info\.put\("privacyOptionsRequirementStatus", consentInformation\.getPrivacyOptionsRequirementStatus\(\)\.name\(\)\)/);
+    assert.match(body, /call\.resolve\(info\)/);
+    assert.match(methodBody(executor, "void ensureConsentInfo()"), /UserMessagingPlatform\.getConsentInformation\(/);
+    assert.doesNotMatch(body, /requestConsentInfoUpdate|loadAndShowConsentFormIfRequired|showPrivacyOptionsForm/);
+  }
+}
+
+for (const platform of ["ios", "android"]) {
+  test(`${platform} getConsentSnapshot is implemented and registered after initial and repeated patching`, () => {
+    const root = fixture();
+    try {
+      applyAdMobPatch(root);
+      verifyConsentSnapshot(root, platform);
+      assert.equal(applyAdMobPatch(root), 0);
+      verifyConsentSnapshot(root, platform);
+    } finally { rmSync(root, { recursive: true, force: true }); }
+  });
+}
