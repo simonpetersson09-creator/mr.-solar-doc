@@ -6,6 +6,7 @@ import { NATIVE_BACKEND_URL } from "@/config/native-backend";
 import { getPlatform } from "@/services/native-service";
 import { usePurchaseStore } from "@/state/purchase-store";
 import { useWizardStore } from "@/state/wizard-store";
+import type { AdLaunchEvent } from "@/lib/ad-launch-events";
 
 type StatEvent =
   | "app_open"
@@ -16,7 +17,15 @@ type StatEvent =
   | "purchase_tap_unlock"
   | "purchase_tap_premium";
 
-export function trackEvent(event: StatEvent, step?: number): void {
+/** Ad telemetry uses existing anonymous app IDs, never web or consent values. */
+export function trackAdLaunchEvent(event: AdLaunchEvent): void {
+  try {
+    if (typeof window === "undefined" || getPlatform() === "web") return;
+    trackEvent(event);
+  } catch { /* Do not interfere with ads. */ }
+}
+
+export function trackEvent(event: StatEvent | AdLaunchEvent, step?: number): void {
   if (typeof window === "undefined") return;
   try {
     const platform = getPlatform();

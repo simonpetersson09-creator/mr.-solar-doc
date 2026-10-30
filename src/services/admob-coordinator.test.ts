@@ -20,6 +20,28 @@ async function flush() { for (let i = 0; i < 35; i++) await Promise.resolve(); }
 beforeEach(() => { vi.useFakeTimers(); vi.setSystemTime(1000000); vi.spyOn(console, "info").mockImplementation(() => undefined); });
 afterEach(() => { vi.useRealTimers(); vi.restoreAllMocks(); });
 describe("cold-start ad orchestration", () => {
+  it("emits one launch and native-confirmed shown/impression without changing load/show counts", async () => {
+    const { ad } = fixture(); const send = vi.fn(); let event: (stage: string, code?: number) => void = () => undefined;
+    vi.mocked(ad.listen).mockImplementation(async (callback) => { event = callback; return () => undefined; });
+    vi.mocked(ad.show).mockImplementation(async () => { event("opened"); event("opened"); event("impression"); });
+    const flow = new AdMobCoordinator(ad, send); await flow.start(); await flow.start();
+    expect(send.mock.calls.flat()).toEqual(["ad_open_started", "ad_open_shown", "ad_open_impression"]);
+    expect(ad.load).toHaveBeenCalledTimes(1); expect(ad.show).toHaveBeenCalledTimes(1);
+  });
+  it("reports early interaction but still performs required UMP without ads", async () => {
+    const { ad } = fixture(); const send = vi.fn(); const flow = new AdMobCoordinator(ad, send);
+    flow.cancel("interaction"); await flow.start();
+    expect(send.mock.calls.flat()).toEqual(["ad_open_started", "ad_open_skipped_interaction"]);
+    expect(ad.consentUpdate).toHaveBeenCalledTimes(1); expect(ad.show).not.toHaveBeenCalled();
+  });
+  it("reports native no-fill only once even when load also rejects", async () => {
+    const { ad } = fixture(); const send = vi.fn(); let event: (stage: string, code?: number) => void = () => undefined;
+    vi.mocked(ad.listen).mockImplementation(async (callback) => { event = callback; return () => undefined; });
+    vi.mocked(ad.load).mockImplementation(async () => { event("failed_load", 3); throw new Error("private error"); });
+    const flow = new AdMobCoordinator(ad, send); await flow.start();
+    expect(send.mock.calls.flat()).toEqual(["ad_open_started", "ad_open_skipped_no_fill"]);
+    expect(ad.show).not.toHaveBeenCalled();
+  });
   it("diagnoses a tracking failure after successful UMP and snapshot without changing rejection", async () => {
     const { flow, ad } = fixture();
     const error = { code: "UNIMPLEMENTED", message: "tracking status not implemented" };
