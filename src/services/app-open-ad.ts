@@ -4,6 +4,11 @@ import { adMobSafety, type NativeConsent } from "./admob-native";
 import { recordAdDiagnostic as log } from "./ad-diagnostics";
 import { readAdConsentChoices, type AdConsentChoices } from "@/lib/ad-consent-choices";
 import { tracePrivacyStep as trace } from "./ad-privacy-diagnostics";
+import type { AdLaunchEvent } from "@/lib/ad-launch-events";
+
+function sendAdTelemetry(event: AdLaunchEvent): void {
+  void import("./stats").then(({ trackAdLaunchEvent }) => trackAdLaunchEvent(event)).catch(() => undefined);
+}
 
 /** Production ids (iOS only). */
 export const ADMOB_IOS_APP_ID = "ca-app-pub-7448540924654868~3473619726";
@@ -113,10 +118,7 @@ function instance(): AdMobCoordinator {
       ]);
       return () => { for (const handle of handles) void handle.remove(); };
     },
-  }, (event) => {
-    // Keep stats/i18n outside the native coordinator's import graph.
-    void import("./stats").then(({ trackAdLaunchEvent }) => trackAdLaunchEvent(event)).catch(() => undefined);
-  });
+  }, sendAdTelemetry);
   return coordinator;
 }
 
@@ -149,6 +151,7 @@ export function startAppOpenAd(isPremium: () => Promise<boolean | null>): void {
     } else markAdInteraction("background");
   };
   void (async () => {
+    let flowStarted = false;
     try {
       const { App } = await import("@capacitor/app");
       // iOS pause means actual background; resign-active can just be ATT.
@@ -160,8 +163,15 @@ export function startAppOpenAd(isPremium: () => Promise<boolean | null>): void {
       });
       foreground = (await App.getState()).isActive;
       if (!foreground) markAdInteraction("background");
+      flowStarted = true;
       await instance().start();
-    } catch { log("error", nativeReady ? "startup_failed" : "native_setup_failed"); }
+    } catch {
+      log("error", nativeReady ? "startup_failed" : "native_setup_failed");
+      if (!flowStarted) {
+        sendAdTelemetry("ad_open_started");
+        sendAdTelemetry("ad_open_skipped_native_error");
+      }
+    }
   })();
 }
 
