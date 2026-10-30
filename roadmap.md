@@ -1,5 +1,10 @@
 # Roadmap
 
+## Appstartannonsstatistik
+- [ ] Registrera bekräftad visning och utebliven annons med begränsade stopporsaker, endast iOS/Android och utan samtyckesvärden.
+- [ ] Testa utskick, dubbelskydd och oförändrade annonsregler; ingen publicering.
+- [ ] Bekräfta statistik från telefon: kräver nya telefonbyggen och publicerad mottagning efter godkännande.
+
 ## Kontrollerade Premium-återförsök
 - [x] Ersätt låst misslyckad readiness med delade, begränsade återförsök: två försök, 1 s paus, 5 s felspärr och 15 s väntetid; låset behålls för pågående arbete efter timeout.
 - [x] Testa sena butiksstarter, anropsfel, samtidighet, stopp efter maxförsök och oförändrad kallstartsregel; 1 532 apptester och 16 native-tester godkända.
