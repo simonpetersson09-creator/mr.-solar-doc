@@ -1,8 +1,8 @@
 # Roadmap
 
 ## Appstartannonsstatistik
-- [ ] Registrera bekräftad visning och utebliven annons med begränsade stopporsaker, endast iOS/Android och utan samtyckesvärden.
-- [ ] Testa utskick, dubbelskydd och oförändrade annonsregler; ingen publicering.
+- [x] Registrera bekräftad visning och utebliven annons med begränsade stopporsaker, endast iOS/Android och utan samtyckesvärden; försök utan native-bekräftelse redovisas separat.
+- [x] Testa utskick, dubbelskydd och oförändrade annonsregler: 1 582 apptester och 16 native-tester godkända, 8/8 patchfiler matchar; webbhändelser avvisas och sidan laddar. Ingen publicering.
 - [ ] Bekräfta statistik från telefon: kräver nya telefonbyggen och publicerad mottagning efter godkännande.
 
 ## Kontrollerade Premium-återförsök
