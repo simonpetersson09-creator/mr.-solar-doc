@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { z } from "zod";
+import { eventSchema } from "@/lib/stat-event-schema";
 
 import { isNativeAppOrigin } from "@/config/native-backend";
 
@@ -7,23 +7,6 @@ import { isNativeAppOrigin } from "@/config/native-backend";
  * Anonymous usage statistics (app opens, wizard steps reached, calculations).
  * Write-only: nothing is ever returned. No address, coordinates or bill data.
  */
-const eventSchema = z.object({
-  deviceId: z.string().min(1).max(100),
-  event: z.enum([
-    "app_open",
-    "wizard_start",
-    "step_view",
-    "calculate",
-    "paywall_view",
-    "purchase_tap_unlock",
-    "purchase_tap_premium",
-  ]),
-  step: z.number().int().min(1).max(5).optional(),
-  country: z.string().regex(/^[A-Z]{2}$/).optional(),
-  platform: z.enum(["ios", "android", "web"]),
-  language: z.string().max(20).optional(),
-});
-
 function headers(origin: string | null): HeadersInit {
   return {
     "Access-Control-Allow-Origin": origin ?? "*",

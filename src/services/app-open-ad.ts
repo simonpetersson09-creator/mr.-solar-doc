@@ -4,6 +4,7 @@ import { adMobSafety, type NativeConsent } from "./admob-native";
 import { recordAdDiagnostic as log } from "./ad-diagnostics";
 import { readAdConsentChoices, type AdConsentChoices } from "@/lib/ad-consent-choices";
 import { tracePrivacyStep as trace } from "./ad-privacy-diagnostics";
+import { trackAdLaunchEvent } from "./stats";
 
 /** Production ids (iOS only). */
 export const ADMOB_IOS_APP_ID = "ca-app-pub-7448540924654868~3473619726";
@@ -113,7 +114,7 @@ function instance(): AdMobCoordinator {
       ]);
       return () => { for (const handle of handles) void handle.remove(); };
     },
-  });
+  }, trackAdLaunchEvent);
   return coordinator;
 }
 

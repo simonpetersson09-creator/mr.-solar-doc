@@ -1,6 +1,7 @@
 import type { NativeConsent } from "./admob-native";
 import { recordAdDiagnostic as log } from "./ad-diagnostics";
 import { tracePrivacyStep as trace } from "./ad-privacy-diagnostics";
+import { AdLaunchTelemetry, type AdLaunchEvent } from "@/lib/ad-launch-events";
 
 export const AD_MAX_AGE_MS = 4 * 60 * 60 * 1000;
 export const AD_LOAD_WINDOW_MS = 5000;
@@ -45,7 +46,14 @@ export class AdMobCoordinator {
   private privacy: Promise<void> | null = null;
   private mutations: Promise<unknown> = Promise.resolve();
   private cleanup: (() => void) | undefined;
-  constructor(private readonly ad: AdAdapter) {}
+  private readonly telemetry: AdLaunchTelemetry;
+  constructor(private readonly ad: AdAdapter, sendTelemetry?: (event: AdLaunchEvent) => void) {
+    this.telemetry = new AdLaunchTelemetry(sendTelemetry);
+  }
+  private log(stage: string, reason?: string, code?: number): void {
+    log(stage, reason, code);
+    this.telemetry.record(stage, reason);
+  }
 
   private serial<T>(operation: () => Promise<T>): Promise<T> {
     const result = this.queue.then(operation);
@@ -124,7 +132,7 @@ export class AdMobCoordinator {
     if (this.cancelled) return;
     this.cancelled = true;
     this.revision++;
-    log("cancelled", reason);
+    this.log("cancelled", reason);
     void this.mutate(async () => { await this.ad.setEligible(false); await this.ad.invalidate(); }).catch(() => log("native_error", "cancel"));
   }
 
@@ -157,12 +165,15 @@ export class AdMobCoordinator {
   async start(): Promise<void> {
     if (this.started) return;
     this.started = true;
+    this.telemetry.start();
     const revision = this.revision;
     const privacyRevision = this.privacyRevision;
+    let operation = "premium";
     try {
       const premium = await bounded(this.ad.premium(), OPERATION_TIMEOUT_MS, "premium");
-      log("premium", premium === null ? "unknown" : premium ? "active" : "inactive");
+      this.log("premium", premium === null ? "unknown" : premium ? "active" : "inactive");
       if (premium !== false) return;
+      operation = "consent";
       // UMP reports UNKNOWN until its UI-free info update has run in this
       // session. Run it for confirmed free users even after early interaction,
       // so saved choices are readable; forms, ATT and ads still require allowed().
@@ -171,7 +182,7 @@ export class AdMobCoordinator {
       // free users even if the user already tapped or resumed the wizard; only
       // the app-open ad (and ATT) is cancelled by interaction.
       if (consent.status === "REQUIRED" && consent.isConsentFormAvailable && privacyRevision === this.privacyRevision && !this.privacy) {
-        if (await bounded(this.ad.premium(), OPERATION_TIMEOUT_MS, "premium") !== false) return;
+        if (await bounded(this.ad.premium(), OPERATION_TIMEOUT_MS, "premium") !== false) { this.log("skipped", "premium_changed_or_unknown"); return; }
         if (privacyRevision !== this.privacyRevision || this.privacy) return;
         consent = await this.serial(async () => {
           try { return await this.ad.consentForm(); }
@@ -180,9 +191,9 @@ export class AdMobCoordinator {
         if (this.ad.waitForeground) await bounded(this.ad.waitForeground(), OPERATION_TIMEOUT_MS, "foreground");
       }
       if (!this.allowed(revision)) return;
-      this.cleanup = await this.ad.listen((stage, code) => log(stage, stage === "failed_load" && code === 3 ? "no_fill" : undefined, code));
+      this.cleanup = await this.ad.listen((stage, code) => this.log(stage, stage === "failed_load" && code === 3 ? "no_fill" : undefined, code));
       if (this.ad.waitForeground && !this.cancelled) await bounded(this.ad.waitForeground(), OPERATION_TIMEOUT_MS, "foreground");
-      if (!consent.canRequestAds) { log("skipped", "consent_missing"); return; }
+      if (!consent.canRequestAds) { this.log("skipped", "consent_missing"); return; }
       if (!this.allowed(revision)) return;
       // UMP must finish first. ATT is a separate, guarded native system prompt;
       // denial never substitutes for UMP's current ad eligibility.
@@ -197,9 +208,11 @@ export class AdMobCoordinator {
         });
         if (this.ad.waitForeground && !this.cancelled) await bounded(this.ad.waitForeground(), OPERATION_TIMEOUT_MS, "foreground");
       }
-      catch { log("tracking", "unknown"); return; }
+      catch { this.log("tracking", "unknown"); return; }
       if (!this.allowed(revision)) return;
-      if (await bounded(this.ad.premium(), OPERATION_TIMEOUT_MS, "premium") !== false) { log("skipped", "premium_changed_or_unknown"); return; }
+      operation = "premium";
+      if (await bounded(this.ad.premium(), OPERATION_TIMEOUT_MS, "premium") !== false) { this.log("skipped", "premium_changed_or_unknown"); return; }
+      operation = "initialize";
       await this.serial(async () => { if (this.allowed(revision)) await this.ad.initialize(); });
       if (!this.allowed(revision)) return;
       // Consent/ATT time does not consume the bounded ad load/show budget.
@@ -210,24 +223,31 @@ export class AdMobCoordinator {
       });
       if (!this.allowed(revision)) return;
       const beforeLoad = await this.serial(() => this.ad.consentSnapshot());
-      if (!beforeLoad.canRequestAds || !this.allowed(revision)) return;
+      if (!beforeLoad.canRequestAds || !this.allowed(revision)) {
+        if (!beforeLoad.canRequestAds) this.log("skipped", "consent_changed");
+        return;
+      }
       log("request");
+      operation = "load";
       await bounded(this.ad.load(), AD_LOAD_WINDOW_MS, "load");
       if (!this.allowed(revision)) return;
+      operation = "pre_show";
       const [current, premiumNow, state] = await bounded(Promise.all([
         this.serial(() => this.ad.consentSnapshot()), this.ad.premium(), this.ad.state(),
       ]), Math.max(1, deadline - Date.now()), "pre_show");
       const age = state.loadedAt === null ? Infinity : Date.now() - state.loadedAt;
       if (!this.allowed(revision) || Date.now() >= deadline || premiumNow !== false || !current.canRequestAds || !state.foreground || age < 0 || age >= AD_MAX_AGE_MS) {
-        log("skipped", premiumNow !== false ? "premium_changed_or_unknown" : !current.canRequestAds ? "consent_changed" : !state.foreground ? "background" : age >= AD_MAX_AGE_MS ? "expired" : "launch_left");
+        this.log("skipped", premiumNow !== false ? "premium_changed_or_unknown" : !current.canRequestAds ? "consent_changed" : !state.foreground ? "background" : age >= AD_MAX_AGE_MS ? "expired" : "launch_left");
         return;
       }
-      log("show_attempt");
+      this.log("show_attempt");
+      operation = "show";
       await this.ad.show(); // resolves at dismissal; not a five-second operation
     } catch (error) {
       const reason = error instanceof Error && error.message.startsWith("timeout:") ? error.message : "operation_failed";
-      log("error", reason);
+      this.log("error", reason.startsWith("timeout:") ? reason : `${operation}_failed`);
     } finally {
+      this.telemetry.finish();
       this.cancel("attempt_finished");
       // A native generation token also rejects callbacks after JS timeouts.
       await this.mutate(() => this.ad.invalidate()).catch(() => log("native_error", "invalidate"));

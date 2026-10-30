@@ -49,7 +49,9 @@ export class AdLaunchTelemetry {
     if (stage === "failed_load") this.reason = reason === "no_fill" ? "no_fill" : "load_error";
     if (stage === "failed_show") this.reason = "show_error";
     if (stage === "tracking" && reason === "unknown") this.reason = "tracking_error";
-    if (stage === "error" && !this.reason) this.reason = reason?.startsWith("timeout:") ? "timeout" : "native_error";
+    if (stage === "error" && !this.reason) this.reason = reason?.startsWith("timeout:") ? "timeout"
+      : reason === "premium_failed" ? "premium_unknown" : reason === "load_failed" ? "load_error"
+        : reason === "show_failed" ? "show_error" : reason === "consent_failed" ? "consent_unavailable" : "native_error";
   }
   finish(): void {
     if (!this.started || this.finished) return;
