@@ -15,7 +15,10 @@ export function useAppOpenAd(queryClient: QueryClient) {
   useEffect(() => {
     setAdLaunchPath(router.state.location.pathname);
     const unsubscribe = router.subscribe("onBeforeNavigate", ({ toLocation }) => setAdLaunchPath(toLocation.pathname));
-    if (useWizardStore.getState().hasStarted) markAdInteraction("wizard_resumed");
+    // A guide restored from storage is the app's normal start screen from the
+    // second launch onward (step 1), so it must not cancel this launch's ad.
+    // Only a wizard change made now — starting the guide or editing an answer —
+    // counts as interaction and cancels it.
     const unsubscribeWizard = useWizardStore.subscribe((state) => { if (state.hasStarted) markAdInteraction("wizard_started"); });
     startAppOpenAd(createAdPremiumResolver({
       // The purchase service retains its own one-shot adapter guard and lock.
