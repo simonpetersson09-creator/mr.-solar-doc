@@ -1,5 +1,10 @@
 # Roadmap
 
+## Appstartannons på steg 1
+- [x] Låt en sparad guide inte längre avbryta lanceringen: App Open får visas på steg 1 vid kallstart, men bara fram till första interaktionen.
+- [x] Lägg till regressionstest för båda vägarna: 1 585 apptester godkända och build OK; ingen publicering.
+- [ ] Bekräfta annonsvisning på steg 1 i nya telefonbyggen: kräver fysisk iPhone/Android.
+
 ## Appstartannonsstatistik
 - [x] Registrera bekräftad visning och utebliven annons med begränsade stopporsaker, endast iOS/Android och utan samtyckesvärden; försök utan native-bekräftelse redovisas separat.
 - [x] Testa utskick, dubbelskydd och oförändrade annonsregler: 1 582 apptester och 16 native-tester godkända, 8/8 patchfiler matchar; webbhändelser avvisas och sidan laddar. Ingen publicering.
