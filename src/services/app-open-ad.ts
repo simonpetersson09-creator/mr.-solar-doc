@@ -135,9 +135,9 @@ export function startAppOpenAd(isPremium: () => Promise<boolean | null>): void {
   if (!adsSupported() || startupPremium) return;
   startupPremium = isPremium;
   pathname = window.location.pathname;
-  for (const event of ["pointerdown", "keydown", "click", "wheel", "touchstart"]) {
-    window.addEventListener(event, () => markAdInteraction(), { capture: true, once: true, passive: true });
-  }
+  // Plain touches, scrolling and keys no longer cancel the launch ad; only a
+  // real action does: changing a wizard answer/starting the guide (see
+  // use-app-open-ad), leaving the start screen, or backgrounding the app.
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "hidden") void checkBackground();
   });
