@@ -68,11 +68,16 @@ describe("useAppOpenAd launch eligibility", () => {
     expect(markAdInteraction).toHaveBeenCalledWith("wizard_started");
   });
 
-  it("cancels the launch ad when a resumed guide changes", () => {
+  it("does not cancel the launch ad when only the step changes", () => {
     useWizardStore.setState({ hasStarted: true });
     render();
-    expect(markAdInteraction).not.toHaveBeenCalled();
     act(() => useWizardStore.getState().setCurrentStep(2));
+    expect(markAdInteraction).not.toHaveBeenCalled();
+  });
+  it("cancels the launch ad when the guide is started", () => {
+    useWizardStore.setState({ hasStarted: false });
+    render();
+    act(() => useWizardStore.getState().setStarted(true));
     expect(markAdInteraction).toHaveBeenCalledWith("wizard_started");
   });
 });

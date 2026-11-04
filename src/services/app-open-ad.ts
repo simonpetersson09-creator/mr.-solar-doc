@@ -59,7 +59,7 @@ let sdkPromise: Promise<typeof import("@capacitor-community/admob")> | undefined
 let unitId: string | undefined;
 let nativeReady = false;
 const sdk = () => sdkPromise ??= import("@capacitor-community/admob");
-const allowed = () => !entered && pathname === "/" && foreground && document.visibilityState === "visible";
+const allowed = () => !entered && foreground && document.visibilityState === "visible";
 
 async function currentUnit(): Promise<string> {
   if (unitId) return unitId;
@@ -124,7 +124,8 @@ function instance(): AdMobCoordinator {
 
 export function setAdLaunchPath(path: string): void {
   pathname = path;
-  if (path !== "/") markAdInteraction("navigation");
+  // Changing page no longer cancels the launch ad; only Premium, background,
+  // answer edits and the bounded load window do.
 }
 export function markAdInteraction(reason = "interaction"): void {
   entered = true;
