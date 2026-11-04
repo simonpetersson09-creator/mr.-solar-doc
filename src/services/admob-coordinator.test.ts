@@ -199,9 +199,9 @@ describe("cold-start ad orchestration", () => {
     const { flow, ad } = fixture(); vi.mocked(ad.consentSnapshot).mockResolvedValueOnce(consent).mockResolvedValue({ ...consent, canRequestAds: false });
     await flow.start(); expect(ad.load).toHaveBeenCalledTimes(1); expect(ad.show).not.toHaveBeenCalled();
   });
-  it("five-second load timeout invalidates late callback with no retry", async () => {
+  it("eight-second load timeout invalidates late callback with no retry", async () => {
     const { flow, ad } = fixture(); const load = deferred<void>(); vi.mocked(ad.load).mockReturnValue(load.promise);
-    const run = flow.start(); await flush(); await vi.advanceTimersByTimeAsync(5000); await run; load.resolve(); await flush(); await flow.start();
+    const run = flow.start(); await flush(); await vi.advanceTimersByTimeAsync(8000); await run; load.resolve(); await flush(); await flow.start();
     expect(ad.show).not.toHaveBeenCalled(); expect(ad.invalidate).toHaveBeenCalled(); expect(ad.load).toHaveBeenCalledTimes(1);
   });
   it("four-hour actual native timestamp is never refreshed by JS", async () => {
