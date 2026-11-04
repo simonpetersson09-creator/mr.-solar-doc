@@ -4,7 +4,7 @@ import { tracePrivacyStep as trace } from "./ad-privacy-diagnostics";
 import { AdLaunchTelemetry, type AdLaunchEvent } from "@/lib/ad-launch-events";
 
 export const AD_MAX_AGE_MS = 4 * 60 * 60 * 1000;
-export const AD_LOAD_WINDOW_MS = 5000;
+export const AD_LOAD_WINDOW_MS = 8000;
 const OPERATION_TIMEOUT_MS = 15000;
 
 export interface AdAdapter {
