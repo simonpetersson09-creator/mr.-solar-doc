@@ -61,6 +61,24 @@ function PrivacyPage() {
               endast för att läsa av värdena och lagras inte permanent.
             </p>
             <p>
+              Anonym användningsstatistik (vilken händelse som skett, land,
+              språk, plattform och vilket steg du nått, kopplat till ett
+              slumpat enhets-ID) sparas i högst 24 månader och raderas
+              automatiskt därefter.
+            </p>
+            <p>
+              En beräkning som påbörjats men aldrig betalats sparas i högst 12
+              månader och raderas sedan automatiskt. Köpta rapporter och
+              köpkvitton sparas längre eftersom vi är skyldiga att bevara
+              bokföringsunderlag.
+            </p>
+            <p>
+              Allt som sparas på din enhet – sparade svar, historik och
+              inställningar – ligger kvar tills du själv raderar appen eller
+              använder "Radera all min data" i Inställningar. Den knappen
+              raderar också dina uppgifter hos oss.
+            </p>
+            <p>
               Har du frågor om hur dina uppgifter hanteras är du välkommen att
               kontakta oss.
             </p>

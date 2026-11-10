@@ -20,6 +20,7 @@ import { Route as ApiPublicEventsRouteImport } from './routes/api/public/events'
 import { Route as ApiPublicGeocodeRouteImport } from './routes/api/public/geocode'
 import { Route as ApiPublicPurchaseRouteImport } from './routes/api/public/purchase'
 import { Route as ApiPublicPvgisRouteImport } from './routes/api/public/pvgis'
+import { Route as ApiPublicJobsRetentionRouteImport } from './routes/api/public/jobs/retention'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +77,11 @@ const ApiPublicPvgisRoute = ApiPublicPvgisRouteImport.update({
   path: '/api/public/pvgis',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicJobsRetentionRoute = ApiPublicJobsRetentionRouteImport.update({
+  id: '/api/public/jobs/retention',
+  path: '/api/public/jobs/retention',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -89,6 +95,7 @@ export interface FileRoutesByFullPath {
   '/api/public/geocode': typeof ApiPublicGeocodeRoute
   '/api/public/purchase': typeof ApiPublicPurchaseRoute
   '/api/public/pvgis': typeof ApiPublicPvgisRoute
+  '/api/public/jobs/retention': typeof ApiPublicJobsRetentionRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -102,6 +109,7 @@ export interface FileRoutesByTo {
   '/api/public/geocode': typeof ApiPublicGeocodeRoute
   '/api/public/purchase': typeof ApiPublicPurchaseRoute
   '/api/public/pvgis': typeof ApiPublicPvgisRoute
+  '/api/public/jobs/retention': typeof ApiPublicJobsRetentionRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/api/public/geocode': typeof ApiPublicGeocodeRoute
   '/api/public/purchase': typeof ApiPublicPurchaseRoute
   '/api/public/pvgis': typeof ApiPublicPvgisRoute
+  '/api/public/jobs/retention': typeof ApiPublicJobsRetentionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -131,6 +140,7 @@ export interface FileRouteTypes {
     | '/api/public/geocode'
     | '/api/public/purchase'
     | '/api/public/pvgis'
+    | '/api/public/jobs/retention'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -144,6 +154,7 @@ export interface FileRouteTypes {
     | '/api/public/geocode'
     | '/api/public/purchase'
     | '/api/public/pvgis'
+    | '/api/public/jobs/retention'
   id:
     | '__root__'
     | '/'
@@ -157,6 +168,7 @@ export interface FileRouteTypes {
     | '/api/public/geocode'
     | '/api/public/purchase'
     | '/api/public/pvgis'
+    | '/api/public/jobs/retention'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -171,6 +183,7 @@ export interface RootRouteChildren {
   ApiPublicGeocodeRoute: typeof ApiPublicGeocodeRoute
   ApiPublicPurchaseRoute: typeof ApiPublicPurchaseRoute
   ApiPublicPvgisRoute: typeof ApiPublicPvgisRoute
+  ApiPublicJobsRetentionRoute: typeof ApiPublicJobsRetentionRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +265,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiPublicPvgisRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/jobs/retention': {
+      id: '/api/public/jobs/retention'
+      path: '/api/public/jobs/retention'
+      fullPath: '/api/public/jobs/retention'
+      preLoaderRoute: typeof ApiPublicJobsRetentionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -267,6 +287,7 @@ const rootRouteChildren: RootRouteChildren = {
   ApiPublicGeocodeRoute: ApiPublicGeocodeRoute,
   ApiPublicPurchaseRoute: ApiPublicPurchaseRoute,
   ApiPublicPvgisRoute: ApiPublicPvgisRoute,
+  ApiPublicJobsRetentionRoute: ApiPublicJobsRetentionRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
